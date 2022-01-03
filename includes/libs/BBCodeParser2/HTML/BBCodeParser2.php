@@ -740,7 +740,7 @@ class HTML_BBCodeParser2
                 if ($this->_definedTags[$tag['tag']]['htmlclose'] == '' && $this->_options['xmlclose']) {
                     $this->_parsed .= ' /';
                 }
-                $this->_parsed .= '>';
+                $this->_parsed .= ']';
                 break;
 
             // closing tag
