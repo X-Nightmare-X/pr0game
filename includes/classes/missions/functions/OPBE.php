@@ -301,7 +301,7 @@ function updatePlayers(PlayerGroup $playerGroup, &$players)
  * 
  * @param int $id
  * @param int $count
- * @return a Ship or Defense instance
+ * @return Ship or Defense instance
  */
 function getShipType($id, $count)
 {
@@ -324,7 +324,7 @@ function getShipType($id, $count)
  * Choose the correct class type by ID
  * 
  * @param int $id
- * @return a Fleet or HomeFleet instance
+ * @return Fleet or HomeFleet instance
  */
 function getFleet($id)
 {
@@ -338,22 +338,19 @@ function getFleet($id)
 function getTechsFromArray($player)
 {
     $attTech = $player['military_tech'] + $player['factor']['Attack'] / WEAPONS_TECH_INCREMENT_FACTOR;
-    $shieldTech = $player['defence_tech'] + $player['factor']['Shield'] / SHIELDS_TECH_INCREMENT_FACTOR;
-    $defenceTech = $player['shield_tech'] + $player['factor']['Defensive'] / ARMOUR_TECH_INCREMENT_FACTOR;
-    return array($attTech,$defenceTech,$shieldTech);
+    $shieldTech = $player['shield_tech'] + $player['factor']['Shield'] / SHIELDS_TECH_INCREMENT_FACTOR;
+    $defenceTech = $player['defence_tech'] + $player['factor']['Defensive'] / ARMOUR_TECH_INCREMENT_FACTOR;
+    return array($attTech, $shieldTech, $defenceTech);
 }
 
 function getTechsFromArrayForReport($player)
 {
-    list($attTech, $defenceTech, $shieldTech) = getTechsFromArray($player);
+    list($attTech, $shieldTech, $defenceTech) = getTechsFromArray($player);
     $attTech = 1 + $attTech * WEAPONS_TECH_INCREMENT_FACTOR;
-    $defenceTech = 1 + $defenceTech * ARMOUR_TECH_INCREMENT_FACTOR;
     $shieldTech = 1 + $shieldTech * SHIELDS_TECH_INCREMENT_FACTOR;
+    $defenceTech = 1 + $defenceTech * ARMOUR_TECH_INCREMENT_FACTOR;
     
-    return array(
-        $attTech,
-        $defenceTech,
-        $shieldTech);
+    return array($attTech, $shieldTech, $defenceTech);
 }
 
 ?>
