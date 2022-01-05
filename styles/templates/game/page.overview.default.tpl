@@ -76,7 +76,7 @@ $("#tn3").hide();
 		
 <div class="infos" >
 <div class="planeto">
-		{$LNG.ov_events} <button id="chkbtn1">Hide fleets</button> </div>
+		{$LNG.ov_events} <button id="chkbtn1">{$LNG.ov_fleetbutton_hide}</button><span style="display:none" id="tn3"><button id="chkbtn3">{$LNG.ov_fleetbutton_show}</button></span></div>
 
 	<ul style="list-style-type:none;" id="hidden-div2">
 	{foreach $fleets as $index => $fleet}
@@ -87,7 +87,7 @@ $("#tn3").hide();
 	
 	{/foreach}
 </ul>
- &nbsp;<span style="display:none" id="tn3"><button id="chkbtn3">Show fleets</button></span>
+ &nbsp;
 	</div>
 <br>
 <div class="infos">
