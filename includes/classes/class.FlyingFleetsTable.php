@@ -220,18 +220,15 @@ class FlyingFleetsTable
 		} else {
 			if ($Owner == true) {
 				if ($Status == FLEET_OUTWARD) {
-					if (!$Owner && ($MissionType == 1 || $MissionType == 2))
-						$Message  = $LNG['cff_mission_acs']	;
-					else
-						$Message  = $LNG['cff_mission_own_0'];
-
-					$EventString  = sprintf($Message, $FleetContent, $StartType, $fleetRow['own_planetname'], GetStartAddressLink($fleetRow, $FleetType), $TargetType, $fleetRow['target_planetname'], GetTargetAddressLink($fleetRow, $FleetType), $FleetCapacity);
+					$EventString  = sprintf($LNG['cff_mission_own_0'], $FleetContent, $StartType, $fleetRow['own_planetname'], GetStartAddressLink($fleetRow, $FleetType), $TargetType, $fleetRow['target_planetname'], GetTargetAddressLink($fleetRow, $FleetType), $FleetCapacity);
 				} elseif($Status == FLEET_RETURN)
 					$EventString  = sprintf($LNG['cff_mission_own_1'], $FleetContent, $TargetType, $fleetRow['target_planetname'], GetTargetAddressLink($fleetRow, $FleetType), $StartType, $fleetRow['own_planetname'], GetStartAddressLink($fleetRow, $FleetType), $FleetCapacity);
 				else
 					$EventString  = sprintf($LNG['cff_mission_own_2'], $FleetContent, $StartType, $fleetRow['own_planetname'], GetStartAddressLink($fleetRow, $FleetType), $TargetType, $fleetRow['target_planetname'], GetTargetAddressLink($fleetRow, $FleetType), $FleetCapacity);
 			} else {
-				if ($Status == FLEET_HOLD)
+			    if (($MissionType == 1 || $MissionType == 2) && $Status == FLEET_OUTWARD) {
+			        $EventString  = sprintf($LNG['cff_mission_acs'], $FleetContent, $StartType, $fleetRow['own_planetname'], GetStartAddressLink($fleetRow, $FleetType), $TargetType, $fleetRow['target_planetname'], GetTargetAddressLink($fleetRow, $FleetType), $FleetCapacity);
+			    } elseif ($Status == FLEET_HOLD)
 					$Message	= $LNG['cff_mission_target_stay'];
 				elseif(in_array($MissionType, $GoodMissions))
 					$Message	= $LNG['cff_mission_target_good'];
