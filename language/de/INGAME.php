@@ -154,7 +154,7 @@ $LNG['ov_noreflink']						= 'Du hast keine User angeworben.';
 $LNG['ov_chat_online']						= 'User im Chat:';
 $LNG['ov_players']						= 'Spieler';
 $LNG['ov_moving_fleets']					= 'Flotten in Bewegung';
-
+$LNG['ov_checknews']					= 'Neuigkeiten';
 
 //----------------------------------------------------------------------------//
 //GALAXY
