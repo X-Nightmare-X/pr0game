@@ -161,6 +161,7 @@ $LNG['ov_noreflink']						= 'You have not recruited any players yet';
 $LNG['ov_chat_online']						= 'Players in chat:';
 $LNG['ov_players']							= 'Players';
 $LNG['ov_moving_fleets']					= 'Moving fleets';
+$LNG['ov_checknews']					    = 'Check News';
 
 //----------------------------------------------------------------------------//
 // Galaxy
