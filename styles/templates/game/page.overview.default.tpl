@@ -69,7 +69,7 @@ $("#tn3").hide();
                  {$LNG.ov_news}:&nbsp;{$news} </br><span style="display:block; margin-top:10px;"><button id="chkbtn2">Hide News</button></span>
  
                 </div>
-                <span style="display:block; margin-top:10px;"><button id="chkbtn">Check News</button></span>
+                <span style="display:block; margin-top:10px;"><button id="chkbtn">{$LNG.ov_checknews}</button></span>
 {/if}
 
     </div>

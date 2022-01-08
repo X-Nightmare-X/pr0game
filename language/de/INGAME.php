@@ -154,7 +154,7 @@ $LNG['ov_noreflink']						= 'Du hast keine User angeworben.';
 $LNG['ov_chat_online']						= 'User im Chat:';
 $LNG['ov_players']						= 'Spieler';
 $LNG['ov_moving_fleets']					= 'Flotten in Bewegung';
-
+$LNG['ov_checknews']					= 'Neuigkeiten';
 
 //----------------------------------------------------------------------------//
 //GALAXY
@@ -378,6 +378,7 @@ $LNG['fl_visibility_all']					= 'Jeder';
 $LNG['fl_visibility_alliance']					= 'Nur Allianzmitglieder und Freunde';
 $LNG['fl_visibility_no_enemies'] 				= 'Jeder außer Gegner';
 $LNG['fl_own_planet_error']					= 'Error! Again select the planet from which you want to send the fleet.';
+$LNG['fl_stronger_techs'					= 'Deine Angriffsstärke/Verteidigung/Schilde sind zu niedrig.';
 
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES
