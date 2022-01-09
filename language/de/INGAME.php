@@ -575,6 +575,7 @@ $LNG['al_name_required'] 					= 'Du hast keinen Allianznamen angegeben.';
 $LNG['al_already_exists'] 					= 'Allianz %s existiert bereits.';
 $LNG['al_created'] 						= 'Die Allianz %s wurde gegründet!';
 $LNG['al_continue'] 						= 'Weiter';
+$LNG['al_delete_request'] 					= 'Bewerbung zurückziehen';
 $LNG['al_alliance_closed'] 					= 'Diese Allianz nimmt keine neuen Mitglieder auf.';
 $LNG['al_request_confirmation_message']				= 'Bewerbung abgeschickt, sie erhalten eine Nachricht. <br><a href="?page=alliance">Zurück</a>';
 $LNG['al_default_request_text']					= 'Der Spieler hat keinen Text hinterlassen.';
