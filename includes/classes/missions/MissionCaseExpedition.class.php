@@ -100,7 +100,8 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 			$GetEvent = 1000; // nothing happens
 
 		// Find resources: 32,5%. Values from http://owiki.de/Expedition
-		if ($GetEvent < 325)
+		// Raised by 4.5% after removing dark matter result. remaining 4.5% will be included in finding fleets
+		if ($GetEvent < 370)
 		{
 			$eventSize		= mt_rand(0, 100);
 			$factor			= 0;
@@ -191,29 +192,30 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		}
 		
 		// Find Dark Matter: 9%. Values from 2Moons
-		elseif ($GetEvent < 415)
-		{
-			$eventSize   = mt_rand(0, 100);
-			$Size       = 0;
+		// Removed in favour of ressources and ships
+// 		elseif ($GetEvent < 415)
+// 		{
+// 			$eventSize   = mt_rand(0, 100);
+// 			$Size       = 0;
 
-			// normal (89%)
-			if(10 < $eventSize) {
-				$Size		= mt_rand(100, 300);
-				$Message	= $LNG['sys_expe_found_dm_1_'.mt_rand(1,5)];
-			} 
-			// large (10%)
-			elseif(0 < $eventSize && 10 >= $eventSize) {
-				$Size		= mt_rand(301, 600);
-				$Message	= $LNG['sys_expe_found_dm_2_'.mt_rand(1,3)];
-			} 
-			// very large (1%)
-			elseif(0 == $eventSize) {
-				$Size	 	= mt_rand(601, 3000);
-				$Message	= $LNG['sys_expe_found_dm_3_'.mt_rand(1,2)];
-			}
+// 			// normal (89%)
+// 			if(10 < $eventSize) {
+// 				$Size		= mt_rand(100, 300);
+// 				$Message	= $LNG['sys_expe_found_dm_1_'.mt_rand(1,5)];
+// 			} 
+// 			// large (10%)
+// 			elseif(0 < $eventSize && 10 >= $eventSize) {
+// 				$Size		= mt_rand(301, 600);
+// 				$Message	= $LNG['sys_expe_found_dm_2_'.mt_rand(1,3)];
+// 			} 
+// 			// very large (1%)
+// 			elseif(0 == $eventSize) {
+// 				$Size	 	= mt_rand(601, 3000);
+// 				$Message	= $LNG['sys_expe_found_dm_3_'.mt_rand(1,2)];
+// 			}
 
-			$this->UpdateFleet('fleet_resource_darkmatter', $this->_fleet['fleet_resource_darkmatter'] + $Size);
-		}
+// 			$this->UpdateFleet('fleet_resource_darkmatter', $this->_fleet['fleet_resource_darkmatter'] + $Size);
+// 		}
 		
 		// Find abandoned ships: 22%. Values from http://owiki.de/Expedition
 		elseif ($GetEvent < 635)
