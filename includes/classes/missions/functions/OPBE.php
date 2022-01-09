@@ -77,7 +77,7 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF)
     {
         $player = $attacker['player'];
         //techs + bonus. Note that the bonus is divided by the factor because the result sum will be multiplied by the same inside OPBE
-        list($attTech,$defenceTech,$shieldTech) = getTechsFromArray($player);
+        list($attTech,$shieldTech,$defenceTech) = getTechsFromArray($player);
         //--
         $attackerPlayerObj = $attackerGroupObj->createPlayerIfNotExist($player['id'], array(), $attTech, $shieldTech, $defenceTech);
         $attackerFleetObj = new Fleet($fleetID);
@@ -96,7 +96,7 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF)
     {
         $player = $defender['player'];
         //techs + bonus. Note that the bonus is divided by the factor because the result sum will be multiplied by the same inside OPBE
-        list($attTech,$defenceTech,$shieldTech) = getTechsFromArray($player);
+        list($attTech,$shieldTech,$defenceTech) = getTechsFromArray($player);
         //--
         $defenderPlayerObj = $defenderGroupObj->createPlayerIfNotExist($player['id'], array(), $attTech, $shieldTech, $defenceTech);
         $defenderFleetObj = getFleet($fleetID);
@@ -349,7 +349,6 @@ function getTechsFromArrayForReport($player)
     $attTech = 1 + $attTech * WEAPONS_TECH_INCREMENT_FACTOR;
     $shieldTech = 1 + $shieldTech * SHIELDS_TECH_INCREMENT_FACTOR;
     $defenceTech = 1 + $defenceTech * ARMOUR_TECH_INCREMENT_FACTOR;
-    
     return array($attTech, $shieldTech, $defenceTech);
 }
 
