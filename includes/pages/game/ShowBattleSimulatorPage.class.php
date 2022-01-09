@@ -56,9 +56,9 @@ class ShowBattleSimulatorPage extends AbstractGamePage
 				$attacker['player']				= array(
 					'id' => (1000 + $BattleSlotID + 1),
 					'username'	=> $LNG['bs_atter'].' Nr.'.($BattleSlotID + 1),
-					'military_tech' => $BattleSlot[0][109],
-					'defence_tech' => $BattleSlot[0][110],
-					'shield_tech' => $BattleSlot[0][111],
+				    'military_tech' => $BattleSlot[0][109],
+				    'shield_tech' => $BattleSlot[0][110],
+					'defence_tech' => $BattleSlot[0][111],
 					'dm_defensive' => 0,
 					'dm_attack' => 0
 				); 
@@ -98,9 +98,9 @@ class ShowBattleSimulatorPage extends AbstractGamePage
 				$defender['player']				= array(
 					'id' => (2000 + $BattleSlotID + 1),
 					'username'	=> $LNG['bs_deffer'].' Nr.'.($BattleSlotID + 1),
-					'military_tech' => $BattleSlot[1][109],
-					'defence_tech' => $BattleSlot[1][110],
-					'shield_tech' => $BattleSlot[1][111],
+				    'military_tech' => $BattleSlot[1][109],
+				    'shield_tech' => $BattleSlot[1][110],
+					'defence_tech' => $BattleSlot[1][111],
 					'dm_attack' => 0,
 					'dm_defensive' => 0,
 				); 
