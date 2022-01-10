@@ -1,0 +1,5 @@
+.idea
+cache/*.php
+cache/sessions/
+includes/error.log
+vendor/
