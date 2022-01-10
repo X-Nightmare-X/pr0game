@@ -228,14 +228,16 @@ class FlyingFleetsTable
 			} else {
 			    if (($MissionType == 1 || $MissionType == 2) && $Status == FLEET_OUTWARD) {
 			        $EventString  = sprintf($LNG['cff_mission_acs'], $FleetContent, $StartType, $fleetRow['own_planetname'], GetStartAddressLink($fleetRow, $FleetType), $TargetType, $fleetRow['target_planetname'], GetTargetAddressLink($fleetRow, $FleetType), $FleetCapacity);
-			    } elseif ($Status == FLEET_HOLD)
-					$Message	= $LNG['cff_mission_target_stay'];
-				elseif(in_array($MissionType, $GoodMissions))
-					$Message	= $LNG['cff_mission_target_good'];
-				else
-					$Message	= $LNG['cff_mission_target_bad'];
+			    } else {
+					if ($Status == FLEET_HOLD)
+						$Message	= $LNG['cff_mission_target_stay'];
+					elseif(in_array($MissionType, $GoodMissions))
+						$Message	= $LNG['cff_mission_target_good'];
+					else
+						$Message	= $LNG['cff_mission_target_bad'];
 
-				$EventString	= sprintf($Message, $FleetContent, $this->BuildHostileFleetPlayerLink($fleetRow), $StartType, $fleetRow['own_planetname'], GetStartAddressLink($fleetRow, $FleetType), $TargetType, $fleetRow['target_planetname'], GetTargetAddressLink($fleetRow, $FleetType), $FleetCapacity);
+					$EventString	= sprintf($Message, $FleetContent, $this->BuildHostileFleetPlayerLink($fleetRow), $StartType, $fleetRow['own_planetname'], GetStartAddressLink($fleetRow, $FleetType), $TargetType, $fleetRow['target_planetname'], GetTargetAddressLink($fleetRow, $FleetType), $FleetCapacity);
+				}
 			}
 		}
 		$EventString = '<span class="'.$FleetStatus[$Status].' '.$FleetType.'">'.$EventString.'</span>';
