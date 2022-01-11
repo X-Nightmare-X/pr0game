@@ -1,6 +1,6 @@
 <?php
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -15,7 +15,6 @@
  */
 
 //### Database access ###//
-
 $database					= array();
 $database['host']			= 'localhost';
 $database['port']			= '3306';
@@ -24,6 +23,5 @@ $database['userpw']			= '';
 $database['databasename']	= '';
 $database['tableprefix']	= 'uni1_';
 $salt						= ''; // 22 digits from the alphabet "./0-9A-Za-z"
-
 //### Do not change beyond here ###//
 ?>
