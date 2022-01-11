@@ -39,7 +39,9 @@ function calculateSteal($attackFleets, $defenderPlanet, $simulate = false)
 		
 		foreach($Attacker['unit'] as $Element => $amount)	
 		{
-			$SortFleets[$FleetID]		+= $pricelist[$Element]['capacity'] * $amount;
+		    if ($Element != 210) { //Exclude spy drone from raid capacity
+		        $SortFleets[$FleetID]		+= $pricelist[$Element]['capacity'] * $amount;
+		    }
 		}
 		
 		$SortFleets[$FleetID]	*= (1 + $Attacker['player']['factor']['ShipStorage']);
