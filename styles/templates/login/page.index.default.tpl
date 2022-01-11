@@ -70,5 +70,5 @@
 </section>
 {/block}
 {block name="script" append}
-<script>{if $code}alert({$code|json});{/if}</script>
+	<script>{if $code}alert({$code|json});{/if}$(function() { $('#username').focus(); });</script>
 {/block}
