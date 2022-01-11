@@ -1,0 +1,6 @@
+.idea
+cache/
+includes/config.php
+includes/error.log
+package-lock.json
+vendor/
