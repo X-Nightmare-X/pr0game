@@ -373,8 +373,12 @@ th a,.res_current{
 	color:#FFF
 }
 
-.res_current_max,.attack,.federation,.error {
+.res_current_max,.attack,.error {
 	color:red
+}
+
+.federation{
+	color: orange
 }
 
 #fleetstatustable td{
