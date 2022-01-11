@@ -1,5 +1,6 @@
 .idea
-cache/*.php
-cache/sessions/
+cache/
+includes/config.php
 includes/error.log
+package-lock.json
 vendor/
