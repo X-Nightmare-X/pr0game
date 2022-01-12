@@ -164,6 +164,8 @@ $LNG['ov_chat_online']						= 'Players in chat:';
 $LNG['ov_players']							= 'Players';
 $LNG['ov_moving_fleets']					= 'Moving fleets';
 $LNG['ov_checknews']					    = 'Check News';
+$LNG['ov_rulesnotify']                      = 'Please follow the';
+$LNG['ov_rules']		                    = 'Rules';
 
 //----------------------------------------------------------------------------//
 // Galaxy
