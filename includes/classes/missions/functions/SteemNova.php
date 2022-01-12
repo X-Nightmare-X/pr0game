@@ -112,7 +112,7 @@ function shoot(&$attackers, $fleetID, $element, $unit, &$defenders, &$ad)
 		{
 			//-penetration
 			$ad['shield'] -= $penetration;
-			$victimShip['shield'] += $penetration; // shoot at shield
+			$victimShip['shield'] -= $unit['att']; // shoot at shield
 		}
 	}
 	// else bounced hit (Weaponry of the shooting unit is less than 1% of the Shielding of the target unit)
@@ -174,8 +174,8 @@ function initCombatValues(&$fleets, $firstInit = false)
 					// create new array for EACH ship
 					$fleets[$fleetID]['units'][] = array('unit' => $element, 'shield' => $thisShield, 'armor' => $thisArmor, 'att' => $thisAtt);
 				}
-				$attArray[$fleetID][$element]['def'] += $thisShield;
-				$attArray[$fleetID][$element]['shield'] += $fleets[$fleetID]['units'][$iter]['armor'];
+				$attArray[$fleetID][$element]['def'] += $fleets[$fleetID]['units'][$iter]['armor'];
+				$attArray[$fleetID][$element]['shield'] += $thisShield;
 				$attArray[$fleetID][$element]['att'] += $thisAtt;
 			}
 			

@@ -155,6 +155,8 @@ $LNG['ov_chat_online']						= 'User im Chat:';
 $LNG['ov_players']						= 'Spieler';
 $LNG['ov_moving_fleets']					= 'Flotten in Bewegung';
 $LNG['ov_checknews']					= 'Neuigkeiten';
+$LNG['ov_rulesnotify']					= 'Bitte beachtet die';
+$LNG['ov_rules']					= 'Regeln';
 
 //----------------------------------------------------------------------------//
 //GALAXY
