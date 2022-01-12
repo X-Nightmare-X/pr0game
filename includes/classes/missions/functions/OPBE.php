@@ -150,20 +150,20 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF)
         if(isset($ROUND[$i]["attackers"][0])) {
         for($j=0; $j<=(count($ROUND[$i]["attackers"])-1); $j++) {
 
-        if(!empty($ROUND[$i]["attackers"][$j]["techs"][1])){
-        $true_armor = $ROUND[$i]["attackers"][$j]["techs"][1];
-        $ROUND[$i]["attackers"][$j]["techs"][1]=$ROUND[$i]["attackers"][$j]["techs"][2];
-        $ROUND[$i]["attackers"][$j]["techs"][2]=$true_armor;
-        }}}
+//         if(!empty($ROUND[$i]["attackers"][$j]["techs"][1])){
+//         $true_armor = $ROUND[$i]["attackers"][$j]["techs"][1];
+//         $ROUND[$i]["attackers"][$j]["techs"][1]=$ROUND[$i]["attackers"][$j]["techs"][2];
+//         $ROUND[$i]["attackers"][$j]["techs"][2]=$true_armor;
+//         }}}
 
         if(isset($ROUND[$i]["defenders"][0])) {
         for($j=0; $j<=(count($ROUND[$i]["defenders"])-1); $j++) {
 
-        if(!empty($ROUND[$i]["defenders"][$j]["techs"][1])){
-        $true_armor = $ROUND[$i]["defenders"][$j]["techs"][1];
-        $ROUND[$i]["defenders"][$j]["techs"][1]=$ROUND[$i]["defenders"][$j]["techs"][2];
-        $ROUND[$i]["defenders"][$j]["techs"][2]=$true_armor;
-        }}}
+//         if(!empty($ROUND[$i]["defenders"][$j]["techs"][1])){
+//         $true_armor = $ROUND[$i]["defenders"][$j]["techs"][1];
+//         $ROUND[$i]["defenders"][$j]["techs"][1]=$ROUND[$i]["defenders"][$j]["techs"][2];
+//         $ROUND[$i]["defenders"][$j]["techs"][2]=$true_armor;
+//         }}}
 
     }
 
@@ -258,7 +258,7 @@ function updatePlayers(PlayerGroup $playerGroup, &$players)
                     {
                         $shipType = $fleet->getShipType($idShipType);
                         //used to show life,power and shield of each ships in the report
-                        $plyArray[$idFleet][$idShipType] = array('def' => $shipType->getShield() * $shipType->getCount(),'shield' => $shipType->getHull() * $shipType->getCount(),'att' => $shipType->getPower() * $shipType->getCount());
+                        $plyArray[$idFleet][$idShipType] = array('def' => $shipType->getHull() * $shipType->getCount(),'shield' => $shipType->getShield() * $shipType->getCount(),'att' => $shipType->getPower() * $shipType->getCount());
                         $players[$idFleet]['unit'][$idShipType] = $shipType->getCount();
                     }
                     else //all ships of this type were destroyed
@@ -349,7 +349,7 @@ function getTechsFromArrayForReport($player)
     $attTech = 1 + $attTech * WEAPONS_TECH_INCREMENT_FACTOR;
     $shieldTech = 1 + $shieldTech * SHIELDS_TECH_INCREMENT_FACTOR;
     $defenceTech = 1 + $defenceTech * ARMOUR_TECH_INCREMENT_FACTOR;
-    return array($attTech, $shieldTech, $defenceTech);
+    return array($attTech, $shieldTech, $defenceTech); 
 }
 
 ?>
