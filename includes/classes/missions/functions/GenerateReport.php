@@ -81,7 +81,7 @@ function GenerateReport($combatResult, $reportInfo)
 					
 				$ShipInfo	= $RoundInfo['infoA'][$FleetID][$ShipID];
 				$playerData['ships'][$ShipID]	= array(
-					$Amount, $ShipInfo['att'], $ShipInfo['def'], $ShipInfo['shield']
+				    $Amount, $ShipInfo['att'], $ShipInfo['shield'], $ShipInfo['def']
 				);
 			}
 			
@@ -106,7 +106,7 @@ function GenerateReport($combatResult, $reportInfo)
 					
 				$ShipInfo	= $RoundInfo['infoD'][$FleetID][$ShipID];
 				$playerData['ships'][$ShipID]	= array(
-					$Amount, $ShipInfo['att'], $ShipInfo['def'], $ShipInfo['shield']
+				    $Amount, $ShipInfo['att'], $ShipInfo['shield'], $ShipInfo['def']
 				);
 			}
 			$DATA['rounds'][$Round]['defender'][] = $playerData;

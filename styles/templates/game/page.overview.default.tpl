@@ -61,6 +61,7 @@ $("#tn3").hide();
 
 			
 <br>{$LNG.ov_points} {$rankInfo}
+<br/><br/><span style="font-weight:bold;">{$LNG.ov_rulesnotify}&nbsp;<a href="/index.php?page=rules" target="_blank" style="color:crimson;">[{$LNG.ov_rules}]</a></span>
 {if $is_news}
 
                 <div class="hidden-div" id="hidden-div">
