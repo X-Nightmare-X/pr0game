@@ -147,8 +147,8 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF)
         $defInfo = updatePlayers($defenderGroupObj, $defenders);
         $ROUND[$i] = roundInfo($report, $attackers, $defenders, $attackerGroupObj, $defenderGroupObj, $i + 1, $attInfo, $defInfo);
 
-        if(isset($ROUND[$i]["attackers"][0])) {
-        for($j=0; $j<=(count($ROUND[$i]["attackers"])-1); $j++) {
+//        if(isset($ROUND[$i]["attackers"][0])) {
+//        for($j=0; $j<=(count($ROUND[$i]["attackers"])-1); $j++) {
 
 //         if(!empty($ROUND[$i]["attackers"][$j]["techs"][1])){
 //         $true_armor = $ROUND[$i]["attackers"][$j]["techs"][1];
@@ -156,10 +156,10 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF)
 //         $ROUND[$i]["attackers"][$j]["techs"][2]=$true_armor;
 //         }}}
 
-        if(isset($ROUND[$i]["defenders"][0])) {
-        for($j=0; $j<=(count($ROUND[$i]["defenders"])-1); $j++) {
+//        if(isset($ROUND[$i]["defenders"][0])) {
+//        for($j=0; $j<=(count($ROUND[$i]["defenders"])-1); $j++) {
 
-//         if(!empty($ROUND[$i]["defenders"][$j]["techs"][1])){
+//        if(!empty($ROUND[$i]["defenders"][$j]["techs"][1])){
 //         $true_armor = $ROUND[$i]["defenders"][$j]["techs"][1];
 //         $ROUND[$i]["defenders"][$j]["techs"][1]=$ROUND[$i]["defenders"][$j]["techs"][2];
 //         $ROUND[$i]["defenders"][$j]["techs"][2]=$true_armor;
@@ -351,5 +351,3 @@ function getTechsFromArrayForReport($player)
     $defenceTech = 1 + $defenceTech * ARMOUR_TECH_INCREMENT_FACTOR;
     return array($attTech, $shieldTech, $defenceTech); 
 }
-
-?>
