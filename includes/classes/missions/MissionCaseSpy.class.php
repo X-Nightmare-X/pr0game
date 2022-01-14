@@ -17,12 +17,48 @@
 
 class MissionCaseSpy extends MissionFunctions implements Mission
 {
-		
+
 	function __construct($Fleet)
 	{
 		$this->_fleet	= $Fleet;
 	}
+
+	/**
+	 * 
+	 * @param array $targetPlanet
+	 * @return array[]
+	 * 
+	 * call AFTER stayfleets calculation, or calculate those yourself
+	 * 
+	 */
+	private function getPlanetFleet($targetPlanet)
+	{
+		global $reslist, $resource;
+		
+		$planetfleet = [];
+		$resourceIDs = $reslist['fleet'];
+		
+		foreach ($resourceIDs as $shiptype) {
+			$planetfleet[$shiptype] = $targetPlanet[$resource[$shiptype]];
+		}
+		
+		return $planetfleet;
+	}
 	
+	private function getPlanetDefense($targetPlanet)
+	{
+		global $reslist, $resource;
+		
+		$planetdef = [];
+		$resourceIDs = $reslist['defense'];
+		
+		foreach ($resourceIDs as $deftype) {
+			$planetdef[$deftype] = $targetPlanet[$resource[$deftype]];
+		}
+		
+		return $planetdef;
+	}
+
 	function TargetEvent()
 	{
 		global $pricelist, $reslist, $resource, $USER;
@@ -135,8 +171,23 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 			}
 		}
 		
-		// I'm use template class here, because i want to exclude HTML in PHP.
+		// what is seen by the 'attacker' is already calculated above.
+		// if target planet does not have fleet or def, it is safe to set $targetChance to -1
+		// so probes are no longer destroyed by thin air or something
 		
+		$totalShipDefCount = 0;
+		
+		foreach (array_values($this->getPlanetFleet($targetPlanet)) as $ships)
+		{ $totalShipDefCount += $ships; }
+		
+		foreach (array_values($this->getPlanetDefense($targetPlanet)) as $def)
+		{ $totalShipDefCount += $def; }
+		
+		if ($totalShipDefCount == 0) $targetChance = -1;
+		
+
+		// I'm use template class here, because i want to exclude HTML in PHP.
+
 		require_once 'includes/classes/class.template.php';
 		
 		$template	= new template;
