@@ -112,7 +112,7 @@ function shoot(&$attackers, $fleetID, $element, $unit, &$defenders, &$ad)
 		else
 		{
 			//-penetration
-			$ad['shield'] -= $penetration;
+		    $ad['shield'] += $unit['att'];
 			$victimShip['shield'] -= $unit['att']; // shoot at shield
 		}
 	}
