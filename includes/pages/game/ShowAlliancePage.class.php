@@ -194,7 +194,7 @@ class ShowAlliancePage extends AbstractGamePage
 		$db	= Database::get();
 		$sql	= "SELECT a.ally_tag FROM %%ALLIANCE_REQUEST%% r INNER JOIN %%ALLIANCE%% a ON a.id = r.allianceId WHERE r.userId = :userId;";
 		$allianceResult = $db->selectSingle($sql, array(
-			':userId'	=> $USER['id_planet']
+			':userId'	=> $USER['id']
 		));
 
 		if(empty($allianceResult['ally_tag'])) { $allianceResult['ally_tag'] = 0; }
