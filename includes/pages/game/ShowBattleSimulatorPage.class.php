@@ -75,7 +75,7 @@ class ShowBattleSimulatorPage extends AbstractGamePage
 				
 				$attacker['unit'] 	= $BattleSlot[0];
 				
-				$attackers[]	= $attacker;
+				$fleetAttack[]	= $attacker;
 			}
 				
 			if(isset($BattleSlot[1]) && (array_sum($BattleSlot[1]) > 0 || $BattleSlotID == 0))
@@ -116,7 +116,7 @@ class ShowBattleSimulatorPage extends AbstractGamePage
 				}
 				
 				$defender['unit'] 	= $BattleSlot[1];
-				$defenders[]	= $defender;
+				$fleetDefend[]	= $defender;
 			}
 		}
 		
@@ -126,11 +126,11 @@ class ShowBattleSimulatorPage extends AbstractGamePage
 		require_once 'includes/classes/missions/functions/calculateSteal.php';
 		require_once 'includes/classes/missions/functions/GenerateReport.php';
 		
-		$combatResult	= calculateAttack($attackers, $defenders, Config::get()->Fleet_Cdr, Config::get()->Defs_Cdr);
+		$combatResult	= calculateAttack($fleetAttack, $fleetDefend, Config::get()->Fleet_Cdr, Config::get()->Defs_Cdr);
 		
 		if($combatResult['won'] == "a")
 		{
-			$stealResource = calculateSteal($attackers, array(
+		    $stealResource = calculateSteal($fleetAttack, array(
 			'metal' => $BattleArray[0][1][901],
 			'crystal' => $BattleArray[0][1][902],
 			'deuterium' => $BattleArray[0][1][903]
