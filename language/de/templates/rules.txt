@@ -1,7 +1,7 @@
 <ul id="rules">
 	<li>
 		<h1>1. Accounts</h1>
-		<p>Der Besitzer eines Accounts ist immer der Inhaber der festen E-mail Adresse. Ein Account darf ausschließlich alleine gespielt werden. Eine Ausnahme bildet nur das Sitten. Sollte es notwendig werden, dass der Account eines Anderen überwacht oder in den Urlaubsmodus gesetzt werden muss, so ist der zuständige Operator vorher zu informieren und dessen Genehmigung einzuholen. Für kurzfristiges Sitten unter 12 Stunden reicht eine Meldung an den Operator. Beim Sitten sind sämtliche Flottenbewegungen verboten, lediglich das Saven der Flotte auf Koordinaten des Gesitteten und das Verbauen der Rohstoffe auf dem Planeten, auf dem sie liegen, ist erlaubt. Ein Account darf für höchstens 72h gesittet werden. Bei Ausnahmen muss die Erlaubniss eines Operators vorliegen. Die Weitergabe eines Accounts darf max. alle 3 Monate und ausschliesslich unentgeltlich erfolgen. Ausnamhen beim Operator melden.</p>
+		<p>Der Besitzer eines Accounts ist immer der Inhaber der festen E-Mail Adresse. Ein Account darf ausschließlich alleine gespielt werden. Eine Ausnahme bildet nur das Sitten. Sollte es notwendig werden, dass der Account eines Anderen überwacht oder in den Urlaubsmodus gesetzt werden muss, so ist der zuständige Operator vorher zu informieren und dessen Genehmigung einzuholen. Für kurzfristiges Sitten unter 12 Stunden reicht eine Meldung an den Operator. Beim Sitten sind sämtliche Flottenbewegungen verboten, lediglich das Saven der Flotte auf Koordinaten des Gesitteten und das Verbauen der Rohstoffe auf dem Planeten, auf dem sie liegen, ist erlaubt. Ein Account darf für höchstens 72h gesittet werden. Bei Ausnahmen muss die Erlaubniss eines Operators vorliegen. Die Weitergabe eines Accounts darf max. alle 3 Monate und ausschliesslich unentgeltlich erfolgen. Ausnamhen beim Operator melden.</p>
 	</li>
 	<li>
 		<h1>2. Multiaccounts</h1>
@@ -23,7 +23,7 @@
 	</li>
 	<li>
 		<h1>6. Bugusing</h1>
-		<p>Bugs und/oder Fehler in der Programmierung auszunutzen ist verboten. Erkannte Bugs sollten so schnell wie möglich per Post im Bugforum, IRC, Email oder ICQ gemeldet werden. Cheaten ist auch verboten.</p>
+		<p>Bugs und/oder Fehler in der Programmierung auszunutzen ist verboten. Erkannte Bugs sollten so schnell wie möglich per <a href="https://git.pr0game.com/Rosenreeman/pr0game/issues" target="_blank">GIT Issue</a> oder im Discord Channel #bugs gemeldet werden. Cheaten ist ebenfalls verboten.</p>
 	</li>
 	<li>
 		<h1>7. Sprache im Spiel</h1>
