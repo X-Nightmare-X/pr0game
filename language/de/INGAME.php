@@ -155,6 +155,8 @@ $LNG['ov_chat_online']						= 'User im Chat:';
 $LNG['ov_players']						= 'Spieler';
 $LNG['ov_moving_fleets']					= 'Flotten in Bewegung';
 $LNG['ov_checknews']					= 'Neuigkeiten';
+$LNG['ov_rulesnotify']					= 'Bitte beachtet die';
+$LNG['ov_rules']					= 'Regeln';
 
 //----------------------------------------------------------------------------//
 //GALAXY
@@ -765,7 +767,7 @@ $LNG['al_rank_desc']['ONLINESTATE']				= 'Online-Status sehen';
 $LNG['al_rank_desc']['TRANSFER']				= 'Kann Leader werden';
 $LNG['al_rank_desc']['SEEAPPLY']				= 'Bewerbungen sehen'; 
 $LNG['al_rank_desc']['MANAGEAPPLY']				= 'Bewerbungen bearbeiten';
-$LNG['al_rank_desc']['ROUNDMAIL']				= 'Rundnachricht versicken';
+$LNG['al_rank_desc']['ROUNDMAIL']				= 'Rundnachricht versenden';
 $LNG['al_rank_desc']['ADMIN']					= 'Kann Allianz editieren';
 $LNG['al_rank_desc']['KICK']					= 'Kann Mitglieder entfernen';
 $LNG['al_rank_desc']['DIPLOMATIC']				= 'Kann Diplomatie verwalten';
