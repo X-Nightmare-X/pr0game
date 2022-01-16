@@ -56,9 +56,9 @@ class ShowBattleSimulatorPage extends AbstractGamePage
 				$attacker['player']				= array(
 					'id' => (1000 + $BattleSlotID + 1),
 					'username'	=> $LNG['bs_atter'].' Nr.'.($BattleSlotID + 1),
-					'military_tech' => $BattleSlot[0][109],
-					'defence_tech' => $BattleSlot[0][110],
-					'shield_tech' => $BattleSlot[0][111],
+				    'military_tech' => $BattleSlot[0][109],
+				    'shield_tech' => $BattleSlot[0][110], 
+					'defence_tech' => $BattleSlot[0][111],
 					'dm_defensive' => 0,
 					'dm_attack' => 0
 				); 
@@ -75,7 +75,7 @@ class ShowBattleSimulatorPage extends AbstractGamePage
 				
 				$attacker['unit'] 	= $BattleSlot[0];
 				
-				$attackers[]	= $attacker;
+				$fleetAttack[]	= $attacker;
 			}
 				
 			if(isset($BattleSlot[1]) && (array_sum($BattleSlot[1]) > 0 || $BattleSlotID == 0))
@@ -98,9 +98,9 @@ class ShowBattleSimulatorPage extends AbstractGamePage
 				$defender['player']				= array(
 					'id' => (2000 + $BattleSlotID + 1),
 					'username'	=> $LNG['bs_deffer'].' Nr.'.($BattleSlotID + 1),
-					'military_tech' => $BattleSlot[1][109],
-					'defence_tech' => $BattleSlot[1][110],
-					'shield_tech' => $BattleSlot[1][111],
+				    'military_tech' => $BattleSlot[1][109],
+				    'shield_tech' => $BattleSlot[1][110],
+					'defence_tech' => $BattleSlot[1][111],
 					'dm_attack' => 0,
 					'dm_defensive' => 0,
 				); 
@@ -116,7 +116,7 @@ class ShowBattleSimulatorPage extends AbstractGamePage
 				}
 				
 				$defender['unit'] 	= $BattleSlot[1];
-				$defenders[]	= $defender;
+				$fleetDefend[]	= $defender;
 			}
 		}
 		
@@ -126,11 +126,11 @@ class ShowBattleSimulatorPage extends AbstractGamePage
 		require_once 'includes/classes/missions/functions/calculateSteal.php';
 		require_once 'includes/classes/missions/functions/GenerateReport.php';
 		
-		$combatResult	= calculateAttack($attackers, $defenders, Config::get()->Fleet_Cdr, Config::get()->Defs_Cdr);
+		$combatResult	= calculateAttack($fleetAttack, $fleetDefend, Config::get()->Fleet_Cdr, Config::get()->Defs_Cdr);
 		
 		if($combatResult['won'] == "a")
 		{
-			$stealResource = calculateSteal($attackers, array(
+		    $stealResource = calculateSteal($fleetAttack, array(
 			'metal' => $BattleArray[0][1][901],
 			'crystal' => $BattleArray[0][1][902],
 			'deuterium' => $BattleArray[0][1][903]
