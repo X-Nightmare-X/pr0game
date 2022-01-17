@@ -493,6 +493,8 @@ HTML;
 			
 			$fleetID	= $this->_fleet['fleet_id'];
 			
+			$fleetAttack = array();
+
 			$fleetAttack[$fleetID]['fleetDetail']		= $this->_fleet;
 			$fleetAttack[$fleetID]['player']			= $senderData;
 			$fleetAttack[$fleetID]['player']['factor']	= getFactors($fleetAttack[$this->_fleet['fleet_id']]['player'], 'attack', $this->_fleet['fleet_start_time']);
