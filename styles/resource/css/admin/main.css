@@ -1,14 +1,28 @@
 body {
-	background-position:-217px -84px !important;
+	background-position: top right !important;
+    background-attachment: scroll !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% !important;
 }
 
 body#topnav {
-	background-position:-217px 0 !important;
+	background: #0E1A32 !important;
 }
 
 body#menu{
-	background-position:0 0 !important;
+	background: #0E1A32 !important;
 }
+
+body#menu a:visited{
+	color: #DDD; !important;
+}
+
+body#menu a{
+	padding:5px !important;
+	background: #0E1A32 !important;
+	border-top: 1px solid black !important;
+}
+
 body.standalone {
 	background-position:center center !important;
 }
