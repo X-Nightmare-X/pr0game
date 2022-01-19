@@ -157,7 +157,19 @@ $LNG['ov_moving_fleets']					= 'Flotten in Bewegung';
 $LNG['ov_checknews']					= 'Neuigkeiten';
 $LNG['ov_rulesnotify']					= 'Bitte beachtet die';
 $LNG['ov_rules']					= 'Regeln';
+$LNG['ov_checknews_show']                   = 'Neuigkeiten einblenden';
+$LNG['ov_checknews_hide']	                = 'Neuigkeiten ausblenden';
 
+//----------------------------------------------------------------------------//
+//FILTER MENU
+
+$LNG['fm_mining']						= 'Rohstoffabbau';
+$LNG['fm_other']						= 'Sonstige';
+$LNG['fm_all']							= 'Alle';
+$LNG['fm_civil']						= 'Zivil';
+$LNG['fm_military']						= 'Militär';
+$LNG['fm_imperial']						= 'Imperium';
+$LNG['fm_engins']						= 'Triebwerke';
 //----------------------------------------------------------------------------//
 //GALAXY
 
