@@ -453,7 +453,7 @@ $LNG['rs_calculate']						= 'Berechnen';
 $LNG['rs_sum']							= 'Total';
 $LNG['rs_daily']						= 'Pro Tag';
 $LNG['rs_weekly']						= 'Pro Woche';
-$LNG['rs_ress_bonus']						= 'Bonus(Offiziere/DM-Bonus):';
+$LNG['rs_ress_bonus']						= 'Bonus(durch Forschung):';
 
 //----------------------------------------------------------------------------//
 //OFFICIERS
