@@ -163,10 +163,21 @@ $LNG['ov_noreflink']						= 'You have not recruited any players yet';
 $LNG['ov_chat_online']						= 'Players in chat:';
 $LNG['ov_players']							= 'Players';
 $LNG['ov_moving_fleets']					= 'Moving fleets';
-$LNG['ov_checknews']					    = 'Check News';
 $LNG['ov_rulesnotify']                      = 'Please follow the';
 $LNG['ov_rules']		                    = 'Rules';
+$LNG['ov_checknews_show']                   = 'Show News';
+$LNG['ov_checknews_hide']	                = 'Hide News';
 
+//----------------------------------------------------------------------------//
+//FILTER MENU
+
+$LNG['fm_mining']						= 'Mining';
+$LNG['fm_other']						= 'Other';
+$LNG['fm_all']							= 'All';
+$LNG['fm_civil']						= 'Civil';
+$LNG['fm_military']						= 'Military';
+$LNG['fm_imperial']						= 'Imperial';
+$LNG['fm_engins']						= 'Engines';
 //----------------------------------------------------------------------------//
 // Galaxy
 
