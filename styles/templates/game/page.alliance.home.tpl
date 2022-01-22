@@ -40,28 +40,6 @@
 		<td>{$LNG.al_circular_message}</td><td><a href="game.php?page=alliance&mode=circular" onclick="return Dialog.open(this.href, 650, 300);">{$LNG.al_send_circular_message}</a></td>
 	</tr>
 	{/if}
-	{if $rights.EVENTS}
-	<tr>
-			<th colspan="2">{$LNG.al_events}</th>
-		</tr>
-		{if $ally_events}
-			{foreach $ally_events as $member => $events}
-				<tr>
-					<td colspan="2">{$member}</td>
-				</tr>
-				{foreach $events as $index => $fleet}
-				<tr>
-					<td id="fleettime_{$index}">-</td>
-					<td colspan="2">{$fleet.text}</td>
-				</tr>
-				{/foreach}
-			{/foreach}
-		{else}
-			<tr>
-				<td colspan="2">{$LNG.al_no_events}</td>
-			</tr>
-		{/if}
-	{/if}
 	<tr>
 		<td colspan="2" style="height:100px" class="bbcode">{if $ally_description}{$ally_description}{else}{$LNG.al_description_message}{/if}</td>
 	</tr>
