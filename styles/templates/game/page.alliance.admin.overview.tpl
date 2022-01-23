@@ -73,24 +73,6 @@
 		<td>{html_options name=diplo options=$YesNoSelector selected=$ally_diplo_data}</td>
 	</tr>
 	<tr>
-		<td>{$LNG.al_view_events}</td>
-		<td>
-			<select name="events[]" size="{$available_events|@count}" multiple>
-				{foreach $available_events as $id => $mission}
-					{foreach $ally_events as $selected_events}
-						{if $selected_events == $id}
-							{assign var=selected value=selected}
-							{break}
-						{else}
-							{assign var=selected value=''}
-						{/if}
-					{/foreach}
-					<option value="{$id}" {$selected}>{$mission}</option>
-				{/foreach}
-			</select>
-		</td>
-	</tr>
-	<tr>
 		<th colspan="2">{$LNG.al_manage_requests}</th>
 	</tr>
 	<tr>
