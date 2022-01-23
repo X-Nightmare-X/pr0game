@@ -29,9 +29,11 @@ class MissionCaseTransport extends MissionFunctions implements Mission
 			':planetId'	=> $this->_fleet['fleet_start_id']
 		), 'name');
 
-		$targetPlanetName	= Database::get()->selectSingle($sql, array(
+		$targetPlanet	= Database::get()->selectSingle($sql, array(
 			':planetId'	=> $this->_fleet['fleet_end_id']
-		), 'name');
+		));
+
+        $targetPlanetName = $targetPlanet ? (string)$targetPlanet['name'] : null;
 
 		$LNG			= $this->getLanguage(NULL, $this->_fleet['fleet_owner']);
 
@@ -40,7 +42,7 @@ class MissionCaseTransport extends MissionFunctions implements Mission
 		 * If target exists, deploy resources.
 		 * If it is a destroyed moon, avoid to call StoreGoodsToPlanet()
 		 */
-		if ($targetPlanetName) {
+		if ($targetPlanetName !== null) {
 			$Message		= sprintf(
 				$LNG['sys_tran_mess_owner'],
 				$targetPlanetName,
