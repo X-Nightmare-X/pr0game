@@ -164,12 +164,6 @@
 		<td>{$max_planets + 1}</td>
 		<td colspan="7"><a href="?page=fleetTable&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$max_planets + 1}&amp;planettype=1&amp;target_mission=15">{$LNG.gl_out_space}</a></td>
 	</tr>
-	<!--
-	<tr>
-		<td>Trade</td>
-		<td colspan="7"><a href="?page=fleetTable&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$max_planets + 2}&amp;planettype=1&amp;target_mission=16">{$LNG.gl_trade_space}</a></td>
-	</tr>
-	-->
 	<tr>
 		<td colspan="6">({$planetcount})</td>
 		<td colspan="2">
