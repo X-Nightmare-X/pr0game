@@ -182,9 +182,6 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 		
 		foreach (array_values($this->getPlanetDefense($targetPlanet)) as $def)
 		{ $totalShipDefCount += $def; }
-		
-		if ($totalShipDefCount == 0) $targetChance = -1;
-		
 
 		// I'm use template class here, because i want to exclude HTML in PHP.
 
@@ -202,6 +199,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 			'targetPlanet'	=> $targetPlanet,
 			'targetChance'	=> $targetChance,
 			'spyChance'		=> $spyChance,
+		    'totalShipDefCount' => $totalShipDefCount,
 			'isBattleSim'	=> ENABLE_SIMULATOR_LINK == true && isModuleAvailable(MODULE_SIMULATOR),
 			'title'			=> sprintf($LNG['sys_mess_head'], $targetPlanet['name'], $targetPlanet['galaxy'], $targetPlanet['system'], $targetPlanet['planet'], _date($LNG['php_tdformat'], $this->_fleet['fleet_end_time'], $senderUser['timezone'], $LNG)),
 		));
@@ -241,7 +239,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 		PlayerUtil::sendMessage($this->_fleet['fleet_target_owner'], 0, $LNG['sys_mess_spy_control'], 0,
 			$LNG['sys_mess_spy_activity'], $targetMessage, $this->_fleet['fleet_start_time'], NULL, 1, $this->_fleet['fleet_universe']);
 
-		if ($targetChance >= $spyChance)
+		if ($totalShipDefCount > 0 && $targetChance >= $spyChance)
 		{
 			$config		= Config::get($this->_fleet['fleet_universe']);
 			$whereCol	= $this->_fleet['fleet_end_type'] == 3 ? "id_luna" : "id";
