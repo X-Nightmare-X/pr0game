@@ -335,7 +335,7 @@ class PlayerUtil
 
 		if(empty($moonName))
 		{
-			$moonName		= $LNG['type_planet_3'];
+			$moonName		= $LNG['type_planet_3'] ?? 'Mond';
 		}
 
 		$sql	= "INSERT INTO %%PLANETS%% SET
