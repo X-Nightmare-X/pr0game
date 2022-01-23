@@ -295,8 +295,12 @@ select {
     min-height: 40px;
 }
 
-.onlist {
+.onlist{
     color: #DDD;
+	border:0px;
+	background:none;
+	min-width:0px;
+	min-height:0px;
 }
 
 /** LOGO **/
