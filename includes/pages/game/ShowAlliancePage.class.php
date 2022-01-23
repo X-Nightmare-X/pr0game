@@ -194,7 +194,7 @@ class ShowAlliancePage extends AbstractGamePage
 		$db	= Database::get();
 		$sql	= "SELECT a.ally_tag FROM %%ALLIANCE_REQUEST%% r INNER JOIN %%ALLIANCE%% a ON a.id = r.allianceId WHERE r.userId = :userId;";
 		$allianceResult = $db->selectSingle($sql, array(
-			':userId'	=> $USER['id_planet']
+			':userId'	=> $USER['id']
 		));
 
 		if(empty($allianceResult['ally_tag'])) { $allianceResult['ally_tag'] = 0; }
@@ -225,7 +225,7 @@ class ShowAlliancePage extends AbstractGamePage
 			$db	= Database::get();
 			$sql	= "SELECT id, ally_name, ally_tag, ally_members
 			FROM %%ALLIANCE%%
-			WHERE ally_universe = :universe AND ally_name LIKE :searchTextEqual
+			WHERE ally_universe = :universe AND ally_name LIKE :searchTextLike
 			ORDER BY (
 			  IF(ally_name = :searchTextEqual, 1, 0) + IF(ally_name LIKE :searchTextLike, 1, 0)
 			) DESC,ally_name ASC LIMIT 25;";
