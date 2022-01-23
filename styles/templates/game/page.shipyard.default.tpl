@@ -27,7 +27,7 @@
 {/if}
 
 <div>
-{if $mode == "defense"}{else}<div class="planeto"> <button id="ship1">Civil</button> | <button id="ship2">Military</button> | <button id="ship3">All</button>{/if}
+{if $mode == "defense"}{else}<div class="planeto"> <button id="ship1">{$LNG.fm_civil}</button> | <button id="ship2">{$LNG.fm_military}</button> | <button id="ship3">{$LNG.fm_all}</button>{/if}
 </div>	
 	{foreach $elementList as $ID => $Element}
 	

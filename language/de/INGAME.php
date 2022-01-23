@@ -157,7 +157,19 @@ $LNG['ov_moving_fleets']					= 'Flotten in Bewegung';
 $LNG['ov_checknews']					= 'Neuigkeiten';
 $LNG['ov_rulesnotify']					= 'Bitte beachtet die';
 $LNG['ov_rules']					= 'Regeln';
+$LNG['ov_checknews_show']                   = 'Neuigkeiten einblenden';
+$LNG['ov_checknews_hide']	                = 'Neuigkeiten ausblenden';
 
+//----------------------------------------------------------------------------//
+//FILTER MENU
+
+$LNG['fm_mining']						= 'Rohstoffabbau';
+$LNG['fm_other']						= 'Sonstige';
+$LNG['fm_all']							= 'Alle';
+$LNG['fm_civil']						= 'Zivil';
+$LNG['fm_military']						= 'Militär';
+$LNG['fm_imperial']						= 'Imperium';
+$LNG['fm_engins']						= 'Triebwerke';
 //----------------------------------------------------------------------------//
 //GALAXY
 
@@ -436,12 +448,12 @@ $LNG['rs_amount']						= 'Anzahl';
 $LNG['rs_lvl']							= 'Stufe';
 $LNG['rs_production_on_planet']					= 'Rohstoffproduktion auf Planet "%s"';
 $LNG['rs_basic_income']						= 'Basiseinkommen';
-$LNG['rs_storage_capacity']					= 'Lager';
+$LNG['rs_storage_capacity']					= 'Lagerkapazität';
 $LNG['rs_calculate']						= 'Berechnen';
-$LNG['rs_sum']							= 'Total';
+$LNG['rs_sum']							= 'Pro Stunde';
 $LNG['rs_daily']						= 'Pro Tag';
 $LNG['rs_weekly']						= 'Pro Woche';
-$LNG['rs_ress_bonus']						= 'Bonus(Offiziere/DM-Bonus):';
+$LNG['rs_ress_bonus']						= 'Bonus (durch Forschung)';
 
 //----------------------------------------------------------------------------//
 //OFFICIERS
