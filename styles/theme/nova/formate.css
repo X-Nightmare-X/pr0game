@@ -609,11 +609,11 @@ th a, .res_current {
 }
 
 .hidden-div {
-    border: 2px solid #ee4d2e;
-    border-radius: 15px;
-    margin: 3px;
-    padding: 5px;
-    text-align: center
+	border: 2px solid #ee4d2e;
+	border-radius: 15px;
+	margin: 3px;
+	padding: 10px 30px;
+	text-align: left;
 }
 
 .buildl {
