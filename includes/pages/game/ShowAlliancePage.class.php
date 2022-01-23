@@ -35,8 +35,7 @@ class ShowAlliancePage extends AbstractGamePage
 		'KICK',
 		'DIPLOMATIC',
 		'RANKS',
-		'MANAGEUSERS',
-		'EVENTS'
+		'MANAGEUSERS'
 	);
 
 	function __construct()
@@ -194,7 +193,7 @@ class ShowAlliancePage extends AbstractGamePage
 		$db	= Database::get();
 		$sql	= "SELECT a.ally_tag FROM %%ALLIANCE_REQUEST%% r INNER JOIN %%ALLIANCE%% a ON a.id = r.allianceId WHERE r.userId = :userId;";
 		$allianceResult = $db->selectSingle($sql, array(
-			':userId'	=> $USER['id_planet']
+			':userId'	=> $USER['id']
 		));
 
 		if(empty($allianceResult['ally_tag'])) { $allianceResult['ally_tag'] = 0; }
@@ -225,7 +224,7 @@ class ShowAlliancePage extends AbstractGamePage
 			$db	= Database::get();
 			$sql	= "SELECT id, ally_name, ally_tag, ally_members
 			FROM %%ALLIANCE%%
-			WHERE ally_universe = :universe AND ally_name LIKE :searchTextEqual
+			WHERE ally_universe = :universe AND ally_name LIKE :searchTextLike
 			ORDER BY (
 			  IF(ally_name = :searchTextEqual, 1, 0) + IF(ally_name LIKE :searchTextLike, 1, 0)
 			) DESC,ally_name ASC LIMIT 25;";
@@ -538,29 +537,6 @@ class ShowAlliancePage extends AbstractGamePage
 			':AllianceID'	=> $this->allianceData['id']
 		), 'count');
 
-		$ally_events = array();
-
-		if (!empty($this->allianceData['ally_events'])) {
-			$sql = "SELECT id, username FROM %%USERS%% WHERE ally_id = :AllianceID;";
-			$result = $db->select($sql, array(
-				':AllianceID'	=> $this->allianceData['id']
-			));
-
-
-			require_once('includes/classes/class.FlyingFleetsTable.php');
-			$FlyingFleetsTable = new FlyingFleetsTable;
-
-			$this->tplObj->loadscript('overview.js');
-
-			foreach ($result as $row) {
-				$FlyingFleetsTable->setUser($row['id']);
-				$FlyingFleetsTable->setMissions($this->allianceData['ally_events']);
-				$ally_events[$row['username']] = $FlyingFleetsTable->renderTable();
-			}
-
-			$ally_events = array_filter($ally_events);
-		}
-
 		$this->assign(array(
 			'DiploInfo'					=> $this->getDiplomatic(),
 			'ally_web'					=> $this->allianceData['ally_web'],
@@ -582,8 +558,7 @@ class ShowAlliancePage extends AbstractGamePage
 			'unitslose'					=> pretty_number($statisticResult['lostunits']),
 			'dermetal'					=> pretty_number($statisticResult['kbmetal']),
 			'dercrystal'				=> pretty_number($statisticResult['kbcrystal']),
-			'isOwner'					=> $this->allianceData['ally_owner'] == $USER['id'],
-			'ally_events'				=> $ally_events
+			'isOwner'					=> $this->allianceData['ally_owner'] == $USER['id']
 		));
 
 		$this->display('page.alliance.home.tpl');
@@ -783,7 +758,6 @@ class ShowAlliancePage extends AbstractGamePage
 			$this->allianceData['ally_request_min_points']  = HTTP::_GP('request_min_points', 0);
 			$this->allianceData['ally_stats'] 				= HTTP::_GP('stats', 0);
 			$this->allianceData['ally_diplo'] 				= HTTP::_GP('diplo', 0);
-			$this->allianceData['ally_events'] 				= implode(',', HTTP::_GP('events', array(0)));
 
 			$new_ally_tag 	= HTTP::_GP('ally_tag', $this->allianceData['ally_tag'], UTF8_SUPPORT);
 			$new_ally_name	= HTTP::_GP('ally_name', $this->allianceData['ally_name'], UTF8_SUPPORT);
@@ -854,8 +828,7 @@ class ShowAlliancePage extends AbstractGamePage
 			ally_max_members = :AllianceMaxMember,
 			ally_request_min_points = :AllianceRequestMinPoints,
 			ally_stats = :AllianceStats,
-			ally_diplo = :AllianceDiplo,
-			ally_events = :AllianceEvents
+			ally_diplo = :AllianceDiplo
 			WHERE id = :AllianceID;";
 
 			$db->update($sql, array(
@@ -869,7 +842,6 @@ class ShowAlliancePage extends AbstractGamePage
 				':AllianceRequestMinPoints'	=> $this->allianceData['ally_request_min_points'],
 				':AllianceStats'			=> $this->allianceData['ally_stats'],
 				':AllianceDiplo'			=> $this->allianceData['ally_diplo'],
-				':AllianceEvents'			=> $this->allianceData['ally_events'],
 				':AllianceID'				=> $this->allianceData['id'],
 				':text'						=> $text
 			));
@@ -885,14 +857,6 @@ class ShowAlliancePage extends AbstractGamePage
 					$text	= $this->allianceData['ally_description'];
 					break;
 			}
-		}
-
-		require_once 'includes/classes/class.FlyingFleetHandler.php';
-
-		$available_events = array();
-
-		foreach (array_keys(FlyingFleetHandler::$missionObjPattern) as $missionId) {
-			$available_events[$missionId] = $LNG['type_mission_' . $missionId];
 		}
 
 		$this->assign(array(
@@ -911,8 +875,6 @@ class ShowAlliancePage extends AbstractGamePage
 			'ally_owner_range'			=> $this->allianceData['ally_owner_range'],
 			'ally_stats_data'			=> $this->allianceData['ally_stats'],
 			'ally_diplo_data'			=> $this->allianceData['ally_diplo'],
-			'ally_events'				=> explode(',', $this->allianceData['ally_events']),
-			'available_events'			=> $available_events,
 		));
 
 		$this->display('page.alliance.admin.overview.tpl');
