@@ -61,16 +61,16 @@ $("#tn3").hide();
 
 			
 <br>{$LNG.ov_points} {$rankInfo}
-<br/><br/><span style="font-weight:bold;">{$LNG.ov_rulesnotify}&nbsp;<a href="/index.php?page=rules" target="_blank" style="color:crimson;">[{$LNG.ov_rules}]</a></span>
+<br/><br/><span style="font-weight:bold;">{$LNG.ov_rulesnotify}&nbsp;<a href="/index.php?page=rules" target="_blank" style="color:#008FFF;">[{$LNG.ov_rules}]</a></span>
 {if $is_news}
 
                 <div class="hidden-div" id="hidden-div">
 
          
-                 {$LNG.ov_news}:&nbsp;{$news} </br><span style="display:block; margin-top:10px;"><button id="chkbtn2">Hide News</button></span>
+                 {$LNG.ov_news}:&nbsp;{$news} </br><span style="display:block; margin-top:10px;"><button id="chkbtn2">{$LNG.ov_checknews_hide}</button></span>
  
                 </div>
-                <span style="display:block; margin-top:10px;"><button id="chkbtn">{$LNG.ov_checknews}</button></span>
+                <span style="display:block; margin-top:10px;"><button id="chkbtn">{$LNG.ov_checknews_show}</button></span>
 {/if}
 
     </div>

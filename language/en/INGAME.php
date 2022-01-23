@@ -163,10 +163,21 @@ $LNG['ov_noreflink']						= 'You have not recruited any players yet';
 $LNG['ov_chat_online']						= 'Players in chat:';
 $LNG['ov_players']							= 'Players';
 $LNG['ov_moving_fleets']					= 'Moving fleets';
-$LNG['ov_checknews']					    = 'Check News';
 $LNG['ov_rulesnotify']                      = 'Please follow the';
 $LNG['ov_rules']		                    = 'Rules';
+$LNG['ov_checknews_show']                   = 'Show News';
+$LNG['ov_checknews_hide']	                = 'Hide News';
 
+//----------------------------------------------------------------------------//
+//FILTER MENU
+
+$LNG['fm_mining']						= 'Mining';
+$LNG['fm_other']						= 'Other';
+$LNG['fm_all']							= 'All';
+$LNG['fm_civil']						= 'Civil';
+$LNG['fm_military']						= 'Military';
+$LNG['fm_imperial']						= 'Imperial';
+$LNG['fm_engins']						= 'Engines';
 //----------------------------------------------------------------------------//
 // Galaxy
 
@@ -456,10 +467,10 @@ $LNG['rs_production_on_planet']			    = 'Resources produced on the planet "%s"';
 $LNG['rs_basic_income']					    = 'Basic Production';
 $LNG['rs_storage_capacity']				    = 'Storage capacity';
 $LNG['rs_calculate']						= 'Cost estimate';
-$LNG['rs_sum']								= 'Total';
+$LNG['rs_sum']								= 'Hourly Production';
 $LNG['rs_daily']					        = 'Daily Production:';
 $LNG['rs_weekly']							= 'Weekly Production:';
-$LNG['rs_ress_bonus']                       = 'Bonus (Officers/Bonus):';
+$LNG['rs_ress_bonus']                       = 'Bonus (through Research):';
 
 //----------------------------------------------------------------------------//
 // Officers

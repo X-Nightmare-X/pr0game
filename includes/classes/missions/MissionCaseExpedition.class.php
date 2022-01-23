@@ -493,9 +493,11 @@ HTML;
 			
 			$fleetID	= $this->_fleet['fleet_id'];
 			
+			$fleetAttack = array();
+
 			$fleetAttack[$fleetID]['fleetDetail']		= $this->_fleet;
 			$fleetAttack[$fleetID]['player']			= $senderData;
-			$fleetAttack[$fleetID]['player']['factor']	= getFactors($fleetAttack[$this->_fleet['fleet_id']]['player'], 'attack', $this->_fleet['fleet_start_time']);
+			$fleetAttack[$fleetID]['player']['factor']	= getFactors($fleetAttack[$fleetID]['player'], 'attack', $this->_fleet['fleet_start_time']);
 			$fleetAttack[$fleetID]['unit']				= $fleetArray;
 			
 			$fleetDefend = array();
@@ -526,6 +528,7 @@ HTML;
 			$fleetArray = '';
 			$totalCount = 0;
 			
+			$fleetID	= $this->_fleet['fleet_id'];
 			$fleetAttack[$fleetID]['unit']	= array_filter($fleetAttack[$fleetID]['unit']);
 			foreach ($fleetAttack[$fleetID]['unit'] as $element => $amount)
 			{
