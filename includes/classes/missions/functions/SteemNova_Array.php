@@ -259,7 +259,7 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF)
 		
 		$ROUND[$ROUNDC] = array('attackers' => $attackers, 'defenders' => $defenders, 'attackA' => $att['attackAmount'], 'defenseA' => $def['attackAmount'], 'infoA' => $att['attArray'], 'infoD' => $def['attArray']);
 		
-		if ($att['attackAmount']['total'] > 0 && $def['attackAmount']['total'] > 0)
+		if ($att['attackAmount']['total'] > 0 && $def['attackAmount']['total'] > 0 && $ROUNDC < MAX_ATTACK_ROUNDS)
 		{
 			// FIGHT
 			$fightResults = fight($attackers, $defenders);
