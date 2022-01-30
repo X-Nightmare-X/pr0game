@@ -169,7 +169,7 @@ function initCombatValues(&$fleets, $firstInit = false)
 				if ($firstInit)
 				{
 					// create new array for EACH ship
-					$fleets[$fleetID]['units'][] = array('unit' => $element, 'shield' => $thisShield, 'armor' => $thisArmor, 'att' => $thisAtt);
+				    $fleets[$fleetID]['units'][] = array('unit' => $element, 'shield' => $thisShield, 'armor' => $thisArmor, 'att' => $thisAtt, 'explode' => false);
 				}
 				$attArray[$fleetID][$element]['def'] += $fleets[$fleetID]['units'][$iter]['armor'];
 				$attArray[$fleetID][$element]['shield'] += $thisShield;
