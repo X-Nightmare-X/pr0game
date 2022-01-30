@@ -1,0 +1,5 @@
+<h2>Database upgrade is needed!</h2>
+<p>To allow the Database Upgrade, the file ENABLE_INSTALL_TOOL needs to be created.</p>
+<ul>
+    <li>In the includes/ folder, create a file named ENABLE_INSTALL_TOOL. The file name is case sensitive, but the file itself can simply be an empty file.</li>
+</ul>
