@@ -182,40 +182,17 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 				$maxFactor		= 2400;
 			}
 
-			$founded		= min($factor * max(min($fleetPoints, $maxFactor), 200), $fleetCapacity);
+			$foundResources = $factor * max(min($fleetPoints, $maxFactor), 200);
 
-			if ($fleetPoints < $maxFactor)
+			if ($fleetCapacity < $foundResources)
+			{
 				$logbook = $LNG['sys_expe_found_ress_logbook_'.mt_rand(1,4)].'<br>'.$logbook;
+				$foundResources = $fleetCapacity;
+			}
 
 			$fleetColName	= 'fleet_resource_'.$resource[$resourceId];
-			$this->UpdateFleet($fleetColName, $this->_fleet[$fleetColName] + $founded);
+			$this->UpdateFleet($fleetColName, $this->_fleet[$fleetColName] + $foundResources);
 		}
-		
-		// Find Dark Matter: 9%. Values from 2Moons
-		// Removed in favour of ressources and ships
-// 		elseif ($GetEvent < 415)
-// 		{
-// 			$eventSize   = mt_rand(0, 100);
-// 			$Size       = 0;
-
-// 			// normal (89%)
-// 			if(10 < $eventSize) {
-// 				$Size		= mt_rand(100, 300);
-// 				$Message	= $LNG['sys_expe_found_dm_1_'.mt_rand(1,5)];
-// 			} 
-// 			// large (10%)
-// 			elseif(0 < $eventSize && 10 >= $eventSize) {
-// 				$Size		= mt_rand(301, 600);
-// 				$Message	= $LNG['sys_expe_found_dm_2_'.mt_rand(1,3)];
-// 			} 
-// 			// very large (1%)
-// 			elseif(0 == $eventSize) {
-// 				$Size	 	= mt_rand(601, 3000);
-// 				$Message	= $LNG['sys_expe_found_dm_3_'.mt_rand(1,2)];
-// 			}
-
-// 			$this->UpdateFleet('fleet_resource_darkmatter', $this->_fleet['fleet_resource_darkmatter'] + $Size);
-// 		}
 		
 		// Find abandoned ships: 22%. Values from http://owiki.de/Expedition
 		elseif ($GetEvent < 635)
