@@ -182,13 +182,16 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 				$maxFactor		= 2400;
 			}
 
-			$founded		= min($factor * max(min($fleetPoints, $maxFactor), 200), $fleetCapacity);
+			$foundResources = $factor * max(min($fleetPoints, $maxFactor), 200);
 
-			if ($fleetPoints < $maxFactor)
+			if ($fleetCapacity < $foundResources)
+			{
 				$logbook = $LNG['sys_expe_found_ress_logbook_'.mt_rand(1,4)].'<br>'.$logbook;
+				$foundResources = $fleetCapacity;
+			}
 
 			$fleetColName	= 'fleet_resource_'.$resource[$resourceId];
-			$this->UpdateFleet($fleetColName, $this->_fleet[$fleetColName] + $founded);
+			$this->UpdateFleet($fleetColName, $this->_fleet[$fleetColName] + $foundResources);
 		}
 		
 		// Find abandoned ships: 22%. Values from http://owiki.de/Expedition
