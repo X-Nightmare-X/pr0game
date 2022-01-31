@@ -67,7 +67,7 @@ $("#tn3").hide();
                 <div class="hidden-div" id="hidden-div">
 
          
-                 {$LNG.ov_news}:&nbsp;{$news} </br><span style="display:block; margin-top:10px;"><button id="chkbtn2">{$LNG.ov_checknews_hide}</button></span>
+                 <span style="font-size:20px;font-weight:bold;text-decoration:underline;">{$LNG.ov_news}:</span><br/><br/>{$news} </br><span style="display:block; margin-top:10px;text-align:center;"><button id="chkbtn2">{$LNG.ov_checknews_hide}</button></span>
  
                 </div>
                 <span style="display:block; margin-top:10px;"><button id="chkbtn">{$LNG.ov_checknews_show}</button></span>
