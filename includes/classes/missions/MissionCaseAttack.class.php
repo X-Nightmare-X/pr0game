@@ -352,7 +352,7 @@ HTML;
 		
 		if($targetPlanet['id_luna'] == 0 && $targetPlanet['planet_type'] == 1)
 		{
-			$chanceCreateMoon	= round($debrisTotal / 100000 * $moonFactor);
+		    $chanceCreateMoon	= floor($debrisTotal / 100000 * $moonFactor);
 			$chanceCreateMoon	= min($chanceCreateMoon, $maxMoonChance);
 		}
 		else
