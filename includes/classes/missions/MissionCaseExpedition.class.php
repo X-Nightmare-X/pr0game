@@ -81,46 +81,50 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		return $MaxPoints;
 	}
 	
-	// still not pretty, but better than before
+	// 89 / 10 / 1%
+	private function determineEventSize()
+	{
+		$eventSize	= mt_rand(0, 100);
+		
+		if (10 < $eventSize) $eventCategory = 0; // 89%
+		elseif (0 < $eventSize) $eventCategory = 1; // 10%
+		else $eventCategory = 2; // 1%
+		
+		return $eventCategory;
+	}
+
 	private function handleEventFoundRes()
 	{
 		global $resource;
 
 		$LNG		= $this->_LNG;
-		$eventSize	= mt_rand(0, 100);
 		$factor		= 0;
 		
 		$fleetData = $this->calculatePointsAndCapacity();
 		$fleetPoints = $fleetData[0];
 		$fleetCapacity = $fleetData[1];
 		
-		// normal (89%)
-		if(10 < $eventSize)
-		{
-			$Message	= $LNG['sys_expe_found_ress_1_'.mt_rand(1,4)];
-			$factor		= mt_rand(10, 50);
-		}
-		// large (10%)
-		elseif(0 < $eventSize && 10 >= $eventSize)
-		{
-			$Message	= $LNG['sys_expe_found_ress_2_'.mt_rand(1,3)];
-			$factor		= mt_rand(50, 100);
-		}
-		// very large (1%)
-		else
-		{
-			$Message	= $LNG['sys_expe_found_ress_3_'.mt_rand(1,2)];
-			$factor		= mt_rand(100, 200);
+		switch ($this->determineEventSize()) {
+			case 0:
+				$Message	= $LNG['sys_expe_found_ress_1_'.mt_rand(1,4)];
+				$factor		= mt_rand(10, 50);
+				break;
+			case 1:
+				$Message	= $LNG['sys_expe_found_ress_2_'.mt_rand(1,3)];
+				$factor		= mt_rand(50, 100);
+				break;
+			case 2:
+				$Message	= $LNG['sys_expe_found_ress_3_'.mt_rand(1,2)];
+				$factor		= mt_rand(100, 200);
+				break;				
 		}
 		
 		$chanceToFound	= mt_rand(1, 6);
-		if($chanceToFound > 3)
-		{
-			$resourceId	= RESOURCE_METAL;
-		} elseif($chanceToFound > 1) {
+		if($chanceToFound > 3) $resourceId = RESOURCE_METAL; // 1/2
+		elseif($chanceToFound > 1) { // 1/3
 			$resourceId	= RESOURCE_CRYSTAL;
 			$factor		= $factor / 2;
-		} else {
+		} else { // 1/6
 			$resourceId	= RESOURCE_DEUT;
 			$factor		= $factor / 3;
 		}
@@ -139,41 +143,8 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		return $Message;
 	}
 
-	private function handleEventFoundShips()
+	private function determineFindableShips($fleetArray)
 	{
-		global $pricelist, $reslist;
-
-		$LNG = $this->_LNG;
-		$eventSize	= mt_rand(0, 100);
-		$Size       = 0;
-		$Message    = "";
-		$fleetPoints = $this->calculatePointsAndCapacity()[0];
-		$fleetArray	= FleetFunctions::unserialize($this->_fleet['fleet_array']);
-
-		// normal (89%)
-		if(10 < $eventSize) {
-			$Size		= mt_rand(10, 50);
-			$Message	= $LNG['sys_expe_found_ships_1_'.mt_rand(1,4)];
-		}
-		// large (10%)
-		elseif(0 < $eventSize && 10 >= $eventSize) {
-			$Size		= mt_rand(52, 100);
-			$Message	= $LNG['sys_expe_found_ships_2_'.mt_rand(1,2)];
-		}
-		// very large (1%)
-		else {
-			$Size	 	= mt_rand(102, 200);
-			$Message	= $LNG['sys_expe_found_ships_3_'.mt_rand(1,2)];
-		}
-		
-		$MaxPoints = $this->calculateMaxFactor();
-		$FoundShips		= max(round($Size * min($fleetPoints, $MaxPoints)), 10000);
-		
-		if ($fleetPoints < $MaxPoints) $this->_logbook = $LNG['sys_expe_found_ships_logbook_'.mt_rand(1,3)].'<br>'.$this->_logbook;
-			
-		$FoundShipMess	= "";
-		$NewFleetArray 	= "";
-		
 		$findableShips[SHIP_PROBE] 			= [210, 202];
 		$findableShips[SHIP_SMALL_CARGO] 	= [210, 202, 204]; 
 		$findableShips[SHIP_LIGHT_FIGHTER] 	= [210, 202, 204, 203];
@@ -194,33 +165,74 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		{
 			if (array_key_exists($value, $fleetArray)) $highestShipId = $value;	
 		}
-												
+		
+		$trueFindableShips = $findableShips[$highestShipId];
+		return $trueFindableShips;
+	}
+
+	private function determineFoundShips($fleetPoints, $findableShips)
+	{
 		$Found			= array();
 		$upperValue = 3;
-		while($highestShipId > 0 && $upperValue > 0)
+
+		$remainingPoints = $foundPoints;
+		while($findableShips != null && $upperValue > 0)
 		{
-			$ID = $findableShips[$highestShipId][rand(0, count($findableShips[$highestShipId])-1)];
-			$MaxFound = floor($FoundShips / ($pricelist[$ID]['cost'][901] + $pricelist[$ID]['cost'][902]));
+			$ID = $findableShips[rand(0, count($findableShips)-1)];
+			$shipCost = ($pricelist[$ID]['cost'][RESOURCE_METAL] + $pricelist[$ID]['cost'][RESOURCE_CRYSTAL]);
+			$MaxFound = floor($remainingPoints / $shipCost);
 			$Count = mt_rand(0, $MaxFound);
 			
 			if($MaxFound <= 0 || $Count <= 0)
 			{
-				$upperValue -= 1;
+				$upperValue--;
 				continue;
 			}
-			
-			/**
-			 * big brain moment, quick, write it down:
-			 * count is the number of ships found
-			 * found is the array of found ships
-			 * foundships is the remaining points that can be found
-			 * --> example $ID == 206: determine how many cruisers were found, subtract their metal+crystal cost from $FoundShips, break if negative
-			 */
+
+			// determine how many shipX were found, subtract their points from $remainingPoints, break if negative
 			if(array_key_exists($ID, $Found)) $Found[$ID] += $Count;
 			else $Found[$ID] = $Count;
-			$FoundShips -= $Count * ($pricelist[$ID]['cost'][901] + $pricelist[$ID]['cost'][902]);
-			if($FoundShips <= 0) break;
+			$remainingPoints -= $Count * $shipCost;
+			if($remainingPoints <= 0) break;
 		}
+		
+		return $Found;
+	}
+	
+	private function handleEventFoundShips()
+	{
+		global $pricelist, $reslist;
+
+		$LNG = $this->_LNG;
+		$Size       = 0;
+		$Message    = "";
+		$fleetPoints = $this->calculatePointsAndCapacity()[0]; // only points, capacity is irrelevant
+		$fleetArray	= FleetFunctions::unserialize($this->_fleet['fleet_array']);
+
+		switch ($this->determineEventSize()) {
+			case 0:
+				$Size		= mt_rand(10, 50);
+				$Message	= $LNG['sys_expe_found_ships_1_'.mt_rand(1,4)];
+				break;
+			case 1:
+				$Size		= mt_rand(52, 100);
+				$Message	= $LNG['sys_expe_found_ships_2_'.mt_rand(1,2)];
+				break;
+			case 2:
+				$Size	 	= mt_rand(102, 200);
+				$Message	= $LNG['sys_expe_found_ships_3_'.mt_rand(1,2)];
+				break;
+		}
+		
+		$MaxPoints = $this->calculateMaxFactor();
+		
+		if ($fleetPoints < $MaxPoints) $this->_logbook = $LNG['sys_expe_found_ships_logbook_'.mt_rand(1,3)].'<br>'.$this->_logbook;
+		
+		$FoundShipMess	= "";
+		$NewFleetArray 	= "";
+		$foundPoints = max(round($Size * min($fleetPoints, $MaxPoints), 10000);
+		$findableShips = $this->determineFindableShips($fleetArray);
+		$Found = $this->determineFoundShips($foundPoints, $findableShips);
 		
 		if (empty($Found)) {
 			$FoundShipMess .= '<br><br>'.$LNG['sys_expe_found_ships_nothing'];
@@ -253,43 +265,34 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		return $Message;
 	}
 
-	private function determineEnemyData($playerFleet)
+	// pirate or alien. original: pirate chance = 58/84 ~ 69%
+	private function setupPiratesOrAliens($fleetArray)
 	{
 		$LNG = $this->_LNG;
-		$senderData = $playerFleet['player'];
-		$fleetArray = $playerFleet['unit'];
-
-		// pirate or alien
-		// original: pirate chance = 58/84 ~ 69%
-		$attackType	= mt_rand(1, 100);
-		$eventSize	= mt_rand(0, 100);
-		
 		$targetFleetData	= array();
-		$pirates = ($attackType <= 69);
+		$pirates = (mt_rand(1, 100) <= 69);
 		
-			
-			if(10 < $eventSize)
-			{
+		switch ($this->determineEventSize()) {
+			case 0:
 				$Message    			= $pirates ? $LNG['sys_expe_attack_1_1_'.rand(1, 5)] : $LNG['sys_expe_attack_2_1_'.rand(1, 4)];
 				$attackFactor			= $pirates ? (30 + mt_rand(-3, 3)) / 100 : (40 + mt_rand(-4, 4)) / 100;
 				$bonusShip 				= $pirates ? SHIP_LIGHT_FIGHTER : SHIP_HEAVY_FIGHTER;
 				$targetFleetData[$bonusShip]	= 5;
-			}
-			elseif(0 < $eventSize && 10 >= $eventSize)
-			{
+				break;
+			case 1:
 				$Message    			= $pirates ? $LNG['sys_expe_attack_1_2_'.rand(1, 3)] : $LNG['sys_expe_attack_2_2_'.rand(1, 3)];
 				$attackFactor			= $pirates ? (50 + mt_rand(-5, 5)) / 100 : (60 + mt_rand(-6, 6)) / 100;
 				$bonusShip 				= $pirates ? SHIP_CRUISER : SHIP_BATTLECRUISER;
 				$targetFleetData[$bonusShip]	= 3;
-			}
-			else
-			{
+				break;
+			case 2:
 				$Message   				= $pirates ? $LNG['sys_expe_attack_1_3_'.rand(1, 3)] : $LNG['sys_expe_attack_2_3_'.rand(1, 3)];
 				$attackFactor			= $pirates ? (80 + mt_rand(-8, 8)) / 100 : (90 + mt_rand(-9, 9)) / 100;
-				$bonusShip = $pirates ? SHIP_BATTLESHIP : SHIP_DESTROYER;
+				$bonusShip 				= $pirates ? SHIP_BATTLESHIP : SHIP_DESTROYER;
 				$targetFleetData[$bonusShip]	= 2;
-			}
-			
+				break;
+		}
+		
 		foreach($fleetArray as $shipId => $shipAmount)
 		{
 			if(!isset($targetFleetData[$shipId]))
@@ -302,11 +305,29 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		}
 		
 		$targetFleetData	= array_filter($targetFleetData);
-		$techBonus		= $pirates ? -3 : 3;
+		
+		$returnArray = [
+			'message' => $Message,
+			'fleetData' => $targetFleetData,
+			'techbonus' => $pirates ? -3 : 3,
+			'username' => $pirates ? $LNG['sys_expe_attackname_1'] : $LNG['sys_expe_attackname_2'],
+		];
+		
+		
+		return $returnArray;
+	}
+
+	private function determineEnemyData($playerFleet)
+	{
+		$senderData = $playerFleet['player'];
+
+		$encounterSetupData = $this->setupPiratesOrAliens($playerFleet['unit']);
+		$techBonus = $encounterSetupData['techbonus'];
+		$targetFleetData = $encounterSetupData['fleetData'];
 
 		$targetData	= array(
 				'id'			=> 0,
-				'username'		=> $pirates ? $LNG['sys_expe_attackname_1'] : $LNG['sys_expe_attackname_2'],
+				'username'		=> $encounterSetupData['username'],
 				'military_tech'	=> max($senderData['military_tech'] + $techBonus, 0),
 				'shield_tech'	=> max($senderData['shield_tech'] + $techBonus, 0),
 				'defence_tech'	=> max($senderData['defence_tech'] + $techBonus, 0),
@@ -316,7 +337,6 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		);
 		
 		$fleetDefend = array();
-		
 		$fleetDefend[0]['fleetDetail'] = array(
 				'fleet_start_galaxy'		=> $this->_fleet['fleet_end_galaxy'],
 				'fleet_start_system'		=> $this->_fleet['fleet_end_system'],
@@ -337,7 +357,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		$fleetDefend[0]['player']['factor']	= ArrayUtil::combineArrayWithSingleElement($bonusList, 0);
 		$fleetDefend[0]['unit']		= $targetFleetData;
 		
-		return [$fleetDefend, $Message];
+		return [$fleetDefend, $encounterSetupData['Message']];
 	}
 
 	private function generateCombatReport($combatResult)
@@ -429,8 +449,6 @@ HTML;
 		$config		= Config::get($this->_fleet['fleet_universe']);
 		$fleetArray	= FleetFunctions::unserialize($this->_fleet['fleet_array']);
 		
-		// todo assemblereport function
-		
 		$sql = 'SELECT * FROM %%USERS%% WHERE id = :userId;';
 		
 		$senderData	= Database::get()->selectSingle($sql, array(
@@ -440,7 +458,6 @@ HTML;
 		$fleetID	= $this->_fleet['fleet_id'];
 		
 		$fleetAttack = array();
-		
 		$fleetAttack[$fleetID]['fleetDetail']		= $this->_fleet;
 		$fleetAttack[$fleetID]['player']			= $senderData;
 		$fleetAttack[$fleetID]['player']['factor']	= getFactors($fleetAttack[$fleetID]['player'], 'attack', $this->_fleet['fleet_start_time']);
@@ -450,7 +467,7 @@ HTML;
 		$enemyData = $this->determineEnemyData($fleetAttack[$fleetID]);
 		$fleetDefend = $enemyData[0];
 		$Message = $enemyData[1];
-		
+
 		require_once 'includes/classes/missions/functions/calculateAttack.php';
 		$combatResult	= calculateAttack($fleetAttack, $fleetDefend, $config->Fleet_Cdr, $config->Defs_Cdr);
 		
