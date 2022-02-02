@@ -157,7 +157,7 @@ class ShowBattleSimulatorPage extends AbstractGamePage
 		$moonFactor			= Config::get()->moon_factor;
 		$maxMoonChance		= Config::get()->moon_chance;
 		
-		$chanceCreateMoon	= round($debrisTotal / 100000 * $moonFactor);
+		$chanceCreateMoon	= floor($debrisTotal / 100000 * $moonFactor);
 		$chanceCreateMoon	= min($chanceCreateMoon, $maxMoonChance);
 		
 		$sumSteal	= array_sum($stealResource);
