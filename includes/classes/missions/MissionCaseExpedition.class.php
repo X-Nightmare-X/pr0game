@@ -170,8 +170,9 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		return $trueFindableShips;
 	}
 
-	private function determineFoundShips($fleetPoints, $findableShips)
+	private function determineFoundShips($foundPoints, $findableShips)
 	{
+		global $pricelist;
 		$Found			= array();
 		$upperValue = 3;
 
@@ -201,7 +202,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 	
 	private function handleEventFoundShips()
 	{
-		global $pricelist, $reslist;
+		global $reslist;
 
 		$LNG = $this->_LNG;
 		$Size       = 0;
@@ -230,7 +231,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		
 		$FoundShipMess	= "";
 		$NewFleetArray 	= "";
-		$foundPoints = max(round($Size * min($fleetPoints, $MaxPoints), 10000);
+		$foundPoints = max(round($Size * min($fleetPoints, $MaxPoints)), 10000);
 		$findableShips = $this->determineFindableShips($fleetArray);
 		$Found = $this->determineFoundShips($foundPoints, $findableShips);
 		
@@ -357,7 +358,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		$fleetDefend[0]['player']['factor']	= ArrayUtil::combineArrayWithSingleElement($bonusList, 0);
 		$fleetDefend[0]['unit']		= $targetFleetData;
 		
-		return [$fleetDefend, $encounterSetupData['Message']];
+		return [$fleetDefend, $encounterSetupData['message']];
 	}
 
 	private function generateCombatReport($combatResult)
@@ -609,12 +610,13 @@ HTML;
 	
 	function ReturnEvent()
 	{
-		$LNG		= $this->getLanguage(NULL, $this->_fleet['fleet_owner']);
+		$LNG		= $this->_LNG;
 		$Message 	= sprintf(
 			$LNG['sys_expe_back_home'],
 			$LNG['tech'][901], pretty_number($this->_fleet['fleet_resource_metal']),
 			$LNG['tech'][902], pretty_number($this->_fleet['fleet_resource_crystal']),
-			$LNG['tech'][903], pretty_number($this->_fleet['fleet_resource_deuterium'])
+			$LNG['tech'][903], pretty_number($this->_fleet['fleet_resource_deuterium']),
+			$LNG['tech'][921], pretty_number($this->_fleet['fleet_resource_darkmatter'])
 		);
 
 		PlayerUtil::sendMessage($this->_fleet['fleet_owner'], 0, $LNG['sys_mess_tower'], 4, $LNG['sys_mess_fleetback'],
