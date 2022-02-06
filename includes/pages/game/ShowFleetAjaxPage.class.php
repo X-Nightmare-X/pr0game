@@ -158,10 +158,14 @@ class ShowFleetAjaxPage extends AbstractGamePage
 			FROM %%STATPOINTS%%
 			WHERE id_owner = :userId AND stat_type = :statType';
 
-			$USER	+= Database::get()->selectSingle($sql, array(
-				':userId'	=> $USER['id'],
-				':statType'	=> 1
-			));
+            try {
+                $USER += Database::get()->selectSingle($sql, [
+                    ':userId' => $USER['id'],
+                    ':statType' => 1
+                ]);
+            } catch (Exception $exception) {
+
+            }
 
 			$IsNoobProtec	= CheckNoobProtec($USER, $targetData, $targetData);
 

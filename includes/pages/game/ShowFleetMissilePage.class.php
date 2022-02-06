@@ -94,39 +94,42 @@ class ShowFleetMissilePage extends AbstractGamePage
 		FROM %%STATPOINTS%%
 		WHERE id_owner = :userId AND stat_type = :statType';
 
-		$USER	+= Database::get()->selectSingle($sql, array(
-			':userId'	=> $USER['id'],
-			':statType'	=> 1
-		));
+        try {
+            $USER += Database::get()->selectSingle($sql, [
+                ':userId' => $USER['id'],
+                ':statType' => 1
+            ]);
+        } catch (Exception $exception) {
+        }
 
         $IsNoobProtec	= CheckNoobProtec($USER, $User2Points, $targetUser);
-			
+
 		if ($IsNoobProtec['NoobPlayer'])
 			$error = $LNG['fl_week_player'];
 		elseif ($IsNoobProtec['StrongPlayer'])
-			$error = $LNG['fl_strong_player'];		
-				
+			$error = $LNG['fl_strong_player'];
+
 		if ($error != "")
 		{
 			$this->printMessage($error);
 		}
-		
+
 		$Duration		= FleetFunctions::GetMIPDuration($PLANET['system'], $targetSystem);
 
 		$DefenseLabel 	= ($primaryTarget == 0) ? $LNG['ma_all'] : $LNG['tech'][$primaryTarget];
 
 		$fleetArray		= array(503 => $anz);
-		
+
 		$fleetStartTime	= TIMESTAMP + $Duration;
 		$fleetStayTime	= $fleetStartTime;
 		$fleetEndTime	= $fleetStartTime;
-		
+
 		$fleetResource	= array(
 			901	=> 0,
 			902	=> 0,
 			903	=> 0,
 		);
-		
+
 		FleetFunctions::sendFleet($fleetArray, 10, $USER['id'], $PLANET['id'], $PLANET['galaxy'], $PLANET['system'],
 			$PLANET['planet'], $PLANET['planet_type'], $target['id_owner'], $target['id'], $targetGalaxy, $targetSystem,
 			$targetPlanet, $targetType, $fleetResource, $fleetStartTime, $fleetStayTime, $fleetEndTime, 0, $primaryTarget);
