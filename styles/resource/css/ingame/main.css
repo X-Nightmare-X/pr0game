@@ -608,6 +608,10 @@ table.tablesorter thead tr .headerSortDown {
 	cursor:pointer;
 }
 
+.alliance-image{
+	max-width: 1024px;
+}
+
 #overview #planetList td {
     vertical-align: top;
     white-space: nowrap;
@@ -722,8 +726,12 @@ table.tablesorter thead tr .headerSortDown {
 		display: unset;
 	}
 	 .buildl img{
-		display: none;}
-	
+		display: none;
+	 }
+
+	.alliance-image{
+		max-width: 100vw;
+	}
 	
 }
 
