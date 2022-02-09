@@ -177,7 +177,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		$upperValue = 3;
 		foreach($findableShips as $ID => $findableShip) {
 		if(($pricelist[$ID]['cost'][RESOURCE_METAL] + $pricelist[$ID]['cost'][RESOURCE_CRYSTAL]) > $foundPoints) {
-			unset($findableShips[$key]);
+			unset($findableShips[$ID]);
 		}
 		}
 
