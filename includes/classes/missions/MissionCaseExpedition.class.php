@@ -175,6 +175,11 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		global $pricelist;
 		$Found			= array();
 		$upperValue = 3;
+		foreach($findableShips as $ID => $findableShip) {
+		if(($pricelist[$ID]['cost'][RESOURCE_METAL] + $pricelist[$ID]['cost'][RESOURCE_CRYSTAL]) > $foundPoints) {
+			unset($findableShips[$key]);
+		}
+		}
 
 		$remainingPoints = $foundPoints;
 		while($findableShips != null && $upperValue > 0)
