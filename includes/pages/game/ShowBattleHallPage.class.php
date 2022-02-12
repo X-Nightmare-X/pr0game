@@ -42,7 +42,7 @@ class ShowBattleHallPage extends AbstractGamePage
 			FROM %%TOPKB_USERS%% INNER JOIN %%USERS%% ON uid = id
 			WHERE %%TOPKB_USERS%%.rid = %%TOPKB%%.`rid` AND `role` = 2
 		) as defender
-		FROM %%TOPKB%% WHERE universe = :universe ORDER BY %%TOPKB%%.units DESC LIMIT 100;";
+		FROM %%TOPKB%% WHERE universe = :universe AND time > UNIX_TIMESTAMP() - 21600 ORDER BY %%TOPKB%%.units DESC LIMIT 100;";
 
 		$top = $db->select($sql, array(
 			':universe' => Universe::current()

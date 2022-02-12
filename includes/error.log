@@ -1994,3 +1994,66 @@ URL: https://pr0game.com/game.php?page=galaxy | Version: 1.8.git
 Stack trace:
 #0 /game.php(58): ShowGalaxyPage-&gt;show()
 #1 {main}
+[12-Feb-2022 21:57:44] WARNING: "mysqli::set_charset(): Couldn't fetch Database_BC"
+File: C:\Projects\pr0game-old\includes\classes\Database_BC.class.php | Line: 49
+URL: http://pr0game.local/admin.php | Version: 1.8.git
+Stack trace:
+#0 [internal function]: errorHandler(2, 'mysqli::set_cha...', 'C://Projects//pr0...', 49, Array)
+#1 /includes/classes/Database_BC.class.php(49): mysqli-&gt;set_charset('utf8')
+#2 /includes/common.php(98): Database_BC-&gt;__construct()
+#3 /admin.php(27): require('C://Projects//pr0...')
+#4 {main}
+[12-Feb-2022 21:58:19] WARNING: "mysqli::set_charset(): Couldn't fetch Database_BC"
+File: C:\Projects\pr0game-old\includes\classes\Database_BC.class.php | Line: 49
+URL: http://pr0game.local/admin.php | Version: 1.8.git
+Stack trace:
+#0 [internal function]: errorHandler(2, 'mysqli::set_cha...', 'C://Projects//pr0...', 49, Array)
+#1 /includes/classes/Database_BC.class.php(49): mysqli-&gt;set_charset('utf8')
+#2 /includes/common.php(98): Database_BC-&gt;__construct()
+#3 /admin.php(27): require('C://Projects//pr0...')
+#4 {main}
+[12-Feb-2022 21:58:21] WARNING: "mysqli::set_charset(): Couldn't fetch Database_BC"
+File: C:\Projects\pr0game-old\includes\classes\Database_BC.class.php | Line: 49
+URL: http://pr0game.local/admin.php | Version: 1.8.git
+Stack trace:
+#0 [internal function]: errorHandler(2, 'mysqli::set_cha...', 'C://Projects//pr0...', 49, Array)
+#1 /includes/classes/Database_BC.class.php(49): mysqli-&gt;set_charset('utf8')
+#2 /includes/common.php(98): Database_BC-&gt;__construct()
+#3 /admin.php(27): require('C://Projects//pr0...')
+#4 {main}
+[12-Feb-2022 21:58:35] WARNING: "mysqli::set_charset(): Couldn't fetch Database_BC"
+File: C:\Projects\pr0game-old\includes\classes\Database_BC.class.php | Line: 49
+URL: http://pr0game.local/admin.php | Version: 1.8.git
+Stack trace:
+#0 [internal function]: errorHandler(2, 'mysqli::set_cha...', 'C://Projects//pr0...', 49, Array)
+#1 /includes/classes/Database_BC.class.php(49): mysqli-&gt;set_charset('utf8')
+#2 /includes/common.php(98): Database_BC-&gt;__construct()
+#3 /admin.php(27): require('C://Projects//pr0...')
+#4 {main}
+[12-Feb-2022 21:58:37] WARNING: "mysqli::set_charset(): Couldn't fetch Database_BC"
+File: C:\Projects\pr0game-old\includes\classes\Database_BC.class.php | Line: 49
+URL: http://pr0game.local/admin.php | Version: 1.8.git
+Stack trace:
+#0 [internal function]: errorHandler(2, 'mysqli::set_cha...', 'C://Projects//pr0...', 49, Array)
+#1 /includes/classes/Database_BC.class.php(49): mysqli-&gt;set_charset('utf8')
+#2 /includes/common.php(98): Database_BC-&gt;__construct()
+#3 /admin.php(27): require('C://Projects//pr0...')
+#4 {main}
+[12-Feb-2022 21:58:53] WARNING: "mysqli::set_charset(): Couldn't fetch Database_BC"
+File: C:\Projects\pr0game-old\includes\classes\Database_BC.class.php | Line: 49
+URL: http://pr0game.local/admin.php | Version: 1.8.git
+Stack trace:
+#0 [internal function]: errorHandler(2, 'mysqli::set_cha...', 'C://Projects//pr0...', 49, Array)
+#1 /includes/classes/Database_BC.class.php(49): mysqli-&gt;set_charset('utf8')
+#2 /includes/common.php(98): Database_BC-&gt;__construct()
+#3 /admin.php(27): require('C://Projects//pr0...')
+#4 {main}
+[12-Feb-2022 21:59:09] WARNING: "mysqli::set_charset(): Couldn't fetch Database_BC"
+File: C:\Projects\pr0game-old\includes\classes\Database_BC.class.php | Line: 49
+URL: http://pr0game.local/admin.php | Version: 1.8.git
+Stack trace:
+#0 [internal function]: errorHandler(2, 'mysqli::set_cha...', 'C://Projects//pr0...', 49, Array)
+#1 /includes/classes/Database_BC.class.php(49): mysqli-&gt;set_charset('utf8')
+#2 /includes/common.php(98): Database_BC-&gt;__construct()
+#3 /admin.php(27): require('C://Projects//pr0...')
+#4 {main}
