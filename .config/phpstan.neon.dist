@@ -4,5 +4,3 @@ parameters:
       - ../
     excludePaths:
       - ../cache
-#    bootstrapFiles:
-#      - /usr/local/bin/phpunit

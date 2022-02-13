@@ -5,6 +5,11 @@ name: default
 
 steps:
   - name: phpstan
-    image: phpstan/phpstan
+    image: ghcr.io/phpstan/phpstan:1
     commands:
       - phpstan analyse --no-progress -c .config/phpstan.neon.dist --error-format=table
+
+  - name: phpcs
+    image: cytopia/phpcs:3-php7.4
+    commands:
+      - --standard=.config/phpcs.xml.dist -d memory_limit=512M
