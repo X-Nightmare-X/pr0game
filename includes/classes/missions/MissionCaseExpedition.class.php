@@ -261,7 +261,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		$Message .= $FoundShipMess;
 		
 		$this->UpdateFleet('fleet_array', $NewFleetArray);
-		$this->UpdateFleet('fleet_amount', array_sum($fleetArray));
+		$this->UpdateFleet('fleet_amount', array_sum($NewFleetArray));
 		
 		return $Message;
 	}
