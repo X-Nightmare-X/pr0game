@@ -1,0 +1,10 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: phpstan
+    image: phpstan/phpstan
+    commands:
+      - phpstan analyse --no-progress -c .config/phpstan.neon.dist --error-format=table
