@@ -14,4 +14,4 @@ steps:
     failure: ignore
     image: cytopia/phpcs:3-php7.4
     commands:
-      - --standard=.config/phpcs.xml.dist -d memory_limit=512M
+      - phpcs --standard=.config/phpcs.xml.dist -d memory_limit=512M
