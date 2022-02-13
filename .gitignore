@@ -5,3 +5,4 @@ includes/error.log
 includes/backups/
 package-lock.json
 vendor/
+.phpcs-cache
