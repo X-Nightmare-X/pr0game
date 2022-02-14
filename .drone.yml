@@ -6,12 +6,12 @@ name: default
 steps:
   - name: phpstan
     failure: ignore
-    image: ghcr.io/phpstan/phpstan:1
+    image: 1drop/php-utils:7.4
     commands:
       - phpstan analyse --no-progress -c .config/phpstan.neon.dist --error-format=table
 
   - name: phpcs
     failure: ignore
-    image: cytopia/phpcs:3-php7.4
+    image: 1drop/php-utils:7.4
     commands:
       - phpcs --standard=.config/phpcs.xml.dist -d memory_limit=512M
