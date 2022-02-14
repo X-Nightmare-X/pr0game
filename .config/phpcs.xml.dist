@@ -7,6 +7,8 @@
     <arg name="cache" value="./../.phpcs-cache"/>
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
+    <arg name="report" value="full,summary"/>
+    <arg name="ignore" value="./../cache"/>
 
     <rule ref="PSR12"/>
 
