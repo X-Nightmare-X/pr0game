@@ -15,3 +15,15 @@ steps:
     image: 1drop/php-utils:7.4
     commands:
       - phpcs --standard=.config/phpcs.xml.dist -d memory_limit=512M
+
+  - name: phpmd
+    failure: ignore
+    image: 1drop/php-utils:7.4
+    commands:
+      - phpmd . ansi .config/phpmd.ruleset.xml.dist --exclude cache/*
+
+  - name: phpcpd
+    failure: ignore
+    image: 1drop/php-utils:7.4
+    commands:
+      - phpcpd --exclude cache/ .
