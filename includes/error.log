@@ -1994,3 +1994,17 @@ URL: https://pr0game.com/game.php?page=galaxy | Version: 1.8.git
 Stack trace:
 #0 /game.php(58): ShowGalaxyPage-&gt;show()
 #1 {main}
+[17-Feb-2022 00:06:07] USER ERROR: "Unknown universe id: VERSION"
+File: /var/www/html/includes/classes/Config.class.php | Line: 62
+URL: https://pr0game.ddev.site/admin.php?page=vertify&action=check&file=./CombatReport.php | Version: 1.8.git
+Stack trace:
+#0 /includes/pages/adm/ShowVertify.php(29): Config::get('VERSION')
+#1 /admin.php(183): ShowVertify()
+#2 {main}
+[17-Feb-2022 00:06:27] USER ERROR: "Unknown universe id: VERSION"
+File: /var/www/html/includes/classes/Config.class.php | Line: 62
+URL: https://pr0game.ddev.site/admin.php?page=vertify&action=check&file=./CombatReport.php | Version: 1.8.git
+Stack trace:
+#0 /includes/pages/adm/ShowVertify.php(29): Config::get('VERSION')
+#1 /admin.php(183): ShowVertify()
+#2 {main}

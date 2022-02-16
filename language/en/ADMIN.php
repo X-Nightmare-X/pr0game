@@ -626,7 +626,6 @@ $LNG['mu_info_account_page'] = 'Information Account';
 $LNG['mu_planets_options'] = 'Planets Options';
 $LNG['mu_user_logs'] = 'Admin Log';
 $LNG['mu_support'] = 'Support Tickets';
-$LNG['mu_chat'] = 'Chat Configuration';
 $LNG['mu_module'] = 'Modules';
 $LNG['mu_mod_update'] = 'Checking version of MOD';
 $LNG['mu_fb_options'] = 'Registration by Facebook';
@@ -1040,7 +1039,6 @@ $LNG['modul_3'] = 'Building - Research';
 $LNG['modul_4'] = 'Construction - Fleets';
 $LNG['modul_5'] = 'Building - Defense';
 $LNG['modul_6'] = 'Buddylist';
-$LNG['modul_7'] = 'Chat';
 $LNG['modul_8'] = 'DM Bank';
 $LNG['modul_9'] = 'Fleet';
 $LNG['modul_10'] = 'Fleet - Handler';
@@ -1157,27 +1155,6 @@ $LNG['up_need_curl'] = 'Error: CURL is not present.<br>The maintaining of 2Moons
 $LNG['up_no_xml_ext'] = 'Error: XML Parser is not present.<br>The maintaining of 2Moons requires XML Parser to process the files present.';
 $LNG['up_offline'] = 'Update of server unavailable';
 
-// Página de chat
-$LNG['ch_socket_chatid_info'] = 'This IP can be used to distinguish the definition of chat, use the same server socket.';
-$LNG['ch_socket_port_info'] = 'Server socket port.';
-$LNG['ch_socket_ip_info'] = 'The IP address of the server socket used to connect to the server to send messages to update.';
-$LNG['ch_socket_host_info'] = 'Hostname server socket used to connect to the client side (the server name is used, if it is set to NULL).';
-$LNG['ch_socket_chatid'] = 'Socket ID Chat';
-$LNG['ch_socket_port'] = 'Socket Port';
-$LNG['ch_socket_ip'] = 'Socket IP';
-$LNG['ch_socket_host'] = 'Socket Host';
-$LNG['ch_socket_active'] = 'Socket included?';
-$LNG['ch_socket'] = 'This Server Socket';
-$LNG['ch_closed'] = 'Disable chat';
-$LNG['ch_allowchan'] = 'Allow the private channels';
-$LNG['ch_allowmes'] = 'Allow private messages';
-$LNG['ch_allowcelmes'] = 'Allow delete your messages';
-$LNG['ch_logmessage'] = 'Include log messages';
-$LNG['ch_nickchange'] = 'Allow change nickname';
-$LNG['ch_botname'] = 'Bot';
-$LNG['ch_channelname'] = 'Name of the default channel';
-
-
 // Página de Actividade
 $LNG['ap_id'] = 'ID';
 $LNG['ap_username'] = 'Name of the user';
@@ -1221,7 +1198,6 @@ $LNG['log_no_data'] = 'There is no data available in the log!';
 $LNG['log_ssettings'] = 'Configuration of the game';
 $LNG['log_usettings'] = 'Configuration of the universe';
 $LNG['log_statsettings'] = 'Options of Statistics';
-$LNG['log_chatsettings'] = 'Options Chat';
 $LNG['log_tssettings'] = 'Options of Teamspeak';
 $LNG['log_uni_short'] = 'Uni';
 $LNG['log_universe'] = 'Universe';
