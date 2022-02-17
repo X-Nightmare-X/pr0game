@@ -2,6 +2,7 @@
 cache/
 includes/config.php
 includes/error.log
+includes/ENABLE_INSTALL_TOOL
 includes/backups/
 package-lock.json
 vendor/
