@@ -1,1 +1,0 @@
-This patch works, but it's ugly. Need to rewrite
