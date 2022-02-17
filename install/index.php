@@ -115,15 +115,22 @@ switch ($mode) {
 
         $fileRevision = 0;
 
+        $migrationFileList = [];
+
 		$directoryIterator = new DirectoryIterator(ROOT_PATH . 'install/migrations/');
 		/** @var $fileInfo DirectoryIterator */
 		foreach ($directoryIterator as $fileInfo) {
-			if (!$fileInfo->isFile() || !preg_match('/^migration_\d+/', $fileInfo->getFilename())) {
-				continue;
-			}
+            if (!$fileInfo->isFile() || !preg_match('/^migration_\d+/', $fileInfo->getFilename())) {
+                continue;
+            }
 
-			$fileRevision = substr($fileInfo->getFilename(), 10, -4);
+            $fileRevision = substr($fileInfo->getFilename(), 10, -4);
+            $migrationFileList[$fileRevision] = $fileInfo->getFileInfo();
+        }
 
+        ksort($migrationFileList);
+
+        foreach ($migrationFileList as $fileRevision => $fileInfo) {
             if ($fileRevision <= $dbVersion || $fileRevision > DB_VERSION_REQUIRED) {
                 continue;
             }
