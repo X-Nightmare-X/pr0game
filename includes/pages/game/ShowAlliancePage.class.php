@@ -414,6 +414,9 @@ class ShowAlliancePage extends AbstractGamePage
 		$allianceTag	= HTTP::_GP('atag', '', UTF8_SUPPORT);
 		$allianceName	= HTTP::_GP('aname', '', UTF8_SUPPORT);
 
+		$allianceTag = preg_replace('/[^a-zA-Z0-9 (-)_äöüßÄÖÜ]/', '', $allianceTag);
+		$allianceName = preg_replace('/[^a-zA-Z0-9 (-)_äöüßÄÖÜ]/', '', $allianceName);
+
 		if (empty($allianceTag)) {
 			$this->printMessage($LNG['al_tag_required'], array(array(
 				'label'	=> $LNG['sys_back'],
