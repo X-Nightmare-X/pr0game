@@ -103,7 +103,7 @@ function shoot(&$attackers, $fleetID, $element, $unit, &$defenders, &$ad)
         }
         
         //check destruction
-        if (floor($victimShip['unit'] / 100) === 2) {
+        if (floor($victimShip['unit'] / 100) == 2) {
             if ($victimShip['armor'] > 0 && $victimShip['armor'] < 0.7 * $initialArmor) {
                 $ran = rand(0, $initialArmor);
                 if ($ran > $victimShip['armor']) {

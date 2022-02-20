@@ -81,6 +81,13 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		return $MaxPoints;
 	}
 	
+	// for some reason, 1 value differs from the table. Danke Merkel.
+	private function calculateMaxFactorRes()
+	{
+		$maxFactor = $this->calculateMaxFactor() * 2;
+		return ($maxFactor != 2500 ? $maxFactor : 2400);
+	}
+
 	// 89 / 10 / 1%
 	private function determineEventSize()
 	{
@@ -129,7 +136,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 			$factor		= $factor / 3;
 		}
 		
-		$foundResources = $factor * max(min($fleetPoints, ($this->calculateMaxFactor() * 2)), 200);
+		$foundResources = $factor * max(min($fleetPoints, $this->calculateMaxFactorRes()), 200);
 		
 		if ($fleetCapacity < $foundResources)
 		{
@@ -261,7 +268,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		$Message .= $FoundShipMess;
 		
 		$this->UpdateFleet('fleet_array', $NewFleetArray);
-		$this->UpdateFleet('fleet_amount', array_sum($fleetArray));
+		$this->UpdateFleet('fleet_amount', array_sum($NewFleetArray));
 		
 		return $Message;
 	}
