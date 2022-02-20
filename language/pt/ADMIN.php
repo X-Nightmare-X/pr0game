@@ -628,7 +628,6 @@ $LNG['mu_info_account_page']	 		= 'Informações de Contas';
 $LNG['mu_planets_options'] 				= 'Opções de Planetas';
 $LNG['mu_user_logs']				    = 'Log de Registo';
 $LNG['mu_support']                      = 'Tickets de Suporte';
-$LNG['mu_chat']                         = 'Configurações de Chat';
 $LNG['mu_module']                       = 'Modulos';
 $LNG['mu_mod_update']              		= 'Controlo de Versão do MOD';
 $LNG['mu_fb_options'] 					= 'Registo pelo Facebook';
@@ -1036,7 +1035,6 @@ $LNG['modul_3']                        = 'Construção - Pesquisas';
 $LNG['modul_4']                        = 'Construção - Frotas';
 $LNG['modul_5']                        = 'Construção - Defesas';
 $LNG['modul_6']                        = 'Lista de Amigos';
-$LNG['modul_7']                        = 'Chat';
 $LNG['modul_8']                        = 'Pagamentos de MN';
 $LNG['modul_9']                        = 'Frota';
 $LNG['modul_10']                       = 'Controlo - Frota';
@@ -1151,27 +1149,6 @@ $LNG['up_need_curl']					= 'Erro: O CURL não está presente.<br />A atualizaç�
 $LNG['up_no_xml_ext']					= 'Erro: XML Parser não está presente.<br />A atualização do 2Moons requer XML Parser para processar os ficheiros presentes.';
 $LNG['up_offline']						= 'Atualização do servidor indisponivel';
 
-// Página de chat
-$LNG['ch_socket_chatid_info']          = 'Esse IP pode ser usado para distinguir as definições de chat, use o mesmo socket do servidor.';
-$LNG['ch_socket_port_info']            = 'Porta socket do servidor.';
-$LNG['ch_socket_ip_info']              = 'O endereço IP do servidor socket usado para se conectar ao servidor para enviar mensagens de atualização.';
-$LNG['ch_socket_host_info']            = 'Hostname socket servidor usado para se conectar ao lado do cliente (o nome do servidor é usado, se é definido NULL).';
-$LNG['ch_socket_chatid']               = 'Socket ID Chat';
-$LNG['ch_socket_port']                 = 'Porta Socket';
-$LNG['ch_socket_ip']                   = 'Socket IP';
-$LNG['ch_socket_host']                 = 'Socket Host';
-$LNG['ch_socket_active']               = 'Socket incluído?';
-$LNG['ch_socket']                      = 'Socket do Servidor Presente';
-$LNG['ch_closed']                      = 'Desativar o chat';
-$LNG['ch_allowchan']                   = 'Permitir os canais privados';
-$LNG['ch_allowmes']                    = 'Permitir mensagens privadas';
-$LNG['ch_allowcelmes']                 = 'Permitir apagar as suas mensagens';
-$LNG['ch_logmessage']                  = 'Incluir as mensagens de log';
-$LNG['ch_nickchange']                  = 'Permitir alterar apelido';
-$LNG['ch_botname']                     = 'Bot';
-$LNG['ch_channelname']                 = 'Nome do canal padrão';
-
-
 // Página de Actividade
 $LNG['ap_id']							= 'ID';
 $LNG['ap_username']						= 'Nome do Usuário';
@@ -1215,7 +1192,6 @@ $LNG['log_no_data']                     = 'Não há dados disponíveis no log!';
 $LNG['log_ssettings']                   = 'Configuração de Jogo';
 $LNG['log_usettings']                   = 'Configuração de Universo';
 $LNG['log_statsettings']                = 'Opções de Estatisticas';
-$LNG['log_chatsettings']                = 'Opções de Chat';
 $LNG['log_tssettings']                  = 'Opções de Teamspeak';
 $LNG['log_uni_short']                   = 'Uni';
 $LNG['log_universe']                    = 'Universo';

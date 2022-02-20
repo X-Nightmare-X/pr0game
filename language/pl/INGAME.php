@@ -92,7 +92,6 @@ $LNG['lm_queue']							= 'Kolejka';
 $LNG['lm_topkb']							= 'Hala sław';
 $LNG['lm_faq']								= 'FAQ';
 $LNG['lm_records']							= 'Rekordy';
-$LNG['lm_chat']								= 'Chat';
 $LNG['lm_changelog']						= 'Lista zmian';
 $LNG['lm_support']							= 'Pomoc techniczna';
 $LNG['lm_rules']							= 'Regulamin';
@@ -150,7 +149,6 @@ $LNG['ov_teamspeak_online']					= 'Online';
 $LNG['ov_closed']							= 'Gra chwilowo nieaktywna!';
 $LNG['ov_reflink']							= 'Reflink';
 $LNG['ov_noreflink']						= 'Nikogo nie zwerbowałeś do gry';
-$LNG['ov_chat_online']						= 'Użytkownicy na czacie:';
 
 
 //----------------------------------------------------------------------------//
@@ -621,7 +619,6 @@ $LNG['al_manage_alliance']					= 'zarządzaj sojuszem';
 $LNG['al_send_circular_message']			= 'Wyślij wiadomość do sojuszu';
 $LNG['al_circular_front_text']				= 'Gracz %s napisał:';
 $LNG['al_new_requests']						= '%d nowe podanie';
-$LNG['al_goto_chat']						= 'Czat sojuszu';
 $LNG['al_save']								= 'Zapisz';
 $LNG['al_dlte']								= 'Usuń';
 $LNG['al_rank_name']						= 'Nazwa rangi';

@@ -80,7 +80,6 @@ $LNG['lm_queue']							= 'Queues';
 $LNG['lm_topkb']							= 'Hall of Fame';
 $LNG['lm_faq']								= 'Guide du débutant';
 $LNG['lm_records']							= 'Records';
-$LNG['lm_chat']								= 'Chat';
 $LNG['lm_support']							= 'Ticket Support';
 $LNG['lm_rules']							= 'Règlement';
 $LNG['lm_battlesim']						= 'Simulateur de Combat';
@@ -137,7 +136,6 @@ $LNG['ov_teamspeak_online']					= 'En ligne';
 $LNG['ov_closed']							= 'Le serveur est suspendu pour le moment ! ';
 $LNG['ov_reflink']							= 'Lien référence';
 $LNG['ov_noreflink']						= 'À l\'heure actuelle, vous n\'avez recruté aucun joueur.';
-$LNG['ov_chat_online']						= 'Joueur dans le Chat:';
 
 //----------------------------------------------------------------------------//
 //GALAXY
@@ -597,7 +595,6 @@ $LNG['al_manage_alliance']					= 'Gérer l\'Alliance';
 $LNG['al_send_circular_message']			= 'envoyer un message global';
 $LNG['al_circular_front_text']				= 'Le joueur %s écrit ce qui suit:';
 $LNG['al_new_requests']						= '%d nouvelle(s) requête(s)';
-$LNG['al_goto_chat']						= 'Rejoindre le Chat de l\'Alliance';
 $LNG['al_save']								= 'Sauvegarder';
 $LNG['al_dlte']								= 'Supprimer';
 $LNG['al_rank_name']						= 'Nom rang';

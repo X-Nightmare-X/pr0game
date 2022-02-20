@@ -89,7 +89,6 @@ $LNG['lm_queue']							= 'Colas';
 $LNG['lm_topkb']							= 'Salon de la Fama';
 $LNG['lm_faq']								= 'Preg. Frecuentes';
 $LNG['lm_records']							= 'Records';
-$LNG['lm_chat']								= 'Chat';
 $LNG['lm_changelog']						= 'Cambios';
 $LNG['lm_support']							= 'Soporte';
 $LNG['lm_rules']							= 'Reglamento';
@@ -147,7 +146,6 @@ $LNG['ov_teamspeak_online']					= 'En linea';
 $LNG['ov_closed']							= '¡El Juego se encuentra temporalmente cerrado!';
 $LNG['ov_reflink']							= 'Enlace Ref.';
 $LNG['ov_noreflink']						= 'No tiene Usuarios Referidos.';
-$LNG['ov_chat_online']						= 'Usuarios en el Chat:';
 
 //----------------------------------------------------------------------------//
 //GALAXY
@@ -606,7 +604,6 @@ $LNG['al_manage_alliance']					= 'Administrar la alianza';
 $LNG['al_send_circular_message']			= 'Enviar mensaje global';
 $LNG['al_circular_front_text']				= 'El jugador %s ha escrito:';
 $LNG['al_new_requests']						= 'd% nueva/s peticion/es';
-$LNG['al_goto_chat']						= 'Ir al Chat de la Alianza';
 $LNG['al_save']								= 'Guardar';
 $LNG['al_dlte']								= 'Borrar';
 $LNG['al_rank_name']						= 'Nombre del Rango';

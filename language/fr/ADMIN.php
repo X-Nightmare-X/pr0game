@@ -623,7 +623,6 @@ $LNG['mu_info_account_page']        			= 'Information sur le compte';
 $LNG['mu_planets_options']         	= 'Options Planètes';
 $LNG['mu_user_logs']               	= 'Log';
 $LNG['mu_support']                 	= 'Support Tickets';
-$LNG['mu_chat']                   	= 'Administration Chat';
 $LNG['mu_module']                 	= 'Module';
 $LNG['mu_mod_update']              	= 'Contrôle Mod Version';
 $LNG['mu_fb_options'] 				= 'Connexion Facebook';
@@ -1063,7 +1062,6 @@ $LNG['modul_3']                        		= 'Elaboration - Rerecherches';
 $LNG['modul_4']                        		= 'Construction - Flottes';
 $LNG['modul_5']                        		= 'Construction - Défense';
 $LNG['modul_6']                        		= 'Liste d\'amis';
-$LNG['modul_7']                        		= 'Chat';
 $LNG['modul_8']                        		= 'Banque Matière Noire';
 $LNG['modul_9']                        		= 'Flottes';
 $LNG['modul_10']                       		= 'Flottes - Gestionnaire';
@@ -1182,25 +1180,6 @@ $LNG['up_offline']						= 'Mise a jour serveur non disponible.';
 /*
 $LNG['up_error_fsockopen']				= 'Fonction file_get_contents fsockopen désactivé';
 */
-//Chat Page
-$LNG['ch_socket_chatid_info']			= 'Cet ID peut être utilisée pour distinguer entre les différentes installations de chat en utilisant le serveur même socket';
-$LNG['ch_socket_port_info']				= 'Définit le port du serveur socket';
-$LNG['ch_socket_ip_info']				= 'Définit l\'adresse IP du serveur de socket utilisé pour connecter d\'un côté serveur pour diffuser un message mise à jours';
-$LNG['ch_socket_host_info']				= 'Définit le nom d\'hôte du serveur de socket utilisé pour se connecter à partir du côté client (le nom du serveur est utilisé si la valeur null)';
-$LNG['ch_socket_chatid']				= 'Socket ChatID';
-$LNG['ch_socket_port']					= 'Socket Port';
-$LNG['ch_socket_ip']					= 'Socket IP';
-$LNG['ch_socket_host']					= 'Socket Hostname';
-$LNG['ch_socket_active']				= 'Socket active?';
-$LNG['ch_socket']						= 'Les paramètres du serveur Socket';
-$LNG['ch_closed']						= 'Chat fermé?';
-$LNG['ch_allowchan']					= 'Autoriser canaux privés';
-$LNG['ch_allowmes']						= 'Autoriser messages privés';
-$LNG['ch_allowcelmes']					= 'Supprimer des messages propres';
-$LNG['ch_logmessage']					= 'Activer les messages du journal';
-$LNG['ch_nickchange']					= 'Autoriser le changement de Pseudo';
-$LNG['ch_botname']						= 'Nom de bot';
-$LNG['ch_channelname']					= 'Nom de canal par défaut';
 
 //Active Page
 $LNG['ap_id']							= 'ID';
@@ -1244,7 +1223,6 @@ $LNG['log_no_data']                     = 'Il n\'existe aucunes données à part
 $LNG['log_ssettings']                   = 'Configuration du jeu';
 $LNG['log_usettings']                   = 'Configuration de l\'Univers';
 $LNG['log_statsettings']                = 'Options Statistiques';
-$LNG['log_chatsettings']                = 'Options Chat';
 $LNG['log_tssettings']                  = 'Options Teamspeak';
 $LNG['log_uni_short']                   = 'Uni';
 $LNG['log_universe']                    = 'Univers';

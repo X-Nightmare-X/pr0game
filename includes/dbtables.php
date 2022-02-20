@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-define('DB_VERSION_REQUIRED', 7);
+define('DB_VERSION_REQUIRED', 8);
 define('DB_NAME'			, $database['databasename']);
 define('DB_PREFIX'			, $database['tableprefix']);
 
@@ -28,10 +28,6 @@ $dbTableNames	= array(
 	'BANNED'			=> DB_PREFIX.'banned',
 	'BUDDY'				=> DB_PREFIX.'buddy',
 	'BUDDY_REQUEST'		=> DB_PREFIX.'buddy_request',
-	'CHAT_BAN'			=> DB_PREFIX.'chat_bans',
-	'CHAT_INV'			=> DB_PREFIX.'chat_invitations',
-	'CHAT_MES'			=> DB_PREFIX.'chat_messages',
-	'CHAT_ON'			=> DB_PREFIX.'chat_online',
 	'CONFIG'			=> DB_PREFIX.'config',
 	'CRONJOBS'			=> DB_PREFIX.'cronjobs',
 	'CRONJOBS_LOG'		=> DB_PREFIX.'cronjobs_log',
