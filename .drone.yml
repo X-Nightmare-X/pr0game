@@ -8,7 +8,7 @@ steps:
     failure: ignore
     image: 1drop/php-utils:7.4
     commands:
-      - phpstan analyse --no-progress -c .config/phpstan.neon.dist --error-format=table
+      - phpstan analyse --no-progress -c .config/phpstan.neon.dist --error-format=table --memory-limit 1G
 
   - name: phpcs
     failure: ignore
