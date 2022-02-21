@@ -27,3 +27,15 @@ steps:
     image: 1drop/php-utils:7.4
     commands:
       - phpcpd --exclude cache/ .
+
+  - name: phpcompat74
+    failure: ignore
+    image: 1drop/php-utils:7.4
+    commands:
+      - phpcs --standard=.config/phpcs-phpcompat_74.xml.dist -d memory_limit=512M
+
+  - name: phpcompat80
+    failure: ignore
+    image: 1drop/php-utils:7.4
+    commands:
+      - phpcs --standard=.config/phpcs-phpcompat_80.xml.dist -d memory_limit=512M
