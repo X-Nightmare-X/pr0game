@@ -98,7 +98,7 @@ class ShowFleetMissilePage extends AbstractGamePage
             $USER += Database::get()->selectSingle($sql, [
                 ':userId' => $USER['id'],
                 ':statType' => 1
-            ]);
+            ]) ?: ['total_points' => 0];
         } catch (Exception $exception) {
         }
 

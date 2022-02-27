@@ -593,7 +593,7 @@ class ShowAlliancePage extends AbstractGamePage
 			$USER    += $db->selectSingle('SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :userId AND stat_type = :statType', array(
 				':userId'    => $USER['id'],
 				':statType'    => 1
-			));
+			)) ?: ['total_points' => 0];
 		} catch (Exception $e) {
 			$USER['total_points'] = 0;
 		}
