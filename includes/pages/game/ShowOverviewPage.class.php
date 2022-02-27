@@ -131,7 +131,6 @@ class ShowOverviewPage extends AbstractGamePage
 		global $LNG, $PLANET, $USER;
 		
 		$AdminsOnline 	= array();
-		$chatOnline 	= array();
 		$AllPlanets		= array();
 		$Moon 			= array();
 		$RefLinks		= array();
@@ -220,13 +219,6 @@ class ShowOverviewPage extends AbstractGamePage
 			$AdminsOnline[$AdminRow['id']]	= $AdminRow['username'];
 		}
 
-        $sql = "SELECT userName FROM %%CHAT_ON%% WHERE dateTime > DATE_SUB(NOW(), interval 2 MINUTE) AND channel = 0";
-        $chatUsers = $db->select($sql);
-
-        foreach ($chatUsers as $chatRow) {
-			$chatOnline[]	= $chatRow['userName'];
-		}
-
 		$Messages		= $USER['messages'];
 		
 		// Fehler: Wenn Spieler gelöscht werden, werden sie nicht mehr in der Tabelle angezeigt.
@@ -303,7 +295,6 @@ class ShowOverviewPage extends AbstractGamePage
 			'ref_active'				=> $config->ref_active,
 			'ref_minpoints'				=> $config->ref_minpoints,
 			'RefLinks'					=> $RefLinks,
-			'chatOnline'				=> $chatOnline,
 			'servertime'				=> _date("M D d H:i:s", TIMESTAMP, $USER['timezone']),
 			'path'						=> HTTP_PATH,
 		));

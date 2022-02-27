@@ -135,7 +135,6 @@ $LNG['mu_info_account_page']	 		= 'Hesap Bilgileri (Yonetici/Moderator)';
 $LNG['mu_planets_options'] 				= 'Gezegen Ayarlari';
 $LNG['mu_user_logs']				    = 'Admin Log';
 $LNG['mu_support']                      = 'Destek Bileti';
-$LNG['mu_chat']                         = 'Chat Ayarlari';
 $LNG['mu_module']                       = 'Moduller';
 $LNG['mu_mod_update']              		= 'MOD versiyon kontrolu';
 $LNG['mu_fb_options'] 					= 'Facebook Kayit';
@@ -351,27 +350,6 @@ $LNG['se_disclamerNotice']				= 'Daha fazla bilgi';
 
 $LNG['cc_cache_clear']				= 'Bellek temizlendi!';
 
-//---------------	Chat Ayarlari	------------------------//
-
-$LNG['ch_socket_chatid_info']          = 'Bu IP chat tanimlarini birbirinden ayirmak icin kullanilir. Ayni server soketini kullanin.';
-$LNG['ch_socket_port_info']            = 'Server socket port.';
-$LNG['ch_socket_ip_info']              = 'Bu soketin IP adresini mesajin iletilmesi icin kullanilir.';
-$LNG['ch_socket_host_info']            = 'Alan Server soketi karsi tarafa baglanti icin kullanilir (Server adi bos birakilirsa(NULL) varsayilan ad kullanilir).';
-$LNG['ch_socket_chatid']               = 'Socket ID Chat';
-$LNG['ch_socket_port']                 = 'Socket Port';
-$LNG['ch_socket_ip']                   = 'Socket IP';
-$LNG['ch_socket_host']                 = 'Host Soketi';
-$LNG['ch_socket_active']               = 'Soket dahil?';
-$LNG['ch_socket']                      = 'Server Soketi';
-$LNG['ch_closed']                      = 'Chat\'i kapat';
-$LNG['ch_allowchan']                   = 'Ozel kanallara izin ver';
-$LNG['ch_allowmes']                    = 'Ozel mesaja izin ver';
-$LNG['ch_allowcelmes']                 = 'Mesaj silmeye izin ver';
-$LNG['ch_logmessage']                  = 'Log kaydi al';
-$LNG['ch_nickchange']                  = 'Nick degistirmeye izin ver';
-$LNG['ch_botname']                     = 'Bot';
-$LNG['ch_channelname']                 = 'Varsayilan kanal ismi';
-
 //----------------------------------------------------------------------------//
 // TeamSpeak Ayarlari
 $LNG['ts_settings']                     = 'Teamspeak';
@@ -408,7 +386,6 @@ $LNG['modul_3']                                        = 'Arastirma ';
 $LNG['modul_4']                                        = 'Uretim - Filo';
 $LNG['modul_5']                                        = 'Bina - Savunma';
 $LNG['modul_6']                                        = 'Arkadas Listesi';
-$LNG['modul_7']                                        = 'Chat';
 $LNG['modul_8']                                        = 'KM Bank';
 $LNG['modul_9']                                        = 'Filo';
 $LNG['modul_10']                                       = 'Filo Hareketleri';
@@ -1022,7 +999,6 @@ $LNG['log_no_data']                     = 'Herhangi bir kayit yok!';
 $LNG['log_ssettings']                   = 'Oyun Ayarlari';
 $LNG['log_usettings']                   = 'Evren Ayarlari';
 $LNG['log_statsettings']                = 'Istatistik Ayarlari';
-$LNG['log_chatsettings']                = 'Chat Ayarlari';
 $LNG['log_tssettings']                  = 'Teamspeak Ayarlari';
 $LNG['log_uni_short']                   = 'Evren';
 $LNG['log_universe']                    = 'Evren';

@@ -44,10 +44,6 @@ else
 	define('HTTP_PATH'					, PROTOCOL.HTTP_HOST.HTTP_ROOT);
 }
 
-if(!defined('AJAX_CHAT_PATH')) {
-	define('AJAX_CHAT_PATH', ROOT_PATH.'chat/');
-}
-
 if(!defined('CACHE_PATH')) {
 	define('CACHE_PATH', ROOT_PATH.'cache/');
 }
@@ -169,7 +165,6 @@ define('MODULE_BANNER'				, 37);
 define('MODULE_BATTLEHALL'			, 12);
 define('MODULE_BUDDYLIST'			, 6);
 define('MODULE_BUILDING'			, 2);
-define('MODULE_CHAT'				, 7);
 define('MODULE_DMEXTRAS'			, 8);
 define('MODULE_FLEET_EVENTS'		, 10);
 define('MODULE_FLEET_TABLE'			, 9);

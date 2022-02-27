@@ -34,8 +34,4 @@ Insert the content below into your nginx configuration file
     location /.git/ {
     deny all;
     }
-
-    location ~ /external/ {
-    deny all;
-    }
 ```

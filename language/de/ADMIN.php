@@ -595,7 +595,6 @@ $LNG['mu_general'] = 'General';
 $LNG['mu_connected'] = 'Online';
 $LNG['mu_settings'] = 'Server Konfiguration';
 $LNG['mu_unisettings'] = 'Uni Konfiguration';
-$LNG['mu_chat'] = 'Chat Konfiguration';
 $LNG['mu_global_message'] = 'Globale Nachrichten';
 $LNG['mu_users_settings'] = 'Menü Bearbeiten';
 $LNG['mu_add_delete_resources'] = 'Account Editor';
@@ -1034,7 +1033,6 @@ $LNG['modul_3'] = 'Bauen - Forschung';
 $LNG['modul_4'] = 'Bauen - Flotten';
 $LNG['modul_5'] = 'Bauen - Verteidigung';
 $LNG['modul_6'] = 'Buddylist';
-$LNG['modul_7'] = 'Chat';
 $LNG['modul_8'] = 'DM-Bank';
 $LNG['modul_9'] = 'Flotte';
 $LNG['modul_10'] = 'Flotte - Handler';
@@ -1151,27 +1149,6 @@ $LNG['up_need_curl'] = 'Fehler: cURL nicht vorhanden.<br />Das UpdateSystem von 
 $LNG['up_no_xml_ext'] = 'Fehler: XML Parser nicht vorhanden.<br />Das UpdateSystem von 2Moons benötigt XML Parser, um die aktuellen Dateien verarbeiten zu können.';
 $LNG['up_offline'] = 'Update Server zur Zeit nicht verfügbar.';
 
-//Chat Page
-$LNG['ch_socket_chatid_info'] = 'This ID can be used to distinguish between different chat installations using the same socket server';
-$LNG['ch_socket_port_info'] = 'Defines the port of the socket server';
-$LNG['ch_socket_ip_info'] = 'Defines the IP of the socket server used to connect from server side to broadcast update messages';
-$LNG['ch_socket_host_info'] = 'Defines the hostname of the socket server used to connect from client side (the server hostname is used if set to null)';
-$LNG['ch_socket_chatid'] = 'Socket ChatID';
-$LNG['ch_socket_port'] = 'Socket Port';
-$LNG['ch_socket_ip'] = 'Socket IP';
-$LNG['ch_socket_host'] = 'Socket Hostname';
-$LNG['ch_socket_active'] = 'Socket aktiv?';
-$LNG['ch_socket'] = 'Einstellungen Socket Server';
-$LNG['ch_closed'] = 'Chat geschlossen?';
-$LNG['ch_allowchan'] = 'Erlaube Private Channels';
-$LNG['ch_allowmes'] = 'Erlaube Private Nachrichten';
-$LNG['ch_allowcelmes'] = 'Eigende Nachrichten löschen';
-$LNG['ch_logmessage'] = 'Aktiviere Logmessages';
-$LNG['ch_nickchange'] = 'Erlaube Nickwechsel';
-$LNG['ch_botname'] = 'Botname';
-$LNG['ch_channelname'] = 'Standard Channelname';
-
-
 //Active Page
 $LNG['ap_id'] = 'ID';
 $LNG['ap_username'] = 'Benutzername';
@@ -1216,7 +1193,6 @@ $LNG['log_no_data'] = 'Keine Log-Daten vorhanden!';
 $LNG['log_ssettings'] = 'Server Konfiguration';
 $LNG['log_usettings'] = 'Uni Konfiguration';
 $LNG['log_statsettings'] = 'Statistik-Optionen';
-$LNG['log_chatsettings'] = 'Chat-Optionen';
 $LNG['log_tssettings'] = 'Teamspeak-Konfiguration';
 $LNG['log_disclamersettings'] = 'Impressum';
 $LNG['log_uni_short'] = 'Uni';

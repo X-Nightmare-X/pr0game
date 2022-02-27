@@ -29,10 +29,7 @@ class Config
 										   'capaktiv', 'cappublic', 'capprivate', 'mail_active', 'mail_use', 'smtp_host',
 										   'smtp_port', 'smtp_user', 'smtp_pass', 'smtp_ssl', 'smtp_sendmail',
 										   'smail_path', 'fb_on', 'fb_apikey', 'fb_skey', 'ga_active', 'ga_key',
-										   'chat_closed', 'chat_allowchan', 'chat_allowmes', 'chat_allowdelmes',
-										   'chat_logmessage', 'chat_nickchange', 'chat_botname', 'chat_channelname',
-										   'chat_socket_active', 'chat_socket_host', 'chat_socket_ip', 'chat_socket_port',
-										   'chat_socket_chatid', 'ttf_file', 'sendmail_inactive', 'del_user_sendmail',
+										   'ttf_file', 'sendmail_inactive', 'del_user_sendmail',
 										   'del_user_automatic', 'del_oldstuff', 'del_user_manually', 'ref_max_referals',
 										   'disclamerAddress','disclamerPhone','disclamerMail','disclamerNotice');
 

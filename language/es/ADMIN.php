@@ -589,7 +589,6 @@ $LNG['mu_general']					= 'General';
 $LNG['mu_connected']				= 'Conectados';
 $LNG['mu_settings']					= 'Configuración';
 $LNG['mu_unisettings']				= 'Conf. de Universo';
-$LNG['mu_chat']						= 'Conf. Chat';
 $LNG['mu_global_message']			= 'Mensaje Global';
 $LNG['mu_users_settings']			= 'Conf. de Usuarios';
 $LNG['mu_add_delete_resources']		= 'Editor de Cuentas';
@@ -1028,7 +1027,6 @@ $LNG['modul_3']                                        = 'Edificios - Investigac
 $LNG['modul_4']                                        = 'Construcción - Flotas';
 $LNG['modul_5']                                        = 'Edificios - Defensa';
 $LNG['modul_6']                                        = 'Lista de amigos';
-$LNG['modul_7']                                        = 'Chat';
 $LNG['modul_8']                                        = 'DM-Bank';
 $LNG['modul_9']                                        = 'Flota';
 $LNG['modul_10']                                       = 'Flota - Mercader';
@@ -1145,27 +1143,6 @@ $LNG['up_need_curl']					= 'Error: cURL no está disponible.<br />El Sistema de 
 $LNG['up_no_xml_ext']					= 'Error:. Analizador XML no existe.<br />La actualización del sistema de 2Moons, requiere analizador XML para procesar los archivos actuales.';
 $LNG['up_offline']					= 'El Servidor de actualización no está disponible en este momento.';
 
-//Chat Page
-$LNG['ch_socket_chatid_info']			= 'Esta ID puede ser usada para distinguir diferentes instalaciones de chat utilizando el mismo socket del servidor';
-$LNG['ch_socket_port_info']				= 'Define el puerto del servidor socket';
-$LNG['ch_socket_ip_info']				= 'Define el  IP del servidor socket usado para conectar desde el lado del servidor hacia los mensajes de actualización';
-$LNG['ch_socket_host_info']				= 'Define el nombre del host del servidor socket usado para conectar desde el lado del cliente(Si es seteado vacio se usa el nombre del servidor)';
-$LNG['ch_socket_chatid']				= 'Socket ChatID';
-$LNG['ch_socket_port']					= 'Puerto Socket';
-$LNG['ch_socket_ip']					= 'IP Socket';
-$LNG['ch_socket_host']					= 'Nombre del Host Socket';
-$LNG['ch_socket_active']				= '¿Socket activo?';
-$LNG['ch_socket']						= 'Configuración del servidor Socket';
-$LNG['ch_closed']						= '¿Chat cerrado?';
-$LNG['ch_allowchan']					= 'Permitir canales Privados';
-$LNG['ch_allowmes']						= 'Permitir Mensajes Privados';
-$LNG['ch_allowcelmes']					= 'Permitir Borrar Mensajes Propios';
-$LNG['ch_logmessage']					= 'Activar Registro de Mensajes';
-$LNG['ch_nickchange']					= 'Permitir cambio de Nick';
-$LNG['ch_botname']						= 'Nombre del Bot';
-$LNG['ch_channelname']					= 'Nombre del Canal Estandart';
-
-
 //Active Page
 $LNG['ap_id']						= 'ID';
 $LNG['ap_username']					= 'Nombre de usuario';
@@ -1210,7 +1187,6 @@ $LNG['log_no_data']                     = 'No existen datos en el registro!';
 $LNG['log_ssettings']					= 'Configuración del Juego';
 $LNG['log_usettings']					= 'Configuración del universo';
 $LNG['log_statsettings']				= 'Opciones de Estadísticas';
-$LNG['log_chatsettings']				= 'Opciones del Chato';
 $LNG['log_tssettings']					= 'Configuración Teamspeak';
 $LNG['log_disclamersettings']			= 'Impreso';
 $LNG['log_uni_short']					= 'Uni';
