@@ -765,6 +765,13 @@ class ShowAlliancePage extends AbstractGamePage
 			$new_ally_tag 	= HTTP::_GP('ally_tag', $this->allianceData['ally_tag'], UTF8_SUPPORT);
 			$new_ally_name	= HTTP::_GP('ally_name', $this->allianceData['ally_name'], UTF8_SUPPORT);
 
+			if (!PlayerUtil::isNameValid($new_ally_tag) || !PlayerUtil::isNameValid($new_ally_name)) {
+				$this->printMessage($LNG['al_newname_specialchar'], array(array(
+					'label'	=> $LNG['sys_back'],
+					'url'	=> '?page=alliance&mode=admin'
+				)));
+			}
+
 			if (!empty($new_ally_tag) && $this->allianceData['ally_tag'] != $new_ally_tag) {
 				$sql = "SELECT COUNT(*) as count FROM %%ALLIANCE%% WHERE ally_universe = :universe AND ally_tag = :NewAllianceTag;";
 				$allianceCount = $db->selectSingle($sql, array(
