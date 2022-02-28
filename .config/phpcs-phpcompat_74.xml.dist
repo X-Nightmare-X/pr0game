@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd">
+
+    <arg name="basepath" value="./../"/>
+    <arg name="cache" value="./../.phpcs-cache"/>
+    <arg name="colors"/>
+    <arg name="extensions" value="php"/>
+    <arg name="report" value="full,summary"/>
+    <exclude-pattern type="relative">^cache/*</exclude-pattern>
+
+    <config name="installed_paths" value="/root/.composer/vendor/phpcompatibility/php-compatibility/PHPCompatibility" />
+    <config name="testVersion" value="7.4"/>
+
+    <rule ref="PHPCompatibility"/>
+
+    <file>../</file>
+
+</ruleset>
