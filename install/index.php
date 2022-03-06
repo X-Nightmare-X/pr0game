@@ -33,7 +33,7 @@ $template->setCaching(false);
 $template->assign(array(
 	'lang'       => $LNG->getLanguage(),
 	'Selector'   => $LNG->getAllowedLangs(false),
-	'title'      => $LNG['title_install'] . ' &bull; 2Moons',
+	'title'      => $LNG['title_install'] . ' &bull; pr0game',
 	'header'     => $LNG['menu_install'],
 	'canUpgrade' => file_exists('includes/config.php') && filesize('includes/config.php') !== 0
 ));
@@ -169,7 +169,7 @@ switch ($mode) {
 
         @set_time_limit(600);
 
-		$fileName = '2MoonsBackup_' . date('Y_m_d_H_i_s', TIMESTAMP) . '.sql';
+		$fileName = 'pr0gameBackup_' . date('Y_m_d_H_i_s', TIMESTAMP) . '.sql';
 		$filePath = 'includes/backups/' . $fileName;
 		require 'includes/classes/SQLDumper.class.php';
 		$dump = new SQLDumper;

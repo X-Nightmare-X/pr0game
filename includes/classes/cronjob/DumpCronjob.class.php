@@ -38,7 +38,7 @@ class DumpCronjob implements CronjobTask
 			throw new Exception('No tables found for dump.');
 		}
 		
-		$fileName	= '2MoonsBackup_'.date('d_m_Y_H_i_s', TIMESTAMP).'.sql';
+		$fileName	= 'pr0gameBackup_'.date('d_m_Y_H_i_s', TIMESTAMP).'.sql';
 		$filePath	= 'includes/backups/'.$fileName;
 		
 		require 'includes/classes/SQLDumper.class.php';

@@ -57,7 +57,7 @@ function ShowInformationPage()
 
 	$template	= new template();
 	$template->assign_vars(array(
-		'info_information'	=> sprintf($LNG['info_information'], 'https://github.com/jkroepke/2Moons/issues'),
+		'info_information'	=> sprintf($LNG['info_information'], 'https://git.pr0game.com/Rosenreeman/pr0game/issues'),
 		'info'				=> $_SERVER['SERVER_SOFTWARE'],
 		'vPHP'				=> PHP_VERSION,
 		'vAPI'				=> PHP_SAPI,
