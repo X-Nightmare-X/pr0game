@@ -617,7 +617,6 @@ $LNG['mu_module']                 	= 'Moduły';
 $LNG['mu_mod_update']              	= 'Wersja kontrolna';
 $LNG['mu_fb_options'] 				= 'Przyłącz do Facebooka';
 
-$LNG['mu_ts_options'] 				= 'Teamspeak Optionen';
 $LNG['mu_game_info'] 				= 'Informacje';
 $LNG['mu_vaild_users']				= 'Aktywni użytkownicy'; 
 $LNG['mu_news']						= 'Nowości'; 
@@ -992,20 +991,6 @@ $LNG['qe_resetr']						= 'Zresetuj';
 $LNG['qe_allowmulti']					= 'Multi dozwolone';
 
 //----------------------------------------------------------------------------//
-//TeamSpeakSettingPage.php
-$LNG['ts_settings']						= 'Ustawienia Teamspeak';
-$LNG['ts_active']						= 'Aktywacja Teamspeak-Mod?';
-$LNG['ts_version']						= 'Wersja serwera:';
-$LNG['ts_udpport']						= 'TCP Port';
-$LNG['ts_tcpport']						= 'UDP Port';
-$LNG['ts_serverip']						= 'Server-IP';
-$LNG['ts_timeout']						= 'Timeout'; 
-$LNG['ts_server_query']					= 'ServerQuery Port'; 
-$LNG['ts_login']						= 'ServerQuery Login'; 
-$LNG['ts_pass']							= 'ServerQuery Password'; 
-$LNG['ts_cron']							= 'Update Rate'; 
-
-//----------------------------------------------------------------------------//
 //FacebookSettingPage.php
 $LNG['fb_settings']						= 'Ustawienia Facebook Connect';
 $LNG['fb_active']						= 'Aktywacja Facebook Connect?';
@@ -1185,7 +1170,6 @@ $LNG['log_no_data']                     = 'Brak danych!';
 $LNG['log_ssettings']					= 'Ustawienia serwera';
 $LNG['log_usettings']					= 'Ustawienia uniwersum';
 $LNG['log_statsettings']				= 'Ustawienia statystyk';
-$LNG['log_tssettings']					= 'Teamspeak-Konfiguration';
 $LNG['log_disclamersettings']			= 'Kontakt';
 $LNG['log_uni_short']					= 'Uni';
 $LNG['log_universe']					= 'Universum';
@@ -1196,7 +1180,6 @@ $LNG['cronName_statistic']		= 'Statystyka';
 $LNG['cronName_daily']			= 'Zadania dzienne';
 $LNG['cronName_cleaner']			= 'Usuń przestarzałe dane';
 $LNG['cronName_inactive']		= 'Usuń nie aktywnych';
-$LNG['cronName_teamspeak']		= 'Aktualizacja ustawień Teamspeak';
 $LNG['cronName_tracking']		= 'Wyślij statystyki na główny serwer.';
 $LNG['cronName_databasedump']	= 'Backup bazy danych';
 

@@ -617,7 +617,6 @@ $LNG['mu_support']                                      = 'Tickets de Soporte';
 $LNG['mu_module']                                       = 'Módulos';
 $LNG['mu_mod_update']              	= 'Contrlo de Ver. de Módulos';
 $LNG['mu_fb_options'] 				= 'Facebook Connect';
-$LNG['mu_ts_options']                                   = 'Opciones de TeamSpeak';
 $LNG['mu_game_info']                                    = 'Información';
 $LNG['mu_vaild_users']                                  = 'Actividad de Usuarios';
 $LNG['mu_news']						= 'Noticias'; 
@@ -994,20 +993,6 @@ $LNG['qe_resetr']					= 'Reestablecer';
 $LNG['qe_allowmulti']					= 'Permitir Multicuentas';
 
 //----------------------------------------------------------------------------//
-//TeamSpeakSettingPage.php
-$LNG['ts_settings']					= 'Opciones Teamspeak';
-$LNG['ts_active']					= 'Activar Teamspeak';
-$LNG['ts_version']					= 'Versión de Servidor:';
-$LNG['ts_udpport']					= 'Puerto TCP';
-$LNG['ts_tcpport']					= 'Puerto UDP';
-$LNG['ts_serverip']					= 'Server-IP';
-$LNG['ts_timeout']					= 'Tiempo de Espera'; 
-$LNG['ts_server_query']                                 = 'Puerto';
-$LNG['ts_login']					= 'Usuario';
-$LNG['ts_pass']						= 'Contraseña';
-$LNG['ts_cron']						= 'Frecuencia de Actualización';
-
-//----------------------------------------------------------------------------//
 //FacebookSettingPage.php
 $LNG['fb_settings']					= 'Opciones de Facebook';
 $LNG['fb_active']					= 'Activar la conección con Facebook';
@@ -1187,7 +1172,6 @@ $LNG['log_no_data']                     = 'No existen datos en el registro!';
 $LNG['log_ssettings']					= 'Configuración del Juego';
 $LNG['log_usettings']					= 'Configuración del universo';
 $LNG['log_statsettings']				= 'Opciones de Estadísticas';
-$LNG['log_tssettings']					= 'Configuración Teamspeak';
 $LNG['log_disclamersettings']			= 'Impreso';
 $LNG['log_uni_short']					= 'Uni';
 $LNG['log_universe']					= 'Universo';
@@ -1199,7 +1183,6 @@ $LNG['cronName_statistic']		= 'Estadisticas';
 $LNG['cronName_daily']			= 'Tareas Diarias';
 $LNG['cronName_cleaner']			= 'Eliminar Archivos Antiguos';
 $LNG['cronName_inactive']		= 'Eliminar Inactivos';
-$LNG['cronName_teamspeak']		= 'Actualización Teamspeak';
 $LNG['cronName_tracking']		= 'Enviar Estadísticas globales del servidor.';
 $LNG['cronName_databasedump']	= 'Copia de Seguridad-Base de Datos';
 

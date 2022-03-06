@@ -138,7 +138,6 @@ $LNG['mu_support']                      = 'Destek Bileti';
 $LNG['mu_module']                       = 'Moduller';
 $LNG['mu_mod_update']              		= 'MOD versiyon kontrolu';
 $LNG['mu_fb_options'] 					= 'Facebook Kayit';
-$LNG['mu_ts_options']                   = 'Teamspeak Ayarlari';
 $LNG['mu_game_info']                    = 'Bilgi';
 $LNG['mu_vaild_users']				    = 'Oyuncu aktiviteleri';
 $LNG['mu_news']					        = 'Haberler';
@@ -351,20 +350,6 @@ $LNG['se_disclamerNotice']				= 'Daha fazla bilgi';
 $LNG['cc_cache_clear']				= 'Bellek temizlendi!';
 
 //----------------------------------------------------------------------------//
-// TeamSpeak Ayarlari
-$LNG['ts_settings']                     = 'Teamspeak';
-$LNG['ts_active']                       = 'Team Speak modunu aktive et?';
-$LNG['ts_version']                      = 'Server versiyonu:';
-$LNG['ts_udpport']                      = 'Port TCP';
-$LNG['ts_tcpport']                      = 'Port UDP';
-$LNG['ts_serverip']                     = 'Server IP';
-$LNG['ts_timeout']                      = 'Sure Asimi';
-$LNG['ts_server_query']                 = 'Querys server port';
-$LNG['ts_login']						= 'ServerQuery Kullanici';
-$LNG['ts_pass']							= 'ServerQuery Sifre';
-$LNG['ts_cron']							= 'Guncelleme Orani';
-
-//----------------------------------------------------------------------------//
 
 // Facebook App
 $LNG['fb_settings']                                     = 'Facebook Connect Ayarlari';
@@ -467,7 +452,6 @@ $LNG['cronName_statistic']		= 'Istatistikler';
 $LNG['cronName_daily']			= 'Gunluk Gorevler';
 $LNG['cronName_cleaner']			= 'Eski Veriyi Sil';
 $LNG['cronName_inactive']		= 'Inaktifleri Sil';
-$LNG['cronName_teamspeak']		= 'Teamspeak guncelleme';
 $LNG['cronName_tracking']		= 'Global Server Istatistik Guncellemesi';
 $LNG['cronName_databasedump']	= 'Database backup';
 
@@ -999,7 +983,6 @@ $LNG['log_no_data']                     = 'Herhangi bir kayit yok!';
 $LNG['log_ssettings']                   = 'Oyun Ayarlari';
 $LNG['log_usettings']                   = 'Evren Ayarlari';
 $LNG['log_statsettings']                = 'Istatistik Ayarlari';
-$LNG['log_tssettings']                  = 'Teamspeak Ayarlari';
 $LNG['log_uni_short']                   = 'Evren';
 $LNG['log_universe']                    = 'Evren';
 $LNG['log_present']      	            = 'Genel Dagitim';

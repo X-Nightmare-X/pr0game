@@ -23,47 +23,6 @@ class ShowOverviewPage extends AbstractGamePage
 	{
 		parent::__construct();
 	}
-	
-	private function GetTeamspeakData()
-	{
-		global $USER, $LNG;
-
-		$config = Config::get();
-
-		if ($config->ts_modon == 0)
-		{
-			return false;
-		}
-		
-		Cache::get()->add('teamspeak', 'TeamspeakBuildCache');
-		$tsInfo	= Cache::get()->getData('teamspeak', false);
-		
-		if(empty($tsInfo))
-		{
-			return array(
-				'error'	=> $LNG['ov_teamspeak_not_online']
-			);
-		}
-
-		$url = '';
-
-		switch($config->ts_version)
-		{
-			case 2:
-				$url = 'teamspeak://%s:%s?nickname=%s';
-			break;
-			case 3:
-				$url = 'ts3server://%s?port=%d&amp;nickname=%s&amp;password=%s';
-			break;
-		}
-		
-		return array(
-			'url'		=> sprintf($url, $config->ts_server, $config->ts_tcpport, $USER['username'], $tsInfo['password']),
-			'current'	=> $tsInfo['current'],
-			'max'		=> $tsInfo['maxuser'],
-			'error'		=> false,
-		);
-	}
 
 	private function GetFleets() {
 		global $USER, $PLANET;
@@ -285,7 +244,6 @@ class ShowOverviewPage extends AbstractGamePage
 			'fleets'					=> $this->GetFleets(),
 			'AllPlanets'				=> $AllPlanets,
 			'AdminsOnline'				=> $AdminsOnline,
-			'teamspeakData'				=> $this->GetTeamspeakData(),
 			'messages'					=> ($Messages > 0) ? (($Messages == 1) ? $LNG['ov_have_new_message'] : sprintf($LNG['ov_have_new_messages'], pretty_number($Messages))): false,
 			'planet_diameter'			=> pretty_number($PLANET['diameter']),
 			'planet_field_current' 		=> $PLANET['field_current'],
