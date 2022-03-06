@@ -320,13 +320,7 @@ switch ($mode) {
 					$iniset = "<span class=\"no\">" . $LNG['reg_no'] . "</span>";
 					$error  = true;
 				}
-				if (!ini_get('register_globals')) {
-					$global = "<span class=\"yes\">" . $LNG['reg_yes'] . "</span>";
-				}
-				else {
-					$global = "<span class=\"no\">" . $LNG['reg_no'] . "</span>";
-					$error  = true;
-				}
+                $global = "<span class=\"yes\">" . $LNG['reg_yes'] . "</span>";
 				if (!extension_loaded('gd')) {
 					$gdlib = "<span class=\"no\">" . $LNG['reg_no'] . "</span>";
 				}
