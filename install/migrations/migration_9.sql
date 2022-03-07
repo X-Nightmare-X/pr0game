@@ -17,3 +17,8 @@ ALTER TABLE `%PREFIX%config` DROP COLUMN `ts_password`;
 ALTER TABLE `%PREFIX%config` DROP COLUMN `fb_on`;
 ALTER TABLE `%PREFIX%config` DROP COLUMN `fb_apikey`;
 ALTER TABLE `%PREFIX%config` DROP COLUMN `fb_skey`;
+
+-- Drop External Auth columns and table
+ALTER TABLE `%PREFIX%users_valid` DROP COLUMN `externalAuthUID`;
+ALTER TABLE `%PREFIX%users_valid` DROP COLUMN `externalAuthMethod`;
+DROP TABLE IF EXISTS `%PREFIX%users_to_extauth`;

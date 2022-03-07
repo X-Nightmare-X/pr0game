@@ -28,9 +28,6 @@ class ShowRegisterPage extends AbstractLoginPage
 		$universeSelect	= array();	
 		$referralData	= array('id' => 0, 'name' => '');
 		$accountName	= "";
-		
-		$externalAuth	= HTTP::_GP('externalAuth', array());
-		$referralID 	= HTTP::_GP('referralID', 0);
 
 		foreach(Universe::availableUniverses() as $uniId)
 		{
@@ -38,38 +35,6 @@ class ShowRegisterPage extends AbstractLoginPage
 			$universeSelect[$uniId]	= $config->uni_name.($config->game_disable == 0 || $config->reg_closed == 1 ? $LNG['uni_closed'] : '');
 		}
 		
-		if(!isset($externalAuth['account'], $externalAuth['method']))
-		{
-			$externalAuth['account']	= 0;
-			$externalAuth['method']		= '';
-		}
-		else
-		{
-			$externalAuth['method']		= strtolower(str_replace(array('_', '\\', '/', '.', "\0"), '', $externalAuth['method']));
-		}
-		
-		if(!empty($externalAuth['account']) && file_exists('includes/extauth/'.$externalAuth['method'].'.class.php'))
-		{
-			$path	= 'includes/extauth/'.$externalAuth['method'].'.class.php';
-			require($path);
-			$methodClass	= ucwords($externalAuth['method']).'Auth';
-			/** @var $authObj externalAuth */
-			$authObj		= new $methodClass;
-			
-			if(!$authObj->isActiveMode())
-			{
-				$this->redirectTo('index.php?code=5');
-			}
-			
-			if(!$authObj->isValid())
-			{
-				$this->redirectTo('index.php?code=4');
-			}
-			
-			$accountData	= $authObj->getAccountData();
-			$accountName	= $accountData['name'];
-		}
-
 		$config			= Config::get();
 		if($config->ref_active == 1 && !empty($referralID))
 		{
@@ -90,7 +55,6 @@ class ShowRegisterPage extends AbstractLoginPage
 		$this->assign(array(
 			'referralData'		=> $referralData,
 			'accountName'		=> $accountName,
-			'externalAuth'		=> $externalAuth,
 			'universeSelect'	=> $universeSelect,
 			'registerPasswordDesc'	=> sprintf($LNG['registerPasswordDesc'], 6),
 			'registerRulesDesc'	=> sprintf($LNG['registerRulesDesc'], '<a href="index.php?page=rules">'.$LNG['menu_rules'].'</a>')
@@ -122,18 +86,6 @@ class ShowRegisterPage extends AbstractLoginPage
 		
 		$referralID 	= HTTP::_GP('referralID', 0);
 
-		$externalAuth	= HTTP::_GP('externalAuth', array());
-		if(!isset($externalAuth['account'], $externalAuth['method']))
-		{
-			$externalAuthUID	= 0;
-			$externalAuthMethod	= '';
-		}
-		else
-		{
-			$externalAuthUID	= $externalAuth['account'];
-			$externalAuthMethod	= strtolower(str_replace(array('_', '\\', '/', '.', "\0"), '', $externalAuth['method']));
-		}
-		
 		$errors 	= array();
 		
 		if(empty($userName)) {
@@ -234,21 +186,6 @@ class ShowRegisterPage extends AbstractLoginPage
 			)));
 		}
 
-		$path	= 'includes/extauth/'.$externalAuthMethod.'.class.php';
-
-		if(!empty($externalAuth['account']) && file_exists($path))
-		{
-			require($path);
-
-			$methodClass		= ucwords($externalAuthMethod).'Auth';
-			/** @var $authObj externalAuth */
-			$authObj			= new $methodClass;
-			$externalAuthUID	= 0;
-			if($authObj->isActiveMode() && $authObj->isValid()) {
-				$externalAuthUID	= $authObj->getAccount();
-			}
-		}
-		
 		if($config->ref_active == 1 && !empty($referralID))
 		{
 			$sql = "SELECT COUNT(*) as state FROM %%USERS%% WHERE id = :referralID AND universe = :universe;";
@@ -278,9 +215,7 @@ class ShowRegisterPage extends AbstractLoginPage
 				`ip` = :remoteAddr,
 				`language` = :language,
 				`universe` = :universe,
-				`referralID` = :referralID,
-				`externalAuthUID` = :externalAuthUID,
-				`externalAuthMethod` = :externalAuthMethod;";
+				`referralID` = :referralID;";
 
 
 		$db->insert($sql, array(
@@ -293,14 +228,12 @@ class ShowRegisterPage extends AbstractLoginPage
 			':language'				=> $language,
 			':universe'				=> Universe::current(),
 			':referralID'			=> $referralID,
-			':externalAuthUID'		=> $externalAuthUID,
-			':externalAuthMethod'	=> $externalAuthMethod
 		));
 
 		$validationID	= $db->lastInsertId();
 		$verifyURL	= 'index.php?page=vertify&i='.$validationID.'&k='.$validationKey;
 		
-		if($config->user_valid == 0 || !empty($externalAuthUID))
+		if($config->user_valid == 0)
 		{
 			$this->redirectTo($verifyURL);
 		}

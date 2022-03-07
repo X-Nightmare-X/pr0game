@@ -138,7 +138,6 @@ $LNG['passwordNext']				= 'Siguiente';
 $LNG['login_error_1']				= 'Incorrecto Usuario/Contraseña!';
 $LNG['login_error_2']				= 'Alguien se ha conectado desde otro PC en su cuenta, o su dirección IP es diferente!';
 $LNG['login_error_3']				= 'Tu sesión ha expirado!';
-$LNG['login_error_4']				= 'Se ha producido un error en la autorización externa, inténtalo de nuevo!';
 
 //Rules
 $LNG['rulesHeader']					= 'Reglas';

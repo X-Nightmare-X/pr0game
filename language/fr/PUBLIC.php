@@ -125,7 +125,6 @@ $LNG['passwordNext']				= 'Suivant';
 $LNG['login_error_1']				= 'Combinaison login/mot de passe incorrect!';
 $LNG['login_error_2']				= 'Quelqu\'un est connecté à partir d\'un autre PC sur votre compte ou bien votre adresse IP est différente!';
 $LNG['login_error_3']				= 'Votre session a expirée !';
-$LNG['login_error_4']				= 'Il y a eu une erreur dans l\'autorisation externe,s\'il vous plaît ré-essayez !';
 
 //Rules
 $LNG['rulesHeader']					= 'Règles';

@@ -140,7 +140,6 @@ $LNG['passwordNext']				= 'Ileri';
 $LNG['login_error_1']				= 'Kullanici adi yada sifre yanlis!';
 $LNG['login_error_2']				= 'Baskasi farki bir bilgisayardan bu hesaba girdi, yada IP adresiniz degisti!';
 $LNG['login_error_3']				= 'Oturumunuz sonlandi!';
-$LNG['login_error_4']				= 'Sorun olustu. Lutfen tekrar deneyiniz!';
 
 //Rules
 $LNG['rulesHeader']					= 'Kurallar';

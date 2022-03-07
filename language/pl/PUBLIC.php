@@ -137,7 +137,6 @@ $LNG['passwordNext']				= 'Dalej';
 $LNG['login_error_1']				= 'Błąd nazwy użytkownika lub hasła!';
 $LNG['login_error_2']				= 'Ktoś zalogował się na twoje konto z innego komputera!';
 $LNG['login_error_3']				= 'Sesja wygasła!';
-$LNG['login_error_4']				= 'Wystąpił błąd, spróbuj potem!';
 
 //Rules
 $LNG['rulesHeader']					= 'Regulamin';

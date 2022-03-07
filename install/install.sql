@@ -758,15 +758,6 @@ CREATE TABLE `%PREFIX%users_to_acs` (
   KEY `acsID` (`acsID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE `%PREFIX%users_to_extauth` (
-  `id` int(11) NOT NULL,
-  `account` varchar(64) NOT NULL,
-  `mode` varchar(32) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id` (`id`),
-  KEY `account` (`account`,`mode`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 CREATE TABLE `%PREFIX%users_to_topkb` (
   `rid` varchar(32) NOT NULL,
   `uid` int(11) NOT NULL,
@@ -786,8 +777,6 @@ CREATE TABLE `%PREFIX%users_valid` (
  `language` varchar(3) NOT NULL,
  `universe` tinyint(3) unsigned NOT NULL,
  `referralID` int(11) DEFAULT NULL,
- `externalAuthUID` varchar(128) DEFAULT NULL,
- `externalAuthMethod` varchar(32) DEFAULT NULL,
  PRIMARY KEY (`validationID`,`validationKey`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
