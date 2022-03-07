@@ -294,7 +294,6 @@ $LNG['ow_database_errors']             = 'В базе данных есть ош
 $LNG['ow_smtp_errors']                 = 'Проверьте свои SMTP настройки. В данный момент сообщения с почтового сервера отправляться не могут.';
 $LNG['ow_dir_not_writable']            = './%s не имеет права на запись.';
 $LNG['ow_none']                        = 'Нет замечаний';
-$LNG['ow_news']                        = 'Новости в Facebook';
 $LNG['ow_updates']                     = 'Последние обновления';
 $LNG['ow_developers']                  = 'Разработчики';
 
@@ -560,7 +559,6 @@ $LNG['mu_user_logs']                   = 'Лог';
 $LNG['mu_support']                     = 'Техническая поддержка';
 $LNG['mu_module']                      = 'Модули';
 $LNG['mu_mod_update']                  = 'Мод управления версиями';
-$LNG['mu_fb_options']                  = 'Facebook';
 $LNG['mu_game_info']                   = 'Информация';
 $LNG['mu_vaild_users']                 = 'Активация игроков';
 $LNG['mu_news']                        = 'Новости';
@@ -922,15 +920,6 @@ $LNG['qe_submit']                      = 'Сохранить';
 $LNG['qe_resetr']                      = 'Обнулить';
 $LNG['qe_allowmulti']                  = 'Разрешить совпадение IP';
 $LNG['qe_name']                        = 'Название';
-
-// FacebookSettingPage.php
-$LNG['fb_settings']                    = 'Настройки Facebook';
-$LNG['fb_active']                      = 'Включить Facebook';
-$LNG['fb_api_key']                     = 'API ID';
-$LNG['fb_secrectkey']                  = 'Секретный ключ';
-$LNG['fb_info']                        = 'Пользователи, зарегистрированные в Facebook, могут создать аккаунт в игре, не проходя регистрацию, а используя данные из Facebook.<br><br>Чтобы использовать эту возможость Вы должны быть зарегистрированы в Facebook. Кроме того, необходимо создать приложение. Это можно сделать по следующей ссылке <a href="http://www.facebook.com/developers/">http://www.facebook.com/developers/</a>. Когда Вы укажите в игре API ID и секретный ключ, можно будет пользоваться данной возможностью.<br><br><font color="red">Должна быть настроена рассылка почты (Настройки SMTP)</font>';
-$LNG['fb_curl_yes']                    = '<span style="color:green">cURL установлен.</span>';
-$LNG['fb_curl_no']                     = '<span style="color:red">cURL не установлен. Для подключения к Facebook необходимо установить cURL.</span>';
 
 // Модули
 $LNG['modul_0']                       = 'Альянс';

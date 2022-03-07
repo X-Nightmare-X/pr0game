@@ -60,7 +60,6 @@ $LNG['loginWelcome']				= 'Witaj na %s';
 $LNG['loginServerDesc']				= '%s to gra online, gdzie stajesz naprzeciw innych graczy, <strong>jednocześnie</strong> próbując zostać najlepszym. Wszystko, czego potrzebujesz do gry, to zwykła przeglądarka.';
 
 // Register
-$LNG['registerFacebookAccount']		= 'Konto na Facebooku';
 $LNG['registerUsername']			= 'Nazwa użytkownika';
 $LNG['registerUsernameDesc']		= 'Nazwa użytkownika musi składać się min. z 3 i max. z 25 znaków.';
 $LNG['registerPassword']			= 'Hasło';

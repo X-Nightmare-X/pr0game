@@ -324,7 +324,6 @@ $LNG['ow_database_errors']				= 'Wystąpił błąd!';
 $LNG['ow_smtp_errors']					= 'Ustawienia wysyłania poczty! - chwilowo maile nie są wysyłane!';
 $LNG['ow_dir_not_writable']				= './%s jest nie zapisywalny!';
 $LNG['ow_none']						= 'Brak ostrzeżeń';
-$LNG['ow_news']						= 'Nowości';
 $LNG['ow_updates']					= 'Ostatnie Update';
 $LNG['ow_developers']					= 'Entwickler';
 
@@ -608,7 +607,6 @@ $LNG['mu_user_logs']				= 'Log';
 $LNG['mu_support']                 	= 'Pomoc techniczna';
 $LNG['mu_module']                 	= 'Moduły';
 $LNG['mu_mod_update']              	= 'Wersja kontrolna';
-$LNG['mu_fb_options'] 				= 'Przyłącz do Facebooka';
 
 $LNG['mu_game_info'] 				= 'Informacje';
 $LNG['mu_vaild_users']				= 'Aktywni użytkownicy'; 
@@ -982,16 +980,6 @@ $LNG['qe_authattack']					= 'Osłona admina';
 $LNG['qe_submit']						= 'Wyślij';
 $LNG['qe_resetr']						= 'Zresetuj';
 $LNG['qe_allowmulti']					= 'Multi dozwolone';
-
-//----------------------------------------------------------------------------//
-//FacebookSettingPage.php
-$LNG['fb_settings']						= 'Ustawienia Facebook Connect';
-$LNG['fb_active']						= 'Aktywacja Facebook Connect?';
-$LNG['fb_api_key']						= 'Facebook App ID';
-$LNG['fb_secrectkey']					= 'Facebook Geheim Key';
-$LNG['fb_info']							= 'Mit Facebook Connect können User, die bei Facebook angemeldet sind, mit meinem Klick sich einloggen bzw. sich registrieren.<br><br>Um diese Funktion zu nutzen, musst du selbst bei Faceebok registriert sein. Zudem musst du eine Application erstellen. Dies kannst du auf <a href="http://www.facebook.com/developers/">http://www.facebook.com/developers/</a> erledigen. Als Connect URL musst du den URL zum Game eingeben. Dann trägst du hier die Keys ein und dein Game sollte Facebook bereit sein.<br><br><font color="red">Für FB Connect muss der Mail Versand verfügbar sein! (SMTP Settings)</font>';
-$LNG['fb_curl_yes']						= '<span style="color:green">Na serwerze jest culr dostępny!</span>';
-$LNG['fb_curl_no']						= '<span style="color:red">Brak Curla! Facebook do funkcjonowania wymaga biblioteki Curl!</span>';
 
 //----------------------------------------------------------------------------//
 //GameModule.php

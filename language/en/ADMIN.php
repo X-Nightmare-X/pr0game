@@ -328,7 +328,6 @@ $LNG['ow_database_errors'] = 'You have errors in your database. <a href="ErrorPa
 $LNG['ow_smtp_errors'] = 'verifies the configuration of SMTP! -At the moment no mail can be sent!';
 $LNG['ow_dir_not_writable'] = '/%s dir cant be written!';
 $LNG['ow_none'] = 'No warnings';
-$LNG['ow_news'] = 'Latest news';
 $LNG['ow_updates'] = 'Recent updates';
 $LNG['ow_developers'] = 'Developers';
 
@@ -621,7 +620,6 @@ $LNG['mu_user_logs'] = 'Admin Log';
 $LNG['mu_support'] = 'Support Tickets';
 $LNG['mu_module'] = 'Modules';
 $LNG['mu_mod_update'] = 'Checking version of MOD';
-$LNG['mu_fb_options'] = 'Registration by Facebook';
 $LNG['mu_game_info'] = 'Information';
 $LNG['mu_vaild_users'] = 'User activity';
 $LNG['mu_news'] = 'News';
@@ -998,16 +996,6 @@ $LNG['qe_resetr'] = 'Reset';
 $LNG['qe_allowmulti'] = 'Allow Multi IP';
 
 //----------------------------------------------------------------------------//
-// Facebook App
-$LNG['fb_settings'] = 'Facebook Connect Settings';
-$LNG['fb_active'] = 'Facebook Connect activate?';
-$LNG['fb_api_key'] = 'Facebook API Key';
-$LNG['fb_secrectkey'] = 'Facebook Secret Key';
-$LNG['fb_info'] = 'With Facebook Connect users who are logged on to Facebook, log in with my click, or register. <br>  to use this feature, you must be registered with Faceebok itself. In addition, you must create an Application. This you can do to <a href="http://www.facebook.com/developers/"> http://www.facebook.com/developers/ </ a>. As Connect URL, you must enter the URL to the game. Then you are carrying here the Keys and your game should be ready Facebook. <br> <font Color="red"> for FB Connect, the mail delivery will be available! (SMTP settings)</font>';
-$LNG['fb_curl_yes'] = '<span style="color:green">cURL Installed!</span>';
-$LNG['fb_curl_no'] = '<span style="color:red">cURL Not Installed! Facebook Requires cURL extension to work!</span>';
-
-//----------------------------------------------------------------------------//
 //GameModule.php
 
 $LNG['modul_0'] = 'Alliance';
@@ -1051,7 +1039,6 @@ $LNG['modul_37'] = 'Statistics Banner';
 $LNG['modul_26'] = 'Search';
 $LNG['modul_27'] = 'Support Tickets';
 $LNG['modul_28'] = 'Techtree';
-$LNG['modul_41'] = 'Facebook Application';
 $LNG['mod_module'] = 'Modules';
 $LNG['mod_info'] = 'Modules in the Game';
 $LNG['mod_active'] = 'Active';

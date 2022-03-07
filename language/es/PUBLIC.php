@@ -61,7 +61,6 @@ $LNG['loginWelcome']				= 'Bienvenido a %s';
 $LNG['loginServerDesc']				= '%s es un juego de estrategia espacial con cientos de jugadores jugando juntos <strong>al mismo tiempo</strong> tratando de ser el mejor. Todo lo que necesitas para jugar es un navegador estándar.';
 
 // Register
-$LNG['registerFacebookAccount']		= 'Cuenta Facebook';
 $LNG['registerUsername']			= 'Usuario';
 $LNG['registerUsernameDesc']		= 'El nombre de usuario debe tener por lo menos 3 y un máximo de 25 caracteres y puntos, y pueden consistir en números, letras, guiones y espacios';
 $LNG['registerPassword']			= 'Contraseña';

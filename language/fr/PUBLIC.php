@@ -49,7 +49,6 @@ $LNG['loginWelcome']				= 'Bienvenue sur %s';
 $LNG['loginServerDesc']				= '%s est un jeu de stratégie spatial regroupant des milliers d\'utilisateurs par univers <strong>en meme temps</strong> essayez d\'être le meilleur, d\'etre le maître de votre univers. La seule chose dont vous avez besoin c\'est un navigateur internet (ou application du PlayStore).';
 
 // Register
-$LNG['registerFacebookAccount']		= 'Se connecter avec son compte Facebook';
 $LNG['registerUsername']			= 'Login';
 $LNG['registerUsernameDesc']		= 'Le login doit contenir au moins 3 et au maximum 25 caractères et points, et peut se composer de chiffres, lettres, underscores et espace';
 $LNG['registerPassword']			= 'Mot de passe';

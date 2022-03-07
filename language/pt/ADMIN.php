@@ -338,7 +338,6 @@ $LNG['ow_database_errors']			= 'Tens erros na tua base de dados. <a href="ErrorP
 $LNG['ow_smtp_errors']				= 'Verifica as configurações de SMTP! - Neste momento nenhum email pode ser enviado!';
 $LNG['ow_dir_not_writable']			= '/%s dir não pode ser escrito!';
 $LNG['ow_none']						= 'Sem Avisos';
-$LNG['ow_news']						= 'Ultimas Noticias';
 $LNG['ow_updates']					= 'Ultimas Atualizações';
 $LNG['ow_developers']				= 'Desenvolvedores';
 
@@ -623,7 +622,6 @@ $LNG['mu_user_logs']				    = 'Log de Registo';
 $LNG['mu_support']                      = 'Tickets de Suporte';
 $LNG['mu_module']                       = 'Modulos';
 $LNG['mu_mod_update']              		= 'Controlo de Versão do MOD';
-$LNG['mu_fb_options'] 					= 'Registo pelo Facebook';
 $LNG['mu_game_info']                    = 'Informação';
 $LNG['mu_vaild_users']				    = 'Atividade de Usuário';
 $LNG['mu_news']					        = 'Noticias';
@@ -994,16 +992,6 @@ $LNG['qe_resetr']						= 'Redefinir';
 $LNG['qe_allowmulti']					= 'Permitir Multi IPs';
 
 //----------------------------------------------------------------------------//
-// Facebook App
-$LNG['fb_settings']                     = 'Configurações da conexão pelo Facebook';
-$LNG['fb_active']                       = 'Facebook Connect ativo?';
-$LNG['fb_api_key']                      = 'Chave do Facebook API';
-$LNG['fb_secrectkey']                   = 'Chave do Facebook Secret';
-$LNG['fb_info']                         = 'Com o Facebook Connect os usuários podem que estão conectados ao Facebook, com o meu log in, clique ou registre-se. <br><br>Para usar este sistema, deves ser registrado com Faceebok. Além disso, você deve criar um aplicativo. Registar <a href="http://www.facebook.com/developers/">http://www.facebook.com/developers/</a> Como conectar URL tens de ativar o sistema e por as duas chaves.<br><br><font color="red">Para o envio de E-Mails deves ter o sistema de envio ativo! (SMTP Settings)</font>';
-$LNG['fb_curl_yes']						= '<span style="color:green">O cURL esta instalado no Servidor!</span>';
-$LNG['fb_curl_no']						= '<span style="color:red">Extenção cURL não esta instalado!, o FaceBook requer que você instale para que ele funcione!</span>';
-
-//----------------------------------------------------------------------------//
 //GameModule.php
 
 $LNG['modul_0']                        = 'Aliança';
@@ -1047,7 +1035,6 @@ $LNG['modul_28']                       = 'Tecnologias';
 $LNG['modul_38']						= 'Sucateiros : Comprador de Frota';
 $LNG['modul_39']						= 'Simulador de batalha';
 $LNG['modul_40']						= 'Atalhos de Frotas';
-$LNG['modul_41']                       = 'Aplicação do Facebook';
 $LNG['mod_module']						= 'Modulos';
 $LNG['mod_info']						= 'Modulos no Jogo';
 $LNG['mod_active']						= 'Ativo';

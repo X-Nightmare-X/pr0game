@@ -324,7 +324,6 @@ $LNG['ow_database_errors'] = 'Es sind Fehler vorhanden!';
 $LNG['ow_smtp_errors'] = 'Überprüfe deine SMTP-Einstellungen! - Momentan können keine Mails gesendet werden!';
 $LNG['ow_dir_not_writable'] = './%s ist nicht beschreibar!';
 $LNG['ow_none'] = 'Keine Warnungen';
-$LNG['ow_news'] = 'News';
 $LNG['ow_updates'] = 'Letzte Updates';
 $LNG['ow_developers'] = 'Entwickler';
 
@@ -615,7 +614,6 @@ $LNG['mu_user_logs'] = 'Log';
 $LNG['mu_support'] = 'Support-Tickets';
 $LNG['mu_module'] = 'Module';
 $LNG['mu_mod_update'] = 'Mod Versions Control';
-$LNG['mu_fb_options'] = 'Facebook Connect';
 $LNG['mu_game_info'] = 'Informationen';
 $LNG['mu_vaild_users'] = 'Aktive User';
 $LNG['mu_news'] = 'News';
@@ -990,16 +988,6 @@ $LNG['qe_submit'] = 'Absenden';
 $LNG['qe_resetr'] = 'Zurücksetzten';
 $LNG['qe_allowmulti'] = 'Erlaube Multi';
 $LNG['qe_name'] = 'Name';
-
-//----------------------------------------------------------------------------//
-//FacebookSettingPage.php
-$LNG['fb_settings'] = 'Facebook Connect Einstellungen';
-$LNG['fb_active'] = 'Facebook Connect aktivieren?';
-$LNG['fb_api_key'] = 'Facebook App ID';
-$LNG['fb_secrectkey'] = 'Facebook Geheim Key';
-$LNG['fb_info'] = 'Mit Facebook Connect können User, die bei Facebook angemeldet sind, mit meinem Klick sich einloggen bzw. sich registrieren.<br><br>Um diese Funktion zu nutzen, musst du selbst bei Faceebok registriert sein. Zudem musst du eine Application erstellen. Dies kannst du auf <a href="http://www.facebook.com/developers/">http://www.facebook.com/developers/</a> erledigen. Als Connect URL musst du den URL zum Game eingeben. Dann trägst du hier die Keys ein und dein Game sollte Facebook bereit sein.<br><br><span style="color:red">Für FB Connect muss der Mail Versand verfügbar sein! (SMTP Settings)</span>';
-$LNG['fb_curl_yes'] = '<span style="color:green">Auf dem Server ist cURL installiert!</span>';
-$LNG['fb_curl_no'] = '<span style="color:red">Auf dem Server ist cURL nicht installiert! Facebook benötigt cURL Extension, damit es funktioniert!</span>';
 
 //----------------------------------------------------------------------------//
 //GameModule.php

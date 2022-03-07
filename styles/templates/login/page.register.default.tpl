@@ -11,21 +11,6 @@
 		<select name="uni" id="universe" class="changeAction">{html_options options=$universeSelect selected=$UNI}</select>
 		{if !empty($error.uni)}<span class="error errorUni"></span>{/if}
 	</div>
-	{if !empty($externalAuth.account)}
-	{if $facebookEnable}
-	<div class="rowForm">
-		<label>{$LNG.registerFacebookAccount}</label>
-		<span class="text fbname">{$accountName}</span>
-	</div>
-	{/if}
-	{elseif empty($referralData.id)}
-	{if $facebookEnable}
-	<div class="rowForm">
-		<label>{$LNG.registerFacebookAccount}</label>
-		<a href="#" data-href="index.php?page=externalAuth&method=facebook" class="fb_login"><img src="styles/resource/images/facebook/fb-connect-large.png" alt=""></a>
-	</div>
-	{/if}
-	{/if}
 	<div class="rowForm">
 		<label for="username">{$LNG.registerUsername}</label>
 		<input type="text" class="input" name="username" id="username" maxlenght="32">

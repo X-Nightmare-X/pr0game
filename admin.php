@@ -70,10 +70,6 @@ switch($page)
 		include_once('includes/pages/adm/ShowConfigUniPage.php');
 		ShowConfigUniPage();
 	break;
-	case 'facebook':
-		include_once('includes/pages/adm/ShowFacebookPage.php');
-		ShowFacebookPage();
-	break;
 	case 'module':
 		include_once('includes/pages/adm/ShowModulePage.php');
 		ShowModulePage();

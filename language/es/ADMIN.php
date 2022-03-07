@@ -324,7 +324,6 @@ $LNG['ow_database_errors']			= 'Hay errores en tu base de datos!';
 $LNG['ow_smtp_errors']				= '¡Compruebe la configuración de SMTP! - Actualmente no se envían los correos!';
 $LNG['ow_dir_not_writable']			= './%s no se puede escribir!';
 $LNG['ow_none']						= 'No hay alertas';
-$LNG['ow_news']						= 'Noticias';
 $LNG['ow_updates']					= 'Últimas Actualizaciones';
 $LNG['ow_developers']				= 'Promotor';
 
@@ -609,7 +608,6 @@ $LNG['mu_user_logs']				= 'Log';
 $LNG['mu_support']                                      = 'Tickets de Soporte';
 $LNG['mu_module']                                       = 'Módulos';
 $LNG['mu_mod_update']              	= 'Contrlo de Ver. de Módulos';
-$LNG['mu_fb_options'] 				= 'Facebook Connect';
 $LNG['mu_game_info']                                    = 'Información';
 $LNG['mu_vaild_users']                                  = 'Actividad de Usuarios';
 $LNG['mu_news']						= 'Noticias'; 
@@ -984,16 +982,6 @@ $LNG['qe_authattack']					= 'Protección de Ataques Administrador';
 $LNG['qe_submit']					= 'Aceptar';
 $LNG['qe_resetr']					= 'Reestablecer';
 $LNG['qe_allowmulti']					= 'Permitir Multicuentas';
-
-//----------------------------------------------------------------------------//
-//FacebookSettingPage.php
-$LNG['fb_settings']					= 'Opciones de Facebook';
-$LNG['fb_active']					= 'Activar la conección con Facebook';
-$LNG['fb_api_key']					= 'Facebook API Key';
-$LNG['fb_secrectkey']					= 'Facebook Secret Key';
-$LNG['fb_info']						= 'Con Facebook Connect los usuarios que están conectados a Facebook, pueden iniciar sesión con un click, o registrarse. <br>  Para utilizar esta característica, debes estar registrado en Faceebok. Además, debes crear una aplicación. Esto se puede hacer en <a href="http://www.facebook.com/developers/"> http://www.facebook.com/developers/ </ a>. Como URL de conexión, debes introducir la dirección URL del juego. A continuación, de introducir aquí las claves y el juego debería estar listo Facebook. <br> <font Color="red"> de FB Connect, la entrega de correo estará disponible (SMTP settings).</font>';
-$LNG['fb_curl_yes']						= '<span style="color:green">cURL Instalado.</span>';
-$LNG['fb_curl_no']						= '<span style="color:red">cURL No Instalado. ¡Facebook necesita las extensiones cURL para funcionar!</span>';
 
 //----------------------------------------------------------------------------//
 //GameModule.php

@@ -321,7 +321,6 @@ $LNG['ow_database_errors']			= 'Il y a des erreurs présentes !';
 $LNG['ow_smtp_errors']				= 'Vérifiez vos paramètres SMTP ! - Actuellement aucun mails ne sont envoyés !';
 $LNG['ow_dir_not_writable']			= './%s n\est pas inscriptible!';
 $LNG['ow_none']						= 'Aucun avertissement';
-$LNG['ow_news']						= 'Actualités';
 $LNG['ow_updates']					= 'Dernières mise à jour';
 $LNG['ow_developers']				= 'Developpeur';
 //###########################################################//
@@ -618,7 +617,6 @@ $LNG['mu_user_logs']               	= 'Log';
 $LNG['mu_support']                 	= 'Support Tickets';
 $LNG['mu_module']                 	= 'Module';
 $LNG['mu_mod_update']              	= 'Contrôle Mod Version';
-$LNG['mu_fb_options'] 				= 'Connexion Facebook';
 $LNG['mu_game_info'] 				= 'Information';
 $LNG['mu_vaild_users']				= 'Activité Utilisateur';
 $LNG['mu_news']						= 'Actualités';
@@ -1022,16 +1020,6 @@ $LNG['qe_resetr']						= 'Reset';
 $LNG['qe_allowmulti']					= 'Autorisé Multi IP';
 
 //----------------------------------------------------------------------------//
-//FacebookSettingPage.php
-$LNG['fb_settings']					= 'Paramètres de Facebook Connect';
-$LNG['fb_active']					= 'Activer la Facebook Connect?';
-$LNG['fb_api_key']					= 'Facebook API Clé';
-$LNG['fb_secrectkey']					= 'Clé Secrète Facebook';
-$LNG['fb_info']						= 'Avec Facebook Connect, les utilisateurs qui sont connectés sur Facebook peuvent se connecter en un clic, ou s\'inscrire. <br> Pour utiliser cette fonctionnalité, vous devez être inscrit à Faceebok lui-même. En outre, vous devez créer une demande. Informations : <a href="http://www.facebook.com/developers/"> http://www.facebook.com/developers/ </ a>. Vous devez vous connecter en entrant l\'URL de la partie. Ensuite, vous portez ici les clés et votre jeu devrait être prêt pour Facebook. <font color="red"> <br> Pour FB Connect, la distribution du courrier sera disponible ! (paramètres SMTP) </ font> ';
-$LNG['fb_curl_yes']						= '<span style="color:green">cURL installé!</span>';
-$LNG['fb_curl_no']						= '<span style="color:red">cURL n\'est pas installé! Nécessite l\'extension cURL Facebook au boulot!</span>';
-
-//----------------------------------------------------------------------------//
 //GameModule.php
 $LNG['modul_0']                        		= 'Alliance';
 $LNG['modul_39']						        = 'Simulateur de combat';
@@ -1074,7 +1062,6 @@ $LNG['modul_37']                       		= 'Bannière Statistiques';
 $LNG['modul_26']                       		= 'Rechercher';
 $LNG['modul_27']                       		= 'Tickets Support';
 $LNG['modul_28']                       		= 'Technologies';
-$LNG['modul_41']                           = 'Facebook Application';
 $LNG['mod_module']					= 'Modules';
 $LNG['mod_info']					= 'Modules dans le Jeu';
 $LNG['mod_active']					= 'Actif';

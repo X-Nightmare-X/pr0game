@@ -26,8 +26,7 @@
 
 					</div>
 				</form>
-				{if $facebookEnable}<a href="#" data-href="index.php?page=externalAuth&method=facebook" class="fb_login"><img src="styles/resource/images/facebook/fb-connect-large.png" alt=""></a>{/if}
-								
+
 				<a href="/index.php?page=register"><input value="{$LNG.buttonRegister}"></a>
 				<!-- <br><span class="small">{$loginInfo}</span> -->
 			

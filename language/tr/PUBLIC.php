@@ -63,7 +63,6 @@ $LNG['loginWelcome']				= ' %s hosgeldiniz ';
 $LNG['loginServerDesc']				= '%s tam zamanli bir uzay strateji oyunu. Yuzlerce oyuncunun <strong>ayni anda beraber oynayabildigi</strong> ve ellerinden geleni yaptigi bir oyun. Tek ihtiyacin olan herhangi bir web tarayicisi.';
 
 // Register
-$LNG['registerFacebookAccount']		= 'Facebook Hesabi';
 $LNG['registerUsername']			= 'Kullanici Adi';
 $LNG['registerUsernameDesc']		= 'Kullanici adi 3 ila 25 karakter arasinda olmalidir ayrica sadece rakam, harf,tire (-) ve altcizgi (_) kullanilabilir. ';
 $LNG['registerPassword']			= 'Sifre';

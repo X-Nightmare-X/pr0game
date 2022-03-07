@@ -137,7 +137,6 @@ $LNG['mu_user_logs']				    = 'Admin Log';
 $LNG['mu_support']                      = 'Destek Bileti';
 $LNG['mu_module']                       = 'Moduller';
 $LNG['mu_mod_update']              		= 'MOD versiyon kontrolu';
-$LNG['mu_fb_options'] 					= 'Facebook Kayit';
 $LNG['mu_game_info']                    = 'Bilgi';
 $LNG['mu_vaild_users']				    = 'Oyuncu aktiviteleri';
 $LNG['mu_news']					        = 'Haberler';
@@ -339,18 +338,6 @@ $LNG['se_disclamerNotice']				= 'Daha fazla bilgi';
 
 $LNG['cc_cache_clear']				= 'Bellek temizlendi!';
 
-//----------------------------------------------------------------------------//
-
-// Facebook App
-$LNG['fb_settings']                                     = 'Facebook Connect Ayarlari';
-$LNG['fb_active']                                       = 'Facebook Connect Aktive Et?';
-$LNG['fb_api_key']                                      = 'Facebook API Key';
-$LNG['fb_secrectkey']                                   = 'Facebook Secret Key';
-$LNG['fb_info']                                         = 'Facebook connect, sitenize Facebook kullanıcılarını kabul etmenizi sağlayan bir arayüz standardıdır. Yapı olarak facebook-uygulamalarına benzer ama biraz daha farklıdır <br> Bunu kullanmak icin Facebook uyesi olmaniz gerekmektedir. Ayrica, bir uygulama gelistirmelisiniz. Bunu <a href="http://www.facebook.com/developers/"> http://www.facebook.com/developers/ </ a> adresinden yapabilirsin.<br> <font Color="red"> FB Connect icin, email sistemi kurulu olmali! (SMTP Ayarlari)</font>';
-$LNG['fb_curl_yes']                                             = '<span style="color:green">cURL Kurulu!</span>';
-$LNG['fb_curl_no']                                              = '<span style="color:red">cURL Kurulu Degil! Facebook App calismasi icin URL kurulu olmasi gerekmekte!</span>';
-
-
 //---------------------MODULLER------------------------------------------------//
 //GameModule.php
 
@@ -395,7 +382,6 @@ $LNG['modul_37']                                       = 'Istatistik banneri';
 $LNG['modul_26']                                       = 'Ara';
 $LNG['modul_27']                                       = 'Destek/Ticket';
 $LNG['modul_28']                                       = 'Teknoloji';
-$LNG['modul_41']                          				= 'Facebook';
 $LNG['mod_module']                                      = 'Moduller';
 $LNG['mod_info']                                        = 'Oyundaki Moduller';
 $LNG['mod_active']                                      = 'Su an Aktif';
@@ -996,7 +982,6 @@ $LNG['ow_database_errors'] = 'Veritabaninda hatalar mevcut. <a href="ErrorPage.p
 $LNG['ow_smtp_errors'] = 'SMTP ayarlari kontrol ediliyor! -Su an mail gonderemezsiniz!';
 $LNG['ow_dir_not_writable'] = '/%s klasorune yazilamaz!';
 $LNG['ow_none'] = 'Mevcut Uyari Yok';
-$LNG['ow_news'] = 'Son Haberler';
 $LNG['ow_updates'] = 'Son Guncellemeler';
 $LNG['ow_developers'] = 'Kod Gelistiricileri';
 
