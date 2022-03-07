@@ -24,8 +24,7 @@ class Config
 	// Global configkeys
 	protected static $globalConfigKeys	= array('VERSION', 'game_name', 'stat', 'stat_level', 'stat_last_update',
 										   'stat_settings', 'stat_update_time', 'stat_last_db_update', 'stats_fly_lock',
-										   'cron_lock',
-										   'capaktiv', 'cappublic', 'capprivate', 'mail_active', 'mail_use', 'smtp_host',
+										   'cron_lock', 'mail_active', 'mail_use', 'smtp_host',
 										   'smtp_port', 'smtp_user', 'smtp_pass', 'smtp_ssl', 'smtp_sendmail',
 										   'smail_path', 'fb_on', 'fb_apikey', 'fb_skey', 'ga_active', 'ga_key',
 										   'ttf_file', 'sendmail_inactive', 'del_user_sendmail',

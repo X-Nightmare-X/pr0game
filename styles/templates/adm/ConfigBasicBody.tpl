@@ -42,20 +42,6 @@
 	<td><input name="del_user_sendmail" maxlength="3" size="2" value="{$del_user_sendmail}" type="text"> {$LNG.se_days}</td>
 	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_del_user_sendmail_info}"></td>
 </tr><tr>
-	<th colspan="2">{$LNG.se_recaptcha_head}</th><th>&nbsp;</th>
-</tr><tr>
-	<td>{$LNG.se_recaptcha_active}<br></td>
-    <td><input name="capaktiv"{if $capaktiv} checked="checked"{/if}  type="checkbox"></td>
-	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_recaptcha_desc}"></td>
-</tr><tr>
-	<td>{$LNG.se_recaptcha_public}</td>
-	<td><input name="cappublic" maxlength="40" size="60" value="{$cappublic}" type="text"></td>
-	<td>&nbsp;</td>
-</tr><tr>
-	<td>{$LNG.se_recaptcha_private}</td>
-	<td><input name="capprivate" maxlength="40" size="60" value="{$capprivate}" type="text"></td>
-	<td>&nbsp;</td>
-</tr><tr>
 	<th colspan="2">{$LNG.se_smtp}</th>
 	<th><center><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_smtp_info}"></center></th>
 </tr><tr>

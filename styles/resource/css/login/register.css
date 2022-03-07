@@ -51,29 +51,3 @@
 .rowForm label + .inputDesc{
 	padding-top:5px;
 }
-
-#recaptcha_image > img{
-	background:#FFF;
-	color:#FFF;
-	border: 2px solid  #9EB4CB;
-}
-
-#recaptcha_image {
-	float: left;
-	padding: 10px 2px;
-}
-
-#recaptcha_input_wrap {
-	clear:both;
-	width:436px;
-}
-
-#recaptcha_response_field {
-	float:left;
-	display:block;
-	margin-left:141px;
-}
-
-.captchaButtons{
-	font-size:11px;
-}

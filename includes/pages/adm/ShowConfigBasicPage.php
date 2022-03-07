@@ -38,9 +38,6 @@ function ShowConfigBasicPage()
 			'smtp_sendmail'			=> $config->smtp_sendmail,
 			'ga_active'				=> $config->ga_active,
 			'ga_key'				=> $config->ga_key,
-			'capaktiv'				=> $config->capaktiv,
-			'cappublic'				=> $config->cappublic,
-			'capprivate'			=> $config->capprivate,
 			'del_oldstuff'			=> $config->del_oldstuff,
 			'del_user_manually'		=> $config->del_user_manually,
 			'del_user_automatic'	=> $config->del_user_automatic,
@@ -53,7 +50,6 @@ function ShowConfigBasicPage()
 			'message_delete_days'	=> $config->message_delete_days,
 		);
 		
-		$capaktiv 				= isset($_POST['capaktiv']) && $_POST['capaktiv'] == 'on' ? 1 : 0;
 		$ga_active 				= isset($_POST['ga_active']) && $_POST['ga_active'] == 'on' ? 1 : 0;
 		$sendmail_inactive 		= isset($_POST['sendmail_inactive']) && $_POST['sendmail_inactive'] == 'on' ? 1 : 0;
 		$mail_active 			= isset($_POST['mail_active']) && $_POST['mail_active'] == 'on' ? 1 : 0;
@@ -61,8 +57,6 @@ function ShowConfigBasicPage()
 		$ttf_file				= HTTP::_GP('ttf_file', '');
 		$close_reason			= HTTP::_GP('close_reason', '', true);
 		$game_name				= HTTP::_GP('game_name', '', true);
-		$capprivate				= HTTP::_GP('capprivate', '');
-		$cappublic				= HTTP::_GP('cappublic', '');
 		$ga_key					= HTTP::_GP('ga_key', '', true);
 		$mail_use				= HTTP::_GP('mail_use', 0);
 		$smail_path				= HTTP::_GP('smail_path', '');
@@ -95,9 +89,6 @@ function ShowConfigBasicPage()
 			'smtp_sendmail'			=> $smtp_sendmail,
 			'ga_active'				=> $ga_active,
 			'ga_key'				=> $ga_key,
-			'capaktiv'				=> $capaktiv,
-			'cappublic'				=> $cappublic,
-			'capprivate'			=> $capprivate,
 			'del_oldstuff'			=> $del_oldstuff,
 			'del_user_manually'		=> $del_user_manually,
 			'del_user_automatic'	=> $del_user_automatic,
@@ -144,9 +135,6 @@ function ShowConfigBasicPage()
 		'smtp_pass' 					=> $config->smtp_pass,
 		'smtp_sendmail' 				=> $config->smtp_sendmail,
 		'smtp_ssl'						=> $config->smtp_ssl,
-		'capprivate' 					=> $config->capprivate,
-		'cappublic' 	   				=> $config->cappublic,
-		'capaktiv'      	           	=> $config->capaktiv,
         'ga_active'               		=> $config->ga_active,
 		'ga_key'           				=> $config->ga_key,
 		'timezone'           			=> $config->timezone,

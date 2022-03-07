@@ -49,14 +49,11 @@ class ShowIndexPage extends AbstractLoginPage
 		}
 
 		$db = Database::get();
-		$sql = "SELECT capaktiv, cappublic, capprivate FROM uni1_config";
-		$verkey = $db->selectSingle($sql);
 
 		$config				= Config::get();
 		$this->assign(array(
 			'universeSelect'		=> $universeSelect,
 			'code'					=> $loginCode,
-			'verkey'			=> $verkey,
 			'descHeader'			=> sprintf($LNG['loginWelcome'], $config->game_name),
 			'descText'				=> sprintf($LNG['loginServerDesc'], $config->game_name),
             'gameInformations'      => explode("\n", $LNG['gameInformations']),

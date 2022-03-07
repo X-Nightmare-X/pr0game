@@ -166,19 +166,7 @@ class ShowRegisterPage extends AbstractLoginPage
 		if($countMail != 0) {
 			$errors[]	= $LNG['registerErrorMailExist'];
 		}
-		
-		if ($config->capaktiv === '1')
-		{
-            require('includes/libs/reCAPTCHA/autoload.php');
 
-            $recaptcha = new \ReCaptcha\ReCaptcha($config->capprivate);
-            $resp = $recaptcha->verify(HTTP::_GP('g-recaptcha-response', ''), Session::getClientIp());
-            if (!$resp->isSuccess())
-            {
-                $errors[]	= $LNG['registerErrorCaptcha'];
-            }
-		}
-						
 		if (!empty($errors)) {
 			$this->printMessage(implode("<br>\r\n", $errors), array(array(
 				'label'	=> $LNG['registerBack'],

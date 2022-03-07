@@ -22,3 +22,8 @@ ALTER TABLE `%PREFIX%config` DROP COLUMN `fb_skey`;
 ALTER TABLE `%PREFIX%users_valid` DROP COLUMN `externalAuthUID`;
 ALTER TABLE `%PREFIX%users_valid` DROP COLUMN `externalAuthMethod`;
 DROP TABLE IF EXISTS `%PREFIX%users_to_extauth`;
+
+-- Drop reCAPTCHA columns
+ALTER TABLE `%PREFIX%config` DROP COLUMN `capaktiv`;
+ALTER TABLE `%PREFIX%config` DROP COLUMN `cappublic`;
+ALTER TABLE `%PREFIX%config` DROP COLUMN `capprivate`;

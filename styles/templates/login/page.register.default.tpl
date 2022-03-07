@@ -55,16 +55,6 @@
 		<div class="clear"></div>
 	</div>
 	{/if}
-	{if $recaptchaEnable}
-	<div class="rowForm" id="captchaRow">
-		<div>
-			<label>{$LNG.registerCaptcha}</label>
-			<!--<span class="inputDesc">{$LNG.registerCaptchaDesc}</span>-->
-			<div class="g-recaptcha" data-sitekey="{$recaptchaPublicKey}"></div>
-		</div>
-		<div class="clear"></div>
-	</div>
-	{/if}
 	<div class="rowForm">
 		<label for="rules">{$LNG.registerRules}</label>
 		<input type="checkbox" name="rules" id="rules" value="1">
@@ -78,8 +68,5 @@
 {/block}
 {block name="script" append}
 <link rel="stylesheet" type="text/css" href="styles/resource/css/login/register.css?v={$REV}">
-{if $recaptchaEnable}
-<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl={$lang}"></script>
-{/if}
 <script type="text/javascript" src="scripts/login/register.js"></script>
 {/block}
