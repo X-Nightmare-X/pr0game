@@ -142,12 +142,6 @@ switch ($mode) {
 
         @set_time_limit(600);
 
-		$fileName = '2MoonsBackup_' . date('Y_m_d_H_i_s', TIMESTAMP) . '.sql';
-		$filePath = 'includes/backups/' . $fileName;
-		require 'includes/classes/SQLDumper.class.php';
-		$dump = new SQLDumper;
-		$dump->dumpTablesToFile($dbTables, $filePath);
-
         try {
             $sql	= "SELECT dbVersion FROM %%SYSTEM%%;";
 
@@ -187,15 +181,14 @@ switch ($mode) {
                     curl_setopt($ch, CURLOPT_MUTE, true);
                     curl_exec($ch);
                     if (curl_errno($ch)) {
-                        $errorMessage = 'CURL-Error on update ' . basename($fileInfo['filePath']) . ':' . curl_error($ch);
-                        try {
-                            $dump->restoreDatabase($filePath);
-                            $message = 'Update error.<br><br>' . $errorMessage . '<br><br><b><i>Backup restored.</i></b>';
-                        }
-                        catch (Exception $e) {
-                            $message = 'Update error.<br><br>' . $errorMessage . '<br><br><b><i>Can not restore backup. Your game is maybe broken right now.</i></b><br><br>Restore error:<br>' . $e->getMessage();
-                        }
-                        throw new Exception($message);
+                        throw new Exception(
+                            sprintf(
+                                'Update error.<br><br>CURL-Error on update %s:%s<br><br>' .
+                                '<b><i>You should restore with a backup.</i></b>',
+                                basename($fileInfo['filePath']),
+                                curl_error($ch)
+                            );
+                        );
                     }
                     curl_close($ch);
                     unlink($fileInfo['fileName']);
@@ -217,15 +210,12 @@ switch ($mode) {
                         }
                     }
                     catch (Exception $e) {
-                        $errorMessage = $e->getMessage();
-                        try {
-                            $dump->restoreDatabase($filePath);
-                            $message = 'Update error.<br><br>' . $errorMessage . '<br><br><b><i>Backup restored.</i></b>';
-                        }
-                        catch (Exception $e) {
-                            $message = 'Update error.<br><br>' . $errorMessage . '<br><br><b><i>Can not restore backup. Your game is maybe broken right now.</i></b><br><br>Restore error:<br>' . $e->getMessage();
-                        }
-                        throw new Exception($message);
+                        throw new Exception(
+                            sprintf(
+                                'Update error.<br><br>%s<br><br><b><i>You should restore with a backup.</i></b>',
+                                $e->getMessage()
+                            );
+                        );
                     }
                     break;
             }
