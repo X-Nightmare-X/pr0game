@@ -271,16 +271,6 @@ $LNG['se_smtp_user']                    = 'SMTP Kullanici Adi:';
 $LNG['se_smtp_pass']                    = 'SMTP Sifresi:';
 $LNG['se_smtp_sendmail']				= 'SMTP Gonderen:';
 $LNG['se_smtp_sendmail_info']          	= 'Email adresinizi giriniz. Gonderen adres ile ayni olmasi sart degik';
-####FTP AYARLARI -Aktif Degil###
-/*
-$LNG['se_ftp']							= 'FTP Ayarlari';
-$LNG['se_ftp_info']                     = 'System updates system via FTP! This system files actuliza what consuante fifty again, but attention if you have mod s these will be removed.';
-$LNG['se_ftp_host']                     = 'FTP server (Example: ftp://o game or game http://o):';
-$LNG['se_ftp_user']                     = 'FTP user: (user of the Host)';
-$LNG['se_ftp_pass']                     = 'FTP Password: (Password)-Host';
-$LNG['se_ftp_dir']                      = 'FTP Game path: (where is saved the game)';
-$LNG['se_ftp_dir_info']                 = 'Here inseres the path to your game folder should start with a slash and ending up with a bar!<br>Example:/httpdocs/';
-*/
 $LNG['se_google']                       = '<font color="yellow">Google Analytics Ayarlari</font>';
 $LNG['se_google_info']                  = 'Google Analytics, ziyaretçilerin sitenize nasıl ulaştıkları ve sitenizde ne tip etkinliklerde bulundukları hakkında bilmek istediğiniz herşeyi anlatır';
 $LNG['se_google_active']                = 'Aktif/Aktif Degil?';

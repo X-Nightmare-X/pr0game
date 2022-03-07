@@ -73,33 +73,6 @@ if (!empty($language) && in_array($language, $LNG->getAllowedLangs())) {
 }
 
 switch ($mode) {
-	case 'ajax':
-		require 'includes/libs/ftp/ftp.class.php';
-		require 'includes/libs/ftp/ftpexception.class.php';
-		$LNG->includeData(array('ADMIN'));
-		$connectionConfig = array(
-			"host"     => $_GET['host'],
-			"username" => $_GET['user'],
-			"password" => $_GET['pass'],
-			"port"     => 21
-		);
-
-		try {
-			$ftp = FTP::getInstance();
-			$ftp->connect($connectionConfig);
-		}
-		catch (FTPException $error) {
-			exit($LNG['req_ftp_error_data']);
-		}
-		if (!$ftp->changeDir($_GET['path'])) {
-			exit($LNG['req_ftp_error_dir']);
-		}
-
-		$CHMOD = (php_sapi_name() == 'apache2handler') ? 0777 : 0755;
-		$ftp->chmod('cache', $CHMOD);
-		$ftp->chmod('includes', $CHMOD);
-		$ftp->chmod('install', $CHMOD);
-		break;
 	case 'upgrade':
 		// Willkommen zum Update page. Anzeige, von und zu geupdatet wird. Informationen, dass ein backup erstellt wird.
 
@@ -290,7 +263,6 @@ switch ($mode) {
 				break;
 			case 2:
 				$error = false;
-				$ftp   = false;
 				if (version_compare(PHP_VERSION, "5.3.0", ">=")) {
 					$PHP = "<span class=\"yes\">" . $LNG['reg_yes'] . ", v" . PHP_VERSION . "</span>";
 				}
@@ -352,14 +324,12 @@ switch ($mode) {
 					else {
 						$chmod = " - <span class=\"no\">" . $LNG['reg_not_writable'] . "</span>";
 						$error = true;
-						$ftp   = true;
 					}
 					$config = "<tr><td class=\"transparent left\"><p>" . sprintf($LNG['reg_file'], 'includes/config.php') . "</p></td><td class=\"transparent\"><span class=\"yes\">" . $LNG['reg_found'] . "</span>" . $chmod . "</td></tr>";
 				}
 				else {
 					$config = "<tr><td class=\"transparent left\"><p>" . sprintf($LNG['reg_file'], 'includes/config.php') . "</p></td><td class=\"transparent\"><span class=\"no\">" . $LNG['reg_not_found'] . "</span></td></tr>";
 					$error  = true;
-					$ftp    = true;
 				}
 				$directories = array('cache/', 'cache/templates/', 'cache/sessions/', 'includes/');
 				$dirs        = "";
@@ -370,7 +340,6 @@ switch ($mode) {
 						} else {
 							$chmod = " - <span class=\"no\">" . $LNG['reg_not_writable'] . "</span>";
 							$error = true;
-							$ftp = true;
 						}
 						$dirs .= "<tr><td class=\"transparent left\"><p>" . sprintf($LNG['reg_dir'], $dir) . "</p></td><td class=\"transparent\"><span class=\"yes\">" . $LNG['reg_found'] . "</span>" . $chmod . "</td></tr>";
 					}
@@ -392,7 +361,6 @@ switch ($mode) {
 					'gdlib'  => $gdlib,
 					'PHP'    => $PHP,
 					'pdo'    => $pdo,
-					'ftp'    => $ftp,
 					'iniset' => $iniset,
 					'global' => $global));
 				$template->show('ins_req.tpl');

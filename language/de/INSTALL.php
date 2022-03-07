@@ -67,15 +67,6 @@ $LNG['reg_json_need']			= 'Erweiterung &raquo;JSON&laquo; verfügbar?';
 $LNG['reg_iniset_need']			= 'PHP-Funktion &raquo;ini_set&laquo; vorhanden?';
 $LNG['reg_global_need']			= 'register_globals deaktiviert?';
 $LNG['reg_global_desc']			= '2Moons wird auch funktionieren, wenn diese Einstellung aktiviert ist. Allerdings wird aus Sicherheitsgründen empfohlen, register_globals in der PHP-Installation zu deaktivieren, falls dies möglich ist.';
-$LNG['req_ftp_head']			= 'Eingabe der Zugangsdaten für FTP';
-$LNG['req_ftp_desc']			= 'Geben Sie Ihre FTP Daten ein, damit 2Moons automatisch die Probleme beheben kann. Alternativ können Sie auch manuell die Schreibrechte vergeben.';
-$LNG['req_ftp_host']			= 'Hostname';
-$LNG['req_ftp_username']		= 'Benutzername';
-$LNG['req_ftp_password']		= 'Kennwort';
-$LNG['req_ftp_dir']				= 'Installationspfad zu 2Moons';
-$LNG['req_ftp_send']			= 'Absenden';
-$LNG['req_ftp_error_data']		= 'Mit den angegebenen Zugangsdaten konnte keine Verbindung zu einem FTP-Server hergestellt werden.';
-$LNG['req_ftp_error_dir']		= 'Das eingegebene Verzeichnis ist ungültig.';
 
 $LNG['step1_head']				= 'Datenbankzugang konfigurieren';
 $LNG['step1_desc']				= 'Nachdem nun festgestellt wurde, dass 2Moons auf deinem Server betrieben werden kann, musst du noch einige Informationen angeben. Wenn du nicht weißt, wie die Verbindungsdaten für deine Datenbank lauten, kontaktiere bitte als erstes deinen Webhosting-Provider oder wende dich an die 2Moons Support-Foren. Wenn du Daten eingibst, prüfe diese bitte sorgfältig, bevor du fortfährst.';

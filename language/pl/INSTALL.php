@@ -67,15 +67,6 @@ $LNG['reg_json_need']			= 'Dostępny &raquo;JSON&laquo; ?';
 $LNG['reg_iniset_need']			= 'Funkcja php &raquo;ini_set&laquo; dostępna?';
 $LNG['reg_global_need']			= 'register_globals deaktywowane?';
 $LNG['reg_global_desc']			= '2Moons nie będzie funkcjonował gdy register_globals jest aktywne. Z powodów bezpieczeństwa zaleca się by, register_globals wyłączyć w ustawieniach php.';
-$LNG['req_ftp_head']			= 'Dostęp do FTP';
-$LNG['req_ftp_desc']			= 'Tutaj podaj dane dostępowe do serwera FTP, dzięki temu 2Moons będzie mogło się automatycznie aktualizować. Alternatywnym sposobem jest robienie tego ręcznie.';
-$LNG['req_ftp_host']			= 'Hostname';
-$LNG['req_ftp_username']		= 'Nazwa użytkownika';
-$LNG['req_ftp_password']		= 'Hasło';
-$LNG['req_ftp_dir']				= 'Ścieżka do katalogu w którym jest zainstalowane 2Moons';
-$LNG['req_ftp_send']			= 'Wyślij';
-$LNG['req_ftp_error_data']		= 'Połączenie z serwerem nie powiodło się.';
-$LNG['req_ftp_error_dir']		= 'Błędna ścieżka dostępu do plików.';
 
 $LNG['step1_head']				= 'Konfiguracja bazy danych';
 $LNG['step1_desc']				= 'Tutaj musisz podać dane do połączenia się z baza mysql, jeśli ich nie znasz skontaktują się usługodwacą hostingu, lub napisz na forum wsparcia.';
