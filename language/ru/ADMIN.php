@@ -1140,6 +1140,7 @@ $LNG['cronjob_dom']                    = 'Дней';
 $LNG['cronjob_month']                  = 'Месяцев';
 $LNG['cronjob_dow']                    = 'Дни';
 $LNG['cronjob_class']                  = 'Класс';
+$LNG['cronjob_lastTime']               = 'Последняя казнь';
 $LNG['cronjob_nextTime']               = 'Запуск';
 $LNG['cronjob_inActive']               = 'Включен';
 $LNG['cronjob_edit']                   = 'Редактировать';
