@@ -479,6 +479,7 @@ $LNG['cronjob_dom']					= 'Gun';
 $LNG['cronjob_month']				= 'Ay';
 $LNG['cronjob_dow']					= 'Hangi Gun';
 $LNG['cronjob_class']				= 'class';
+$LNG['cronjob_lastTime']            = 'Son koşu';
 $LNG['cronjob_nextTime']			= 'Bir Sonraki';
 $LNG['cronjob_inActive']			= 'Aktif';
 $LNG['cronjob_lock']				= 'Kilitli';

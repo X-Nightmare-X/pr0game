@@ -1218,6 +1218,7 @@ $LNG['cronjob_dom'] = 'Tag';
 $LNG['cronjob_month'] = 'Monat';
 $LNG['cronjob_dow'] = 'Wochentag';
 $LNG['cronjob_class'] = 'class';
+$LNG['cronjob_lastTime'] = 'Letzte Ausführung';
 $LNG['cronjob_nextTime'] = 'Nächste Ausführung';
 $LNG['cronjob_inActive'] = 'Aktiv';
 $LNG['cronjob_edit'] = 'Bearbeiten';
