@@ -1167,6 +1167,7 @@ $LNG['cronjob_dom']					= 'Dni';
 $LNG['cronjob_month']				= 'Miesiące';
 $LNG['cronjob_dow']					= 'Tygodnie';
 $LNG['cronjob_class']				= 'Klasa';
+$LNG['cronjob_lastTime']            = 'Ostatnie wykonanie';
 $LNG['cronjob_nextTime']			= 'Następne wykonanie';
 $LNG['cronjob_inActive']			= 'Aktywne';
 $LNG['cronjob_edit']				= 'Edytuj';
