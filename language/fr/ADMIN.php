@@ -1247,6 +1247,7 @@ $LNG['cronjob_dom']					= 'Jour';
 $LNG['cronjob_month']				= 'Mois';
 $LNG['cronjob_dow']					= 'Jour de la semaine';
 $LNG['cronjob_class']				= 'class';
+$LNG['cronjob_lastTime']            = 'Dernière exécution';
 $LNG['cronjob_nextTime']			= 'Prochaine fois';
 $LNG['cronjob_inActive']			= 'Active';
 $LNG['cronjob_lock']				= 'Verouillage';

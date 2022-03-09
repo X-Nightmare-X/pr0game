@@ -1222,6 +1222,7 @@ $LNG['cronjob_dom'] = 'Day';
 $LNG['cronjob_month'] = 'Month';
 $LNG['cronjob_dow'] = 'Day of Week';
 $LNG['cronjob_class'] = 'class';
+$LNG['cronjob_lastTime'] = 'Last Time';
 $LNG['cronjob_nextTime'] = 'Next Time';
 $LNG['cronjob_inActive'] = 'Active';
 $LNG['cronjob_lock'] = 'locked';
