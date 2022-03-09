@@ -161,8 +161,8 @@ function ShowCronjobOverview()
 	{
         $cronjobLogLastExecSql = "SELECT MAX(`executionTime`) AS lastExecution FROM " . CRONJOBS_LOG . " WHERE cronjobID = " . $CronjobRow['cronjobID'] . ";";
         $dataCronjobLog = Database::get()->selectSingle($cronjobLogLastExecSql);
-        if (!is_null($dataCronjobLog)) {
-            $lastExecutionDateTime = new DateTime($dataCronjobLog['lastExecution']);
+        if (!is_null($dataCronjobLog['lastExecution'])) {
+            $lastExecutionDateTime = (new DateTime($dataCronjobLog['lastExecution']))->getTimestamp();
         }
 
 		$CronjobArray[]	= array(
@@ -175,7 +175,7 @@ function ShowCronjobOverview()
 			'month'			=> getCronjobTimes($CronjobRow['month'],12),
 			'dow'			=> getCronjobTimes($CronjobRow['dow'],6),
 			'class'			=> $CronjobRow['class'],
-            'lastExecution' => $lastExecutionDateTime->getTimestamp(),
+            'lastExecution' => $lastExecutionDateTime,
 			'nextTime'		=> $CronjobRow['nextTime'],
 			'lock'			=> !empty($CronjobRow['lock']),
 		);
