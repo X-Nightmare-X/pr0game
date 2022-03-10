@@ -33,7 +33,7 @@ $template->setCaching(false);
 $template->assign(array(
 	'lang'       => $LNG->getLanguage(),
 	'Selector'   => $LNG->getAllowedLangs(false),
-	'title'      => $LNG['title_install'] . ' &bull; 2Moons',
+	'title'      => $LNG['title_install'] . ' &bull; pr0game',
 	'header'     => $LNG['menu_install'],
 	'canUpgrade' => file_exists('includes/config.php') && filesize('includes/config.php') !== 0
 ));
