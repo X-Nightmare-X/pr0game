@@ -214,7 +214,7 @@ switch ($mode) {
                                 '<b><i>You should restore with a backup.</i></b>',
                                 basename($fileInfo['filePath']),
                                 curl_error($ch)
-                            );
+                            )
                         );
                     }
                     curl_close($ch);
@@ -241,7 +241,7 @@ switch ($mode) {
                             sprintf(
                                 'Update error.<br><br>%s<br><br><b><i>You should restore with a backup.</i></b>',
                                 $e->getMessage()
-                            );
+                            )
                         );
                     }
                     break;
