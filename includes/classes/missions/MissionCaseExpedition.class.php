@@ -88,21 +88,21 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		return ($maxFactor != 2500 ? $maxFactor : 2400);
 	}
 
-	// 89 / 10 / 1%
-	private function determineEventSize()
-	{
-		$eventSize	= mt_rand(0, 99);
-		
-		if (10 < $eventSize) {
+    // 89 / 10 / 1%
+    private function determineEventSize()
+    {
+        $eventSize	= mt_rand(0, 99);
+
+        if (10 < $eventSize) {
             $eventCategory = 0; // 89%
         } elseif (0 < $eventSize) {
             $eventCategory = 1; // 10%
         } else {
             $eventCategory = 2; // 1%
         }
-		
-		return $eventCategory;
-	}
+
+        return $eventCategory;
+    }
 
 	private function handleEventFoundRes()
 	{
