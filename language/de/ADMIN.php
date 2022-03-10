@@ -49,7 +49,7 @@ $LNG['time_minutes'] = 'Minuten';
 $LNG['time_seconds'] = 'Sekunden';
 //###########################################################//
 
-$LNG['info_information'] = 'Informations-Vorlage zum Posten eines Bugs im <a href="%s" target="tracker">2Moons Board</a><br>Ohne diese Vorlage gibt es keinen Support!';
+$LNG['info_information'] = 'Informations-Vorlage zum Posten eines Bugs im <a href="%s" target="tracker">pr0game Board</a><br>Ohne diese Vorlage gibt es keinen Support!';
 
 //---------------	¿SI O NO? - YES OR NO? - JA ODER NEIN?	------------------------// 
 $LNG['one_is_yes_1'] = 'Ja';
@@ -308,9 +308,9 @@ $LNG['ma_modes'] = array('INGAME Nachricht', 'EMail Nachricht', 'INGAME &amp; EM
 //###########################################################//
 
 //---------------	PÁGINA DE INICIO - OVERVIEW	------------------------//
-$LNG['ow_title'] = 'Willkommen zu 2Moons';
+$LNG['ow_title'] = 'Willkommen zu pr0game';
 $LNG['ow_donate'] = 'Spende';
-$LNG['ow_welcome_text'] = 'Herzlich Willkommen zum allseits beliebten 2Moons. (:';
+$LNG['ow_welcome_text'] = 'Herzlich Willkommen zum allseits beliebten pr0game. (:';
 $LNG['ow_overview'] = 'Kontrollzentrum';
 $LNG['ow_support'] = 'Support';
 $LNG['ow_credits'] = 'Credits';
@@ -1105,8 +1105,8 @@ $LNG['up_del'] = 'Del:';
 $LNG['up_submit'] = 'Absenden';
 $LNG['up_version'] = 'Version';
 $LNG['up_chmod_error'] = "Keine Schreibrechte für Ordner:\n\n";
-$LNG['up_need_curl'] = 'Fehler: cURL nicht vorhanden.<br />Das UpdateSystem von 2Moons benötigt cURL, um die aktuellen Dateien herunter zu laden.';
-$LNG['up_no_xml_ext'] = 'Fehler: XML Parser nicht vorhanden.<br />Das UpdateSystem von 2Moons benötigt XML Parser, um die aktuellen Dateien verarbeiten zu können.';
+$LNG['up_need_curl'] = 'Fehler: cURL nicht vorhanden.<br />Das UpdateSystem von pr0game benötigt cURL, um die aktuellen Dateien herunter zu laden.';
+$LNG['up_no_xml_ext'] = 'Fehler: XML Parser nicht vorhanden.<br />Das UpdateSystem von pr0game benötigt XML Parser, um die aktuellen Dateien verarbeiten zu können.';
 $LNG['up_offline'] = 'Update Server zur Zeit nicht verfügbar.';
 
 //Active Page

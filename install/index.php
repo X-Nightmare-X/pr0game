@@ -33,7 +33,7 @@ $template->setCaching(false);
 $template->assign(array(
 	'lang'       => $LNG->getLanguage(),
 	'Selector'   => $LNG->getAllowedLangs(false),
-	'title'      => $LNG['title_install'] . ' &bull; 2Moons',
+	'title'      => $LNG['title_install'] . ' &bull; pr0game',
 	'header'     => $LNG['menu_install'],
 	'canUpgrade' => file_exists('includes/config.php') && filesize('includes/config.php') !== 0
 ));
@@ -187,7 +187,7 @@ switch ($mode) {
                                 '<b><i>You should restore with a backup.</i></b>',
                                 basename($fileInfo['filePath']),
                                 curl_error($ch)
-                            );
+                            )
                         );
                     }
                     curl_close($ch);
@@ -214,7 +214,7 @@ switch ($mode) {
                             sprintf(
                                 'Update error.<br><br>%s<br><br><b><i>You should restore with a backup.</i></b>',
                                 $e->getMessage()
-                            );
+                            )
                         );
                     }
                     break;
@@ -282,13 +282,7 @@ switch ($mode) {
 					$iniset = "<span class=\"no\">" . $LNG['reg_no'] . "</span>";
 					$error  = true;
 				}
-				if (!ini_get('register_globals')) {
-					$global = "<span class=\"yes\">" . $LNG['reg_yes'] . "</span>";
-				}
-				else {
-					$global = "<span class=\"no\">" . $LNG['reg_no'] . "</span>";
-					$error  = true;
-				}
+                $global = "<span class=\"yes\">" . $LNG['reg_yes'] . "</span>";
 				if (!extension_loaded('gd')) {
 					$gdlib = "<span class=\"no\">" . $LNG['reg_no'] . "</span>";
 				}

@@ -69,16 +69,24 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 				':type'		=> 1,
 				':universe'	=> $this->_fleet['fleet_universe']
 		), 'total');
-		
-		$MaxPoints = ($topPoints > 100000000) ? 12500 :
-			($topPoints > 75000000) ? 10500 :
-			($topPoints > 50000000) ? 9000 :
-			($topPoints > 25000000) ? 7500 :
-			($topPoints > 5000000) ? 6000 :
-			($topPoints > 1000000) ? 4500 :
-			($topPoints > 100000) ? 3000 : 1250;
-		
-		return $MaxPoints;
+
+        if ($topPoints > 100000000) {
+            return 12500;
+        } elseif ($topPoints > 75000000) {
+            return 10500;
+        } elseif ($topPoints > 50000000) {
+            return 9000;
+        } elseif ($topPoints > 25000000) {
+            return 7500;
+        } elseif ($topPoints > 5000000) {
+            return 6000;
+        } elseif ($topPoints > 1000000) {
+            return 4500;
+        } elseif ($topPoints > 100000) {
+            return 3000;
+        } else {
+            return 1250;
+        }
 	}
 	
 	// for some reason, 1 value differs from the table. Danke Merkel.
@@ -88,17 +96,21 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		return ($maxFactor != 2500 ? $maxFactor : 2400);
 	}
 
-	// 89 / 10 / 1%
-	private function determineEventSize()
-	{
-		$eventSize	= mt_rand(0, 100);
-		
-		if (10 < $eventSize) $eventCategory = 0; // 89%
-		elseif (0 < $eventSize) $eventCategory = 1; // 10%
-		else $eventCategory = 2; // 1%
-		
-		return $eventCategory;
-	}
+    // 89 / 10 / 1%
+    private function determineEventSize()
+    {
+        $eventSize	= mt_rand(0, 99);
+
+        if (10 < $eventSize) {
+            $eventCategory = 0; // 89%
+        } elseif (0 < $eventSize) {
+            $eventCategory = 1; // 10%
+        } else {
+            $eventCategory = 2; // 1%
+        }
+
+        return $eventCategory;
+    }
 
 	private function handleEventFoundRes()
 	{

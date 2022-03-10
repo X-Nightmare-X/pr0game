@@ -49,7 +49,7 @@ $LNG['time_minutes']	= 'Minutos';
 $LNG['time_seconds']	= 'Segundos';
 //###########################################################//
 
-$LNG['info_information']	= 'Para información y reporte de errores ir a <a href="%s" target="tracker">2Moons Board</a><br>¡No hay soporte de otra forma!';
+$LNG['info_information']	= 'Para información y reporte de errores ir a <a href="%s" target="tracker">pr0game Board</a><br>¡No hay soporte de otra forma!';
 
 //---------------	¿SI O NO? - YES OR NO? - JA ODER NEIN?	------------------------// 
 $LNG['one_is_yes_1']	= 'Sí';
@@ -308,9 +308,9 @@ $LNG['ma_modes']				= array('Mensaje Interno', 'Correo Electrónico', 'Mensaje i
 //###########################################################//
 
 //---------------	PÁGINA DE INICIO - OVERVIEW	------------------------//
-$LNG['ow_title']					= 'Bienvenido a 2Moons';
+$LNG['ow_title']					= 'Bienvenido a pr0game';
 $LNG['ow_donate']					= 'Donar';
-$LNG['ow_welcome_text']				= 'Bienvenido al siempre popular 2Moons.  (:';
+$LNG['ow_welcome_text']				= 'Bienvenido al siempre popular pr0game.  (:';
 $LNG['ow_overview']					= 'Panel de Control';
 $LNG['ow_support']					= 'Soporte';
 $LNG['ow_credits']					= 'Créditos';
@@ -1099,8 +1099,8 @@ $LNG['up_del']						= 'Eliminar';
 $LNG['up_submit']						= 'Enviar';
 $LNG['up_version']						= 'Versión';
 $LNG['up_chmod_error']					= "No se poseen permisos de escritura en este directorio:\n\n%s";
-$LNG['up_need_curl']					= 'Error: cURL no está disponible.<br />El Sistema de Actualizaciones de 2Moons requiere cURL para poder descargar los archivos actualizados.';
-$LNG['up_no_xml_ext']					= 'Error:. Analizador XML no existe.<br />La actualización del sistema de 2Moons, requiere analizador XML para procesar los archivos actuales.';
+$LNG['up_need_curl']					= 'Error: cURL no está disponible.<br />El Sistema de Actualizaciones de pr0game requiere cURL para poder descargar los archivos actualizados.';
+$LNG['up_no_xml_ext']					= 'Error:. Analizador XML no existe.<br />La actualización del sistema de pr0game, requiere analizador XML para procesar los archivos actuales.';
 $LNG['up_offline']					= 'El Servidor de actualización no está disponible en este momento.';
 
 //Active Page

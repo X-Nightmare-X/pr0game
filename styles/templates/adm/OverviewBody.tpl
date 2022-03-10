@@ -21,7 +21,7 @@
 			<th colspan="2">{$LNG.ow_support}</th>
 		</tr>
 		<tr>
-			<td colspan="2"><a href="https://github.com/jkroepke/2Moons/" target="_blank">Project Homepage</a>
+			<td colspan="2"><a href="https://git.pr0game.com/Rosenreeman/pr0game" target="_blank">Project Homepage</a>
 				<!--<br><a target="_blank" href="http://2moons.cc/" target="_blank">2moons.cc - {$LNG.ow_forum}</a>--></td>
 		</tr>
 		<!--
@@ -216,9 +216,13 @@
 	google.load("feeds", "1");
 	google.setOnLoadCallback(initialize);
 	function initialize() {
-		var feedControl = new google.feeds.FeedControl();
-		feedControl.addFeed("https://github.com/jkroepke/2Moons/commits/master.atom", "");
-		feedControl.draw(document.getElementById("feed"));
+		//var feedControl = new google.feeds.FeedControl();
+		//feedControl.addFeed("https://github.com/jkroepke/2Moons/commits/master.atom", "");
+		//feedControl.addFeed("http://code.google.com/feeds/p/2moons/svnchanges/basic", "");
+		//feedControl.draw(document.getElementById("feed"));
+		//var feedControl = new google.feeds.FeedControl();
+        //feedControl.addFeed("https://www.facebook.com/feeds/page.php?id=129282307106646&format=rss20", "");
+        //feedControl.draw(document.getElementById("news"));
 	}
 </script>
 {include file="overall_footer.tpl"}

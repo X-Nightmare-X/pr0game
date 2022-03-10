@@ -37,7 +37,7 @@ $LNG['time_minutes']					= 'Minutes';
 $LNG['time_seconds']					= 'Secondes';
 //###########################################################//
 
-$LNG['info_information']	= 'Soumettre les bugs à : <a href="%s" target="tracker">2Moons Board</a><br>Ou bien Il n\'y a aucun support !';
+$LNG['info_information']	= 'Soumettre les bugs à : <a href="%s" target="tracker">pr0game Board</a><br>Ou bien Il n\'y a aucun support !';
 
 //---------------	�SI O NO? - YES OR NO? - JA ODER NEIN?	------------------------//
 $LNG['one_is_yes_1']					= 'Oui';
@@ -414,7 +414,7 @@ $LNG['se_news']						= 'Actualités';
 $LNG['se_verfiy_mail']					= 'Vérification de l\'adresse Mail';
 $LNG['se_verfiy_mail_info']				= 'Si ce paramètre est actif, les joueurs devront cliquer sur un lien d\'activation qui leur ait envoyé par email.<br>Note: Cela nécessite que les paramètres SMTP pour le serveur SMTP soient remplis ci-dessous.';
 $LNG['se_smtp']						= 'Paramètres SMTP';
-$LNG['se_smtp_info']					= 'Entrez votre serveur SMTP ici. Cela permet au logiciel 2Moons de communiquer avec vos joueurs à travers votre serveur SMTP.';
+$LNG['se_smtp_info']					= 'Entrez votre serveur SMTP ici. Cela permet au logiciel pr0game de communiquer avec vos joueurs à travers votre serveur SMTP.';
 $LNG['se_mail_active']					= 'Activer la messagerie';
 $LNG['se_mail_use']						= 'Messagerie actuelle';
 $LNG['se_mail_sel_0']					= 'PHP mail() Fonction';
@@ -1133,8 +1133,8 @@ $LNG['up_del']							= 'Supprimer :';
 $LNG['up_submit']						= 'Envoyer';
 $LNG['up_version']						= 'Version';
 $LNG['up_chmod_error']					= 'Aucune permission d\'écriture pour le dossier:\n\n%s';
-$LNG['up_need_curl']					= 'Erreur: cURL n\'est pas disponible.<br />2Moons système de mise à jour nécessite cURL, pour charger les données réelles téléchargées.';
-$LNG['up_no_xml_ext']					= 'Erreur: XML Parser n\'est pas présent.<br>Le maintien de 2Moons exige Parser XML pour traiter les fichiers présents.';
+$LNG['up_need_curl']					= 'Erreur: cURL n\'est pas disponible.<br />pr0game système de mise à jour nécessite cURL, pour charger les données réelles téléchargées.';
+$LNG['up_no_xml_ext']					= 'Erreur: XML Parser n\'est pas présent.<br>Le maintien de pr0game exige Parser XML pour traiter les fichiers présents.';
 $LNG['up_offline']						= 'Mise a jour serveur non disponible.';
 /*
 $LNG['up_error_fsockopen']				= 'Fonction file_get_contents fsockopen désactivé';

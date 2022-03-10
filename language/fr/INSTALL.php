@@ -14,8 +14,8 @@ $LNG['title_install']		= 'Installeur';
 
 $LNG['intro_lang']			= "Language";
 $LNG['intro_instal']		= "Installation";
-$LNG['intro_welcome']		= "Bievenue dans 2Moons!";
-$LNG['intro_text']			= "Un des meilleurs clones Ogame : 2 Moons.<br>The latest is and 2 Moons the stablest flat rate was ever developed. 2 of Moon shines by stability, flexibility, dynamics, quality and user-friendliness. We hope always to be better than her expectations.<br><br>The installation system guides you through the install or upgrade from an older version to the latest. On questions or trouble don't hesitate to contact us.<br><br>2Moons is an open source project licensed under the GNU GPL v3. For the license please click on the item in the menu.<br><br>Before the installation starts, a test is conducted, if system requirements are met.";
+$LNG['intro_welcome']		= "Bievenue dans pr0game!";
+$LNG['intro_text']			= "Un des meilleurs clones Ogame : 2 Moons.<br>The latest is and 2 Moons the stablest flat rate was ever developed. 2 of Moon shines by stability, flexibility, dynamics, quality and user-friendliness. We hope always to be better than her expectations.<br><br>The installation system guides you through the install or upgrade from an older version to the latest. On questions or trouble don't hesitate to contact us.<br><br>pr0game is an open source project licensed under the GNU GPL v3. For the license please click on the item in the menu.<br><br>Before the installation starts, a test is conducted, if system requirements are met.";
 
 $LNG['reg_yes']				= "Oui";
 $LNG['reg_no']				= "Non";

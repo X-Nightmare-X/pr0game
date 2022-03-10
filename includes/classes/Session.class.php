@@ -43,8 +43,6 @@ class Session
 		ini_set('session.gc_maxlifetime', SESSION_LIFETIME);
 		ini_set('session.gc_probability', '1');
 		ini_set('session.gc_divisor', '1000');
-		ini_set('session.bug_compat_warn', '0');
-		ini_set('session.bug_compat_42', '0');
 		ini_set('session.cookie_httponly', true);
 		ini_set('session.save_path', CACHE_PATH.'sessions');
 		ini_set('upload_tmp_dir', CACHE_PATH.'sessions');

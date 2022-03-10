@@ -1,12 +1,12 @@
 <div class="left">
-<h2>InformaciÛn de soporte para multiuniverso</h2>
-<p>2Moons puede soportar multiuniverso de forma saludable. Para ello debe configurar el servidor Web de acuerdo con la solucitud.</p>
-<p>Puede averiguar las caracteristicas de su servidor en el botÛn de "InformaciÛn" del men˙ "General". Si no est· seguro de que su servidor pueda soportar la carga extra de usar varios universos mejor pregunte al departamento de soporte tÈcnico de su empresa de alojamiento.</p>
+<h2>Informaci√≥n de soporte para multiuniverso</h2>
+<p>pr0game puede soportar multiuniverso de forma saludable. Para ello debe configurar el servidor Web de acuerdo con la solucitud.</p>
+<p>Puede averiguar las caracteristicas de su servidor en el bot√≥n de "Informaci√≥n" del men√∫ "General". Si no est√° seguro de que su servidor pueda soportar la carga extra de usar varios universos mejor pregunte al departamento de soporte t√©cnico de su empresa de alojamiento.</p>
 <h3>Apache</h3>
-<p>Si ejecuta un servidor Apache, debe eliminar las lÌneas de la 48 a la 51 en el archivo .htacces en la raiz de su directorio de instalaciÛn del juego. <br>
-Adem·s, se requiere que el mÛdulo "mod_rewrite" estÈ activo.</p>
+<p>Si ejecuta un servidor Apache, debe eliminar las l√≠neas de la 48 a la 51 en el archivo .htacces en la raiz de su directorio de instalaci√≥n del juego. <br>
+Adem√°s, se requiere que el m√≥dulo "mod_rewrite" est√© activo.</p>
 <h3>Nginx</h3>
-<p>Si ejecuta un servidor Nginx, se ha de cambiar la siguiente regla de la configuraciÛn del host virtual:</p>
+<p>Si ejecuta un servidor Nginx, se ha de cambiar la siguiente regla de la configuraci√≥n del host virtual:</p>
 <p><code>{NGINX-CODE}</code></p>
-<p>Sencillamente, copie el fragmento de cÛdigo debajo de la lÌnea "server_name".</p>
+<p>Sencillamente, copie el fragmento de c√≥digo debajo de la l√≠nea "server_name".</p>
 </div>

@@ -57,7 +57,7 @@ function ShowInformationPage()
 
 	$template	= new template();
 	$template->assign_vars(array(
-		'info_information'	=> sprintf($LNG['info_information'], 'https://github.com/jkroepke/2Moons/issues'),
+		'info_information'	=> sprintf($LNG['info_information'], 'https://git.pr0game.com/Rosenreeman/pr0game/issues'),
 		'info'				=> $_SERVER['SERVER_SOFTWARE'],
 		'vPHP'				=> PHP_VERSION,
 		'vAPI'				=> PHP_SAPI,
@@ -70,7 +70,7 @@ function ShowInformationPage()
 		'bcmath'			=> extension_loaded('bcmath') ? 'Ja' : 'Nein',
 		'curl'				=> extension_loaded('curl') ? 'Ja' : 'Nein',
 		'browser'			=> $_SERVER['HTTP_USER_AGENT'],
-		'safemode'			=> ini_get('safe_mode') ? 'Ja' : 'Nein',
+		'safemode'			=> 'Nein',
 		'memory'			=> ini_get('memory_limit'),
 		'suhosin'			=> ini_get('suhosin.request.max_value_length') ? 'Ja' : 'Nein',
 		'log_errors'		=> ini_get('log_errors') ? 'Aktiv' : 'Inaktiv',

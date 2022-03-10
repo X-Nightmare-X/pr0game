@@ -94,12 +94,7 @@ class Smarty_Internal_SmartyTemplateCompiler extends Smarty_Internal_TemplateCom
         if ($isTemplateSource && $this->template->caching) {
             $this->parser->insertPhpCode("<?php\n\$_smarty_tpl->compiled->nocache_hash = '{$this->nocache_hash}';\n?>\n");
         }
-        if (function_exists('mb_internal_encoding') && ((int) ini_get('mbstring.func_overload')) & 2) {
-            $mbEncoding = mb_internal_encoding();
-            mb_internal_encoding('ASCII');
-        } else {
-            $mbEncoding = null;
-        }
+        $mbEncoding = null;
 
         if ($this->smarty->_parserdebug) {
             $this->parser->PrintTrace();
