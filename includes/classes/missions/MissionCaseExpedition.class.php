@@ -91,11 +91,15 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 	// 89 / 10 / 1%
 	private function determineEventSize()
 	{
-		$eventSize	= mt_rand(0, 100);
+		$eventSize	= mt_rand(0, 99);
 		
-		if (10 < $eventSize) $eventCategory = 0; // 89%
-		elseif (0 < $eventSize) $eventCategory = 1; // 10%
-		else $eventCategory = 2; // 1%
+		if (10 < $eventSize) {
+            $eventCategory = 0; // 89%
+        } elseif (0 < $eventSize) {
+            $eventCategory = 1; // 10%
+        } else {
+            $eventCategory = 2; // 1%
+        }
 		
 		return $eventCategory;
 	}
