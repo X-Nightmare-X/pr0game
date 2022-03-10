@@ -60,9 +60,7 @@ class BasicFileUtil {
 			return $path;
 		}
 		else {
-			if (ini_get('safe_mode')) $reason = "due to php safe_mode restrictions";
-			else $reason = "due to an unknown reason";
-			throw new Exception('There is no access to the system temporary folder '.$reason.' and no user specific temporary folder exists in '.ROOT_PATH.'! This is a misconfiguration of your webserver software! Please create a folder called '.$path.' using your favourite ftp program, make it writable and then retry this installation.', 10000);
+			throw new Exception('There is no access to the system temporary folder due to an unknown reason and no user specific temporary folder exists in '.ROOT_PATH.'! This is a misconfiguration of your webserver software! Please create a folder called '.$path.' using your favourite ftp program, make it writable and then retry this installation.', 10000);
 		}
 	}
 }

@@ -70,7 +70,7 @@ function ShowInformationPage()
 		'bcmath'			=> extension_loaded('bcmath') ? 'Ja' : 'Nein',
 		'curl'				=> extension_loaded('curl') ? 'Ja' : 'Nein',
 		'browser'			=> $_SERVER['HTTP_USER_AGENT'],
-		'safemode'			=> ini_get('safe_mode') ? 'Ja' : 'Nein',
+		'safemode'			=> 'Nein',
 		'memory'			=> ini_get('memory_limit'),
 		'suhosin'			=> ini_get('suhosin.request.max_value_length') ? 'Ja' : 'Nein',
 		'log_errors'		=> ini_get('log_errors') ? 'Aktiv' : 'Inaktiv',

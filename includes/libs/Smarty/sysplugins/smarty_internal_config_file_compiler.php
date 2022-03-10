@@ -117,12 +117,7 @@ class Smarty_Internal_Config_File_Compiler
         /* @var Smarty_Internal_ConfigFileParser $parser */
         $parser = new $this->parser_class($lex, $this);
 
-        if (function_exists('mb_internal_encoding') && ((int) ini_get('mbstring.func_overload')) & 2) {
-            $mbEncoding = mb_internal_encoding();
-            mb_internal_encoding('ASCII');
-        } else {
-            $mbEncoding = null;
-        }
+        $mbEncoding = null;
 
         if ($this->smarty->_parserdebug) {
             $parser->PrintTrace();

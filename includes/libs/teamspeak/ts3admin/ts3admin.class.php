@@ -4244,6 +4244,7 @@ class ts3admin {
      * @return		mixed data
      */
     private function getData($mode, $command) {
+        $orig_debug_backtrace = debug_backtrace();
 
         $validModes = array('boolean', 'array', 'multi', 'plain');
 
@@ -4257,7 +4258,7 @@ class ts3admin {
             return $this->generateOutput(false, array('Error: you have to enter a command'), false);
         }
 
-        $fetchData = $this->executeCommand($command, debug_backtrace());
+        $fetchData = $this->executeCommand($command, $orig_debug_backtrace);
 
 
         $fetchData['data'] = str_replace(array('error id=0 msg=ok', chr('01')), '', $fetchData['data']);
@@ -4415,8 +4416,8 @@ class ts3admin {
      * @return     array debugLog
      */
     private function addDebugLog($text, $methodName = '', $line = '') {
+        $backtrace = debug_backtrace();
         if(empty($methodName) and empty($line)) {
-            $backtrace = debug_backtrace();
             $methodName = $backtrace[1]['function'];
             $line = $backtrace[0]['line'];
         }
