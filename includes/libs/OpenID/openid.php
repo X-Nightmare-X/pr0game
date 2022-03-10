@@ -264,6 +264,7 @@ class LightOpenID
 
     protected function request_streams($url, $method='GET', $params=array(), $update_claimed_id)
     {
+        $orig_args = func_get_args();
         if(!$this->hostExists($url)) {
             throw new ErrorException("Could not connect to $url.", 404);
         }
@@ -320,9 +321,8 @@ class LightOpenID
             if(intval(substr($headers[0], strlen('HTTP/1.1 '))) == 405) {
                 # The server doesn't support HEAD, so let's emulate it with
                 # a GET.
-                $args = func_get_args();
-                $args[1] = 'GET';
-                call_user_func_array(array($this, 'request_streams'), $args);
+                $orig_args[1] = 'GET';
+                call_user_func_array(array($this, 'request_streams'), $orig_args);
                 return $this->headers;
             }
 
@@ -355,7 +355,7 @@ class LightOpenID
     protected function request($url, $method='GET', $params=array(), $update_claimed_id=false)
     {
         if (function_exists('curl_init')
-            && (!in_array('https', stream_get_wrappers()) || !ini_get('safe_mode') && !ini_get('open_basedir'))
+            && (!in_array('https', stream_get_wrappers()) || !ini_get('open_basedir'))
         ) {
             return $this->request_curl($url, $method, $params, $update_claimed_id);
         }
@@ -732,7 +732,7 @@ class LightOpenID
             # wants to verify. stripslashes() should solve that problem, but we can't
             # use it when magic_quotes is off.
             $value = $this->data['openid_' . str_replace('.','_',$item)];
-            $params['openid.' . $item] = function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc() ? stripslashes($value) : $value;
+            $params['openid.' . $item] = stripslashes($value);
 
         }
 

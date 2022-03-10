@@ -33,14 +33,14 @@ steps:
     depends_on: [clone]
 
   - name: phpcompat74
-    failure: ignore
+    failure: always
     image: 1drop/php-utils:7.4
     commands:
       - phpcs --standard=.config/phpcs-phpcompat_74.xml.dist -d memory_limit=512M
     depends_on: [clone]
 
   - name: phpcompat80
-    failure: ignore
+    failure: always
     image: 1drop/php-utils:7.4
     commands:
       - phpcs --standard=.config/phpcs-phpcompat_80.xml.dist -d memory_limit=512M
