@@ -9,33 +9,39 @@ steps:
     image: 1drop/php-utils:7.4
     commands:
       - phpstan analyse --no-progress -c .config/phpstan.neon.dist --error-format=table --memory-limit 1G
+    depends_on: [clone]
 
   - name: phpcs
     failure: ignore
     image: 1drop/php-utils:7.4
     commands:
       - phpcs --standard=.config/phpcs.xml.dist -d memory_limit=512M
+    depends_on: [clone]
 
   - name: phpmd
     failure: ignore
     image: 1drop/php-utils:7.4
     commands:
       - phpmd . ansi .config/phpmd.ruleset.xml.dist --exclude cache/*
+    depends_on: [clone]
 
   - name: phpcpd
     failure: ignore
     image: 1drop/php-utils:7.4
     commands:
       - phpcpd --exclude cache/ .
+    depends_on: [clone]
 
   - name: phpcompat74
     failure: always
     image: 1drop/php-utils:7.4
     commands:
       - phpcs --standard=.config/phpcs-phpcompat_74.xml.dist -d memory_limit=512M
+    depends_on: [clone]
 
   - name: phpcompat80
     failure: always
     image: 1drop/php-utils:7.4
     commands:
       - phpcs --standard=.config/phpcs-phpcompat_80.xml.dist -d memory_limit=512M
+    depends_on: [phpcompat74]
