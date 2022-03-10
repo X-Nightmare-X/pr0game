@@ -16,6 +16,7 @@ use_dns_when_possible: true
 timezone: "Europe/Berlin"
 composer_version: ""
 web_environment: []
+webimage_extra_packages: [php7.4-imap, php7.4-opcache]
 
 # Key features of ddev's config.yaml:
 
