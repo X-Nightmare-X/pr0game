@@ -53,7 +53,7 @@ $LNG['bad_forum_url']				    		= 'Keine Foren-URL definiert!';
 $LNG['admin_access_1']				    		= 'Sie haben temporären Zugriff auf administrative Funktionen.';
 $LNG['admin_access_link']				    	= 'Deaktivieren Sie diesen Zugriff';
 $LNG['admin_access_2']				    		= ', wenn Sie ihn nicht länger benötigen.';
-
+$LNG['banned_message'] = 'Sie wurden gebannt. Wenn Sie glauben, dass es sich dabei um ein Missverständnis handelt, schreiben Sie uns uns über Discord: <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>';
 
 //----------------------------------------------------------------------------//
 //TOPNAV

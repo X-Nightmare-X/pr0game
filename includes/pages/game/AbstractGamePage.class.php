@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -97,7 +97,12 @@ abstract class AbstractGamePage
 		$config			= Config::get();
 
 		$PlanetSelect	= array();
-		if($USER['bana']==1) { echo 'You received a Ban. If you think this is a mistake, write on our Discord: <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>'; die(); }
+
+        if ($USER['bana'] == 1) {
+            echo $LNG['banned_message'];
+            die();
+        }
+
 		if(isset($USER['PLANETS'])) {
 			$USER['PLANETS']	= getPlanets($USER);
 		}
