@@ -180,6 +180,7 @@ switch ($mode) {
 		$httpRoot = PROTOCOL . HTTP_HOST . str_replace(array('\\', '//'), '/', dirname(dirname($_SERVER['SCRIPT_NAME'])) . '/');
 		$revision = $dbVersion;
 		$fileList = array();
+		$filePath = NULL;
 		$directoryIterator = new DirectoryIterator(ROOT_PATH . 'install/migrations/');
 		/** @var $fileInfo DirectoryIterator */
 		foreach ($directoryIterator as $fileInfo) {
