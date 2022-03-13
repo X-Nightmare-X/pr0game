@@ -15,12 +15,7 @@
 			<th colspan="2">{$LNG.ow_overview}</th>
 		</tr>
 		<tr>
-			<td style="height:50px" colspan="2">{$LNG.ow_welcome_text}
-				<!--
-                <br>
-                <iframe src="https://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2F2Moons%2F129282307106646&amp;width=292&amp;connections=0&amp;stream=false&amp;header=false&amp;height=62" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
-                -->
-			</td>
+			<td style="height:50px" colspan="2">{$LNG.ow_welcome_text}</td>
 		</tr>
 		<tr>
 			<th colspan="2">{$LNG.ow_support}</th>
@@ -77,9 +72,6 @@
 			</td>
 		</tr>
 		<!--
-	<tr>
-		<th colspan="2"><a href="https://www.facebook.com/2Moons.Game">{$LNG.ow_news}</a></th>
-	</tr>
 	<tr>
 		<td align="center" colspan="2">
 			<div id="news"></div>

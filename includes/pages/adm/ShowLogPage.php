@@ -31,7 +31,6 @@ function ShowLog()
 	#	target 0 => Server-Settings
 	#	target 1 => Universe-Settings
 	#	target 2 => Stat-Settings
-	#	target 4 => TeamSpeak-Settings
 	#	target 5 => Impressum-Settings
 	# 4 => Presents
 	#
@@ -84,20 +83,12 @@ function ShowLogDetail() {
 		'resource_multiplier' 		=> $LNG['se_resources_producion_speed'],
 		'forum_url' 				=> $LNG['se_forum_link'],
 		'game_speed' 				=> $LNG['se_general_speed'],
-		
-		'ts_modon' 			=> $LNG['ts_active'],
-		'ts_server' 		=> $LNG['ts_serverip'],
-		'ts_password' 		=> $LNG['ts_pass'],
-		'ts_cron_interval' 	=> $LNG['ts_cron'],
-		
+
 		'stat_settings' 	=> $LNG['cs_point_per_resources_used'],
 		'stat' 				=> $LNG['cs_points_to_zero'],
 		'stat_update_time' 	=> $LNG['cs_time_between_updates'],
 		'stat_level' 		=> $LNG['cs_access_lvl'],
 		
-		'capaktiv' 		=> $LNG['se_recaptcha_active'],
-		'cappublic' 	=> $LNG['se_recaptcha_public'],
-		'capprivate' 	=> $LNG['se_recaptcha_private'],
 		'ga_key' 		=> $LNG['se_google_key'],
 		
 		'metal'			=> $LNG['tech'][901],

@@ -324,7 +324,6 @@ $LNG['ow_database_errors']			= 'Hay errores en tu base de datos!';
 $LNG['ow_smtp_errors']				= '¡Compruebe la configuración de SMTP! - Actualmente no se envían los correos!';
 $LNG['ow_dir_not_writable']			= './%s no se puede escribir!';
 $LNG['ow_none']						= 'No hay alertas';
-$LNG['ow_news']						= 'Noticias';
 $LNG['ow_updates']					= 'Últimas Actualizaciones';
 $LNG['ow_developers']				= 'Promotor';
 
@@ -374,12 +373,6 @@ $LNG['se_noob_protect2']					= 'Protección N. puntos';
 $LNG['se_noob_protect3']					= 'Protección N. puntos limite';
 $LNG['se_noob_protect_e2']					= 'Límite de puntos en el que dejas de ser novato';
 $LNG['se_noob_protect_e3']					= 'Click para más información';
-$LNG['se_recaptcha_whats']				= '¿Qué es reCAPTCHA?';
-$LNG['se_recaptcha_head']				= 'reCAPTCHA - Ajustes';
-$LNG['se_recaptcha_desc']				= 'reCAPTCHA es un servicio de CAPTCHA gratuíto, que te ayudará a evitar y bloquear Spam-Bots .<br />Para poder utilizar este servicio, es necesario registrarse en reCAPTCHA.net.';
-$LNG['se_recaptcha_public']				= 'Clave pública (Public Key):';
-$LNG['se_recaptcha_private']			= 'Clave privada (Private Key):';
-$LNG['se_recaptcha_active']				= 'Activar reCAPTCHA';
 $LNG['se_reg_closed']					= 'Bloquear registro';
 $LNG['se_min_build_time']				= 'Tiempo Mínimo de Construcción';
 $LNG['se_min_build_time_info']			= 'Aquí se ajusta el tiempo mínimo de construcción de Edificios, Investigaciones, Naves y Defensas. El valor por defecto es 1 segundo.<br>Para desactivarlo insertar el valor 0<br><font color=orange>¡Advertencia: Desactivar esta función puede generar errores!</font>';
@@ -415,13 +408,6 @@ $LNG['se_smtp_user']					= 'Nombre de usuario SMTP:';
 $LNG['se_smtp_pass']					= 'Contraseña SMTP:';
 $LNG['se_smtp_sendmail']				= 'Dirección del Remitente:';
 $LNG['se_smtp_sendmail_info']			= 'Dirección de Correo de Retorno. No es necesario que sea la misma dirección que el remitente';
-$LNG['se_ftp']							= 'Configuración de FTP';
-$LNG['se_ftp_info']						= 'El programa pr0game tiene la capacidad de actualizar directamente desde el servidor 2Moon Software Support a través de FTP. Para aprovechar esta característica, es necesario configurar una cuenta FTP en tu servidor y rellenar la información requerida a continuación. Esto NO creará un problema de seguridad en tu servidor, ya que el Software pr0game requiere esta información para realizar la transferencia física a tu servidor';
-$LNG['se_ftp_host']						= 'Host FTP:';
-$LNG['se_ftp_user']						= 'usuario FTP:';
-$LNG['se_ftp_pass']						= 'Contraseña FTP:';
-$LNG['se_ftp_dir']						= 'Ruta FTP:';
-$LNG['se_ftp_dir_info']					= 'ingresa la ruta a tu directorio raíz del servidor FTP aquí. Es obligatorio que la ruta inicie con una barra (/)!<br>Ejemplo: /httpdocs';
 $LNG['se_google']						= 'Configuración de Google Analytics';
 $LNG['se_google_info']					= 'Google Analytics es una solución de analítica web para empresas que proporciona información muy valiosa sobre el tráfico del sitio web y la eficacia del plan de marketing. Ahora, gracias a unas funciones potentes, flexibles y fáciles de usar, podrá ver y analizar el tráfico desde una perspectiva totalmente distinta. Google Analytics le ayudará a diseñar anuncios más orientados, a mejorar sus iniciativas de marketing y a crear sitios web que generen más conversiones..';
 $LNG['se_google_active']				= '¿Activar Google Analytics?';
@@ -616,8 +602,6 @@ $LNG['mu_user_logs']				= 'Log';
 $LNG['mu_support']                                      = 'Tickets de Soporte';
 $LNG['mu_module']                                       = 'Módulos';
 $LNG['mu_mod_update']              	= 'Contrlo de Ver. de Módulos';
-$LNG['mu_fb_options'] 				= 'Facebook Connect';
-$LNG['mu_ts_options']                                   = 'Opciones de TeamSpeak';
 $LNG['mu_game_info']                                    = 'Información';
 $LNG['mu_vaild_users']                                  = 'Actividad de Usuarios';
 $LNG['mu_news']						= 'Noticias'; 
@@ -994,30 +978,6 @@ $LNG['qe_resetr']					= 'Reestablecer';
 $LNG['qe_allowmulti']					= 'Permitir Multicuentas';
 
 //----------------------------------------------------------------------------//
-//TeamSpeakSettingPage.php
-$LNG['ts_settings']					= 'Opciones Teamspeak';
-$LNG['ts_active']					= 'Activar Teamspeak';
-$LNG['ts_version']					= 'Versión de Servidor:';
-$LNG['ts_udpport']					= 'Puerto TCP';
-$LNG['ts_tcpport']					= 'Puerto UDP';
-$LNG['ts_serverip']					= 'Server-IP';
-$LNG['ts_timeout']					= 'Tiempo de Espera'; 
-$LNG['ts_server_query']                                 = 'Puerto';
-$LNG['ts_login']					= 'Usuario';
-$LNG['ts_pass']						= 'Contraseña';
-$LNG['ts_cron']						= 'Frecuencia de Actualización';
-
-//----------------------------------------------------------------------------//
-//FacebookSettingPage.php
-$LNG['fb_settings']					= 'Opciones de Facebook';
-$LNG['fb_active']					= 'Activar la conección con Facebook';
-$LNG['fb_api_key']					= 'Facebook API Key';
-$LNG['fb_secrectkey']					= 'Facebook Secret Key';
-$LNG['fb_info']						= 'Con Facebook Connect los usuarios que están conectados a Facebook, pueden iniciar sesión con un click, o registrarse. <br>  Para utilizar esta característica, debes estar registrado en Faceebok. Además, debes crear una aplicación. Esto se puede hacer en <a href="http://www.facebook.com/developers/"> http://www.facebook.com/developers/ </ a>. Como URL de conexión, debes introducir la dirección URL del juego. A continuación, de introducir aquí las claves y el juego debería estar listo Facebook. <br> <font Color="red"> de FB Connect, la entrega de correo estará disponible (SMTP settings).</font>';
-$LNG['fb_curl_yes']						= '<span style="color:green">cURL Instalado.</span>';
-$LNG['fb_curl_no']						= '<span style="color:red">cURL No Instalado. ¡Facebook necesita las extensiones cURL para funcionar!</span>';
-
-//----------------------------------------------------------------------------//
 //GameModule.php
 
 $LNG['modul_0']                                        = 'Alianza';
@@ -1187,7 +1147,6 @@ $LNG['log_no_data']                     = 'No existen datos en el registro!';
 $LNG['log_ssettings']					= 'Configuración del Juego';
 $LNG['log_usettings']					= 'Configuración del universo';
 $LNG['log_statsettings']				= 'Opciones de Estadísticas';
-$LNG['log_tssettings']					= 'Configuración Teamspeak';
 $LNG['log_disclamersettings']			= 'Impreso';
 $LNG['log_uni_short']					= 'Uni';
 $LNG['log_universe']					= 'Universo';
@@ -1199,7 +1158,6 @@ $LNG['cronName_statistic']		= 'Estadisticas';
 $LNG['cronName_daily']			= 'Tareas Diarias';
 $LNG['cronName_cleaner']			= 'Eliminar Archivos Antiguos';
 $LNG['cronName_inactive']		= 'Eliminar Inactivos';
-$LNG['cronName_teamspeak']		= 'Actualización Teamspeak';
 $LNG['cronName_tracking']		= 'Enviar Estadísticas globales del servidor.';
 $LNG['cronName_databasedump']	= 'Copia de Seguridad-Base de Datos';
 

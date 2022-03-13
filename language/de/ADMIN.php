@@ -324,7 +324,6 @@ $LNG['ow_database_errors'] = 'Es sind Fehler vorhanden!';
 $LNG['ow_smtp_errors'] = 'Überprüfe deine SMTP-Einstellungen! - Momentan können keine Mails gesendet werden!';
 $LNG['ow_dir_not_writable'] = './%s ist nicht beschreibar!';
 $LNG['ow_none'] = 'Keine Warnungen';
-$LNG['ow_news'] = 'News';
 $LNG['ow_updates'] = 'Letzte Updates';
 $LNG['ow_developers'] = 'Entwickler';
 
@@ -375,12 +374,6 @@ $LNG['se_noob_protect2'] = 'Noobschutz bis x Punkte';
 $LNG['se_noob_protect3'] = 'Noobschutzfaktor';
 $LNG['se_noob_protect_e2'] = 'Bis zu dieser Punktzahl ist der Noobschutz für den Spieler aktiv';
 $LNG['se_noob_protect_e3'] = 'Klicke hier um mehr Information zu sehen';
-$LNG['se_recaptcha_whats'] = 'Was ist reCAPTCHA?';
-$LNG['se_recaptcha_head'] = 'reCAPTCHA - EInstellungen';
-$LNG['se_recaptcha_desc'] = 'reCAPTCHA ist ein kostenlosen CAPTCHA Service, der dir dabei helfen soll Spam-Bot zu blocken.<br />Um den Service nutzten zu können ist ein Registration auf reCAPTCHA.net notwendig.';
-$LNG['se_recaptcha_public'] = 'Public Key:';
-$LNG['se_recaptcha_private'] = 'Private Key:';
-$LNG['se_recaptcha_active'] = 'reCAPTCHA aktivieren';
 $LNG['se_reg_closed'] = 'Registrierung schlie&szlig;en';
 $LNG['se_min_build_time'] = 'Mindest Bauzeit';
 $LNG['se_min_build_time_info'] = 'Hier stellst du die Mindestbauzeit für Gebäude, Forschungen sowie Flotten und Verteidigung ein. Standardmäßig ist dies auf 1 Sekunde gesetzt.<br>Wenn hier eine 0 eingetragen wird, wird dies deaktivert<br><font color=orange>Es entstehen Bugs, wenn diese deaktivert wird!</font>';
@@ -416,13 +409,6 @@ $LNG['se_smtp_user'] = 'SMTP Username:';
 $LNG['se_smtp_pass'] = 'SMTP Passwort:';
 $LNG['se_smtp_sendmail'] = 'Absender Adresse:';
 $LNG['se_smtp_sendmail_info'] = 'Hier die Absender Adresse eintragen. Muss nicht identisch mit der anmelde Adresse sein';
-$LNG['se_ftp'] = 'FTP-Einstellungen';
-$LNG['se_ftp_info'] = 'pr0game hat ein eigendes interens Updatesystem. Die Dateien werden intern per FTP hochgeladen. Dafür benötigt pr0game die Server-Daten.<br>Solltest du das System nicht nutzten, kannst du diese Felder frei lasssen.';
-$LNG['se_ftp_host'] = 'FTP Host:';
-$LNG['se_ftp_user'] = 'FTP User:';
-$LNG['se_ftp_pass'] = 'FTP Passwort:';
-$LNG['se_ftp_dir'] = 'FTP Gamepfad:';
-$LNG['se_ftp_dir_info'] = 'Hier ist der Pfad zum Game im FTP-Server gemeint. Der Pfad muss ohne Slash enden und mit einem beginnen!<br>Beispiel: /httpdocs';
 $LNG['se_google'] = 'Google Analytics - Einstellungen';
 $LNG['se_google_info'] = 'Google Analytics ist die Unternehmenslösung für Webanalysen, mit der Sie wertvolle Erkenntnisse über die Zugriffe auf Ihre Website und die Wirkung Ihrer Marketingstrategien gewinnen. Dank der leistungsstarken, flexiblen und nutzerfreundlichen Funktionen können Sie jetzt Ihre Zugriffsdaten auf ganz neue Weise analysieren und anzeigen. Mit Google Analytics können Sie Ihre Werbung zielgerichtet gestalten, Ihre Marketingkampagnen stärken und Websites mit hohen Conversion-Raten entwickeln.';
 $LNG['se_google_active'] = 'Aktivieren?';
@@ -622,8 +608,6 @@ $LNG['mu_user_logs'] = 'Log';
 $LNG['mu_support'] = 'Support-Tickets';
 $LNG['mu_module'] = 'Module';
 $LNG['mu_mod_update'] = 'Mod Versions Control';
-$LNG['mu_fb_options'] = 'Facebook Connect';
-$LNG['mu_ts_options'] = 'Teamspeak Optionen';
 $LNG['mu_game_info'] = 'Informationen';
 $LNG['mu_vaild_users'] = 'Aktive User';
 $LNG['mu_news'] = 'News';
@@ -1000,30 +984,6 @@ $LNG['qe_allowmulti'] = 'Erlaube Multi';
 $LNG['qe_name'] = 'Name';
 
 //----------------------------------------------------------------------------//
-//TeamSpeakSettingPage.php
-$LNG['ts_settings'] = 'Teamspeak Einstellungen';
-$LNG['ts_active'] = 'Teamspeak-Mod aktivieren?';
-$LNG['ts_version'] = 'Server-Version:';
-$LNG['ts_udpport'] = 'TCP Port';
-$LNG['ts_tcpport'] = 'UDP Port';
-$LNG['ts_serverip'] = 'Server-IP';
-$LNG['ts_timeout'] = 'Timeout';
-$LNG['ts_server_query'] = 'ServerQuery Port';
-$LNG['ts_login'] = 'ServerQuery Login';
-$LNG['ts_pass'] = 'ServerQuery Password';
-$LNG['ts_cron'] = 'Update Rate';
-
-//----------------------------------------------------------------------------//
-//FacebookSettingPage.php
-$LNG['fb_settings'] = 'Facebook Connect Einstellungen';
-$LNG['fb_active'] = 'Facebook Connect aktivieren?';
-$LNG['fb_api_key'] = 'Facebook App ID';
-$LNG['fb_secrectkey'] = 'Facebook Geheim Key';
-$LNG['fb_info'] = 'Mit Facebook Connect können User, die bei Facebook angemeldet sind, mit meinem Klick sich einloggen bzw. sich registrieren.<br><br>Um diese Funktion zu nutzen, musst du selbst bei Faceebok registriert sein. Zudem musst du eine Application erstellen. Dies kannst du auf <a href="http://www.facebook.com/developers/">http://www.facebook.com/developers/</a> erledigen. Als Connect URL musst du den URL zum Game eingeben. Dann trägst du hier die Keys ein und dein Game sollte Facebook bereit sein.<br><br><span style="color:red">Für FB Connect muss der Mail Versand verfügbar sein! (SMTP Settings)</span>';
-$LNG['fb_curl_yes'] = '<span style="color:green">Auf dem Server ist cURL installiert!</span>';
-$LNG['fb_curl_no'] = '<span style="color:red">Auf dem Server ist cURL nicht installiert! Facebook benötigt cURL Extension, damit es funktioniert!</span>';
-
-//----------------------------------------------------------------------------//
 //GameModule.php
 
 $LNG['modul_0'] = 'Allianz';
@@ -1193,7 +1153,6 @@ $LNG['log_no_data'] = 'Keine Log-Daten vorhanden!';
 $LNG['log_ssettings'] = 'Server Konfiguration';
 $LNG['log_usettings'] = 'Uni Konfiguration';
 $LNG['log_statsettings'] = 'Statistik-Optionen';
-$LNG['log_tssettings'] = 'Teamspeak-Konfiguration';
 $LNG['log_disclamersettings'] = 'Impressum';
 $LNG['log_uni_short'] = 'Uni';
 $LNG['log_universe'] = 'Universum';
@@ -1205,7 +1164,6 @@ $LNG['cronName_statistic'] = 'Statistiken';
 $LNG['cronName_daily'] = 'Tägliche Aufgaben';
 $LNG['cronName_cleaner'] = 'Alte Daten löschen';
 $LNG['cronName_inactive'] = 'Inaktive löschen';
-$LNG['cronName_teamspeak'] = 'Teamspeakdaten aktualisieren';
 $LNG['cronName_tracking'] = 'Statistik an globalen Server senden.';
 $LNG['cronName_databasedump'] = 'Datenbank-Backup';
 

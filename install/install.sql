@@ -158,22 +158,9 @@ CREATE TABLE `%PREFIX%config` (
   `stat_last_db_update` int(11) NOT NULL DEFAULT '0',
   `stats_fly_lock` int(11) NOT NULL DEFAULT '0',
   `cron_lock` int(11) NOT NULL DEFAULT '0',
-  `ts_modon` tinyint(1) NOT NULL DEFAULT '0',
-  `ts_server` varchar(64) NOT NULL DEFAULT '',
-  `ts_tcpport` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `ts_udpport` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `ts_timeout` tinyint(1) NOT NULL DEFAULT '1',
-  `ts_version` tinyint(1) NOT NULL DEFAULT '2',
-  `ts_cron_last` int(11) NOT NULL DEFAULT '0',
-  `ts_cron_interval` smallint(5) NOT NULL DEFAULT '5',
-  `ts_login` varchar(32) NOT NULL DEFAULT '',
-  `ts_password` varchar(32) NOT NULL DEFAULT '',
   `reg_closed` tinyint(1) NOT NULL DEFAULT '0',
   `OverviewNewsFrame` tinyint(1) NOT NULL DEFAULT '1',
   `OverviewNewsText` text NOT NULL,
-  `capaktiv` tinyint(1) NOT NULL DEFAULT '0',
-  `cappublic` varchar(42) NOT NULL DEFAULT '',
-  `capprivate` varchar(42) NOT NULL DEFAULT '',
   `min_build_time` tinyint(2) NOT NULL DEFAULT '1',
   `mail_active` tinyint(1) NOT NULL DEFAULT '0',
   `mail_use` tinyint(1) NOT NULL DEFAULT '0',
@@ -185,9 +172,6 @@ CREATE TABLE `%PREFIX%config` (
   `smtp_sendmail` varchar(64) NOT NULL DEFAULT '',
   `smail_path` varchar(30) NOT NULL DEFAULT '/usr/sbin/sendmail',
   `user_valid` tinyint(1) NOT NULL DEFAULT '0',
-  `fb_on` tinyint(1) NOT NULL DEFAULT '0',
-  `fb_apikey` varchar(42) NOT NULL DEFAULT '',
-  `fb_skey` varchar(42) NOT NULL DEFAULT '',
   `ga_active` varchar(42) NOT NULL DEFAULT '0',
   `ga_key` varchar(42) NOT NULL DEFAULT '',
   `moduls` varchar(100) NOT NULL DEFAULT '',
@@ -771,15 +755,6 @@ CREATE TABLE `%PREFIX%users_to_acs` (
   KEY `acsID` (`acsID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE `%PREFIX%users_to_extauth` (
-  `id` int(11) NOT NULL,
-  `account` varchar(64) NOT NULL,
-  `mode` varchar(32) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id` (`id`),
-  KEY `account` (`account`,`mode`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 CREATE TABLE `%PREFIX%users_to_topkb` (
   `rid` varchar(32) NOT NULL,
   `uid` int(11) NOT NULL,
@@ -799,8 +774,6 @@ CREATE TABLE `%PREFIX%users_valid` (
  `language` varchar(3) NOT NULL,
  `universe` tinyint(3) unsigned NOT NULL,
  `referralID` int(11) DEFAULT NULL,
- `externalAuthUID` varchar(128) DEFAULT NULL,
- `externalAuthMethod` varchar(32) DEFAULT NULL,
  PRIMARY KEY (`validationID`,`validationKey`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -904,7 +877,6 @@ INSERT INTO `%PREFIX%cronjobs` (`cronjobID`, `name`, `isActive`, `min`, `hours`,
 (NULL, 'daily', 1, '25', '2', '*', '*', '*', 'DailyCronjob', 0, NULL),
 (NULL, 'cleaner', 1, '45', '2', '*', '*', '6', 'CleanerCronjob', 0, NULL),
 (NULL, 'inactive', 1, '30', '1', '*', '*', '0,3,6', 'InactiveMailCronjob', 0, NULL),
-(NULL, 'teamspeak', 0, '*/3', '*', '*', '*', '*', 'TeamSpeakCronjob', 0, NULL),
 (NULL, 'databasedump', 1, '30', '1', '*', '*', '1', 'DumpCronjob', 0, NULL),
 (NULL, 'tracking', 1, FLOOR(RAND() * 60), FLOOR(RAND() * 24), '*', '*', '0', 'TrackingCronjob', 0, NULL);
 
