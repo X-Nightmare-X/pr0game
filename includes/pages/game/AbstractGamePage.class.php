@@ -107,7 +107,7 @@ abstract class AbstractGamePage
             die();
         }
 
-        if (isset($USER['PLANETS'])) {
+        if (!isset($USER['PLANETS'])) {
             $USER['PLANETS']    = getPlanets($USER);
         }
 
@@ -198,7 +198,7 @@ abstract class AbstractGamePage
             $dateTimeUser   = $dateTimeServer;
         }
 
-        $config = Config::get();
+        $config         = Config::get();
 
         $this->assign(array(
             'vmode'             => $USER['urlaubs_modus'],
