@@ -166,10 +166,6 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON')
 	$LNG->includeData(array('L18N', 'INGAME', 'TECH', 'CUSTOM'));
 	if(!empty($USER['dpath'])) { $THEME->setUserTheme($USER['dpath']); }
 	
-	if($config->game_disable == 0 && $USER['authlevel'] == AUTH_USR) {
-		ShowErrorPage::printError($LNG['sys_closed_game'].'<br><br>'.$config->close_reason, false);
-	}
-
 	if($USER['bana'] == 1) {
 		ShowErrorPage::printError("<font size=\"6px\">".$LNG['css_account_banned_message']."</font><br><br>".sprintf($LNG['css_account_banned_expire'], _date($LNG['php_tdformat'], $USER['banaday'], $USER['timezone']))."<br><br>".$LNG['css_goto_homeside'], false);
 	}
@@ -217,6 +213,11 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON')
 		$USER['rights']		= unserialize($USER['rights']);
 		$LNG->includeData(array('ADMIN', 'CUSTOM'));
 	}
+
+    if($config->game_disable == 0 && $USER['authlevel'] == AUTH_USR &&
+        (!isset($_GET['page']) || $_GET['page'] !== 'logout')) {
+        ShowErrorPage::printError($LNG['sys_closed_game'].'<br><br>'.$config->close_reason, false);
+    }
 }
 elseif(MODE === 'LOGIN')
 {
