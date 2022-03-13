@@ -312,7 +312,7 @@ class ShowFleetStep1Page extends AbstractGamePage
 		{
 			if ($USER[$resource[124]] == 0)
 			{
-				$this->sendJSON($LNG['fl_target_not_exists']);
+				$this->sendJSON($LNG['fl_expedition_tech_required']);
 			}
 			
 			$activeExpedition	= FleetFunctions::GetCurrentFleets($USER['id'], 15, true);
