@@ -16,10 +16,13 @@ if [ $# -eq 0 ] ; then
 fi
 
 case $1 in
-    on|true|enable)
-	enable_installtool
-	;;
-	off|false|disable)
-	disable_installtool
-	;;
+  on|true|enable)
+    enable_installtool
+    ;;
+  off|false|disable)
+    disable_installtool
+    ;;
+  *)
+    echo "The parameter '${1}' is not valid, try on|true|enable or off|false|disable instead."
+    ;;
 esac
