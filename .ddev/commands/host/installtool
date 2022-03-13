@@ -1,0 +1,25 @@
+#!/bin/bash
+
+enable_installtool () {
+  touch includes/ENABLE_INSTALL_TOOL
+  echo "pr0game installtool enabled."
+}
+
+disable_installtool () {
+  rm includes/ENABLE_INSTALL_TOOL
+  echo "pr0game installtool disabled."
+}
+
+if [ $# -eq 0 ] ; then
+  enable_installtool
+  exit
+fi
+
+case $1 in
+    on|true|enable)
+	enable_installtool
+	;;
+	off|false|disable)
+	disable_installtool
+	;;
+esac

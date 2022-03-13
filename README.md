@@ -27,3 +27,15 @@ ddev start
 ```
 
 The project will be available at: https://pr0game.ddev.site
+
+To enable the installtool you can use the custom function:
+
+```sh
+# Enable
+ddev installtool
+# or
+ddev installtool enable
+
+# Disable
+ddev installtool disable
+```
