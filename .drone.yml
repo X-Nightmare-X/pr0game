@@ -45,3 +45,9 @@ steps:
     commands:
       - phpcs --standard=.config/phpcs-phpcompat_80.xml.dist -d memory_limit=512M
     depends_on: [phpcompat74]
+
+  - name: editorconfig
+    failure: ignore
+    image: mstruebing/editorconfig-checker:2.4.0
+    commands:
+      - ec -config .config/.ecrc
