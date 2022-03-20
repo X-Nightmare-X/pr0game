@@ -384,8 +384,7 @@ class statbuilder
                     `total_points` = :total_points,
                     `total_count` = :total_count";
 
-        $fileHandle = fopen(ROOT_PATH . '/logs/error.cronjob.log', 'a+');
-        fwrite($fileHandle, Database::get()->insert($query, [
+        Database::get()->insert($query, [
             ':id_owner' => $data->id_owner,
             ':id_ally' => $data->id_ally,
             ':stat_type' => $data->stat_type,
@@ -411,6 +410,5 @@ class statbuilder
             ':total_points' => $data->total_points,
             ':total_count' => $data->total_count,
         ]));
-        fclose($fileHandle);
     }
 }
