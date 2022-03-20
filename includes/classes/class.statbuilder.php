@@ -409,6 +409,6 @@ class statbuilder
             ':total_old_rank' => $data->total_old_rank,
             ':total_points' => $data->total_points,
             ':total_count' => $data->total_count,
-        ]));
+        ]);
     }
 }
