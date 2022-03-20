@@ -22,7 +22,8 @@ class StatisticCronjob implements CronjobTask
 	function run()
 	{
 		require 'includes/classes/class.statbuilder.php';
+		require 'includes/models/StatPoints.php';
 		$stat	= new Statbuilder();
-		$stat->MakeStats();
+		$stat->generateStats();
 	}
 }

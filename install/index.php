@@ -108,7 +108,17 @@ switch ($mode) {
                 continue;
             }
 
-            $updates[$fileInfo->getPathname()] = makebr(str_replace('%PREFIX%', DB_PREFIX, file_get_contents($fileInfo->getPathname())));
+            $updates[$fileInfo->getPathname()] = makebr(
+                str_replace(
+                    '%PREFIX%',
+                    DB_PREFIX,
+                    str_replace(
+                        '%DB_NAME%',
+                        DB_NAME,
+                        $fileContents = file_get_contents($fileInfo->getPathname())
+                    )
+                )
+            );
 		}
 
 		$template->assign_vars(array(
