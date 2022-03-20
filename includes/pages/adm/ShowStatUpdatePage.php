@@ -21,7 +21,7 @@ function ShowStatUpdatePage() {
 	global $LNG;
 	require_once('includes/classes/class.statbuilder.php');
 	$stat			= new statbuilder();
-	$result			= $stat->MakeStats();
+	$result			= $stat->generateStats();
 	$memory_p		= str_replace(array("%p", "%m"), $result['memory_peak'], $LNG['sb_top_memory']);
 	$memory_e		= str_replace(array("%e", "%m"), $result['end_memory'], $LNG['sb_final_memory']);
 	$memory_i		= str_replace(array("%i", "%m"), $result['initial_memory'], $LNG['sb_start_memory']);
