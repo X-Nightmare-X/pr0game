@@ -297,6 +297,7 @@ CREATE TABLE `%PREFIX%fleets` (
   `start_time` int(11) DEFAULT NULL,
   `fleet_busy` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `hasCanceled` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `fleet_start_array` text,
   PRIMARY KEY (`fleet_id`),
   KEY `fleet_target_owner` (`fleet_target_owner`,`fleet_mission`),
   KEY `fleet_owner` (`fleet_owner`,`fleet_mission`),
