@@ -3,9 +3,7 @@
 /**
  *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
- *
  * For the full copyright and license information, please view the LICENSE
- *
  * @package 2Moons
  * @author Jan-Otto Kröpke <slaver7@gmail.com>
  * @copyright 2009 Lucky
@@ -37,7 +35,7 @@ abstract class AbstractGamePage
         if (!AJAX_REQUEST) {
             $this->setWindow('full');
             if (!$this->disableEcoSystem) {
-                $this->ecoObj   = new ResourceUpdate();
+                $this->ecoObj = new ResourceUpdate();
                 $this->ecoObj->CalcResource();
             }
             $this->initTemplate();
@@ -52,15 +50,15 @@ abstract class AbstractGamePage
             return true;
         }
 
-        $this->tplObj   = new template();
-        list($tplDir)   = $this->tplObj->getTemplateDir();
+        $this->tplObj = new template();
+        [$tplDir] = $this->tplObj->getTemplateDir();
         $this->tplObj->setTemplateDir($tplDir . 'game/');
         return true;
     }
 
     protected function setWindow($window)
     {
-        $this->window   = $window;
+        $this->window = $window;
     }
 
     protected function getWindow()
@@ -70,21 +68,21 @@ abstract class AbstractGamePage
 
     protected function getQueryString()
     {
-        $queryString    = array();
-        $page           = HTTP::_GP('page', '');
+        $queryString = [];
+        $page = HTTP::_GP('page', '');
 
         if (!empty($page)) {
-            $queryString['page']    = $page;
+            $queryString['page'] = $page;
         }
 
-        $mode           = HTTP::_GP('mode', '');
+        $mode = HTTP::_GP('mode', '');
         if (!empty($mode)) {
-            $queryString['mode']    = $mode;
+            $queryString['mode'] = $mode;
         }
 
-        $id           = HTTP::_GP('id', '');
+        $id = HTTP::_GP('id', '');
         if (!empty($id)) {
-            $queryString['id']    = $id;
+            $queryString['id'] = $id;
         }
 
         return http_build_query($queryString);
@@ -94,18 +92,18 @@ abstract class AbstractGamePage
     {
         require_once 'includes/classes/Cronjob.class.php';
 
-        $this->assign(array(
-            'cronjobs'      => Cronjob::getNeedTodoExecutedJobs()
-        ));
+        $this->assign([
+            'cronjobs' => Cronjob::getNeedTodoExecutedJobs()
+        ]);
     }
 
     protected function getNavigationData()
     {
         global $PLANET, $LNG, $USER, $THEME, $resource, $reslist;
 
-        $config         = Config::get();
+        $config = Config::get();
 
-        $PlanetSelect   = array();
+        $PlanetSelect = [];
 
         if ($USER['bana'] == 1) {
             echo $LNG['banned_message'];
@@ -113,38 +111,38 @@ abstract class AbstractGamePage
         }
 
         if (!isset($USER['PLANETS'])) {
-            $USER['PLANETS']    = getPlanets($USER);
+            $USER['PLANETS'] = getPlanets($USER);
         }
 
         foreach ($USER['PLANETS'] as $PlanetQuery) {
-            $PlanetSelect[$PlanetQuery['id']]   = $PlanetQuery['name'] . (($PlanetQuery['planet_type'] == 3) ? " (" . $LNG['fcm_moon'] . ")" : "") . " [" . $PlanetQuery['galaxy'] . ":" . $PlanetQuery['system'] . ":" . $PlanetQuery['planet'] . "]";
+            $PlanetSelect[$PlanetQuery['id']] = $PlanetQuery['name'] . (($PlanetQuery['planet_type'] == 3) ? " (" . $LNG['fcm_moon'] . ")" : "") . " [" . $PlanetQuery['galaxy'] . ":" . $PlanetQuery['system'] . ":" . $PlanetQuery['planet'] . "]";
         }
 
-        $resourceTable  = array();
-        $resourceSpeed  = $config->resource_multiplier;
+        $resourceTable = [];
+        $resourceSpeed = $config->resource_multiplier;
         foreach ($reslist['resstype'][1] as $resourceID) {
-            $resourceTable[$resourceID]['name']         = $resource[$resourceID];
-            $resourceTable[$resourceID]['current']      = $PLANET[$resource[$resourceID]];
-            $resourceTable[$resourceID]['max']          = $PLANET[$resource[$resourceID] . '_max'];
+            $resourceTable[$resourceID]['name'] = $resource[$resourceID];
+            $resourceTable[$resourceID]['current'] = $PLANET[$resource[$resourceID]];
+            $resourceTable[$resourceID]['max'] = $PLANET[$resource[$resourceID] . '_max'];
             if ($USER['urlaubs_modus'] == 1 || $PLANET['planet_type'] != 1) {
-                $resourceTable[$resourceID]['production']   = $PLANET[$resource[$resourceID] . '_perhour'];
+                $resourceTable[$resourceID]['production'] = $PLANET[$resource[$resourceID] . '_perhour'];
             } else {
-                $resourceTable[$resourceID]['production']   = $PLANET[$resource[$resourceID] . '_perhour'] + $config->{$resource[$resourceID] . '_basic_income'} * $resourceSpeed;
+                $resourceTable[$resourceID]['production'] = $PLANET[$resource[$resourceID] . '_perhour'] + $config->{$resource[$resourceID] . '_basic_income'} * $resourceSpeed;
             }
         }
 
         foreach ($reslist['resstype'][2] as $resourceID) {
-            $resourceTable[$resourceID]['name']         = $resource[$resourceID];
-            $resourceTable[$resourceID]['used']         = $PLANET[$resource[$resourceID] . '_used'];
-            $resourceTable[$resourceID]['max']          = $PLANET[$resource[$resourceID]];
+            $resourceTable[$resourceID]['name'] = $resource[$resourceID];
+            $resourceTable[$resourceID]['used'] = $PLANET[$resource[$resourceID] . '_used'];
+            $resourceTable[$resourceID]['max'] = $PLANET[$resource[$resourceID]];
         }
 
         foreach ($reslist['resstype'][3] as $resourceID) {
-            $resourceTable[$resourceID]['name']         = $resource[$resourceID];
-            $resourceTable[$resourceID]['current']      = $USER[$resource[$resourceID]];
+            $resourceTable[$resourceID]['name'] = $resource[$resourceID];
+            $resourceTable[$resourceID]['current'] = $USER[$resource[$resourceID]];
         }
 
-        $themeSettings  = $THEME->getStyleSettings();
+        $themeSettings = $THEME->getStyleSettings();
 
         $commit = '';
         $commitShort = '';
@@ -161,26 +159,26 @@ abstract class AbstractGamePage
             }
         }
 
-        $this->assign(array(
-            'PlanetSelect'      => $PlanetSelect,
-            'new_message'       => $USER['messages'],
-            'commit'            => $commit,
-            'commitShort'       => $commitShort,
-            'vacation'          => $USER['urlaubs_modus'] ? _date($LNG['php_tdformat'], $USER['urlaubs_until'], $USER['timezone']) : false,
-            'delete'            => $USER['db_deaktjava'] ? sprintf($LNG['tn_delete_mode'], _date($LNG['php_tdformat'], $USER['db_deaktjava'] + ($config->del_user_manually * 86400)), $USER['timezone']) : false,
-            'darkmatter'        => $USER['darkmatter'],
-            'current_pid'       => $PLANET['id'],
-            'image'             => $PLANET['image'],
-            'username'          => $USER['username'],
-            'avatar'            => $avatar,
-            'resourceTable'     => $resourceTable,
-            'shortlyNumber'     => $themeSettings['TOPNAV_SHORTLY_NUMBER'],
-            'closed'            => !$config->game_disable,
-            'hasBoard'          => filter_var($config->forum_url, FILTER_VALIDATE_URL),
-            'hasAdminAccess'    => !empty(Session::load()->adminAccess),
-            'hasGate'           => $PLANET[$resource[43]] > 0,
-            'discordUrl'        => DISCORD_URL,
-        ));
+        $this->assign([
+            'PlanetSelect' => $PlanetSelect,
+            'new_message' => $USER['messages'],
+            'commit' => $commit,
+            'commitShort' => $commitShort,
+            'vacation' => $USER['urlaubs_modus'] ? _date($LNG['php_tdformat'], $USER['urlaubs_until'], $USER['timezone']) : false,
+            'delete' => $USER['db_deaktjava'] ? sprintf($LNG['tn_delete_mode'], _date($LNG['php_tdformat'], $USER['db_deaktjava'] + ($config->del_user_manually * 86400)), $USER['timezone']) : false,
+            'darkmatter' => $USER['darkmatter'],
+            'current_pid' => $PLANET['id'],
+            'image' => $PLANET['image'],
+            'username' => $USER['username'],
+            'avatar' => $avatar,
+            'resourceTable' => $resourceTable,
+            'shortlyNumber' => $themeSettings['TOPNAV_SHORTLY_NUMBER'],
+            'closed' => !$config->game_disable,
+            'hasBoard' => filter_var($config->forum_url, FILTER_VALIDATE_URL),
+            'hasAdminAccess' => !empty(Session::load()->adminAccess),
+            'hasGate' => $PLANET[$resource[43]] > 0,
+            'discordUrl' => DISCORD_URL,
+        ]);
     }
 
     protected function getPageData()
@@ -192,44 +190,45 @@ abstract class AbstractGamePage
             $this->getCronjobsTodo();
         }
 
-        $dateTimeServer     = new DateTime("now");
+        $dateTimeServer = new DateTime("now");
         if (isset($USER['timezone'])) {
             try {
-                $dateTimeUser   = new DateTime("now", new DateTimeZone($USER['timezone']));
+                $dateTimeUser = new DateTime("now", new DateTimeZone($USER['timezone']));
             } catch (Exception $e) {
-                $dateTimeUser   = $dateTimeServer;
+                $dateTimeUser = $dateTimeServer;
             }
         } else {
-            $dateTimeUser   = $dateTimeServer;
+            $dateTimeUser = $dateTimeServer;
         }
 
-        $config         = Config::get();
+        $config = Config::get();
 
-        $this->assign(array(
-            'vmode'             => $USER['urlaubs_modus'],
-            'authlevel'         => $USER['authlevel'],
-            'userID'            => $USER['id'],
-            'bodyclass'         => $this->getWindow(),
-            'game_name'         => $config->game_name,
-            'uni_name'          => $config->uni_name,
-            'ga_active'         => $config->ga_active,
-            'ga_key'            => $config->ga_key,
-            'debug'             => $config->debug,
-            'VERSION'           => $config->VERSION,
-            'date'              => explode("|", date('Y\|n\|j\|G\|i\|s\|Z', TIMESTAMP)),
+        $this->assign([
+            'vmode' => $USER['urlaubs_modus'],
+            'authlevel' => $USER['authlevel'],
+            'userID' => $USER['id'],
+            'bodyclass' => $this->getWindow(),
+            'game_name' => $config->game_name,
+            'uni_name' => $config->uni_name,
+            'ga_active' => $config->ga_active,
+            'ga_key' => $config->ga_key,
+            'debug' => $config->debug,
+            'VERSION' => $config->VERSION,
+            'date' => explode("|", date('Y\|n\|j\|G\|i\|s\|Z', TIMESTAMP)),
             'isPlayerCardActive' => isModuleAvailable(MODULE_PLAYERCARD),
-            'REV'               => substr($config->VERSION, -4),
-            'Offset'            => $dateTimeUser->getOffset() - $dateTimeServer->getOffset(),
-            'queryString'       => $this->getQueryString(),
-            'themeSettings'     => $THEME->getStyleSettings(),
-        ));
+            'REV' => substr($config->VERSION, -4),
+            'Offset' => $dateTimeUser->getOffset() - $dateTimeServer->getOffset(),
+            'queryString' => $this->getQueryString(),
+            'themeSettings' => $THEME->getStyleSettings(),
+        ]);
     }
+
     protected function printMessage($message, $redirectButtons = null, $redirect = null, $fullSide = true)
     {
-        $this->assign(array(
-            'message'           => $message,
-            'redirectButtons'   => $redirectButtons,
-        ));
+        $this->assign([
+            'message' => $message,
+            'redirectButtons' => $redirectButtons,
+        ]);
 
         if (isset($redirect)) {
             $this->tplObj->gotoside($redirect[0], $redirect[1]);
@@ -264,17 +263,17 @@ abstract class AbstractGamePage
             $this->getPageData();
         }
 
-        $this->assign(array(
-            'lang'          => $LNG->getLanguage(),
-            'dpath'         => $THEME->getTheme(),
-            'scripts'       => $this->tplObj->jsscript,
-            'execscript'    => implode("\n", $this->tplObj->script),
-            'basepath'      => PROTOCOL . HTTP_HOST . HTTP_BASE,
-        ));
+        $this->assign([
+            'lang' => $LNG->getLanguage(),
+            'dpath' => $THEME->getTheme(),
+            'scripts' => $this->tplObj->jsscript,
+            'execscript' => implode("\n", $this->tplObj->script),
+            'basepath' => PROTOCOL . HTTP_HOST . HTTP_BASE,
+        ]);
 
-        $this->assign(array(
-            'LNG'           => $LNG,
-        ), false);
+        $this->assign([
+            'LNG' => $LNG,
+        ], false);
 
         $this->tplObj->display('extends:layout.' . $this->getWindow() . '.tpl|' . $file);
         exit;
