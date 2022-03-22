@@ -773,7 +773,7 @@ $LNG['al_diplo_ground'] = 'Reasons:';
 $LNG['al_diplo_ask'] = 'Survey Pact';
 $LNG['al_diplo_ask_mes'] = 'The (%s) between the alliances %s and %s.<br>Reasons: %s';
 $LNG['al_diplo_war'] = 'Declaration of war';
-$LNG['al_diplo_war_mes'] = 'The Alliance %s and the Alliance %s just the %s declarated.<br>Reason:<br>%s<br><br>Information: the war is valid for 24 hours. Only after the 24 hours, war and given as terminated. <br>More information consult the <a href="index.php?page=rules" target="_blank">Rules</a>.';
+$LNG['al_diplo_war_mes'] = 'The Alliance %s and the Alliance %s just the %s declarated.<br>Reason:<br>%s<br><br>Information: the war is valid for 24 hours. Only after the 24 hours, war and given as terminated. <br>More information consult the <a href="index.php?page=rules&lang=en" target="_blank">Rules</a>.';
 $LNG['al_diplo_head'] = 'Management of Diplomacy';
 $LNG['al_diplo_same_alliance'] = 'You can not make a pact with your own Alliance!';
 $LNG['al_diplo_no_alliance'] = 'There is no alliance with the name of %s!';
