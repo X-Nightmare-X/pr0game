@@ -82,6 +82,11 @@ abstract class AbstractGamePage
             $queryString['mode']    = $mode;
         }
 
+        $id           = HTTP::_GP('id', '');
+        if (!empty($id)) {
+            $queryString['id']    = $id;
+        }
+
         return http_build_query($queryString);
     }
 

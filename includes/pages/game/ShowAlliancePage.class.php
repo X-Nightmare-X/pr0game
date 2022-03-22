@@ -59,6 +59,10 @@ class ShowAlliancePage extends AbstractGamePage
 			':allianceId'	=> $allianceId
 		));
 
+        if(!$this->allianceData) {
+            throw new Exception('the requested alliance does not exist');
+        }
+
 		if ($USER['ally_id'] == $allianceId) {
 			if ($this->allianceData['ally_owner'] == $USER['id']) {
 				$this->rights	= array_combine($this->availableRanks, array_fill(0, count($this->availableRanks), true));
