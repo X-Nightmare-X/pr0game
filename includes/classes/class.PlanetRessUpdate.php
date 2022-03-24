@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -49,7 +49,7 @@ class ResourceUpdate
 	{
 		return array($this->USER, $this->PLANET);
 	}
-	
+
 	public function ReturnVars() {
 		if($this->isGlobalMode)
 		{
@@ -60,7 +60,7 @@ class ResourceUpdate
 			return array($this->USER, $this->PLANET);
 		}
 	}
-	
+
 	public function CreateHash() {
 		global $reslist, $resource;
 		$Hash	= array();
@@ -68,17 +68,15 @@ class ResourceUpdate
 			$Hash[]	= $this->PLANET[$resource[$ID]];
 			$Hash[]	= $this->PLANET[$resource[$ID].'_porcent'];
 		}
-		
+
 		$ressource	= array_merge(array(), $reslist['resstype'][1], $reslist['resstype'][2]);
 		foreach($ressource as $ID) {
 			$Hash[]	= $this->config->{$resource[$ID].'_basic_income'};
 		}
-		
+
 		$Hash[]	= $this->config->resource_multiplier;
 		$Hash[]	= $this->config->storage_multiplier;
 		$Hash[]	= $this->config->energySpeed;
-		$Hash[]	= $this->USER['factor']['Resource'];
-		$Hash[]	= $this->USER['factor']['Energy'];
 		$Hash[]	= $this->PLANET[$resource[22]];
 		$Hash[]	= $this->PLANET[$resource[23]];
 		$Hash[]	= $this->PLANET[$resource[24]];
@@ -87,18 +85,18 @@ class ResourceUpdate
 		$Hash[]	= $this->USER[$resource[133]];
 		return md5(implode("::", $Hash));
 	}
-	
+
 	public function CalcResource($USER = NULL, $PLANET = NULL, $SAVE = false, $TIME = NULL, $HASH = true)
-	{			
+	{
 		$this->isGlobalMode	= !isset($USER, $PLANET) ? true : false;
 		$this->USER			= $this->isGlobalMode ? $GLOBALS['USER'] : $USER;
 		$this->PLANET		= $this->isGlobalMode ? $GLOBALS['PLANET'] : $PLANET;
 		$this->TIME			= is_null($TIME) ? TIMESTAMP : $TIME;
 		$this->config		= Config::get($this->USER['universe']);
-		
+
 		if($this->USER['urlaubs_modus'] == 1)
 			return $this->ReturnVars();
-			
+
 		if($this->Build)
 		{
 			$this->ShipyardQueue();
@@ -107,19 +105,19 @@ class ResourceUpdate
 			if($this->PLANET['b_building'] != 0)
 				$this->BuildingQueue();
 		}
-		
+
 		$this->UpdateResource($this->TIME, $HASH);
-			
+
 		if($SAVE === true)
 			$this->SavePlanetToDB($this->USER, $this->PLANET);
-			
+
 		return $this->ReturnVars();
 	}
-	
+
 	public function UpdateResource($TIME, $HASH = false)
 	{
 		$this->ProductionTime  			= ($TIME - $this->PLANET['last_update']);
-		
+
 		if($this->ProductionTime > 0)
 		{
 			$this->PLANET['last_update']	= $TIME;
@@ -136,52 +134,52 @@ class ResourceUpdate
 			$this->ExecCalc();
 		}
 	}
-	
+
 	private function ExecCalc()
 	{
 		if($this->PLANET['planet_type'] == 3)
 			return;
-			
+
 		$MaxMetalStorage		= $this->PLANET['metal_max']     * $this->config->max_overflow;
 		$MaxCristalStorage		= $this->PLANET['crystal_max']   * $this->config->max_overflow;
 		$MaxDeuteriumStorage	= $this->PLANET['deuterium_max'] * $this->config->max_overflow;
-		
+
 		$MetalTheoretical		= $this->ProductionTime * (($this->config->metal_basic_income * $this->config->resource_multiplier) + $this->PLANET['metal_perhour']) / 3600;
-		
+
 		if($MetalTheoretical < 0)
 		{
 			$this->PLANET['metal']      = max($this->PLANET['metal'] + $MetalTheoretical, 0);
-		} 
+		}
 		elseif ($this->PLANET['metal'] <= $MaxMetalStorage)
 		{
 			$this->PLANET['metal']      = min($this->PLANET['metal'] + $MetalTheoretical, $MaxMetalStorage);
 		}
-		
+
 		$CristalTheoretical	= $this->ProductionTime * (($this->config->crystal_basic_income * $this->config->resource_multiplier) + $this->PLANET['crystal_perhour']) / 3600;
 		if ($CristalTheoretical < 0)
 		{
 			$this->PLANET['crystal']      = max($this->PLANET['crystal'] + $CristalTheoretical, 0);
-		} 
-		elseif ($this->PLANET['crystal'] <= $MaxCristalStorage ) 
+		}
+		elseif ($this->PLANET['crystal'] <= $MaxCristalStorage )
 		{
 			$this->PLANET['crystal']      = min($this->PLANET['crystal'] + $CristalTheoretical, $MaxCristalStorage);
 		}
-		
+
 		$DeuteriumTheoretical	= $this->ProductionTime * (($this->config->deuterium_basic_income * $this->config->resource_multiplier) + $this->PLANET['deuterium_perhour']) / 3600;
 		if ($DeuteriumTheoretical < 0)
 		{
 			$this->PLANET['deuterium']    = max($this->PLANET['deuterium'] + $DeuteriumTheoretical, 0);
-		} 
-		elseif($this->PLANET['deuterium'] <= $MaxDeuteriumStorage) 
+		}
+		elseif($this->PLANET['deuterium'] <= $MaxDeuteriumStorage)
 		{
 			$this->PLANET['deuterium']    = min($this->PLANET['deuterium'] + $DeuteriumTheoretical, $MaxDeuteriumStorage);
 		}
-		
+
 		$this->PLANET['metal']		= max($this->PLANET['metal'], 0);
 		$this->PLANET['crystal']	= max($this->PLANET['crystal'], 0);
 		$this->PLANET['deuterium']	= max($this->PLANET['deuterium'], 0);
 	}
-	
+
 	public static function getProd($Calculation, $Element = false)
 	{
 		global $resource, $reslist, $USER, $PLANET;
@@ -201,10 +199,10 @@ class ResourceUpdate
 
 			$Calculation = str_replace('this->', "", $Calculation);
 		}
-		
+
 		return 'return '.$Calculation.';';
 	}
-	
+
 	public static function getNetworkLevel($USER, $PLANET)
 	{
 		global $resource;
@@ -224,21 +222,21 @@ class ResourceUpdate
 				$researchLevelList[]	= $researchRow[$resource[31]];
 			}
 		}
-		
+
 		return $researchLevelList;
 	}
-	
+
 	public function ReBuildCache()
 	{
 		global $ProdGrid, $resource, $reslist;
-		
+
 		if ($this->PLANET['planet_type'] == 3)
 		{
 			$this->config->metal_basic_income     	= 0;
 			$this->config->crystal_basic_income   	= 0;
 			$this->config->deuterium_basic_income 	= 0;
 		}
-		
+
 		$temp	= array(
 			901	=> array(
 				'max'	=> 0,
@@ -260,53 +258,53 @@ class ResourceUpdate
 				'minus'	=> 0,
 			)
 		);
-		
+
 		$BuildTemp		= $this->PLANET['temp_max'];
 		$BuildEnergy	= $this->USER[$resource[113]];
-		
+
 		foreach($reslist['storage'] as $ProdID)
 		{
-			foreach($reslist['resstype'][1] as $ID) 
+			foreach($reslist['resstype'][1] as $ID)
 			{
 				if(!isset($ProdGrid[$ProdID]['storage'][$ID]))
 					continue;
-					
+
 				$BuildLevel 		= $this->PLANET[$resource[$ProdID]];
 				$temp[$ID]['max']	+= round(eval(self::getProd($ProdGrid[$ProdID]['storage'][$ID])));
 			}
 		}
-		
+
 		$ressIDs	= array_merge(array(), $reslist['resstype'][1], $reslist['resstype'][2]);
-		
+
 		foreach($reslist['prod'] as $ProdID)
-		{	
+		{
 			$BuildLevelFactor	= $this->PLANET[$resource[$ProdID].'_porcent'];
 			$BuildLevel 		= $this->PLANET[$resource[$ProdID]];
-			
-			foreach($ressIDs as $ID) 
+
+			foreach($ressIDs as $ID)
 			{
 				if(!isset($ProdGrid[$ProdID]['production'][$ID]))
 					continue;
-				
+
 				$Production	= eval(self::getProd($ProdGrid[$ProdID]['production'][$ID]));
-				
-				if($Production > 0) {					
+
+				if($Production > 0) {
 					$temp[$ID]['plus']	+= $Production;
 				} else {
 					if(in_array($ID, $reslist['resstype'][1]) && $this->PLANET[$resource[$ID]] == 0) {
 						 continue;
 					}
-					
+
 					$temp[$ID]['minus']	+= $Production;
 				}
 			}
 		}
 
-		$this->PLANET['metal_max']			= $temp[901]['max'] * $this->config->storage_multiplier * (1 + $this->USER['factor']['ResourceStorage']);
-		$this->PLANET['crystal_max']		= $temp[902]['max'] * $this->config->storage_multiplier * (1 + $this->USER['factor']['ResourceStorage']);
-		$this->PLANET['deuterium_max']		= $temp[903]['max'] * $this->config->storage_multiplier * (1 + $this->USER['factor']['ResourceStorage']);
+		$this->PLANET['metal_max']			= $temp[901]['max'] * $this->config->storage_multiplier;
+		$this->PLANET['crystal_max']		= $temp[902]['max'] * $this->config->storage_multiplier;
+		$this->PLANET['deuterium_max']		= $temp[903]['max'] * $this->config->storage_multiplier;
 
-		$this->PLANET['energy']				= round($temp[911]['plus'] * $this->config->energySpeed * (1 + $this->USER['factor']['Energy']));
+		$this->PLANET['energy']				= round($temp[911]['plus'] * $this->config->energySpeed);
 		$this->PLANET['energy_used']		= $temp[911]['minus'] * $this->config->energySpeed;
 		if($this->PLANET['energy_used'] == 0) {
 			$this->PLANET['metal_perhour']		= 0;
@@ -314,13 +312,13 @@ class ResourceUpdate
 			$this->PLANET['deuterium_perhour']	= 0;
 		} else {
 			$prodLevel	= min(1, $this->PLANET['energy'] / abs($this->PLANET['energy_used']));
-			
-			$this->PLANET['metal_perhour']		= ($temp[901]['plus'] * (1 + $this->USER['factor']['Resource'] + 0.02 * $this->USER[$resource[131]]) * $prodLevel + $temp[901]['minus']) * $this->config->resource_multiplier;
-			$this->PLANET['crystal_perhour']	= ($temp[902]['plus'] * (1 + $this->USER['factor']['Resource'] + 0.02 * $this->USER[$resource[132]]) * $prodLevel + $temp[902]['minus']) * $this->config->resource_multiplier;
-			$this->PLANET['deuterium_perhour']	= ($temp[903]['plus'] * (1 + $this->USER['factor']['Resource'] + 0.02 * $this->USER[$resource[133]]) * $prodLevel + $temp[903]['minus']) * $this->config->resource_multiplier;
+
+			$this->PLANET['metal_perhour']		= ($temp[901]['plus'] * (1 + 0.02 * $this->USER[$resource[131]]) * $prodLevel + $temp[901]['minus']) * $this->config->resource_multiplier;
+			$this->PLANET['crystal_perhour']	= ($temp[902]['plus'] * (1 + 0.02 * $this->USER[$resource[132]]) * $prodLevel + $temp[902]['minus']) * $this->config->resource_multiplier;
+			$this->PLANET['deuterium_perhour']	= ($temp[903]['plus'] * (1 + 0.02 * $this->USER[$resource[133]]) * $prodLevel + $temp[903]['minus']) * $this->config->resource_multiplier;
 		}
 	}
-	
+
 	private function ShipyardQueue()
 	{
 		global $resource;
@@ -350,15 +348,15 @@ class ResourceUpdate
 			if($Done == false) {
 				$BuildTime = $Item[2];
 				$Element   = (int)$Element;
-				if($BuildTime == 0) {			
+				if($BuildTime == 0) {
 					if(!isset($this->Builded[$Element]))
 						$this->Builded[$Element] = 0;
-						
+
 					$this->Builded[$Element]			+= $Count;
 					$this->PLANET[$resource[$Element]]	+= $Count;
-					continue;					
+					continue;
 				}
-				
+
 				$Build			= max(min(floor($this->PLANET['b_hangar'] / $BuildTime), $Count), 0);
 
 				if($Build == 0) {
@@ -366,49 +364,49 @@ class ResourceUpdate
 					$Done		= true;
 					continue;
 				}
-				
+
 				if(!isset($this->Builded[$Element]))
 					$this->Builded[$Element] = 0;
-				
+
 				$this->Builded[$Element]			+= $Build;
 				$this->PLANET['b_hangar']			-= $Build * $BuildTime;
 				$this->PLANET[$resource[$Element]]	+= $Build;
 				$Count								-= $Build;
-				
+
 				if ($Count == 0)
 					continue;
 				else
 					$Done	= true;
-			}	
+			}
 			$NewQueue[]	= array($Element, $Count);
 		}
 		$this->PLANET['b_hangar_id']	= !empty($NewQueue) ? serialize($NewQueue) : '';
 
 		return true;
 	}
-	
-	private function BuildingQueue() 
+
+	private function BuildingQueue()
 	{
 		while($this->CheckPlanetBuildingQueue())
 			$this->SetNextQueueElementOnTop();
 	}
-	
+
 	private function CheckPlanetBuildingQueue()
 	{
 		global $resource, $reslist;
-		
+
 		if (empty($this->PLANET['b_building_id']) || $this->PLANET['b_building'] > $this->TIME)
 			return false;
-		
+
 		$CurrentQueue	= unserialize($this->PLANET['b_building_id']);
 
 		$Element      	= $CurrentQueue[0][0];
 		$BuildEndTime 	= $CurrentQueue[0][3];
 		$BuildMode    	= $CurrentQueue[0][4];
-		
+
 		if(!isset($this->Builded[$Element]))
 			$this->Builded[$Element] = 0;
-		
+
 		if ($BuildMode == 'build')
 		{
 			$this->PLANET['field_current']		+= 1;
@@ -421,12 +419,12 @@ class ResourceUpdate
 			$this->PLANET[$resource[$Element]] 	-= 1;
 			$this->Builded[$Element]			-= 1;
 		}
-	
+
 
 		array_shift($CurrentQueue);
 		$OnHash	= in_array($Element, $reslist['prod']);
-		$this->UpdateResource($BuildEndTime, !$OnHash);			
-			
+		$this->UpdateResource($BuildEndTime, !$OnHash);
+
 		if (count($CurrentQueue) == 0) {
 			$this->PLANET['b_building']    	= 0;
 			$this->PLANET['b_building_id'] 	= '';
@@ -436,7 +434,7 @@ class ResourceUpdate
 			$this->PLANET['b_building_id'] 	= serialize($CurrentQueue);
 			return true;
 		}
-	}	
+	}
 
 	public function SetNextQueueElementOnTop()
 	{
@@ -467,7 +465,7 @@ class ResourceUpdate
 			$BuildEndTime		= $this->PLANET['b_building'] + $BuildTime;
 			$CurrentQueue[0]	= array($Element, $Level, $BuildTime, $BuildEndTime, $BuildMode);
 			$HaveNoMoreLevel	= false;
-				
+
 			if($ForDestroy && $this->PLANET[$resource[$Element]] == 0) {
 				$HaveResources  = false;
 				$HaveNoMoreLevel = true;
@@ -488,7 +486,7 @@ class ResourceUpdate
 						if(!isset($costResources[901])) { $costResources[901] = 0; }
 						if(!isset($costResources[902])) { $costResources[902] = 0; }
 						if(!isset($costResources[903])) { $costResources[903] = 0; }
-						
+
 						global $LNG;
 
 						if(empty($LNG)) {
@@ -505,7 +503,7 @@ class ResourceUpdate
 				}
 
 				array_shift($CurrentQueue);
-					
+
 				if (count($CurrentQueue) == 0) {
 					$BuildEndTime  = 0;
 					$NewQueue      = '';
@@ -524,36 +522,36 @@ class ResourceUpdate
 				}
 			}
 		}
-			
+
 		$this->PLANET['b_building']    = $BuildEndTime;
 		$this->PLANET['b_building_id'] = $NewQueue;
 
 		return true;
 	}
-		
+
 	private function ResearchQueue()
 	{
 		while($this->CheckUserTechQueue())
 			$this->SetNextQueueTechOnTop();
 	}
-	
+
 	private function CheckUserTechQueue()
 	{
 		global $resource;
-		
+
 		if (empty($this->USER['b_tech_id']) || $this->USER['b_tech'] > $this->TIME)
 			return false;
-		
+
 		if(!isset($this->Builded[$this->USER['b_tech_id']]))
 			$this->Builded[$this->USER['b_tech_id']]	= 0;
-			
+
 		$this->Builded[$this->USER['b_tech_id']]			+= 1;
 		$this->USER[$resource[$this->USER['b_tech_id']]]	+= 1;
-	
+
 
 		$CurrentQueue	= unserialize($this->USER['b_tech_queue']);
-		array_shift($CurrentQueue);		
-			
+		array_shift($CurrentQueue);
+
 		$this->USER['b_tech_id']		= 0;
 		if (count($CurrentQueue) == 0) {
 			$this->USER['b_tech'] 			= 0;
@@ -565,8 +563,8 @@ class ResourceUpdate
 			$this->USER['b_tech_queue'] 	= serialize(array_values($CurrentQueue));
 			return true;
 		}
-	}	
-	
+	}
+
 	public function SetNextQueueTechOnTop()
 	{
 		global $resource, $LNG;
@@ -601,7 +599,7 @@ class ResourceUpdate
 			}
 
 			$PLANET[$resource[31].'_inter']	= self::getNetworkLevel($this->USER, $PLANET);
-			
+
 			$Element            = $ListIDArray[0];
 			$Level              = $ListIDArray[1];
 			$costResources		= BuildFunctions::getElementPrice($this->USER, $PLANET, $Element, false, $Level);
@@ -609,7 +607,7 @@ class ResourceUpdate
 			$HaveResources		= BuildFunctions::isElementBuyable($this->USER, $PLANET, $Element, $costResources);
 			$BuildEndTime       = $this->USER['b_tech'] + $BuildTime;
 			$CurrentQueue[0]	= array($Element, $Level, $BuildTime, $BuildEndTime, $PLANET['id']);
-			
+
 			if($HaveResources == true) {
 				if(isset($costResources[901])) { $PLANET[$resource[901]]		-= $costResources[901]; }
 				if(isset($costResources[902])) { $PLANET[$resource[902]]		-= $costResources[902]; }
@@ -626,7 +624,7 @@ class ResourceUpdate
 					if(!isset($costResources[901])) { $costResources[901] = 0; }
 					if(!isset($costResources[902])) { $costResources[902] = 0; }
 					if(!isset($costResources[903])) { $costResources[903] = 0; }
-					
+
 					global $LNG;
 
 					if(empty($LNG)) {
@@ -640,13 +638,13 @@ class ResourceUpdate
 				}
 
 				array_shift($CurrentQueue);
-					
+
 				if (count($CurrentQueue) == 0) {
 					$this->USER['b_tech'] 			= 0;
 					$this->USER['b_tech_id']		= 0;
 					$this->USER['b_tech_planet']	= 0;
 					$this->USER['b_tech_queue']		= '';
-					
+
 					$Loop                  			= false;
 				} else {
 					$BaseTime						= $BuildEndTime - $BuildTime;
@@ -661,7 +659,7 @@ class ResourceUpdate
 					$CurrentQueue					= $NewQueue;
 				}
 			}
-				
+
 			if($isAnotherPlanet)
 			{
 				$RPLANET->SavePlanetToDB($this->USER, $PLANET);
@@ -676,14 +674,14 @@ class ResourceUpdate
 
 		return true;
 	}
-	
+
 	public function SavePlanetToDB($USER = NULL, $PLANET = NULL)
 	{
 		global $resource, $reslist;
-		
+
 		if(is_null($USER))
 			global $USER;
-			
+
 		if(is_null($PLANET))
 			global $PLANET;
 
@@ -722,11 +720,11 @@ class ResourceUpdate
 			foreach($this->Builded as $Element => $Count)
 			{
 				$Element	= (int) $Element;
-				
+
 				if(empty($resource[$Element]) || empty($Count)) {
 					continue;
 				}
-				
+
 				if(in_array($Element, $reslist['one']))
 				{
 					$buildQueries[]						= ', p.'.$resource[$Element].' = :'.$resource[$Element];
