@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -79,7 +79,6 @@ class MissionFunctions
 		$targetUser		= Database::get()->selectSingle($sql, array(
 			':userId'	=> $userId
 		));
-		$targetUser['factor']     = getFactors($targetUser);
 		$sql    = "SELECT * FROM %%PLANETS%% WHERE id = :planetId;";
 		$planet = Database::get()->selectSingle($sql, array(
 			':planetId' => $planetId,

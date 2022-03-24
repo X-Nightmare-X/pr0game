@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -21,7 +21,7 @@ class MissionCaseColonisation extends MissionFunctions implements Mission
 	{
 		$this->_fleet	= $Fleet;
 	}
-	
+
 	function TargetEvent()
 	{
 		$db		= Database::get();
@@ -31,8 +31,6 @@ class MissionCaseColonisation extends MissionFunctions implements Mission
 		$senderUser		= $db->selectSingle($sql, array(
 			':userId'	=> $this->_fleet['fleet_owner'],
 		));
-
-		$senderUser['factor']	= getFactors($senderUser, 'basic', $this->_fleet['fleet_start_time']);
 
 		$LNG	= $this->getLanguage($senderUser['lang']);
 
@@ -121,12 +119,12 @@ class MissionCaseColonisation extends MissionFunctions implements Mission
 		$this->setState(FLEET_RETURN);
 		$this->SaveFleet();
 	}
-	
+
 	function EndStayEvent()
 	{
 		return;
 	}
-	
+
 	function ReturnEvent()
 	{
 		$this->RestoreFleet();
