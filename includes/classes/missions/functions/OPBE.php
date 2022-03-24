@@ -5,7 +5,7 @@
  *  Copyright (C) 2013  Jstar
  *
  * This file is part of OPBE.
- * 
+ *
  * OPBE is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -43,12 +43,12 @@ define('CRYSTAL_ID', 902);
 /**
  * calculateAttack()
  * Calculate the battle using OPBE.
- * 
+ *
  * OPBE ,to decrease memory usage, don't save both the initial and end state of fleets in a single round: only the end state is saved.
  * Then OPBE store the first round in BattleReport and don't start it, just to show the fleets before the battle.
  * Also,cause OPBE start the rounds without saving the initial state, the informations about how many shots were fired etc must be asked to the next round.
  * Logically, the last round can't ask the next round because there is not.
- * 
+ *
  * @param array &$attackers
  * @param array &$defenders
  * @param mixed $FleetTF
@@ -230,11 +230,11 @@ function roundInfo(BattleReport $report, $attackers, $defenders, PlayerGroup $at
 /**
  * updatePlayers()
  * Update players array as default 2moons require.
- * OPBE keep the internal array data full to decrease memory size, so a PlayerGroup object don't have data about 
+ * OPBE keep the internal array data full to decrease memory size, so a PlayerGroup object don't have data about
  * empty users(an user is empty when fleets are empty and fleet is empty when the ships count is zero)
  * Instead, the old system require to have also array of zero: to update the array of users, after a round, we must iterate them
- * and check the corrispective OPBE value if empty.  
- * 
+ * and check the corrispective OPBE value if empty.
+ *
  * @param PlayerGroup $playerGroup
  * @param array &$players
  * @return null
@@ -298,7 +298,7 @@ function updatePlayers(PlayerGroup $playerGroup, &$players)
 /**
  * getShipType()
  * Choose the correct class type by ID
- * 
+ *
  * @param int $id
  * @param int $count
  * @return Ship or Defense instance
@@ -322,7 +322,7 @@ function getShipType($id, $count)
 /**
  * getFleet()
  * Choose the correct class type by ID
- * 
+ *
  * @param int $id
  * @return Fleet or HomeFleet instance
  */
@@ -337,9 +337,9 @@ function getFleet($id)
 
 function getTechsFromArray($player)
 {
-    $attTech = $player['military_tech'] + $player['factor']['Attack'] / WEAPONS_TECH_INCREMENT_FACTOR;
-    $shieldTech = $player['shield_tech'] + $player['factor']['Shield'] / SHIELDS_TECH_INCREMENT_FACTOR;
-    $defenceTech = $player['defence_tech'] + $player['factor']['Defensive'] / ARMOUR_TECH_INCREMENT_FACTOR;
+    $attTech = $player['military_tech'] / WEAPONS_TECH_INCREMENT_FACTOR;
+    $shieldTech = $player['shield_tech'] / SHIELDS_TECH_INCREMENT_FACTOR;
+    $defenceTech = $player['defence_tech'] / ARMOUR_TECH_INCREMENT_FACTOR;
     return array($attTech, $shieldTech, $defenceTech);
 }
 
@@ -349,5 +349,5 @@ function getTechsFromArrayForReport($player)
     $attTech = 1 + $attTech * WEAPONS_TECH_INCREMENT_FACTOR;
     $shieldTech = 1 + $shieldTech * SHIELDS_TECH_INCREMENT_FACTOR;
     $defenceTech = 1 + $defenceTech * ARMOUR_TECH_INCREMENT_FACTOR;
-    return array($attTech, $shieldTech, $defenceTech); 
+    return array($attTech, $shieldTech, $defenceTech);
 }
