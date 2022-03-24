@@ -97,7 +97,7 @@ class ShowFleetAjaxPage extends AbstractGamePage
 
 				foreach($recElementIDs as $elementID)
 				{
-					$a = $pricelist[$elementID]['capacity'] * (1 + $USER['factor']['ShipStorage']);
+					$a = $pricelist[$elementID]['capacity'];
 					$shipsNeed 		= min(ceil($totalDebris / $a), $PLANET[$resource[$elementID]]);
 					$totalDebris	-= ($shipsNeed * $a);
 

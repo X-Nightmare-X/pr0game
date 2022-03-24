@@ -195,7 +195,7 @@ class ShowFleetTablePage extends AbstractGamePage
 		if ($techExpedition >= 1)
 		{
 			$activeExpedition   = FleetFunctions::GetCurrentFleets($USER['id'], 15, true);
-			$maxExpedition 		= floor(sqrt($techExpedition)) + $USER['factor']['Expedition'];
+			$maxExpedition 		= floor(sqrt($techExpedition));
 		}
 		else
 		{
@@ -285,9 +285,9 @@ class ShowFleetTablePage extends AbstractGamePage
 			'targetMission'			=> $targetMission,
 			'acsData'				=> $acsData,
 			'isVacation'			=> IsVacationMode($USER),
-		    'bonusAttack'			=> $USER[$resource[109]] * 10 + $USER['factor']['Attack'] * 100,
-		    'bonusShield'			=> $USER[$resource[110]] * 10 + $USER['factor']['Shield'] * 100,
-			'bonusDefensive'		=> $USER[$resource[111]] * 10 + $USER['factor']['Defensive'] * 100,
+		    'bonusAttack'			=> $USER[$resource[109]] * 10,
+		    'bonusShield'			=> $USER[$resource[110]] * 10,
+			'bonusDefensive'		=> $USER[$resource[111]] * 10,
 			'bonusCombustion'		=> $USER[$resource[115]] * 10,
 			'bonusImpulse'			=> $USER[$resource[117]] * 20,
 			'bonusHyperspace'		=> $USER[$resource[118]] * 30,

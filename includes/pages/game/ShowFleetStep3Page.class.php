@@ -68,7 +68,7 @@ class ShowFleetStep3Page extends AbstractGamePage
 		$fleetStorage	= $formData['fleetRoom'];
 		$fleetSpeed		= $formData['fleetSpeed'];
 		$ownPlanet		= $formData['ownPlanet'];
-	
+
 		if($ownPlanet != $PLANET['id']){
 			$this->printMessage($LNG['fl_own_planet_error'], array(array(
 			'label'	=> $LNG['sys_back'],
@@ -419,15 +419,13 @@ class ShowFleetStep3Page extends AbstractGamePage
 
 
 		if ($targetMission == 17) {
-		    $attack = $USER[$resource[109]] * 10 + $USER['factor']['Attack'] * 100;
-		    $shield = $USER[$resource[110]] * 10 + $USER['factor']['Shield'] * 100;
-			$defensive = $USER[$resource[111]] * 10 + $USER['factor']['Defensive'] * 100;
+		    $attack = $USER[$resource[109]] * 10;
+		    $shield = $USER[$resource[110]] * 10;
+			$defensive = $USER[$resource[111]] * 10;
 
-			$targetPlayerData['factor']		= getFactors($targetPlayerData);
-
-			$attack_targ = $targetPlayerData[$resource[109]] * 10 + $targetPlayerData['factor']['Attack'] * 100;
-			$shield_targ = $targetPlayerData[$resource[110]] * 10 + $targetPlayerData['factor']['Shield'] * 100;
-			$defensive_targ = $targetPlayerData[$resource[111]] * 10 + $targetPlayerData['factor']['Defensive'] * 100;
+			$attack_targ = $targetPlayerData[$resource[109]] * 10;
+			$shield_targ = $targetPlayerData[$resource[110]] * 10;
+			$defensive_targ = $targetPlayerData[$resource[111]] * 10;
 
 			if($attack < $attack_targ || $defensive < $defensive_targ || $shield < $shield_targ) {
 				$this->printMessage($LNG['fl_stronger_techs'], array(array(

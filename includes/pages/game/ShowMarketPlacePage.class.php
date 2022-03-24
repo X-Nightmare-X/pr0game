@@ -30,14 +30,13 @@ class ShowMarketPlacePage extends AbstractGamePage
 	private function checkTechs($SELLER){
 		global $USER, $resource, $LNG;
 
-		$attack = $USER[$resource[109]] * 10 + $USER['factor']['Attack'] * 100;
-		$shield = $USER[$resource[110]] * 10 + $USER['factor']['Shield'] * 100;
-		$defensive = $USER[$resource[111]] * 10 + $USER['factor']['Defensive'] * 100;
+		$attack = $USER[$resource[109]] * 10;
+		$shield = $USER[$resource[110]] * 10;
+		$defensive = $USER[$resource[111]] * 10;
 
-		$SELLER['factor']		= getFactors($SELLER);
-		$attack_targ = $SELLER[$resource[109]] * 10 + $SELLER['factor']['Attack'] * 100;
-		$shield_targ = $SELLER[$resource[110]] * 10 + $SELLER['factor']['Shield'] * 100;
-		$defensive_targ = $SELLER[$resource[111]] * 10 + $SELLER['factor']['Defensive'] * 100;
+		$attack_targ = $SELLER[$resource[109]] * 10;
+		$shield_targ = $SELLER[$resource[110]] * 10;
+		$defensive_targ = $SELLER[$resource[111]] * 10;
 
 		if($attack > $attack_targ || $defensive > $defensive_targ || $shield > $shield_targ) {
 			return array(
@@ -167,7 +166,6 @@ class ShowMarketPlacePage extends AbstractGamePage
 			$fleetResult[0]['ex_resource_type'] <= 0) {
 				return $LNG['market_p_msg_wrong_resource_type'];
 		}
-		$factor = 1 + $USER['factor']['ShipStorage'];
 
 		//-------------FLEET SIZE CALCULATION---------------
 		$fleetResult = $fleetResult[0];
@@ -177,12 +175,12 @@ class ShowMarketPlacePage extends AbstractGamePage
 		$F1type = 0;
 		//PRIO for LC
 		if($shipType == 1) {
-			$F1capacity = $pricelist[202]['capacity'] * $factor;
+			$F1capacity = $pricelist[202]['capacity'];
 			$F1type = 202;
 		}
 		// PRIO for HC
 		else {
-			$F1capacity = $pricelist[203]['capacity'] * $factor;
+			$F1capacity = $pricelist[203]['capacity'];
 			$F1type = 203;
 		}
 
@@ -197,12 +195,12 @@ class ShowMarketPlacePage extends AbstractGamePage
 		if ($amountTMP > 0) {
 			//We need HC
 			if($shipType == 1) {
-				$F2capacity = $pricelist[203]['capacity'] * $factor;
+				$F2capacity = $pricelist[203]['capacity'];
 				$F2type = 203;
 			}
 			//We need LC
 			else{
-				$F2capacity = $pricelist[202]['capacity'] * $factor;
+				$F2capacity = $pricelist[202]['capacity'];
 				$F2type = 202;
 			}
 			$F2 = min($PLANET[$resource[$F2type]], ceil($amountTMP / $F2capacity));
