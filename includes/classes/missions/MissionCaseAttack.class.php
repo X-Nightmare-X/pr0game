@@ -62,15 +62,15 @@ class MissionCaseAttack extends MissionFunctions implements Mission
 		<tr>
 			<td>%s</td>
 			<td>
-                <span>%s:&nbsp;<span class="reportSteal element901">%s</span></span>
-                <span>%s:&nbsp;<span class="reportSteal element902">%s</span></span>
+                <span>%s:&nbsp;<span class="reportSteal element901">%s</span>&nbsp;</span>
+                <span>%s:&nbsp;<span class="reportSteal element902">%s</span>&nbsp;</span>
                 <span>%s:&nbsp;<span class="reportSteal element903">%s</span></span>
 			</td>
 		</tr>
 		<tr>
 			<td>%s</td>
 			<td>
-                <span>%s:&nbsp;<span class="reportDebris element901">%s</span></span>
+                <span>%s:&nbsp;<span class="reportDebris element901">%s</span>&nbsp;</span>
                 <span>%s:&nbsp;<span class="reportDebris element902">%s</span></span>
 			</td>
 		</tr>
