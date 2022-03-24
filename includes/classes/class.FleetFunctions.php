@@ -82,7 +82,7 @@ class FleetFunctions
 
 	public static function getExpeditionLimit($USER)
 	{
-		return floor(sqrt($USER[$GLOBALS['resource'][124]])) + $USER['factor']['Expedition'];
+		return floor(sqrt($USER[$GLOBALS['resource'][124]]));
 	}
 
 	public static function getDMMissionLimit($USER)
@@ -145,7 +145,7 @@ class FleetFunctions
 	public static function GetMaxFleetSlots($USER)
 	{
 		global $resource;
-		return 1 + $USER[$resource[108]] + $USER['factor']['FleetSlots'];
+		return 1 + $USER[$resource[108]];
 	}
 
 	public static function GetFleetRoom($Fleet)
@@ -154,7 +154,7 @@ class FleetFunctions
 		$FleetRoom 				= 0;
 		foreach ($Fleet as $ShipID => $amount)
 		{
-			$FleetRoom		   += $pricelist[$ShipID]['capacity'] * $amount * (1 + $USER['factor']['ShipStorage']);
+			$FleetRoom		   += $pricelist[$ShipID]['capacity'] * $amount;
 		}
 		return $FleetRoom;
 	}
@@ -491,16 +491,16 @@ class FleetFunctions
 	public static function CheckBash($Target)
 	{
 		global $USER;
-		
-		
+
+
 		$PlanetOwner = Database::get()->selectSingle('SELECT id_owner FROM %%PLANETS%% where id = :id', array(
 			':id'		=> $Target,
 		), 'id_owner');
-				
+
 		$Inactivity = Database::get()->selectSingle('SELECT onlinetime FROM %%USERS%% where id = :id', array(
 			':id'		=> $PlanetOwner,
 		), 'onlinetime');
-				
+
 		if($Inactivity < TIMESTAMP - INACTIVE)
 		{
 			return false;
