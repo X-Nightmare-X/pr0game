@@ -1,11 +1,9 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
- *
  * For the full copyright and license information, please view the LICENSE
- *
  * @package 2Moons
  * @author Jan-Otto Kröpke <slaver7@gmail.com>
  * @copyright 2009 Lucky
@@ -17,132 +15,133 @@
 
 class Cronjob
 {
-	function __construct()
-	{
-		
-	}
-	
-	static function execute($cronjobID)
-	{
-		$lockToken	= md5(TIMESTAMP);
+    function __construct()
+    {
 
-		$db	= Database::get();
+    }
 
-		$sql = 'SELECT class FROM %%CRONJOBS%% WHERE isActive = :isActive AND cronjobID = :cronjobId AND `lock` IS NULL;';
+    static function execute($cronjobID)
+    {
+        require_once 'includes/classes/class.Discord.php';
 
-		$cronjobClassName	= $db->selectSingle($sql, array(
-			':isActive'		=> 1,
-			':cronjobId'	=> $cronjobID
-		), 'class');
+        $lockToken = md5(TIMESTAMP);
 
-		if(empty($cronjobClassName))
-		{
-			throw new Exception(sprintf("Unknown cronjob %s or cronjob is deactive!", $cronjobID));
-		}
-		
-		$sql = 'UPDATE %%CRONJOBS%% SET `lock` = :lock WHERE cronjobID = :cronjobId;';
+        $db = Database::get();
 
-		$db->update($sql, array(
-			':lock'			=> $lockToken,
-			':cronjobId'	=> $cronjobID
-		));
-		
-		$cronjobPath		= 'includes/classes/cronjob/'.$cronjobClassName.'.class.php';
-		
-		// die hard, if file not exists.
-		require_once($cronjobPath);
+        $sql = 'SELECT class FROM %%CRONJOBS%% WHERE isActive = :isActive AND cronjobID = :cronjobId AND `lock` IS NULL;';
 
-		/** @var $cronjobObj CronjobTask */
-		$cronjobObj			= new $cronjobClassName;
-		$cronjobObj->run();
+        $cronjobClassName = $db->selectSingle($sql, [
+            ':isActive' => 1,
+            ':cronjobId' => $cronjobID
+        ], 'class');
 
-		self::reCalculateCronjobs($cronjobID);
-		$sql = 'UPDATE %%CRONJOBS%% SET `lock` = NULL WHERE cronjobID = :cronjobId;';
+        if (empty($cronjobClassName)) {
+            throw new Exception(sprintf("Unknown cronjob %s or cronjob is deactive!", $cronjobID));
+        }
 
-		$db->update($sql, array(
-			':cronjobId'	=> $cronjobID
-		));
+        try {
+            $db->update('UPDATE %%CRONJOBS%% SET `lock` = :lock WHERE cronjobID = :cronjobId;', [
+                ':lock' => $lockToken,
+                ':cronjobId' => $cronjobID
+            ]);
 
-		$sql = 'INSERT INTO %%CRONJOBS_LOG%% SET `cronjobId` = :cronjobId,
-		`executionTime` = :executionTime, `lockToken` = :lockToken';
+            $cronjobPath = 'includes/classes/cronjob/' . $cronjobClassName . '.class.php';
 
-		$db->insert($sql, array(
-			':cronjobId'		=> $cronjobID,
-			':executionTime'	=> Database::formatDate(TIMESTAMP),
-			':lockToken'		=> $lockToken
-		));
-	}
-	
-	static function getNeedTodoExecutedJobs()
-	{
-		$sql			= 'SELECT cronjobID
+            // die hard, if file not exists.
+            require_once($cronjobPath);
+
+            /** @var $cronjobObj CronjobTask */
+            $cronjobObj = new $cronjobClassName;
+            $cronjobObj->run();
+
+            self::reCalculateCronjobs($cronjobID);
+
+            $db->update('UPDATE %%CRONJOBS%% SET `lock` = NULL WHERE cronjobID = :cronjobId;', [
+                ':cronjobId' => $cronjobID
+            ]);
+
+            $db->insert('INSERT INTO %%CRONJOBS_LOG%% SET `cronjobId` = :cronjobId, `executionTime` = :executionTime, `lockToken` = :lockToken', [
+                ':cronjobId' => $cronjobID,
+                ':executionTime' => Database::formatDate(TIMESTAMP),
+                ':lockToken' => $lockToken
+            ]);
+
+            Discord::sendLog($cronjobClassName, ['successful' => true]);
+        } catch (Exception $exception) {
+            // unlock cronjob
+            $db->update('UPDATE %%CRONJOBS%% SET `lock` = :lock WHERE cronjobID = :cronjobId;', [
+                ':lock' => null,
+                ':cronjobId' => $cronjobID
+            ]);
+
+            Discord::sendLog($cronjobClassName, null, $exception);
+        }
+    }
+
+    static function getNeedTodoExecutedJobs()
+    {
+        $sql = 'SELECT cronjobID
 		FROM %%CRONJOBS%%
 		WHERE isActive = :isActive AND nextTime < :time AND `lock` IS NULL;';
 
-		$cronjobResult	= Database::get()->select($sql, array(
-			':isActive'	=> 1,
-			':time'		=> TIMESTAMP
- 		));
+        $cronjobResult = Database::get()->select($sql, [
+            ':isActive' => 1,
+            ':time' => TIMESTAMP
+        ]);
 
-		$cronjobList	= array();
+        $cronjobList = [];
 
-		foreach($cronjobResult as $cronjobRow)
-		{
-			$cronjobList[]	= $cronjobRow['cronjobID'];
-		}
-		
-		return $cronjobList;
-	}
+        foreach ($cronjobResult as $cronjobRow) {
+            $cronjobList[] = $cronjobRow['cronjobID'];
+        }
 
-	static function getLastExecutionTime($cronjobName)
-	{
-		require_once 'includes/libs/tdcron/class.tdcron.php';
-		require_once 'includes/libs/tdcron/class.tdcron.entry.php';
+        return $cronjobList;
+    }
 
-		$sql		= 'SELECT MAX(executionTime) as executionTime FROM %%CRONJOBS_LOG%% INNER JOIN %%CRONJOBS%% USING(cronjobId) WHERE name = :cronjobName;';
-		$lastTime	= Database::get()->selectSingle($sql, array(
-			':cronjobName' => $cronjobName
-		), 'executionTime');
+    static function getLastExecutionTime($cronjobName)
+    {
+        require_once 'includes/libs/tdcron/class.tdcron.php';
+        require_once 'includes/libs/tdcron/class.tdcron.entry.php';
 
-		if(empty($lastTime))
-		{
-			return false;
-		}
+        $sql = 'SELECT MAX(executionTime) as executionTime FROM %%CRONJOBS_LOG%% INNER JOIN %%CRONJOBS%% USING(cronjobId) WHERE name = :cronjobName;';
+        $lastTime = Database::get()->selectSingle($sql, [
+            ':cronjobName' => $cronjobName
+        ], 'executionTime');
 
-		return strtotime($lastTime);
-	}
-	
-	static function reCalculateCronjobs($cronjobID = NULL)
-	{
-		require_once 'includes/libs/tdcron/class.tdcron.php';
-		require_once 'includes/libs/tdcron/class.tdcron.entry.php';
+        if (empty($lastTime)) {
+            return false;
+        }
 
-		$db	= Database::get();
+        return strtotime($lastTime);
+    }
 
-		if(!empty($cronjobID))
-		{
-			$sql			= 'SELECT cronjobID, min, hours, dom, month, dow FROM %%CRONJOBS%% WHERE cronjobID = :cronjobId;';
-			$cronjobResult	= $db->select($sql, array(
-				':cronjobId' => $cronjobID
-			));
-		}
-		else
-		{
-			$sql			= 'SELECT cronjobID, min, hours, dom, month, dow FROM %%CRONJOBS%%;';
-			$cronjobResult	= $db->select($sql);
-		}
+    static function reCalculateCronjobs($cronjobID = null)
+    {
+        require_once 'includes/libs/tdcron/class.tdcron.php';
+        require_once 'includes/libs/tdcron/class.tdcron.entry.php';
 
-		$sql = 'UPDATE %%CRONJOBS%% SET nextTime = :nextTime WHERE cronjobID = :cronjobId;';
+        $db = Database::get();
 
-		foreach($cronjobResult as $cronjobRow)
-		{
-			$cronTabString	= implode(' ', array($cronjobRow['min'], $cronjobRow['hours'], $cronjobRow['dom'], $cronjobRow['month'], $cronjobRow['dow']));
-			$nextTime		= tdCron::getNextOccurrence($cronTabString, TIMESTAMP + 60);
+        if (!empty($cronjobID)) {
+            $sql = 'SELECT cronjobID, min, hours, dom, month, dow FROM %%CRONJOBS%% WHERE cronjobID = :cronjobId;';
+            $cronjobResult = $db->select($sql, [
+                ':cronjobId' => $cronjobID
+            ]);
+        } else {
+            $sql = 'SELECT cronjobID, min, hours, dom, month, dow FROM %%CRONJOBS%%;';
+            $cronjobResult = $db->select($sql);
+        }
 
-			$db->update($sql, array(
-				':nextTime'		=> $nextTime,
-				':cronjobId'	=> $cronjobRow['cronjobID'],
-			));
-		}
-	}
+        $sql = 'UPDATE %%CRONJOBS%% SET nextTime = :nextTime WHERE cronjobID = :cronjobId;';
+
+        foreach ($cronjobResult as $cronjobRow) {
+            $cronTabString = implode(' ', [$cronjobRow['min'], $cronjobRow['hours'], $cronjobRow['dom'], $cronjobRow['month'], $cronjobRow['dow']]);
+            $nextTime = tdCron::getNextOccurrence($cronTabString, TIMESTAMP + 60);
+
+            $db->update($sql, [
+                ':nextTime' => $nextTime,
+                ':cronjobId' => $cronjobRow['cronjobID'],
+            ]);
+        }
+    }
 }
