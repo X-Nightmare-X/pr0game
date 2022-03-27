@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -19,12 +19,12 @@ class ShowBattleHallPage extends AbstractLoginPage
 {
 	public static $requireModule = 0;
 
-	function __construct() 
+	function __construct()
 	{
 		parent::__construct();
 	}
-	
-	function show() 
+
+	function show()
 	{
 		global $LNG;
 		$db = Database::get();
@@ -39,7 +39,7 @@ class ShowBattleHallPage extends AbstractLoginPage
 		(
 			SELECT DISTINCT
 			IF(%%TOPKB_USERS%%.username = '', GROUP_CONCAT(%%USERS%%.username SEPARATOR ' & '), GROUP_CONCAT(%%TOPKB_USERS%%.username SEPARATOR ' & '))
-			FROM %%TOPKB_USERS%% INNER JOIN %%USERS%% ON uid = id
+			FROM %%TOPKB_USERS%% LEFT JOIN %%USERS%% ON uid = id
 			WHERE %%TOPKB_USERS%%.`rid` = %%TOPKB%%.`rid` AND `role` = 2
 		) as `defender`
 		FROM %%TOPKB%% WHERE `universe` = :universe AND time < UNIX_TIMESTAMP() - 21600 ORDER BY units DESC LIMIT 100;";
@@ -61,7 +61,7 @@ class ShowBattleHallPage extends AbstractLoginPage
 		}
 
 		$universeSelect	= $this->getUniverseSelector();
-		
+
 		$this->assign(array(
 			'universeSelect'	=> $universeSelect,
 			'hallList'			=> $hallList,
