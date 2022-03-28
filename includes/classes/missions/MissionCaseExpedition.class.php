@@ -595,7 +595,6 @@ HTML;
 		mt_srand(microtime(TRUE)*10000);
 		usleep(50);
 
-		$Message .= $LNG['sys_expe_nothing_' . mt_rand(1, 8)]; // default
 		$GetEvent = $this->chooseEvent();
 
 		// Find resources: 37%. Values from http://owiki.de/Expedition + 4.5% compensation for dark matter
@@ -641,6 +640,8 @@ HTML;
 				$this->UpdateFleet('fleet_end_time', $endTime);
 				$Message .= $LNG['sys_expe_time_fast_' . mt_rand(1, 3)];
 			}
+		} else {
+			$Message .= $LNG['sys_expe_nothing_' . mt_rand(1, 8)]; // default
 		}
 
 		if(isset($fleetArray[SHIP_PROBE])) $Message .= '<br><br>'.$this->_logbook;
