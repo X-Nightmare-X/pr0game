@@ -261,35 +261,35 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		
 		$FoundShipMess	= "";
 		$NewFleetArray 	= "";
+		$CountTotal = 0;
 		$foundPoints = max(round($Size * min($fleetPoints, $MaxPoints)), 10000);
 		$findableShips = $this->determineFindableShips($fleetArray);
 		$Found = $this->determineFoundShips($foundPoints, $findableShips);
-		
-		if (empty($Found)) {
-			$FoundShipMess .= '<br><br>'.$LNG['sys_expe_found_ships_nothing'];
-		} else {
-			foreach ($reslist['fleet'] as $ID) {
-				$Count = 0;
-				if (!empty($Found[$ID])) {
-					$Count += $Found[$ID];
-					$FoundShipMess .= '<br>' . $LNG['tech'][$ID] . ': ' . pretty_number($Count);
-				}
-				if (!empty($fleetArray[$ID])) {
-					$Count += $fleetArray[$ID];
-				}
 
-				if ($Count > 0) {
-					$NewFleetArray .= $ID . "," . floatToString($Count) . ';';
-				}
+		foreach ($reslist['fleet'] as $ID) {
+			$Count = 0;
+			if (!empty($Found[$ID])) {
+				$Count += $Found[$ID];
+				$FoundShipMess .= '<br>' . $LNG['tech'][$ID] . ': ' . pretty_number($Count);
+			}
+			if (!empty($fleetArray[$ID])) {
+				$Count += $fleetArray[$ID];
 			}
 
+			if ($Count > 0) {
+				$NewFleetArray .= $ID . "," . floatToString($Count) . ';';
+				$CountTotal += $Count;
+			}
+		}
+
+		if (empty($Found)) {
+			$Message .= '<br><br>' . $LNG['sys_expe_found_ships_nothing'];
+		} else {
 			$Message 	.= '<br><br>' . $LNG['sys_expe_back_home_ships_flound'] . $FoundShipMess;
 		}
-		
-		
-		
+
 		$this->UpdateFleet('fleet_array', $NewFleetArray);
-		$this->UpdateFleet('fleet_amount', array_sum($fleetArray));
+		$this->UpdateFleet('fleet_amount', $CountTotal);
 		
 		return $Message;
 	}
@@ -595,7 +595,6 @@ HTML;
 		mt_srand(microtime(TRUE)*10000);
 		usleep(50);
 
-		$Message .= $LNG['sys_expe_nothing_' . mt_rand(1, 8)]; // default
 		$GetEvent = $this->chooseEvent();
 
 		// Find resources: 37%. Values from http://owiki.de/Expedition + 4.5% compensation for dark matter
@@ -641,6 +640,8 @@ HTML;
 				$this->UpdateFleet('fleet_end_time', $endTime);
 				$Message .= $LNG['sys_expe_time_fast_' . mt_rand(1, 3)];
 			}
+		} else {
+			$Message .= $LNG['sys_expe_nothing_' . mt_rand(1, 8)]; // default
 		}
 
 		if(isset($fleetArray[SHIP_PROBE])) $Message .= '<br><br>'.$this->_logbook;
@@ -683,6 +684,14 @@ HTML;
 
 		$fleetArray			= FleetFunctions::unserialize($this->_fleet['fleet_array']);
 		$fleetArrayStart 	= FleetFunctions::unserialize($this->_fleet['fleet_start_array']);
+
+		// correct empty fleets resulting from a fixed bug in findShips event
+		if (empty($fleetArray) && !empty($fleetArrayStart)) {
+			$this->_fleet['fleet_array'] = $this->_fleet['fleet_start_array'];
+			$this->UpdateFleet('fleet_array', $this->_fleet['fleet_start_array']);
+			//impossible when fleet is killed
+			$this->SaveFleet();
+		}
 
 		if (isset($fleetArrayStart)) {
 			$fleetAmmount		= array_sum($fleetArray);
