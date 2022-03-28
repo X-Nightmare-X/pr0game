@@ -264,9 +264,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		$CountTotal = 0;
 		$foundPoints = max(round($Size * min($fleetPoints, $MaxPoints)), 10000);
 		$findableShips = $this->determineFindableShips($fleetArray);
-		// $Found = $this->determineFoundShips($foundPoints, $findableShips);
-
-		$Found = array();
+		$Found = $this->determineFoundShips($foundPoints, $findableShips);
 
 		foreach ($reslist['fleet'] as $ID) {
 			$Count = 0;
@@ -598,7 +596,6 @@ HTML;
 		usleep(50);
 
 		$GetEvent = $this->chooseEvent();
-		$GetEvent = 634;
 
 		// Find resources: 37%. Values from http://owiki.de/Expedition + 4.5% compensation for dark matter
 		if ($GetEvent < 370) $Message .= $this->handleEventFoundRes();
