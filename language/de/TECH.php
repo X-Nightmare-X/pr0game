@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -71,7 +71,7 @@ $LNG['bonus'] = array(
 	'GateCoolTime'			=> 'Sprungtoraufladungszeit',
 	'MoreFound'			=> 'Expeditionsfund',
 );
-					
+
 $LNG['tech'] = array(
 	  0 => 'Gebäude',
 	  1 => 'Metallmine',
@@ -149,7 +149,7 @@ $LNG['tech'] = array(
 	409 => 'Gigantische Schildkuppel',
 	410 => 'Gravitonkanone',
 	411 => 'Orbitale Verteidigungsplattform',
-	
+
 	500 => 'Raketen',
 	502 => 'Abfangrakete',
 	503 => 'Interplanetarrakete',
@@ -287,7 +287,7 @@ $LNG['shortDescription'] = array(
 	705 => 'Der Bonus ist nur temporär.',
 	706 => 'Der Bonus ist nur temporär.',
 	707 => 'Der Bonus ist nur temporär.',
-	
+
 	901 => 'Hauptrohstoff für den Bau tragender Strukturen von Bauwerken und Schiffen. Metall ist der billigste Rohstoff, dafür wird er mehr benötigt als die anderen. Metall braucht zur Herstellung am wenigsten Energie.',
 	902 => 'Kristall wird für die Herstellung feinelektronischer Komponente benötigt, und wird in Minen unter der Erde abgebaut.',
 	903 => 'Deuterium ist schwerer Wasserstoff. Für die Gewinnung von Deuterium großen Mengen Energie benötigt. Deuterium wird unter anderem als Treibstoff für Raumschiffe benötigt.',
@@ -315,7 +315,7 @@ $LNG['longDescription'] = array(
 	 42 => 'Hochauflösende Sensoren scannen das vollständige Frequenzspektrum aller auf die Phalanx auftreffenden Strahlungen. Hochleistungscomputer kombinieren winzige Energieschwankungen und gewinnen so Informationen über Schiffsbewegungen auf entfernten Planeten. Für den Scan muss Energie in Form von Deuterium (5.000) auf dem Mond bereitgestellt werden. Man scannt, indem man vom Mond aus ins Galaxiemenü wechselt und auf einen feindlichen Planeten in Sensorenreichweite (Phalanxstufe)^2 - 1 klickt.',
 	 43 => 'Sprungtore sind riesige Transmitter, die in der Lage sind, selbst große Flotten ohne Zeitverlust durch das Universum zu versenden. Diese Transmitter verbrauchen kein Deuterium, jedoch muss zwischen 2 Sprüngen eine Stunde vergehen, da sich die Tore sonst überhitzten. Auch ist ein Mitschicken von Ressourcen nicht möglich. Der ganze Vorgang erfordert eine ungeheuer hoch entwickelte Technologie.',
 	 44 => 'Raketensilos dienen zum Einlagern von Raketen. Pro ausgebauter Stufe kann man fünf Interplanetar- oder zehn Abfangraketen einlagern. Eine Interplanetarrakete benötigt so viel Platz wie zwei Abfangraketen. Unterschiedliche Raketentypen können beliebig kombiniert werden.',
-	
+
 	106 => 'Die Spionagetechnik befasst sich in erster Linie mit der Erforschung neuer und effizienterer Sensoren. Je höher diese Technik entwickelt ist, um so mehr Informationen stehen dem Nutzer über Vorgänge in seiner Umgebung zur Verfügung. Für Sonden ist die Differenz des eigenen und des gegnerischen Spionagelevels entscheidend. Je weiter die eigene Spionagetechnik erforscht ist, desto mehr Informationen enthält der Bericht und um so kleiner ist die Chance, dass man beim Spionieren entdeckt wird. Je mehr Sonden man schickt, desto mehr Details erfährt man von seinem Gegner, gleichzeitig steigt aber auch die Gefahr einer Entdeckung. Die Spionagetechnik verbessert ebenfalls die Ortung fremder Flotten. Dabei ist nur der eigene Spionagelevel entscheidend. Ab Level 2 wird zusätzlich zur reinen Angriffsmeldung auch die Gesamtanzahl der angreifenden Schiffe angezeigt. Ab Level 4 sieht man die Art der angreifenden Schiffe, sowie die Gesamtanzahl und ab Level 8 die genaue Anzahl der verschiedenen Schiffstypen. Für Raider ist diese Technik unverzichtbar, da sie Auskunft darüber gibt, ob das Opfer Flotte und/oder Verteidigung stationiert hat oder nicht. Deshalb sollte diese Technik schon sehr früh erforscht werden. Am besten sofort nach der Erforschung von kleinen Transportern.',
 	108 => 'Die Computertechnik befasst sich mit der Erweiterung der vorhandenen Computerkapazitäten. Immer leistungsfähigere und effizientere Computersysteme werden entwickelt. Die Rechenleistung steigt immer weiter und die Geschwindigkeit, mit denen Rechenprozesse ablaufen, wird ebenfalls erhöht. Mit der Erhöhung der Computerkapazitäten lassen sich immer mehr Flotten gleichzeitig befehligen. Jede Stufe Computertechnik erhöht dabei die maximale Flottenanzahl um eins. Je mehr Flotten man gleichzeitig verschicken kann, desto mehr kann man raiden und desto mehr Rohstoffe kann man einnehmen. Natürlich nutzt diese Technik auch Händlern, denn sie können dann ebenfalls mehr Handelsflotten gleichzeitig losschicken. Aus diesem Grund sollte die Computertechnik kontinuierlich über das gesamte Spiel hinweg ausgebaut werden.',
 	109 => 'Die Waffentechnik beschäftigt sich vor allem mit der Weiterentwicklung bestehender Waffensysteme. Dabei wird insbesondere darauf Wert gelegt, die vorhandenen Systeme mit mehr Energie auszustatten und diese Energie punktgenau zu kanalisieren. Dadurch werden die Waffensysteme effizienter und Waffen richten mehr Schaden an. Jede Stufe der Waffentechnik erhöht die Waffenstärke der Einheiten um 10% des Grundwertes. Die Waffentechnik ist wichtig, um später die eigenen Einheiten konkurrenzfähig zu halten. Deshalb sollte sie kontinuierlich das ganze Spiel hindurch entwickelt werden.',
@@ -335,7 +335,7 @@ $LNG['longDescription'] = array(
 	132 => 'Erhöht die Produktion der Kristallmine um 2%',
 	133 => 'Erhöht die Produktion der Deuteriumsynthetisierer um 2%',
 	199 => 'Ein Graviton ist ein Partikel, das keine Masse und keine Ladung besitzt, welche die Gravitationskraft bestimmt. Durch Abschuss einer konzentrierten Ladung von Gravitonen kann ein künstliches Gravitationsfeld errichtet werden, welches ähnlich einem schwarzen Loch, Masse in sich hineinzieht, wodurch Schiffe oder auch Monde vernichtet werden können. Um eine ausreichende Menge Gravitonen herzustellen benötigt es riesige Mengen an Energie. Voraussetzungen: Forschungslabor (Stufe 12).',
-	
+
 	202 => 'Transporter haben ungefähr die gleiche Größe wie Jäger, verzichten aber auf leistungsfähige Antriebe und Bordwaffen, um Platz für Frachtraum zu schaffen. Der kleine Transporter verfügt über eine Ladekapazität von 5.000 Ressourceneinheiten. Aufgrund ihrer geringen Feuerkraft werden Transporter oft von anderen Schiffen eskortiert.',
 	203 => 'Dieses Schiff hat kaum Waffen oder andere Technologien an Bord. Aus diesem Grunde sollten sie nie alleine losgeschickt werden. Der große Transporter dient durch sein hochentwickeltes Verbrennungstriebwerk als schneller Ressourcenlieferant zwischen den Planeten und natürlich begleitet er die Flotten auf ihren Überfällen feindlicher Planeten, um möglichst viele Ressourcen zu erobern, der große Transporter verfügt über eine Ladekapazität von 25.000 Ressourceneinheiten.',
 	204 => 'Der leichte Jäger ist ein wendiges Schiff, das auf fast jedem Planeten vorgefunden wird. Die Kosten sind nicht besonders hoch, Schildstärke und Ladekapazität sind allerdings sehr gering.',
@@ -343,7 +343,7 @@ $LNG['longDescription'] = array(
 	206 => 'Mit der Entwicklung der schweren Laser und der Ionenkanonen kamen die Jäger immer mehr in Bedrängnis. Trotz vieler Modifikationen konnte die Waffenstärke und die Panzerung nicht so weit gesteigert werden, um diesen Verteidigungsgeschützen wirksam begegnen zu können. Deshalb entschied man sich, eine neue Schiffsklasse zu konstruieren, die mehr Panzerung und mehr Feuerkraft in sich vereinte. Der Kreuzer war geboren. Kreuzer sind fast dreimal so stark gepanzert wie schwere Jäger und verfügen über mehr als die doppelte Schusskraft. Zudem sind sie sehr schnell. Gegen mittlere Verteidigung gibt es keine bessere Waffe. Kreuzer beherrschten fast ein Jahrhundert lang unumschränkt das All. Mit dem Aufkommen der Gaußgeschütze und Plasmawerfer endete ihre Vorherrschaft. Jedoch werden sie auch heute noch gerne gegen Jägerverbände eingesetzt.',
 	207 => 'Schlachtschiffe bilden meist das Rückrat einer Flotte. Ihre schweren Geschütze, die hohe Geschwindigkeit und der große Frachtraum, machen sie zu ernst zu nehmenden Gegnern.',
 	208 => 'Dieses gut gepanzerte Schiff dient der Eroberung neuer Planeten, was für ein aufstrebendes Imperium unerlässlich ist. Das Schiff wird auf der neuen Kolonie als Rohstofflieferant genutzt, in dem es wieder auseinander gebaut wird und alles wiederverwertbare Material für die Erschliessung der neuen Welt genutzt wird. Pro Imperium können inklusive Hauptplanet maximal 9 Planeten kolonisiert werden.',
-	209 => 'Die Weltraumgefechte nahmen immer größere Ausmaße an. Tausende Schiffe wurden zerstört, aber die dadurch entstehenden Trümmerfelder schienen für immer verloren. Normale Transporter konnten sich nicht nahe genug an diese Felder heran bewegen, ohne durch kleinere Trümmer riesigen Schaden zu nehmen. Mit einer neuen Entwicklung im Bereich der Schildtechnologie konnte dieses Problem effizient beseitigt werden. Es entstand eine neue Schiffsklasse, ähnlich dem großen Transporter, der Recycler. Mit dessen Hilfe konnten die scheinbar verlorenen Ressourcen doch noch verwertet werden. Die kleinen Trümmer stellten aufgrund der neuen Schilde auch keine Gefahr mehr dar. Durch spezielle mehrdimensionale Ladefelder konnte seine Ladekapazität auf 20.000 erweitert werden.',
+	209 => 'Die Weltraumgefechte nahmen immer größere Ausmaße an. Tausende Schiffe wurden zerstört, aber die dadurch entstehenden Trümmerfelder schienen für immer verloren. Normale Transporter konnten sich nicht nahe genug an diese Felder heran bewegen, ohne durch kleinere Trümmer riesigen Schaden zu nehmen. Mit einer neuen Entwicklung im Bereich der Schildtechnologie konnte dieses Problem effizient beseitigt werden. Es entstand eine neue Schiffsklasse, ähnlich dem großen Transporter, der Recycler. Mit dessen Hilfe konnten die scheinbar verlorenen Ressourcen doch noch verwertet werden. Die kleinen Trümmer stellten aufgrund der neuen Schilde auch keine Gefahr mehr dar. Durch spezielle mehrdimensionale Ladefelder konnte seine Ladekapazität auf 20.000 erweitert werden. Ab Impulsantrieb Stufe 17 bzw. Hyperraumantrieb Stufe 15 wird der schnellere und kostengünstigere Antrieb genutzt.',
 	210 => 'Spionagesonden sind kleine wendige Drohnen, welche über weite Entfernungen hinweg Daten über Flotten und Planeten liefern. Ihr Hochleistungstriebwerk ermöglicht ihnen weite Strecken in wenigen Sekunden zurück zu legen. Einmal in der Umlaufbahn eines Planeten angekommen verweilen sie dort kurz um Daten zu sammeln. Während dieser Zeit sind sie vom Feind relativ leicht entdeck- und angreifbar. Um Platz zu sparen wurde auf Panzerung, Schilde und Waffen verzichtet, was die Sonden, wenn sie einmal entdeckt wurden, zu leichten Zielen macht.',
 	211 => 'Der Bomber wurde speziell entwickelt um die Verteidigung eines Planeten zu zerstören. Mit Hilfe einer lasergesteuerten Zielvorrichtung wirft er zielgenau Plasmabomben auf die Planetenoberfläche und richtet so einen verheerenden Schaden bei Verteidigungsanlagen an.',
 	212 => 'Solarsatelliten werden in eine geostationäre Umlaufbahn um einen Planeten geschossen. Sie bündeln Sonnenenergie und transferieren sie zu einer Bodenstation. Die Effizienz der Solarsatelliten hängt von der Stärke der Sonneneinstrahlung ab. Grundsätzlich ist die Energieausbeute auf sonnennahen Orbits größer als auf Planeten mit sonnenfernen Orbit. Durch ihr gutes Preis-Leistungs-Verhältnis lösen Solarsatelliten die Energieprobleme vieler Welten. Aber Vorsicht: Solarsatelliten können im Kampf zerstört werden.',
@@ -355,7 +355,7 @@ $LNG['longDescription'] = array(
 	218 => 'Dieses Schiff ist eine Verbesserung mehrerer Schiffe gleichzeitig und der Kaiser der Kampfsterne.',
 	219 => 'Dieses Schiff ist eine wahrhaft gigantische Recycelanlage im Weltraum mit Atemberaubender Geschwindigkeit und riesigem Lagerraum! Geschaffen für große Imperien.',
 	220 => 'Mit diesem Schiff ist es nach jahrelangem Forschen möglich, Dunkle Materie an seinem Mond zu sammeln.',
-	
+
 	401 => 'Der Raketenwerfer ist eine einfache aber kostengünstige Verteidigungsmöglichkeit. Da er nur eine Weiterentwicklung gewöhnlicher ballistischer Feuerwaffen ist, benötigt er keine weitere Forschung. Seine geringen Herstellungskosten rechtfertigen seinen Einsatz gegen kleinere Flotten, er verliert aber mit der Zeit an Bedeutung. Später wird er nur noch als Schussfang hinter großen Geschützen eingesetzt. Verteidigungsanlagen deaktivieren sich, sobald sie zu stark beschädigt sind. Nach einer Schlacht beträgt die Chance bis zu 70%, dass sich ausgefallene Verteidigungsanlagen wieder Instand setzen lassen.',
 	402 => 'Um die enormen Fortschritte im Bereich der Raumschifftechnologie kompensieren zu können, mussten die Forscher eine Verteidigungsanlage entwickeln, welche auch mit größeren und besser ausgerüsteten Schiffen bzw. Flotten zurechtkommt. Dies war die Geburtsstunde des leichten Lasers. Durch den konzentrierten Beschuss eines Ziels mit Photonen konnte eine wesentlich größere Schadenswirkung erzielt werden als mit gewöhnlichen ballistischen Waffen. Um der größeren Feuerkraft der neuen Schiffstypen widerstehen zu können wurde er ausserdem mit verbesserten Schilden ausgestattet. Damit die Produktionskosten dennoch gering gehalten werden konnten wurde die Struktur nicht weiter verstärkt. Der leichte Laser besitzt das beste Preis-Leistungs-Verhältnis überhaupt und ist dadurch auch für weiter fortgeschrittene Zivilisationen interessant. Verteidigungsanlagen deaktivieren sich, sobald sie zu stark beschädigt sind. Nach einer Schlacht beträgt die Chance bis zu 70%, dass sich die zerstörten Verteidigungsanlagen wieder Instand setzen lassen.',
 	403 => 'Der schwere Laser stellt die konsequente Weiterentwicklung des Designs des leichten Lasers dar. Die Struktur wurde verstärkt und mit neuen Materialien verbessert. Die Hülle konnte so wesentlich widerstandsfähiger gemacht werden. Gleichzeitig wurden auch das Energiesystem und der Zielcomputer verbessert, so dass ein schwerer Laser wesentlich mehr Energie auf ein Ziel konzentrieren kann. Verteidigungsanlagen deaktivieren sich, sobald sie zu stark beschädigt sind. Nach einer Schlacht beträgt die Chance bis zu 70%, dass sich ausgefallene Verteidigungsanlagen wieder Instand setzen lassen.',

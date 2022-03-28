@@ -100,16 +100,15 @@ class statbuilder
                     );
                 }
 
-                $allianceScores[$userData['ally_id']]->build_count += $userScores[$userData['id']]['build']['count'] ?? 0;
-                $allianceScores[$userData['ally_id']]->build_points += $userScores[$userData['id']]['build']['points'] ?? 0;
-                $allianceScores[$userData['ally_id']]->fleet_count += $userScores[$userData['id']]['fleet']['count'] ?? 0;
-                $allianceScores[$userData['ally_id']]->fleet_points += $userScores[$userData['id']]['fleet']['points'] ?? 0;
-                $allianceScores[$userData['ally_id']]->defs_count += $userScores[$userData['id']]['defense']['count'] ?? 0;
-                $allianceScores[$userData['ally_id']]->defs_points += $userScores[$userData['id']]['defense']['points'] ?? 0;
-                $allianceScores[$userData['ally_id']]->tech_count += $userScores[$userData['id']]['techno']['count'] ?? 0;
-                $allianceScores[$userData['ally_id']]->tech_points += $userScores[$userData['id']]['techno']['points'] ?? 0;
-                $allianceScores[$userData['ally_id']]->total_count += $userScores[$userData['id']]['total']['count'] ?? 0;
-                $allianceScores[$userData['ally_id']]->total_points += $userScores[$userData['id']]['total']['points'] ?? 0;
+                $allianceScores[$userData['ally_id']]->build_count += (int)$userScores[$userData['id']]['build']['count'];
+                $allianceScores[$userData['ally_id']]->build_points += (int)$userScores[$userData['id']]['build']['points'] ?? 0;
+                $allianceScores[$userData['ally_id']]->fleet_count += (int)$fleetPoints['count'];
+                $allianceScores[$userData['ally_id']]->fleet_points += (int)$fleetPoints['points'];
+                $allianceScores[$userData['ally_id']]->defs_count += (int)$defensePoints['count'];
+                $allianceScores[$userData['ally_id']]->defs_points += (int)$defensePoints['points'];
+                $allianceScores[$userData['ally_id']]->tech_count += (int)$techPoints['count'];
+                $allianceScores[$userData['ally_id']]->tech_points += (int)$techPoints['points'];
+                $allianceScores[$userData['ally_id']]->setTotalStats();
             }
         }
 

@@ -345,7 +345,7 @@ $LNG['longDescription'] = array(
 206 => 'Cruisers are armoured almost three times as heavily as heavy fighters and have more than twice the firepower. In addition, they are very fast.',
 207 => 'Battleships form the backbone of a fleet. Their heavy cannons, high speed, and large cargo holds make them opponents to be taken seriously.',
 208 => 'Vacant planets can be colonized with this ship.',
-209 => 'The recycler can get raw materials from debris fields.<br>Recycler upgrades to Impusle drive at level 17 and then to Hyperspace drive when it is at level 15',
+209 => 'The recycler can get raw materials from debris fields.<br>Recycler upgrades to Impusle drive at level 17 and then to Hyperspace drive when it is at level 15 for increased speed',
 210 => 'Spy probes are small agile drones, which provide data over long distances on fleets and planets.',
 211 => 'The bomber was specially designed to destroy a planets defences.<br>Planet Bomber switches to Hyperspace drive at level 8',
 212 => 'Solar satellites are simple platforms of solar cells that are located in a high stationary orbit. They collect the sunlight and pass it on to the ground station via laser. ',
@@ -397,7 +397,7 @@ $LNG['longDescription'] = array(
 705 => 'Increases energy production',
 706 => 'Shortens research time',
 707 => 'Shortens flying time. Does not affect Expeditions.',
-	
+
 901 => 'Metal is the main resource for Buildings and Ships. It is the cheapest resource, but it is needed the most as well. Producing Metal is the least energy expensive. The bigger the mines are, the deeper they dig into the earth.',
 902 => 'Crystals are the main resource used to build electronic circuits and form certain alloy compounds. It gets produced in mines under the ground, where the raw material instantly is made into cicuits.',
 903 => 'Deuterium is found in the deepest sea. It belongs to the rarest resources in the Universe. Because you have to get to the ground of the sea in order to get Deuterium, it is the most expensive resource.',
