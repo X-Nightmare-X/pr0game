@@ -83,9 +83,9 @@ $LNG['sys_recy_report'] 					= "Recyclerbericht";
 $LNG['sys_expe_found_ships_nothing']		= '- Es konnten keine Schiffe repariert werden.';
 $LNG['sys_expe_blackholl_1'] 				= "Deine Flotte traf auf ein schwarzes Loch und wurde teilweise zerst&ouml;rt!";
 $LNG['sys_expe_blackholl_2'] 				= "Deine Flotte traf auf ein schwarzes Loch und wurde komplett zerst&ouml;rt!";
-$LNG['sys_expe_found_goods'] 				= "Deine Forscher haben einen rohstoffreichen Planeten gefunden !<br>Sie haben %s %s, %s %s und %s %s abgebaut";
-$LNG['sys_expe_found_ships'] 				= "Deine Forscher haben Raumschiffe in einwandfreiem Zustand gefunden!.<br>Bergen konnten Sie: ";
-$LNG['sys_expe_back_home'] 					= "Ihre Flotte ist von der Expedition wieder zur&uuml;kgekehrt.";
+$LNG['sys_expe_report_msg']                 = "Expeditionsbericht der Flotte von %s %s:";
+$LNG['sys_expe_found_goods']                = "Es wurden %s %s abgebaut.";
+$LNG['sys_expe_found_ships']                = "Deine Forscher haben Raumschiffe in einwandfreiem Zustand gefunden!.<br>Bergen konnten Sie: ";
 $LNG['sys_expe_found_ress_1_1']				= 'Deine Expedition hat einen kleinen Asteroidenschwarm entdeckt, aus dem einige Ressourcen gewonnen werden können.';
 $LNG['sys_expe_found_ress_1_2']				= 'Auf einem abgelegenen Planetoiden wurden einige leicht zugängliche Ressourcenfelder gefunden und erfolgreich Rohstoffe gewonnen.';
 $LNG['sys_expe_found_ress_1_3']				= 'Deine Expedition stieß auf sehr alte Raumschiffwracks einer längst vergangenen Schlacht. Einzelne Komponenten konnte man bergen und recyceln.';
@@ -145,14 +145,14 @@ $LNG['sys_expe_nothing_9'] 					= 'Ein Reaktorfehler des Führungsschiffes hätt
 $LNG['sys_expe_depleted_not_1'] 			= 'Logbuch Nachtrag des Kommunikationsoffiziers: Dieser Bereich des Universums ist wohl noch nicht erkundet worden.';
 $LNG['sys_expe_depleted_not_2'] 			= 'Logbuch Nachtrag des Kommunikationsoffiziers: Es ist ein erhebendes Gefühl, der Erste in einem unerforschten Sektor zu sein.';
 $LNG['sys_expe_depleted_min_1'] 			= 'Logbuch Nachtrag des Kommunikationsoffiziers: Es scheint nicht so, als ob jemals ein Mensch in diesem Bereich der Galaxis gewesen wäre.';
-
-
+$LNG['sys_expe_depleted_min_2']             = 'Eintrag aus dem Logbuch des Kommunikationsoffiziers: Wir haben Trümmer von alten Raumschiffen gefunden. Wir sind nicht die ersten hier.';
+$LNG['sys_expe_depleted_min_3']             = 'Logbucheintrag des Kommunikationsoffiziers: Wir hätten beinahe eine Kollision mit einer anderen Expeditionsflotte gehabt. Ich habe nicht geglaubt, dass es hier noch andere geben würde.';
 $LNG['sys_expe_depleted_med_1'] 			= 'Logbuch Nachtrag des Kommunikationsoffiziers: Es wurden Anzeichen für die Präsenz anderer Expeditionsflotten gefunden.';
-
-
+$LNG['sys_expe_depleted_med_2']             = 'Eintrag aus dem Logbuch des Kommunikationsoffiziers: Wir haben freundlichen Funkkontakt mit einigen anderen Expeditionen in diesem Sektor hergestellt.';
+$LNG['sys_expe_depleted_med_3']             = 'Eintrag aus dem Logbuch des Kommunikationsoffiziers: Wir haben den Abschluss der Expedition mit den Besatzungsmitgliedern einer anderen Expeditionsflotte gefeiert, die im gleichen Sektor unterwegs war. Sie haben nichts Neues zu berichten.';
 $LNG['sys_expe_depleted_max_1'] 			= 'Logbuch Nachtrag des Kommunikationsoffiziers: Wenn wir uns zu unsicher fühlen, können wir uns ja mit all den anderen Expeditionen, die hier herum fliegen, zusammen tun.';
-
-
+$LNG['sys_expe_depleted_max_2']             = 'Eintrag aus dem Logbuch des Kommunikationsoffiziers: Wenn das so weitergeht, werden wir Navigationsbojen aufstellen müssen, um den ganzen Verkehr zu bewältigen.';
+$LNG['sys_expe_depleted_max_3']             = 'Logbucheintrag des Kommunikationsoffiziers: Vielleicht wäre es sinnvoller, hier einen Souvenirladen zu eröffnen, als noch eine weitere Expedition zu schicken.';
 $LNG['sys_expe_attack_1_1_1'] 				= 'Ein paar anscheinend sehr verzweifelte Weltraumpiraten haben versucht, unsere Expeditionsflotte zu kapern.';
 $LNG['sys_expe_attack_1_1_2'] 				= 'Einige primitive Barbaren greifen uns mit Raumschiffen an, die nicht einmal ansatzweise die Bezeichnung Raumschiff verdient haben. Sollte der Beschuss ernst zu nehmende Ausmaße annehmen, sehen wir uns gezwungen das Feuer zu erwidern.';
 $LNG['sys_expe_attack_1_1_3'] 				= 'Wir haben ein paar Funksprüche sehr betrunkener Piraten aufgefangen. Anscheinend sollen wir überfallen werden.';
@@ -174,9 +174,12 @@ $LNG['sys_expe_attack_2_2_3'] 				= 'Die Verbindung zu unserer Expeditionsflotte
 $LNG['sys_expe_attack_2_3_1'] 				= 'Deine Expedition ist in eine Alien-Invasions-Flotte geraten und meldet schwere Gefechte!';
 $LNG['sys_expe_attack_2_3_2'] 				= 'Ein großer Verband kristalliner Schiffe unbekannter Herkunft hält direkten Kollisionskurs mit unserer Expeditionsflotte. Wir müssen nun wohl vom Schlimmsten ausgehen.';
 $LNG['sys_expe_attack_2_3_3'] 				= 'Wir hatten ein wenig Schwierigkeiten, den Dialekt der fremden Rasse richtig auszusprechen. Unser Diplomat nannte versehentlich "Feuer!" statt "Frieden!".';
-$LNG['sys_expe_attackname_1']				= 'Piraten'; 	
-$LNG['sys_expe_attackname_2'] 				= 'Aliens'; 	
-$LNG['sys_expe_back_home'] 					= 'Deine Flotte ist von der Expedition wieder zurückgekehrt.<br>Sie haben %s %s, %s %s, %s %s und %s %s mitgebracht.';
+$LNG['sys_expe_attackname_1']                = 'Piraten';
+$LNG['sys_expe_attackname_2']                 = 'Aliens';
+$LNG['sys_expe_back_home']                  = 'Deine Flotte ist von der Expedition wieder nach %s %s zurückgekehrt.';
+$LNG['sys_expe_back_home_ress']             = 'Sie haben %s %s, %s %s und %s %s mitgebracht.';
+$LNG['sys_expe_back_home_ships_flound']     = 'Es wurden folgende Schiffe gefunden:';
+$LNG['sys_expe_back_home_ships_lost']       = 'Es gingen folgende Schiffe verloren:';
 $LNG['sys_expe_back_home_without_dm']		= 'Deine Flotte ist von der Expedition wieder zurückgekehrt.';
 $LNG['sys_expe_back_home_with_dm']			= 'Deine Flotte ist von der Expedition wieder zurückgekehrt.<br>Die gefundende %s(%s) hat die Schiffe verformt und wurden verschrottet.<br>Die %s konnte noch gerettet werden.';
 $LNG['sys_mess_transport'] 					= 'Transportbericht';

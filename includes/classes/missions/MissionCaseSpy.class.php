@@ -123,7 +123,6 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $SpyBuild = $fleetAmount >= $MinAmount + 3 * SPY_VIEW_FACTOR;
         $SpyTechno = $fleetAmount >= $MinAmount + 5 * SPY_VIEW_FACTOR;
 
-
         $classIDs[900] = array_merge($reslist['resstype'][1], $reslist['resstype'][2]);
 
         if ($SpyFleet) {
@@ -170,9 +169,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $totalShipDefCount += $ships;
         }
 
-        foreach (array_values($this->getPlanetDefense($targetPlanet)) as $def) {
-            $totalShipDefCount += $def;
-        }
+
 
         // I'm use template class here, because i want to exclude HTML in PHP.
 

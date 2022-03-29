@@ -81,7 +81,7 @@
 					<a href="javascript:setTarget({$shortcutRow.galaxy},{$shortcutRow.system},{$shortcutRow.planet},{$shortcutRow.type});updateVars();">{$shortcutRow.name}{if $shortcutRow.type == 1}{$LNG.fl_planet_shortcut}{elseif $shortcutRow.type == 2}{$LNG.fl_debris_shortcut}{elseif $shortcutRow.type == 3}{$LNG.fl_moon_shortcut}{/if} [{$shortcutRow.galaxy}:{$shortcutRow.system}:{$shortcutRow.planet}]</a>
 				</div>
 				<div class="shortcut-edit">
-					<input type="text" class="shortcut-input" name="shortcut[{$shortcutID}][name]" value="{$shortcutRow.name}">
+					<input type="text" class="shortcut-input" name="shortcut[{$shortcutID}][name]" maxlength="32" value="{$shortcutRow.name}">
 					<div class="shortcut-delete" title="{$LNG.fl_dlte_shortcut}">x</div>
 				</div>
 				<div class="shortcut-edit">
@@ -109,7 +109,7 @@
 
 				</div>
 				<div class="shortcut-edit">
-					<input type="text" class="shortcut-input" name="shortcut[][name]" placeholder="{$LNG.fl_shortcut_name}">
+					<input type="text" class="shortcut-input" name="shortcut[][name]" maxlength="32" placeholder="{$LNG.fl_shortcut_name}">
 					<div class="shortcut-delete" title="{$LNG.fl_dlte_shortcut}">x</div>
 				</div>
 				<div class="shortcut-edit">

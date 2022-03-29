@@ -3,9 +3,7 @@
 /**
  *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
- *
  * For the full copyright and license information, please view the LICENSE
- *
  * @package 2Moons
  * @author Jan-Otto Kröpke <slaver7@gmail.com>
  * @copyright 2009 Lucky
@@ -47,6 +45,8 @@ class ShowFleetStep1Page extends AbstractGamePage
             $Fleet[$ShipID] = $amount;
             $FleetRoom += $pricelist[$ShipID]['capacity'] * $amount;
         }
+
+        $FleetRoom *= 1 + $USER['factor']['ShipStorage'];
 
         if (empty($Fleet)) {
             FleetFunctions::GotoFleetPage();
@@ -135,18 +135,18 @@ class ShowFleetStep1Page extends AbstractGamePage
                 $sql = "INSERT INTO %%SHORTCUTS%% SET ownerID = :userID, name = :name, galaxy = :galaxy,"
                     . " system = :system, planet = :planet, type = :type;";
                 $db->insert($sql, [
-                    ':userID'   => $USER['id'],
-                    ':name'     => $planetData['name'],
-                    ':galaxy'   => $planetData['galaxy'],
-                    ':system'   => $planetData['system'],
-                    ':planet'   => $planetData['planet'],
-                    ':type'     => $planetData['type'],
+                    ':userID' => $USER['id'],
+                    ':name' => substr($planetData['name'], 0, 32),
+                    ':galaxy' => $planetData['galaxy'],
+                    ':system' => $planetData['system'],
+                    ':planet' => $planetData['planet'],
+                    ':type' => $planetData['type'],
                 ]);
             } elseif (empty($planetData['name'])) {
                 $sql = "DELETE FROM %%SHORTCUTS%% WHERE shortcutID = :shortcutID AND ownerID = :userID;";
                 $db->delete($sql, [
-                    ':shortcutID'   => $ID,
-                    ':userID'       => $USER['id'],
+                    ':shortcutID' => $ID,
+                    ':userID' => $USER['id'],
                 ]);
             } else {
                 $planetData['ownerID'] = $USER['id'];
@@ -155,13 +155,13 @@ class ShowFleetStep1Page extends AbstractGamePage
                     $sql = "UPDATE %%SHORTCUTS%% SET name = :name, galaxy = :galaxy, system = :system,"
                         . " planet = :planet, type = :type WHERE shortcutID = :shortcutID AND ownerID = :userID;";
                     $db->update($sql, [
-                        ':userID'   => $USER['id'],
-                        ':name'     => $planetData['name'],
-                        ':galaxy'   => $planetData['galaxy'],
-                        ':system'   => $planetData['system'],
-                        ':planet'   => $planetData['planet'],
-                        ':type'     => $planetData['type'],
-                        ':shortcutID'   => $ID,
+                        ':userID' => $USER['id'],
+                        ':name' => substr($planetData['name'], 0, 32),
+                        ':galaxy' => $planetData['galaxy'],
+                        ':system' => $planetData['system'],
+                        ':planet' => $planetData['planet'],
+                        ':type' => $planetData['type'],
+                        ':shortcutID' => $ID,
                     ]);
                 }
             }
@@ -227,8 +227,8 @@ class ShowFleetStep1Page extends AbstractGamePage
 		INNER JOIN %%PLANETS%% planet ON planet.id = acs.target
 		WHERE userID = :userID AND :maxFleets > (SELECT COUNT(*) FROM %%FLEETS%% WHERE fleet_group = acsID);";
         $ACSResult = $db->select($sql, [
-            ':userID'       => $USER['id'],
-            ':maxFleets'    => Config::get()->max_fleets_per_acs,
+            ':userID' => $USER['id'],
+            ':maxFleets' => Config::get()->max_fleets_per_acs,
         ]);
 
         $ACSList = [];
@@ -270,7 +270,7 @@ class ShowFleetStep1Page extends AbstractGamePage
                 u.id = p.id_owner;";
 
             $planetData = $db->selectSingle($sql, [
-                ':universe'     => Universe::current(),
+                ':universe' => Universe::current(),
                 ':targetGalaxy' => $targetGalaxy,
                 ':targetSystem' => $targetSystem,
                 ':targetPlanet' => $targetPlanet,
