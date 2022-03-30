@@ -1,6 +1,6 @@
 <?php
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -61,6 +61,7 @@ $LNG['banned_message'] = 'Engellendiniz. Bir yanlış anlaşılma olduğunu dü�
 
 //----------------------------------------------------------------------------//
 // Topnav
+$LNG['tn_player_title'] = 'Imparator';
 $LNG['tn_vacation_mode']					= "Su an tatil modundasiniz ";
 $LNG['tn_delete_mode']						= 'Hesabiniz Silme Modunda Silinecegi Tarih :';
 
@@ -76,7 +77,6 @@ $LNG['lm_research']							= 'Arastirma';
 $LNG['lm_shipshard']						= 'Tersane';
 $LNG['lm_defenses']							= 'Savunma';
 $LNG['lm_resources']						= 'Hammadde';
-$LNG['lm_officiers']						= 'Subaylar';
 $LNG['lm_trader']							= 'Tuccar';
 $LNG['lm_fleettrader']						= 'Hurdaci';
 $LNG['lm_technology']						= 'Teknolojiler';
@@ -433,16 +433,6 @@ $LNG['rs_sum']								= 'Toplam';
 $LNG['rs_daily']					        = 'Gunluk Uretim:';
 $LNG['rs_weekly']							= 'Haftalik Uretim:';
 $LNG['rs_ress_bonus']                       = 'Bonus (Subaylar dahil):';
-
-//----------------------------------------------------------------------------//
-// Subaylar
-$LNG['of_recruit']							= 'Satin Al';
-$LNG['of_max_lvl']							= 'Max Seviye';
-$LNG['of_offi']								= 'Subaylar';
-$LNG['of_lvl']								= 'Kademe';
-$LNG['of_dm_trade']							= '%s - Shop';
-$LNG['of_still']							= 'Kalan Sure';
-$LNG['of_active']							= 'aktif';
 
 //----------------------------------------------------------------------------//
 // Tuccar

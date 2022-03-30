@@ -55,6 +55,7 @@ $LNG['banned_message'] = 'Sie wurden gebannt. Wenn Sie glauben, dass es sich dab
 
 //----------------------------------------------------------------------------//
 //TOPNAV
+$LNG['tn_player_title'] = 'Imperator';
 $LNG['tn_vacation_mode'] = 'Sie sind im Urlaubsmodus ';
 $LNG['tn_delete_mode'] = 'Ihr Account wird am %s automatisch gelöscht!';
 
@@ -69,7 +70,6 @@ $LNG['lm_research'] = 'Forschung';
 $LNG['lm_shipshard'] = 'Schiffswerft';
 $LNG['lm_defenses'] = 'Verteidigung';
 $LNG['lm_resources'] = 'Rohstoffe';
-$LNG['lm_officiers'] = 'Offiziere';
 $LNG['lm_trader'] = 'Händler';
 $LNG['lm_fleettrader'] = 'Schrotthändler';
 $LNG['lm_technology'] = 'Technologie';
@@ -447,16 +447,6 @@ $LNG['rs_sum'] = 'Pro Stunde';
 $LNG['rs_daily'] = 'Pro Tag';
 $LNG['rs_weekly'] = 'Pro Woche';
 $LNG['rs_ress_bonus'] = 'Bonus (durch Forschung)';
-
-//----------------------------------------------------------------------------//
-//OFFICIERS
-$LNG['of_recruit'] = 'Erwerben';
-$LNG['of_max_lvl'] = 'Max. Level';
-$LNG['of_offi'] = 'Offiziere';
-$LNG['of_lvl'] = 'Level';
-$LNG['of_dm_trade'] = '%s - Bank';
-$LNG['of_still'] = 'Noch';
-$LNG['of_active'] = 'aktiv';
 
 //----------------------------------------------------------------------------//
 //TRADER

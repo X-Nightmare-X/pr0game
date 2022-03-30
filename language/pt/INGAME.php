@@ -1,6 +1,6 @@
 <?php
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -15,7 +15,7 @@
  */
 
 // Traduzido por QwataKayean. Todos os Direitos Reservados © 2010-2012
-// Texto escrito conforme o Acordo Ortográfico a ser inserido em 2011 pelo Ministério da Educação de Portugal - convertido pelo Lince.         
+// Texto escrito conforme o Acordo Ortográfico a ser inserido em 2011 pelo Ministério da Educação de Portugal - convertido pelo Lince.
 
 // 2Moons - Copyright (C) 2012  Jan Kröpke
 
@@ -60,6 +60,7 @@ $LNG['banned_message'] = 'Foi banido. Se pensa que isto é um mal-entendido, esc
 
 //----------------------------------------------------------------------------//
 // Topnav
+$LNG['tn_player_title'] = 'Imperador';
 $LNG['tn_vacation_mode']					= 'Atualmente estás em Modo de Férias';
 $LNG['tn_delete_mode']						= 'A conta às %s será automaticamente apagada!';
 
@@ -75,7 +76,6 @@ $LNG['lm_research']							= 'Pesquisas';
 $LNG['lm_shipshard']						= 'Hangar';
 $LNG['lm_defenses']							= 'Defesas';
 $LNG['lm_resources']						= 'Recursos';
-$LNG['lm_officiers']						= 'Oficiais';
 $LNG['lm_trader']							= 'Mercado';
 $LNG['lm_fleettrader']						= 'Mercador de Frotas';
 $LNG['lm_technology']						= 'Tecnologias';
@@ -100,7 +100,7 @@ $LNG['lm_battlesim']						= 'Simulador';
 $LNG['lm_playercard']                       = 'Página de Jogador';
 $LNG['lm_info']                     		= 'Informação';
 $LNG['lm_disclamer']						= 'Creditos';
-	
+
 //----------------------------------------------------------------------------//
 // Vista Geral
 
@@ -430,16 +430,6 @@ $LNG['rs_weekly']							= 'Produção semanal:';
 $LNG['rs_ress_bonus']                       = 'Bonus (Oficiais/Bonus):';
 
 //----------------------------------------------------------------------------//
-// Oficiais
-$LNG['of_recruit']							= 'Recrutar';
-$LNG['of_max_lvl']							= 'Nivel Max.';
-$LNG['of_offi']								= 'Oficial';
-$LNG['of_lvl']								= 'Nivel';
-$LNG['of_dm_trade']							= '%s - Loja';
-$LNG['of_still']							= 'Continya';
-$LNG['of_active']							= 'ativo';
-
-//----------------------------------------------------------------------------//
 // Mercado
 
 $LNG['tr_cost_dm_trader']					= 'O valor do mercador é de %s %s!';
@@ -720,8 +710,8 @@ $LNG['al_diplo_accept_yes']                 = 'Pacto assinado.';
 $LNG['al_diplo_accept_yes_mes']             = 'O pacto de (%s) entre as alianças %s e %s foi assinado!';
 $LNG['al_diplo_accept_yes_confirm']		    = 'Queres realmente aceitar o pacto?';
 $LNG['al_diplo_accept_no']                  = 'Pacto Rejeitado.';
-$LNG['al_diplo_accept_no_mes']				= 'O pacto de (%s) entre as alianças %s e %s foi rejeitado!'; 
-$LNG['al_diplo_accept_no_confirm']			= 'Queres realmente rejeitar o pacto?';                                                             
+$LNG['al_diplo_accept_no_mes']				= 'O pacto de (%s) entre as alianças %s e %s foi rejeitado!';
+$LNG['al_diplo_accept_no_confirm']			= 'Queres realmente rejeitar o pacto?';
 $LNG['al_diplo_delete']                     = 'Pacto apagado.';
 $LNG['al_diplo_delete_mes']                 = 'O pacto de (%s) entre as alianças %s e %s foi apagado!';
 $LNG['al_diplo_confirm_delete']             = 'Será que queres realmente apagar o pacto?';
@@ -749,7 +739,7 @@ $LNG['al_rank_name']						= 'Nome';
 $LNG['al_rank_desc']['MEMBERLIST']			= 'Pode ver os membros';
 $LNG['al_rank_desc']['ONLINESTATE']			= 'Pode ver quem está online';
 $LNG['al_rank_desc']['TRANSFER']			= 'Pode ser Lider';
-$LNG['al_rank_desc']['SEEAPPLY']			= 'Pode ver as aplicações'; 
+$LNG['al_rank_desc']['SEEAPPLY']			= 'Pode ver as aplicações';
 $LNG['al_rank_desc']['MANAGEAPPLY']			= 'Pode controlar as aplicações';
 $LNG['al_rank_desc']['ROUNDMAIL']			= 'Pode enviar mensagem global';
 $LNG['al_rank_desc']['ADMIN']				= 'Pode editar a Aliança';
@@ -1126,7 +1116,7 @@ $LNG['ti_error_no_subject']					= 'Precisas de por um título!!';
 $LNG['ti_msgtime']							= 'Mensagem enviada em';
 
 //----------------------------------------------------------------------------//
-// Recordes 
+// Recordes
 
 $LNG['rec_players']  						= 'Jogador';
 $LNG['rec_level']  							= 'Nivel';
@@ -1157,8 +1147,8 @@ $LNG['ft_count']							= 'Número';
 $LNG['ft_max']								= 'max';
 $LNG['ft_total']							= 'TOTAL';
 $LNG['ft_charge']							= 'Taxa do Mercador';
-$LNG['ft_absenden']							= 'Enviar';	
-$LNG['ft_empty']							= 'Vazio';	
+$LNG['ft_absenden']							= 'Enviar';
+$LNG['ft_empty']							= 'Vazio';
 
 //----------------------------------------------------------------------------//
 // Logout

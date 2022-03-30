@@ -3,12 +3,12 @@
 // Web : http://www.big-two.tk
 // Version 1.0 - Initial release
 // Version 1.1 - Decode accent HTML to UTF-8 format & small spellchecking
- 
+
 //---------------	GENERAL	------------------------//
 $LNG['adm_login']						= 'Connectez-vous';
 $LNG['adm_username']					= 'Login';
 $LNG['adm_password']					= 'Mot de passe';
-$LNG['adm_absenden']					= 'Envoyer'; 
+$LNG['adm_absenden']					= 'Envoyer';
 $LNG['adm_password_info']				= 'S\'il vous plaît entrer votre mot de passe pour la vérification du compte !';
 $LNG['adm_bad_password']				= 'Mot de passe incorrect !';
 $LNG['404_page']						= 'Vous n\'avez pas d\'autorisations suffisantes pour accéder à cette page';
@@ -80,7 +80,6 @@ $LNG['buildings_title']					= 'Bâtiments';
 $LNG['ships_title']					    = 'Vaisseaux';
 $LNG['defenses_title']					= 'Défenses';
 $LNG['researchs_title']					= 'Recherches';
-$LNG['officiers_title']					= 'Officiers';
 //###########################################################//
 
 
@@ -94,7 +93,6 @@ $LNG['ad_editor_buildings']				= 'Bâtiments';
 $LNG['ad_editor_ships']					= 'Vaisseaux';
 $LNG['ad_editor_defenses']				= 'Défenses';
 $LNG['ad_editor_researchs']				= 'Recherches';
-$LNG['ad_editor_officiers']				= 'Officiers';
 $LNG['ad_editor_personal']				= 'Données peronnelles';
 $LNG['ad_editor_planets']				= 'Planètes et lunes';
 $LNG['ad_editor_resources']				= 'Ressources';
@@ -108,12 +106,6 @@ $LNG['ad_add_tech_success'] 			= 'Recherches ajoutées avec succès !';
 $LNG['ad_delete_tech_success'] 			= 'Recherches supprimées avec succès !';
 $LNG['ad_research_title']				= 'Editer Recherches';
 $LNG['ad_research'] 					= 'Recherches';
-
-// OFFICERS
-$LNG['ad_offi_title']					= 'Editer Officiers';
-$LNG['ad_offi'] 						= 'Officiers';
-$LNG['ad_add_offi_success']				= 'Officiers ajoutés avec succès !';
-$LNG['ad_delete_offi_success']			= 'Officiers supprimés avec succès !';
 
 // RESOURCES
 $LNG['ad_add_res_sucess']				= 'Ressources ajoutées avec succès !';
@@ -391,8 +383,6 @@ $LNG['se_planets_min'] 					= 'Max Planéte sans recherche';
 $LNG['se_planets_min_info'] 			= 'Dés le départ, le joueur a la possibilité d\'occuper le nombre spécifié de planétes';
 $LNG['se_planets_tech'] 				= 'Montant maximum de colonies avec Astrophysique';
 $LNG['se_planets_tech_info'] 			= 'Combien de planétes l\'utilisateur peut avoir avec Astrophysique';
-$LNG['se_planets_officier'] 			= 'Nombre maximum de planéte supplémentaire par des officiers';
-$LNG['se_planets_officier_info'] 		= 'Par niveau d\'officier, l\'utilisateur devrait avoir un nouveau nombre de planéte a coloniser';
 $LNG['se_planets_per_tech'] 			= 'Planétes supplémentaires par niveau d\'astrophysique';
 $LNG['se_planets_per_tech_info'] 		= 'Quantité de colonies déverrouiller par niveau';
 $LNG['se_ref_active']					= 'Activer les lien de parrainage';
@@ -614,10 +604,10 @@ $LNG['mu_mod_update']              	= 'Contrôle Mod Version';
 $LNG['mu_game_info'] 				= 'Information';
 $LNG['mu_vaild_users']				= 'Activité Utilisateur';
 $LNG['mu_news']						= 'Actualités';
-$LNG['mu_multiip_page']				= 'MultiIP'; 
+$LNG['mu_multiip_page']				= 'MultiIP';
 $LNG['mu_clear_cache']				= 'Vider le Cache';
-$LNG['mu_vertify']					= 'Vérifiez le contenu du jeu'; 
-$LNG['mu_cronjob']					= 'Cronjobs'; 
+$LNG['mu_vertify']					= 'Vérifiez le contenu du jeu';
+$LNG['mu_cronjob']					= 'Cronjobs';
 $LNG['mu_logs']						= 'Admin-Log';
 $LNG['mu_giveaway']					= 'Giveaways';
 $LNG['mu_disclaimer']				= 'Paramétres de contact';
@@ -659,8 +649,7 @@ $LNG['re_buldings']                        		= 'Bâtiments';
 $LNG['re_buildings_pl']                    		= 'Reset Bâtiments Planétaires';
 $LNG['re_buildings_lu']                    		= 'Reset Bâtiments Lunaires';
 $LNG['re_reset_buldings']                    		= 'Reset Queues Bâtiments';
-$LNG['re_inve_ofis']                        		= 'Recherches et Officiers';
-$LNG['re_ofici']                            		= 'Reset Officiers';
+$LNG['re_inve']                        		= 'Recherches';
 $LNG['re_investigations']                    		= 'Reset Recherches';
 $LNG['re_reset_invest']                    		= 'Reset Queues Recherches';
 $LNG['re_resources']                        		= 'Ressources';
@@ -716,7 +705,7 @@ $LNG['ac_coords']                           		= 'Coordonnées';
 $LNG['ac_diameter']                        		= 'Diamètre';
 $LNG['ac_fields']                           		= 'Cases';
 $LNG['ac_temperature']                      		= 'Temp.';
-$LNG['ac_officier_research']                		= 'Recherches et Officiers';
+$LNG['ac_research']                		= 'Recherches';
 $LNG['ac_recent_destroyed_planets']        		= 'Planètes détruites récemment';
 $LNG['ac_no_moons']                        		= 'Le Joueur n\'a pas de Lunes';
 $LNG['ac_total_points']                    		= 'Total : ';
@@ -988,7 +977,6 @@ $LNG['qe_send']						= 'Soumettre';
 $LNG['qe_reset']					= 'Reset';
 $LNG['qe_build']					= 'Construction';
 $LNG['qe_tech']							= 'Technologie';
-$LNG['qe_officier']						= 'Officiers';
 $LNG['qe_fleet']					= 'Flottes';
 $LNG['qe_defensive']					= 'Defenses';
 $LNG['qe_resources']					= 'Ressources';
@@ -1044,7 +1032,6 @@ $LNG['modul_29']                       		= 'Mission - Détruire';
 $LNG['modul_42']								= 'Mission - ACS';
 $LNG['modul_16']                       		= 'Actualités';
 $LNG['modul_17']                       		= 'Notes';
-$LNG['modul_18']                       		= 'Officiers';
 $LNG['modul_19']                       		= 'Phalange';
 $LNG['modul_20']                       		= 'Profil';
 $LNG['modul_21']                       		= 'Piloris';

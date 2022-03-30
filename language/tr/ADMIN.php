@@ -1,6 +1,6 @@
 <?php
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -101,7 +101,6 @@ $LNG['buildings_title'] = 'Binalar';
 $LNG['ships_title'] = 'Gemiler';
 $LNG['defenses_title'] = 'Savunma';
 $LNG['researchs_title'] = 'Arastirma';
-$LNG['officiers_title'] = 'Subaylar';
 //###########################################################//
 
 
@@ -220,8 +219,6 @@ $LNG['se_planets_min'] 					= 'Maksimum koloni sayisi (arastirmalar/subay haric)
 $LNG['se_planets_min_info'] 			= 'Bu secenekle oyuncunun herhangi bir arastirma olmadan sahip olabilecegi koloni sayisi';
 $LNG['se_planets_tech'] 				= 'Maksimum koloni sayisi (arastirmalar dahil)';
 $LNG['se_planets_tech_info'] 			= 'Bu secenekle oyuncunun arastirmalarin da katkisi ile toplam kac koloniye sahip olabilecegini bulabilirsiniz ';
-$LNG['se_planets_officier'] 			= 'Subay koloni katkisi';
-$LNG['se_planets_officier_info'] 		= 'Subaylardaki kademelerle oyuncuya verilebilecek maksimum koloni sayisi';
 $LNG['se_planets_per_tech'] 			= 'Kesif Arastirmasindan Gelen koloni';
 $LNG['se_planets_per_tech_info'] 		= 'Her kademe kesif arastirmasi secilen kadar gezegenin koloni olarak alinabilmesini saglar';
 $LNG['se_ref_active']					= 'Referans linkini aktif et';
@@ -364,7 +361,6 @@ $LNG['modul_29']                                       = 'Yoketmek';
 $LNG['modul_42']										= 'Ittifak Saldirisi';
 $LNG['modul_16']                                       = 'Duyurular';
 $LNG['modul_17']                                       = 'Notlar';
-$LNG['modul_18']                                       = 'Subaylar';
 $LNG['modul_19']                                       = 'Radar';
 $LNG['modul_20']                                       = 'Oyuncu Profili';
 $LNG['modul_21']                                       = 'Banlilar';
@@ -523,7 +519,6 @@ $LNG['ad_editor_buildings'] = 'Binalar';
 $LNG['ad_editor_ships'] = 'Gemiler';
 $LNG['ad_editor_defenses'] = 'Savunma';
 $LNG['ad_editor_researchs'] = 'Arastirma';
-$LNG['ad_editor_officiers'] = 'Subaylar';
 $LNG['ad_editor_personal'] = 'Uye Duzenle';
 $LNG['ad_editor_planets'] = 'Gezegen & AY';
 $LNG['ad_editor_resources'] = 'Hammadde';
@@ -905,8 +900,7 @@ $LNG['re_buldings'] 					= 'Binalar';
 $LNG['re_buildings_pl'] 				= 'Binalari Sil';
 $LNG['re_buildings_lu'] 				= 'Ay binalarini sil';
 $LNG['re_reset_buldings'] 				= 'Insaa emri verilen binalari sil';
-$LNG['re_inve_ofis'] 					= 'Arastirma ve Subaylar';
-$LNG['re_ofici'] 						= 'Subaylari Sil';
+$LNG['re_inve'] 					= 'Arastirma';
 $LNG['re_investigations']				= 'Arastirmalari Sil';
 $LNG['re_reset_invest']					= 'Arastirma listesini sil';
 $LNG['re_resources']					= 'Kaynaklar';
@@ -1030,7 +1024,7 @@ $LNG['ac_coords']                       = 'Koordinatlar';
 $LNG['ac_diameter']                     = 'Genislik';
 $LNG['ac_fields']                       = 'Alan';
 $LNG['ac_temperature']                  = 'Sicaklik';
-$LNG['ac_officier_research']            = 'Arastirma';
+$LNG['ac_research']            = 'Arastirma';
 $LNG['ac_recent_destroyed_planets']     = 'Son zamalarda yokedilmis gezegen';
 $LNG['ac_no_moons']                     = 'Bu oyuncunun AY yok';
 $LNG['ac_total_points']                 = 'Toplam : ';
@@ -1128,7 +1122,6 @@ $LNG['qe_send']							= 'Gonder';
 $LNG['qe_reset']						= 'Yeniden Baslat';
 $LNG['qe_build']						= 'Binalar';
 $LNG['qe_tech']							= 'Arastirma';
-$LNG['qe_officier']						= 'Subaylar';
 $LNG['qe_fleet']						= 'Filo';
 $LNG['qe_defensive']					= 'Savunma';
 $LNG['qe_resources']					= 'Kaynaklar';

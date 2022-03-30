@@ -1,6 +1,6 @@
 <?php
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -15,14 +15,14 @@
  */
 
 // Traduzido por QwataKayean. Todos os Direitos Reservados © 2010-2012
-// Texto escrito conforme o Acordo Ortográfico a ser inserido em 2011 pelo Ministério da Educação de Portugal - convertido pelo Lince.         
+// Texto escrito conforme o Acordo Ortográfico a ser inserido em 2011 pelo Ministério da Educação de Portugal - convertido pelo Lince.
 
 // 2Moons - Copyright (C) 2012  Jan Kröpke
 
 
 
 
-//---------------	Geral	------------------------// 
+//---------------	Geral	------------------------//
 $LNG['adm_login']			= 'Login';
 $LNG['adm_username']		= 'Username';
 $LNG['adm_password']		= 'Password';
@@ -68,7 +68,7 @@ $LNG['uvs_reload']						= 'Recarregar';
 $LNG['uvs_back']						= 'Voltar';
 $LNG['log_disclamersettings']			= 'Contatos';
 
-//---------------	Sim ou não	------------------------// 
+//---------------	Sim ou não	------------------------//
 $LNG['one_is_yes_1']	= 'Sim';
 $LNG['one_is_yes_0']	= 'Não';
 
@@ -77,7 +77,7 @@ $LNG['one_is_no_0']	= 'Não';
 //###########################################################//
 
 
-//---------------	Botões	------------------------// 
+//---------------	Botões	------------------------//
 $LNG['button_submit']		= 'Enviar';
 $LNG['button_add']			= 'Perfil';
 $LNG['button_delete']		= 'Apagar';
@@ -98,18 +98,17 @@ $LNG['input_id_ally']		= 'ID da Aliança';
 //###########################################################//
 
 
-//---------------	Recursos	------------------------// 
+//---------------	Recursos	------------------------//
 $LNG['resources_title']	        = 'Recursos';
 $LNG['count_res']			= 'Número de recursos';
 //###########################################################//
 
 
-//---------------	Modulos   ------------------------// 
+//---------------	Modulos   ------------------------//
 $LNG['buildings_title']	= 'Edificios';
 $LNG['ships_title']		= 'Naves';
 $LNG['defenses_title']		= 'Defesas';
 $LNG['researchs_title']	= 'Pesquisas';
-$LNG['officiers_title']	= 'Oficiais';
 //###########################################################//
 
 
@@ -123,7 +122,6 @@ $LNG['ad_editor_buildings']		= 'Edificios';
 $LNG['ad_editor_ships']			= 'Naves';
 $LNG['ad_editor_defenses']		= 'Defesas';
 $LNG['ad_editor_researchs']		= 'Pesquisas';
-$LNG['ad_editor_officiers']		= 'Oficiais';
 $LNG['ad_editor_personal']		= 'Dados Pessoais';
 $LNG['ad_editor_planets']		= 'Planeta & Lua';
 $LNG['ad_editor_resources']		= 'Recursos';
@@ -408,8 +406,6 @@ $LNG['se_planets_min'] 					= 'Máximo de planetas sem qualquer pesquisa';
 $LNG['se_planets_min_info'] 			= 'Quantos planetas o jogador poderá possuir sem pesquisas';
 $LNG['se_planets_tech'] 				= 'Numero máximo de colonias com pesquisa';
 $LNG['se_planets_tech_info'] 			= 'Numero de colonias no máximo que o jogador pode possuir com Exploração Espacial';
-$LNG['se_planets_officier'] 			= 'Numero máximo de colonias com oficiais';
-$LNG['se_planets_officier_info'] 		= 'Por nivel de algum oficial, numero máximo de colonias com estes';
 $LNG['se_planets_per_tech'] 			= 'Numero de colónias por Exploração Espacial';
 $LNG['se_planets_per_tech_info'] 		= 'Numero de colónias desbloqueaveis com exploração espacial';
 $LNG['se_ref']							= 'Referral Link - Link de Convite.';
@@ -452,7 +448,7 @@ $LNG['se_smtp_port_info']               = 'Inserir aqui a porta do seu servidor 
 $LNG['se_smtp_user']                    = 'SMTP Username:';
 $LNG['se_smtp_pass']                    = 'SMTP Password:';
 $LNG['se_smtp_sendmail']				= 'SMTP Remetente:';
-$LNG['se_smtp_sendmail_info']          	= 'Ponha aqui o endereço de email de retorno. Não necessita de ser o mesmo de envio.';                                  
+$LNG['se_smtp_sendmail_info']          	= 'Ponha aqui o endereço de email de retorno. Não necessita de ser o mesmo de envio.';
 $LNG['se_google']                       = 'Google Analítico - Configurações';
 $LNG['se_google_info']                  = 'Google Analitico é a solução para web sites que lhe permite adquirir conhecimentos valiosos sobre o tráfego do seu site e do impacto das suas estratégias de marketing. Graças ao poderoso, flexível e características user-friendly prog agora podes acessar aos teus dados em novas formas de analisar e mostrar. Com o Google Analitico podes projetar a tua publicidade segmentada, fortes campanhas de marketing e desenvolvimento de sites com altas taxas de conversão.';
 $LNG['se_google_active']                = 'Ativar/desativar?';
@@ -619,12 +615,12 @@ $LNG['mu_mod_update']              		= 'Controlo de Versão do MOD';
 $LNG['mu_game_info']                    = 'Informação';
 $LNG['mu_vaild_users']				    = 'Atividade de Usuário';
 $LNG['mu_news']					        = 'Noticias';
-$LNG['mu_multiip_page']					= 'Múltiplos IPs'; 
-$LNG['mu_clear_cache']					= 'Limpar Cache'; 
-$LNG['mu_vertify']				     	= 'Verificar Conteúdo do Jogo'; 
-$LNG['mu_logs']				     		= 'Atividade de Administrador'; 
-$LNG['mu_giveaway']				     	= 'Sistema Giveaway'; 
-$LNG['mu_cronjob']					= 'Cronjobs'; 
+$LNG['mu_multiip_page']					= 'Múltiplos IPs';
+$LNG['mu_clear_cache']					= 'Limpar Cache';
+$LNG['mu_vertify']				     	= 'Verificar Conteúdo do Jogo';
+$LNG['mu_logs']				     		= 'Atividade de Administrador';
+$LNG['mu_giveaway']				     	= 'Sistema Giveaway';
+$LNG['mu_cronjob']					= 'Cronjobs';
 $LNG['mu_disclaimer']				= 'Configurações de contato';
 $LNG['mu_dump']						= 'Backup da Base de Dados';
 
@@ -648,7 +644,7 @@ $LNG['vt_loadfile']					= 'Carregar lista de ficheiros';
 
 //###########################################################//
 
-$LNG['cc_cache_clear']				= 'Cache Limpo'; 
+$LNG['cc_cache_clear']				= 'Cache Limpo';
 
 //---------------	Reinicio de Universo	------------------------//
 $LNG['re_reset_universe'] 				= 'Reiniciar o Universo';
@@ -664,8 +660,7 @@ $LNG['re_buldings'] 					= 'Edificios';
 $LNG['re_buildings_pl'] 				= 'Reiniciar edifios planetários';
 $LNG['re_buildings_lu'] 				= 'Reiniciar edificios lunares';
 $LNG['re_reset_buldings'] 				= 'Reiniciar edificios em fila';
-$LNG['re_inve_ofis'] 					= 'Pesquisa e Oficiais';
-$LNG['re_ofici'] 						= 'Oficiais';
+$LNG['re_inve'] 					= 'Pesquisa';
 $LNG['re_investigations']				= 'Reiniciar as Pesquisas';
 $LNG['re_reset_invest']					= 'Reiniciar as Pesquisas em Fila';
 $LNG['re_resources']					= 'Recursos';
@@ -721,7 +716,7 @@ $LNG['ac_coords']                       = 'Coordenadas';
 $LNG['ac_diameter']                     = 'Diametro';
 $LNG['ac_fields']                       = 'Campos';
 $LNG['ac_temperature']                  = 'Temp.';
-$LNG['ac_officier_research']            = 'Pesquisa';
+$LNG['ac_research']            = 'Pesquisa';
 $LNG['ac_recent_destroyed_planets']     = 'Planetas destruidos recentemente';
 $LNG['ac_no_moons']                     = 'O jogador não tem luas';
 $LNG['ac_total_points']                 = 'Total: ';
@@ -960,7 +955,6 @@ $LNG['qe_send']							= 'Enviar';
 $LNG['qe_reset']						= 'Reiniciar';
 $LNG['qe_build']						= 'Edificios';
 $LNG['qe_tech']							= 'Pesquisas';
-$LNG['qe_officier']						= 'Oficiais';
 $LNG['qe_fleet']						= 'Frota';
 $LNG['qe_defensive']					= 'Defesas';
 $LNG['qe_resources']					= 'Recursos';
@@ -1015,7 +1009,6 @@ $LNG['modul_34']                       = 'Missão - Transporte';
 $LNG['modul_29']                       = 'Missão - Destruir';
 $LNG['modul_16']                       = 'Novidades';
 $LNG['modul_17']                       = 'Notícias';
-$LNG['modul_18']                       = 'Oficiais';
 $LNG['modul_19']                       = 'Phalanx';
 $LNG['modul_20']                       = 'PlayerCard';
 $LNG['modul_21']                       = 'Banidos';

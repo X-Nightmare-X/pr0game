@@ -582,7 +582,6 @@ class PlayerUtil
         $config = Config::get($USER['universe']);
 
         $planetPerTech = $config->planets_tech;
-        $planetPerBonus = $config->planets_officier;
 
         if ($config->min_player_planets == 0) {
             $planetPerTech = 999;

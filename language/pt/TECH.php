@@ -1,6 +1,6 @@
 <?php
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -157,23 +157,6 @@ $LNG['tech'] = array(
 	502 => 'Míssil de Interceção',
 	503 => 'Míssil Interplanetário',
 
-	600 => 'Oficiais',
-	601 => 'Geólogo',
-	602 => 'Almirante',
-	603 => 'Engenheiro',
-	604 => 'Tecnocrata',
-	605 => 'Constructor',
-	606 => 'Cientista',
-	607 => 'Especialista de Armazenamento',
-	608 => 'Ministro da Defesa',
-	609 => 'Guardião',
-	610 => 'Espião',
-	611 => 'Comandante',
-	612 => 'Destruidor',
-	613 => 'General',
-	614 => 'Raider',
-	615 => 'Imperador',
-
 	700 => 'Optimizações Premium',
 	701 => 'Otimização de Armas',
 	702 => 'Otimização de Escudos',
@@ -269,22 +252,6 @@ $LNG['shortDescription'] = array(
 	502 => "O míssil de interceção destrói os mísseis interplanetários atacantes.",
 	503 => "O míssil interplanetário destrói os sistemas de defesa do inimigo.",
 
-	601 => 'O Geólogo é um experiente astromineralogista e cristalografista. Ele assiste as suas equipas de metalurgia e química assim como cuida das comunicações interplanetárias otimizando o seu uso e na refinação das matérias-primas por todo o império.',
-	602 => 'O Almirante de frota é um experiente veterano de Guerra e estratega também.. Nos combates mais difíceis, ele é capaz de definir uma estratégia e transmiti-la aos seus subordinados. Um sábio imperador pode confiar no seu suporte em batalhas.',
-	603 => 'O engenheiro é especialista na gestão de energia. Em épocas de paz, aumenta a energia de todas as tuas colónias. Em caso de ataque, assegura a fonte de energia aos canhões defensivos, evitando uma eventual sobrecarga, reduzindo deste modo as perdas na batalha.',
-	604 => 'A Ordem dos cientistas é composta por grandes génios. Podes encontrá-los sempre a discutir questôes que desafiariam a lógica de qualquer pessoa. Nenhuma pessoa normal conseguirá descobrir o código desta ordem, e é a sua presença que inspira todos investigadores no Império a conseguir mais e melhor.',
-	605 => 'O construtor tem o seu DNA alterado, apenas um destes homens seria capaz de construir uma cidade num curto periodo de tempo.',
-	606 => 'Os cientistas sao uma especie de clã concorrente aos tecnocratas. Especializam-se na evolução da tecnologia.',
-	607 => 'O armazenamento faz parte da irmandade do planeta Hsac. O seu lema era ganhar o maximo, o que implica aumentar a capacidade de armazenamento. Desde então a tecnica de armazenamento tem evoluido.',
-	608 => 'O ministro da defesa e um membro exercito imperial. Concentrado no seu trabalho é capaz de construir uma defesa formidável num curto periodo de tempo.<br><br><font color="red">-%s%% no tempo de construção de defesas.',
-	609 => 'O guardião é um membro do exército imperial e tem como objetivo fazer evoluir as defesas de um planeta.',
-	610 => 'O espião é uma personagem enigmática. Nunca ninguem viu a sua verdadeira face, a unica maneira de isso acontecer seria sendo morto.',
-	611 => 'O comandante faz parte do exército imperial e especializou-se na arte de coordenar as frotas. O seu cérebro e capaz de calcular um grande número de trajectorias.',
-	612 => 'O destruidor é também um membro do exército imperial mas sem piedade. Desfaz tudo que se mete no seu caminho apenas por diversão.',
-	613 => 'O General é uma personagem que serviu durante muitos anos o exército imperial. Os trabalhadores tem uma produção de naves mais rápida na sua presença.',
-	614 => 'Esta personagem possui qualidades de conquista inigualáveis. Este sugere que tu te tornes um Raider. O Raider e o nivel mais alto imperial',
-	615 => 'Quando colocados sob o comando do imperador todos os oficiais do império, combinando suas habilidades para dominar o universo são capazes de se tornar num adversário quase invisível. O imperador colocado sob o seu comando disponíveis para todos os oficiais do império, combinando suas habilidades para dominar o universo e tornar-se um adversário quase invisíveis.',
-
 	701 => 'Este bonus aumenta o valor de ataque.',
 	702 => 'Este bonus aumenta o valor de escudos da defesa e das naves.',
 	703 => 'Este bonus diminui o tempo de construção dos edificios.',
@@ -379,22 +346,6 @@ $LNG['longDescription'] = array(
 
 	502 => "O míssil de interceção destrói os mísseis interplanetários atacantes.",
 	503 => "O míssil interplanetário destrói os sistemas de defesa do inimigo.",
-
-	601 => 'O Geólogo é um experiente astromineralogista e cristalografista. Ele assiste as suas equipas de metalurgia e química assim como cuida das comunicações interplanetárias otimizando o seu uso e na refinação das matérias-primas por todo o império.',
-	602 => 'O Almirante de frota é um experiente veterano de Guerra e estratega também.. Nos combates mais difíceis, ele é capaz de definir uma estratégia e transmiti-la aos seus subordinados. Um sábio imperador pode confiar no seu suporte em batalhas.',
-	603 => 'O engenheiro é especialista na gestão de energia. Em épocas de paz, aumenta a energia de todas as tuas colónias. Em caso de ataque, assegura a fonte de energia aos canhões defensivos, evitando uma eventual sobrecarga, reduzindo deste modo as perdas na batalha.',
-	604 => 'A Ordem dos cientistas é composta por grandes génios. Podes encontrá-los sempre a discutir questôes que desafiariam a lógica de qualquer pessoa. Nenhuma pessoa normal conseguirá descobrir o código desta ordem, e é a sua presença que inspira todos investigadores no Império a conseguir mais e melhor.',
-	605 => 'O construtor tem o seu DNA alterado, apenas um destes homens seria capaz de construir uma cidade num curto periodo de tempo.',
-	606 => 'Os cientistas sao uma especie de clã concorrente aos tecnocratas. Especializam-se na evolução da tecnologia.',
-	607 => 'O armazenamento faz parte da irmandade do planeta Hsac. O seu lema era ganhar o maximo, o que implica aumentar a capacidade de armazenamento. Desde então a tecnica de armazenamento tem evoluido.',
-	608 => 'O ministro da defesa e um membro exercito imperial. Concentrado no seu trabalho é capaz de construir uma defesa formidável num curto periodo de tempo.<br><br><font color="red">-%s%% no tempo de construção de defesas.',
-	609 => 'O guardião é um membro do exército imperial e tem como objetivo fazer evoluir as defesas de um planeta.',
-	610 => 'O espião é uma personagem enigmática. Nunca ninguem viu a sua verdadeira face, a unica maneira de isso acontecer seria sendo morto.',
-	611 => 'O comandante faz parte do exército imperial e especializou-se na arte de coordenar as frotas. O seu cérebro e capaz de calcular um grande número de trajectorias.',
-	612 => 'O destruidor é também um membro do exército imperial mas sem piedade. Desfaz tudo que se mete no seu caminho apenas por diversão.',
-	613 => 'O General é uma personagem que serviu durante muitos anos o exército imperial. Os trabalhadores tem uma produção de naves mais rápida na sua presença.',
-	614 => 'Esta personagem possui qualidades de conquista inigualáveis. Este sugere que tu te tornes um Raider. O Raider e o nivel mais alto imperial',
-	615 => 'Quando colocados sob o comando do imperador todos os oficiais do império, combinando suas habilidades para dominar o universo são capazes de se tornar num adversário quase invisível. O imperador colocado sob o seu comando disponíveis para todos os oficiais do império, combinando suas habilidades para dominar o universo e tornar-se um adversário quase invisíveis.',
 
 	701 => 'Este bonus aumenta o valor de ataque.',
 	702 => 'Este bonus aumenta o valor de escudos da defesa e das naves.',

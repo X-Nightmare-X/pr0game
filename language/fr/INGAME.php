@@ -46,6 +46,7 @@ $LNG['banned_message'] = 'Vous avez été banni. Si vous pensez qu\'il s\'agit d
 
 //----------------------------------------------------------------------------//
 //TOPNAV
+$LNG['tn_player_title'] = 'Empereur';
 $LNG['tn_vacation_mode']					= 'Vous êtes en mode vacances ';
 $LNG['tn_delete_mode']						= 'Votre compte %s va être supprimé !';
 
@@ -61,7 +62,6 @@ $LNG['lm_research']							= 'Recherche';
 $LNG['lm_shipshard']						= 'Chantier Spatial';
 $LNG['lm_defenses']							= 'Défense';
 $LNG['lm_resources']						= 'Ressources';
-$LNG['lm_officiers']						= 'Officiers';
 $LNG['lm_trader']							= 'Marchand';
 $LNG['lm_fleettrader']						= 'Ferrailleur Intergalactique';
 $LNG['lm_technology']						= 'Technologie';
@@ -414,16 +414,6 @@ $LNG['rs_weekly']							= 'Ressources par semaine:';
 $LNG['rs_ress_bonus']						= 'Bonus(Officiers/Bonus-MN):';
 
 //----------------------------------------------------------------------------//
-//OFFICIERS
-$LNG['of_recruit']							= 'Recruter';
-$LNG['of_max_lvl']							= 'Niveau Max.';
-$LNG['of_offi']								= 'Officiers';
-$LNG['of_lvl']								= 'Niveau';
-$LNG['of_dm_trade']							= '%s - Magasin';
-$LNG['of_still']							= 'encore';
-$LNG['of_active']							= 'actif';
-
-//----------------------------------------------------------------------------//
 //TRADER
 
 $LNG['tr_cost_dm_trader']					= 'Le montant des frais du marchand s\'élèvent à %s %s!';
@@ -733,7 +723,7 @@ $LNG['al_rank_name']						= 'Nom';
 $LNG['al_rank_desc']['MEMBERLIST']			= 'Peut voir les membres';
 $LNG['al_rank_desc']['ONLINESTATE']			= 'Pouvez voir qui est en ligne';
 $LNG['al_rank_desc']['TRANSFER']			= 'Peut être un leader';
-$LNG['al_rank_desc']['SEEAPPLY']			= 'Peut afficher les applications'; 
+$LNG['al_rank_desc']['SEEAPPLY']			= 'Peut afficher les applications';
 $LNG['al_rank_desc']['MANAGEAPPLY']			= 'Peut contrôler les applications';
 $LNG['al_rank_desc']['ROUNDMAIL']			= 'Peut envoyer message global';
 $LNG['al_rank_desc']['ADMIN']				= 'Peut modifier l\'Alliance';

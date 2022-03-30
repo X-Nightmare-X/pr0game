@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -58,6 +58,7 @@ $LNG['banned_message'] = 'Zostałeś zbanowany. Jeśli uważasz, że to nieporoz
 
 //----------------------------------------------------------------------------//
 //TOPNAV
+$LNG['tn_player_title'] = 'Imperator';
 $LNG['tn_vacation_mode']					= 'Jesteś w trybie urlopu ';
 $LNG['tn_delete_mode']						= 'Twoje konto zostanie automatycznie usunięte %s ';
 
@@ -72,7 +73,6 @@ $LNG['lm_research']							= 'Badania';
 $LNG['lm_shipshard']						= 'Stocznia';
 $LNG['lm_defenses']							= 'Obrona';
 $LNG['lm_resources']						= 'Zasoby';
-$LNG['lm_officiers']						= 'Oficerowie & DM-Sklep';
 $LNG['lm_trader']							= 'Handlarz';
 $LNG['lm_fleettrader']						= 'Złomowanie floty';
 $LNG['lm_technology']						= 'Technologie';
@@ -99,7 +99,7 @@ $LNG['lm_battlesim']						= 'Symulator walki';
 $LNG['lm_playercard']                       = 'Informacje o graczu';
 $LNG['lm_info']                     		= 'Informacje';
 $LNG['lm_disclamer']						= 'Kontakt';
-	
+
 //----------------------------------------------------------------------------//
 //OVERVIEW
 
@@ -437,18 +437,6 @@ $LNG['rs_weekly']							= 'Zasobów na tydzień:';
 $LNG['rs_ress_bonus']						= 'Bonus(Oficer/DM-Bonus):';
 
 //----------------------------------------------------------------------------//
-//OFFICIERS
-$LNG['of_recruit']							= 'Zatrudnij';
-$LNG['of_max_lvl']							= 'Maks. poziom';
-$LNG['of_offi']								= 'Oficerowie';
-$LNG['of_lvl']								= 'Poziom';
-$LNG['of_dm_trade']							= '%s - Sklep';
-$LNG['of_still']							= 'still';
-$LNG['of_active']							= 'aktywny';
-
-
-
-//----------------------------------------------------------------------------//
 //TRADER
 
 $LNG['tr_cost_dm_trader']					= 'Opłaty handlarza %s %s!';
@@ -587,7 +575,7 @@ $LNG['al_close_ally'] 						= 'Czy napewno chcesz zrezygnować z sojuszu?';
 $LNG['al_kick_player']						= 'Czy napewno chcesz usunąć gracza %s z sojuszu?';
 $LNG['al_circular_sended'] 					= "Wiadomość sojusznicza wysłana, otrzymali ja następujący gracze:";
 $LNG['al_all_players'] 						= 'Do wszystkich';
-$LNG['al_no_ranks_defined'] 				= 'Brak zdefiniowanych rang.'; 
+$LNG['al_no_ranks_defined'] 				= 'Brak zdefiniowanych rang.';
 $LNG['al_request_text']						= 'Tekst podania';
 $LNG['al_inside_text']						= 'opis dostępny tylko dla członków sojuszu';
 $LNG['al_outside_text']						= 'opis widoczny dla wszystkich';
@@ -764,7 +752,7 @@ $LNG['al_rank_name']						= 'Nazwa';
 $LNG['al_rank_desc']['MEMBERLIST']			= 'Zobacz listę członków';
 $LNG['al_rank_desc']['ONLINESTATE']			= 'Kto jest online';
 $LNG['al_rank_desc']['TRANSFER']			= 'Może zostać przywódcą';
-$LNG['al_rank_desc']['SEEAPPLY']			= 'Zobacz zgłoszenia do sojuszu'; 
+$LNG['al_rank_desc']['SEEAPPLY']			= 'Zobacz zgłoszenia do sojuszu';
 $LNG['al_rank_desc']['MANAGEAPPLY']			= 'Może decydować o zgłoszeniach';
 $LNG['al_rank_desc']['ROUNDMAIL']			= 'Wiadomość została wysłana';
 $LNG['al_rank_desc']['ADMIN']				= 'Może edytować sojusz';
@@ -1136,7 +1124,7 @@ $LNG['ti_error_no_subject']					= 'Musisz wpisać temat!';
 $LNG['ti_msgtime']							= 'Wiadomość napisana';
 
 //----------------------------------------------------------------------------//
-// Rekorde 
+// Rekorde
 
 $LNG['rec_players']  						= 'Gracz';
 $LNG['rec_level']  							= 'Poziom';

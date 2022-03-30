@@ -97,10 +97,6 @@
 	<td><input name="planets_tech" maxlength="11" size="11" value="{$planets_tech}" type="text"></td>
 	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_planets_tech_info}"></td>
 </tr><tr>
-	<td>{$LNG.se_planets_officier}</td>
-	<td><input name="planets_officier" maxlength="11" size="11" value="{$planets_officier}" type="text"></td>
-	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_planets_officier_info}"></td>
-</tr><tr>
 	<td>{$LNG.se_planets_per_tech}</td>
 	<td><input name="planets_per_tech" maxlength="11" size="11" value="{$planets_per_tech}" type="text"></td>
 	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_planets_per_tech_info}"></td>

@@ -196,7 +196,7 @@ class ResourceUpdate
 
             if (in_array($Element, array_merge($reslist['build'], $reslist['fleet'], $reslist['defense']))) {
                 $BuildLevel = $PLANET[$resource[$Element]];
-            } elseif (in_array($Element, array_merge($reslist['tech'], $reslist['officier']))) {
+            } elseif (in_array($Element, $reslist['tech'])) {
                 $BuildLevel = $USER[$resource[$Element]];
             } else {
                 $BuildLevel = 0;

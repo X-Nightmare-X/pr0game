@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-//---------------	GENERAL	------------------------// 
+//---------------	GENERAL	------------------------//
 $LNG['adm_login']			= 'Login';
 $LNG['adm_username']		= 'Nazwa użytkownika';
 $LNG['adm_password']		= 'Hasło';
@@ -51,7 +51,7 @@ $LNG['time_seconds']	= 'Sekunda';
 
 $LNG['info_information']	= 'Informacje o błędach i nowościach <a href="%s" target="tracker">pr0game Board</a><br>Jeśli usuniesz ten link, nie będziesz miał prawa do supportu!!!!';
 
-//---------------	¿SI O NO? - YES OR NO? - JA ODER NEIN?	- TAK ALBO NIE------------------------// 
+//---------------	¿SI O NO? - YES OR NO? - JA ODER NEIN?	- TAK ALBO NIE------------------------//
 $LNG['one_is_yes_1']	= 'Tak';
 $LNG['one_is_yes_0']	= 'Nie';
 
@@ -60,7 +60,7 @@ $LNG['one_is_no_0']	= 'Tak';
 //###########################################################//
 
 
-//---------------	BOTONES - BUTTONS - BUTTONS	- PRZYCISKI------------------------// 
+//---------------	BOTONES - BUTTONS - BUTTONS	- PRZYCISKI------------------------//
 $LNG['button_submit']		= 'Wyślij';
 $LNG['button_add']		= 'Dodaj';
 $LNG['button_delete']		= 'Usuń';
@@ -81,18 +81,17 @@ $LNG['input_id_ally']		= 'Sojusz ID';
 //###########################################################//
 
 
-//---------------	RECURSOS - RESOURCES - ROHSTOFFE - ZASOBY	------------------------// 
+//---------------	RECURSOS - RESOURCES - ROHSTOFFE - ZASOBY	------------------------//
 $LNG['resources_title']	        = 'Zasoby';
 $LNG['count_res']		= 'Ilość zaobów';
 //###########################################################//
 
 
-//---------------	OFICIALES - OFFICIERS - OFFIZIERE - OFICEROWIE	------------------------// 
+//---------------	OFICIALES - OFFICIERS - OFFIZIERE - OFICEROWIE	------------------------//
 $LNG['buildings_title']	= 'Budynki';
 $LNG['ships_title']	= 'Statki';
 $LNG['defenses_title']	= 'Obrona';
 $LNG['researchs_title']	= 'Badania';
-$LNG['officiers_title']	= 'Oficerowie';
 //###########################################################//
 
 
@@ -106,7 +105,6 @@ $LNG['ad_editor_buildings']		= 'Budynki';
 $LNG['ad_editor_ships']			= 'Statki';
 $LNG['ad_editor_defenses']		= 'Obrona';
 $LNG['ad_editor_researchs']		= 'Badania';
-$LNG['ad_editor_officiers']		= 'Oficerowie';
 $LNG['ad_editor_personal']		= 'Dane osobowe';
 $LNG['ad_editor_planets']		= 'Planety i księżyce';
 $LNG['ad_editor_resources']		= 'Zasoby';
@@ -120,12 +118,6 @@ $LNG['ad_add_tech_success']		= 'Badania dodano z powodzeniem!';
 $LNG['ad_delete_tech_success']		= 'Badania usunięto z powodzeniem!';
 $LNG['ad_research_title']		= 'Stwórz badanie';
 $LNG['ad_research']			= 'Badania';
-
-//	OFICIALES - OFFICIERS - OFFIZIERE - OFICEROWIE
-$LNG['ad_offi_title']			= 'Stwórz oficera';
-$LNG['ad_offi']				= 'Oficerowie';
-$LNG['ad_add_offi_success']		= 'Oficer dodany!';
-$LNG['ad_delete_offi_success']		= 'Oficer usunięty!';
 
 //	RECURSOS - RESOURCES - ROHSTOFFE - ZASOBY
 $LNG['ad_add_res_sucess']	= 'Zasób dodano!';
@@ -489,8 +481,6 @@ $LNG['se_planets_min'] 					= 'Maksymalna ilość kolonii bez badań';
 $LNG['se_planets_min_info'] 			= 'Ilość planet, jakie może zasiedlić gracz od początku gry bez dodatkowych badań';
 $LNG['se_planets_tech'] 				= 'Maksymalna ilość planet, które może zasiedlić gracz (0 = brak limitu)';
 $LNG['se_planets_tech_info'] 			= 'Maksymalna ilość planet, które może zasiedlić gracz po uwzględnienieu badań';
-$LNG['se_planets_officier'] 			= 'Maksymalna ilość dodatkowych planet, które można zasiedlić dzięki oficerom';
-$LNG['se_planets_officier_info'] 		= 'Bonus oficerów do ilości planet (0 = bez limitu)';
 $LNG['se_planets_per_tech'] 			= 'Faktor: Przelicznik na poziom badania astrofizyki';
 $LNG['se_planets_per_tech_info'] 		= 'Poziom odkrytej technologi i liczba planet, które może zasiedlić gracz.';
 $LNG['se_silo_factor']					= 'Wielkość silosów rakietowych';
@@ -603,12 +593,12 @@ $LNG['mu_module']                 	= 'Moduły';
 $LNG['mu_mod_update']              	= 'Wersja kontrolna';
 
 $LNG['mu_game_info'] 				= 'Informacje';
-$LNG['mu_vaild_users']				= 'Aktywni użytkownicy'; 
-$LNG['mu_news']						= 'Nowości'; 
-$LNG['mu_multiip_page']				= 'MultiIP'; 
-$LNG['mu_clear_cache']				= 'Usuń cache'; 
+$LNG['mu_vaild_users']				= 'Aktywni użytkownicy';
+$LNG['mu_news']						= 'Nowości';
+$LNG['mu_multiip_page']				= 'MultiIP';
+$LNG['mu_clear_cache']				= 'Usuń cache';
 $LNG['mu_vertify']					= 'Sprawdź pliki gry!';
-$LNG['mu_cronjob']					= 'Cronjobs'; 
+$LNG['mu_cronjob']					= 'Cronjobs';
 $LNG['mu_logs']						= 'Admin-Log';
 $LNG['mu_giveaway']					= 'Bonusy';
 $LNG['mu_disclaimer']				= 'Ustawienia prawne';
@@ -633,7 +623,7 @@ $LNG['vt_fileerror']				= 'Błąd';
 $LNG['vt_loadfile']					= 'Szczegóły';
 //###########################################################//
 
-$LNG['cc_cache_clear']				= 'Cache Usunięto'; 
+$LNG['cc_cache_clear']				= 'Cache Usunięto';
 
 //---------------	REINICIO DE UNIVERSO - RESET UNIVERSE - RESET UNIVERSUM	------------------------//
 $LNG['re_reset_universe']				= 'Reset Universum';
@@ -650,8 +640,7 @@ $LNG['re_buldings']						= 'Budynki';
 $LNG['re_buildings_pl']					= 'Reset budynków';
 $LNG['re_buildings_lu']					= 'Reset budynków na księżycu';
 $LNG['re_reset_buldings']				= 'Reset kolejki budowy';
-$LNG['re_inve_ofis']					= 'Badania i oficerowie';
-$LNG['re_ofici']						= 'Reset Oficerów';
+$LNG['re_inve']					= 'Badania';
 $LNG['re_investigations']				= 'Reset Badań';
 $LNG['re_reset_invest']					= 'Reset kolejka badań';
 $LNG['re_resources']					= 'Zasoby';
@@ -706,7 +695,7 @@ $LNG['ac_coords']							= 'Koordynaty';
 $LNG['ac_diameter']							= 'Średnica';
 $LNG['ac_fields']							= 'Pola';
 $LNG['ac_temperature']						= 'Temp.';
-$LNG['ac_officier_research']				= 'Badania i oficerowie';
+$LNG['ac_research']				= 'Badania';
 $LNG['ac_recent_destroyed_planets']			= 'Ostatnie zniszczone księżyce';
 $LNG['ac_no_moons']							= 'Gracz nie ma księżyca';
 $LNG['ac_total_points']						= 'Razem: ';
@@ -950,7 +939,6 @@ $LNG['qe_send']							= 'Wysłano';
 $LNG['qe_reset']						= 'Reset';
 $LNG['qe_build']						= 'Budynki';
 $LNG['qe_tech']							= 'Badania';
-$LNG['qe_officier']						= 'Oficerowie';
 $LNG['qe_fleet']						= 'Flota';
 $LNG['qe_defensive']					= 'Verteigung';
 $LNG['qe_resources']					= 'Zasoby';
@@ -1007,7 +995,6 @@ $LNG['modul_34']						= 'Misja - Transport';
 $LNG['modul_29']						= 'Misja - Niszcz';
 $LNG['modul_16']						= 'Wiadomości';
 $LNG['modul_17']						= 'Notatki';
-$LNG['modul_18']						= 'Oficerowie';
 $LNG['modul_19']						= 'Falanga';
 $LNG['modul_20']						= 'Karta Gracza';
 $LNG['modul_21']						= 'Pręgierz';

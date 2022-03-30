@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -36,8 +36,8 @@ $LNG['shortNames'] = array (
 	218 => 'Avatar',
 	219 => 'Gigarecykler',
 	220 => 'Inter. DM-Collector',
-	
-	
+
+
 
 	401 => 'Wyrzutnia Rakiet',
 	402 => 'L. Laser',
@@ -72,7 +72,7 @@ $LNG['bonus'] = array(
 	'GateCoolTime'		=> 'Czas ładowania teleportera',
 	'MoreFound'			=> 'Zasoby znajdowane podczas ekspedycji',
 );
-					
+
 $LNG['tech'] = array(
 	0 => 'Budynki',
   	1 => 'Kopalnia Metalu',
@@ -116,7 +116,7 @@ $LNG['tech'] = array(
 	132 => 'Technologia Produkcji Kryształu',
 	133 => 'Technologia Produkcji Deuterium',
 	199 => 'Rozwój Grawitonów',
-  
+
 		200 => 'Statki',
 202 => 'Mały Tranporter',
 203 => 'Duży Tranporter',
@@ -155,23 +155,6 @@ $LNG['tech'] = array(
 502 => 'Antyrakieta',
 503 => 'Rakieta Międzyplanetarna',
 
-	600 => 'Oficerowie',
-601 => 'Geolog',
-602 => 'Admirał',
-603 => 'Inżynier',
-604 => 'Technokrata',
-605 => 'Konstruktor',
-606 => 'Naukowiec',
-607 => 'Magazynier',
-608 => 'Minister Obrony',
-609 => 'Wynalazca systemów obrony',
-610 => 'Szpieg',
-611 => 'Dowódca',
-612 => 'Niszczyciel',
-613 => 'Generał',
-614 => 'Zdobywca',
-615 => 'Imperator',
-
 	700 => 'Premium dodatki',
 	701 => 'Optymalizacja Broni',
 	702 => 'Optymalizacja Osłony',
@@ -180,7 +163,7 @@ $LNG['tech'] = array(
 	705 => 'Optymalizacja Energii',
 	706 => 'Optymalizacja Badań',
 	707 => 'Koordynacja Floty',
-	
+
 	900 => 'Zasoby',
 	901 => 'Metal',
 	902 => 'Kryształ',
@@ -229,7 +212,7 @@ $LNG['shortDescription'] = array(
 132 => 'Zwiększa produkcję kryształu o 2%.',
 133 => 'Zwiększa produkcję deuterium o 2%.',
 	199 => 'Skoncentrowane cząstki grawitonowe tworzą sztuczne pole grawitacji, które wciąga wszystko w siebie jak czarna dziura. Pole jest tak potężne, że może zniszczyć księżyc.',
-	
+
 	202 => 'Mały transportowiec służy do szybkiego transportu surowców na pobliskie planety.',
 203 => 'Duży transportowiec może zabrać nie tylko więcej surowców, ale również - dzięki lepszemu napędowi - jest znacznie szybszy.',
 204 => 'Jest to pierwsza jednostka wojskowa, którą możesz zbudować. W początkowej fazie gry przydają się, by napadać pobliskie planety posiadające niewielką obronę. Mimo tego, że są stosunkowo słabe, są tanie, a icg duża ilość potrafi być groźna.',
@@ -264,22 +247,6 @@ $LNG['shortDescription'] = array(
 
 	502 => 'Antyrakiety przechwytują rakiety międzyplanetarne przeciwnika.',
 503 => 'Międzyplanetarne rakiety. Ich jedynym celem jest niszczenie obrony przeciwnika.',
-
-	601 => 'Geolog to specjalista od astro-minerologii i krystalologii. Jego działania odczuwa się w całym imperium.',
-	602 => 'Admirał to stary i doświadczony weteran. Mądry imperator mógł liczyć na jego pomoc w walce.',
-	603 => 'Inżynier to specjalista w zarządzaniu energią. W czasie pokoju i wojny zwiększa jej produkcję w całym imperium.',
-	604 => 'Cech technokratów to naukowcy-geniusze. Swoją obecnością wpływają na innych naukowców, poprawiając sprawność ich pracy.',
-	605 => 'To ludzie ze zmienionym DNA. Już 1 potrafi zbudować całe miasto.',
-	606 => 'Naukowcy to część cechu technokratów. Specjalizują się w poprawie technologii.',
-	607 => 'Magazynier to członek starożytnego bractwa z planety Hsac. Jego dewizą jest zdobycie i maksymalne wykorzystanie dostępnego miejsca!',
-	608 => 'Członek armii cesarskiej. Dzięki temu, iż jest skupiony na swojej pracy, może zbudować wspaniałą obronę w krótkim czasie.',
-	609 => 'Jego celem jest opracowanie i poprawa technologii obronnych. Wymagany do opracowania Imperatora',
-	610 => 'To bardzo tajemniczy człowiek i tak naprawdę nikt nie wie, kim jest ani jak wygląda.',
-	611 => 'Dowódca jest częścią armii cesarskiej. Dzięki opanowaniu sztuki zarządzania flotą, jest w stanie bez pomocy komputera obliczyć trajektorię, czas przylotu itd.',
-	612 => 'Człowiek bez litości. Doskonały do planowania masowych zniszczeń.  Wymagany do opracowania Zdobywcy',
-	613 => 'Stary i doświadczony weteran będący od wielu lat członkiem armii cesarskiej.  Wymagany do opracowania Imperatora',
-	614 => 'Członek cesarskiej armii. Jego zdolności to nawigacja flotą - jest w tym niezastąpiony.',
-	615 => 'Pod jego dowództwem znajdują się wszyscy inni oficerowie. To on decyduje, kto i kiedy wspiera Cię w tworzeniu Imperium, jakiego świat nie widział!',
 
 	701 => 'Podnosi na jakiś czas zdolność ataku i obrony statków.',
 702 => 'Podnosi na jakiś czas siłę osłony i obrony.',
@@ -317,7 +284,7 @@ $LNG['longDescription'] = array(
 	42 => 'Falanga czujników analizuje spektrum światła i gazów w swoim zasięgu, a potem superkomputer dostarcza danych na temat aktywnie przemieszczających się flot. Jednorazowe skanowanie przestrzeni w zasięgu falangi kosztuje 5k Deuterium. Zasięg falangi liczymy tym wzorem =(level falangi) ^ 2 - 1.',
 	43 => 'Olbrzymie wrota zwane teleporterem pozwalają na transport ogromych flot natychmiast i to nie tracąc deuterium. Po każdym użyciu teleporter musi się zregenerować, by można go było użyć ponownie. Niestety nie da się tą drogą przesyłać surowców.',
 	44 => 'Służy do budowy rakiet i antyrakiet. Każdy level pozwala przechowywać 5 antyrakiet lub 2 rakiety i 1 antyrakietę. Np. na poziomie 10 możesz mieć maksymalnie 50 antyrakiet lub 25 rakiet.',
-	
+
 	106 => 'Od poziomu tej technologii zależy, jakie dane uda Ci się zebrać o twoim celu. Jeśli przeciwnik ma większy level technologii szpiegowskiej, wtedy musisz wysłać więcej sond, by uzyskać maksymalną ilość danych na temat twojego przeciwnika. Większa ilość sond zwiększa szansę ich wykrycia i zniszczenia. Od poziomu 2 dostaniesz informacje ile jednostek cię atakuje, od levelu 4 dowiesz się również jakie typy statków, a od levelu 8 informacje będą pełne, czyli ile i jakie typy statków są agresorami.',
 	108 => 'Ta technologia kontroluje dokładne czasy przylotu, trajektorię lotu itp. Każda flota, którą wyślesz, zajmuje część zasobów(slot). Powinieneś stale rozwijać tą technologię, by móc wysyłać więcej flot jednocześnie.',
 	109 => 'Kluczowa technologia bojowa. Każdy level zwiększa skuteczoność stystemów bojowych o 10% wartości bazowej!',
@@ -337,7 +304,7 @@ $LNG['longDescription'] = array(
 	132 => 'Zwiększa produkcję kryształu o 2%.',
 	133 => 'Zwiększa produkcję deuterium o 2%.',
 	199 => 'Grawiton to cząstka elementarna, która pośredniczy w tworzeniu grawitacji w ramach kwantowej teorii pola. Grawitony są cząstkami, które same w sobie nie mają masy. Rozwój grawitonów jest potrzebny tylko dla jednej technologii - pozwala budować Gwiazdę śmierci!',
-	
+
 	202 => 'Pierwszy statek zbudowany przez cesarza, który ma ładowność 5000 jednostek. Służy na początku do tranportu zasobów między koloniami, a z czasem bierze udział w napadach na wrogie planety. Od piątego poziomu napędu impulsowego korzysta z niego również mały transportowiec, dzięki czemu porusza się 2x szybciej.',
 	203 => 'To nastepca małego transportowca. Wyposażony w lepszy typ napędu, dużo bardziej pojemny, lepiej opancerzony. Bierze udział w wiekszości napadów na wrogie planety.',
 	204 => 'Pierwsze jednostki wojskowe. Są małe i zwinne, ale bardzo słabe, dopiero spora ich ilość potrafi być zagrożeniem. Wykorzystywane do ataku na słabo bronione pobliskie planety.',
@@ -357,7 +324,7 @@ $LNG['longDescription'] = array(
 	218 => 'Można powiedzieć, iż to przedstawiciel koszmaru na tym świecie, niestety strasznie powolny.',
 	219 => 'Ogromna ładowność, a dzięki nowym technologiom porusza się znacznie szybciej od standardowego recyklera.',
 	220 => 'Dzięki temu statkowi jesteś w stanie zbierać Czarną materię z księżyca.',
-	
+
 	401 => 'Twoja pierwsza linia obrony. Po walce i zniszczeniu jest 70% szans, że zostanie naprawiona.',
 	402 => 'Wiązki laserowe dzięki specjalnym systemom namierzania i podążania za celem są kierowane tak, by przebijać kadłub. Po walce i zniszczeniu jest 70% szans, że zostanie naprawiona.',
 	403 => 'Ciężki laser to ulepszona wersja lekkiego. Po walce i zniszczeniu jest 70% szans, że zostanie naprawiona.',
@@ -372,29 +339,13 @@ $LNG['longDescription'] = array(
 	502 => 'Służa do przechwytywania i niszczenia wrogich rakiet międzyplanetarnych.',
 	503 => 'Służy do niszczenia obrony na planecie. Ma wroga w postaci antyrakiet.',
 
-	601 => 'Geolog to specjalista od astro-minerologii i krystalologii. Jego działania odczuwa się w całym imperium.',
-	602 => 'Admirał to stary i doświadczony weteran. Mądry imperator mógł liczyć na jego pomoc w walce.',
-	603 => 'Inżynier to specjalista w zarządzaniu energią. W czasie pokoju i wojny zwiększa jej produkcję w całym imperium.',
-	604 => 'Cech technokratów to naukowcy-geniusze. Swoją obecnością wpływają na innych naukowców, poprawiając sprawność ich pracy.',
-	605 => 'To ludzie ze zmienionym DNA. Już 1 potrafi zbudować całe miasto.',
-	606 => 'Naukowcy to część cechu technokratów, specjalizują się w poprawie technologii.',
-	607 => 'Magazynier to członek starożytnego bractwa z planety Hsac. Jego dewizą jest zdobycie i wykorzystanie maksymalnie miejsca!',
-	608 => 'Członek armii cesarskiej. Dzięki temu, iż jest skupiony na swojej pracy, może zbudować wspaniałą obronę w krótkim czasie.',
-	609 => 'Jego celem jest opracowanie i poprawa technologii obronnych.',
-	610 => 'To bardzo tajemniczy człowiek i tak naprawde nikt nie wie, kim jest ani jak wygląda.',
-	611 => 'Dowódca jest częścią armii cesarskiej. Dzięki opanowaniu sztuki zarządzania flotą, jest w stanie bez pomocy komputera obliczyć trajektorię, czas przylotu itd.',
-	612 => 'Człowiek bez litości. Doskonały do planowania masowych zniszczeń.',
-	613 => 'Stary i doświadczony weteran, będący od wielu lat członkiem armii cesarskiej.',
-	614 => 'Członek cesarskiej armii. Jego zdolności to nawigacja flotą - jest w tym niezastąpiony.',
-	615 => 'Pod jego dowództwem znajdują się wszyscy inni oficerowie. To on decyduje, kto i kiedy wspiera Cię w tworzeniu Imperium, jakiego świat nie widział!',
-
 	701 => 'Bonus jest tymczasowy!',
 	702 => 'Bonus jest tymczasowy!',
 	703 => 'Bonus jest tymczasowy!',
 	704 => 'Bonus jest tymczasowy!',
 	705 => 'Bonus jest tymczasowy!',
 	706 => 'Bonus jest tymczasowy!',
-	707 => 'Bonus jest tymczasowy!',	
+	707 => 'Bonus jest tymczasowy!',
 
 901 => 'Główny surowiec do budowy konstrukcji nośnych budynków i statków kosmicznych. Metal jest najtańszym surowcem mineralnym, dlatego jest częściej wykorzystywany niż inne.',
 902 => 'Główny surowiec do budowy elementów elektronicznych i stopów metali. Kryształy wykorzystywane są we wszystkich statkach kosmicznych i budynkach. Najczęściej używane w przemyśle stoczniowym kryształy są jednak bardzo rzadkie i podobnie jak metale znajdują się w większych ilościach w głębokich warstwach.',

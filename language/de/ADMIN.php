@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-//---------------	GENERAL	------------------------// 
+//---------------	GENERAL	------------------------//
 $LNG['adm_login'] = 'Login';
 $LNG['adm_username'] = 'Username';
 $LNG['adm_password'] = 'Passwort';
@@ -51,7 +51,7 @@ $LNG['time_seconds'] = 'Sekunden';
 
 $LNG['info_information'] = 'Informations-Vorlage zum Posten eines Bugs im <a href="%s" target="tracker">pr0game Board</a><br>Ohne diese Vorlage gibt es keinen Support!';
 
-//---------------	¿SI O NO? - YES OR NO? - JA ODER NEIN?	------------------------// 
+//---------------	¿SI O NO? - YES OR NO? - JA ODER NEIN?	------------------------//
 $LNG['one_is_yes_1'] = 'Ja';
 $LNG['one_is_yes_0'] = 'Nein';
 
@@ -60,7 +60,7 @@ $LNG['one_is_no_0'] = 'Ja';
 //###########################################################//
 
 
-//---------------	BOTONES - BUTTONS - BUTTONS	------------------------// 
+//---------------	BOTONES - BUTTONS - BUTTONS	------------------------//
 $LNG['button_submit'] = 'Senden';
 $LNG['button_add'] = 'Hinzufügen';
 $LNG['button_delete'] = 'Löschen';
@@ -81,18 +81,17 @@ $LNG['input_id_ally'] = 'Allianz ID';
 //###########################################################//
 
 
-//---------------	RECURSOS - RESOURCES - ROHSTOFFE	------------------------// 
+//---------------	RECURSOS - RESOURCES - ROHSTOFFE	------------------------//
 $LNG['resources_title'] = 'Rohstoffe';
 $LNG['count_res'] = 'Anzahl Rohstoffe';
 //###########################################################//
 
 
-//---------------	OFICIALES - OFFICIERS - OFFIZIERE	------------------------// 
+//---------------	OFICIALES - OFFICIERS - OFFIZIERE	------------------------//
 $LNG['buildings_title'] = 'Gebäude';
 $LNG['ships_title'] = 'Schiffe';
 $LNG['defenses_title'] = 'Verteidigung';
 $LNG['researchs_title'] = 'Forschung';
-$LNG['officiers_title'] = 'Offiziere';
 //###########################################################//
 
 
@@ -105,7 +104,6 @@ $LNG['ad_editor_buildings'] = 'Gebäude';
 $LNG['ad_editor_ships'] = 'Schiffe';
 $LNG['ad_editor_defenses'] = 'Verteidigung';
 $LNG['ad_editor_researchs'] = 'Forschung';
-$LNG['ad_editor_officiers'] = 'Offiziere';
 $LNG['ad_editor_personal'] = 'Persönliche Daten';
 $LNG['ad_editor_planets'] = 'Planeten & Monde';
 $LNG['ad_editor_resources'] = 'Rohstoffe';
@@ -119,12 +117,6 @@ $LNG['ad_add_tech_success'] = 'Hinzufügen der Forschungen war erfolgreich!';
 $LNG['ad_delete_tech_success'] = 'Löschen der Forschungen war erfolgreich!';
 $LNG['ad_research_title'] = 'Forschungen bearbeiten';
 $LNG['ad_research'] = 'Forschung';
-
-//	OFICIALES - OFFICIERS - OFFIZIERE
-$LNG['ad_offi_title'] = 'Offiziere bearbeiten';
-$LNG['ad_offi'] = 'Offiziere';
-$LNG['ad_add_offi_success'] = 'Hinzufügen der Offiziere war erfolgreich!';
-$LNG['ad_delete_offi_success'] = 'Löschen der Offiziere war erfolgreich!';
 
 //	RECURSOS - RESOURCES - ROHSTOFFE
 $LNG['ad_add_res_sucess'] = 'Hinzufügen der Rohstoffe war erfolgreich!';
@@ -495,8 +487,6 @@ $LNG['se_planets_min'] = 'Max. kolonisierbare Planeten ohne Forschungen';
 $LNG['se_planets_min_info'] = 'Von Beginn an hat der Spieler die Möglichkeit die Angegebene Anzahl an Planeten zu besiedeln';
 $LNG['se_planets_tech'] = 'Max. zusätzliche Planetenzahl durch Foschung. (0 = deaktiviert Limit)';
 $LNG['se_planets_tech_info'] = 'Durch Forschung von Astrophysik hat der Spieler die Möglichkeit maximal die angegebene Anzahl an Planeten zusätzlich zu besiedeln.';
-$LNG['se_planets_officier'] = 'Max. zusätzliche Planetenzahl durch Offiziere';
-$LNG['se_planets_officier_info'] = 'Maximaler Bonus an Planeten durch Offiziere. (0 = deaktiviert Limit)';
 $LNG['se_planets_per_tech'] = 'Faktor: Planeten pro Stufe Astrophysik';
 $LNG['se_planets_per_tech_info'] = 'Pro geforschter Stufe kann der Spieler die angegebene Anzahl an Planeten zusätzlich besiedeln.';
 $LNG['se_silo_factor'] = 'Raketensilogröße';
@@ -657,8 +647,7 @@ $LNG['re_buldings'] = 'Gebäude';
 $LNG['re_buildings_pl'] = 'Reset Gebäude';
 $LNG['re_buildings_lu'] = 'Reset Mondgebäude';
 $LNG['re_reset_buldings'] = 'Reset Gebäudebauschleife';
-$LNG['re_inve_ofis'] = 'Forschungen and Offiziere';
-$LNG['re_ofici'] = 'Reset Offiziere';
+$LNG['re_inve'] = 'Forschungen';
 $LNG['re_investigations'] = 'Reset Forschung';
 $LNG['re_reset_invest'] = 'Reset Forschungsbauschleife';
 $LNG['re_resources'] = 'Rohstoffe';
@@ -713,7 +702,7 @@ $LNG['ac_coords'] = 'Koordinaten';
 $LNG['ac_diameter'] = 'Durchmesser';
 $LNG['ac_fields'] = 'Felder';
 $LNG['ac_temperature'] = 'Temp.';
-$LNG['ac_officier_research'] = 'Forschung und Offiziere';
+$LNG['ac_research'] = 'Forschung';
 $LNG['ac_recent_destroyed_planets'] = 'Kürzliche zerstörte Monde';
 $LNG['ac_no_moons'] = 'Der Spieler hat keinen Mond';
 $LNG['ac_total_points'] = 'Gesamt: ';
@@ -957,7 +946,6 @@ $LNG['qe_send'] = 'Absenden';
 $LNG['qe_reset'] = 'Zurücksetzten';
 $LNG['qe_build'] = 'Gebäude';
 $LNG['qe_tech'] = 'Forschung';
-$LNG['qe_officier'] = 'Offiziere';
 $LNG['qe_fleet'] = 'Flotte';
 $LNG['qe_defensive'] = 'Verteigung';
 $LNG['qe_resources'] = 'Rohstoffe';
@@ -1015,7 +1003,6 @@ $LNG['modul_34'] = 'Mission - Transport';
 $LNG['modul_29'] = 'Mission - Zerstören';
 $LNG['modul_16'] = 'Nachrichten';
 $LNG['modul_17'] = 'Notizen';
-$LNG['modul_18'] = 'Offiziere';
 $LNG['modul_19'] = 'Phalanx';
 $LNG['modul_20'] = 'Playercard';
 $LNG['modul_21'] = 'Pranger';

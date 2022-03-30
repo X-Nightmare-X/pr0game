@@ -1,6 +1,6 @@
 <?php
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -182,23 +182,6 @@ $LNG['tech'] = array(
 502 => 'Yakalayici Roketler',
 503 => 'Gezegenler Arasi Roketler',
 
-600 => 'Subaylar',
-601 => 'Jeoolog',
-602 => 'Amiral',
-603 => 'Muhendis',
-604 => 'Teknokrat',
-605 => 'Yapi Uzmani',
-606 => 'Bilim Adami',
-607 => 'Depolama Uzmani',
-608 => 'Savunma Bakani',
-609 => 'Gardiyan',
-610 => 'Casusluk Uzmani',
-611 => 'Kumandan',
-612 => 'Yokedici',
-613 => 'General',
-614 => 'Fetihci',
-615 => 'Imparator',
-
 	700 => 'Ayricalikli Optimizasyonlar',
 	701 => 'Silah Optimizasyonu',
 	702 => 'Kalkan Optimizasyonu',
@@ -303,22 +286,6 @@ $LNG['shortDescription'] = array(
 502 => 'Yakaliyici Roketler Gezegenler Arasi Roket saldirilarina karsi savunmayi korur. Her 1 yakalayici 1 GAR a esittir.',
 503 => 'Gezegenler Arasi Roketler(GAR) rakip savunmayi Yokederler. Vurduklari yerdeki tum araclar yeryuzunden silinir!',
 
-601 => 'Jeolog madencilik ve astro kristalografisi uzmanidir. Gezegenler arasi iletisim icin imparatorluk capinda kullanimi ve hammadde aritma optimize etmekle sorumludur.',
-602 => 'Amiral deneyimli bir usta ve strateji danismanidir. En zor savas durumlarinda fikir uretebilir ve astlarina danisabilir. Bilge bir imparator onun yardimlarina mutlaka guvenir.',
-603 => 'Muhendis enerji yonetimi konusunda uzmandir. Baris zamaninda, o butun kolonilerin enerjisini artirir. Saldiri zamanlarinda enerji kaynaklarinin saglanmasi ve asiri yuku onlemeye calisir.',
-604 => 'Teknokratlar bilgileri dahilinde filo ve tershaneye etki ederler. Bu bilge insanlar en kotu zamanlarda gezegen icin uygun olan uretimi saglarlar.',
-605 => 'Insaat uzmanlari bitmis halde bulunan harabe bir gezegeni bile yeniden insaa edebilirler. Bu uzmanlarin DNA lari degistirilmistir. ',
-606 => 'Bilim adamlari loncalarda arastirmalarini gizli olarak yaparlar. Arastirma konusunda cok buyuk kolaylik saglarlar. ',
-607 => 'Depolama uzmanlari gezegenin bir parcasidirlar. Onun sayesinde yuksek depolama alanlari yaratilir. Bu sayede gezegen kuraklik gormez. ',
-608 => 'Savunma Bakani imparatorlugun bir uyesidir. Isine odaklanarak kisa surede muthis bir savunma gucu olusturur.',
-609 => 'Gardiyan Imparatorlugun bir parcasidir. Onun gorevi Gezegen savunmasini gelistirmek ve kontrol etmek.',
-610 => 'Casuslar esrarengiz biridir. Hic kimse bu casus uzmaninin gercek niyetini goremez ve bilemez. ',
-611 => 'Filolari Yonetme gucunu kullanan kumandan, Imparatorlugun bir parcasidir. Beynini kullarak filolara cok sayida yorunge hesabi yapabilir.',
-612 => 'Bu acimasiz yok edici Imparatorlugun bir parcasidir. Sadece eglence icin bile yok edici gucunu kullanabilir. ',
-613 => 'General Imparatorluk ordusuna yillarca hizmet etmis biridir.  Ureticiler generalleri sayesinde daha hizli  gemiler uretebiliyorlar',
-614 => 'Fetihci inkar edilemez nitelihte bir fetih uzmanidir. O, senin orduna yuksek duzeyde hucum ve saldiri egitimi vermektedir',
-615 => 'Imparator tum subaylara baglidir. Yani tum subaylar imparatorun dehasini kullanir. Bu sayede evrende en ust duzeyde gelisim gosterirler.',
-
 701 => 'Saldiri ve Savunma degerlerini artirir. Bu Bonus Gecicidir.',
 702 => 'Filolarin ve Savunmanin Kalkanlarini artirir. Bu Bonus Gecicidir.',
 703 => 'Bina insaat surelerini azaltir. Bu Bonus Gecicidir.',
@@ -422,22 +389,6 @@ $LNG['longDescription'] = array(
 
 502 => 'Yakaliyici Roketler Gezegenler arasi saldirilara karsi savunmayi korur. Her bir G.A.R a karsilik 1 Yakalayici denk dusmektedir. Roket silosunun yukseltimine dayali olarak uretim cogalabilir. ',
 503 => '	Gezegenlerarasi Roketler rakip savunmayi yokederler. Her 1 yakalayiciya karsi 1 G.A.R denk duser. Ama bilin ki etki ettigi noktalari yok eder! ',
-
-601 => 'Jeolog madencilik ve astro kristalografisi uzmanidir. Gezegenler arasi iletisim icin imparatorluk capinda kullanimi ve hammadde aritma optimize etmekle sorumludur.',
-602 => 'Amiral deneyimli bir usta ve strateji danismanidir. En zor savas durumlarinda fikir uretebilir ve astlarina danisabilir. Bilge bir imparator onun yardimlarina mutlaka guvenir.',
-603 => 'Muhendis enerji yonetimi konusunda uzmandir. Baris zamaninda, o butun kolonilerin enerjisini artirir. Saldiri zamanlarinda enerji kaynaklarinin saglanmasi ve asiri yuku onlemeye calisir.',
-604 => 'Teknokratlar bilgileri dahilinde filo ve tershaneye etki ederler. Bu bilge insanlar en kotu zamanlarda gezegen icin uygun olan uretimi saglarlar.',
-605 => 'Insaat uzmanlari bitmis halde bulunan harabe bir gezegeni bile yeniden insaa edebilirler. Bu uzmanlarin DNA lari degistirilmistir. ',
-606 => 'Bilim adamlari loncalarda arastirmalarini gizli olarak yaparlar. Arastirma konusunda cok buyuk kolaylik saglarlar. ',
-607 => 'Depolama uzmanlari gezegenin bir parcasidirlar. Onun sayesinde yuksek depolama alanlari yaratilir. Bu sayede gezegen kuraklik gormez. ',
-608 => 'Savunma Bakani imparatorlugun bir uyesidir. Isine odaklanarak kisa surede muthis bir savunma gucu olusturur.',
-609 => 'Gardiyan Imparatorlugun bir parcasidir. Onun gorevi Gezegen savunmasini gelistirmek ve kontrol etmek.',
-610 => 'Casuslar esrarengiz biridir. Hic kimse bu casus uzmaninin gercek niyetini goremez ve bilemez. ',
-611 => 'Filolari Yonetme gucunu kullanan kumandan, Imparatorlugun bir parcasidir. Beynini kullarak filolara cok sayida yorunge hesabi yapabilir.',
-612 => 'Bu acimasiz yok edici Imparatorlugun bir parcasidir. Sadece eglence icin bile yok edici gucunu kullanabilir. ',
-613 => 'General Imparatorluk ordusuna yillarca hizmet etmis biridir.  Ureticiler generalleri sayesinde daha hizli  gemiler uretebiliyorlar',
-614 => 'Fetihci inkar edilemez nitelihte bir fetih uzmanidir. O, senin orduna yuksek duzeyde hucum ve saldiri egitimi vermektedir',
-615 => 'Imparator tum subaylara baglidir. Yani tum subaylar imparatorun dehasini kullanir. Bu sayede evrende en ust duzeyde gelisim gosterirler.',
 
 701 => 'Saldiri ve Savunma degerlerini artirir. Bu Bonus Gecicidir.',
 702 => 'Filolarin ve Savunmanin Kalkanlarini artirir. Bu Bonus Gecicidir.',

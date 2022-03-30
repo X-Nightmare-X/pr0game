@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -84,7 +84,6 @@ $LNG['buildings_title']                = 'Постройки';
 $LNG['ships_title']                    = 'Флот';
 $LNG['defenses_title']                 = 'Оборона';
 $LNG['researchs_title']                = 'Исследования';
-$LNG['officiers_title']                = 'Офицеры';
 
 // Меню редактора
 $LNG['ad_forgiven_id']                 = 'Вы должны ввести ID.';
@@ -94,7 +93,6 @@ $LNG['ad_editor_buildings']            = 'Постройки';
 $LNG['ad_editor_ships']                = 'Флот';
 $LNG['ad_editor_defenses']             = 'Оборона';
 $LNG['ad_editor_researchs']            = 'Исследования';
-$LNG['ad_editor_officiers']            = 'Офицеры';
 $LNG['ad_editor_personal']             = 'Персональные данные';
 $LNG['ad_editor_planets']              = 'Планеты и луны';
 $LNG['ad_editor_resources']            = 'Ресурсы';
@@ -224,7 +222,7 @@ $LNG['bo_total_users']                 = 'Всего игроков: ';
 $LNG['bo_total_banneds']               = 'Заблокированных игроков: ';
 $LNG['bo_ban']                         = 'Заблокировать';
 $LNG['bo_unban']                       = 'Разблокировать';
-	
+
 // MD5 шифрование
 $LNG['et_md5_encripter']               = 'MD5 шифрование';
 $LNG['et_pass']                        = 'Текст';
@@ -455,8 +453,6 @@ $LNG['se_planets_min']                 = 'Макс. планет без Астр
 $LNG['se_planets_min_info']            = 'Количество планет, которые игрок может иметь без исследования Астрофизики.';
 $LNG['se_planets_tech']                = 'Макс. планет за Астрофизику';
 $LNG['se_planets_tech_info']           = 'Количество дополнительных планет, которые игрок может иметь, исследовав Астрофизику. (0 - отключить лимит)';
-$LNG['se_planets_officier']            = 'Макс. планет за Императора';
-$LNG['se_planets_officier_info']       = 'Количество дополнительных планет, которые игрок может иметь за каждый уровень офицера Императора. (0 - отключить лимит)';
 $LNG['se_planets_per_tech']            = 'Планет за уровень Астрофизики';
 $LNG['se_planets_per_tech_info']       = 'Количество дополнительных планет, которые игрок может иметь за каждый уровень Астрофизики.';
 $LNG['se_silo_factor']                 = 'Фактор ракетной шахты';
@@ -600,8 +596,7 @@ $LNG['re_buldings']                    = 'Постройки';
 $LNG['re_buildings_pl']                = 'Обнулить планетарные постройки';
 $LNG['re_buildings_lu']                = 'Обнулить лунные постройки';
 $LNG['re_reset_buldings']              = 'Обнулить очередь построек';
-$LNG['re_inve_ofis']                   = 'Исследования и офицеры';
-$LNG['re_ofici']                       = 'Обнулить офицеров';
+$LNG['re_inve']                   = 'Исследования';
 $LNG['re_investigations']              = 'Обнулить исследования';
 $LNG['re_reset_invest']                = 'Обнулить очередь исследований';
 $LNG['re_resources']                   = 'Ресурсы';
@@ -654,7 +649,7 @@ $LNG['ac_coords']                      = 'Координаты';
 $LNG['ac_diameter']                    = 'Диаметр';
 $LNG['ac_fields']                      = 'Поля';
 $LNG['ac_temperature']                 = 'Температура';
-$LNG['ac_officier_research']           = 'Исследования и оффицеры';
+$LNG['ac_research']           = 'Исследования';
 $LNG['ac_recent_destroyed_planets']    = 'Недавно покинутая планета';
 $LNG['ac_no_moons']                    = 'У игрока нет лун';
 $LNG['ac_total_points']                = 'Итого: ';
@@ -889,7 +884,6 @@ $LNG['qe_send']                        = 'Сохранить';
 $LNG['qe_reset']                       = 'Обнулить';
 $LNG['qe_build']                       = 'Постройки';
 $LNG['qe_tech']                        = 'Исследования';
-$LNG['qe_officier']                    = 'Офицеры';
 $LNG['qe_fleet']                       = 'Флот';
 $LNG['qe_defensive']                   = 'Оборона';
 $LNG['qe_resources']                   = 'Ресурсы';
@@ -945,7 +939,6 @@ $LNG['modul_34']                      = 'Задание - Транспорт';
 $LNG['modul_29']                      = 'Задание - Уничтожить';
 $LNG['modul_16']                      = 'Сообщения';
 $LNG['modul_17']                      = 'Заметки';
-$LNG['modul_18']                      = 'Офицеры';
 $LNG['modul_19']                      = 'Фаланга';
 $LNG['modul_20']                      = 'Игрок';
 $LNG['modul_21']                      = 'Заблокированные';

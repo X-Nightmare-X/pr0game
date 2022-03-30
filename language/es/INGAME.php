@@ -1,6 +1,6 @@
 <?php
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -56,6 +56,7 @@ $LNG['banned_message'] = 'Has sido expulsado. Si crees que se trata de un malent
 
 //----------------------------------------------------------------------------//
 //TOPNAV
+$LNG['tn_player_title'] = 'Emperador';
 $LNG['tn_vacation_mode']					= 'Estas en modo vacaciones ';
 $LNG['tn_delete_mode']						= 'Tu cuenta se encuentra en modo de eliminación. La misma será borrada el %s.';
 
@@ -70,7 +71,6 @@ $LNG['lm_research']						    = 'Investigacion';
 $LNG['lm_shipshard']						= 'Hangar';
 $LNG['lm_defenses']						    = 'Defensas';
 $LNG['lm_resources']						= 'Recursos';
-$LNG['lm_officiers']						= 'Oficiales';
 $LNG['lm_trader']							= 'Mercader';
 $LNG['lm_fleettrader']						= 'Mercader de Flotas';
 $LNG['lm_technology']						= 'Tecnología';
@@ -423,16 +423,6 @@ $LNG['rs_weekly']							= 'Por Semana:';
 $LNG['rs_ress_bonus']						= 'Bonus(Oficial/Bonus-MO):';
 
 //----------------------------------------------------------------------------//
-//OFFICIERS
-$LNG['of_recruit']							= 'Reclutar';
-$LNG['of_max_lvl']							= 'Nivel máximo';
-$LNG['of_offi']								= 'Oficial';
-$LNG['of_lvl']								= 'nivel';
-$LNG['of_dm_trade']							= '%s - Tienda';
-$LNG['of_still']							= 'Duración';
-$LNG['of_active']							= 'Activo';
-
-//----------------------------------------------------------------------------//
 //TRADER
 
 $LNG['tr_cost_dm_trader']					= 'El importe de las tasas es de %s %s!';
@@ -742,7 +732,7 @@ $LNG['al_rank_name']						= 'Nombre';
 $LNG['al_rank_desc']['MEMBERLIST']			= 'Ver lista de miembros';
 $LNG['al_rank_desc']['ONLINESTATE']			= 'Ver el Estatus-Online';
 $LNG['al_rank_desc']['TRANSFER']			= 'Puede ser Lider';
-$LNG['al_rank_desc']['SEEAPPLY']			= 'Ver Aplicaciones'; 
+$LNG['al_rank_desc']['SEEAPPLY']			= 'Ver Aplicaciones';
 $LNG['al_rank_desc']['MANAGEAPPLY']			= 'Utilizar Aplicaciones';
 $LNG['al_rank_desc']['ROUNDMAIL']			= 'Correo Circular';
 $LNG['al_rank_desc']['ADMIN']				= 'Puede editar la Alianza';
@@ -1113,7 +1103,7 @@ $LNG['ti_from']								= 'desde';
 $LNG['ti_re']								= 'RE:';
 
 //----------------------------------------------------------------------------//
-// Rekorde 
+// Rekorde
 
 $LNG['rec_players']  						= 'Jugador';
 $LNG['rec_level']  							= 'Nivel';

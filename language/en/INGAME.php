@@ -62,6 +62,7 @@ $LNG['banned_message'] = 'You received a Ban. If you think this is a mistake, wr
 
 //----------------------------------------------------------------------------//
 // Topnav
+$LNG['tn_player_title'] = 'Emperor';
 $LNG['tn_vacation_mode'] = "Your account is in vacation mode";
 $LNG['tn_delete_mode'] = 'The account at %s will be deleted!';
 
@@ -78,7 +79,6 @@ $LNG['lm_shipshard'] = 'Hangar';
 $LNG['lm_defenses'] = 'Defenses';
 $LNG['lm_marketplace'] = 'Marketplace';
 $LNG['lm_resources'] = 'Resources';
-$LNG['lm_officiers'] = 'Officers';
 $LNG['lm_trader'] = 'Market';
 $LNG['lm_fleettrader'] = 'Merchant of Fleets';
 $LNG['lm_technology'] = 'Technologies';
@@ -463,16 +463,6 @@ $LNG['rs_sum'] = 'Hourly Production';
 $LNG['rs_daily'] = 'Daily Production:';
 $LNG['rs_weekly'] = 'Weekly Production:';
 $LNG['rs_ress_bonus'] = 'Bonus (through Research):';
-
-//----------------------------------------------------------------------------//
-// Officers
-$LNG['of_recruit'] = 'Recruit';
-$LNG['of_max_lvl'] = 'Max Level';
-$LNG['of_offi'] = 'Official';
-$LNG['of_lvl'] = 'Level';
-$LNG['of_dm_trade'] = '%s - Shop';
-$LNG['of_still'] = 'Continue';
-$LNG['of_active'] = 'Active';
 
 //----------------------------------------------------------------------------//
 // Merchants

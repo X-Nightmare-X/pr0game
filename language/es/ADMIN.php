@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-//---------------	GENERAL	------------------------// 
+//---------------	GENERAL	------------------------//
 $LNG['adm_login']			= 'Ingresar';
 $LNG['adm_username']		= 'Nombre Usuario';
 $LNG['adm_password']		= 'Contraseña';
@@ -51,7 +51,7 @@ $LNG['time_seconds']	= 'Segundos';
 
 $LNG['info_information']	= 'Para información y reporte de errores ir a <a href="%s" target="tracker">pr0game Board</a><br>¡No hay soporte de otra forma!';
 
-//---------------	¿SI O NO? - YES OR NO? - JA ODER NEIN?	------------------------// 
+//---------------	¿SI O NO? - YES OR NO? - JA ODER NEIN?	------------------------//
 $LNG['one_is_yes_1']	= 'Sí';
 $LNG['one_is_yes_0']	= 'No';
 
@@ -60,7 +60,7 @@ $LNG['one_is_no_0']	= 'No';
 //###########################################################//
 
 
-//---------------	BOTONES - BUTTONS - BUTTONS	------------------------// 
+//---------------	BOTONES - BUTTONS - BUTTONS	------------------------//
 $LNG['button_submit']		= 'Enviar';
 $LNG['button_add']			= 'Añadir';
 $LNG['button_delete']		= 'Eliminar';
@@ -81,18 +81,17 @@ $LNG['input_id_ally']		= 'ID Alianza';
 //###########################################################//
 
 
-//---------------	RECURSOS - RESOURCES - ROHSTOFFE	------------------------// 
+//---------------	RECURSOS - RESOURCES - ROHSTOFFE	------------------------//
 $LNG['resources_title']	        = 'Recursos';
 $LNG['count_res']			= 'Cantidad de Recursos';
 //###########################################################//
 
 
-//---------------	OFICIALES - OFFICIERS - OFFIZIERE	------------------------// 
+//---------------	OFICIALES - OFFICIERS - OFFIZIERE	------------------------//
 $LNG['buildings_title']	= 'Edificios';
 $LNG['ships_title']		= 'Naves';
 $LNG['defenses_title']		= 'Defensas';
 $LNG['researchs_title']	= 'Investigaciones';
-$LNG['officiers_title']	= 'Oficiales';
 //###########################################################//
 
 
@@ -106,7 +105,6 @@ $LNG['ad_editor_buildings']		= 'Edificios';
 $LNG['ad_editor_ships']			= 'Naves';
 $LNG['ad_editor_defenses']		= 'Defensas';
 $LNG['ad_editor_researchs']		= 'Investigaciones';
-$LNG['ad_editor_officiers']		= 'Oficiales';
 $LNG['ad_editor_personal']		= 'Datos personales';
 $LNG['ad_editor_planets']		= 'Planetas y Lunas';
 $LNG['ad_editor_resources']		= 'Recursos';
@@ -120,12 +118,6 @@ $LNG['ad_add_tech_success']		= '¡Investigaciones agregadas con éxito!';
 $LNG['ad_delete_tech_success']	= '¡Investigaciones borradas con éxito!';
 $LNG['ad_research_title']		= 'Editar investigaciones';
 $LNG['ad_research']		= 'Investigación';
-
-//	OFICIALES - OFFICIERS - OFFIZIERE
-$LNG['ad_offi_title']			= 'Editar oficiales';
-$LNG['ad_offi']					= 'Oficiales';
-$LNG['ad_add_offi_success']		= 'Oficiales agregados con éxito!';
-$LNG['ad_delete_offi_success']	= 'Oficiales borrados con éxito!';
 
 //	RECURSOS - RESOURCES - ROHSTOFFE
 $LNG['ad_add_res_sucess']			= 'Recursos agregados con éxito!';
@@ -304,7 +296,7 @@ $LNG['ma_none']				= 'Mensaje global';
 $LNG['ma_message']				= 'Mensaje';
 $LNG['ma_mode']					= 'Enviar como';
 $LNG['ma_all']					= 'Todos';
-$LNG['ma_modes']				= array('Mensaje Interno', 'Correo Electrónico', 'Mensaje interno e email'); 
+$LNG['ma_modes']				= array('Mensaje Interno', 'Correo Electrónico', 'Mensaje interno e email');
 //###########################################################//
 
 //---------------	PÁGINA DE INICIO - OVERVIEW	------------------------//
@@ -489,8 +481,6 @@ $LNG['se_planets_min'] 					= 'Max. Planetas Colonizables sin investigación';
 $LNG['se_planets_min_info'] 			= 'Desde el principio, el jugador tiene la opción de colonizar la cantidad especificada de planetas';
 $LNG['se_planets_tech'] 				= 'Max. Número de Planetas adicionales por la investigación planetaria';
 $LNG['se_planets_tech_info'] 			= 'A través de investigaciones de astrofísica, el jugador tiene la opción de colonizar la cantidad máxima especificada, además de los planetas.';
-$LNG['se_planets_officier'] 			= 'Max número de planetas adicionales por Oficiales';
-$LNG['se_planets_officier_info'] 		= 'A través de los Oficiales, el jugador tiene la opción de colonizar la cantidad máxima especificada, además de los planetas.';
 $LNG['se_planets_per_tech'] 			= 'Planetas adicionales por cada nivel de la investigación.';
 $LNG['se_planets_per_tech_info'] 		= 'Por cana nivel de la investigación, el jugador puede colonizar el número especificado de planetas adicionales.';
 $LNG['se_silo_factor']					= 'Factor del Silo de Misiles';
@@ -502,7 +492,7 @@ $LNG['se_disclamerAddress']				= 'Dirección';
 $LNG['se_disclamerPhone']				= 'Número de Teléfono';
 $LNG['se_disclamerMail']				= 'Dirección de E-Mail';
 $LNG['se_disclamerNotice']				= 'Para obtener más información';
-	
+
 //###########################################################//
 
 
@@ -604,11 +594,11 @@ $LNG['mu_module']                                       = 'Módulos';
 $LNG['mu_mod_update']              	= 'Contrlo de Ver. de Módulos';
 $LNG['mu_game_info']                                    = 'Información';
 $LNG['mu_vaild_users']                                  = 'Actividad de Usuarios';
-$LNG['mu_news']						= 'Noticias'; 
-$LNG['mu_multiip_page']					= 'Multi IP'; 
+$LNG['mu_news']						= 'Noticias';
+$LNG['mu_multiip_page']					= 'Multi IP';
 $LNG['mu_clear_cache']                                  = 'Limpiar Cache';
 $LNG['mu_vertify'] 					= 'Verificar el contenido del juego';
-$LNG['mu_cronjob']					= 'Trabajos Cron'; 
+$LNG['mu_cronjob']					= 'Trabajos Cron';
 $LNG['mu_logs'] 					= 'Registro de Acciones';
 $LNG['mu_giveaway']					= 'Regalos';
 $LNG['mu_disclamer']				= 'Impreso-Ajustes Legales';
@@ -634,7 +624,7 @@ $LNG['vt_loadfile']					= 'Cargar Lista de Archivos';
 
 //###########################################################//
 
-$LNG['cc_cache_clear']				= 'Cache limpiado correctamente'; 
+$LNG['cc_cache_clear']				= 'Cache limpiado correctamente';
 
 //---------------	REINICIO DE UNIVERSO - RESET UNIVERSE	------------------------//
 $LNG['re_reset_universe']                               = 'Reiniciar Universo';
@@ -651,8 +641,7 @@ $LNG['re_buldings']                                     = 'Edificios';
 $LNG['re_buildings_pl']                                 = 'Reiniciar edificios en planetas';
 $LNG['re_buildings_lu']                                 = 'Reiniciar edificios en lunas';
 $LNG['re_reset_buldings']                               = 'Reiniciar cola de edificios';
-$LNG['re_inve_ofis']                                    = 'Investigaciones y oficiales';
-$LNG['re_ofici']                                        = 'Reiniciar oficiales';
+$LNG['re_inve']                                    = 'Investigaciones';
 $LNG['re_investigations']                               = 'Reiniciar investigaciones';
 $LNG['re_reset_invest']                                 = 'Reiniciar cola de investigaciones';
 $LNG['re_resources']                                    = 'Recursos';
@@ -707,7 +696,7 @@ $LNG['ac_coords']							= 'Coordenada';
 $LNG['ac_diameter']						= 'Diámetro';
 $LNG['ac_fields']							= 'Campos';
 $LNG['ac_temperature']						= 'Temp.';
-$LNG['ac_officier_research']				= 'Investigaciones y Oficiales';
+$LNG['ac_research']				= 'Investigaciones';
 $LNG['ac_recent_destroyed_planets']		= 'Planetas destruidos recientemente';
 $LNG['ac_no_moons']						= 'El jugador no tiene lunas';
 $LNG['ac_total_points']					= 'Total: ';
@@ -952,7 +941,6 @@ $LNG['qe_send']						= 'Enviar';
 $LNG['qe_reset']					= 'Resetear';
 $LNG['qe_build']					= 'Edificios';
 $LNG['qe_tech']						= 'Tecnología';
-$LNG['qe_officier']						= 'Oficiales';
 $LNG['qe_fleet']					= 'Flota';
 $LNG['qe_defensive']					= 'Defensa';
 $LNG['qe_resources']					= 'Recursos';
@@ -1009,7 +997,6 @@ $LNG['modul_34']                                       = 'Mision - Transportar';
 $LNG['modul_29']                                       = 'Mision - Destruir';
 $LNG['modul_16']                                       = 'Noticias';
 $LNG['modul_17']                                       = 'Notas';
-$LNG['modul_18']                                       = 'Oficiales';
 $LNG['modul_19']                                       = 'Phalanx';
 $LNG['modul_20']                                       = 'Player Card';
 $LNG['modul_21']                                       = 'Baneo';

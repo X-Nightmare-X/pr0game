@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -55,6 +55,7 @@ $LNG['admin_access_2']                    = ', если он Вам больше
 $LNG['banned_message'] = 'Вы были заблокированы. Если вы считаете, что это недоразумение, напишите нам через Discord: <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>';
 
 // Верхняя навигационная полоса
+$LNG['tn_player_title'] = 'Император';
 $LNG['tn_vacation_mode']                  = 'Вы будете находиться в режиме отпуска по крайней мере до ';
 $LNG['tn_delete_mode']                    = 'Аккаунт находится в режиме удаления. Автоматически удалится %s.';
 
@@ -68,7 +69,6 @@ $LNG['lm_research']                       = 'Исследования';
 $LNG['lm_shipshard']                      = 'Верфь';
 $LNG['lm_defenses']                       = 'Оборона';
 $LNG['lm_resources']                      = 'Сырьё';
-$LNG['lm_officiers']                      = 'Офицеры';
 $LNG['lm_trader']                         = 'Скупщик ресурсов';
 $LNG['lm_fleettrader']                    = 'Скупщик флота';
 $LNG['lm_technology']                     = 'Технологии';
@@ -411,15 +411,6 @@ $LNG['rs_sum']                            = 'Всего в час';
 $LNG['rs_daily']                          = 'Всего в день';
 $LNG['rs_weekly']                         = 'Всего в неделю';
 $LNG['rs_ress_bonus']                     = 'Офицеры + Инновационные разработки';
-
-// Офицеры
-$LNG['of_recruit']                        = 'Нанять';
-$LNG['of_max_lvl']                        = 'Максимальный уровень';
-$LNG['of_offi']                           = 'Офицеры';
-$LNG['of_lvl']                            = 'Уровень';
-$LNG['of_dm_trade']                       = 'Инновационные разработки';
-$LNG['of_still']                          = 'Осталось:';
-$LNG['of_active']                         = 'Активен';
 
 // Скупщик
 $LNG['tr_cost_dm_trader']                 = 'Обмен ресурсов стоит %s Тёмной материи.';
