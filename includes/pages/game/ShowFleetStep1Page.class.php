@@ -46,8 +46,6 @@ class ShowFleetStep1Page extends AbstractGamePage
             $FleetRoom += $pricelist[$ShipID]['capacity'] * $amount;
         }
 
-        $FleetRoom *= 1 + $USER['factor']['ShipStorage'];
-
         if (empty($Fleet)) {
             FleetFunctions::GotoFleetPage();
         }
