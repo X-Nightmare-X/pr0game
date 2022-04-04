@@ -125,15 +125,15 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		
 		switch ($this->determineEventSize()) {
 			case 0:
-				$Message	= $LNG['sys_expe_found_ress_1_'.mt_rand(1,4)];
+				$Message	= $LNG['sys_expe_found_ress_1_' . mt_rand(1, 4)];
 				$factor		= mt_rand(10, 50);
 				break;
 			case 1:
-				$Message	= $LNG['sys_expe_found_ress_2_'.mt_rand(1,3)];
+				$Message	= $LNG['sys_expe_found_ress_2_' . mt_rand(1, 3)];
 				$factor		= mt_rand(50, 100);
 				break;
 			case 2:
-				$Message	= $LNG['sys_expe_found_ress_3_'.mt_rand(1,2)];
+				$Message	= $LNG['sys_expe_found_ress_3_' . mt_rand(1, 2)];
 				$factor		= mt_rand(100, 200);
 				break;				
 		}
@@ -149,11 +149,22 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		}
 		
 		$foundResources = $factor * max(min($fleetPoints, $this->calculateMaxFactorRes()), 200);
-		
-		if ($fleetCapacity < $foundResources)
-		{
-			$this->_logbook = $LNG['sys_expe_found_ress_logbook_'.mt_rand(1,4)].'<br>'.$this->_logbook;
+
+		if ($fleetCapacity < $foundResources) {
 			$foundResources = $fleetCapacity;
+			$Message 	.= '<br><br>' . sprintf(
+				$LNG['sys_expe_found_goods'],
+				pretty_number($foundResources),
+				$LNG['tech'][$resourceId]
+			);
+
+			$this->_logbook = $LNG['sys_expe_found_ress_logbook_'.mt_rand(1,4)].'<br>'.$this->_logbook;
+		} else {
+			$Message 	.= '<br><br>' . sprintf(
+				$LNG['sys_expe_found_goods'],
+				pretty_number($foundResources),
+				$LNG['tech'][$resourceId]
+			);
 		}
 		
 		$fleetColName	= 'fleet_resource_'.$resource[$resourceId];
@@ -232,15 +243,15 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		switch ($this->determineEventSize()) {
 			case 0:
 				$Size		= mt_rand(10, 50);
-				$Message	= $LNG['sys_expe_found_ships_1_'.mt_rand(1,4)];
+				$Message	= $LNG['sys_expe_found_ships_1_' . mt_rand(1, 4)];
 				break;
 			case 1:
 				$Size		= mt_rand(52, 100);
-				$Message	= $LNG['sys_expe_found_ships_2_'.mt_rand(1,2)];
+				$Message	= $LNG['sys_expe_found_ships_2_' . mt_rand(1, 2)];
 				break;
 			case 2:
 				$Size	 	= mt_rand(102, 200);
-				$Message	= $LNG['sys_expe_found_ships_3_'.mt_rand(1,2)];
+				$Message	= $LNG['sys_expe_found_ships_3_' . mt_rand(1, 2)];
 				break;
 		}
 		
@@ -250,37 +261,35 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		
 		$FoundShipMess	= "";
 		$NewFleetArray 	= "";
+		$CountTotal = 0;
 		$foundPoints = max(round($Size * min($fleetPoints, $MaxPoints)), 10000);
 		$findableShips = $this->determineFindableShips($fleetArray);
 		$Found = $this->determineFoundShips($foundPoints, $findableShips);
-		
-		if (empty($Found)) {
-			$FoundShipMess .= '<br><br>'.$LNG['sys_expe_found_ships_nothing'];
-		}
-		
-		foreach($reslist['fleet'] as $ID)
-		{
+
+		foreach ($reslist['fleet'] as $ID) {
 			$Count = 0;
-			if(!empty($Found[$ID]))
-			{
+			if (!empty($Found[$ID])) {
 				$Count += $Found[$ID];
-				$FoundShipMess .= '<br>'.$LNG['tech'][$ID].': '.pretty_number($Count);
+				$FoundShipMess .= '<br>' . $LNG['tech'][$ID] . ': ' . pretty_number($Count);
 			}
-			if(!empty($fleetArray[$ID]))
-			{
+			if (!empty($fleetArray[$ID])) {
 				$Count += $fleetArray[$ID];
 			}
-			
-			if ($Count > 0)
-			{
-				$NewFleetArray .= $ID.",".floatToString($Count).';';
+
+			if ($Count > 0) {
+				$NewFleetArray .= $ID . "," . floatToString($Count) . ';';
+				$CountTotal += $Count;
 			}
 		}
-		
-		$Message .= $FoundShipMess;
-		
+
+		if (empty($Found)) {
+			$Message .= '<br><br>' . $LNG['sys_expe_found_ships_nothing'];
+		} else {
+			$Message 	.= '<br><br>' . $LNG['sys_expe_back_home_ships_flound'] . $FoundShipMess;
+		}
+
 		$this->UpdateFleet('fleet_array', $NewFleetArray);
-		$this->UpdateFleet('fleet_amount', array_sum($fleetArray));
+		$this->UpdateFleet('fleet_amount', $CountTotal);
 		
 		return $Message;
 	}
@@ -294,19 +303,19 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		
 		switch ($this->determineEventSize()) {
 			case 0:
-				$Message    			= $pirates ? $LNG['sys_expe_attack_1_1_'.rand(1, 5)] : $LNG['sys_expe_attack_2_1_'.rand(1, 4)];
+				$Message    			= $pirates ? $LNG['sys_expe_attack_1_1_' . rand(1, 5)] : $LNG['sys_expe_attack_2_1_' . rand(1, 4)];
 				$attackFactor			= $pirates ? (30 + mt_rand(-3, 3)) / 100 : (40 + mt_rand(-4, 4)) / 100;
 				$bonusShip 				= $pirates ? SHIP_LIGHT_FIGHTER : SHIP_HEAVY_FIGHTER;
 				$targetFleetData[$bonusShip]	= 5;
 				break;
 			case 1:
-				$Message    			= $pirates ? $LNG['sys_expe_attack_1_2_'.rand(1, 3)] : $LNG['sys_expe_attack_2_2_'.rand(1, 3)];
+				$Message    			= $pirates ? $LNG['sys_expe_attack_1_2_' . rand(1, 3)] : $LNG['sys_expe_attack_2_2_' . rand(1, 3)];
 				$attackFactor			= $pirates ? (50 + mt_rand(-5, 5)) / 100 : (60 + mt_rand(-6, 6)) / 100;
 				$bonusShip 				= $pirates ? SHIP_CRUISER : SHIP_BATTLECRUISER;
 				$targetFleetData[$bonusShip]	= 3;
 				break;
 			case 2:
-				$Message   				= $pirates ? $LNG['sys_expe_attack_1_3_'.rand(1, 3)] : $LNG['sys_expe_attack_2_3_'.rand(1, 3)];
+				$Message   				= $pirates ? $LNG['sys_expe_attack_1_3_' . rand(1, 3)] : $LNG['sys_expe_attack_2_3_' . rand(1, 3)];
 				$attackFactor			= $pirates ? (80 + mt_rand(-8, 8)) / 100 : (90 + mt_rand(-9, 9)) / 100;
 				$bonusShip 				= $pirates ? SHIP_BATTLESHIP : SHIP_DESTROYER;
 				$targetFleetData[$bonusShip]	= 2;
@@ -459,8 +468,12 @@ HTML;
 				$LNG['tech'][901], pretty_number($debris[901]),
 				$LNG['tech'][902], pretty_number($debris[902])
 				);
-		
-		return $message;
+
+		$result = array();
+		$result['msg'] = $message;
+		$result['link'] = sprintf('<a href="CombatReport.php?raport=%s" target="_blank"> %s </a>', $reportID, $LNG['sys_mess_attack_report']);
+
+		return $result;
 	}
 
 	private function handleEventCombat()
@@ -512,11 +525,15 @@ HTML;
 			$this->UpdateFleet('fleet_amount', $totalCount);
 			$fleetArray = FleetFunctions::unserialize($fleetArray);
 		}
-		
-		$message = $this->generateCombatReport($combatResult);
+
+		$report = $this->generateCombatReport($combatResult);
+		$Message .= '<br><br>' . $report['msg'];
 		
 		PlayerUtil::sendMessage($this->_fleet['fleet_owner'], 0, $LNG['sys_mess_tower'], 3,
-				$LNG['sys_mess_attack_report'], $message, $this->_fleet['fleet_end_stay']);
+			$LNG['sys_mess_attack_report'],
+			$report['msg'],
+			$this->_fleet['fleet_end_stay']
+		);
 		
 		return $Message;
 	}
@@ -566,29 +583,36 @@ HTML;
 	function EndStayEvent()
 	{
 		$LNG			= $this->_LNG;
-		$fleetArray		= FleetFunctions::unserialize($this->_fleet['fleet_array']);	
+		$fleetArray		= FleetFunctions::unserialize($this->_fleet['fleet_array']);
+
+		$sql		= 'SELECT name FROM %%PLANETS%% WHERE id = :planetId;';
+		$planetName	= Database::get()->selectSingle($sql, array(
+			':planetId'	=> $this->_fleet['fleet_start_id'],
+		), 'name');
+		$Message		= sprintf($LNG['sys_expe_report_msg'] . '<br><br>', $planetName, GetStartAddressLink($this->_fleet, ''));
 
 		// Get a seed into the number generator (to make the results unpredictable).
 		mt_srand(microtime(TRUE)*10000);
 		usleep(50);
-		
-		$Message = $LNG['sys_expe_nothing_'.mt_rand(1,8)]; // default
+
 		$GetEvent = $this->chooseEvent();
 
 		// Find resources: 37%. Values from http://owiki.de/Expedition + 4.5% compensation for dark matter
-		if ($GetEvent < 370) $Message = $this->handleEventFoundRes();
+		if ($GetEvent < 370) $Message .= $this->handleEventFoundRes();
 
 		// Find abandoned ships: 26.5%. Values from http://owiki.de/Expedition + 4.5% for dark matter
-		elseif ($GetEvent < 635) $Message = $this->handleEventFoundShips();
+		elseif ($GetEvent < 635) $Message .= $this->handleEventFoundShips();
 
 		// Find pirates or aliens: 8,4% - 69% (total 5.8%) pirates , 31% (2.6%) aliens.
-		elseif ($GetEvent < 719) $Message = $this->handleEventCombat();
+		elseif (
+			$GetEvent < 719
+		) $Message .= $this->handleEventCombat();
 
 		// Black hole: 0,3%
 		elseif ($GetEvent < 722)
 		{
 			$this->KillFleet();
-			$Message	= $LNG['sys_expe_lost_fleet_'.mt_rand(1,4)];
+			$Message	.= $LNG['sys_expe_lost_fleet_' . mt_rand(1, 4)];
 		}
 		
 		// The fleet delays or return earlier: 9%
@@ -607,15 +631,17 @@ HTML;
 				// More return time
 				$endTime = $this->_fleet['fleet_end_stay'] + $normalBackTime + $stayTime * $factor;
 				$this->UpdateFleet('fleet_end_time', $endTime);
-				$Message = $LNG['sys_expe_time_slow_'.mt_rand(1,6)];
+				$Message .= $LNG['sys_expe_time_slow_' . mt_rand(1, 6)];
 			}
 			else
 			{
 				// Less return time
 				$endTime = $this->_fleet['fleet_end_stay'] + max(1, $normalBackTime - $stayTime / 3 * $factor);
 				$this->UpdateFleet('fleet_end_time', $endTime);
-				$Message = $LNG['sys_expe_time_fast_'.mt_rand(1,3)];
+				$Message .= $LNG['sys_expe_time_fast_' . mt_rand(1, 3)];
 			}
+		} else {
+			$Message .= $LNG['sys_expe_nothing_' . mt_rand(1, 8)]; // default
 		}
 
 		if(isset($fleetArray[SHIP_PROBE])) $Message .= '<br><br>'.$this->_logbook;
@@ -629,14 +655,70 @@ HTML;
 	
 	function ReturnEvent()
 	{
+		global $pricelist, $reslist;
+	
 		$LNG		= $this->_LNG;
+
+		$sql		= 'SELECT name FROM %%PLANETS%% WHERE id = :planetId;';
+		$planetName	= Database::get()->selectSingle($sql, array(
+			':planetId'	=> $this->_fleet['fleet_start_id'],
+		), 'name');
+
 		$Message 	= sprintf(
 			$LNG['sys_expe_back_home'],
-			$LNG['tech'][901], pretty_number($this->_fleet['fleet_resource_metal']),
-			$LNG['tech'][902], pretty_number($this->_fleet['fleet_resource_crystal']),
-			$LNG['tech'][903], pretty_number($this->_fleet['fleet_resource_deuterium']),
-			$LNG['tech'][921], pretty_number($this->_fleet['fleet_resource_darkmatter'])
+			$planetName,
+			GetStartAddressLink($this->_fleet, '')
 		);
+
+		if ($this->_fleet['fleet_resource_metal'] > 0 || $this->_fleet['fleet_resource_crystal'] > 0 || $this->_fleet['fleet_resource_deuterium'] > 0) {
+			$Message 	.= '<br><br>' . sprintf(
+				$LNG['sys_expe_back_home_ress'],
+				pretty_number($this->_fleet['fleet_resource_metal']),
+				$LNG['tech'][901],
+				pretty_number($this->_fleet['fleet_resource_crystal']),
+				$LNG['tech'][902],
+				pretty_number($this->_fleet['fleet_resource_deuterium']),
+				$LNG['tech'][903]
+			);
+		}
+
+		$fleetArray			= FleetFunctions::unserialize($this->_fleet['fleet_array']);
+		$fleetArrayStart 	= FleetFunctions::unserialize($this->_fleet['fleet_start_array']);
+
+		// correct empty fleets resulting from a fixed bug in findShips event
+		if (empty($fleetArray) && !empty($fleetArrayStart)) {
+			$this->_fleet['fleet_array'] = $this->_fleet['fleet_start_array'];
+			$this->UpdateFleet('fleet_array', $this->_fleet['fleet_start_array']);
+			//impossible when fleet is killed
+			$this->SaveFleet();
+		}
+
+		if (isset($fleetArrayStart)) {
+			$fleetAmmount		= array_sum($fleetArray);
+			$fleetAmmountStart	= array_sum($fleetArrayStart);
+			if ($fleetAmmountStart != $fleetAmmount) {
+				if ($fleetAmmountStart < $fleetAmmount) {
+					$Message 	.= '<br><br>' . sprintf(
+						$LNG['sys_expe_back_home_ships_flound']
+					);
+				} elseif ($fleetAmmountStart > $fleetAmmount) {
+					$Message 	.= '<br><br>' . sprintf(
+						$LNG['sys_expe_back_home_ships_lost']
+					);
+				}
+				foreach ($reslist['fleet'] as $shipId) {
+					if (isset($fleetArrayStart[$shipId]) && isset($fleetArray[$shipId])) {
+						if ($fleetArrayStart[$shipId] != $fleetArray[$shipId]) {
+							$Message .= '<br>' . $LNG['tech'][$shipId] . ': ' . pretty_number(abs($fleetArrayStart[$shipId] - $fleetArray[$shipId]));
+						}
+					} elseif (isset($fleetArrayStart[$shipId])) {
+						$Message .= '<br>' . $LNG['tech'][$shipId] . ': ' . pretty_number(abs($fleetArrayStart[$shipId]));
+					} elseif (isset($fleetArray[$shipId])) {
+						$Message .= '<br>' . $LNG['tech'][$shipId] . ': ' . pretty_number(abs($fleetArray[$shipId]));
+					}
+				}
+			}
+		}
 
 		PlayerUtil::sendMessage($this->_fleet['fleet_owner'], 0, $LNG['sys_mess_tower'], 4, $LNG['sys_mess_fleetback'],
 			$Message, $this->_fleet['fleet_end_time'], NULL, 1, $this->_fleet['fleet_universe']);

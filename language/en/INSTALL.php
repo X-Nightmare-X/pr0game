@@ -70,15 +70,6 @@ $LNG['reg_json_need']			= 'Extension &raquo;JSON&laquo; avaliable?';
 $LNG['reg_iniset_need']			= 'PHP function &raquo;ini_set&laquo; avaliable?';
 $LNG['reg_global_need']			= 'register_globals disabled?';
 $LNG['reg_global_desc']			= 'pr0game will also work, if this configuration is installed on your server. However, it is recommended for security reasons, disable "register_globals" in PHP installation, if that is possible.';
-$LNG['req_ftp_head']			= 'Insert information of FTP';
-$LNG['req_ftp_desc']			= 'Write your information from FTP so pr0game automatically fix problems. Alternatively, you can also manually assign permissions to write.';
-$LNG['req_ftp_host']			= 'Hostname';
-$LNG['req_ftp_username']		= 'User name';
-$LNG['req_ftp_password']		= 'Password';
-$LNG['req_ftp_dir']				= 'Directory of pr0game';
-$LNG['req_ftp_send']			= 'Send';
-$LNG['req_ftp_error_data']		= 'The information provided does not allow you to connect to the FTP server, so this link failed';
-$LNG['req_ftp_error_dir']		= 'The story that directory you entered is invalid or not existing';
 $LNG['reg_pdo_active']			= 'Support &raquo;PDO&laquo; Extension';
 $LNG['reg_pdo_desc']			= '<strong>Prerequisite</strong> — You need to provide support for PDO in PHP.';
 

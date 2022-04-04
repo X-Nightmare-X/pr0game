@@ -69,16 +69,6 @@ $LNG['reg_global_desc']			= 'pr0game también trabajará, si esta opción está 
 $LNG['req_php_need'] = 'Versión PHP (min. 5.2.5)';
 $LNG['req_php_need_desc']		= '<strong>Requisitos Previos</strong> — PHP es el lenguaje del lado del servidor, pr0game está escrito en el. pr0game Esto funciona sin ninguna limitación, la versión PHP 5.2.5 previsto.';
 
-$LNG['req_ftp_head']			= 'Introduzca las credenciales de FTP';
-$LNG['req_ftp_desc']			= 'Ingrese su información de FTP para que pr0game pueda corregir automáticamente los problemas. Alternativamente, también puede asignar manualmente permisos de escritura.';
-$LNG['req_ftp_host'] = 'Host FTP';
-$LNG['req_ftp_username'] = 'Usuario';
-$LNG['req_ftp_password'] = 'Contraseña';
-$LNG['req_ftp_dir'] = 'Directorio de pr0game';
-$LNG['req_ftp_send'] = 'Enviar';
-$LNG['req_ftp_error_data']		= 'Con las credenciales proporcionadas no se pudo conectar a un servidor FTP.';
-$LNG['req_ftp_error_dir']		= 'El directorio que has introducido no es válido.';
-
 $LNG['step1_head']				= 'Configurar el acceso a la base de datos';
 $LNG['step1_desc']				= 'Ahora que se ha determinado que pr0game se puede utilizar en su servidor, debe proporcionar cierta información. Si usted no sabe cómo los datos están conectados a la base de datos, por favor póngase en contacto con su proveedor de hosting, como la primera o la espalda en los foros de soporte de pr0game. Al introducir datos, por favor revise esto cuidadosamente antes de continuar.';
 $LNG['step1_mysql_server'] = 'Servidor MySQL: <br>Estandart: localhost';

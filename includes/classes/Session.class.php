@@ -58,8 +58,7 @@ class Session
 
 	static private function getTempPath()
 	{
-		require_once 'includes/libs/wcf/BasicFileUtil.class.php';
-		return BasicFileUtil::getTempFolder();
+		return sys_get_temp_dir();
 	}
 
 

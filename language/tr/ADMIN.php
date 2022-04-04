@@ -137,8 +137,6 @@ $LNG['mu_user_logs']				    = 'Admin Log';
 $LNG['mu_support']                      = 'Destek Bileti';
 $LNG['mu_module']                       = 'Moduller';
 $LNG['mu_mod_update']              		= 'MOD versiyon kontrolu';
-$LNG['mu_fb_options'] 					= 'Facebook Kayit';
-$LNG['mu_ts_options']                   = 'Teamspeak Ayarlari';
 $LNG['mu_game_info']                    = 'Bilgi';
 $LNG['mu_vaild_users']				    = 'Oyuncu aktiviteleri';
 $LNG['mu_news']					        = 'Haberler';
@@ -200,12 +198,6 @@ $LNG['se_noob_protect2'] 				= 'Zayif oyuncu koruma puani';
 $LNG['se_noob_protect3'] 				= 'Zayif/Guclu oyuncu puan katsayisi';
 $LNG['se_noob_protect_e2'] 				= 'Buradan oyuncunun kac puana kadar zayif oyuncu olarak gosterildigini ayarlayabilirsiniz';
 $LNG['se_noob_protect_e3'] 				= 'Bu ayarla sadirabildikleriniz : Sizin puan x buradaki katsayi. Ornek olarak x5, bunin anlami eger 1000 puaniniz varsa sadece 5x1000 yani puani 5000\'den az olan oyunculara saldirabilirsiniz, yada,  eger 50.000 puaniniz varsa 50.000/10 = 10.000 ve 50.000x10 =100.000 puanlari arasindaki oyuncularsa savasabilirsiniz.';
-$LNG['se_recaptcha_whats']              = 'Guvenlik kodu(RECAPTCHA) nedir?';
-$LNG['se_recaptcha_head']               = 'Guvenlik Kodu(RECAPTCHA)';
-$LNG['se_recaptcha_desc']               = 'Guvenlik kodu(RECAPTCHA) spam yada botlari sisteminizden korumaya yarayan ucresiz bir servistir.';
-$LNG['se_recaptcha_public']             = 'Public Key:';
-$LNG['se_recaptcha_private']            = 'Private Key:';
-$LNG['se_recaptcha_active']             = 'Guvenlik kodunu(RECAPTCHA) aktif et';
 $LNG['se_reg_closed']					= 'Yeni uye kaydi kapali';
 $LNG['se_min_build_time']               = 'Min. Yapi/uretim suresi';
 $LNG['se_trader_head']					= '<font color="yellow">Uzay hurdacisi ayarlari</font>';
@@ -272,16 +264,6 @@ $LNG['se_smtp_user']                    = 'SMTP Kullanici Adi:';
 $LNG['se_smtp_pass']                    = 'SMTP Sifresi:';
 $LNG['se_smtp_sendmail']				= 'SMTP Gonderen:';
 $LNG['se_smtp_sendmail_info']          	= 'Email adresinizi giriniz. Gonderen adres ile ayni olmasi sart degik';
-####FTP AYARLARI -Aktif Degil###
-/*
-$LNG['se_ftp']							= 'FTP Ayarlari';
-$LNG['se_ftp_info']                     = 'System updates system via FTP! This system files actuliza what consuante fifty again, but attention if you have mod s these will be removed.';
-$LNG['se_ftp_host']                     = 'FTP server (Example: ftp://o game or game http://o):';
-$LNG['se_ftp_user']                     = 'FTP user: (user of the Host)';
-$LNG['se_ftp_pass']                     = 'FTP Password: (Password)-Host';
-$LNG['se_ftp_dir']                      = 'FTP Game path: (where is saved the game)';
-$LNG['se_ftp_dir_info']                 = 'Here inseres the path to your game folder should start with a slash and ending up with a bar!<br>Example:/httpdocs/';
-*/
 $LNG['se_google']                       = '<font color="yellow">Google Analytics Ayarlari</font>';
 $LNG['se_google_info']                  = 'Google Analytics, ziyaretçilerin sitenize nasıl ulaştıkları ve sitenizde ne tip etkinliklerde bulundukları hakkında bilmek istediğiniz herşeyi anlatır';
 $LNG['se_google_active']                = 'Aktif/Aktif Degil?';
@@ -350,32 +332,6 @@ $LNG['se_disclamerNotice']				= 'Daha fazla bilgi';
 
 $LNG['cc_cache_clear']				= 'Bellek temizlendi!';
 
-//----------------------------------------------------------------------------//
-// TeamSpeak Ayarlari
-$LNG['ts_settings']                     = 'Teamspeak';
-$LNG['ts_active']                       = 'Team Speak modunu aktive et?';
-$LNG['ts_version']                      = 'Server versiyonu:';
-$LNG['ts_udpport']                      = 'Port TCP';
-$LNG['ts_tcpport']                      = 'Port UDP';
-$LNG['ts_serverip']                     = 'Server IP';
-$LNG['ts_timeout']                      = 'Sure Asimi';
-$LNG['ts_server_query']                 = 'Querys server port';
-$LNG['ts_login']						= 'ServerQuery Kullanici';
-$LNG['ts_pass']							= 'ServerQuery Sifre';
-$LNG['ts_cron']							= 'Guncelleme Orani';
-
-//----------------------------------------------------------------------------//
-
-// Facebook App
-$LNG['fb_settings']                                     = 'Facebook Connect Ayarlari';
-$LNG['fb_active']                                       = 'Facebook Connect Aktive Et?';
-$LNG['fb_api_key']                                      = 'Facebook API Key';
-$LNG['fb_secrectkey']                                   = 'Facebook Secret Key';
-$LNG['fb_info']                                         = 'Facebook connect, sitenize Facebook kullanıcılarını kabul etmenizi sağlayan bir arayüz standardıdır. Yapı olarak facebook-uygulamalarına benzer ama biraz daha farklıdır <br> Bunu kullanmak icin Facebook uyesi olmaniz gerekmektedir. Ayrica, bir uygulama gelistirmelisiniz. Bunu <a href="http://www.facebook.com/developers/"> http://www.facebook.com/developers/ </ a> adresinden yapabilirsin.<br> <font Color="red"> FB Connect icin, email sistemi kurulu olmali! (SMTP Ayarlari)</font>';
-$LNG['fb_curl_yes']                                             = '<span style="color:green">cURL Kurulu!</span>';
-$LNG['fb_curl_no']                                              = '<span style="color:red">cURL Kurulu Degil! Facebook App calismasi icin URL kurulu olmasi gerekmekte!</span>';
-
-
 //---------------------MODULLER------------------------------------------------//
 //GameModule.php
 
@@ -420,7 +376,6 @@ $LNG['modul_37']                                       = 'Istatistik banneri';
 $LNG['modul_26']                                       = 'Ara';
 $LNG['modul_27']                                       = 'Destek/Ticket';
 $LNG['modul_28']                                       = 'Teknoloji';
-$LNG['modul_41']                          				= 'Facebook';
 $LNG['mod_module']                                      = 'Moduller';
 $LNG['mod_info']                                        = 'Oyundaki Moduller';
 $LNG['mod_active']                                      = 'Su an Aktif';
@@ -467,7 +422,6 @@ $LNG['cronName_statistic']		= 'Istatistikler';
 $LNG['cronName_daily']			= 'Gunluk Gorevler';
 $LNG['cronName_cleaner']			= 'Eski Veriyi Sil';
 $LNG['cronName_inactive']		= 'Inaktifleri Sil';
-$LNG['cronName_teamspeak']		= 'Teamspeak guncelleme';
 $LNG['cronName_tracking']		= 'Global Server Istatistik Guncellemesi';
 $LNG['cronName_databasedump']	= 'Database backup';
 
@@ -1000,7 +954,6 @@ $LNG['log_no_data']                     = 'Herhangi bir kayit yok!';
 $LNG['log_ssettings']                   = 'Oyun Ayarlari';
 $LNG['log_usettings']                   = 'Evren Ayarlari';
 $LNG['log_statsettings']                = 'Istatistik Ayarlari';
-$LNG['log_tssettings']                  = 'Teamspeak Ayarlari';
 $LNG['log_uni_short']                   = 'Evren';
 $LNG['log_universe']                    = 'Evren';
 $LNG['log_present']      	            = 'Genel Dagitim';
@@ -1024,7 +977,6 @@ $LNG['ow_database_errors'] = 'Veritabaninda hatalar mevcut. <a href="ErrorPage.p
 $LNG['ow_smtp_errors'] = 'SMTP ayarlari kontrol ediliyor! -Su an mail gonderemezsiniz!';
 $LNG['ow_dir_not_writable'] = '/%s klasorune yazilamaz!';
 $LNG['ow_none'] = 'Mevcut Uyari Yok';
-$LNG['ow_news'] = 'Son Haberler';
 $LNG['ow_updates'] = 'Son Guncellemeler';
 $LNG['ow_developers'] = 'Kod Gelistiricileri';
 

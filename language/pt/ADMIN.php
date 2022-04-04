@@ -338,7 +338,6 @@ $LNG['ow_database_errors']			= 'Tens erros na tua base de dados. <a href="ErrorP
 $LNG['ow_smtp_errors']				= 'Verifica as configurações de SMTP! - Neste momento nenhum email pode ser enviado!';
 $LNG['ow_dir_not_writable']			= '/%s dir não pode ser escrito!';
 $LNG['ow_none']						= 'Sem Avisos';
-$LNG['ow_news']						= 'Ultimas Noticias';
 $LNG['ow_updates']					= 'Ultimas Atualizações';
 $LNG['ow_developers']				= 'Desenvolvedores';
 
@@ -388,12 +387,6 @@ $LNG['se_noob_protect2'] 				= 'Proteção N. pontos';
 $LNG['se_noob_protect3'] 				= 'Proteção N. limite de pontos';
 $LNG['se_noob_protect_e2'] 				= 'Limite de pontos para deixares de ser novato';
 $LNG['se_noob_protect_e3'] 				= '';
-$LNG['se_recaptcha_whats']              = 'O que é RECAPTCHA?';
-$LNG['se_recaptcha_head']               = 'RECAPTCHA';
-$LNG['se_recaptcha_desc']               = 'RECAPTCHA CAPTCHA é um serviço gratuito que irá ajudar a bloquear spam e bots.';
-$LNG['se_recaptcha_public']             = 'Chave Pública:';
-$LNG['se_recaptcha_private']            = 'Chave Privada:';
-$LNG['se_recaptcha_active']             = 'Ativar RECAPTCHA';
 $LNG['se_reg_closed']					= 'Registo Fechado';
 $LNG['se_min_build_time']               = 'Construção Mínima';
 $LNG['se_trader_head']					= 'Configurações do Mercador de Frota';
@@ -460,13 +453,6 @@ $LNG['se_smtp_user']                    = 'SMTP Username:';
 $LNG['se_smtp_pass']                    = 'SMTP Password:';
 $LNG['se_smtp_sendmail']				= 'SMTP Remetente:';
 $LNG['se_smtp_sendmail_info']          	= 'Ponha aqui o endereço de email de retorno. Não necessita de ser o mesmo de envio.';                                  
-$LNG['se_ftp']							= 'Configurações de FTP';
-$LNG['se_ftp_info']                     = 'Sistema de updates automaticos via FTP! Este sistema actuliza os ficheiros consuante o que ouver de novo, mas atenção se tiveres modificações essas iram ser removidas.';
-$LNG['se_ftp_host']                     = 'FTP Servidor (Exemplo: ftp://o jogo ou http://o jogo):';
-$LNG['se_ftp_user']                     = 'FTP Utilizador: (Utilizador do Host)';
-$LNG['se_ftp_pass']                     = 'FTP Password: (Password) do Host';
-$LNG['se_ftp_dir']                      = 'FTP Game path: (Onde está guardado o jogo)';
-$LNG['se_ftp_dir_info']                 = 'Aqui inseres o caminho para a tua pasta de jogo deverá começar com uma barra e acabar com uma barra!<br>Exemplo: /httpdocs/';
 $LNG['se_google']                       = 'Google Analítico - Configurações';
 $LNG['se_google_info']                  = 'Google Analitico é a solução para web sites que lhe permite adquirir conhecimentos valiosos sobre o tráfego do seu site e do impacto das suas estratégias de marketing. Graças ao poderoso, flexível e características user-friendly prog agora podes acessar aos teus dados em novas formas de analisar e mostrar. Com o Google Analitico podes projetar a tua publicidade segmentada, fortes campanhas de marketing e desenvolvimento de sites com altas taxas de conversão.';
 $LNG['se_google_active']                = 'Ativar/desativar?';
@@ -630,8 +616,6 @@ $LNG['mu_user_logs']				    = 'Log de Registo';
 $LNG['mu_support']                      = 'Tickets de Suporte';
 $LNG['mu_module']                       = 'Modulos';
 $LNG['mu_mod_update']              		= 'Controlo de Versão do MOD';
-$LNG['mu_fb_options'] 					= 'Registo pelo Facebook';
-$LNG['mu_ts_options']                   = 'Opções Teamspeak';
 $LNG['mu_game_info']                    = 'Informação';
 $LNG['mu_vaild_users']				    = 'Atividade de Usuário';
 $LNG['mu_news']					        = 'Noticias';
@@ -1001,31 +985,6 @@ $LNG['qe_submit']						= 'Enviar';
 $LNG['qe_resetr']						= 'Redefinir';
 $LNG['qe_allowmulti']					= 'Permitir Multi IPs';
 
-	
-//----------------------------------------------------------------------------//
-// Configuração do TeamSpeak
-$LNG['ts_settings']                     = 'Teamspeak';
-$LNG['ts_active']                       = 'Ativar o Mod TeamSpeak?';
-$LNG['ts_version']                      = 'Versão do Servidor:';
-$LNG['ts_udpport']                      = 'Porta TCP';
-$LNG['ts_tcpport']                      = 'Porta UDP';
-$LNG['ts_serverip']                     = 'IP do Servidor';
-$LNG['ts_timeout']                      = 'Timeout'; 
-$LNG['ts_server_query']                 = 'Porta do Servidor de Querys'; 
-$LNG['ts_login']						= 'Usuario ServerQuery';
-$LNG['ts_pass']							= 'Senha ServerQuery';
-$LNG['ts_cron']							= 'Atualizar taxa';
-
-//----------------------------------------------------------------------------//
-// Facebook App
-$LNG['fb_settings']                     = 'Configurações da conexão pelo Facebook';
-$LNG['fb_active']                       = 'Facebook Connect ativo?';
-$LNG['fb_api_key']                      = 'Chave do Facebook API';
-$LNG['fb_secrectkey']                   = 'Chave do Facebook Secret';
-$LNG['fb_info']                         = 'Com o Facebook Connect os usuários podem que estão conectados ao Facebook, com o meu log in, clique ou registre-se. <br><br>Para usar este sistema, deves ser registrado com Faceebok. Além disso, você deve criar um aplicativo. Registar <a href="http://www.facebook.com/developers/">http://www.facebook.com/developers/</a> Como conectar URL tens de ativar o sistema e por as duas chaves.<br><br><font color="red">Para o envio de E-Mails deves ter o sistema de envio ativo! (SMTP Settings)</font>';
-$LNG['fb_curl_yes']						= '<span style="color:green">O cURL esta instalado no Servidor!</span>';
-$LNG['fb_curl_no']						= '<span style="color:red">Extenção cURL não esta instalado!, o FaceBook requer que você instale para que ele funcione!</span>';
-
 //----------------------------------------------------------------------------//
 //GameModule.php
 
@@ -1070,7 +1029,6 @@ $LNG['modul_28']                       = 'Tecnologias';
 $LNG['modul_38']						= 'Sucateiros : Comprador de Frota';
 $LNG['modul_39']						= 'Simulador de batalha';
 $LNG['modul_40']						= 'Atalhos de Frotas';
-$LNG['modul_41']                       = 'Aplicação do Facebook';
 $LNG['mod_module']						= 'Modulos';
 $LNG['mod_info']						= 'Modulos no Jogo';
 $LNG['mod_active']						= 'Ativo';
@@ -1192,7 +1150,6 @@ $LNG['log_no_data']                     = 'Não há dados disponíveis no log!';
 $LNG['log_ssettings']                   = 'Configuração de Jogo';
 $LNG['log_usettings']                   = 'Configuração de Universo';
 $LNG['log_statsettings']                = 'Opções de Estatisticas';
-$LNG['log_tssettings']                  = 'Opções de Teamspeak';
 $LNG['log_uni_short']                   = 'Uni';
 $LNG['log_universe']                    = 'Universo';
 $LNG['log_present']      	            = 'Distribuidos';
@@ -1243,7 +1200,6 @@ $LNG['cronName_statistic']		= 'Estatísticas';
 $LNG['cronName_daily']			= 'Tarefas diárias';
 $LNG['cronName_cleaner']			= 'Excluir dados antigos';
 $LNG['cronName_inactive']		= 'Excluir inativo';
-$LNG['cronName_teamspeak']		= 'Teamspeak data';
 $LNG['cronName_tracking']		= 'Estatísticas Globais';
 $LNG['cronName_databasedump']	= 'Backup de Base de Dados';
 

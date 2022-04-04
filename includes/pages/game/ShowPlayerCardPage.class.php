@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -19,18 +19,18 @@
 class ShowPlayerCardPage extends AbstractGamePage
 {
     public static $requireModule = MODULE_PLAYERCARD;
-	
+
 	protected $disableEcoSystem = true;
 
-	function __construct() 
+	function __construct()
 	{
 		parent::__construct();
 	}
-	
+
 	function show()
 	{
 		global $USER, $LNG;
-		
+
 		$this->setWindow('popup');
 		$this->initTemplate();
 
@@ -38,7 +38,7 @@ class ShowPlayerCardPage extends AbstractGamePage
 
 		$PlayerID 	= HTTP::_GP('id', 0);
 
-		$sql = "SELECT 
+		$sql = "SELECT
 				u.username, u.galaxy, u.system, u.planet, u.wons, u.loos, u.draws, u.kbmetal, u.kbcrystal, u.lostunits, u.desunits, u.ally_id,
 				p.name,
 				s.tech_rank, s.tech_points, s.build_rank, s.build_points, s.defs_rank, s.defs_points, s.fleet_rank, s.fleet_points, s.total_rank, s.total_points,
@@ -53,8 +53,12 @@ class ShowPlayerCardPage extends AbstractGamePage
 			':playerID'	=> $PlayerID
 		));
 
+        if(!$query) {
+            throw new Exception('the requested player does not exist');
+        }
+
 		$totalfights = $query['wons'] + $query['loos'] + $query['draws'];
-		
+
 		if ($totalfights == 0) {
 			$siegprozent                = 0;
 			$loosprozent                = 0;
@@ -98,7 +102,7 @@ class ShowPlayerCardPage extends AbstractGamePage
 			'loosprozent'   => round($loosprozent, 2),
 			'drawsprozent'  => round($drawsprozent, 2),
 		));
-		
+
 		$this->display('page.playerCard.default.tpl');
 	}
 }

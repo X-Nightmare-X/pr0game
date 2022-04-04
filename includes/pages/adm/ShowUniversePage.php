@@ -69,10 +69,9 @@ function ShowUniversePage() {
 				LEFT JOIN ".TICKETS_ANSWER." ON ".TICKETS.".ticketID = ".TICKETS_ANSWER.".ticketID
 				WHERE universe = ".$universe.";");
 				$GLOBALS['DATABASE']->query("DELETE FROM ".TOPKB." WHERE universe = ".$universe.";");
-				$GLOBALS['DATABASE']->query("DELETE FROM ".USERS.", ".USERS_ACS.", ".USERS_AUTH.", ".TOPKB_USERS.", ".SESSION.", ".SHORTCUTS.", ".RECORDS."
+				$GLOBALS['DATABASE']->query("DELETE FROM ".USERS.", ".USERS_ACS.", ".TOPKB_USERS.", ".SESSION.", ".SHORTCUTS.", ".RECORDS."
 				USING ".USERS."
 				LEFT JOIN ".USERS_ACS." ON ".USERS.".id = ".USERS_ACS.".userID
-				LEFT JOIN ".USERS_AUTH." ON ".USERS.".id = ".USERS_AUTH.".id
 				LEFT JOIN ".TOPKB_USERS." ON ".USERS.".id = ".TOPKB_USERS.".uid
 				LEFT JOIN ".SESSION." ON ".USERS.".id = ".SESSION.".userID
 				LEFT JOIN ".SHORTCUTS." ON ".USERS.".id = ".SHORTCUTS.".ownerID

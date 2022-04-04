@@ -15,22 +15,8 @@
 	<label for="mail">{$LNG.passwordMail}</label>
 	<input type="text" name="mail" id="mail">
 </div>
-{if $recaptchaEnable}
-<div class="formRow" id="captchaRow">
-	<div>
-		<label>{$LNG.registerCaptcha}<p class="captchaButtons"></p></label>
-		<div class="g-recaptcha" data-sitekey="{$recaptchaPublicKey}"></div>
-	</div>
-	<div class="clear"></div>
-</div>
-{/if}
 <div class="formRow">
 	<input type="submit" class="submitButton" value="{$LNG.passwordSubmit}">
 </div>
 </form>
-{/block}
-{block name="script" append}
-{if $recaptchaEnable}
-<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl={$lang}"></script>
-{/if}
 {/block}

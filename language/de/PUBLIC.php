@@ -59,7 +59,6 @@ $LNG['loginWelcome']				= 'Willkommen bei %s';
 $LNG['loginServerDesc']				= '%s ist ein Weltraum-Strategiespiel mit hunderten Spielern die erdumgreifend <strong>gleichzeitig</strong> versuchen der/die Beste zu werden. Alles was ihr zum spielen braucht ist ein Standardwebbrowser.';
 
 // Register
-$LNG['registerFacebookAccount']		= 'Facebook-Account';
 $LNG['registerUsername']			= 'Nickname';
 $LNG['registerUsernameDesc']		= 'Der Nickname muss mindestens 3 und darf maximal 25 Zeichen und darf nur aus Zahlen, Buchstaben, Punkte, Binde- und Unterstriche und Leerzeichen bestehen';
 $LNG['registerPassword']			= 'Passwort';
@@ -137,7 +136,6 @@ $LNG['passwordNext']				= 'Weiter';
 $LNG['login_error_1']				= 'Falscher Benutzername/Passwort!';
 $LNG['login_error_2']				= 'Jemand hat sich von einem anderem PC in deinem Account eingeloggt!';
 $LNG['login_error_3']				= 'Deine Session ist abgelaufen!';
-$LNG['login_error_4']				= 'Es gab einen Fehler bei der externen Autorisierung, bitte versuche Sie es später noch einmal!';
 
 //Rules
 $LNG['rulesHeader']					= 'Regelwerk';

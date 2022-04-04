@@ -54,7 +54,7 @@ $LNG['bad_forum_url']				    	= 'Zły format adresu strony!';
 $LNG['admin_access_1']				    	= 'Tymczasowo masz dostęp do funkcji administracyjnych';
 $LNG['admin_access_link']				    = 'Deaktywuj go';
 $LNG['admin_access_2']				    	= ', jeśli nie używasz.';
-
+$LNG['banned_message'] = 'Zostałeś zbanowany. Jeśli uważasz, że to nieporozumienie, napisz do nas przez Discord: <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>';
 
 //----------------------------------------------------------------------------//
 //TOPNAV
@@ -142,10 +142,6 @@ $LNG['ov_admins_online']					= 'Admini (Online):';
 $LNG['ov_no_admins_online']					= 'Obecnie brak aktywnego admina!';
 $LNG['ov_userbanner']						= 'Statystyki -Banner';
 $LNG['ov_userrank_info']					= '%s (%s <a href="game.php?page=statistics&amp;range=%d">%d</a> %s %s)';
-$LNG['ov_teamspeak_not_online']				= 'TeamspeakServer chwilowo niedostępny';
-$LNG['ov_teamspeak']						= 'Teamspeak';
-$LNG['ov_teamspeak_connect']				= 'Połącz';
-$LNG['ov_teamspeak_online']					= 'Online';
 $LNG['ov_closed']							= 'Gra chwilowo nieaktywna!';
 $LNG['ov_reflink']							= 'Reflink';
 $LNG['ov_noreflink']						= 'Nikogo nie zwerbowałeś do gry';

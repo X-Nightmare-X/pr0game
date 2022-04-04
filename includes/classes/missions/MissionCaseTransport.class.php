@@ -33,7 +33,7 @@ class MissionCaseTransport extends MissionFunctions implements Mission
 			':planetId'	=> $this->_fleet['fleet_end_id']
 		));
 
-        $targetPlanetName = $targetPlanet ? (string)$targetPlanet['name'] : null;
+		$targetPlanetName = $targetPlanet ? (string)$targetPlanet['name'] : null;
 
 		$LNG			= $this->getLanguage(NULL, $this->_fleet['fleet_owner']);
 
@@ -117,6 +117,7 @@ class MissionCaseTransport extends MissionFunctions implements Mission
 				);
 			}
 
+			$this->UpdatePlanet($this->_fleet['fleet_target_owner'], $this->_fleet['fleet_end_id']);
 			$this->StoreGoodsToPlanet();
 		}
 

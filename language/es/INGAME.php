@@ -52,7 +52,7 @@ $LNG['bad_forum_url']				    	= 'No hay URL de Foro definida!';
 $LNG['admin_access_1']				    	= 'Desde aquí cualquier persona tendría acceso temporal a las funciones administrativas.';
 $LNG['admin_access_link']				    = 'Pinche aquí para desactivar este acceso';
 $LNG['admin_access_2']				    	= ', Si Usted no lo necesita más.';
-
+$LNG['banned_message'] = 'Has sido expulsado. Si crees que se trata de un malentendido, escríbenos a través de Discord: <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>';
 
 //----------------------------------------------------------------------------//
 //TOPNAV
@@ -139,10 +139,6 @@ $LNG['ov_admins_online']					= 'Administradores Conectados:';
 $LNG['ov_no_admins_online']				= 'Actualmente ninguno en línea.';
 $LNG['ov_userbanner']						= 'Banner de estad&iacute;sticas de los jugadores';
 $LNG['ov_userrank_info']					= '%s (%s <a href="game.php?page=statistics&amp;range=%d">%d</a> %s %s)';
-$LNG['ov_teamspeak_not_online']				= 'El servidor Teamspeak se encuentra inaccesible. Disculpe las molestias causadas.';
-$LNG['ov_teamspeak']						= 'Teamspeak';
-$LNG['ov_teamspeak_connect']				= 'Conectar';
-$LNG['ov_teamspeak_online']					= 'En linea';
 $LNG['ov_closed']							= '¡El Juego se encuentra temporalmente cerrado!';
 $LNG['ov_reflink']							= 'Enlace Ref.';
 $LNG['ov_noreflink']						= 'No tiene Usuarios Referidos.';

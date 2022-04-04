@@ -74,15 +74,6 @@ $LNG['reg_json_need']			= ' &raquo;JSON&laquo; uzantisi uygun mu?';
 $LNG['reg_iniset_need']			= 'PHP fonksiyonu &raquo;ini_set&laquo; uygun mu?';
 $LNG['reg_global_need']			= 'Globallerin kaydi aktif mi?';
 $LNG['reg_global_desc']			= 'pr0game globaller aktif olsun olsun olmasin calisacaktir. Ama, eger mumkunse guvenlik onlemleri bunu inaktif yapmaniz onerilir.';
-$LNG['req_ftp_head']			= 'FTP bilgilerini giriniz';
-$LNG['req_ftp_desc']			= 'FTP bilgilerinizi giriniz ve pr0game otomatik olarak problemleri duzeltsin. Alternatif olarak, kendiniz yetki verebilirsiniz.';
-$LNG['req_ftp_host']			= 'Domain Adi(HostName)';
-$LNG['req_ftp_username']		= 'Kullanici Adi';
-$LNG['req_ftp_password']		= 'Sifre';
-$LNG['req_ftp_dir']				= 'pr0game klasoru';
-$LNG['req_ftp_send']			= 'Gonder';
-$LNG['req_ftp_error_data']		= 'Verilen bilgiler ile FTP sunucusuna baglanilamadi. Gorev basarisiz oldu.';
-$LNG['req_ftp_error_dir']		= 'Girdiginiz dizin yanlis yada mevcut degil.';
 
 $LNG['step1_head']				= 'Kurulum veritabanini konfigure et';
 $LNG['step1_desc']				= 'pr0game sisteminize kurululabilir. Simdi, veritabanina baglanmak icin asagidaki bilgileri girmelisiniz. Eger gerekli bilgileri bilmiyorsaniz, domain (alan) saglayiciniz ile irtibata geciniz yada pr0game forumlarindaki direktifleri okuyunuz.';

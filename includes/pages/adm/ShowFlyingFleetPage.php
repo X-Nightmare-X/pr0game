@@ -24,14 +24,17 @@ function ShowFlyingFleetPage()
 	global $LNG;
 	
 	$id	= HTTP::_GP('id', 0);
-	if(!empty($id)){
+	$massunlock = HTTP::_GP('massunlock',0);
+	if(!empty($id)) {
 		$lock	= HTTP::_GP('lock', 0);
-		$GLOBALS['DATABASE']->query("UPDATE ".FLEETS." SET `fleet_busy` = '".$lock."' WHERE `fleet_id` = '".$id."' AND `fleet_universe` = '".Universe::getEmulated()."';");
-		
 		$SQL	= ($lock == 0) ? "NULL" : "'ADM_LOCK'";
 		
+		$GLOBALS['DATABASE']->query("UPDATE ".FLEETS." SET `fleet_busy` = '".$lock."' WHERE `fleet_id` = '".$id."' AND `fleet_universe` = '".Universe::getEmulated()."';");
 		$GLOBALS['DATABASE']->query("UPDATE ".FLEETS_EVENT." SET `lock` = ".$SQL." WHERE `fleetID` = ".$id.";");
-	} 
+	} elseif (!empty($massunlock)) {
+		$GLOBALS['DATABASE']->query("UPDATE ".FLEETS." SET `fleet_busy` = '0' WHERE `fleet_universe` = '".Universe::getEmulated()."';");
+		$GLOBALS['DATABASE']->query("UPDATE ".FLEETS_EVENT." SET `lock` = NULL;");
+	}
 	
 	$orderBy		= "fleet_id";
 

@@ -57,7 +57,7 @@ $LNG['bad_forum_url']				    	= 'Forumda boyle bir link yok!';
 $LNG['admin_access_1']				    	= 'Oyuncu gecici olarak admin yetkisine sahip!';
 $LNG['admin_access_link']				    = 'Yetkiyi sonlandir';
 $LNG['admin_access_2']				    	= ", eger ihtiyacin kalmadiysa";
-
+$LNG['banned_message'] = 'Engellendiniz. Bir yanlış anlaşılma olduğunu düşünüyorsanız Discord\'dan bize yazın: <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>';
 
 //----------------------------------------------------------------------------//
 // Topnav
@@ -145,10 +145,6 @@ $LNG['ov_admins_online']					= 'Online Admin';
 $LNG['ov_no_admins_online']					= 'Su anda online admin bulunmuyor';
 $LNG['ov_userbanner']						= "Oyuncu Istatistik Banner";
 $LNG['ov_userrank_info']					= '%s (%s <a href="game.php?page=statistics&amp;range=%d">%d</a> %s %s)';
-$LNG['ov_teamspeak_not_online']				= 'Ittifak chat aktif degil';
-$LNG['ov_teamspeak']						= 'Ittifak Chat';
-$LNG['ov_teamspeak_connect']				= 'Baglan';
-$LNG['ov_teamspeak_online']					= 'Online';
 $LNG['ov_closed']							= 'Evren su an cevrimdisi';
 $LNG['ov_reflink']							= 'Davet et';
 $LNG['ov_noreflink']						= 'Su ana kadar sayende <br> 0 </br>kisi katildi .';

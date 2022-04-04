@@ -45,6 +45,9 @@ $(document).ready(function () {
 		}
 	});
 	$(".tooltip_sticky").live('mouseenter', function (e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
 		var tip = $('#tooltip');
 		tip.html($(this).attr('data-tooltip-content'));
 		tip.addClass('tooltip_sticky_div');
@@ -54,7 +57,10 @@ $(document).ready(function () {
 		});
 		tip.show();
 	});
-	$(".tooltip_sticky_div").live('mouseleave', function () {
+	$(".tooltip_sticky_div").live('mouseleave', function (e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
 		var tip = $('#tooltip');
 		tip.removeClass('tooltip_sticky_div');
 		tip.hide();

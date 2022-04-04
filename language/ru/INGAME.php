@@ -52,6 +52,7 @@ $LNG['bad_forum_url']                     = 'Адрес форума не зад
 $LNG['admin_access_1']                    = 'У Вас есть временный доступ к функциям Администратора.';
 $LNG['admin_access_link']                 = 'Отключить доступ';
 $LNG['admin_access_2']                    = ', если он Вам больше не нужен.';
+$LNG['banned_message'] = 'Вы были заблокированы. Если вы считаете, что это недоразумение, напишите нам через Discord: <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>';
 
 // Верхняя навигационная полоса
 $LNG['tn_vacation_mode']                  = 'Вы будете находиться в режиме отпуска по крайней мере до ';
@@ -134,10 +135,6 @@ $LNG['ov_admins_online']                  = 'Администрация';
 $LNG['ov_no_admins_online']               = 'Не в сети';
 $LNG['ov_userbanner']                     = 'Баннер-статистика';
 $LNG['ov_userrank_info']                  = '%s (%s <a href="game.php?page=statistics&amp;range=%d">%d</a> %s %s)';
-$LNG['ov_teamspeak_not_online']           = 'Сервер Teamspeak в данный момент недоступен.';
-$LNG['ov_teamspeak']                      = 'Teamspeak';
-$LNG['ov_teamspeak_connect']              = 'Подключиться';
-$LNG['ov_teamspeak_online']               = 'В сети';
 $LNG['ov_closed']                         = 'Игра на данный момент отключена.';
 $LNG['ov_reflink']                        = 'Реферальная ссылка';
 $LNG['ov_noreflink']                      = 'У Вас нет рефералов';

@@ -324,7 +324,6 @@ $LNG['ow_database_errors']				= 'Wystąpił błąd!';
 $LNG['ow_smtp_errors']					= 'Ustawienia wysyłania poczty! - chwilowo maile nie są wysyłane!';
 $LNG['ow_dir_not_writable']				= './%s jest nie zapisywalny!';
 $LNG['ow_none']						= 'Brak ostrzeżeń';
-$LNG['ow_news']						= 'Nowości';
 $LNG['ow_updates']					= 'Ostatnie Update';
 $LNG['ow_developers']					= 'Entwickler';
 
@@ -374,12 +373,6 @@ $LNG['se_noob_protect2']				= 'Ochrona do ilości punktów';
 $LNG['se_noob_protect3']				= 'Mnożnik dla ochrony nowych graczy';
 $LNG['se_noob_protect_e2']				= 'Do tej ilości punktów jest nowy gracz chroniony';
 $LNG['se_noob_protect_e3']				= 'Kliknij tutaj, by dowiedzieć się więcej';
-$LNG['se_recaptcha_whats']				= 'Co to reCAPTCHA?';
-$LNG['se_recaptcha_head']				= 'reCAPTCHA - Ustawienie';
-$LNG['se_recaptcha_desc']				= 'reCAPTCHA to darmowe CAPTCHA, służy do ograniczenia możliwości zakładania kont przez boty.<br />By móc używać musisz się zarejstrować na reCAPTCHA.net.';
-$LNG['se_recaptcha_public']				= 'Klucz publiczny:';
-$LNG['se_recaptcha_private']			= 'Klucz prywatny';
-$LNG['se_recaptcha_active']				= 'reCAPTCHA aktywuj';
 $LNG['se_reg_closed']					= 'Zamknij rejstrację';
 $LNG['se_min_build_time']				= 'Minimalny czas budowy';
 $LNG['se_min_build_time_info']			= 'Tutaj ustawisz minimalny czas budowy wszystkich obiektów i floty. Standardowo 1 sekunda.<br>Jeśli ustawisz 0 to taka funkcja będzie nie aktywna.<br><font color=orange>Ustawienie tego na 0 może wywoływać bugi!</font>';
@@ -415,13 +408,6 @@ $LNG['se_smtp_user']					= 'SMTP Username:';
 $LNG['se_smtp_pass']					= 'SMTP Passwort:';
 $LNG['se_smtp_sendmail']				= 'Adres zwrotny:';
 $LNG['se_smtp_sendmail_info']			= 'Adres zwrotny powinien być inny niż adres użyty podczas instalacji';
-$LNG['se_ftp']							= 'Konfiguracja FTP';
-$LNG['se_ftp_info']						= 'pr0game zawiera system aktualizacji po ftp, do tego celu musisz podać dane serwera ftp.<br>Jeśli nie będziesz go używał, zostaw to pole puste.';
-$LNG['se_ftp_host']						= 'FTP Host:';
-$LNG['se_ftp_user']						= 'FTP User:';
-$LNG['se_ftp_pass']						= 'FTP Passwort:';
-$LNG['se_ftp_dir']						= 'FTP ścieżka do plików serwera';
-$LNG['se_ftp_dir_info']					= 'Tutaj podajesz ścieżkę do plików serwera bez końcowego slasha, czyli <br>Przykład: /httpdocs';
 $LNG['se_google']						= 'Google Analytics - Konfiguracja';
 $LNG['se_google_info']					= 'Służy do analizy ruchu na twój serwer, daje wgląd w statystyki aktywności i skuteczności promocji w Google.';
 $LNG['se_google_active']				= 'Aktywuj?';
@@ -615,9 +601,7 @@ $LNG['mu_user_logs']				= 'Log';
 $LNG['mu_support']                 	= 'Pomoc techniczna';
 $LNG['mu_module']                 	= 'Moduły';
 $LNG['mu_mod_update']              	= 'Wersja kontrolna';
-$LNG['mu_fb_options'] 				= 'Przyłącz do Facebooka';
 
-$LNG['mu_ts_options'] 				= 'Teamspeak Optionen';
 $LNG['mu_game_info'] 				= 'Informacje';
 $LNG['mu_vaild_users']				= 'Aktywni użytkownicy'; 
 $LNG['mu_news']						= 'Nowości'; 
@@ -992,30 +976,6 @@ $LNG['qe_resetr']						= 'Zresetuj';
 $LNG['qe_allowmulti']					= 'Multi dozwolone';
 
 //----------------------------------------------------------------------------//
-//TeamSpeakSettingPage.php
-$LNG['ts_settings']						= 'Ustawienia Teamspeak';
-$LNG['ts_active']						= 'Aktywacja Teamspeak-Mod?';
-$LNG['ts_version']						= 'Wersja serwera:';
-$LNG['ts_udpport']						= 'TCP Port';
-$LNG['ts_tcpport']						= 'UDP Port';
-$LNG['ts_serverip']						= 'Server-IP';
-$LNG['ts_timeout']						= 'Timeout'; 
-$LNG['ts_server_query']					= 'ServerQuery Port'; 
-$LNG['ts_login']						= 'ServerQuery Login'; 
-$LNG['ts_pass']							= 'ServerQuery Password'; 
-$LNG['ts_cron']							= 'Update Rate'; 
-
-//----------------------------------------------------------------------------//
-//FacebookSettingPage.php
-$LNG['fb_settings']						= 'Ustawienia Facebook Connect';
-$LNG['fb_active']						= 'Aktywacja Facebook Connect?';
-$LNG['fb_api_key']						= 'Facebook App ID';
-$LNG['fb_secrectkey']					= 'Facebook Geheim Key';
-$LNG['fb_info']							= 'Mit Facebook Connect können User, die bei Facebook angemeldet sind, mit meinem Klick sich einloggen bzw. sich registrieren.<br><br>Um diese Funktion zu nutzen, musst du selbst bei Faceebok registriert sein. Zudem musst du eine Application erstellen. Dies kannst du auf <a href="http://www.facebook.com/developers/">http://www.facebook.com/developers/</a> erledigen. Als Connect URL musst du den URL zum Game eingeben. Dann trägst du hier die Keys ein und dein Game sollte Facebook bereit sein.<br><br><font color="red">Für FB Connect muss der Mail Versand verfügbar sein! (SMTP Settings)</font>';
-$LNG['fb_curl_yes']						= '<span style="color:green">Na serwerze jest culr dostępny!</span>';
-$LNG['fb_curl_no']						= '<span style="color:red">Brak Curla! Facebook do funkcjonowania wymaga biblioteki Curl!</span>';
-
-//----------------------------------------------------------------------------//
 //GameModule.php
 
 $LNG['modul_0']						= 'Sojusz';
@@ -1185,7 +1145,6 @@ $LNG['log_no_data']                     = 'Brak danych!';
 $LNG['log_ssettings']					= 'Ustawienia serwera';
 $LNG['log_usettings']					= 'Ustawienia uniwersum';
 $LNG['log_statsettings']				= 'Ustawienia statystyk';
-$LNG['log_tssettings']					= 'Teamspeak-Konfiguration';
 $LNG['log_disclamersettings']			= 'Kontakt';
 $LNG['log_uni_short']					= 'Uni';
 $LNG['log_universe']					= 'Universum';
@@ -1196,7 +1155,6 @@ $LNG['cronName_statistic']		= 'Statystyka';
 $LNG['cronName_daily']			= 'Zadania dzienne';
 $LNG['cronName_cleaner']			= 'Usuń przestarzałe dane';
 $LNG['cronName_inactive']		= 'Usuń nie aktywnych';
-$LNG['cronName_teamspeak']		= 'Aktualizacja ustawień Teamspeak';
 $LNG['cronName_tracking']		= 'Wyślij statystyki na główny serwer.';
 $LNG['cronName_databasedump']	= 'Backup bazy danych';
 
