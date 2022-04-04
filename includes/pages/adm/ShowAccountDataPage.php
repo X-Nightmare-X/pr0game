@@ -149,8 +149,8 @@ function ShowAccountDataPage()
                 include_once('includes/classes/BBCode.class.php');
 
                 $AllianceHave = sprintf(
-                    '<a href="#" onclick="$(\'#alianza\').slideToggle();return false" class="link"><img"
-                    . " src="./styles/resource/images/admin/arrowright.png" width="16" height="10"> %s</a>',
+                    '<a href="#" onclick="$(\'#alianza\').slideToggle();return false" class="link"><img'
+                    . ' src="./styles/resource/images/admin/arrowright.png" width="16" height="10">&nbsp;%s</a>',
                     $LNG['ac_alliance']
                 );
 
