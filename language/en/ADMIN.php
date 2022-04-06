@@ -552,21 +552,21 @@ $LNG['ad_authlevel_tt'] = '[See All]';
 
 //---------------   Frotas em voo   ------------------------//
 
-$LNG['ff_fleetid'] = "ID";
-$LNG['ff_mission'] = "Mission";
-$LNG['ff_starttime'] = "Start";
-$LNG['ff_ships'] = "Ships";
-$LNG['ff_startuser'] = "Sender";
-$LNG['ff_startplanet'] = "Planet sender";
-$LNG['ff_arrivaltime'] = "Start time";
-$LNG['ff_targetuser'] = "Recipient";
-$LNG['ff_targetplanet'] = "Planet recipient";
-$LNG['ff_endtime'] = "End time";
-$LNG['ff_holdtime'] = "Time stopped";
-$LNG['ff_del'] = "Remove";
-$LNG['ff_lock'] = "Block";
-$LNG['ff_unlock'] = "Unlock";
-$LNG['ff_no_fleets'] = "Is not present any fleet";
+$LNG['ff_fleetid'] = 'ID';
+$LNG['ff_mission'] = 'Mission';
+$LNG['ff_starttime'] = 'Start';
+$LNG['ff_ships'] = 'Ships';
+$LNG['ff_startuser'] = 'Sender';
+$LNG['ff_startplanet'] = 'Planet sender';
+$LNG['ff_arrivaltime'] = 'Start time';
+$LNG['ff_targetuser'] = 'Recipient';
+$LNG['ff_targetplanet'] = 'Planet recipient';
+$LNG['ff_endtime'] = 'End time';
+$LNG['ff_holdtime'] = 'Time stopped';
+$LNG['ff_del'] = 'Remove';
+$LNG['ff_lock'] = 'Block';
+$LNG['ff_unlock'] = 'Unlock';
+$LNG['ff_no_fleets'] = 'Is not present any fleet';
 
 //###########################################################//
 
@@ -784,7 +784,7 @@ $LNG['ac_no_rank_level'] = 'Dont have enough Permissions to see the informations
 
 
 //---------------   Pesquisa Avançada   ------------------------//
-$LNG['se_no_data'] = "No data";
+$LNG['se_no_data'] = 'No data';
 $LNG['se_intro'] = 'Word or code words (option)';
 $LNG['se_users'] = 'Users';
 $LNG['se_planets'] = 'Planets';
@@ -883,28 +883,28 @@ $LNG['se_search_users_8'] = 'Holidays?';
 // Pesquisa na tabela de Planetas
 $LNG['se_search_planets_0'] = 'ID';
 $LNG['se_search_planets_1'] = 'Name';
-$LNG['se_search_planets_2'] = "Owner";
-$LNG['se_search_planets_3'] = "Last activity";
-$LNG['se_search_planets_4'] = "Galaxy";
-$LNG['se_search_planets_5'] = "System";
-$LNG['se_search_planets_6'] = "Planet";
-$LNG['se_search_planets_7'] = "Has The Moon?";
+$LNG['se_search_planets_2'] = 'Owner';
+$LNG['se_search_planets_3'] = 'Last activity';
+$LNG['se_search_planets_4'] = 'Galaxy';
+$LNG['se_search_planets_5'] = 'System';
+$LNG['se_search_planets_6'] = 'Planet';
+$LNG['se_search_planets_7'] = 'Has The Moon?';
 
 // Pesquisa na tabela de Jogadores banidos
 $LNG['se_search_banned_0'] = 'ID';
 $LNG['se_search_banned_1'] = 'Name';
-$LNG['se_search_banned_2'] = "Date of suspension";
-$LNG['se_search_banned_3'] = "Date of the reactivation";
-$LNG['se_search_banned_4'] = "Reason";
-$LNG['se_search_banned_5'] = "Author";
+$LNG['se_search_banned_2'] = 'Date of suspension';
+$LNG['se_search_banned_3'] = 'Date of the reactivation';
+$LNG['se_search_banned_4'] = 'Reason';
+$LNG['se_search_banned_5'] = 'Author';
 
 // Pesquisa na tabela de Alianças
 $LNG['se_search_alliance_0'] = 'ID';
 $LNG['se_search_alliance_1'] = 'Name';
-$LNG['se_search_alliance_2'] = "TAG";
-$LNG['se_search_alliance_3'] = "Administrator";
-$LNG['se_search_alliance_4'] = "Date of creation";
-$LNG['se_search_alliance_5'] = "Number of members";
+$LNG['se_search_alliance_2'] = 'TAG';
+$LNG['se_search_alliance_3'] = 'Administrator';
+$LNG['se_search_alliance_4'] = 'Date of creation';
+$LNG['se_search_alliance_5'] = 'Number of members';
 //###########################################################//
 
 
@@ -1119,7 +1119,7 @@ $LNG['up_edit'] = 'Edited in:';
 $LNG['up_del'] = 'Deleted in:';
 $LNG['up_submit'] = 'Send';
 $LNG['up_version'] = 'Version';
-$LNG['up_chmod_error'] = "No write permission (s) for folder:\n\n";
+$LNG['up_chmod_error'] = 'No write permission (s) for folder:\n\n';
 $LNG['up_need_curl'] = 'Error: CURL is not present.<br>The maintaining of pr0game requires cURL to run download files.';
 $LNG['up_no_xml_ext'] = 'Error: XML Parser is not present.<br>The maintaining of pr0game requires XML Parser to process'
     . ' the files present.';

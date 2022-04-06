@@ -551,22 +551,22 @@ $LNG['ad_authlevel_tt'] = '[Zeige Alle]';
 
 //---------------   FLOTAS EN VUELO - FLYING FLEETS ------------------------//
 
-$LNG['ff_fleetid'] = "ID";
-$LNG['ff_mission'] = "Mission";
-$LNG['ff_starttime'] = "Startzeit";
-$LNG['ff_ships'] = "Schiffe";
-$LNG['ff_startuser'] = "Startuser";
-$LNG['ff_startplanet'] = "Startplanet";
-$LNG['ff_arrivaltime'] = "Ankunft";
-$LNG['ff_targetuser'] = "Zieluser";
-$LNG['ff_targetplanet'] = "Zielplanet";
-$LNG['ff_endtime'] = "Rückkehr";
-$LNG['ff_holdtime'] = "Ende Haltezeit";
-$LNG['ff_del'] = "Event deleted";
-$LNG['ff_lock'] = "Lock";
-$LNG['ff_unlock'] = "Unlock";
+$LNG['ff_fleetid'] = 'ID';
+$LNG['ff_mission'] = 'Mission';
+$LNG['ff_starttime'] = 'Startzeit';
+$LNG['ff_ships'] = 'Schiffe';
+$LNG['ff_startuser'] = 'Startuser';
+$LNG['ff_startplanet'] = 'Startplanet';
+$LNG['ff_arrivaltime'] = 'Ankunft';
+$LNG['ff_targetuser'] = 'Zieluser';
+$LNG['ff_targetplanet'] = 'Zielplanet';
+$LNG['ff_endtime'] = 'Rückkehr';
+$LNG['ff_holdtime'] = 'Ende Haltezeit';
+$LNG['ff_del'] = 'Event deleted';
+$LNG['ff_lock'] = 'Lock';
+$LNG['ff_unlock'] = 'Unlock';
 
-$LNG['ff_no_fleets'] = "Zurzeit sind keine Flotten unterwegs";
+$LNG['ff_no_fleets'] = 'Zurzeit sind keine Flotten unterwegs';
 
 //###########################################################//
 
@@ -782,7 +782,7 @@ $LNG['ac_no_rank_level'] = 'Sie haben nicht die erforderliche Berechtigung um di
 
 
 //---------------   BUSCADOR AVANZADO - ADVANCED SEARCH ------------------------//
-$LNG['se_no_data'] = "Keine Ergebnisse/Daten vorhanden";
+$LNG['se_no_data'] = 'Keine Ergebnisse/Daten vorhanden';
 $LNG['se_intro'] = 'Wort oder Stichwort';
 $LNG['se_users'] = 'Spieler';
 $LNG['se_planets'] = 'Planeten';
@@ -881,28 +881,28 @@ $LNG['se_search_users_8'] = 'Urlaubsmodus';
 // BÚSQUEDA EN TABLA DE PLANETAS
 $LNG['se_search_planets_0'] = 'ID';
 $LNG['se_search_planets_1'] = 'Name';
-$LNG['se_search_planets_2'] = "Besitzer";
-$LNG['se_search_planets_3'] = "Letzte Aktivit&auml;t";
-$LNG['se_search_planets_4'] = "Galaxie";
-$LNG['se_search_planets_5'] = "System";
-$LNG['se_search_planets_6'] = "Planet";
-$LNG['se_search_planets_7'] = "Mond";
+$LNG['se_search_planets_2'] = 'Besitzer';
+$LNG['se_search_planets_3'] = 'Letzte Aktivit&auml;t';
+$LNG['se_search_planets_4'] = 'Galaxie';
+$LNG['se_search_planets_5'] = 'System';
+$LNG['se_search_planets_6'] = 'Planet';
+$LNG['se_search_planets_7'] = 'Mond';
 
 // BÚSQUEDA EN TABLA DE SUSPENDIDOS
 $LNG['se_search_banned_0'] = 'ID';
 $LNG['se_search_banned_1'] = 'Name';
-$LNG['se_search_banned_2'] = "Geperrt von";
-$LNG['se_search_banned_3'] = "Gespert bis";
-$LNG['se_search_banned_4'] = "Grund";
-$LNG['se_search_banned_5'] = "Autor";
+$LNG['se_search_banned_2'] = 'Geperrt von';
+$LNG['se_search_banned_3'] = 'Gespert bis';
+$LNG['se_search_banned_4'] = 'Grund';
+$LNG['se_search_banned_5'] = 'Autor';
 
 // BÚSQUEDA EN TABLA DE LA ALIANZA
 $LNG['se_search_alliance_0'] = 'ID';
 $LNG['se_search_alliance_1'] = 'Name';
-$LNG['se_search_alliance_2'] = "TAG";
-$LNG['se_search_alliance_3'] = "Führer";
-$LNG['se_search_alliance_4'] = "Gründungsdatum";
-$LNG['se_search_alliance_5'] = "Mitgliederzahl";
+$LNG['se_search_alliance_2'] = 'TAG';
+$LNG['se_search_alliance_3'] = 'Führer';
+$LNG['se_search_alliance_4'] = 'Gründungsdatum';
+$LNG['se_search_alliance_5'] = 'Mitgliederzahl';
 //###########################################################//
 
 
@@ -1118,7 +1118,7 @@ $LNG['up_edit'] = 'Edit:';
 $LNG['up_del'] = 'Del:';
 $LNG['up_submit'] = 'Absenden';
 $LNG['up_version'] = 'Version';
-$LNG['up_chmod_error'] = "Keine Schreibrechte für Ordner:\n\n";
+$LNG['up_chmod_error'] = 'Keine Schreibrechte für Ordner:\n\n';
 $LNG['up_need_curl'] = 'Fehler: cURL nicht vorhanden.<br />Das UpdateSystem von pr0game benötigt cURL, um die aktuellen'
     . ' Dateien herunter zu laden.';
 $LNG['up_no_xml_ext'] = 'Fehler: XML Parser nicht vorhanden.<br />Das UpdateSystem von pr0game benötigt XML Parser, um'
