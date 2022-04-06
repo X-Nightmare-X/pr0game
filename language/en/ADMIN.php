@@ -1,4 +1,5 @@
 <?php
+
 /**
  *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
@@ -14,12 +15,11 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-
 // Translated into English by QwataKayean . All rights reversed (C) 2012
 // 2Moons - Copyright (C) 2010-2012 Slaver
 
 
-//---------------	Geral	------------------------//
+//---------------   Geral   ------------------------//
 $LNG['adm_login'] = 'Login';
 $LNG['adm_username'] = 'Username';
 $LNG['adm_password'] = 'Password';
@@ -33,29 +33,30 @@ $LNG['mu_moderation_page'] = 'Permissions';
 $LNG['mu_universe'] = 'Universe';
 $LNG['adm_cp_logout'] = 'Back to Game';
 
-//	Miscelâneo
+//  Miscelâneo
 $LNG['ad_number'] = 'ID';
 $LNG['ad_max'] = '(max. %d)';
 $LNG['only_numbers'] = 'You can only enter numbers!';
 $LNG['select_option'] = 'Choose the option ...';
 
-// 	Rank
+//  Rank
 $LNG['rank_0'] = 'Player';
 $LNG['rank_1'] = 'Moderator';
 $LNG['rank_2'] = 'Operator';
 $LNG['rank_3'] = 'Admin';
 
 
-// 	Tempo
+//  Tempo
 $LNG['time_days'] = 'Days';
 $LNG['time_hours'] = 'Hour';
 $LNG['time_minutes'] = 'Minutes';
 $LNG['time_seconds'] = 'Seconds';
 //###########################################################//
 
-$LNG['info_information'] = 'Send or report bugs in the forum for <a href="%s" target="tracker">pr0game</a><br>Otherwise there will be support!';
+$LNG['info_information'] = 'Send or report bugs in the forum for <a href="%s" target="tracker">pr0game</a><br>Otherwise'
+    . ' there will be support!';
 
-//---------------	Sim ou não	------------------------//
+//---------------   Sim ou não  ------------------------//
 $LNG['one_is_yes_1'] = 'Yes';
 $LNG['one_is_yes_0'] = 'no';
 
@@ -64,7 +65,7 @@ $LNG['one_is_no_0'] = 'no';
 //###########################################################//
 
 
-//---------------	Botões	------------------------//
+//---------------   Botões  ------------------------//
 $LNG['button_submit'] = 'Send';
 $LNG['button_add'] = 'Profile';
 $LNG['button_delete'] = 'Delete';
@@ -75,7 +76,7 @@ $LNG['button_des_se'] = 'Select all or deselect';
 //###########################################################//
 
 
-//---------------	ID's	------------------------//
+//---------------   ID's    ------------------------//
 $LNG['input_id'] = 'ID';
 $LNG['input_id_user'] = 'Player ID';
 $LNG['input_id_planet'] = 'Planet ID';
@@ -85,13 +86,13 @@ $LNG['input_id_ally'] = 'ID of the Alliance';
 //###########################################################//
 
 
-//---------------	Recursos	------------------------//
+//---------------   Recursos    ------------------------//
 $LNG['resources_title'] = 'Resources';
 $LNG['count_res'] = 'Number of resources';
 //###########################################################//
 
 
-//---------------	Modulos   ------------------------//
+//---------------   Modulos   ------------------------//
 $LNG['buildings_title'] = 'Buildings';
 $LNG['ships_title'] = 'Ships';
 $LNG['defenses_title'] = 'Defences';
@@ -99,7 +100,7 @@ $LNG['researchs_title'] = 'Research';
 //###########################################################//
 
 
-//---------------	Editor	------------------------//
+//---------------   Editor  ------------------------//
 // Menu
 $LNG['ad_forgiven_id'] = 'You must enter an ID!';
 $LNG['ad_back_to_menu'] = 'Return to home menu';
@@ -116,30 +117,30 @@ $LNG['ad_editor_authlevels'] = 'Permissions';
 
 $LNG['ad_add_not_exist'] = 'ID does not exist!';
 
-//	Pesquisas
+//  Pesquisas
 $LNG['ad_add_tech_success'] = 'The Research has been inserted successfully!';
 $LNG['ad_delete_tech_success'] = 'The Research has been removed successfully!';
 $LNG['ad_research_title'] = 'Research';
 $LNG['ad_research'] = 'Research';
 
-//	Recursos
+//  Recursos
 $LNG['ad_add_res_sucess'] = 'Resources have been inserted successfully!';
 $LNG['ad_delete_res_sucess'] = 'The Researches were removed successfully!';
 $LNG['ad_main_title'] = 'Ressources and Technologies';
 
-//	Naves
+//  Naves
 $LNG['ad_ships_title'] = 'Ships';
 $LNG['ad_ships'] = 'Ships';
 $LNG['ad_add_ships_sucess'] = 'The ships have been uploaded successfully!';
 $LNG['ad_delete_ships_sucess'] = 'The ships were removed successfully!';
 
-//	Defesas
+//  Defesas
 $LNG['ad_defenses_title'] = 'Defences';
 $LNG['ad_defenses'] = 'Defences';
 $LNG['ad_add_defenses_success'] = 'The defenses were uploaded successfully!';
 $LNG['ad_delete_defenses_success'] = 'The defenses were removed successfully!';
 
-//	Edificios
+//  Edificios
 $LNG['ad_buildings_title'] = 'Buildings';
 $LNG['ad_buildings'] = 'Buildings';
 $LNG['ad_planet_id'] = 'ID of the planet or Moon';
@@ -157,7 +158,7 @@ $LNG['ad_personal_pass'] = 'Password';
 $LNG['ad_personal_succes'] = 'Settings stored';
 $LNG['ad_personal_vacat'] = 'VMode';
 
-//	Aliança
+//  Aliança
 $LNG['ad_ally_title'] = 'Alliance';
 $LNG['ad_ally_change_id'] = 'Modify ID';
 $LNG['ad_ally_name'] = 'Name of the Alliance';
@@ -173,7 +174,7 @@ $LNG['ad_ally_not_exist3'] = 'The user does not exist in the alliance';
 $LNG['ad_ally_not_exist'] = 'The Alliance doesnt exist!';
 $LNG['ad_ally_not_exist2'] = 'The Member doesnt exist!';
 
-//	Luas e Planetas
+//  Luas e Planetas
 $LNG['ad_pla_title'] = 'Moons and Planets';
 $LNG['ad_pla_edit_name'] = 'Name';
 $LNG['ad_pla_change_id'] = 'Change Planet ID';
@@ -201,7 +202,7 @@ $LNG['ad_pla_delete_planet_s'] = 'Planet successfully removed';
 //###########################################################//
 
 
-//---------------	Painel de Suspensão	------------------------//
+//---------------   Painel de Suspensão ------------------------//
 $LNG['bo_the_player'] = 'Player';
 $LNG['bo_the_player2'] = 'Player';
 $LNG['bo_banned'] = 'Banned successfully';
@@ -223,7 +224,8 @@ $LNG['bo_permanent'] = 'Ban permanent';
 $LNG['bo_bbb_title_1'] = 'Suspension System';
 $LNG['bo_bbb_title_2'] = 'When it should be unlocked';
 $LNG['bo_bbb_title_3'] = 'Suspension system • <font color="red">This player is locked</font>';
-$LNG['bo_bbb_title_4'] = 'In order to reduce the time duration, it is necessary to add a "-" before the number desired introduced, that is in the number of minutes that you want to reduce, such as: -5';
+$LNG['bo_bbb_title_4'] = 'In order to reduce the time duration, it is necessary to add a "-" before the number desired'
+    . ' introduced, that is in the number of minutes that you want to reduce, such as: -5';
 $LNG['bo_bbb_title_5'] = 'Locked';
 $LNG['bo_bbb_title_6'] = 'Date modified';
 $LNG['bo_characters_1'] = 'Available Chars';
@@ -238,7 +240,7 @@ $LNG['bo_unban'] = 'Unlock';
 //###########################################################//
 
 
-//---------------	Encriptador de MD5	------------------------//
+//---------------   Encriptador de MD5  ------------------------//
 $LNG['et_md5_encripter'] = 'MD5 Encryptor';
 $LNG['et_pass'] = 'Password entry you want';
 $LNG['et_result'] = 'Result of Encription';
@@ -246,7 +248,7 @@ $LNG['et_encript'] = 'Generate code';
 //###########################################################//
 
 
-//---------------	Configuração de Estatisticas	------------------------//
+//---------------   Configuração de Estatisticas    ------------------------//
 $LNG['cs_title'] = 'Statistics';
 $LNG['cs_point_per_resources_used'] = 'Value of statistical point 1';
 $LNG['cs_resources'] = 'resources';
@@ -264,7 +266,7 @@ $LNG['cs_no_view'] = 'Do not display admins';
 //###########################################################//
 
 
-//---------------	Lista de Erros	------------------------//
+//---------------   Lista de Erros  ------------------------//
 $LNG['er_errors'] = 'Error';
 $LNG['er_error_list'] = 'Error list';
 $LNG['er_dlte_all'] = 'Delete all';
@@ -273,7 +275,7 @@ $LNG['er_data'] = 'Date';
 //###########################################################//
 
 
-//---------------	Lista de Mensagens	------------------------//
+//---------------   Lista de Mensagens  ------------------------//
 $LNG['ml_message_list'] = 'Message list';
 $LNG['ml_type_submit'] = 'Submit';
 $LNG['ml_id'] = '#ID';
@@ -290,7 +292,7 @@ $LNG['ml_page'] = 'Page';
 //###########################################################//
 
 
-//---------------	Mensagem Global	------------------------//
+//---------------   Mensagem Global ------------------------//
 $LNG['ma_message_sended'] = 'Your message has been sent!';
 $LNG['ma_subject_needed'] = 'You must add the subject!';
 $LNG['ma_send_global_message'] = 'Send global message';
@@ -300,10 +302,10 @@ $LNG['ma_none'] = 'Global News';
 $LNG['ma_message'] = 'Message';
 $LNG['ma_mode'] = 'As transport';
 $LNG['ma_all'] = 'All';
-$LNG['ma_modes'] = array('Game', 'Mail', 'Game & Mail');
+$LNG['ma_modes'] = ['Game', 'Mail', 'Game & Mail'];
 //###########################################################//
 
-//---------------	Pagina Inicial	------------------------//
+//---------------   Pagina Inicial  ------------------------//
 $LNG['ow_title'] = 'Welcome to pr0game!';
 $LNG['ow_donate'] = 'Donate';
 $LNG['ow_welcome_text'] = 'Welcome to popular pr0game! (:';
@@ -315,7 +317,8 @@ $LNG['ow_proyect_leader'] = 'Project Leader';
 $LNG['ow_translator'] = 'Translators';
 $LNG['ow_special_thanks'] = 'Special Thanks';
 $LNG['ow_file_detected'] = 'The file %s was encountered. for reasons of security, delete or rename';
-$LNG['ow_config_file_writable'] = 'The file config.php can be written, edited or deleted! It is recommended by 440 mode (read only).';
+$LNG['ow_config_file_writable'] = 'The file config.php can be written, edited or deleted! It is recommended by 440 mode'
+    . ' (read only).';
 $LNG['ow_database_errors'] = 'You have errors in your database. <a href="ErrorPage.php">Show Errors</a>';
 $LNG['ow_smtp_errors'] = 'verifies the configuration of SMTP! -At the moment no mail can be sent!';
 $LNG['ow_dir_not_writable'] = '/%s dir cant be written!';
@@ -326,7 +329,7 @@ $LNG['ow_developers'] = 'Developers';
 //###########################################################//
 
 
-//---------------  Configurações do Universo e do Servidor	------------------------//
+//---------------  Configurações do Universo e do Servidor  ------------------------//
 $LNG['se_server_parameters'] = 'Settings of the universe';
 $LNG['se_game_name'] = 'Set name';
 $LNG['se_uni_name'] = 'Name of the Universe';
@@ -359,7 +362,8 @@ $LNG['se_save_parameters'] = 'Save';
 $LNG['se_configuration_title'] = 'Configuration of server';
 $LNG['se_server_naame'] = 'Set name';
 $LNG['se_cookie_name'] = 'Cookie Name';
-$LNG['se_cookie_advert'] = 'When you change the name of the Cookie should go back to login.<br>It is recommended to change the name if you have several universes.';
+$LNG['se_cookie_advert'] = 'When you change the name of the Cookie should go back to login.<br>It is recommended to'
+    . ' change the name if you have several universes.';
 $LNG['se_debug_message'] = 'Debug mode displays a record of consultations at the moment';
 $LNG['se_def_cdr'] = 'Defense for the Debris';
 $LNG['se_ships_cdr'] = 'Fleet for the Debris';
@@ -369,7 +373,10 @@ $LNG['se_noob_protect'] = 'Protection of newbies';
 $LNG['se_noob_protect2'] = 'Protection n. points';
 $LNG['se_noob_protect3'] = 'Newbie Point Multiply';
 $LNG['se_noob_protect_e2'] = 'Limit of points to leave them to be newbie';
-$LNG['se_noob_protect_e3'] = 'You can only attack users where their points is between your points * (amount), for example *18 , it means, if you have 1000 points, you can attack users with less than 18000 points, or, if you have 50000 points, you can be attacked from users where you enter in their range points, like if a enemy or a neutral user have 20000 points, * 18 will be 360000, so you are in their range and you can be attacked by him';
+$LNG['se_noob_protect_e3'] = 'You can only attack users where their points is between your points * (amount), for'
+    . ' example *18 , it means, if you have 1000 points, you can attack users with less than 18000 points, or, if you'
+    . ' have 50000 points, you can be attacked from users where you enter in their range points, like if a enemy or a'
+    . ' neutral user have 20000 points, * 18 will be 360000, so you are in their range and you can be attacked by him';
 $LNG['se_reg_closed'] = 'Closed Registration';
 $LNG['se_min_build_time'] = 'Min. Construction';
 $LNG['se_trader_head'] = 'The settings of Merchant Fleet';
@@ -389,13 +396,15 @@ $LNG['se_sendmail_inactive'] = 'Enable email alerts';
 $LNG['se_ref'] = 'Referral Link';
 $LNG['se_server_colonisation_config'] = 'Colonization Configuration';
 $LNG['se_planets_min'] = 'Max planets without research';
-$LNG['se_planets_min_info'] = 'From the outset, the player has the opportunity to occupy the specified number of planets';
+$LNG['se_planets_min_info'] = 'From the outset, the player has the opportunity to occupy the specified number of'
+    . ' planets';
 $LNG['se_planets_tech'] = 'Amount max of Colonies with Astrophysics';
 $LNG['se_planets_tech_info'] = 'This is how many planets user can have with Astrophysics';
 $LNG['se_planets_per_tech'] = 'Additional planets per level of Astrophysics';
 $LNG['se_planets_per_tech_info'] = 'This is the amount of colonies unlock per level';
 $LNG['se_ref_active'] = 'Activate Referallink';
-$LNG['se_ref_active_info'] = 'Referral Link, or the invitation link gives players the opportunity to refer, or attract and invite more friends. This will give UMA suruba bonus nude for players.';
+$LNG['se_ref_active_info'] = 'Referral Link, or the invitation link gives players the opportunity to refer, or attract'
+    . ' and invite more friends. This will give UMA suruba bonus nude for players.';
 $LNG['se_ref_bonus'] = 'Referral Link bonus';
 $LNG['se_ref_bonus_info'] = 'Number of black matter that the user receives the recruitment by the user.';
 $LNG['se_ref_minpoints'] = 'Limite de bonus';
@@ -404,7 +413,8 @@ $LNG['se_ref_max_referals'] = 'Maximum reference';
 $LNG['se_ref_max_referals_info'] = 'The maximum number of recruiting players for the user.';
 $LNG['se_silo_factor'] = 'Missile Silo';
 $LNG['se_silo_factor_info'] = 'Factor of the silo size.';
-$LNG['se_min_build_time_info'] = 'If this is 1, then the minimum time of build is 1 second (if the Nanites or Robots alows beign 0 seconds (Instantly)).<br>If 0, this is disabled';
+$LNG['se_min_build_time_info'] = 'If this is 1, then the minimum time of build is 1 second (if the Nanites or Robots'
+    . ' alows beign 0 seconds (Instantly)).<br>If 0, this is disabled';
 $LNG['se_news_head'] = 'Settings of news';
 $LNG['se_news_active'] = 'Activate News';
 $LNG['se_news_limit'] = 'It is allowed HTML codes like "color" , "p align=left or right" , "b" "i" "u" "del"';
@@ -413,7 +423,8 @@ $LNG['se_news'] = 'News';
 $LNG['se_verfiy_mail'] = 'The system of checking email';
 $LNG['se_verfiy_mail_info'] = 'If this option is active players has to activate their accounts.';
 $LNG['se_smtp'] = 'Settings of SMTP';
-$LNG['se_smtp_info'] = 'Enter the SMTP server to allow communication between the pr0game server and their players by SMTP mail server.';
+$LNG['se_smtp_info'] = 'Enter the SMTP server to allow communication between the pr0game server and their players by'
+    . ' SMTP mail server.';
 $LNG['se_mail_active'] = 'Enables it to Email?';
 $LNG['se_mail_use'] = 'Version of email:';
 $LNG['se_mail_sel_0'] = 'Function PHP mail()';
@@ -435,7 +446,11 @@ $LNG['se_smtp_pass'] = 'SMTP Password:';
 $LNG['se_smtp_sendmail'] = 'SMTP Sender:';
 $LNG['se_smtp_sendmail_info'] = 'Put here your e-mail address. Doesnt need to be the same as sending.';
 $LNG['se_google'] = 'Google Analytics settings';
-$LNG['se_google_info'] = 'Google Analytics is the solution for web sites that allows you to acquire valuable knowledge about the traffic of your site and the impact of their marketing strategies. Thanks to the powerful, flexible and user-friendly features you can now access your prog data in new ways to analyze and show. With Google you can design your Analitico targeted advertising, marketing campaigns and website development with high conversion rates.';
+$LNG['se_google_info'] = 'Google Analytics is the solution for web sites that allows you to acquire valuable knowledge'
+    . ' about the traffic of your site and the impact of their marketing strategies. Thanks to the powerful, flexible'
+    . ' and user-friendly features you can now access your prog data in new ways to analyze and show. With Google you'
+    . ' can design your Analitico targeted advertising, marketing campaigns and website development with high'
+    . ' conversion rates.';
 $LNG['se_google_active'] = 'Enable/disable?';
 $LNG['se_google_key'] = 'Google Analytics Key';
 $LNG['se_google_key_info'] = 'Identify the key analog site for your policy. It always starts with UA-00000000-0';
@@ -507,8 +522,8 @@ $LNG['se_disclaimerNotice'] = 'More information';
 //###########################################################//
 
 
-//---------------	Moderação	------------------------//
-//	Permissões
+//---------------   Moderação   ------------------------//
+//  Permissões
 $LNG['mod_title'] = 'Administrator permissions';
 $LNG['mod_range'] = 'Authority';
 $LNG['mod_power_view'] = 'Power of observation';
@@ -517,7 +532,7 @@ $LNG['mod_power_config'] = 'Config. of power';
 $LNG['mod_power_tools'] = 'Power to manipulate tools';
 $LNG['mod_power_loog'] = 'Log of actions';
 
-//	Niveis de Autoridade
+//  Niveis de Autoridade
 $LNG['ad_authlevel_title'] = 'Authorities';
 $LNG['ad_authlevel_name'] = 'Name';
 $LNG['ad_authlevel_auth'] = 'Authority';
@@ -535,7 +550,7 @@ $LNG['ad_authlevel_tt'] = '[See All]';
 //###########################################################//
 
 
-//---------------	Frotas em voo	------------------------//
+//---------------   Frotas em voo   ------------------------//
 
 $LNG['ff_fleetid'] = "ID";
 $LNG['ff_mission'] = "Mission";
@@ -556,7 +571,7 @@ $LNG['ff_no_fleets'] = "Is not present any fleet";
 //###########################################################//
 
 
-//---------------	Verificação de base de dados	------------------------//
+//---------------   Verificação de base de dados    ------------------------//
 $LNG['sb_top_memory'] = 'Peak memory: %p KB / max. %m KB <br>';
 $LNG['sb_final_memory'] = 'Memory consumed by the end: %e KB / max. %m KB<br>';
 $LNG['sb_start_memory'] = 'Memory consumed at the beginning: %i KB / max. %m KB<br>';
@@ -567,12 +582,12 @@ $LNG['sb_sql_counts'] = 'SQL Querys: %d';
 //###########################################################//
 
 
-//---------------	Lista de jogadores	------------------------//
+//---------------   Lista de jogadores  ------------------------//
 $LNG['ul_sure_you_want_dlte'] = 'Are you sure that you want to remove?';
 //###########################################################//
 
 
-//---------------	Menu Esquerdo	------------------------//
+//---------------   Menu Esquerdo   ------------------------//
 $LNG['mu_general'] = 'General';
 $LNG['mu_connected'] = 'Online';
 $LNG['mu_settings'] = 'Server Configuration';
@@ -596,7 +611,8 @@ $LNG['mu_tools'] = 'Tools';
 $LNG['mu_md5_encripter'] = 'MD5 Encryptor';
 $LNG['mu_optimize_db'] = 'Verify database';
 $LNG['mu_manual_points_update'] = 'Manual points';
-$LNG['mu_mpu_confirmation'] = 'The Updater is automatico points, this allows you to see what is that your server is currently doing (As memory consumed, SQL, etc.)';
+$LNG['mu_mpu_confirmation'] = 'The Updater is automatico points, this allows you to see what is that your server is'
+    . ' currently doing (As memory consumed, SQL, etc.)';
 $LNG['mu_search_page'] = 'Advanced search';
 $LNG['mu_info_account_page'] = 'Information Account';
 $LNG['mu_planets_options'] = 'Planets Options';
@@ -618,7 +634,8 @@ $LNG['mu_dump'] = 'Database Backup';
 
 $LNG['vt_error'] = 'Hashfile is not available! - Run Update!';
 $LNG['vt_fail'] = 'Changed Files';
-$LNG['vt_info'] = 'This list contains the files that were modified and does not correspond to the original.<br>If not did you change even the game, you must replace the files with the originals.';
+$LNG['vt_info'] = 'This list contains the files that were modified and does not correspond to the original.<br>If not'
+    . ' did you change even the game, you must replace the files with the originals.';
 
 $LNG['vt_head'] = 'Verify the game files';
 $LNG['vt_filephp'] = 'PHP File';
@@ -638,12 +655,13 @@ $LNG['vt_loadfile'] = 'Loading file list';
 
 $LNG['cc_cache_clear'] = 'Cache cleaned';
 
-//---------------	Reinicio de Universo	------------------------//
+//---------------   Reinicio de Universo    ------------------------//
 $LNG['re_reset_universe'] = 'Restart the universe';
 $LNG['re_player_and_planets'] = 'Players and Planets';
 $LNG['re_reset_player'] = 'Delete all Players';
 $LNG['re_reset_planets'] = 'Delete all Planets';
-$LNG['re_reset_universe_confirmation'] = 'When you click OK, the database will be all clean (Except tables). To make this option, there is no return, except with a backup of the database!';
+$LNG['re_reset_universe_confirmation'] = 'When you click OK, the database will be all clean (Except tables). To make'
+    . ' this option, there is no return, except with a backup of the database!';
 $LNG['re_defenses_and_ships'] = 'Defense and Hangar';
 $LNG['re_defenses'] = 'Restart Defenses';
 $LNG['re_ships'] = 'Restart Fleets';
@@ -674,7 +692,7 @@ $LNG['re_reset_excess'] = 'Options reinitialized successfully!';
 //###########################################################//
 
 
-//---------------	Informação das Contas	------------------------//
+//---------------   Informação das Contas   ------------------------//
 $LNG['ac_user_id_required'] = 'You must choose a player!';
 $LNG['ac_select_one_id'] = 'Choose only one player!';
 $LNG['ac_no_character'] = 'Letters are not accepted, only numbers!';
@@ -755,13 +773,17 @@ $LNG['ac_suspended_time'] = 'Suspended';
 $LNG['ac_suspended_longer'] = 'Until';
 $LNG['ac_suspended_reason'] = 'Reason';
 $LNG['ac_suspended_autor'] = 'Suspended by';
-$LNG['ac_note_k'] = '<table><tr><th width=10%><font color=lime>T+</font></th><th>More than Trillion</th></tr><tr><th width=10%><font color=lime>T</font></th><th>More or same of Trillion</th></tr><tr><th width=10%><font color=lime>B</font></th><th>More or same of Billion</th></tr><tr><th width=10%><font color=lime>M</font></th><th>More or same of Million </th></tr><tr><th width=10%><font color=lime>K</font></th><th>More or same of Thousand</th></tr></table>';
+$LNG['ac_note_k'] = '<table><tr><th width=10%><font color=lime>T+</font></th><th>More than Trillion</th></tr><tr>'
+    . '<th width=10%><font color=lime>T</font></th><th>More or same of Trillion</th></tr><tr><th width=10%>'
+    . '<font color=lime>B</font></th><th>More or same of Billion</th></tr><tr><th width=10%><font color=lime>M</font>'
+    . '</th><th>More or same of Million </th></tr><tr><th width=10%><font color=lime>K</font></th>'
+    . '<th>More or same of Thousand</th></tr></table>';
 $LNG['ac_leyend'] = '[ Legend ]';
 $LNG['ac_no_rank_level'] = 'Dont have enough Permissions to see the informations of this user';
 //###########################################################//
 
 
-//---------------	Pesquisa Avançada	------------------------//
+//---------------   Pesquisa Avançada   ------------------------//
 $LNG['se_no_data'] = "No data";
 $LNG['se_intro'] = 'Word or code words (option)';
 $LNG['se_users'] = 'Users';
@@ -844,7 +866,8 @@ $LNG['se_asc_desc'] = 'ASC / DESC';
 $LNG['se_search_order'] = 'Sort';
 $LNG['se_search_edit'] = 'Edit';
 $LNG['se_delete_succes_p'] = 'Delete with success';
-$LNG['se_confirm_planet'] = 'The planet chosen will be completely erased, even being the main planet or colonia, you want to continue?. Name of the planet:';
+$LNG['se_confirm_planet'] = 'The planet chosen will be completely erased, even being the main planet or colonia, you'
+    . ' want to continue?. Name of the planet:';
 
 // Pesquisa na tabela de Utilizadores
 $LNG['se_search_users_0'] = 'ID';
@@ -885,7 +908,7 @@ $LNG['se_search_alliance_5'] = "Number of members";
 //###########################################################//
 
 
-//---------------	Criador	------------------------//
+//---------------   Criador ------------------------//
 $LNG['new_creator_title'] = 'Creator';
 $LNG['new_creator_title_u'] = 'Create/Delete users';
 $LNG['new_creator_title_p'] = 'Create/Delete Planets';
@@ -901,7 +924,7 @@ $LNG['email_reg'] = 'Email';
 $LNG['email2_reg'] = 'Email (2nd time)';
 $LNG['lang_reg'] = 'Language';
 
-//	Usários
+//  Usários
 $LNG['new_title'] = 'Create new player';
 $LNG['new_user_success'] = 'Player created with success!';
 $LNG['new_add_user'] = 'Add new players';
@@ -911,7 +934,7 @@ $LNG['new_email'] = 'E-Mail';
 $LNG['new_pass'] = 'Password';
 $LNG['new_name'] = 'Name';
 
-//	Planetas
+//  Planetas
 $LNG['po_galaxy'] = 'Galaxy';
 $LNG['po_system'] = 'System';
 $LNG['po_planet'] = 'Planets';
@@ -924,7 +947,7 @@ $LNG['po_complete_all'] = 'Invalid data or existing!';
 $LNG['po_complete_all2'] = 'Error in the coordinates!';
 $LNG['po_complete_succes'] = 'Planet successfully created';
 
-//	Luas
+//  Luas
 $LNG['mo_moon_added'] = 'Moon added successfully!';
 $LNG['mo_moon_unavaible'] = 'The planet already has a moon!';
 $LNG['mo_moon_random'] = 'Random';
@@ -1098,7 +1121,8 @@ $LNG['up_submit'] = 'Send';
 $LNG['up_version'] = 'Version';
 $LNG['up_chmod_error'] = "No write permission (s) for folder:\n\n";
 $LNG['up_need_curl'] = 'Error: CURL is not present.<br>The maintaining of pr0game requires cURL to run download files.';
-$LNG['up_no_xml_ext'] = 'Error: XML Parser is not present.<br>The maintaining of pr0game requires XML Parser to process the files present.';
+$LNG['up_no_xml_ext'] = 'Error: XML Parser is not present.<br>The maintaining of pr0game requires XML Parser to process'
+    . ' the files present.';
 $LNG['up_offline'] = 'Update of server unavailable';
 
 // Página de Actividade
@@ -1175,9 +1199,14 @@ $LNG['cronjob_delete'] = 'Delete';
 $LNG['cronjob_headline'] = 'Cronjob ID';
 $LNG['cronjob_new'] = 'Create new cron job';
 
-$LNG['cronjob_desc'] = 'Here follows the input of the invocation times for the Cronjobs. The conditions are and-connected, which means that the cron job will run only if all conditions are met. The simultaneous selection of individual values in "Wochentag" and "Tag" can taking may cause that the cronjob runs irregularly here the "Alle" option should be used when at least one condition selected.<br>"Alle" will take precedence and overrides the settings of the selection list.';
+$LNG['cronjob_desc'] = 'Here follows the input of the invocation times for the Cronjobs. The conditions are'
+    . ' and-connected, which means that the cron job will run only if all conditions are met. The simultaneous'
+    . ' selection of individual values in "Wochentag" and "Tag" can taking may cause that the cronjob runs irregularly'
+    . ' here the "Alle" option should be used when at least one condition selected.<br>"Alle" will take precedence and'
+    . ' overrides the settings of the selection list.';
 $LNG['cronjob_desc_name'] = 'Freely selectable name to identify the Cronjobs.';
-$LNG['cronjob_desc_class'] = 'Input of the class to be invoked. Includes/classes/cronjobs/foo.class.php called "foo" must be entered.';
+$LNG['cronjob_desc_class'] = 'Input of the class to be invoked. Includes/classes/cronjobs/foo.class.php called "foo"'
+    . ' must be entered.';
 
 $LNG['cronjob_error_name'] = 'There was no name enter!';
 $LNG['cronjob_error_min'] = 'It defined no minutes!';
