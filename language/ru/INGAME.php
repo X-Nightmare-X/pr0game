@@ -70,7 +70,6 @@ $LNG['lm_research'] = 'Исследования';
 $LNG['lm_shipshard'] = 'Верфь';
 $LNG['lm_defenses'] = 'Оборона';
 $LNG['lm_resources'] = 'Сырьё';
-$LNG['lm_trader'] = 'Скупщик ресурсов';
 $LNG['lm_fleettrader'] = 'Скупщик флота';
 $LNG['lm_technology'] = 'Технологии';
 $LNG['lm_messages'] = 'Сообщения';
@@ -419,19 +418,8 @@ $LNG['rs_weekly'] = 'Всего в неделю';
 $LNG['rs_ress_bonus'] = 'Офицеры + Инновационные разработки';
 
 // Скупщик
-$LNG['tr_cost_dm_trader'] = 'Обмен ресурсов стоит %s Тёмной материи.';
-$LNG['tr_not_enought'] = 'Недостаточно %s.';
 $LNG['tr_exchange_done'] = 'Обмен завершён.';
 $LNG['tr_exchange_error'] = 'Недостаточно единиц в наличии.';
-$LNG['tr_call_trader'] = 'Скупщик ресурсов';
-$LNG['tr_call_trader_who_buys'] = 'Вы хотите продать ';
-$LNG['tr_call_trader_submit'] = 'Вызвать другого скупщика';
-$LNG['tr_exchange_quota'] = 'Курс обмена';
-$LNG['tr_sell'] = 'Обменять';
-$LNG['tr_resource'] = 'Ресурс';
-$LNG['tr_amount'] = 'Количество';
-$LNG['tr_quota_exchange'] = 'Курс обмена';
-$LNG['tr_exchange'] = 'Обменять';
 
 // Технологии
 $LNG['tt_requirements'] = 'Требования';

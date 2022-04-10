@@ -77,7 +77,6 @@ $LNG['lm_research'] = 'Arastirma';
 $LNG['lm_shipshard'] = 'Tersane';
 $LNG['lm_defenses'] = 'Savunma';
 $LNG['lm_resources'] = 'Hammadde';
-$LNG['lm_trader'] = 'Tuccar';
 $LNG['lm_fleettrader'] = 'Hurdaci';
 $LNG['lm_technology'] = 'Teknolojiler';
 $LNG['lm_messages'] = 'Mesajlar';
@@ -440,20 +439,8 @@ $LNG['rs_ress_bonus'] = 'Bonus (Subaylar dahil):';
 
 //----------------------------------------------------------------------------//
 // Tuccar
-
-$LNG['tr_cost_dm_trader'] = 'The value of the merchant is %s %s!';
-$LNG['tr_not_enought'] = 'Yeterli miktarda %s yok.';
 $LNG['tr_exchange_done'] = 'Takas basari ile tamamlandi';
 $LNG['tr_exchange_error'] = 'Girilen miktar yanlis yada yeterli miktarda kaynagin yok';
-$LNG['tr_call_trader'] = 'Tuccar ortalikta gorunmuyor!';
-$LNG['tr_call_trader_who_buys'] = 'Tuccara ne satmak istiyorsun?';
-$LNG['tr_call_trader_submit'] = 'Tuccari Cagir';
-$LNG['tr_exchange_quota'] = 'Satin alma oranlari';
-$LNG['tr_sell'] = 'Sattigin Maden: ';
-$LNG['tr_resource'] = 'Hammadde';
-$LNG['tr_amount'] = 'Miktar';
-$LNG['tr_quota_exchange'] = 'Oranlar';
-$LNG['tr_exchange'] = 'Takasi gerceklestir';
 
 //----------------------------------------------------------------------------//
 // Teknoloji

@@ -21,3 +21,7 @@ ALTER TABLE `%PREFIX%users` DROP COLUMN `rpg_empereur`;
 -- Remove officer vars
 DELETE FROM `%PREFIX%vars_requriements` WHERE `elementID` IN (603,604,605,607,608,609,610,611,612,613,614,615);
 DELETE FROM `%PREFIX%vars` WHERE `elementID` IN (601,602,603,604,605,607,608,609,610,611,612,613,614,615);
+
+-- Remove Dark Matter
+
+ALTER TABLE `%PREFIX%config` DROP COLUMN `darkmatter_cost_trader`;

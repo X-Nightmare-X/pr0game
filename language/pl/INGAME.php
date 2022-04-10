@@ -74,7 +74,6 @@ $LNG['lm_research'] = 'Badania';
 $LNG['lm_shipshard'] = 'Stocznia';
 $LNG['lm_defenses'] = 'Obrona';
 $LNG['lm_resources'] = 'Zasoby';
-$LNG['lm_trader'] = 'Handlarz';
 $LNG['lm_fleettrader'] = 'Złomowanie floty';
 $LNG['lm_technology'] = 'Technologie';
 $LNG['lm_messages'] = 'Wiadomości';
@@ -441,19 +440,8 @@ $LNG['rs_ress_bonus'] = 'Bonus(Oficer/DM-Bonus):';
 //----------------------------------------------------------------------------//
 //TRADER
 
-$LNG['tr_cost_dm_trader'] = 'Opłaty handlarza %s %s!';
-$LNG['tr_not_enought'] = 'Nie masz wystarczająco %s.';
 $LNG['tr_exchange_done'] = 'Wymiana zakończona';
 $LNG['tr_exchange_error'] = 'Brak wystarczającej ilości zasobów ';
-$LNG['tr_call_trader'] = 'Handlarz';
-$LNG['tr_call_trader_who_buys'] = 'Spytaj handlarza, kto kupuje';
-$LNG['tr_call_trader_submit'] = 'Wyślij do handlarza';
-$LNG['tr_exchange_quota'] = 'Stosunek wymiany to ';
-$LNG['tr_sell'] = 'Wymień za';
-$LNG['tr_resource'] = 'Zasoby';
-$LNG['tr_amount'] = 'Ilość';
-$LNG['tr_quota_exchange'] = 'Aktualny kurs';
-$LNG['tr_exchange'] = 'Wymień';
 
 //----------------------------------------------------------------------------//
 //TECHTREE

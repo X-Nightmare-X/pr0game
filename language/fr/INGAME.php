@@ -64,7 +64,6 @@ $LNG['lm_research'] = 'Recherche';
 $LNG['lm_shipshard'] = 'Chantier Spatial';
 $LNG['lm_defenses'] = 'Défense';
 $LNG['lm_resources'] = 'Ressources';
-$LNG['lm_trader'] = 'Marchand';
 $LNG['lm_fleettrader'] = 'Ferrailleur Intergalactique';
 $LNG['lm_technology'] = 'Technologie';
 $LNG['lm_messages'] = 'Messages';
@@ -424,19 +423,8 @@ $LNG['rs_ress_bonus'] = 'Bonus(Officiers/Bonus-MN):';
 //----------------------------------------------------------------------------//
 //TRADER
 
-$LNG['tr_cost_dm_trader'] = 'Le montant des frais du marchand s\'élèvent à %s %s!';
-$LNG['tr_not_enought'] = 'Vous n\'en possédez pas assez %s.';
 $LNG['tr_exchange_done'] = 'Echange réussi';
 $LNG['tr_exchange_error'] = 'Le montant des ressources est erronés ou sont insuffisantes';
-$LNG['tr_call_trader'] = 'Appeler un Marchand';
-$LNG['tr_call_trader_who_buys'] = 'Appeler un Marchand qui achète du ';
-$LNG['tr_call_trader_submit'] = 'Appeler un Marchand';
-$LNG['tr_exchange_quota'] = 'Le taux d\'échange est 2/1/0.5';
-$LNG['tr_sell'] = 'Echanger contre';
-$LNG['tr_resource'] = 'Ressources';
-$LNG['tr_amount'] = 'Quantité';
-$LNG['tr_quota_exchange'] = 'Taux d\'échange';
-$LNG['tr_exchange'] = 'Echanger';
 
 //----------------------------------------------------------------------------//
 //TECHTREE

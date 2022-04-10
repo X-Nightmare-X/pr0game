@@ -81,7 +81,6 @@ $LNG['lm_shipshard'] = 'Hangar';
 $LNG['lm_defenses'] = 'Defenses';
 $LNG['lm_marketplace'] = 'Marketplace';
 $LNG['lm_resources'] = 'Resources';
-$LNG['lm_trader'] = 'Market';
 $LNG['lm_fleettrader'] = 'Merchant of Fleets';
 $LNG['lm_technology'] = 'Technologies';
 $LNG['lm_messages'] = 'Messages';
@@ -472,19 +471,8 @@ $LNG['rs_ress_bonus'] = 'Bonus (through Research):';
 //----------------------------------------------------------------------------//
 // Merchants
 
-$LNG['tr_cost_dm_trader'] = 'You have to pay the merchant %s %s!';
-$LNG['tr_not_enought'] = 'Don\'t have enough %s.';
 $LNG['tr_exchange_done'] = 'Trade successful';
 $LNG['tr_exchange_error'] = 'The amount of resources is wrong or are insufficient';
-$LNG['tr_call_trader'] = 'Call a merchant';
-$LNG['tr_call_trader_who_buys'] = 'Call a merchant who purchases';
-$LNG['tr_call_trader_submit'] = 'Call Merchant';
-$LNG['tr_exchange_quota'] = 'The exchange rate is';
-$LNG['tr_sell'] = 'Selling ';
-$LNG['tr_resource'] = 'Resource';
-$LNG['tr_amount'] = 'Amount';
-$LNG['tr_quota_exchange'] = 'Fee';
-$LNG['tr_exchange'] = 'Trade';
 
 //----------------------------------------------------------------------------//
 // Tecnology

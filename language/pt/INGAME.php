@@ -79,7 +79,6 @@ $LNG['lm_research'] = 'Pesquisas';
 $LNG['lm_shipshard'] = 'Hangar';
 $LNG['lm_defenses'] = 'Defesas';
 $LNG['lm_resources'] = 'Recursos';
-$LNG['lm_trader'] = 'Mercado';
 $LNG['lm_fleettrader'] = 'Mercador de Frotas';
 $LNG['lm_technology'] = 'Tecnologias';
 $LNG['lm_messages'] = 'Mensagens';
@@ -439,19 +438,8 @@ $LNG['rs_ress_bonus'] = 'Bonus (Oficiais/Bonus):';
 //----------------------------------------------------------------------------//
 // Mercado
 
-$LNG['tr_cost_dm_trader'] = 'O valor do mercador é de %s %s!';
-$LNG['tr_not_enought'] = 'Não possuis suficiente %s.';
 $LNG['tr_exchange_done'] = 'Troca feita com sucesso';
 $LNG['tr_exchange_error'] = 'O montante de recursos está errado ou são insuficientes';
-$LNG['tr_call_trader'] = 'Chamar um Mercador';
-$LNG['tr_call_trader_who_buys'] = 'Chamar um mercador que compre';
-$LNG['tr_call_trader_submit'] = 'Chamar Mercador';
-$LNG['tr_exchange_quota'] = 'A taxa de troca é de';
-$LNG['tr_sell'] = 'Compra de ';
-$LNG['tr_resource'] = 'Recurso';
-$LNG['tr_amount'] = 'Montante';
-$LNG['tr_quota_exchange'] = 'Taxa';
-$LNG['tr_exchange'] = 'Trocar';
 
 //----------------------------------------------------------------------------//
 // Tecnologia

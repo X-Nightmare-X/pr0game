@@ -73,7 +73,6 @@ $LNG['lm_research'] = 'Investigacion';
 $LNG['lm_shipshard'] = 'Hangar';
 $LNG['lm_defenses'] = 'Defensas';
 $LNG['lm_resources'] = 'Recursos';
-$LNG['lm_trader'] = 'Mercader';
 $LNG['lm_fleettrader'] = 'Mercader de Flotas';
 $LNG['lm_technology'] = 'Tecnología';
 $LNG['lm_messages'] = 'Mensajes';
@@ -431,19 +430,8 @@ $LNG['rs_ress_bonus'] = 'Bonus(Oficial/Bonus-MO):';
 //----------------------------------------------------------------------------//
 //TRADER
 
-$LNG['tr_cost_dm_trader'] = 'El importe de las tasas es de %s %s!';
-$LNG['tr_not_enought'] = 'No tienes suficiente %s, para realizar el intercambio';
 $LNG['tr_exchange_done'] = 'Intercambio realizado con &eacute;xito';
 $LNG['tr_exchange_error'] = 'Tipo incorrecto o insuficiente de las unidades disponibles';
-$LNG['tr_call_trader'] = 'Llamar a un mercader';
-$LNG['tr_call_trader_who_buys'] = 'Llamar a un mercader que compra ';
-$LNG['tr_call_trader_submit'] = 'Llamar al comerciante';
-$LNG['tr_exchange_quota'] = 'El tipo de intercambio es de';
-$LNG['tr_sell'] = 'Vender';
-$LNG['tr_resource'] = 'Recurso';
-$LNG['tr_amount'] = 'Cantidad';
-$LNG['tr_quota_exchange'] = 'Cuota de intercambio';
-$LNG['tr_exchange'] = 'Intercambiar';
 
 //----------------------------------------------------------------------------//
 //TECHTREE

@@ -71,7 +71,6 @@ $LNG['lm_research'] = 'Forschung';
 $LNG['lm_shipshard'] = 'Schiffswerft';
 $LNG['lm_defenses'] = 'Verteidigung';
 $LNG['lm_resources'] = 'Rohstoffe';
-$LNG['lm_trader'] = 'Händler';
 $LNG['lm_fleettrader'] = 'Schrotthändler';
 $LNG['lm_technology'] = 'Technologie';
 $LNG['lm_messages'] = 'Nachrichten';
@@ -457,19 +456,8 @@ $LNG['rs_ress_bonus'] = 'Bonus (durch Forschung)';
 //----------------------------------------------------------------------------//
 //TRADER
 
-$LNG['tr_cost_dm_trader'] = 'Die Händlergebühren betragen %s %s!';
-$LNG['tr_not_enought'] = 'Du hast nicht genug %s.';
 $LNG['tr_exchange_done'] = 'Erfolgreich umgetauscht';
 $LNG['tr_exchange_error'] = 'Zu wenig verfügbare Einheiten oder falscher Typ';
-$LNG['tr_call_trader'] = 'Rufe einen Händler';
-$LNG['tr_call_trader_who_buys'] = 'Rufe einen Händler, der folgendes kauft ';
-$LNG['tr_call_trader_submit'] = 'Rufe Händler';
-$LNG['tr_exchange_quota'] = 'Der Handelskurs ist';
-$LNG['tr_sell'] = 'Tauschen gegen';
-$LNG['tr_resource'] = 'Rohstoff';
-$LNG['tr_amount'] = 'Menge';
-$LNG['tr_quota_exchange'] = 'Handelskurs';
-$LNG['tr_exchange'] = 'Tauschen';
 
 //----------------------------------------------------------------------------//
 //TECHTREE
@@ -1088,7 +1076,6 @@ $LNG['market_msg_trade_from'] = 'SteemNova Marktplatz';
 $LNG['market_msg_trade_bought'] = 'Deine Flotte fliegt zu %s mit %s %s, %s %s, %s %s und es kostet %s %s';
 $LNG['market_msg_trade_sold'] = 'Deine Flotte fliegt zu %s mit %s %s, %s %s, %s %s.';
 $LNG['lm_marketplace'] = 'Marktplatz';
-$LNG['lm_trader'] = 'Markt';
 
 //----------------------------------------------------------------------------//
 // MissilesAjax.php
