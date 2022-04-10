@@ -205,7 +205,6 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 		global $pricelist;
 		$Found			= array();
 		$upperValue = 3;
-
 		$remainingPoints = $foundPoints;
 		while($findableShips != null && $upperValue > 0)
 		{
@@ -553,9 +552,7 @@ HTML;
 		// Hold time bonus
 		$holdTime = ($this->_fleet['fleet_end_stay'] - $this->_fleet['fleet_start_time']) / 3600;
 		
-		$GetEvent = mt_rand(0, 1000);
-		$GetEvent -= $holdTime * 10;
-		
+		$GetEvent = mt_rand(0, 1000 - $holdTime * 10);
 		// Depletion check
 		if ($expeditionsCount <= 10) {
 			$chanceDepleted = 0;
