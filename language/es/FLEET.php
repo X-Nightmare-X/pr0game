@@ -1,6 +1,6 @@
 <?php
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -92,16 +92,6 @@ $LNG['sys_expe_found_ress_2_2']			= 'En una pequeña luna con una atmósfera a s
 $LNG['sys_expe_found_ress_2_3']			= 'Hemos encontrado un pequeño convoy de naves civiles en necesidad de alimentos y medicamentos de urgencia. A cambio, recibimos una gran cantidad de recursos útiles.';
 $LNG['sys_expe_found_ress_3_1']			= 'Tu flota de expedición descubrió una nave alienígena gigante. Con la tecnología de la nave no pudieron hacer nada, pero la nave pudo ser descompuesta en sus componentes, a través de los cuales se pudo obtener valiosas materias primas.';
 $LNG['sys_expe_found_ress_3_2']			= 'Un cinturón de minerales alrededor de un planeta desconocido, figura grandes cantidades de materias primas. ¡La flota de expedición muestra informes de carga completa!';
-$LNG['sys_expe_found_dm_1_1']				= 'La expedición ha logrado captar un poco de materia oscura y la conservó.';
-$LNG['sys_expe_found_dm_1_2']				= 'Nuestra expedición ha encontrado una nave fantasma que transportaba una pequeña cantidad de materia oscura. Aunque no pudimos encontrar ninguna evidencia de lo que ha sucedido a la tripulación original, nuestros técnicos han sido capaces de recuperar la materia oscura.';
-$LNG['sys_expe_found_dm_1_3']				= 'Conocimos a un alien a bordo de una pequeña nave, que nos dejó un recipiente de materia oscura a cambio de unos cuantos cálculos matemáticos sencillos.';
-$LNG['sys_expe_found_dm_1_4']				= 'Hemos encontrado los restos de una nave alienígena. ¡A bordo había un pequeño contenedor de materia oscura!';
-$LNG['sys_expe_found_dm_1_5']				= 'La expedición ha seguido algunas señales extrañas y descubrió un asteroide que tiene un núcleo con una pequeña cantidad de materia oscura. El asteroide fue traído a bordo y los investigadores ahora están tratando de extraer la materia oscura.';
-$LNG['sys_expe_found_dm_2_1']				= 'Nuestra expedición ha tenido éxito en un experimento único. Se reunió la materia oscura de una estrella moribunda.';
-$LNG['sys_expe_found_dm_2_2']				= 'Nuestra expedición informa de un fenómeno extraño espectral. Esto llevó, entre otras cosas, que el almacenamiento de energía de los escudos de las naves, forman la materia oscura. Nuestros ingenieros están tratando ahora, de preservar gran parte de esta materia oscura.';
-$LNG['sys_expe_found_dm_2_3']				= 'Nuestra expedición ha encontrado una antigua estación espacial que se ha mantenido así durante mucho tiempo sin control por el espacio. La propia estación está completamente inútil, pero encontraron en uno de sus reactores una pequeña cantidad de materia oscura. Nuestros ingenieros están tratando de recuperar la máxima cantidad posible.';
-$LNG['sys_expe_found_dm_3_1']				= 'Una distorsión hiperespacial espontánea ha permitido a tu expedición, asegurar una gran cantidad de materia oscura.';
-$LNG['sys_expe_found_dm_3_2']				= 'Nuestra expedición informó de un primer contacto con una criatura de la energía que se llamó Legorianer, decidió ayudar a las especies menos desarrolladas y nos dió un contenedor de materia oscura.';
 $LNG['sys_expe_found_ships_1_1']			= '¡Nos hemos encontrado con los restos de una expedición anterior! Nuestros técnicos miran si algunas de las naves pueden volver a volar.';
 $LNG['sys_expe_found_ships_1_2']			= 'Hemos encontrado una base abandonada de piratas. En el hangar habían algunas naves viejas. Nuestros técnicos van a comprobar si todavía son capaces de utilizarlas.';
 $LNG['sys_expe_found_ships_1_3']			= 'Nuestra expedición encontró un planeta que fue probablemente destruido por las guerras. En órbita hay varias naves naufragadas. Los técnicos tratan de reparar algunas de ellas. Tal vez entonces también tengan la posibilidad de obtener información sobre lo que ha sucedido aquí.';
@@ -160,8 +150,6 @@ $LNG['sys_expe_back_home']                  = 'Su flota ha regresado de la exped
 $LNG['sys_expe_back_home_ress']             = 'Han traído %s %s, %s %s y %s %s .';
 $LNG['sys_expe_back_home_ships_flound']     = 'Se encontraron las siguientes embarcaciones:';
 $LNG['sys_expe_back_home_ships_lost']       = 'Los siguientes barcos se perdieron:';
-$LNG['sys_expe_back_home_without_dm']        = 'Tu expedición regresó al hangar de una expedición.';
-$LNG['sys_expe_back_home_with_dm']			= 'Tu expedición regresó al hangar.<br>Encontraron %s(%s) de naves desguazadas y deformadas <br>El %s se pudo recuperar.';
 $LNG['sys_mess_transport'] 				= 'Informe de transporte';
 $LNG['sys_tran_mess_owner']		 		= 'Una de tus flotas ha llegado sin interrupciones al planeta %s %s y ha entregado %s %s, %s %s y %s %s.';
 $LNG['sys_tran_mess_user'] 		 		= 'Una flota pacífica de %s %s alcanzado %s %s y entrega %s %s, %s %s y %s %s.';

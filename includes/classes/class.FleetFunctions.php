@@ -531,13 +531,6 @@ class FleetFunctions
                 ) {
                     $availableMissions[] = 9;
                 }
-
-                if (
-                    $YourPlanet && $MissionInfo['planettype'] == 3 && self::OnlyShipByID($MissionInfo['Ship'], 220)
-                    && isModuleAvailable(MODULE_MISSION_DARKMATTER)
-                ) {
-                    $availableMissions[] = 11;
-                }
             }
         }
 

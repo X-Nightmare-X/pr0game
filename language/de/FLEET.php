@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -16,7 +16,7 @@
  */
 
 
- 
+
  $LNG['and']									= 'und';
 
 //----------------------------------------------------------------------------//
@@ -99,22 +99,12 @@ $LNG['sys_expe_found_ress_logbook_1']		= 'Logbuch Nachtrag des ersten Offiziers:
 
 $LNG['sys_expe_found_ress_logbook_3']		= 'Logbuch Nachtrag des ersten Offiziers: Wir haben zwar alles nicht unbedingt notwendige über Bord geworfen, aber trotzdem nicht genügen Platz für alle gefunden Ressourcen machen können.';
 
-$LNG['sys_expe_found_dm_1_1']				= 'Der Expedition ist es gelungen ein wenig Dunkle Materie einzufangen und zu konservieren.';
-$LNG['sys_expe_found_dm_1_2']				= 'Unsere Expedition ist auf ein Geisterschiff gestoßen, das eine kleine Menge dunkler Materie transportierte. Wir haben zwar keinerlei Hinweise finden können was der ursprünglichen Crew zugestoßen ist, jedoch gelang es unseren Technikern die Dunkle Materie zu bergen.';
-$LNG['sys_expe_found_dm_1_3']				= 'Wir trafen auf ein seltsames Alien an Bord eines kleinen Schiffes, das uns im Austausch für ein paar simple, mathematische Berechnungen einen kleinen Behälter mit dunkler Materie überließ.';
-$LNG['sys_expe_found_dm_1_4']				= 'Wir haben die Überreste eines Alien-Schiffes gefunden. An Bord war ein kleiner Container mit dunkler Materie!';
-$LNG['sys_expe_found_dm_1_5']				= 'Die Expedition folgt einigen seltsamen Signalen und entdeckte einen Asteroiden, in dessen Kern eine kleine Menge dunkler Materie eingeschlossen war. Der Asteroid wurde an Bord geholt und die Forscher versuchen nun die dunkle Materie zu extrahieren.';
-$LNG['sys_expe_found_dm_2_1']				= 'Unserer Expedition ist ein einmaliges Experiment gelungen. Sie haben aus einem sterbenden Stern Dunkle Materie gewinnen können.';
-$LNG['sys_expe_found_dm_2_2']				= 'Unsere Expedition meldet ein seltsames spektrales Phänomen. Dies führte unter Anderem dazu, dass sich in den Energiespeichern der Schiffsschilde dunkle Materie bildete. Unsere Techniker versuchen nun, solange das Phänomen noch anhält möglichst viel dieser dunklen Materie zu konservieren.';
-$LNG['sys_expe_found_dm_2_3']				= 'Unsere Expedition hat eine uralte Raumstation gefunden, die wohl schon lange Zeit unkontrolliert durch das All schwebt. Die Station selbst war komplett unbrauchbar, jedoch lagerten in einem ihrer Reaktoren noch eine kleine Menge dunkler Materie. Unsere Techniker versuchen soviel wie möglich davon zu bergen.';
-$LNG['sys_expe_found_dm_3_1']				= 'Eine spontane Hyperraumverzerrung hat es deiner Expedition ermöglicht, eine große Menge dunkler Materie sicherzustellen!';
-$LNG['sys_expe_found_dm_3_2']				= 'Unsere Expedition meldet einen ersten Kontakt der besonderen Art. Anscheinend hat eine Energiekreatur, die sich Legorianer nannte, die Schiffe der Expedition durchflogen und dann beschlossen der unterentwickelten Spezies ein wenig auszuhelfen – es materialisierte sich ein Behälter mit dunkler Materie an Bord der Brücke!';
 $LNG['sys_expe_found_ships_1_1']			= 'Wir sind auf die Überreste einer Vorgängerexpedition gestoßen! Unsere Techniker schauen, ob sie einige der Wracks wieder Flugfähig bekommen';
 $LNG['sys_expe_found_ships_1_2']			= 'Wir haben eine verlassene Piratenbasis gefunden. Im Hangar liegen noch einige alte Schiffe. Unsere Techniker schauen nach, ob einige davon noch zu gebrauchen sind.';
 $LNG['sys_expe_found_ships_1_3']			= 'Unsere Expedition fand einen Planeten, der wohl durch anhaltende Kriege fast komplett zerstört wurde. In der Umlaufbahn trieben diverse Schiffswracks. Die Techniker versuchen, einige davon zu reparieren. Vielleicht erhalten wir so auch Information darüber, was hier geschehen ist.';
 $LNG['sys_expe_found_ships_1_4']			= 'Deine Expedition ist auf eine alte Sternenfestung gestoßen, die wohl seit Ewigkeiten verlassen ist. Im Hangar der Festung wurden ein paar Schiffe gefunden. Die Techniker schauen, ob sie einige davon wieder flott bekommen. ';
 $LNG['sys_expe_found_ships_2_1']			= 'Wir haben die Reste einer Armada gefunden. Die Techniker der Expeditionsflotte haben sich sofort auf die halbwegs intakten Schiffe begeben und versuchen, diese wieder instandzusetzen.';
-$LNG['sys_expe_found_ships_2_2']			= 'Unsere Expedition stieß auf eine alte, automatische Schiffswerft. Einige Schiffe sind noch in der Produktionsphase, und unsere Techniker versuchen, die Energieversorgung der Werft wiederherzustellen.'; 
+$LNG['sys_expe_found_ships_2_2']			= 'Unsere Expedition stieß auf eine alte, automatische Schiffswerft. Einige Schiffe sind noch in der Produktionsphase, und unsere Techniker versuchen, die Energieversorgung der Werft wiederherzustellen.';
 $LNG['sys_expe_found_ships_3_1']			= 'Wir haben einen riesigen Raumschiffsfriedhof gefunden. Einigen Technikern der Expeditionsflotte ist es gelungen, das eine oder andere Schiff wieder in Betrieb zu nehmen.';
 $LNG['sys_expe_found_ships_3_2']			= 'Wir haben einen Planeten mit Resten einer Zivilisation entdeckt. Aus dem Orbit ist noch ein riesiger Raumbahnhof zu erkennen, der als einziges Gebäude noch intakt ist. Einige unserer Techniker und Piloten haben sich auf die Oberfläche begeben um nachzuschauen, ob ein paar der dort abgestellten Schiffe noch zu gebrauchen sind.';
 $LNG['sys_expe_found_ships_logbook_1']		= 'Logbuch Nachtrag des Maschinenoffiziers: Wenn wir doch nur ein paar Schiffe mehr dabei gehabt hätten! Dann wäre es ein leichtes gewesen noch mehr von diesen Prachtstücken ab zu schleppen.';
@@ -141,7 +131,7 @@ $LNG['sys_expe_nothing_5'] 					= 'Nun, zumindest weiß man jetzt, dass rote Ano
 $LNG['sys_expe_nothing_6'] 					= 'Trotz der ersten, vielversprechenden Scans dieses Sektors kommen wir leider mit leeren Händen zurück.';
 $LNG['sys_expe_nothing_7'] 					= 'Vielleicht hätte man den Geburtstag des Captains nicht auf diesem abgelegenen Planeten feiern sollen. Ein fieses Dschungelfieber hat große Teile der Crew gezwungen die Expedition in der Krankenstation zu begleiten. Der akute Personalausfall führte dazu, dass die Expedition scheiterte.';
 $LNG['sys_expe_nothing_8'] 					= 'Deine Expedition hat, wortwörtlich, mit der Leere des Alls Bekanntschaft gemacht. Es gab nicht einmal einen kleinen Asteroiden, oder Strahlung, oder Partikel, oder irgendetwas, dass diese Expedition aufregend gestaltet hätte.';
-$LNG['sys_expe_nothing_9'] 					= 'Ein Reaktorfehler des Führungsschiffes hätte beinahe die gesamte Expedition vernichtet. Zum Glück waren die Techniker mehr als fähig und konnten das Schlimmste verhindern. Die Reparatur nahm jedoch soviel Zeit in Anspruch, dass die Expedition unverrichteter Dinge wieder zurückkehrte.'; 	
+$LNG['sys_expe_nothing_9'] 					= 'Ein Reaktorfehler des Führungsschiffes hätte beinahe die gesamte Expedition vernichtet. Zum Glück waren die Techniker mehr als fähig und konnten das Schlimmste verhindern. Die Reparatur nahm jedoch soviel Zeit in Anspruch, dass die Expedition unverrichteter Dinge wieder zurückkehrte.';
 $LNG['sys_expe_depleted_not_1'] 			= 'Logbuch Nachtrag des Kommunikationsoffiziers: Dieser Bereich des Universums ist wohl noch nicht erkundet worden.';
 $LNG['sys_expe_depleted_not_2'] 			= 'Logbuch Nachtrag des Kommunikationsoffiziers: Es ist ein erhebendes Gefühl, der Erste in einem unerforschten Sektor zu sein.';
 $LNG['sys_expe_depleted_min_1'] 			= 'Logbuch Nachtrag des Kommunikationsoffiziers: Es scheint nicht so, als ob jemals ein Mensch in diesem Bereich der Galaxis gewesen wäre.';
@@ -180,8 +170,6 @@ $LNG['sys_expe_back_home']                  = 'Deine Flotte ist von der Expediti
 $LNG['sys_expe_back_home_ress']             = 'Sie haben %s %s, %s %s und %s %s mitgebracht.';
 $LNG['sys_expe_back_home_ships_flound']     = 'Es wurden folgende Schiffe gefunden:';
 $LNG['sys_expe_back_home_ships_lost']       = 'Es gingen folgende Schiffe verloren:';
-$LNG['sys_expe_back_home_without_dm']		= 'Deine Flotte ist von der Expedition wieder zurückgekehrt.';
-$LNG['sys_expe_back_home_with_dm']			= 'Deine Flotte ist von der Expedition wieder zurückgekehrt.<br>Die gefundende %s(%s) hat die Schiffe verformt und wurden verschrottet.<br>Die %s konnte noch gerettet werden.';
 $LNG['sys_mess_transport'] 					= 'Transportbericht';
 $LNG['sys_tran_mess_owner']		 			= 'Eine deiner Flotten erreicht den Planeten %s %s und liefert %s %s, %s %s und %s %s.';
 $LNG['sys_tran_mess_user'] 		 			= 'Eine friedliche Flotte von %s %s erreicht %s %s und liefert %s %s, %s %s und %s %s.';

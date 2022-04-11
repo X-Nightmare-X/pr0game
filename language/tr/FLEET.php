@@ -1,6 +1,6 @@
 <?php
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -97,16 +97,6 @@ $LNG['sys_expe_found_ress_2_2']				= 'Bataklik ve karanligin hukum surdugu bir g
 $LNG['sys_expe_found_ress_2_3']				= 'Kucuk bir askeri olmayan konvoyla karsilastik. Acil olarak ilac ve yiyecek ihtiyaclari oldugunu soylediler. Bizde onlara biz Kizilay degiliz dedik ve maden karsiligi istediklerini verdik.';
 $LNG['sys_expe_found_ress_3_1']				= 'Kesif filon biraz utangac bir alien irkina rastliyor. Acikcasi bu kadar cekingen alien ile de ilk kez karsilasiyorsun ve seninkiler de olaylari yavastan aliyorlar. Bir sure iletisim kurduktan sonra, aralarindan bir temsilciyi degis tokus edilebilecek mallarla dunyana gondermeyi oneriyorlar.';
 $LNG['sys_expe_found_ress_3_2']				= 'Kendi atmosferine sahip ufak bir Ay`da, kesif filon yuksek miktarda islenmemis hammadde istifi buldu. Ay uzerinde calisan Murettebat hala bu dogal hazineleri kaldirip, yuklemeye calisiyor.';
-$LNG['sys_expe_found_dm_1_1']				= 'Kesif filonuz uzayin derinliklerinde eglence duskunu magandalarla karsilasti. Filo komutanini seyir defteri; 1 sise sarap karsiligi aralarinda eglenmemize musade ettiler.ooo oda ne bizim okuzgozu sarabimiz cok hoslarina gitmis.onlarda bize karanlik madde hediye ettiler.saat baya gec oldu.personelde yeterince alkol aldilar.radara yakalanmadan biran once ana vatana donmeliyiz..';
-$LNG['sys_expe_found_dm_1_2']				= 'Kucuk bir geminin guvertesinde garip bir yaratikla karsilastik. Bu yaratik bizlere oldukca nazik davrandi ve bir kac basit matematik formulu karsiliginda bir koli karanlik madde hediye etti, biz de anlamadik?';
-$LNG['sys_expe_found_dm_1_3']				= 'Kesif Ekibiniz hiper uzay teknolojisi ile derin dehlizlerden Karanlik Madde elde etmeye calisti. ';
-$LNG['sys_expe_found_dm_1_4']				= 'Kesif Ekibiniz arastirmalarina devam ederken Savaslarin yasandigi bir bir alanda hayalet bir gemi kesfetti. Burada ne yasandigina dair notlar bulduk. Ve ani bir heyecan yasayarak gemi deposunda karanlik madde bulduk. ';
-$LNG['sys_expe_found_dm_1_5']				= 'Kesif ekibimiz bazi garip sinyaller aldi. Bu sinyalleri takip edip bir asteroide ulastik. Teknisyenlerimiz bu asteroidden karanlik madde elde etmeyi basardilar. ';
-$LNG['sys_expe_found_dm_2_1']				= 'Kesif ekibimiz daha once gormedigimiz bazi yaratiklarla karsilasti. Bunlar dost canlisi ciktilar. Onlara Turk bayragi hediye ettik. Onlarda karsilik olarak bize karanlik madde verdiler.';
-$LNG['sys_expe_found_dm_2_2']				= 'Kesif ekibimiz olen bir yildizdan karanlik madde elde etmeyi basardilar. ';
-$LNG['sys_expe_found_dm_2_3']				= 'Kesif Ekibiniz arastirmalarina devam ederken Savaslarin yasandigi bir bir alanda hayalet bir gemi kesfetti. Burada ne yasandigina dair notlar bulduk. Ve ani bir heyecan yasayarak gemi deposunda karanlik madde bulduk. ';
-$LNG['sys_expe_found_dm_3_1']				= 'Kesif ekibimiz bazi garip sinyalleri takip etti Ve bir kolonda az miktarda karanlik madde ile karsilasti. Murettebatimiz karanlik maddeleri ayikliyor. ';
-$LNG['sys_expe_found_dm_3_2']				= 'Kesif ekibimiz garip bir spektral fenomen raporladi. Kalkanlari olusturan karanlik maddenin uretiminin durdugu ve calistirilmasi icin ugrasildigi belirtildi.';
 $LNG['sys_expe_found_ships_1_1']			= 'Kesif ekibimiz enerjiye dayali tershane uretim merkezine geldi. Bazi gemiler halen uretim asamasinda ve biz bu araclari buradan kacirmaya calisiyoruz';
 $LNG['sys_expe_found_ships_1_2']			= 'Kesif ekibimiz bir yildiz kalesi ile karsilasti.. Kalede bir kac damar hangar tespit edildi. Teknisyenlerimizin bazilari onu tamir edebilir.';
 $LNG['sys_expe_found_ships_1_3']			= 'Kesif ekibimiz muhtemelen halen devam eden bir savastan geriye kalmis bir gezegen buldu. Yorungede bir cok batik gemi bulunuyor. Teknisyenlerimiz bazilarini onarmaya calisiyor. Belki o zaman burada ne oldugu hakkinda daha fazla bilgi edinebiliriz.';
@@ -164,8 +154,6 @@ $LNG['sys_expe_back_home']                  = 'Filonuz keşif gezisinden %s %s k
 $LNG['sys_expe_back_home_ress']             = 'Aktariliyor %s %s, %s %s ve %s %s.';
 $LNG['sys_expe_back_home_ships_flound']     = 'Aşağıdaki gemiler bulundu:';
 $LNG['sys_expe_back_home_ships_lost']       = 'Aşağıdaki gemiler kayboldu:';
-$LNG['sys_expe_back_home_without_dm']		= 'Filonuz kesif gorevinden geri dondu.';
-$LNG['sys_expe_back_home_with_dm']			= 'Filonuz kesif gorevinden geri dondu.<br>(%s)%s bulundu ama ne yazikki gemi kullanilacak durumda ama degil. <br> %s kurtarildi.';
 $LNG['sys_mess_transport'] 					= 'Nakliye Raporu';
 $LNG['sys_tran_mess_owner']		 			= 'Filolarinizdan birisi %s %s koordinatina ulasti. Aktarilan madenler %s %s, %s %s ve %s %s.';
 $LNG['sys_tran_mess_user'] 		 			= 'Dost Nakliye Filosu %s %s koordinatindan %s %s koordinatina ulasiyor. Getirdigi madenler  %s %s, %s %s ve %s %s.';
