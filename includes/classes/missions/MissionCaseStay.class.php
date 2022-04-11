@@ -32,8 +32,8 @@ class MissionCaseStay extends MissionFunctions implements Mission
         $fleetArray = FleetFunctions::unserialize($this->_fleet['fleet_array']);
         $duration = $this->_fleet['fleet_start_time'] - $this->_fleet['start_time'];
 
-        $SpeedFactor = FleetFunctions::GetGameSpeedFactor();
-        $distance = FleetFunctions::GetTargetDistance(
+        $SpeedFactor = FleetFunctions::getGameSpeedFactor();
+        $distance = FleetFunctions::getTargetDistance(
             [
                 $this->_fleet['fleet_start_galaxy'],
                 $this->_fleet['fleet_start_system'],
@@ -46,7 +46,7 @@ class MissionCaseStay extends MissionFunctions implements Mission
             ]
         );
 
-        $consumption = FleetFunctions::GetFleetConsumption(
+        $consumption = FleetFunctions::getFleetConsumption(
             $fleetArray,
             $duration,
             $distance,

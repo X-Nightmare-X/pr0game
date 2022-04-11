@@ -29,7 +29,7 @@ class ShowFleetStep3Page extends AbstractGamePage
         global $USER, $PLANET, $resource, $LNG;
 
         if (IsVacationMode($USER)) {
-            FleetFunctions::GotoFleetPage(0);
+            FleetFunctions::gotoFleetPage(0);
         }
 
         $targetMission = HTTP::_GP('mission', 3);
@@ -47,12 +47,12 @@ class ShowFleetStep3Page extends AbstractGamePage
         $config = Config::get();
 
         if (!isset($_SESSION['fleet'][$token])) {
-            FleetFunctions::GotoFleetPage(1);
+            FleetFunctions::gotoFleetPage(1);
         }
 
         if ($_SESSION['fleet'][$token]['time'] < TIMESTAMP - 600) {
             unset($_SESSION['fleet'][$token]);
-            FleetFunctions::GotoFleetPage(0);
+            FleetFunctions::gotoFleetPage(0);
         }
 
         $formData = $_SESSION['fleet'][$token];
@@ -137,9 +137,9 @@ class ShowFleetStep3Page extends AbstractGamePage
             ]]);
         }
 
-        $ActualFleets = FleetFunctions::GetCurrentFleets($USER['id']);
+        $ActualFleets = FleetFunctions::getCurrentFleets($USER['id']);
 
-        if (FleetFunctions::GetMaxFleetSlots($USER) <= $ActualFleets) {
+        if (FleetFunctions::getMaxFleetSlots($USER) <= $ActualFleets) {
             $this->printMessage($LNG['fl_no_slots'], [[
                 'label' => $LNG['sys_back'],
                 'url'   => 'game.php?page=fleetTable',
@@ -219,7 +219,7 @@ class ShowFleetStep3Page extends AbstractGamePage
         }
 
         if ($targetMission == 11) {
-            $activeExpedition = FleetFunctions::GetCurrentFleets($USER['id'], 11, true);
+            $activeExpedition = FleetFunctions::getCurrentFleets($USER['id'], 11, true);
             $maxExpedition = FleetFunctions::getDMMissionLimit($USER);
 
             if ($activeExpedition >= $maxExpedition) {
@@ -229,7 +229,7 @@ class ShowFleetStep3Page extends AbstractGamePage
                 ]]);
             }
         } elseif ($targetMission == 15) {
-            $activeExpedition = FleetFunctions::GetCurrentFleets($USER['id'], 15, true);
+            $activeExpedition = FleetFunctions::getCurrentFleets($USER['id'], 15, true);
             $maxExpedition = FleetFunctions::getExpeditionLimit($USER);
 
             if ($activeExpedition >= $maxExpedition) {
@@ -279,7 +279,7 @@ class ShowFleetStep3Page extends AbstractGamePage
         $MisInfo['IsAKS'] = $fleetGroup;
         $MisInfo['Ship'] = $fleetArray;
 
-        $availableMissions = FleetFunctions::GetFleetMissions($USER, $MisInfo, $targetPlanetData);
+        $availableMissions = FleetFunctions::getFleetMissions($USER, $MisInfo, $targetPlanetData);
 
         if (!in_array($targetMission, $availableMissions['MissionSelector'])) {
             $this->printMessage($LNG['fl_invalid_mission'], [[
@@ -296,7 +296,7 @@ class ShowFleetStep3Page extends AbstractGamePage
         }
 
         if ($targetMission == 1 || $targetMission == 2 || $targetMission == 9) {
-            if (FleetFunctions::CheckBash($targetPlanetData['id'])) {
+            if (FleetFunctions::checkBash($targetPlanetData['id'])) {
                 $this->printMessage($LNG['fl_bash_protection'], [[
                     'label' => $LNG['sys_back'],
                     'url'   => 'game.php?page=fleetTable',
@@ -363,10 +363,10 @@ class ShowFleetStep3Page extends AbstractGamePage
             }
         }
 
-        $fleetMaxSpeed = FleetFunctions::GetFleetMaxSpeed($fleetArray, $USER);
-        $SpeedFactor = FleetFunctions::GetGameSpeedFactor();
-        $duration = FleetFunctions::GetMissionDuration($fleetSpeed, $fleetMaxSpeed, $distance, $SpeedFactor, $USER);
-        $consumption = FleetFunctions::GetFleetConsumption($fleetArray, $duration, $distance, $USER, $SpeedFactor);
+        $fleetMaxSpeed = FleetFunctions::getFleetMaxSpeed($fleetArray, $USER);
+        $SpeedFactor = FleetFunctions::getGameSpeedFactor();
+        $duration = FleetFunctions::getMissionDuration($fleetSpeed, $fleetMaxSpeed, $distance, $SpeedFactor, $USER);
+        $consumption = FleetFunctions::getFleetConsumption($fleetArray, $duration, $distance, $USER, $SpeedFactor);
 
         if ($PLANET[$resource[903]] < $consumption) {
             $this->printMessage($LNG['fl_not_enough_deuterium'], [[

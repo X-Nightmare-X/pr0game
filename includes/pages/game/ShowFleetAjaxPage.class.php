@@ -43,8 +43,8 @@ class ShowFleetAjaxPage extends AbstractGamePage
         $planetID = HTTP::_GP('planetID', 0);
         $targetMission = HTTP::_GP('mission', 0);
 
-        $activeSlots = FleetFunctions::GetCurrentFleets($USER['id']);
-        $maxSlots = FleetFunctions::GetMaxFleetSlots($USER);
+        $activeSlots = FleetFunctions::getCurrentFleets($USER['id']);
+        $maxSlots = FleetFunctions::getMaxFleetSlots($USER);
 
         $this->returnData['slots'] = $activeSlots;
 
@@ -171,14 +171,14 @@ class ShowFleetAjaxPage extends AbstractGamePage
             }
         }
 
-        $SpeedFactor = FleetFunctions::GetGameSpeedFactor();
-        $Distance = FleetFunctions::GetTargetDistance(
+        $SpeedFactor = FleetFunctions::getGameSpeedFactor();
+        $Distance = FleetFunctions::getTargetDistance(
             [$PLANET['galaxy'], $PLANET['system'], $PLANET['planet']],
             [$targetData['galaxy'], $targetData['system'], $targetData['planet']]
         );
-        $SpeedAllMin = FleetFunctions::GetFleetMaxSpeed($fleetArray, $USER);
-        $Duration = FleetFunctions::GetMissionDuration(10, $SpeedAllMin, $Distance, $SpeedFactor, $USER);
-        $consumption = FleetFunctions::GetFleetConsumption($fleetArray, $Duration, $Distance, $USER, $SpeedFactor);
+        $SpeedAllMin = FleetFunctions::getFleetMaxSpeed($fleetArray, $USER);
+        $Duration = FleetFunctions::getMissionDuration(10, $SpeedAllMin, $Distance, $SpeedFactor, $USER);
+        $consumption = FleetFunctions::getFleetConsumption($fleetArray, $Duration, $Distance, $USER, $SpeedFactor);
 
         $UserDeuterium -= $consumption;
 
@@ -186,7 +186,7 @@ class ShowFleetAjaxPage extends AbstractGamePage
             $this->sendData(613, $LNG['fa_not_enough_fuel']);
         }
 
-        if ($consumption > FleetFunctions::GetFleetRoom($fleetArray)) {
+        if ($consumption > FleetFunctions::getFleetRoom($fleetArray)) {
             $this->sendData(613, $LNG['fa_no_fleetroom']);
         }
 

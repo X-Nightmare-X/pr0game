@@ -41,7 +41,7 @@ class ShowFleetStep2Page extends AbstractGamePage
 
 		if (!isset($_SESSION['fleet'][$token]))
 		{
-			FleetFunctions::GotoFleetPage();
+			FleetFunctions::gotoFleetPage();
 		}
 
 		$fleetArray    				= $_SESSION['fleet'][$token]['fleet'];
@@ -71,7 +71,7 @@ class ShowFleetStep2Page extends AbstractGamePage
 		$MisInfo['IsAKS']			= $fleetGroup;
 		$MisInfo['Ship'] 			= $fleetArray;
 
-		$MissionOutput	 			= FleetFunctions::GetFleetMissions($USER, $MisInfo, $targetPlanetData);
+		$MissionOutput	 			= FleetFunctions::getFleetMissions($USER, $MisInfo, $targetPlanetData);
 
 		if(empty($MissionOutput['MissionSelector']))
 		{
@@ -81,11 +81,11 @@ class ShowFleetStep2Page extends AbstractGamePage
 			)));
 		}
 
-		$GameSpeedFactor   		 	= FleetFunctions::GetGameSpeedFactor();
-		$MaxFleetSpeed 				= FleetFunctions::GetFleetMaxSpeed($fleetArray, $USER);
-		$distance      				= FleetFunctions::GetTargetDistance(array($PLANET['galaxy'], $PLANET['system'], $PLANET['planet']), array($targetGalaxy, $targetSystem, $targetPlanet));
-		$duration      				= FleetFunctions::GetMissionDuration($fleetSpeed, $MaxFleetSpeed, $distance, $GameSpeedFactor, $USER);
-		$consumption				= FleetFunctions::GetFleetConsumption($fleetArray, $duration, $distance, $USER, $GameSpeedFactor);
+		$GameSpeedFactor   		 	= FleetFunctions::getGameSpeedFactor();
+		$MaxFleetSpeed 				= FleetFunctions::getFleetMaxSpeed($fleetArray, $USER);
+		$distance      				= FleetFunctions::getTargetDistance(array($PLANET['galaxy'], $PLANET['system'], $PLANET['planet']), array($targetGalaxy, $targetSystem, $targetPlanet));
+		$duration      				= FleetFunctions::getMissionDuration($fleetSpeed, $MaxFleetSpeed, $distance, $GameSpeedFactor, $USER);
+		$consumption				= FleetFunctions::getFleetConsumption($fleetArray, $duration, $distance, $USER, $GameSpeedFactor);
 
 		if($consumption > $PLANET['deuterium'])
 		{
@@ -95,9 +95,9 @@ class ShowFleetStep2Page extends AbstractGamePage
 			)));
 		}
 
-		if(!FleetFunctions::CheckUserSpeed($fleetSpeed))
+		if(!FleetFunctions::checkUserSpeed($fleetSpeed))
 		{
-			FleetFunctions::GotoFleetPage(0);
+			FleetFunctions::gotoFleetPage(0);
 		}
 
 		$_SESSION['fleet'][$token]['speed']			= $MaxFleetSpeed;

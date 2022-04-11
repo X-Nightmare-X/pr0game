@@ -516,7 +516,7 @@ class PlayerUtil
         ));
 
         foreach ($fleetIds as $fleetId) {
-            FleetFunctions::SendFleetBack(array('id' => $userId), $fleetId['fleet_id']);
+            FleetFunctions::sendFleetBack(array('id' => $userId), $fleetId['fleet_id']);
         }
 
         /*
@@ -552,7 +552,7 @@ class PlayerUtil
         ));
 
         foreach ($fleetIds as $fleetId) {
-            FleetFunctions::SendFleetBack(array('id' => $planetData['id_owner']), $fleetId['fleet_id']);
+            FleetFunctions::sendFleetBack(array('id' => $planetData['id_owner']), $fleetId['fleet_id']);
         }
 
         if ($planetData['planet_type'] == 3) {

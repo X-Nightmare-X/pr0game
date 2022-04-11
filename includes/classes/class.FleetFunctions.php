@@ -30,7 +30,7 @@ class FleetFunctions
         1 => 10
     ];
 
-    private static function GetShipConsumption($Ship, $Player)
+    private static function getShipConsumption($Ship, $Player)
     {
         global $pricelist;
 
@@ -40,12 +40,12 @@ class FleetFunctions
         ) ? $pricelist[$Ship]['consumption2'] : $pricelist[$Ship]['consumption'];
     }
 
-    private static function OnlyShipByID($Ships, $ShipID)
+    private static function onlyShipByID($Ships, $ShipID)
     {
         return isset($Ships[$ShipID]) && count($Ships) === 1;
     }
 
-    private static function GetShipSpeed($Ship, $Player)
+    private static function getShipSpeed($Ship, $Player)
     {
         global $pricelist;
 
@@ -108,12 +108,12 @@ class FleetFunctions
         return max(($Level * 5) - 1, 0);
     }
 
-    public static function CheckUserSpeed($speed)
+    public static function checkUserSpeed($speed)
     {
         return isset(self::$allowedSpeed[$speed]);
     }
 
-    public static function GetTargetDistance($start, $target)
+    public static function getTargetDistance($start, $target)
     {
         if ($start[0] != $target[0]) {
             return abs($start[0] - $target[0]) * 20000;
@@ -130,7 +130,7 @@ class FleetFunctions
         return 5;
     }
 
-    public static function GetMissionDuration($SpeedFactor, $MaxFleetSpeed, $Distance, $GameSpeed, $USER)
+    public static function getMissionDuration($SpeedFactor, $MaxFleetSpeed, $Distance, $GameSpeed, $USER)
     {
         $SpeedFactor = (3500 / ($SpeedFactor * 0.1));
         $SpeedFactor *= pow($Distance * 10 / $MaxFleetSpeed, 0.5);
@@ -144,26 +144,26 @@ class FleetFunctions
         return max($SpeedFactor, MIN_FLEET_TIME);
     }
 
-    public static function GetMIPDuration($startSystem, $targetSystem)
+    public static function getMIPDuration($startSystem, $targetSystem)
     {
         $Distance = abs($startSystem - $targetSystem);
-        $Duration = max(round((30 + 60 * $Distance) / self::GetGameSpeedFactor()), MIN_FLEET_TIME);
+        $Duration = max(round((30 + 60 * $Distance) / self::getGameSpeedFactor()), MIN_FLEET_TIME);
 
         return $Duration;
     }
 
-    public static function GetGameSpeedFactor()
+    public static function getGameSpeedFactor()
     {
         return Config::get()->fleet_speed / 2500;
     }
 
-    public static function GetMaxFleetSlots($USER)
+    public static function getMaxFleetSlots($USER)
     {
         global $resource;
         return 1 + $USER[$resource[108]];
     }
 
-    public static function GetFleetRoom($Fleet)
+    public static function getFleetRoom($Fleet)
     {
         global $pricelist, $USER;
         $FleetRoom = 0;
@@ -173,7 +173,7 @@ class FleetFunctions
         return $FleetRoom;
     }
 
-    public static function GetFleetMaxSpeed($Fleets, $Player)
+    public static function getFleetMaxSpeed($Fleets, $Player)
     {
         if (empty($Fleets)) {
             return 0;
@@ -183,19 +183,19 @@ class FleetFunctions
         $speedalls = [];
 
         foreach ($FleetArray as $Ship => $Count) {
-            $speedalls[$Ship] = self::GetShipSpeed($Ship, $Player);
+            $speedalls[$Ship] = self::getShipSpeed($Ship, $Player);
         }
 
         return min($speedalls);
     }
 
-    public static function GetFleetConsumption($FleetArray, $MissionDuration, $MissionDistance, $Player, $GameSpeed)
+    public static function getFleetConsumption($FleetArray, $MissionDuration, $MissionDistance, $Player, $GameSpeed)
     {
         $consumption = 0;
 
         foreach ($FleetArray as $Ship => $Count) {
-            $ShipSpeed = self::GetShipSpeed($Ship, $Player);
-            $ShipConsumption = self::GetShipConsumption($Ship, $Player);
+            $ShipSpeed = self::getShipSpeed($Ship, $Player);
+            $ShipConsumption = self::getShipConsumption($Ship, $Player);
 
             $spd = 35000 / max($MissionDuration * $GameSpeed - 10, 1) * sqrt($MissionDistance * 10 / $ShipSpeed);
             $basicConsumption = $ShipConsumption * $Count;
@@ -204,10 +204,10 @@ class FleetFunctions
         return (round($consumption) + 1);
     }
 
-    public static function GetFleetMissions($USER, $MisInfo, $Planet)
+    public static function getFleetMissions($USER, $MisInfo, $Planet)
     {
         global $resource;
-        $Missions = self::GetAvailableMissions($USER, $MisInfo, $Planet);
+        $Missions = self::getAvailableMissions($USER, $MisInfo, $Planet);
         $stayBlock = [];
         $exchange = false;
 
@@ -262,7 +262,7 @@ class FleetFunctions
         return $fleetAmount;
     }
 
-    public static function GetACSDuration($acsId)
+    public static function getACSDuration($acsId)
     {
         if (empty($acsId)) {
             return 0;
@@ -305,7 +305,7 @@ class FleetFunctions
         return true;
     }
 
-    public static function GetCurrentFleets($userId, $fleetMission = 10, $thisMission = false)
+    public static function getCurrentFleets($userId, $fleetMission = 10, $thisMission = false)
     {
         if ($thisMission) {
             $sql = 'SELECT COUNT(*) as state
@@ -326,7 +326,7 @@ class FleetFunctions
         return $ActualFleets['state'];
     }
 
-    public static function SendFleetBack($USER, $FleetID)
+    public static function sendFleetBack($USER, $FleetID)
     {
         $db = Database::get();
 
@@ -427,20 +427,20 @@ class FleetFunctions
         return true;
     }
 
-    public static function GetFleetShipInfo($FleetArray, $Player)
+    public static function getFleetShipInfo($FleetArray, $Player)
     {
         $FleetInfo = [];
         foreach ($FleetArray as $ShipID => $Amount) {
             $FleetInfo[$ShipID] = [
-                'consumption' => self::GetShipConsumption($ShipID, $Player),
-                'speed' => self::GetFleetMaxSpeed($ShipID, $Player),
+                'consumption' => self::getShipConsumption($ShipID, $Player),
+                'speed' => self::getFleetMaxSpeed($ShipID, $Player),
                 'amount' => floatToString($Amount)
             ];
         }
         return $FleetInfo;
     }
 
-    public static function GotoFleetPage($Code = 0)
+    public static function gotoFleetPage($Code = 0)
     {
         global $LNG;
         if (Config::get()->debug == 1) {
@@ -458,7 +458,7 @@ class FleetFunctions
         HTTP::redirectTo('game.php?page=fleetTable&code=' . $Code);
     }
 
-    public static function GetAvailableMissions($USER, $MissionInfo, $GetInfoPlanet)
+    public static function getAvailableMissions($USER, $MissionInfo, $GetInfoPlanet)
     {
         $YourPlanet = (!empty($GetInfoPlanet['id_owner']) && $GetInfoPlanet['id_owner'] == $USER['id']) ? true : false;
         $UsedPlanet = (!empty($GetInfoPlanet['id_owner'])) ? true : false;
@@ -497,7 +497,7 @@ class FleetFunctions
                 }
 
                 if (
-                    !$YourPlanet && self::OnlyShipByID($MissionInfo['Ship'], 210)
+                    !$YourPlanet && self::onlyShipByID($MissionInfo['Ship'], 210)
                     && isModuleAvailable(MODULE_MISSION_SPY)
                 ) {
                     $availableMissions[] = 6;
@@ -537,7 +537,7 @@ class FleetFunctions
         return $availableMissions;
     }
 
-    public static function CheckBash($Target)
+    public static function checkBash($Target)
     {
         global $USER;
 

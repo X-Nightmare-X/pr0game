@@ -191,7 +191,7 @@ class ShowFleetTablePage extends AbstractGamePage
         if (!empty($FleetID) && !IsVacationMode($USER)) {
             switch ($GetAction) {
                 case "sendfleetback":
-                    FleetFunctions::SendFleetBack($USER, $FleetID);
+                    FleetFunctions::sendFleetBack($USER, $FleetID);
                     break;
                 case "acs":
                     $acsData = $this->getACSPageData($FleetID);
@@ -202,14 +202,14 @@ class ShowFleetTablePage extends AbstractGamePage
         $techExpedition = $USER[$resource[124]];
 
         if ($techExpedition >= 1) {
-            $activeExpedition = FleetFunctions::GetCurrentFleets($USER['id'], 15, true);
+            $activeExpedition = FleetFunctions::getCurrentFleets($USER['id'], 15, true);
             $maxExpedition = floor(sqrt($techExpedition));
         } else {
             $activeExpedition = 0;
             $maxExpedition = 0;
         }
 
-        $maxFleetSlots = FleetFunctions::GetMaxFleetSlots($USER);
+        $maxFleetSlots = FleetFunctions::getMaxFleetSlots($USER);
 
         $targetGalaxy = HTTP::_GP('galaxy', (int) $PLANET['galaxy']);
         $targetSystem = HTTP::_GP('system', (int) $PLANET['system']);
@@ -267,7 +267,7 @@ class ShowFleetTablePage extends AbstractGamePage
 
             $FleetsOnPlanet[] = [
                 'id'    => $FleetID,
-                'speed' => FleetFunctions::GetFleetMaxSpeed($FleetID, $USER),
+                'speed' => FleetFunctions::getFleetMaxSpeed($FleetID, $USER),
                 'count' => $PLANET[$resource[$FleetID]],
             ];
         }

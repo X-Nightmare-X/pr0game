@@ -47,12 +47,12 @@ class ShowFleetStep1Page extends AbstractGamePage
         }
 
         if (empty($Fleet)) {
-            FleetFunctions::GotoFleetPage();
+            FleetFunctions::gotoFleetPage();
         }
 
         $FleetData = [
             'fleetroom'         => floatToString($FleetRoom),
-            'gamespeed'         => FleetFunctions::GetGameSpeedFactor(),
+            'gamespeed'         => FleetFunctions::getGameSpeedFactor(),
             'fleetspeedfactor'  => 1,
             'planet'            => [
                 'galaxy' => $PLANET['galaxy'],
@@ -60,8 +60,8 @@ class ShowFleetStep1Page extends AbstractGamePage
                 'planet' => $PLANET['planet'],
                 'planet_type' => $PLANET['planet_type']
             ],
-            'maxspeed'          => FleetFunctions::GetFleetMaxSpeed($Fleet, $USER),
-            'ships'             => FleetFunctions::GetFleetShipInfo($Fleet, $USER),
+            'maxspeed'          => FleetFunctions::getFleetMaxSpeed($Fleet, $USER),
+            'ships'             => FleetFunctions::getFleetShipInfo($Fleet, $USER),
             'fleetMinDuration'  => MIN_FLEET_TIME,
         ];
 
@@ -325,7 +325,7 @@ class ShowFleetStep1Page extends AbstractGamePage
                 $this->sendJSON($LNG['fl_expedition_tech_required']);
             }
 
-            $activeExpedition = FleetFunctions::GetCurrentFleets($USER['id'], 15, true);
+            $activeExpedition = FleetFunctions::getCurrentFleets($USER['id'], 15, true);
 
             if ($activeExpedition >= FleetFunctions::getExpeditionLimit($USER)) {
                 $this->sendJSON($LNG['fl_no_expedition_slot']);

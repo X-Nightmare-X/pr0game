@@ -20,8 +20,8 @@ class ShowMarketPlacePage extends AbstractGamePage
     private function checkSlots($USER)
     {
         global $LNG;
-        $ActualFleets = FleetFunctions::GetCurrentFleets($USER['id']);
-        if (FleetFunctions::GetMaxFleetSlots($USER) <= $ActualFleets) {
+        $ActualFleets = FleetFunctions::getCurrentFleets($USER['id']);
+        if (FleetFunctions::getMaxFleetSlots($USER) <= $ActualFleets) {
             return ['result' => -1, 'message' => $LNG['fl_no_slots']];
         }
         return ['result' => 0];
@@ -227,14 +227,14 @@ class ShowMarketPlacePage extends AbstractGamePage
         $fleetArrayTMP = [$F1type => $F1, $F2type => $F2];
         $fleetArray = $fleetArrayTMP;
         $fleetArray = array_filter($fleetArrayTMP);
-        $SpeedFactor = FleetFunctions::GetGameSpeedFactor();
-        $Distance = FleetFunctions::GetTargetDistance(
+        $SpeedFactor = FleetFunctions::getGameSpeedFactor();
+        $Distance = FleetFunctions::getTargetDistance(
             [$PLANET['galaxy'], $PLANET['system'], $PLANET['planet']],
             [$fleetResult['fleet_end_galaxy'], $fleetResult['fleet_end_system'], $fleetResult['fleet_end_planet']]
         );
-        $SpeedAllMin = FleetFunctions::GetFleetMaxSpeed($fleetArray, $USER);
-        $Duration = FleetFunctions::GetMissionDuration(10, $SpeedAllMin, $Distance, $SpeedFactor, $USER);
-        $consumption = FleetFunctions::GetFleetConsumption($fleetArray, $Duration, $Distance, $USER, $SpeedFactor);
+        $SpeedAllMin = FleetFunctions::getFleetMaxSpeed($fleetArray, $USER);
+        $Duration = FleetFunctions::getMissionDuration(10, $SpeedAllMin, $Distance, $SpeedFactor, $USER);
+        $consumption = FleetFunctions::getFleetConsumption($fleetArray, $Duration, $Distance, $USER, $SpeedFactor);
 
         $fleetStartTime = $Duration + TIMESTAMP;
         $fleetStayTime = $fleetStartTime;
@@ -300,13 +300,13 @@ class ShowMarketPlacePage extends AbstractGamePage
         $sql = "SELECT * FROM %%USERS%% WHERE id = :userId;";
         $USER_2 = Database::get()->selectSingle($sql, [':userId' => $fleetResult['fleet_owner']]);
         $fleetArray = FleetFunctions::unserialize($fleetResult['fleet_array']);
-        $SpeedFactor = FleetFunctions::GetGameSpeedFactor();
-        $Distance = FleetFunctions::GetTargetDistance(
+        $SpeedFactor = FleetFunctions::getGameSpeedFactor();
+        $Distance = FleetFunctions::getTargetDistance(
             [$PLANET['galaxy'], $PLANET['system'], $PLANET['planet']],
             [$fleetResult['fleet_end_galaxy'], $fleetResult['fleet_end_system'], $fleetResult['fleet_end_planet']]
         );
-        $SpeedAllMin = FleetFunctions::GetFleetMaxSpeed($fleetArray, $USER_2);
-        $Duration = FleetFunctions::GetMissionDuration(10, $SpeedAllMin, $Distance, $SpeedFactor, $USER_2);
+        $SpeedAllMin = FleetFunctions::getFleetMaxSpeed($fleetArray, $USER_2);
+        $Duration = FleetFunctions::getMissionDuration(10, $SpeedAllMin, $Distance, $SpeedFactor, $USER_2);
         // $consumption = FleetFunctions::GetFleetConsumption(
         //     $fleetArray,
         //     $Duration,
@@ -481,15 +481,15 @@ class ShowMarketPlacePage extends AbstractGamePage
                 $fleetsRow['level'] = null;
             }
 
-            $SpeedFactor = FleetFunctions::GetGameSpeedFactor();
+            $SpeedFactor = FleetFunctions::getGameSpeedFactor();
             //FROM
             $FROM_fleet =  FleetFunctions::unserialize($fleetsRow['fleet_array']);
-            $FROM_Distance = FleetFunctions::GetTargetDistance(
+            $FROM_Distance = FleetFunctions::getTargetDistance(
                 [$PLANET['galaxy'], $PLANET['system'], $PLANET['planet']],
                 [$fleetsRow['fleet_end_galaxy'], $fleetsRow['fleet_end_system'], $fleetsRow['fleet_end_planet']]
             );
-            $FROM_SpeedAllMin = FleetFunctions::GetFleetMaxSpeed($FROM_fleet, $fleetsRow);
-            $FROM_Duration = FleetFunctions::GetMissionDuration(
+            $FROM_SpeedAllMin = FleetFunctions::getFleetMaxSpeed($FROM_fleet, $fleetsRow);
+            $FROM_Duration = FleetFunctions::getMissionDuration(
                 10,
                 $FROM_SpeedAllMin,
                 $FROM_Distance,
@@ -498,14 +498,14 @@ class ShowMarketPlacePage extends AbstractGamePage
             );
 
             //TO
-            $TO_Distance = FleetFunctions::GetTargetDistance(
+            $TO_Distance = FleetFunctions::getTargetDistance(
                 [$PLANET['galaxy'], $PLANET['system'], $PLANET['planet']],
                 [$fleetsRow['fleet_start_galaxy'], $fleetsRow['fleet_start_system'], $fleetsRow['fleet_start_planet']]
             );
-            $TO_LC_SPEED = FleetFunctions::GetFleetMaxSpeed([202 => 1], $USER);
-            $TO_LC_DUR = FleetFunctions::GetMissionDuration(10, $TO_LC_SPEED, $TO_Distance, $SpeedFactor, $USER);
-            $TO_HC_SPEED = FleetFunctions::GetFleetMaxSpeed([203 => 1], $USER);
-            $TO_HC_DUR = FleetFunctions::GetMissionDuration(10, $TO_HC_SPEED, $TO_Distance, $SpeedFactor, $USER);
+            $TO_LC_SPEED = FleetFunctions::getFleetMaxSpeed([202 => 1], $USER);
+            $TO_LC_DUR = FleetFunctions::getMissionDuration(10, $TO_LC_SPEED, $TO_Distance, $SpeedFactor, $USER);
+            $TO_HC_SPEED = FleetFunctions::getFleetMaxSpeed([203 => 1], $USER);
+            $TO_HC_DUR = FleetFunctions::getMissionDuration(10, $TO_HC_SPEED, $TO_Distance, $SpeedFactor, $USER);
 
             $fleet_str = '';
             foreach ($FROM_fleet as $name => $amount) {
