@@ -1020,8 +1020,7 @@ $LNG['fgf_time'] = 'Time: ';
 $LNG['sys_module_inactive'] = 'Inactive module';
 $LNG['sys_refferal_from'] = 'System';
 $LNG['sys_refferal_title'] = 'Player Bonus %s';
-$LNG['sys_refferal_text'] = 'The player %s recruited by you reached %s points.<br><br>You invite a player active, will'
-    . ' be rewarded %s %s';
+$LNG['sys_refferal_text'] = 'The player %s recruited by you reached %s points.';
 $LNG['sys_closed_game'] = 'The game is currently not available:';
 $LNG['spec_mail_inactive_title'] = '%s - Reminder';
 $LNG['sys_back'] = 'Back';

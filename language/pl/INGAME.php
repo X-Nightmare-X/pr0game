@@ -985,8 +985,7 @@ $LNG['fgf_time'] = 'Czas budowy: ';
 $LNG['sys_module_inactive'] = 'Moduł nieaktywny';
 $LNG['sys_refferal_from'] = 'System';
 $LNG['sys_refferal_title'] = 'Bonus dla gracza %s';
-$LNG['sys_refferal_text'] = 'Gracz %s zrekrutowany przez ciebie osiągnął %s punktów.<br><br>Zostałeś wynagrodzony za'
-    . ' aktywnego gracza, otrzymujesz %s %s';
+$LNG['sys_refferal_text'] = 'Gracz %s zrekrutowany przez ciebie osiągnął %s punktów.';
 $LNG['sys_closed_game'] = 'Gra chwilowo niedostępna:';
 $LNG['spec_mail_inactive_title'] = '%s - przypomnienie';
 

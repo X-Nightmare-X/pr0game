@@ -1005,8 +1005,7 @@ $LNG['fgf_time'] = 'Gereken Sure';
 $LNG['sys_module_inactive'] = 'Modul Aktif Degil';
 $LNG['sys_refferal_from'] = 'Sistem';
 $LNG['sys_refferal_title'] = 'Oyuncu Bonusu %s';
-$LNG['sys_refferal_text'] = 'Oyuncu %s sizin tarafinizdan evrene kazandirildi ve su an %s puani var.<br><br> Aktif bir'
-    . ' oyuncu davet ettiginiz icin kazandiginiz odul %s %s';
+$LNG['sys_refferal_text'] = 'Oyuncu %s sizin tarafinizdan evrene kazandirildi ve su an %s puani var.';
 $LNG['sys_closed_game'] = 'Oyun su an aktif degil:';
 $LNG['spec_mail_inactive_title'] = '%s - Hatirlatma Mesaji';
 //----------------------------------------------------------------------------//

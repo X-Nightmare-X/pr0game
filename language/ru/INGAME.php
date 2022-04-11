@@ -953,8 +953,7 @@ $LNG['fgf_time'] = 'Продолжительность';
 $LNG['sys_module_inactive'] = 'Модуль отключён';
 $LNG['sys_refferal_from'] = 'Система';
 $LNG['sys_refferal_title'] = 'Награда за игрока %s';
-$LNG['sys_refferal_text'] = 'Игрок %s, которого Вы привлекли, достиг %s очков.<br><br>В благодарность за привлечённого'
-    . ' игрока Вы получаете %s Тёмной материи.';
+$LNG['sys_refferal_text'] = 'Игрок %s, которого Вы привлекли, достиг %s очков.';
 $LNG['sys_closed_game'] = 'Вселенная в данный момент недоступна:';
 $LNG['spec_mail_inactive_title'] = '%s - Напоминание';
 $LNG['sys_back'] = 'Назад';
