@@ -36,7 +36,6 @@ $LNG['shortNames'] = array (
     217 => 'Evo. Transporter',
     218 => 'Avatar',
     219 => 'Gigarecycler',
-    220 => 'Inter. DM-Sammler',
 
     401 => 'Raketenwerfer',
     402 => 'L. Lasergeschütz',
@@ -135,7 +134,6 @@ $LNG['tech'] = array(
     217 => 'Evolution Transporter',
     218 => 'Avatar',
     219 => 'Gigarecycler',
-    220 => 'Intergalaktischer D. Materiensammler',
 
     400 => 'Verteidigungsanlagen',
     401 => 'Raketenwerfer',
@@ -154,21 +152,11 @@ $LNG['tech'] = array(
     502 => 'Abfangrakete',
     503 => 'Interplanetarrakete',
 
-    700 => 'Premium Feature',
-    701 => 'Waffenoptimierung',
-    702 => 'Schildoptimierung',
-    703 => 'Baukoordinierung',
-    704 => 'Rohstoffoptimierung',
-    705 => 'Energieoptimierung',
-    706 => 'Forschungsoptimierung',
-    707 => 'Flottenkoordinierung',
-
     900 => 'Rohstoffe',
     901 => 'Metall',
     902 => 'Kristall',
     903 => 'Deuterium',
     911 => 'Energie',
-    921 => 'Dunkle Materie',
 );
 
 $LNG['shortDescription'] = array(
@@ -257,7 +245,6 @@ $LNG['shortDescription'] = array(
     217 => 'Ist der eine Weiterentwicklung des großen Transporters. Er hat mehr Ladevermögen und fliegt schneller.',
     218 => 'Der Supergau schlechthin, allerdings sehr langsam.',
     219 => 'Ist eine gigantische Weltraumrecycleanlage und hyperschnell.',
-    220 => 'Mit diesem Schiff ist es nach jahrelangem Forschen möglich, Dunkle Materie an seinem Mond zu sammeln.',
 
     401 => 'Der Raketenwerfer ist eine einfache aber kostengünstige Verteidigungsmöglichkeit.',
     402 => 'Durch den konzentrierten Beschuss eines Ziels mit Photonen kann eine wesentlich größere Schadenswirkung'
@@ -283,14 +270,6 @@ $LNG['shortDescription'] = array(
     502 => 'Abfangraketen zerstören angreifende Interplanetarraketen.',
     503 => 'Interplanetarraketen zerstören die gegnerische Verteidigung.',
 
-    701 => 'Der Bonus ist nur temporär.',
-    702 => 'Der Bonus ist nur temporär.',
-    703 => 'Der Bonus ist nur temporär.',
-    704 => 'Der Bonus ist nur temporär.',
-    705 => 'Der Bonus ist nur temporär.',
-    706 => 'Der Bonus ist nur temporär.',
-    707 => 'Der Bonus ist nur temporär.',
-
     901 => 'Hauptrohstoff für den Bau tragender Strukturen von Bauwerken und Schiffen. Metall ist der billigste'
         . ' Rohstoff, dafür wird er mehr benötigt als die anderen. Metall braucht zur Herstellung am wenigsten'
         . ' Energie.',
@@ -299,9 +278,6 @@ $LNG['shortDescription'] = array(
     903 => 'Deuterium ist schwerer Wasserstoff. Für die Gewinnung von Deuterium großen Mengen Energie benötigt.'
         . ' Deuterium wird unter anderem als Treibstoff für Raumschiffe benötigt.',
     911 => 'Energie wird für das gewinnnen jeglicher Rohstoffe benötigt.',
-    921 => 'Dunkle Materie ist die geheimnisvollste, seltenste und kostbarste Ressource im ganzen Universum. Mit ihr'
-        . ' können unter anderem legendäre Offiziere vergangener Zeiten angeworben oder gierige Händler gerufen'
-        . ' werden.',
 );
 
 $LNG['longDescription'] = array(
@@ -538,7 +514,6 @@ $LNG['longDescription'] = array(
     218 => 'Dieses Schiff ist eine Verbesserung mehrerer Schiffe gleichzeitig und der Kaiser der Kampfsterne.',
     219 => 'Dieses Schiff ist eine wahrhaft gigantische Recycelanlage im Weltraum mit Atemberaubender Geschwindigkeit'
         . ' und riesigem Lagerraum! Geschaffen für große Imperien.',
-    220 => 'Mit diesem Schiff ist es nach jahrelangem Forschen möglich, Dunkle Materie an seinem Mond zu sammeln.',
 
     401 => 'Der Raketenwerfer ist eine einfache aber kostengünstige Verteidigungsmöglichkeit. Da er nur eine'
         . ' Weiterentwicklung gewöhnlicher ballistischer Feuerwaffen ist, benötigt er keine weitere Forschung. Seine'
@@ -624,14 +599,6 @@ $LNG['longDescription'] = array(
     503 => 'Interplanetarraketen zerstören die gegnerische Verteidigung, können allerdings durch Abfangraketen zerstört'
         . ' werden! Von Interplanetarraketen zerstörte Verteidigungsanlagen bauen sich nicht wieder auf.',
 
-    701 => 'Der Bonus ist nur temporär.',
-    702 => 'Der Bonus ist nur temporär.',
-    703 => 'Der Bonus ist nur temporär.',
-    704 => 'Der Bonus ist nur temporär.',
-    705 => 'Der Bonus ist nur temporär.',
-    706 => 'Der Bonus ist nur temporär.',
-    707 => 'Der Bonus ist nur temporär.',
-
     901 => 'Hauptrohstoff für den Bau tragender Strukturen von Bauwerken und Schiffen. Metall ist der billigste'
         . ' Rohstoff, dafür wird er mehr benötigt als die anderen. Metall braucht zur Herstellung am wenigsten Energie.'
         . ' Je größer die Minen ausgebaut sind, desto tiefer sind sie. Bei den meisten Planeten befindet sich das'
@@ -645,10 +612,4 @@ $LNG['longDescription'] = array(
     911 => 'Energie wird für das gewinnnen jeglicher Rohstoffe benötigt. Man sagt, man könne mit unmengen an Energie,'
         . ' die Gravitation beeinflussen und dadurch zerstörerische Waffen bauen. Allerdings ist dies bis heute noch'
         . ' kaum jemanden gelungen.',
-    921 => 'Dunkle Materie ist die geheimnisvollste, seltenste und kostbarste Ressource im ganzen Universum. Mit ihr'
-        . ' können unter anderem legendäre Offiziere vergangener Zeiten angeworben oder gierige Händler gerufen werden.'
-        . ' Anders als die herkömmlichen Ressourcen kann dunkle Materie (noch) nicht abgebaut werden und ist'
-        . ' interplanetar verfügbar, niemand weiß warum. Ebenfalls weiß man nicht, woher Dunkle Materie kommt und wie'
-        . ' man sie hersellt, doch Wissenschaftler sollen beobachtet haben, dass hin und wieder eine bestimmte Menge'
-        . ' dieser einfach so auftaucht. Mysteriös...',
 );

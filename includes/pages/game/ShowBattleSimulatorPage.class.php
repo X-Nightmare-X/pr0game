@@ -57,8 +57,6 @@ class ShowBattleSimulatorPage extends AbstractGamePage
                     'military_tech' => $BattleSlot[0][109],
                     'shield_tech' => $BattleSlot[0][110],
                     'defence_tech' => $BattleSlot[0][111],
-                    'dm_defensive' => 0,
-                    'dm_attack' => 0,
                 ];
 
                 foreach ($BattleSlot[0] as $ID => $Count) {
@@ -94,8 +92,6 @@ class ShowBattleSimulatorPage extends AbstractGamePage
                     'military_tech' => $BattleSlot[1][109],
                     'shield_tech' => $BattleSlot[1][110],
                     'defence_tech' => $BattleSlot[1][111],
-                    'dm_attack' => 0,
-                    'dm_defensive' => 0,
                 ];
 
                 foreach ($BattleSlot[1] as $ID => $Count) {

@@ -25,7 +25,6 @@ $LNG['shortNames'] = [
 217 => 'Transporteur ultime',
 218 => 'Avatar',
 219 => 'Recycleur ultime',
-220 => 'Collectionneur',
 
 401 => 'Lanceur de missiles',
 402 => 'Canon laser léger',
@@ -125,7 +124,6 @@ $LNG['tech'] = [
 217 => 'Transporteur ultime',
 218 => 'Avatar',
 219 => 'Recycleur ultime',
-220 => 'Collectionneur',
 
 400 => 'Systèmes de Défense',
 401 => 'Lanceur de missiles',
@@ -144,21 +142,11 @@ $LNG['tech'] = [
 502 => 'Missiles d\'Interception',
 503 => 'Missiles Interplanétaires',
 
-700 => 'Premium Optimisations',
-701 => 'Optimisation des Armes',
-702 => 'Optimisation des Boucliers',
-703 => 'Optimisation des Constructions',
-704 => 'Optimisation des Ressources',
-705 => 'Optimisation de l\'Energie',
-706 => 'Optimisation de la Recherche',
-707 => 'Upgrade Flotte',
-
 900 => 'Ressources',
 901 => 'Métal',
 902 => 'Crystal',
 903 => 'Deuterium',
 911 => 'Énergie',
-921 => 'Matiére Noir',
 ];
 
 $LNG['shortDescription'] = [
@@ -260,8 +248,6 @@ $LNG['shortDescription'] = [
 218 => 'Il vous procurera le pire des scénarios, bien que très lent.',
 219 => 'Le recycleur ultime dispose d\'une capacité de chargement énorme et de nouveaux moteurs qui lui permettent de'
     . ' voler plus vite et de recueillir davantage dans les champs de débris.',
-220 => 'Après de longues années de recherche sur la matière noire, collecter cette matière sur les lunes est désormais'
-    . ' possible.',
 
 401 => 'Le lanceur de missiles est un moyen de défense simple mais rentable.',
 402 => 'Le canon laser léger est une arme au sol simple qui utilise des systèmes spéciaux de ciblage pour suivre'
@@ -285,15 +271,6 @@ $LNG['shortDescription'] = [
 502 => 'Les missiles d\'interception sont utilisés pour détruire les missiles interplanétaires assaillants.',
 503 => 'Les missiles interplanétaires sont utilisés pour détruire les défenses adversaires.',
 
-701 => 'Augmente la valeur d\'attaque des vaisseaux et des moyens de défense par %s%%. Le bonus n\'est que temporaire.',
-702 => 'Augmente la valeur des boucliers des vaisseaux et des moyens de défense par %s%%. Le bonus n\'est que'
-    . ' temporaire.',
-703 => 'Réduire le temps de construction des bâtiments par %s%%. Le bonus n\'est que temporaire.',
-704 => 'Augmente la production des ressources par %s%%. Le bonus n\'est que temporaire.',
-705 => 'Augente la production d\'énergie par %s%%. Le bonus n\'est que temporaire.',
-706 => 'Réduit le temps de recherche par %s%%. Le bonus n\'est que temporaire.',
-707 => 'Réduit le temps de vol des flottes par %s%%. Le bonus n\'est que temporaire. N\'affecte pas les expéditions.',
-
 901 => 'Le métal est la principale ressource nécessaire à la construction des bâtiments et des vaisseaux. C\'est la'
     . ' ressource la moins coûteuse en énergie mais c\'est aussi la plus utilisée. Plus le niveau de la mine augmente,'
     . ' plus la mine est profonde et prend de la place sur la planète.',
@@ -301,9 +278,6 @@ $LNG['shortDescription'] = [
 903 => 'Le deutérium est récupéré dans les profondeurs marines. C\'est la ressource la plus rare dans l\'univers car il'
     . ' faut creuser les fonds marins pour l\'obtenir, ce qui en fait également la ressource la plus coûteuse.',
 911 => 'De l\'énergie est nécessaire à la production de chacune des ressources.',
-921 => 'La matière noire est une ressource mystérieuse. Personne ne sait vraiment d\'où elle vient. Parfois elle'
-    . ' apparaît simplement comme venue de nulle part. La matière noire peut être utilisé dans le recrutement des'
-    . ' officiers les plus expérimentés de l\'univers.',
 ];
 
 $LNG['longDescription'] = [
@@ -395,7 +369,6 @@ $LNG['longDescription'] = [
 218 => 'Le pire de tous, bien que très lent.',
 219 => 'C\'est un immense cargo de recyclage, avec de nouveaux moteurs, qui lui permettent de voler plus vite et de'
     . ' recueillir plus de débris.',
-220 => 'Après de longues années de recherche, la matière noire est désormais collectable sur la lune.',
 
 401 => 'Le lance-roquettes est une défense simple mais rentable.',
 402 => 'Les Lasers légers sont des armes simples basés au sol qui utilisent des systèmes spéciaux de ciblage pour'
@@ -419,23 +392,11 @@ $LNG['longDescription'] = [
 502 => 'Les missiles intercepteurs sont utilisés pour détruire attaquer missiles interplanétaires.',
 503 => 'Les missiles interplanétaires sont utilisés pour détruire les adversaires défenses.',
 
-701 => 'Augmente la valeur d\'attaque des vaisseaux et défenses.',
-702 => 'Augmente la valeur des vaisseaux et des boucliers et des défenses',
-703 => 'Réduire le temps de construction de bâtiments',
-704 => 'Augmente la production de ressources',
-705 => 'Augmente la production d\'énergie',
-706 => 'Réduit le temps de recherche',
-707 => 'Les temps de vol sont plus courts. Ne porte pas atteinte aux expéditions.',
-
 901 => 'Le métal est la principale ressource nécessaire à la construction des bâtiments et des vaisseaux. C\'est la'
     . ' ressource la moins coûteuse en énergie mais c\'est aussi la plus utilisée. Plus le niveau de la mine augmente,'
     . ' plus la mine est profonde et prend de la place sur la planète.',
 902 => 'Le cristal est la ressource principale dans la fabrication des circuits électroniques et de certains alliages.',
 903 => 'Le deutérium est récupéré dans les profondeurs marines. C\'est la ressource la plus rare dans l\'univers car il'
     . ' faut creuser les fonds marins pour l\'obtenir, ce qui en fait également la ressource la plus coûteuse.',
-911 => 'De l\'énergie est nécessaire à la production de chacune des ressources.
-',
-921 => 'La matière noire est une ressource mystérieuse. Personne ne sait vraiment d\'où elle vient. Parfois elle'
-    . ' apparaît simplement comme venue de nulle part. La matière noire peut être utilisé dans le recrutement des'
-    . ' officiers les plus expérimentés de l\'univers.',
+911 => 'De l\'énergie est nécessaire à la production de chacune des ressources.',
 ];

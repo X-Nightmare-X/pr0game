@@ -37,7 +37,6 @@ class VarsBuildCache implements BuildCache
         $reslist['fleet'] = [];
         $reslist['defense'] = [];
         $reslist['missile'] = [];
-        $reslist['dmfunc'] = [];
 
         $db = Database::get();
 
@@ -60,7 +59,6 @@ class VarsBuildCache implements BuildCache
                     902 => $varsRow['cost902'],
                     903 => $varsRow['cost903'],
                     911 => $varsRow['cost911'],
-                    921 => $varsRow['cost921'],
                 ],
                 'factor'        => $varsRow['factor'],
                 'max'           => $varsRow['maxLevel'],
@@ -147,9 +145,6 @@ class VarsBuildCache implements BuildCache
                     break;
                 case 500:
                     $reslist['missile'][] = $varsRow['elementID'];
-                    break;
-                case 700:
-                    $reslist['dmfunc'][] = $varsRow['elementID'];
                     break;
             }
         }

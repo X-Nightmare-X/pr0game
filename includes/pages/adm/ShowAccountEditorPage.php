@@ -29,22 +29,15 @@ function ShowAccountEditorPage()
     switch ($_GET['edit']) {
         case 'resources':
             $id = HTTP::_GP('id', 0);
-            $id_dark = HTTP::_GP('id_dark', 0);
             $metal = max(0, round(HTTP::_GP('metal', 0.0)));
             $cristal = max(0, round(HTTP::_GP('cristal', 0.0)));
             $deut = max(0, round(HTTP::_GP('deut', 0.0)));
-            $dark = HTTP::_GP('dark', 0);
 
             if ($_POST) {
                 if (!empty($id)) {
                     $before = $GLOBALS['DATABASE']->getFirstRow(
                         "SELECT `metal`,`crystal`,`deuterium`,`universe`  FROM "
                         . PLANETS . " WHERE `id` = '" . $id . "';"
-                    );
-                }
-                if (!empty($id_dark)) {
-                    $before_dm = $GLOBALS['DATABASE']->getFirstRow(
-                        "SELECT `darkmatter` FROM " . USERS . " WHERE `id` = '" . $id_dark . "';"
                     );
                 }
                 if ($_POST['add']) {
@@ -62,15 +55,6 @@ function ShowAccountEditorPage()
                             'deuterium' => ($before['deuterium'] + $deut),
                         ];
                     }
-
-                    if (!empty($id_dark)) {
-                        $SQL = "UPDATE " . USERS . " SET ";
-                        $SQL .= "`darkmatter` = `darkmatter` + '" . $dark . "' ";
-                        $SQL .= "WHERE ";
-                        $SQL .= "`id` = '" . $id_dark . "' AND `universe` = '" . Universe::getEmulated() . "' ";
-                        $GLOBALS['DATABASE']->query($SQL);
-                        $after_dm = ['darkmatter' => ($before_dm['darkmatter'] + $dark)];
-                    }
                 } elseif ($_POST['delete']) {
                     if (!empty($id)) {
                         $SQL = "UPDATE " . PLANETS . " SET ";
@@ -86,32 +70,14 @@ function ShowAccountEditorPage()
                             'deuterium' => ($before['deuterium'] - $deut),
                         ];
                     }
-
-                    if (!empty($id_dark)) {
-                        $SQL = "UPDATE " . USERS . " SET ";
-                        $SQL .= "`darkmatter` = `darkmatter` - '" . $dark . "' ";
-                        $SQL .= "WHERE ";
-                        $SQL .= "`id` = '" . $id_dark . "';";
-                        $GLOBALS['DATABASE']->query($SQL);
-                        $after_dm = ['darkmatter' => ($before_dm['darkmatter'] - $dark)];
-                    }
                 }
 
                 if (!empty($id)) {
                     $LOG = new Log(2);
                     $LOG->target = $id;
-                    $LOG->universe = $before_dm['universe'];
+                    $LOG->universe = $before['universe'];
                     $LOG->old = $before;
                     $LOG->new = $after;
-                    $LOG->save();
-                }
-
-                if (!empty($id_dark)) {
-                    $LOG = new Log(1);
-                    $LOG->target = $id_dark;
-                    $LOG->universe = $before_dm['universe'];
-                    $LOG->old = $before_dm;
-                    $LOG->new = $after_dm;
                     $LOG->save();
                 }
 

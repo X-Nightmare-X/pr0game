@@ -38,7 +38,6 @@ $LNG['type_mission_7'] = 'Kolonilestirmek';
 $LNG['type_mission_8'] = 'Sokmek';
 $LNG['type_mission_9'] = 'Yoketmek';
 $LNG['type_mission_10'] = 'Roket Saldirisi';
-$LNG['type_mission_11'] = 'KM Arastirmak ';
 $LNG['type_mission_15'] = 'Kesif Ucusu';
 
 $LNG['type_planet_1'] = 'Gezegen';
@@ -150,7 +149,6 @@ $LNG['ov_noreflink'] = 'Su ana kadar sayende <br> 0 </br>kisi katildi .';
 $LNG['Metal'] = 'Metal';
 $LNG['Crystal'] = 'Kristal';
 $LNG['Deuterium'] = 'Deuterium';
-$LNG['Darkmatter'] = 'Karanlik Madde';
 
 //----------------------------------------------------------------------------//
 // Galaksi
@@ -312,8 +310,6 @@ $LNG['fl_multi_alarm'] = 'Multi alarm!';
 $LNG['fl_empty_target'] = 'Verdiginiz koordinatlarda bir gezegen yok';
 $LNG['fl_expedition_alert_message'] = 'Dikkat! Keşif tehlikeli bir görevdir. Uzakta bilinmeyen yerleri keşfedeceksin bu'
     . ' sebeple filoların aniden yok olabilir. Ama unutma karanlık madde ve dahasını da bulabilirsin.!';
-$LNG['fl_dm_alert_message'] = 'Dikkat, keşifde KM Araştırma Karanlık Madde bulabilirsin fakat KM bulmak filonun yok'
-    . ' olmasina sebep verecektir!';
 $LNG['fl_vacation_mode_active'] = 'Tatil modu aktif';
 $LNG['fl_expedition_fleets_limit'] = 'Maksimum kesif sayisina ulasildi!';
 $LNG['fl_week_player'] = 'Hata : Oyuncu cok zayif! Kendine baska dusman bul';

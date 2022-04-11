@@ -35,7 +35,6 @@ $LNG['type_mission_7'] = 'Kolonizuj';
 $LNG['type_mission_8'] = 'Recykling';
 $LNG['type_mission_9'] = 'Zniszcz';
 $LNG['type_mission_10'] = 'Atak Rakietowy';
-$LNG['type_mission_11'] = 'Żniwa Czarnej Materii';
 $LNG['type_mission_15'] = 'Ekspedycja';
 
 $LNG['type_planet_1'] = 'Planeta';
@@ -310,7 +309,6 @@ $LNG['fl_resources_left'] = 'Pozostało';
 $LNG['fl_all_resources'] = 'Załaduj max zasobów';
 $LNG['fl_empty_target'] = 'Brak dostępnych misji (Czy na pewno na tej pozycji znajduje się jakaś planeta?)';
 $LNG['fl_expedition_alert_message'] = 'Uwaga! Ekspedycja jest niebezpieczna! Możesz stracić wysłaną flotę!';
-$LNG['fl_dm_alert_message'] = 'Bądź ostrożny - jeśli %s %s został znaleziony, flota została zniszczona!';
 $LNG['fl_vacation_mode_active'] = 'Jesteś w trybie urlopu';
 $LNG['fl_expedition_fleets_limit'] = 'Limit ekspedycji osiągnięty!';
 $LNG['fl_week_player'] = 'Gracz bardzo słaby!';

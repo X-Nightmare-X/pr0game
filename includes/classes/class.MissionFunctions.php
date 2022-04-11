@@ -107,7 +107,6 @@ class MissionFunctions
             ':metal'        => $this->_fleet['fleet_resource_metal'],
             ':crystal'      => $this->_fleet['fleet_resource_crystal'],
             ':deuterium'    => $this->_fleet['fleet_resource_deuterium'],
-            ':darkmatter'   => $this->_fleet['fleet_resource_darkmatter'],
             ':planetId'     => $planetId
         ];
 
@@ -121,8 +120,7 @@ class MissionFunctions
 		' . implode(', ', $updateQuery) . ',
 		p.`metal` = p.`metal` + :metal,
 		p.`crystal` = p.`crystal` + :crystal,
-		p.`deuterium` = p.`deuterium` + :deuterium,
-		u.`darkmatter` = u.`darkmatter` + :darkmatter
+		p.`deuterium` = p.`deuterium` + :deuterium
 		WHERE p.`id` = :planetId AND u.id = p.id_owner;';
 
         Database::get()->update($sql, $param);
@@ -135,15 +133,13 @@ class MissionFunctions
         $sql = 'UPDATE %%PLANETS%% as p, %%USERS%% as u SET
 		`metal`			= `metal` + :metal,
 		`crystal`		= `crystal` + :crystal,
-		`deuterium` 	= `deuterium` + :deuterium,
-		`darkmatter`    = `darkmatter` + :darkmatter
+		`deuterium` 	= `deuterium` + :deuterium
 		WHERE p.`id` = :planetId AND u.id = p.id_owner;';
 
         Database::get()->update($sql, [
             ':metal'        => $this->_fleet['fleet_resource_metal'],
             ':crystal'      => $this->_fleet['fleet_resource_crystal'],
             ':deuterium'    => $this->_fleet['fleet_resource_deuterium'],
-            ':darkmatter'   => $this->_fleet['fleet_resource_darkmatter'],
             ':planetId'     => ($onStart == true ? $this->_fleet['fleet_start_id'] : $this->_fleet['fleet_end_id'])
         ]);
 

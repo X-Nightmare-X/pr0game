@@ -36,7 +36,6 @@ $LNG['shortNames'] = [
     217 => 'Ул. трансп.',
     218 => 'Аватар',
     219 => 'Мега перераб.',
-    220 => 'Сборщик ТМ',
 
     401 => 'РУ',
     402 => 'Лёг. лазер',
@@ -136,7 +135,6 @@ $LNG['tech'] = [
     217 => 'Улучшенный транспорт',
     218 => 'Аватар',
     219 => 'Мега переработчик',
-    220 => 'Сборщик Тёмной материи',
 
     400 => 'Оборона',
     401 => 'Ракетная установка',
@@ -155,21 +153,11 @@ $LNG['tech'] = [
     502 => 'Ракета-перехватчик',
     503 => 'Межпланетная ракета',
 
-    700 => 'Инновационные разработки',
-    701 => 'Вооружение',
-    702 => 'Мощность щитов',
-    703 => 'Время строительства',
-    704 => 'Добыча сырья',
-    705 => 'Выработка энергии',
-    706 => 'Время проведения исследований',
-    707 => 'Время полёта кораблей',
-
     900 => 'Ресурсы',
     901 => 'Металл',
     902 => 'Кристалл',
     903 => 'Дейтерий',
     911 => 'Энергия',
-    921 => 'Тёмная материя',
 ];
 
 $LNG['shortDescription'] = [
@@ -262,7 +250,6 @@ $LNG['shortDescription'] = [
     218 => 'При виде этого корабля, жители впадают в ужас и покидают колонии. Прекрасные боевые качества, но очень'
         . ' медленный.',
     219 => 'Инженеры разработали новый переработчик, он летает быстрее и может собрать значительно больше обломков.',
-    220 => 'После долгих лет исследования Тёмной материи ученые научились добывать её из лунных минералов.',
 
     401 => 'Ракетная установка - простое и дешёвое средство обороны.',
     402 => 'При помощи концентрированного обстрела цели фотонами можно достичь значительно больших разрушений, чем при'
@@ -285,14 +272,6 @@ $LNG['shortDescription'] = [
     502 => 'Ракеты-перехватчики уничтожают атакующие межпланетные ракеты.',
     503 => 'Межпланетные ракеты уничтожают защиту противника.',
 
-    701 => 'Повышает вооружение и броню кораблей и обороны.',
-    702 => 'Повышает мощность щитов кораблей и обороны.',
-    703 => 'Уменьшает время строительства построек.',
-    704 => 'Повышает добычу сырья.',
-    705 => 'Повышает выработку энергии.',
-    706 => 'Уменьшает время проведения исследований.',
-    707 => 'Уменьшает время полёта кораблей.',
-
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 901 => 'Metal is the main resource for Buildings and Ships. It is the cheapest resource, but it is needed the most as'
     . ' well. Producing Metal is the least energy expensive. The bigger the mines are, the deeper they dig into the'
@@ -301,8 +280,6 @@ $LNG['shortDescription'] = [
 903 => 'Deuterium is found in the deepest sea. It belongs to the rarest resources in the Universe. Because you have to'
     . ' get to the ground of the sea in order to get Deuterium, it is the most expensive resource.',
 911 => 'Energy is needed for the production of every resource.',
-921 => 'Dark Matter is a very mysterious resource. Nobody really knows where it comes from. Sometimes it just appears'
-    . ' out of nowhere. You can use Dark Matter to hire the most experienced officers in the universe.',
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 ];
 
@@ -396,7 +373,6 @@ $LNG['longDescription'] = [
     218 => 'При виде этого корабля, жители впадают в ужас и покидают колонии. Прекрасные боевые качества, но очень'
         . ' медленный.',
     219 => 'Инженеры разработали новый переработчик, он летает быстрее и может собрать значительно больше обломков.',
-    220 => 'После долгих лет исследования Тёмной материи ученые научились добывать её из лунных минералов.',
 
     401 => 'Ракетная установка - простое и дешёвое средство обороны.',
     402 => 'При помощи концентрированного обстрела цели фотонами можно достичь значительно больших разрушений, чем при'
@@ -419,14 +395,6 @@ $LNG['longDescription'] = [
     502 => 'Ракеты-перехватчики уничтожают атакующие межпланетные ракеты.',
     503 => 'Межпланетные ракеты уничтожают защиту противника.',
 
-    701 => 'Повышает вооружение и броню кораблей и обороны.',
-    702 => 'Повышает мощность щитов кораблей и обороны.',
-    703 => 'Уменьшает время строительства построек.',
-    704 => 'Повышает добычу сырья.',
-    705 => 'Повышает выработку энергии.',
-    706 => 'Уменьшает время проведения исследований.',
-    707 => 'Уменьшает время полёта кораблей.',
-
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
     901 => 'Metal is the main resource for Buildings and Ships. It is the cheapest resource, but it is needed the most'
         . ' as well. Producing Metal is the least energy expensive. The bigger the mines are, the deeper they dig into'
@@ -436,9 +404,5 @@ $LNG['longDescription'] = [
     903 => 'Deuterium is found in the deepest sea. It belongs to the rarest resources in the Universe. Because you have'
         . ' to get to the ground of the sea in order to get Deuterium, it is the most expensive resource.',
     911 => 'Energy is needed for the production of every resource.',
-    921 => 'Dark Matter is a very mysterious resource. Nobody really knows where it comes from. Sometimes it just'
-        . ' appears out of nowhere and sometimes it is even found in old ships. Some even say that it doesn\'t exist,'
-        . ' but it has been proven otherwise. You can use Dark Matter to hire the most experienced officers in the'
-        . ' universe.',
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 ];

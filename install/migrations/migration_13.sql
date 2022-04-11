@@ -23,5 +23,24 @@ DELETE FROM `%PREFIX%vars_requriements` WHERE `elementID` IN (603,604,605,607,60
 DELETE FROM `%PREFIX%vars` WHERE `elementID` IN (601,602,603,604,605,607,608,609,610,611,612,613,614,615);
 
 -- Remove Dark Matter
-
 ALTER TABLE `%PREFIX%config` DROP COLUMN `darkmatter_cost_trader`;
+ALTER TABLE `%PREFIX%fleets` DROP COLUMN `fleet_resource_darkmatter`;
+ALTER TABLE `%PREFIX%log_fleets` DROP COLUMN `fleet_resource_darkmatter`;
+ALTER TABLE `%PREFIX%vars` DROP COLUMN `cost921`;
+ALTER TABLE `%PREFIX%vars` DROP COLUMN `production921`;
+
+DELETE FROM `%PREFIX%vars_requriements` WHERE `elementID` IN (220);
+DELETE FROM `%PREFIX%vars` WHERE `elementID` IN (220, 701, 702, 703, 704, 705, 706, 707);
+DELETE FROM `%PREFIX%vars_rapidfire` WHERE `elementID` IN (220);
+ALTER TABLE `%PREFIX%planets` DROP COLUMN `dm_ship`;
+ALTER TABLE `%PREFIX%config` DROP COLUMN `darkmatter_start`;
+ALTER TABLE `%PREFIX%config` DROP COLUMN `max_dm_missions`;
+ALTER TABLE `%PREFIX%users` DROP COLUMN `dm_attack`;
+ALTER TABLE `%PREFIX%users` DROP COLUMN `dm_defensive`;
+ALTER TABLE `%PREFIX%users` DROP COLUMN `dm_buildtime`;
+ALTER TABLE `%PREFIX%users` DROP COLUMN `dm_researchtime`;
+ALTER TABLE `%PREFIX%users` DROP COLUMN `dm_resource`;
+ALTER TABLE `%PREFIX%users` DROP COLUMN `dm_energie`;
+ALTER TABLE `%PREFIX%users` DROP COLUMN `dm_fleettime`;
+ALTER TABLE `%PREFIX%users` DROP COLUMN `darkmatter`;
+

@@ -36,7 +36,6 @@ $LNG['shortNames'] = [
     217 => 'Giga Transporter',
     218 => 'Avatar',
     219 => 'Gigarecykler',
-    220 => 'Inter. DM-Collector',
 
     401 => 'Wyrzutnia Rakiet',
     402 => 'L. Laser',
@@ -135,7 +134,6 @@ $LNG['tech'] = [
 217 => 'Star Freighter',
 218 => 'Avatar',
 219 => 'Giga-Recycler',
-220 => 'Inter. DM-Collector',
 
 400 => 'Obrona Planetarna',
 401 => 'Wyrzutnia Rakiet',
@@ -154,21 +152,11 @@ $LNG['tech'] = [
 502 => 'Antyrakieta',
 503 => 'Rakieta Międzyplanetarna',
 
-    700 => 'Premium dodatki',
-    701 => 'Optymalizacja Broni',
-    702 => 'Optymalizacja Osłony',
-    703 => 'Koorydynator Budowy',
-    704 => 'Optymalizacja Zasobów',
-    705 => 'Optymalizacja Energii',
-    706 => 'Optymalizacja Badań',
-    707 => 'Koordynacja Floty',
-
     900 => 'Zasoby',
     901 => 'Metal',
     902 => 'Kryształ',
     903 => 'Deuterium',
     911 => 'Energia',
-    921 => 'Czarna materia',
 ];
 
 $LNG['shortDescription'] = [
@@ -250,7 +238,6 @@ $LNG['shortDescription'] = [
 217 => 'Powstał dzięki potrzebie transportu większych ładunków i szybszego transportu.',
 218 => 'Można powiedzieć, iż to przedstawiciel koszmaru na tym świecie, niestety strasznie powolny.',
 219 => 'Ogromna ładowność, a dzięki nowym technologiom porusza się znacznie szybciej od standardowego recyklera .',
-220 => 'Po długich latach badań nad Czarną materią można ją teraz pozyskać z księżyców.',
 
     401 => 'Wyrzutnia rakiet to podstawowa struktura obronna, tania i efektywna.',
 402 => 'Wiązki laserowe - dzięki specjalnym systemom namierzania i podążania za celem - są kierowane tak, by przebijać'
@@ -271,20 +258,10 @@ $LNG['shortDescription'] = [
     502 => 'Antyrakiety przechwytują rakiety międzyplanetarne przeciwnika.',
 503 => 'Międzyplanetarne rakiety. Ich jedynym celem jest niszczenie obrony przeciwnika.',
 
-    701 => 'Podnosi na jakiś czas zdolność ataku i obrony statków.',
-702 => 'Podnosi na jakiś czas siłę osłony i obrony.',
-703 => 'Podnosi na jakiś czas prędkość powstawania budowli.',
-704 => 'Podnosi na jakiś czas prędkość wydobywania surowców.',
-705 => 'Podnosi na jakiś czas produkcję energii.',
-706 => 'Skraca na jakiś czas długość badań.',
-707 => 'Skraca czas lotu floty. Bonus działa tylko przez pewien okres i nie ma wpływu na ekspedycję!',
-
 901 => 'Główny surowiec do budowy konstrukcji nośnych budynków i statków kosmicznych.',
 902 => 'Główny surowiec do budowy elementów elektronicznych i stopów metali.',
 903 => 'Deuter jest izotopem wodoru, paliwo dla statków kosmicznych, nawigatorów i naukowców.',
 911 => 'Czysta energia napędzająca przemysł wydobywczy.',
-921 => 'Czarna Materia jest rzadką substancją niewiadomego pochodzenia.',
-
 ];
 
 $LNG['longDescription'] = [
@@ -423,7 +400,6 @@ $LNG['longDescription'] = [
     217 => 'Powstał dzięki potrzebie transportu większych ładunków, jak również szybszego transportu.',
     218 => 'Można powiedzieć, iż to przedstawiciel koszmaru na tym świecie, niestety strasznie powolny.',
     219 => 'Ogromna ładowność, a dzięki nowym technologiom porusza się znacznie szybciej od standardowego recyklera.',
-    220 => 'Dzięki temu statkowi jesteś w stanie zbierać Czarną materię z księżyca.',
 
     401 => 'Twoja pierwsza linia obrony. Po walce i zniszczeniu jest 70% szans, że zostanie naprawiona.',
     402 => 'Wiązki laserowe dzięki specjalnym systemom namierzania i podążania za celem są kierowane tak, by przebijać'
@@ -447,14 +423,6 @@ $LNG['longDescription'] = [
     502 => 'Służa do przechwytywania i niszczenia wrogich rakiet międzyplanetarnych.',
     503 => 'Służy do niszczenia obrony na planecie. Ma wroga w postaci antyrakiet.',
 
-    701 => 'Bonus jest tymczasowy!',
-    702 => 'Bonus jest tymczasowy!',
-    703 => 'Bonus jest tymczasowy!',
-    704 => 'Bonus jest tymczasowy!',
-    705 => 'Bonus jest tymczasowy!',
-    706 => 'Bonus jest tymczasowy!',
-    707 => 'Bonus jest tymczasowy!',
-
 901 => 'Główny surowiec do budowy konstrukcji nośnych budynków i statków kosmicznych. Metal jest najtańszym surowcem'
     . ' mineralnym, dlatego jest częściej wykorzystywany niż inne.',
 902 => 'Główny surowiec do budowy elementów elektronicznych i stopów metali. Kryształy wykorzystywane są we wszystkich'
@@ -466,8 +434,6 @@ $LNG['longDescription'] = [
 911 => 'Czysta energia napędzająca przemysł wydobywczy. Aby zapewnić zaopatrzenie kopalń i ekstraktorów, wymagane są'
     . ' ogromne ilości czystej energii. Prawie wszystkie budynki potrzebują energii do ich eksploatacji. Energia jest'
     . ' niewymienialna.',
-921 => 'Czarna Materia jest rzadką substancją niewiadomego pochodzenia. Pojawia się w przypadkowych miejscach'
-    . ' Uniwersum. Jest wykorzystywana do opłacania najznakomitszych oficerów we wszechświecie.',
 ];
 
 // Translated into Polish by Sirgomo . All rights reversed (C) 2012

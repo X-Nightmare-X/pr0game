@@ -153,7 +153,6 @@ class PlayerUtil
             ':dpath'                => DEFAULT_THEME,
             ':timezone'             => $config->timezone,
             ':nameLastChanged'      => 0,
-            ':darkmatter_start'     => $config->darkmatter_start,
         );
 
         $sql = 'INSERT INTO %%USERS%% SET
@@ -169,8 +168,7 @@ class PlayerUtil
 		password		= :password,
 		dpath			= :dpath,
 		timezone		= :timezone,
-		uctime			= :nameLastChanged,
-		darkmatter		= :darkmatter_start;';
+		uctime			= :nameLastChanged;';
 
         $db = Database::get();
 

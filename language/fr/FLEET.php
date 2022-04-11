@@ -271,7 +271,6 @@ $LNG['type_mission_6'] = 'Espionner';
 $LNG['type_mission_7'] = 'Coloniser';
 $LNG['type_mission_8'] = 'Recycler';
 $LNG['type_mission_9'] = 'Destruire';
-$LNG['type_mission_11'] = 'Rechercher de la Matiere Noire';
 $LNG['type_mission_15'] = 'Expedition';
 
 $LNG['type_planet_short_1'] = 'P';

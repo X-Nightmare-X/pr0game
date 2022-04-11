@@ -38,7 +38,6 @@ $LNG['shortNames'] = [
 217 => 'Battle Transporter',
 218 => 'Avatar',
 219 => 'Battle Recycler',
-220 => 'Dark Matter Collector',
 
 401 => 'Missile Launcher',
 402 => 'Light Laser Turret',
@@ -138,7 +137,6 @@ $LNG['tech'] = [
 217 => 'Battle Transporter',
 218 => 'Avatar',
 219 => 'Battle Recycler',
-220 => 'Dark Matter Collector',
 
 400 => 'Planetary Defense',
 401 => 'Missile Launcher',
@@ -157,21 +155,11 @@ $LNG['tech'] = [
 502 => 'Interceptor',
 503 => 'Interplanetary missiles',
 
-    700 => 'Premium Optimizations',
-    701 => 'Weapons Upgrade',
-    702 => 'Shield Upgrade',
-    703 => 'Building Upgrade',
-    704 => 'Resource Upgrade',
-    705 => 'Energy Upgrade',
-    706 => 'Research Upgrade',
-    707 => 'Fleet Upgrade',
-
     900 => 'Resources',
     901 => 'Metal',
     902 => 'Crystal',
     903 => 'Deuterium',
     911 => 'Energy',
-    921 => 'Dark Matter',
 ];
 
 $LNG['shortDescription'] = [
@@ -256,7 +244,6 @@ $LNG['shortDescription'] = [
 217 => 'Is a development of the large cargo, it has more carry capacity and flies faster with the right techonology.',
 218 => 'The absolute worst case scenario, albeit very slowly.',
 219 => 'Is a huge cargo space and new engines, enable it to fly faster and gather more in debris fields .',
-220 => 'After long years of research dark matter is now collectable from the moon.',
 
 401 => 'The Rocket Launcher is a simple but cost-effective defense.',
 402 => 'Light Lasers are simple ground based defense weapons. They use special targeting systems to track and attack'
@@ -278,21 +265,11 @@ $LNG['shortDescription'] = [
 502 => 'Interceptor missiles are used to destroy attacking Interplanetary missiles.',
 503 => 'Interplanetary missiles are used to destroy the opponents defenses.',
 
-701 => 'Increases the attack value of the ships and defenses.',
-702 => 'Increases the value of ships shields and defenses',
-703 => 'Shortens the construction time for buildings',
-704 => 'Increases resource production',
-705 => 'Increases energy production',
-706 => 'Shortens research time',
-707 => 'Shortens flying time. Does not affect Expeditions.',
-
 901 => 'Metal is the main resource for Buildings and Ships. It is the cheapest resource, but it is needed the most'
     . ' as well.',
 902 => 'Crystals are the main resource used to build electronic circuits and form certain alloy compounds.',
 903 => 'Deuterium is found in the deepest sea. It is the most expensive resource and needs the most energy as well.',
 911 => 'Energy is needed for the production of every resource.',
-921 => 'Dark Matter is a very mysterious resource. Nobody really knows where it comes from. Sometimes it just appears'
-    . ' out of nowhere.',
 ];
 
 $LNG['longDescription'] = [
@@ -404,7 +381,6 @@ $LNG['longDescription'] = [
 217 => 'Is a development of the large cargo, it has more carry capacity and flies faster with the right techonology.',
 218 => 'The absolute worst case scenario, albeit very slowly.',
 219 => 'Is a huge cargo space and new engines, enable it to fly faster and gather more in debris fields .',
-220 => 'After long years of research dark matter is now collectable from the moon.',
 
 401 => 'The Rocket Launcher is a simple but cost-effective defense.',
 402 => 'Light Lasers are simple ground based weapons that utilize special targeting systems to track the enemy and fire'
@@ -429,14 +405,6 @@ $LNG['longDescription'] = [
     . ' number of solar system) is determined by the level of your Impulse drive:<br>Range = (5 x Impusle Drive level)'
     . ' - 1',
 
-701 => 'Increases the attack value of the ships and defenses.',
-702 => 'Increases the value of ships shields',
-703 => 'Shorten the construction time for buildings',
-704 => 'Increases resource production',
-705 => 'Increases energy production',
-706 => 'Shortens research time',
-707 => 'Shortens flying time. Does not affect Expeditions.',
-
 901 => 'Metal is the main resource for Buildings and Ships. It is the cheapest resource, but it is needed the most as'
     . ' well. Producing Metal is the least energy expensive. The bigger the mines are, the deeper they dig into'
     . ' the earth.',
@@ -445,7 +413,4 @@ $LNG['longDescription'] = [
 903 => 'Deuterium is found in the deepest sea. It belongs to the rarest resources in the Universe. Because you have to'
     . ' get to the ground of the sea in order to get Deuterium, it is the most expensive resource.',
 911 => 'Energy is needed for the production of every resource.',
-921 => 'Dark Matter is a very mysterious resource. Nobody really knows where it comes from. Sometimes it just appears'
-    . ' out of nowhere and sometimes it is even found in old ships. Some even say that it doesn\'t exist, but it has'
-    . ' been proven otherwise. You can use Dark Matter to hire the most experienced officers in the universe.',
 ];

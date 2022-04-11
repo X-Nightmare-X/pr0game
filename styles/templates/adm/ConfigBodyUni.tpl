@@ -115,10 +115,6 @@
 	<td><input name="deuterium_start" maxlength="11" size="11" value="{$deuterium_start}" type="text"></td>
 	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$se_deuterium_start_info}"></td>
 </tr><tr>
-	<td>{$se_darkmatter_start}</td>
-	<td><input name="darkmatter_start" maxlength="11" size="11" value="{$darkmatter_start}" type="text"></td>
-	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$se_darkmatter_start_info}"></td>
-</tr><tr>
 	<td>{$se_initial_fields}</td>
 	<td><input name="initial_fields" maxlength="10" size="10" value="{$initial_fields}" type="text"> {$se_fields} </td>
 	<td>&nbsp;</td>
@@ -240,10 +236,6 @@
 	<td>{$se_noob_protect3}</td>
 	<td><input name="noobprotectionmulti" value="{$noobprot3}" type="text"></td>
 	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$se_noob_protect_e3}"></td>
-</tr><tr>
-	<td>{$se_max_dm_missions}</td>
-	<td><input name="max_dm_missions" maxlength="3" size="3" value="{$max_dm_missions}" type="text"></td>
-	<td>&nbsp;</td>
 </tr><tr>
 	<td>{$se_alliance_create_min_points}</td>
 	<td><input name="alliance_create_min_points" maxlength="20" size="25" value="{$alliance_create_min_points}" type="text"></td>

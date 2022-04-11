@@ -36,7 +36,6 @@ $LNG['shortNames'] = [
     217 => 'Cargueiro Armado',
     218 => 'Avatar',
     219 => 'Reciclador de Batalha',
-    220 => 'Sondador de MN',
 
     401 => 'L.Misseis.',
     402 => 'Laser L.',
@@ -139,7 +138,6 @@ $LNG['tech'] = [
     217 => 'Cargueiro Armado',
     218 => 'Avatar',
     219 => 'Reciclador de Batalha',
-    220 => 'Sondador de MN',
 
     400 => 'Sistemas de Defesa',
     401 => 'Lançador de Mísseis',
@@ -158,21 +156,11 @@ $LNG['tech'] = [
     502 => 'Míssil de Interceção',
     503 => 'Míssil Interplanetário',
 
-    700 => 'Optimizações Premium',
-    701 => 'Otimização de Armas',
-    702 => 'Otimização de Escudos',
-    703 => 'Coordenação na construção',
-    704 => 'Otimização de Recursos',
-    705 => 'Otimização de Energia',
-    706 => 'Otimização de Pesquisas',
-    707 => 'Coordenação de Frotas',
-
     900 => 'Recursos',
     901 => 'Metal',
     902 => 'Cristal',
     903 => 'Deutério',
     911 => 'Energia',
-    921 => 'Matéria Negra',
 ];
 
 // Pequena Descrição
@@ -285,7 +273,6 @@ $LNG['shortDescription'] = [
         . ' batalhas entre grandes impérios! O Reciclador de Batalha é uma nave muito desejada devido à sua capacidade'
         . ' de carga e velocidade, mas continua sem sistemas de defesa o que faz dela uma nave impotente a não ser para'
         . ' reciclagem.',
-    220 => 'Após longos anos de pesquisas, foi possivel criar a nave que rastreia matéria negra .',
 
     401 => 'O lançador de mísseis é um sistema de defesa simples e barato. Tornam-se muito eficazes em número e podem'
         . ' ser construídos sem pesquisa específica porque é uma arma de balística simples.',
@@ -317,14 +304,6 @@ $LNG['shortDescription'] = [
     502 => 'O míssil de interceção destrói os mísseis interplanetários atacantes.',
     503 => 'O míssil interplanetário destrói os sistemas de defesa do inimigo.',
 
-    701 => 'Este bonus aumenta o valor de ataque.',
-    702 => 'Este bonus aumenta o valor de escudos da defesa e das naves.',
-    703 => 'Este bonus diminui o tempo de construção dos edificios.',
-    704 => 'Este bonus aumenta a produção de recursos.',
-    705 => 'Este bonus aumenta a produção de energia.',
-    706 => 'Este bonus diminui o tempo de pesquisas.',
-    707 => 'Este bonus diminui o tempo de voo.',
-
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 901 => 'Metal is the main resource for Buildings and Ships. It is the cheapest resource, but it is needed the most as'
     . ' well. Producing Metal is the least energy expensive. The bigger the mines are, the deeper they dig into the'
@@ -333,8 +312,6 @@ $LNG['shortDescription'] = [
 903 => 'Deuterium is found in the deepest sea. It belongs to the rarest resources in the Universe. Because you have to'
     . ' get to the ground of the sea in order to get Deuterium, it is the most expensive resource.',
 911 => 'Energy is needed for the production of every resource.',
-921 => 'Dark Matter is a very mysterious resource. Nobody really knows where it comes from. Sometimes it just appears'
-    . ' out of nowhere. You can use Dark Matter to hire the most experienced officers in the universe.',
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 ];
 
@@ -448,7 +425,6 @@ $LNG['longDescription'] = [
         . ' batalhas entre grandes impérios! O Reciclador de Batalha é uma nave muito desejada devido à sua capacidade'
         . ' de carga e velocidade, mas continua sem sistemas de defesa o que faz dela uma nave impotente a não ser para'
         . ' reciclagem.',
-    220 => 'Após longos anos de pesquisas, foi possivel criar a nave que rastreia matéria negra .',
 
     401 => 'O lançador de mísseis é um sistema de defesa simples e barato. Tornam-se muito eficazes em número e podem'
         . ' ser construídos sem pesquisa específica porque é uma arma de balística simples.',
@@ -480,14 +456,6 @@ $LNG['longDescription'] = [
     502 => 'O míssil de interceção destrói os mísseis interplanetários atacantes.',
     503 => 'O míssil interplanetário destrói os sistemas de defesa do inimigo.',
 
-    701 => 'Este bonus aumenta o valor de ataque.',
-    702 => 'Este bonus aumenta o valor de escudos da defesa e das naves.',
-    703 => 'Este bonus diminui o tempo de construção dos edificios.',
-    704 => 'Este bonus aumenta a produção de recursos.',
-    705 => 'Este bonus aumenta a produção de energia.',
-    706 => 'Este bonus diminui o tempo de pesquisas.',
-    707 => 'Este bonus diminui o tempo de voo.',
-
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
     901 => 'Metal is the main resource for Buildings and Ships. It is the cheapest resource, but it is needed the most'
         . ' as well. Producing Metal is the least energy expensive. The bigger the mines are, the deeper they dig into'
@@ -497,9 +465,5 @@ $LNG['longDescription'] = [
     903 => 'Deuterium is found in the deepest sea. It belongs to the rarest resources in the Universe. Because you have'
         . ' to get to the ground of the sea in order to get Deuterium, it is the most expensive resource.',
     911 => 'Energy is needed for the production of every resource.',
-    921 => 'Dark Matter is a very mysterious resource. Nobody really knows where it comes from. Sometimes it just'
-        . ' appears out of nowhere and sometimes it is even found in old ships. Some even say that it doesn\'t exist,'
-        . ' but it has been proven otherwise. You can use Dark Matter to hire the most experienced officers in the'
-        . ' universe.',
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 ];

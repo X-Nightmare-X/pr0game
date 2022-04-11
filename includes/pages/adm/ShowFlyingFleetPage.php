@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -22,23 +22,23 @@ require 'includes/classes/class.FlyingFleetsTable.php';
 function ShowFlyingFleetPage()
 {
 	global $LNG;
-	
+
 	$id	= HTTP::_GP('id', 0);
 	$massunlock = HTTP::_GP('massunlock',0);
 	if(!empty($id)) {
 		$lock	= HTTP::_GP('lock', 0);
 		$SQL	= ($lock == 0) ? "NULL" : "'ADM_LOCK'";
-		
+
 		$GLOBALS['DATABASE']->query("UPDATE ".FLEETS." SET `fleet_busy` = '".$lock."' WHERE `fleet_id` = '".$id."' AND `fleet_universe` = '".Universe::getEmulated()."';");
 		$GLOBALS['DATABASE']->query("UPDATE ".FLEETS_EVENT." SET `lock` = ".$SQL." WHERE `fleetID` = ".$id.";");
 	} elseif (!empty($massunlock)) {
 		$GLOBALS['DATABASE']->query("UPDATE ".FLEETS." SET `fleet_busy` = '0' WHERE `fleet_universe` = '".Universe::getEmulated()."';");
 		$GLOBALS['DATABASE']->query("UPDATE ".FLEETS_EVENT." SET `lock` = NULL;");
 	}
-	
+
 	$orderBy		= "fleet_id";
 
-	$fleetResult	= $GLOBALS['DATABASE']->query("SELECT 
+	$fleetResult	= $GLOBALS['DATABASE']->query("SELECT
 	fleet.*,
 	event.`lock`,
 	COUNT(event.fleetID) as error,
@@ -57,9 +57,9 @@ function ShowFlyingFleetPage()
 	WHERE fleet_universe = ".Universe::getEmulated()."
 	GROUP BY event.fleetID
 	ORDER BY ".$orderBy.";");
-	
+
 	$FleetList	= array();
-	
+
 	while($fleetRow = $GLOBALS['DATABASE']->fetch_array($fleetResult)) {
 		$shipList		= array();
 		$shipArray		= array_filter(explode(';', $fleetRow['fleet_array']));
@@ -67,7 +67,7 @@ function ShowFlyingFleetPage()
 			$shipDetail		= explode(',', $ship);
 			$shipList[$shipDetail[0]]	= $shipDetail[1];
 		}
-		
+
 		global $USER;
 		$FleetList[]	= array(
 			'fleetID'				=> $fleetRow['fleet_id'],
@@ -104,14 +104,13 @@ function ShowFlyingFleetPage()
 				901	=> $fleetRow['fleet_resource_metal'],
 				902	=> $fleetRow['fleet_resource_crystal'],
 				903	=> $fleetRow['fleet_resource_deuterium'],
-				921	=> $fleetRow['fleet_resource_darkmatter'],
 			),
 		);
 	}
-	
-	
+
+
 	$GLOBALS['DATABASE']->free_result($fleetResult);
-	
+
 	$template			= new template();
 	$template->assign_vars(array(
 		'FleetList'			=> $FleetList,

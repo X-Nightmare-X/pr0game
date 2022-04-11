@@ -159,7 +159,7 @@ function ShowQuickEditorPage()
             }
             $UserData = $GLOBALS['DATABASE']->getFirstRow(
                 "SELECT " . $SpecifyItemsPQ . " `username`, `authlevel`, `galaxy`, `system`, `planet`, `id_planet`,"
-                . " `darkmatter`, `authattack`, `authlevel` FROM " . USERS . " WHERE `id` = '" . $id . "';"
+                . " `authattack`, `authlevel` FROM " . USERS . " WHERE `id` = '" . $id . "';"
             );
             $ChangePW = $USER['id'] == ROOT_USER || ($id != ROOT_USER && $USER['authlevel'] > $UserData['authlevel']);
 
@@ -168,7 +168,6 @@ function ShowQuickEditorPage()
                 foreach ($DataIDs as $ID) {
                     $SQL .= "`" . $resource[$ID] . "` = " . min(abs(HTTP::_GP($resource[$ID], 0)), 255) . ", ";
                 }
-                $SQL .= "`darkmatter` = '" . max(HTTP::_GP('darkmatter', 0), 0) . "', ";
                 if (!empty($_POST['password']) && $ChangePW) {
                     $SQL .= "`password` = '" . PlayerUtil::cryptPassword(HTTP::_GP('password', '', true)) . "', ";
                 }
@@ -188,8 +187,6 @@ function ShowQuickEditorPage()
                     $old[$IDs] = $UserData[$resource[$IDs]];
                     $new[$IDs] = abs(HTTP::_GP($resource[$IDs], 0));
                 }
-                $old[921] = $UserData[$resource[921]];
-                $new[921] = abs(HTTP::_GP($resource[921], 0));
                 $old['username'] = $UserData['username'];
                 $new['username'] = $GLOBALS['DATABASE']->sql_escape(HTTP::_GP('name', '', UTF8_SUPPORT));
                 $old['authattack'] = $UserData['authattack'];
@@ -249,8 +246,6 @@ function ShowQuickEditorPage()
                 ),
                 'ChangePW'      => $ChangePW,
                 'yesorno'       => [1 => $LNG['one_is_yes_1'], 0 => $LNG['one_is_yes_0']],
-                'darkmatter'    => floatToString($UserData['darkmatter']),
-                'darkmatter_c'  => pretty_number($UserData['darkmatter']),
             ]);
             $template->show('QuickEditorUser.tpl');
             break;

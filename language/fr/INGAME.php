@@ -26,7 +26,6 @@ $LNG['type_mission_7'] = 'Coloniser';
 $LNG['type_mission_8'] = 'Recycler';
 $LNG['type_mission_9'] = 'Détruire';
 $LNG['type_mission_10'] = 'MIP - Attaque missile interplanétaire';
-$LNG['type_mission_11'] = 'Recherche de Matière Noire';
 $LNG['type_mission_15'] = 'Expédition';
 
 $LNG['type_planet_1'] = 'Planète';
@@ -296,7 +295,6 @@ $LNG['fl_multi_alarm'] = 'Alerte Multiple!!';
 $LNG['fl_empty_target'] = 'Pas de mission disponible (La planète exite t\'elle ?)';
 $LNG['fl_expedition_alert_message'] = 'Attention ! Les expéditions sont des missions dangereuses, vous pouvez perdre'
     . ' vos vaisseaux !';
-$LNG['fl_dm_alert_message'] = 'Attention , si dans le %s %s a été trouvé, la flotte est détruite !';
 $LNG['fl_vacation_mode_active'] = 'Vous êtes en mode vacances';
 $LNG['fl_expedition_fleets_limit'] = 'La limite de flottes pour les expéditions est atteinte !';
 $LNG['fl_week_player'] = 'Le joueur est très faible !';

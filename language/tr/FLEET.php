@@ -291,7 +291,6 @@ $LNG['type_mission_6'] = 'Casusluk';
 $LNG['type_mission_7'] = 'Kolonilestirmek';
 $LNG['type_mission_8'] = 'Sokmek';
 $LNG['type_mission_9'] = 'Yoketmek';
-$LNG['type_mission_11'] = 'KM Arastirma';
 $LNG['type_mission_15'] = 'Kesif Ucusu';
 
 $LNG['type_planet_short_1'] = 'G';

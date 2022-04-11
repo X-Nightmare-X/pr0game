@@ -366,9 +366,6 @@ if (empty($Found)) {
                 'military_tech' => max($senderData['military_tech'] + $techBonus, 0),
                 'shield_tech'   => max($senderData['shield_tech'] + $techBonus, 0),
                 'defence_tech'  => max($senderData['defence_tech'] + $techBonus, 0),
-                'rpg_amiral'    => 0,
-                'dm_defensive'  => 0,
-                'dm_attack'     => 0,
         ];
 
         $fleetDefend = [];

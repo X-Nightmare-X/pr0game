@@ -41,7 +41,7 @@ function ShowAccountDataPage()
 
             // COMIENZA SAQUEO DE DATOS DE LA TABLA DE USUARIOS
             $SpecifyItemsU = "u.id,u.username,u.email,u.email_2,u.authlevel,u.id_planet,u.galaxy,u.system,u.planet,"
-                . "u.user_lastip,u.ip_at_reg,u.darkmatter,u.register_time,u.onlinetime,u.urlaubs_modus,u.urlaubs_until,"
+                . "u.user_lastip,u.ip_at_reg,u.register_time,u.onlinetime,u.urlaubs_modus,u.urlaubs_until,"
                 . "u.ally_id,a.ally_name," . $SpecifyItemsUQ . "u.ally_register_time,u.ally_rank_id,u.bana,u.banaday";
 
             $UserQuery = $GLOBALS['DATABASE']->getFirstRow(
@@ -67,10 +67,6 @@ function ShowAccountDataPage()
             $nivel = $LNG['rank_' . $UserQuery['authlevel']];
             $vacas = $LNG['one_is_yes_' . $UserQuery['urlaubs_modus']];
             $suspen = $LNG['one_is_yes_' . $UserQuery['bana']];
-
-
-            $mo = "<a title=\"" . pretty_number($UserQuery['darkmatter']) . "\">"
-                . shortly_number($UserQuery['darkmatter']) . "</a>";
 
             foreach ($reslist['tech'] as $ID) {
                 $techno[] = $ID;
@@ -392,7 +388,6 @@ function ShowAccountDataPage()
                 'DestruyeD'                     => $DestruyeD,
                 'destroyed'                     => $destroyed,
                 'resources'                     => $resources,
-                'mo'                            => $mo,
                 'names'                         => $names,
                 'build'                         => $build,
                 'fleet'                         => $fleet,
@@ -525,7 +520,6 @@ function ShowAccountDataPage()
                 'Crystal'                       => $LNG['tech'][902],
                 'Deuterium'                     => $LNG['tech'][903],
                 'Energy'                        => $LNG['tech'][911],
-                'Darkmatter'                    => $LNG['tech'][921],
                 'ac_research'                   => $LNG['ac_research'],
                 'researchs_title'               => $LNG['researchs_title'],
                 'ac_coords'                     => $LNG['ac_coords'],

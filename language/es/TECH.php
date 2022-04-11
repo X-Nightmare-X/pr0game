@@ -36,7 +36,6 @@ $LNG['shortNames'] = [
     217 => 'Transp. Espacial',
     218 => 'Avatar',
     219 => 'Mega-Reciclador',
-    220 => 'Recolector MO',
 
     401 => 'Lanzamisiles',
     402 => 'L&aacute;ser',
@@ -135,7 +134,6 @@ $LNG['tech'] = [
 217 => 'Transporte Espacial',
 218 => 'Avatar',
 219 => 'Mega-Reciclador',
-220 => 'Colector intergalactico de materia oscura',
 
 400 => 'Sistemas de defensa',
 401 => 'Lanzamisiles',
@@ -154,21 +152,11 @@ $LNG['tech'] = [
 502 => 'Misil de intercepci&oacute;n',
 503 => 'Misil interplanetario',
 
-700 => 'Funciones Premium',
-701 => 'Optimizaci&oacute;n de armas',
-702 => 'Optimizaci&oacute;n de escudos',
-703 => 'Coordinaci&oacute;n de construcci&oacute;n',
-704 => 'Optimizaci&oacute;n de recursos',
-705 => 'Optimizaci&oacute;n de energ&iacute;a',
-706 => 'Optimizaci&oacute;n de investigaciones',
-707 => 'Coordinaci&oacute;n de flota',
-
 900 => 'Recursos',
 901 => 'Metal',
 902 => 'Cristal',
 903 => 'Deutério',
 911 => 'Energía',
-921 => 'Materia Oscura',
 ];
 
 $LNG['shortDescription'] = [
@@ -284,7 +272,6 @@ $LNG['shortDescription'] = [
 218 => 'La absoluta, aunque muy lentamente.',
 219 => 'Es un espacio de carga enorme y nuevos motores, que pueda volar m&aacute;s r&aacute;pido y obtener m&aacute;s'
     . ' en los campos de escombros.',
-220 => 'Despu&eacute;s de largos a&ntilde;os de investigaci&oacute;n la materia oscura se recolecta en la luna.',
 
 401 => 'El lanzamisiles es un sistema de defensa sencillo, pero barato.',
 402 => 'Por medio de un rayo l&aacute;ser concentrado, se puede provocar m&aacute;s da&ntilde;o que con las armas'
@@ -311,14 +298,6 @@ $LNG['shortDescription'] = [
 502 => 'Los misiles de intercepci&oacute;n destruyen los misiles interplanetarios.',
 503 => 'Los misiles interplanetarios destruyen los sistemas de defensa del enemigo.',
 
-701 => 'El bono es s&oacute;lo temporal.',
-702 => 'El bono es s&oacute;lo temporal.',
-703 => 'El bono es s&oacute;lo temporal.',
-704 => 'El bono es s&oacute;lo temporal.',
-705 => 'El bono es s&oacute;lo temporal.',
-706 => 'El bono es s&oacute;lo temporal.',
-707 => 'El bono es s&oacute;lo temporal. No afecta a las expediciones.',
-
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 901 => 'Metal is the main resource for Buildings and Ships. It is the cheapest resource, but it is needed the most as'
     . ' well. Producing Metal is the least energy expensive. The bigger the mines are, the deeper they dig into the'
@@ -327,8 +306,6 @@ $LNG['shortDescription'] = [
 903 => 'Deuterium is found in the deepest sea. It belongs to the rarest resources in the Universe. Because you have to'
     . ' get to the ground of the sea in order to get Deuterium, it is the most expensive resource.',
 911 => 'Energy is needed for the production of every resource.',
-921 => 'Dark Matter is a very mysterious resource. Nobody really knows where it comes from. Sometimes it just appears'
-    . ' out of nowhere. You can use Dark Matter to hire the most experienced officers in the universe.',
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 ];
 
@@ -534,7 +511,6 @@ $LNG['longDescription'] = [
     218 => 'Es la nave absoluta, aunque muy lenta. Es la nave del emperador',
     219 => 'Es un nave con espacio de carga enorme y nuevos motores, que pueda volar m&aacute;s r&aacute;pido y obtener'
         . ' m&aacute;s en los campos de escombros.',
-    220 => 'Despu&eacute;s de largos a&ntilde;os de investigaci&oacute;n la materia oscura colecta en la luna.',
 
     401 => 'El lanzamisiles es un sistema de defensa sencillo, pero barato. Puede ser muy efectivo si se construye en'
         . ' grandes n&uacute;meros, no necesita tecnolog&iacute;a alguna puesto que es una sencilla arma'
@@ -589,14 +565,6 @@ $LNG['longDescription'] = [
     503 => 'Los misiles interplanetarios destruyen los sistemas de defensa del enemigo. Los sistemas de defensa'
         . ' destruidos por los misiles interplanetarios no ser&aacute;n reparados.',
 
-    701 => 'El bono es s&oacute;lo temporal.',
-    702 => 'El bono es s&oacute;lo temporal.',
-    703 => 'El bono es s&oacute;lo temporal.',
-    704 => 'El bono es s&oacute;lo temporal.',
-    705 => 'El bono es s&oacute;lo temporal.',
-    706 => 'El bono es s&oacute;lo temporal.',
-    707 => 'El bono es s&oacute;lo temporal. No afecta a las expediciones.',
-
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 901 => 'Metal is the main resource for Buildings and Ships. It is the cheapest resource, but it is needed the most as'
     . ' well. Producing Metal is the least energy expensive. The bigger the mines are, the deeper they dig into the'
@@ -606,8 +574,5 @@ $LNG['longDescription'] = [
 903 => 'Deuterium is found in the deepest sea. It belongs to the rarest resources in the Universe. Because you have to'
     . ' get to the ground of the sea in order to get Deuterium, it is the most expensive resource.',
 911 => 'Energy is needed for the production of every resource.',
-921 => 'Dark Matter is a very mysterious resource. Nobody really knows where it comes from. Sometimes it just appears'
-    . ' out of nowhere and sometimes it is even found in old ships. Some even say that it doesn\'t exist, but it has'
-    . ' been proven otherwise. You can use Dark Matter to hire the most experienced officers in the universe.',
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 ];

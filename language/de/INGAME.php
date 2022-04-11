@@ -33,7 +33,6 @@ $LNG['type_mission_7'] = 'Kolonisieren';
 $LNG['type_mission_8'] = 'Abbauen';
 $LNG['type_mission_9'] = 'Zerstören';
 $LNG['type_mission_10'] = 'Raketenangriff';
-$LNG['type_mission_11'] = 'DM Untersuchung';
 $LNG['type_mission_15'] = 'Expedition';
 
 $LNG['type_planet_1'] = 'Planet';
@@ -322,7 +321,6 @@ $LNG['fl_all_resources'] = 'Max Rohstoffe Laden';
 $LNG['fl_empty_target'] = 'Keine Missionen vorhanden (Planet vorhanden?)';
 $LNG['fl_expedition_alert_message'] = 'Achtung die Expedition bringt Gefahren mit sich, sie können bei der Expedition'
     . ' ihre gesamte Flotte verlieren!';
-$LNG['fl_dm_alert_message'] = 'Achtung, wenn bei der %s %s gefunden wurde, wird die Flotten zerstört!';
 $LNG['fl_vacation_mode_active'] = 'Sie befinden sich im Urlaubsmodus';
 $LNG['fl_expedition_fleets_limit'] = 'Sie können nicht mehr Expeditionen starten!';
 $LNG['fl_week_player'] = 'Spieler ist zu schwach für sie!';

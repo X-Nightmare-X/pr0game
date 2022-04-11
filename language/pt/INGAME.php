@@ -41,7 +41,6 @@ $LNG['type_mission_7'] = 'Colonizar';
 $LNG['type_mission_8'] = 'Reciclar';
 $LNG['type_mission_9'] = 'Destruir';
 $LNG['type_mission_10'] = 'Ataque de Misseis';
-$LNG['type_mission_11'] = 'Investigação de Matéria Negra ';
 $LNG['type_mission_15'] = 'Expedição';
 
 $LNG['type_planet_1'] = 'Planeta';
@@ -308,7 +307,6 @@ $LNG['fl_all_resources'] = 'Todos os recursos';
 $LNG['fl_multi_alarm'] = 'Multi alarme!';
 $LNG['fl_empty_target'] = 'Sem missão disponivel (o planeta existe?)';
 $LNG['fl_expedition_alert_message'] = 'Atenção ! Exploração espacial são missões perigosas, podes perder a tua frota!';
-$LNG['fl_dm_alert_message'] = 'Tem cuidado, se em %s %s foi encontrada, destruiu as frotas!';
 $LNG['fl_vacation_mode_active'] = 'Modo de férias ativo';
 $LNG['fl_expedition_fleets_limit'] = 'Sem slots de exploração espacial desponiveis!';
 $LNG['fl_week_player'] = 'O jogador está sob a proteção de jogador fraco';

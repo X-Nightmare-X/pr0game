@@ -171,7 +171,6 @@ define('MODULE_BANNER', 37);
 define('MODULE_BATTLEHALL', 12);
 define('MODULE_BUDDYLIST', 6);
 define('MODULE_BUILDING', 2);
-define('MODULE_DMEXTRAS', 8);
 define('MODULE_FLEET_EVENTS', 10);
 define('MODULE_FLEET_TABLE', 9);
 define('MODULE_FLEET_TRADER', 38);

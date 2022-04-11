@@ -26,7 +26,7 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
     {
         global $pricelist, $resource;
 
-        $resourceIDs = [901, 902, 903, 921];
+        $resourceIDs = [901, 902, 903];
         $debrisIDs = [901, 902];
         $resQuery = [];
         $collectQuery = [];

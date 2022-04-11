@@ -330,7 +330,6 @@ $LNG['type_mission_6'] = 'Spionieren';
 $LNG['type_mission_7'] = 'Kolonisieren';
 $LNG['type_mission_8'] = 'Abbauen';
 $LNG['type_mission_9'] = 'Zerstören';
-$LNG['type_mission_11'] = 'DM Untersuchung';
 $LNG['type_mission_15'] = 'Expedition';
 
 $LNG['type_planet_short_1'] = 'P';

@@ -34,7 +34,6 @@ $LNG['type_mission_7'] = 'Колонизировать';
 $LNG['type_mission_8'] = 'Переработать';
 $LNG['type_mission_9'] = 'Уничтожить';
 $LNG['type_mission_10'] = 'Ракетная атака';
-$LNG['type_mission_11'] = 'Поиск Тёмной материи';
 $LNG['type_mission_15'] = 'Экспедиция';
 
 $LNG['type_planet_1'] = 'Планета';
@@ -294,7 +293,6 @@ $LNG['fl_all_resources'] = 'Все ресурсы';
 $LNG['fl_empty_target'] = 'Нет доступных заданий.';
 $LNG['fl_expedition_alert_message'] = 'ВНИМАНИЕ! Экспедиция - очень рискованная миссия, в ней Вы можете потерять свой'
     . ' флот.';
-$LNG['fl_dm_alert_message'] = 'ВНИМАНИЕ! При успешной добыче Тёмной материи Ваш флот будет потерян.';
 $LNG['fl_vacation_mode_active'] = 'Вы находитесь в режиме отпуск';
 $LNG['fl_expedition_fleets_limit'] = 'Достигнут предел количества использованных флотов в экспедиции.';
 $LNG['fl_week_player'] = 'Игрок слишком слаб.';

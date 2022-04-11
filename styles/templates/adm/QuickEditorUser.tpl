@@ -34,7 +34,6 @@ function check(){
 <tr>
         <td>{$LNG.qe_name}</td><td>{$LNG.qe_count}</td><td>{$LNG.qe_input}</td>
 </tr>
-<tr><td width="30%">{$LNG.tech.921}:</td><td width="30%">{$darkmatter_c}</td><td width="40%"><input name="darkmatter" type="text" value="{$darkmatter}"></td></tr>
 </table>
 <table width="100%" style="color:#FFFFFF">
 <tr>

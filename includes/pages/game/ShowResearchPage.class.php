@@ -98,8 +98,6 @@ class ShowResearchPage extends AbstractGamePage
 			$db->update($sql, $params);
 		}
 
-		if(isset($costResources[921])) { $USER[$resource[921]]		+= $costResources[921]; }
-
 		$USER['b_tech_id']			= 0;
 		$USER['b_tech']      		= 0;
 		$USER['b_tech_planet']		= 0;
@@ -255,7 +253,6 @@ class ShowResearchPage extends AbstractGamePage
 			if(isset($costResources[901])) { $PLANET[$resource[901]]	-= $costResources[901]; }
 			if(isset($costResources[902])) { $PLANET[$resource[902]]	-= $costResources[902]; }
 			if(isset($costResources[903])) { $PLANET[$resource[903]]	-= $costResources[903]; }
-			if(isset($costResources[921])) { $USER[$resource[921]]		-= $costResources[921]; }
 
 			$elementTime    			= BuildFunctions::getBuildingTime($USER, $PLANET, $elementId, $costResources);
 			$BuildEndTime				= TIMESTAMP + $elementTime;

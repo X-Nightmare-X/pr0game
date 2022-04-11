@@ -292,7 +292,6 @@ $LNG['type_mission_6'] = 'Szpieguj';
 $LNG['type_mission_7'] = 'Kolonizuj';
 $LNG['type_mission_8'] = 'Recykling';
 $LNG['type_mission_9'] = 'Zniszcz';
-$LNG['type_mission_11'] = 'Żniwa Czarnej Materii';
 $LNG['type_mission_15'] = 'Ekspedycja';
 
 $LNG['type_planet_short_1'] = 'P';

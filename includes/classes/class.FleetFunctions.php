@@ -98,11 +98,6 @@ class FleetFunctions
         return floor(sqrt($USER[$GLOBALS['resource'][124]]));
     }
 
-    public static function getDMMissionLimit($USER)
-    {
-        return Config::get($USER['universe'])->max_dm_missions;
-    }
-
     public static function getMissileRange($Level)
     {
         return max(($Level * 5) - 1, 0);

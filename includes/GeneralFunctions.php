@@ -13,44 +13,6 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-function getFactors($USER, $Type = 'basic', $TIME = null)
-{
-    global $resource, $pricelist, $reslist;
-    if (empty($TIME))
-        $TIME = TIMESTAMP;
-
-    $bonusList = BuildFunctions::getBonusList();
-    $factor = ArrayUtil::combineArrayWithSingleElement($bonusList, 0);
-
-    foreach ($reslist['bonus'] as $elementID) {
-        $bonus = $pricelist[$elementID]['bonus'];
-
-        if (isset($PLANET[$resource[$elementID]])) {
-            $elementLevel = $PLANET[$resource[$elementID]];
-        } else if (isset($USER[$resource[$elementID]])) {
-            $elementLevel = $USER[$resource[$elementID]];
-        } else {
-            continue;
-        }
-
-        if (in_array($elementID, $reslist['dmfunc'])) {
-            if (DMExtra($elementLevel, $TIME, false, true)) {
-                continue;
-            }
-
-            foreach ($bonusList as $bonusKey) {
-                $factor[$bonusKey] += $bonus[$bonusKey][0];
-            }
-        } else {
-            foreach ($bonusList as $bonusKey) {
-                $factor[$bonusKey] += $elementLevel * $bonus[$bonusKey][0];
-            }
-        }
-    }
-
-    return $factor;
-}
-
 function userStatus($data, $noobprotection = false)
 {
     $Array = [];
@@ -438,16 +400,6 @@ function allowedTo($side)
 {
     global $USER;
     return ($USER['authlevel'] == AUTH_ADM || (isset($USER['rights']) && $USER['rights'][$side] == 1));
-}
-
-function isactiveDMExtra($Extra, $Time)
-{
-    return $Time - $Extra <= 0;
-}
-
-function DMExtra($Extra, $Time, $true, $false)
-{
-    return isactiveDMExtra($Extra, $Time) ? $true : $false;
 }
 
 function getRandomString()

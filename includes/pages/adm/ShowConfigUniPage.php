@@ -77,7 +77,6 @@ function ShowConfigUniPage()
             'metal_start'           => $config->metal_start,
             'crystal_start'         => $config->crystal_start,
             'deuterium_start'       => $config->deuterium_start,
-            'darkmatter_start'      => $config->darkmatter_start,
             'debris_moon'           => $config->debris_moon,
             'deuterium_cost_galaxy' => $config->deuterium_cost_galaxy,
             'ref_active'            => $config->ref_active,
@@ -85,7 +84,6 @@ function ShowConfigUniPage()
             'ref_minpoints'         => $config->ref_minpoints,
             'ref_max_referals'      => $config->ref_max_referals,
             'silo_factor'           => $config->silo_factor,
-            'max_dm_missions'       => $config->max_dm_missions,
             'alliance_create_min_points' => $config->alliance_create_min_points,
             'max_fleet_per_build'   => $config->max_fleet_per_build,
         ];
@@ -142,14 +140,12 @@ function ShowConfigUniPage()
         $metal_start            = HTTP::_GP('metal_start', 0);
         $crystal_start          = HTTP::_GP('crystal_start', 0);
         $deuterium_start        = HTTP::_GP('deuterium_start', 0);
-        $darkmatter_start       = HTTP::_GP('darkmatter_start', 0);
         $deuterium_cost_galaxy  = HTTP::_GP('deuterium_cost_galaxy', 0);
         $max_fleet_per_build    = max(0, round(HTTP::_GP('max_fleet_per_build', 0.0)));
         $ref_bonus              = HTTP::_GP('ref_bonus', 0);
         $ref_minpoints          = HTTP::_GP('ref_minpoints', 0);
         $silo_factor            = HTTP::_GP('silo_factor', 0);
         $ref_max_referals       = HTTP::_GP('ref_max_referals', 0);
-        $max_dm_missions        = HTTP::_GP('max_dm_missions', 1);
         $alliance_create_min_points = HTTP::_GP('alliance_create_min_points', 0);
 
         $config_after = [
@@ -202,7 +198,6 @@ function ShowConfigUniPage()
             'metal_start'           => $metal_start,
             'crystal_start'         => $crystal_start,
             'deuterium_start'       => $deuterium_start,
-            'darkmatter_start'      => $darkmatter_start,
             'debris_moon'           => $debris_moon,
             'deuterium_cost_galaxy' => $deuterium_cost_galaxy,
             'ref_active'            => $ref_active,
@@ -210,7 +205,6 @@ function ShowConfigUniPage()
             'ref_minpoints'         => $ref_minpoints,
             'ref_max_referals'      => $ref_max_referals,
             'silo_factor'           => $silo_factor,
-            'max_dm_missions'       => $max_dm_missions,
             'alliance_create_min_points' => $alliance_create_min_points,
             'max_fleet_per_build'   => $max_fleet_per_build
         ];
@@ -352,15 +346,12 @@ function ShowConfigUniPage()
         'se_crystal_start_info'         => $LNG['se_crystal_start_info'],
         'se_deuterium_start'            => $LNG['se_deuterium_start'],
         'se_deuterium_start_info'       => $LNG['se_deuterium_start_info'],
-        'se_darkmatter_start'           => $LNG['se_darkmatter_start'],
-        'se_darkmatter_start_info'      => $LNG['se_darkmatter_start_info'],
         'se_debris_moon'                => $LNG['se_debris_moon'],
         'se_debris_moon_info'           => $LNG['se_debris_moon_info'],
         'se_deuterium_cost_galaxy'      => $LNG['se_deuterium_cost_galaxy'],
         'se_deuterium_cost_galaxy_info' => $LNG['se_deuterium_cost_galaxy_info'],
         'se_buildlist'                  => $LNG['se_buildlist'],
         'Deuterium'                     => $LNG['tech'][903],
-        'Darkmatter'                    => $LNG['tech'][921],
         'se_ref'                        => $LNG['se_ref'],
         'se_ref_active'                 => $LNG['se_ref_active'],
         'se_ref_active_info'            => $LNG['se_ref_active_info'],
@@ -372,7 +363,6 @@ function ShowConfigUniPage()
         'se_ref_minpoints_info'         => $LNG['se_ref_minpoints_info'],
         'se_silo_factor'                => $LNG['se_silo_factor'],
         'se_silo_factor_info'           => $LNG['se_silo_factor_info'],
-        'se_max_dm_missions'            => $LNG['se_max_dm_missions'],
         'se_alliance_create_min_points' => $LNG['se_alliance_create_min_points'],
         'game_name'                     => $config->game_name,
         'uni_name'                      => $config->uni_name,
@@ -447,7 +437,6 @@ function ShowConfigUniPage()
         'metal_start'                   => $config->metal_start,
         'crystal_start'                 => $config->crystal_start,
         'deuterium_start'               => $config->deuterium_start,
-        'darkmatter_start'              => $config->darkmatter_start,
         'debris_moon'                   => $config->debris_moon,
         'deuterium_cost_galaxy'         => $config->deuterium_cost_galaxy,
         'ref_active'                    => $config->ref_active,
@@ -455,7 +444,6 @@ function ShowConfigUniPage()
         'ref_minpoints'                 => $config->ref_minpoints,
         'ref_max_referals'              => $config->ref_max_referals,
         'silo_factor'                   => $config->silo_factor,
-        'max_dm_missions'               => $config->max_dm_missions,
         'alliance_create_min_points'    => $config->alliance_create_min_points,
     ]);
 

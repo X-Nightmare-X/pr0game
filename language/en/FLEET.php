@@ -317,7 +317,6 @@ $LNG['type_mission_6'] = 'Spy';
 $LNG['type_mission_7'] = 'Colonisation';
 $LNG['type_mission_8'] = 'Recycle';
 $LNG['type_mission_9'] = 'Destroy';
-$LNG['type_mission_11'] = 'DM Investigation';
 $LNG['type_mission_15'] = 'Expedition';
 $LNG['type_mission_16'] = 'Trade';
 $LNG['type_mission_17'] = 'Transfer';

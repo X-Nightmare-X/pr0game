@@ -233,7 +233,6 @@ function ShowResetPage()
         're_ships'                          => $LNG['re_ships'],
         're_defenses'                       => $LNG['re_defenses'],
         're_resources_met_cry'              => $LNG['re_resources_met_cry'],
-        're_resources_dark'                 => $LNG['re_resources_dark'],
         're_resources'                      => $LNG['re_resources'],
         're_reset_invest'                   => $LNG['re_reset_invest'],
         're_investigations'                 => $LNG['re_investigations'],

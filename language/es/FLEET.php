@@ -289,7 +289,6 @@ $LNG['type_mission_6'] = 'Espiar';
 $LNG['type_mission_7'] = 'Colonizar';
 $LNG['type_mission_8'] = 'Reciclar';
 $LNG['type_mission_9'] = 'Destruir';
-$LNG['type_mission_11'] = 'Investigación DM';
 $LNG['type_mission_15'] = 'Expedición';
 
 $LNG['type_planet_short_1'] = 'P';

@@ -314,7 +314,6 @@ $LNG['type_mission_6'] = 'Шпионаж';
 $LNG['type_mission_7'] = 'Колонизировать';
 $LNG['type_mission_8'] = 'Переработать';
 $LNG['type_mission_9'] = 'Уничтожить';
-$LNG['type_mission_11'] = 'Поиск ТМ';
 $LNG['type_mission_15'] = 'Экспедиция';
 
 $LNG['type_planet_short_1'] = 'П';

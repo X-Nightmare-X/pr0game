@@ -59,9 +59,6 @@ class ShowShipyardPage extends AbstractGamePage
             if (isset($costResources[903])) {
                 $PLANET[$resource[903]] += $costResources[903] * FACTOR_CANCEL_SHIPYARD;
             }
-            if (isset($costResources[921])) {
-                $USER[$resource[921]] += $costResources[921] * FACTOR_CANCEL_SHIPYARD;
-            }
 
             unset($ElementQueue[$Auftr]);
         }
@@ -132,9 +129,6 @@ class ShowShipyardPage extends AbstractGamePage
             }
             if (isset($costResources[903])) {
                 $PLANET[$resource[903]] -= $costResources[903];
-            }
-            if (isset($costResources[921])) {
-                $USER[$resource[921]] -= $costResources[921];
             }
 
             $BuildArray[] = [$Element, $Count];

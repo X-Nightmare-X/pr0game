@@ -492,9 +492,6 @@ class ResourceUpdate
                 if (isset($costResources[903])) {
                     $this->PLANET[$resource[903]] -= $costResources[903];
                 }
-                if (isset($costResources[921])) {
-                    $this->USER[$resource[921]] -= $costResources[921];
-                }
                 $NewQueue = serialize($CurrentQueue);
                 $Loop = false;
             } else {
@@ -674,9 +671,6 @@ class ResourceUpdate
                 if (isset($costResources[903])) {
                     $PLANET[$resource[903]]        -= $costResources[903];
                 }
-                if (isset($costResources[921])) {
-                    $this->USER[$resource[921]]    -= $costResources[921];
-                }
                 $this->USER['b_tech_id'] = $Element;
                 $this->USER['b_tech'] = $BuildEndTime;
                 $this->USER['b_tech_planet'] = $PLANET['id'];
@@ -804,7 +798,6 @@ class ResourceUpdate
             ':energy_used'          => $PLANET['energy_used'],
             ':energy'               => $PLANET['energy'],
             ':b_hangar'             => $PLANET['b_hangar'],
-            ':darkmatter'           => $USER['darkmatter'],
             ':b_tech'               => $USER['b_tech'],
             ':b_tech_id'            => $USER['b_tech_id'],
             ':b_tech_planet'        => $USER['b_tech_planet'],
@@ -853,7 +846,6 @@ class ResourceUpdate
 		p.energy_used = :energy_used,
 		p.energy = :energy,
 		p.b_hangar = :b_hangar,
-		u.darkmatter = :darkmatter,
 		u.b_tech = :b_tech,
 		u.b_tech_id = :b_tech_id,
 		u.b_tech_planet = :b_tech_planet,

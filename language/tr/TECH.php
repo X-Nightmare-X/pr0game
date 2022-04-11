@@ -40,7 +40,7 @@ $LNG['shortNames'] = [
     217 => 'Ultra Nakliye',
     218 => 'Avatar',
     219 => 'Ultra Donusumcu',
-    220 => 'K.M. Toplayicisi',
+
     221 => 'Thor',
     222 => 'Thriller',
     223 => 'Behamut',
@@ -152,7 +152,7 @@ $LNG['tech'] = [
     217 => 'Ultra Nakliye',
     218 => 'Avatar',
     219 => 'Ultra Donusumcu',
-    220 => 'K.M. Toplayicisi',
+
     221 => 'Thor',
     222 => 'Thriller',
     223 => 'Behamut',
@@ -182,21 +182,11 @@ $LNG['tech'] = [
     502 => 'Yakalayici Roketler',
     503 => 'Gezegenler Arasi Roketler',
 
-    700 => 'Ayricalikli Optimizasyonlar',
-    701 => 'Silah Optimizasyonu',
-    702 => 'Kalkan Optimizasyonu',
-    703 => 'Bina Optimizasyonu',
-    704 => 'Hammadde Optimizasyonu',
-    705 => 'Enerji Optimizasyonu',
-    706 => 'Arastirma Optimizasyonu',
-    707 => 'Filo Optimizasyonu',
-
     900 => 'Hammaddeler',
     901 => 'Metal',
     902 => 'Kristal',
     903 => 'Deuterium',
     911 => 'Enerji',
-    921 => 'Karanlik Madde',
 ];
 
 $LNG['shortDescription'] = [
@@ -315,7 +305,7 @@ $LNG['shortDescription'] = [
         . ' gemisi oldukca guclu olmasina karsin Cok Yavas hareket eder. ',
     219 => 'Geri donusumculerin gelistirilmis versiyonudur. Bu yeni gemi Geri Donusumculere oranla daha fazla Yuk tasir'
         . ' ve Daha Hizlidir. ',
-    220 => 'Bu gemi yeni Arastirmalar ile olusturulmustur. Aydan Karanlik Madde Toplamaktadir. ',
+
     221 => 'Kara savascinin evrene hakim olmasindan sonra bilim adamlari onu durduracar bir gemi uretmeye calistirlar.'
         . ' Bunun sonucunda ortaya Thor cikti. ',
     222 => 'Evrenin yeni kabusu olmaya aday bu gemi oxion klani tarafindan gelistirildi fakat diger irklarin da ustun'
@@ -362,14 +352,6 @@ $LNG['shortDescription'] = [
     503 => 'Gezegenler Arasi Roketler(GAR) rakip savunmayi Yokederler. Vurduklari yerdeki tum araclar yeryuzunden'
         . ' silinir!',
 
-    701 => 'Saldiri ve Savunma degerlerini artirir. Bu Bonus Gecicidir.',
-    702 => 'Filolarin ve Savunmanin Kalkanlarini artirir. Bu Bonus Gecicidir.',
-    703 => 'Bina insaat surelerini azaltir. Bu Bonus Gecicidir.',
-    704 => 'Hammadde uretimini artirir. Bu Bonus Gecicidir.',
-    705 => 'Enerji uretimini artirir. Bu Bonus Gecicidir.',
-    706 => 'Arastirma surelerini azaltir. Bu Bonus Gecicidir.',
-    707 => 'Filo ucus surelerini kisaltir. Bu Bonus Gecicidir. Kesifleri etkilemez.',
-
     //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
     901 => 'Metal is the main resource for Buildings and Ships. It is the cheapest resource, but it is needed the most'
         . ' as well. Producing Metal is the least energy expensive. The bigger the mines are, the deeper they dig into'
@@ -378,8 +360,6 @@ $LNG['shortDescription'] = [
     903 => 'Deuterium is found in the deepest sea. It belongs to the rarest resources in the Universe. Because you have'
         . ' to get to the ground of the sea in order to get Deuterium, it is the most expensive resource.',
     911 => 'Energy is needed for the production of every resource.',
-    921 => 'Dark Matter is a very mysterious resource. Nobody really knows where it comes from. Sometimes it just'
-        . ' appears out of nowhere. You can use Dark Matter to hire the most experienced officers in the universe.',
     //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 ];
 
@@ -601,8 +581,7 @@ $LNG['longDescription'] = [
         . ' hareket eder. ',
     219 => 'Geri donusumculerin gelistirilmis versiyonudur. Bu yeni gemi Geri Donusumculere oranla daha fazla Yuk tasir'
         . ' ve Daha Hizlidir.',
-    220 => 'Bu gemi yeni Arastirmalar ile olusturulmustur. Aydan Karanlik Madde Toplamaktadir. Mevcut Ay kendi'
-        . ' gezegenlerinizden olmalidir.',
+
     221 => 'Kara savascinin evrene hakim olmasindan sonra bilim adamlari onu durduracar bir gemi uretmeye calistirlar.'
         . ' Ozellikle iyon teknolonojisinde cok buyuk ilerleme kaydeden bilimadamlari bunu Thorda birlestirdiler. Kara'
         . ' savascinin silahlarina karsi ayrica ozel savunmalar gelistirildi ve onu vuracak etkili silahlar'
@@ -660,14 +639,6 @@ $LNG['longDescription'] = [
     503 => '	Gezegenlerarasi Roketler rakip savunmayi yokederler. Her 1 yakalayiciya karsi 1 G.A.R denk duser. Ama'
         . ' bilin ki etki ettigi noktalari yok eder! ',
 
-    701 => 'Saldiri ve Savunma degerlerini artirir. Bu Bonus Gecicidir.',
-    702 => 'Filolarin ve Savunmanin Kalkanlarini artirir. Bu Bonus Gecicidir.',
-    703 => 'Bina insaat surelerini azaltir. Bu Bonus Gecicidir.',
-    704 => 'Hammadde uretimini artirir. Bu Bonus Gecicidir.',
-    705 => 'Enerji uretimini artirir. Bu Bonus Gecicidir.',
-    706 => 'Arastirma surelerini azaltir. Bu Bonus Gecicidir.',
-    707 => 'Filo ucus surelerini kisaltir. Bu Bonus Gecicidir. Kesifleri etkilemez.',
-
     //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
     901 => 'Metal is the main resource for Buildings and Ships. It is the cheapest resource, but it is needed the most'
         . ' as well. Producing Metal is the least energy expensive. The bigger the mines are, the deeper they dig into'
@@ -677,9 +648,5 @@ $LNG['longDescription'] = [
     903 => 'Deuterium is found in the deepest sea. It belongs to the rarest resources in the Universe. Because you have'
         . ' to get to the ground of the sea in order to get Deuterium, it is the most expensive resource.',
     911 => 'Energy is needed for the production of every resource.',
-    921 => 'Dark Matter is a very mysterious resource. Nobody really knows where it comes from. Sometimes it just'
-        . ' appears out of nowhere and sometimes it is even found in old ships. Some even say that it doesn\'t exist,'
-        . ' but it has been proven otherwise. You can use Dark Matter to hire the most experienced officers in the'
-        . ' universe.',
     //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 ];

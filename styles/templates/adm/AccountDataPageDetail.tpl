@@ -198,9 +198,6 @@ border:0px;background:url(./styles/resource/images/admin/blank.gif);text-align:r
 				<th>{$Energy}</th>
 			</tr>
 				{$resources}
-			<tr>
-				<td colspan="5" height="30px">{$Darkmatter}: &nbsp;&nbsp;{$mo}</td>
-			</tr>
 			</table>
 			<br >
 			</div>

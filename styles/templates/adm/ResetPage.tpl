@@ -21,7 +21,6 @@
 <tr><td style="text-align:left">{$re_reset_invest}</td><td style="text-align:right"><input type="checkbox" name="inves_c"></td></tr>
 
 <tr><th colspan="2">{$re_resources}</th></tr>
-<tr><td style="text-align:left">{$re_resources_dark}</td><td style="text-align:right"><input type="checkbox" name="dark"></td></tr>
 <tr><td style="text-align:left">{$re_resources_met_cry}</td><td style="text-align:right"><input type="checkbox" name="resources"></td></tr>
 
 <tr><th colspan="2">{$re_general}</th></tr>
