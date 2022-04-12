@@ -90,7 +90,7 @@ class FlyingFleetsTable
                 && ($fleetRow['fleet_group'] == 0 || !isset($ACSDone[$fleetRow['fleet_group']]))
             ) {
                 $ACSDone[$fleetRow['fleet_group']]      = true;
-                $FleetData[$fleetRow['fleet_start_time'] . $fleetRow['fleet_id']] = $this->BuildFleetEventTable(
+                $FleetData[$fleetRow['fleet_start_time'] . $fleetRow['fleet_id']] = $this->buildFleetEventTable(
                     $fleetRow,
                     0
                 );
@@ -109,7 +109,7 @@ class FlyingFleetsTable
                 && $fleetRow['fleet_end_stay'] > TIMESTAMP
                 && ($this->IsPhalanx && $fleetRow['fleet_end_id'] == $this->planetId)
             ) {
-                $FleetData[$fleetRow['fleet_end_stay'] . $fleetRow['fleet_id']] = $this->BuildFleetEventTable(
+                $FleetData[$fleetRow['fleet_end_stay'] . $fleetRow['fleet_id']] = $this->buildFleetEventTable(
                     $fleetRow,
                     2
                 );
@@ -117,7 +117,7 @@ class FlyingFleetsTable
 
             $MissionsOK = 5;
             if ($fleetRow['fleet_end_stay'] > TIMESTAMP && $fleetRow['fleet_mission'] == $MissionsOK) {
-                $FleetData[$fleetRow['fleet_end_stay'] . $fleetRow['fleet_id']] = $this->BuildFleetEventTable(
+                $FleetData[$fleetRow['fleet_end_stay'] . $fleetRow['fleet_id']] = $this->buildFleetEventTable(
                     $fleetRow,
                     2
                 );
@@ -128,7 +128,7 @@ class FlyingFleetsTable
             }
 
             if ($fleetRow['fleet_end_time'] > TIMESTAMP) {
-                $FleetData[$fleetRow['fleet_end_time'] . $fleetRow['fleet_id']] = $this->BuildFleetEventTable(
+                $FleetData[$fleetRow['fleet_end_time'] . $fleetRow['fleet_id']] = $this->buildFleetEventTable(
                     $fleetRow,
                     1
                 );
@@ -139,7 +139,7 @@ class FlyingFleetsTable
         return $FleetData;
     }
 
-    private function BuildFleetEventTable($fleetRow, $FleetState)
+    private function buildFleetEventTable($fleetRow, $FleetState)
     {
         $Time   = 0;
         $Rest   = 0;
@@ -229,12 +229,12 @@ class FlyingFleetsTable
         } else {
             $FleetName = $LNG['ov_fleet'];
         }
-        $FleetContent = $this->CreateFleetPopupedFleetLink(
+        $FleetContent = $this->createFleetPopupedFleetLink(
             $fleetRow,
             $FleetName,
             $FleetPrefix . $FleetStyle[$MissionType]
         );
-        $FleetCapacity = $this->CreateFleetPopupedMissionLink(
+        $FleetCapacity = $this->createFleetPopupedMissionLink(
             $fleetRow,
             $LNG['type_mission_' . $MissionType],
             $FleetPrefix . $FleetStyle[$MissionType]
@@ -281,7 +281,7 @@ class FlyingFleetsTable
                 $EventString = sprintf(
                     $LNG['cff_mission_target_mip'],
                     $fleetRow['fleet_amount'],
-                    $this->BuildHostileFleetPlayerLink($fleetRow),
+                    $this->buildHostileFleetPlayerLink($fleetRow),
                     $StartType,
                     $fleetRow['own_planetname'],
                     GetStartAddressLink($fleetRow, $FleetType),
@@ -386,7 +386,7 @@ class FlyingFleetsTable
                     $EventString = sprintf(
                         $Message,
                         $FleetContent,
-                        $this->BuildHostileFleetPlayerLink($fleetRow),
+                        $this->buildHostileFleetPlayerLink($fleetRow),
                         $StartType,
                         $fleetRow['own_planetname'],
                         GetStartAddressLink($fleetRow, $FleetType),
@@ -414,14 +414,14 @@ class FlyingFleetsTable
         return [$Rest, $EventString, $Time];
     }
 
-    private function BuildHostileFleetPlayerLink($fleetRow)
+    private function buildHostileFleetPlayerLink($fleetRow)
     {
         global $LNG;
         return $fleetRow['own_username']
             . ' <a href="#" onclick="return Dialog.PM(' . $fleetRow['fleet_owner'] . ')">' . $LNG['PM'] . '</a>';
     }
 
-    private function CreateFleetPopupedMissionLink($fleetRow, $Texte, $FleetType)
+    private function createFleetPopupedMissionLink($fleetRow, $Texte, $FleetType)
     {
         global $LNG;
         $FleetTotalC  = $fleetRow['fleet_resource_metal'] + $fleetRow['fleet_resource_crystal']
@@ -453,7 +453,7 @@ class FlyingFleetsTable
         return $MissionPopup;
     }
 
-    private function CreateFleetPopupedFleetLink($fleetRow, $Text, $FleetType)
+    private function createFleetPopupedFleetLink($fleetRow, $Text, $FleetType)
     {
         global $LNG, $USER, $resource;
         $SpyTech        = $USER[$resource[106]];
