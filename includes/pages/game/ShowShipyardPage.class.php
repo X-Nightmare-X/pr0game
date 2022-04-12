@@ -20,12 +20,12 @@ class ShowShipyardPage extends AbstractGamePage
 
     public static $defaultController = 'show';
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
     }
 
-    private function CancelAuftr()
+    private function cancelAuftr()
     {
         global $USER, $PLANET, $resource;
         $ElementQueue = unserialize($PLANET['b_hangar_id']);
@@ -72,7 +72,7 @@ class ShowShipyardPage extends AbstractGamePage
         return true;
     }
 
-    private function BuildAuftr($fmenge)
+    private function buildAuftr($fmenge)
     {
         global $USER, $PLANET, $reslist, $resource;
 
@@ -82,7 +82,8 @@ class ShowShipyardPage extends AbstractGamePage
         ];
 
         foreach ($fmenge as $Element => $Count) {
-            if (empty($Count)
+            if (
+                empty($Count)
                 || !in_array($Element, array_merge($reslist['fleet'], $reslist['defense'], $reslist['missile']))
                 || !BuildFunctions::isTechnologieAccessible($USER, $PLANET, $Element)
             ) {
@@ -100,7 +101,7 @@ class ShowShipyardPage extends AbstractGamePage
                 $Count = min($Count, $MaxMissiles[$Element]);
 
                 $Missiles[$Element] += $Count;
-            } else if (in_array($Element, $reslist['one'])) {
+            } elseif (in_array($Element, $reslist['one'])) {
                 $InBuild = false;
                 foreach ($BuildArray as $ElementArray) {
                     if ($ElementArray[0] == $Element) {
@@ -109,15 +110,18 @@ class ShowShipyardPage extends AbstractGamePage
                     }
                 }
 
-                if ($InBuild)
+                if ($InBuild) {
                     continue;
+                }
 
-                if ($Count != 0 && $PLANET[$resource[$Element]] == 0 && $InBuild === false)
+                if ($Count != 0 && $PLANET[$resource[$Element]] == 0 && $InBuild === false) {
                     $Count = 1;
+                }
             }
 
-            if (empty($Count))
+            if (empty($Count)) {
                 continue;
+            }
 
             $costResources = BuildFunctions::getElementPrice($USER, $PLANET, $Element, false, $Count);
 
@@ -160,10 +164,11 @@ class ShowShipyardPage extends AbstractGamePage
         }
 
         $ElementQueue = unserialize($PLANET['b_hangar_id']);
-        if (empty($ElementQueue))
+        if (empty($ElementQueue)) {
             $Count = 0;
-        else
+        } else {
             $Count = count($ElementQueue);
+        }
 
         if ($USER['urlaubs_modus'] == 0 && $NotBuilding == true) {
             if (!empty($buildTodo)) {
@@ -172,11 +177,11 @@ class ShowShipyardPage extends AbstractGamePage
                     $this->printMessage(sprintf($LNG['bd_max_builds'], $maxBuildQueue));
                 }
 
-                $this->BuildAuftr($buildTodo);
+                $this->buildAuftr($buildTodo);
             }
 
             if ($action == "delete") {
-                $this->CancelAuftr();
+                $this->cancelAuftr();
             }
         }
 
@@ -189,8 +194,9 @@ class ShowShipyardPage extends AbstractGamePage
             $Shipyard = [];
             $QueueTime = 0;
             foreach ($ElementQueue as $Element) {
-                if (empty($Element))
+                if (empty($Element)) {
                     continue;
+                }
 
                 $elementInQueue[$Element[0]] = true;
                 $ElementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $Element[0]);
@@ -224,8 +230,9 @@ class ShowShipyardPage extends AbstractGamePage
         $MaxMissiles = BuildFunctions::getMaxConstructibleRockets($USER, $PLANET, $Missiles);
 
         foreach ($elementIDs as $Element) {
-            if (!BuildFunctions::isTechnologieAccessible($USER, $PLANET, $Element))
+            if (!BuildFunctions::isTechnologieAccessible($USER, $PLANET, $Element)) {
                 continue;
+            }
 
             $costResources = BuildFunctions::getElementPrice($USER, $PLANET, $Element);
             $costOverflow = BuildFunctions::getRestPrice($USER, $PLANET, $Element, $costResources);
@@ -238,7 +245,8 @@ class ShowShipyardPage extends AbstractGamePage
                 $maxBuildable = min($maxBuildable, $MaxMissiles[$Element]);
             }
 
-            $AlreadyBuild = in_array($Element, $reslist['one']) && (isset($elementInQueue[$Element]) || $PLANET[$resource[$Element]] != 0);
+            $AlreadyBuild = in_array($Element, $reslist['one'])
+                && (isset($elementInQueue[$Element]) || $PLANET[$resource[$Element]] != 0);
 
             $elementList[$Element] = [
                 'id' => $Element,
@@ -258,7 +266,8 @@ class ShowShipyardPage extends AbstractGamePage
             'BuildList' => $buildList,
             'maxlength' => strlen(Config::get()->max_fleet_per_build),
             'mode' => $mode,
-            'messages' => ($Messages > 0) ? (($Messages == 1) ? $LNG['ov_have_new_message'] : sprintf($LNG['ov_have_new_messages'], pretty_number($Messages))) : false,
+            'messages' => ($Messages > 0) ? (($Messages == 1) ? $LNG['ov_have_new_message']
+                : sprintf($LNG['ov_have_new_messages'], pretty_number($Messages))) : false,
             'SolarEnergy' => $SolarEnergy,
         ]);
 
