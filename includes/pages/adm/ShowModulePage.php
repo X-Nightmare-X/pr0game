@@ -37,8 +37,10 @@ function ShowModulePage()
     // TODO: rework "module system"
     // This ignore list is needed, since the modules have fixed IDs:
     // 7 - Chat Module
+    // 8 - DM Bank
     // 18 - Officers Module
-    $ignoreList = [7,18];
+    // 31 - DM Mission
+    $ignoreList = [7,8,18,31];
     foreach ($IDs as $ID => $Name) {
         if (in_array($ID, $ignoreList)) {
             continue;
