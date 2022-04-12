@@ -59,8 +59,9 @@ function getLanguage($language = null, $userID = null)
 
 function getPlanets($USER)
 {
-    if (isset($USER['PLANETS']))
+    if (isset($USER['PLANETS'])) {
         return $USER['PLANETS'];
+    }
 
     $order = $USER['planet_sort_order'] == 1 ? "DESC" : "ASC";
 
@@ -160,16 +161,7 @@ function _date($format, $time = null, $toTimeZone = null, $LNG = null)
 
 function ValidateAddress($address)
 {
-
-    if (function_exists('filter_var')) {
-        return filter_var($address, FILTER_VALIDATE_EMAIL) !== false;
-    } else {
-        /*
-            Regex expression from swift mailer (http://swiftmailer.org)
-            RFC 2822
-        */
-        return preg_match('/^(?:(?:(?:(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21-\x27\x2A-\x5B\x5D-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))*(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21-\x27\x2A-\x5B\x5D-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))|(?:(?:[ \t]*(?:\r\n))?[ \t])))?(?:[a-zA-Z0-9!#\$%&\'\*\+\-\/=\?\^_\{\}\|~]+(\.[a-zA-Z0-9!#\$%&\'\*\+\-\/=\?\^_\{\}\|~]+)*)+(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21-\x27\x2A-\x5B\x5D-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))*(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21-\x27\x2A-\x5B\x5D-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))|(?:(?:[ \t]*(?:\r\n))?[ \t])))?)|(?:(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21-\x27\x2A-\x5B\x5D-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))*(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21-\x27\x2A-\x5B\x5D-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))|(?:(?:[ \t]*(?:\r\n))?[ \t])))?"((?:(?:[ \t]*(?:\r\n))?[ \t])?(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21\x23-\x5B\x5D-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])))*(?:(?:[ \t]*(?:\r\n))?[ \t])?"(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21-\x27\x2A-\x5B\x5D-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))*(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21-\x27\x2A-\x5B\x5D-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))|(?:(?:[ \t]*(?:\r\n))?[ \t])))?))@(?:(?:(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21-\x27\x2A-\x5B\x5D-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))*(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21-\x27\x2A-\x5B\x5D-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))|(?:(?:[ \t]*(?:\r\n))?[ \t])))?(?:[a-zA-Z0-9!#\$%&\'\*\+\-\/=\?\^_\{\}\|~]+(\.[a-zA-Z0-9!#\$%&\'\*\+\-\/=\?\^_\{\}\|~]+)*)+(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21-\x27\x2A-\x5B\x5D-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))*(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21-\x27\x2A-\x5B\x5D-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))|(?:(?:[ \t]*(?:\r\n))?[ \t])))?)|(?:(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21-\x27\x2A-\x5B\x5D-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))*(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21-\x27\x2A-\x5B\x5D-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))|(?:(?:[ \t]*(?:\r\n))?[ \t])))?\[((?:(?:[ \t]*(?:\r\n))?[ \t])?(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21-\x5A\x5E-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])))*?(?:(?:[ \t]*(?:\r\n))?[ \t])?\](?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21-\x27\x2A-\x5B\x5D-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))*(?:(?:(?:(?:[ \t]*(?:\r\n))?[ \t])?(\((?:(?:(?:[ \t]*(?:\r\n))?[ \t])|(?:(?:[\x01-\x08\x0B\x0C\x0E-\x19\x7F]|[\x21-\x27\x2A-\x5B\x5D-\x7E])|(?:\\[\x00-\x08\x0B\x0C\x0E-\x7F])|(?1)))*(?:(?:[ \t]*(?:\r\n))?[ \t])?\)))|(?:(?:[ \t]*(?:\r\n))?[ \t])))?)))$/D', $address);
-    }
+    return filter_var($address, FILTER_VALIDATE_EMAIL) !== false;
 }
 
 function message($mes, $dest = "", $time = "3", $topnav = false)
@@ -183,7 +175,8 @@ function message($mes, $dest = "", $time = "3", $topnav = false)
 function CalculateMaxPlanetFields($planet)
 {
     global $resource;
-    return $planet['field_max'] + ($planet[$resource[33]] * FIELDS_BY_TERRAFORMER) + ($planet[$resource[41]] * FIELDS_BY_MOONBASIS_LEVEL);
+    return $planet['field_max'] + ($planet[$resource[33]] * FIELDS_BY_TERRAFORMER) + ($planet[$resource[41]]
+            * FIELDS_BY_MOONBASIS_LEVEL);
 }
 
 function pretty_time($seconds)
@@ -202,14 +195,14 @@ function pretty_time($seconds)
     }
 
     return $time . sprintf(
-            '%02d%s %02d%s %02d%s',
-            $hour,
-            $LNG['short_hour'],
-            $minute,
-            $LNG['short_minute'],
-            $second,
-            $LNG['short_second']
-        );
+        '%02d%s %02d%s %02d%s',
+        $hour,
+        $LNG['short_hour'],
+        $minute,
+        $LNG['short_minute'],
+        $second,
+        $LNG['short_second']
+    );
 }
 
 function pretty_fly_time($seconds)
@@ -223,17 +216,23 @@ function pretty_fly_time($seconds)
 
 function GetStartAddressLink($FleetRow, $FleetType = '')
 {
-    return '<a href="game.php?page=galaxy&amp;galaxy=' . $FleetRow['fleet_start_galaxy'] . '&amp;system=' . $FleetRow['fleet_start_system'] . '" class="' . $FleetType . '">[' . $FleetRow['fleet_start_galaxy'] . ':' . $FleetRow['fleet_start_system'] . ':' . $FleetRow['fleet_start_planet'] . ']</a>';
+    return '<a href="game.php?page=galaxy&amp;galaxy=' . $FleetRow['fleet_start_galaxy'] . '&amp;system='
+        . $FleetRow['fleet_start_system'] . '" class="' . $FleetType . '">[' . $FleetRow['fleet_start_galaxy'] . ':'
+        . $FleetRow['fleet_start_system'] . ':' . $FleetRow['fleet_start_planet'] . ']</a>';
 }
 
 function GetTargetAddressLink($FleetRow, $FleetType = '')
 {
-    return '<a href="game.php?page=galaxy&amp;galaxy=' . $FleetRow['fleet_end_galaxy'] . '&amp;system=' . $FleetRow['fleet_end_system'] . '" class="' . $FleetType . '">[' . $FleetRow['fleet_end_galaxy'] . ':' . $FleetRow['fleet_end_system'] . ':' . $FleetRow['fleet_end_planet'] . ']</a>';
+    return '<a href="game.php?page=galaxy&amp;galaxy=' . $FleetRow['fleet_end_galaxy'] . '&amp;system='
+        . $FleetRow['fleet_end_system'] . '" class="' . $FleetType . '">[' . $FleetRow['fleet_end_galaxy'] . ':'
+        . $FleetRow['fleet_end_system'] . ':' . $FleetRow['fleet_end_planet'] . ']</a>';
 }
 
 function BuildPlanetAddressLink($CurrentPlanet)
 {
-    return '<a href="game.php?page=galaxy&amp;galaxy=' . $CurrentPlanet['galaxy'] . '&amp;system=' . $CurrentPlanet['system'] . '">[' . $CurrentPlanet['galaxy'] . ':' . $CurrentPlanet['system'] . ':' . $CurrentPlanet['planet'] . ']</a>';
+    return '<a href="game.php?page=galaxy&amp;galaxy=' . $CurrentPlanet['galaxy'] . '&amp;system='
+        . $CurrentPlanet['system'] . '">[' . $CurrentPlanet['galaxy'] . ':' . $CurrentPlanet['system'] . ':'
+        . $CurrentPlanet['planet'] . ']</a>';
 }
 
 function pretty_number($n, $dec = 0)
@@ -264,7 +263,10 @@ function makebr($text)
     // Danke an Meikel
 
     $BR = "<br>\n";
-    return (version_compare(PHP_VERSION, "5.3.0", ">=")) ? nl2br($text, false) : strtr($text, ["\r\n" => $BR, "\r" => $BR, "\n" => $BR]);
+    if (version_compare(PHP_VERSION, "5.3.0", ">=")) {
+        return nl2br($text, false);
+    }
+    return strtr($text, ["\r\n" => $BR, "\r" => $BR, "\n" => $BR]);
 }
 
 function CheckNoobProtec($OwnerPlayer, $TargetPlayer, $Player)
@@ -313,23 +315,30 @@ function shortly_number($number, $decial = null)
             ++$key;
             $number = $number / 1000000;
         }
-    } else if ($number >= 1000) {
+    } elseif ($number >= 1000) {
         ++$key;
         $number = $number / 1000;
     }
 
-    $decial = !is_numeric($decial) ? ((int)(((int)$number != $number) && $key != 0 && $number != 0 && $number < 100)) : $decial;
+    if (!is_numeric($decial)) {
+        $decial = ((int)(((int)$number != $number) && $key != 0 && $number != 0 && $number < 100));
+    }
     return pretty_number($negate * $number, $decial) . '&nbsp;' . $unit[$key];
 }
 
 function floatToString($number, $Pro = 0, $output = false)
 {
-    return $output ? str_replace(",", ".", sprintf("%." . $Pro . "f", $number)) : sprintf("%." . $Pro . "f", $number);
+    if ($output) {
+        return str_replace(",", ".", sprintf("%." . $Pro . "f", $number));
+    }
+    return sprintf("%." . $Pro . "f", $number);
 }
 
 function isModuleAvailable($ID)
 {
-    if ($ID == MODULE_MISSION_TRADE) return false;
+    if ($ID == MODULE_MISSION_TRADE) {
+        return false;
+    }
 
     global $USER;
     $modules = explode(';', Config::get()->moduls);
@@ -346,8 +355,9 @@ function ClearCache()
     foreach ($DIRS as $DIR) {
         $FILES = array_diff(scandir($DIR), ['..', '.', '.htaccess']);
         foreach ($FILES as $FILE) {
-            if (is_dir(ROOT_PATH . $DIR . $FILE))
+            if (is_dir(ROOT_PATH . $DIR . $FILE)) {
                 continue;
+            }
 
             unlink(ROOT_PATH . $DIR . $FILE);
         }
@@ -376,18 +386,18 @@ function ClearCache()
     $iterator = new RecursiveDirectoryIterator(ROOT_PATH);
     foreach(new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::CHILD_FIRST) as $file) {
         if (false == $file->isDir()) {
-            $CONTENT	= file_get_contents($file->getPathname());
+            $CONTENT    = file_get_contents($file->getPathname());
 
             preg_match('!\$'.'Id: [^ ]+ ([0-9]+)!', $CONTENT, $match);
 
             if(isset($match[1]) && is_numeric($match[1]))
             {
-                $REV	= max($REV, $match[1]);
+                $REV    = max($REV, $match[1]);
             }
         }
     }
 
-    $config->VERSION	= $version[0].'.'.$version[1].'.'.$REV;
+    $config->VERSION    = $version[0].'.'.$version[1].'.'.$REV;
     */
 
     $config = Config::get();
@@ -418,7 +428,8 @@ function clearGIF()
     header('Content-type: image/gif');
     header('Content-length: 43');
     header('Expires: 0');
-    echo("\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00\x00\x00\x00\x21\xF9\x04\x01\x00\x00\x00\x00\x2C\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x44\x01\x00\x3B");
+    echo '\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00\x00\x00\x00\x21\xF9\x04\x01\x00\x00\x00\x00'
+        . '\x2C\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x44\x01\x00\x3B';
     exit;
 }
 
@@ -490,7 +501,8 @@ function exceptionHandler($exception)
 <head>
 	<title>' . $gameName . ' - Error</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/resource/css/base/boilerplate.css?v=' . $VERSION . '">
+	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/resource/css/base/boilerplate.css?v=' . $VERSION
+        . '">
 	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/resource/css/ingame/main.css?v=' . $VERSION . '">
 	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/resource/css/base/jquery.css?v=' . $VERSION . '">
 	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/theme/gow/formate.css?v=' . $VERSION . '">
@@ -534,11 +546,13 @@ function exceptionHandler($exception)
     <h2>Ein Fehler ist aufgetreten</h2>
     <p>
         Unser Entwicklungs-Team wurde bereits von dem Fehler in Kenntnis gesetzt und wird ihn zeitnah beheben.<br>
-        Sofern zusätzliche Informationen zu Verfügung stellen, um den Fehler zu reproduzieren, melde diese bitte im Discord-Channel #bugs.
+        Sofern zusätzliche Informationen zu Verfügung stellen, um den Fehler zu reproduzieren, melde diese bitte im
+        Discord-Channel #bugs.
     </p>
     <p>
         This error has been reported to our dev-team and it will be fixed soon.<br>
-        In case you are able to provide additional information in order to reproduce this issue, please send us a message within our Discord channel #bugs.
+        In case you are able to provide additional information in order to reproduce this issue, please send us a
+        message within our Discord channel #bugs.
     </p>
 
     <a class="button" href="/game.php">Zurück zur Startseite</a>
@@ -564,11 +578,16 @@ Debug Backtrace:
 
     echo str_replace(['\\', ROOT_PATH, substr(ROOT_PATH, 0, 15)], ['/', '/', 'FILEPATH '], ob_get_clean());
 
-    $errorText = date("[d-M-Y H:i:s]", TIMESTAMP) . ' ' . $errorType[$errno] . ': "' . strip_tags($exception->getMessage()) . "\"\r\n";
+    $errorText = date("[d-M-Y H:i:s]", TIMESTAMP) . ' ' . $errorType[$errno] . ': "'
+        . strip_tags($exception->getMessage()) . "\"\r\n";
     $errorText .= 'File: ' . $exception->getFile() . ' | Line: ' . $exception->getLine() . "\r\n";
     $errorText .= 'URL: ' . PROTOCOL . HTTP_HOST . $_SERVER['REQUEST_URI'] . ' | Version: ' . $VERSION . "\r\n";
     $errorText .= "Stack trace:\r\n";
-    $errorText .= str_replace(ROOT_PATH, '/', htmlspecialchars(str_replace('\\', '/', $exception->getTraceAsString()))) . "\r\n";
+    $errorText .= str_replace(
+        ROOT_PATH,
+        '/',
+        htmlspecialchars(str_replace('\\', '/', $exception->getTraceAsString()))
+    ) . "\r\n";
 
     if (is_writable('includes/error.log')) {
         file_put_contents('includes/error.log', $errorText, FILE_APPEND);
@@ -584,7 +603,7 @@ Debug Backtrace:
         $ErrName = 'System';
     }
     require 'includes/classes/class.SupportTickets.php';
-    $ticketObj = new SupportTickets;
+    $ticketObj = new SupportTickets();
     $ticketID = $ticketObj->createTicket($ErrSource, '1', $errorType[$errno]);
     $ticketObj->createAnswer($ticketID, $ErrSource, $ErrName, $errorType[$errno], $errorText, 0);
 }
