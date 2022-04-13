@@ -185,7 +185,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
         $findableShips[SHIP_BOMBER] = [210, 202, 204, 203, 205, 206, 207, 215, 211, 213];
         $findableShips[SHIP_DESTROYER] = [210, 202, 204, 203, 205, 206, 207, 215, 211, 213];
 
-        $highestShipId = 0;
+        $highestShipId = SHIP_PROBE; // just in case someone uses a colony ship or something...
 
         $relevantShipIdsAsc = [SHIP_PROBE, SHIP_SMALL_CARGO, SHIP_LIGHT_FIGHTER, SHIP_LARGE_CARGO, SHIP_HEAVY_FIGHTER,
                 SHIP_CRUISER, SHIP_BATTLESHIP, SHIP_BATTLECRUISER, SHIP_BOMBER, SHIP_DESTROYER];
@@ -600,9 +600,7 @@ HTML;
         // Hold time bonus
         $holdTime = ($this->_fleet['fleet_end_stay'] - $this->_fleet['fleet_start_time']) / 3600;
 
-        $GetEvent = mt_rand(0, 1000);
-        $GetEvent -= $holdTime * 10;
-
+        $GetEvent = mt_rand(0, 1000 - $holdTime * 10);
         // Depletion check
         if ($expeditionsCount <= 10) {
             $chanceDepleted = 0;
