@@ -59,7 +59,6 @@ class VarsBuildCache implements BuildCache
                     902 => $varsRow['cost902'],
                     903 => $varsRow['cost903'],
                     911 => $varsRow['cost911'],
-                    921	=> $varsRow['cost921'],
                 ],
                 'factor'        => $varsRow['factor'],
                 'max'           => $varsRow['maxLevel'],
