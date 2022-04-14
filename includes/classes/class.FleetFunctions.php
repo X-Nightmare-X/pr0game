@@ -57,6 +57,15 @@ class FleetFunctions
         if ($techSpeed == 5) {
             $techSpeed = $Player['hyperspace_motor_tech'] >= 8 ? 3 : 2;
         }
+        if ($techSpeed == 6) {
+            if ($Player['hyperspace_motor_tech'] >= 15) {
+                $techSpeed = 3;
+            } elseif ($Player['impulse_motor_tech'] >= 17) {
+                $techSpeed = 2;
+            } else {
+                $techSpeed = 1;
+            }
+        }
 
         $base_speed = $pricelist[$Ship]['speed'];
 
@@ -70,8 +79,7 @@ class FleetFunctions
             $base_speed = $pricelist[$Ship]['speed2'];
         }
         if ($Player['hyperspace_motor_tech'] >= 15 && $Ship == 209) {
-            $base_speed = 6000;  // This should be $pricelist[$Ship]['speed3'];
-            // But this needs more changes
+            $base_speed = $pricelist[$Ship]['speed3'];
         }
 
 

@@ -280,6 +280,7 @@ class ShowInformationPage extends AbstractGamePage
 				'capacity'		=> $pricelist[$elementID]['capacity'],
 				'speed1'		=> $pricelist[$elementID]['speed'],
 				'speed2'		=> $pricelist[$elementID]['speed2'],
+				'speed3'		=> $pricelist[$elementID]['speed3'],
 				'consumption1'	=> $pricelist[$elementID]['consumption'],
 				'consumption2'	=> $pricelist[$elementID]['consumption2'],
 				'rapidfire'		=> array(
