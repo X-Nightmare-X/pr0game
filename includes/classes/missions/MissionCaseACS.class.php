@@ -38,15 +38,23 @@ class MissionCaseACS extends MissionFunctions implements Mission
 	function ReturnEvent()
 	{
 		$LNG		= $this->getLanguage(NULL, $this->_fleet['fleet_owner']);
+
 		$sql		= 'SELECT name FROM %%PLANETS%% WHERE id = :planetId;';
-		$planetName	= Database::get()->selectSingle($sql, array(
+		$planetNameStart	= Database::get()->selectSingle($sql, array(
 			':planetId'	=> $this->_fleet['fleet_start_id'],
 		), 'name');
 
-		$Message 	= sprintf(
+		$sql		= 'SELECT name FROM %%PLANETS%% WHERE id = :planetId;';
+		$planetNameEnd	= Database::get()->selectSingle($sql, array(
+			':planetId'	=> $this->_fleet['fleet_end_id'],
+		), 'name');
+
+		$Message	= sprintf(
 			$LNG['sys_fleet_won'],
-			$planetName,
+			$planetNameEnd,
 			GetTargetAddressLink($this->_fleet, ''),
+			$planetNameStart,
+			GetStartAddressLink($this->_fleet, ''),
 			pretty_number($this->_fleet['fleet_resource_metal']),
 			$LNG['tech'][901],
 			pretty_number($this->_fleet['fleet_resource_crystal']),

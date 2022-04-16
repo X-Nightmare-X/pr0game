@@ -628,19 +628,28 @@ HTML;
 	{
 		$LNG		= $this->getLanguage(NULL, $this->_fleet['fleet_owner']);
 
+		$sql		= 'SELECT name FROM %%PLANETS%% WHERE id = :planetId;';
+		$planetNameStart	= Database::get()->selectSingle($sql, array(
+			':planetId'	=> $this->_fleet['fleet_start_id'],
+		), 'name');
 
 		$sql		= 'SELECT name FROM %%PLANETS%% WHERE id = :planetId;';
-		$planetName	= Database::get()->selectSingle($sql, array(
-			':planetId'	=> $this->_fleet['fleet_start_id'],
+		$planetNameEnd	= Database::get()->selectSingle($sql, array(
+			':planetId'	=> $this->_fleet['fleet_end_id'],
 		), 'name');
 
 		$Message	= sprintf(
 			$LNG['sys_fleet_won'],
-			$planetName,
+			$planetNameEnd,
 			GetTargetAddressLink($this->_fleet, ''),
-			pretty_number($this->_fleet['fleet_resource_metal']), $LNG['tech'][901],
-			pretty_number($this->_fleet['fleet_resource_crystal']), $LNG['tech'][902],
-			pretty_number($this->_fleet['fleet_resource_deuterium']), $LNG['tech'][903]
+			$planetNameStart,
+			GetStartAddressLink($this->_fleet, ''),
+			pretty_number($this->_fleet['fleet_resource_metal']),
+			$LNG['tech'][901],
+			pretty_number($this->_fleet['fleet_resource_crystal']),
+			$LNG['tech'][902],
+			pretty_number($this->_fleet['fleet_resource_deuterium']),
+			$LNG['tech'][903]
 		);
 
 		PlayerUtil::sendMessage($this->_fleet['fleet_owner'], 0, $LNG['sys_mess_tower'], 4, $LNG['sys_mess_fleetback'],
