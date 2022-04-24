@@ -41,7 +41,7 @@
 								{foreach $Player.ships as $ShipID => $ShipData}
 									<td class="transparent">{$ShipData[0]|number}
 										{if $Round > 0 && $ShipData[0]|number - $Raport.rounds[0].attacker[$PlayerNr].ships[$ShipID][0]|number}
-											<br><span style="color:red"> ({$ShipData[0]|number - $Raport.rounds[0].attacker[$PlayerNr].ships[$ShipID][0]|number})</span>
+											<br><span style="color:#ee4d2e"> ({$ShipData[0]|number - $Raport.rounds[0].attacker[$PlayerNr].ships[$ShipID][0]|number})</span>
 										{/if}
 									</td>
 								{/foreach}
@@ -105,7 +105,7 @@
 								{foreach $Player.ships as $ShipID => $ShipData}
 								<td class="transparent">{$ShipData[0]|number}
 									{if $Round > 0 && $ShipData[0]|number - $Raport.rounds[0].defender[$PlayerNr].ships[$ShipID][0]|number}
-										<br><span style="color:red"> ({$ShipData[0]|number - $Raport.rounds[0].defender[$PlayerNr].ships[$ShipID][0]|number})</span>
+										<br><span style="color:#ee4d2e"> ({$ShipData[0]|number - $Raport.rounds[0].defender[$PlayerNr].ships[$ShipID][0]|number})</span>
 									{/if}
 								</td>
 								{/foreach}
