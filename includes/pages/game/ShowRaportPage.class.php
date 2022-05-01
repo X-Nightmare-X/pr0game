@@ -153,7 +153,7 @@ class ShowRaportPage extends AbstractGamePage
 		}
 
 		$combatReport			= unserialize($reportData['raport']);
-		if($isAttacker && !$isDefender && $combatReport['result'] == 'r' && count($combatReport['rounds']) <= 2) {
+		if (!$isDefender && $combatReport['result'] == 'r' && count($combatReport['rounds']) <= 2) {
 			$this->printMessage($LNG['sys_raport_lost_contact']);
 		}
 		
