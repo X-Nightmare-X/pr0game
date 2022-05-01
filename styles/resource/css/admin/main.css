@@ -169,9 +169,14 @@ select[name="timezone"] {
     color: #CC0000;
 	padding:7px 10px 7px 45px
 }
-.noerror { 
+.noerror {
 	background-color: #EEFFEE;
 	border: 1px solid #009900;
 	color: #009900;
 	padding:7px 10px 7px 45px
+}
+
+#tooltip.tip {
+  background: black;
+  padding: 5px;
 }
