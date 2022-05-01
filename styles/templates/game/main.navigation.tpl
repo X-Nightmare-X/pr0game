@@ -32,7 +32,7 @@
     {if false}
     <li><a href="index.php?page=rules" target="rules">{$LNG.lm_rules}</a></li>{/if}
     {if isModuleAvailable($smarty.const.MODULE_SIMULATOR)}<li><a href="game.php?page=battleSimulator">{$LNG.lm_battlesim}</a></li>{/if}
-    <li><a href="index.php?page=battleHall">{$LNG.lm_topkb}</a></li>
+    <li><a href="game.php?page=battleHall">{$LNG.lm_topkb}</a></li>
 
     <li class="menu-separator"></li>
     {if isModuleAvailable($smarty.const.MODULE_NOTICE)}<li><a href="javascript:OpenPopup('?page=notes', 'notes', 720, 300);">{$LNG.lm_notes}</a></li>{/if}
