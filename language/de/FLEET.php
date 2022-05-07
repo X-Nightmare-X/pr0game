@@ -214,7 +214,7 @@ $LNG['sys_expe_depleted_not_1'] = 'Logbuch Nachtrag des Kommunikationsoffiziers:
     . ' noch nicht erkundet worden.';
 $LNG['sys_expe_depleted_not_2'] = 'Logbuch Nachtrag des Kommunikationsoffiziers: Es ist ein erhebendes Gefühl, der'
     . ' Erste in einem unerforschten Sektor zu sein.';
-$LNG['sys_expe_depleted_min_1'] = 'Logbuch Nachtrag des Kommunikationsoffiziers: Es scheint nicht so, als ob jemals ein'
+$LNG['sys_expe_depleted_min_1'] = 'Logbuch Nachtrag des Kommunikationsoffiziers: Es scheint so, als ob bereits ein'
     . ' Mensch in diesem Bereich der Galaxis gewesen wäre.';
 $LNG['sys_expe_depleted_min_2'] = 'Eintrag aus dem Logbuch des Kommunikationsoffiziers: Wir haben Trümmer von alten'
     . ' Raumschiffen gefunden. Wir sind nicht die ersten hier.';
@@ -297,7 +297,7 @@ $LNG['sys_irak_no_def'] = 'Der Planet hat keine Verteidigung';
 $LNG['sys_irak_no_att'] = 'Alle deine Raketen wurden abgefangen.';
 $LNG['sys_irak_def'] = '%d Raketen von deinen Raketen wurden abgefangen.';
 $LNG['sys_irak_mess'] = 'Interplanetarraketen (%d) von %s sind auf dem Planeten %s eingeschlagen<br><br>';
-$LNG['sys_fleet_won'] = 'Eine deiner Flotten kehrt vom Angriff beim Planeten %s %s zurück. Sie haben %s %s, %s %s und'
+$LNG['sys_fleet_won'] = 'Eine deiner Flotten kehrt vom Angriff beim Planeten %s %s zurück zu %s %s. Sie haben %s %s, %s %s und'
     . ' %s %s erbeutet';
 $LNG['sys_lost'] = 'Verluste';
 $LNG['sys_debris'] = 'Trümmerfeld';

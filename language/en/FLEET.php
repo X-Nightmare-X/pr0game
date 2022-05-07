@@ -28,7 +28,7 @@ $LNG['sys_units'] = 'units';
 $LNG['debree_field_1'] = 'At the coordinates are now:';
 $LNG['debree_field_2'] = 'debris.';
 $LNG['sys_moonproba'] = 'Moon Chance: ';
-$LNG['sys_moonbuilt'] = 'A moon formed at the planet %s [%d:%d:%d] !';
+$LNG['sys_moonbuilt'] = 'The enormous amounts of free metal and crystal attract each other and form a satellite around the planet!';
 $LNG['sys_attack_title'] = 'The following fleets face each other on: ';
 $LNG['sys_attack_round'] = 'Round';
 $LNG['sys_attack_attacker_pos'] = 'Attacker';
@@ -208,7 +208,7 @@ $LNG['sys_expe_depleted_not_1'] = 'Entry from the communications officers logboo
     . ' universe has not been explored yet.';
 $LNG['sys_expe_depleted_not_2'] = 'Entry from the communications officers logbook: It feels great to be the first ones'
     . ' traveling through an unexplored sector.';
-$LNG['sys_expe_depleted_min_1'] = 'Entry from the communications officers logbook: It seems that no human has been in'
+$LNG['sys_expe_depleted_min_1'] = 'Entry from the communications officers logbook: It seems that humans have been in'
     . ' this part of the galaxy before.';
 $LNG['sys_expe_depleted_min_2'] = 'Entry from the communications officers logbook: We found debris of ancient space'
     . ' ships. We are not the first ones here.';
@@ -283,7 +283,7 @@ $LNG['sys_irak_no_def'] = 'The planet does not have defences';
 $LNG['sys_irak_no_att'] = 'All your rockets were intercepted.';
 $LNG['sys_irak_def'] = '%d Rockets of yours were intercepted.';
 $LNG['sys_irak_mess'] = 'Interplanetary rockets (%d) from %s are on the planet %s <br><br>';
-$LNG['sys_fleet_won'] = 'One of your fleets returns from a attack at the planet %s %s. You have captured'
+$LNG['sys_fleet_won'] = 'One of your fleets returns from a attack at the planet %s %s to %s %s. You have captured'
     . ' %s %s, %s %s and %s %s ';
 $LNG['sys_lost'] = 'Losses';
 $LNG['sys_debris'] = 'Rubblefield';

@@ -30,8 +30,7 @@ $LNG['sys_units'] = 'unite kaybetti';
 $LNG['debree_field_1'] = 'Su an bu alan koordinatlarinda bulunan:';
 $LNG['debree_field_2'] = '.';
 $LNG['sys_moonproba'] = 'Bir Ayin ortaya Cikma sansi: ';
-$LNG['sys_moonbuilt'] = 'Bosta bulunan anormal miktardaki metal ve kristal maddeleri birbirini cekiyor ve gezegenin'
-    . ' etrafinda bir uydu olusturuyor%s [%d:%d:%d] !';
+$LNG['sys_moonbuilt'] = 'Muazzam miktarda serbest metal ve kristal gezegenin etrafında bir uydu oluşturur ve çeker!';
 $LNG['sys_attack_title'] = 'Bu Filolar: ';
 $LNG['sys_attack_round'] = 'Round';
 $LNG['sys_attack_attacker_pos'] = 'Saldiran';
@@ -254,8 +253,8 @@ $LNG['sys_irak_no_att'] = 'Butun roketler yakalayicilar tarafindan imha edildi.'
 $LNG['sys_irak_def'] = 'Roketlerinizden %d tanesi yakalandi. Yokedilen Savunma :';
 $LNG['sys_irak_mess'] = 'Gezegenler arasi (%d) adet roket  %s kordinatindan %s kordinatina firlatildi  <br><br>';
 $LNG['sys_gain'] = 'Ele geciriliyor';
-$LNG['sys_fleet_won'] = 'Saldiri filolarinizdan biri %s %s koordinatlarindan geri dondu. Savas ganimetleri'
-    . ' aktariliyor: %s birim %s, %s birim %s ve %s birim %s. ';
+$LNG['sys_fleet_won'] = 'Filolarınızdan biri %s %s gezegenindeki bir saldırıdan %s %s\'ye geri döndü. %s %s, %s %s ve'
+    . ' %s %s yakaladınız';
 $LNG['sys_lost'] = 'Kayiplar';
 $LNG['sys_debris'] = 'Harabe Alani';
 $LNG['sys_destruc_title'] = 'Asagidaki filolar Ay Yoketme Savasinda karsilastilar';

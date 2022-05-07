@@ -13,7 +13,7 @@
 {foreach $hallList as $hallRow}
 <tr>
 	<td>{$hallRow@iteration}</td>
-	<td>
+	<td><a href="game.php?page=raport&amp;raport={$hallRow.rid}" target="_blank">
 	{if $hallRow.result == "a"}
 	<span style="color:#00FF00">{$hallRow.attacker}</span><span style="color:#FFFFFF"><b> VS </b></span><span style="color:#FF0000">{$hallRow.defender}</span>
 	{elseif $hallRow.result == "r"}
@@ -21,7 +21,7 @@
 	{else}
 	{$hallRow.attacker}<b> VS </b>{$hallRow.defender}
 	{/if}
-	</td>
+	</a></td>
 	<td>{$hallRow.time}</td>
 	<td>{$hallRow.units|number}</td>
 </tr>

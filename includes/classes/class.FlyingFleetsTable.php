@@ -98,8 +98,8 @@ class FlyingFleetsTable
 
             if (
                 $fleetRow['fleet_mission'] == 10
-                || $fleetRow['fleet_mission'] == 17
-                || ($fleetRow['fleet_mission'] == 4 && $fleetRow['fleet_mess'] == 0)
+                || (($fleetRow['fleet_mission'] == 17
+                || ($fleetRow['fleet_mission'] == 4) && $fleetRow['fleet_mess'] == 0))
             ) {
                 continue;
             }

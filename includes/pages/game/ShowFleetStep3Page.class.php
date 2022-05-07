@@ -344,7 +344,7 @@ class ShowFleetStep3Page extends AbstractGamePage
             }
         }
 
-        if ($targetMission == 5) {
+        if ($targetMission == 5 || $targetMission == 17) {
             if ($targetPlayerData['ally_id'] != $USER['ally_id'] || $USER['ally_id'] == 0) {
                 $sql = "SELECT COUNT(*) as state FROM %%BUDDY%%
 				WHERE id NOT IN (SELECT id FROM %%BUDDY_REQUEST%% WHERE %%BUDDY_REQUEST%%.id = %%BUDDY%%.id) AND

@@ -25,8 +25,8 @@ $LNG['sys_units'] = 'unidades';
 $LNG['debree_field_1'] = 'Un campo de escombros de';
 $LNG['debree_field_2'] = 'flotan en la orbita del planeta.';
 $LNG['sys_moonproba'] = 'La probabilidad de que surja una luna de los escombros es de:';
-$LNG['sys_moonbuilt'] = 'Las enormes cantidades de metal, cristal y norio se fusionan y forman una luna en la orbita'
-    . ' del planeta %s [%d:%d:%d] !';
+$LNG['sys_moonbuilt'] = 'Las enormes cantidades de metal y cristal libres se atraen y forman un satélite alrededor'
+    . ' del planeta !';
 $LNG['sys_attack_title'] = 'Las flotas se enfrentan en ';
 $LNG['sys_attack_round'] = 'Ronda';
 $LNG['sys_attack_attacker_pos'] = 'Atacante';
@@ -257,7 +257,7 @@ $LNG['sys_irak_no_att'] = 'Todos tus misiles fueron interceptados.';
 $LNG['sys_irak_def'] = '%d misiles de los misiles lanzados fueron interceptados.';
 $LNG['sys_irak_mess'] = 'Los misiles interplanetarios (%d) de %s están en el planeta %s <br><br>';
 $LNG['sys_gain'] = 'Beneficios';
-$LNG['sys_fleet_won'] = 'Una de tus flotas regresa de atacar en el planeta %s %s. Has capturado %s %s, %s %s y  %s %s';
+$LNG['sys_fleet_won'] = 'Una de tus flotas regresa de un ataque al planeta %s %s a %s %s. Ha capturado %s %s, %s %s y  %s %s';
 $LNG['sys_lost'] = 'Pérdidas';
 $LNG['sys_debris'] = 'Escombros';
 $LNG['sys_destruc_title'] = 'Las siguientes flotas contrastan la destrucción de la luna:';

@@ -13,17 +13,19 @@
 {if $Raport.mode == 1}{$LNG.sys_destruc_title}{else}{$LNG.sys_attack_title}{/if} 
 {$Raport.time}:<br><br>
 {foreach $Raport.rounds as $Round => $RoundInfo}
+{if isset($Info) && $Round > 0 && !$RoundInfo@last}
+	{continue}
+{/if}
 <table class="auto">
 	<tr>
-		{foreach $RoundInfo.attacker as $Player}
+		{foreach $RoundInfo.attacker as $PlayerNr => $Player}
 		{$PlayerInfo = $Raport.players[$Player.userID]}
 		<td class="transparent">
 			<table>
 				<tr>
 					<td>
-						{$LNG.sys_attack_attacker_pos} {$PlayerInfo.name} {if isset($Info)}([XX:XX:XX]){else}([{$PlayerInfo.koords[0]}:{$PlayerInfo.koords[1]}:{$PlayerInfo.koords[2]}]{if isset($PlayerInfo.koords[3])} ({$LNG["type_planet_short_{$PlayerInfo.koords[3]}"]}){/if}){/if}<br>
-						{$LNG.sys_ship_weapon} {$PlayerInfo.tech[0]}% - {$LNG.sys_ship_shield} {$PlayerInfo.tech[1]}% - {$LNG.sys_ship_armour} 
-{$PlayerInfo.tech[2]}%
+						{$LNG.sys_attack_attacker_pos} {$PlayerInfo.name} {if isset($Info)}([XX:XX:XX]){else}([{$PlayerInfo.koords[0]}:{$PlayerInfo.koords[1]}:{$PlayerInfo.koords[2]}]{if isset($PlayerInfo.koords[3])} ({$LNG["type_planet_short_{$PlayerInfo.koords[3]}"]}){/if}){/if}
+						{if !isset($Info)}<br>{$LNG.sys_ship_weapon} {$PlayerInfo.tech[0]}% - {$LNG.sys_ship_shield} {$PlayerInfo.tech[1]}% - {$LNG.sys_ship_armour} {$PlayerInfo.tech[2]}%{/if}
 
 
 						<table>
@@ -37,27 +39,33 @@
 							<tr>
 								<td class="transparent">{$LNG.sys_ship_count}</td>
 								{foreach $Player.ships as $ShipID => $ShipData}
-								<td class="transparent">{$ShipData[0]|number}</td>
+									<td class="transparent">{$ShipData[0]|number}
+										{if $Round > 0 && $ShipData[0]|number - $Raport.rounds[0].attacker[$PlayerNr].ships[$ShipID][0]|number}
+											<br><span style="color:#ee4d2e"> ({$ShipData[0]|number - $Raport.rounds[0].attacker[$PlayerNr].ships[$ShipID][0]|number})</span>
+										{/if}
+									</td>
 								{/foreach}
 							</tr>
-							<tr>
-								<td class="transparent">{$LNG.sys_ship_weapon}</td>
-								{foreach $Player.ships as $ShipID => $ShipData}
-								<td class="transparent">{$ShipData[1]|number}</td>
-								{/foreach}
-							</tr>
-							<tr>
-								<td class="transparent">{$LNG.sys_ship_shield}</td>
-								{foreach $Player.ships as $ShipID => $ShipData}
-								<td class="transparent">{$ShipData[2]|number}</td>
-								{/foreach}
-							</tr>
-							<tr>
-								<td class="transparent">{$LNG.sys_ship_armour}</td>
-								{foreach $Player.ships as $ShipID => $ShipData}
-								<td class="transparent">{$ShipData[3]|number}</td>
-								{/foreach}
-							</tr>
+							{if !isset($Info)}
+								<tr>
+									<td class="transparent">{$LNG.sys_ship_weapon}</td>
+									{foreach $Player.ships as $ShipID => $ShipData}
+									<td class="transparent">{$ShipData[1]|number}</td>
+									{/foreach}
+								</tr>
+								<tr>
+									<td class="transparent">{$LNG.sys_ship_shield}</td>
+									{foreach $Player.ships as $ShipID => $ShipData}
+									<td class="transparent">{$ShipData[2]|number}</td>
+									{/foreach}
+								</tr>
+								<tr>
+									<td class="transparent">{$LNG.sys_ship_armour}</td>
+									{foreach $Player.ships as $ShipID => $ShipData}
+									<td class="transparent">{$ShipData[3]|number}</td>
+									{/foreach}
+								</tr>
+							{/if}
 						{else}
 							<tr>
 								<td class="transparent">
@@ -75,15 +83,14 @@
 </table>
 <table class="auto">
 	<tr>
-		{foreach $RoundInfo.defender as $Player}
+		{foreach $RoundInfo.defender as $PlayerNr => $Player}
 		{$PlayerInfo = $Raport.players[$Player.userID]}
 		<td class="transparent">
 			<table>
 				<tr>
 					<td>
-						{$LNG.sys_attack_defender_pos} {$PlayerInfo.name} {if isset($Info)}([XX:XX:XX]){else}([{$PlayerInfo.koords[0]}:{$PlayerInfo.koords[1]}:{$PlayerInfo.koords[2]}]{if isset($PlayerInfo.koords[3])} ({$LNG.type_planet_short[$PlayerInfo.koords[3]]}){/if}){/if}<br>
-						{$LNG.sys_ship_weapon} {$PlayerInfo.tech[0]}% - {$LNG.sys_ship_shield} {$PlayerInfo.tech[1]}% - {$LNG.sys_ship_armour} 
-{$PlayerInfo.tech[2]}%
+						{$LNG.sys_attack_defender_pos} {$PlayerInfo.name} {if isset($Info)}([XX:XX:XX]){else}([{$PlayerInfo.koords[0]}:{$PlayerInfo.koords[1]}:{$PlayerInfo.koords[2]}]{if isset($PlayerInfo.koords[3])} ({$LNG.type_planet_short[$PlayerInfo.koords[3]]}){/if}){/if}
+						{if !isset($Info)}<br>{$LNG.sys_ship_weapon} {$PlayerInfo.tech[0]}% - {$LNG.sys_ship_shield} {$PlayerInfo.tech[1]}% - {$LNG.sys_ship_armour} {$PlayerInfo.tech[2]}%{/if}
 
 						<table>
 						{if !empty($Player.ships)}
@@ -96,27 +103,33 @@
 							<tr>
 								<td class="transparent">{$LNG.sys_ship_count}</td>
 								{foreach $Player.ships as $ShipID => $ShipData}
-								<td class="transparent">{$ShipData[0]|number}</td>
+								<td class="transparent">{$ShipData[0]|number}
+									{if $Round > 0 && $ShipData[0]|number - $Raport.rounds[0].defender[$PlayerNr].ships[$ShipID][0]|number}
+										<br><span style="color:#ee4d2e"> ({$ShipData[0]|number - $Raport.rounds[0].defender[$PlayerNr].ships[$ShipID][0]|number})</span>
+									{/if}
+								</td>
 								{/foreach}
 							</tr>
-							<tr>
-								<td class="transparent">{$LNG.sys_ship_weapon}</td>
-								{foreach $Player.ships as $ShipID => $ShipData}
-								<td class="transparent">{$ShipData[1]|number}</td>
-								{/foreach}
-							</tr>
-							<tr>
-								<td class="transparent">{$LNG.sys_ship_shield}</td>
-								{foreach $Player.ships as $ShipID => $ShipData}
-								<td class="transparent">{$ShipData[2]|number}</td>
-								{/foreach}
-							</tr>
-							<tr>
-								<td class="transparent">{$LNG.sys_ship_armour}</td>
-								{foreach $Player.ships as $ShipID => $ShipData}
-								<td class="transparent">{$ShipData[3]|number}</td>
-								{/foreach}
-							</tr>
+							{if !isset($Info)}
+								<tr>
+									<td class="transparent">{$LNG.sys_ship_weapon}</td>
+									{foreach $Player.ships as $ShipID => $ShipData}
+									<td class="transparent">{$ShipData[1]|number}</td>
+									{/foreach}
+								</tr>
+								<tr>
+									<td class="transparent">{$LNG.sys_ship_shield}</td>
+									{foreach $Player.ships as $ShipID => $ShipData}
+									<td class="transparent">{$ShipData[2]|number}</td>
+									{/foreach}
+								</tr>
+								<tr>
+									<td class="transparent">{$LNG.sys_ship_armour}</td>
+									{foreach $Player.ships as $ShipID => $ShipData}
+									<td class="transparent">{$ShipData[3]|number}</td>
+									{/foreach}
+								</tr>
+							{/if}
 						{else}
 							<tr>
 								<td class="transparent">
@@ -176,13 +189,7 @@
 	{* Normal Attack *}
 	{$LNG.sys_moonproba} {$Raport.moon.moonChance} %<br>
 	{if !empty($Raport.moon.moonName)}
-		{if isset($Info)}
-			{* Moon created (HoF Mode) *}
-			{sprintf($LNG.sys_moonbuilt, "{$Raport.moon.moonName}", "XX", "XX", "XX")}
-		{else}
-			{* Moon created *}
-			{sprintf($LNG.sys_moonbuilt, "{$Raport.moon.moonName}", "{$Raport.koords[0]}", "{$Raport.koords[1]}", "{$Raport.koords[2]}")}
-		{/if}
+		{sprintf($LNG.sys_moonbuilt)}
 	{/if}
 {/if}
 
