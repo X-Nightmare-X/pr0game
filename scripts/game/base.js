@@ -265,3 +265,31 @@ $(function () {
     return false;
   });
 });
+
+let humanInteraction = false;
+let lnks = document.querySelectorAll('*')
+observe(lnks);
+
+function observe(stuff) {
+  for (let x of stuff) {
+    x.addEventListener('click', check);
+  }
+}
+
+function check(e) {
+  if (e.isTrusted) {
+    humanInteraction = true;
+  } else {
+    if (!humanInteraction) {
+      $.post('/game.php?page=report', {
+          hi: humanInteraction,
+          u: document.location.href,
+          o: e.target.outerHTML,
+          ts: e.timestamp
+        },
+        function () {
+
+        });
+    }
+  }
+}
