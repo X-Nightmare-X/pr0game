@@ -11,7 +11,7 @@
 					</tr>
 					<tr>
 						<td><input type="button" name="galaxyLeft" value="&lt;-" onclick="galaxy_submit('galaxyLeft')"></td>
-						<td><input type="text" name="galaxy" value="{$galaxy}" size="5" maxlength="3" tabindex="1"></td>
+						<td><input type="number" name="galaxy" value="{$galaxy}" size="5" maxlength="3" tabindex="1"></td>
 						<td><input type="button" name="galaxyRight" value="-&gt;" onclick="galaxy_submit('galaxyRight')"></td>
 					</tr>
 				</table>
@@ -23,7 +23,7 @@
 					</tr>
 					<tr>
 						<td><input type="button" name="systemLeft" value="&lt;-" onclick="galaxy_submit('systemLeft')"></td>
-						<td><input type="text" name="system" value="{$system}" size="5" maxlength="3" tabindex="2"></td>
+						<td><input type="number" name="system" value="{$system}" size="5" maxlength="3" tabindex="2"></td>
 						<td><input type="button" name="systemRight" value="-&gt;" onclick="galaxy_submit('systemRight')"></td>
 					</tr>
 				</table>
@@ -47,7 +47,7 @@
 			<th colspan="2">{$LNG.gl_missil_launch} [{$galaxy}:{$system}:{$planet}]</th>
 		</tr>
 		<tr>
-			<td>{$missile_count} <input type="text" name="SendMI" size="2" maxlength="7"></td>
+			<td>{$missile_count} <input type="number" name="SendMI" size="2" maxlength="7"></td>
 			<td>{$LNG.gl_objective}:
 				{html_options name=Target options=$missileSelector}
 			</td>
