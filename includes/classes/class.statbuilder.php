@@ -121,6 +121,8 @@ class statbuilder
         $this->SetNewRanks();
         $this->checkUniverseAccounts($universeData);
 
+        $this->generateJson();
+
         return $this->getStatsArray();
     }
 
@@ -409,5 +411,52 @@ class statbuilder
             ':total_points' => $data->total_points,
             ':total_count' => $data->total_count,
         ]);
+    }
+
+    private function generateJson()
+    {
+        $columns = [
+            '%%STATPOINTS%%.id_owner AS playerId',
+            '%%USERS%%.username AS playerName',
+            '%%USERS%%.galaxy AS playerGalaxy',
+            '%%STATPOINTS%%.id_ally AS allianceId',
+            '(SELECT ally_name FROM %%ALLIANCE%% WHERE %%ALLIANCE%%.id = %%STATPOINTS%%.id_ally) AS allianceName',
+            '%%STATPOINTS%%.total_rank AS rank',
+            '%%STATPOINTS%%.total_points AS score',
+            '%%STATPOINTS%%.tech_rank AS researchRank',
+            '%%STATPOINTS%%.tech_points AS researchScore',
+            '%%STATPOINTS%%.build_rank AS buildingRank',
+            '%%STATPOINTS%%.build_points AS buildingScore',
+            '%%STATPOINTS%%.defs_rank AS defensiveRank',
+            '%%STATPOINTS%%.defs_points AS defensiveScore',
+            '%%STATPOINTS%%.fleet_rank AS fleetRank',
+            '%%STATPOINTS%%.fleet_points AS fleetScore',
+            '%%USERS%%.wons AS battlesWon',
+            '%%USERS%%.loos AS battlesLost',
+            '%%USERS%%.draws AS battlesDraw',
+            '%%USERS%%.kbmetal AS debrisMetal',
+            '%%USERS%%.kbcrystal AS debrisCrystal',
+            '%%USERS%%.desunits AS unitsDestroyed',
+            '%%USERS%%.lostunits AS unitsLost',
+        ];
+
+        $database = Database::get();
+        $scores = $database->select(trim("
+            SELECT SQL_BIG_RESULT
+            " . implode(',', $columns) . "
+            FROM %%STATPOINTS%%
+            INNER JOIN %%USERS%%
+            ON %%USERS%%.`id` = %%STATPOINTS%%.`id_owner`
+            WHERE %%STATPOINTS%%.`stat_type` = 1
+            ORDER BY %%STATPOINTS%%.`total_rank`
+        "));
+
+        $fh = fopen(ROOT_PATH . 'stats/stats_' . date('Y-m-d_H') . '.json', 'w+');
+        fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
+        fclose($fh);
+
+        $fh = fopen(ROOT_PATH . 'stats.json', 'w+');
+        fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
+        fclose($fh);
     }
 }

@@ -9,7 +9,7 @@
 	</li>
 	<li>
 		<h1>3. Pushen</h1>
-		<p>Pushen ist grundsätzlich verboten. Als Pushing werden alle Ressourcen-Lieferungen ohne angemessene Gegenleistung von punktschwächeren Accounts an punktstärkere Accounts gesehen. Ausnahmen müssen im Vorfeld vom Operator genehmigt werden. Eine fehlende Genehmigung kann eine Sperre wegen Pushens nach sich ziehen. Ein Handel muss innerhalb 24 Stunden abgeschlossen oder bei einem Operator angemeldet sein.</p>
+		<p>Pushen ist grundsätzlich verboten. Als Pushing werden alle Transporte/Transfers ohne angemessene Gegenleistung von punktschwächeren Accounts an punktstärkere Accounts gesehen. Ausnahmen müssen im Vorfeld vom Operator genehmigt werden. Eine fehlende Genehmigung kann eine Sperre wegen Pushens nach sich ziehen. Ein Handel muss innerhalb 24 Stunden abgeschlossen oder bei einem Operator angemeldet sein. Der sendende Spieler muss nach dem Transfer weiterhin mehr Punkte als der Empfänger haben (gerechnet in MSE). Verkäufe an punktestärkere Spieler sind ab 75% des Schiffspreises erlaubt.</p>
 	</li>
 	<li>
 		<h1>4. Bashen</h1>
