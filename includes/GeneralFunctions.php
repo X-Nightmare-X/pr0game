@@ -367,15 +367,13 @@ function floatToString($number, $Pro = 0, $output = false)
 
 function isModuleAvailable($ID)
 {
-    if ($ID == MODULE_MISSION_TRADE) return false;
-
     global $USER;
     $modules = explode(';', Config::get()->moduls);
     if (!isset($modules[$ID])) {
         $modules[$ID] = 1;
     }
 
-    return $modules[$ID] == 1; // || (isset($USER['authlevel']) && $USER['authlevel'] > AUTH_USR);
+    return $modules[$ID] == 1;
 }
 
 function ClearCache()
