@@ -96,19 +96,6 @@ class ShowVertifyPage extends AbstractLoginPage
 			));
 		}
 
-		if(!empty($userData['externalAuthUID']))
-		{
-			$sql ="INSERT INTO %%USERS_AUTH%% SET
-			`id`		= :userID,
-			`account`	= :externalAuthUID,
-			`mode`		= :externalAuthMethod;";
-			$db->insert($sql, array(
-				':userID'				=> $userID,
-				':externalAuthUID'		=> $userData['externalAuthUID'],
-				':externalAuthMethod'	=> $userData['externalAuthMethod']
-			));
-		}
-
 		$senderName = $LNG['registerWelcomePMSenderName'];
 		$subject 	= $LNG['registerWelcomePMSubject'];
 		$message 	= sprintf($LNG['registerWelcomePMText'], $config->game_name, $userData['universe']);

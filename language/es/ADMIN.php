@@ -49,7 +49,7 @@ $LNG['time_minutes']	= 'Minutos';
 $LNG['time_seconds']	= 'Segundos';
 //###########################################################//
 
-$LNG['info_information']	= 'Para información y reporte de errores ir a <a href="%s" target="tracker">2Moons Board</a><br>¡No hay soporte de otra forma!';
+$LNG['info_information']	= 'Para información y reporte de errores ir a <a href="%s" target="tracker">pr0game Board</a><br>¡No hay soporte de otra forma!';
 
 //---------------	¿SI O NO? - YES OR NO? - JA ODER NEIN?	------------------------// 
 $LNG['one_is_yes_1']	= 'Sí';
@@ -308,9 +308,9 @@ $LNG['ma_modes']				= array('Mensaje Interno', 'Correo Electrónico', 'Mensaje i
 //###########################################################//
 
 //---------------	PÁGINA DE INICIO - OVERVIEW	------------------------//
-$LNG['ow_title']					= 'Bienvenido a 2Moons';
+$LNG['ow_title']					= 'Bienvenido a pr0game';
 $LNG['ow_donate']					= 'Donar';
-$LNG['ow_welcome_text']				= 'Bienvenido al siempre popular 2Moons.  (:';
+$LNG['ow_welcome_text']				= 'Bienvenido al siempre popular pr0game.  (:';
 $LNG['ow_overview']					= 'Panel de Control';
 $LNG['ow_support']					= 'Soporte';
 $LNG['ow_credits']					= 'Créditos';
@@ -324,7 +324,6 @@ $LNG['ow_database_errors']			= 'Hay errores en tu base de datos!';
 $LNG['ow_smtp_errors']				= '¡Compruebe la configuración de SMTP! - Actualmente no se envían los correos!';
 $LNG['ow_dir_not_writable']			= './%s no se puede escribir!';
 $LNG['ow_none']						= 'No hay alertas';
-$LNG['ow_news']						= 'Noticias';
 $LNG['ow_updates']					= 'Últimas Actualizaciones';
 $LNG['ow_developers']				= 'Promotor';
 
@@ -374,12 +373,6 @@ $LNG['se_noob_protect2']					= 'Protección N. puntos';
 $LNG['se_noob_protect3']					= 'Protección N. puntos limite';
 $LNG['se_noob_protect_e2']					= 'Límite de puntos en el que dejas de ser novato';
 $LNG['se_noob_protect_e3']					= 'Click para más información';
-$LNG['se_recaptcha_whats']				= '¿Qué es reCAPTCHA?';
-$LNG['se_recaptcha_head']				= 'reCAPTCHA - Ajustes';
-$LNG['se_recaptcha_desc']				= 'reCAPTCHA es un servicio de CAPTCHA gratuíto, que te ayudará a evitar y bloquear Spam-Bots .<br />Para poder utilizar este servicio, es necesario registrarse en reCAPTCHA.net.';
-$LNG['se_recaptcha_public']				= 'Clave pública (Public Key):';
-$LNG['se_recaptcha_private']			= 'Clave privada (Private Key):';
-$LNG['se_recaptcha_active']				= 'Activar reCAPTCHA';
 $LNG['se_reg_closed']					= 'Bloquear registro';
 $LNG['se_min_build_time']				= 'Tiempo Mínimo de Construcción';
 $LNG['se_min_build_time_info']			= 'Aquí se ajusta el tiempo mínimo de construcción de Edificios, Investigaciones, Naves y Defensas. El valor por defecto es 1 segundo.<br>Para desactivarlo insertar el valor 0<br><font color=orange>¡Advertencia: Desactivar esta función puede generar errores!</font>';
@@ -415,13 +408,6 @@ $LNG['se_smtp_user']					= 'Nombre de usuario SMTP:';
 $LNG['se_smtp_pass']					= 'Contraseña SMTP:';
 $LNG['se_smtp_sendmail']				= 'Dirección del Remitente:';
 $LNG['se_smtp_sendmail_info']			= 'Dirección de Correo de Retorno. No es necesario que sea la misma dirección que el remitente';
-$LNG['se_ftp']							= 'Configuración de FTP';
-$LNG['se_ftp_info']						= 'El programa 2Moons tiene la capacidad de actualizar directamente desde el servidor 2Moon Software Support a través de FTP. Para aprovechar esta característica, es necesario configurar una cuenta FTP en tu servidor y rellenar la información requerida a continuación. Esto NO creará un problema de seguridad en tu servidor, ya que el Software 2Moons requiere esta información para realizar la transferencia física a tu servidor';
-$LNG['se_ftp_host']						= 'Host FTP:';
-$LNG['se_ftp_user']						= 'usuario FTP:';
-$LNG['se_ftp_pass']						= 'Contraseña FTP:';
-$LNG['se_ftp_dir']						= 'Ruta FTP:';
-$LNG['se_ftp_dir_info']					= 'ingresa la ruta a tu directorio raíz del servidor FTP aquí. Es obligatorio que la ruta inicie con una barra (/)!<br>Ejemplo: /httpdocs';
 $LNG['se_google']						= 'Configuración de Google Analytics';
 $LNG['se_google_info']					= 'Google Analytics es una solución de analítica web para empresas que proporciona información muy valiosa sobre el tráfico del sitio web y la eficacia del plan de marketing. Ahora, gracias a unas funciones potentes, flexibles y fáciles de usar, podrá ver y analizar el tráfico desde una perspectiva totalmente distinta. Google Analytics le ayudará a diseñar anuncios más orientados, a mejorar sus iniciativas de marketing y a crear sitios web que generen más conversiones..';
 $LNG['se_google_active']				= '¿Activar Google Analytics?';
@@ -589,7 +575,6 @@ $LNG['mu_general']					= 'General';
 $LNG['mu_connected']				= 'Conectados';
 $LNG['mu_settings']					= 'Configuración';
 $LNG['mu_unisettings']				= 'Conf. de Universo';
-$LNG['mu_chat']						= 'Conf. Chat';
 $LNG['mu_global_message']			= 'Mensaje Global';
 $LNG['mu_users_settings']			= 'Conf. de Usuarios';
 $LNG['mu_add_delete_resources']		= 'Editor de Cuentas';
@@ -617,8 +602,6 @@ $LNG['mu_user_logs']				= 'Log';
 $LNG['mu_support']                                      = 'Tickets de Soporte';
 $LNG['mu_module']                                       = 'Módulos';
 $LNG['mu_mod_update']              	= 'Contrlo de Ver. de Módulos';
-$LNG['mu_fb_options'] 				= 'Facebook Connect';
-$LNG['mu_ts_options']                                   = 'Opciones de TeamSpeak';
 $LNG['mu_game_info']                                    = 'Información';
 $LNG['mu_vaild_users']                                  = 'Actividad de Usuarios';
 $LNG['mu_news']						= 'Noticias'; 
@@ -995,30 +978,6 @@ $LNG['qe_resetr']					= 'Reestablecer';
 $LNG['qe_allowmulti']					= 'Permitir Multicuentas';
 
 //----------------------------------------------------------------------------//
-//TeamSpeakSettingPage.php
-$LNG['ts_settings']					= 'Opciones Teamspeak';
-$LNG['ts_active']					= 'Activar Teamspeak';
-$LNG['ts_version']					= 'Versión de Servidor:';
-$LNG['ts_udpport']					= 'Puerto TCP';
-$LNG['ts_tcpport']					= 'Puerto UDP';
-$LNG['ts_serverip']					= 'Server-IP';
-$LNG['ts_timeout']					= 'Tiempo de Espera'; 
-$LNG['ts_server_query']                                 = 'Puerto';
-$LNG['ts_login']					= 'Usuario';
-$LNG['ts_pass']						= 'Contraseña';
-$LNG['ts_cron']						= 'Frecuencia de Actualización';
-
-//----------------------------------------------------------------------------//
-//FacebookSettingPage.php
-$LNG['fb_settings']					= 'Opciones de Facebook';
-$LNG['fb_active']					= 'Activar la conección con Facebook';
-$LNG['fb_api_key']					= 'Facebook API Key';
-$LNG['fb_secrectkey']					= 'Facebook Secret Key';
-$LNG['fb_info']						= 'Con Facebook Connect los usuarios que están conectados a Facebook, pueden iniciar sesión con un click, o registrarse. <br>  Para utilizar esta característica, debes estar registrado en Faceebok. Además, debes crear una aplicación. Esto se puede hacer en <a href="http://www.facebook.com/developers/"> http://www.facebook.com/developers/ </ a>. Como URL de conexión, debes introducir la dirección URL del juego. A continuación, de introducir aquí las claves y el juego debería estar listo Facebook. <br> <font Color="red"> de FB Connect, la entrega de correo estará disponible (SMTP settings).</font>';
-$LNG['fb_curl_yes']						= '<span style="color:green">cURL Instalado.</span>';
-$LNG['fb_curl_no']						= '<span style="color:red">cURL No Instalado. ¡Facebook necesita las extensiones cURL para funcionar!</span>';
-
-//----------------------------------------------------------------------------//
 //GameModule.php
 
 $LNG['modul_0']                                        = 'Alianza';
@@ -1028,7 +987,6 @@ $LNG['modul_3']                                        = 'Edificios - Investigac
 $LNG['modul_4']                                        = 'Construcción - Flotas';
 $LNG['modul_5']                                        = 'Edificios - Defensa';
 $LNG['modul_6']                                        = 'Lista de amigos';
-$LNG['modul_7']                                        = 'Chat';
 $LNG['modul_8']                                        = 'DM-Bank';
 $LNG['modul_9']                                        = 'Flota';
 $LNG['modul_10']                                       = 'Flota - Mercader';
@@ -1141,30 +1099,9 @@ $LNG['up_del']						= 'Eliminar';
 $LNG['up_submit']						= 'Enviar';
 $LNG['up_version']						= 'Versión';
 $LNG['up_chmod_error']					= "No se poseen permisos de escritura en este directorio:\n\n%s";
-$LNG['up_need_curl']					= 'Error: cURL no está disponible.<br />El Sistema de Actualizaciones de 2Moons requiere cURL para poder descargar los archivos actualizados.';
-$LNG['up_no_xml_ext']					= 'Error:. Analizador XML no existe.<br />La actualización del sistema de 2Moons, requiere analizador XML para procesar los archivos actuales.';
+$LNG['up_need_curl']					= 'Error: cURL no está disponible.<br />El Sistema de Actualizaciones de pr0game requiere cURL para poder descargar los archivos actualizados.';
+$LNG['up_no_xml_ext']					= 'Error:. Analizador XML no existe.<br />La actualización del sistema de pr0game, requiere analizador XML para procesar los archivos actuales.';
 $LNG['up_offline']					= 'El Servidor de actualización no está disponible en este momento.';
-
-//Chat Page
-$LNG['ch_socket_chatid_info']			= 'Esta ID puede ser usada para distinguir diferentes instalaciones de chat utilizando el mismo socket del servidor';
-$LNG['ch_socket_port_info']				= 'Define el puerto del servidor socket';
-$LNG['ch_socket_ip_info']				= 'Define el  IP del servidor socket usado para conectar desde el lado del servidor hacia los mensajes de actualización';
-$LNG['ch_socket_host_info']				= 'Define el nombre del host del servidor socket usado para conectar desde el lado del cliente(Si es seteado vacio se usa el nombre del servidor)';
-$LNG['ch_socket_chatid']				= 'Socket ChatID';
-$LNG['ch_socket_port']					= 'Puerto Socket';
-$LNG['ch_socket_ip']					= 'IP Socket';
-$LNG['ch_socket_host']					= 'Nombre del Host Socket';
-$LNG['ch_socket_active']				= '¿Socket activo?';
-$LNG['ch_socket']						= 'Configuración del servidor Socket';
-$LNG['ch_closed']						= '¿Chat cerrado?';
-$LNG['ch_allowchan']					= 'Permitir canales Privados';
-$LNG['ch_allowmes']						= 'Permitir Mensajes Privados';
-$LNG['ch_allowcelmes']					= 'Permitir Borrar Mensajes Propios';
-$LNG['ch_logmessage']					= 'Activar Registro de Mensajes';
-$LNG['ch_nickchange']					= 'Permitir cambio de Nick';
-$LNG['ch_botname']						= 'Nombre del Bot';
-$LNG['ch_channelname']					= 'Nombre del Canal Estandart';
-
 
 //Active Page
 $LNG['ap_id']						= 'ID';
@@ -1210,8 +1147,6 @@ $LNG['log_no_data']                     = 'No existen datos en el registro!';
 $LNG['log_ssettings']					= 'Configuración del Juego';
 $LNG['log_usettings']					= 'Configuración del universo';
 $LNG['log_statsettings']				= 'Opciones de Estadísticas';
-$LNG['log_chatsettings']				= 'Opciones del Chato';
-$LNG['log_tssettings']					= 'Configuración Teamspeak';
 $LNG['log_disclamersettings']			= 'Impreso';
 $LNG['log_uni_short']					= 'Uni';
 $LNG['log_universe']					= 'Universo';
@@ -1223,7 +1158,6 @@ $LNG['cronName_statistic']		= 'Estadisticas';
 $LNG['cronName_daily']			= 'Tareas Diarias';
 $LNG['cronName_cleaner']			= 'Eliminar Archivos Antiguos';
 $LNG['cronName_inactive']		= 'Eliminar Inactivos';
-$LNG['cronName_teamspeak']		= 'Actualización Teamspeak';
 $LNG['cronName_tracking']		= 'Enviar Estadísticas globales del servidor.';
 $LNG['cronName_databasedump']	= 'Copia de Seguridad-Base de Datos';
 
@@ -1236,6 +1170,7 @@ $LNG['cronjob_dom']					= 'Día';
 $LNG['cronjob_month']				= 'Mes';
 $LNG['cronjob_dow']					= 'Día ejecución';
 $LNG['cronjob_class']				= 'Clase';
+$LNG['cronjob_lastTime']            = 'Última Ejecución';
 $LNG['cronjob_nextTime']			= 'Siguiente Ejecución';
 $LNG['cronjob_inActive']			= 'Activo';
 $LNG['cronjob_edit']				= 'Editar';

@@ -69,10 +69,9 @@ function ShowUniversePage() {
 				LEFT JOIN ".TICKETS_ANSWER." ON ".TICKETS.".ticketID = ".TICKETS_ANSWER.".ticketID
 				WHERE universe = ".$universe.";");
 				$GLOBALS['DATABASE']->query("DELETE FROM ".TOPKB." WHERE universe = ".$universe.";");
-				$GLOBALS['DATABASE']->query("DELETE FROM ".USERS.", ".USERS_ACS.", ".USERS_AUTH.", ".TOPKB_USERS.", ".SESSION.", ".SHORTCUTS.", ".RECORDS."
+				$GLOBALS['DATABASE']->query("DELETE FROM ".USERS.", ".USERS_ACS.", ".TOPKB_USERS.", ".SESSION.", ".SHORTCUTS.", ".RECORDS."
 				USING ".USERS."
 				LEFT JOIN ".USERS_ACS." ON ".USERS.".id = ".USERS_ACS.".userID
-				LEFT JOIN ".USERS_AUTH." ON ".USERS.".id = ".USERS_AUTH.".id
 				LEFT JOIN ".TOPKB_USERS." ON ".USERS.".id = ".TOPKB_USERS.".uid
 				LEFT JOIN ".SESSION." ON ".USERS.".id = ".SESSION.".userID
 				LEFT JOIN ".SHORTCUTS." ON ".USERS.".id = ".SHORTCUTS.".ownerID
@@ -109,7 +108,7 @@ function ShowUniversePage() {
 			curl_setopt($ch, CURLOPT_AUTOREFERER, true);
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (compatible; 2Moons/".Config::get()->VERSION."; +http://2moons.cc)");
+			curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (compatible; pr0game/".Config::get()->VERSION."; +https://pr0game.com)");
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 				"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 				"Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3",

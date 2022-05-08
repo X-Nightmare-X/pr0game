@@ -43,6 +43,15 @@ class FleetFunctions
 		if($techSpeed == 5) {
 			$techSpeed = $Player['hyperspace_motor_tech'] >= 8 ? 3 : 2;
 		}
+		if ($techSpeed == 6) {
+			if ($Player['hyperspace_motor_tech'] >= 15) {
+				$techSpeed = 3;
+			} elseif ($Player['impulse_motor_tech'] >= 17) {
+				$techSpeed = 2;
+			} else {
+				$techSpeed = 1;
+			}
+		}
 
 		$base_speed      = $pricelist[$Ship]['speed'];
 
@@ -56,8 +65,7 @@ class FleetFunctions
 			$base_speed = $pricelist[$Ship]['speed2'];
 		}
 		if($Player['hyperspace_motor_tech'] >= 15 && $Ship == 209) {
-			$base_speed = 6000;  // This should be $pricelist[$Ship]['speed3'];
-			// But this needs more changes
+			$base_speed = $pricelist[$Ship]['speed3'];
 		}
 
 
@@ -567,6 +575,7 @@ class FleetFunctions
 		fleet_mission				= :fleetMission,
 		fleet_amount				= :fleetShipCount,
 		fleet_array					= :fleetData,
+		fleet_start_array			= :fleetDataStart,
 		fleet_universe				= :universe,
 		fleet_start_time			= :fleetStartTime,
 		fleet_end_stay				= :fleetStayTime,
@@ -595,6 +604,7 @@ class FleetFunctions
 			':fleetMission'				=> $fleetMission,
 			':fleetShipCount'			=> $fleetShipCount,
 			':fleetData'				=> implode(';', $fleetData),
+			':fleetDataStart'			=> implode(';', $fleetData),
 			':fleetStartTime'			=> $fleetStartTime,
 			':fleetStayTime'			=> $fleetStayTime,
 			':fleetEndTime'				=> $fleetEndTime,

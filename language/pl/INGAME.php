@@ -54,7 +54,7 @@ $LNG['bad_forum_url']				    	= 'Zły format adresu strony!';
 $LNG['admin_access_1']				    	= 'Tymczasowo masz dostęp do funkcji administracyjnych';
 $LNG['admin_access_link']				    = 'Deaktywuj go';
 $LNG['admin_access_2']				    	= ', jeśli nie używasz.';
-
+$LNG['banned_message'] = 'Zostałeś zbanowany. Jeśli uważasz, że to nieporozumienie, napisz do nas przez Discord: <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>';
 
 //----------------------------------------------------------------------------//
 //TOPNAV
@@ -92,7 +92,6 @@ $LNG['lm_queue']							= 'Kolejka';
 $LNG['lm_topkb']							= 'Hala sław';
 $LNG['lm_faq']								= 'FAQ';
 $LNG['lm_records']							= 'Rekordy';
-$LNG['lm_chat']								= 'Chat';
 $LNG['lm_changelog']						= 'Lista zmian';
 $LNG['lm_support']							= 'Pomoc techniczna';
 $LNG['lm_rules']							= 'Regulamin';
@@ -143,14 +142,9 @@ $LNG['ov_admins_online']					= 'Admini (Online):';
 $LNG['ov_no_admins_online']					= 'Obecnie brak aktywnego admina!';
 $LNG['ov_userbanner']						= 'Statystyki -Banner';
 $LNG['ov_userrank_info']					= '%s (%s <a href="game.php?page=statistics&amp;range=%d">%d</a> %s %s)';
-$LNG['ov_teamspeak_not_online']				= 'TeamspeakServer chwilowo niedostępny';
-$LNG['ov_teamspeak']						= 'Teamspeak';
-$LNG['ov_teamspeak_connect']				= 'Połącz';
-$LNG['ov_teamspeak_online']					= 'Online';
 $LNG['ov_closed']							= 'Gra chwilowo nieaktywna!';
 $LNG['ov_reflink']							= 'Reflink';
 $LNG['ov_noreflink']						= 'Nikogo nie zwerbowałeś do gry';
-$LNG['ov_chat_online']						= 'Użytkownicy na czacie:';
 
 
 //----------------------------------------------------------------------------//
@@ -621,7 +615,6 @@ $LNG['al_manage_alliance']					= 'zarządzaj sojuszem';
 $LNG['al_send_circular_message']			= 'Wyślij wiadomość do sojuszu';
 $LNG['al_circular_front_text']				= 'Gracz %s napisał:';
 $LNG['al_new_requests']						= '%d nowe podanie';
-$LNG['al_goto_chat']						= 'Czat sojuszu';
 $LNG['al_save']								= 'Zapisz';
 $LNG['al_dlte']								= 'Usuń';
 $LNG['al_rank_name']						= 'Nazwa rangi';

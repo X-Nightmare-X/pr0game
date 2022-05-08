@@ -30,9 +30,9 @@ function ShowVertify()
 			$REV	= $REV[2];
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_AUTOREFERER, true);
-			curl_setopt($ch, CURLOPT_URL, 'https://raw.githubusercontent.com/jkroepke/2Moons/master/'.$file);
+			curl_setopt($ch, CURLOPT_URL, 'https://git.pr0game.com/Rosenreeman/pr0game/raw/branch/master/'.$file);
 			curl_setopt($ch, CURLOPT_HEADER, false);
-			curl_setopt($ch, CURLOPT_USERAGENT, "2Moons Update API");
+			curl_setopt($ch, CURLOPT_USERAGENT, "pr0game Update API");
 			curl_setopt($ch, CURLOPT_CRLF, true);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$FILE		= curl_exec($ch);
@@ -67,7 +67,6 @@ function ShowVertify()
 		case 'getFileList':
 			echo json_encode(array_merge(
 				dir_tree('./', $EXT, false), 
-				dir_tree('chat/', $EXT),
 				dir_tree('includes/', $EXT),
 				dir_tree('includes/', $EXT),
 				dir_tree('language/', $EXT),

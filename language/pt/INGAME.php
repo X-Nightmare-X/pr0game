@@ -56,7 +56,7 @@ $LNG['bad_forum_url']				    	= 'O link de Forum é incorreto!';
 $LNG['admin_access_1']				    	= 'Os jogadores tem temporariamente acesso às funções administrativas!';
 $LNG['admin_access_link']				    = 'Desativar este acesso';
 $LNG['admin_access_2']				    	= ', se não precisar por mais tempo';
-
+$LNG['banned_message'] = 'Foi banido. Se pensa que isto é um mal-entendido, escreva-nos através do Discord: <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>';
 
 //----------------------------------------------------------------------------//
 // Topnav
@@ -94,7 +94,6 @@ $LNG['lm_queue']							= 'Queues';
 $LNG['lm_topkb']							= 'Hall da Fama';
 $LNG['lm_faq']								= 'FAQ';
 $LNG['lm_records']							= 'Recordes';
-$LNG['lm_chat']								= 'Chat';
 $LNG['lm_support']							= 'Suporte';
 $LNG['lm_rules']							= 'Regras';
 $LNG['lm_battlesim']						= 'Simulador';
@@ -144,14 +143,9 @@ $LNG['ov_admins_online']					= 'Administradores Activos';
 $LNG['ov_no_admins_online']					= 'De momento, não existe qualquer administrador online';
 $LNG['ov_userbanner']						= 'Banner do Jogador';
 $LNG['ov_userrank_info']					= '%s (%s <a href="game.php?page=statistics&amp;range=%d">%d</a> %s %s)';
-$LNG['ov_teamspeak_not_online']				= 'O servidor Teamspeak não esta ativo';
-$LNG['ov_teamspeak']						= 'Teamspeak';
-$LNG['ov_teamspeak_connect']				= 'Connect';
-$LNG['ov_teamspeak_online']					= 'Online';
 $LNG['ov_closed']							= 'O universo está atualmente desativado';
 $LNG['ov_reflink']							= 'Recrutas';
 $LNG['ov_noreflink']						= 'De momento, não recrutaste algum jogador.';
-$LNG['ov_chat_online']						= 'Jogadores no chat:';
 
 //----------------------------------------------------------------------------//
 // Galáxia
@@ -613,7 +607,6 @@ $LNG['al_manage_alliance']					= 'Gerir Aliança';
 $LNG['al_send_circular_message']			= 'Mandar Mensagem Circular';
 $LNG['al_circular_front_text']				= 'O jogador %s escreveu o seguinte:';
 $LNG['al_new_requests']						= '%d Novos pedidos (en)';
-$LNG['al_goto_chat']						= 'Chat da Aliança';
 $LNG['al_save']								= 'Guardar';
 $LNG['al_dlte']								= 'Apagar';
 $LNG['al_rank_name']						= 'Nome no rank';

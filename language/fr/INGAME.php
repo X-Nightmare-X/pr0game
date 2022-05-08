@@ -42,7 +42,7 @@ $LNG['bad_forum_url']				    	= 'Le lien vers le Forum est incorrect!';
 $LNG['admin_access_1']				    	= 'Les joueurs ont accès temporairement aux fonctions administratives!';
 $LNG['admin_access_link']				    = 'Désactiver cet accès';
 $LNG['admin_access_2']				    	= ", Si vous n'en avez plus besion dans l'immédiat";
-
+$LNG['banned_message'] = 'Vous avez été banni. Si vous pensez qu\'il s\'agit d\'un malentendu, écrivez-nous via Discord: <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>';
 
 //----------------------------------------------------------------------------//
 //TOPNAV
@@ -80,7 +80,6 @@ $LNG['lm_queue']							= 'Queues';
 $LNG['lm_topkb']							= 'Hall of Fame';
 $LNG['lm_faq']								= 'Guide du débutant';
 $LNG['lm_records']							= 'Records';
-$LNG['lm_chat']								= 'Chat';
 $LNG['lm_support']							= 'Ticket Support';
 $LNG['lm_rules']							= 'Règlement';
 $LNG['lm_battlesim']						= 'Simulateur de Combat';
@@ -130,14 +129,9 @@ $LNG['ov_admins_online']					= 'Admins en ligne :';
 $LNG['ov_no_admins_online']					= 'Actuellement, aucun connecté!';
 $LNG['ov_userbanner']						= 'Bannière statistiques Utilisateur';
 $LNG['ov_userrank_info']					= '%s (%s <a href="game.php?page=statistics&range=%d">%d</a> %s %s)';
-$LNG['ov_teamspeak_not_online']				= 'Le serveur n\'est pas joignable actuellement. Merci de votre compréhension.';
-$LNG['ov_teamspeak']						= 'Teamspeak';
-$LNG['ov_teamspeak_connect']				= 'Connecté';
-$LNG['ov_teamspeak_online']					= 'En ligne';
 $LNG['ov_closed']							= 'Le serveur est suspendu pour le moment ! ';
 $LNG['ov_reflink']							= 'Lien référence';
 $LNG['ov_noreflink']						= 'À l\'heure actuelle, vous n\'avez recruté aucun joueur.';
-$LNG['ov_chat_online']						= 'Joueur dans le Chat:';
 
 //----------------------------------------------------------------------------//
 //GALAXY
@@ -597,7 +591,6 @@ $LNG['al_manage_alliance']					= 'Gérer l\'Alliance';
 $LNG['al_send_circular_message']			= 'envoyer un message global';
 $LNG['al_circular_front_text']				= 'Le joueur %s écrit ce qui suit:';
 $LNG['al_new_requests']						= '%d nouvelle(s) requête(s)';
-$LNG['al_goto_chat']						= 'Rejoindre le Chat de l\'Alliance';
 $LNG['al_save']								= 'Sauvegarder';
 $LNG['al_dlte']								= 'Supprimer';
 $LNG['al_rank_name']						= 'Nom rang';

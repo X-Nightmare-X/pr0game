@@ -329,7 +329,7 @@ class ShowFleetStep3Page extends AbstractGamePage
                 $USER += Database::get()->selectSingle($sql, [
                     ':userId' => $USER['id'],
                     ':statType' => 1
-                ]);
+                ]) ?: ['total_points' => 0];
             }
             catch(Exception $exception) {
             }
@@ -352,7 +352,7 @@ class ShowFleetStep3Page extends AbstractGamePage
 			}
 		}
 
-		if ($targetMission == 5)
+		if ($targetMission == 5 || $targetMission == 17)
 		{
 			if($targetPlayerData['ally_id'] != $USER['ally_id'] || $USER['ally_id'] == 0) {
 				$sql = "SELECT COUNT(*) as state FROM %%BUDDY%%

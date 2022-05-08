@@ -3,29 +3,12 @@
 <div id="registerFormWrapper">
 <form id="registerForm" method="post" action="index.php?page=register" data-action="index.php?page=register">
 <input type="hidden" value="send" name="mode">
-<input type="hidden" value="{$externalAuth.account}" name="externalAuth[account]">
-<input type="hidden" value="{$externalAuth.method}" name="externalAuth[method]">
 <input type="hidden" value="{$referralData.id}" name="referralID">
 	<div class="rowForm">
 		<label for="universe">{$LNG.universe}</label>
 		<select name="uni" id="universe" class="changeAction">{html_options options=$universeSelect selected=$UNI}</select>
 		{if !empty($error.uni)}<span class="error errorUni"></span>{/if}
 	</div>
-	{if !empty($externalAuth.account)}
-	{if $facebookEnable}
-	<div class="rowForm">
-		<label>{$LNG.registerFacebookAccount}</label>
-		<span class="text fbname">{$accountName}</span>
-	</div>
-	{/if}
-	{elseif empty($referralData.id)}
-	{if $facebookEnable}
-	<div class="rowForm">
-		<label>{$LNG.registerFacebookAccount}</label>
-		<a href="#" data-href="index.php?page=externalAuth&method=facebook" class="fb_login"><img src="styles/resource/images/facebook/fb-connect-large.png" alt=""></a>
-	</div>
-	{/if}
-	{/if}
 	<div class="rowForm">
 		<label for="username">{$LNG.registerUsername}</label>
 		<input type="text" class="input" name="username" id="username" maxlenght="32">
@@ -72,16 +55,6 @@
 		<div class="clear"></div>
 	</div>
 	{/if}
-	{if $recaptchaEnable}
-	<div class="rowForm" id="captchaRow">
-		<div>
-			<label>{$LNG.registerCaptcha}</label>
-			<!--<span class="inputDesc">{$LNG.registerCaptchaDesc}</span>-->
-			<div class="g-recaptcha" data-sitekey="{$recaptchaPublicKey}"></div>
-		</div>
-		<div class="clear"></div>
-	</div>
-	{/if}
 	<div class="rowForm">
 		<label for="rules">{$LNG.registerRules}</label>
 		<input type="checkbox" name="rules" id="rules" value="1">
@@ -95,8 +68,5 @@
 {/block}
 {block name="script" append}
 <link rel="stylesheet" type="text/css" href="styles/resource/css/login/register.css?v={$REV}">
-{if $recaptchaEnable}
-<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl={$lang}"></script>
-{/if}
 <script type="text/javascript" src="scripts/login/register.js"></script>
 {/block}

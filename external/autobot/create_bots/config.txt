@@ -1,4 +1,0 @@
-<server host> (usually localhost)
-<username>
-<password>
-<mysql database name>

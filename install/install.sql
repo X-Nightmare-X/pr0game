@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 
 CREATE TABLE `%PREFIX%aks` (
@@ -29,7 +29,7 @@ CREATE TABLE `%PREFIX%aks` (
   `target` int(11) unsigned NOT NULL,
   `ankunft` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%alliance` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -55,7 +55,7 @@ CREATE TABLE `%PREFIX%alliance` (
   KEY `ally_tag` (`ally_tag`),
   KEY `ally_name` (`ally_name`),
   KEY `ally_universe` (`ally_universe`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%alliance_ranks` (
   `rankID` int(11) NOT NULL AUTO_INCREMENT,
@@ -75,7 +75,7 @@ CREATE TABLE `%PREFIX%alliance_ranks` (
   `EVENTS` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`rankID`),
   KEY `allianceID` (`allianceID`,`rankID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 
 CREATE TABLE `%PREFIX%alliance_request` (
@@ -86,7 +86,7 @@ CREATE TABLE `%PREFIX%alliance_request` (
   `time` int(11) NOT NULL,
   PRIMARY KEY (`applyID`),
   KEY `allianceID` (`allianceID`,`userID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%banned` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -99,7 +99,7 @@ CREATE TABLE `%PREFIX%banned` (
   `universe` tinyint(3) unsigned NOT NULL,
   PRIMARY KEY `ID` (`id`),
   KEY `universe` (`universe`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%buddy` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -109,48 +109,13 @@ CREATE TABLE `%PREFIX%buddy` (
   PRIMARY KEY (`id`),
   KEY `universe` (`universe`),
   KEY `sender` (`sender`,`owner`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%buddy_request` (
   `id` int(11) unsigned NOT NULL,
   `text` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-CREATE TABLE `%PREFIX%chat_bans` (
-  `userID` int(11) NOT NULL,
-  `userName` varchar(64) NOT NULL,
-  `dateTime` datetime NOT NULL,
-  `ip` varbinary(16) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-CREATE TABLE `%PREFIX%chat_invitations` (
-  `userID` int(11) NOT NULL,
-  `channel` int(11) NOT NULL,
-  `dateTime` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-CREATE TABLE `%PREFIX%chat_messages` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userID` int(11) NOT NULL,
-  `userName` varchar(64) NOT NULL,
-  `userRole` int(1) NOT NULL,
-  `channel` int(11) NOT NULL,
-  `dateTime` datetime NOT NULL,
-  `ip` varbinary(16) NOT NULL,
-  `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
-
-CREATE TABLE `%PREFIX%chat_online` (
-  `userID` int(11) NOT NULL,
-  `userName` varchar(64) NOT NULL,
-  `userRole` int(1) NOT NULL,
-  `channel` int(11) NOT NULL,
-  `dateTime` datetime NOT NULL,
-  `ip` varbinary(16) NOT NULL,
-  KEY `dateTime` (`dateTime`,`channel`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%config` (
   `uni` int(11) NOT NULL AUTO_INCREMENT,
@@ -193,22 +158,9 @@ CREATE TABLE `%PREFIX%config` (
   `stat_last_db_update` int(11) NOT NULL DEFAULT '0',
   `stats_fly_lock` int(11) NOT NULL DEFAULT '0',
   `cron_lock` int(11) NOT NULL DEFAULT '0',
-  `ts_modon` tinyint(1) NOT NULL DEFAULT '0',
-  `ts_server` varchar(64) NOT NULL DEFAULT '',
-  `ts_tcpport` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `ts_udpport` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `ts_timeout` tinyint(1) NOT NULL DEFAULT '1',
-  `ts_version` tinyint(1) NOT NULL DEFAULT '2',
-  `ts_cron_last` int(11) NOT NULL DEFAULT '0',
-  `ts_cron_interval` smallint(5) NOT NULL DEFAULT '5',
-  `ts_login` varchar(32) NOT NULL DEFAULT '',
-  `ts_password` varchar(32) NOT NULL DEFAULT '',
   `reg_closed` tinyint(1) NOT NULL DEFAULT '0',
   `OverviewNewsFrame` tinyint(1) NOT NULL DEFAULT '1',
   `OverviewNewsText` text NOT NULL,
-  `capaktiv` tinyint(1) NOT NULL DEFAULT '0',
-  `cappublic` varchar(42) NOT NULL DEFAULT '',
-  `capprivate` varchar(42) NOT NULL DEFAULT '',
   `min_build_time` tinyint(2) NOT NULL DEFAULT '1',
   `mail_active` tinyint(1) NOT NULL DEFAULT '0',
   `mail_use` tinyint(1) NOT NULL DEFAULT '0',
@@ -220,27 +172,11 @@ CREATE TABLE `%PREFIX%config` (
   `smtp_sendmail` varchar(64) NOT NULL DEFAULT '',
   `smail_path` varchar(30) NOT NULL DEFAULT '/usr/sbin/sendmail',
   `user_valid` tinyint(1) NOT NULL DEFAULT '0',
-  `fb_on` tinyint(1) NOT NULL DEFAULT '0',
-  `fb_apikey` varchar(42) NOT NULL DEFAULT '',
-  `fb_skey` varchar(42) NOT NULL DEFAULT '',
   `ga_active` varchar(42) NOT NULL DEFAULT '0',
   `ga_key` varchar(42) NOT NULL DEFAULT '',
   `moduls` varchar(100) NOT NULL DEFAULT '',
   `trade_allowed_ships` varchar(255) NOT NULL DEFAULT '202,203,204,205,206,207,208,209,210,211,212,213,214,215',
   `trade_charge` varchar(5) NOT NULL DEFAULT '30',
-  `chat_closed` tinyint(1) NOT NULL DEFAULT '0',
-  `chat_allowchan` tinyint(1) NOT NULL DEFAULT '1',
-  `chat_allowmes` tinyint(1) NOT NULL DEFAULT '1',
-  `chat_allowdelmes` tinyint(1) NOT NULL DEFAULT '1',
-  `chat_logmessage` tinyint(1) NOT NULL DEFAULT '1',
-  `chat_nickchange` tinyint(1) NOT NULL DEFAULT '1',
-  `chat_botname` varchar(15) NOT NULL DEFAULT '2Moons',
-  `chat_channelname` varchar(15) NOT NULL DEFAULT '2Moons',
-  `chat_socket_active` tinyint(1) NOT NULL DEFAULT '0',
-  `chat_socket_host` varchar(64) NOT NULL DEFAULT '',
-  `chat_socket_ip` varchar(40) NOT NULL DEFAULT '',
-  `chat_socket_port` smallint(5) NOT NULL DEFAULT '0',
-  `chat_socket_chatid` tinyint(1) NOT NULL DEFAULT '1',
   `max_galaxy` tinyint(3) unsigned NOT NULL DEFAULT '9',
   `max_system` smallint(5) unsigned NOT NULL DEFAULT '400',
   `max_planets` tinyint(3) unsigned NOT NULL DEFAULT '15',
@@ -288,7 +224,7 @@ CREATE TABLE `%PREFIX%config` (
   `disclamerNotice` text NOT NULL,
   `alliance_create_min_points` BIGINT UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`uni`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%cronjobs` (
   `cronjobID` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -304,14 +240,14 @@ CREATE TABLE `%PREFIX%cronjobs` (
   `lock` varchar(32) DEFAULT NULL,
   UNIQUE KEY `cronjobID` (`cronjobID`),
   KEY `isActive` (`isActive`,`nextTime`,`lock`,`cronjobID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%cronjobs_log` (
  `cronjobId` int(11) unsigned NOT NULL,
  `executionTime` datetime NOT NULL,
  `lockToken` varchar(32) NOT NULL,
  KEY `cronjobId` (`cronjobId`,`executionTime`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 
 CREATE TABLE `%PREFIX%diplo` (
@@ -325,7 +261,7 @@ CREATE TABLE `%PREFIX%diplo` (
   PRIMARY KEY (`id`),
   KEY `universe` (`universe`),
   KEY `owner_1` (`owner_1`,`owner_2`,`accept`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%fleets` (
   `fleet_id` bigint(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -361,11 +297,12 @@ CREATE TABLE `%PREFIX%fleets` (
   `start_time` int(11) DEFAULT NULL,
   `fleet_busy` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `hasCanceled` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `fleet_start_array` text,
   PRIMARY KEY (`fleet_id`),
   KEY `fleet_target_owner` (`fleet_target_owner`,`fleet_mission`),
   KEY `fleet_owner` (`fleet_owner`,`fleet_mission`),
   KEY `fleet_group` (`fleet_group`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%trades` (
   `seller_fleet_id`  bigint(11) unsigned NOT NULL DEFAULT 0,
@@ -377,7 +314,7 @@ CREATE TABLE `%PREFIX%trades` (
 	`ex_resource_type` tinyint(1) unsigned NOT NULL DEFAULT 0,
 	`ex_resource_amount` double(50,0) unsigned NOT NULL DEFAULT '0',
 	PRIMARY KEY (`seller_fleet_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%fleet_event` (
   `fleetID` int(11) NOT NULL,
@@ -385,7 +322,7 @@ CREATE TABLE `%PREFIX%fleet_event` (
   `lock` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`fleetID`),
   KEY `lock` (`lock`,`time`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%log` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -397,7 +334,7 @@ CREATE TABLE `%PREFIX%log` (
   `universe` tinyint(3) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mode` (`mode`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%log_fleets` (
   `fleet_id` bigint(11) unsigned NOT NULL,
@@ -435,7 +372,7 @@ CREATE TABLE `%PREFIX%log_fleets` (
   `fleet_state` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`fleet_id`),
   KEY `BashRule` (`fleet_owner`,`fleet_end_id`,`fleet_start_time`,`fleet_mission`,`fleet_state`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%lostpassword` (
   `userID` int(10) unsigned NOT NULL,
@@ -446,7 +383,7 @@ CREATE TABLE `%PREFIX%lostpassword` (
   PRIMARY KEY (`key`),
   UNIQUE KEY `userID` (`userID`,`key`,`time`,`hasChanged`),
   KEY `time` (`time`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%messages` (
   `message_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -464,14 +401,14 @@ CREATE TABLE `%PREFIX%messages` (
   KEY `message_sender` (`message_sender`),
   KEY `message_deleted` (`message_deleted`),
   KEY `message_owner` (`message_owner`,`message_type`,`message_unread`,`message_deleted`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%multi` (
   `multiID` int(11) NOT NULL AUTO_INCREMENT,
   `userID` int(11) NOT NULL,
   PRIMARY KEY (`multiID`),
   KEY `userID` (`userID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%news` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -480,7 +417,7 @@ CREATE TABLE `%PREFIX%news` (
   `title` varchar(64) NOT NULL,
   `text` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%notes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -493,7 +430,7 @@ CREATE TABLE `%PREFIX%notes` (
   PRIMARY KEY (`id`),
   KEY `universe` (`universe`),
   KEY `owner` (`owner`,`time`,`priority`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%planets` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -595,7 +532,7 @@ CREATE TABLE `%PREFIX%planets` (
   KEY `id_owner` (`id_owner`),
   KEY `destruyed` (`destruyed`),
   KEY `universe` (`universe`,`galaxy`,`system`,`planet`,`planet_type`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%raports` (
   `rid` varchar(32) NOT NULL,
@@ -605,13 +542,13 @@ CREATE TABLE `%PREFIX%raports` (
   `defender` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`rid`),
   KEY `time` (`time`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%records` (
   `userID` int(10) unsigned NOT NULL,
   `elementID` smallint(5) unsigned NOT NULL,
   `level` bigint(20) unsigned NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%session` (
   `sessionID` varchar(32) NOT NULL,
@@ -620,7 +557,7 @@ CREATE TABLE `%PREFIX%session` (
   `lastonline` int(11) NOT NULL,
   `created` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`sessionID`)
-) ENGINE=MEMORY DEFAULT CHARSET=utf8;
+) ENGINE=MEMORY DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%shortcuts` (
   `shortcutID` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -632,7 +569,7 @@ CREATE TABLE `%PREFIX%shortcuts` (
   `type` tinyint(1) unsigned NOT NULL,
   PRIMARY KEY (`shortcutID`),
   KEY `ownerID` (`ownerID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%statpoints` (
   `id_owner` int(11) unsigned NOT NULL DEFAULT '0',
@@ -662,11 +599,11 @@ CREATE TABLE `%PREFIX%statpoints` (
   KEY `id_owner` (`id_owner`),
   KEY `universe` (`universe`),
   KEY `stat_type` (`stat_type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%system` (
   `dbVersion` int(10) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%ticket` (
   `ticketID` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -679,7 +616,7 @@ CREATE TABLE `%PREFIX%ticket` (
   PRIMARY KEY (`ticketID`),
   KEY `ownerID` (`ownerID`),
   KEY `universe` (`universe`,`status`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%ticket_answer` (
   `answerID` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -690,13 +627,13 @@ CREATE TABLE `%PREFIX%ticket_answer` (
   `subject` varchar(255) NOT NULL,
   `message` mediumtext NOT NULL,
   PRIMARY KEY (`answerID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%ticket_category` (
   `categoryID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   PRIMARY KEY (`categoryID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%topkb` (
   `rid` varchar(32) NOT NULL,
@@ -705,7 +642,7 @@ CREATE TABLE `%PREFIX%topkb` (
   `time` int(11) NOT NULL,
   `universe` tinyint(3) unsigned NOT NULL,
   KEY `time` (`universe`,`rid`,`time`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -810,23 +747,14 @@ CREATE TABLE `%PREFIX%users` (
   KEY `ref_bonus` (`ref_bonus`),
   KEY `universe` (`universe`,`username`,`password`,`onlinetime`,`authlevel`),
   KEY `ally_id` (`ally_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%users_to_acs` (
   `userID` int(10) unsigned NOT NULL,
   `acsID` int(10) unsigned NOT NULL,
   KEY `userID` (`userID`),
   KEY `acsID` (`acsID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-CREATE TABLE `%PREFIX%users_to_extauth` (
-  `id` int(11) NOT NULL,
-  `account` varchar(64) NOT NULL,
-  `mode` varchar(32) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id` (`id`),
-  KEY `account` (`account`,`mode`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%users_to_topkb` (
   `rid` varchar(32) NOT NULL,
@@ -834,7 +762,7 @@ CREATE TABLE `%PREFIX%users_to_topkb` (
   `username` varchar(128) NOT NULL,
   `role` tinyint(1) NOT NULL,
   KEY `rid` (`rid`,`role`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%users_valid` (
  `validationID` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -847,10 +775,8 @@ CREATE TABLE `%PREFIX%users_valid` (
  `language` varchar(3) NOT NULL,
  `universe` tinyint(3) unsigned NOT NULL,
  `referralID` int(11) DEFAULT NULL,
- `externalAuthUID` varchar(128) DEFAULT NULL,
- `externalAuthMethod` varchar(32) DEFAULT NULL,
  PRIMARY KEY (`validationID`,`validationKey`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%vars` (
   `elementID` smallint(5) unsigned NOT NULL,
@@ -925,7 +851,7 @@ CREATE TABLE `%PREFIX%vars` (
   `storage903` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`elementID`),
   KEY `class` (`class`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%vars_rapidfire` (
   `elementID` int(11) NOT NULL,
@@ -933,7 +859,7 @@ CREATE TABLE `%PREFIX%vars_rapidfire` (
   `shoots` int(11) NOT NULL,
   KEY `elementID` (`elementID`),
   KEY `rapidfireID` (`rapidfireID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%vars_requriements` (
   `elementID` int(11) NOT NULL,
@@ -941,7 +867,7 @@ CREATE TABLE `%PREFIX%vars_requriements` (
   `requireLevel` int(11) NOT NULL,
   KEY `elementID` (`elementID`),
   KEY `requireID` (`requireID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 INSERT INTO `%PREFIX%config` (`uni`, `VERSION`, `uni_name`, `game_name`, `close_reason`, `OverviewNewsText`, `moduls`, `disclamerAddress`, `disclamerPhone`, `disclamerMail`, `disclamerNotice`) VALUES
 (1, '%VERSION%', '', 'SteemNova', '', '', '', '', '', '', '');
@@ -952,7 +878,6 @@ INSERT INTO `%PREFIX%cronjobs` (`cronjobID`, `name`, `isActive`, `min`, `hours`,
 (NULL, 'daily', 1, '25', '2', '*', '*', '*', 'DailyCronjob', 0, NULL),
 (NULL, 'cleaner', 1, '45', '2', '*', '*', '6', 'CleanerCronjob', 0, NULL),
 (NULL, 'inactive', 1, '30', '1', '*', '*', '0,3,6', 'InactiveMailCronjob', 0, NULL),
-(NULL, 'teamspeak', 0, '*/3', '*', '*', '*', '*', 'TeamSpeakCronjob', 0, NULL),
 (NULL, 'databasedump', 1, '30', '1', '*', '*', '1', 'DumpCronjob', 0, NULL),
 (NULL, 'tracking', 1, FLOOR(RAND() * 60), FLOOR(RAND() * 24), '*', '*', '0', 'TrackingCronjob', 0, NULL);
 
@@ -1108,7 +1033,7 @@ INSERT INTO `%PREFIX%vars_rapidfire` (`elementID`, `rapidfireID`, `shoots`) VALU
 (215, 203, 3),
 (215, 205, 4),
 (215, 206, 4),
-(215, 207, 10),
+(215, 207, 7),
 (215, 210, 5),
 (215, 212, 5),
 (216, 210, 1250),

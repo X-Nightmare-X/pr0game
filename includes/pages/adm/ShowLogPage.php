@@ -31,8 +31,6 @@ function ShowLog()
 	#	target 0 => Server-Settings
 	#	target 1 => Universe-Settings
 	#	target 2 => Stat-Settings
-	#	target 3 => Chat-Settings
-	#	target 4 => TeamSpeak-Settings
 	#	target 5 => Impressum-Settings
 	# 4 => Presents
 	#
@@ -85,38 +83,12 @@ function ShowLogDetail() {
 		'resource_multiplier' 		=> $LNG['se_resources_producion_speed'],
 		'forum_url' 				=> $LNG['se_forum_link'],
 		'game_speed' 				=> $LNG['se_general_speed'],
-		'chat_socket_chatid_info' 	=> $LNG['ch_socket_chatid_info'],
-		'chat_socket_port_info' 	=> $LNG['ch_socket_port_info'],
-		'chat_socket_ip_info' 		=> $LNG['ch_socket_ip_info'],
-		'chat_socket_host_info' 	=> $LNG['ch_socket_host_info'],
-		'chat_socket_chatid' 		=> $LNG['ch_socket_chatid'],
-		'chat_socket_port' 			=> $LNG['ch_socket_port'],
-		'chat_socket_ip' 			=> $LNG['ch_socket_ip'],
-		'chat_socket_host' 			=> $LNG['ch_socket_host'],
-		'chat_socket_active' 		=> $LNG['ch_socket_active'],
-		'chat_socket' 				=> $LNG['ch_socket'],
-		'chat_closed' 				=> $LNG['ch_closed'],
-		'chat_allowchan' 			=> $LNG['ch_allowchan'],
-		'chat_allowmes' 			=> $LNG['ch_allowmes'],
-		'chat_allowdelmes' 			=> $LNG['ch_allowcelmes'],
-		'chat_logmessage' 			=> $LNG['ch_logmessage'],
-		'chat_nickchange' 			=> $LNG['ch_nickchange'],
-		'chat_botname' 				=> $LNG['ch_botname'],
-		'chat_channelname' 			=> $LNG['ch_channelname'],
-		
-		'ts_modon' 			=> $LNG['ts_active'],
-		'ts_server' 		=> $LNG['ts_serverip'],
-		'ts_password' 		=> $LNG['ts_pass'],
-		'ts_cron_interval' 	=> $LNG['ts_cron'],
-		
+
 		'stat_settings' 	=> $LNG['cs_point_per_resources_used'],
 		'stat' 				=> $LNG['cs_points_to_zero'],
 		'stat_update_time' 	=> $LNG['cs_time_between_updates'],
 		'stat_level' 		=> $LNG['cs_access_lvl'],
 		
-		'capaktiv' 		=> $LNG['se_recaptcha_active'],
-		'cappublic' 	=> $LNG['se_recaptcha_public'],
-		'capprivate' 	=> $LNG['se_recaptcha_private'],
 		'ga_key' 		=> $LNG['se_google_key'],
 		
 		'metal'			=> $LNG['tech'][901],
@@ -182,7 +154,7 @@ function ShowLogSettingsList() {
 		0 => $LNG['log_ssettings'],
 		1 => $LNG['log_usettings'],
 		2 => $LNG['log_statsettings'],
-		3 => $LNG['log_chatsettings'],
+		3 => '<removed>', // previously used for the chat
 		4 => $LNG['log_tssettings'],
 		5 => $LNG['log_disclamersettings']
 	);

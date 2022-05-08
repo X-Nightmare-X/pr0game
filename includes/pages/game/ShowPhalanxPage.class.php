@@ -37,7 +37,7 @@ class ShowPhalanxPage extends AbstractGamePage
 
 	static function GetPhalanxRange($PhalanxLevel)
 	{
-		return ($PhalanxLevel == 1) ? 1 : pow($PhalanxLevel, 2) - 1;
+		return ($PhalanxLevel == 1) ? 0 : pow($PhalanxLevel, 2) - 1;
 	}
 
 	function __construct() {

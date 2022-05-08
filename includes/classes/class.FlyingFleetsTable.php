@@ -94,7 +94,7 @@ class FlyingFleetsTable
 				$FleetData[$fleetRow['fleet_start_time'].$fleetRow['fleet_id']] = $this->BuildFleetEventTable($fleetRow, 0);
 			}
 
-			if ($fleetRow['fleet_mission'] == 10 || $fleetRow['fleet_mission'] == 17 || ($fleetRow['fleet_mission'] == 4 && $fleetRow['fleet_mess'] == 0))
+			if ($fleetRow['fleet_mission'] == 10 || (($fleetRow['fleet_mission'] == 17 || $fleetRow['fleet_mission'] == 4) && $fleetRow['fleet_mess'] == 0))
 				continue;
 
 			if ($fleetRow['fleet_end_stay'] != $fleetRow['fleet_start_time'] && $fleetRow['fleet_end_stay'] > TIMESTAMP && ($this->IsPhalanx && $fleetRow['fleet_end_id'] == $this->planetId))
@@ -298,13 +298,14 @@ class FlyingFleetsTable
 		$FleetRec		= explode(';', $fleetRow['fleet_array']);
 		$FleetPopup		= '<a href="#" data-tooltip-content="<table style=\'width:200px\'>';
 		$textForBlind	= '';
-		if ($this->IsPhalanx || $SpyTech >= 4 || $Owner)
+		if ($this->IsPhalanx || $SpyTech >= 2 || $Owner)
 		{
 
 			if($SpyTech < 8 && !$Owner)
 			{
-				$FleetPopup		.= '<tr><td style=\'width:100%;color:white\'>'.$LNG['cff_aproaching'].$fleetRow['fleet_amount'].$LNG['cff_ships'].':</td></tr>';
-				$textForBlind	= $LNG['cff_aproaching'].$fleetRow['fleet_amount'].$LNG['cff_ships'].': ';
+			    $addColon = $SpyTech >=4 ? ": " : "";
+				$FleetPopup		.= '<tr><td style=\'width:100%;color:white\'>'.$LNG['cff_aproaching'].$fleetRow['fleet_amount'].$LNG['cff_ships'].$addColon.'</td></tr>';
+				$textForBlind	= $LNG['cff_aproaching'].$fleetRow['fleet_amount'].$LNG['cff_ships'].$addColon;
 			}
 			$shipsData	= array();
 			foreach($FleetRec as $Item => $Group)
@@ -325,7 +326,7 @@ class FlyingFleetsTable
 						$FleetPopup 	.= '<tr><td style=\'width:50%;color:white\'>'.$LNG['tech'][$Ship[0]].':</td><td style=\'width:50%;color:white\'>'.pretty_number($Ship[1]).'</td></tr>';
 						$shipsData[]	= floatToString($Ship[1]).' '.$LNG['tech'][$Ship[0]];
 					}
-					else
+					else if($SpyTech >= 4)
 					{
 						$FleetPopup		.= '<tr><td style=\'width:100%;color:white\'>'.$LNG['tech'][$Ship[0]].'</td></tr>';
 						$shipsData[]	= $LNG['tech'][$Ship[0]];

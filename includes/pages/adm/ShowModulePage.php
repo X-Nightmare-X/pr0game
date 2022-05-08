@@ -32,7 +32,14 @@ function ShowModulePage()
 	}
 	
 	$IDs	= range(0, MODULE_AMOUNT - 1);
+	// TODO: rework "module system"
+    // This ignore list is needed, since the modules have fixed IDs:
+    // 7 - Chat Module
+	$ignoreList = [7];
 	foreach($IDs as $ID => $Name) {
+	    if (in_array($ID, $ignoreList)) {
+	        continue;
+        }
 		$Modules[$ID]	= array(
 			'name'	=> $LNG['modul_'.$ID],
 			'state'	=> isset($module[$ID]) ? $module[$ID] : 1,

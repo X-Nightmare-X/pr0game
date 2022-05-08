@@ -53,7 +53,7 @@ $LNG['time_minutes'] = 'Minutes';
 $LNG['time_seconds'] = 'Seconds';
 //###########################################################//
 
-$LNG['info_information'] = 'Send or report bugs in the forum for <a href="%s" target="tracker">2Moons</a><br>Otherwise there will be support!';
+$LNG['info_information'] = 'Send or report bugs in the forum for <a href="%s" target="tracker">pr0game</a><br>Otherwise there will be support!';
 
 //---------------	Sim ou não	------------------------//
 $LNG['one_is_yes_1'] = 'Yes';
@@ -312,9 +312,9 @@ $LNG['ma_modes'] = array('Game', 'Mail', 'Game & Mail');
 //###########################################################//
 
 //---------------	Pagina Inicial	------------------------//
-$LNG['ow_title'] = 'Welcome to 2Moons!';
+$LNG['ow_title'] = 'Welcome to pr0game!';
 $LNG['ow_donate'] = 'Donate';
-$LNG['ow_welcome_text'] = 'Welcome to popular 2Moons! (:';
+$LNG['ow_welcome_text'] = 'Welcome to popular pr0game! (:';
 $LNG['ow_overview'] = 'Control';
 $LNG['ow_support'] = 'Support';
 $LNG['ow_credits'] = 'Credits';
@@ -328,7 +328,6 @@ $LNG['ow_database_errors'] = 'You have errors in your database. <a href="ErrorPa
 $LNG['ow_smtp_errors'] = 'verifies the configuration of SMTP! -At the moment no mail can be sent!';
 $LNG['ow_dir_not_writable'] = '/%s dir cant be written!';
 $LNG['ow_none'] = 'No warnings';
-$LNG['ow_news'] = 'Latest news';
 $LNG['ow_updates'] = 'Recent updates';
 $LNG['ow_developers'] = 'Developers';
 
@@ -379,12 +378,6 @@ $LNG['se_noob_protect2'] = 'Protection n. points';
 $LNG['se_noob_protect3'] = 'Newbie Point Multiply';
 $LNG['se_noob_protect_e2'] = 'Limit of points to leave them to be newbie';
 $LNG['se_noob_protect_e3'] = 'You can only attack users where their points is between your points * (amount), for example *18 , it means, if you have 1000 points, you can attack users with less than 18000 points, or, if you have 50000 points, you can be attacked from users where you enter in their range points, like if a enemy or a neutral user have 20000 points, * 18 will be 360000, so you are in their range and you can be attacked by him';
-$LNG['se_recaptcha_whats'] = 'What is RECAPTCHA?';
-$LNG['se_recaptcha_head'] = 'RECAPTCHA';
-$LNG['se_recaptcha_desc'] = 'RECAPTCHA CAPTCHA is a free service that will help block spam and bots.';
-$LNG['se_recaptcha_public'] = 'Public Key:';
-$LNG['se_recaptcha_private'] = 'Private Key:';
-$LNG['se_recaptcha_active'] = 'Enabling RECAPTCHA';
 $LNG['se_reg_closed'] = 'Closed Registration';
 $LNG['se_min_build_time'] = 'Min. Construction';
 $LNG['se_trader_head'] = 'The settings of Merchant Fleet';
@@ -430,7 +423,7 @@ $LNG['se_news'] = 'News';
 $LNG['se_verfiy_mail'] = 'The system of checking email';
 $LNG['se_verfiy_mail_info'] = 'If this option is active players has to activate their accounts.';
 $LNG['se_smtp'] = 'Settings of SMTP';
-$LNG['se_smtp_info'] = 'Enter the SMTP server to allow communication between the 2Moons server and their players by SMTP mail server.';
+$LNG['se_smtp_info'] = 'Enter the SMTP server to allow communication between the pr0game server and their players by SMTP mail server.';
 $LNG['se_mail_active'] = 'Enables it to Email?';
 $LNG['se_mail_use'] = 'Version of email:';
 $LNG['se_mail_sel_0'] = 'Function PHP mail()';
@@ -451,13 +444,6 @@ $LNG['se_smtp_user'] = 'SMTP Username:';
 $LNG['se_smtp_pass'] = 'SMTP Password:';
 $LNG['se_smtp_sendmail'] = 'SMTP Sender:';
 $LNG['se_smtp_sendmail_info'] = 'Put here your e-mail address. Doesnt need to be the same as sending.';
-$LNG['se_ftp'] = 'Configuration of FTP';
-$LNG['se_ftp_info'] = 'System updates system via FTP! This system files actuliza what consuante fifty again, but attention if you have mod s these will be removed.';
-$LNG['se_ftp_host'] = 'FTP server (Example: ftp://o game or game http://o):';
-$LNG['se_ftp_user'] = 'FTP user: (user of the Host)';
-$LNG['se_ftp_pass'] = 'FTP Password: (Password)-Host';
-$LNG['se_ftp_dir'] = 'FTP Game path: (where is saved the game)';
-$LNG['se_ftp_dir_info'] = 'Here inseres the path to your game folder should start with a slash and ending up with a bar!<br>Example:/httpdocs/';
 $LNG['se_google'] = 'Google Analytics settings';
 $LNG['se_google_info'] = 'Google Analytics is the solution for web sites that allows you to acquire valuable knowledge about the traffic of your site and the impact of their marketing strategies. Thanks to the powerful, flexible and user-friendly features you can now access your prog data in new ways to analyze and show. With Google you can design your Analitico targeted advertising, marketing campaigns and website development with high conversion rates.';
 $LNG['se_google_active'] = 'Enable/disable?';
@@ -626,11 +612,8 @@ $LNG['mu_info_account_page'] = 'Information Account';
 $LNG['mu_planets_options'] = 'Planets Options';
 $LNG['mu_user_logs'] = 'Admin Log';
 $LNG['mu_support'] = 'Support Tickets';
-$LNG['mu_chat'] = 'Chat Configuration';
 $LNG['mu_module'] = 'Modules';
 $LNG['mu_mod_update'] = 'Checking version of MOD';
-$LNG['mu_fb_options'] = 'Registration by Facebook';
-$LNG['mu_ts_options'] = 'Teamspeak Options';
 $LNG['mu_game_info'] = 'Information';
 $LNG['mu_vaild_users'] = 'User activity';
 $LNG['mu_news'] = 'News';
@@ -1007,30 +990,6 @@ $LNG['qe_resetr'] = 'Reset';
 $LNG['qe_allowmulti'] = 'Allow Multi IP';
 
 //----------------------------------------------------------------------------//
-// Configuração do TeamSpeak
-$LNG['ts_settings'] = 'Teamspeak';
-$LNG['ts_active'] = 'Activate the Mod TeamSpeak?';
-$LNG['ts_version'] = 'Server version:';
-$LNG['ts_udpport'] = 'Port TCP';
-$LNG['ts_tcpport'] = 'Port UDP';
-$LNG['ts_serverip'] = 'Server IP';
-$LNG['ts_timeout'] = 'Timeout';
-$LNG['ts_server_query'] = 'Querys server port';
-$LNG['ts_login'] = 'ServerQuery User';
-$LNG['ts_pass'] = 'ServerQuery Password';
-$LNG['ts_cron'] = 'Update rate';
-
-//----------------------------------------------------------------------------//
-// Facebook App
-$LNG['fb_settings'] = 'Facebook Connect Settings';
-$LNG['fb_active'] = 'Facebook Connect activate?';
-$LNG['fb_api_key'] = 'Facebook API Key';
-$LNG['fb_secrectkey'] = 'Facebook Secret Key';
-$LNG['fb_info'] = 'With Facebook Connect users who are logged on to Facebook, log in with my click, or register. <br>  to use this feature, you must be registered with Faceebok itself. In addition, you must create an Application. This you can do to <a href="http://www.facebook.com/developers/"> http://www.facebook.com/developers/ </ a>. As Connect URL, you must enter the URL to the game. Then you are carrying here the Keys and your game should be ready Facebook. <br> <font Color="red"> for FB Connect, the mail delivery will be available! (SMTP settings)</font>';
-$LNG['fb_curl_yes'] = '<span style="color:green">cURL Installed!</span>';
-$LNG['fb_curl_no'] = '<span style="color:red">cURL Not Installed! Facebook Requires cURL extension to work!</span>';
-
-//----------------------------------------------------------------------------//
 //GameModule.php
 
 $LNG['modul_0'] = 'Alliance';
@@ -1040,7 +999,6 @@ $LNG['modul_3'] = 'Building - Research';
 $LNG['modul_4'] = 'Construction - Fleets';
 $LNG['modul_5'] = 'Building - Defense';
 $LNG['modul_6'] = 'Buddylist';
-$LNG['modul_7'] = 'Chat';
 $LNG['modul_8'] = 'DM Bank';
 $LNG['modul_9'] = 'Fleet';
 $LNG['modul_10'] = 'Fleet - Handler';
@@ -1075,7 +1033,6 @@ $LNG['modul_37'] = 'Statistics Banner';
 $LNG['modul_26'] = 'Search';
 $LNG['modul_27'] = 'Support Tickets';
 $LNG['modul_28'] = 'Techtree';
-$LNG['modul_41'] = 'Facebook Application';
 $LNG['mod_module'] = 'Modules';
 $LNG['mod_info'] = 'Modules in the Game';
 $LNG['mod_active'] = 'Active';
@@ -1153,30 +1110,9 @@ $LNG['up_del'] = 'Deleted in:';
 $LNG['up_submit'] = 'Send';
 $LNG['up_version'] = 'Version';
 $LNG['up_chmod_error'] = "No write permission (s) for folder:\n\n";
-$LNG['up_need_curl'] = 'Error: CURL is not present.<br>The maintaining of 2Moons requires cURL to run download files.';
-$LNG['up_no_xml_ext'] = 'Error: XML Parser is not present.<br>The maintaining of 2Moons requires XML Parser to process the files present.';
+$LNG['up_need_curl'] = 'Error: CURL is not present.<br>The maintaining of pr0game requires cURL to run download files.';
+$LNG['up_no_xml_ext'] = 'Error: XML Parser is not present.<br>The maintaining of pr0game requires XML Parser to process the files present.';
 $LNG['up_offline'] = 'Update of server unavailable';
-
-// Página de chat
-$LNG['ch_socket_chatid_info'] = 'This IP can be used to distinguish the definition of chat, use the same server socket.';
-$LNG['ch_socket_port_info'] = 'Server socket port.';
-$LNG['ch_socket_ip_info'] = 'The IP address of the server socket used to connect to the server to send messages to update.';
-$LNG['ch_socket_host_info'] = 'Hostname server socket used to connect to the client side (the server name is used, if it is set to NULL).';
-$LNG['ch_socket_chatid'] = 'Socket ID Chat';
-$LNG['ch_socket_port'] = 'Socket Port';
-$LNG['ch_socket_ip'] = 'Socket IP';
-$LNG['ch_socket_host'] = 'Socket Host';
-$LNG['ch_socket_active'] = 'Socket included?';
-$LNG['ch_socket'] = 'This Server Socket';
-$LNG['ch_closed'] = 'Disable chat';
-$LNG['ch_allowchan'] = 'Allow the private channels';
-$LNG['ch_allowmes'] = 'Allow private messages';
-$LNG['ch_allowcelmes'] = 'Allow delete your messages';
-$LNG['ch_logmessage'] = 'Include log messages';
-$LNG['ch_nickchange'] = 'Allow change nickname';
-$LNG['ch_botname'] = 'Bot';
-$LNG['ch_channelname'] = 'Name of the default channel';
-
 
 // Página de Actividade
 $LNG['ap_id'] = 'ID';
@@ -1221,8 +1157,6 @@ $LNG['log_no_data'] = 'There is no data available in the log!';
 $LNG['log_ssettings'] = 'Configuration of the game';
 $LNG['log_usettings'] = 'Configuration of the universe';
 $LNG['log_statsettings'] = 'Options of Statistics';
-$LNG['log_chatsettings'] = 'Options Chat';
-$LNG['log_tssettings'] = 'Options of Teamspeak';
 $LNG['log_uni_short'] = 'Uni';
 $LNG['log_universe'] = 'Universe';
 $LNG['log_present'] = 'Distributed';
@@ -1234,7 +1168,6 @@ $LNG['cronName_statistic'] = 'Statistics';
 $LNG['cronName_daily'] = 'Daily tasks';
 $LNG['cronName_cleaner'] = 'Delete old data';
 $LNG['cronName_inactive'] = 'Delete inactive';
-$LNG['cronName_teamspeak'] = 'Teamspeak data update';
 $LNG['cronName_tracking'] = 'Send global server statistics';
 $LNG['cronName_databasedump'] = 'Database backup';
 
@@ -1246,6 +1179,7 @@ $LNG['cronjob_dom'] = 'Day';
 $LNG['cronjob_month'] = 'Month';
 $LNG['cronjob_dow'] = 'Day of Week';
 $LNG['cronjob_class'] = 'class';
+$LNG['cronjob_lastTime'] = 'Last Time';
 $LNG['cronjob_nextTime'] = 'Next Time';
 $LNG['cronjob_inActive'] = 'Active';
 $LNG['cronjob_lock'] = 'locked';

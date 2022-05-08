@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -24,38 +24,38 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 	}
 
 	/**
-	 * 
+	 *
 	 * @param array $targetPlanet
 	 * @return array[]
-	 * 
+	 *
 	 * call AFTER stayfleets calculation, or calculate those yourself
-	 * 
+	 *
 	 */
 	private function getPlanetFleet($targetPlanet)
 	{
 		global $reslist, $resource;
-		
+
 		$planetfleet = [];
 		$resourceIDs = $reslist['fleet'];
-		
+
 		foreach ($resourceIDs as $shiptype) {
 			$planetfleet[$shiptype] = $targetPlanet[$resource[$shiptype]];
 		}
-		
+
 		return $planetfleet;
 	}
-	
+
 	private function getPlanetDefense($targetPlanet)
 	{
 		global $reslist, $resource;
-		
+
 		$planetdef = [];
 		$resourceIDs = $reslist['defense'];
-		
+
 		foreach ($resourceIDs as $deftype) {
 			$planetdef[$deftype] = $targetPlanet[$resource[$deftype]];
 		}
-		
+
 		return $planetdef;
 	}
 
@@ -111,7 +111,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 				$targetPlanet[$resource[$shipId]]	+= $shipAmount;
 			}
 		}
-		
+
 		$fleetAmount	= $this->_fleet['fleet_amount'] * (1 + $senderUser['factor']['SpyPower']);
 
 		$senderSpyTech	= max($senderUser['spy_tech'], 1);
@@ -123,30 +123,30 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 		$SpyDef			= $fleetAmount >= $MinAmount + 1 * SPY_VIEW_FACTOR;
 		$SpyBuild		= $fleetAmount >= $MinAmount + 3 * SPY_VIEW_FACTOR;
 		$SpyTechno		= $fleetAmount >= $MinAmount + 5 * SPY_VIEW_FACTOR;
-			
+
 
 		$classIDs[900]	= array_merge($reslist['resstype'][1], $reslist['resstype'][2]);
-				
-		if($SpyFleet) 
+
+		if($SpyFleet)
 		{
 			$classIDs[200]	= $reslist['fleet'];
 		}
-		
-		if($SpyDef) 
+
+		if($SpyDef)
 		{
 			$classIDs[400]	= array_merge($reslist['defense'], $reslist['missile']);
 		}
-		
-		if($SpyBuild) 
+
+		if($SpyBuild)
 		{
 			$classIDs[0]	= $reslist['build'];
 		}
-		
-		if($SpyTechno) 
+
+		if($SpyTechno)
 		{
 			$classIDs[100]	= $reslist['tech'];
 		}
-		
+
 		$targetChance 	= mt_rand(0, min(($fleetAmount/4) * ($targetSpyTech / $senderSpyTech), 100));
 		$spyChance  	= mt_rand(0, 100);
 		$spyData		= array();
@@ -159,36 +159,33 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 				{
 					$spyData[$classID][$elementID]	= $targetUser[$resource[$elementID]];
 				}
-				else 
+				else
 				{
 					$spyData[$classID][$elementID]	= $targetPlanet[$resource[$elementID]];
 				}
 			}
-		
+
 			if($senderUser['spyMessagesMode'] == 1)
 			{
 				$spyData[$classID]	= array_filter($spyData[$classID]);
 			}
 		}
-		
+
 		// what is seen by the 'attacker' is already calculated above.
 		// if target planet does not have fleet or def, it is safe to set $targetChance to -1
 		// so probes are no longer destroyed by thin air or something
-		
+
 		$totalShipDefCount = 0;
-		
+
 		foreach (array_values($this->getPlanetFleet($targetPlanet)) as $ships)
 		{ $totalShipDefCount += $ships; }
-		
-		foreach (array_values($this->getPlanetDefense($targetPlanet)) as $def)
-		{ $totalShipDefCount += $def; }
 
 		// I'm use template class here, because i want to exclude HTML in PHP.
 
 		require_once 'includes/classes/class.template.php';
-		
+
 		$template	= new template;
-		
+
 		$template->caching		= true;
 		$template->compile_id	= $senderUser['lang'];
 		$template->loadFilter('output', 'trimwhitespace');
@@ -203,16 +200,16 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 			'isBattleSim'	=> ENABLE_SIMULATOR_LINK == true && isModuleAvailable(MODULE_SIMULATOR),
 			'title'			=> sprintf($LNG['sys_mess_head'], $targetPlanet['name'], $targetPlanet['galaxy'], $targetPlanet['system'], $targetPlanet['planet'], _date($LNG['php_tdformat'], $this->_fleet['fleet_end_time'], $senderUser['timezone'], $LNG)),
 		));
-		
+
 		$template->assign_vars(array(
 			'LNG'			=> $LNG
 		), false);
-				
+
 		$spyReport	= $template->fetch('shared.mission.spyReport.tpl');
 
 		PlayerUtil::sendMessage($this->_fleet['fleet_owner'], 0, $LNG['sys_mess_qg'], 0, $LNG['sys_mess_spy_report'],
 			$spyReport, $this->_fleet['fleet_start_time'], NULL, 1, $this->_fleet['fleet_universe']);
-		
+
 		$LNG			= $this->getLanguage($targetUser['lang']);
 		$targetMessage  = $LNG['sys_mess_spy_ennemyfleet'] ." ". $senderPlanetName;
 
@@ -263,14 +260,14 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 			$this->SaveFleet();
 		}
 	}
-	
+
 	function EndStayEvent()
 	{
 		return;
 	}
-	
+
 	function ReturnEvent()
-	{	
+	{
 		$this->RestoreFleet();
 	}
 }
