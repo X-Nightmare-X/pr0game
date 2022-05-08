@@ -78,17 +78,6 @@
 {/foreach}
 </table>
 
-<!-- Offiziere -->
-<table width="760px" style="color:#FFFFFF">
-<tr>
-        <th colspan="2">{$LNG.tech.600}</th>
-</tr>
-{foreach item=Element from=$reslist.officier}
-<tr><td width="50%">{$LNG.tech.{$Element}}:</td><td width="50%"><input type="text" name="element_{$Element}" value="0" pattern="[0-9]*"></td></tr>
-{/foreach}
-</table>
-
-
 <table width="760px" style="color:#FFFFFF">
 <tr>
         <td><input type="submit" value="{$LNG.qe_send}"></td>
