@@ -19,14 +19,6 @@
 	<td>{$LNG.tech.903}</td>
 	<td><input name="deut" type="text" value="0"></td>
 </tr><tr>
-	<th colspan="2">{$LNG.tech.921}</th>
-</tr><tr>
-	<td>{$LNG.input_id_user}</td>
-	<td><input name="id_dark" type="text" value="0" size="3"></td>
-</tr><tr>
-	<td>{$LNG.tech.921}</td>
-	<td><input name="dark" type="text" value="0"></td>
-</tr><tr>
 	<td colspan="2">
 	<input type="reset" value="{$LNG.button_reset}"><br><br>
 	<input type="Submit" value="{$LNG.button_add}" name="add">&nbsp;

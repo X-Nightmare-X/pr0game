@@ -1,7 +1,7 @@
 <label class="hamburger" for="toggle-menu" class="toggle-menu"><i class="fas fa-bars"></i></label>
 
 <div class="planetImage no-mobile">
-   <div>{$LNG.tech.615}</div>
+   <div>{$LNG.tn_player_title}</div>
    <div><a href="game.php?page=settings"><b>{$username}</b></div>
 </div>
 
@@ -21,7 +21,7 @@
 		<a href="#" onclick="return Dialog.info({$resourceID});">
 			<img src="{$dpath}images/{$resourceData.name}.gif">
 			<div class="resource_name no-mobile">{$LNG.tech.$resourceID}</div>
-			
+
 			<div class="no-mobile">
 				{if !isset($resourceData.current)}
 					{$resourceData.currentt = $resourceData.max + $resourceData.used}
@@ -29,7 +29,7 @@
 							<span{if $resourceData.currentt < 0} style="color:red"{/if}>{$resourceData.currentt|number}&nbsp;/&nbsp;{$resourceData.max|number} </span>
 						</td>
 				{else}
-					<div class="res_current" id="current_{$resourceData.name}" data-real="{$resourceData.current}">{$resourceData.current|number}{if $resourceID == 921} <br><!--<a href="google.com/wallet">piniondz</a>-->{/if} </div>
+					<div class="res_current" id="current_{$resourceData.name}" data-real="{$resourceData.current}">{$resourceData.current|number}</div>
 				{/if}
 				{if !isset($resourceData.current) || !isset($resourceData.max)}
 					<div>&nbsp;</div>
@@ -37,7 +37,7 @@
 					<div class="res_max" id="max_{$resourceData.name}" data-real="{$resourceData.current}">{$resourceData.max|number}</div>
 				{/if}
 			</div>
-			
+
 			<div class="mobile">
 				{if !isset($resourceData.current)}
 					{$resourceData.currentt = $resourceData.max + $resourceData.used}
@@ -50,12 +50,12 @@
 						<td class="res_current" id="current_{$resourceData.name}" data-real="{$resourceData.current}">{shortly_number($resourceData.current)}</td>
 				{/if}
 				{if !isset($resourceData.current) || !isset($resourceData.max)}
-					
+
 				{else}
 					<td class="res_current" id="current_{$resourceData.name}" data-real="{$resourceData.current}"><span{if $resourceData.current >= {$resourceData.max}} style="color:red"{/if}>{shortly_number($resourceData.current)}</span></td>
 				{/if}
 			</div>
-		
+
 			<!--
 			<div class="mobile">
 				{if !isset($resourceData.current)}
@@ -78,7 +78,7 @@
 				{/if}
 			</div>
 			-->
-			
+
 			<!--
 			<div>
 			{if true or $shortlyNumber}
@@ -106,7 +106,7 @@
 		</a>
 	</div>
 	{/foreach}
-	
+
 </div>
 
 <!--
@@ -115,7 +115,7 @@
 		<tr>
 			<td id="planetImage">
 			   <img src="{$avatar}" width="50" height="50" alt="">
-			   <div>{$LNG.tech.615} <b>{$username}</b></div>
+			   <div>{$LNG.tn_player_title} <b>{$username}</b></div>
 			</td>
 			<td id="planetSelectorWrapper">
 			   <img src="{$dpath}planeten/{$image}.jpg" width="50" height="50" alt="">
