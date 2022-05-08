@@ -3,9 +3,7 @@
 /**
  *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
- *
  * For the full copyright and license information, please view the LICENSE
- *
  * @package 2Moons
  * @author Jan-Otto Kröpke <slaver7@gmail.com>
  * @copyright 2009 Lucky
@@ -20,7 +18,7 @@
 
 //TEMPLATES DEFAULT SETTINGS
 define('DEFAULT_THEME', 'nova');
-define('HTTPS', isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"]  == 'on');
+define('HTTPS', isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == 'on');
 define('PROTOCOL', HTTPS ? 'https://' : 'http://');
 if (PHP_SAPI === 'cli') {
     $requestUrl = str_replace([dirname(dirname(__FILE__)), '\\'], ['', '/'], $_SERVER["PHP_SELF"]);
@@ -52,7 +50,7 @@ if (!defined('CACHE_PATH')) {
     define('CACHE_PATH', ROOT_PATH . 'cache/');
 }
 
-define('DISCORD_URL', 'https://discord.gg/g6UHwXE');
+define('DISCORD_URL', 'https://discord.gg/XURaWVDNNZ');
 
 define('COMBAT_ENGINE', 'xnova');
 
