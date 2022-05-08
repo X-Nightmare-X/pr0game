@@ -111,7 +111,7 @@ class ShowRaportPage extends AbstractGamePage
 					':pID'	=> $atterID
 				));
 				if ($allyID == $aID) {
-					$isDetails = true;
+					$showDetails = true;
 					break;
 				}
 			}
@@ -121,7 +121,7 @@ class ShowRaportPage extends AbstractGamePage
 						':pID'	=> $defferID
 					));
 					if ($allyID == $aID) {
-						$isDetails = true;
+						$showDetails = true;
 						break;
 					}
 				}
