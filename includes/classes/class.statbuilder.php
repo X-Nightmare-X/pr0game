@@ -451,10 +451,12 @@ class statbuilder
             ORDER BY %%STATPOINTS%%.`total_rank`
         "));
 
-        $fh = fopen(ROOT_PATH . '/stats/stats_' . date('Y-m-d H') . '.json', 'w+');
+        $fh = fopen(ROOT_PATH . 'stats/stats_' . date('Y-m-d_H') . '.json', 'w+');
         fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
         fclose($fh);
 
-        copy(ROOT_PATH . '/stats/stats_' . date('Y-m-d H') . '.json', ROOT_PATH . '/stats.json');
+        $fh = fopen(ROOT_PATH . 'stats.json', 'w+');
+        fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
+        fclose($fh);
     }
 }
