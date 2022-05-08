@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -39,9 +39,9 @@ class VarsBuildCache implements BuildCache
 		$reslist['missile']		= array();
 		$reslist['officier']	= array();
 		$reslist['dmfunc']		= array();
-		
+
 		$db	= Database::get();
-		
+
 		$reqResult		= $db->nativeQuery('SELECT * FROM %%VARS_REQUIRE%%;');
 		foreach($reqResult as $reqRow)
 		{
@@ -56,7 +56,7 @@ class VarsBuildCache implements BuildCache
 				'attack'	=> $varsRow['attack'],
 				'shield'	=> $varsRow['defend'],
 			);
-			
+
 			$pricelist[$varsRow['elementID']]	= array(
 				'cost'		=> array(
 					901	=> $varsRow['cost901'],
@@ -71,7 +71,7 @@ class VarsBuildCache implements BuildCache
 				'consumption2'	=> $varsRow['consumption2'],
 				'speed'			=> $varsRow['speed1'],
 				'speed2'		=> $varsRow['speed2'],
-				'speed3'		=> $varsRow['speed3'],
+				'speed3'		=> $varsRow['speed3'] ?? null,
 				'capacity'		=> $varsRow['capacity'],
 				'tech'			=> $varsRow['speedTech'],
 				'time'			=> $varsRow['timeBonus'],
@@ -96,60 +96,60 @@ class VarsBuildCache implements BuildCache
 					'MoreFound'			=> array($varsRow['bonusMoreFound'], $varsRow['bonusMoreFoundUnit']),
 				),
 			);
-			
+
 			$ProdGrid[$varsRow['elementID']]['production']	= array(
 				901	=> $varsRow['production901'],
 				902	=> $varsRow['production902'],
 				903	=> $varsRow['production903'],
 				911	=> $varsRow['production911'],
 			);
-			
+
 			$ProdGrid[$varsRow['elementID']]['storage']	= array(
 				901	=> $varsRow['storage901'],
 				902	=> $varsRow['storage902'],
 				903	=> $varsRow['storage903'],
 			);
-			
+
 			if(array_filter($ProdGrid[$varsRow['elementID']]['production']))
 				$reslist['prod'][]		= $varsRow['elementID'];
-				
+
 			if(array_filter($ProdGrid[$varsRow['elementID']]['storage']))
 				$reslist['storage'][]	= $varsRow['elementID'];
-				
-			if(($varsRow['bonusAttack'] + $varsRow['bonusDefensive'] + $varsRow['bonusShield'] + $varsRow['bonusBuildTime'] + 
-				$varsRow['bonusResearchTime'] + $varsRow['bonusShipTime'] + $varsRow['bonusDefensiveTime'] + $varsRow['bonusResource'] + 
-				$varsRow['bonusEnergy'] + $varsRow['bonusResourceStorage'] + $varsRow['bonusShipStorage'] + $varsRow['bonusFlyTime'] + 
-				$varsRow['bonusFleetSlots'] + $varsRow['bonusPlanets'] + $varsRow['bonusSpyPower'] + $varsRow['bonusExpedition'] + 
+
+			if(($varsRow['bonusAttack'] + $varsRow['bonusDefensive'] + $varsRow['bonusShield'] + $varsRow['bonusBuildTime'] +
+				$varsRow['bonusResearchTime'] + $varsRow['bonusShipTime'] + $varsRow['bonusDefensiveTime'] + $varsRow['bonusResource'] +
+				$varsRow['bonusEnergy'] + $varsRow['bonusResourceStorage'] + $varsRow['bonusShipStorage'] + $varsRow['bonusFlyTime'] +
+				$varsRow['bonusFleetSlots'] + $varsRow['bonusPlanets'] + $varsRow['bonusSpyPower'] + $varsRow['bonusExpedition'] +
 				$varsRow['bonusGateCoolTime'] + $varsRow['bonusMoreFound']) != 0)
 			{
 				$reslist['bonus'][]		= $varsRow['elementID'];
 			}
 			if($varsRow['onePerPlanet'] == 1)
 				$reslist['one'][]		= $varsRow['elementID'];
-			
+
 			switch($varsRow['class']) {
-				case 0: 
+				case 0:
 					$reslist['build'][]	= $varsRow['elementID'];
 					$tmp	= explode(',', $varsRow['onPlanetType']);
-					foreach($tmp as $type) 
+					foreach($tmp as $type)
 						$reslist['allow'][$type][]	= $varsRow['elementID'];
 				break;
-				case 100: 
+				case 100:
 					$reslist['tech'][]	= $varsRow['elementID'];
 				break;
-				case 200: 
+				case 200:
 					$reslist['fleet'][]	= $varsRow['elementID'];
 				break;
-				case 400: 
+				case 400:
 					$reslist['defense'][]	= $varsRow['elementID'];
 				break;
-				case 500: 
+				case 500:
 					$reslist['missile'][]	= $varsRow['elementID'];
 				break;
-				case 600: 
+				case 600:
 					$reslist['officier'][]	= $varsRow['elementID'];
 				break;
-				case 700: 
+				case 700:
 					$reslist['dmfunc'][]	= $varsRow['elementID'];
 				break;
 			}
@@ -160,7 +160,7 @@ class VarsBuildCache implements BuildCache
 		{
 			$CombatCaps[$rapidRow['elementID']]['sd'][$rapidRow['rapidfireID']]	= $rapidRow['shoots'];
 		}
-		
+
 		return array(
 			'reslist'		=> $reslist,
 			'ProdGrid'		=> $ProdGrid,
