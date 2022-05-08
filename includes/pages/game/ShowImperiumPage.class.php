@@ -84,7 +84,7 @@ class ShowImperiumPage extends AbstractGamePage
 			$planetList['resource'][901][$Planet['id']]			= $Planet['metal'];
 			$planetList['resource'][902][$Planet['id']]			= $Planet['crystal'];
 			$planetList['resource'][903][$Planet['id']]			= $Planet['deuterium'];
-			$planetList['resource'][911][$Planet['id']]			= $Planet['energy'];
+			$planetList['resource'][911][$Planet['id']]			= $Planet['energy'] + $Planet['energy_used'];
 			
 			if($Planet['planet_type'] == 1){
 				$basic[901][$Planet['id']] = $config->metal_basic_income * $config->resource_multiplier;
