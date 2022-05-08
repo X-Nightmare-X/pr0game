@@ -66,7 +66,7 @@ class VarsBuildCache implements BuildCache
                 'consumption2'  => $varsRow['consumption2'],
                 'speed'         => $varsRow['speed1'],
                 'speed2'        => $varsRow['speed2'],
-                'speed3'		=> $varsRow['speed3'],
+                'speed3'		=> $varsRow['speed3'] ?? null,
                 'capacity'      => $varsRow['capacity'],
                 'tech'          => $varsRow['speedTech'],
                 'time'          => $varsRow['timeBonus'],
