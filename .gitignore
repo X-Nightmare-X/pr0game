@@ -8,3 +8,5 @@ package-lock.json
 logs/
 vendor/
 .phpcs-cache
+stats/*.json
+stats.json
