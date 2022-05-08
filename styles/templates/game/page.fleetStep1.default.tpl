@@ -11,9 +11,9 @@
 		<tr style="height:20px;">
 			<td style="width:50%">{$LNG.fl_destiny}</td>
 			<td>
-				<input type="number" id="galaxy" name="galaxy" size="3" maxlength="2" onkeyup="updateVars()" value="{$galaxy}">
-				<input type="number" id="system" name="system" size="3" maxlength="3" onkeyup="updateVars()" value="{$system}">
-				<input type="number" id="planet" name="planet" size="3" maxlength="2" onkeyup="updateVars()" value="{$planet}">
+				<input type="number" id="galaxy" name="galaxy" size="5" maxlength="3" onkeyup="updateVars()" value="{$galaxy}" stye="max-width:30px">
+				<input type="number" id="system" name="system" size="5" maxlength="4" onkeyup="updateVars()" value="{$system}" stye="max-width:60px">
+				<input type="number" id="planet" name="planet" size="5" maxlength="3" onkeyup="updateVars()" value="{$planet}" stye="max-width:50px">
 				<select id="type" name="type" onchange="updateVars()">
 					{html_options options=$typeSelect selected=$type}
 				</select>
@@ -85,7 +85,7 @@
 					<div class="shortcut-delete" title="{$LNG.fl_dlte_shortcut}">x</div>
 				</div>
 				<div class="shortcut-edit">
-					<input type="number" class="shortcut-input" name="shortcut[{$shortcutID}][galaxy]" value="{$shortcutRow.galaxy}" size="3" maxlength="2">:<input type="number" class="shortcut-input" name="shortcut[{$shortcutID}][system]" value="{$shortcutRow.system}" size="3" maxlength="3">:<input type="number" class="shortcut-input" name="shortcut[{$shortcutID}][planet]" value="{$shortcutRow.planet}" size="3" maxlength="2">
+					<input type="number" class="shortcut-input" name="shortcut[{$shortcutID}][galaxy]" value="{$shortcutRow.galaxy}" size="3" maxlength="2" stye="max-width:30px">:<input type="number" class="shortcut-input" name="shortcut[{$shortcutID}][system]" value="{$shortcutRow.system}" size="4" maxlength="4"  stye="max-width:60px">:<input type="number" class="shortcut-input" name="shortcut[{$shortcutID}][planet]" value="{$shortcutRow.planet}"  stye="max-width:30px" size="4" maxlength="3">
 					<select class="shortcut-input" name="shortcut[{$shortcutID}][type]">
 						{html_options selected=$shortcutRow.type options=$typeSelect}
 					</select>
