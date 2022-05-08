@@ -12,6 +12,7 @@
     {if isModuleAvailable($smarty.const.MODULE_MESSAGES)}<li><a href="game.php?page=messages">{$LNG.lm_messages}{nocache}{if $new_message > 0}<span id="newmes"> (<span id="newmesnum">{$new_message}</span>)</span>{/if}{/nocache}</a></li>{/if}
     {if isModuleAvailable($smarty.const.MODULE_TECHTREE)}<li><a href="game.php?page=techtree">{$LNG.lm_technology}</a></li>{/if}
     {if isModuleAvailable($smarty.const.MODULE_RESSOURCE_LIST)}<li><a href="game.php?page=resources">{$LNG.lm_resources}</a></li>{/if}
+    {if isModuleAvailable($smarty.const.MODULE_MISSION_TRADE)}<li><a href="game.php?page=marketplace">{$LNG.lm_marketplace}</a></li>{/if}
 
 
 
