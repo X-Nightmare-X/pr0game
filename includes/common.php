@@ -128,7 +128,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     $db     = Database::get();
 
 
-    $sql    = "SELECT 
+    $sql    = "SELECT
 	user.*,
 	COUNT(message.message_id) as messages
 	FROM %%USERS%% as user
@@ -195,7 +195,6 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
                 }
             }
 
-            $USER['factor']     = getFactors($USER);
             $USER['PLANETS']    = getPlanets($USER);
         } elseif (MODE === 'ADMIN') {
             error_reporting(E_ERROR | E_WARNING | E_PARSE);

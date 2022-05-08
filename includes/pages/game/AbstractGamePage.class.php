@@ -166,7 +166,6 @@ abstract class AbstractGamePage
             'commitShort' => $commitShort,
             'vacation' => $USER['urlaubs_modus'] ? _date($LNG['php_tdformat'], $USER['urlaubs_until'], $USER['timezone']) : false,
             'delete' => $USER['db_deaktjava'] ? sprintf($LNG['tn_delete_mode'], _date($LNG['php_tdformat'], $USER['db_deaktjava'] + ($config->del_user_manually * 86400)), $USER['timezone']) : false,
-            'darkmatter' => $USER['darkmatter'],
             'current_pid' => $PLANET['id'],
             'image' => $PLANET['image'],
             'username' => $USER['username'],
