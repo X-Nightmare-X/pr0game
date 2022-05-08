@@ -113,7 +113,7 @@
 					<div class="shortcut-delete" title="{$LNG.fl_dlte_shortcut}">x</div>
 				</div>
 				<div class="shortcut-edit">
-					<input type="number" class="shortcut-input" name="shortcut[][galaxy]" value="" size="3" maxlength="2" placeholder="G" pattern="[0-9]*">:<input type="number" class="shortcut-input" name="shortcut[][system]" value="" size="3" maxlength="3" placeholder="S" pattern="[0-9]*">:<input type="number" class="shortcut-input" name="shortcut[][planet]" value="" size="3" maxlength="2" placeholder="P" pattern="[0-9]*">
+					<input type="number" class="shortcut-input" name="shortcut[][galaxy]" value="" size="3"  style="max-width: 30px;" maxlength="2" placeholder="G" pattern="[0-9]*">:<input type="number" class="shortcut-input" name="shortcut[][system]" value="" size="3" maxlength="3" placeholder="S" pattern="[0-9]*" style="max-width: 70px;">:<input type="number" class="shortcut-input" name="shortcut[][planet]" value="" size="3" maxlength="2" placeholder="P" pattern="[0-9]*"  style="max-width: 50px;">
 					<select class="shortcut-input" name="shortcut[][type]">
 						{html_options options=$typeSelect}
 					</select>
