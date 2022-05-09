@@ -1,11 +1,9 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
- *
  * For the full copyright and license information, please view the LICENSE
- *
  * @package 2Moons
  * @author Jan-Otto Kröpke <slaver7@gmail.com>
  * @copyright 2009 Lucky
@@ -19,10 +17,15 @@ require_once 'includes/classes/cronjob/CronjobTask.interface.php';
 
 class StatisticCronjob implements CronjobTask
 {
-	function run()
-	{
-		require 'includes/classes/class.statbuilder.php';
-		$stat	= new Statbuilder();
-		$stat->MakeStats();
-	}
+    function run()
+    {
+        try {
+            require_once('includes/classes/class.statbuilder.php');
+            require_once('includes/models/StatPoints.php');
+            $stat = new Statbuilder();
+            $stat->generateStats();
+        } catch (Exception $exception) {
+            echo $exception->getMessage();
+        }
+    }
 }

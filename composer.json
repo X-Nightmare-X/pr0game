@@ -1,15 +1,55 @@
 {
-    "name": "2moons/2moons",
-    "description": "Online browser game.",
+    "name": "pr0game/pr0game",
+    "description": "An open source space strategy game",
     "type": "project",
+    "homepage": "https://git.pr0game.com/Rosenreeman/pr0game",
+    "readme": "README.md",
     "license": "MIT",
     "authors": [
         {
             "name": "Jan-Otto Kröpke",
             "email": "kroepke@outlook.com"
+        },
+        {
+            "name": "pr0game Community"
         }
     ],
+    "support": {
+        "issues": "https://git.pr0game.com/Rosenreeman/pr0game/issues",
+        "chat": "https://discord.gg/XURaWVDNNZ"
+    },
+    "funding": [
+        {
+            "type": "buymeacoffee",
+            "url": "https://www.buymeacoffee.com/pr0game"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "ext-gd": "*",
+        "ext-curl": "*",
+        "ext-pdo": "*",
+        "ext-mysqli": "*",
+        "ext-date": "*",
+        "ext-spl": "*",
+        "ext-session": "*",
+        "ext-pcre": "*",
+        "ext-filter": "*",
+        "ext-imap": "*",
+        "ext-mbstring": "*",
+        "ext-intl": "*",
+        "ext-ctype": "*",
+        "ext-openssl": "*",
+        "ext-hash": "*",
+        "ext-json": "*",
+        "ext-zend-opcache": "*",
+        "ext-apc": "*",
+        "ext-zlib": "*"
+    },
     "minimum-stability": "stable",
-    "require": {},
-    "require-dev": {}
+    "prefer-stable": true,
+    "config": {
+        "vendor-dir": "vendor",
+        "sort-packages": true
+    }
 }

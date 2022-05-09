@@ -64,7 +64,7 @@ border:0px;background:url(./styles/resource/images/admin/blank.gif);text-align:r
 			<tr><td height="22px">{$ac_ranking}</td><td><a href="#" onclick="$('#puntaje').slideToggle();return false">{$ac_see_ranking}</a></td></tr>
 			</table>
 			<br>
-			
+
 			<!-- PUNTAJE DEL USUARIO -->
 			<div id="puntaje" style="display:none">
 			<table align="center" width="60%">
@@ -78,8 +78,8 @@ border:0px;background:url(./styles/resource/images/admin/blank.gif);text-align:r
 			</table>
 			<br>
 			</div>
-			
-			
+
+
 			<div id="banned" style="display:none">
 			<table align="center" width="60%">
 			<tr><th colspan="4">{$ac_suspended_title}</th></tr>
@@ -198,12 +198,9 @@ border:0px;background:url(./styles/resource/images/admin/blank.gif);text-align:r
 				<th>{$Energy}</th>
 			</tr>
 				{$resources}
-			<tr>
-				<td colspan="5" height="30px">{$Darkmatter}: &nbsp;&nbsp;{$mo}</td>
-			</tr>
 			</table>
 			<br >
-			</div>	
+			</div>
 		</td>
 	</tr><tr>
 		<td class="unico transparent"><a href="#" onclick="$('#edificios').slideToggle();return false" class="link">
@@ -246,16 +243,15 @@ border:0px;background:url(./styles/resource/images/admin/blank.gif);text-align:r
 		</td>
 	</tr><tr>
 		<td class="unico transparent"><a href="#" onclick="$('#inves').slideToggle();return false" class="link">
-		<img src="./styles/resource/images/admin/arrowright.png" width="16" height="10"> {$ac_officier_research}</a></td>
+		<img src="./styles/resource/images/admin/arrowright.png" width="16" height="10"> {$ac_research}</a></td>
 	</tr><tr>
 		<td class="unico transparent">
 			<div id="inves" style="display:none">
 			<table align="center" width="60%">
 			<tr>
 			<th width="50%">{$researchs_title}</th>
-			<th width="50%">{$officiers_title}</th>
 			</tr>
-			{$techoffi}
+			{$technology_table_rows}
 			</table>
 			<br >
 			</div>
@@ -264,7 +260,7 @@ border:0px;background:url(./styles/resource/images/admin/blank.gif);text-align:r
 		<td class="unico transparent">
 			{if $DestruyeD != 0}<a href="#" onclick="$('#destr').slideToggle();return false" class="link">
 			<img src="./styles/resource/images/admin/arrowright.png" width="16" height="10"> {$ac_recent_destroyed_planets}</a>
-			{else}<span class="no_moon"><img src="./styles/resource/images/admin/arrowright.png" width="16" height="10"> 
+			{else}<span class="no_moon"><img src="./styles/resource/images/admin/arrowright.png" width="16" height="10">
 			{$ac_recent_destroyed_planets}&nbsp;{$ac_isnodestruyed}</span>{/if}
 		</td>
 	</tr><tr>

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -20,7 +20,7 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 function ShowMultiIPPage()
 {
 	global $LNG;
-	
+
 	if(!isset($_GET['action'])) { $_GET['action'] = ''; }
 	switch($_GET['action'])
 	{
@@ -33,18 +33,18 @@ function ShowMultiIPPage()
 			HTTP::redirectTo("admin.php?page=multiips");
 		break;
 	}
-	$Query	= $GLOBALS['DATABASE']->query("SELECT id, username, email, register_time, onlinetime, user_lastip, IFNULL(multiID, 0) as isKnown FROM ".USERS." LEFT JOIN ".MULTI." ON userID = id WHERE `universe` = '".Universe::getEmulated()."' AND user_lastip IN (SELECT user_lastip FROM ".USERS." WHERE `universe` = '".Universe::getEmulated()."' GROUP BY user_lastip HAVING COUNT(*)>1) ORDER BY user_lastip, id ASC;");
+	$Query	= $GLOBALS['DATABASE']->query("SELECT id, username, email, register_time, onlinetime, user_lastip, IFNULL(multiID, 0) as isKnown FROM ".USERS." LEFT JOIN ".MULTI." ON userID = id WHERE `universe` = '".Universe::getEmulated()."' AND user_lastip IN (SELECT user_lastip FROM ".USERS." WHERE `universe` = '".Universe::getEmulated()."' GROUP BY user_lastip HAVING COUNT(*)>1) ORDER BY register_time DESC, id ASC;");
 	$IPs	= array();
 	while($Data = $GLOBALS['DATABASE']->fetch_array($Query)) {
 		if(!isset($IPs[$Data['user_lastip']]))
 			$IPs[$Data['user_lastip']]	= array();
-		
+
 		$Data['register_time']	= _date($LNG['php_tdformat'], $Data['register_time']);
 		$Data['onlinetime']		= _date($LNG['php_tdformat'], $Data['onlinetime']);
-		
+
 		$IPs[$Data['user_lastip']][$Data['id']]	= $Data;
 	}
-	
+
 	$template	= new template();
 	$template->assign_vars(array(
 		'multiGroups'	=> $IPs,

@@ -60,7 +60,6 @@ $LNG['loginWelcome']				= 'Witaj na %s';
 $LNG['loginServerDesc']				= '%s to gra online, gdzie stajesz naprzeciw innych graczy, <strong>jednocześnie</strong> próbując zostać najlepszym. Wszystko, czego potrzebujesz do gry, to zwykła przeglądarka.';
 
 // Register
-$LNG['registerFacebookAccount']		= 'Konto na Facebooku';
 $LNG['registerUsername']			= 'Nazwa użytkownika';
 $LNG['registerUsernameDesc']		= 'Nazwa użytkownika musi składać się min. z 3 i max. z 25 znaków.';
 $LNG['registerPassword']			= 'Hasło';
@@ -138,7 +137,6 @@ $LNG['passwordNext']				= 'Dalej';
 $LNG['login_error_1']				= 'Błąd nazwy użytkownika lub hasła!';
 $LNG['login_error_2']				= 'Ktoś zalogował się na twoje konto z innego komputera!';
 $LNG['login_error_3']				= 'Sesja wygasła!';
-$LNG['login_error_4']				= 'Wystąpił błąd, spróbuj potem!';
 
 //Rules
 $LNG['rulesHeader']					= 'Regulamin';

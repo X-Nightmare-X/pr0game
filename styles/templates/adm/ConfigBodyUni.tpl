@@ -97,10 +97,6 @@
 	<td><input name="planets_tech" maxlength="11" size="11" value="{$planets_tech}" type="text"></td>
 	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_planets_tech_info}"></td>
 </tr><tr>
-	<td>{$LNG.se_planets_officier}</td>
-	<td><input name="planets_officier" maxlength="11" size="11" value="{$planets_officier}" type="text"></td>
-	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_planets_officier_info}"></td>
-</tr><tr>
 	<td>{$LNG.se_planets_per_tech}</td>
 	<td><input name="planets_per_tech" maxlength="11" size="11" value="{$planets_per_tech}" type="text"></td>
 	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_planets_per_tech_info}"></td>
@@ -118,10 +114,6 @@
 	<td>{$se_deuterium_start}</td>
 	<td><input name="deuterium_start" maxlength="11" size="11" value="{$deuterium_start}" type="text"></td>
 	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$se_deuterium_start_info}"></td>
-</tr><tr>
-	<td>{$se_darkmatter_start}</td>
-	<td><input name="darkmatter_start" maxlength="11" size="11" value="{$darkmatter_start}" type="text"></td>
-	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$se_darkmatter_start_info}"></td>
 </tr><tr>
 	<td>{$se_initial_fields}</td>
 	<td><input name="initial_fields" maxlength="10" size="10" value="{$initial_fields}" type="text"> {$se_fields} </td>
@@ -209,10 +201,6 @@
 	<td><input name="deuterium_cost_galaxy" maxlength="11" size="11" value="{$deuterium_cost_galaxy}" type="text"> {$Deuterium}</td>
 	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$se_deuterium_cost_galaxy_info}"></td>
 </tr><tr>
-	<td>{$se_darkmatter_cost_trader}</td>
-	<td><input name="darkmatter_cost_trader" maxlength="11" size="11" value="{$darkmatter_cost_trader}" type="text"> {$Darkmatter}</td>
-	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$se_darkmatter_cost_trader_info}"></td>
-</tr><tr>
 	<td>{$se_factor_university}</td>
 	<td><input name="factor_university" maxlength="3" size="3" value="{$factor_university}" type="text"></td>
 	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$se_factor_university_info}"></td>
@@ -248,10 +236,6 @@
 	<td>{$se_noob_protect3}</td>
 	<td><input name="noobprotectionmulti" value="{$noobprot3}" type="text"></td>
 	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$se_noob_protect_e3}"></td>
-</tr><tr>
-	<td>{$se_max_dm_missions}</td>
-	<td><input name="max_dm_missions" maxlength="3" size="3" value="{$max_dm_missions}" type="text"></td>
-	<td>&nbsp;</td>
 </tr><tr>
 	<td>{$se_alliance_create_min_points}</td>
 	<td><input name="alliance_create_min_points" maxlength="20" size="25" value="{$alliance_create_min_points}" type="text"></td>

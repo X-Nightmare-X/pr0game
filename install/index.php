@@ -33,7 +33,7 @@ $template->setCaching(false);
 $template->assign(array(
 	'lang'       => $LNG->getLanguage(),
 	'Selector'   => $LNG->getAllowedLangs(false),
-	'title'      => $LNG['title_install'] . ' &bull; 2Moons',
+	'title'      => $LNG['title_install'] . ' &bull; pr0game',
 	'header'     => $LNG['menu_install'],
 	'canUpgrade' => file_exists('includes/config.php') && filesize('includes/config.php') !== 0
 ));
@@ -73,33 +73,6 @@ if (!empty($language) && in_array($language, $LNG->getAllowedLangs())) {
 }
 
 switch ($mode) {
-	case 'ajax':
-		require 'includes/libs/ftp/ftp.class.php';
-		require 'includes/libs/ftp/ftpexception.class.php';
-		$LNG->includeData(array('ADMIN'));
-		$connectionConfig = array(
-			"host"     => $_GET['host'],
-			"username" => $_GET['user'],
-			"password" => $_GET['pass'],
-			"port"     => 21
-		);
-
-		try {
-			$ftp = FTP::getInstance();
-			$ftp->connect($connectionConfig);
-		}
-		catch (FTPException $error) {
-			exit($LNG['req_ftp_error_data']);
-		}
-		if (!$ftp->changeDir($_GET['path'])) {
-			exit($LNG['req_ftp_error_dir']);
-		}
-
-		$CHMOD = (php_sapi_name() == 'apache2handler') ? 0777 : 0755;
-		$ftp->chmod('cache', $CHMOD);
-		$ftp->chmod('includes', $CHMOD);
-		$ftp->chmod('install', $CHMOD);
-		break;
 	case 'upgrade':
 		// Willkommen zum Update page. Anzeige, von und zu geupdatet wird. Informationen, dass ein backup erstellt wird.
 
@@ -115,20 +88,37 @@ switch ($mode) {
 
         $fileRevision = 0;
 
+        $migrationFileList = [];
+
 		$directoryIterator = new DirectoryIterator(ROOT_PATH . 'install/migrations/');
 		/** @var $fileInfo DirectoryIterator */
 		foreach ($directoryIterator as $fileInfo) {
-			if (!$fileInfo->isFile() || !preg_match('/^migration_\d+/', $fileInfo->getFilename())) {
-				continue;
-			}
+            if (!$fileInfo->isFile() || !preg_match('/^migration_\d+/', $fileInfo->getFilename())) {
+                continue;
+            }
 
-			$fileRevision = substr($fileInfo->getFilename(), 10, -4);
+            $fileRevision = substr($fileInfo->getFilename(), 10, -4);
+            $migrationFileList[$fileRevision] = $fileInfo->getFileInfo();
+        }
 
+        ksort($migrationFileList);
+
+        foreach ($migrationFileList as $fileRevision => $fileInfo) {
             if ($fileRevision <= $dbVersion || $fileRevision > DB_VERSION_REQUIRED) {
                 continue;
             }
 
-            $updates[$fileInfo->getPathname()] = makebr(str_replace('%PREFIX%', DB_PREFIX, file_get_contents($fileInfo->getPathname())));
+            $updates[$fileInfo->getPathname()] = makebr(
+                str_replace(
+                    '%PREFIX%',
+                    DB_PREFIX,
+                    str_replace(
+                        '%DB_NAME%',
+                        DB_NAME,
+                        $fileContents = file_get_contents($fileInfo->getPathname())
+                    )
+                )
+            );
 		}
 
 		$template->assign_vars(array(
@@ -162,12 +152,6 @@ switch ($mode) {
 
         @set_time_limit(600);
 
-		$fileName = '2MoonsBackup_' . date('Y_m_d_H_i_s', TIMESTAMP) . '.sql';
-		$filePath = 'includes/backups/' . $fileName;
-		require 'includes/classes/SQLDumper.class.php';
-		$dump = new SQLDumper;
-		$dump->dumpTablesToFile($dbTables, $filePath);
-
         try {
             $sql	= "SELECT dbVersion FROM %%SYSTEM%%;";
 
@@ -187,7 +171,7 @@ switch ($mode) {
 			}
 			$fileRevision = substr($fileInfo->getFilename(), 10, -4);
 			if ($fileRevision > $revision && $fileRevision <= DB_VERSION_REQUIRED) {
-				$fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
+				$fileExtension = pathinfo($fileInfo->getFilename(), PATHINFO_EXTENSION);
 				$key           = $fileRevision . ((int)$fileExtension === 'php');
 				$fileList[$key] = array(
 					'fileName'      => $fileInfo->getFilename(),
@@ -207,15 +191,14 @@ switch ($mode) {
                     curl_setopt($ch, CURLOPT_MUTE, true);
                     curl_exec($ch);
                     if (curl_errno($ch)) {
-                        $errorMessage = 'CURL-Error on update ' . basename($fileInfo['filePath']) . ':' . curl_error($ch);
-                        try {
-                            $dump->restoreDatabase($filePath);
-                            $message = 'Update error.<br><br>' . $errorMessage . '<br><br><b><i>Backup restored.</i></b>';
-                        }
-                        catch (Exception $e) {
-                            $message = 'Update error.<br><br>' . $errorMessage . '<br><br><b><i>Can not restore backup. Your game is maybe broken right now.</i></b><br><br>Restore error:<br>' . $e->getMessage();
-                        }
-                        throw new Exception($message);
+                        throw new Exception(
+                            sprintf(
+                                'Update error.<br><br>CURL-Error on update %s:%s<br><br>' .
+                                '<b><i>You should restore with a backup.</i></b>',
+                                basename($fileInfo['filePath']),
+                                curl_error($ch)
+                            )
+                        );
                     }
                     curl_close($ch);
                     unlink($fileInfo['fileName']);
@@ -237,15 +220,12 @@ switch ($mode) {
                         }
                     }
                     catch (Exception $e) {
-                        $errorMessage = $e->getMessage();
-                        try {
-                            $dump->restoreDatabase($filePath);
-                            $message = 'Update error.<br><br>' . $errorMessage . '<br><br><b><i>Backup restored.</i></b>';
-                        }
-                        catch (Exception $e) {
-                            $message = 'Update error.<br><br>' . $errorMessage . '<br><br><b><i>Can not restore backup. Your game is maybe broken right now.</i></b><br><br>Restore error:<br>' . $e->getMessage();
-                        }
-                        throw new Exception($message);
+                        throw new Exception(
+                            sprintf(
+                                'Update error.<br><br>%s<br><br><b><i>You should restore with a backup.</i></b>',
+                                $e->getMessage()
+                            )
+                        );
                     }
                     break;
             }
@@ -283,7 +263,6 @@ switch ($mode) {
 				break;
 			case 2:
 				$error = false;
-				$ftp   = false;
 				if (version_compare(PHP_VERSION, "5.3.0", ">=")) {
 					$PHP = "<span class=\"yes\">" . $LNG['reg_yes'] . ", v" . PHP_VERSION . "</span>";
 				}
@@ -313,13 +292,7 @@ switch ($mode) {
 					$iniset = "<span class=\"no\">" . $LNG['reg_no'] . "</span>";
 					$error  = true;
 				}
-				if (!ini_get('register_globals')) {
-					$global = "<span class=\"yes\">" . $LNG['reg_yes'] . "</span>";
-				}
-				else {
-					$global = "<span class=\"no\">" . $LNG['reg_no'] . "</span>";
-					$error  = true;
-				}
+                $global = "<span class=\"yes\">" . $LNG['reg_yes'] . "</span>";
 				if (!extension_loaded('gd')) {
 					$gdlib = "<span class=\"no\">" . $LNG['reg_no'] . "</span>";
 				}
@@ -345,14 +318,12 @@ switch ($mode) {
 					else {
 						$chmod = " - <span class=\"no\">" . $LNG['reg_not_writable'] . "</span>";
 						$error = true;
-						$ftp   = true;
 					}
 					$config = "<tr><td class=\"transparent left\"><p>" . sprintf($LNG['reg_file'], 'includes/config.php') . "</p></td><td class=\"transparent\"><span class=\"yes\">" . $LNG['reg_found'] . "</span>" . $chmod . "</td></tr>";
 				}
 				else {
 					$config = "<tr><td class=\"transparent left\"><p>" . sprintf($LNG['reg_file'], 'includes/config.php') . "</p></td><td class=\"transparent\"><span class=\"no\">" . $LNG['reg_not_found'] . "</span></td></tr>";
 					$error  = true;
-					$ftp    = true;
 				}
 				$directories = array('cache/', 'cache/templates/', 'cache/sessions/', 'includes/');
 				$dirs        = "";
@@ -363,7 +334,6 @@ switch ($mode) {
 						} else {
 							$chmod = " - <span class=\"no\">" . $LNG['reg_not_writable'] . "</span>";
 							$error = true;
-							$ftp = true;
 						}
 						$dirs .= "<tr><td class=\"transparent left\"><p>" . sprintf($LNG['reg_dir'], $dir) . "</p></td><td class=\"transparent\"><span class=\"yes\">" . $LNG['reg_found'] . "</span>" . $chmod . "</td></tr>";
 					}
@@ -385,7 +355,6 @@ switch ($mode) {
 					'gdlib'  => $gdlib,
 					'PHP'    => $PHP,
 					'pdo'    => $pdo,
-					'ftp'    => $ftp,
 					'iniset' => $iniset,
 					'global' => $global));
 				$template->show('ins_req.tpl');

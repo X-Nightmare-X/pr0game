@@ -74,56 +74,6 @@ class ShowRaportPage extends AbstractGamePage
 		return $combatReport;
 	}
 	
-	function battlehall() 
-	{
-		global $LNG, $USER;
-		
-		$LNG->includeData(array('FLEET'));
-		$this->setWindow('popup');
-
-		$db = Database::get();
-
-		$RID		= HTTP::_GP('raport', '');
-
-		$sql = "SELECT 
-			raport, time,
-			(
-				SELECT
-				GROUP_CONCAT(username SEPARATOR ' & ') as attacker
-				FROM %%USERS%%
-				WHERE id IN (SELECT uid FROM %%TOPKB_USERS%% WHERE %%TOPKB_USERS%%.rid = %%RW%%.rid AND role = 1)
-			) as attacker,
-			(
-				SELECT
-				GROUP_CONCAT(username SEPARATOR ' & ') as defender
-				FROM %%USERS%%
-				WHERE id IN (SELECT uid FROM %%TOPKB_USERS%% WHERE %%TOPKB_USERS%%.rid = %%RW%%.rid AND role = 2)
-			) as defender
-			FROM %%RW%%
-			WHERE rid = :reportID;";
-		$reportData = $db->selectSingle($sql, array(
-			':reportID'	=> $RID
-		));
-
-		$Info		= array($reportData["attacker"], $reportData["defender"]);
-		
-		if(!isset($reportData)) {
-			$this->printMessage($LNG['sys_raport_not_found']);
-		}
-		
-		$combatReport			= unserialize($reportData['raport']);
-		$combatReport['time']	= _date($LNG['php_tdformat'], $combatReport['time'], $USER['timezone']);
-		$combatReport			= $this->BCWrapperPreRev2321($combatReport);
-		
-		$this->assign(array(
-			'Raport'	=> $combatReport,
-			'Info'		=> $Info,
-			'pageTitle'	=> $LNG['lm_topkb']
-		));
-		
-		$this->display('shared.mission.raport.tpl');
-	}
-	
 	function show() 
 	{
 		global $LNG, $USER;
@@ -145,15 +95,70 @@ class ShowRaportPage extends AbstractGamePage
 		}
 		
 		// empty is BC for pre r2484
-		$isAttacker = empty($reportData['attacker']) || in_array($USER['id'], explode(",", $reportData['attacker']));
-		$isDefender = empty($reportData['defender']) || in_array($USER['id'], explode(",", $reportData['defender']));
+		$attackers = explode(",", $reportData['attacker']);
+		$defenders = explode(",", $reportData['defender']);
+		$isAttacker = empty($reportData['attacker']) || in_array($USER['id'], $attackers);
+		$isDefender = empty($reportData['defender']) || in_array($USER['id'], $defenders);
+
+		$showDetails = $isAttacker || $isDefender;
+		$sql = "SELECT ally_id FROM %%USERS%% WHERE id = :pID;";
+		$allyID = $db->selectSingle($sql, array(
+			':pID'	=> $USER['id']
+		));
+		if (!$showDetails && $allyID > 0) {
+			foreach ($attackers as $atterID) {
+				$aID = $db->selectSingle($sql, array(
+					':pID'	=> $atterID
+				));
+				if ($allyID == $aID) {
+					$showDetails = true;
+					break;
+				}
+			}
+			if (!$showDetails) {
+				foreach ($defenders as $defferID) {
+					$aID = $db->selectSingle($sql, array(
+						':pID'	=> $defferID
+					));
+					if ($allyID == $aID) {
+						$showDetails = true;
+						break;
+					}
+				}
+			}
+		}
+
+		$Info = null;
+		if (!$showDetails) {
+			$sql = "SELECT 
+			raport, time,
+			(
+				SELECT
+				GROUP_CONCAT(username SEPARATOR ' & ') as attacker
+				FROM %%USERS%%
+				WHERE id IN (SELECT uid FROM %%TOPKB_USERS%% WHERE %%TOPKB_USERS%%.rid = %%RW%%.rid AND role = 1)
+			) as attacker,
+			(
+				SELECT
+				GROUP_CONCAT(username SEPARATOR ' & ') as defender
+				FROM %%USERS%%
+				WHERE id IN (SELECT uid FROM %%TOPKB_USERS%% WHERE %%TOPKB_USERS%%.rid = %%RW%%.rid AND role = 2)
+			) as defender
+			FROM %%RW%%
+			WHERE rid = :reportID;";
+			$reportData = $db->selectSingle($sql, array(
+				':reportID'	=> $RID
+			));
+
+			$Info		= array($reportData["attacker"], $reportData["defender"]);
+		}
 
 		if(empty($reportData)) {
 			$this->printMessage($LNG['sys_raport_not_found']);
 		}
 
 		$combatReport			= unserialize($reportData['raport']);
-		if($isAttacker && !$isDefender && $combatReport['result'] == 'r' && count($combatReport['rounds']) <= 2) {
+		if (!$isDefender && $combatReport['result'] == 'r' && count($combatReport['rounds']) <= 2) {
 			$this->printMessage($LNG['sys_raport_lost_contact']);
 		}
 		
@@ -162,6 +167,7 @@ class ShowRaportPage extends AbstractGamePage
 		
 		$this->assign(array(
 			'Raport'	=> $combatReport,
+			'Info'		=> $Info,
 			'pageTitle'	=> $LNG['sys_mess_attack_report']
 		));
 		

@@ -21,31 +21,9 @@ class DailyCronJob implements CronjobTask
 {
 	function run()
 	{
-		$this->optimizeTables();
 		$this->clearCache();
 		$this->reCalculateCronjobs();
 		$this->clearEcoCache();
-	}
-	
-	function optimizeTables()
-	{
-		$sql			= "SHOW TABLE STATUS FROM `".DB_NAME."`;";
-		$sqlTableRaw	= Database::get()->nativeQuery($sql);
-
-		$prefixCounts	= strlen(DB_PREFIX);
-		$dbTables		= array();
-
-		foreach($sqlTableRaw as $table)
-		{
-			if (DB_PREFIX == substr($table['Name'], 0, $prefixCounts)) {
-				$dbTables[] = $table['Name'];
-			}
-		}
-
-		if(!empty($dbTables))
-		{
-			Database::get()->nativeQuery("OPTIMIZE TABLE ".implode(', ', $dbTables).";");
-		}
 	}
 
 	function clearCache()

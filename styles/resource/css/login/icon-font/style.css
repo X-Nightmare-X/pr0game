@@ -24,20 +24,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-steem:before {
-  content: "\e900";
-}
 .icon-email:before {
   content: "\f003";
 }
 .icon-twitter:before {
   content: "\f099";
-}
-.icon-facebook:before {
-  content: "\f09a";
-}
-.icon-facebook-f:before {
-  content: "\f09a";
 }
 .icon-github:before {
   content: "\f09b";

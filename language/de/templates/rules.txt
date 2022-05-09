@@ -9,11 +9,11 @@
 	</li>
 	<li>
 		<h1>3. Pushen</h1>
-		<p>Pushen ist grundsätzlich verboten. Als Pushing werden alle Ressourcen-Lieferungen ohne angemessene Gegenleistung von punktschwächeren Accounts an punktstärkere Accounts gesehen. Ausnahmen müssen im Vorfeld vom Operator genehmigt werden. Eine fehlende Genehmigung kann eine Sperre wegen Pushens nach sich ziehen. Ein Handel muss innerhalb 24 Stunden abgeschlossen oder bei einem Operator angemeldet sein.</p>
+		<p>Pushen ist grundsätzlich verboten. Als Pushing werden alle Transporte/Transfers ohne angemessene Gegenleistung von punktschwächeren Accounts an punktstärkere Accounts gesehen. Ausnahmen müssen im Vorfeld vom Operator genehmigt werden. Eine fehlende Genehmigung kann eine Sperre wegen Pushens nach sich ziehen. Ein Handel muss innerhalb 24 Stunden abgeschlossen oder bei einem Operator angemeldet sein. Der sendende Spieler muss nach dem Transfer weiterhin mehr Punkte als der Empfänger haben (gerechnet in MSE). Verkäufe an punktestärkere Spieler sind ab 75% des Schiffspreises erlaubt.</p>
 	</li>
 	<li>
 		<h1>4. Bashen</h1>
-		<p>Mehr als 5 Angriffe innerhalb von 24 Stunden auf den gleichen Planeten zählen als Bashen und sind verboten - der Mond zählt als eigenständiger Planet. Angriffe mit Spiosonden oder Interplanetarraketen werden dabei nicht gezählt.</p>
+		<p>Mehr als 6 Angriffe innerhalb von 24 Stunden auf den gleichen Planeten zählen als Bashen und sind verboten - der Mond zählt als eigenständiger Planet. Angriffe mit Spiosonden oder Interplanetarraketen werden dabei nicht gezählt.</p>
 		<p>Die Bashregel gilt ausschließlich für aktive Spieler. Befinden sich die Parteien im Krieg, so sind weitere Angriffe erlaubt. Der Krieg muss mindestens 24 Stunden vor weiteren Angriffen im Forum erklärt werden (im Thema der Ankündigung müssen beide Allianzen bzw. der Name des kriegserklärenden Einzelspielers in korrekter Schreibweise genannt werden). Eine Kriegserklärung kann ausschließlich an Allianzen gerichtet werden, wobei die Kriegserklärung durch eine Allianz oder eine Einzelperson erfolgen kann.</p>
 		<p>Eine Annahme des Krieges ist nicht erforderlich. Kriege, die offensichtlich nur der massiven Umgehung der Bashregel dienen, sind verboten. Dies zu beurteilen obliegt den zuständigen Moderatoren und Operatoren.</p>
 	</li>
@@ -24,6 +24,11 @@
 	<li>
 		<h1>6. Bugusing</h1>
 		<p>Bugs und/oder Fehler in der Programmierung auszunutzen ist verboten. Erkannte Bugs sollten so schnell wie möglich per <a href="https://git.pr0game.com/Rosenreeman/pr0game/issues" target="_blank">GIT Issue</a> oder im Discord Channel #bugs gemeldet werden. Cheaten ist ebenfalls verboten.</p>
+	</li>
+	<li>
+		<h1>6.1 Tools und Anwendungen</h1>
+		<p>Das Verwenden von externen Tools und Userskripten, die automatisiert Aktionen und/oder Requests im Spiel durchführen ist nicht gestattet. Jede Anwendung in diesem Kontext darf nur lokal verwendet werden und ein Export der Daten, sowie das aufarbeiten von Daten für den Export sind ebenfalls nicht erlaubt. Skripts und Tools sollten keinen spielerischen Vorteil bieten, den Spieler ohne diese nicht haben. Falls Unklarheiten bezüglich Regelkonformität eines Tools bestehen, ist ein Moderator/Administrator zu kontaktieren. Sollte ein Tool nicht diesen Regeln entsprechen, kann dieses nach einer Prüfung dennoch freigegeben werden. Für dieses Freigabeverfahren muss das Tool für einen vorgegebenen Prüfer bereitgestellt und genehmigt werden. Sollte ein Tool durch das Prüfverfahren freigegeben werden, so werden die Features davon (nicht das Tool selbst) von der Prüfinstanz veröffentlicht. Um das Freigabeverfahren einzuleiten muss sich an einen der Moderatoren/Administratoren gewendet werden.</p>
+		<p>Hinweis: Das Publizieren und Bereitstellen der eigens entwickelten Tools ist stark erwünscht, jedoch nicht verpflichtend.</p>
 	</li>
 	<li>
 		<h1>7. Sprache im Spiel</h1>

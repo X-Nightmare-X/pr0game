@@ -34,7 +34,6 @@ function check(){
 <tr>
         <td>{$LNG.qe_name}</td><td>{$LNG.qe_count}</td><td>{$LNG.qe_input}</td>
 </tr>
-<tr><td width="30%">{$LNG.tech.921}:</td><td width="30%">{$darkmatter_c}</td><td width="40%"><input name="darkmatter" type="text" value="{$darkmatter}"></td></tr>
 </table>
 <table width="100%" style="color:#FFFFFF">
 <tr>
@@ -44,15 +43,6 @@ function check(){
         <td>{$LNG.qe_name}</td><td>{$LNG.qe_level}</td><td>{$LNG.qe_input}</td>
 </tr>
 {foreach item=Element from=$tech}
-<tr><td width="30%">{$Element.name}:</td><td width="30%">{$Element.count}</td><td width="40%"><input name="{$Element.type}" type="text" value="{$Element.input}"></td>
-{/foreach}
-<tr>
-        <th colspan="3">{$LNG.qe_officier}</th>
-</tr>
-<tr>
-        <td>{$LNG.qe_name}</td><td>{$LNG.qe_level}</td><td>{$LNG.qe_input}</td>
-</tr>
-{foreach item=Element from=$officier}
 <tr><td width="30%">{$Element.name}:</td><td width="30%">{$Element.count}</td><td width="40%"><input name="{$Element.type}" type="text" value="{$Element.input}"></td>
 {/foreach}
 <tr>

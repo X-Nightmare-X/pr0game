@@ -82,7 +82,7 @@ class ShowGalaxyPage extends AbstractGamePage
             $USER += Database::get()->selectSingle($sql, [
                 ':userId' => $USER['id'],
                 ':statType' => 1
-            ]);
+            ]) ?: ['total_points' => 0];
         } catch (Exception $exception) {
         }
 
@@ -105,8 +105,8 @@ class ShowGalaxyPage extends AbstractGamePage
 			'planet'					=> $planet,
 			'type'						=> $type,
 			'current'					=> $current,
-			'maxfleetcount'				=> FleetFunctions::GetCurrentFleets($USER['id']),
-			'fleetmax'					=> FleetFunctions::GetMaxFleetSlots($USER),
+			'maxfleetcount'				=> FleetFunctions::getCurrentFleets($USER['id']),
+			'fleetmax'					=> FleetFunctions::getMaxFleetSlots($USER),
 			'currentmip'				=> $PLANET[$resource[503]],
 			'recyclers'   				=> $PLANET[$resource[209]],
 			'spyprobes'   				=> $PLANET[$resource[210]],

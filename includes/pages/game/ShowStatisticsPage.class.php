@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -116,7 +116,7 @@ class ShowStatisticsPage extends AbstractGamePage
                     $USER    += $db->selectSingle('SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :userId AND stat_type = :statType', array(
                         ':userId'    => $USER['id'],
                         ':statType'    => 1
-                    ));
+                    )) ?: ['total_points' => 0];
                 } catch (Exception $e) {
                     $USER['total_points'] = 0;
                 }
@@ -173,7 +173,7 @@ class ShowStatisticsPage extends AbstractGamePage
                         'name'        => $StatRow['ally_name'],
                         'members'    => $StatRow['ally_members'],
                         'rank'        => $StatRow[$Rank],
-                        'mppoints'    => pretty_number(floor($StatRow[$Points] / $StatRow['ally_members'])),
+                        'mppoints'    => pretty_number(floor($StatRow[$Points] / ($StatRow['ally_members'] ?? 1))),
                         'points'    => pretty_number($StatRow[$Points]),
                         'ranking'    => $StatRow[$OldRank] - $StatRow[$Rank],
                     );

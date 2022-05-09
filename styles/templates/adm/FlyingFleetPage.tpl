@@ -12,7 +12,7 @@
 	<th>{$LNG.ff_targetplanet}</th>
     <th>{$LNG.ff_endtime}</th>
     <th>{$LNG.ff_holdtime}</th>
-    <th>{$LNG.ff_lock}</th>
+    <th><a href="admin.php?page=fleets&amp;massunlock=1" style="color:lime">{$LNG.ff_lock}</a></th>
 </tr>
 {foreach $FleetList as $FleetRow}
 <tr>
