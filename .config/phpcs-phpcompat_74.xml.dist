@@ -7,7 +7,7 @@
     <arg name="cache" value="./../.phpcs-cache"/>
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
-    <arg name="report" value="full,summary"/>
+    <arg name="report" value="summary,full"/>
     <exclude-pattern type="relative">^cache/*</exclude-pattern>
 
     <config name="installed_paths" value="/root/.composer/vendor/phpcompatibility/php-compatibility/PHPCompatibility" />
