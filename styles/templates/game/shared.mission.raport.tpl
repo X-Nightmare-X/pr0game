@@ -189,7 +189,7 @@
 	{* Normal Attack *}
 	{$LNG.sys_moonproba} {$Raport.moon.moonChance} %<br>
 	{if !empty($Raport.moon.moonName)}
-		{sprintf($LNG.sys_moonbuilt)}
+		{$LNG.sys_moonbuilt}
 	{/if}
 {/if}
 
