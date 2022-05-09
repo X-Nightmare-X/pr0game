@@ -8,6 +8,7 @@
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
     <arg name="report" value="summary,full"/>
+    <exclude-pattern type="relative">^.ddev/*</exclude-pattern>
     <exclude-pattern type="relative">^cache/*</exclude-pattern>
 
     <config name="installed_paths" value="/root/.composer/vendor/phpcompatibility/php-compatibility/PHPCompatibility" />

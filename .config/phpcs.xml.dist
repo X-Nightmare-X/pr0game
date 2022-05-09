@@ -8,7 +8,10 @@
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
     <arg name="report" value="summary,full"/>
-    <arg name="ignore" value="./../cache"/>
+    <exclude-pattern type="relative">^.ddev/*</exclude-pattern>
+    <exclude-pattern type="relative">^cache/*</exclude-pattern>
+    <exclude-pattern type="relative">^includes/libs/*</exclude-pattern>
+    <exclude-pattern type="relative">^vendor/*</exclude-pattern>
 
     <rule ref="PSR12"/>
 
