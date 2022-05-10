@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -16,9 +16,9 @@
  */
 
 define('MODE', 'INGAME');
-define('ROOT_PATH', str_replace('\\', '/',dirname(__FILE__)).'/');
+define('ROOT_PATH', str_replace('\\', '/', dirname(__FILE__)) . '/');
 set_include_path(ROOT_PATH);
 
 require 'includes/common.php';
 
-HTTP::redirectTo('game.php?page=raport&raport='.HTTP::_GP('raport', ''));
+HTTP::redirectTo('game.php?page=raport&raport=' . HTTP::_GP('raport', ''));
