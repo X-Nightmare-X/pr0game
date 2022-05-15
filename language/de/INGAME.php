@@ -161,7 +161,7 @@ $LNG['fm_all'] = 'Alle';
 $LNG['fm_civil'] = 'Zivil';
 $LNG['fm_military'] = 'Militär';
 $LNG['fm_imperial'] = 'Imperium';
-$LNG['fm_engins'] = 'Triebwerke';
+$LNG['fm_engines'] = 'Triebwerke';
 //----------------------------------------------------------------------------//
 //GALAXY
 
