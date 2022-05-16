@@ -417,7 +417,8 @@ class FleetFunctions
 		fleet_end_stay	= :endStayTime,
 		fleet_end_time	= :endTime,
 		fleet_mess		= :fleetState,
-		fleet_state		= 2
+		fleet_state		= 2,
+		hasCanceled		= :hasCanceled
 		WHERE ' . $sqlWhere . ' = :id;';
 
         $db->update($sql, [
@@ -425,6 +426,7 @@ class FleetFunctions
             ':endStayTime'  => TIMESTAMP,
             ':endTime'      => $fleetEndTime,
             ':fleetState'   => FLEET_RETURN,
+            ':hasCanceled'  => 1
         ]);
 
         return true;
