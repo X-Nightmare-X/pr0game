@@ -552,15 +552,15 @@ class FleetFunctions
             ':id'       => $Target,
         ], 'id_owner');
 
-        $TargetUser = Database::get()->selectSingle('SELECT onlinetime, ally_id FROM %%USERS%% where id = :id', [
+        $targetAllianceId = Database::get()->selectSingle('SELECT ally_id FROM %%USERS%% where id = :id', [
             ':id'       => $PlanetOwner,
         ], 'onlinetime');
 
-        $Inactivity = Database::get()->selectSingle('SELECT onlinetime FROM %%USERS%% where id = :id', [
+        $targetOnlineTime = Database::get()->selectSingle('SELECT onlinetime FROM %%USERS%% where id = :id', [
             ':id'       => $PlanetOwner,
         ], 'onlinetime');
 
-        if ($Inactivity < TIMESTAMP - INACTIVE) {
+        if ($targetOnlineTime < TIMESTAMP - INACTIVE) {
             return false;
         }
 
@@ -571,7 +571,7 @@ class FleetFunctions
 
         $War = Database::get()->selectSingle($sql, [
             ':allyA'    => $USER['ally_id'],
-            ':allyD'    => $TargetUser['ally_id']
+            ':allyD'    => $targetAllianceId
         ]);
 
         if (!empty($War) && ($War['accept'] == 1 || $War['request_time'] < TIMESTAMP - 86400)) {
