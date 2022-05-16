@@ -359,7 +359,7 @@ class FleetFunctions
             $fleetResult['fleet_mess'] = 0;
         }
 
-        if ($fleetResult['fleet_owner'] != $USER['id'] || $fleetResult['fleet_mess'] == 1) {
+        if ($fleetResult['fleet_owner'] != $USER['id'] || $fleetResult['fleet_mess'] == FLEET_RETURN) {
             return false;
         }
 
@@ -544,20 +544,33 @@ class FleetFunctions
     {
         global $USER;
 
+        if (!BASH_ON) {
+            return false;
+        }
 
         $PlanetOwner = Database::get()->selectSingle('SELECT id_owner FROM %%PLANETS%% where id = :id', [
             ':id'       => $Target,
         ], 'id_owner');
 
-        $Inactivity = Database::get()->selectSingle('SELECT onlinetime FROM %%USERS%% where id = :id', [
+        $TargetUser = Database::get()->selectSingle('SELECT onlinetime, ally_id FROM %%USERS%% where id = :id', [
             ':id'       => $PlanetOwner,
         ], 'onlinetime');
 
-        if ($Inactivity < TIMESTAMP - INACTIVE) {
+        if ($TargetUser['onlinetime'] < TIMESTAMP - INACTIVE) {
             return false;
         }
 
-        if (!BASH_ON) {
+        $sql = 'SELECT accept, request_time from %%DIPLO%%
+        where (owner_1 = :allyA and owner_2 = :allyD)
+        or (owner_1 = :allyD and owner_2 = :allyA)
+        and level = 5';
+
+        $War = Database::get()->selectSingle($sql, [
+            ':allyA'    => $USER['ally_id'],
+            ':allyD'    => $TargetUser['ally_id']
+        ]);
+
+        if (!empty($War) && ($War['accept'] == 1 || $War['request_time'] < TIMESTAMP - 86400)) {
             return false;
         }
 
@@ -567,16 +580,35 @@ class FleetFunctions
 		AND fleet_end_id = :fleetEndId
 		AND fleet_state != :fleetState
 		AND fleet_start_time > :fleetStartTime
-		AND fleet_mission IN (1,2,9);';
+		AND fleet_mission IN (1,2,9)
+        AND fleet_group = 0
+        AND hasCanceled = 0;';
 
         $Count = Database::get()->selectSingle($sql, [
             ':fleetOwner'       => $USER['id'],
             ':fleetEndId'       => $Target,
-            ':fleetState'       => 2,
+            ':fleetState'       => FLEET_HOLD,
             ':fleetStartTime'   => (TIMESTAMP - BASH_TIME),
         ]);
 
-        return $Count['state'] >= BASH_COUNT;
+        $sql = 'SELECT COUNT(DISTINCT fleet_group) as state
+		FROM %%LOG_FLEETS%%
+		WHERE fleet_owner = :fleetOwner
+		AND fleet_end_id = :fleetEndId
+		AND fleet_state != :fleetState
+		AND fleet_start_time > :fleetStartTime
+		AND fleet_mission IN (1,2,9)
+        AND fleet_group != 0
+        AND hasCanceled = 0;';
+
+        $Count2 = Database::get()->selectSingle($sql, [
+            ':fleetOwner'       => $USER['id'],
+            ':fleetEndId'       => $Target,
+            ':fleetState'       => FLEET_HOLD,
+            ':fleetStartTime'   => (TIMESTAMP - BASH_TIME),
+        ]);
+
+        return ($Count['state'] + $Count2['state']) >= BASH_COUNT;
     }
 
     public static function sendFleet(
