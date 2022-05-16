@@ -554,7 +554,7 @@ class FleetFunctions
 
         $targetAllianceId = Database::get()->selectSingle('SELECT ally_id FROM %%USERS%% where id = :id', [
             ':id'       => $PlanetOwner,
-        ], 'onlinetime');
+        ], 'ally_id');
 
         $targetOnlineTime = Database::get()->selectSingle('SELECT onlinetime FROM %%USERS%% where id = :id', [
             ':id'       => $PlanetOwner,
