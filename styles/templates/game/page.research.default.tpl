@@ -2,18 +2,18 @@
 {block name="content"}
 	{if $messages}
 	<div class="message"><a href="?page=messages">{$messages}</a></div>
-	
+
 	{/if}
 {if !empty($Queue)}
 <div id="buildlist" class="infos1">
 		{foreach $Queue as $List}
 		{$ID = $List.element}
 		<div class="buildb">
-			
+
 				{if isset($ResearchList[$List.element])}
 				{$CQueue = $ResearchList[$List.element]}
 				{/if}
-				{$List@iteration}.: 
+				{$List@iteration}.:
 				{if isset($CQueue) && $CQueue.maxLevel != $CQueue.level && !$IsFullQueue && $CQueue.buyable}
 				<form action="game.php?page=research" method="post" class="build_form">
 					<input type="hidden" name="cmd" value="insert">
@@ -48,7 +48,7 @@
 
 {if $IsLabinBuild}<div class="hidden-div">{$LNG.bd_building_lab}</div>{/if}
 <div>
-<div class="planeto"> <button id="lab1">{$LNG.fm_imperial}</button> | <button id="lab2">{$LNG.fm_military}</button> | <button id="lab3">{$LNG.fm_engins}</button> | <button id="lab4">{$LNG.fm_mining}</button> | <button id="lab5">{$LNG.fm_all}</button></div>		
+<div class="planeto"> <button id="lab1">{$LNG.fm_imperial}</button> | <button id="lab2">{$LNG.fm_military}</button> | <button id="lab3">{$LNG.fm_engines}</button> | <button id="lab4">{$LNG.fm_mining}</button> | <button id="lab5">{$LNG.fm_all}</button></div>
 
 	{foreach $ResearchList as $ID => $Element}
 	<div class="infos" id="t{$ID}">
@@ -62,9 +62,9 @@
 						{foreach $Element.costOverflow as $ResType => $ResCount}
                         <a href='#' onclick='return Dialog.info({$ResType})' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$ResType}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$ResType}.{if $ResType >=600 && $ResType <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$ResType}</td></tr></table></tr></table>">{$LNG.tech.{$ResType}}</a>: <span style="font-weight:700">{$ResCount|number}</span><br>
 						{/foreach}
-			
-					
-				
+
+
+
 					</div>
 
 	<div class="buildl">

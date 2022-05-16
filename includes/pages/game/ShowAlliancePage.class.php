@@ -1531,10 +1531,11 @@ class ShowAlliancePage extends AbstractGamePage
 
         $db = Database::get();
 
-        $sql = "UPDATE %%DIPLO%% SET accept = 1 WHERE id = :id AND owner_2 = :allianceId;";
+        $sql = "UPDATE %%DIPLO%% SET accept = 1 WHERE id = :id AND owner_2 = :allianceId, request_time = :request_time;";
         $db->update($sql, [
             ':allianceId' => $this->allianceData['id'],
-            ':id' => HTTP::_GP('id', 0)
+            ':id' => HTTP::_GP('id', 0),
+            ':request_time' => TIMESTAMP
         ]);
 
         $this->redirectTo('game.php?page=alliance&mode=admin&action=diplomacy');
@@ -1640,13 +1641,14 @@ class ShowAlliancePage extends AbstractGamePage
             PlayerUtil::sendMessage($targetAlliance['ally_owner'], $USER['id'], $LNG['al_circular_alliance'] . $this->allianceData['ally_tag'], 1, $LNG['al_diplo_ask'], sprintf($LNG['al_diplo_ask_mes'], $LNG['al_diplo_level'][$level], "[" . $this->allianceData['ally_tag'] . "] " . $this->allianceData['ally_name'], "[" . $targetAlliance['ally_tag'] . "] " . $targetAlliance['ally_name'], $text), TIMESTAMP);
         }
 
-        $sql = "INSERT INTO %%DIPLO%% SET owner_1 = :allianceId, owner_2 = :allianceTargetID, level	= :level, accept = 0, accept_text = :text, universe	= :universe";
+        $sql = "INSERT INTO %%DIPLO%% SET owner_1 = :allianceId, owner_2 = :allianceTargetID, level	= :level, accept = 0, accept_text = :text, universe	= :universe, request_time = :request_time";
         $db->insert($sql, [
             ':allianceId' => $USER['ally_id'],
             ':allianceTargetID' => $targetAlliance['id'],
             ':level' => $level,
             ':text' => $text,
-            ':universe' => Universe::current()
+            ':universe' => Universe::current(),
+            ':request_time' => TIMESTAMP
         ]);
 
         $this->sendJSON([
