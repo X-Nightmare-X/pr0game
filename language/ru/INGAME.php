@@ -52,7 +52,7 @@ $LNG['admin_access_1'] = 'У Вас есть временный доступ к 
 $LNG['admin_access_link'] = 'Отключить доступ';
 $LNG['admin_access_2'] = ', если он Вам больше не нужен.';
 $LNG['banned_message'] = 'Вы были заблокированы. Если вы считаете, что это недоразумение, напишите нам через Discord:'
-    . ' <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>';
+    . ' <a href="https://discord.gg/jhYYN3yuat">https://discord.gg/jhYYN3yuat</a>';
 
 // Верхняя навигационная полоса
 $LNG['tn_player_title'] = 'Император';

@@ -24,7 +24,7 @@
 
     {if isModuleAvailable($smarty.const.MODULE_SEARCH)}<li><a href="game.php?page=search">{$LNG.lm_search}</a></li>{/if}
 
-    <li><a href="https://discord.gg/AEbCszY2" target="copy">Discord</a></li>
+    <li><a href="https://discord.gg/jhYYN3yuat" target="copy">Discord</a></li>
     <li><a href="https://www.buymeacoffee.com/pr0game" target="copy">Spenden</a></li>
     {if isModuleAvailable($smarty.const.MODULE_SUPPORT)}<li><a href="game.php?page=ticket">{$LNG.lm_support}</a></li>{/if}
     <li><a href="game.php?page=questions">{$LNG.lm_faq}</a></li>

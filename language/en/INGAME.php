@@ -59,7 +59,7 @@ $LNG['admin_access_1'] = 'Players have temporary administrative permissions.';
 $LNG['admin_access_link'] = 'Disable this access';
 $LNG['admin_access_2'] = ', If you don\'t need it any longer';
 $LNG['banned_message'] = 'You received a Ban. If you think this is a mistake, write on our Discord:'
-    . ' <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>';
+    . ' <a href="https://discord.gg/jhYYN3yuat">https://discord.gg/jhYYN3yuat</a>';
 
 //----------------------------------------------------------------------------//
 // Topnav
