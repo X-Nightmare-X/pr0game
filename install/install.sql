@@ -254,7 +254,7 @@ CREATE TABLE `%PREFIX%diplo` (
   `accept` tinyint(1) unsigned NOT NULL,
   `accept_text` varchar(255) NOT NULL,
   `universe` tinyint(3) unsigned NOT NULL,
-  `request_time` int(11) unsigned NOT NULL DEFAULT '0'
+  `request_time` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `universe` (`universe`),
   KEY `owner_1` (`owner_1`,`owner_2`,`accept`)
