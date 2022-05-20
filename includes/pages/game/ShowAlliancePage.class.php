@@ -1531,7 +1531,8 @@ class ShowAlliancePage extends AbstractGamePage
 
         $db = Database::get();
 
-        $sql = "UPDATE %%DIPLO%% SET accept = 1 WHERE id = :id AND owner_2 = :allianceId, request_time = :request_time;";
+        $sql = "UPDATE %%DIPLO%% SET accept = 1 WHERE id = :id AND owner_2 = :allianceId"
+            . " AND request_time = :request_time;";
         $db->update($sql, [
             ':allianceId' => $this->allianceData['id'],
             ':id' => HTTP::_GP('id', 0),
