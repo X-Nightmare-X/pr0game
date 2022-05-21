@@ -146,7 +146,7 @@ HTML;
 		AND fleet_end_stay 	    >= :timeStamp;";
 
         $targetFleetsResult = $db->select($sql, [
-            ':mission'      => 5,
+            ':mission'      => MISSION_HOLD,
             ':fleetEndId'   => $this->_fleet['fleet_end_id'],
             ':timeStamp'    => TIMESTAMP,
         ]);

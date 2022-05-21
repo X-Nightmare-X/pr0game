@@ -95,7 +95,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         $sql = 'SELECT * FROM %%FLEETS%%
 		WHERE fleet_end_id 		= :planetId
-		AND fleet_mission 		= 5
+		AND fleet_mission 		= MISSION_HOLD
 		AND fleet_start_time    <= :time
 		AND fleet_end_stay      >= :time;';
 

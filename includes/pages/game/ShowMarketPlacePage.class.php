@@ -452,8 +452,11 @@ class ShowMarketPlacePage extends AbstractGamePage
 				UNION
 				SELECT owner_1 as al,level, accept  FROM %%DIPLO%% WHERE owner_2 = :al) as packts
 			ON al = ally_id
-			WHERE fleet_mission = 16 AND fleet_mess = 2 ORDER BY fleet_end_time ASC;';
-        $fleetResult = $db->select($sql, [':al' => $USER['ally_id']]);
+			WHERE fleet_mission = :trade AND fleet_mess = 2 ORDER BY fleet_end_time ASC;';
+        $fleetResult = $db->select($sql, [
+            ':al'       => $USER['ally_id'],
+            ':trade'    => MISSION_TRADE,
+        ]);
 
         $activeFleetSlots = $db->rowCount();
 

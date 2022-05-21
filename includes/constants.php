@@ -250,3 +250,18 @@ define('SHIP_PROBE', 210);
 define('SHIP_BOMBER', 211);
 define('SHIP_DESTROYER', 213);
 define('SHIP_BATTLECRUISER', 215);
+
+// Missions
+define('MISSION_ATTACK', 1);
+define('MISSION_ACS', 2);
+define('MISSION_TRANSPORT', 3);
+define('MISSION_STATION', 4);
+define('MISSION_HOLD', 5);
+define('MISSION_SPY', 6);
+define('MISSION_COLONISATION', 7);
+define('MISSION_RECYCLING', 8);
+define('MISSION_DESTRUCTION', 9);
+define('MISSION_MISSILE', 10);
+define('MISSION_EXPEDITION', 15);
+define('MISSION_TRADE', 16);
+define('MISSION_TRANSFER', 17);
