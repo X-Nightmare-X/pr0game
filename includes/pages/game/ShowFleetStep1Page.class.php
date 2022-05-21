@@ -15,14 +15,14 @@
 
 class ShowFleetStep1Page extends AbstractGamePage
 {
-    public static $requireModule = MODULE_FLEET_TABLE;
+    public static int $requireModule = MODULE_FLEET_TABLE;
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function show()
+    public function show():void
     {
         global $USER, $PLANET, $pricelist, $reslist, $LNG, $resource;
 
@@ -105,7 +105,7 @@ class ShowFleetStep1Page extends AbstractGamePage
             'typeSelect'    => [1 => $LNG['type_planet_1'], 2 => $LNG['type_planet_2'], 3 => $LNG['type_planet_3']],
             'fleetdata'     => $FleetData,
         ]);
-        
+
         //check if all ships are available
         foreach ($Fleet as $Ship => $Count) {
             if ($Count > $PLANET[$resource[$Ship]]) {
@@ -118,7 +118,7 @@ class ShowFleetStep1Page extends AbstractGamePage
         $this->display('page.fleetStep1.default.tpl');
     }
 
-    public function saveShortcuts()
+    public function saveShortcuts():void
     {
         global $USER, $LNG;
 
@@ -247,7 +247,7 @@ class ShowFleetStep1Page extends AbstractGamePage
         return $ACSList;
     }
 
-    public function checkTarget()
+    public function checkTarget():void
     {
         global $PLANET, $LNG, $USER, $resource;
 
