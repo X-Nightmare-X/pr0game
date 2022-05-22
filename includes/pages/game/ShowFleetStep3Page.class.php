@@ -209,6 +209,15 @@ class ShowFleetStep3Page extends AbstractGamePage
             }
         }
 
+        foreach ($fleetArray as $Ship => $Count) {
+            if ($Count > $PLANET[$resource[$Ship]]) {
+                $this->printMessage($LNG['fl_not_all_ship_avalible'], [[
+                    'label' => $LNG['sys_back'],
+                    'url'   => 'game.php?page=fleetTable',
+                ]]);
+            }
+        }
+
         if ($targetMission == 11) {
             $activeExpedition = FleetFunctions::getCurrentFleets($USER['id'], 11, true);
             $maxExpedition = FleetFunctions::getDMMissionLimit($USER);
