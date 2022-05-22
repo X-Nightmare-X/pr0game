@@ -95,13 +95,14 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         $sql = 'SELECT * FROM %%FLEETS%%
 		WHERE fleet_end_id 		= :planetId
-		AND fleet_mission 		= 5
+		AND fleet_mission 		= :mission
 		AND fleet_start_time    <= :time
 		AND fleet_end_stay      >= :time;';
 
         $targetStayFleets = $db->select($sql, [
             ':planetId' => $this->_fleet['fleet_end_id'],
             ':time'     => TIMESTAMP,
+            ':mission'  => MISSION_HOLD,
         ]);
 
         foreach ($targetStayFleets as $fleetRow) {

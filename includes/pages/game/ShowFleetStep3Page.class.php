@@ -17,7 +17,7 @@
 
 class ShowFleetStep3Page extends AbstractGamePage
 {
-    public static $requireModule = MODULE_FLEET_TABLE;
+    public static int $requireModule = MODULE_FLEET_TABLE;
 
     public function __construct()
     {
@@ -32,7 +32,7 @@ class ShowFleetStep3Page extends AbstractGamePage
             FleetFunctions::gotoFleetPage(0);
         }
 
-        $targetMission = HTTP::_GP('mission', 3);
+        $targetMission = HTTP::_GP('mission', MISSION_TRANSPORT);
         $TransportMetal = max(0, round(HTTP::_GP('metal', 0.0)));
         $TransportCrystal = max(0, round(HTTP::_GP('crystal', 0.0)));
         $TransportDeuterium = max(0, round(HTTP::_GP('deuterium', 0.0)));
@@ -76,7 +76,7 @@ class ShowFleetStep3Page extends AbstractGamePage
             ]]);
         }
 
-        if ($targetMission != 2) {
+        if ($targetMission != MISSION_ACS) {
             $fleetGroup = 0;
         }
 
@@ -104,7 +104,7 @@ class ShowFleetStep3Page extends AbstractGamePage
 
         // Transport and market type 0 have to contain resources
         if (
-            ($targetMission == 3 || ($targetMission == 16 && $markettype == 0))
+            ($targetMission == MISSION_TRANSPORT || ($targetMission == MISSION_TRADE && $markettype == 0))
             && $TransportMetal + $TransportCrystal + $TransportDeuterium < 1
         ) {
             $this->printMessage($LNG['fl_no_noresource'], [[
@@ -114,7 +114,7 @@ class ShowFleetStep3Page extends AbstractGamePage
         }
         // Market typ 1 cannot contain resources
         if (
-            $targetMission == 16 && $markettype == 1
+            $targetMission == MISSION_TRADE && $markettype == 1
             && $TransportMetal + $TransportCrystal + $TransportDeuterium != 0
         ) {
             $this->printMessage($LNG['fl_resources'], [[
@@ -123,14 +123,14 @@ class ShowFleetStep3Page extends AbstractGamePage
             ]]);
         }
 
-        if ($targetMission == 16 && $WantedResourceAmount < 1) {
+        if ($targetMission == MISSION_TRADE && $WantedResourceAmount < 1) {
             $this->printMessage($LNG['fl_no_noresource_exchange'], [[
                 'label' => $LNG['sys_back'],
                 'url'   => 'game.php?page=fleetStep2',
             ]]);
         }
 
-        if ($targetMission == 16 && $WantedResourceAmount > pow(10, 50)) {
+        if ($targetMission == MISSION_TRADE && $WantedResourceAmount > pow(10, 50)) {
             $this->printMessage($LNG['fl_invalid_mission'], [[
                 'label' => $LNG['sys_back'],
                 'url'   => 'game.php?page=fleetStep2',
@@ -160,7 +160,7 @@ class ShowFleetStep3Page extends AbstractGamePage
 
             if (empty($ACSTime)) {
                 $fleetGroup = 0;
-                $targetMission = 1;
+                $targetMission = MISSION_ATTACK;
             }
         }
 
@@ -175,7 +175,7 @@ class ShowFleetStep3Page extends AbstractGamePage
             ':targetType' => ($targetType == 2 ? 1 : $targetType),
         ]);
 
-        if ($targetMission == 7) {
+        if ($targetMission == MISSION_COLONISATION) {
             if (!empty($targetPlanetData)) {
                 $this->printMessage($LNG['fl_target_exists'], [[
                     'label' => $LNG['sys_back'],
@@ -191,7 +191,7 @@ class ShowFleetStep3Page extends AbstractGamePage
             }
         }
 
-        if ($targetMission == 7 || $targetMission == 15 || $targetMission == 16) {
+        if ($targetMission == MISSION_COLONISATION || $targetMission == MISSION_EXPEDITION || $targetMission == MISSION_TRADE) {
             $targetPlanetData = ['id' => 0, 'id_owner' => 0, 'planettype' => 1];
         } else {
             if (!empty($targetPlanetData["destruyed"])) {
@@ -218,18 +218,8 @@ class ShowFleetStep3Page extends AbstractGamePage
             }
         }
 
-        if ($targetMission == 11) {
-            $activeExpedition = FleetFunctions::getCurrentFleets($USER['id'], 11, true);
-            $maxExpedition = FleetFunctions::getDMMissionLimit($USER);
-
-            if ($activeExpedition >= $maxExpedition) {
-                $this->printMessage($LNG['fl_no_expedition_slot'], [[
-                    'label' => $LNG['sys_back'],
-                    'url'   => 'game.php?page=fleetTable',
-                ]]);
-            }
-        } elseif ($targetMission == 15) {
-            $activeExpedition = FleetFunctions::getCurrentFleets($USER['id'], 15, true);
+        if ($targetMission == MISSION_EXPEDITION) {
+            $activeExpedition = FleetFunctions::getCurrentFleets($USER['id'], MISSION_EXPEDITION, true);
             $maxExpedition = FleetFunctions::getExpeditionLimit($USER);
 
             if ($activeExpedition >= $maxExpedition) {
@@ -244,7 +234,7 @@ class ShowFleetStep3Page extends AbstractGamePage
         $myPlanet = $usedPlanet && $targetPlanetData['id_owner'] == $USER['id'];
         $targetPlayerData = [];
 
-        if ($targetMission == 7 || $targetMission == 15 || $targetMission == 16) {
+        if ($targetMission == MISSION_COLONISATION || $targetMission == MISSION_EXPEDITION || $targetMission == MISSION_TRADE) {
             $targetPlayerData = [
                 'id'                => 0,
                 'onlinetime'        => TIMESTAMP,
@@ -288,14 +278,14 @@ class ShowFleetStep3Page extends AbstractGamePage
             ]]);
         }
 
-        if ($targetMission != 8 && IsVacationMode($targetPlayerData)) {
+        if ($targetMission != MISSION_RECYCLING && IsVacationMode($targetPlayerData)) {
             $this->printMessage($LNG['fl_target_exists'], [[
                 'label' => $LNG['sys_back'],
                 'url'   => 'game.php?page=fleetStep1',
             ]]);
         }
 
-        if ($targetMission == 1 || $targetMission == 2 || $targetMission == 9) {
+        if ($targetMission == MISSION_ATTACK || $targetMission == MISSION_ACS || $targetMission == MISSION_DESTRUCTION) {
             if (FleetFunctions::checkBash($targetPlanetData['id'])) {
                 $this->printMessage($LNG['fl_bash_protection'], [[
                     'label' => $LNG['sys_back'],
@@ -305,8 +295,8 @@ class ShowFleetStep3Page extends AbstractGamePage
         }
 
         if (
-            $targetMission == 1 || $targetMission == 2 || $targetMission == 5 || $targetMission == 6
-            || $targetMission == 9
+            $targetMission == MISSION_ATTACK || $targetMission == MISSION_ACS || $targetMission == MISSION_HOLD || $targetMission == MISSION_SPY
+            || $targetMission == MISSION_DESTRUCTION
         ) {
             if (Config::get()->adm_attack == 1 && $targetPlayerData['authattack'] > $USER['authlevel']) {
                 $this->printMessage($LNG['fl_admin_attack'], [[
@@ -344,7 +334,7 @@ class ShowFleetStep3Page extends AbstractGamePage
             }
         }
 
-        if ($targetMission == 5 || $targetMission == 17) {
+        if ($targetMission == MISSION_HOLD || $targetMission == MISSION_TRANSFER) {
             if ($targetPlayerData['ally_id'] != $USER['ally_id'] || $USER['ally_id'] == 0) {
                 $sql = "SELECT COUNT(*) as state FROM %%BUDDY%%
 				WHERE id NOT IN (SELECT id FROM %%BUDDY_REQUEST%% WHERE %%BUDDY_REQUEST%%.id = %%BUDDY%%.id) AND
@@ -377,7 +367,7 @@ class ShowFleetStep3Page extends AbstractGamePage
 
         $StayDuration = 0;
 
-        if ($targetMission == 5 || $targetMission == 11 || $targetMission == 15 || $targetMission == 16) {
+        if ($targetMission == MISSION_HOLD || $targetMission == MISSION_EXPEDITION || $targetMission == MISSION_TRADE) {
             if (!isset($availableMissions['StayBlock'][$stayTime])) {
                 $this->printMessage($LNG['fl_hold_time_not_exists'], [[
                     'label' => $LNG['sys_back'],
@@ -406,7 +396,7 @@ class ShowFleetStep3Page extends AbstractGamePage
         }
 
 
-        if ($targetMission == 17) {
+        if ($targetMission == MISSION_TRANSFER) {
             $attack = $USER[$resource[109]] * 10;
             $shield = $USER[$resource[110]] * 10;
             $defensive = $USER[$resource[111]] * 10;
@@ -465,7 +455,7 @@ class ShowFleetStep3Page extends AbstractGamePage
         );
 
 
-        if ($targetMission == 16) {
+        if ($targetMission == MISSION_TRADE) {
             $sql = 'INSERT INTO %%TRADES%% SET
 				transaction_type			= :transaction,
 				seller_fleet_id				= :sellerFleet,

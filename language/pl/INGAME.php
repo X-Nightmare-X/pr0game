@@ -54,7 +54,7 @@ $LNG['admin_access_1'] = 'Tymczasowo masz dostęp do funkcji administracyjnych';
 $LNG['admin_access_link'] = 'Deaktywuj go';
 $LNG['admin_access_2'] = ', jeśli nie używasz.';
 $LNG['banned_message'] = 'Zostałeś zbanowany. Jeśli uważasz, że to nieporozumienie, napisz do nas przez Discord:'
-    . ' <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>';
+    . ' <a href="https://discord.gg/jhYYN3yuat">https://discord.gg/jhYYN3yuat</a>';
 
 //----------------------------------------------------------------------------//
 //TOPNAV

@@ -8,7 +8,7 @@
  * 2 - Hybrid; Below 200000 ships SteemNova, Above OPBE
  * 999 - SteemNova's Battle Engine based on Arrays; Very slow, not recommended
  */
-$battle_engine = 2;
+$battle_engine = 999;
 
 /*
  * DON'T MODIFY ↓
@@ -30,7 +30,7 @@ if ($battle_engine == 2) {
 
     if ($ships <= 200000 && extension_loaded('ds')) {
         include ("SteemNova.php");
-    } else if ($ships <= 20000 and ! extension_loaded('ds')) {
+    } else if ($ships <= 200000 and ! extension_loaded('ds')) {
         include ("SteemNova_Array.php");
     } else {
         include ("OPBE.php");

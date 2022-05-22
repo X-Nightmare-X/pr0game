@@ -50,20 +50,30 @@ class FlyingFleetsTable
     private function getFleets($acsID = false)
     {
         if ($this->IsPhalanx) {
-            $where = '(fleet_start_id = :planetId AND fleet_start_type = 1 AND fleet_mission != 4) OR'
-                . ' (fleet_end_id = :planetId AND fleet_end_type = 1 AND fleet_mission != 8 AND fleet_mess IN (0, 2))';
+            $where = '(fleet_start_id = :planetId AND fleet_start_type = 1 AND fleet_mission != :stay) OR'
+                . ' (fleet_end_id = :planetId AND fleet_end_type = 1 AND fleet_mission != :rec AND fleet_mess IN (0, 2))';
 
-            $param = [':planetId'   => $this->planetId];
+            $param = [
+                ':planetId' => $this->planetId,
+                ':stay'     => MISSION_STATION,
+                ':rec'      => MISSION_RECYCLING,
+            ];
         } elseif (!empty($acsID)) {
             $where  = 'fleet_group = :acsId';
             $param = [':acsId'    => $acsID];
         } elseif ($this->missions) {
-            $where = '(fleet_owner = :userId OR (fleet_target_owner = :userId AND fleet_mission != 8)) AND'
+            $where = '(fleet_owner = :userId OR (fleet_target_owner = :userId AND fleet_mission != :rec)) AND'
                 . ' fleet_mission IN (' . $this->missions . ')';
-            $param = [':userId'   => $this->userId];
+            $param = [
+                ':userId'   => $this->userId,
+                ':rec'      => MISSION_RECYCLING,
+            ];
         } else {
-            $where  = 'fleet_owner = :userId OR (fleet_target_owner = :userId AND fleet_mission != 8)';
-            $param = [':userId'   => $this->userId,];
+            $where  = 'fleet_owner = :userId OR (fleet_target_owner = :userId AND fleet_mission != :rec)';
+            $param = [
+                ':userId'   => $this->userId,
+                ':rec'      => MISSION_RECYCLING,
+            ];
         }
 
         $sql = 'SELECT DISTINCT fleet.*, ownuser.username as own_username, targetuser.username as target_username,
@@ -97,9 +107,9 @@ class FlyingFleetsTable
             }
 
             if (
-                $fleetRow['fleet_mission'] == 10
-                || (($fleetRow['fleet_mission'] == 17
-                || ($fleetRow['fleet_mission'] == 4) && $fleetRow['fleet_mess'] == 0))
+                $fleetRow['fleet_mission'] == MISSION_MISSILE
+                || (($fleetRow['fleet_mission'] == MISSION_TRANSFER
+                || ($fleetRow['fleet_mission'] == MISSION_STATION) && $fleetRow['fleet_mess'] == 0))
             ) {
                 continue;
             }
@@ -199,30 +209,29 @@ class FlyingFleetsTable
         global $LNG;
         $Owner          = $fleetRow['fleet_owner'] == $this->userId;
         $FleetStyle  = [
-            1 => 'attack',
-            2 => 'federation',
-            3 => 'transport',
-            4 => 'deploy',
-            5 => 'hold',
-            6 => 'espionage',
-            7 => 'colony',
-            8 => 'harvest',
-            9 => 'destroy',
-            10 => 'missile',
-            11 => 'transport',
-            15 => 'transport',
-            16 => 'transport',
-            17 => 'transport',
+            MISSION_ATTACK => 'attack',
+            MISSION_ACS => 'federation',
+            MISSION_TRANSPORT => 'transport',
+            MISSION_STATION => 'deploy',
+            MISSION_HOLD => 'hold',
+            MISSION_SPY => 'espionage',
+            MISSION_COLONISATION => 'colony',
+            MISSION_RECYCLING => 'harvest',
+            MISSION_DESTRUCTION => 'destroy',
+            MISSION_MISSILE => 'missile',
+            MISSION_EXPEDITION => 'transport',
+            MISSION_TRADE => 'transport',
+            MISSION_TRANSFER => 'transport',
         ];
 
-        $GoodMissions = [3, 5];
+        $GoodMissions = [MISSION_TRANSPORT, MISSION_HOLD];
         $MissionType = $fleetRow['fleet_mission'];
 
         $FleetPrefix = ($Owner == true) ? 'own' : '';
         $FleetType = $FleetPrefix . $FleetStyle[$MissionType];
         if (
             !$Owner
-            && ($MissionType == 1 || $MissionType == 2)
+            && ($MissionType == MISSION_ATTACK || $MissionType == MISSION_ACS)
             && $Status == FLEET_OUTWARD && $fleetRow['fleet_target_owner'] != $this->userId
         ) {
             $FleetName = $LNG['cff_acs_fleet'];
@@ -243,7 +252,7 @@ class FlyingFleetsTable
         $StartType = $LNG['type_planet_' . $fleetRow['fleet_start_type']];
         $TargetType = $LNG['type_planet_' . $fleetRow['fleet_end_type']];
 
-        if ($MissionType == 8) {
+        if ($MissionType == MISSION_RECYCLING) {
             if ($Status == FLEET_OUTWARD) {
                 $EventString = sprintf(
                     $LNG['cff_mission_own_recy_0'],
@@ -265,7 +274,7 @@ class FlyingFleetsTable
                     $FleetCapacity
                 );
             }
-        } elseif ($MissionType == 10) {
+        } elseif ($MissionType == MISSION_MISSILE) {
             if ($Owner) {
                 $EventString = sprintf(
                     $LNG['cff_mission_own_mip'],
@@ -290,7 +299,7 @@ class FlyingFleetsTable
                     GetTargetAddressLink($fleetRow, $FleetType)
                 );
             }
-        } elseif ($MissionType == 11 || $MissionType == 15) {
+        } elseif ($MissionType == MISSION_EXPEDITION) {
             if ($Status == FLEET_OUTWARD) {
                 $EventString = sprintf(
                     $LNG['cff_mission_own_expo_0'],
@@ -362,7 +371,7 @@ class FlyingFleetsTable
                     );
                 }
             } else {
-                if (($MissionType == 1 || $MissionType == 2) && $Status == FLEET_OUTWARD) {
+                if (($MissionType == MISSION_ATTACK || $MissionType == MISSION_ACS) && $Status == FLEET_OUTWARD) {
                     $EventString = sprintf(
                         $LNG['cff_mission_acs'],
                         $FleetContent,

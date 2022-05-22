@@ -58,7 +58,7 @@ $LNG['admin_access_1'] = 'Os jogadores tem temporariamente acesso às funções 
 $LNG['admin_access_link'] = 'Desativar este acesso';
 $LNG['admin_access_2'] = ', se não precisar por mais tempo';
 $LNG['banned_message'] = 'Foi banido. Se pensa que isto é um mal-entendido, escreva-nos através do Discord:'
-    . ' <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>';
+    . ' <a href="https://discord.gg/jhYYN3yuat">https://discord.gg/jhYYN3yuat</a>';
 
 //----------------------------------------------------------------------------//
 // Topnav
