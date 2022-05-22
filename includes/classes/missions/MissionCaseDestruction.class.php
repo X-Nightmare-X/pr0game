@@ -145,7 +145,7 @@ HTML;
 		AND fleet_end_stay      >= :timeStamp;";
 
         $targetFleetsResult = $db->select($sql, [
-            ':mission'      => 5,
+            ':mission'      => MISSION_HOLD,
             ':fleetEndId'   => $this->_fleet['fleet_end_id'],
             ':timeStamp'    => TIMESTAMP
         ]);
@@ -372,7 +372,7 @@ HTML;
                     $sql = 'UPDATE %%FLEETS%% SET
 					fleet_end_type	= 1,
 					fleet_end_id	= :moonId,
-					fleet_mission	= IF(fleet_mission = 9, 1, fleet_mission)
+					fleet_mission	= IF(fleet_mission = :dest, 1, fleet_mission)
 					WHERE fleet_end_id = :planetId
 					AND fleet_id != :fleetId;';
 
@@ -380,6 +380,7 @@ HTML;
                         ':planetId' => $planetID,
                         ':moonId'   => $targetPlanet['id'],
                         ':fleetId'  => $this->_fleet['fleet_id'],
+                        ':dest'     => MISSION_DESTRUCTION,
                     ]);
 
                     $sql = "UPDATE %%AKS%% SET target = :planetId WHERE target = :moonId;";
