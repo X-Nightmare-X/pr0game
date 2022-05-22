@@ -50,7 +50,7 @@ if (!defined('CACHE_PATH')) {
     define('CACHE_PATH', ROOT_PATH . 'cache/');
 }
 
-define('DISCORD_URL', 'https://discord.gg/XURaWVDNNZ');
+define('DISCORD_URL', 'https://discord.gg/jhYYN3yuat');
 
 define('COMBAT_ENGINE', 'xnova');
 
