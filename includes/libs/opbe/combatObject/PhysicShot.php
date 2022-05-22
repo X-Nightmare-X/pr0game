@@ -201,7 +201,7 @@ class PhysicShot
      * Return $a if greater than $b, zero otherwise
      * @param mixed $a
      * @param mixed $b
-     * @return mized
+     * @return mixed
      */
     private function clamp($a, $b)
     {
