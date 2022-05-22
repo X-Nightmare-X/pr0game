@@ -136,7 +136,7 @@ class ShowFleetAjaxPage extends AbstractGamePage
             $this->sendData(601, $LNG['fa_planet_not_exist']);
         }
 
-        if ($targetMission == 6) {
+        if ($targetMission == MISSION_SPY) {
             if (Config::get()->adm_attack == 1 && $targetData['authattack'] > $USER['authlevel']) {
                 $this->sendData(619, $LNG['fa_action_not_allowed']);
             }
@@ -177,7 +177,7 @@ class ShowFleetAjaxPage extends AbstractGamePage
             [$targetData['galaxy'], $targetData['system'], $targetData['planet']]
         );
         $SpeedAllMin = FleetFunctions::getFleetMaxSpeed($fleetArray, $USER);
-        $Duration = FleetFunctions::getMissionDuration(10, $SpeedAllMin, $Distance, $SpeedFactor, $USER);
+        $Duration = FleetFunctions::getMissionDuration(MISSION_MISSILE, $SpeedAllMin, $Distance, $SpeedFactor, $USER);
         $consumption = FleetFunctions::getFleetConsumption($fleetArray, $Duration, $Distance, $USER, $SpeedFactor);
 
         $UserDeuterium -= $consumption;

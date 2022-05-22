@@ -20,19 +20,19 @@ class FlyingFleetHandler
     protected $token;
 
     public static $missionObjPattern    = array(
-        1   => 'MissionCaseAttack',
-        2   => 'MissionCaseACS',
-        3   => 'MissionCaseTransport',
-        4   => 'MissionCaseStay',
-        5   => 'MissionCaseStayAlly',
-        6   => 'MissionCaseSpy',
-        7   => 'MissionCaseColonisation',
-        8   => 'MissionCaseRecycling',
-        9   => 'MissionCaseDestruction',
-        10  => 'MissionCaseMIP',
-        15  => 'MissionCaseExpedition',
-        16  => 'MissionCaseTrade',
-        17  => 'MissionCaseTransfer',
+        MISSION_ATTACK          => 'MissionCaseAttack',
+        MISSION_ACS             => 'MissionCaseACS',
+        MISSION_TRANSPORT       => 'MissionCaseTransport',
+        MISSION_STATION         => 'MissionCaseStay',
+        MISSION_HOLD            => 'MissionCaseStayAlly',
+        MISSION_SPY             => 'MissionCaseSpy',
+        MISSION_COLONISATION    => 'MissionCaseColonisation',
+        MISSION_RECYCLING       => 'MissionCaseRecycling',
+        MISSION_DESTRUCTION     => 'MissionCaseDestruction',
+        MISSION_MISSILE         => 'MissionCaseMIP',
+        MISSION_EXPEDITION      => 'MissionCaseExpedition',
+        MISSION_TRADE           => 'MissionCaseTrade',
+        MISSION_TRANSFER        => 'MissionCaseTransfer',
     );
 
     public function setToken($token)

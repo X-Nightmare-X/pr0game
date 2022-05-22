@@ -180,13 +180,13 @@ class GalaxyRows
         } else {
             $this->galaxyData[$this->galaxyRow['planet']]['action'] = [
                 'esp'     => $USER['settings_esp'] == 1
-                    && $this->galaxyData[$this->galaxyRow['planet']]['missions'][6],
+                    && $this->galaxyData[$this->galaxyRow['planet']]['missions'][MISSION_SPY],
                 'message' => $USER['settings_wri'] == 1
                     && isModuleAvailable(MODULE_MESSAGES),
                 'buddy'   => $USER['settings_bud'] == 1
                     && isModuleAvailable(MODULE_BUDDYLIST) && $this->galaxyRow['buddy'] == 0,
                 'missle'  => $USER['settings_mis'] == 1
-                    && $this->galaxyData[$this->galaxyRow['planet']]['missions'][10],
+                    && $this->galaxyData[$this->galaxyRow['planet']]['missions'][MISSION_MISSILE],
             ];
         }
     }

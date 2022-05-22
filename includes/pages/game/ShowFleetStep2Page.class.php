@@ -110,7 +110,7 @@ class ShowFleetStep2Page extends AbstractGamePage
         $_SESSION['fleet'][$token]['ownPlanet']     = $PLANET['id'];
 
         if (!empty($fleet_group)) {
-            $targetMission  = 2;
+            $targetMission  = MISSION_ACS;
         }
 
         $fleetData  = [

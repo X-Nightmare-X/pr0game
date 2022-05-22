@@ -51,7 +51,7 @@ $LNG['admin_access_1'] = 'Sie haben temporären Zugriff auf administrative Funkt
 $LNG['admin_access_link'] = 'Deaktivieren Sie diesen Zugriff';
 $LNG['admin_access_2'] = ', wenn Sie ihn nicht länger benötigen.';
 $LNG['banned_message'] = 'Sie wurden gebannt. Wenn Sie glauben, dass es sich dabei um ein Missverständnis handelt,'
-    . ' schreiben Sie uns uns über Discord: <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>';
+    . ' schreiben Sie uns uns über Discord: <a href="https://discord.gg/jhYYN3yuat">https://discord.gg/jhYYN3yuat</a>';
 
 //----------------------------------------------------------------------------//
 //TOPNAV

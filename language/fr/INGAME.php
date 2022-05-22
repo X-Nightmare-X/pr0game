@@ -43,7 +43,7 @@ $LNG['admin_access_1'] = 'Les joueurs ont accès temporairement aux fonctions ad
 $LNG['admin_access_link'] = 'Désactiver cet accès';
 $LNG['admin_access_2'] = ', Si vous n\'en avez plus besion dans l\'immédiat';
 $LNG['banned_message'] = 'Vous avez été banni. Si vous pensez qu\'il s\'agit d\'un malentendu, écrivez-nous via'
-    . ' Discord: <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>';
+    . ' Discord: <a href="https://discord.gg/jhYYN3yuat">https://discord.gg/jhYYN3yuat</a>';
 
 //----------------------------------------------------------------------------//
 //TOPNAV

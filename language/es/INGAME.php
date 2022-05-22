@@ -53,7 +53,7 @@ $LNG['admin_access_1'] = 'Desde aquí cualquier persona tendría acceso temporal
 $LNG['admin_access_link'] = 'Pinche aquí para desactivar este acceso';
 $LNG['admin_access_2'] = ', Si Usted no lo necesita más.';
 $LNG['banned_message'] = 'Has sido expulsado. Si crees que se trata de un malentendido, escríbenos a través de Discord:'
-    . ' <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>';
+    . ' <a href="https://discord.gg/jhYYN3yuat">https://discord.gg/jhYYN3yuat</a>';
 
 //----------------------------------------------------------------------------//
 //TOPNAV
