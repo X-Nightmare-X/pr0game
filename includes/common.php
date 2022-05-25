@@ -142,6 +142,15 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
         ':userId'   => $session->userId
     ));
 
+    if ($USER['banaday'] <= TIMESTAMP) {
+        $sql = "UPDATE %%USERS%% SET bana = 0, banaday = 0 WHERE id = :userId";
+        $db->update($sql, [
+            ':userId'   => $session->userId,
+        ]);
+        $USER['bana'] = 0;
+        $USER['banaday'] = 0;
+    }
+
     if (!$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME') {
         $USER['lang'] = 'en';
         $USER['bana'] = 0;
