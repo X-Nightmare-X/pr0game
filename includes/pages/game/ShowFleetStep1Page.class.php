@@ -15,16 +15,16 @@
 
 class ShowFleetStep1Page extends AbstractGamePage
 {
-    public static $requireModule = MODULE_FLEET_TABLE;
+    public static int $requireModule = MODULE_FLEET_TABLE;
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function show()
+    public function show():void
     {
-        global $USER, $PLANET, $pricelist, $reslist, $LNG;
+        global $USER, $PLANET, $pricelist, $reslist, $LNG, $resource;
 
         $targetGalaxy = HTTP::_GP('galaxy', (int) $PLANET['galaxy']);
         $targetSystem = HTTP::_GP('system', (int) $PLANET['system']);
@@ -106,10 +106,19 @@ class ShowFleetStep1Page extends AbstractGamePage
             'fleetdata'     => $FleetData,
         ]);
 
+        //check if all ships are available
+        foreach ($Fleet as $Ship => $Count) {
+            if ($Count > $PLANET[$resource[$Ship]]) {
+                $this->printMessage($LNG['fl_not_all_ship_avalible'], [[
+                    'label' => $LNG['sys_back'],
+                    'url'   => 'game.php?page=fleetTable',
+                ]]);
+            }
+        }
         $this->display('page.fleetStep1.default.tpl');
     }
 
-    public function saveShortcuts()
+    public function saveShortcuts():void
     {
         global $USER, $LNG;
 
@@ -238,7 +247,7 @@ class ShowFleetStep1Page extends AbstractGamePage
         return $ACSList;
     }
 
-    public function checkTarget()
+    public function checkTarget():void
     {
         global $PLANET, $LNG, $USER, $resource;
 

@@ -216,15 +216,13 @@ class FleetFunctions
 
         $haltSpeed = Config::get($USER['universe'])->halt_speed;
 
-        if (in_array(15, $Missions)) {
+        if (in_array(MISSION_EXPEDITION, $Missions)) {
             for ($i = 1; $i <= $USER[$resource[124]]; $i++) {
                 $stayBlock[$i] = round($i / $haltSpeed, 2);
             }
-        } elseif (in_array(11, $Missions)) {
-            $stayBlock = [1 => 1];
-        } elseif (in_array(5, $Missions)) {
+        } elseif (in_array(MISSION_HOLD, $Missions)) {
             $stayBlock = [1 => 1, 2 => 2, 4 => 4, 8 => 8, 12 => 12, 16 => 16, 32 => 32];
-        } elseif (in_array(16, $Missions)) {
+        } elseif (in_array(MISSION_TRADE, $Missions)) {
             $stayBlock = [1 => 1, 2 => 2, 4 => 4, 8 => 8, 12 => 12, 24 => 24, 48 => 48,48 => 48, 168 => 168];
             $exchange = true;
         }
@@ -359,13 +357,13 @@ class FleetFunctions
             $fleetResult['fleet_mess'] = 0;
         }
 
-        if ($fleetResult['fleet_owner'] != $USER['id'] || $fleetResult['fleet_mess'] == 1) {
+        if ($fleetResult['fleet_owner'] != $USER['id'] || $fleetResult['fleet_mess'] == FLEET_RETURN) {
             return false;
         }
 
         $sqlWhere = 'fleet_id';
 
-        if ($fleetResult['fleet_mission'] == 1 && $fleetResult['fleet_group'] != 0) {
+        if ($fleetResult['fleet_mission'] == MISSION_ATTACK && $fleetResult['fleet_group'] != 0) {
             $sql = 'SELECT COUNT(*) as state FROM %%USERS_ACS%% WHERE acsID = :acsId;';
             $isInGroup = $db->selectSingle($sql, array(
                 ':acsId'    => $fleetResult['fleet_group'],
@@ -387,7 +385,7 @@ class FleetFunctions
         }
 
         if (
-            ($fleetResult['fleet_mission'] == 5 || $fleetResult['fleet_mission'] == 16)
+            ($fleetResult['fleet_mission'] == MISSION_HOLD || $fleetResult['fleet_mission'] == MISSION_TRADE)
             && $fleetResult['fleet_mess'] == FLEET_HOLD
         ) {
             $fleetEndTime = ($fleetResult['fleet_start_time'] - $fleetResult['start_time']) + TIMESTAMP;
@@ -417,7 +415,8 @@ class FleetFunctions
 		fleet_end_stay	= :endStayTime,
 		fleet_end_time	= :endTime,
 		fleet_mess		= :fleetState,
-		fleet_state		= 2
+		fleet_state		= 2,
+		hasCanceled		= :hasCanceled
 		WHERE ' . $sqlWhere . ' = :id;';
 
         $db->update($sql, [
@@ -425,6 +424,7 @@ class FleetFunctions
             ':endStayTime'  => TIMESTAMP,
             ':endTime'      => $fleetEndTime,
             ':fleetState'   => FLEET_RETURN,
+            ':hasCanceled'  => 1
         ]);
 
         return true;
@@ -471,19 +471,19 @@ class FleetFunctions
             $MissionInfo['planet'] == (Config::get($USER['universe'])->max_planets + 1)
             && isModuleAvailable(MODULE_MISSION_EXPEDITION)
         ) {
-            $availableMissions[] = 15;
+            $availableMissions[] = MISSION_EXPEDITION;
         } elseif (
             $MissionInfo['planet'] == (Config::get($USER['universe'])->max_planets + 2)
             && isModuleAvailable(MODULE_MISSION_TRADE)
         ) {
-            $availableMissions[] = 16;
+            $availableMissions[] = MISSION_TRADE;
         } elseif ($MissionInfo['planettype'] == 2) {
             if (
                 (isset($MissionInfo['Ship'][209]) || isset($MissionInfo['Ship'][219]))
                 && isModuleAvailable(MODULE_MISSION_RECYCLE) && !($GetInfoPlanet['der_metal'] == 0
                 && $GetInfoPlanet['der_crystal'] == 0)
             ) {
-                $availableMissions[] = 8;
+                $availableMissions[] = MISSION_RECYCLING;
             }
         } else {
             if (!$UsedPlanet) {
@@ -491,48 +491,48 @@ class FleetFunctions
                     isset($MissionInfo['Ship'][208]) && $MissionInfo['planettype'] == 1
                     && isModuleAvailable(MODULE_MISSION_COLONY)
                 ) {
-                    $availableMissions[] = 7;
+                    $availableMissions[] = MISSION_COLONISATION;
                 }
             } else {
                 if (isModuleAvailable(MODULE_MISSION_TRANSPORT)) {
                     $MissionInfo['planet'];
-                    $availableMissions[] = 3;
+                    $availableMissions[] = MISSION_TRANSPORT;
                 }
 
                 if (
                     !$YourPlanet && self::onlyShipByID($MissionInfo['Ship'], 210)
                     && isModuleAvailable(MODULE_MISSION_SPY)
                 ) {
-                    $availableMissions[] = 6;
+                    $availableMissions[] = MISSION_SPY;
                 }
 
                 if (!$YourPlanet) {
                     if (isModuleAvailable(MODULE_MISSION_TRANSFER)) {
-                        $availableMissions[] = 17;
+                        $availableMissions[] = MISSION_TRANSFER;
                     }
 
                     if (isModuleAvailable(MODULE_MISSION_ATTACK)) {
-                        $availableMissions[] = 1;
+                        $availableMissions[] = MISSION_ATTACK;
                     }
                     if (isModuleAvailable(MODULE_MISSION_HOLD)) {
-                        $availableMissions[] = 5;
+                        $availableMissions[] = MISSION_HOLD;
                     }
                 } elseif (isModuleAvailable(MODULE_MISSION_STATION)) {
-                    $availableMissions[] = 4;
+                    $availableMissions[] = MISSION_STATION;
                 }
 
                 if (
                     !empty($MissionInfo['IsAKS']) && !$YourPlanet && isModuleAvailable(MODULE_MISSION_ATTACK)
                     && isModuleAvailable(MODULE_MISSION_ACS)
                 ) {
-                    $availableMissions[] = 2;
+                    $availableMissions[] = MISSION_ACS;
                 }
 
                 if (
                     !$YourPlanet && $MissionInfo['planettype'] == 3 && isset($MissionInfo['Ship'][214])
                     && isModuleAvailable(MODULE_MISSION_DESTROY)
                 ) {
-                    $availableMissions[] = 9;
+                    $availableMissions[] = MISSION_DESTRUCTION;
                 }
             }
         }
@@ -544,20 +544,37 @@ class FleetFunctions
     {
         global $USER;
 
+        if (!BASH_ON) {
+            return false;
+        }
 
         $PlanetOwner = Database::get()->selectSingle('SELECT id_owner FROM %%PLANETS%% where id = :id', [
             ':id'       => $Target,
         ], 'id_owner');
 
-        $Inactivity = Database::get()->selectSingle('SELECT onlinetime FROM %%USERS%% where id = :id', [
+        $targetAllianceId = Database::get()->selectSingle('SELECT ally_id FROM %%USERS%% where id = :id', [
+            ':id'       => $PlanetOwner,
+        ], 'ally_id');
+
+        $targetOnlineTime = Database::get()->selectSingle('SELECT onlinetime FROM %%USERS%% where id = :id', [
             ':id'       => $PlanetOwner,
         ], 'onlinetime');
 
-        if ($Inactivity < TIMESTAMP - INACTIVE) {
+        if ($targetOnlineTime < TIMESTAMP - INACTIVE) {
             return false;
         }
 
-        if (!BASH_ON) {
+        $sql = 'SELECT accept, request_time from %%DIPLO%%
+        where (owner_1 = :allyA and owner_2 = :allyD)
+        or (owner_1 = :allyD and owner_2 = :allyA)
+        and level = 5';
+
+        $War = Database::get()->selectSingle($sql, [
+            ':allyA'    => $USER['ally_id'],
+            ':allyD'    => $targetAllianceId
+        ]);
+
+        if (!empty($War) && ($War['accept'] == 1 || $War['request_time'] < TIMESTAMP - 86400)) {
             return false;
         }
 
@@ -567,16 +584,41 @@ class FleetFunctions
 		AND fleet_end_id = :fleetEndId
 		AND fleet_state != :fleetState
 		AND fleet_start_time > :fleetStartTime
-		AND fleet_mission IN (1,2,9);';
+		AND fleet_mission IN (:att,:aks,:dest)
+        AND fleet_group = 0
+        AND hasCanceled = 0;';
 
         $Count = Database::get()->selectSingle($sql, [
             ':fleetOwner'       => $USER['id'],
             ':fleetEndId'       => $Target,
-            ':fleetState'       => 2,
+            ':fleetState'       => FLEET_HOLD,
             ':fleetStartTime'   => (TIMESTAMP - BASH_TIME),
+            ':att'              => MISSION_ATTACK,
+            ':aks'              => MISSION_ACS,
+            ':dest'             => MISSION_DESTRUCTION,
         ]);
 
-        return $Count['state'] >= BASH_COUNT;
+        $sql = 'SELECT COUNT(DISTINCT fleet_group) as state
+		FROM %%LOG_FLEETS%%
+		WHERE fleet_owner = :fleetOwner
+		AND fleet_end_id = :fleetEndId
+		AND fleet_state != :fleetState
+		AND fleet_start_time > :fleetStartTime
+		AND fleet_mission IN (:att,:aks,:dest)
+        AND fleet_group != 0
+        AND hasCanceled = 0;';
+
+        $Count2 = Database::get()->selectSingle($sql, [
+            ':fleetOwner'       => $USER['id'],
+            ':fleetEndId'       => $Target,
+            ':fleetState'       => FLEET_HOLD,
+            ':fleetStartTime'   => (TIMESTAMP - BASH_TIME),
+            ':att'              => MISSION_ATTACK,
+            ':aks'              => MISSION_ACS,
+            ':dest'             => MISSION_DESTRUCTION,
+        ]);
+
+        return ($Count['state'] + $Count2['state']) >= BASH_COUNT;
     }
 
     public static function sendFleet(

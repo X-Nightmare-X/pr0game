@@ -25,8 +25,7 @@ $LNG['sys_units'] = 'Units verloren';
 $LNG['debree_field_1'] = 'Auf diesen Raumkoordinaten liegen nun';
 $LNG['debree_field_2'] = '.';
 $LNG['sys_moonproba'] = 'Die Chance einer Mondentstehung beträgt:';
-$LNG['sys_moonbuilt'] = 'Die enormen Mengen an freiem Metall und Kristall ziehen sich an und formen einen Trabanten um'
-    . ' den Planeten %s [%d:%d:%d] !';
+$LNG['sys_moonbuilt'] = 'Die enormen Mengen an freiem Metall und Kristall ziehen sich an und formen einen Trabanten um den Planeten !';
 $LNG['sys_attack_title'] = 'Folgende Flotten stehen sich gegenüber am';
 $LNG['sys_attack_round'] = 'Runde';
 $LNG['sys_attack_attacker_pos'] = 'Angreifer';

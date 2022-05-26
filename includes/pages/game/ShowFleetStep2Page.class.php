@@ -26,7 +26,7 @@ class ShowFleetStep2Page extends AbstractGamePage
 
     public function show()
     {
-        global $USER, $PLANET, $LNG;
+        global $USER, $PLANET, $LNG, $resource;
 
         $this->tplObj->loadscript('flotten.js');
 
@@ -110,7 +110,7 @@ class ShowFleetStep2Page extends AbstractGamePage
         $_SESSION['fleet'][$token]['ownPlanet']     = $PLANET['id'];
 
         if (!empty($fleet_group)) {
-            $targetMission  = 2;
+            $targetMission  = MISSION_ACS;
         }
 
         $fleetData  = [
@@ -133,6 +133,15 @@ class ShowFleetStep2Page extends AbstractGamePage
             'fl_continue'       => $LNG['fl_continue'],
             'token'             => $token,
         ]);
+
+        foreach ($fleetArray as $Ship => $Count) {
+            if ($Count > $PLANET[$resource[$Ship]]) {
+                $this->printMessage($LNG['fl_not_all_ship_avalible'], [[
+                    'label' => $LNG['sys_back'],
+                    'url'   => 'game.php?page=fleetTable',
+                ]]);
+            }
+        }
 
         $this->display('page.fleetStep2.default.tpl');
     }

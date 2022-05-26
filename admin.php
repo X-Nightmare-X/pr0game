@@ -166,6 +166,10 @@ switch($page)
 		include_once('includes/pages/adm/ShowMultiIPPage.php');
 		ShowMultiIPPage();
 	break;
+	case 'comments':
+		include_once('includes/pages/adm/ShowCommentsPage.php');
+		ShowCommentsPage();
+	break;
 	case 'log':
 		include_once('includes/pages/adm/ShowLogPage.php');
 		ShowLog();

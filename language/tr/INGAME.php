@@ -56,7 +56,7 @@ $LNG['admin_access_1'] = 'Oyuncu gecici olarak admin yetkisine sahip!';
 $LNG['admin_access_link'] = 'Yetkiyi sonlandir';
 $LNG['admin_access_2'] = ', eger ihtiyacin kalmadiysa';
 $LNG['banned_message'] = 'Engellendiniz. Bir yanlış anlaşılma olduğunu düşünüyorsanız Discord\'dan bize yazın:'
-    . ' <a href="https://discord.gg/g6UHwXE">https://discord.gg/g6UHwXE</a>';
+    . ' <a href="https://discord.gg/jhYYN3yuat">https://discord.gg/jhYYN3yuat</a>';
 
 //----------------------------------------------------------------------------//
 // Topnav

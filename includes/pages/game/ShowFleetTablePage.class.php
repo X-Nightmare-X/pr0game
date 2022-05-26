@@ -217,9 +217,12 @@ class ShowFleetTablePage extends AbstractGamePage
         $targetType = HTTP::_GP('planettype', (int) $PLANET['planet_type']);
         $targetMission = HTTP::_GP('target_mission', 0);
 
-        $sql = "SELECT * FROM %%FLEETS%% WHERE fleet_owner = :userID AND fleet_mission <> 10"
+        $sql = "SELECT * FROM %%FLEETS%% WHERE fleet_owner = :userID AND fleet_mission <> :missile"
             . " ORDER BY fleet_end_time ASC;";
-        $fleetResult = $db->select($sql, [':userID'   => $USER['id']]);
+        $fleetResult = $db->select($sql, [
+            ':userID'   => $USER['id'],
+            ':missile'  => MISSION_MISSILE
+        ]);
 
         $activeFleetSlots = $db->rowCount();
 
@@ -228,7 +231,7 @@ class ShowFleetTablePage extends AbstractGamePage
         foreach ($fleetResult as $fleetsRow) {
             $FleetList[$fleetsRow['fleet_id']] = FleetFunctions::unserialize($fleetsRow['fleet_array']);
 
-            if ($fleetsRow['fleet_mission'] == 4 && $fleetsRow['fleet_mess'] == FLEET_OUTWARD) {
+            if ($fleetsRow['fleet_mission'] == MISSION_STATION && $fleetsRow['fleet_mess'] == FLEET_OUTWARD) {
                 $returnTime = $fleetsRow['fleet_start_time'];
             } else {
                 $returnTime = $fleetsRow['fleet_end_time'];
@@ -238,7 +241,7 @@ class ShowFleetTablePage extends AbstractGamePage
                 'id'            => $fleetsRow['fleet_id'],
                 'mission'       => $fleetsRow['fleet_mission'],
                 'state'         => $fleetsRow['fleet_mess'],
-                'no_returnable'         => $fleetsRow['fleet_no_m_return'],
+                'no_returnable' => $fleetsRow['fleet_no_m_return'],
                 'startGalaxy'   => $fleetsRow['fleet_start_galaxy'],
                 'startSystem'   => $fleetsRow['fleet_start_system'],
                 'startPlanet'   => $fleetsRow['fleet_start_planet'],
@@ -246,7 +249,7 @@ class ShowFleetTablePage extends AbstractGamePage
                 'endGalaxy'     => $fleetsRow['fleet_end_galaxy'],
                 'endSystem'     => $fleetsRow['fleet_end_system'],
                 'endPlanet'     => $fleetsRow['fleet_end_planet'],
-                'metal'     => $fleetsRow['fleet_resource_metal'],
+                'metal'         => $fleetsRow['fleet_resource_metal'],
                 'crystal'       => $fleetsRow['fleet_resource_crystal'],
                 'deuterium'     => $fleetsRow['fleet_resource_deuterium'],
                 'endTime'       => _date($LNG['php_tdformat'], $fleetsRow['fleet_end_time'], $USER['timezone']),

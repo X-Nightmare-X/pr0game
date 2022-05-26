@@ -11,9 +11,9 @@
 		<tr style="height:20px;">
 			<td style="width:50%">{$LNG.fl_destiny}</td>
 			<td>
-				<input type="number" id="galaxy" name="galaxy" size="6" maxlength="4" onkeyup="updateVars()" value="{$galaxy}" style="max-width:30px">
-				<input type="number" id="system" name="system" size="6" maxlength="6" onkeyup="updateVars()" value="{$system}" style="max-width:60px">
-				<input type="number" id="planet" name="planet" size="6" maxlength="4" onkeyup="updateVars()" value="{$planet}" style="max-width:50px">
+				<input type="number" id="galaxy" name="galaxy"  maxlength="4" onkeyup="updateVars()" value="{$galaxy}" style="max-width:4em">
+				<input type="number" id="system" name="system" " maxlength="6" onkeyup="updateVars()" value="{$system}" style="max-width:6em">
+				<input type="number" id="planet" name="planet" " maxlength="4" onkeyup="updateVars()" value="{$planet}" style="max-width:4em">
 				<select id="type" name="type" onchange="updateVars()">
 					{html_options options=$typeSelect selected=$type}
 				</select>
@@ -88,7 +88,7 @@
 					<div class="shortcut-delete" title="{$LNG.fl_dlte_shortcut}">x</div>
 				</div>
 				<div class="shortcut-edit">
-					<input type="number" class="shortcut-input" name="shortcut[{$shortcutID}][galaxy]" value="{$shortcutRow.galaxy}" size="6" maxlength="4" style="max-width:30px">:<input type="number" class="shortcut-input" name="shortcut[{$shortcutID}][system]" value="{$shortcutRow.system}" size="6" maxlength="6"  style="max-width:60px">:<input type="number" class="shortcut-input" name="shortcut[{$shortcutID}][planet]" value="{$shortcutRow.planet}"  style="max-width:30px" size="5" maxlength="6">
+					<input type="number" class="shortcut-input" name="shortcut[{$shortcutID}][galaxy]" value="{$shortcutRow.galaxy}" maxlength="4" style="max-width:4em">:<input type="number" class="shortcut-input" name="shortcut[{$shortcutID}][system]" value="{$shortcutRow.system}" maxlength="6"  style="max-width:6em">:<input type="number" class="shortcut-input" name="shortcut[{$shortcutID}][planet]" value="{$shortcutRow.planet}"  style="max-width:4em" maxlength="6">
 					<select class="shortcut-input" name="shortcut[{$shortcutID}][type]">
 						{html_options selected=$shortcutRow.type options=$typeSelect}
 					</select>
@@ -116,7 +116,7 @@
 					<div class="shortcut-delete" title="{$LNG.fl_dlte_shortcut}">x</div>
 				</div>
 				<div class="shortcut-edit">
-					<input type="number" class="shortcut-input" name="shortcut[][galaxy]" value="" size="3"  style="max-width: 30px;" maxlength="2" placeholder="G" pattern="[0-9]*">:<input type="number" class="shortcut-input" name="shortcut[][system]" value="" size="3" maxlength="3" placeholder="S" pattern="[0-9]*" style="max-width: 70px;">:<input type="number" class="shortcut-input" name="shortcut[][planet]" value="" size="3" maxlength="2" placeholder="P" pattern="[0-9]*"  style="max-width: 50px;">
+					<input type="number" class="shortcut-input" name="shortcut[][galaxy]" value=""  style="max-width: 4em;" maxlength="2" placeholder="G">:<input type="number" class="shortcut-input" name="shortcut[][system]" value="" size="3" maxlength="3" placeholder="S" style="max-width: 6em;">:<input type="number" class="shortcut-input" name="shortcut[][planet]" value="" size="3" maxlength="2" placeholder="P" style="max-width: 4em;">
 					<select class="shortcut-input" name="shortcut[][type]">
 						{html_options options=$typeSelect}
 					</select>
