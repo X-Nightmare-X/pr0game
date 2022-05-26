@@ -9,13 +9,25 @@ html {
 	background-size: cover;
 }
 
-body {
-	/* background: rgba(13, 16, 20, 0.50); */
-	/* color: #E6EBFB; */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
-	font-size: 12px;
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	/* font-family: Whitney,Source Sans Pro,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; */
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+body {
+  /* background: rgba(13, 16, 20, 0.50); */
+  /* color: #E6EBFB; */
+
+  font-size: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  /* font-family: Whitney,Source Sans Pro,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; */
 }
 
 body,input,select,button,textarea,a,td,th,tr,table,a:visited{
