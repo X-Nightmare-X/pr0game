@@ -24,13 +24,31 @@ class ShowFleetStep3Page extends AbstractGamePage
         parent::__construct();
     }
 
+    private function getActivePlanet($db)
+    {
+    	$session    = Session::load();
+    	$session->selectActivePlanet();
+    	
+    	$sql    = "SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;";
+    	$PLANET = $db->selectSingle($sql, array(
+    			':planetId' => $session->planetId,
+    	));
+
+    	return $PLANET;
+    }
+    
     public function show()
     {
-        global $USER, $PLANET, $resource, $LNG;
+        global $USER, $resource, $LNG;
 
         if (IsVacationMode($USER)) {
             FleetFunctions::gotoFleetPage(0);
         }
+
+        $db = Database::get();
+        $db->startTransaction();
+		$PLANET = $this->getActivePlanet($db); // circumventing global $PLANET for database lock support
+		
 
         $targetMission = HTTP::_GP('mission', MISSION_TRANSPORT);
         $TransportMetal = max(0, round(HTTP::_GP('metal', 0.0)));
@@ -147,8 +165,6 @@ class ShowFleetStep3Page extends AbstractGamePage
         }
 
         $ACSTime = 0;
-
-        $db = Database::get();
 
         if (!empty($fleetGroup)) {
             $sql = "SELECT ankunft FROM %%USERS_ACS%% INNER JOIN %%AKS%% ON id = acsID
@@ -473,6 +489,8 @@ class ShowFleetStep3Page extends AbstractGamePage
                     ':visibility'               => $visibility
                 ]);
         }
+		
+        $db->commit();
 
         foreach ($fleetArray as $Ship => $Count) {
             $fleetList[$LNG['tech'][$Ship]] = $Count;
