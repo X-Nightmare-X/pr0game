@@ -452,7 +452,7 @@ class ShowFleetStep3Page extends AbstractGamePage
             $fleetEndTime,
             $fleetGroup,
             0, // missileTarget
-			($targetMission == MISSION_TRADE), // no return flag
+			($targetMission == MISSION_TRADE) ? 1 : 0, // no return flag
         );
 
 
