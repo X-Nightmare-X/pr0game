@@ -24,31 +24,29 @@ class ShowFleetStep3Page extends AbstractGamePage
         parent::__construct();
     }
 
-    private function getActivePlanet($db)
-    {
-    	$session    = Session::load();
-    	$session->selectActivePlanet();
-    	
+    private function getActivePlanet($db, $planetId)
+    {    	
     	$sql    = "SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;";
-    	$PLANET = $db->selectSingle($sql, array(
-    			':planetId' => $session->planetId,
+    	$planet = $db->selectSingle($sql, array(
+    			':planetId' => $planetId,
     	));
 
-    	return $PLANET;
+    	return $planet;
     }
     
     public function show()
     {
-        global $USER, $resource, $LNG;
+        global $USER, $PLANET, $resource, $LNG;
 
         if (IsVacationMode($USER)) {
             FleetFunctions::gotoFleetPage(0);
         }
-
+		
         $db = Database::get();
         $db->startTransaction();
-		$PLANET = $this->getActivePlanet($db); // circumventing global $PLANET for database lock support
-		
+        // reloading global $PLANET for database lock support.
+        // not pretty, but not using the global dupes resources
+        $pPlanet = $this->getActivePlanet($db, $PLANET['id']);
 
         $targetMission = HTTP::_GP('mission', MISSION_TRANSPORT);
         $TransportMetal = max(0, round(HTTP::_GP('metal', 0.0)));
@@ -489,7 +487,7 @@ class ShowFleetStep3Page extends AbstractGamePage
                     ':visibility'               => $visibility
                 ]);
         }
-		
+     	
         $db->commit();
 
         foreach ($fleetArray as $Ship => $Count) {
