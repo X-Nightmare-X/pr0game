@@ -27,7 +27,6 @@ class MissionCaseDestruction extends MissionFunctions implements Mission
         global $resource, $reslist;
 
         $db = Database::get();
-		$db->startTransaction();
 
         $fleetAttack = [];
         $fleetDefend = [];
@@ -610,7 +609,6 @@ HTML;
 
         $this->setState(FLEET_RETURN);
         $this->SaveFleet();
-        $db->commit();
     }
 
     public function EndStayEvent()

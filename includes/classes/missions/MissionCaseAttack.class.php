@@ -27,7 +27,6 @@ class MissionCaseAttack extends MissionFunctions implements Mission
         global $resource, $reslist;
 
         $db = Database::get();
-        $db->startTransaction();
         $config = Config::get($this->_fleet['fleet_universe']);
 
         $fleetAttack = [];
@@ -562,7 +561,6 @@ HTML;
 
         $this->setState(FLEET_RETURN);
         $this->SaveFleet();
-        $db->commit();
     }
 
     public function EndStayEvent()
