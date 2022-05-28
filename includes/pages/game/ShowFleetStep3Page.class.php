@@ -152,10 +152,12 @@ class ShowFleetStep3Page extends AbstractGamePage
 
         if (!empty($fleetGroup)) {
             $sql = "SELECT ankunft FROM %%USERS_ACS%% INNER JOIN %%AKS%% ON id = acsID
-			WHERE acsID = :acsID AND :maxFleets > (SELECT COUNT(*) FROM %%FLEETS%% WHERE fleet_group = :acsID);";
+			WHERE acsID = :acsID AND :maxFleets > (SELECT COUNT(*) FROM %%FLEETS%% WHERE fleet_group = :acsID)
+            AND :maxParticipants > (SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% WHERE fleet_group = acsID);";
             $ACSTime = $db->selectSingle($sql, [
                 ':acsID'        => $fleetGroup,
                 ':maxFleets'    => $config->max_fleets_per_acs,
+                ':maxParticipants' => Config::get()->max_participants_per_acs,
             ], 'ankunft');
 
             if (empty($ACSTime)) {
