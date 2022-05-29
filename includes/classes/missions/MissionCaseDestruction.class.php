@@ -79,7 +79,7 @@ HTML;
         //Minize HTML
         $messageHTML = str_replace(["\n", "\t", "\r"], "", $messageHTML);
 
-        $sql = "SELECT * FROM %%PLANETS%% WHERE id = :planetId;";
+        $sql = "SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;";
         $targetPlanet = $db->selectSingle($sql, [
             ':planetId' => $this->_fleet['fleet_end_id'],
         ]);
@@ -111,7 +111,7 @@ HTML;
                 ':acsId'    => $this->_fleet['fleet_group'],
             ]);
 
-            $sql = "SELECT * FROM %%FLEETS%% WHERE fleet_group = :acsId;";
+            $sql = "SELECT * FROM %%FLEETS%% WHERE fleet_group = :acsId FOR UPDATE;";
 
             $incomingFleetsResult = $db->select($sql, [
                 ':acsId'    => $this->_fleet['fleet_group'],
@@ -142,7 +142,7 @@ HTML;
 		WHERE fleet_mission		= :mission
 		AND fleet_end_id		= :fleetEndId
 		AND fleet_start_time    <= :timeStamp
-		AND fleet_end_stay      >= :timeStamp;";
+		AND fleet_end_stay      >= :timeStamp FOR UPDATE;";
 
         $targetFleetsResult = $db->select($sql, [
             ':mission'      => MISSION_HOLD,

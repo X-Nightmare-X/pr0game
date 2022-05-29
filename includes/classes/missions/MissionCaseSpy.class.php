@@ -73,7 +73,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             ':userId'   => $this->_fleet['fleet_target_owner']
         ]);
 
-        $sql = 'SELECT * FROM %%PLANETS%% WHERE id = :planetId;';
+        $sql = 'SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;';
         $targetPlanet = $db->selectSingle($sql, [
             ':planetId' => $this->_fleet['fleet_end_id'],
         ]);
@@ -97,7 +97,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 		WHERE fleet_end_id 		= :planetId
 		AND fleet_mission 		= :mission
 		AND fleet_start_time    <= :time
-		AND fleet_end_stay      >= :time;';
+		AND fleet_end_stay      >= :time FOR UPDATE;';
 
         $targetStayFleets = $db->select($sql, [
             ':planetId' => $this->_fleet['fleet_end_id'],

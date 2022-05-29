@@ -30,7 +30,7 @@ class ShowResearchPage extends AbstractGamePage
     {
         global $USER;
         $db = Database::get();
-        $sql    = "SELECT * FROM %%PLANETS%% WHERE id_owner = :owner AND destruyed = 0;";
+        $sql    = "SELECT * FROM %%PLANETS%% WHERE id_owner = :owner AND destruyed = 0 FOR UPDATE;";
         $planets    = $db->select($sql, [
             ':owner'    => $USER['id'],
         ]);
