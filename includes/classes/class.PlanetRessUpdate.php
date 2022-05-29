@@ -640,7 +640,7 @@ class ResourceUpdate
             $ListIDArray = $CurrentQueue[0];
             $isAnotherPlanet = $ListIDArray[4] != $this->PLANET['id'];
             if ($isAnotherPlanet) {
-                $sql = 'SELECT * FROM %%PLANETS%% WHERE id = :planetId;';
+                $sql = 'SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;';
                 $PLANET = Database::get()->selectSingle($sql, array(
                     ':planetId' => $ListIDArray[4],
                 ));

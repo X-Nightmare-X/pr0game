@@ -16,7 +16,6 @@
   {if isModuleAvailable($smarty.const.MODULE_RESEARCH)}
     <li><a href="game.php?page=research">{$LNG.lm_research}</a></li>
   {/if}
-
   {if isModuleAvailable($smarty.const.MODULE_GALAXY)}
     <li><a href="game.php?page=galaxy">{$LNG.lm_galaxy}</a></li>
   {/if}
@@ -36,7 +35,9 @@
   {if isModuleAvailable($smarty.const.MODULE_RESSOURCE_LIST)}
     <li><a href="game.php?page=resources">{$LNG.lm_resources}</a></li>
   {/if}
-
+    {if isModuleAvailable($smarty.const.MODULE_MISSION_TRADE)}
+	<li><a href="game.php?page=marketplace">{$LNG.lm_marketplace}</a></li>
+  {/if}
   <li class="menu-separator"></li>
   {if isModuleAvailable($smarty.const.MODULE_ALLIANCE)}
     <li><a href="game.php?page=alliance">{$LNG.lm_alliance}</a></li>

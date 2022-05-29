@@ -177,13 +177,13 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
 
             $session->selectActivePlanet();
 
-            $sql    = "SELECT * FROM %%PLANETS%% WHERE id = :planetId;";
+            $sql    = "SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;";
             $PLANET = $db->selectSingle($sql, array(
             ':planetId' => $session->planetId,
             ));
 
             if (empty($PLANET)) {
-                $sql    = "SELECT * FROM %%PLANETS%% WHERE id = :planetId;";
+                $sql    = "SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;";
                 $PLANET = $db->selectSingle($sql, array(
                     ':planetId' => $USER['id_planet'],
                 ));
