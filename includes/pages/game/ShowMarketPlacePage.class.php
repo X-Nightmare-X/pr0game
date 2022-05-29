@@ -452,10 +452,13 @@ class ShowMarketPlacePage extends AbstractGamePage
 				UNION
 				SELECT owner_1 as al,level, accept  FROM %%DIPLO%% WHERE owner_2 = :al) as packts
 			ON al = ally_id
-			WHERE fleet_mission = :trade AND fleet_mess = 2 ORDER BY fleet_end_time ASC;';
+			WHERE fleet_mission = :trade
+			AND fleet_owner != :buyerid
+			AND fleet_mess = 2 ORDER BY fleet_end_time ASC;';
         $fleetResult = $db->select($sql, [
             ':al'       => $USER['ally_id'],
             ':trade'    => MISSION_TRADE,
+			':buyerid' => $USER['id'],
         ]);
 
         $activeFleetSlots = $db->rowCount();
@@ -527,7 +530,6 @@ class ShowMarketPlacePage extends AbstractGamePage
             if ($buy['buyable'] && $fleetsRow['transaction_type'] == 1) {
                 $buy = $this->checkTechs($fleetsRow);
             }
-
 
             $total = $fleetsRow['fleet_resource_metal'] + $fleetsRow['fleet_resource_crystal']
                 + $fleetsRow['fleet_resource_deuterium'];
