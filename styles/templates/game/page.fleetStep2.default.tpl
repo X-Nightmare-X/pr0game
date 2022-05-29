@@ -22,6 +22,13 @@
 						</td>
 					</tr>
 					{/foreach}
+					{if $Exchange}
+					<tr style="height:50px;">
+						<td class="transparent left" style="color:red;">
+							{$LNG.market_info_no_return}
+						</td>
+					</tr>
+					{/if}
         		</table>
         	</td>
         	<td class="top">

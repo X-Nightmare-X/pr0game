@@ -336,7 +336,6 @@ function floatToString($number, $Pro = 0, $output = false)
 
 function isModuleAvailable($ID)
 {
-    if ($ID == MODULE_MISSION_TRADE) return false;
     if ($ID == MODULE_MISSION_TRANSFER) return false;
 
     global $USER;
@@ -345,7 +344,7 @@ function isModuleAvailable($ID)
         $modules[$ID] = 1;
     }
 
-    return $modules[$ID] == 1; // || (isset($USER['authlevel']) && $USER['authlevel'] > AUTH_USR);
+    return $modules[$ID] == 1;
 }
 
 function ClearCache()
