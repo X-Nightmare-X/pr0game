@@ -207,6 +207,15 @@ class Database
             return ($field === false || (empty($res))) ? $res : $res[$field];
         }
     }
+    
+    public function startTransaction()
+    { $this->query("START TRANSACTION;"); }
+    
+    public function commit()
+    { $this->query("COMMIT;"); }
+    
+    public function rollback()
+    { $this->query("ROLLBACK"); }
 
     /**
      * Lists column values of a table

@@ -80,7 +80,7 @@ class MissionFunctions
         $targetUser = Database::get()->selectSingle($sql, [
             ':userId'   => $userId
         ]);
-        $sql = "SELECT * FROM %%PLANETS%% WHERE id = :planetId;";
+        $sql = "SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;";
         $planet = Database::get()->selectSingle($sql, [
             ':planetId' => $planetId,
         ]);
