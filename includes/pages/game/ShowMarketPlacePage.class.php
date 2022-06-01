@@ -535,7 +535,6 @@ class ShowMarketPlacePage extends AbstractGamePage
 
             $FlyingFleetList[] = [
                 'id'                            => $fleetsRow['fleet_id'],
-                'username'                      => $fleetsRow['username'],
                 'type'                          => $fleetsRow['transaction_type'],
                 'fleet_resource_metal'          => $fleetsRow['fleet_resource_metal'],
                 'fleet_resource_crystal'        => $fleetsRow['fleet_resource_crystal'],

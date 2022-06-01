@@ -82,7 +82,6 @@
 		</tr>
 		<tr>
 			<th>ID</th>
-			<th>{$LNG['gl_player']}</th>
 			<th>{$LNG['tech'][901]}</th>
 			<th>{$LNG['tech'][902]}</th>
 			<th>{$LNG['tech'][903]}</th>
@@ -109,7 +108,6 @@
 		  {/if}
 	{if $FlyingFleetRow.possible_to_buy != true} trade-disallowed {/if}'>
 		<td>{$smarty.foreach.FlyingFleets.iteration}</td>
-		<td class="table_username">{$FlyingFleetRow.username}</td>
 		<td class="resource_metal">{$FlyingFleetRow.fleet_resource_metal|number}</td>
 		<td class="resource_crystal">{$FlyingFleetRow.fleet_resource_crystal|number}</td>
 		<td class="resource_deuterium">{$FlyingFleetRow.fleet_resource_deuterium|number}</td>
@@ -184,7 +182,6 @@
 	<thead>
 		<tr>
 			<th>ID</th>
-			<th>{$LNG['gl_player']}</th>
 			<th>{$LNG['market_fleet']}</th>
 			<th>{$LNG.market_p_end}</th>
 			<th  class="no-background no-border center">-></th>
@@ -207,7 +204,6 @@
 		  {/if}
 	{if $FlyingFleetRow.possible_to_buy != true} trade-disallowed {/if}'>
 		<td>{$smarty.foreach.FlyingFleets.iteration}</td>
-		<td class="table_username">{$FlyingFleetRow.username}</td>
 		<td>{$FlyingFleetRow.fleet}</td>
 		<td data-time="{$FlyingFleetRow.end}">{pretty_fly_time({$FlyingFleetRow.end})}</td>
 		<td class="no-background no-border">
