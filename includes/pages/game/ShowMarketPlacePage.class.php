@@ -458,7 +458,6 @@ class ShowMarketPlacePage extends AbstractGamePage
 				SELECT owner_1 as al,level, accept  FROM %%DIPLO%% WHERE owner_2 = :al) as packts
 			ON al = ally_id
 			WHERE fleet_mission = :trade
-			AND fleet_owner != :buyerid
 			AND fleet_mess = 2 ORDER BY fleet_end_time ASC;';
         $fleetResult = $db->select($sql, [
             ':al'       => $USER['ally_id'],
@@ -520,14 +519,25 @@ class ShowMarketPlacePage extends AbstractGamePage
                 $fleet_str .= $LNG['shortNames'][$name] . ' x' . $amount . "\n";
             }
 
-            //Level 5 - enemies
-            //Level 0 - 3 alliance
-            $buy = $this->checkDiplo(
-                $fleetsRow['filter_visibility'],
-                $fleetsRow['level'],
-                $fleetsRow['ally_id'],
-                $USER['ally_id']
-            );
+			$buyer = $USER['id'];
+			$seller = $fleetsRow['fleet_owner'];
+
+			if ($buyer == $seller) {
+				$buy = [
+					'buyable' => false,
+					'reason' => 'N/A', // todo $LNG['text'] - creative input needed
+				];
+			} else {
+				//Level 5 - enemies
+				//Level 0 - 3 alliance
+				$buy = $this->checkDiplo(
+				    $fleetsRow['filter_visibility'],
+				    $fleetsRow['level'],
+				    $fleetsRow['ally_id'],
+					$USER['ally_id']
+				);
+			}
+
             //Fleet market
             if ($buy['buyable'] && $fleetsRow['transaction_type'] == 1) {
                 $buy = $this->checkTechs($fleetsRow);
