@@ -225,12 +225,13 @@ class ShowMarketPlacePage extends AbstractGamePage
                 return $LNG['market_p_msg_wrong_resource_type'];
         }
 
-		$fleetArrayTMP = $this->calculateFleetSize($fleetResult[0], $shipType);
+		$fleetResult = $fleetResult[0]; // temp workaround
+		$fleetArray = array_filter($this->calculateFleetSize($fleetResult, $shipType));
+        $amount = $fleetResult['ex_resource_amount'];
 
-		if (!$fleetArrayTMP)
+		if (!$fleetArray)
 		{ return $LNG['market_p_msg_more_ships_is_needed']; }
 
-        $fleetArray = array_filter($fleetArrayTMP);
         $SpeedFactor = FleetFunctions::getGameSpeedFactor();
         $Distance = FleetFunctions::getTargetDistance(
             [$PLANET['galaxy'], $PLANET['system'], $PLANET['planet']],
@@ -239,6 +240,16 @@ class ShowMarketPlacePage extends AbstractGamePage
         $SpeedAllMin = FleetFunctions::getFleetMaxSpeed($fleetArray, $USER);
         $Duration = FleetFunctions::getMissionDuration(10, $SpeedAllMin, $Distance, $SpeedFactor, $USER);
         $consumption = FleetFunctions::getFleetConsumption($fleetArray, $Duration, $Distance, $USER, $SpeedFactor);
+
+		$isFleetTrade = ($fleetResult['transaction_type'] == 1);
+        if ($isFleetTrade)
+        {
+			$fleet = FleetFunctions::unserialize($fleetResult['fleet_array']);
+			$fleetSpeedAllMin = FleetFunctions::getFleetMaxSpeed($fleet, $USER);
+			$fleetDuration = FleetFunctions::getMissionDuration(10, $fleetSpeedAllMin, $Distance, $SpeedFactor, $USER);
+			$bonusConsumption = FleetFunctions::getFleetConsumption($fleet, $fleetDuration, $Distance, $USER, $SpeedFactor);
+			$consumption += $bonusConsumption;
+        }
 
         $fleetStartTime = $Duration + TIMESTAMP;
         $fleetStayTime = $fleetStartTime;
@@ -359,11 +370,11 @@ class ShowMarketPlacePage extends AbstractGamePage
 
         $LC = 0;
         $HC = 0;
-        if (array_key_exists(202, $fleetArrayTMP)) {
-            $LC = $fleetArrayTMP[202];
+        if (array_key_exists(202, $fleetArray)) {
+            $LC = $fleetArray[202];
         }
-        if (array_key_exists(203, $fleetArrayTMP)) {
-            $HC = $fleetArrayTMP[203];
+        if (array_key_exists(203, $fleetArray)) {
+            $HC = $fleetArray[203];
         }
 
         // To customer
