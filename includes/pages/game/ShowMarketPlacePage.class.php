@@ -119,9 +119,55 @@ class ShowMarketPlacePage extends AbstractGamePage
         return $trades;
     }
 
+	private function calculateFleetSize($fleetResult, $shipType)
+	{
+		global $pricelist, $PLANET, $resource; // sorry world.
+        $amount = $fleetResult['ex_resource_amount'];
+
+        $F1capacity = 0;
+        $F1type = 0;
+        if ($shipType == 1) {
+            // PRIO for LC
+            $F1capacity = $pricelist[202]['capacity'];
+            $F1type = 202;
+        } else {
+            // PRIO for HC
+            $F1capacity = $pricelist[203]['capacity'];
+            $F1type = 203;
+        }
+
+        $F1 = min($PLANET[$resource[$F1type]], ceil($amount / $F1capacity));
+
+            //taken
+        $amountTMP = $amount - $F1 * $F1capacity;
+        // If still fleet needed
+        $F2 = 0;
+        $F2capacity = 0;
+        $F2type = 0;
+        if ($amountTMP > 0) {
+            if ($shipType == 1) {
+                // We need HC
+                $F2capacity = $pricelist[203]['capacity'];
+                $F2type = 203;
+            } else {
+                // We need LC
+                $F2capacity = $pricelist[202]['capacity'];
+                $F2type = 202;
+            }
+            $F2 = min($PLANET[$resource[$F2type]], ceil($amountTMP / $F2capacity));
+            $amountTMP -= $F2 * $F2capacity;
+        }
+
+        if ($amountTMP > 0) {
+            return false;
+        }
+
+		return [$F1type => $F1, $F2type => $F2];
+	}
+
     private function doBuy()
     {
-        global $USER, $PLANET, $resource, $LNG, $pricelist;
+        global $USER, $PLANET, $resource, $LNG;
         $FleetID = HTTP::_GP('fleetID', 0);
         $shipType = HTTP::_GP('shipType', "");
         $db = Database::get();
@@ -179,52 +225,11 @@ class ShowMarketPlacePage extends AbstractGamePage
                 return $LNG['market_p_msg_wrong_resource_type'];
         }
 
-        //-------------FLEET SIZE CALCULATION---------------
-        $fleetResult = $fleetResult[0];
-        $amount = $fleetResult['ex_resource_amount'];
+		$fleetArrayTMP = $this->calculateFleetSize($fleetResult[0], $shipType);
 
-        $F1capacity = 0;
-        $F1type = 0;
-        if ($shipType == 1) {
-            // PRIO for LC
-            $F1capacity = $pricelist[202]['capacity'];
-            $F1type = 202;
-        } else {
-            // PRIO for HC
-            $F1capacity = $pricelist[203]['capacity'];
-            $F1type = 203;
-        }
+		if (!$fleetArrayTMP)
+		{ return $LNG['market_p_msg_more_ships_is_needed']; }
 
-        $F1 = min($PLANET[$resource[$F1type]], ceil($amount / $F1capacity));
-
-            //taken
-        $amountTMP = $amount - $F1 * $F1capacity;
-        // If still fleet needed
-        $F2 = 0;
-        $F2capacity = 0;
-        $F2type = 0;
-        if ($amountTMP > 0) {
-            if ($shipType == 1) {
-                // We need HC
-                $F2capacity = $pricelist[203]['capacity'];
-                $F2type = 203;
-            } else {
-                // We need LC
-                $F2capacity = $pricelist[202]['capacity'];
-                $F2type = 202;
-            }
-            $F2 = min($PLANET[$resource[$F2type]], ceil($amountTMP / $F2capacity));
-            $amountTMP -= $F2 * $F2capacity;
-        }
-        //------------------------------------------------------------------------
-
-        if ($amountTMP > 0) {
-            return $LNG['market_p_msg_more_ships_is_needed'];
-        }
-
-        $fleetArrayTMP = [];
-        $fleetArrayTMP = [$F1type => $F1, $F2type => $F2];
-        $fleetArray = $fleetArrayTMP;
         $fleetArray = array_filter($fleetArrayTMP);
         $SpeedFactor = FleetFunctions::getGameSpeedFactor();
         $Distance = FleetFunctions::getTargetDistance(
