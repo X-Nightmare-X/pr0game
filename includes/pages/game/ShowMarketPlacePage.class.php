@@ -89,7 +89,6 @@ class ShowMarketPlacePage extends AbstractGamePage
 			JOIN %%LOG_FLEETS%% seller ON seller.fleet_id = seller_fleet_id
 			JOIN %%LOG_FLEETS%% buyer ON buyer.fleet_id = buyer_fleet_id
 			WHERE transaction_type = 0 ORDER BY time DESC LIMIT 40;';
-        // TODO: LIMIT
         $trades = $db->select($sql, []);
         return $trades;
     }
@@ -107,7 +106,7 @@ class ShowMarketPlacePage extends AbstractGamePage
 			JOIN %%LOG_FLEETS%% seller ON seller.fleet_id = seller_fleet_id
 			JOIN %%LOG_FLEETS%% buyer ON buyer.fleet_id = buyer_fleet_id
 			WHERE transaction_type = 1 ORDER BY time DESC LIMIT 40;';
-        // TODO: LIMIT
+
         $trades = $db->select($sql, []);
         for ($i = 0; $i < count($trades); $i++) {
             $fleet =  FleetFunctions::unserialize($trades[$i]['fleet']);
@@ -122,7 +121,7 @@ class ShowMarketPlacePage extends AbstractGamePage
 
     private function doBuy()
     {
-        global $USER, $PLANET, $reslist, $resource, $LNG, $pricelist;
+        global $USER, $PLANET, $resource, $LNG, $pricelist;
         $FleetID = HTTP::_GP('fleetID', 0);
         $shipType = HTTP::_GP('shipType', "");
         $db = Database::get();
@@ -307,18 +306,10 @@ class ShowMarketPlacePage extends AbstractGamePage
         );
         $SpeedAllMin = FleetFunctions::getFleetMaxSpeed($fleetArray, $USER_2);
         $Duration = FleetFunctions::getMissionDuration(10, $SpeedAllMin, $Distance, $SpeedFactor, $USER_2);
-        // $consumption = FleetFunctions::GetFleetConsumption(
-        //     $fleetArray,
-        //     $Duration,
-        //     $Distance,
-        //     $fleetResult['fleet_owner'],
-        //     $SpeedFactor
-        // );
 
         $fleetStartTime = $Duration + TIMESTAMP;
         $fleetStayTime = $fleetStartTime;
         $fleetEndTime = $fleetStayTime + $Duration;
-
 
         $params = [
             ':fleetID' => $FleetID,
@@ -430,11 +421,9 @@ class ShowMarketPlacePage extends AbstractGamePage
 
     public function show()
     {
-        global $USER, $PLANET, $reslist, $resource, $LNG;
+        global $USER, $PLANET, $LNG;
 
-        $FleetID = HTTP::_GP('fleetID', 0);
         $GetAction = HTTP::_GP('action', "");
-        $shipType = HTTP::_GP('shipType', "");
 
         $message = "";
         $db = Database::get();
@@ -461,13 +450,10 @@ class ShowMarketPlacePage extends AbstractGamePage
 			':buyerid' => $USER['id'],
         ]);
 
-        $activeFleetSlots = $db->rowCount();
-
         $FlyingFleetList = [];
 
         foreach ($fleetResult as $fleetsRow) {
             $resourceN = " ";
-            //TODO TRANSLATION
             switch ($fleetsRow['ex_resource_type']) {
                 case 1:
                     $resourceN = $LNG['tech'][901];
@@ -531,8 +517,6 @@ class ShowMarketPlacePage extends AbstractGamePage
                 $buy = $this->checkTechs($fleetsRow);
             }
 
-            $total = $fleetsRow['fleet_resource_metal'] + $fleetsRow['fleet_resource_crystal']
-                + $fleetsRow['fleet_resource_deuterium'];
             $FlyingFleetList[] = [
                 'id'                            => $fleetsRow['fleet_id'],
                 'username'                      => $fleetsRow['username'],
@@ -552,11 +536,6 @@ class ShowMarketPlacePage extends AbstractGamePage
                 'from_duration'                 => $FROM_Duration,
                 'to_lc_duration'                => $TO_LC_DUR,
                 'to_hc_duration'                => $TO_HC_DUR,
-                // 'distance' => $FROM_Duration
-                // $Distance = FleetFunctions::GetTargetDistance(
-                //      [$PLANET['galaxy'], $PLANET['system'], $PLANET['planet']],
-                //      [$fleetsRow['fleet_end_galaxy'], $fleetsRow['fleet_end_system'], $fleetsRow['fleet_end_planet']]
-                // ),
             ];
         }
 
