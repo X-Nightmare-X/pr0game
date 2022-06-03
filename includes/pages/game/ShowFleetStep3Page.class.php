@@ -371,7 +371,7 @@ class ShowFleetStep3Page extends AbstractGamePage
         $SpeedFactor = FleetFunctions::getGameSpeedFactor();
         $duration = FleetFunctions::getMissionDuration($fleetSpeed, $fleetMaxSpeed, $distance, $SpeedFactor, $USER);
         $consumption = FleetFunctions::getFleetConsumption($fleetArray, $duration, $distance, $USER, $SpeedFactor);
-
+        
         if ($PLANET[$resource[903]] < $consumption) {
             $this->printMessage($LNG['fl_not_enough_deuterium'], [[
                 'label' => $LNG['sys_back'],
@@ -465,10 +465,8 @@ class ShowFleetStep3Page extends AbstractGamePage
             $fleetStayTime,
             $fleetEndTime,
             $fleetGroup,
-            0, // missileTarget
-			($targetMission == MISSION_TRADE) ? 1 : 0, // no return flag
+            0 // missileTarget
         );
-
 
         if ($targetMission == MISSION_TRADE) {
             $sql = 'INSERT INTO %%TRADES%% SET
