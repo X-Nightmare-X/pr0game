@@ -46,11 +46,12 @@ class FlyingFleetHandler
         require_once 'includes/classes/missions/Mission.interface.php';
 
         $db = Database::get();
+		$db->startTransaction();
 
         $sql = 'SELECT %%FLEETS%%.*
 		FROM %%FLEETS_EVENT%%
 		INNER JOIN %%FLEETS%% ON fleetID = fleet_id
-		WHERE `lock` = :token;';
+		WHERE `lock` = :token FOR UPDATE;';
 
         $fleetResult = $db->select($sql, array(
             ':token'    => $this->token
@@ -85,6 +86,8 @@ class FlyingFleetHandler
                     $missionObj->EndStayEvent();
                     break;
             }
+
+            $db->commit();
         }
     }
 }

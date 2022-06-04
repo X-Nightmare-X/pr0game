@@ -27,10 +27,10 @@ class ShowImperiumPage extends AbstractGamePage
 
 	function show()
 	{
-		global $USER, $PLANET, $resource, $reslist;
+		global $USER, $resource, $reslist;
 
         $db = Database::get();
-		
+		$db->startTransaction();
 		$order = $USER['planet_sort_order'] == 1 ? 'DESC' : 'ASC';
 		
 		$sql = "SELECT * FROM %%PLANETS%% WHERE id_owner = :userID AND destruyed = '0' ORDER BY ";
@@ -47,7 +47,8 @@ class ShowImperiumPage extends AbstractGamePage
 				$sql .= 'id '.$order;
 				break;
 		}
-
+		
+		$sql .= " FOR UPDATE";
         $PlanetsRAW = $db->select($sql, array(
             ':userID'   => $USER['id']
         ));
@@ -63,9 +64,11 @@ class ShowImperiumPage extends AbstractGamePage
 			$PLANETS[]	= $CPLANET;
 			unset($CPLANET);
 		}
+		
+		$db->commit();
 
         $planetList	= array();
-	$config		= Config::get($USER['universe']);
+		$config		= Config::get($USER['universe']);
 		foreach($PLANETS as $Planet)
 		{
 			$planetList['name'][$Planet['id']]					= $Planet['name'];

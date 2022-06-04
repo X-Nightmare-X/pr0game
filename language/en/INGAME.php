@@ -1037,6 +1037,7 @@ $LNG['market_p_buy'] = 'Buy';
 $LNG['market_ship_as_first'] = 'Ship type as first';
 $LNG['market_confirm_are_you_sure'] = 'Are you sure?';
 $LNG['market_info_header'] = 'Marketplace';
+$LNG['market_info_no_return'] = 'a marketplace offer cannot be cancelled!';
 $LNG['market_info_description'] = 'Left side - sale offers | Right side - buy amount<br><br>&bull; Bought offers cannot'
     . ' be canceled &bull;<br>&bull; Players are allowed to trade for any exchange rate (ratio) &bull;';
 $LNG['market_fleet'] = 'Fleet';
