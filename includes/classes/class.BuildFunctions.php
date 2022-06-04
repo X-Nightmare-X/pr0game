@@ -141,7 +141,8 @@ class BuildFunctions
         $Element,
         $elementPrice = null,
         $forDestroy = false,
-        $forLevel = null
+        $forLevel = null,
+        $maxQueueIndex = 0
     ) {
         global $resource, $reslist, $requeriments;
 
@@ -164,8 +165,32 @@ class BuildFunctions
         }
 
         if (in_array($Element, $reslist['build'])) {
-            $time = $elementCost / ($config->game_speed * (1 + $PLANET[$resource[14]]))
-                * pow(0.5, $PLANET[$resource[15]]);
+            $maxQueueIndex = max(0, $maxQueueIndex);
+            $robo = $PLANET[$resource[14]];
+            $nani = $PLANET[$resource[15]];
+            $CurrentQueue = unserialize($PLANET['b_building_id']);
+            if (count($CurrentQueue) != 0) {
+                foreach ($CurrentQueue as $index => $QueueSubArray) {
+                    if ($index >= $maxQueueIndex) {
+                        break;
+                    }
+                    if ($QueueSubArray[0] == 14) {
+                        if ($QueueSubArray[4] == 'build') {
+                            $robo++;
+                        } else {
+                            $robo--;
+                        }
+                    } elseif ($QueueSubArray[0] == 15) {
+                        if ($QueueSubArray[4] == 'build') {
+                            $nani++;
+                        } else {
+                            $nani--;
+                        }
+                    }
+                }
+            }
+            $time = $elementCost / ($config->game_speed * (1 + $robo))
+                * pow(0.5, $nani);
         } elseif (in_array($Element, $reslist['fleet'])) {
             $time = $elementCost / ($config->game_speed * (1 + $PLANET[$resource[21]]))
                 * pow(0.5, $PLANET[$resource[15]]);
