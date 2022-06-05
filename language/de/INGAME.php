@@ -873,7 +873,7 @@ $LNG['sh_loading'] = '(Lade ...)';
 //----------------------------------------------------------------------------//
 //OPTIONS
 $LNG['op_error'] = 'Fehler';
-$LNG['op_cant_activate_vacation_mode'] = 'Sie können im Urlaubsmodus keine Gebäude und Flotten Bauen.';
+$LNG['op_cant_activate_vacation_mode'] = 'Sie können nicht in den Urlaubsmodus während gebaut, geforscht oder die Flotte bewegt wird.';
 $LNG['op_password_changed'] = 'Passwort wurde geändert';
 $LNG['op_username_changed'] = 'Username geändert';
 $LNG['op_options_changed'] = 'Einstellungen gespeichert.';
@@ -1063,7 +1063,7 @@ $LNG['market_buyable_no_enemies'] = 'Keine Feinde';
 $LNG['market_info_no_return'] = 'Erstellte Marktplatzangebote können nicht storniert werden!';
 $LNG['market_info_description'] = 'Linke Seite - Martplatzangebot | Rechte Seite - Kaufbetrag<br><br>&bull; Angenommene'
     . ' Marktplatzangebote können nicht storniert werden. &bull;<br>&bull; Die Spieler können zu jedem Wechselkurs'
-    . ' (Verhältnis) handeln. &bull;';
+    . ' (Verhältnis) handeln. &bull;<br>&bull; Deut för gekaufte Flotte wird vom Käufer bezahlt.&bull;';
 $LNG['market_p_msg_not_found'] = 'Angebot nicht gefunden.';
 $LNG['market_p_msg_more_ships_is_needed'] = 'Es werden weitere Schiffe benötigt.';
 $LNG['market_p_msg_resources_error'] = 'Nicht genug Ressourcen vorhanden.';

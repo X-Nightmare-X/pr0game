@@ -471,9 +471,11 @@ $LNG['longDescription'] = [
     207 => 'Las naves de batalla son la espina dorsal de cualquier flota militar. Su pesado blindaje junto con un'
         . ' sistema de armamento impresionante y una velocidad de viaje relativamente alta hace que esta nave sea'
         . ' imprescindible para cualquier imperio.',
-    208 => 'El colonizador es una nave especialmente bien preparada para su prop&oacute;sito: permitir a un imperio'
-        . ' expandirse y poblar nuevos mundos. En una maniobra muy inteligente, la estructura de las naves se usa como'
-        . ' base para los primeros recursos que permiten crear las nuevas estructuras planetarias.',
+    208 => 'Esta nave bien blindada se utiliza para la conquista de nuevos planetas, algo esencial para un imperio emergente.'
+        . ' El barco se utiliza como proveedor de materias primas en la nueva colonia, desmont&aacute;ndolo de nuevo y'
+        . ' utilizando todo el material reciclable para el desarrollo del nuevo mundo. El n&uacute;mero de planetas'
+        . ' colonizables por imperio depende directamente de la investigaci&oacute;n astrof&iacute;sica. El primer nivel,'
+        . ' as&iacute; como cualquier otro segundo nivel, permite una mayor colonizaci&oacute;n.',
     209 => 'Los combates espaciales parecen estar aumentando constantemente y en una simple batalla, pueden destruirse'
         . ' miles de naves, con los consiguientes escombros que se perder&aacute;n para siempre. Las naves'
         . ' est&aacute;ndar de carga no tienen los medios para recolectar recursos &uacute;tiles, ni siquiera para'

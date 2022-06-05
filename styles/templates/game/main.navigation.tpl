@@ -36,7 +36,7 @@
     <li><a href="game.php?page=resources">{$LNG.lm_resources}</a></li>
   {/if}
     {if isModuleAvailable($smarty.const.MODULE_MISSION_TRADE)}
-	<li><a href="game.php?page=marketplace">{$LNG.lm_marketplace}</a></li>
+	<li><a href="game.php?page=marketPlace">{$LNG.lm_marketplace}</a></li>
   {/if}
   <li class="menu-separator"></li>
   {if isModuleAvailable($smarty.const.MODULE_ALLIANCE)}

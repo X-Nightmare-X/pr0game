@@ -470,7 +470,8 @@ $LNG['longDescription'] = array(
     208 => 'Dieses gut gepanzerte Schiff dient der Eroberung neuer Planeten, was für ein aufstrebendes Imperium'
         . ' unerlässlich ist. Das Schiff wird auf der neuen Kolonie als Rohstofflieferant genutzt, in dem es wieder'
         . ' auseinander gebaut wird und alles wiederverwertbare Material für die Erschliessung der neuen Welt genutzt'
-        . ' wird. Pro Imperium können inklusive Hauptplanet maximal 9 Planeten kolonisiert werden.',
+        . ' wird. Die Anzahl der kolonisierbaren Planeten je Imperium ist direkt abhängig von der Astrophysik-Forschung.'
+        . ' Die Erste, sowie jede weitere zweite Stufe ermöglichen eine weitere Besiedelung.',
     209 => 'Die Weltraumgefechte nahmen immer größere Ausmaße an. Tausende Schiffe wurden zerstört, aber die dadurch'
         . ' entstehenden Trümmerfelder schienen für immer verloren. Normale Transporter konnten sich nicht nahe genug'
         . ' an diese Felder heran bewegen, ohne durch kleinere Trümmer riesigen Schaden zu nehmen. Mit einer neuen'

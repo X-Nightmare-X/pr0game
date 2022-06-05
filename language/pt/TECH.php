@@ -398,8 +398,12 @@ $LNG['longDescription'] = [
     207 => 'As naves de batalha constituem a espinha dorsal de qualquer frota militar. Os sistemas de armas poderosos e'
         . ' a resistência inigualável da nave de batalha adicionados à alta velocidade e à capacidade de carga'
         . ' importante fazem desta nave um perigo constante, em qualquer situação e contra qualquer oponente.',
-    208 => 'Esta nave permite colonizar novos planetas, outros mundos, onde nenhum homem ainda se aventurou no'
-        . ' passado.',
+    208 => 'Este navio bem armado &eacute; utilizado para a conquista de novos planetas, o que &eacute; essencial para'
+        . ' um imp&eacute;rio emergente. O navio &eacute; utilizado como fornecedor de mat&eacute;rias-primas na nova'
+        . ' col&oacute;nia, desmontando-o novamente e utilizando todo o material recicl&aacute;vel para o desenvolvimento'
+        . ' do novo mundo. O n&uacute;mero de planetas coloniz&aacute;veis por imp&eacute;rio est&aacute; directamente'
+        . ' dependente da investiga&ccedil;&atilde;o astrof&iacute;sica. O primeiro n&iacute;vel, bem como cada segundo'
+        . ' n&iacute;vel, permite uma maior coloniza&ccedil;&atilde;o.',
     209 => 'Os combates no espaço parecem tornar-se cada vez mais impressionantes onde numa única batalha milhares de'
         . ' naves podem ser destruídas e os restos perdidos para sempre.',
     210 => 'As sondas de espionagem são drones com uma rapidez impressionante de propulsão utilizados para espiar os'
