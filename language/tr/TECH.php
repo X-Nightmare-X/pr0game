@@ -536,10 +536,11 @@ $LNG['longDescription'] = [
         . ' da roket yokedebilir.',
     207 => 'Bir filonun sirtini dayadigi gemiler.Guclu ve uzun menzilli silahlari, cok hizli olmasi ve de buyuk'
         . ' ambarlari ile bu gemi dusman icin cok buyuk bir sorundur.',
-    208 => 'Ayakta kalmak isteyen bir imparatorluk icin, zirhi cok guclu ve koloni olusturulmasini saglayan bu gemi cok'
-        . ' onemlidir. Yeni kurulan kolonide bu gemi hammadde tasiyicisi olarak kullanilir,ayni zamanda hammadde yine'
-        . ' bu geminin icinde kullanilabilir maddeye cevrilir.Yani dunyanin temellerinden biridir. Kesif tekniginin'
-        . ' etkiledigi extra koloni sayilari harictir. ',
+    208 => 'Bu iyi zırhlı gemi, gelişmekte olan bir imparatorluk i&ccedil;in gerekli olan yeni gezegenlerin fethi'
+        . ' i&ccedil;in kullanılır. Gemi, tekrar s&ouml;k&uuml;lerek ve t&uuml;m geri d&ouml;n&uuml;şt&uuml;r&uuml;lebilir'
+        . ' malzemeler yeni d&uuml;nyanın gelişimi i&ccedil;in kullanılarak yeni kolonide hammadde tedarik&ccedil;isi'
+        . ' olarak kullanılıyor. İmparatorluk başına kolonileştirilebilir gezegen sayısı doğrudan astrofizik araştırmalarına'
+        . ' bağlıdır. İlk seviyenin yanı sıra diğer t&uuml;m ikinci seviyeler daha fazla kolonizasyona izin verir.',
     209 => 'Uzay savaslarinin boyutu giderek buyuyordu. Binlerce gemi yokedildi, olusan enkaz alanlarina da artik'
         . ' kullanilamaz gozuyle bakildi.Normal nakliye gemileri icin bu enkazlara herhangi bir seye carpmadan yani'
         . ' hasar gormeden yaklasmak imkansizdi. Koruma Kalkani teknolojisindeki onemli bir yenilikten sonra bu sorun'
