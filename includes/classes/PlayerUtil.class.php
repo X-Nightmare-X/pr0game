@@ -574,6 +574,24 @@ class PlayerUtil
         return true;
     }
 
+    private static function getAstroTech($USER) {
+        
+        global $resource;
+        
+        $astroTech = $USER[$resource[124]];
+        
+        $CurrentQueue = unserialize($USER['b_tech_queue']);
+        if (count($CurrentQueue) > 0) {
+            foreach ($CurrentQueue as $ListIDArray) {
+                if ($ListIDArray[0] == 124 && $ListIDArray[3] <= TIMESTAMP) {
+                    $astroTech++;
+                }
+            }
+        }
+        
+        return $astroTech;
+    }
+
     public static function maxPlanetCount($USER)
     {
         global $resource;
@@ -591,7 +609,7 @@ class PlayerUtil
 
         // http://owiki.de/index.php/Astrophysik#.C3.9Cbersicht
         return (int) ceil(
-            $config->min_player_planets + min($planetPerTech, $USER[$resource[124]] * $config->planets_per_tech)
+            $config->min_player_planets + min($planetPerTech, PlayerUtil::getAstroTech($USER) * $config->planets_per_tech)
         );
     }
 
@@ -601,22 +619,23 @@ class PlayerUtil
 
         global $resource;
         $config = Config::get($USER['universe']);
+        $astroTech = PlayerUtil::getAstroTech($USER);
 
         switch ($position) {
             case 1:
             case ($config->max_planets):
-                return $USER[$resource[124]] >= 8;
+                return $astroTech >= 8;
             break;
             case 2:
             case ($config->max_planets - 1):
-                return $USER[$resource[124]] >= 6;
+                return $astroTech >= 6;
             break;
             case 3:
             case ($config->max_planets - 2):
-                return $USER[$resource[124]] >= 4;
+                return $astroTech >= 4;
             break;
             default:
-                return $USER[$resource[124]] >= 1;
+                return $astroTech >= 1;
             break;
         }
     }
