@@ -1039,7 +1039,7 @@ $LNG['market_confirm_are_you_sure'] = 'Are you sure?';
 $LNG['market_info_header'] = 'Marketplace';
 $LNG['market_info_no_return'] = 'a marketplace offer cannot be cancelled!';
 $LNG['market_info_description'] = 'Left side - sale offers | Right side - buy amount<br><br>&bull; Bought offers cannot'
-    . ' be canceled &bull;<br>&bull; Players are allowed to trade for any exchange rate (ratio) &bull;';
+    . ' be canceled &bull;<br>&bull; Players are allowed to trade for any exchange rate (ratio) &bull;<br>&bull; Fuel for bought fleet is on the buyer. &bull;';
 $LNG['market_fleet'] = 'Fleet';
 
 $LNG['market_p_msg_not_found'] = 'Offer not found.';
