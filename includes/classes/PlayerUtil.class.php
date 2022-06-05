@@ -581,7 +581,7 @@ class PlayerUtil
         $astroTech = $USER[$resource[124]];
         
         $CurrentQueue = unserialize($USER['b_tech_queue']);
-        if (count($CurrentQueue) > 0) {
+        if (!empty($CurrentQueue) && count($CurrentQueue) > 0) {
             foreach ($CurrentQueue as $ListIDArray) {
                 if ($ListIDArray[0] == 124 && $ListIDArray[3] <= TIMESTAMP) {
                     $astroTech++;
