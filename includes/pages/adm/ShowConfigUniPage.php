@@ -72,6 +72,7 @@ function ShowConfigUniPage()
             'moon_chance'           => $config->moon_chance,
             'factor_university'     => $config->factor_university,
             'max_fleets_per_acs'    => $config->max_fleets_per_acs,
+            'max_participants_per_acs' => $config->max_participants_per_acs,
             'vmode_min_time'        => $config->vmode_min_time,
             'gate_wait_time'        => $config->gate_wait_time,
             'metal_start'           => $config->metal_start,
@@ -135,6 +136,7 @@ function ShowConfigUniPage()
         $moon_chance            = HTTP::_GP('moon_chance', 0);
         $factor_university      = HTTP::_GP('factor_university', 0);
         $max_fleets_per_acs     = HTTP::_GP('max_fleets_per_acs', 0);
+        $max_participants_per_acs = HTTP::_GP('max_participants_per_acs', 0);
         $vmode_min_time         = HTTP::_GP('vmode_min_time', 0);
         $gate_wait_time         = HTTP::_GP('gate_wait_time', 0);
         $metal_start            = HTTP::_GP('metal_start', 0);
@@ -193,6 +195,7 @@ function ShowConfigUniPage()
             'moon_chance'           => $moon_chance,
             'factor_university'     => $factor_university,
             'max_fleets_per_acs'    => $max_fleets_per_acs,
+            'max_participants_per_acs' => $max_participants_per_acs,
             'vmode_min_time'        => $vmode_min_time,
             'gate_wait_time'        => $gate_wait_time,
             'metal_start'           => $metal_start,
@@ -336,6 +339,8 @@ function ShowConfigUniPage()
         'se_factor_university_info'     => $LNG['se_factor_university_info'],
         'se_max_fleets_per_acs'         => $LNG['se_max_fleets_per_acs'],
         'se_max_fleets_per_acs_info'    => $LNG['se_max_fleets_per_acs_info'],
+        'se_max_participants_per_acs'   => $LNG['se_max_participants_per_acs'],
+        'se_max_participants_per_acs_info' => $LNG['se_max_participants_per_acs_info'],
         'se_vmode_min_time'             => $LNG['se_vmode_min_time'],
         'se_vmode_min_time_info'        => $LNG['se_vmode_min_time_info'],
         'se_gate_wait_time'             => $LNG['se_gate_wait_time'],
@@ -432,6 +437,7 @@ function ShowConfigUniPage()
         'moon_chance'                   => $config->moon_chance,
         'factor_university'             => $config->factor_university,
         'max_fleets_per_acs'            => $config->max_fleets_per_acs,
+        'max_participants_per_acs'      => $config->max_participants_per_acs,
         'vmode_min_time'                => $config->vmode_min_time,
         'gate_wait_time'                => $config->gate_wait_time,
         'metal_start'                   => $config->metal_start,

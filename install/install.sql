@@ -194,6 +194,7 @@ CREATE TABLE `%PREFIX%config` (
   `moon_chance` tinyint(3) unsigned NOT NULL DEFAULT '20',
   `factor_university` tinyint(3) unsigned NOT NULL DEFAULT '8',
   `max_fleets_per_acs` tinyint(3) unsigned NOT NULL DEFAULT '16',
+  `max_participants_per_acs` tinyint(3) unsigned NOT NULL DEFAULT '5',
   `debris_moon` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `vmode_min_time` int(11) NOT NULL DEFAULT '259200',
   `gate_wait_time` int(11) NOT NULL DEFAULT '3600',
