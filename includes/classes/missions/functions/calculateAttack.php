@@ -19,9 +19,9 @@ if ($battle_engine === 2) {
     } else {
         include("SteemNova_Array.php");
     }
-} else if ($battle_engine === 1) {
+} elseif ($battle_engine === 1) {
     include("SteemNova.php");
-} else if ($battle_engine === 999) {
+} elseif ($battle_engine === 999) {
     include("SteemNova_Array.php");
 } else {
     include("OPBE.php");
