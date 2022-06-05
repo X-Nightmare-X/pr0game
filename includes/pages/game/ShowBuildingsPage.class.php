@@ -72,7 +72,9 @@ class ShowBuildingsPage extends AbstractGamePage
                     $PLANET,
                     $ListIDArray[0],
                     $costResources,
-                    $ListIDArray[4] == 'destroy'
+                    $ListIDArray[4] == 'destroy',
+                    null,
+                    0
                 );
                 $ListIDArray[3] = $BuildEndTime;
                 $NewQueueArray[] = $ListIDArray;
@@ -128,7 +130,8 @@ class ShowBuildingsPage extends AbstractGamePage
                     $ListIDArray[0],
                     null,
                     $ListIDArray[4] == 'destroy',
-                    $ListIDArray[1]
+                    $ListIDArray[1],
+                    $ID
                 );
                 $ListIDArray[3]     = $BuildEndTime;
                 $NewQueueArray[]    = $ListIDArray;
@@ -239,7 +242,7 @@ class ShowBuildingsPage extends AbstractGamePage
                 return;
             }
 
-            $elementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $Element, null, !$AddMode, $BuildLevel);
+            $elementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $Element, null, !$AddMode, $BuildLevel, $ActualCount);
             $BuildEndTime = $CurrentQueue[$ActualCount - 1][3] + $elementTime;
             $CurrentQueue[] = [$Element, $BuildLevel, $elementTime, $BuildEndTime, $BuildMode];
             $PLANET['b_building_id'] = serialize($CurrentQueue);

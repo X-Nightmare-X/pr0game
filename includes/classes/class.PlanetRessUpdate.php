@@ -560,13 +560,14 @@ class ResourceUpdate
                 } else {
                     $BaseTime = $BuildEndTime - $BuildTime;
                     $NewQueue = array();
-                    foreach ($CurrentQueue as $ListIDArray) {
+                    foreach ($CurrentQueue as $ID => $ListIDArray) {
                         $ListIDArray[2] = BuildFunctions::getBuildingTime(
                             $this->USER,
                             $this->PLANET,
                             $ListIDArray[0],
                             null,
-                            $ListIDArray[4] == 'destroy'
+                            $ListIDArray[4] == 'destroy',
+                            $ID
                         );
                         $BaseTime += $ListIDArray[2];
                         $ListIDArray[3] = $BaseTime;
