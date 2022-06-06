@@ -440,7 +440,6 @@ class ShowMarketPlacePage extends AbstractGamePage
     /** automatic push prevention **/
     private function checkPush($fleetsRow, $buyer, $seller)
     {
-    	require_once 'includes/classes/class.MarketManager.php';
     	$pMarket = new MarketManager();
     	$offer = 0;
     	$fleetMarket = $fleetsRow['transaction_type'] == 1;
@@ -484,7 +483,8 @@ class ShowMarketPlacePage extends AbstractGamePage
 
     public function show()
     {
-        global $USER, $PLANET, $LNG;
+    	global $USER, $PLANET, $LNG;
+    	require_once 'includes/classes/class.MarketManager.php';
 
         $GetAction = HTTP::_GP('action', "");
 
@@ -612,11 +612,17 @@ class ShowMarketPlacePage extends AbstractGamePage
             ];
         }
 
+        $pMarket = new MarketManager();
+        $refrates = $pMarket->getReferenceRatios();
+
         $this->assign([
             'message' => $message,
             'FlyingFleetList'       => $FlyingFleetList,
             'resourceHistory' => $this->getResourceTradeHistory(),
-            'fleetHistory' => $this->getFleetTradeHistory(),
+			'fleetHistory' => $this->getFleetTradeHistory(),
+			'ratio_metal'					=> $refrates['metal'],
+			'ratio_crystal'					=> $refrates['crystal'],
+			'ratio_deuterium'				=> $refrates['deuterium'],
         ]);
         $this->tplObj->loadscript('marketplace.js');
         $this->display('page.marketPlace.default.tpl');

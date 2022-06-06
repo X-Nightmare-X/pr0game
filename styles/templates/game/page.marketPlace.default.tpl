@@ -40,7 +40,7 @@
 	<tr class="ratio">
 		<td>Reference ratio:</td>
 		<td>
-			<input type="number" name="ratio-metal" value="4" style="width: 30%"/>:<input type="number" name="ratio-cristal" value="2" style="width: 30%"/>:<input type="number"name="ratio-deuterium" value="1" style="width: 30%"/>
+			<input type="number" name="ratio-metal" value="{$ratio_metal}" style="width: 30%"/>:<input type="number" name="ratio-cristal" value="{$ratio_crystal}" style="width: 30%"/>:<input type="number"name="ratio-deuterium" value="{$ratio_deuterium}" style="width: 30%"/>
 		</td>
 	</tr>
 </table>

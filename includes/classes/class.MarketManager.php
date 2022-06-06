@@ -208,6 +208,19 @@ class MarketManager {
 		// special: calculating crys/deut from met/crys and met/deut.
 		// if this is NOT almost equal to crys/deut, there is significant market manipulation going on
 		$result['cd2'] = ($result['mc'] / $result['md']);
+
+		return $result;
+	}
+
+	public function getReferenceRatios()
+	{
+		$ratios = $this->getAllTradeRatios();
+
+		$result = [
+			'metal' => round($ratios['md'], 1),
+			'crystal' => round($ratios['cd'], 1),
+			'deuterium' => 1,
+		];
 		
 		return $result;
 	}
@@ -221,7 +234,7 @@ class MarketManager {
 		if (!array_key_exists('metal', $input)) $input['metal'] = 0;
 		if (!array_key_exists('crystal', $input)) $input['crystal'] = 0;
 		if (!array_key_exists('deuterium', $input)) $input['deuterium'] = 0;
-		
+
 		return (int) round($input['metal'] 
 			+ ($input['crystal'] * $this->getMetCrysRatio()) 
 			+ ($input['deuterium'] * $this->getMetDeutRatio())); 
