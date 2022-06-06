@@ -437,6 +437,50 @@ class ShowMarketPlacePage extends AbstractGamePage
         return sprintf($LNG['market_p_msg_sent'], $LC, $HC);
     }
 
+    /** automatic push prevention **/
+    private function checkPush($fleetsRow, $buyer, $seller)
+    {
+    	require_once 'includes/classes/class.MarketManager.php';
+    	$pMarket = new MarketManager();
+    	$offer = 0;
+    	$fleetMarket = $fleetsRow['transaction_type'] == 1;
+		$askType = '';
+
+    	switch ($fleetsRow['ex_resource_type'])
+    	{
+    		case 1:
+    			$askType = 'metal';
+    			break;
+    		case 2:
+    			$askType = 'crystal';
+    			break;
+    		case 3:
+    			$askType = 'deuterium';
+    			break;
+    		default:
+    			throw new Exception('unexpected resource');
+    	}
+
+    	$askArray = [
+    		$askType => $fleetsRow['ex_resource_amount'],
+    	];
+
+    	$ask = $pMarket->convertToMetal($askArray);
+    	if ($fleetMarket)
+    	{
+    		$fleet = FleetFunctions::unserialize($fleetsRow['fleet_array']);
+    		return $pMarket->isFleetPush($fleet, $ask, $seller, $buyer);
+    	} else {
+    		$offerArray = [
+    			'metal' => $fleetsRow['fleet_resource_metal'],
+    			'crystal' => $fleetsRow['fleet_resource_crystal'],
+    			'deuterium' => $fleetsRow['fleet_resource_deuterium'],
+    		];
+
+    		$offer = $pMarket->convertToMetal($offerArray);
+    		return $pMarket->isPush($offer, $ask, $seller, $buyer);
+    	}
+    }
 
     public function show()
     {
@@ -530,7 +574,13 @@ class ShowMarketPlacePage extends AbstractGamePage
 					'buyable' => false,
 					'reason' => 'N/A', // todo $LNG['text'] - creative input needed
 				];
-			} else {
+			} else if ($this->checkPush($fleetsRow, $buyer, $seller)) {
+				$buy = [
+					'buyable' => false,
+					'reason' => $LNG['market_buyable_no_tech'],
+				];
+			}
+			else {
 				//Level 5 - enemies
 				//Level 0 - 3 alliance
 				$buy = $this->checkDiplo(
@@ -540,11 +590,6 @@ class ShowMarketPlacePage extends AbstractGamePage
 					$USER['ally_id']
 				);
 			}
-
-            //Fleet market
-            if ($buy['buyable'] && $fleetsRow['transaction_type'] == 1) {
-                $buy = $this->checkTechs($fleetsRow);
-            }
 
             $FlyingFleetList[] = [
                 'id'                            => $fleetsRow['fleet_id'],

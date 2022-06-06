@@ -218,6 +218,10 @@ class MarketManager {
 	 */
 	public function convertToMetal($input)
 	{ 
+		if (!array_key_exists('metal', $input)) $input['metal'] = 0;
+		if (!array_key_exists('crystal', $input)) $input['crystal'] = 0;
+		if (!array_key_exists('deuterium', $input)) $input['deuterium'] = 0;
+		
 		return (int) round($input['metal'] 
 			+ ($input['crystal'] * $this->getMetCrysRatio()) 
 			+ ($input['deuterium'] * $this->getMetDeutRatio())); 
@@ -272,7 +276,7 @@ class MarketManager {
 		$db = Database::get();
 		$sql = "SELECT
 					u.username,
-					s.total_points,
+					s.total_points
 				FROM %%USERS%% u
 				LEFT JOIN %%STATPOINTS%% s ON s.id_owner = u.id AND s.stat_type = 1
 				WHERE u.id = :playerID AND u.universe = :universe;";
@@ -298,7 +302,7 @@ class MarketManager {
 		$sellerScore = $this->getScoreByPlayerId($sellerId);
 		$buyerScore = $this->getScoreByPlayerId($buyerId);
 
-		// special case: seller is weaker, but becomes stronger when receiving fleet
+		// special case: buyer is weaker, but becomes stronger when receiving fleet
 		$specialFleetPush = ($fleetScore != 0
 				&& ($sellerScore > $buyerScore) 
 				&& ($sellerScore - $fleetScore < $buyerScore + $fleetScore));
