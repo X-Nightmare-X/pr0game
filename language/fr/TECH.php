@@ -353,7 +353,12 @@ $LNG['longDescription'] = [
     . ' de feu. En outre, ils sont très rapides. ',
 207 => 'Les vaisseaux de combat forment l\'épine dorsale d\'une flotte. Leurs canons lourds, à haute vitesse, et leurs'
     . ' grandes cales en font des adversaires à prendre au sérieux.',
-208 => 'Les planètes inhoccupées peuvent être colonisées par ce vaisseau.',
+208 => 'Ce vaisseau bien blind&eacute; sert &agrave; conqu&eacute;rir de nouvelles plan&egrave;tes, ce qui est essentiel'
+    . ' pour un empire en plein essor. Sur la nouvelle colonie, le vaisseau est utilis&eacute; comme fournisseur de'
+    . ' mati&egrave;res premi&egrave;res : il est d&eacute;mont&eacute; et tous les mat&eacute;riaux recyclables sont'
+    . ' utilis&eacute;s pour l\'exploration du nouveau monde. Le nombre de plan&egrave;tes colonisables par empire'
+    . ' d&eacute;pend directement de la recherche en astrophysique. Le premier niveau, ainsi que chaque deuxi&egrave;me niveau'
+    . ' suppl&eacute;mentaire, permettent de poursuivre la colonisation.',
 209 => 'Le recycleur peut obtenir des matières premières à partir de champs de débris.',
 210 => 'Les sondes d\'espionnage sont de petits drones agiles, qui fournissent des données sur de longues distances sur'
     . ' les flottes et les planètes.',

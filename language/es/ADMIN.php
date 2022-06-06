@@ -441,6 +441,8 @@ $LNG['se_factor_university'] = 'Factor de Universidad ';
 $LNG['se_factor_university_info'] = 'Indica, en cuanto porcentaje reduce la universidad, el tiempo de investigación';
 $LNG['se_max_fleets_per_acs'] = 'Máx Flota / CAS';
 $LNG['se_max_fleets_per_acs_info'] = 'Cantidad Máxima de Flotas en un ataque combinado (CAS)';
+$LNG['se_max_participants_per_acs'] = 'Max. participants/ACS (attack on cooperation)';
+$LNG['se_max_participants_per_acs_info'] = 'Maximum number of participants in ACS (Default-5)';
 $LNG['se_vmode_min_time'] = 'Mín. Período Modo Vacaciones';
 $LNG['se_vmode_min_time_info'] = 'Especifica la duración minima que un usuario debe estar en modo vacaciones.'
     . ' (En Segundos)';

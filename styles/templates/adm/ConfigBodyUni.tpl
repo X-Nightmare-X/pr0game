@@ -209,6 +209,10 @@
 	<td><input name="max_fleets_per_acs" maxlength="3" size="3" value="{$max_fleets_per_acs}" type="text"></td>
 	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$se_max_fleets_per_acs_info}"></td>
 </tr><tr>
+	<td>{$se_max_participants_per_acs}</td>
+	<td><input name="max_participants_per_acs" maxlength="3" size="3" value="{$max_participants_per_acs}" type="text"></td>
+	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$se_max_participants_per_acs_info}"></td>
+</tr><tr>
 	<td>{$se_silo_factor}</td>
 	<td><input name="silo_factor" maxlength="2" size="2" value="{$silo_factor}" type="text"></td>
 	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$se_silo_factor_info}"></td>

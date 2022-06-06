@@ -66,10 +66,10 @@
 	<thead>
 		<tr class="no-background no-border center">
 			<td></th>
-			<th></th>
 			<th><img src="./styles/theme/nova/images/metal.gif"/></th>
 			<th><img src="./styles/theme/nova/images/crystal.gif"/></th>
 			<th><img src="./styles/theme/nova/images/deuterium.gif"/></th>
+			<th></th>
 			<th></th>
 			<th></th>
 			<th></th>

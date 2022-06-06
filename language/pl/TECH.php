@@ -373,9 +373,11 @@ $LNG['longDescription'] = [
     207 => 'Gdy okazało się, iż straty z ataków są niewspółmiernie wielkie do zysków, powstał on. Uzbrojony w'
         . ' wielorzędowe działa, mocno opancerzony i dysponujący dużą ładownością za sprawą zastosowania napędu'
         . ' nadprzestrzennego, stał sie trzonem nowoczesnej floty.',
-    208 => 'W XXI wieku, gdy ludzkość powoli szukała możliwości ekspansji, powstały one - statki kolonizacyjne. Mimo'
-        . ' tego, iż nie są najnowsze i niewiele sie w nich zmieniło, wciąż spełniają podstawową rolę, czyli służą'
-        . ' zasiedleniu niezamieszkanych planet.',
+    208 => 'Ten dobrze opancerzony statek służy do podbijania nowych planet, co jest niezbędne dla powstającego imperium.'
+        . ' Statek jest wykorzystywany jako dostawca surowc&oacute;w dla nowej kolonii, po ponownym rozebraniu go na części i'
+        . ' wykorzystaniu wszystkich materiał&oacute;w nadających się do recyklingu do budowy nowego świata. Liczba planet'
+        . ' nadających się do kolonizacji w imperium jest bezpośrednio zależna od badań astrofizycznych. Pierwszy poziom, a'
+        . ' także każdy kolejny drugi poziom, pozwalają na dalszą kolonizację.',
     209 => 'Okręt wyspecjalizowany w zbieraniu tego, co zostaje po kosmicznych bitwach, czyli metalu i krzystału z pól'
         . ' zniszczeń. Rozwój oficera ładowności okrętów zwiększa ich maksymalną ładowność do 2 Mln.',
     210 => 'To małe jednostki bezzałogowe, wyspecjalizowane w dostarczaniu danych o wrogich planetach. Pomimo tego, iż'

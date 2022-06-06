@@ -218,6 +218,7 @@ class ShowMarketPlacePage extends AbstractGamePage
         }
 
         //if not in range 1-3
+        $fleetNeeded = $this->calculateFleetSize($fleetResult[0], $shipType);
         if (
             $fleetResult[0]['ex_resource_type'] >= 4 ||
             $fleetResult[0]['ex_resource_type'] <= 0
@@ -225,12 +226,14 @@ class ShowMarketPlacePage extends AbstractGamePage
                 return $LNG['market_p_msg_wrong_resource_type'];
         }
 
-		$fleetResult = $fleetResult[0]; // temp workaround
-		$fleetArray = array_filter($this->calculateFleetSize($fleetResult, $shipType));
-        $amount = $fleetResult['ex_resource_amount'];
+        // not enough ships
+        if (!$fleetNeeded)
+        { return $LNG['market_p_msg_more_ships_is_needed']; }
 
-		if (!$fleetArray)
-		{ return $LNG['market_p_msg_more_ships_is_needed']; }
+		$fleetResult = $fleetResult[0]; // temp workaround
+
+		$fleetArray = array_filter($fleetNeeded);
+        $amount = $fleetResult['ex_resource_amount'];
 
         $SpeedFactor = FleetFunctions::getGameSpeedFactor();
         $Distance = FleetFunctions::getTargetDistance(

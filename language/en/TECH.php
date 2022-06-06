@@ -366,7 +366,10 @@ $LNG['longDescription'] = [
     . ' In addition, they are very fast.',
 207 => 'Battleships form the backbone of a fleet. Their heavy cannons, high speed, and large cargo holds make them'
     . ' opponents to be taken seriously.',
-208 => 'Vacant planets can be colonized with this ship.',
+208 => 'This well-armored ship is used to conquer new planets, which is essential for an emerging empire. The ship is'
+    . ' used on the new colony as a raw material supplier, in which it is disassembled again and all recyclable material'
+    . ' is used for the development of the new world. The number of colonizable planets per empire is directly dependent'
+    . ' on astrophysics research. The first, as well as every other second level, allow for further colonization.',
 209 => 'The recycler can get raw materials from debris fields.<br>Recycler upgrades to Impusle drive at level 17 and'
     . ' then to Hyperspace drive when it is at level 15 for increased speed',
 210 => 'Spy probes are small agile drones, which provide data over long distances on fleets and planets.',
