@@ -13,12 +13,15 @@ class MarketManager {
 	private $_restype_crystal = 2;
 	private $_restype_deuterium = 3;
 
-	private $_pushRatio = 0.5;
-
 	private $_mkVolume = [];
 	private $_mdVolume = [];
 	private $_cdVolume = [];
 
+	private $_pushTolerance = 0.3;
+
+	/**
+	 * the following 3 functions get a 7 day trade list of all trades on a single resource pair
+	 */
 	private function getMetSales($expectedrestype)
 	{
 		$db = Database::get();
@@ -85,6 +88,9 @@ class MarketManager {
 		return $trades;
 	}
 	
+	/**
+	 * next 3: calculate total trade volume for a given resource pair
+	 */
 	private function getTotalMetCrysVolume()
 	{
 		if ($this->_mkVolume != []) return $this->_mkVolume;
@@ -170,19 +176,22 @@ class MarketManager {
 		return $allTrades;
 	}
 	
-	public function getMetCrysRatio()
+	/**
+	 * aaand calculate the ratio based on that.
+	 */
+	private function getMetCrysRatio()
 	{
 		$trades = $this->getTotalMetCrysVolume();
 		return ($trades['metal'] / $trades['crystal']);
 	}
 
-	public function getMetDeutRatio()
+	private function getMetDeutRatio()
 	{
 		$trades = $this->getTotalMetDeutVolume();
 		return ($trades['metal'] / $trades['deuterium']);
 	}
 	
-	public function getCrysDeutRatio()
+	private function getCrysDeutRatio()
 	{
 		$trades = $this->getTotalCrysDeutVolume();
 		return ($trades['crystal'] / $trades['deuterium']);
@@ -195,9 +204,120 @@ class MarketManager {
 				'md' => $this->getMetdeutRatio(),
 				'cd' => $this->getCrysDeutRatio(),
 		];
-		
+
+		// special: calculating crys/deut from met/crys and met/deut.
+		// if this is NOT almost equal to crys/deut, there is significant market manipulation going on
 		$result['cd2'] = ($result['mc'] / $result['md']);
 		
 		return $result;
+	}
+
+	/**
+	 * @param array ['metal' => x, 'crystal' => y, 'deuterium' => z]
+	 * round AND int-cast because only int-cast just cuts off decimals
+	 */
+	public function convertToMetal($input)
+	{ 
+		return (int) round($input['metal'] 
+			+ ($input['crystal'] * $this->getMetCrysRatio()) 
+			+ ($input['deuterium'] * $this->getMetDeutRatio())); 
+	}
+	
+	public function convertToMetalNumeric($input)
+	{
+		$output = [
+			'metal' => $input[901],
+			'crystal' => $input[902],
+			'deuterium' => $input[903],
+		];
+		
+		return $this->convertToMetal($output);
+	}
+
+	/**
+	 * @param $fleetArray format:
+	 * [
+	 * 		202 => 5,// kt?
+	 * 		203 => 4, // gt?
+	 * ]
+	 * @return number | default: MSE. $useScore = true: score
+	 */
+	public function getFleetValue($fleetArray, $useScore = false)
+	{
+		global $pricelist;
+
+		$totalCostArray = [
+				901 => 0,
+				902 => 0,
+				903 => 0,
+		];
+
+		foreach ($fleetArray as $ship => $count)
+		{
+			$totalCostArray[901] += $pricelist[$ship]['cost'][901] * $count;
+			$totalCostArray[902] += $pricelist[$ship]['cost'][902] * $count;
+			$totalCostArray[903] += $pricelist[$ship]['cost'][903] * $count;
+		}
+		
+		if ($useScore) // return value in points, not metal
+		{ return ($totalCostArray[901] + $totalCostArray[902]); }
+
+		$overallCost = $this->convertToMetalNumeric($totalCostArray);
+		return $overallCost;
+	}
+	
+	/** todo: player class. find or create. **/
+	private function getScoreByPlayerId($playerid)
+	{
+		$db = Database::get();
+		$sql = "SELECT
+					u.username,
+					s.total_points,
+				FROM %%USERS%% u
+				LEFT JOIN %%STATPOINTS%% s ON s.id_owner = u.id AND s.stat_type = 1
+				WHERE u.id = :playerID AND u.universe = :universe;";
+		$query = $db->selectSingle($sql, array(
+				':universe'	=> Universe::current(),
+				':playerID'	=> $playerid,
+		));
+		
+		if(!$query) {
+			throw new Exception('the requested player does not exist');
+		}
+		
+		return $query['total_points'] ?: 0;
+	}
+	
+	/**
+	 * @param $offer & $ask: suggest metal standard units
+	 * @param fleetarray optional: check if fleet size is push-relevant
+	 * @return bool
+	 */
+	public function isPush(int $offer, int $ask, int $sellerId, int $buyerId, int $fleetScore = 0)
+	{
+		$sellerScore = $this->getScoreByPlayerId($sellerId);
+		$buyerScore = $this->getScoreByPlayerId($buyerId);
+
+		// special case: seller is weaker, but becomes stronger when receiving fleet
+		$specialFleetPush = ($fleetScore != 0
+				&& ($sellerScore > $buyerScore) 
+				&& ($sellerScore - $fleetScore < $buyerScore + $fleetScore));
+
+		$margin = $this->_pushTolerance * $offer;
+		$topMargin = $offer + $margin;
+		$bottomMargin = $offer - $margin;
+
+		// too expensive?
+		if ($sellerScore > $buyerScore || $specialFleetPush)
+		{ return ($ask > $topMargin); }
+		else // buyer >= seller - too cheap?
+		{ return ($ask < $bottomMargin); }
+	}
+
+	public function isFleetPush($fleetArray, int $ask, int $sellerId, int $buyerId)
+	{
+		$fleetScore = $this->getFleetValue($fleetArray, true);
+		$fleetValue = $this->getFleetValue($fleetArray);
+		return $this->isPush($fleetValue, $ask, $sellerId, $buyerId, $fleetScore);
 	}
 }
