@@ -17,7 +17,7 @@ class MarketManager {
 	private $_mdVolume = [];
 	private $_cdVolume = [];
 
-	private $_pushTolerance = 0.3;
+	private $_pushTolerance = 0.3; // accepted market volatility percentage, not triggering push check
 
 	/**
 	 * the following 3 functions get a 7 day trade list of all trades on a single resource pair
@@ -62,7 +62,7 @@ class MarketManager {
 			ORDER BY buy_time DESC;';
 		
 		$trades = $db->select($sql, [':exprestype' => $expectedrestype]);
-		
+
 		return $trades;
 	}
 	
@@ -84,7 +84,7 @@ class MarketManager {
 			ORDER BY buy_time DESC;';
 		
 		$trades = $db->select($sql, [':exprestype' => $expectedrestype]);
-		
+
 		return $trades;
 	}
 	
@@ -101,15 +101,15 @@ class MarketManager {
 		];
 
 		$kristrades = $this->getMetSales($this->_restype_crystal);
-		
+
 		foreach ($kristrades as $trade)
 		{
 			$allTrades['metal'] += $trade['metal'];
 			$allTrades['crystal'] += $trade['amount'];
 		}
-		
+
 		$mettrades = $this->getCrysSales($this->_restype_metal);
-		
+
 		foreach ($mettrades as $trade)
 		{
 			$allTrades['metal'] += $trade['amount'];
@@ -118,7 +118,7 @@ class MarketManager {
 
 		return $allTrades;
 	}
-	
+
 	private function getTotalMetDeutVolume()
 	{
 		if ($this->_mdVolume != []) return $this->_mdVolume;
@@ -127,23 +127,23 @@ class MarketManager {
 			'metal' => 0,
 			'deuterium' => 0,
 		];
-		
+
 		$deutrades = $this->getMetSales($this->_restype_deuterium);
-		
+
 		foreach ($deutrades as $trade)
 		{
 			$allTrades['metal'] += $trade['metal'];
 			$allTrades['deuterium'] += $trade['amount'];
 		}
-		
+
 		$mettrades = $this->getDeutSales($this->_restype_metal);
-		
+
 		foreach ($mettrades as $trade)
 		{
 			$allTrades['metal'] += $trade['amount'];
 			$allTrades['deuterium'] += $trade['deuterium'];
 		}
-		
+
 		$this->_mdVolume = $allTrades;
 		return $allTrades;
 	}
@@ -155,27 +155,27 @@ class MarketManager {
 				'crystal' => 0,
 				'deuterium' => 0,
 		];
-		
+
 		$deutrades = $this->getCrysSales($this->_restype_deuterium);
-		
+
 		foreach ($deutrades as $trade)
 		{
 			$allTrades['crystal'] += $trade['crystal'];
 			$allTrades['deuterium'] += $trade['amount'];
 		}
-		
+
 		$crystrades = $this->getDeutSales($this->_restype_crystal);
-		
+
 		foreach ($crystrades as $trade)
 		{
 			$allTrades['crystal'] += $trade['amount'];
 			$allTrades['deuterium'] += $trade['deuterium'];
 		}
-		
+
 		$this->_cdVolume = $allTrades;
 		return $allTrades;
 	}
-	
+
 	/**
 	 * aaand calculate the ratio based on that.
 	 */
@@ -190,7 +190,7 @@ class MarketManager {
 		$trades = $this->getTotalMetDeutVolume();
 		return ($trades['metal'] / $trades['deuterium']);
 	}
-	
+
 	private function getCrysDeutRatio()
 	{
 		$trades = $this->getTotalCrysDeutVolume();
@@ -221,7 +221,7 @@ class MarketManager {
 			'crystal' => round($ratios['cd'], 1),
 			'deuterium' => 1,
 		];
-		
+
 		return $result;
 	}
 
@@ -240,6 +240,7 @@ class MarketManager {
 			+ ($input['deuterium'] * $this->getMetDeutRatio())); 
 	}
 	
+	/** @param aray [901, 902, 903] mkd **/
 	public function convertToMetalNumeric($input)
 	{
 		$output = [
@@ -251,10 +252,33 @@ class MarketManager {
 		return $this->convertToMetal($output);
 	}
 
+	/** @param array [1, 2, 3] mkd - matching exp_res_type **/
+	public function convertExpResTypeToMetal($expResType, $expResAmount)
+	{
+		$result = [];
+
+		switch ($expResType)
+		{
+			case 1:
+				$result['metal'] = $expResAmount;
+				break;
+			case 2:
+				$result['crystal'] = $expResAmount;
+				break;
+			case 3:
+				$result['deuterium'] = $expResAmount;
+				break;
+			default:
+				throw new Exception('unexpected resource');
+		}
+
+		return $this->convertToMetal($result);
+	}
+
 	/**
 	 * @param $fleetArray format:
 	 * [
-	 * 		202 => 5,// kt?
+	 * 		202 => 5, // kt?
 	 * 		203 => 4, // gt?
 	 * ]
 	 * @return number | default: MSE. $useScore = true: score
