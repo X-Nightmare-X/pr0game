@@ -41,6 +41,15 @@ class MarketManager {
 
 		$trades = $db->select($sql, [':exprestype' => $expectedrestype]);
 
+		if ($trades == [])
+		{
+			$resAmount = ($expectedrestype == $this->_restype_metal) ? 4 : 1;
+			$trades []= [
+				'amount' => $resAmount,
+				'metal' => 4,
+			];
+		}
+
 		return $trades;
 	}
 	
@@ -60,8 +69,17 @@ class MarketManager {
 			AND filter_visibility != 1
 			AND ex_resource_type = :exprestype
 			ORDER BY buy_time DESC;';
-		
+
 		$trades = $db->select($sql, [':exprestype' => $expectedrestype]);
+
+		if ($trades == [])
+		{
+			$resAmount = ($expectedrestype == $this->_restype_metal) ? 4 : 1;
+			$trades []= [
+				'amount' => $resAmount,
+				'crystal' => 1,
+			];
+		}
 
 		return $trades;
 	}
@@ -82,9 +100,17 @@ class MarketManager {
 			AND filter_visibility != 1
 			AND ex_resource_type = :exprestype
 			ORDER BY buy_time DESC;';
-		
+
 		$trades = $db->select($sql, [':exprestype' => $expectedrestype]);
 
+		if ($trades == [])
+		{
+			$resAmount = ($expectedrestype == $this->_restype_metal) ? 4 : 1;
+			$trades []= [
+				'amount' => $resAmount,
+				'deuterium' => 1,
+			];
+		}
 		return $trades;
 	}
 	
@@ -152,8 +178,8 @@ class MarketManager {
 	{
 		if ($this->_cdVolume != []) return $this->_cdVolume;
 		$allTrades = [
-				'crystal' => 0,
-				'deuterium' => 0,
+			'crystal' => 0,
+			'deuterium' => 0,
 		];
 
 		$deutrades = $this->getCrysSales($this->_restype_deuterium);
@@ -200,9 +226,9 @@ class MarketManager {
 	public function getAllTradeRatios()
 	{
 		$result = [
-				'mc' => $this->getMetCrysRatio(),
-				'md' => $this->getMetdeutRatio(),
-				'cd' => $this->getCrysDeutRatio(),
+			'mc' => $this->getMetCrysRatio(),
+			'md' => $this->getMetdeutRatio(),
+			'cd' => $this->getCrysDeutRatio(),
 		];
 
 		// special: calculating crys/deut from met/crys and met/deut.
