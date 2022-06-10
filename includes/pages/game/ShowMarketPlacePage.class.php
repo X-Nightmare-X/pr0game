@@ -443,28 +443,8 @@ class ShowMarketPlacePage extends AbstractGamePage
     	$pMarket = new MarketManager();
     	$offer = 0;
     	$fleetMarket = $fleetsRow['transaction_type'] == 1;
-		$askType = '';
+		$ask = $pMarket->convertExpResTypeToMetal($fleetsRow['ex_resource_type'], $fleetsRow['ex_resource_amount']);
 
-    	switch ($fleetsRow['ex_resource_type'])
-    	{
-    		case 1:
-    			$askType = 'metal';
-    			break;
-    		case 2:
-    			$askType = 'crystal';
-    			break;
-    		case 3:
-    			$askType = 'deuterium';
-    			break;
-    		default:
-    			throw new Exception('unexpected resource');
-    	}
-
-    	$askArray = [
-    		$askType => $fleetsRow['ex_resource_amount'],
-    	];
-
-    	$ask = $pMarket->convertToMetal($askArray);
     	if ($fleetMarket)
     	{
     		$fleet = FleetFunctions::unserialize($fleetsRow['fleet_array']);
@@ -591,6 +571,12 @@ class ShowMarketPlacePage extends AbstractGamePage
 				);
 			}
 
+			$pMarket = new MarketManager();
+			$fleetValue = $pMarket->getFleetValue($FROM_fleet);
+			$ask = $pMarket->convertExpResTypeToMetal($fleetsRow['ex_resource_type'], $fleetsRow['ex_resource_amount']);
+
+			$fleetRatio = round(($fleetValue / $ask), 2);
+
             $FlyingFleetList[] = [
                 'id'                            => $fleetsRow['fleet_id'],
                 'type'                          => $fleetsRow['transaction_type'],
@@ -609,11 +595,12 @@ class ShowMarketPlacePage extends AbstractGamePage
                 'from_duration'                 => $FROM_Duration,
                 'to_lc_duration'                => $TO_LC_DUR,
                 'to_hc_duration'                => $TO_HC_DUR,
+				'fleet_ratio'					=> $fleetRatio,
             ];
         }
 
-        $pMarket = new MarketManager();
-        $refrates = $pMarket->getReferenceRatios();
+		$pMarket = new MarketManager();
+		$refrates = $pMarket->getReferenceRatios();
 
         $this->assign([
             'message' => $message,
