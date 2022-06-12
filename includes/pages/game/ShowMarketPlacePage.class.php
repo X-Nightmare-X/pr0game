@@ -437,10 +437,34 @@ class ShowMarketPlacePage extends AbstractGamePage
         return sprintf($LNG['market_p_msg_sent'], $LC, $HC);
     }
 
+    /** automatic push prevention **/
+    private function checkPush($fleetsRow, $buyer, $seller)
+    {
+    	$pMarket = new MarketManager();
+    	$offer = 0;
+    	$fleetMarket = $fleetsRow['transaction_type'] == 1;
+		$ask = $pMarket->convertExpResTypeToMetal($fleetsRow['ex_resource_type'], $fleetsRow['ex_resource_amount']);
+
+    	if ($fleetMarket)
+    	{
+    		$fleet = FleetFunctions::unserialize($fleetsRow['fleet_array']);
+    		return $pMarket->isFleetPush($fleet, $ask, $seller, $buyer);
+    	} else {
+    		$offerArray = [
+    			'metal' => $fleetsRow['fleet_resource_metal'],
+    			'crystal' => $fleetsRow['fleet_resource_crystal'],
+    			'deuterium' => $fleetsRow['fleet_resource_deuterium'],
+    		];
+
+    		$offer = $pMarket->convertToMetal($offerArray);
+    		return $pMarket->isPush($offer, $ask, $seller, $buyer);
+    	}
+    }
 
     public function show()
     {
-        global $USER, $PLANET, $LNG;
+    	global $USER, $PLANET, $LNG;
+    	require_once 'includes/classes/class.MarketManager.php';
 
         $GetAction = HTTP::_GP('action', "");
 
@@ -530,7 +554,13 @@ class ShowMarketPlacePage extends AbstractGamePage
 					'buyable' => false,
 					'reason' => 'N/A', // todo $LNG['text'] - creative input needed
 				];
-			} else {
+			} else if ($this->checkPush($fleetsRow, $buyer, $seller)) {
+				$buy = [
+					'buyable' => false,
+					'reason' => $LNG['market_buyable_no_tech'],
+				];
+			}
+			else {
 				//Level 5 - enemies
 				//Level 0 - 3 alliance
 				$buy = $this->checkDiplo(
@@ -541,10 +571,11 @@ class ShowMarketPlacePage extends AbstractGamePage
 				);
 			}
 
-            //Fleet market
-            if ($buy['buyable'] && $fleetsRow['transaction_type'] == 1) {
-                $buy = $this->checkTechs($fleetsRow);
-            }
+			$pMarket = new MarketManager();
+			$fleetValue = $pMarket->getFleetValue($FROM_fleet);
+			$ask = $pMarket->convertExpResTypeToMetal($fleetsRow['ex_resource_type'], $fleetsRow['ex_resource_amount']);
+
+			$fleetRatio = round(($fleetValue / $ask), 2);
 
             $FlyingFleetList[] = [
                 'id'                            => $fleetsRow['fleet_id'],
@@ -564,14 +595,21 @@ class ShowMarketPlacePage extends AbstractGamePage
                 'from_duration'                 => $FROM_Duration,
                 'to_lc_duration'                => $TO_LC_DUR,
                 'to_hc_duration'                => $TO_HC_DUR,
+				'fleet_ratio'					=> $fleetRatio,
             ];
         }
+
+		$pMarket = new MarketManager();
+		$refrates = $pMarket->getReferenceRatios();
 
         $this->assign([
             'message' => $message,
             'FlyingFleetList'       => $FlyingFleetList,
             'resourceHistory' => $this->getResourceTradeHistory(),
-            'fleetHistory' => $this->getFleetTradeHistory(),
+			'fleetHistory' => $this->getFleetTradeHistory(),
+			'ratio_metal'					=> $refrates['metal'],
+			'ratio_crystal'					=> $refrates['crystal'],
+			'ratio_deuterium'				=> $refrates['deuterium'],
         ]);
         $this->tplObj->loadscript('marketplace.js');
         $this->display('page.marketPlace.default.tpl');
