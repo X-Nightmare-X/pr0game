@@ -370,15 +370,14 @@ class MarketManager {
 				&& ($sellerScore > $buyerScore) 
 				&& ($sellerScore - $fleetScore < $buyerScore + $fleetScore));
 
-		$margin = $this->_pushTolerance * $offer;
-		$topMargin = $offer + $margin;
-		$bottomMargin = $offer - $margin;
+		$highestValue = ($offer > $ask) ? $offer : $ask;
+		$margin = $highestValue * (1 - $this->_pushTolerance);
 
 		// too expensive?
 		if ($sellerScore > $buyerScore || $specialFleetPush)
-		{ return ($ask > $topMargin); }
+		{ return ($offer < $margin); }
 		else // buyer >= seller - too cheap?
-		{ return ($ask < $bottomMargin); }
+		{ return ($ask < $margin); }
 	}
 
 	public function isFleetPush($fleetArray, int $ask, int $sellerId, int $buyerId)
