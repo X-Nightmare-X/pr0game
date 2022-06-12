@@ -40,7 +40,7 @@
 	<tr class="ratio">
 		<td>Reference ratio:</td>
 		<td>
-			<input type="number" name="ratio-metal" value="4" style="width: 30%"/>:<input type="number" name="ratio-cristal" value="2" style="width: 30%"/>:<input type="number"name="ratio-deuterium" value="1" style="width: 30%"/>
+			<input type="number" name="ratio-metal" value="{$ratio_metal}" style="width: 30%"/>:<input type="number" name="ratio-cristal" value="{$ratio_crystal}" style="width: 30%"/>:<input type="number"name="ratio-deuterium" value="{$ratio_deuterium}" style="width: 30%"/>
 		</td>
 	</tr>
 </table>
@@ -183,8 +183,9 @@
 		<tr>
 			<th>ID</th>
 			<th>{$LNG['market_fleet']}</th>
+			<th>{$LNG.market_p_ratio}</th>
 			<th>{$LNG.market_p_end}</th>
-			<th  class="no-background no-border center">-></th>
+			<th class="no-background no-border center">-></th>
 			<th>{$LNG.market_p_cost_type}</th>
 			<th>{$LNG.market_p_cost_amount}</th>
 			<th>{$LNG.market_p_from_duration}</th>
@@ -205,6 +206,7 @@
 	{if $FlyingFleetRow.possible_to_buy != true} trade-disallowed {/if}'>
 		<td>{$smarty.foreach.FlyingFleets.iteration}</td>
 		<td>{$FlyingFleetRow.fleet}</td>
+		<td class="ratio">{$FlyingFleetRow.fleet_ratio}</td>
 		<td data-time="{$FlyingFleetRow.end}">{pretty_fly_time({$FlyingFleetRow.end})}</td>
 		<td class="no-background no-border">
 			{if $FlyingFleetRow.fleet_wanted_resource_id == 1}

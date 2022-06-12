@@ -57,7 +57,7 @@ $(document).ready(function() {
 	interval	= window.setInterval(Refrash, 1000);
 	Refrash();
 
-	$('input[name=ratio-metal], input[name=ratio-crystal], input[name=ratio-deuterium]').change(function(e){
+	$('input[name=ratio-metal], input[name=ratio-cristal], input[name=ratio-deuterium]').change(function(e){
 		calculateRatios();
 	});
 	calculateRatios();
