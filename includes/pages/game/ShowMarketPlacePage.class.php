@@ -210,7 +210,7 @@ class ShowMarketPlacePage extends AbstractGamePage
             }
         }
 
-        $isPush = $this->checkPush($fleetResult[0]['fleet_rray'], $USER['id'], $fleetResult[0]['fleet_owner']);
+        $isPush = $this->checkPush($fleetResult[0], $USER['id'], $fleetResult[0]['fleet_owner']);
         if ($isPush) { return $LNG['market_buyable_no_tech']; }
 
         //if not in range 1-3
