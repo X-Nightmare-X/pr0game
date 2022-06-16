@@ -1062,15 +1062,16 @@ $LNG['market_buyable_only_trade_partners'] = 'Nur Partner';
 $LNG['market_buyable_no_enemies'] = 'Keine Feinde';
 $LNG['market_info_no_return'] = 'Erstellte Marktplatzangebote können nicht storniert werden!';
 $LNG['market_info_description'] = 'Linke Seite - Martplatzangebot | Rechte Seite - Kaufbetrag<br><br>&bull; Angenommene'
-    . ' Marktplatzangebote können nicht storniert werden. &bull;<br>&bull; Die Spieler können zu jedem Wechselkurs'
-    . ' (Verhältnis) handeln. &bull;<br>&bull; Deut för gekaufte Flotte wird vom Käufer bezahlt.&bull;';
+    . ' Marktplatzangebote können nicht storniert werden. &bull;'
+	. '<br>&bull; Manche Angebote können wegen der Push-Regel nicht angenommen werden. &bull;'
+	. '<br>&bull; Deut für gekaufte Flotte wird vom Käufer bezahlt.&bull;';
 $LNG['market_p_msg_not_found'] = 'Angebot nicht gefunden.';
 $LNG['market_p_msg_more_ships_is_needed'] = 'Es werden weitere Schiffe benötigt.';
 $LNG['market_p_msg_resources_error'] = 'Nicht genug Ressourcen vorhanden.';
 $LNG['market_p_msg_sent'] = 'Sende %s Kleine Transporter, %s Große Transporter';
 $LNG['market_p_ratio'] = 'Wechselkurs';
 $LNG['market_msg_trade_topic'] = 'Handelsstatus';
-$LNG['market_msg_trade_from'] = 'SteemNova Marktplatz';
+$LNG['market_msg_trade_from'] = 'Pr0game Marktplatz';
 $LNG['market_msg_trade_bought'] = 'Deine Flotte fliegt zu %s mit %s %s, %s %s, %s %s und es kostet %s %s';
 $LNG['market_msg_trade_sold'] = 'Deine Flotte fliegt zu %s mit %s %s, %s %s, %s %s.';
 $LNG['lm_marketplace'] = 'Marktplatz';
