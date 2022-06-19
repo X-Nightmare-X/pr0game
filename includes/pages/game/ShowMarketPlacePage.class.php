@@ -210,12 +210,8 @@ class ShowMarketPlacePage extends AbstractGamePage
             }
         }
 
-        if ($fleetResult[0]['transaction_type'] == 1) {
-            $buy = $this->checkTechs($fleetResult[0]);
-            if (!$buy['buyable']) {
-                return $buy['reason'];
-            }
-        }
+        $isPush = $this->checkPush($fleetResult[0], $USER['id'], $fleetResult[0]['fleet_owner']);
+        if ($isPush) { return $LNG['market_buyable_no_tech']; }
 
         //if not in range 1-3
         $fleetNeeded = $this->calculateFleetSize($fleetResult[0], $shipType);

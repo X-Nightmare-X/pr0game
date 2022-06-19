@@ -52,7 +52,7 @@ class MarketManager {
 
 		return $trades;
 	}
-	
+
 	private function getCrysSales($expectedrestype)
 	{
 		$db = Database::get();
@@ -83,7 +83,7 @@ class MarketManager {
 
 		return $trades;
 	}
-	
+
 	private function getDeutSales($expectedrestype)
 	{
 		$db = Database::get();
@@ -113,7 +113,7 @@ class MarketManager {
 		}
 		return $trades;
 	}
-	
+
 	/**
 	 * next 3: calculate total trade volume for a given resource pair
 	 */
@@ -231,10 +231,6 @@ class MarketManager {
 			'cd' => $this->getCrysDeutRatio(),
 		];
 
-		// special: calculating crys/deut from met/crys and met/deut.
-		// if this is NOT almost equal to crys/deut, there is significant market manipulation going on
-		$result['cd2'] = ($result['mc'] / $result['md']);
-
 		return $result;
 	}
 
@@ -256,7 +252,7 @@ class MarketManager {
 	 * round AND int-cast because only int-cast just cuts off decimals
 	 */
 	public function convertToMetal($input)
-	{ 
+	{
 		if (!array_key_exists('metal', $input)) $input['metal'] = 0;
 		if (!array_key_exists('crystal', $input)) $input['crystal'] = 0;
 		if (!array_key_exists('deuterium', $input)) $input['deuterium'] = 0;
@@ -265,7 +261,7 @@ class MarketManager {
 			+ ($input['crystal'] * $this->getMetCrysRatio()) 
 			+ ($input['deuterium'] * $this->getMetDeutRatio())); 
 	}
-	
+
 	/** @param aray [901, 902, 903] mkd **/
 	public function convertToMetalNumeric($input)
 	{
@@ -274,7 +270,7 @@ class MarketManager {
 			'crystal' => $input[902],
 			'deuterium' => $input[903],
 		];
-		
+
 		return $this->convertToMetal($output);
 	}
 
@@ -325,14 +321,14 @@ class MarketManager {
 			$totalCostArray[902] += $pricelist[$ship]['cost'][902] * $count;
 			$totalCostArray[903] += $pricelist[$ship]['cost'][903] * $count;
 		}
-		
+
 		if ($useScore) // return value in points, not metal
 		{ return ($totalCostArray[901] + $totalCostArray[902]); }
 
 		$overallCost = $this->convertToMetalNumeric($totalCostArray);
 		return $overallCost;
 	}
-	
+
 	/** todo: player class. find or create. **/
 	private function getScoreByPlayerId($playerid)
 	{
@@ -354,7 +350,7 @@ class MarketManager {
 		
 		return $query['total_points'] ?: 0;
 	}
-	
+
 	/**
 	 * @param $offer & $ask: suggest metal standard units
 	 * @param fleetarray optional: check if fleet size is push-relevant
