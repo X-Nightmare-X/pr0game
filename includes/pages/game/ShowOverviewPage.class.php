@@ -43,11 +43,12 @@ class ShowOverviewPage extends AbstractGamePage
             $db = Database::get();
             $sql = "SELECT COUNT(*) as state FROM %%FLEETS%% WHERE
                       (fleet_owner = :userID AND (fleet_start_id = :planetID OR fleet_start_id = :lunaID)) OR
-                      (fleet_target_owner = :userID AND (fleet_end_id = :planetID OR fleet_end_id = :lunaID));";
+                      (fleet_target_owner = :userID AND (fleet_end_id = :planetID OR fleet_end_id = :lunaID) AND fleet_mess != :back);";
             $IfFleets = $db->selectSingle($sql, [
                 ':userID'   => $USER['id'],
                 ':planetID' => $PLANET['id'],
                 ':lunaID'   => $PLANET['id_luna'],
+                ':back'     => FLEET_RETURN,
             ], 'state');
 
             if ($IfFleets > 0) {
