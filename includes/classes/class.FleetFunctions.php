@@ -578,31 +578,36 @@ class FleetFunctions
             return false;
         }
 
-        $sql = 'SELECT COUNT(*) as state
+        $sql = 'SELECT fleet_array
 		FROM %%LOG_FLEETS%%
 		WHERE fleet_owner = :fleetOwner
 		AND fleet_end_id = :fleetEndId
-		AND fleet_state != :fleetState
 		AND fleet_start_time > :fleetStartTime
 		AND fleet_mission IN (:att,:aks,:dest)
         AND fleet_group = 0
         AND hasCanceled = 0;';
 
-        $Count = Database::get()->selectSingle($sql, [
+        $log_fleets = Database::get()->select($sql, [
             ':fleetOwner'       => $USER['id'],
             ':fleetEndId'       => $Target,
-            ':fleetState'       => FLEET_HOLD,
             ':fleetStartTime'   => (TIMESTAMP - BASH_TIME),
             ':att'              => MISSION_ATTACK,
             ':aks'              => MISSION_ACS,
             ':dest'             => MISSION_DESTRUCTION,
         ]);
 
+        $Count = 0;
+        foreach ($log_fleets as $log_fleet) {
+            $fleetArray = FleetFunctions::unserialize($log_fleet['fleet_array']);
+            if (count($fleetArray) != 1 || !array_key_exists(210, $fleetArray)) {
+                $Count++;
+            }
+        }
+
         $sql = 'SELECT COUNT(DISTINCT fleet_group) as state
 		FROM %%LOG_FLEETS%%
 		WHERE fleet_owner = :fleetOwner
 		AND fleet_end_id = :fleetEndId
-		AND fleet_state != :fleetState
 		AND fleet_start_time > :fleetStartTime
 		AND fleet_mission IN (:att,:aks,:dest)
         AND fleet_group != 0
@@ -611,14 +616,13 @@ class FleetFunctions
         $Count2 = Database::get()->selectSingle($sql, [
             ':fleetOwner'       => $USER['id'],
             ':fleetEndId'       => $Target,
-            ':fleetState'       => FLEET_HOLD,
             ':fleetStartTime'   => (TIMESTAMP - BASH_TIME),
             ':att'              => MISSION_ATTACK,
             ':aks'              => MISSION_ACS,
             ':dest'             => MISSION_DESTRUCTION,
         ]);
 
-        return ($Count['state'] + $Count2['state']) >= BASH_COUNT;
+        return ($Count + $Count2['state']) >= BASH_COUNT;
     }
 
     public static function sendFleet(
