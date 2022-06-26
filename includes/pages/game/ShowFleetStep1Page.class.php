@@ -241,20 +241,21 @@ class ShowFleetStep1Page extends AbstractGamePage
         ]);
 
         if (!empty($ACSResult)) {
-            $sql = "SELECT acs.id, acs.name, planet.galaxy, planet.system, planet.planet, planet.planet_type
-            FROM %%USERS_ACS%%
-            INNER JOIN %%AKS%% acs ON acsID = acs.id
-            INNER JOIN %%PLANETS%% planet ON planet.id = acs.target
-            WHERE userID = :userID 
-            AND ( :maxParticipants > (SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% WHERE fleet_group = acsID) 
-            OR 1 = (SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% WHERE fleet_group = acsID AND fleet_owner = :userID) );";
-            $ACSResult = $db->select($sql, [
-                ':userID' => $USER['id'],
-                ':maxParticipants' => Config::get()->max_participants_per_acs,
-            ]);
-
             foreach ($ACSResult as $ACSRow) {
-                $ACSList[] = $ACSRow;
+                $sql = "SELECT acs.id
+                FROM %%USERS_ACS%%
+                WHERE userID = :userID AND acs.id = :aksID
+                AND ( :maxParticipants > (SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% WHERE fleet_group = :aksID) 
+                OR 1 = (SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% WHERE fleet_group = :aksID AND fleet_owner = :userID) );";
+                $ACSResult2 = $db->select($sql, [
+                    ':userID' => $USER['id'],
+                    ':aksID' => $ACSRow['id'],
+                    ':maxParticipants' => Config::get()->max_participants_per_acs,
+                ]);
+
+                if (!empty($ACSResult2)) {
+                    $ACSList[] = $ACSRow;
+                }
             }
         }
 
