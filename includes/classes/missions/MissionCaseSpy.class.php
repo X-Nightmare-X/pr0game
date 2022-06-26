@@ -142,7 +142,23 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $classIDs[100] = $reslist['tech'];
         }
 
-        $targetChance = mt_rand(0, min(($fleetAmount / 4) * ($targetSpyTech / $senderSpyTech), 100));
+        // what is seen by the 'attacker' is already calculated above.
+        // if target planet does not have fleet or def, it is safe to set $targetChance to -1
+        // so probes are no longer destroyed by thin air or something
+
+        $totalShipDefCount = 0;
+        foreach (array_values($this->getPlanetFleet($targetPlanet)) as $ships) {
+            $totalShipDefCount += $ships;
+        }
+
+        // $targetChance = mt_rand(0, min(($fleetAmount / 4) * ($targetSpyTech / $senderSpyTech), 100));
+        
+        // New calculation: 1% Counterspy-Chance for 250 Ships * target spy bonus, if > sender spy tec
+        // $targetChance = ($totalShipDefCount/250)*MAX($senderSpyTech-$targetSpyTech, 1) + (($fleetAmount / 4) * ($targetSpyTech / $senderSpyTech));
+
+        // Calculation from https://ogame.fandom.com/wiki/Counterespionage
+        $targetChance = min(round( pow(2, $targetSpyTech-$senderSpyTech) * $fleetAmount * $totalShipDefCount * 0.0025), 100);
+        
         $spyChance = mt_rand(0, 100);
         $spyData = [];
 
@@ -159,18 +175,6 @@ class MissionCaseSpy extends MissionFunctions implements Mission
                 $spyData[$classID] = array_filter($spyData[$classID]);
             }
         }
-
-        // what is seen by the 'attacker' is already calculated above.
-        // if target planet does not have fleet or def, it is safe to set $targetChance to -1
-        // so probes are no longer destroyed by thin air or something
-
-        $totalShipDefCount = 0;
-
-        foreach (array_values($this->getPlanetFleet($targetPlanet)) as $ships) {
-            $totalShipDefCount += $ships;
-        }
-
-
 
         // I'm use template class here, because i want to exclude HTML in PHP.
 
