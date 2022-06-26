@@ -165,14 +165,27 @@ class ShowFleetStep3Page extends AbstractGamePage
         $ACSTime = 0;
 
         if (!empty($fleetGroup)) {
-            $sql = "SELECT ankunft FROM %%USERS_ACS%% INNER JOIN %%AKS%% ON id = acsID
-			WHERE acsID = :acsID AND :maxFleets > (SELECT COUNT(*) FROM %%FLEETS%% WHERE fleet_group = :acsID)
-            AND :maxParticipants > (SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% WHERE fleet_group = acsID);";
+            $sql = "SELECT ankunft 
+            FROM %%USERS_ACS%% 
+            INNER JOIN %%AKS%% ON id = acsID
+			WHERE acsID = :acsID AND :maxFleets > (SELECT COUNT(*) FROM %%FLEETS%% WHERE fleet_group = :acsID);";
             $ACSTime = $db->selectSingle($sql, [
                 ':acsID'        => $fleetGroup,
                 ':maxFleets'    => $config->max_fleets_per_acs,
-                ':maxParticipants' => Config::get()->max_participants_per_acs,
             ], 'ankunft');
+
+            if (!empty($ACSTime)) {
+                $sql = "SELECT ankunft 
+                FROM %%USERS_ACS%% 
+                INNER JOIN %%AKS%% ON id = acsID
+                WHERE acsID = :acsID 
+                AND ( :maxParticipants > (SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% WHERE fleet_group = acsID) 
+                OR 1 = (SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% WHERE fleet_group = acsID AND fleet_owner = :userID) );";
+                $ACSTime = $db->selectSingle($sql, [
+                    ':acsID'        => $fleetGroup,
+                    ':maxParticipants' => Config::get()->max_participants_per_acs,
+                ], 'ankunft');
+            }
 
             if (empty($ACSTime)) {
                 $fleetGroup = 0;
