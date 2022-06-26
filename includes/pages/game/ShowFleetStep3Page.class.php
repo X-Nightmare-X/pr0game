@@ -302,11 +302,13 @@ class ShowFleetStep3Page extends AbstractGamePage
         }
 
         if ($targetMission == MISSION_ATTACK || $targetMission == MISSION_ACS || $targetMission == MISSION_DESTRUCTION) {
-            if (FleetFunctions::checkBash($targetPlanetData['id'])) {
-                $this->printMessage($LNG['fl_bash_protection'], [[
-                    'label' => $LNG['sys_back'],
-                    'url'   => 'game.php?page=fleetTable',
-                ]]);
+            if (count($fleetArray) != 1 || !array_key_exists(210, $fleetArray)) {
+                if (FleetFunctions::checkBash($targetPlanetData['id'])) {
+                    $this->printMessage($LNG['fl_bash_protection'], [[
+                        'label' => $LNG['sys_back'],
+                        'url'   => 'game.php?page=fleetTable',
+                    ]]);
+                }
             }
         }
 
