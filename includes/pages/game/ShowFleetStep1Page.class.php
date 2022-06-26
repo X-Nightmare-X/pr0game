@@ -242,9 +242,9 @@ class ShowFleetStep1Page extends AbstractGamePage
 
         if (!empty($ACSResult)) {
             foreach ($ACSResult as $ACSRow) {
-                $sql = "SELECT acs.id
+                $sql = "SELECT acsID
                 FROM %%USERS_ACS%%
-                WHERE userID = :userID AND acs.id = :aksID
+                WHERE userID = :userID AND acsID = :aksID
                 AND ( :maxParticipants > (SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% WHERE fleet_group = :aksID) 
                 OR 1 = (SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% WHERE fleet_group = :aksID AND fleet_owner = :userID) );";
                 $ACSResult2 = $db->select($sql, [
