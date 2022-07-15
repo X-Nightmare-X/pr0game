@@ -1,0 +1,41 @@
+image: 1drop/php-utils:7.4
+
+stages:
+  - test
+
+test:phpstan:
+  stage: test
+  allow_failure: true
+  script:
+    - phpstan analyse --no-progress -c .config/phpstan.neon.dist --error-format=table --memory-limit 1G
+
+test:phpcs:
+  allow_failure: true
+  script:
+    - phpcs --standard=.config/phpcs.xml.dist -d memory_limit=512M
+
+test:phpmd:
+  allow_failure: true
+  script:
+    - phpmd . ansi .config/phpmd.ruleset.xml.dist --exclude cache/*
+
+test:phpcpd:
+  allow_failure: true
+  script:
+    - phpcpd --exclude cache/ .
+
+test:phpcompat74:
+  allow_failure: true
+  script:
+    - phpcs --standard=.config/phpcs-phpcompat_74.xml.dist -d memory_limit=512M
+
+test:phpcompat80:
+  allow_failure: true
+  script:
+    - phpcs --standard=.config/phpcs-phpcompat_80.xml.dist -d memory_limit=512M
+
+test:editorconfig:
+  image: mstruebing/editorconfig-checker:2.4.0
+  allow_failure: true
+  script:
+    - ec -config .config/.ecrc
