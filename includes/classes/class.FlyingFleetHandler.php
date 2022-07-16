@@ -87,7 +87,8 @@ class FlyingFleetHandler
                     break;
             }
 
-            $db->commit();
+            
         }
+        $db->commit();
     }
 }
