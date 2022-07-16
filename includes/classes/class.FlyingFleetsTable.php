@@ -49,7 +49,7 @@ class FlyingFleetsTable
 
     private function getFleets($acsID = false)
     {
-        if ($this->IsPhalanx) {
+        if ($this->IsPhalanx && empty($acsID)) {
             $where = '(fleet_start_id = :planetId AND fleet_start_type = 1 AND fleet_mission != :stay) OR'
                 . ' (fleet_end_id = :planetId AND fleet_end_type = 1 AND fleet_mission != :rec AND fleet_mess IN (0, 2))';
 
