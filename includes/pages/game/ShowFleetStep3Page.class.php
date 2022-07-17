@@ -386,24 +386,24 @@ class ShowFleetStep3Page extends AbstractGamePage
         }
 
         if ($targetMission == MISSION_HOLD) {
-            $sql = "SELECT COUNT(fleet_id) 
+            $sql = "SELECT COUNT(fleet_id) AS anz
             FROM %%FLEETS%% 
 			WHERE fleet_end_id = :planetID AND fleet_mission = :hold AND fleet_mess in (0, 2);";
             $fleetCount = $db->selectSingle($sql, [
                 ':planetID' => $targetPlanetData['id'],
                 ':hold'     => MISSION_HOLD,
-            ]);
+            ], "anz");
 
-            $sql = "SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% 
+            $sql = "SELECT COUNT(DISTINCT fleet_owner) AS anz FROM %%FLEETS%% 
             WHERE fleet_end_id = :planetID AND fleet_mission = :hold AND fleet_mess in (0, 2) 
             AND fleet_owner != :userID;";
             $playerCount = $db->selectSingle($sql, [
                 ':planetID' => $targetPlanetData['id'],
                 ':hold'     => MISSION_HOLD,
                 ':userID' => $USER['id'],
-            ]);
+            ], "anz");
 
-            if ($fleetCount + 1 >= $config->max_fleets_per_acs) {
+            if (($fleetCount + 1) >= $config->max_fleets_per_acs) {
                 $this->printMessage($LNG['fl_hold_max_fleets'], [[
                     'label' => $LNG['sys_back'],
                     'url'   => 'game.php?page=fleetTable',
