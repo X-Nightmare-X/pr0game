@@ -367,6 +367,8 @@ $LNG['fl_not_enough_deuterium'] = 'Yeterli yakitiniz yok.';
 $LNG['fl_not_enough_space'] = 'Gereken yakiti alacak depo kapasiten yok.';
 $LNG['fl_hold_time_not_exists'] = 'Yanlis durma zamani.';
 $LNG['fl_own_planet_error'] = 'Error! Again select the planet from which you want to send the fleet.';
+$LNG['fl_hold_max_fleets'] = 'Zaten bu koordinatlara yönelen çok fazla filo var. Filo gönderilemedi.';
+$LNG['fl_hold_max_user'] = 'Savunan imparatorlukların maksimum sayısına çoktan ulaşıldı. Filo gönderilemedi.';
 
 //----------------------------------------------------------------------------//
 // Binalar
