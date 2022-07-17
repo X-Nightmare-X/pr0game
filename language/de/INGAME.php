@@ -387,6 +387,8 @@ $LNG['fl_visibility_alliance'] = 'Nur Allianzmitglieder und Freunde';
 $LNG['fl_visibility_no_enemies'] = 'Jeder außer Gegner';
 $LNG['fl_own_planet_error'] = 'Error! Again select the planet from which you want to send the fleet.';
 $LNG['fl_stronger_techs'] = 'Deine Angriffsstärke/Verteidigung/Schilde sind zu niedrig.';
+$LNG['fl_hold_max_fleets'] = 'Es sind bereits zu viele Flotten zu diesen Koordinaten unterwegs. Die Flotte konnte nicht gesendet werden.';
+$LNG['fl_hold_max_user'] = 'Die maximale Anzahl verteidigender Imperien ist bereits erreicht. Die Flotte konnte nicht gesendet werden.';
 
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES
