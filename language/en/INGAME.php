@@ -401,6 +401,8 @@ $LNG['fl_market_type'] = 'Market type';
 $LNG['fl_mt_fleet'] = 'Fleet market';
 $LNG['fl_mt_resources'] = 'Resource market';
 $LNG['fl_stronger_techs'] = 'Your attack/defensive/shield are too low.';
+$LNG['fl_hold_max_fleets'] = 'There are already too many fleets heading to these coordinates. The fleet could not be sent.';
+$LNG['fl_hold_max_user'] = 'The maximum number of defending empires has already been reached. The fleet could not be sent.';
 //----------------------------------------------------------------------------//
 // Buildings
 $LNG['bd_dismantle'] = 'Demolish';

@@ -184,7 +184,7 @@ class ShowFleetStep3Page extends AbstractGamePage
                 $ACSTime = $db->selectSingle($sql, [
                     ':acsID'        => $fleetGroup,
                     ':userID' => $USER['id'],
-                    ':maxParticipants' => Config::get()->max_participants_per_acs,
+                    ':maxParticipants' => $config->max_participants_per_acs,
                 ], 'ankunft');
             }
 
@@ -382,6 +382,38 @@ class ShowFleetStep3Page extends AbstractGamePage
                         'url'   => 'game.php?page=fleetTable',
                     ]]);
                 }
+            }
+        }
+
+        if ($targetMission == MISSION_HOLD) {
+            $sql = "SELECT COUNT(fleet_id) 
+            FROM %%FLEETS%% 
+			WHERE fleet_end_id = :planetID AND fleet_mission = :hold AND fleet_mess in (0, 2);";
+            $fleetCount = $db->selectSingle($sql, [
+                ':planetID' => $targetPlanetData['id'],
+                ':hold'     => MISSION_HOLD,
+            ]);
+
+            $sql = "SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% 
+            WHERE fleet_end_id = :planetID AND fleet_mission = :hold AND fleet_mess in (0, 2) 
+            AND fleet_owner != :userID;";
+            $playerCount = $db->selectSingle($sql, [
+                ':planetID' => $targetPlanetData['id'],
+                ':hold'     => MISSION_HOLD,
+                ':userID' => $USER['id'],
+            ]);
+
+            if ($fleetCount + 1 >= $config->max_fleets_per_acs) {
+                $this->printMessage($LNG['fl_hold_max_fleets'], [[
+                    'label' => $LNG['sys_back'],
+                    'url'   => 'game.php?page=fleetTable',
+                ]]);
+            }
+            else if (($playerCount + 2) >= $config->max_participants_per_acs) {
+                $this->printMessage($LNG['fl_hold_max_user'], [[
+                    'label' => $LNG['sys_back'],
+                    'url'   => 'game.php?page=fleetTable',
+                ]]);
             }
         }
 

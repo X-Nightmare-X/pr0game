@@ -364,6 +364,8 @@ $LNG['fl_not_enough_deuterium'] = 'Sem deutério disponível.';
 $LNG['fl_not_enough_space'] = 'Não tens carga suficiente';
 $LNG['fl_hold_time_not_exists'] = 'Tempo de retenção inválido.';
 $LNG['fl_own_planet_error'] = 'Error! Again select the planet from which you want to send the fleet.';
+$LNG['fl_hold_max_fleets'] = 'Já existem demasiadas frotas que se dirigem para estas coordenadas. A frota não pôde ser enviada.';
+$LNG['fl_hold_max_user'] = 'O número máximo de impérios em defesa já foi atingido. A frota não pôde ser enviada.';
 
 //----------------------------------------------------------------------------//
 // Edificios
