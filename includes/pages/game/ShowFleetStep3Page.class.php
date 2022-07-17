@@ -409,7 +409,7 @@ class ShowFleetStep3Page extends AbstractGamePage
                     'url'   => 'game.php?page=fleetTable',
                 ]]);
             }
-            else if (($playerCount + 2) >= $config->max_participants_per_acs) {
+            else if (($playerCount + 1) >= $config->max_participants_per_acs) {
                 $this->printMessage($LNG['fl_hold_max_user'], [[
                     'label' => $LNG['sys_back'],
                     'url'   => 'game.php?page=fleetTable',
