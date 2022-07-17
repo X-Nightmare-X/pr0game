@@ -367,7 +367,8 @@ $LNG['fl_not_enough_deuterium'] = 'Nie masz wystarczającej ilości deuteru.';
 $LNG['fl_not_enough_space'] = 'Nie masz tyle miejsca w ładowniach.';
 $LNG['fl_hold_time_not_exists'] = 'Niepoprawny czas postoju.';
 $LNG['fl_own_planet_error'] = 'Błąd! Ponownie wybierz planetę, z której chcesz wysłać flotę.';
-
+$LNG['fl_hold_max_fleets'] = 'Już teraz zbyt wiele flot zmierza do tych współrzędnych. Flota nie mogła zostać wysłana.';
+$LNG['fl_hold_max_user'] = 'Maksymalna liczba broniących się imperiów została już osiągnięta. Flota nie mogła zostać wysłana.';
 
 
 
