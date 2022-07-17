@@ -29,6 +29,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
     public function TargetEvent()
     {
         $this->setState(FLEET_HOLD);
+		$this->UpdateFleet('fleet_no_m_return', 1);
         $this->SaveFleet();
     }
 
