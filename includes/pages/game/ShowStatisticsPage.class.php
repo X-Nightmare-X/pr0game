@@ -173,7 +173,7 @@ class ShowStatisticsPage extends AbstractGamePage
                         'name'        => $StatRow['ally_name'],
                         'members'    => $StatRow['ally_members'],
                         'rank'        => $StatRow[$Rank],
-                        'mppoints'    => pretty_number(floor($StatRow[$Points] / ($StatRow['ally_members'] ?? 1))),
+                        'mppoints'    => pretty_number(floor($StatRow[$Points] / (max($StatRow['ally_members'], 1)))),
                         'points'    => pretty_number($StatRow[$Points]),
                         'ranking'    => $StatRow[$OldRank] - $StatRow[$Rank],
                     );
