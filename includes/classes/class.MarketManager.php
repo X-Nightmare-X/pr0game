@@ -323,7 +323,7 @@ class MarketManager {
 		}
 
 		if ($useScore) // return value in points, not metal
-		{ return ($totalCostArray[901] + $totalCostArray[902]); }
+		{ return ($totalCostArray[901] + $totalCostArray[902]) / Config::get()->stat_settings; }
 
 		$overallCost = $this->convertToMetalNumeric($totalCostArray);
 		return $overallCost;
@@ -369,11 +369,11 @@ class MarketManager {
 		$highestValue = ($offer > $ask) ? $offer : $ask;
 		$margin = $highestValue * (1 - $this->_pushTolerance);
 
-		// too expensive?
-		if ($sellerScore > $buyerScore || $specialFleetPush)
-		{ return ($offer < $margin); }
-		else // buyer >= seller - too cheap?
+		// seller <= buyer - too cheap?
+		if ($sellerScore <= $buyerScore || $specialFleetPush)
 		{ return ($ask < $margin); }
+		else // too expensive?
+		{ return ($offer < $margin); }
 	}
 
 	public function isFleetPush($fleetArray, int $ask, int $sellerId, int $buyerId)
