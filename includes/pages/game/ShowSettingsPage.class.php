@@ -91,14 +91,15 @@ class ShowSettingsPage extends AbstractGamePage
 
         $db = Database::get();
 
-        $sql = "SELECT COUNT(*) as state FROM %%FLEETS%% WHERE `fleet_owner` = :userID;";
+        $sql = "SELECT COUNT(*) as state FROM %%FLEETS%% WHERE `fleet_owner` = :userID FOR UPDATE;";
         $fleets = $db->selectSingle($sql, [':userID' => $USER['id']], 'state');
 
         if ($fleets != 0) {
             return false;
         }
 
-        $sql = "SELECT * FROM %%PLANETS%% WHERE id_owner = :userID AND id != :planetID AND destruyed = 0;";
+		$db->startTransaction();
+        $sql = "SELECT * FROM %%PLANETS%% WHERE id_owner = :userID AND id != :planetID AND destruyed = 0 FOR UPDATE;";
         $query = $db->select($sql, [
             ':userID'   => $USER['id'],
             ':planetID' => $PLANET['id'],
@@ -108,12 +109,14 @@ class ShowSettingsPage extends AbstractGamePage
             list($USER, $CPLANET) = $this->ecoObj->CalcResource($USER, $CPLANET, true);
 
             if (!empty($CPLANET['b_building']) || !empty($CPLANET['b_hangar'])) {
+                $db->commit();
                 return false;
             }
 
             unset($CPLANET);
         }
 
+		$db->commit();
         return true;
     }
 
@@ -129,8 +132,7 @@ class ShowSettingsPage extends AbstractGamePage
 
     private function sendVacation()
     {
-        global $USER, $LNG;
-        $PLANET;
+        global $USER, $LNG, $PLANET;
 
         $delete     = HTTP::_GP('delete', 0);
         $vacation   = HTTP::_GP('vacation', 0);
