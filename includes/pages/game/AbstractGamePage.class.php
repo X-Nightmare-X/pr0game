@@ -35,8 +35,24 @@ abstract class AbstractGamePage
         if (!AJAX_REQUEST) {
             $this->setWindow('full');
             if (!$this->disableEcoSystem) {
-                $this->ecoObj = new ResourceUpdate();
-                $this->ecoObj->CalcResource();
+                global $USER, $PLANET;
+
+                if (!empty($USER) && !empty($PLANET)) {
+                    $db = Database::get();
+                    $db->startTransaction();
+                    $sql    = "SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;";
+                    $p = $db->selectSingle($sql, array(
+                        ':planetId' => $PLANET['id'],
+                    ));
+                    $sql    = "SELECT * FROM %%USERS%% WHERE id = :userId FOR UPDATE;";
+                    $u   = $db->selectSingle($sql, array(
+                        ':userId'   => $USER['id'],
+                    ));
+
+                    $this->ecoObj = new ResourceUpdate();
+                    $this->ecoObj->CalcResource();
+                    $db->commit();
+                }
             }
             $this->initTemplate();
         } else {
