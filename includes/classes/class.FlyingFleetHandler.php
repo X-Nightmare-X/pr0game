@@ -46,7 +46,6 @@ class FlyingFleetHandler
         require_once 'includes/classes/missions/Mission.interface.php';
 
         $db = Database::get();
-		$db->startTransaction();
 
         $sql = 'SELECT %%FLEETS%%.*
 		FROM %%FLEETS_EVENT%%
@@ -86,9 +85,6 @@ class FlyingFleetHandler
                     $missionObj->EndStayEvent();
                     break;
             }
-
-            
         }
-        $db->commit();
     }
 }
