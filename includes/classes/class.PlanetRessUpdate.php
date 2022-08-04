@@ -415,6 +415,7 @@ class ResourceUpdate
         $CurrentQueue = unserialize($this->PLANET['b_building_id']);
 
         $Element = $CurrentQueue[0][0];
+        $BuildLevel = $CurrentQueue[0][1];
         $BuildEndTime = $CurrentQueue[0][3];
         $BuildMode = $CurrentQueue[0][4];
 
@@ -424,12 +425,12 @@ class ResourceUpdate
 
         if ($BuildMode == 'build') {
             $this->PLANET['field_current']      += 1;
-            $this->PLANET[$resource[$Element]]  += 1;
-            $this->Builded[$Element]            += 1;
+            $this->PLANET[$resource[$Element]]  = $BuildLevel;
+            $this->Builded[$Element]            = $BuildLevel;
         } else {
             $this->PLANET['field_current']      -= 1;
-            $this->PLANET[$resource[$Element]]  -= 1;
-            $this->Builded[$Element]            -= 1;
+            $this->PLANET[$resource[$Element]]  = $BuildLevel - 1;
+            $this->Builded[$Element]            = $BuildLevel - 1;
         }
 
 
@@ -603,11 +604,13 @@ class ResourceUpdate
             $this->Builded[$this->USER['b_tech_id']] = 0;
         }
 
-        $this->Builded[$this->USER['b_tech_id']] += 1;
-        $this->USER[$resource[$this->USER['b_tech_id']]] += 1;
-
-
         $CurrentQueue = unserialize($this->USER['b_tech_queue']);
+
+        $BuildLevel = $CurrentQueue[0][1];
+
+        $this->Builded[$this->USER['b_tech_id']] = $BuildLevel;
+        $this->USER[$resource[$this->USER['b_tech_id']]] = $BuildLevel;
+
         array_shift($CurrentQueue);
 
         $this->USER['b_tech_id'] = 0;
@@ -817,11 +820,18 @@ class ResourceUpdate
                     $buildQueries[] = ', p.' . $resource[$Element] . ' = :' . $resource[$Element];
                     $params[':' . $resource[$Element]] = '1';
                 } elseif (isset($PLANET[$resource[$Element]])) {
-                    $buildQueries[] = ', p.' . $resource[$Element] . ' = p.' . $resource[$Element] . ' + :'
-                        . $resource[$Element];
-                    $params[':' . $resource[$Element]] = floatToString($Count);
-                } elseif (isset($USER[$resource[$Element]])) {
-                    $buildQueries[] = ', u.' . $resource[$Element] . ' = u.' . $resource[$Element] . ' + :'
+                    if ($Element < 100) { // Set building level directly
+                        $buildQueries[] = ', p.' . $resource[$Element] . ' = :'
+                            . $resource[$Element];
+                        $params[':' . $resource[$Element]] = floatToString($Count);
+                    }
+                    else {
+                        $buildQueries[] = ', p.' . $resource[$Element] . ' = p.' . $resource[$Element] . ' + :'
+                            . $resource[$Element];
+                        $params[':' . $resource[$Element]] = floatToString($Count);
+                    }
+                } elseif (isset($USER[$resource[$Element]])) { // Set research level directly
+                    $buildQueries[] = ', u.' . $resource[$Element] . ' = :'
                         . $resource[$Element];
                     $params[':' . $resource[$Element]] = floatToString($Count);
                 }
