@@ -22,9 +22,9 @@ set_include_path(
 );
 require_once('HTML/BBCodeParser2.php');
 
-require 'includes/pages/game/ShowErrorPage.class.php';
 require 'includes/common.php';
 require 'includes/pages/game/AbstractGamePage.class.php';
+require 'includes/pages/game/ShowErrorPage.class.php';
 /** @var $LNG Language */
 
 $page = HTTP::_GP('page', 'overview');
