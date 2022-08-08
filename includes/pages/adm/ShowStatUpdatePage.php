@@ -36,7 +36,8 @@ function ShowStatUpdatePage()
         $template = new template();
         $template->message($LNG['sb_stats_updated'] . $stats_end_time . $memory_i . $memory_e . $memory_p . $stats_sql, false, 0, true);
     } catch (Exception $exception) {
-        echo $exception->getMessage();
+        $template = new template();
+        $template->message($exception->getMessage(), false, 0, true);
 
         require_once 'includes/classes/class.Discord.php';
         Discord::sendLog('Statistik (manual) FAILED', null, $exception);
