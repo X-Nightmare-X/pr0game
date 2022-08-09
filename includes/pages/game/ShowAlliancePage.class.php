@@ -1179,7 +1179,7 @@ class ShowAlliancePage extends AbstractGamePage
 
     protected function adminSendAnswerToApply()
     {
-        global $LNG, $USER;
+        global $USER;
         if (!$this->rights['SEEAPPLY'] || !$this->rights['MANAGEAPPLY']) {
             $this->redirectToHome();
         }
@@ -1197,6 +1197,7 @@ class ShowAlliancePage extends AbstractGamePage
 
         // only if alliance request still exist
         if ($userId) {
+            $LNG = getLanguage(null, $userId);
             if ($answer == 'yes') {
                 $sql = "DELETE FROM %%ALLIANCE_REQUEST%% WHERE applyID = :applyID";
                 $db->delete($sql, [
