@@ -323,7 +323,7 @@ font-weight:bold;
 #planetSelector {
 	position: absolute;
 	top: 70px;
-	/*width: 150px;*/
+	width: 150px;
 }
 
 .planetImage{
@@ -358,7 +358,7 @@ font-weight:bold;
 	/* height: 48px; */
 	/* width: 48px; */
 	/* margin: 0px 6px; */
-	width: 120px;
+	width: 150px;
 }
 
 .planetSelectorName { /* new */
@@ -653,7 +653,7 @@ table.tablesorter thead tr .headerSortDown {
 		display: none;
 	}
 	#planetSelector{
-		max-width: 120px;
+		top: 99px;
 	}
 
 }
