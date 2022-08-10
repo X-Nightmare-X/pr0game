@@ -148,8 +148,6 @@ class ShowSettingsPage extends AbstractGamePage
 
             $sql = "UPDATE %%PLANETS%% SET
 						last_update = :timestamp,
-						energy_used = '10',
-						energy = '10',
 						metal_mine_porcent = '10',
 						crystal_mine_porcent = '10',
 						deuterium_sintetizer_porcent = '10',
@@ -162,7 +160,21 @@ class ShowSettingsPage extends AbstractGamePage
                 ':timestamp'    => TIMESTAMP,
             ]);
 
+            $USER['urlaubs_modus'] = 0;
             $PLANET['last_update'] = TIMESTAMP;
+
+            $sql = "SELECT * FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :id;";
+            $PlanetsRAW = $db->select($sql, [
+                ':universe' => Universe::current(),
+                ':id' => $USER['id'],
+            ]);
+            $PlanetRess	= new ResourceUpdate();
+            foreach ($PlanetsRAW as $CPLANET) {
+                $CPLANET['eco_hash'] = '';
+                list($USER, $CPLANET) = $PlanetRess->CalcResource($USER, $CPLANET, true);
+            }
+            $PLANET['eco_hash'] = '';
+            list($USER, $PLANET) = $PlanetRess->CalcResource($USER, $PLANET, true);
         }
 
         if ($delete == 1) {
@@ -186,7 +198,7 @@ class ShowSettingsPage extends AbstractGamePage
 
     private function sendDefault()
     {
-        global $USER, $LNG, $THEME;
+        global $USER, $LNG, $THEME, $PLANET;
 
         $adminprotection    = HTTP::_GP('adminprotection', 0);
 
@@ -232,6 +244,18 @@ class ShowSettingsPage extends AbstractGamePage
         $theme = array_key_exists($theme, Theme::getAvalibleSkins()) ? $theme : $THEME->getThemeName();
 
         $db = Database::get();
+        $db->startTransaction();
+
+        $sql = "SELECT * FROM %%USERS%% WHERE universe = :universe AND id = :id FOR UPDATE;";
+        $db->select($sql, [
+            ':universe' => Universe::current(),
+            ':id' => $USER['id'],
+        ]);
+        $sql = "SELECT * FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :id FOR UPDATE;";
+        $db->select($sql, [
+            ':universe' => Universe::current(),
+            ':id' => $USER['id'],
+        ]);
 
         if (!empty($username) && $USER['username'] != $username) {
             if (!PlayerUtil::isNameValid($username)) {
@@ -360,6 +384,18 @@ class ShowSettingsPage extends AbstractGamePage
                 $db->update($sql, [
                     ':userID'   => $USER['id'],
                 ]);
+
+                $PLANET['energy_used'] = '0';
+                $PLANET['energy'] = '0';
+                $PLANET['metal_mine_porcent'] = '0';
+                $PLANET['crystal_mine_porcent'] = '0';
+                $PLANET['deuterium_sintetizer_porcent'] = '0';
+                $PLANET['solar_plant_porcent'] = '0';
+                $PLANET['fusion_plant_porcent'] = '0';
+                $PLANET['solar_satelit_porcent'] = '0';
+                $PLANET['metal_perhour'] = '0';
+                $PLANET['crystal_perhour'] = '0';
+                $PLANET['deuterium_perhour'] = '0';
             }
         }
 
@@ -409,6 +445,8 @@ class ShowSettingsPage extends AbstractGamePage
             ':spyMessagesMode'  => $spyMessagesMode,
             ':userID'           => $USER['id'],
         ]);
+        
+        $db->commit();
 
         $this->printMessage($LNG['op_options_changed'], [
             [
