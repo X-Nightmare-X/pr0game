@@ -16,7 +16,7 @@
 	<meta name="keywords" content="pr0game, Steem, Browsergame, MMOSG, MMOG, Strategy, XNova, 2Moons, Space">
 	<meta name="description" content="pr0game Ogame Clone.">
 	<!-- open graph protocol -->
-	<meta property="og:title" content="SteemNova">
+	<meta property="og:title" content="pr0game">
 	<meta property="og:type" content="website">
 	<meta property="og:description" content="pr0game Ogame Clone.">
 	<meta property="og:image" content="styles/resource/images/meta.png">
