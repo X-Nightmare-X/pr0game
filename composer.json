@@ -2,7 +2,7 @@
     "name": "pr0game/pr0game",
     "description": "An open source space strategy game",
     "type": "project",
-    "homepage": "https://git.pr0game.com/Rosenreeman/pr0game",
+    "homepage": "https://codeberg.org/pr0game/pr0game/issues",
     "readme": "README.md",
     "license": "MIT",
     "authors": [
@@ -15,7 +15,7 @@
         }
     ],
     "support": {
-        "issues": "https://git.pr0game.com/Rosenreeman/pr0game/issues",
+        "issues": "https://codeberg.org/pr0game/pr0game/issues/issues",
         "chat": "https://discord.gg/jhYYN3yuat"
     },
     "funding": [

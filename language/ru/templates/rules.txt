@@ -9,7 +9,7 @@
 	</li>
 	<li>
 		<h1>3. Pushen</h1>
-		<p>Pushen ist grundsätzlich verboten. Als Pushing werden alle Transporte/Transfers ohne angemessene Gegenleistung von punktschwächeren Accounts an punktstärkere Accounts gesehen. Ausnahmen müssen im Vorfeld vom Operator genehmigt werden. Eine fehlende Genehmigung kann eine Sperre wegen Pushens nach sich ziehen. Ein Handel muss innerhalb 24 Stunden abgeschlossen oder bei einem Operator angemeldet sein. Der sendende Spieler muss nach dem Transfer weiterhin mehr Punkte als der Empfänger haben (gerechnet in MSE). Verkäufe an punktestärkere Spieler sind ab 75% des Schiffspreises erlaubt.</p>
+		<p>Pushen ist grundsätzlich verboten. Als Pushing werden alle Transporte/Transfers und auch Mondversuche ohne angemessene Gegenleistung von punktschwächeren Accounts an punktstärkere Accounts gesehen. Ausnahmen müssen im Vorfeld vom Operator genehmigt werden. Eine fehlende Genehmigung kann eine Sperre nach sich ziehen. Ein Handel muss innerhalb 24 Stunden abgeschlossen oder bei einem Operator angemeldet und genehmigt sein. Der sendende Spieler muss nach dem Transfer weiterhin mehr Punkte als der Empfänger haben. Verkäufe an punktestärkere Spieler sind ab 75 Prozent des Wertes(Baupreis, Wert der Ressourcen) erlaubt, Verkäufe an punktschwächere Spieler sind bis zu maximal 125 Prozent des Preises erlaubt. Für die Umrechnung gilt der aktuell gängige Handelskurs.</p>
 	</li>
 	<li>
 		<h1>4. Bashen</h1>
@@ -23,7 +23,7 @@
 	</li>
 	<li>
 		<h1>6. Bugusing</h1>
-		<p>Bugs und/oder Fehler in der Programmierung auszunutzen ist verboten. Erkannte Bugs sollten so schnell wie möglich per <a href="https://git.pr0game.com/Rosenreeman/pr0game/issues" target="_blank">GIT Issue</a> oder im Discord Channel #bugs gemeldet werden. Cheaten ist ebenfalls verboten.</p>
+		<p>Bugs und/oder Fehler in der Programmierung auszunutzen ist verboten. Erkannte Bugs sollten so schnell wie möglich per <a href="%s" target="_blank">GIT Issue</a> oder im Discord Channel #bugs gemeldet werden. Cheaten ist ebenfalls verboten.</p>
 	</li>
 	<li>
 		<h1>6.1 Tools und Anwendungen</h1>

@@ -397,6 +397,8 @@ $LNG['se_google_key_info'] = 'Укажите ключ для Вашего сай
 $LNG['se_ttf_file'] = 'Путь к TTF файлу шрифта';
 $LNG['se_ttf_file_info'] = 'TTF файл нужен для показа баннера-статистики в случае использования на нём кириллических'
     . ' символов и или китайских иероглифов.';
+$LNG['git_issues_link'] = 'Link to Code Issues Page';
+$LNG['git_issues_link_info'] = 'Link to the page where you can report bugs and issues';
 $LNG['se_max_galaxy'] = 'Галактики';
 $LNG['se_max_galaxy_info'] = 'Максимальное количество галактик во вселенной.';
 $LNG['se_max_system'] = 'Системы';
