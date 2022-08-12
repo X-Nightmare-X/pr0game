@@ -21,7 +21,7 @@
 			<th colspan="2">{$LNG.ow_support}</th>
 		</tr>
 		<tr>
-			<td colspan="2"><a href="https://git.pr0game.com/Rosenreeman/pr0game" target="_blank">Project Homepage</a>
+			<td colspan="2"><a href="https://codeberg.org/pr0game/pr0game" target="_blank">Project Homepage</a>
 				<!--<br><a target="_blank" href="http://2moons.cc/" target="_blank">2moons.cc - {$LNG.ow_forum}</a>--></td>
 		</tr>
 		<!--

@@ -411,6 +411,8 @@ $LNG['se_google_key_info'] = 'Clave de Identificación de su sitio web para el s
 $LNG['se_ttf_file'] = 'Ruta al archivo de la fuente (TFF)';
 $LNG['se_ttf_file_info'] = 'El archivo TFF es necesario para mostrar correctamente los caracteres cirílicos o chinos en'
     . ' el Banner de estadísticas';
+$LNG['git_issues_link'] = 'Link to Code Issues Page';
+$LNG['git_issues_link_info'] = 'Link to the page where you can report bugs and issues';
 $LNG['se_max_galaxy'] = 'Máx. Galaxias';
 $LNG['se_max_galaxy_info'] = 'Cantidad Máxima de Galaxias en el Universo';
 $LNG['se_max_system'] = 'Máx. Sistemas';

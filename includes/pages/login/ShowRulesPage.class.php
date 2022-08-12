@@ -29,7 +29,7 @@ class ShowRulesPage extends AbstractLoginPage
 	{
 		global $LNG;
 		$this->assign(array(
-			'rules'		=> $LNG->getTemplate('rules'),
+			'rules'		=> sprintf($LNG->getTemplate('rules'), Config::get() -> git_issues_link),
 		));
 		
 		$this->display('page.rules.default.tpl');
