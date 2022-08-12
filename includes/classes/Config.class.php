@@ -29,7 +29,7 @@ class Config
 										   'smail_path', 'fb_on', 'fb_apikey', 'fb_skey', 'ga_active', 'ga_key',
 										   'ttf_file', 'sendmail_inactive', 'del_user_sendmail',
 										   'del_user_automatic', 'del_oldstuff', 'del_user_manually', 'ref_max_referals',
-										   'disclamerAddress','disclamerPhone','disclamerMail','disclamerNotice');
+										   'disclamerAddress','disclamerPhone','disclamerMail','disclamerNotice', 'git_issues_link');
 
 	public static function getGlobalConfigKeys()
 	{

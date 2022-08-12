@@ -459,6 +459,8 @@ $LNG['se_google_key_info'] = 'Une fois inscrit, Google vous fournira une clé po
 $LNG['se_ttf_file'] = 'Chemin vers le fichier FFT';
 $LNG['se_ttf_file_info'] = 'Le FTT est nécessaire afin d\'afficher les caractères cyrilliques bannière des statistiques'
     . ' ou des caractères chinois';
+$LNG['git_issues_link'] = 'Link to Code Issues Page';
+$LNG['git_issues_link_info'] = 'Link to the page where you can report bugs and issues';
 $LNG['se_deuterium_cost_galaxy'] = 'Frais de galaxie';
 $LNG['se_deuterium_cost_galaxy_info'] = 'Coûts par clic du deutérium  dans la galaxie';
 $LNG['se_max_galaxy'] = 'Max galaxie';
