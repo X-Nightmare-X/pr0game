@@ -30,7 +30,7 @@ function ShowVertify()
 			$REV	= $REV[2];
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_AUTOREFERER, true);
-			curl_setopt($ch, CURLOPT_URL, 'https://git.pr0game.com/Rosenreeman/pr0game/raw/branch/master/'.$file);
+			curl_setopt($ch, CURLOPT_URL, 'https://codeberg.org/pr0game/pr0game/src/branch/master/'.$file);
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch, CURLOPT_USERAGENT, "pr0game Update API");
 			curl_setopt($ch, CURLOPT_CRLF, true);

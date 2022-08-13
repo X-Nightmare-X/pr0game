@@ -25,6 +25,7 @@ function ShowConfigBasicPage()
 	if (!empty($_POST))
 	{
 		$config_before = array(
+			'git_issues_link'		=> $config->git_issues_link,
 			'ttf_file'				=> $config->ttf_file,
 			'game_name'				=> $config->game_name,
 			'mail_active'			=> $config->mail_active,
@@ -54,6 +55,7 @@ function ShowConfigBasicPage()
 		$sendmail_inactive 		= isset($_POST['sendmail_inactive']) && $_POST['sendmail_inactive'] == 'on' ? 1 : 0;
 		$mail_active 			= isset($_POST['mail_active']) && $_POST['mail_active'] == 'on' ? 1 : 0;
 
+		$git_issues_link		= HTTP::_GP('git_issues_link', '');
 		$ttf_file				= HTTP::_GP('ttf_file', '');
 		$close_reason			= HTTP::_GP('close_reason', '', true);
 		$game_name				= HTTP::_GP('game_name', '', true);
@@ -76,6 +78,7 @@ function ShowConfigBasicPage()
 		$message_delete_days	= HTTP::_GP('message_delete_days', 0);
 
 		$config_after = array(
+			'git_issues_link'		=> $git_issues_link,
 			'ttf_file'				=> $ttf_file,
 			'game_name'				=> $game_name,
 			'mail_active'			=> $mail_active,
@@ -124,6 +127,7 @@ function ShowConfigBasicPage()
 		'del_user_automatic'			=> $config->del_user_automatic,
 		'del_user_sendmail'				=> $config->del_user_sendmail,
 		'sendmail_inactive'				=> $config->sendmail_inactive,
+		'git_issues_link'				=> $config->git_issues_link,
 		'ttf_file'						=> $config->ttf_file,
 		'game_name'						=> $config->game_name,
 		'mail_active'					=> $config->mail_active,

@@ -18,6 +18,10 @@
     <td>{$LNG.se_timzone}</td>
 	<td>{html_options name=timezone options=$Selector.timezone selected=$timezone}</td>
 	<td>&nbsp;</td>
+</tr><tr>
+    <td>{$LNG.git_issues_link}</td>
+    <td><input name="git_issues_link" size="40" value="{$git_issues_link}" type="text"></td>
+	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.git_issues_link_info}"></td>
 </tr>
 <tr>
 	<th colspan="2">{$LNG.se_player_settings}</th><th>&nbsp;</th>

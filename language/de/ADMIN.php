@@ -428,6 +428,9 @@ $LNG['se_message_delete_days'] = 'Lösche gelöschte Nachrichten nach x Tagen.';
 $LNG['se_ttf_file'] = 'Pfad zur TFF File';
 $LNG['se_ttf_file_info'] = 'Die TTF wird benötigt, um im Statistiken Banner kyrillische, oder chinesische Zeichen'
     . ' darstellen zu können';
+$LNG['git_issues_link'] = 'Link zur Code Issues Seite';
+$LNG['git_issues_link_info'] = 'Der Link zur Code Issues Seite, wo du Bugs, Fehler oder Verbesserungsvorschläge'
+    . 'finden kannst.';
 $LNG['se_max_galaxy'] = 'Max. Galaxie';
 $LNG['se_max_galaxy_info'] = 'Maximale Anzahl der Galaxien im Universum';
 $LNG['se_max_system'] = 'Max. Systeme';
