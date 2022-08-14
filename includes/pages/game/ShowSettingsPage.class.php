@@ -448,11 +448,22 @@ class ShowSettingsPage extends AbstractGamePage
         
         $db->commit();
 
-        $this->printMessage($LNG['op_options_changed'], [
-            [
-                'label' => $LNG['sys_forward'],
-                'url'   => 'game.php?page=settings',
-            ]
-        ]);
+        
+        if ($vacation == 1) {
+            $this->printMessage($LNG['op_options_changed_vacation'], [
+                [
+                    'label' => $LNG['sys_forward'],
+                    'url'   => 'game.php?page=settings',
+                ]
+            ]);
+        }
+        else {
+            $this->printMessage($LNG['op_options_changed'], [
+                [
+                    'label' => $LNG['sys_forward'],
+                    'url'   => 'game.php?page=settings',
+                ]
+            ]);
+        }
     }
 }
