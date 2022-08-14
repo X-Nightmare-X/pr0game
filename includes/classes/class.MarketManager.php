@@ -380,6 +380,7 @@ class MarketManager {
 	{
 		$fleetScore = $this->getFleetValue($fleetArray, true);
 		$fleetValue = $this->getFleetValue($fleetArray);
-		return $this->isPush($fleetValue, $ask, $sellerId, $buyerId, $fleetScore);
+		//return $this->isPush($fleetValue, $ask, $sellerId, $buyerId, $fleetScore);
+		return true; //temporary hack to disable fleet transfers
 	}
 }
