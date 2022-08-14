@@ -867,6 +867,7 @@ $LNG['op_password_changed'] = 'Sifreniz degistirildi Lutfen Tekrar giris yapin<b
 $LNG['op_username_changed'] = 'Uye Adiniz degistirildi Lutfen Tekrar giris yapin<br />'
     . '<a href="index.php" target="_top">Geri</a>';
 $LNG['op_options_changed'] = 'Ayarlar Basarili Olarak Kayit Edildi.<br /><a href="game.php?page=settings">Geri Don</a>';
+$LNG['op_options_changed_vacation'] = 'Ayarlar kaydedilir.<br><br>LÜTFEN DİKKAT: Tatil modu 4 hafta kullanılmadığında otomatik olarak devre dışı bırakılır.';
 $LNG['op_vacation_mode_active_message'] = 'Tatil Modu Aktif :  ';
 $LNG['op_end_vacation_mode'] = 'Tatilden Cik';
 $LNG['op_save_changes'] = 'Ayarlari kaydet';

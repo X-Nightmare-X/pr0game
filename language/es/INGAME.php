@@ -853,6 +853,7 @@ $LNG['op_password_changed'] = 'La contraseña ha sido cambiada.<br /><a href="in
 $LNG['op_username_changed'] = 'El nombre de usuario ha sido cambiado.<br />'
     . '<a href="index.php" target="_top">Volver</a>';
 $LNG['op_options_changed'] = 'Los cambios se han guardado.<br /><a href="game.php?page=settings">Volver</a>';
+$LNG['op_options_changed_vacation'] = 'Ajustes guardados.<br><br>AVISO: El modo vacaciones se desactiva automáticamente después de 4 semanas de inactividad.';
 $LNG['op_vacation_mode_active_message'] = 'El modo vacaciones esta activado. Tendrás que estar de vacaciones como'
     . ' mínimo hasta el: ';
 $LNG['op_end_vacation_mode'] = 'Finalizar modo vacaciones';
