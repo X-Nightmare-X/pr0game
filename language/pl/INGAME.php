@@ -862,6 +862,7 @@ $LNG['op_cant_activate_vacation_mode'] = 'Jeśli coś budujesz lub twoje floty s
 $LNG['op_password_changed'] = 'Hasło zmienione<br><a href="index.php" target="_top">Wróć</a>';
 $LNG['op_username_changed'] = 'Nazwa użytkownika zmieniona<br><a href="index.php" target="_top">Wróć</a>';
 $LNG['op_options_changed'] = 'Zmiany zapisano.<br><a href="game.php?page=options">Wróć</a>';
+$LNG['op_options_changed_vacation'] = 'Ustawienia zapisane.<br><br>Uwaga: Tryb wakacyjny jest automatycznie wyłączany po 4 tygodniach nieaktywności.';
 $LNG['op_vacation_mode_active_message'] = 'Urlop będzie można zakończyć nie wcześniej niż: ';
 $LNG['op_end_vacation_mode'] = 'Koniec Urlopu';
 $LNG['op_save_changes'] = 'Zapisz zmiany';

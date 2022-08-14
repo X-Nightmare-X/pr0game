@@ -859,6 +859,7 @@ $LNG['op_cant_activate_vacation_mode'] = 'Não podes ativar o modo de férias co
 $LNG['op_password_changed'] = 'Password alterada';
 $LNG['op_username_changed'] = 'Username alterado';
 $LNG['op_options_changed'] = 'Opções alteradas';
+$LNG['op_options_changed_vacation'] = 'Definições guardadas.<br>>br>PLEASE NOTA: O modo de férias é automaticamente desactivado após 4 semanas de inactividade.';
 $LNG['op_vacation_mode_active_message'] = 'O modo de férias está activo e acabará em: ';
 $LNG['op_end_vacation_mode'] = 'Finalizar periodo de férias';
 $LNG['op_save_changes'] = 'Guardar alterações';

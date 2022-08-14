@@ -893,6 +893,7 @@ $LNG['op_cant_activate_vacation_mode'] = 'You can not activate the vacation mode
 $LNG['op_password_changed'] = 'Password changed';
 $LNG['op_username_changed'] = 'Username changed';
 $LNG['op_options_changed'] = 'Options changed';
+$LNG['op_options_changed_vacation'] = 'Settings saved.<br><br>PLEASE NOTE: Holiday mode is automatically deactivated after 4 weeks of inactivity.';
 $LNG['op_vacation_mode_active_message'] = 'Vacation mode is active and will end up in: ';
 $LNG['op_end_vacation_mode'] = 'End period of vacation';
 $LNG['op_save_changes'] = 'Save changes';
