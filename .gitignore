@@ -10,3 +10,6 @@ vendor/
 .phpcs-cache
 stats/*.json
 stats.json
+.well-known/
+404.html
+.user.ini

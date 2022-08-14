@@ -6,7 +6,7 @@
 You need Git to work with the repository.
 
 ```
-git clone https://git.pr0game.com/Rosenreeman/pr0game.git
+git clone https://codeberg.org/pr0game/pr0game.git
 ```
 
 ### ddev
