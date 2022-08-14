@@ -50,7 +50,7 @@ abstract class AbstractGamePage
                     ));
 
                     $this->ecoObj = new ResourceUpdate();
-                    list($USER, $PLANET) = $this->ecoObj->CalcResource($u, $p, true);
+                    list($USER, $PLANET) = $this->ecoObj->CalcResource($USER, $PLANET, true);
                     $db->commit();
                 }
             }
