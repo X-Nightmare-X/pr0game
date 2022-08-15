@@ -51,19 +51,20 @@ class DailyCronJob implements CronjobTask
 			':inactive' => TIMESTAMP - INACTIVE_LONG,
 		]);
 
-		foreach ($players AS $player) {
-			$sql = "UPDATE %%PLANETS%% set last_update = :time
+		foreach ($players as $player) {
+			$sql = "UPDATE %%PLANETS%% set last_update = :ts
 				WHERE id_owner = :id;";
 			
 			Database::get()->update($sql, [
+				':ts' => TIMESTAMP,
 				':id' => $player['id'],
 			]);
 
 			$sql = "UPDATE %%USERS%% set urlaubs_modus = 0, urlaubs_until = 0
-				WHERE id_owner = :id;";
+				WHERE id = :id;";
 
 			Database::get()->update($sql, [
-				':inactive' => TIMESTAMP - INACTIVE_LONG,
+				':id' => $player['id'],
 			]);
 		}
 	}
