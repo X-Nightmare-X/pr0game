@@ -256,6 +256,10 @@ select {
   color: #6c3
 }
 
+.hostilefederation {
+  color: #c66
+}
+
 .ownharvest {
   color: #ceff68
 }
@@ -296,7 +300,7 @@ select {
   color: #fc6
 }
 
-.espionage, .missile, .hostilefederation {
+.espionage, .missile {
   color: #f60
 }
 
