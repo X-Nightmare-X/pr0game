@@ -46,7 +46,7 @@ class DailyCronJob implements CronjobTask
 
 	function cancelVacation() {
 		$sql = "SELECT id FROM %%USERS%%
-				WHERE urlaubs_modus = 1 AND onlinetime < :inactive;";
+				WHERE urlaubs_modus = 1 AND onlinetime < :inactive AND bana = 0;";
 		$players = Database::get()->select($sql, [
 			':inactive' => TIMESTAMP - INACTIVE_LONG,
 		]);
