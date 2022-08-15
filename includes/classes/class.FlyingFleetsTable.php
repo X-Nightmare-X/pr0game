@@ -208,6 +208,7 @@ class FlyingFleetsTable
     {
         global $LNG;
         $Owner          = $fleetRow['fleet_owner'] == $this->userId;
+        $friendly = !$Owner && $fleetRow['fleet_target_owner'] != $this->userId;
         $FleetStyle  = [
             MISSION_ATTACK => 'attack',
             MISSION_ACS => 'federation',
@@ -226,8 +227,14 @@ class FlyingFleetsTable
 
         $GoodMissions = [MISSION_TRANSPORT, MISSION_HOLD];
         $MissionType = $fleetRow['fleet_mission'];
+        if ($friendly && $fleetRow['fleet_group'] != 0) {
+            $MissionType = MISSION_ACS;
+        }
 
         $FleetPrefix = ($Owner == true) ? 'own' : '';
+        if ($MissionType != MISSION_ATTACK && !$Owner && !$friendly && $fleetRow['fleet_group'] != 0) {
+            $FleetPrefix = 'hostile';
+        }
         $FleetType = $FleetPrefix . $FleetStyle[$MissionType];
         if (
             !$Owner
