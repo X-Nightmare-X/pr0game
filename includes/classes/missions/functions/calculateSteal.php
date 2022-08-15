@@ -100,6 +100,19 @@ function calculateSteal($attackFleets, $defenderPlanet, $simulate = false)
         $db->update($sql, [
             ':fleetId'  => $FleetID,
         ]);
+
+        $sql = "UPDATE %%LOG_FLEETS%% SET
+		`fleet_gained_metal` = `fleet_gained_metal` + '"
+            . ($stealResource[$firstResource] * $slotFactor) . "',
+		`fleet_gained_crystal` = `fleet_gained_crystal` + '"
+            . ($stealResource[$secondResource] * $slotFactor) . "',
+		`fleet_gained_deuterium` = `fleet_gained_deuterium` + '"
+            . ($stealResource[$thirdResource] * $slotFactor) . "'
+		WHERE fleet_id = :fleetId;";
+
+        $db->update($sql, [
+            ':fleetId'  => $FleetID,
+        ]);
     }
 
     return $stealResource;

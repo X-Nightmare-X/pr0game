@@ -20,12 +20,18 @@ class MissionFunctions
     public $kill = 0;
     public $_fleet = [];
     public $_upd = [];
+    public $_updLog = [];
     public $eventTime = 0;
 
     protected function UpdateFleet($Option, $Value)
     {
         $this->_fleet[$Option] = $Value;
         $this->_upd[$Option] = $Value;
+    }
+
+    protected function UpdateFleetLog($Option, $Value)
+    {
+        $this->_updLog[$Option] = $Value;
     }
 
     protected function setState($Value)
@@ -53,7 +59,6 @@ class MissionFunctions
         }
 
         $param = [];
-
         $updateQuery = [];
 
         foreach ($this->_upd as $Opt => $Val) {
@@ -71,6 +76,20 @@ class MissionFunctions
                 ':time'     => $this->eventTime,
                 ':fleetId'  => $this->_fleet['fleet_id']
             ]);
+        }
+
+        $param = [];
+        $updateQuery = [];
+
+        foreach ($this->_updLog as $Opt => $Val) {
+            $updateQuery[] = "`" . $Opt . "` = :" . $Opt;
+            $param[':' . $Opt] = $Val;
+        }
+
+        if (!empty($updateQuery)) {
+            $sql = 'UPDATE %%LOG_FLEETS%% SET ' . implode(', ', $updateQuery) . ' WHERE `fleet_id` = :fleetId;';
+            $param[':fleetId'] = $this->_fleet['fleet_id'];
+            Database::get()->update($sql, $param);
         }
     }
 

@@ -169,6 +169,8 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 
         $fleetColName = 'fleet_resource_' . $resource[$resourceId];
         $this->UpdateFleet($fleetColName, $this->_fleet[$fleetColName] + $foundResources);
+        $logColName = 'fleet_gained_' . $resource[$resourceId];
+        $this->UpdateFleetLog($logColName, $foundResources);
 
         return $Message;
     }

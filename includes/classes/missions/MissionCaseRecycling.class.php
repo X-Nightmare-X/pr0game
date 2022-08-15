@@ -79,6 +79,7 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
             $collectFactor = min(1, $totalStorage / $targetData['total']);
             foreach ($debrisIDs as $debrisID) {
                 $fleetColName = 'fleet_resource_' . $resource[$debrisID];
+                $logColName = 'fleet_gained_' . $resource[$debrisID];
                 $debrisColName = 'der_' . $resource[$debrisID];
 
                 $collectedGoods[$debrisID] = ceil($targetData[$debrisColName] * $collectFactor);
@@ -87,6 +88,7 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
                 $param[':' . $resource[$debrisID]] = $collectedGoods[$debrisID];
 
                 $this->UpdateFleet($fleetColName, $this->_fleet[$fleetColName] + $collectedGoods[$debrisID]);
+                $this->UpdateFleetLog($logColName, $collectedGoods[$debrisID]);
             }
 
             $sql = 'UPDATE %%PLANETS%% SET ' . implode(',', $collectQuery) . ' WHERE id = :planetId;';
