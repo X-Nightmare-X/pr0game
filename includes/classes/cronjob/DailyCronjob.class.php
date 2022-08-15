@@ -45,12 +45,28 @@ class DailyCronJob implements CronjobTask
 	}
 
 	function cancelVacation() {
-		$sql = "UPDATE %%USERS%% set urlaubs_modus = 0, urlaubs_until = 0
-				WHERE urlaubs_modus = 1 AND onlinetime < :inactive;";
-
-		Database::get()->update($sql, [
+		$sql = "SELECT id FROM %%USERS%%
+				WHERE urlaubs_modus = 1 AND onlinetime < :inactive AND bana = 0;";
+		$players = Database::get()->select($sql, [
 			':inactive' => TIMESTAMP - INACTIVE_LONG,
 		]);
+
+		foreach ($players as $player) {
+			$sql = "UPDATE %%PLANETS%% set last_update = :ts
+				WHERE id_owner = :id;";
+			
+			Database::get()->update($sql, [
+				':ts' => TIMESTAMP,
+				':id' => $player['id'],
+			]);
+
+			$sql = "UPDATE %%USERS%% set urlaubs_modus = 0, urlaubs_until = 0
+				WHERE id = :id;";
+
+			Database::get()->update($sql, [
+				':id' => $player['id'],
+			]);
+		}
 	}
 
 	function updateInactiveMines() {
