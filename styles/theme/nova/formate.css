@@ -253,6 +253,10 @@ select {
 }
 
 .ownfederation {
+  color: #6c3
+}
+
+.hostilefederation {
   color: #c66
 }
 
