@@ -751,7 +751,7 @@ $LNG['al_rank_desc']['EVENTS'] = 'Pode ver eventos';
 $LNG['al_invalid_rank_name'] = 'No nome de Rank, é apenas permitido números, letras, espaços, _, -.';
 $LNG['al_make_ally_insufficient_points'] = 'Não tens pontos suficientes para criar uma Aliança.<br>São requeridos %s'
     . ' pontos, mas possuis %s pontos.';
-$LNG['al_new_apply'] = 'Your alliance has received a new application from -'
+$LNG['al_new_apply'] = 'A sua aliança recebeu um novo pedido para -'
     . ' <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a>';
 
 //----------------------------------------------------------------------------//

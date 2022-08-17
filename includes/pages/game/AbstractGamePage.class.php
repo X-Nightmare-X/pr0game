@@ -175,9 +175,22 @@ abstract class AbstractGamePage
             }
         }
 
+        $sql = "SELECT COUNT(applyID) AS applies FROM %%ALLIANCE_REQUEST%% WHERE allianceID = :allianceID;";
+        $allyApplyRequests = Database::get()->select($sql, [':allianceID' => $USER['ally_id']]);
+        $sql = "SELECT COUNT(id) AS diplos FROM %%DIPLO%% WHERE owner_2 = :allianceID AND accept = 0;";
+        $allyDiploRequests = Database::get()->select($sql, [':allianceID' => $USER['ally_id']]);
+        $allyrequests = 0;
+        if (isset($allyApplyRequests)) {
+            $allyrequests += $allyApplyRequests[0]['applies'];
+        }
+        if (isset($allyDiploRequests)) {
+            $allyrequests += $allyDiploRequests[0]['diplos'];
+        }
+
         $this->assign([
             'PlanetSelect' => $PlanetSelect,
             'new_message' => $USER['messages'],
+            'new_allyrequests' => $allyrequests,
             'commit' => $commit,
             'commitShort' => $commitShort,
             'vacation' => $USER['urlaubs_modus'] ? _date($LNG['php_tdformat'], $USER['urlaubs_until'], $USER['timezone']) : false,

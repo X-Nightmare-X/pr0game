@@ -742,7 +742,7 @@ $LNG['al_invalid_rank_name'] = 'Le noms de rank ne peut seulement contenir des n
     . ' ou _, -.!';
 $LNG['al_make_ally_insufficient_points'] = 'Vous n\'avez pas assez de points pour créer une alliance.<br>Il est requis'
     . ' %s points, vous avez %s points.';
-$LNG['al_new_apply'] = 'Your alliance has received a new application from -'
+$LNG['al_new_apply'] = 'Votre alliance a reçu une nouvelle candidature de -'
     . ' <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a>';
 
 //----------------------------------------------------------------------------//

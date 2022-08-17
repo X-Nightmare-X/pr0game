@@ -278,6 +278,10 @@ class ShowAlliancePage extends AbstractGamePage
             $this->redirectToHome();
         }
 
+        if ($USER['ally_id'] != 0) {
+            $this->redirectToHome();
+        }
+
         $text = HTTP::_GP('text', '', true);
         $allianceId = HTTP::_GP('id', 0);
 
@@ -300,10 +304,6 @@ class ShowAlliancePage extends AbstractGamePage
             ]]);
         }
 
-        if ($USER['ally_id'] != 0) {
-            $this->redirectToHome();
-        }
-
         if (!empty($text)) {
             $sql = "INSERT INTO %%ALLIANCE_REQUEST%% SET
                 allianceId	= :allianceId,
@@ -318,29 +318,39 @@ class ShowAlliancePage extends AbstractGamePage
                 ':userId' => $USER['id']
             ]);
 
+            $sql = "SELECT u.id, u.lang 
+                FROM uni1_users u
+                LEFT JOIN uni1_alliance_ranks r ON u.ally_id = r.allianceID AND u.ally_rank_id = r.rankID
+                WHERE u.ally_id = :allianceId AND (r.MANAGEAPPLY = 1 OR u.ally_rank_id = 0);";
+            
+            $receivers = $db->select($sql, [':allianceId' => $allianceId]);
+
+            foreach ($receivers as $receiver) {
+                $lang = getLanguage($receiver['lang']);
+
+                $applyMessage = sprintf(
+                    $lang['al_new_apply'],
+                    $USER['id'],
+                    $USER['username'],
+                    $USER['username']
+                );
+        
+                PlayerUtil::sendMessage(
+                    $receiver['id'],
+                    0,
+                    $LNG['al_alliance'],
+                    2,
+                    $LNG['al_request'],
+                    $applyMessage,
+                    TIMESTAMP
+                );
+            }
+
             $this->printMessage($LNG['al_request_confirmation_message'], [[
                 'label' => $LNG['sys_forward'],
                 'url' => '?page=alliance'
             ]]);
         }
-
-        $applyMessage = sprintf(
-            $LNG['al_new_apply'],
-            $USER['id'],
-            $USER['username'],
-            $USER['username']
-        );
-
-        PlayerUtil::sendMessage(
-            $allianceResult['ally_owner'],
-            0,
-            $LNG['al_alliance'],
-            2,
-            $LNG['al_request'],
-            $applyMessage,
-            TIMESTAMP
-        );
-
 
         $this->assign([
             'allyid' => $allianceId,
