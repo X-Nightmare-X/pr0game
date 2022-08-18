@@ -3,7 +3,7 @@
 <form name="message" id="message">
 	<table style="width:95%">
 	<tr>
-		<th colspan="2">{$LNG.al_circular_send_ciruclar}</th>
+		<th colspan="2">{$LNG.al_diplo_create}</th>
 	</tr>
 	<tr>
 		<td>{$LNG.al_diplo_ally}</td>

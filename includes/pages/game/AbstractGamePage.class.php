@@ -175,17 +175,27 @@ abstract class AbstractGamePage
             }
         }
 
-        $sql = "SELECT COUNT(applyID) AS applies FROM %%ALLIANCE_REQUEST%% WHERE allianceID = :allianceID;";
-        $allyApplyRequests = Database::get()->select($sql, [':allianceID' => $USER['ally_id']]);
-        $sql = "SELECT COUNT(id) AS diplos FROM %%DIPLO%% WHERE owner_2 = :allianceID AND accept = 0;";
-        $allyDiploRequests = Database::get()->select($sql, [':allianceID' => $USER['ally_id']]);
-        $allyrequests = 0;
-        if (isset($allyApplyRequests)) {
-            $allyrequests += $allyApplyRequests[0]['applies'];
-        }
-        if (isset($allyDiploRequests)) {
-            $allyrequests += $allyDiploRequests[0]['diplos'];
-        }
+        $sql = "SELECT COUNT(r.applyID) AS applies 
+            FROM %%ALLIANCE_REQUEST%% r
+            JOIN %%USERS%% u ON u.ally_id = r.allianceID
+            LEFT JOIN %%ALLIANCE_RANK%% ra ON ra.allianceID = u.ally_id AND ra.rankID = u.ally_rank_id
+            WHERE r.allianceID = :allianceID AND u.id = :userID AND (u.ally_rank_id = 0 OR ra.MANAGEAPPLY = 1);";
+        $allyApplyRequests = Database::get()->selectSingle($sql, [
+            ':allianceID' => $USER['ally_id'],
+            ':userID' => $USER['id']
+        ], 'applies');
+
+        $sql = "SELECT COUNT(d.id) AS diplos 
+            FROM %%DIPLO%% d 
+            JOIN %%USERS%% u ON u.ally_id = d.owner_2
+            LEFT JOIN %%ALLIANCE_RANK%% ra ON ra.allianceID = u.ally_id AND ra.rankID = u.ally_rank_id
+            WHERE d.owner_2 = :allianceID AND accept = 0 AND u.id = :userID AND (u.ally_rank_id = 0 OR ra.DIPLOMATIC = 1);";
+        $allyDiploRequests = Database::get()->selectSingle($sql, [
+            ':allianceID' => $USER['ally_id'],
+            ':userID' => $USER['id']
+        ], 'diplos');
+        
+        $allyrequests = $allyApplyRequests + $allyDiploRequests;
 
         $this->assign([
             'PlanetSelect' => $PlanetSelect,

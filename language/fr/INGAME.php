@@ -719,6 +719,12 @@ $LNG['al_diplo_war_mes'] = 'L\'Alliance %s vient de donner des renseignements à
     . 'Motis :<br>%s<br><br>Information : La guerre pourra être déclarée dans 24 heures. Le bash est régulier'
     . ' uniquement si il est levé après 24 heures. <br>Vous trouverez plus d\information dans le'
     . ' <a href="index.php?page=rules" target="_blank">Règlement</a>.';
+$LNG['al_diplo_war_end'] = 'Guerre terminée';
+$LNG['al_diplo_war_end_mes'] = 'La %s de l\'Alliance %s avec l\'Alliance %s vient d\'être déclarée terminée.';
+$LNG['al_diplo_war_end_confirm'] = 'Veux-tu vraiment mettre fin à la guerre ?';
+$LNG['al_diplo_withdraw'] = 'Demande de pacte retirée';
+$LNG['al_diplo_withdraw_mes'] = 'La demande de pacte (%s) entre les alliances %s et %s a été retirée';
+$LNG['al_diplo_withdraw_confirm'] = 'Tu veux vraiment retirer ta demande de pacte ?';
 $LNG['al_diplo_head'] = 'Gestion de la diplomatie';
 $LNG['al_diplo_same_alliance'] = 'Vous ne pouvez pas faire un pacte avec votre propre Alliance!';
 $LNG['al_diplo_no_alliance'] = 'Il n\'y a pas d\'alliance avec le nom de %s!';

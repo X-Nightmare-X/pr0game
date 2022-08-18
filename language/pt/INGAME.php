@@ -720,6 +720,12 @@ $LNG['al_diplo_war'] = 'Declaração de guerra';
 $LNG['al_diplo_war_mes'] = 'A aliança %s e a aliança %s soebend den %s declarou.<br>Motivo:<br>%s<br><br>Informações:'
     . ' A guerra é válida por 24 horas. Somente após as 24 horas a guerra e dada como terminada. <br>Mais informações'
     . ' consulta as <a href="index.php?page=rules" target="_blank">Regras</a>.';
+$LNG['al_diplo_war_end'] = 'A guerra terminou';
+$LNG['al_diplo_war_end_mes'] = 'A %s da %s alliance com a %s alliance acaba de ser declarada terminada.';
+$LNG['al_diplo_war_end_confirm'] = 'Quer mesmo acabar com a guerra?';
+$LNG['al_diplo_withdraw'] = 'Pedido de pacto retirado';
+$LNG['al_diplo_withdraw_mes'] = 'O pedido de pacto (%s) entre as %s e as %s alianças foi retirado';
+$LNG['al_diplo_withdraw_confirm'] = 'Quer realmente retirar o pedido do pacto?';
 $LNG['al_diplo_head'] = 'Gestão de Diplomacia';
 $LNG['al_diplo_same_alliance'] = 'Não podes fazer um pacto com a tua própria aliança!';
 $LNG['al_diplo_no_alliance'] = 'Não existe aliança com o nome de %s!';

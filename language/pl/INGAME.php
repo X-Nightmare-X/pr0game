@@ -735,6 +735,12 @@ $LNG['al_diplo_war_mes'] = 'Sojusz %s wypowiada wojnę %s! Poniżej uzasadnienie
     . 'Akt wypowiedzenia wojny:<br>%s<br><br>Informacje: Wojna jest ważna po 24h od ogłoszenia! Osłona bash zostanie'
     . ' wyłączona po 24h. <br>Więcej informacji znajdziesz tutaj:'
     . ' <a href="index.php?page=rules" target="_blank">Zasady</a>.';
+$LNG['al_diplo_war_end'] = 'Wojna zakończona';
+$LNG['al_diplo_war_end_mes'] = '%s sojuszu %s z sojuszem %s została właśnie uznana za zakończoną.';
+$LNG['al_diplo_war_end_confirm'] = 'Czy naprawdę chcesz zakończyć wojnę?';
+$LNG['al_diplo_withdraw'] = 'Wycofanie wniosku o pakt';
+$LNG['al_diplo_withdraw_mes'] = 'Wniosek o zawarcie paktu (%s) między sojuszami %s i %s został wycofany.';
+$LNG['al_diplo_withdraw_confirm'] = 'Czy naprawdę chce pan wycofać wniosek o pakt?';
 $LNG['al_diplo_head'] = 'Dyplomacja';
 $LNG['al_diplo_same_alliance'] = 'Nie możesz zawrzeć sojuszu sam ze sobą!';
 $LNG['al_diplo_no_alliance'] = 'Brak sojuszu o takiej nazwie %s!';

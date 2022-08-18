@@ -723,6 +723,12 @@ $LNG['al_diplo_war'] = 'Declaración de Guerra';
 $LNG['al_diplo_war_mes'] = 'La guerra ha sido declarada entre las alianzas  -> %s <- y -> %s <-.<br>Razón: %s <br><br>'
     . 'Información: Ambos dirigentes de las Alianzas estan de acuerdo con la guerra. Leer las reglas sobre las Guerra'
     . ' entre las alianzas para que todo sea legal...';
+$LNG['al_diplo_war_end'] = 'La guerra terminó';
+$LNG['al_diplo_war_end_mes'] = 'La %s de la alianza %s con la alianza %s acaba de ser declarada terminada.';
+$LNG['al_diplo_war_end_confirm'] = '¿Realmente quieres acabar con la guerra?';
+$LNG['al_diplo_withdraw'] = 'Se retira la solicitud de pacto';
+$LNG['al_diplo_withdraw_mes'] = 'La solicitud de pacto (%s) entre las alianzas %s y %s fue retirada';
+$LNG['al_diplo_withdraw_confirm'] = '¿Realmente quiere retirar la solicitud de pacto?';
 $LNG['al_diplo_head'] = 'Gestión de Diplomacia';
 $LNG['al_diplo_same_alliance'] = 'No se puede iniciar un pacto con uno mismo!';
 $LNG['al_diplo_no_alliance'] = 'No existe ninguna Alianza con el nombre %s!';

@@ -763,6 +763,12 @@ $LNG['al_diplo_war'] = 'Declaration of war';
 $LNG['al_diplo_war_mes'] = 'The Alliance %s and the Alliance %s just the %s declarated.<br>Reason:<br>%s<br><br>'
     . 'Information: the war is valid for 24 hours. Only after the 24 hours, war and given as terminated. <br>'
     . 'More information consult the <a href="index.php?page=rules&lang=en" target="_blank">Rules</a>.';
+$LNG['al_diplo_war_end'] = 'War over';
+$LNG['al_diplo_war_end_mes'] = 'The %s from the alliance %s with the alliance %s has just been declared terminated.';
+$LNG['al_diplo_war_end_confirm'] = 'Do you really want to end the war?';
+$LNG['al_diplo_withdraw'] = 'Pact request withdrawn';
+$LNG['al_diplo_withdraw_mes'] = 'The pact request (%s) between the %s and %s alliances was withdrawn';
+$LNG['al_diplo_withdraw_confirm'] = 'Do you really want to withdraw the pact request?';
 $LNG['al_diplo_head'] = 'Management of Diplomacy';
 $LNG['al_diplo_same_alliance'] = 'You can not make a pact with your own Alliance!';
 $LNG['al_diplo_no_alliance'] = 'There is no alliance with the name of %s!';

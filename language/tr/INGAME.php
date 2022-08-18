@@ -728,6 +728,12 @@ $LNG['al_diplo_ask_mes'] = ' (%s) anlasmasi %s ve %s arasinda uygulandi.<br>Sebe
 $LNG['al_diplo_war'] = 'Savas Deklerasyonu';
 $LNG['al_diplo_war_mes'] = ' %s ittifagi ile %s ittifagi %s duyurdu.<br>Sebep:<br>%s<br><br>Bilgi: Savas 24 saat'
     . ' gecerli. . <br> Daha fazla bilgi icin <a href="index.php?page=rules" target="_blank">Kurallar</a>.';
+$LNG['al_diplo_war_end'] = 'Savaş sona erdi';
+$LNG['al_diplo_war_end_mes'] = 'The %s from the alliance %s with the alliance %s has just been declared terminated.';
+$LNG['al_diplo_war_end_confirm'] = 'Gerçekten savaşı bitirmek istiyor musun?';
+$LNG['al_diplo_withdraw'] = 'Pakt talebi geri çekildi';
+$LNG['al_diplo_withdraw_mes'] = 'The pact request (%s) between the %s and %s alliances was withdrawn';
+$LNG['al_diplo_withdraw_confirm'] = 'Anlaşma talebini gerçekten geri çekmek istiyor musunuz?';
 $LNG['al_diplo_head'] = 'Diplomasiyi Yonet';
 $LNG['al_diplo_same_alliance'] = 'Muttefiklerinle pact yapamazsin!';
 $LNG['al_diplo_no_alliance'] = '%s ile bir muttefiklik yok!';
