@@ -703,6 +703,7 @@ $LNG['al_diplo'] = 'Dyplomacja';
 $LNG['al_no_diplo'] = '-';
 $LNG['al_events'] = 'Wydarzenia';
 $LNG['al_no_events'] = 'Obecnie brak wydarzeń';
+$LNG['al_diplo_level'][0] = 'Główna';
 $LNG['al_diplo_level'][1] = 'Akademia';
 $LNG['al_diplo_level'][2] = 'Sojusz ';
 $LNG['al_diplo_level'][3] = 'Umowa Handlowa';

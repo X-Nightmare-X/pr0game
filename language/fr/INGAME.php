@@ -684,6 +684,7 @@ $LNG['al_diplo'] = 'Diplomatie';
 $LNG['al_no_diplo'] = '-';
 $LNG['al_events'] = 'Evénements';
 $LNG['al_no_events'] = 'Il n\'y a pas actuellement d \'événement';
+$LNG['al_diplo_level'][0] = 'Main';
 $LNG['al_diplo_level'][1] = 'Wing';
 $LNG['al_diplo_level'][2] = 'Alliance ';
 $LNG['al_diplo_level'][3] = 'Pacte commercial';

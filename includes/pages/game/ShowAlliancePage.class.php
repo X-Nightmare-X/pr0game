@@ -527,6 +527,10 @@ class ShowAlliancePage extends AbstractGamePage
         ]);
 
         foreach ($DiploResult as $CurDiplo) {
+            if ($CurDiplo['level'] == 1 && $CurDiplo['owner_2'] == $this->allianceData['id']) {
+                $CurDiplo['level'] = 0;
+            }
+
             if ($CurDiplo['accept'] == 0 && $CurDiplo['owner_2'] == $this->allianceData['id']) {
                 $Return[5][$CurDiplo['id']] = [
                     $CurDiplo['ally_name'],
@@ -1573,6 +1577,7 @@ class ShowAlliancePage extends AbstractGamePage
 
         $diplomaticList = [
             0 => [
+                0 => [],
                 1 => [],
                 2 => [],
                 3 => [],
@@ -1581,6 +1586,7 @@ class ShowAlliancePage extends AbstractGamePage
                 6 => []
             ],
             1 => [
+                0 => [],
                 1 => [],
                 2 => [],
                 3 => [],
@@ -1589,6 +1595,7 @@ class ShowAlliancePage extends AbstractGamePage
                 6 => []
             ],
             2 => [
+                0 => [],
                 1 => [],
                 2 => [],
                 3 => [],
@@ -1606,6 +1613,9 @@ class ShowAlliancePage extends AbstractGamePage
         ]);
 
         foreach ($diplomaticResult as $diplomaticRow) {
+            if ($diplomaticRow['level'] == 1 && $diplomaticRow['owner_2'] == $this->allianceData['id']) {
+                $diplomaticRow['level'] = 0;
+            }
             $own = $diplomaticRow['owner_1'] == $this->allianceData['id'];
             if ($diplomaticRow['accept'] == 1) {
                 $diplomaticList[0][$diplomaticRow['level']][$diplomaticRow['id']] = $diplomaticRow['ally_name'];
@@ -1946,10 +1956,13 @@ class ShowAlliancePage extends AbstractGamePage
         $db = Database::get();
 
         $sql = "SELECT u.id, u.lang FROM %%USERS%% u";
-        if ($diplomats || $managers) $sql = $sql . " LEFT JOIN %%ALLIANCE_RANK%% r ON u.ally_id = r.allianceID AND u.ally_rank_id = r.rankID";
+        if ($diplomats || $managers) {
+            $sql = $sql . " JOIN %%ALLIANCE%% a ON u.ally_id = a.id";
+            $sql = $sql . " LEFT JOIN %%ALLIANCE_RANK%% r ON u.ally_id = r.allianceID AND u.ally_rank_id = r.rankID";
+        }
         if (!$managers) {
             $sql = $sql . " WHERE (u.ally_id = :allianceId OR u.ally_id = :id)";
-            if ($diplomats) $sql = $sql . " AND (r.DIPLOMATIC = 1 OR u.ally_rank_id = 0)";
+            if ($diplomats) $sql = $sql . " AND (r.DIPLOMATIC = 1 OR u.id = a.ally_owner)";
             $sql = $sql . ";";
 
             $receivers = $db->select($sql, [
@@ -1958,7 +1971,7 @@ class ShowAlliancePage extends AbstractGamePage
             ]);
         }
         else {
-            $sql = $sql . " WHERE u.ally_id = :allianceId AND (r.MANAGEAPPLY = 1 OR u.ally_rank_id = 0);";
+            $sql = $sql . " WHERE u.ally_id = :allianceId AND (r.MANAGEAPPLY = 1 OR u.id = a.ally_owner);";
             
             $receivers = $db->select($sql, [
                 ':allianceId' => $targetAllyID,

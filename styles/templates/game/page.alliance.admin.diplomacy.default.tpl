@@ -28,11 +28,13 @@
 			<td colspan="2">{$LNG.al_diplo_no_entry}</td>
 		</tr>
 		{/foreach}
+	{if $diploMode != 0}
 	<tr>
 		<td colspan="2">
 			<a href="game.php?page=alliance&amp;mode=admin&amp;action=diplomacyCreate&amp;diploMode={$diploMode}" onclick="return Dialog.open(this.href, 650, 300);">{$LNG.al_diplo_create}</a>
 		</td>
 	</tr>
+	{/if}
 	{/foreach}
 	</table>
 </p>

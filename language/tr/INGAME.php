@@ -697,6 +697,7 @@ $LNG['al_diplo'] = 'Diplomasi';
 $LNG['al_no_diplo'] = '-';
 $LNG['al_events'] = 'olaylar';
 $LNG['al_no_events'] = 'Mevcut olay yok';
+$LNG['al_diplo_level'][0] = 'Ana';
 $LNG['al_diplo_level'][1] = 'Kanat';
 $LNG['al_diplo_level'][2] = 'Muttefik';
 $LNG['al_diplo_level'][3] = 'Ticaret Pakti';

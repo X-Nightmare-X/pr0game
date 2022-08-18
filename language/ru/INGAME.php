@@ -676,6 +676,7 @@ $LNG['al_diplo'] = 'Дипломатия';
 $LNG['al_no_diplo'] = '-';
 $LNG['al_events'] = 'События';
 $LNG['al_no_events'] = 'Нет событий';
+$LNG['al_diplo_level'][0] = 'Главная';
 $LNG['al_diplo_level'][1] = 'Академия';
 $LNG['al_diplo_level'][2] = 'Союз';
 $LNG['al_diplo_level'][3] = 'Торговые отношения';
