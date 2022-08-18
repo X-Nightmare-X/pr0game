@@ -543,7 +543,7 @@ $LNG['al_created'] = 'Haz fundado la alianza %s, la alianza ha sido aceptada por
 $LNG['al_continue'] = 'continuar';
 $LNG['al_alliance_closed'] = 'Esta alianza no admite nuevos miembros';
 $LNG['al_request_confirmation_message'] = 'Solicitud enviada. Recibirás un mensaje cuando tu solicitud sea aceptada o'
-    . ' rechazada por el líder o el encargado de la alianza. <br><a href="game.php?page=alliance">Volver</a>';
+    . ' rechazada por el líder o el encargado de la alianza.';
 $LNG['al_default_request_text'] = 'Los líderes de la alianza no han creado un formulario de ingreso en la alianza, o no'
     . ' necesitan uno.';
 $LNG['al_write_request'] = 'Escribir solicitud a la alianza %s';
@@ -551,8 +551,11 @@ $LNG['al_request_deleted'] = 'Tu solicitud ha sido eliminada. <br/>Ahora puedes 
     . ' propia alianza.';
 $LNG['al_request_wait_message'] = 'Ya has enviado una solicitud a la alianza %s. <br/>Por favor, espera hasta que'
     . ' recibas una respuesta de ellos o borra la solicitud.';
-$LNG['al_delete_request'] = 'Borrar solicitud';
+$LNG['al_delete_request'] = 'Retirar la solicitud';
+$LNG['al_delete_request_confirm'] = '¿Realmente quiere retirar la solicitud?';
 $LNG['al_founder_cant_leave_alliance'] = 'Eres el fundador, por lo tanto no puedes abandonar la alianza.';
+$LNG['al_leaving'] = 'Un jugador ha abandonado la alianza';
+$LNG['al_leaving_msg'] = 'El jugador <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a> ha abandonado la alianza.';
 $LNG['al_leave_sucess'] = 'Abandonaste la alianza %s con éxito.';
 $LNG['al_do_you_really_want_to_go_out'] = '¿Realmente deseas salir de la alianza %s?';
 $LNG['al_go_out_yes'] = 'Sí';

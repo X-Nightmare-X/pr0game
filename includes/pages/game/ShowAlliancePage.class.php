@@ -205,8 +205,10 @@ class ShowAlliancePage extends AbstractGamePage
         global $USER, $LNG;
 
         $db = Database::get();
-        $sql = "SELECT a.ally_tag FROM %%ALLIANCE_REQUEST%% r INNER JOIN %%ALLIANCE%% a ON a.id = r.allianceId"
-            . " WHERE r.userId = :userId;";
+        $sql = "SELECT a.id, a.ally_name, a.ally_tag 
+            FROM %%ALLIANCE_REQUEST%% r 
+            INNER JOIN %%ALLIANCE%% a ON a.id = r.allianceId
+            WHERE r.userId = :userId;";
         $allianceResult = $db->selectSingle($sql, [
             ':userId' => $USER['id']
         ]);
@@ -215,8 +217,10 @@ class ShowAlliancePage extends AbstractGamePage
             $allianceResult['ally_tag'] = 0;
         }
 
+        $link = '<a href="?page=alliance&mode=info&id=' . $allianceResult['id'] . '">[' . $allianceResult['ally_tag']
+             . '] ' . $allianceResult['ally_name'] . '</a>';
         $this->assign([
-            'request_text' => sprintf($LNG['al_request_wait_message'], $allianceResult['ally_tag']),
+            'request_text' => sprintf($LNG['al_request_wait_message'], $link),
         ]);
 
         $this->display('page.alliance.applyWait.tpl');
@@ -333,16 +337,16 @@ class ShowAlliancePage extends AbstractGamePage
                 PlayerUtil::sendMessage(
                     $receiver['id'],
                     0,
-                    $LNG['al_alliance'],
+                    $lang['al_alliance'],
                     2,
-                    $LNG['al_request'],
+                    $lang['al_request'],
                     $applyMessage,
                     TIMESTAMP
                 );
             }
 
             $this->printMessage($LNG['al_request_confirmation_message'], [[
-                'label' => $LNG['sys_forward'],
+                'label' => $LNG['sys_back'],
                 'url' => '?page=alliance'
             ]]);
         }
@@ -792,9 +796,32 @@ class ShowAlliancePage extends AbstractGamePage
 
     public function close()
     {
-        global $USER;
+        global $LNG, $USER;
 
         $db = Database::get();
+
+        $receivers = $this->getMessageReceivers($this->allianceData['id'], false, true);
+
+        foreach ($receivers as $receiver) {
+            $lang = getLanguage($receiver['lang']);
+
+            $applyMessage = sprintf(
+                $lang['al_leaving_msg'],
+                $USER['id'],
+                $USER['username'],
+                $USER['username']
+            );
+    
+            PlayerUtil::sendMessage(
+                $receiver['id'],
+                0,
+                $lang['al_alliance'],
+                2,
+                $lang['al_leaving'],
+                $applyMessage,
+                TIMESTAMP
+            );
+        }
 
         $sql = "UPDATE %%USERS%% SET ally_id = 0, ally_register_time = 0, ally_register_time = 5 WHERE id = :UserID;";
         $db->update($sql, [
@@ -812,7 +839,10 @@ class ShowAlliancePage extends AbstractGamePage
             ':AllianceID' => $this->allianceData['id']
         ]);
 
-        $this->redirectTo('game.php?page=alliance');
+        $this->printMessage(sprintf($LNG['al_leave_sucess'], $this->allianceData['ally_name']), [[
+            'label' => $LNG['sys_back'],
+            'url' => '?page=alliance'
+        ]]);
     }
 
     public function circular()

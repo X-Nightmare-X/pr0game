@@ -525,8 +525,7 @@ $LNG['al_already_exists'] = 'Альянс %s уже существует.';
 $LNG['al_created'] = 'Альянс %s создан.';
 $LNG['al_continue'] = 'продолжить';
 $LNG['al_alliance_closed'] = 'Этот альянс не поддерживает больше участников.';
-$LNG['al_request_confirmation_message'] = 'Заявка отправлена. Вы получите сообщение об одобрении / отклонении заявки.'
-    . ' <br><a href="?page=alliance">назад</a>';
+$LNG['al_request_confirmation_message'] = 'Заявка отправлена. Вы получите сообщение о принятии или отклонении заявки.';
 $LNG['al_default_request_text'] = 'Игрок не оставил комментарий к заявке на вступление в альянс.';
 $LNG['al_write_request'] = 'Написать заявку альянсу %s';
 $LNG['al_request_deleted'] = 'Ваша заявка на вступление в альянс удалена. <br>Вы можете написать новую заявку или'
@@ -534,7 +533,10 @@ $LNG['al_request_deleted'] = 'Ваша заявка на вступление в
 $LNG['al_request_wait_message'] = 'Вы послали заявку на вступление в альянс %s. <br>Пожалуйста, подождите, пока Вы не'
     . ' получите ответ, или удалите свою заявку.';
 $LNG['al_delete_request'] = 'Удалить заявку';
+$LNG['al_delete_request_confirm'] = 'Вы действительно хотите отозвать заявление?';
 $LNG['al_founder_cant_leave_alliance'] = 'Основатель не может покинуть альянс.';
+$LNG['al_leaving'] = 'Игрок покинул альянс';
+$LNG['al_leaving_msg'] = 'Игрок <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a> покинул альянс.';
 $LNG['al_leave_sucess'] = 'Вы покинули альянс %s.';
 $LNG['al_do_you_really_want_to_go_out'] = 'Вы действительно хотите покинуть альянс %s?';
 $LNG['al_go_out_yes'] = 'Да';

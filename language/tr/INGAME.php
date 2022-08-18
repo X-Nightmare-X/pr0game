@@ -549,8 +549,8 @@ $LNG['al_already_exists'] = 'Boyle bir ittifak %s zaten mevcut.';
 $LNG['al_created'] = 'Ittifak %s basariyla kuruldu';
 $LNG['al_continue'] = 'Devam Et';
 $LNG['al_alliance_closed'] = 'Ittifak daha fazla uye kabul etmiyor';
-$LNG['al_request_confirmation_message'] = 'Basvurun kaydedildi. Basvurunun kabul ya da rededilmesi durumunda bizden'
-    . ' haber alacaksin.. <br><a href="game.php?page=alliance">Tamam</a></a>';
+
+$LNG['al_request_confirmation_message'] = 'Başvuru gönderildi. Kabul edildiğinde veya reddedildiğinde bir mesaj alacaksınız.';
 $LNG['al_default_request_text'] = 'Basvuru icin mesaj giriniz.';
 $LNG['al_write_request'] = '%s ittifagina basvuru talebi';
 $LNG['al_request_deleted'] = '%s ittifagindaki basvurun silindi. Simdi yeniden basvurabilir ya da kendin bir ittifak'
@@ -558,7 +558,10 @@ $LNG['al_request_deleted'] = '%s ittifagindaki basvurun silindi. Simdi yeniden b
 $LNG['al_request_wait_message'] = '%s ittifagina zaten basvurdun. Lutfen ya bir cevap alincaya kadar bekle ya da'
     . ' basvurunu geri cek.';
 $LNG['al_delete_request'] = 'Basvurumu Geri Cek';
+$LNG['al_delete_request_confirm'] = 'Başvurunuzu gerçekten geri çekmek istiyor musunuz?';
 $LNG['al_founder_cant_leave_alliance'] = 'Ittifak kurucusu ittifaktan ayrilamaz.';
+$LNG['al_leaving'] = 'Bir oyuncu ittifaktan ayrıldı';
+$LNG['al_leaving_msg'] = 'Oyuncu <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a> ittifaktan ayrıldı.';
 $LNG['al_leave_sucess'] = '%s ittifakini basari ile terkettiniz .';
 $LNG['al_do_you_really_want_to_go_out'] = '%s ittifakini terk etmek istediginize eminmisiniz?';
 $LNG['al_go_out_yes'] = 'Evet';

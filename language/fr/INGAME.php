@@ -537,7 +537,7 @@ $LNG['al_created'] = 'L\'Alliance %s a été créée !';
 $LNG['al_continue'] = 'continuer';
 $LNG['al_alliance_closed'] = 'Cette Alliance n\'accepte pas de nouveaux membres.';
 $LNG['al_request_confirmation_message'] = 'Message envoyé. Vous allez recevoir un message vous signalant si vous êtes'
-    . ' accepté ou non. <br><a href="game.php?page=alliance">back</a>';
+    . ' accepté ou non.';
 $LNG['al_default_request_text'] = 'Le leader de l\'Alliance n\'a pas crée de texte de candidature type ou n\'a pas'
     . ' d\'exigences particulières.';
 $LNG['al_write_request'] = 'Rédiger une candidature à l\'Alliance %s';
@@ -545,7 +545,10 @@ $LNG['al_request_deleted'] = 'Vous avez supprimer la candidature. <br> Vous pouv
     . ' une autre.';
 $LNG['al_request_wait_message'] = 'Vous avez déjà envoyé une requête à l\'alliance %s <br>';
 $LNG['al_delete_request'] = 'Supprimer la candidature';
+$LNG['al_delete_request_confirm'] = 'Veux-tu vraiment retirer ta candidature ?';
 $LNG['al_founder_cant_leave_alliance'] = 'Le fondateur ne peut abandonner l\'Alliance.';
+$LNG['al_leaving'] = 'Un joueur a quitté l\'alliance';
+$LNG['al_leaving_msg'] = 'Le joueur <a href="#" onclick="return Dialog.Playercard(%s, \'%s\') ;">%s</a> a quitté l\'alliance.';
 $LNG['al_leave_sucess'] = 'Vous avez quitté l\'Alliance %s avec succès.';
 $LNG['al_do_you_really_want_to_go_out'] = 'Souhaitez-vous vraiment quitter l\'Alliance %s ?';
 $LNG['al_go_out_yes'] = 'Oui';

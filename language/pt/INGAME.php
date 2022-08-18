@@ -549,8 +549,7 @@ $LNG['al_already_exists'] = 'A aliança %s já existe.';
 $LNG['al_created'] = 'A aliança %s foi criada';
 $LNG['al_continue'] = 'Continuar';
 $LNG['al_alliance_closed'] = 'Esta aliança não suporta mais membros';
-$LNG['al_request_confirmation_message'] = 'Aplicação registada. Irás receber uma mensagem quando fores aceite ou /'
-    . ' rejeitado. <br><a href="game.php?page=alliance">back</a>';
+$LNG['al_request_confirmation_message'] = 'Aplicação registada. Irás receber uma mensagem quando fores aceite ou rejeitado.';
 $LNG['al_default_request_text'] = 'O líder da aliança não escreveu nenhuma mensagem de introdução.';
 $LNG['al_write_request'] = 'Escreve aplicação para a aliança %s';
 $LNG['al_request_deleted'] = 'O teu pedido para a aliança %s foi apagado. <br> Agora podes fazer uma nova aplicação ou'
@@ -558,7 +557,10 @@ $LNG['al_request_deleted'] = 'O teu pedido para a aliança %s foi apagado. <br> 
 $LNG['al_request_wait_message'] = 'Tu ja enviaste um pedido para a aliança %s. <br> Por favor aguarda por uma resposta'
     . ' ou apaga a aplicação.';
 $LNG['al_delete_request'] = 'Apagar a aplicação';
+$LNG['al_delete_request_confirm'] = 'Quer realmente retirar a candidatura?';
 $LNG['al_founder_cant_leave_alliance'] = 'O fundador não pode deixar a aliança.';
+$LNG['al_leaving'] = 'Um jogador deixou a aliança';
+$LNG['al_leaving_msg'] = 'O jogador <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a> deixou a aliança.';
 $LNG['al_leave_sucess'] = 'Tu deixaste a aliança %s .';
 $LNG['al_do_you_really_want_to_go_out'] = 'Queres mesmo deixar a aliança %s?';
 $LNG['al_go_out_yes'] = 'Sim';

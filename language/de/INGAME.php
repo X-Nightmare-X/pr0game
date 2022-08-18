@@ -567,9 +567,9 @@ $LNG['al_already_exists'] = 'Allianz %s existiert bereits.';
 $LNG['al_created'] = 'Die Allianz %s wurde gegründet!';
 $LNG['al_continue'] = 'Weiter';
 $LNG['al_delete_request'] = 'Bewerbung zurückziehen';
+$LNG['al_delete_request_confirm'] = 'Möchtest Du die Bewerbung wirklich zurückziehen?';
 $LNG['al_alliance_closed'] = 'Diese Allianz nimmt keine neuen Mitglieder auf.';
-$LNG['al_request_confirmation_message'] = 'Bewerbung abgeschickt, sie erhalten eine Nachricht. <br>'
-    . '<a href="?page=alliance">Zurück</a>';
+$LNG['al_request_confirmation_message'] = 'Bewerbung abgeschickt. Sie erhalten eine Nachricht, wenn sie angenommen, oder abgelehnt wird.';
 $LNG['al_default_request_text'] = 'Der Spieler hat keinen Text hinterlassen.';
 $LNG['al_write_request'] = 'Bewerbung schreiben an die Allianz %s';
 $LNG['al_request_deleted'] = 'Sie haben die Bewerbung gelöscht. <br>Sie können nun eine Eigene eröffnen oder einer'
@@ -577,6 +577,8 @@ $LNG['al_request_deleted'] = 'Sie haben die Bewerbung gelöscht. <br>Sie können
 $LNG['al_request_wait_message'] = 'Sie haben sich bei der Allianz %s beworben. <br>Warten Sie auf eine Antwort, oder'
     . ' löschen Sie die Bewerbung.';
 $LNG['al_founder_cant_leave_alliance'] = 'Der Gründer darf die Allianz nicht einfach so im Stich lassen.';
+$LNG['al_leaving'] = 'Spieler ist aus der Allianz ausgetreten';
+$LNG['al_leaving_msg'] = 'Der Spieler <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a> ist aus der Allianz ausgetreten.';
 $LNG['al_leave_sucess'] = 'Erfolgreich aus der Allianz %s ausgetreten.';
 $LNG['al_do_you_really_want_to_go_out'] = 'Willst du wirklich aus %s austreten?';
 $LNG['al_go_out_yes'] = 'Ja';

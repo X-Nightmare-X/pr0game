@@ -582,8 +582,7 @@ $LNG['al_already_exists'] = 'The Alliance %s already exists.';
 $LNG['al_created'] = 'The Alliance %s was created';
 $LNG['al_continue'] = 'Continue';
 $LNG['al_alliance_closed'] = 'This Alliance does not support more members';
-$LNG['al_request_confirmation_message'] = 'Registered application. You will receive a message when youre accepted'
-    . ' or/rejected. <br><a href="game.php?page=alliance">back</a>';
+$LNG['al_request_confirmation_message'] = 'Application sent. You will receive a message if it is accepted or rejected.';
 $LNG['al_default_request_text'] = 'The leader of the Alliance didnt wrote any message of introduction.';
 $LNG['al_write_request'] = 'Writes the application to the Alliance %s';
 $LNG['al_request_deleted'] = 'Your request for the Alliance %s was deleted. <br> Now you can make a new application or'
@@ -591,7 +590,10 @@ $LNG['al_request_deleted'] = 'Your request for the Alliance %s was deleted. <br>
 $LNG['al_request_wait_message'] = 'You have sent a request to the Alliance %s. <br> Please wait for a reply or delete'
     . ' the application.';
 $LNG['al_delete_request'] = 'Delete the application';
+$LNG['al_delete_request_confirm'] = 'Do you really want to withdraw the application?';
 $LNG['al_founder_cant_leave_alliance'] = 'The founder can\'t leave the Alliance.';
+$LNG['al_leaving'] = 'Player has left the alliance';
+$LNG['al_leaving_msg'] = 'The player <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a> has left the alliance.';
 $LNG['al_leave_sucess'] = 'You have left the Alliance %s .';
 $LNG['al_do_you_really_want_to_go_out'] = 'Do you want to leave the Alliance %s?';
 $LNG['al_go_out_yes'] = 'Yes';

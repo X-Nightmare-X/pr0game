@@ -549,14 +549,17 @@ $LNG['al_already_exists'] = 'Taki sojusz %s już istnieje.';
 $LNG['al_created'] = 'Sojusz %s został stworzony!';
 $LNG['al_continue'] = 'kontynuuj';
 $LNG['al_alliance_closed'] = 'Sojusz nie przyjmuje nowych członków.';
-$LNG['al_request_confirmation_message'] = 'Podanie zostało wysłane <br><a href="?page=alliance">wróć</a>';
+$LNG['al_request_confirmation_message'] = 'Zgłoszenie wysłane. Otrzymasz wiadomość, jeśli zostanie przyjęty lub odrzucony.';
 $LNG['al_default_request_text'] = 'Lider sojuszu nie ustawił przykładowego podania.';
 $LNG['al_write_request'] = 'Napisz podanie do sojuszu %s';
 $LNG['al_request_deleted'] = 'Usunąłeś twoje podanie. <br> Możesz teraz stworzyć swój sojusz lub napisać podanie do'
     . ' innego.';
 $LNG['al_request_wait_message'] = 'Wysłałeś już podanie do tego sojuszu %s <br>';
 $LNG['al_delete_request'] = 'Usuń podanie';
+$LNG['al_delete_request_confirm'] = 'Czy naprawdę chcesz wycofać wniosek?';
 $LNG['al_founder_cant_leave_alliance'] = 'Założyciel nie może opuścić sojuszu.';
+$LNG['al_leaving'] = 'Gracz opuścił sojusz';
+$LNG['al_leaving_msg'] = 'Gracz <a href="#" onclick="return Dialog.Playercard(%s, %s);">%s</a> opuścił sojusz.';
 $LNG['al_leave_sucess'] = 'Opuściłeś sojusz %s !';
 $LNG['al_do_you_really_want_to_go_out'] = 'Jesteś pewien że chcesz opuścić sojusz %s?';
 $LNG['al_go_out_yes'] = 'Tak';
