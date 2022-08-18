@@ -591,6 +591,7 @@ $LNG['al_tag'] = 'Alterar Tag de Aliança';
 $LNG['al_new_tag'] = 'Alterar Tag (3-8 caracters)';
 $LNG['al_user_list'] = 'Lista de membros';
 $LNG['al_users_list'] = 'Lista de membros (Usuário: %d)';
+$LNG['al_users_list_wing'] = 'Ala-Lista de membros (Usuário: %d) - %s';
 $LNG['al_manage_alliance'] = 'Gerir Aliança';
 $LNG['al_send_circular_message'] = 'Mandar Mensagem Circular';
 $LNG['al_circular_front_text'] = 'O jogador %s escreveu o seguinte:';

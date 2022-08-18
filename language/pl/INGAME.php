@@ -589,6 +589,7 @@ $LNG['al_tag'] = 'tag';
 $LNG['al_new_tag'] = 'Nowy tag (3-8 znaków):';
 $LNG['al_user_list'] = 'Lista członków';
 $LNG['al_users_list'] = 'lista członków (graczy: %d)';
+$LNG['al_users_list_wing'] = 'Akademia-lista członków (graczy: %d) - %s';
 $LNG['al_manage_alliance'] = 'zarządzaj sojuszem';
 $LNG['al_send_circular_message'] = 'Wyślij wiadomość do sojuszu';
 $LNG['al_circular_front_text'] = 'Gracz %s napisał:';

@@ -609,6 +609,7 @@ $LNG['al_tag'] = 'Allianztag';
 $LNG['al_new_tag'] = 'Neuer Allianz Tag (3-8 Zeichen):';
 $LNG['al_user_list'] = 'Memberliste';
 $LNG['al_users_list'] = 'Memberliste (Spieler: %d)';
+$LNG['al_users_list_wing'] = 'Wing-Memberliste (Spieler: %d) - %s';
 $LNG['al_manage_alliance'] = 'Allianz verwalten';
 $LNG['al_send_circular_message'] = 'Rundmail schreiben';
 $LNG['al_circular_front_text'] = 'Der Spieler %s schreibt folgendes:';

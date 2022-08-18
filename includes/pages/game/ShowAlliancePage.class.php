@@ -699,8 +699,80 @@ class ShowAlliancePage extends AbstractGamePage
             ];
         }
 
+        $sql = "SELECT a.id, a.ally_name, a.ally_tag, ally_owner, ally_owner_range FROM %%DIPLO%% d
+            JOIN %%ALLIANCE%% a ON a.id = d.owner_2
+            WHERE d.owner_1 = :AllianceID AND d.level = 1;";
+        $wingData = $db->select($sql, [
+            ':AllianceID' => $this->allianceData['id']
+        ]);
+
+        $wingList = [];
+        if ($wingData) {
+            foreach ($wingData AS $wing) {
+                $sql = "SELECT rankID, rankName FROM %%ALLIANCE_RANK%% WHERE allianceId = :AllianceID";
+                $rankResult = $db->select($sql, [
+                    ':AllianceID' => $wing['id']
+                ]);
+
+                foreach ($rankResult as $rankRow) {
+                    $rankList[$rankRow['rankID']] = $rankRow['rankName'];
+                }
+
+                $wingMemberList = [];
+
+                $sql = "SELECT DISTINCT u.id, u.username,u.galaxy, u.system, u.planet, u.banaday, u.urlaubs_modus,"
+                    . " u.ally_register_time, u.onlinetime, u.ally_rank_id, s.total_points FROM %%USERS%% u"
+                    . " LEFT JOIN %%STATPOINTS%% as s ON s.stat_type = '1' AND s.id_owner = u.id WHERE ally_id = :AllianceID;";
+                $wingListResult = $db->select($sql, [
+                    ':AllianceID' => $wing['id']
+                ]);
+
+                try {
+                    $USER += $db->selectSingle(
+                        'SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :userId AND stat_type = :statType',
+                        [
+                            ':userId' => $USER['id'],
+                            ':statType' => 1,
+                        ]
+                    ) ?: ['total_points' => 0];
+                } catch (Exception $e) {
+                    $USER['total_points'] = 0;
+                }
+
+                foreach ($wingListResult as $wingListRow) {
+                    $IsNoobProtec = CheckNoobProtec($USER, $wingListRow, $wingListRow);
+                    $Class = userStatus($wingListRow, $IsNoobProtec);
+
+                    if ($wing['ally_owner'] == $wingListRow['id']) {
+                        $wingListRow['ally_rankName'] = empty($wing['ally_owner_range'])
+                            ? $LNG['al_founder_rank_text'] : $wing['ally_owner_range'];
+                    } elseif ($wingListRow['ally_rank_id'] != 0 && isset($rankList[$wingListRow['ally_rank_id']])) {
+                        $wingListRow['ally_rankName'] = $rankList[$wingListRow['ally_rank_id']];
+                    } else {
+                        $wingListRow['ally_rankName'] = $LNG['al_new_member_rank_text'];
+                    }
+
+                    $wingMemberList[$wingListRow['id']] = [
+                        'class' => $Class,
+                        'username' => $wingListRow['username'],
+                        'galaxy' => $wingListRow['galaxy'],
+                        'system' => $wingListRow['system'],
+                        'planet' => $wingListRow['planet'],
+                        'register_time' => _date($LNG['php_tdformat'], $wingListRow['ally_register_time'], $USER['timezone']),
+                        'points' => $wingListRow['total_points'],
+                        'rankName' => $wingListRow['ally_rankName'],
+                        'onlinetime' => floor((TIMESTAMP - $wingListRow['onlinetime']) / 60),
+                    ];
+                }
+                $wingList[$wing['id']]['header'] = sprintf($LNG['al_users_list_wing'], count($wingMemberList), '['.$wing['ally_tag'].'] '.$wing['ally_name']);
+                $wingList[$wing['id']]['wingData'] = $wing;
+                $wingList[$wing['id']]['memberList'] = $wingMemberList;
+            }
+        }
+
         $this->assign([
             'memberList' => $memberList,
+            'wingList' => $wingList,
             'al_users_list' => sprintf($LNG['al_users_list'], count($memberList)),
             'ShortStatus' => [
                 'vacation' => $LNG['gl_short_vacation'],
