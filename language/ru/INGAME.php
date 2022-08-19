@@ -707,7 +707,7 @@ $LNG['al_diplo_delete_mes'] = 'Договор (%s) между альянсами
 $LNG['al_diplo_confirm_delete'] = 'Вы действительно хотите разорвать договор?';
 $LNG['al_diplo_ground'] = 'Сообщение:';
 $LNG['al_diplo_ask'] = 'Договор';
-$LNG['al_diplo_ask_mes'] = 'Предложение заключить договор (%s) между альянсами %s и %s.<br>Сообщение: %s';
+$LNG['al_diplo_ask_mes'] = 'Имеется <a href="?page=alliance&mode=admin&action=diplomacy">запрос на заключение соглашения</a> (%s) от альянса %s и %s.<br> Причина: %s';
 $LNG['al_diplo_war'] = 'Объявление войны';
 $LNG['al_diplo_war_mes'] = 'Альянс %s объявил войну альянсу %s.<br>Сообщение: %s';
 $LNG['al_diplo_war_end'] = 'Война закончилась';
@@ -724,6 +724,7 @@ $LNG['al_diplo_info'] = '<p>На этой странице можно заклю
     . ' альянсам.</p><p></p>';
 $LNG['al_leave_ally'] = 'Вы уверены, что хотите покинуть альянс?';
 $LNG['al_default_leader_name'] = 'Основатель';
+$LNG['al_rank_diplo'] = 'Дипломат';
 $LNG['al_rank_name'] = 'Название';
 $LNG['al_rank_desc']['MEMBERLIST'] = 'Видеть список членов альянса';
 $LNG['al_rank_desc']['ONLINESTATE'] = 'Видеть статус активности членов альянса';
@@ -738,7 +739,7 @@ $LNG['al_rank_desc']['RANKS'] = 'Управлять рангами';
 $LNG['al_rank_desc']['MANAGEUSERS'] = 'Управлять членами альянса';
 $LNG['al_rank_desc']['EVENTS'] = 'Видеть события во внутреннем тексте';
 $LNG['al_invalid_rank_name'] = 'Имя ранга может состоять только из букв, цифр, пробелов и символов "_", "-", "."';
-$LNG['al_new_apply'] = 'Ваш альянс получил новое заявление от -'
+$LNG['al_new_apply'] = 'Ваш альянс получил новое <a href="?page=alliance&mode=admin&action=manageApply">заявление</a> от -'
     . ' <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a>';
 
 // Друзья

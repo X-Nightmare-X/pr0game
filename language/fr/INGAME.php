@@ -718,8 +718,7 @@ $LNG['al_diplo_delete_mes'] = 'Le pacte de %s entre les alliances %s et %s  a é
 $LNG['al_diplo_confirm_delete'] = 'Souhaitez-vous vraiment supprimer le pacte ?';
 $LNG['al_diplo_ground'] = 'Raison :';
 $LNG['al_diplo_ask'] = 'Demande de renseignements sur le pacte';
-$LNG['al_diplo_ask_mes'] = 'Il n\'y a pas de renseignements sur le pacte (%s) entre les alliances %s et %s.<br>'
-    . 'L\'Alliance : %s';
+$LNG['al_diplo_ask_mes'] = 'Il existe une <a href="?page=alliance&mode=admin&action=diplomacy">demande de pacte</a> (%s) de l\'alliance %s et %s.<br>Raison : %s';
 $LNG['al_diplo_war'] = 'Déclaration de la guerre';
 $LNG['al_diplo_war_mes'] = 'L\'Alliance %s vient de donner des renseignements à l\'Alliance %s sur le pacte %s . <br>'
     . 'Motis :<br>%s<br><br>Information : La guerre pourra être déclarée dans 24 heures. Le bash est régulier'
@@ -737,6 +736,7 @@ $LNG['al_diplo_no_alliance'] = 'Il n\'y a pas d\'alliance avec le nom de %s!';
 $LNG['al_diplo_info'] = '<p>Ici apparaît différents types de Alliance et peut voir vos alliances [TODO: FAQ]</p>';
 $LNG['al_leave_ally'] = 'Souhaitez-vous réellement quitter l\'Alliance ?';
 $LNG['al_default_leader_name'] = 'Leader';
+$LNG['al_rank_diplo'] = 'Diplomate';
 $LNG['al_rank_name'] = 'Nom';
 $LNG['al_rank_desc']['MEMBERLIST'] = 'Peut voir les membres';
 $LNG['al_rank_desc']['ONLINESTATE'] = 'Pouvez voir qui est en ligne';
@@ -754,7 +754,7 @@ $LNG['al_invalid_rank_name'] = 'Le noms de rank ne peut seulement contenir des n
     . ' ou _, -.!';
 $LNG['al_make_ally_insufficient_points'] = 'Vous n\'avez pas assez de points pour créer une alliance.<br>Il est requis'
     . ' %s points, vous avez %s points.';
-$LNG['al_new_apply'] = 'Votre alliance a reçu une nouvelle candidature de -'
+$LNG['al_new_apply'] = 'Votre alliance a reçu une nouvelle <a href="?page=alliance&mode=admin&action=manageApply">candidature</a> de -'
     . ' <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a>';
 
 //----------------------------------------------------------------------------//

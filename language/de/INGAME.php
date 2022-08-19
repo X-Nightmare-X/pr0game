@@ -748,7 +748,7 @@ $LNG['al_diplo_delete_mes'] = 'Der Pakt (%s) zwischen den Allianzen %s und %s wu
 $LNG['al_diplo_confirm_delete'] = 'Möchtst Du den Pakt wirklich aufheben?';
 $LNG['al_diplo_ground'] = 'Begründung:';
 $LNG['al_diplo_ask'] = 'Paktanfrage';
-$LNG['al_diplo_ask_mes'] = 'Es besteht eine Paktanfrage (%s) der Allianz %s und %s.<br>Begründung: %s';
+$LNG['al_diplo_ask_mes'] = 'Es besteht eine <a href="?page=alliance&mode=admin&action=diplomacy">Paktanfrage</a> (%s) der Allianz %s und %s.<br>Begründung: %s';
 $LNG['al_diplo_war'] = 'Kriegserklärung';
 $LNG['al_diplo_war_mes'] = 'Die Allianz %s hat der Allianz %s soeben den %s erklärt.<br>Begründung:<br>%s<br><br>'
     . 'Informationen: Der Krieg ist in 24 Stunden gültig. Erst nach den 24 Stunden entfällt die Bashregel. <br>Weitere'
@@ -768,6 +768,7 @@ $LNG['al_diplo_info'] = '<p>Auf dieser Seite können die Bündnisse der Allianz 
     . ' die Erklärung der einzelnen Bündnissarten. [TODO: Link zu FAQ]</p>';
 $LNG['al_leave_ally'] = 'Möchtest Du wirklich die Allianz verlassen?';
 $LNG['al_default_leader_name'] = 'Leader';
+$LNG['al_rank_diplo'] = 'Diplomat';
 $LNG['al_rank_name'] = 'Name';
 $LNG['al_rank_desc']['MEMBERLIST'] = 'Mitgliederliste sehen';
 $LNG['al_rank_desc']['ONLINESTATE'] = 'Online-Status sehen';
@@ -782,7 +783,7 @@ $LNG['al_rank_desc']['RANKS'] = 'Rangverwaltung';
 $LNG['al_rank_desc']['MANAGEUSERS'] = 'Kann Mitglieder verwalten';
 $LNG['al_rank_desc']['EVENTS'] = 'Kann Ereignisse im internen Bereich sehen';
 $LNG['al_invalid_rank_name'] = 'Im Ranknamen sind nur Zahlen, Buchstaben, Leerzeichen, _, -, . erlaubt!';
-$LNG['al_new_apply'] = 'Ihre Allianz hat eine neue Bewerbung erhalten von -'
+$LNG['al_new_apply'] = 'Ihre Allianz hat eine neue <a href="?page=alliance&mode=admin&action=manageApply">Bewerbung</a> erhalten von -'
     . ' <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a>';
 
 //----------------------------------------------------------------------------//

@@ -693,7 +693,7 @@ $LNG['al_tfkristall'] = 'Łączny złom - kryształ';
 $LNG['al_view_stats'] = 'Statystyki bitew?';
 $LNG['al_view_diplo'] = 'Dyplomacja?';
 $LNG['al_view_events'] = 'Aktualności';
-$LNG['al_new_apply'] = 'Twój sojusz otrzymał nowe podanie od -'
+$LNG['al_new_apply'] = 'Twój sojusz otrzymał nowe <a href="?page=alliance&mode=admin&action=manageApply">podanie</a> od -'
     . ' <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a>';
 
 
@@ -735,7 +735,7 @@ $LNG['al_diplo_delete_mes'] = 'Pakt %s między sojuszami %s i %s  został rozwi�
 $LNG['al_diplo_confirm_delete'] = 'Chcesz rozwiązać pakt?';
 $LNG['al_diplo_ground'] = 'Odpowiedź:';
 $LNG['al_diplo_ask'] = 'Przymierze';
-$LNG['al_diplo_ask_mes'] = 'Pakt przymierza (%s) między sojuszami %s i %s.<br>sojusz: %s';
+$LNG['al_diplo_ask_mes'] = 'Istnieje <a href="?page=sojusz&mode=admin&action=dyplomacja">zapytanie o przymierze</a> (%s) od sojuszu %s i %s.<br>Powód: %s';
 $LNG['al_diplo_war'] = 'Deklaracja wojny';
 $LNG['al_diplo_war_mes'] = 'Sojusz %s wypowiada wojnę %s! Poniżej uzasadnienie i wyjaśnienie przesłane przez %s. <br>'
     . 'Akt wypowiedzenia wojny:<br>%s<br><br>Informacje: Wojna jest ważna po 24h od ogłoszenia! Osłona bash zostanie'
@@ -754,6 +754,7 @@ $LNG['al_diplo_exists'] = 'Pakt z sojuszem "%s" już jest podpisany albo jest w 
 $LNG['al_diplo_info'] = 'Na tej stronie zarządzasz sojuszem';
 $LNG['al_leave_ally'] = 'Napewno chcesz opuścić sojusz?';
 $LNG['al_default_leader_name'] = 'Przywódca';
+$LNG['al_rank_diplo'] = 'Dyplomata';
 $LNG['al_rank_name'] = 'Nazwa';
 $LNG['al_rank_desc']['MEMBERLIST'] = 'Zobacz listę członków';
 $LNG['al_rank_desc']['ONLINESTATE'] = 'Kto jest online';

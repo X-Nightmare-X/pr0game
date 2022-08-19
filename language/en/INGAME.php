@@ -763,7 +763,7 @@ $LNG['al_diplo_delete_mes'] = 'The Pact (%s) between the %s and %s was deleted!'
 $LNG['al_diplo_confirm_delete'] = 'Did you want to delete the Pact?';
 $LNG['al_diplo_ground'] = 'Reasons:';
 $LNG['al_diplo_ask'] = 'Survey Pact';
-$LNG['al_diplo_ask_mes'] = 'The (%s) between the alliances %s and %s.<br>Reasons: %s';
+$LNG['al_diplo_ask_mes'] = 'There is a <a href="?page=alliance&mode=admin&action=diplomacy">pact request</a> (%s) from the %s alliance and %s.<br>Reason: %s';
 $LNG['al_diplo_war'] = 'Declaration of war';
 $LNG['al_diplo_war_mes'] = 'The Alliance %s and the Alliance %s just the %s declarated.<br>Reason:<br>%s<br><br>'
     . 'Information: the war is valid for 24 hours. Only after the 24 hours, war and given as terminated. <br>'
@@ -780,6 +780,7 @@ $LNG['al_diplo_no_alliance'] = 'There is no alliance with the name of %s!';
 $LNG['al_diplo_info'] = '<p>Here is displayed different kinds of Alliance and can see your Covenants [TODO: FAQ]</p>';
 $LNG['al_leave_ally'] = 'Are you sure to leave the Alliance?';
 $LNG['al_default_leader_name'] = 'Leader';
+$LNG['al_rank_diplo'] = 'Diplomat';
 $LNG['al_rank_name'] = 'Name';
 $LNG['al_rank_desc']['MEMBERLIST'] = 'Can see the members';
 $LNG['al_rank_desc']['ONLINESTATE'] = 'Can see who is online';
@@ -796,7 +797,7 @@ $LNG['al_rank_desc']['EVENTS'] = 'Can see events';
 $LNG['al_invalid_rank_name'] = 'In the Rank name only numbers, letters, spaces, _, -. allowed!';
 $LNG['al_make_ally_insufficient_points'] = 'You do have not enough points to create an Alliance.<br>It requires %s'
     . ' points, and you have %s points.';
-$LNG['al_new_apply'] = 'Your alliance has received a new application from -'
+$LNG['al_new_apply'] = 'Your alliance has received a new <a href="?page=alliance&mode=admin&action=manageApply">application</a> from -'
     . ' <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a>';
 
 //----------------------------------------------------------------------------//

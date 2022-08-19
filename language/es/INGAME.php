@@ -723,8 +723,7 @@ $LNG['al_diplo_delete_mes'] = 'El pacto de %s entre las alianzas %s y %s se ha r
 $LNG['al_diplo_confirm_delete'] = '¿De verdad quieres eliminar el pacto?';
 $LNG['al_diplo_ground'] = 'Razón:';
 $LNG['al_diplo_ask'] = 'Consulta de pacto';
-$LNG['al_diplo_ask_mes'] = 'Se hace un pacto de (%s) entre las alianzas -> %s <- y -> %s <-. <br>Razón: %s <br> Puedes'
-    . ' aceptar o negar la diplomacia de la alianza';
+$LNG['al_diplo_ask_mes'] = 'Hay una <a href="?page=alliance&mode=admin&action=diplomacy">solicitud de pacto</a> (%s) de la Alianza %s y %s.<br>Razón: %s';
 $LNG['al_diplo_war'] = 'Declaración de Guerra';
 $LNG['al_diplo_war_mes'] = 'La guerra ha sido declarada entre las alianzas  -> %s <- y -> %s <-.<br>Razón: %s <br><br>'
     . 'Información: Ambos dirigentes de las Alianzas estan de acuerdo con la guerra. Leer las reglas sobre las Guerra'
@@ -743,6 +742,7 @@ $LNG['al_diplo_info'] = '<p>En este lado de la alianza, la alianza será adminis
     . ' explicación de los diferentes tipos de alianza. [TODO: Enlace a la FAQ]</p>';
 $LNG['al_leave_ally'] = '¿Realmente deseas abandonar la alianza?';
 $LNG['al_default_leader_name'] = 'Fundador';
+$LNG['al_rank_diplo'] = 'Diplomático';
 $LNG['al_rank_name'] = 'Nombre';
 $LNG['al_rank_desc']['MEMBERLIST'] = 'Ver lista de miembros';
 $LNG['al_rank_desc']['ONLINESTATE'] = 'Ver el Estatus-Online';
@@ -756,7 +756,7 @@ $LNG['al_rank_desc']['DIPLOMATIC'] = 'Puede gestionar la Diplomacia';
 $LNG['al_rank_desc']['RANKS'] = 'Puede administrar los Rangos';
 $LNG['al_rank_desc']['MANAGEUSERS'] = 'Puede gestionar a los miembros';
 $LNG['al_rank_desc']['EVENTS'] = 'Puede ver los eventos';
-$LNG['al_new_apply'] = 'Su alianza ha recibido una nueva solicitud de -'
+$LNG['al_new_apply'] = 'Su alianza ha recibido una nueva <a href="?page=alliance&mode=admin&action=manageApply">solicitud</a> de -'
     . ' <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a>';
 
 //----------------------------------------------------------------------------//

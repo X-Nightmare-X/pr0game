@@ -720,7 +720,7 @@ $LNG['al_diplo_delete_mes'] = 'O pacto de (%s) entre as alianças %s e %s foi ap
 $LNG['al_diplo_confirm_delete'] = 'Será que queres realmente apagar o pacto?';
 $LNG['al_diplo_ground'] = 'Motivos:';
 $LNG['al_diplo_ask'] = 'Pacto de Inquérito';
-$LNG['al_diplo_ask_mes'] = 'O (%s) entre as alianças %s e %s.<br>Motivos: %s';
+$LNG['al_diplo_ask_mes'] = 'Existe um <a href="?page=alliance&mode=admin&action=diplomacy">pedido de pacto</a> (%s) da aliança %s para %s.<br>Razão: %s';
 $LNG['al_diplo_war'] = 'Declaração de guerra';
 $LNG['al_diplo_war_mes'] = 'A aliança %s e a aliança %s soebend den %s declarou.<br>Motivo:<br>%s<br><br>Informações:'
     . ' A guerra é válida por 24 horas. Somente após as 24 horas a guerra e dada como terminada. <br>Mais informações'
@@ -737,6 +737,7 @@ $LNG['al_diplo_no_alliance'] = 'Não existe aliança com o nome de %s!';
 $LNG['al_diplo_info'] = '<p>Aqui é exibido os diferentes tipos de Aliança e poderás ver os teus pactos [TODO: FAQ]</p>';
 $LNG['al_leave_ally'] = 'Será que queres mesmo deixar a Aliança?';
 $LNG['al_default_leader_name'] = 'Leader';
+$LNG['al_rank_diplo'] = 'Diplomata';
 $LNG['al_request_register_time'] = 'Juntou se em';
 $LNG['al_request_last_onlinetime'] = 'Última atividade';
 $LNG['al_set_max_members'] = 'Número máximo de membros';
@@ -762,7 +763,7 @@ $LNG['al_rank_desc']['EVENTS'] = 'Pode ver eventos';
 $LNG['al_invalid_rank_name'] = 'No nome de Rank, é apenas permitido números, letras, espaços, _, -.';
 $LNG['al_make_ally_insufficient_points'] = 'Não tens pontos suficientes para criar uma Aliança.<br>São requeridos %s'
     . ' pontos, mas possuis %s pontos.';
-$LNG['al_new_apply'] = 'A sua aliança recebeu um novo pedido para -'
+$LNG['al_new_apply'] = 'A sua aliança recebeu um novo <a href="?page=alliance&mode=admin&action=manageApply">pedido</a> para -'
     . ' <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a>';
 
 //----------------------------------------------------------------------------//

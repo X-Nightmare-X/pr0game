@@ -730,7 +730,7 @@ $LNG['al_diplo_delete_mes'] = ' (%s) antlasmasi  %s ve %s ittifaklari arasinda s
 $LNG['al_diplo_confirm_delete'] = 'Anlasmayi silmek istediginize eminmisiniz?';
 $LNG['al_diplo_ground'] = 'Sebepler:';
 $LNG['al_diplo_ask'] = 'Anlasmayi sorgula';
-$LNG['al_diplo_ask_mes'] = ' (%s) anlasmasi %s ve %s arasinda uygulandi.<br>Sebepleri: %s';
+$LNG['al_diplo_ask_mes'] = ' (%s) <a href="?page=alliance&mode=admin&action=diplomacy">anlasmasi</a> %s ve %s arasinda uygulandi.<br>Sebepleri: %s';
 $LNG['al_diplo_war'] = 'Savas Deklerasyonu';
 $LNG['al_diplo_war_mes'] = ' %s ittifagi ile %s ittifagi %s duyurdu.<br>Sebep:<br>%s<br><br>Bilgi: Savas 24 saat'
     . ' gecerli. . <br> Daha fazla bilgi icin <a href="index.php?page=rules" target="_blank">Kurallar</a>.';
@@ -746,6 +746,7 @@ $LNG['al_diplo_no_alliance'] = '%s ile bir muttefiklik yok!';
 $LNG['al_diplo_info'] = '<p> Diger Bilgiler [TODO: FAQ]</p>';
 $LNG['al_leave_ally'] = 'Muttefigi terketmek istediginize eminmisiniz?';
 $LNG['al_default_leader_name'] = 'Lirder';
+$LNG['al_rank_diplo'] = 'Diplomat';
 $LNG['al_rank_name'] = 'Isim';
 $LNG['al_rank_desc']['MEMBERLIST'] = 'Uye listesini gorebilir';
 $LNG['al_rank_desc']['ONLINESTATE'] = 'Online Uyeleri gorebilir';
@@ -763,7 +764,7 @@ $LNG['al_make_ally_insufficient_points'] = 'Ittifak kurmak icin yeterli puana sa
 $LNG['al_invalid_rank_name'] = 'Boyle bir rutbe kaydi yok!';
 $LNG['sys_back'] = 'Geri';
 $LNG['sys_forward'] = 'Ileri';
-$LNG['al_new_apply'] = 'Birliğiniz şu şirketlerden yeni bir başvuru aldı -'
+$LNG['al_new_apply'] = 'Birliğiniz şu şirketlerden yeni bir <a href="?page=alliance&mode=admin&action=manageApply">başvuru</a> aldı -'
     . ' <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a>';
 
 

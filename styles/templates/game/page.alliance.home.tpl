@@ -27,7 +27,7 @@
 	</tr>
 	{if $rights.SEEAPPLY && $applyCount > 0}
 	<tr>
-		<td>{$LNG.al_requests}</td><td><a href="?page=alliance&amp;mode=admin&amp;action=mangeApply">{$requests}</a></td>
+		<td>{$LNG.al_requests}</td><td><a href="?page=alliance&amp;mode=admin&amp;action=manageApply">{$requests}</a></td>
 	</tr>
 	{/if}
 	{if $rights.DIPLOMATIC && ($diploCountIn > 0 || $diploCountOut > 0)}

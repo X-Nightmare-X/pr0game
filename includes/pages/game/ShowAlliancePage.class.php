@@ -1270,7 +1270,7 @@ class ShowAlliancePage extends AbstractGamePage
         }
     }
 
-    protected function adminMangeApply()
+    protected function adminManageApply()
     {
         global $LNG, $USER;
         if (!$this->rights['SEEAPPLY'] || !$this->rights['MANAGEAPPLY']) {
@@ -1299,7 +1299,7 @@ class ShowAlliancePage extends AbstractGamePage
             'applyList' => $applyList,
         ]);
 
-        $this->display('page.alliance.admin.mangeApply.tpl');
+        $this->display('page.alliance.admin.manageApply.tpl');
     }
 
     protected function adminDetailApply()
@@ -1366,7 +1366,7 @@ class ShowAlliancePage extends AbstractGamePage
         if (empty($applyDetail)) {
             $this->printMessage($LNG['al_apply_not_exists'], [[
                 'label' => $LNG['sys_back'],
-                'url' => 'game.php?page=alliance&mode=admin&action=mangeApply'
+                'url' => 'game.php?page=alliance&mode=admin&action=manageApply'
             ]]);
         }
 
@@ -1451,7 +1451,7 @@ class ShowAlliancePage extends AbstractGamePage
                 . $this->allianceData['ally_tag'] . ']';
             PlayerUtil::sendMessage($userId, $USER['id'], $senderName, 2, $subject, $text, TIMESTAMP);
         }
-        $this->redirectTo('game.php?page=alliance&mode=admin&action=mangeApply');
+        $this->redirectTo('game.php?page=alliance&mode=admin&action=manageApply');
     }
 
     protected function adminPermissions()
