@@ -588,6 +588,7 @@ $LNG['al_tag'] = 'etiqueta';
 $LNG['al_new_tag'] = 'Nueva etiqueta (3-8 Characteres)';
 $LNG['al_user_list'] = 'Lista de miembros';
 $LNG['al_users_list'] = 'Lista de miembros (jugadores: %d)';
+$LNG['al_users_list_main'] = 'Principal-Lista de miembros (jugadores: %d) - %s';
 $LNG['al_users_list_wing'] = 'Volar-Lista de miembros (jugadores: %d) - %s';
 $LNG['al_manage_alliance'] = 'Administrar la alianza';
 $LNG['al_send_circular_message'] = 'Enviar mensaje global';

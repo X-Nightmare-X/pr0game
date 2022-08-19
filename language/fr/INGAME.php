@@ -581,6 +581,7 @@ $LNG['al_tag'] = 'Tag';
 $LNG['al_new_tag'] = 'Nouveau tag (3-8 Caractères) :';
 $LNG['al_user_list'] = 'Liste des membres';
 $LNG['al_users_list'] = 'Liste de membres (joueurs: %d)';
+$LNG['al_users_list_main'] = 'Main-Liste de membres (joueurs: %d) - %s';
 $LNG['al_users_list_wing'] = 'Wing-Liste de membres (joueurs: %d) - %s';
 $LNG['al_manage_alliance'] = 'Gérer l\'Alliance';
 $LNG['al_send_circular_message'] = 'envoyer un message global';

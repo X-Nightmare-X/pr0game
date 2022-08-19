@@ -569,6 +569,7 @@ $LNG['al_tag'] = 'Аббревиатура';
 $LNG['al_new_tag'] = 'Новая аббревиатура (3-8 символов):';
 $LNG['al_user_list'] = 'список членов';
 $LNG['al_users_list'] = 'список членов (Игрок: %d)';
+$LNG['al_users_list_main'] = 'Главная-список членов (Игрок: %d) - %s';
 $LNG['al_users_list_wing'] = 'Академия-список членов (Игрок: %d) - %s';
 $LNG['al_manage_alliance'] = 'управление альянсом';
 $LNG['al_send_circular_message'] = 'Отправить общее сообщение';

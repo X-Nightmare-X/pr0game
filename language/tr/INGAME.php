@@ -594,6 +594,7 @@ $LNG['al_tag'] = 'Ittifak tagini degistir';
 $LNG['al_new_tag'] = 'Yeni Tag (3-8 karakter)';
 $LNG['al_user_list'] = 'Uye Listesi';
 $LNG['al_users_list'] = 'Uye listesi (uye: %d)';
+$LNG['al_users_list_main'] = 'Ana-Uye listesi (uye: %d) - %s';
 $LNG['al_users_list_wing'] = 'Kanat-Uye listesi (uye: %d) - %s';
 $LNG['al_manage_alliance'] = 'Ittifagi Yonet';
 $LNG['al_send_circular_message'] = 'Sirkuler Mesaji Gonder';

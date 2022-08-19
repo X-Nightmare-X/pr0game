@@ -626,6 +626,7 @@ $LNG['al_tag'] = 'Change Tag of Alliance';
 $LNG['al_new_tag'] = 'Change Tag (3-8 characters)';
 $LNG['al_user_list'] = 'List of members';
 $LNG['al_users_list'] = 'List of members (user: %d)';
+$LNG['al_users_list_main'] = 'Main-List of members (user: %d) - %s';
 $LNG['al_users_list_wing'] = 'Wing-List of members (user: %d) - %s';
 $LNG['al_manage_alliance'] = 'Managing Alliance';
 $LNG['al_send_circular_message'] = 'Send Circular Message';

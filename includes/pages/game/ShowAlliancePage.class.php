@@ -696,12 +696,116 @@ class ShowAlliancePage extends AbstractGamePage
                 'galaxy' => $memberListRow['galaxy'],
                 'system' => $memberListRow['system'],
                 'planet' => $memberListRow['planet'],
-                'register_time' => _date($LNG['php_tdformat'], $memberListRow['ally_register_time'], $USER['timezone']),
+                'register_time' => $memberListRow['ally_register_time'],
                 'points' => $memberListRow['total_points'],
                 'rankName' => $memberListRow['ally_rankName'],
                 'onlinetime' => floor((TIMESTAMP - $memberListRow['onlinetime']) / 60),
             ];
         }
+
+        $this->assign([
+            'memberList' => $memberList,
+            'mainList' => $this->getMainMember(),
+            'wingList' => $this->getWingMember(),
+            'al_users_list' => sprintf($LNG['al_users_list'], count($memberList)),
+            'timezone' => $USER['timezone'],
+            'ShortStatus' => [
+                'vacation' => $LNG['gl_short_vacation'],
+                'banned' => $LNG['gl_short_ban'],
+                'inactive' => $LNG['gl_short_inactive'],
+                'longinactive' => $LNG['gl_short_long_inactive'],
+                'noob' => $LNG['gl_short_newbie'],
+                'strong' => $LNG['gl_short_strong'],
+                'enemy' => $LNG['gl_short_enemy'],
+                'friend' => $LNG['gl_short_friend'],
+                'member' => $LNG['gl_short_member'],
+            ],
+        ]);
+
+        $this->display('page.alliance.memberList.tpl');
+    }
+
+    private function getMainMember() {
+        global $USER, $LNG;
+        $db = Database::get();
+
+        $sql = "SELECT a.id, a.ally_name, a.ally_tag, ally_owner, ally_owner_range FROM %%DIPLO%% d
+            JOIN %%ALLIANCE%% a ON a.id = d.owner_1
+            WHERE d.owner_2 = :AllianceID AND d.level = 1;";
+        $mainData = $db->select($sql, [
+            ':AllianceID' => $this->allianceData['id']
+        ]);
+
+        $mainList = [];
+
+        if ($mainData) {
+            foreach ($mainData AS $main) {
+                $sql = "SELECT rankID, rankName FROM %%ALLIANCE_RANK%% WHERE allianceId = :AllianceID";
+                $rankResult = $db->select($sql, [
+                    ':AllianceID' => $main['id']
+                ]);
+
+                foreach ($rankResult as $rankRow) {
+                    $rankList[$rankRow['rankID']] = $rankRow['rankName'];
+                }
+
+                $mainMemberList = [];
+
+                $sql = "SELECT DISTINCT u.id, u.username,u.galaxy, u.system, u.planet, u.banaday, u.urlaubs_modus,"
+                    . " u.ally_register_time, u.onlinetime, u.ally_rank_id, s.total_points FROM %%USERS%% u"
+                    . " LEFT JOIN %%STATPOINTS%% as s ON s.stat_type = '1' AND s.id_owner = u.id WHERE ally_id = :AllianceID;";
+                $mainListResult = $db->select($sql, [
+                    ':AllianceID' => $main['id']
+                ]);
+
+                try {
+                    $USER += $db->selectSingle(
+                        'SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :userId AND stat_type = :statType',
+                        [
+                            ':userId' => $USER['id'],
+                            ':statType' => 1,
+                        ]
+                    ) ?: ['total_points' => 0];
+                } catch (Exception $e) {
+                    $USER['total_points'] = 0;
+                }
+
+                foreach ($mainListResult as $mainListRow) {
+                    $IsNoobProtec = CheckNoobProtec($USER, $mainListRow, $mainListRow);
+                    $Class = userStatus($mainListRow, $IsNoobProtec);
+
+                    if ($main['ally_owner'] == $mainListRow['id']) {
+                        $mainListRow['ally_rankName'] = empty($main['ally_owner_range'])
+                            ? $LNG['al_founder_rank_text'] : $main['ally_owner_range'];
+                    } elseif ($mainListRow['ally_rank_id'] != 0 && isset($rankList[$mainListRow['ally_rank_id']])) {
+                        $mainListRow['ally_rankName'] = $rankList[$mainListRow['ally_rank_id']];
+                    } else {
+                        $mainListRow['ally_rankName'] = $LNG['al_new_member_rank_text'];
+                    }
+
+                    $mainMemberList[$mainListRow['id']] = [
+                        'class' => $Class,
+                        'username' => $mainListRow['username'],
+                        'galaxy' => $mainListRow['galaxy'],
+                        'system' => $mainListRow['system'],
+                        'planet' => $mainListRow['planet'],
+                        'register_time' => $mainListRow['ally_register_time'],
+                        'points' => $mainListRow['total_points'],
+                        'rankName' => $mainListRow['ally_rankName'],
+                        'onlinetime' => floor((TIMESTAMP - $mainListRow['onlinetime']) / 60),
+                    ];
+                }
+                $mainList[$main['id']]['header'] = sprintf($LNG['al_users_list_main'], count($mainMemberList), '['.$main['ally_tag'].'] '.$main['ally_name']);
+                $mainList[$main['id']]['mainData'] = $main;
+                $mainList[$main['id']]['memberList'] = $mainMemberList;
+            }
+        }
+        return $mainList;
+    }
+
+    private function getWingMember() {
+        global $USER, $LNG;
+        $db = Database::get();
 
         $sql = "SELECT a.id, a.ally_name, a.ally_tag, ally_owner, ally_owner_range FROM %%DIPLO%% d
             JOIN %%ALLIANCE%% a ON a.id = d.owner_2
@@ -711,6 +815,7 @@ class ShowAlliancePage extends AbstractGamePage
         ]);
 
         $wingList = [];
+
         if ($wingData) {
             foreach ($wingData AS $wing) {
                 $sql = "SELECT rankID, rankName FROM %%ALLIANCE_RANK%% WHERE allianceId = :AllianceID";
@@ -762,7 +867,7 @@ class ShowAlliancePage extends AbstractGamePage
                         'galaxy' => $wingListRow['galaxy'],
                         'system' => $wingListRow['system'],
                         'planet' => $wingListRow['planet'],
-                        'register_time' => _date($LNG['php_tdformat'], $wingListRow['ally_register_time'], $USER['timezone']),
+                        'register_time' => $wingListRow['ally_register_time'],
                         'points' => $wingListRow['total_points'],
                         'rankName' => $wingListRow['ally_rankName'],
                         'onlinetime' => floor((TIMESTAMP - $wingListRow['onlinetime']) / 60),
@@ -773,25 +878,7 @@ class ShowAlliancePage extends AbstractGamePage
                 $wingList[$wing['id']]['memberList'] = $wingMemberList;
             }
         }
-
-        $this->assign([
-            'memberList' => $memberList,
-            'wingList' => $wingList,
-            'al_users_list' => sprintf($LNG['al_users_list'], count($memberList)),
-            'ShortStatus' => [
-                'vacation' => $LNG['gl_short_vacation'],
-                'banned' => $LNG['gl_short_ban'],
-                'inactive' => $LNG['gl_short_inactive'],
-                'longinactive' => $LNG['gl_short_long_inactive'],
-                'noob' => $LNG['gl_short_newbie'],
-                'strong' => $LNG['gl_short_strong'],
-                'enemy' => $LNG['gl_short_enemy'],
-                'friend' => $LNG['gl_short_friend'],
-                'member' => $LNG['gl_short_member'],
-            ],
-        ]);
-
-        $this->display('page.alliance.memberList.tpl');
+        return $wingList;
     }
 
     public function close()
@@ -1510,11 +1597,11 @@ class ShowAlliancePage extends AbstractGamePage
             $rankList[$rankRow['rankID']] = $rankRow['rankName'];
         }
 
-        $sql = "SELECT DISTINCT u.id, u.username, u.galaxy, u.system, u.planet, u.banaday, u.urlaubs_modus,"
-            . " u.ally_register_time, u.onlinetime, u.ally_rank_id, s.total_points
-		FROM %%USERS%% u
-		LEFT JOIN %%STATPOINTS%% as s ON s.stat_type = '1' AND s.id_owner = u.id
-		WHERE ally_id = :allianceId;";
+        $sql = "SELECT DISTINCT u.id, u.username, u.galaxy, u.system, u.planet, u.banaday, u.urlaubs_modus,
+            u.ally_register_time, u.onlinetime, u.ally_rank_id, s.total_points
+		    FROM %%USERS%% u
+		    LEFT JOIN %%STATPOINTS%% as s ON s.stat_type = '1' AND s.id_owner = u.id
+		    WHERE ally_id = :allianceId;";
 
         $memberListResult = $db->select($sql, [
             ':allianceId' => $this->allianceData['id'],
@@ -1548,7 +1635,7 @@ class ShowAlliancePage extends AbstractGamePage
                 'galaxy' => $memberListRow['galaxy'],
                 'system' => $memberListRow['system'],
                 'planet' => $memberListRow['planet'],
-                'register_time' => _date($LNG['php_tdformat'], $memberListRow['ally_register_time'], $USER['timezone']),
+                'register_time' => $memberListRow['ally_register_time'],
                 'points' => $memberListRow['total_points'],
                 'rankID' => $memberListRow['ally_rank_id'],
                 'onlinetime' => floor((TIMESTAMP - $memberListRow['onlinetime']) / 60),
@@ -1888,7 +1975,7 @@ class ShowAlliancePage extends AbstractGamePage
 
     protected function adminDiplomacyCreate()
     {
-        global $USER;
+        global $USER, $LNG;
         if (!$this->rights['DIPLOMATIC']) {
             $this->redirectToHome();
         }
@@ -1911,7 +1998,11 @@ class ShowAlliancePage extends AbstractGamePage
             $IdList[] = $i['id'];
             $AllyList[] = $i['ally_name'];
         }
+
+        $diplo_level = $LNG['al_diplo_level'];
+        array_shift($diplo_level);
         $this->assign([
+            'diploLevel' => $diplo_level,
             'diploMode' => $diplomaticMode,
             'AllyList' => $AllyList,
             'IdList' => $IdList,
@@ -2041,10 +2132,11 @@ class ShowAlliancePage extends AbstractGamePage
         else {
             $sql = "SELECT a.id, a.ally_name, a.ally_owner, a.ally_tag, d.level as diplo, d.accept 
                 FROM %%DIPLO%% d
-                JOIN %%ALLIANCE%% a ON a.id = d.owner_2
-                WHERE a.ally_universe = :universe AND d.id = :id;";
+                JOIN %%ALLIANCE%% a ON a.id = d.owner_1 OR a.id = d.owner_2
+                WHERE a.ally_universe = :universe AND d.id = :id AND a.id != :allianceId;";
 
             $targetAlliance = $db->selectSingle($sql, [
+                ':allianceId' => $USER['ally_id'],
                 ':id' => $id,
                 ':universe' => Universe::current()
             ]);
