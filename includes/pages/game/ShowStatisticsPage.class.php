@@ -87,9 +87,10 @@ class ShowStatisticsPage extends AbstractGamePage
 
                 if ($config->stat == 2) {
                     $sql = "SELECT DISTINCT s.*, u.id, u.username, u.ally_id, u.banaday, u.urlaubs_modus, u.onlinetime,"
-                        . " a.ally_name, (a.ally_owner=u.id) as is_leader, a.ally_owner_range FROM %%STATPOINTS%% as s"
+                        . " a.ally_name, (a.ally_owner=u.id) as is_leader, a.ally_owner_range, r.DIPLOMATIC as is_diplo FROM %%STATPOINTS%% as s"
                         . " INNER JOIN %%USERS%% as u ON u.id = s.id_owner"
                         . " LEFT JOIN %%ALLIANCE%% as a ON a.id = s.id_ally"
+                        . " LEFT JOIN %%ALLIANCE_RANK%% as r ON r.allianceID = s.id_ally AND r.rankID = u.ally_rank_id"
                         . " WHERE s.universe = :universe AND s.stat_type = 1 AND u.authlevel < :authLevel"
                         . " ORDER BY " . $Order . " ASC LIMIT :offset, :limit;";
                     $query = $db->select($sql, [
@@ -100,9 +101,10 @@ class ShowStatisticsPage extends AbstractGamePage
                     ]);
                 } else {
                     $sql = "SELECT DISTINCT s.*, u.id, u.username, u.ally_id, u.banaday, u.urlaubs_modus, u.onlinetime,"
-                        . " a.ally_name, (a.ally_owner=u.id) as is_leader, a.ally_owner_range FROM %%STATPOINTS%% as s"
+                        . " a.ally_name, (a.ally_owner=u.id) as is_leader, a.ally_owner_range, r.DIPLOMATIC as is_diplo FROM %%STATPOINTS%% as s"
                         . " INNER JOIN %%USERS%% as u ON u.id = s.id_owner"
                         . " LEFT JOIN %%ALLIANCE%% as a ON a.id = s.id_ally"
+                        . " LEFT JOIN %%ALLIANCE_RANK%% as r ON r.allianceID = s.id_ally AND r.rankID = u.ally_rank_id"
                         . " WHERE s.universe = :universe AND s.stat_type = 1"
                         . " ORDER BY " . $Order . " ASC LIMIT :offset, :limit;";
                     $query = $db->select($sql, [
@@ -133,6 +135,7 @@ class ShowStatisticsPage extends AbstractGamePage
                         'name'             => $StatRow['username'],
                         'class'            => $Class,
                         'is_leader'        => $StatRow['is_leader'],
+                        'is_diplo'         => $StatRow['is_diplo'],
                         'ally_owner_range' => $StatRow['ally_owner_range'],
                         'points'           => pretty_number($StatRow[$Points]),
                         'allyid'           => $StatRow['ally_id'],

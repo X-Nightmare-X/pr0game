@@ -124,7 +124,8 @@
 		<td>
 			<a class="tooltip_sticky" data-tooltip-content="<table style='width:240px'><tr><th colspan='2'>{$currentPlanet.user.playerrank}</th></tr><tr>{if !$currentPlanet.ownPlanet}{if $currentPlanet.user.isBuddy}<tr><td><a href='#' onclick='return Dialog.Buddy({$currentPlanet.user.id})'>{$LNG.gl_buddy_request}</a></td></tr>{/if}<tr><td><a href='#' onclick='return Dialog.Playercard({$currentPlanet.user.id});'>{$LNG.gl_playercard}</a></td></tr>{/if}<tr><td><a href='?page=statistics&amp;who=1&amp;start={$currentPlanet.user.rank}'>{$LNG.gl_see_on_stats}</a></td></tr></table>">
 				<span class="{foreach $currentPlanet.user.class as $class}{if !$class@first} {/if}galaxy-username-{$class}{/foreach} galaxy-username">{$currentPlanet.user.username}</span>
-
+				{if $currentPlanet.user.is_leader}<a style="color:yellow" class="tooltip" data-tooltip-content="<table width='100%'><tr><th colspan='2' style='text-align:center;'>{$currentPlanet.user.ally_owner_range}</th></tr><tr><td class='transparent'>{$currentPlanet.alliance.name}</td></tr></table>"><i class="fas fa-trophy"></i></a>{/if} 
+				{if $currentPlanet.user.is_diplo}<a style="color:orange" class="tooltip" data-tooltip-content="<table width='100%'><tr><th colspan='2' style='text-align:center;'>{$LNG.al_rank_diplo}</th></tr><tr><td class='transparent'>{$currentPlanet.alliance.name}</td></tr></table>"><i class="fas fa-handshake"></i></a>{/if}		
 				{if !empty($currentPlanet.user.class)}
 				<span>(</span>{foreach $currentPlanet.user.class as $class}{if !$class@first}&nbsp;{/if}<span class="galaxy-short-{$class} galaxy-short">{$ShortStatus.$class}</span>{/foreach}<span>)</span>
 				{/if}

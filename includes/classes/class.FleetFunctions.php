@@ -574,7 +574,7 @@ class FleetFunctions
             ':allyD'    => $targetAllianceId
         ]);
 
-        if (!empty($War) && ($War['accept'] == 1 || $War['request_time'] < TIMESTAMP - 86400)) {
+        if (!empty($War) && ($War['accept'] == 1 && $War['request_time'] < TIMESTAMP - ONE_DAY)) {
             return false;
         }
 

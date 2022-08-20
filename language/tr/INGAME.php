@@ -549,8 +549,8 @@ $LNG['al_already_exists'] = 'Boyle bir ittifak %s zaten mevcut.';
 $LNG['al_created'] = 'Ittifak %s basariyla kuruldu';
 $LNG['al_continue'] = 'Devam Et';
 $LNG['al_alliance_closed'] = 'Ittifak daha fazla uye kabul etmiyor';
-$LNG['al_request_confirmation_message'] = 'Basvurun kaydedildi. Basvurunun kabul ya da rededilmesi durumunda bizden'
-    . ' haber alacaksin.. <br><a href="game.php?page=alliance">Tamam</a></a>';
+
+$LNG['al_request_confirmation_message'] = 'Başvuru gönderildi. Kabul edildiğinde veya reddedildiğinde bir mesaj alacaksınız.';
 $LNG['al_default_request_text'] = 'Basvuru icin mesaj giriniz.';
 $LNG['al_write_request'] = '%s ittifagina basvuru talebi';
 $LNG['al_request_deleted'] = '%s ittifagindaki basvurun silindi. Simdi yeniden basvurabilir ya da kendin bir ittifak'
@@ -558,7 +558,10 @@ $LNG['al_request_deleted'] = '%s ittifagindaki basvurun silindi. Simdi yeniden b
 $LNG['al_request_wait_message'] = '%s ittifagina zaten basvurdun. Lutfen ya bir cevap alincaya kadar bekle ya da'
     . ' basvurunu geri cek.';
 $LNG['al_delete_request'] = 'Basvurumu Geri Cek';
+$LNG['al_delete_request_confirm'] = 'Başvurunuzu gerçekten geri çekmek istiyor musunuz?';
 $LNG['al_founder_cant_leave_alliance'] = 'Ittifak kurucusu ittifaktan ayrilamaz.';
+$LNG['al_leaving'] = 'Bir oyuncu ittifaktan ayrıldı';
+$LNG['al_leaving_msg'] = 'Oyuncu <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a> ittifaktan ayrıldı.';
 $LNG['al_leave_sucess'] = '%s ittifakini basari ile terkettiniz .';
 $LNG['al_do_you_really_want_to_go_out'] = '%s ittifakini terk etmek istediginize eminmisiniz?';
 $LNG['al_go_out_yes'] = 'Evet';
@@ -591,6 +594,8 @@ $LNG['al_tag'] = 'Ittifak tagini degistir';
 $LNG['al_new_tag'] = 'Yeni Tag (3-8 karakter)';
 $LNG['al_user_list'] = 'Uye Listesi';
 $LNG['al_users_list'] = 'Uye listesi (uye: %d)';
+$LNG['al_users_list_main'] = 'Ana-Uye listesi (uye: %d) - %s';
+$LNG['al_users_list_wing'] = 'Kanat-Uye listesi (uye: %d) - %s';
 $LNG['al_manage_alliance'] = 'Ittifagi Yonet';
 $LNG['al_send_circular_message'] = 'Sirkuler Mesaji Gonder';
 $LNG['al_circular_front_text'] = 'Oyuncu %s sirkuler mesaji gonderdi:';
@@ -697,6 +702,7 @@ $LNG['al_diplo'] = 'Diplomasi';
 $LNG['al_no_diplo'] = '-';
 $LNG['al_events'] = 'olaylar';
 $LNG['al_no_events'] = 'Mevcut olay yok';
+$LNG['al_diplo_level'][0] = 'Ana';
 $LNG['al_diplo_level'][1] = 'Kanat';
 $LNG['al_diplo_level'][2] = 'Muttefik';
 $LNG['al_diplo_level'][3] = 'Ticaret Pakti';
@@ -724,16 +730,23 @@ $LNG['al_diplo_delete_mes'] = ' (%s) antlasmasi  %s ve %s ittifaklari arasinda s
 $LNG['al_diplo_confirm_delete'] = 'Anlasmayi silmek istediginize eminmisiniz?';
 $LNG['al_diplo_ground'] = 'Sebepler:';
 $LNG['al_diplo_ask'] = 'Anlasmayi sorgula';
-$LNG['al_diplo_ask_mes'] = ' (%s) anlasmasi %s ve %s arasinda uygulandi.<br>Sebepleri: %s';
+$LNG['al_diplo_ask_mes'] = ' (%s) <a href="?page=alliance&mode=admin&action=diplomacy">anlasmasi</a> %s ve %s arasinda uygulandi.<br>Sebepleri: %s';
 $LNG['al_diplo_war'] = 'Savas Deklerasyonu';
 $LNG['al_diplo_war_mes'] = ' %s ittifagi ile %s ittifagi %s duyurdu.<br>Sebep:<br>%s<br><br>Bilgi: Savas 24 saat'
     . ' gecerli. . <br> Daha fazla bilgi icin <a href="index.php?page=rules" target="_blank">Kurallar</a>.';
+$LNG['al_diplo_war_end'] = 'Savaş sona erdi';
+$LNG['al_diplo_war_end_mes'] = 'The %s from the alliance %s with the alliance %s has just been declared terminated.';
+$LNG['al_diplo_war_end_confirm'] = 'Gerçekten savaşı bitirmek istiyor musun?';
+$LNG['al_diplo_withdraw'] = 'Pakt talebi geri çekildi';
+$LNG['al_diplo_withdraw_mes'] = 'The pact request (%s) between the %s and %s alliances was withdrawn';
+$LNG['al_diplo_withdraw_confirm'] = 'Anlaşma talebini gerçekten geri çekmek istiyor musunuz?';
 $LNG['al_diplo_head'] = 'Diplomasiyi Yonet';
 $LNG['al_diplo_same_alliance'] = 'Muttefiklerinle pact yapamazsin!';
 $LNG['al_diplo_no_alliance'] = '%s ile bir muttefiklik yok!';
 $LNG['al_diplo_info'] = '<p> Diger Bilgiler [TODO: FAQ]</p>';
 $LNG['al_leave_ally'] = 'Muttefigi terketmek istediginize eminmisiniz?';
 $LNG['al_default_leader_name'] = 'Lirder';
+$LNG['al_rank_diplo'] = 'Diplomat';
 $LNG['al_rank_name'] = 'Isim';
 $LNG['al_rank_desc']['MEMBERLIST'] = 'Uye listesini gorebilir';
 $LNG['al_rank_desc']['ONLINESTATE'] = 'Online Uyeleri gorebilir';
@@ -751,7 +764,7 @@ $LNG['al_make_ally_insufficient_points'] = 'Ittifak kurmak icin yeterli puana sa
 $LNG['al_invalid_rank_name'] = 'Boyle bir rutbe kaydi yok!';
 $LNG['sys_back'] = 'Geri';
 $LNG['sys_forward'] = 'Ileri';
-$LNG['al_new_apply'] = 'Your alliance has received a new application from -'
+$LNG['al_new_apply'] = 'Birliğiniz şu şirketlerden yeni bir <a href="?page=alliance&mode=admin&action=manageApply">başvuru</a> aldı -'
     . ' <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a>';
 
 

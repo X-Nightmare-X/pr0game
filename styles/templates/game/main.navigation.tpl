@@ -40,7 +40,13 @@
   {/if}
   <li class="menu-separator"></li>
   {if isModuleAvailable($smarty.const.MODULE_ALLIANCE)}
-    <li><a href="game.php?page=alliance">{$LNG.lm_alliance}</a></li>
+    <li><a href="game.php?page=alliance">{$LNG.lm_alliance}
+      {nocache}
+        {if $new_allyrequests > 0}
+          <span id="newmes"> (<span id="newmesnum">{$new_allyrequests}</span>)</span>
+        {/if}
+      {/nocache}
+    </a></li>
   {/if}
 
   {if isModuleAvailable($smarty.const.MODULE_STATISTICS)}

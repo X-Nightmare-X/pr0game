@@ -525,8 +525,7 @@ $LNG['al_already_exists'] = 'Альянс %s уже существует.';
 $LNG['al_created'] = 'Альянс %s создан.';
 $LNG['al_continue'] = 'продолжить';
 $LNG['al_alliance_closed'] = 'Этот альянс не поддерживает больше участников.';
-$LNG['al_request_confirmation_message'] = 'Заявка отправлена. Вы получите сообщение об одобрении / отклонении заявки.'
-    . ' <br><a href="?page=alliance">назад</a>';
+$LNG['al_request_confirmation_message'] = 'Заявка отправлена. Вы получите сообщение о принятии или отклонении заявки.';
 $LNG['al_default_request_text'] = 'Игрок не оставил комментарий к заявке на вступление в альянс.';
 $LNG['al_write_request'] = 'Написать заявку альянсу %s';
 $LNG['al_request_deleted'] = 'Ваша заявка на вступление в альянс удалена. <br>Вы можете написать новую заявку или'
@@ -534,7 +533,10 @@ $LNG['al_request_deleted'] = 'Ваша заявка на вступление в
 $LNG['al_request_wait_message'] = 'Вы послали заявку на вступление в альянс %s. <br>Пожалуйста, подождите, пока Вы не'
     . ' получите ответ, или удалите свою заявку.';
 $LNG['al_delete_request'] = 'Удалить заявку';
+$LNG['al_delete_request_confirm'] = 'Вы действительно хотите отозвать заявление?';
 $LNG['al_founder_cant_leave_alliance'] = 'Основатель не может покинуть альянс.';
+$LNG['al_leaving'] = 'Игрок покинул альянс';
+$LNG['al_leaving_msg'] = 'Игрок <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a> покинул альянс.';
 $LNG['al_leave_sucess'] = 'Вы покинули альянс %s.';
 $LNG['al_do_you_really_want_to_go_out'] = 'Вы действительно хотите покинуть альянс %s?';
 $LNG['al_go_out_yes'] = 'Да';
@@ -567,6 +569,8 @@ $LNG['al_tag'] = 'Аббревиатура';
 $LNG['al_new_tag'] = 'Новая аббревиатура (3-8 символов):';
 $LNG['al_user_list'] = 'список членов';
 $LNG['al_users_list'] = 'список членов (Игрок: %d)';
+$LNG['al_users_list_main'] = 'Главная-список членов (Игрок: %d) - %s';
+$LNG['al_users_list_wing'] = 'Академия-список членов (Игрок: %d) - %s';
 $LNG['al_manage_alliance'] = 'управление альянсом';
 $LNG['al_send_circular_message'] = 'Отправить общее сообщение';
 $LNG['al_circular_front_text'] = '%s пишет:';
@@ -676,6 +680,7 @@ $LNG['al_diplo'] = 'Дипломатия';
 $LNG['al_no_diplo'] = '-';
 $LNG['al_events'] = 'События';
 $LNG['al_no_events'] = 'Нет событий';
+$LNG['al_diplo_level'][0] = 'Главная';
 $LNG['al_diplo_level'][1] = 'Академия';
 $LNG['al_diplo_level'][2] = 'Союз';
 $LNG['al_diplo_level'][3] = 'Торговые отношения';
@@ -702,9 +707,15 @@ $LNG['al_diplo_delete_mes'] = 'Договор (%s) между альянсами
 $LNG['al_diplo_confirm_delete'] = 'Вы действительно хотите разорвать договор?';
 $LNG['al_diplo_ground'] = 'Сообщение:';
 $LNG['al_diplo_ask'] = 'Договор';
-$LNG['al_diplo_ask_mes'] = 'Предложение заключить договор (%s) между альянсами %s и %s.<br>Сообщение: %s';
+$LNG['al_diplo_ask_mes'] = 'Имеется <a href="?page=alliance&mode=admin&action=diplomacy">запрос на заключение соглашения</a> (%s) от альянса %s и %s.<br> Причина: %s';
 $LNG['al_diplo_war'] = 'Объявление войны';
 $LNG['al_diplo_war_mes'] = 'Альянс %s объявил войну альянсу %s.<br>Сообщение: %s';
+$LNG['al_diplo_war_end'] = 'Война закончилась';
+$LNG['al_diplo_war_end_mes'] = '%s между Альянсом %s и Альянсом %s только что была объявлена оконченной.';
+$LNG['al_diplo_war_end_confirm'] = 'Вы действительно хотите закончить войну?';
+$LNG['al_diplo_withdraw'] = 'Запрос о заключении пакта отозван';
+$LNG['al_diplo_withdraw_mes'] = 'Запрос на заключение пакта (%s) между альянсами %s и %s был отозван';
+$LNG['al_diplo_withdraw_confirm'] = 'Вы действительно хотите отозвать просьбу о заключении пакта?';
 $LNG['al_diplo_head'] = 'Дипломатия';
 $LNG['al_diplo_same_alliance'] = 'Вы не можете заключить договор с самим собой.';
 $LNG['al_diplo_no_alliance'] = 'Альянса с ID %s не существует.';
@@ -713,6 +724,7 @@ $LNG['al_diplo_info'] = '<p>На этой странице можно заклю
     . ' альянсам.</p><p></p>';
 $LNG['al_leave_ally'] = 'Вы уверены, что хотите покинуть альянс?';
 $LNG['al_default_leader_name'] = 'Основатель';
+$LNG['al_rank_diplo'] = 'Дипломат';
 $LNG['al_rank_name'] = 'Название';
 $LNG['al_rank_desc']['MEMBERLIST'] = 'Видеть список членов альянса';
 $LNG['al_rank_desc']['ONLINESTATE'] = 'Видеть статус активности членов альянса';
@@ -727,7 +739,7 @@ $LNG['al_rank_desc']['RANKS'] = 'Управлять рангами';
 $LNG['al_rank_desc']['MANAGEUSERS'] = 'Управлять членами альянса';
 $LNG['al_rank_desc']['EVENTS'] = 'Видеть события во внутреннем тексте';
 $LNG['al_invalid_rank_name'] = 'Имя ранга может состоять только из букв, цифр, пробелов и символов "_", "-", "."';
-$LNG['al_new_apply'] = 'Your alliance has received a new application from -'
+$LNG['al_new_apply'] = 'Ваш альянс получил новое <a href="?page=alliance&mode=admin&action=manageApply">заявление</a> от -'
     . ' <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a>';
 
 // Друзья

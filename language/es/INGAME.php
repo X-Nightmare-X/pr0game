@@ -543,7 +543,7 @@ $LNG['al_created'] = 'Haz fundado la alianza %s, la alianza ha sido aceptada por
 $LNG['al_continue'] = 'continuar';
 $LNG['al_alliance_closed'] = 'Esta alianza no admite nuevos miembros';
 $LNG['al_request_confirmation_message'] = 'Solicitud enviada. Recibirás un mensaje cuando tu solicitud sea aceptada o'
-    . ' rechazada por el líder o el encargado de la alianza. <br><a href="game.php?page=alliance">Volver</a>';
+    . ' rechazada por el líder o el encargado de la alianza.';
 $LNG['al_default_request_text'] = 'Los líderes de la alianza no han creado un formulario de ingreso en la alianza, o no'
     . ' necesitan uno.';
 $LNG['al_write_request'] = 'Escribir solicitud a la alianza %s';
@@ -551,8 +551,11 @@ $LNG['al_request_deleted'] = 'Tu solicitud ha sido eliminada. <br/>Ahora puedes 
     . ' propia alianza.';
 $LNG['al_request_wait_message'] = 'Ya has enviado una solicitud a la alianza %s. <br/>Por favor, espera hasta que'
     . ' recibas una respuesta de ellos o borra la solicitud.';
-$LNG['al_delete_request'] = 'Borrar solicitud';
+$LNG['al_delete_request'] = 'Retirar la solicitud';
+$LNG['al_delete_request_confirm'] = '¿Realmente quiere retirar la solicitud?';
 $LNG['al_founder_cant_leave_alliance'] = 'Eres el fundador, por lo tanto no puedes abandonar la alianza.';
+$LNG['al_leaving'] = 'Un jugador ha abandonado la alianza';
+$LNG['al_leaving_msg'] = 'El jugador <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a> ha abandonado la alianza.';
 $LNG['al_leave_sucess'] = 'Abandonaste la alianza %s con éxito.';
 $LNG['al_do_you_really_want_to_go_out'] = '¿Realmente deseas salir de la alianza %s?';
 $LNG['al_go_out_yes'] = 'Sí';
@@ -584,7 +587,9 @@ $LNG['al_new_name'] = 'Nuevo nombre (3-30 Caracteres):';
 $LNG['al_tag'] = 'etiqueta';
 $LNG['al_new_tag'] = 'Nueva etiqueta (3-8 Characteres)';
 $LNG['al_user_list'] = 'Lista de miembros';
-$LNG['al_users_list'] = 'lista de miembros (jugadores: %d)';
+$LNG['al_users_list'] = 'Lista de miembros (jugadores: %d)';
+$LNG['al_users_list_main'] = 'Principal-Lista de miembros (jugadores: %d) - %s';
+$LNG['al_users_list_wing'] = 'Volar-Lista de miembros (jugadores: %d) - %s';
 $LNG['al_manage_alliance'] = 'Administrar la alianza';
 $LNG['al_send_circular_message'] = 'Enviar mensaje global';
 $LNG['al_circular_front_text'] = 'El jugador %s ha escrito:';
@@ -691,6 +696,7 @@ $LNG['al_diplo'] = 'Diplomacia';
 $LNG['al_no_diplo'] = '-';
 $LNG['al_events'] = 'Eventos';
 $LNG['al_no_events'] = 'Actualmente no hay eventos';
+$LNG['al_diplo_level'][0] = 'Principal';
 $LNG['al_diplo_level'][1] = 'Volar';
 $LNG['al_diplo_level'][2] = 'Alianza';
 $LNG['al_diplo_level'][3] = 'Alianza de Comercio';
@@ -717,12 +723,17 @@ $LNG['al_diplo_delete_mes'] = 'El pacto de %s entre las alianzas %s y %s se ha r
 $LNG['al_diplo_confirm_delete'] = '¿De verdad quieres eliminar el pacto?';
 $LNG['al_diplo_ground'] = 'Razón:';
 $LNG['al_diplo_ask'] = 'Consulta de pacto';
-$LNG['al_diplo_ask_mes'] = 'Se hace un pacto de (%s) entre las alianzas -> %s <- y -> %s <-. <br>Razón: %s <br> Puedes'
-    . ' aceptar o negar la diplomacia de la alianza';
+$LNG['al_diplo_ask_mes'] = 'Hay una <a href="?page=alliance&mode=admin&action=diplomacy">solicitud de pacto</a> (%s) de la Alianza %s y %s.<br>Razón: %s';
 $LNG['al_diplo_war'] = 'Declaración de Guerra';
 $LNG['al_diplo_war_mes'] = 'La guerra ha sido declarada entre las alianzas  -> %s <- y -> %s <-.<br>Razón: %s <br><br>'
     . 'Información: Ambos dirigentes de las Alianzas estan de acuerdo con la guerra. Leer las reglas sobre las Guerra'
     . ' entre las alianzas para que todo sea legal...';
+$LNG['al_diplo_war_end'] = 'La guerra terminó';
+$LNG['al_diplo_war_end_mes'] = 'La %s de la alianza %s con la alianza %s acaba de ser declarada terminada.';
+$LNG['al_diplo_war_end_confirm'] = '¿Realmente quieres acabar con la guerra?';
+$LNG['al_diplo_withdraw'] = 'Se retira la solicitud de pacto';
+$LNG['al_diplo_withdraw_mes'] = 'La solicitud de pacto (%s) entre las alianzas %s y %s fue retirada';
+$LNG['al_diplo_withdraw_confirm'] = '¿Realmente quiere retirar la solicitud de pacto?';
 $LNG['al_diplo_head'] = 'Gestión de Diplomacia';
 $LNG['al_diplo_same_alliance'] = 'No se puede iniciar un pacto con uno mismo!';
 $LNG['al_diplo_no_alliance'] = 'No existe ninguna Alianza con el nombre %s!';
@@ -731,6 +742,7 @@ $LNG['al_diplo_info'] = '<p>En este lado de la alianza, la alianza será adminis
     . ' explicación de los diferentes tipos de alianza. [TODO: Enlace a la FAQ]</p>';
 $LNG['al_leave_ally'] = '¿Realmente deseas abandonar la alianza?';
 $LNG['al_default_leader_name'] = 'Fundador';
+$LNG['al_rank_diplo'] = 'Diplomático';
 $LNG['al_rank_name'] = 'Nombre';
 $LNG['al_rank_desc']['MEMBERLIST'] = 'Ver lista de miembros';
 $LNG['al_rank_desc']['ONLINESTATE'] = 'Ver el Estatus-Online';
@@ -744,7 +756,7 @@ $LNG['al_rank_desc']['DIPLOMATIC'] = 'Puede gestionar la Diplomacia';
 $LNG['al_rank_desc']['RANKS'] = 'Puede administrar los Rangos';
 $LNG['al_rank_desc']['MANAGEUSERS'] = 'Puede gestionar a los miembros';
 $LNG['al_rank_desc']['EVENTS'] = 'Puede ver los eventos';
-$LNG['al_new_apply'] = 'Your alliance has received a new application from -'
+$LNG['al_new_apply'] = 'Su alianza ha recibido una nueva <a href="?page=alliance&mode=admin&action=manageApply">solicitud</a> de -'
     . ' <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a>';
 
 //----------------------------------------------------------------------------//
