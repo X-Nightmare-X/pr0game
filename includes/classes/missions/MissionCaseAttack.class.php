@@ -272,7 +272,7 @@ HTML;
                         ':fleetState'   => FLEET_HOLD,
                     ]);
 
-                    unset($fleetAttack[$fleetID]);
+                    unset($fleetDefend[$fleetID]);
                 } elseif ($totalCount > 0) {
                     $sql = "UPDATE %%FLEETS%% fleet, %%LOG_FLEETS%% log SET
 					fleet.fleet_array   = :fleetData,

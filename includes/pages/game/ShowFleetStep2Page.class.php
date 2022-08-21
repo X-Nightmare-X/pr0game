@@ -120,7 +120,7 @@ class ShowFleetStep2Page extends AbstractGamePage
             $sql = "SELECT a.id, a.ally_tag, a.ally_name, d.level, d.owner_2
                 FROM %%USERS%% u
                 JOIN %%ALLIANCE%% a ON a.id = u.ally_id
-                JOIN %%DIPLO%% d ON ((d.owner_1 = u.ally_id AND d.owner_2 = :ally_id) OR (d.owner_1 = u.ally_id AND d.owner_2 = :ally_id)) and d.accept = 1
+                JOIN %%DIPLO%% d ON ((d.owner_1 = u.ally_id AND d.owner_2 = :ally_id) OR (d.owner_2 = u.ally_id AND d.owner_1 = :ally_id)) and d.accept = 1
                 WHERE u.universe = :universe AND u.id = :targetPlayerId AND d.level IN (1,2,4,6);";
             $targetAllianceData = $db->selectSingle($sql, [
                 ':universe' => Universe::current(),
@@ -139,13 +139,13 @@ class ShowFleetStep2Page extends AbstractGamePage
                     $question = sprintf(
                         $LNG['fl_attack_confirm_diplo'],
                         '['.$targetAllianceData['ally_tag'].'] '.$targetAllianceData['ally_name'],
-                        (($targetAllianceData['owner_2'] == $targetAllianceData['id']) ? $LNG['al_diplo_level'][0] : $LNG['al_diplo_level'][$targetAllianceData['level']])
+                        (($targetAllianceData['owner_2'] == $targetAllianceData['id'] && $targetAllianceData['level'] == 1) ? $LNG['al_diplo_level'][0] : $LNG['al_diplo_level'][$targetAllianceData['level']])
                     );
                 }
                 else {
                     $question = sprintf(
                         $LNG['fl_attack_confirm_diplo'], 
-                        (($targetAllianceData['owner_2'] == $targetAllianceData['id']) ? $LNG['al_diplo_level'][0] : $LNG['al_diplo_level'][$targetAllianceData['level']]),
+                        (($targetAllianceData['owner_2'] == $targetAllianceData['id'] && $targetAllianceData['level'] == 1) ? $LNG['al_diplo_level'][0] : $LNG['al_diplo_level'][$targetAllianceData['level']]),
                         '['.$targetAllianceData['ally_tag'].'] '.$targetAllianceData['ally_name']
                     );
                 }
