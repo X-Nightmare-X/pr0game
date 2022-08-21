@@ -46,8 +46,10 @@ class ShowFleetStep2Page extends AbstractGamePage
         $fleetArray = $_SESSION['fleet'][$token]['fleet'];
 
         $db = Database::get();
-        $sql = "SELECT id, id_owner, der_metal, der_crystal FROM %%PLANETS%% WHERE universe = :universe AND"
-            . " galaxy = :targetGalaxy AND system = :targetSystem AND planet = :targetPlanet AND planet_type = '1';";
+        $sql = "SELECT id, id_owner, der_metal, der_crystal
+            FROM %%PLANETS%% 
+            WHERE universe = :universe AND galaxy = :targetGalaxy AND 
+            system = :targetSystem AND planet = :targetPlanet AND planet_type = '1';";
         $targetPlanetData = $db->selectSingle($sql, [
             ':universe' => Universe::current(),
             ':targetGalaxy' => $targetGalaxy,
@@ -113,6 +115,46 @@ class ShowFleetStep2Page extends AbstractGamePage
             $targetMission  = MISSION_ACS;
         }
 
+        $question = '';
+        if ($targetMission == MISSION_ACS || $targetMission == MISSION_ATTACK) {
+            $sql = "SELECT a.id, a.ally_tag, a.ally_name, d.level, d.owner_2
+                FROM %%USERS%% u
+                JOIN %%ALLIANCE%% a ON a.id = u.ally_id
+                JOIN %%DIPLO%% d ON ((d.owner_1 = u.ally_id AND d.owner_2 = :ally_id) OR (d.owner_1 = u.ally_id AND d.owner_2 = :ally_id)) and d.accept = 1
+                WHERE u.universe = :universe AND u.id = :targetPlayerId AND d.level IN (1,2,4,6);";
+            $targetAllianceData = $db->selectSingle($sql, [
+                ':universe' => Universe::current(),
+                ':targetPlayerId' => $targetPlanetData['id_owner'],
+                ':ally_id' => $USER['ally_id'],
+            ]);
+    
+            $sql = "SELECT count(*) as anz FROM %%BUDDY%% WHERE (sender = :id AND owner = :targetPlayerId) OR (sender = :targetPlayerId AND owner = :id);";
+            $buddy = $db->selectSingle($sql, [
+                ':id' => $USER['id'],
+                ':targetPlayerId' => $targetPlanetData['id_owner'],
+            ]);
+            
+            if ($targetAllianceData) {
+                if ($USER['lang'] == 'tr') {
+                    $question = sprintf(
+                        $LNG['fl_attack_confirm_diplo'],
+                        '['.$targetAllianceData['ally_tag'].'] '.$targetAllianceData['ally_name'],
+                        (($targetAllianceData['owner_2'] == $targetAllianceData['id']) ? $LNG['al_diplo_level'][0] : $LNG['al_diplo_level'][$targetAllianceData['level']])
+                    );
+                }
+                else {
+                    $question = sprintf(
+                        $LNG['fl_attack_confirm_diplo'], 
+                        (($targetAllianceData['owner_2'] == $targetAllianceData['id']) ? $LNG['al_diplo_level'][0] : $LNG['al_diplo_level'][$targetAllianceData['level']]),
+                        '['.$targetAllianceData['ally_tag'].'] '.$targetAllianceData['ally_name']
+                    );
+                }
+            }
+            elseif ($buddy['anz']> 0) {
+                $question = $LNG['fl_attack_confirm_buddy'];
+            }
+        }
+
         $fleetData  = [
             'fleetroom'     => floatToString($_SESSION['fleet'][$token]['fleetRoom']),
             'consumption'   => floatToString($consumption),
@@ -120,6 +162,7 @@ class ShowFleetStep2Page extends AbstractGamePage
 
         $this->tplObj->execscript('calculateTransportCapacity();');
         $this->assign([
+            'question'          => $question,
             'fleetdata'         => $fleetData,
             'consumption'       => floatToString($consumption),
             'mission'           => $targetMission,

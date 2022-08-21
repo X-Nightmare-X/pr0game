@@ -366,6 +366,8 @@ $LNG['fl_hold_time_not_exists'] = 'Tempo de retenção inválido.';
 $LNG['fl_own_planet_error'] = 'Error! Again select the planet from which you want to send the fleet.';
 $LNG['fl_hold_max_fleets'] = 'Já existem demasiadas frotas que se dirigem para estas coordenadas. A frota não pôde ser enviada.';
 $LNG['fl_hold_max_user'] = 'O número máximo de impérios em defesa já foi atingido. A frota não pôde ser enviada.';
+$LNG['fl_attack_confirm_diplo'] = 'Foi feito um pacto (%s) com a aliança %s e a sua aliança. Quer realmente levar a cabo o ataque?';
+$LNG['fl_attack_confirm_buddy'] = 'O alvo está na sua lista de amigos. Deseja realmente levar a cabo o ataque?';
 
 //----------------------------------------------------------------------------//
 // Edificios

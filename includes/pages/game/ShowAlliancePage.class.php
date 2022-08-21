@@ -109,6 +109,7 @@ class ShowAlliancePage extends AbstractGamePage
 
         $statisticData = [];
         $diplomaticmaticData = false;
+        $diplomats = false;
 
         $this->setAllianceData($allianceId);
 
@@ -120,6 +121,11 @@ class ShowAlliancePage extends AbstractGamePage
 
         if ($this->allianceData['ally_diplo'] == 1) {
             $diplomaticmaticData = $this->getDiplomatic();
+
+            $sql = "SELECT u.id, u.username, r.rankName FROM %%USERS%% u"
+                . " JOIN %%ALLIANCE_RANK%% r ON r.allianceID = u.ally_id AND r.rankID = u.ally_rank_id"
+                . " WHERE r.DIPLOMATIC = 1";
+            $diplomats = Database::get()->select($sql);
         }
 
         if ($this->allianceData['ally_stats'] == 1) {
@@ -154,6 +160,7 @@ class ShowAlliancePage extends AbstractGamePage
 
         $this->assign([
             'diplomaticData' => $diplomaticmaticData,
+            'diplomats' => $diplomats,
             'statisticData' => $statisticData,
             'ally_description' => BBCode::parse($this->allianceData['ally_description']),
             'ally_id' => $this->allianceData['id'],
@@ -592,6 +599,11 @@ class ShowAlliancePage extends AbstractGamePage
             ':AllianceID' => $this->allianceData['id']
         ]);
 
+        $sql = "SELECT u.id, u.username, r.rankName FROM %%USERS%% u"
+            . " JOIN %%ALLIANCE_RANK%% r ON r.allianceID = u.ally_id AND r.rankID = u.ally_rank_id"
+            . " WHERE r.DIPLOMATIC = 1";
+        $diplomats = $db->select($sql);
+
         $sql = "SELECT COUNT(*) as count FROM %%ALLIANCE_REQUEST%% WHERE allianceId = :AllianceID;";
         $ApplyCount = $db->selectSingle($sql, [
             ':AllianceID' => $this->allianceData['id']
@@ -619,6 +631,7 @@ class ShowAlliancePage extends AbstractGamePage
             'rankName' => $rankName,
             'requests' => sprintf($LNG['al_new_requests'], $ApplyCount),
             'applyCount' => $ApplyCount,
+            'diplomats' => $diplomats,
             'diploRequestsIn' => $LNG['al_diplo_accept'] . ' - ' . $DiploCountIn,
             'diploRequestsOut' => $LNG['al_diplo_accept_send'] . ' - ' . $DiploCountOut,
             'diploCountIn' => $DiploCountIn,
@@ -890,6 +903,8 @@ class ShowAlliancePage extends AbstractGamePage
         $receivers = $this->getMessageReceivers($this->allianceData['id'], false, true);
 
         foreach ($receivers as $receiver) {
+            if ($receiver['id'] == $USER['id'])
+                continue;
             $lang = getLanguage($receiver['lang']);
 
             $applyMessage = sprintf(

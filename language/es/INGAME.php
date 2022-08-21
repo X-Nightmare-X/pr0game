@@ -361,6 +361,8 @@ $LNG['fl_hold_time_not_exists'] = 'El tiempo de espera no es válido.';
 $LNG['fl_own_planet_error'] = 'Error! Again select the planet from which you want to send the fleet.';
 $LNG['fl_hold_max_fleets'] = 'Ya hay demasiadas flotas dirigiéndose a estas coordenadas. La flota no pudo ser enviada.';
 $LNG['fl_hold_max_user'] = 'Ya se ha alcanzado el número máximo de imperios defensores. La flota no pudo ser enviada.';
+$LNG['fl_attack_confirm_diplo'] = 'Se ha hecho un pacto (%s) con la alianza %s y tu alianza. ¿Realmente quieres llevar a cabo el ataque?';
+$LNG['fl_attack_confirm_buddy'] = 'El objetivo está en tu lista de amigos. ¿Realmente quieres llevar a cabo el ataque?';
 
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES
