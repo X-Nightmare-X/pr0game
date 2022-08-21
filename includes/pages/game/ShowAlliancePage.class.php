@@ -122,10 +122,10 @@ class ShowAlliancePage extends AbstractGamePage
         if ($this->allianceData['ally_diplo'] == 1) {
             $diplomaticmaticData = $this->getDiplomatic();
 
-            $sql = "SELECT u.id, u.username, r.rankName FROM %%USERS%% u"
-                . " JOIN %%ALLIANCE_RANK%% r ON r.allianceID = u.ally_id AND r.rankID = u.ally_rank_id"
-                . " WHERE r.DIPLOMATIC = 1";
-            $diplomats = Database::get()->select($sql);
+            $sql = "SELECT u.id, u.username, r.rankName FROM %%USERS%% u
+                JOIN %%ALLIANCE_RANK%% r ON r.allianceID = u.ally_id AND r.rankID = u.ally_rank_id
+                WHERE r.DIPLOMATIC = 1 AND u.ally_id = :ally_id;";
+            $diplomats = Database::get()->select($sql, [':ally_id' => $this->allianceData['id']]);
         }
 
         if ($this->allianceData['ally_stats'] == 1) {
@@ -599,10 +599,10 @@ class ShowAlliancePage extends AbstractGamePage
             ':AllianceID' => $this->allianceData['id']
         ]);
 
-        $sql = "SELECT u.id, u.username, r.rankName FROM %%USERS%% u"
-            . " JOIN %%ALLIANCE_RANK%% r ON r.allianceID = u.ally_id AND r.rankID = u.ally_rank_id"
-            . " WHERE r.DIPLOMATIC = 1";
-        $diplomats = $db->select($sql);
+        $sql = "SELECT u.id, u.username, r.rankName FROM %%USERS%% u
+                JOIN %%ALLIANCE_RANK%% r ON r.allianceID = u.ally_id AND r.rankID = u.ally_rank_id
+                WHERE r.DIPLOMATIC = 1 AND u.ally_id = :ally_id;";
+        $diplomats = Database::get()->select($sql, [':ally_id' => $this->allianceData['id']]);
 
         $sql = "SELECT COUNT(*) as count FROM %%ALLIANCE_REQUEST%% WHERE allianceId = :AllianceID;";
         $ApplyCount = $db->selectSingle($sql, [
