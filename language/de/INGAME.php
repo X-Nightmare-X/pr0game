@@ -389,6 +389,8 @@ $LNG['fl_own_planet_error'] = 'Error! Again select the planet from which you wan
 $LNG['fl_stronger_techs'] = 'Deine Angriffsstärke/Verteidigung/Schilde sind zu niedrig.';
 $LNG['fl_hold_max_fleets'] = 'Es sind bereits zu viele Flotten zu diesen Koordinaten unterwegs. Die Flotte konnte nicht gesendet werden.';
 $LNG['fl_hold_max_user'] = 'Die maximale Anzahl verteidigender Imperien ist bereits erreicht. Die Flotte konnte nicht gesendet werden.';
+$LNG['fl_attack_confirm_diplo'] = 'Es wurde ein Pakt (%s) mit der Allianz %s und Deiner Allianz geschlossen. Möchtst Du den Angriff wirklich durchführen?';
+$LNG['fl_attack_confirm_buddy'] = 'Das Ziel ist auf Deiner Buddy-Liste. Möchtst Du den Angriff wirklich durchführen?';
 
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES

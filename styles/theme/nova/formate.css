@@ -199,12 +199,20 @@ select {
   color: #99FF66;
 }
 
-.galaxy-alliance-friend {
+.galaxy-alliance-friend, .galaxy-friend {
   color: #99FFFF;
+}
+
+.galaxy-alliance-traid {
+  color: #28fab0;
 }
 
 .galaxy-alliance-enemy {
   color: #FF0000;
+}
+
+.galaxy-alliance-secret {
+  color: #ff66ff;
 }
 
 .galaxy-short-noob,

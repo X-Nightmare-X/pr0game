@@ -403,6 +403,8 @@ $LNG['fl_mt_resources'] = 'Resource market';
 $LNG['fl_stronger_techs'] = 'Your attack/defensive/shield are too low.';
 $LNG['fl_hold_max_fleets'] = 'There are already too many fleets heading to these coordinates. The fleet could not be sent.';
 $LNG['fl_hold_max_user'] = 'The maximum number of defending empires has already been reached. The fleet could not be sent.';
+$LNG['fl_attack_confirm_diplo'] = 'A pact (%s) has been made with the %s alliance and your alliance. Do you really want to carry out the attack?';
+$LNG['fl_attack_confirm_buddy'] = 'The target is on your buddy list. Do you really want to carry out the attack?';
 //----------------------------------------------------------------------------//
 // Buildings
 $LNG['bd_dismantle'] = 'Demolish';
