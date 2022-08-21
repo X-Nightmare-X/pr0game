@@ -369,8 +369,8 @@ $LNG['fl_hold_time_not_exists'] = 'Niepoprawny czas postoju.';
 $LNG['fl_own_planet_error'] = 'Błąd! Ponownie wybierz planetę, z której chcesz wysłać flotę.';
 $LNG['fl_hold_max_fleets'] = 'Już teraz zbyt wiele flot zmierza do tych współrzędnych. Flota nie mogła zostać wysłana.';
 $LNG['fl_hold_max_user'] = 'Maksymalna liczba broniących się imperiów została już osiągnięta. Flota nie mogła zostać wysłana.';
-
-
+$LNG['fl_attack_confirm_diplo'] = 'Pakt (%s) został zawarty z sojuszem %s i twoim sojuszem. Czy naprawdę chcesz przeprowadzić atak?';
+$LNG['fl_attack_confirm_buddy'] = 'Cel jest na twojej liście znajomych. Czy naprawdę chcesz przeprowadzić atak?';
 
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES
@@ -549,14 +549,17 @@ $LNG['al_already_exists'] = 'Taki sojusz %s już istnieje.';
 $LNG['al_created'] = 'Sojusz %s został stworzony!';
 $LNG['al_continue'] = 'kontynuuj';
 $LNG['al_alliance_closed'] = 'Sojusz nie przyjmuje nowych członków.';
-$LNG['al_request_confirmation_message'] = 'Podanie zostało wysłane <br><a href="?page=alliance">wróć</a>';
+$LNG['al_request_confirmation_message'] = 'Zgłoszenie wysłane. Otrzymasz wiadomość, jeśli zostanie przyjęty lub odrzucony.';
 $LNG['al_default_request_text'] = 'Lider sojuszu nie ustawił przykładowego podania.';
 $LNG['al_write_request'] = 'Napisz podanie do sojuszu %s';
 $LNG['al_request_deleted'] = 'Usunąłeś twoje podanie. <br> Możesz teraz stworzyć swój sojusz lub napisać podanie do'
     . ' innego.';
 $LNG['al_request_wait_message'] = 'Wysłałeś już podanie do tego sojuszu %s <br>';
 $LNG['al_delete_request'] = 'Usuń podanie';
+$LNG['al_delete_request_confirm'] = 'Czy naprawdę chcesz wycofać wniosek?';
 $LNG['al_founder_cant_leave_alliance'] = 'Założyciel nie może opuścić sojuszu.';
+$LNG['al_leaving'] = 'Gracz opuścił sojusz';
+$LNG['al_leaving_msg'] = 'Gracz <a href="#" onclick="return Dialog.Playercard(%s, %s);">%s</a> opuścił sojusz.';
 $LNG['al_leave_sucess'] = 'Opuściłeś sojusz %s !';
 $LNG['al_do_you_really_want_to_go_out'] = 'Jesteś pewien że chcesz opuścić sojusz %s?';
 $LNG['al_go_out_yes'] = 'Tak';
@@ -589,6 +592,8 @@ $LNG['al_tag'] = 'tag';
 $LNG['al_new_tag'] = 'Nowy tag (3-8 znaków):';
 $LNG['al_user_list'] = 'Lista członków';
 $LNG['al_users_list'] = 'lista członków (graczy: %d)';
+$LNG['al_users_list_main'] = 'Główna-lista członków (graczy: %d) - %s';
+$LNG['al_users_list_wing'] = 'Akademia-lista członków (graczy: %d) - %s';
 $LNG['al_manage_alliance'] = 'zarządzaj sojuszem';
 $LNG['al_send_circular_message'] = 'Wyślij wiadomość do sojuszu';
 $LNG['al_circular_front_text'] = 'Gracz %s napisał:';
@@ -688,7 +693,7 @@ $LNG['al_tfkristall'] = 'Łączny złom - kryształ';
 $LNG['al_view_stats'] = 'Statystyki bitew?';
 $LNG['al_view_diplo'] = 'Dyplomacja?';
 $LNG['al_view_events'] = 'Aktualności';
-$LNG['al_new_apply'] = 'Twój sojusz otrzymał nowe podanie od -'
+$LNG['al_new_apply'] = 'Twój sojusz otrzymał nowe <a href="?page=alliance&mode=admin&action=manageApply">podanie</a> od -'
     . ' <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a>';
 
 
@@ -703,6 +708,7 @@ $LNG['al_diplo'] = 'Dyplomacja';
 $LNG['al_no_diplo'] = '-';
 $LNG['al_events'] = 'Wydarzenia';
 $LNG['al_no_events'] = 'Obecnie brak wydarzeń';
+$LNG['al_diplo_level'][0] = 'Główna';
 $LNG['al_diplo_level'][1] = 'Akademia';
 $LNG['al_diplo_level'][2] = 'Sojusz ';
 $LNG['al_diplo_level'][3] = 'Umowa Handlowa';
@@ -729,12 +735,18 @@ $LNG['al_diplo_delete_mes'] = 'Pakt %s między sojuszami %s i %s  został rozwi�
 $LNG['al_diplo_confirm_delete'] = 'Chcesz rozwiązać pakt?';
 $LNG['al_diplo_ground'] = 'Odpowiedź:';
 $LNG['al_diplo_ask'] = 'Przymierze';
-$LNG['al_diplo_ask_mes'] = 'Pakt przymierza (%s) między sojuszami %s i %s.<br>sojusz: %s';
+$LNG['al_diplo_ask_mes'] = 'Istnieje <a href="?page=sojusz&mode=admin&action=dyplomacja">zapytanie o przymierze</a> (%s) od sojuszu %s i %s.<br>Powód: %s';
 $LNG['al_diplo_war'] = 'Deklaracja wojny';
 $LNG['al_diplo_war_mes'] = 'Sojusz %s wypowiada wojnę %s! Poniżej uzasadnienie i wyjaśnienie przesłane przez %s. <br>'
     . 'Akt wypowiedzenia wojny:<br>%s<br><br>Informacje: Wojna jest ważna po 24h od ogłoszenia! Osłona bash zostanie'
     . ' wyłączona po 24h. <br>Więcej informacji znajdziesz tutaj:'
     . ' <a href="index.php?page=rules" target="_blank">Zasady</a>.';
+$LNG['al_diplo_war_end'] = 'Wojna zakończona';
+$LNG['al_diplo_war_end_mes'] = '%s sojuszu %s z sojuszem %s została właśnie uznana za zakończoną.';
+$LNG['al_diplo_war_end_confirm'] = 'Czy naprawdę chcesz zakończyć wojnę?';
+$LNG['al_diplo_withdraw'] = 'Wycofanie wniosku o pakt';
+$LNG['al_diplo_withdraw_mes'] = 'Wniosek o zawarcie paktu (%s) między sojuszami %s i %s został wycofany.';
+$LNG['al_diplo_withdraw_confirm'] = 'Czy naprawdę chce pan wycofać wniosek o pakt?';
 $LNG['al_diplo_head'] = 'Dyplomacja';
 $LNG['al_diplo_same_alliance'] = 'Nie możesz zawrzeć sojuszu sam ze sobą!';
 $LNG['al_diplo_no_alliance'] = 'Brak sojuszu o takiej nazwie %s!';
@@ -742,6 +754,7 @@ $LNG['al_diplo_exists'] = 'Pakt z sojuszem "%s" już jest podpisany albo jest w 
 $LNG['al_diplo_info'] = 'Na tej stronie zarządzasz sojuszem';
 $LNG['al_leave_ally'] = 'Napewno chcesz opuścić sojusz?';
 $LNG['al_default_leader_name'] = 'Przywódca';
+$LNG['al_rank_diplo'] = 'Dyplomata';
 $LNG['al_rank_name'] = 'Nazwa';
 $LNG['al_rank_desc']['MEMBERLIST'] = 'Zobacz listę członków';
 $LNG['al_rank_desc']['ONLINESTATE'] = 'Kto jest online';

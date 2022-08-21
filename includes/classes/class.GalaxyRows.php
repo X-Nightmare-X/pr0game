@@ -52,16 +52,18 @@ class GalaxyRows
             . ' u.onlinetime, u.urlaubs_modus, u.banaday, m.id as m_id, m.diameter as m_diameter, m.name as m_name,'
             . ' m.temp_min as m_temp_min, m.last_update as m_last_update, s.total_points, s.total_rank, a.id as allyid,'
             . ' a.ally_tag, a.ally_web, a.ally_members, a.ally_name, allys.total_rank as ally_rank,'
-            . ' COUNT(buddy.id) as buddy, d.level as diploLevel FROM %%PLANETS%% p LEFT JOIN %%USERS%% u ON'
-            . ' p.id_owner = u.id'
+            . ' (a.ally_owner=u.id) as is_leader, a.ally_owner_range, r.DIPLOMATIC as is_diplo,'
+            . ' COUNT(buddy.id) as buddy, d.level as diploLevel FROM %%PLANETS%% p '
+            . ' LEFT JOIN %%USERS%% u ON p.id_owner = u.id'
             . ' LEFT JOIN %%PLANETS%% m ON m.id = p.id_luna'
             . ' LEFT JOIN %%STATPOINTS%% s ON s.id_owner = u.id AND s.stat_type = :statTypeUser'
             . ' LEFT JOIN %%ALLIANCE%% a ON a.id = u.ally_id'
-            . ' LEFT JOIN %%DIPLO%% as d ON (d.owner_1 = :allianceId AND d.owner_2 = a.id) OR (d.owner_1 = a.id'
-            . ' AND d.owner_2 = :allianceId) AND d.accept = :accept'
+            . ' LEFT JOIN %%ALLIANCE_RANK%% as r ON r.allianceID = u.ally_id AND r.rankID = u.ally_rank_id'
+            . ' LEFT JOIN %%DIPLO%% as d ON ((d.owner_1 = :allianceId AND d.owner_2 = a.id) OR (d.owner_1 = a.id'
+            . ' AND d.owner_2 = :allianceId)) AND d.accept = :accept'
             . ' LEFT JOIN %%STATPOINTS%% allys ON allys.stat_type = :statTypeAlliance AND allys.id_owner = a.id'
-            . ' LEFT JOIN %%BUDDY%% buddy ON (buddy.sender = :userId AND buddy.owner = u.id) OR (buddy.sender = u.id'
-            . ' AND buddy.owner = :userId)'
+            . ' LEFT JOIN %%BUDDY%% buddy ON ((buddy.sender = :userId AND buddy.owner = u.id) OR (buddy.sender = u.id'
+            . ' AND buddy.owner = :userId)) AND u.id != :userId'
             . ' WHERE p.universe = :universe AND p.galaxy = :galaxy AND p.system = :system'
             . ' AND p.planet_type = :planetTypePlanet'
             . ' GROUP BY p.id;';
@@ -209,7 +211,10 @@ class GalaxyRows
                 $this->galaxyRow['total_rank']
             ) : htmlspecialchars($this->galaxyRow['username'], ENT_QUOTES, "UTF-8"),
             'class'         => $Class,
-            'isBuddy'       => $this->galaxyRow['buddy'] == 0,
+            'isBuddy'       => $this->galaxyRow['buddy'] == 1,
+            'is_leader'     => $this->galaxyRow['is_leader'],
+            'is_diplo'      => $this->galaxyRow['is_diplo'],
+            'ally_owner_range' => $this->galaxyRow['ally_owner_range'],
         ];
     }
 
@@ -225,11 +230,17 @@ class GalaxyRows
                 case 2:
                     $Class = ['member'];
                     break;
+                case 3:
+                    $Class = ['trade'];
+                    break;
                 case 4:
                     $Class = ['friend'];
                     break;
                 case 5:
                     $Class = ['enemy'];
+                    break;
+                case 6:
+                    $Class = ['secret'];
                     break;
             }
 

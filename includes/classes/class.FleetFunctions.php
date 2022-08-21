@@ -574,7 +574,7 @@ class FleetFunctions
             ':allyD'    => $targetAllianceId
         ]);
 
-        if (!empty($War) && ($War['accept'] == 1 || $War['request_time'] < TIMESTAMP - 86400)) {
+        if (!empty($War) && ($War['accept'] == 1 && $War['request_time'] < TIMESTAMP - ONE_DAY)) {
             return false;
         }
 
@@ -745,14 +745,20 @@ class FleetFunctions
         $sql = 'INSERT INTO %%LOG_FLEETS%% SET
 		fleet_id					= :fleetId,
 		fleet_owner					= :fleetStartOwner,
+        fleet_owner_name			= :fleetStartOwnerName,
 		fleet_target_owner			= :fleetTargetOwner,
+        fleet_target_owner_name		= :fleetTargetOwnerName,
 		fleet_mission				= :fleetMission,
 		fleet_amount				= :fleetShipCount,
 		fleet_array					= :fleetData,
+        fleet_start_array			= :fleetDataStart,
 		fleet_universe				= :universe,
 		fleet_start_time			= :fleetStartTime,
+		fleet_start_time_formated	= :fleetStartTimeFormated,
 		fleet_end_stay				= :fleetStayTime,
+		fleet_end_stay_formated		= :fleetStayTimeFormated,
 		fleet_end_time				= :fleetEndTime,
+		fleet_end_time_formated		= :fleetEndTimeFormated,
 		fleet_start_id				= :fleetStartPlanetID,
 		fleet_start_galaxy			= :fleetStartPlanetGalaxy,
 		fleet_start_system			= :fleetStartPlanetSystem,
@@ -769,18 +775,28 @@ class FleetFunctions
 		fleet_no_m_return           = :fleetNoMReturn,
 		fleet_group					= :fleetGroup,
 		fleet_target_obj			= :missileTarget,
-		start_time					= :timestamp;';
+		start_time					= :startTime,
+        start_time_formated			= :startTimeFormated;';
+
+        $fleetStartOwnerName = $db->selectSingle("SELECT username from %%USERS%% WHERE id = :id", [':id' => $fleetStartOwner], 'username');
+        $fleetTargetOwnerName = $db->selectSingle("SELECT username from %%USERS%% WHERE id = :id", [':id' => $fleetTargetOwner], 'username');
 
         $db->insert($sql, [
             ':fleetId'                  => $fleetId,
             ':fleetStartOwner'          => $fleetStartOwner,
+            ':fleetStartOwnerName'      => $fleetStartOwnerName,
             ':fleetTargetOwner'         => $fleetTargetOwner,
+            ':fleetTargetOwnerName'     => $fleetTargetOwnerName,
             ':fleetMission'             => $fleetMission,
             ':fleetShipCount'           => $fleetShipCount,
             ':fleetData'                => implode(';', $fleetData),
+            ':fleetDataStart'           => implode(';', $fleetData),
             ':fleetStartTime'           => $fleetStartTime,
+            ':fleetStartTimeFormated'  => Database::formatDate($fleetStartTime),
             ':fleetStayTime'            => $fleetStayTime,
+            ':fleetStayTimeFormated'   => Database::formatDate($fleetStayTime),
             ':fleetEndTime'             => $fleetEndTime,
+            ':fleetEndTimeFormated'    => Database::formatDate($fleetEndTime),
             ':fleetStartPlanetID'       => $fleetStartPlanetID,
             ':fleetStartPlanetGalaxy'   => $fleetStartPlanetGalaxy,
             ':fleetStartPlanetSystem'   => $fleetStartPlanetSystem,
@@ -797,7 +813,8 @@ class FleetFunctions
             ':fleetNoMReturn'           => $fleetNoMReturn,
             ':fleetGroup'               => $fleetGroup,
             ':missileTarget'            => $missileTarget,
-            ':timestamp'                => TIMESTAMP,
+            ':startTime'                => TIMESTAMP,
+            ':startTimeFormated'      => Database::formatDate(TIMESTAMP),
             ':universe'                 => Universe::current(),
         ]);
         return $fleetId;

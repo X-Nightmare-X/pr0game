@@ -123,7 +123,11 @@
 		</tr>
 		{/if}
         <tr style="height:20px;">
-        	<td colspan="2"><input value="{$LNG.fl_continue}" type="submit" /></td>
+			{if !empty($question)}
+        		<td colspan="2"><input value="{$LNG.fl_continue}" type="submit" onclick="return confirm('{$question}');"/></td>
+			{else}
+				<td colspan="2"><input value="{$LNG.fl_continue}" type="submit" /></td>
+			{/if}
         </tr>
     </table>
 </form>

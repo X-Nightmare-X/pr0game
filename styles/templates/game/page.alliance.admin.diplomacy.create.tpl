@@ -3,7 +3,7 @@
 <form name="message" id="message">
 	<table style="width:95%">
 	<tr>
-		<th colspan="2">{$LNG.al_circular_send_ciruclar}</th>
+		<th colspan="2">{$LNG.al_diplo_create}</th>
 	</tr>
 	<tr>
 		<td>{$LNG.al_diplo_ally}</td>
@@ -11,7 +11,7 @@
 	</tr>
 	<tr>
 		<td>{$LNG.al_diplo_level_des}</td>
-		<td>{html_options name="level" values=range(1,6) output=$LNG.al_diplo_level selected=$diploMode}</td>
+		<td>{html_options name="level" values=range(1,6) output=$diploLevel selected=$diploMode}</td>
 	</tr>
 	<tr>
 		<td>{$LNG.al_diplo_text}<br>(<span id="cntChars">0</span> / 5000 {$LNG.al_characters})</td>

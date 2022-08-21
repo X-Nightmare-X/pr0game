@@ -175,9 +175,34 @@ abstract class AbstractGamePage
             }
         }
 
+        $sql = "SELECT COUNT(r.applyID) AS applies 
+            FROM %%ALLIANCE_REQUEST%% r
+            JOIN %%USERS%% u ON u.ally_id = r.allianceID
+            JOIN %%ALLIANCE%% a ON a.id = u.ally_id
+            LEFT JOIN %%ALLIANCE_RANK%% ra ON ra.allianceID = u.ally_id AND ra.rankID = u.ally_rank_id
+            WHERE r.allianceID = :allianceID AND u.id = :userID AND (u.id = a.ally_owner OR ra.MANAGEAPPLY = 1);";
+        $allyApplyRequests = Database::get()->selectSingle($sql, [
+            ':allianceID' => $USER['ally_id'],
+            ':userID' => $USER['id']
+        ], 'applies');
+
+        $sql = "SELECT COUNT(d.id) AS diplos 
+            FROM %%DIPLO%% d 
+            JOIN %%USERS%% u ON u.ally_id = d.owner_2
+            JOIN %%ALLIANCE%% a ON a.id = u.ally_id
+            LEFT JOIN %%ALLIANCE_RANK%% ra ON ra.allianceID = u.ally_id AND ra.rankID = u.ally_rank_id
+            WHERE d.owner_2 = :allianceID AND accept = 0 AND u.id = :userID AND (u.id = a.ally_owner OR ra.DIPLOMATIC = 1);";
+        $allyDiploRequests = Database::get()->selectSingle($sql, [
+            ':allianceID' => $USER['ally_id'],
+            ':userID' => $USER['id']
+        ], 'diplos');
+        
+        $allyrequests = $allyApplyRequests + $allyDiploRequests;
+
         $this->assign([
             'PlanetSelect' => $PlanetSelect,
             'new_message' => $USER['messages'],
+            'new_allyrequests' => $allyrequests,
             'commit' => $commit,
             'commitShort' => $commitShort,
             'vacation' => $USER['urlaubs_modus'] ? _date($LNG['php_tdformat'], $USER['urlaubs_until'], $USER['timezone']) : false,

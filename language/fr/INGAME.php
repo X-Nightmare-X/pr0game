@@ -354,6 +354,8 @@ $LNG['fl_hold_time_not_exists'] = 'Temps de rétention invalide.';
 $LNG['fl_own_planet_error'] = 'Error! Again select the planet from which you want to send the fleet.';
 $LNG['fl_hold_max_fleets'] = 'Il y a déjà trop de flottes en route vers ces coordonnées. La flotte n\'a pas pu être envoyée.';
 $LNG['fl_hold_max_user'] = 'Le nombre maximum d\'empires à défendre a déjà été atteint. La flotte n\'a pas pu être envoyée.';
+$LNG['fl_attack_confirm_diplo'] = 'Un pacte (%s) a été conclu avec l\'alliance %s et votre alliance. Vous voulez vraiment lancer l\'attaque ?';
+$LNG['fl_attack_confirm_buddy'] = 'La cible est sur ta liste d\'amis. Vous voulez vraiment faire l\'attaque ?';
 
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES
@@ -537,7 +539,7 @@ $LNG['al_created'] = 'L\'Alliance %s a été créée !';
 $LNG['al_continue'] = 'continuer';
 $LNG['al_alliance_closed'] = 'Cette Alliance n\'accepte pas de nouveaux membres.';
 $LNG['al_request_confirmation_message'] = 'Message envoyé. Vous allez recevoir un message vous signalant si vous êtes'
-    . ' accepté ou non. <br><a href="game.php?page=alliance">back</a>';
+    . ' accepté ou non.';
 $LNG['al_default_request_text'] = 'Le leader de l\'Alliance n\'a pas crée de texte de candidature type ou n\'a pas'
     . ' d\'exigences particulières.';
 $LNG['al_write_request'] = 'Rédiger une candidature à l\'Alliance %s';
@@ -545,7 +547,10 @@ $LNG['al_request_deleted'] = 'Vous avez supprimer la candidature. <br> Vous pouv
     . ' une autre.';
 $LNG['al_request_wait_message'] = 'Vous avez déjà envoyé une requête à l\'alliance %s <br>';
 $LNG['al_delete_request'] = 'Supprimer la candidature';
+$LNG['al_delete_request_confirm'] = 'Veux-tu vraiment retirer ta candidature ?';
 $LNG['al_founder_cant_leave_alliance'] = 'Le fondateur ne peut abandonner l\'Alliance.';
+$LNG['al_leaving'] = 'Un joueur a quitté l\'alliance';
+$LNG['al_leaving_msg'] = 'Le joueur <a href="#" onclick="return Dialog.Playercard(%s, \'%s\') ;">%s</a> a quitté l\'alliance.';
 $LNG['al_leave_sucess'] = 'Vous avez quitté l\'Alliance %s avec succès.';
 $LNG['al_do_you_really_want_to_go_out'] = 'Souhaitez-vous vraiment quitter l\'Alliance %s ?';
 $LNG['al_go_out_yes'] = 'Oui';
@@ -577,7 +582,9 @@ $LNG['al_new_name'] = 'Nouveau nom (3-30 Caractères) :';
 $LNG['al_tag'] = 'Tag';
 $LNG['al_new_tag'] = 'Nouveau tag (3-8 Caractères) :';
 $LNG['al_user_list'] = 'Liste des membres';
-$LNG['al_users_list'] = 'liste de membres (joueurs: %d)';
+$LNG['al_users_list'] = 'Liste de membres (joueurs: %d)';
+$LNG['al_users_list_main'] = 'Main-Liste de membres (joueurs: %d) - %s';
+$LNG['al_users_list_wing'] = 'Wing-Liste de membres (joueurs: %d) - %s';
 $LNG['al_manage_alliance'] = 'Gérer l\'Alliance';
 $LNG['al_send_circular_message'] = 'envoyer un message global';
 $LNG['al_circular_front_text'] = 'Le joueur %s écrit ce qui suit:';
@@ -684,6 +691,7 @@ $LNG['al_diplo'] = 'Diplomatie';
 $LNG['al_no_diplo'] = '-';
 $LNG['al_events'] = 'Evénements';
 $LNG['al_no_events'] = 'Il n\'y a pas actuellement d \'événement';
+$LNG['al_diplo_level'][0] = 'Main';
 $LNG['al_diplo_level'][1] = 'Wing';
 $LNG['al_diplo_level'][2] = 'Alliance ';
 $LNG['al_diplo_level'][3] = 'Pacte commercial';
@@ -712,19 +720,25 @@ $LNG['al_diplo_delete_mes'] = 'Le pacte de %s entre les alliances %s et %s  a é
 $LNG['al_diplo_confirm_delete'] = 'Souhaitez-vous vraiment supprimer le pacte ?';
 $LNG['al_diplo_ground'] = 'Raison :';
 $LNG['al_diplo_ask'] = 'Demande de renseignements sur le pacte';
-$LNG['al_diplo_ask_mes'] = 'Il n\'y a pas de renseignements sur le pacte (%s) entre les alliances %s et %s.<br>'
-    . 'L\'Alliance : %s';
+$LNG['al_diplo_ask_mes'] = 'Il existe une <a href="?page=alliance&mode=admin&action=diplomacy">demande de pacte</a> (%s) de l\'alliance %s et %s.<br>Raison : %s';
 $LNG['al_diplo_war'] = 'Déclaration de la guerre';
 $LNG['al_diplo_war_mes'] = 'L\'Alliance %s vient de donner des renseignements à l\'Alliance %s sur le pacte %s . <br>'
     . 'Motis :<br>%s<br><br>Information : La guerre pourra être déclarée dans 24 heures. Le bash est régulier'
     . ' uniquement si il est levé après 24 heures. <br>Vous trouverez plus d\information dans le'
     . ' <a href="index.php?page=rules" target="_blank">Règlement</a>.';
+$LNG['al_diplo_war_end'] = 'Guerre terminée';
+$LNG['al_diplo_war_end_mes'] = 'La %s de l\'Alliance %s avec l\'Alliance %s vient d\'être déclarée terminée.';
+$LNG['al_diplo_war_end_confirm'] = 'Veux-tu vraiment mettre fin à la guerre ?';
+$LNG['al_diplo_withdraw'] = 'Demande de pacte retirée';
+$LNG['al_diplo_withdraw_mes'] = 'La demande de pacte (%s) entre les alliances %s et %s a été retirée';
+$LNG['al_diplo_withdraw_confirm'] = 'Tu veux vraiment retirer ta demande de pacte ?';
 $LNG['al_diplo_head'] = 'Gestion de la diplomatie';
 $LNG['al_diplo_same_alliance'] = 'Vous ne pouvez pas faire un pacte avec votre propre Alliance!';
 $LNG['al_diplo_no_alliance'] = 'Il n\'y a pas d\'alliance avec le nom de %s!';
 $LNG['al_diplo_info'] = '<p>Ici apparaît différents types de Alliance et peut voir vos alliances [TODO: FAQ]</p>';
 $LNG['al_leave_ally'] = 'Souhaitez-vous réellement quitter l\'Alliance ?';
 $LNG['al_default_leader_name'] = 'Leader';
+$LNG['al_rank_diplo'] = 'Diplomate';
 $LNG['al_rank_name'] = 'Nom';
 $LNG['al_rank_desc']['MEMBERLIST'] = 'Peut voir les membres';
 $LNG['al_rank_desc']['ONLINESTATE'] = 'Pouvez voir qui est en ligne';
@@ -742,7 +756,7 @@ $LNG['al_invalid_rank_name'] = 'Le noms de rank ne peut seulement contenir des n
     . ' ou _, -.!';
 $LNG['al_make_ally_insufficient_points'] = 'Vous n\'avez pas assez de points pour créer une alliance.<br>Il est requis'
     . ' %s points, vous avez %s points.';
-$LNG['al_new_apply'] = 'Your alliance has received a new application from -'
+$LNG['al_new_apply'] = 'Votre alliance a reçu une nouvelle <a href="?page=alliance&mode=admin&action=manageApply">candidature</a> de -'
     . ' <a href="#" onclick="return Dialog.Playercard(%s, \'%s\');">%s</a>';
 
 //----------------------------------------------------------------------------//

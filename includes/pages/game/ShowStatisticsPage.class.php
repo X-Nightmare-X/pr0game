@@ -87,28 +87,42 @@ class ShowStatisticsPage extends AbstractGamePage
 
                 if ($config->stat == 2) {
                     $sql = "SELECT DISTINCT s.*, u.id, u.username, u.ally_id, u.banaday, u.urlaubs_modus, u.onlinetime,"
-                        . " a.ally_name, (a.ally_owner=u.id) as is_leader, a.ally_owner_range FROM %%STATPOINTS%% as s"
+                        . " a.ally_name, (a.ally_owner=u.id) as is_leader, a.ally_owner_range, r.DIPLOMATIC as is_diplo, "
+                        . " buddy.id as buddy, d.level as diploLevel"
+                        . " FROM %%STATPOINTS%% as s"
                         . " INNER JOIN %%USERS%% as u ON u.id = s.id_owner"
                         . " LEFT JOIN %%ALLIANCE%% as a ON a.id = s.id_ally"
+                        . " LEFT JOIN %%ALLIANCE_RANK%% as r ON r.allianceID = s.id_ally AND r.rankID = u.ally_rank_id"
+                        . " LEFT JOIN %%DIPLO%% as d ON ((d.owner_1 = :allianceId AND d.owner_2 = a.id) OR (d.owner_1 = a.id AND d.owner_2 = :allianceId)) AND d.accept = 1"
+                        . " LEFT JOIN %%BUDDY%% as buddy ON ((buddy.sender = :userId AND buddy.owner = u.id) OR (buddy.sender = u.id AND buddy.owner = :userId)) AND u.id != :userId"
                         . " WHERE s.universe = :universe AND s.stat_type = 1 AND u.authlevel < :authLevel"
                         . " ORDER BY " . $Order . " ASC LIMIT :offset, :limit;";
                     $query = $db->select($sql, [
-                        ':universe'  => Universe::current(),
-                        ':authLevel' => $config->stat_level,
-                        ':offset'    => $start,
-                        ':limit'     => 100,
+                        ':allianceId'   => $USER['ally_id'],
+                        ':userId'       => $USER['id'],
+                        ':universe'     => Universe::current(),
+                        ':authLevel'    => $config->stat_level,
+                        ':offset'       => $start,
+                        ':limit'        => 100,
                     ]);
                 } else {
                     $sql = "SELECT DISTINCT s.*, u.id, u.username, u.ally_id, u.banaday, u.urlaubs_modus, u.onlinetime,"
-                        . " a.ally_name, (a.ally_owner=u.id) as is_leader, a.ally_owner_range FROM %%STATPOINTS%% as s"
+                        . " a.ally_name, (a.ally_owner=u.id) as is_leader, a.ally_owner_range, r.DIPLOMATIC as is_diplo, "
+                        . " buddy.id as buddy, d.level as diploLevel"
+                        . " FROM %%STATPOINTS%% as s"
                         . " INNER JOIN %%USERS%% as u ON u.id = s.id_owner"
                         . " LEFT JOIN %%ALLIANCE%% as a ON a.id = s.id_ally"
+                        . " LEFT JOIN %%ALLIANCE_RANK%% as r ON r.allianceID = s.id_ally AND r.rankID = u.ally_rank_id"
+                        . " LEFT JOIN %%DIPLO%% as d ON ((d.owner_1 = :allianceId AND d.owner_2 = a.id) OR (d.owner_1 = a.id AND d.owner_2 = :allianceId)) AND d.accept = 1"
+                        . " LEFT JOIN %%BUDDY%% as buddy ON ((buddy.sender = :userId AND buddy.owner = u.id) OR (buddy.sender = u.id AND buddy.owner = :userId)) AND u.id != :userId"
                         . " WHERE s.universe = :universe AND s.stat_type = 1"
                         . " ORDER BY " . $Order . " ASC LIMIT :offset, :limit;";
                     $query = $db->select($sql, [
-                        ':universe' => Universe::current(),
-                        ':offset'   => $start,
-                        ':limit'    => 100,
+                        ':allianceId'   => $USER['ally_id'],
+                        ':userId'       => $USER['id'],
+                        ':universe'     => Universe::current(),
+                        ':offset'       => $start,
+                        ':limit'        => 100,
                     ]);
                 }
 
@@ -127,15 +141,43 @@ class ShowStatisticsPage extends AbstractGamePage
                 foreach ($query as $StatRow) {
                     $IsNoobProtec = CheckNoobProtec($USER, $StatRow, $StatRow);
                     $Class = userStatus($StatRow, $IsNoobProtec);
+                    $AllyClass = [];
+                    if (!empty($StatRow['ally_id'])) {
+                        switch ($StatRow['diploLevel']) {
+                            case 1:
+                            case 2:
+                                $AllyClass = ['member'];
+                                break;
+                            case 3:
+                                $AllyClass = ['trade'];
+                                break;
+                            case 4:
+                                $AllyClass = ['friend'];
+                                break;
+                            case 5:
+                                $AllyClass = ['enemy'];
+                                break;
+                            case 6:
+                                $AllyClass = ['secret'];
+                                break;
+                        }
+
+                        if ($USER['ally_id'] == $StatRow['ally_id']) {
+                            $AllyClass = ['member'];
+                        }
+                    }
 
                     $RangeList[] = [
                         'id'               => $StatRow['id'],
                         'name'             => $StatRow['username'],
                         'class'            => $Class,
+                        'isBuddy'          => $StatRow['buddy'] != null,
                         'is_leader'        => $StatRow['is_leader'],
+                        'is_diplo'         => $StatRow['is_diplo'],
                         'ally_owner_range' => $StatRow['ally_owner_range'],
                         'points'           => pretty_number($StatRow[$Points]),
                         'allyid'           => $StatRow['ally_id'],
+                        'allyClass'        => $AllyClass,
                         'rank'             => $StatRow[$Rank],
                         'allyname'         => $StatRow['ally_name'],
                         'ranking'          => $StatRow[$OldRank] - $StatRow[$Rank],

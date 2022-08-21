@@ -48,11 +48,16 @@
 </tr>
 <tr>
 	<td colspan="2">
-	{if $diplomaticData}
-	{if !empty($diplomaticData.0)}<b><u>{$LNG.al_diplo_level.0}</u></b><br><br>{foreach item=PaktInfo from=$diplomaticData.0}<a href="?page=alliance&mode=info&amp;id={$PaktInfo.1}">{$PaktInfo.0}</a><br>{/foreach}<br>{/if}
-	{if !empty($diplomaticData.1)}<b><u>{$LNG.al_diplo_level.1}</u></b><br><br>{foreach item=PaktInfo from=$diplomaticData.1}<a href="?page=alliance&mode=info&amp;id={$PaktInfo.1}">{$PaktInfo.0}</a><br>{/foreach}<br>{/if}
-	{if !empty($diplomaticData.2)}<b><u>{$LNG.al_diplo_level.2}</u></b><br><br>{foreach item=PaktInfo from=$diplomaticData.2}<a href="?page=alliance&mode=info&amp;id={$PaktInfo.1}">{$PaktInfo.0}</a><br>{/foreach}<br>{/if}
-	{if !empty($diplomaticData.3)}<b><u>{$LNG.al_diplo_level.3}</u></b><br><br>{foreach item=PaktInfo from=$diplomaticData.3}<a href="?page=alliance&mode=info&amp;id={$PaktInfo.1}">{$PaktInfo.0}</a><br>{/foreach}<br>{/if}
+	{if $diplomats}
+		<b><u>{$LNG.al_rank_diplo}</u></b><br><br>
+		{foreach $diplomats as $diplomat}{$diplomat.username} - {$diplomat.rankName} <a href="#" onclick="return Dialog.PM({$diplomat.id})"><img src="{$dpath}img/m.gif" title="{$LNG.write_message}" alt=""></a><br>{/foreach}
+		<br>
+	{/if}
+	{if $diplomaticData && (!empty($diplomaticData.0) || !empty($diplomaticData.1) || !empty($diplomaticData.2) || !empty($diplomaticData.3) || !empty($diplomaticData.4))}
+		{if !empty($diplomaticData.0)}<b><u>{$LNG.al_diplo_level.0}</u></b><br><br>{foreach item=PaktInfo from=$diplomaticData.0}<a href="?page=alliance&mode=info&amp;id={$PaktInfo.1}">{$PaktInfo.0}</a><br>{/foreach}<br>{/if}
+		{if !empty($diplomaticData.1)}<b><u>{$LNG.al_diplo_level.1}</u></b><br><br>{foreach item=PaktInfo from=$diplomaticData.1}<a href="?page=alliance&mode=info&amp;id={$PaktInfo.1}">{$PaktInfo.0}</a><br>{/foreach}<br>{/if}
+		{if !empty($diplomaticData.2)}<b><u>{$LNG.al_diplo_level.2}</u></b><br><br>{foreach item=PaktInfo from=$diplomaticData.2}<a href="?page=alliance&mode=info&amp;id={$PaktInfo.1}">{$PaktInfo.0}</a><br>{/foreach}<br>{/if}
+		{if !empty($diplomaticData.3)}<b><u>{$LNG.al_diplo_level.3}</u></b><br><br>{foreach item=PaktInfo from=$diplomaticData.3}<a href="?page=alliance&mode=info&amp;id={$PaktInfo.1}">{$PaktInfo.0}</a><br>{/foreach}<br>{/if}
 		{if !empty($diplomaticData.4)}<b><u>{$LNG.al_diplo_level.4}</u></b><br><br>{foreach item=PaktInfo from=$diplomaticData.4}<a href="?page=alliance&mode=info&amp;id={$PaktInfo.1}">{$PaktInfo.0}</a><br>{/foreach}<br>{/if}
 	{else}
 		{$LNG.al_no_diplo}
