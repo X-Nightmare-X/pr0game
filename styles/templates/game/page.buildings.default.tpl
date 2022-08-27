@@ -9,7 +9,7 @@
 	
 	{foreach $Queue as $List}
 		{$ID = $List.element}
-		{if $umode == 0}
+		{* {if $umode == 0} *}
 			<div class="buildb">
 
 			{$List@iteration}.: 
@@ -24,21 +24,29 @@
 				<br><br><div id="progressbar" data-time="{$List.resttime}"></div></div>
 				<div class="bulida">
 				<div id="time" data-time="{$List.time}"><br></div>
-				<form action="game.php?page=buildings" method="post" class="build_form">
-					<input type="hidden" name="cmd" value="cancel">
-					<button type="submit" class="build_submit onlist">{$LNG.bd_cancel}</button>
-				</form>
+				{if $umode == 0}
+					<form action="game.php?page=buildings" method="post" class="build_form">
+						<input type="hidden" name="cmd" value="cancel">
+						<button type="submit" class="build_submit onlist">{$LNG.bd_cancel}</button>
+					</form>
+				{else}
+					-
+				{/if}
 			{else}
 				</div><div class="bulida">
-				<form action="game.php?page=buildings" method="post" class="build_form">
-					<input type="hidden" name="cmd" value="remove">
-					<input type="hidden" name="listid" value="{$List@iteration}">
-					<button type="submit" class="build_submit onlist">{$LNG.bd_cancel}</button>
-				</form>
+				{if $umode == 0}
+					<form action="game.php?page=buildings" method="post" class="build_form">
+						<input type="hidden" name="cmd" value="remove">
+						<input type="hidden" name="listid" value="{$List@iteration}">
+						<button type="submit" class="build_submit onlist">{$LNG.bd_cancel}</button>
+					</form>
+				{else}
+					-
+				{/if}
 			{/if}
-			<br><span style="color:lime" data-time="{$List.endtime}" class="timer">{$List.display}</span>
+			<br><span style="color:lime" data-time="{$List.endtime}" data-umode="{$umode}" class="timer">{if $umode == 0}{$List.display}{else}{$LNG.bd_paused}{/if}</span>
 			</div>
-		{else}
+		{* {else}
 			<div class="buildc">
 			{$List@iteration}.: 
 			{if !($isBusy.research && ($ID == 6 || $ID == 31)) && !($isBusy.shipyard && ($ID == 15 || $ID == 21)) && $RoomIsOk && $CanBuildElement && $BuildInfoList[$ID].buyable}
@@ -48,9 +56,9 @@
 					<button type="submit" class="build_submit onlist">{$LNG.tech.{$ID}} {$List.level}{if $List.destroy} {$LNG.bd_dismantle}{/if}</button>
 				</form>
 			{else}{$LNG.tech.{$ID}} {$List.level} {if $List.destroy}{$LNG.bd_dismantle}{/if}{/if}
-			<br><span style="color:lime" data-time="{$List.endtime}" class="timer">{$LNG.bd_paused}</span>
+			<br><span style="color:lime" data-time="{$List.endtime}" data-umode="{$umode}" class="timer">{$LNG.bd_paused}</span>
 			</div>
-		{/if}
+		{/if} *}
 	{/foreach}
 
 	
