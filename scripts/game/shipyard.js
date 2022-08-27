@@ -8,7 +8,12 @@ function ShipyardInit() {
     $('#timeleft').attr('data-time', data.queue_time);
     ShipyardList();
     BuildlistShipyard();
-    ShipyardInterval = window.setInterval(BuildlistShipyard, 1000);
+    if(document.getElementById('auftr')){
+        ShipyardInterval = window.setInterval(BuildlistShipyard, 1000);
+    }else{
+        document.getElementById('auftrumode').options[0].innerHTML = Amount.toString() + " " + Shipyard[0][0] + " " + bd_operating;
+        $("#bxumode").html(Shipyard[0][0]);
+    }
 }
 
 function BuildlistShipyard() {
@@ -44,14 +49,27 @@ function BuildlistShipyard() {
 }
 
 function ShipyardList() {
-    while (document.getElementById('auftr').length > 0)
-        document.getElementById('auftr').options[document.getElementById('auftr').length - 1] = null;
+    if(document.getElementById('auftr')){
+        while (document.getElementById('auftr').length > 0)
+            document.getElementById('auftr').options[document.getElementById('auftr').length - 1] = null;
 
-    for (iv = 0; iv <= Shipyard.length - 1; iv++) {
-        if (iv == 0)
-            document.getElementById('auftr').options[iv] = new Option(Amount.toString() + " " + Shipyard[iv][0] + " " + bd_operating, iv);
-        else
-            document.getElementById('auftr').options[iv] = new Option(Shipyard[iv][1] + " " + Shipyard[iv][0] + " " + bd_operating, iv);
+        for (iv = 0; iv <= Shipyard.length - 1; iv++) {
+            if (iv == 0)
+                document.getElementById('auftr').options[iv] = new Option(Amount.toString() + " " + Shipyard[iv][0] + " " + bd_operating, iv);
+            else
+                document.getElementById('auftr').options[iv] = new Option(Shipyard[iv][1] + " " + Shipyard[iv][0] + " " + bd_operating, iv);
+        }
+    }
+    else{
+        while (document.getElementById('auftrumode').length > 0)
+            document.getElementById('auftrumode').options[document.getElementById('auftrumode').length - 1] = null;
+
+        for (iv = 0; iv <= Shipyard.length - 1; iv++) {
+            if (iv == 0)
+                document.getElementById('auftrumode').options[iv] = new Option(Amount.toString() + " " + Shipyard[iv][0] + " " + bd_operating, iv);
+            else
+                document.getElementById('auftrumode').options[iv] = new Option(Shipyard[iv][1] + " " + Shipyard[iv][0] + " " + bd_operating, iv);
+        }
     }
 }
 

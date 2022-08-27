@@ -413,6 +413,7 @@ class ShowBuildingsPage extends AbstractGamePage
         }
 
         $this->assign([
+            'umode'             => $USER['urlaubs_modus'],
             'BuildInfoList'     => $BuildInfoList,
             'CanBuildElement'   => $CanBuildElement,
             'RoomIsOk'          => $RoomIsOk,

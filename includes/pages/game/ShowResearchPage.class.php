@@ -416,6 +416,7 @@ class ShowResearchPage extends AbstractGamePage
         }
 
         $this->assign([
+            'umode'         => $USER['urlaubs_modus'],
             'ResearchList'  => $ResearchList,
             'IsLabinBuild'  => !$bContinue,
             'IsFullQueue'   => Config::get()->max_elements_tech == 0

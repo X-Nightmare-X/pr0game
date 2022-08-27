@@ -375,7 +375,7 @@ $LNG['fl_attack_confirm_buddy'] = 'Hedef arkadaş listende. Saldırıyı gerçek
 //----------------------------------------------------------------------------//
 // Binalar
 $LNG['bd_dismantle'] = 'Yikmak';
-$LNG['bd_interrupt'] = 'Durdur';
+$LNG['bd_paused'] = 'duraklatıldı';
 $LNG['bd_cancel'] = 'Iptal Et';
 $LNG['bd_working'] = 'Calisiyor';
 $LNG['bd_build'] = 'Binayi Insa Et';

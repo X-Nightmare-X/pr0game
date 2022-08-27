@@ -375,7 +375,7 @@ $LNG['fl_attack_confirm_buddy'] = 'Cel jest na twojej liście znajomych. Czy nap
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES
 $LNG['bd_dismantle'] = 'Zdemontuj';
-$LNG['bd_interrupt'] = 'Przerwij';
+$LNG['bd_paused'] = 'wstrzymane';
 $LNG['bd_cancel'] = 'Anuluj';
 $LNG['bd_working'] = 'Pracuje';
 $LNG['bd_build'] = 'Zbuduj';
