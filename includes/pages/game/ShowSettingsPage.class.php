@@ -84,11 +84,11 @@ class ShowSettingsPage extends AbstractGamePage
     private function checkVMode()
     {
         global $USER, $PLANET;
-
+        /*
         if (!empty($USER['b_tech']) || !empty($PLANET['b_building']) || !empty($PLANET['b_hangar'])) {
             return false;
         }
-
+        */
         $db = Database::get();
 
         $sql = "SELECT COUNT(*) as state FROM %%FLEETS%% WHERE `fleet_owner` = :userID FOR UPDATE;";
@@ -104,18 +104,18 @@ class ShowSettingsPage extends AbstractGamePage
             ':userID'   => $USER['id'],
             ':planetID' => $PLANET['id'],
         ]);
-
+        
         foreach ($query as $CPLANET) {
             list($USER, $CPLANET) = $this->ecoObj->CalcResource($USER, $CPLANET, true);
-
+            /*
             if (!empty($CPLANET['b_building']) || !empty($CPLANET['b_hangar'])) {
                 $db->commit();
                 return false;
             }
-
+            */
             unset($CPLANET);
         }
-
+        
 		$db->commit();
         return true;
     }
@@ -139,10 +139,70 @@ class ShowSettingsPage extends AbstractGamePage
 
         $db = Database::get();
 
+        $sql = "SELECT urlaubs_start FROM %%USERS%% WHERE universe = :universe AND id = :userID;";
+        $umode_start = $db->selectSingle($sql, [
+            ':universe' => Universe::current(),
+            ':userID'   => $USER['id'],
+        ], 'urlaubs_start');
+        $umode_delta = TIMESTAMP - $umode_start;
         if ($vacation == 1 && $USER['urlaubs_until'] <= TIMESTAMP) {
+            if (!empty($USER['b_tech'])) {
+                $CurrentQueue       = unserialize($USER['b_tech_queue']);
+                foreach ($CurrentQueue as &$TechArray) {
+                    $TechArray[3] += $umode_delta;
+                }
+                $USER['b_tech_queue'] = serialize($CurrentQueue);
+                $sql = "UPDATE %%USERS%% SET
+                    b_tech = b_tech + :umode_delta,
+                    b_tech_queue = :b_tech_queue
+                    WHERE id = :userID;";
+                $db->update($sql, [
+                    ':umode_delta' => $umode_delta,
+                    ':userID'   => $USER['id'],
+                    ':b_tech_queue' => $USER['b_tech_queue'],
+                ]);
+                $USER['b_tech'] = $USER['b_tech'] + $umode_delta;
+            }
+            if (!empty($PLANET['b_building'])) {
+                $PLANET['b_building'] = $PLANET['b_building'] + $umode_delta;
+                $CurrentQueue       = unserialize($PLANET['b_building_id']);
+                foreach ($CurrentQueue as &$BuildArray) {
+                    $BuildArray[3] += $umode_delta;
+                }
+                $PLANET['b_building_id'] = serialize($CurrentQueue);
+            }
+            $sql = "SELECT * FROM %%PLANETS%% WHERE id_owner = :userID AND destruyed = 0;";
+            $query = $db->select($sql, [
+                ':userID'   => $USER['id'],
+            ]);
+            
+            foreach ($query as $CPLANET) {
+                list($USER, $CPLANET) = $this->ecoObj->CalcResource($USER, $CPLANET, true);
+                
+                if (!empty($CPLANET['b_building'])) {
+                    $CurrentQueue       = unserialize($CPLANET['b_building_id']);
+                    foreach ($CurrentQueue as &$BuildArray) {
+                        $BuildArray[3] += $umode_delta;
+                    }
+                    $sql = "UPDATE %%PLANETS%% SET
+                    b_building = b_building + :umode_delta,
+                    b_building_id = :building_id
+                    WHERE id = :planetID;";
+                    $db->update($sql, [
+                        ':umode_delta' => $umode_delta,
+                        ':planetID'   => $PLANET['id'],
+                        ':building_id' => serialize($CurrentQueue),
+                    ]);
+                    
+                }
+                
+                unset($CPLANET);
+            }
+
             $sql = "UPDATE %%USERS%% SET
 						urlaubs_modus = '0',
-						urlaubs_until = '0'
+						urlaubs_until = '0',
+                        urlaubs_start = '0'
 						WHERE id = :userID;";
             $db->update($sql, [':userID'   => $USER['id']]);
 
@@ -159,7 +219,7 @@ class ShowSettingsPage extends AbstractGamePage
                 ':userID'       => $USER['id'],
                 ':timestamp'    => TIMESTAMP,
             ]);
-
+            
             $USER['urlaubs_modus'] = 0;
             $PLANET['last_update'] = TIMESTAMP;
 
@@ -371,10 +431,12 @@ class ShowSettingsPage extends AbstractGamePage
                     ],
                 ]);
             } else {
-                $sql = "UPDATE %%USERS%% SET urlaubs_modus = '1', urlaubs_until = :time WHERE id = :userID";
+                $sql = "UPDATE %%USERS%% SET urlaubs_modus = '1', urlaubs_until = :time, urlaubs_start = :startTime"
+                    . " WHERE id = :userID";
                 $db->update($sql, [
-                    ':userID'   => $USER['id'],
-                    ':time'     => (TIMESTAMP + Config::get()->vmode_min_time),
+                    ':userID'       => $USER['id'],
+                    ':time'         => (TIMESTAMP + Config::get()->vmode_min_time),
+                    ':startTime'    => TIMESTAMP,
                 ]);
 
                 $sql = "UPDATE %%PLANETS%% SET energy_used = '0', energy = '0', metal_mine_porcent = '0',"

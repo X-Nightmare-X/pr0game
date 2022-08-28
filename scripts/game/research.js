@@ -3,9 +3,13 @@ var time		= 0;
 var endtime		= 0;
 var interval	= 0;
 var buildname	= "";
+var umode 		= false;
 
 function Buildlist() {
-	var rest	= resttime - (serverTime.getTime() - startTime) / 1000;
+	var rest	= resttime;
+	if (!umode) {
+		rest = resttime - (serverTime.getTime() - startTime) / 1000;
+	}
 	if (rest <= 0) {
 		window.clearInterval(interval);
 		$('#time').text(Ready);
@@ -26,7 +30,9 @@ function CreateProcessbar() {
 		$('#progressbar').progressbar({
 			value: Math.max(100 - (resttime / time) * 100, 0.01)
 		});
-		$('.ui-progressbar-value').addClass('ui-corner-right').animate({width: "100%"}, resttime * 1000, "linear");
+		if (!umode) {
+        	$('.ui-progressbar-value').addClass('ui-corner-right').animate({width: "100%"}, resttime * 1000, "linear");
+		}
 	}
 }
 
@@ -34,6 +40,7 @@ $(document).ready(function() {
 	time		= $('#time').data('time');
 	resttime	= $('#progressbar').data('time');
 	endtime		= $('.timer:first').data('time');
+	umode		= $('.timer:first').data('umode') == 1;
 	buildname	= $('.onlist:first').text();
 	interval	= window.setInterval(Buildlist, 1000);
 	window.setTimeout(CreateProcessbar, 5);

@@ -372,7 +372,7 @@ $LNG['fl_attack_confirm_buddy'] = 'O alvo está na sua lista de amigos. Deseja r
 //----------------------------------------------------------------------------//
 // Edificios
 $LNG['bd_dismantle'] = 'Demolir';
-$LNG['bd_interrupt'] = 'Cancelar';
+$LNG['bd_paused'] = 'pausado';
 $LNG['bd_cancel'] = 'Cancelar';
 $LNG['bd_working'] = 'Ocupado';
 $LNG['bd_build'] = 'Construir';

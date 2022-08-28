@@ -96,7 +96,9 @@ class ShowOverviewPage extends AbstractGamePage
             if (!empty($CPLANET['b_building']) && $CPLANET['b_building'] > TIMESTAMP) {
                 $Queue = unserialize($CPLANET['b_building_id']);
                 $BuildPlanet = $LNG['tech'][$Queue[0][0]] . " (" . $Queue[0][1]
-                    . ")<br><span style=\"color:#7F7F7F;\">(" . pretty_time($Queue[0][3] - TIMESTAMP) . ")</span>";
+                    . ")<br><span style=\"color:#7F7F7F;\">(" . pretty_time(
+                    $USER['urlaubs_modus'] ? ($Queue[0][3] - $USER['urlaubs_start']) : ($Queue[0][3] - TIMESTAMP)
+                    ) . ")</span>";
             } else {
                 $BuildPlanet = $LNG['ov_free'];
             }
@@ -219,6 +221,7 @@ class ShowOverviewPage extends AbstractGamePage
         )['COUNT(*)'];
 
         $this->assign([
+            'umode'                     => $USER['urlaubs_modus'],
             'rankInfo'                  => $rankInfo,
             'is_news'                   => $config->OverviewNewsFrame,
             'news'                      => makebr($config->OverviewNewsText),

@@ -261,6 +261,7 @@ class ShowShipyardPage extends AbstractGamePage
         }
 
         $this->assign([
+            'umode'       => $USER['urlaubs_modus'],
             'elementList' => $elementList,
             'NotBuilding' => $NotBuilding,
             'BuildList' => $buildList,
