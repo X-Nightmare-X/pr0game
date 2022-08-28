@@ -641,6 +641,14 @@ th a, .res_current {
   height: 69px;
   border-bottom: solid 1px #00d2be;
 }
+.buildc {
+  float: middle;
+  width: 100%;
+  line-height: 1.4;
+  padding: 12px;
+  height: 69px;
+  border-bottom: solid 1px #00d2be;
+}
 
 .hidden-div {
   border: 2px solid #ee4d2e;
@@ -699,6 +707,13 @@ th a, .res_current {
   border-radius: 25px;
 }
 
+.shipumode {
+  margin: 0 auto;
+  max-width: 400px;
+  background: #1b2e58d1;
+  border-radius: 25px;
+}
+
 .shipl {
   margin-top: 10px;
   padding: 10px;
@@ -708,6 +723,16 @@ th a, .res_current {
 }
 
 .z {
+  margin: 5px auto;
+  padding: 10px;
+  max-width: 300px;
+  background: #1b4c6e;
+  border-radius: 25px;
+  color: #e9ff79;
+  text-transform: uppercase;
+}
+
+.zumode {
   margin: 5px auto;
   padding: 10px;
   max-width: 300px;
@@ -764,6 +789,10 @@ input:hover {
 }
 
 @media screen and (max-width: 520px) {
+  div .buildc {
+    border: none;
+  }
+  
   div .buildb {
     border: none;
   }

@@ -7,23 +7,38 @@
 	{/if}
 {if !$NotBuilding}<table width="70%" id="infobox" style="border: 2px solid red; text-align:center;background:transparent"><tr><td>{$LNG.bd_building_shipyard}</td></tr></table><br><br>{/if}
 {if !empty($BuildList)}
-<div style="text-align: center;">
-	
-		<div id="bx" class="z"></div>
-		<div class="ship">
-		<form action="game.php?page=shipyard&amp;mode={$mode}" method="post" >
-			<input type="hidden" name="action" value="delete">
-			<div >
+	{if $umode == 0}
+		<div style="text-align: center;">
 			
-			<select name="auftr[]" id="auftr" onchange="this.form.myText.setAttribute('size', this.value);" multiple class="shipl"><option>&nbsp;</option></select><br><br>{$LNG.bd_cancel_warning}<br><input class="z" type="submit" value="{$LNG.bd_cancel_send}" />
+			<div id="bx" class="z"></div>
+			<div class="ship">
+				<form action="game.php?page=shipyard&amp;mode={$mode}" method="post" >
+					<input type="hidden" name="action" value="delete">
+					<div >
+					
+					<select name="auftr[]" id="auftr" onchange="this.form.myText.setAttribute('size', this.value);" multiple class="shipl"><option>&nbsp;</option></select><br><br>{$LNG.bd_cancel_warning}<br><input class="z" type="submit" value="{$LNG.bd_cancel_send}" />
+					
+					</div>
+				</form>
+	{else}
+		<div style="text-align: center;">
+			
+			<div id="bxumode" class="zumode"></div>
+			<div class="shipumode">
+				<form action="game.php?page=shipyard&amp;mode={$mode}" method="post" >
+					<input type="hidden" name="action" value="delete">
+					<div >
+					
+					<select name="auftrumode[]" id="auftrumode" onchange="this.form.myText.setAttribute('size', this.value);" multiple class="shipl"><option>&nbsp;</option></select><br><br><br><input class="z" value="{$LNG['bd_paused']}" />
+					
+					</div>
+				</form>
+	{/if}
+				<br><span id="timeleft" data-umode="{$umode}"></span><br><br>
 			
 			</div>
-			</form>
-			<br><span id="timeleft"></span><br><br>
-		
-	</div>
-</div>
-<br>
+		</div>
+	<br>
 {/if}
 
 <div>

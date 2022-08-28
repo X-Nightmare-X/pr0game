@@ -334,7 +334,7 @@ class ShowResearchPage extends AbstractGamePage
                 'element'   => $BuildArray[0],
                 'level'     => $BuildArray[1],
                 'time'      => $BuildArray[2],
-                'resttime'  => ($BuildArray[3] - TIMESTAMP),
+                'resttime'  => $USER['urlaubs_modus'] ? ($BuildArray[3] - $USER['urlaubs_start']) : ($BuildArray[3] - TIMESTAMP),
                 'destroy'   => ($BuildArray[4] == 'destroy'),
                 'endtime'   => _date('U', $BuildArray[3], $USER['timezone']),
                 'display'   => _date($LNG['php_tdformat'], $BuildArray[3], $USER['timezone']),
@@ -416,6 +416,7 @@ class ShowResearchPage extends AbstractGamePage
         }
 
         $this->assign([
+            'umode'         => $USER['urlaubs_modus'],
             'ResearchList'  => $ResearchList,
             'IsLabinBuild'  => !$bContinue,
             'IsFullQueue'   => Config::get()->max_elements_tech == 0

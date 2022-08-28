@@ -408,7 +408,7 @@ $LNG['fl_attack_confirm_buddy'] = 'The target is on your buddy list. Do you real
 //----------------------------------------------------------------------------//
 // Buildings
 $LNG['bd_dismantle'] = 'Demolish';
-$LNG['bd_interrupt'] = 'Cancel';
+$LNG['bd_paused'] = 'paused';
 $LNG['bd_cancel'] = 'Cancel';
 $LNG['bd_working'] = 'Busy';
 $LNG['bd_build'] = 'Build';

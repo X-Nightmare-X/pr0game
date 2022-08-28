@@ -684,6 +684,7 @@ CREATE TABLE `%PREFIX%users` (
   `settings_blockPM` tinyint(1) NOT NULL DEFAULT '0',
   `urlaubs_modus` tinyint(1) NOT NULL DEFAULT '0',
   `urlaubs_until` int(11) NOT NULL DEFAULT '0',
+  `urlaubs_start` int(11) NOT NULL DEFAULT '0',
   `db_deaktjava` int(11) NOT NULL DEFAULT '0',
   `b_tech_planet` int(11) unsigned NOT NULL DEFAULT '0',
   `b_tech` int(11) unsigned NOT NULL DEFAULT '0',

@@ -395,7 +395,7 @@ $LNG['fl_attack_confirm_buddy'] = 'Das Ziel ist auf Deiner Buddy-Liste. Möchtst
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES
 $LNG['bd_dismantle'] = 'Abreißen';
-$LNG['bd_interrupt'] = 'Pause';
+$LNG['bd_paused'] = 'pausiert';
 $LNG['bd_cancel'] = 'Abbrechen';
 $LNG['bd_working'] = 'Beschäftigt';
 $LNG['bd_build'] = 'Bauen';

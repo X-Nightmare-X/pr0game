@@ -1,4 +1,5 @@
 var v = new Date();
+var umode 		= false;
 
 function ShipyardInit() {
     Shipyard = data.Queue;
@@ -6,9 +7,18 @@ function ShipyardInit() {
     hanger_id = data.b_hangar_id_plus;
     $('#timeleft').addClass('timer');
     $('#timeleft').attr('data-time', data.queue_time);
+    umode		= $('.timer:first').data('umode') == 1;
+    
     ShipyardList();
     BuildlistShipyard();
-    ShipyardInterval = window.setInterval(BuildlistShipyard, 1000);
+    if(document.getElementById('auftr')){
+        ShipyardInterval = window.setInterval(BuildlistShipyard, 1000);
+    }else{
+        document.getElementById('auftrumode').options[0].innerHTML = Amount.toString() + " " + Shipyard[0][0] + " " + bd_operating;
+        var n = new Date();
+        var s = Shipyard[0][2] - hanger_id - Math.round((n.getTime() - v.getTime()) / 1000);
+        $("#bxumode").html(Shipyard[0][0] + " " + GetRestTimeFormat(s));
+    }
 }
 
 function BuildlistShipyard() {
@@ -44,14 +54,26 @@ function BuildlistShipyard() {
 }
 
 function ShipyardList() {
-    while (document.getElementById('auftr').length > 0)
-        document.getElementById('auftr').options[document.getElementById('auftr').length - 1] = null;
+    if(document.getElementById('auftr')){
+        while (document.getElementById('auftr').length > 0)
+            document.getElementById('auftr').options[document.getElementById('auftr').length - 1] = null;
 
-    for (iv = 0; iv <= Shipyard.length - 1; iv++) {
-        if (iv == 0)
-            document.getElementById('auftr').options[iv] = new Option(Amount.toString() + " " + Shipyard[iv][0] + " " + bd_operating, iv);
-        else
-            document.getElementById('auftr').options[iv] = new Option(Shipyard[iv][1] + " " + Shipyard[iv][0] + " " + bd_operating, iv);
+        for (iv = 0; iv <= Shipyard.length - 1; iv++) {
+            if (iv == 0)
+                document.getElementById('auftr').options[iv] = new Option(Amount.toString() + " " + Shipyard[iv][0] + " " + bd_operating, iv);
+            else
+                document.getElementById('auftr').options[iv] = new Option(Shipyard[iv][1] + " " + Shipyard[iv][0] + " " + bd_operating, iv);
+        }
+    }else{
+        while (document.getElementById('auftrumode').length > 0)
+            document.getElementById('auftrumode').options[document.getElementById('auftrumode').length - 1] = null;
+
+        for (iv = 0; iv <= Shipyard.length - 1; iv++) {
+            if (iv == 0)
+                document.getElementById('auftrumode').options[iv] = new Option(Amount.toString() + " " + Shipyard[iv][0] + " " + bd_operating, iv);
+            else
+                document.getElementById('auftrumode').options[iv] = new Option(Shipyard[iv][1] + " " + Shipyard[iv][0] + " " + bd_operating, iv);
+        }
     }
 }
 
@@ -59,7 +81,10 @@ $(document).ready(function()
 {
 	window.setInterval(function() {
 		$('.timer').each(function() {
-			var s		= $(this).data('time') - (serverTime.getTime() - startTime) / 1000;
+			var s		= $(this).data('time');
+            if (!umode) {
+                s = s - (serverTime.getTime() - startTime) / 1000;
+            }
 			if(s == 0) {
 				window.location.href = "game.php?page=overview";
 			} else {
