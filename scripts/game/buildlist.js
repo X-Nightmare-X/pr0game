@@ -6,7 +6,7 @@ var buildname	= "";
 var umode 		= false;
 
 function Buildlist() {
-	var rest	= resttime
+	var rest	= resttime;
 	if (!umode) {
 		rest = resttime - (serverTime.getTime() - startTime) / 1000;
 	}

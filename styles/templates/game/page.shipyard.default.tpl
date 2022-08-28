@@ -20,10 +20,6 @@
 					
 					</div>
 				</form>
-				<br><span id="timeleft"></span><br><br>
-			
-			</div>
-		</div>
 	{else}
 		<div style="text-align: center;">
 			
@@ -33,15 +29,15 @@
 					<input type="hidden" name="action" value="delete">
 					<div >
 					
-					<select name="auftrumode[]" id="auftrumode" onchange="this.form.myText.setAttribute('size', this.value);" multiple class="shipl"><option>&nbsp;</option></select><br><br>{$LNG.bd_cancel_warning}<br><input class="z" type="submit" value="{$LNG.bd_cancel_send}" />
+					<select name="auftrumode[]" id="auftrumode" onchange="this.form.myText.setAttribute('size', this.value);" multiple class="shipl"><option>&nbsp;</option></select><br><br><br><input class="z" value="{$LNG['bd_paused']}" />
 					
 					</div>
 				</form>
-				<br><span id="timeleftumode">{$LNG.bd_paused}</span><br><br>
+	{/if}
+				<br><span id="timeleft" data-umode="{$umode}"></span><br><br>
 			
 			</div>
 		</div>
-	{/if}
 	<br>
 {/if}
 
