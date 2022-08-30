@@ -48,6 +48,12 @@ class MissionCaseMIP extends MissionFunctions implements Mission
 			':planetId'	=> $this->_fleet['fleet_end_id']
 		));
 
+        // kill fleet if target planet deleted
+        if ($targetData == false) {
+            $this->KillFleet();
+            return;
+        }
+
 		if ($this->_fleet['fleet_end_type'] == 3) {
 			$sql	= 'SELECT ' . $resource[502] . ' FROM %%PLANETS%% WHERE id_luna = :moonId;';
 			$targetData[$resource[502]]	= $db->selectSingle($sql, array(

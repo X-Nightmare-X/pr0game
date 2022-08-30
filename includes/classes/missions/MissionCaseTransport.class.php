@@ -23,15 +23,25 @@ class MissionCaseTransport extends MissionFunctions implements Mission
 
 	function TargetEvent()
 	{
+        $db = Database::get();
+
+        $sql = 'SELECT * FROM %%PLANETS%% WHERE id = :planetId;';
+        $targetPlanet = $db->selectSingle($sql, [
+            ':planetId' => $this->_fleet['fleet_end_id'],
+        ]);
+
+        // return fleet if target planet deleted
+        if ($targetPlanet == false) {
+            $this->setState(FLEET_RETURN);
+            $this->SaveFleet();
+            return;
+        }
+
 		$sql = 'SELECT name FROM %%PLANETS%% WHERE `id` = :planetId;';
 
-		$startPlanetName	= Database::get()->selectSingle($sql, array(
+		$startPlanetName	= $db->selectSingle($sql, array(
 			':planetId'	=> $this->_fleet['fleet_start_id']
 		), 'name');
-
-		$targetPlanet	= Database::get()->selectSingle($sql, array(
-			':planetId'	=> $this->_fleet['fleet_end_id']
-		));
 
 		$targetPlanetName = $targetPlanet ? (string)$targetPlanet['name'] : null;
 
