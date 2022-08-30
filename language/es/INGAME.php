@@ -862,7 +862,7 @@ $LNG['sh_loading'] = '(Cargando ...)';
 //----------------------------------------------------------------------------//
 //OPTIONS
 $LNG['op_error'] = 'Errores encontrados';
-$LNG['op_cant_activate_vacation_mode'] = 'Si estás construyendo o moviendo flotas no podrás entrar al modo vaciones.';
+$LNG['op_cant_activate_vacation_mode'] = 'No puede activar el modo de vacaciones mientras usa la flota.';
 $LNG['op_password_changed'] = 'La contraseña ha sido cambiada.<br /><a href="index.php" target="_top">Volver</a>';
 $LNG['op_username_changed'] = 'El nombre de usuario ha sido cambiado.<br />'
     . '<a href="index.php" target="_top">Volver</a>';

@@ -889,7 +889,7 @@ $LNG['sh_loading'] = '(Lade ...)';
 //----------------------------------------------------------------------------//
 //OPTIONS
 $LNG['op_error'] = 'Fehler';
-$LNG['op_cant_activate_vacation_mode'] = 'Sie können nicht in den Urlaubsmodus während gebaut, geforscht oder die Flotte bewegt wird.';
+$LNG['op_cant_activate_vacation_mode'] = 'Sie können nicht in den Urlaubsmodus während die Flotte bewegt wird.';
 $LNG['op_password_changed'] = 'Passwort wurde geändert';
 $LNG['op_username_changed'] = 'Username geändert';
 $LNG['op_options_changed'] = 'Einstellungen gespeichert.';

@@ -22,7 +22,7 @@ $(document).ready(function () {
         s = 0;
       }
 
-      $(this).text(GetRestTimeFormat(s));
+      $(this).text(GetRestTimeFormat(s));//macht die zeitformatierung kaputt
     });
   }, 1000);
 });

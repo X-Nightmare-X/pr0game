@@ -263,7 +263,7 @@ class ShowBuildingsPage extends AbstractGamePage
         $buildQueue     = unserialize($PLANET['b_building_id']);
 
         foreach ($buildQueue as $BuildArray) {
-            if ($BuildArray[3] < TIMESTAMP) {
+            if ($BuildArray[3] < TIMESTAMP && !$USER['urlaubs_modus']) {
                 continue;
             }
 

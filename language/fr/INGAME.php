@@ -860,8 +860,7 @@ $LNG['sh_loading'] = '(Chargement ...)';
 //----------------------------------------------------------------------------//
 //OPTIONS
 $LNG['op_error'] = 'Erreur';
-$LNG['op_cant_activate_vacation_mode'] = 'Vous ne pouvez pas vous mettre en mode vacances lorsque vous construisez ou'
-    . ' que vos flottes sont en mouvement.';
+$LNG['op_cant_activate_vacation_mode'] = 'Vous ne pouvez pas activer le mode vacances pendant l\'utilisation de la flotte.';
 $LNG['op_password_changed'] = 'Le Mot de Passe a été changé avec succès<br'
     . '<a href="index.php" target="_top">Retour</a>';
 $LNG['op_username_changed'] = 'Nom d\'Utilisateur modifié avec succès<br><a href="index.php" target="_top">Retour</a>';

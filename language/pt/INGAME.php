@@ -869,7 +869,7 @@ $LNG['sh_loading'] = '(A ler ...)';
 //----------------------------------------------------------------------------//
 //OPTIONS
 $LNG['op_error'] = 'Erro';
-$LNG['op_cant_activate_vacation_mode'] = 'Não podes ativar o modo de férias com actiividades de Frota.';
+$LNG['op_cant_activate_vacation_mode'] = 'Você não pode ativar o modo férias enquanto estiver usando a frota.';
 $LNG['op_password_changed'] = 'Password alterada';
 $LNG['op_username_changed'] = 'Username alterado';
 $LNG['op_options_changed'] = 'Opções alteradas';

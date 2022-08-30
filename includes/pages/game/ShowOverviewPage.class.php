@@ -116,14 +116,15 @@ class ShowOverviewPage extends AbstractGamePage
             $Moon = $db->selectSingle($sql, [':lunaID'   => $PLANET['id_luna']]);
         }
 
-        if ($PLANET['b_building'] - TIMESTAMP > 0) {
+        if ($PLANET['b_building'] != 0) {
             $Queue          = unserialize($PLANET['b_building_id']);
+            $timeleft = $USER['urlaubs_modus'] ? ($PLANET['b_building'] - $USER['urlaubs_start']) : ($PLANET['b_building'] - TIMESTAMP);
             $buildInfo['buildings'] = [
                 'id'        => $Queue[0][0],
                 'level'     => $Queue[0][1],
-                'timeleft'  => $PLANET['b_building'] - TIMESTAMP,
+                'timeleft'  => $timeleft,
                 'time'      => $PLANET['b_building'],
-                'starttime' => pretty_time($PLANET['b_building'] - TIMESTAMP),
+                'starttime' => pretty_time($timeleft),
             ];
         } else {
             $buildInfo['buildings'] = false;
@@ -142,15 +143,16 @@ class ShowOverviewPage extends AbstractGamePage
         } else {
             $buildInfo['fleet'] = false;
         }
-
-        if ($USER['b_tech'] - TIMESTAMP > 0) {
+        
+        if ($USER['b_tech_id'] != 0) {
+            $timeleft = $USER['urlaubs_modus'] ? ($USER['b_tech'] - $USER['urlaubs_start']) : ($USER['b_tech'] - TIMESTAMP);
             $Queue = unserialize($USER['b_tech_queue']);
             $buildInfo['tech'] = [
                 'id'        => $Queue[0][0],
                 'level'     => $Queue[0][1],
-                'timeleft'  => $USER['b_tech'] - TIMESTAMP,
+                'timeleft'  => $timeleft,
                 'time'      => $USER['b_tech'],
-                'starttime' => pretty_time($USER['b_tech'] - TIMESTAMP),
+                'starttime' => pretty_time($timeleft),
             ];
         } else {
             $buildInfo['tech']  = false;
