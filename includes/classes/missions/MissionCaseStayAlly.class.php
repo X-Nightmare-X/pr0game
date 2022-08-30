@@ -23,7 +23,21 @@ class MissionCaseStayAlly extends MissionFunctions implements Mission
 	}
 	
 	function TargetEvent()
-	{	
+	{
+        $db = Database::get();
+
+        $sql = 'SELECT * FROM %%PLANETS%% WHERE id = :planetId;';
+        $targetPlanet = $db->selectSingle($sql, [
+            ':planetId' => $this->_fleet['fleet_end_id'],
+        ]);
+
+        // return fleet if target planet deleted
+        if ($targetPlanet == false) {
+            $this->setState(FLEET_RETURN);
+            $this->SaveFleet();
+            return;
+        }
+		
 		$this->setState(FLEET_HOLD);
 		$this->SaveFleet();
 	}
