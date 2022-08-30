@@ -51,7 +51,20 @@ class ShowMarketPlacePage extends AbstractGamePage
             'reason' => '',
         ];
     }
-
+    private function checkVmode()
+    {
+        global $USER, $LNG;
+        if ($USER['urlaubs_modus'] == 1) {
+            return [
+                'buyable' => false,
+                'reason' => $LNG['fa_vacation_mode_current'],
+            ];
+        }
+        return [
+            'buyable' => true,
+            'reason' => '',
+        ];
+    }
     private function checkDiplo($visibility, $level, $seller_ally, $ally)
     {
         global $LNG;
@@ -171,6 +184,12 @@ class ShowMarketPlacePage extends AbstractGamePage
         $FleetID = HTTP::_GP('fleetID', 0);
         $shipType = HTTP::_GP('shipType', "");
         $db = Database::get();
+
+        //Vmode check
+        $vmode = $this->checkVmode();
+        if (!$vmode['buyable']) {
+            return $vmode['reason'];
+        }
 
         //Slots checking
         $checkResult = $this->checkSlots($USER);
