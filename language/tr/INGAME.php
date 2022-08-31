@@ -875,8 +875,7 @@ $LNG['sh_loading'] = '(Yukleniyor ...)';
 //OPTIONS
 //AYARLAR
 $LNG['op_error'] = 'Hata';
-$LNG['op_cant_activate_vacation_mode'] = 'Gezegeninizde aktif bir uretim veya filo hareketi varken tatile'
-    . ' giremessiniz.';
+$LNG['op_cant_activate_vacation_mode'] = 'Filoyu kullanırken tatil modunu etkinleştiremezsiniz.';
 $LNG['op_password_changed'] = 'Sifreniz degistirildi Lutfen Tekrar giris yapin<br />'
     . '<a href="index.php" target="_top">Geri</a>';
 $LNG['op_username_changed'] = 'Uye Adiniz degistirildi Lutfen Tekrar giris yapin<br />'

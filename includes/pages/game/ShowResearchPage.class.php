@@ -318,7 +318,7 @@ class ShowResearchPage extends AbstractGamePage
         $CurrentQueue   = unserialize($USER['b_tech_queue']);
 
         foreach ($CurrentQueue as $BuildArray) {
-            if ($BuildArray[3] < TIMESTAMP) {
+            if ($BuildArray[3] < TIMESTAMP && !$USER['urlaubs_modus']) {
                 continue;
             }
 

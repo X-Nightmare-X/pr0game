@@ -870,8 +870,7 @@ $LNG['sh_loading'] = '(Ładuję...)';
 //----------------------------------------------------------------------------//
 //OPTIONS
 $LNG['op_error'] = 'Błąd';
-$LNG['op_cant_activate_vacation_mode'] = 'Jeśli coś budujesz lub twoje floty są w ruchu, nie będziesz mógł aktywować'
-    . ' urlopu';
+$LNG['op_cant_activate_vacation_mode'] = 'Nie możesz aktywować trybu urlopowego podczas korzystania z floty.';
 $LNG['op_password_changed'] = 'Hasło zmienione<br><a href="index.php" target="_top">Wróć</a>';
 $LNG['op_username_changed'] = 'Nazwa użytkownika zmieniona<br><a href="index.php" target="_top">Wróć</a>';
 $LNG['op_options_changed'] = 'Zmiany zapisano.<br><a href="game.php?page=options">Wróć</a>';
