@@ -22,9 +22,9 @@ class ShowPhalanxPage extends AbstractGamePage
 	
 	static function allowPhalanx($toGalaxy, $toSystem)
 	{
-		global $PLANET, $resource;
+		global $PLANET, $resource, $USER;
 
-		if ($PLANET['galaxy'] != $toGalaxy || $PLANET[$resource[42]] == 0 || !isModuleAvailable(MODULE_PHALANX) || $PLANET[$resource[903]] < PHALANX_DEUTERIUM) {
+		if ($PLANET['galaxy'] != $toGalaxy || $PLANET[$resource[42]] == 0 || !isModuleAvailable(MODULE_PHALANX) || $PLANET[$resource[903]] < PHALANX_DEUTERIUM || $USER['urlaubs_modus'] == 1) {
 			return false;
 		}
 		
