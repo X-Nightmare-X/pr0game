@@ -433,7 +433,6 @@ class ResourceUpdate
             $this->Builded[$Element]            = $BuildLevel - 1;
         }
 
-
         array_shift($CurrentQueue);
         $OnHash = in_array($Element, $reslist['prod']);
         $this->UpdateResource($BuildEndTime, !$OnHash);
@@ -781,6 +780,13 @@ class ResourceUpdate
 
         $buildQueries = array();
 
+        $currentBuildings = 0;
+        foreach ($reslist['build'] as $Element) {
+            if (isset($PLANET[$resource[$Element]])) {
+                $currentBuildings += $PLANET[$resource[$Element]];
+            }
+        }
+
         $params = array(
             ':userId'               => $USER['id'],
             ':planetId'             => $PLANET['id'],
@@ -791,7 +797,7 @@ class ResourceUpdate
             ':lastUpdateTime'       => $PLANET['last_update'],
             ':b_building'           => $PLANET['b_building'],
             ':b_building_id'        => $PLANET['b_building_id'],
-            ':field_current'        => $PLANET['field_current'],
+            ':field_current'        => $currentBuildings > 0 ? $currentBuildings : $PLANET['field_current'],
             ':b_hangar_id'          => $PLANET['b_hangar_id'],
             ':metal_perhour'        => $PLANET['metal_perhour'],
             ':crystal_perhour'      => $PLANET['crystal_perhour'],
@@ -812,7 +818,7 @@ class ResourceUpdate
             foreach ($this->Builded as $Element => $Count) {
                 $Element = (int) $Element;
 
-                if (empty($resource[$Element]) || empty($Count)) {
+                if (empty($resource[$Element])) {
                     continue;
                 }
 
