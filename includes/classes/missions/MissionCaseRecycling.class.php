@@ -100,10 +100,13 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
 
         $Message = sprintf(
             $LNG['sys_recy_gotten'],
+            GetStartAddressLink($this->_fleet, ''),
             pretty_number($collectedGoods[901]),
-            $LNG['tech'][901],
             pretty_number($collectedGoods[902]),
-            $LNG['tech'][902]
+            pretty_number($targetData[$resQuery[0]]),
+            pretty_number($targetData[$resQuery[1]]),
+            $LNG['tech'][901],
+            $LNG['tech'][902],
         );
 
         PlayerUtil::sendMessage(

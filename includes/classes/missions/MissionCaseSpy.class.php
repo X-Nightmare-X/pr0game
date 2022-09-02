@@ -272,12 +272,14 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
             $sql = 'UPDATE %%PLANETS%% SET
 			der_metal   = der_metal + :metal,
-			der_crystal = der_crystal + :crystal
+			der_crystal = der_crystal + :crystal,
+            tf_active = :new_debris
 			WHERE ' . $whereCol . ' = :planetId;';
 
             $db->update($sql, [
                 ':metal'    => $fleetAmount * $pricelist[210]['cost'][901] * $config->Fleet_Cdr / 100,
                 ':crystal'  => $fleetAmount * $pricelist[210]['cost'][902] * $config->Fleet_Cdr / 100,
+                ':new_debris' => 1,
                 ':planetId' => $this->_fleet['fleet_end_id'],
             ]);
 

@@ -278,11 +278,11 @@ class ShowFleetStep1Page extends AbstractGamePage
             $this->sendJSON($LNG['fl_error_same_planet']);
         }
 
-        // If target is expedition
+        // If target is not expedition
         if ($targetPlanet != Config::get()->max_planets + 1) {
             $db = Database::get();
             $sql = "SELECT u.id, u.urlaubs_modus, u.user_lastip, u.authattack,
-            	p.destruyed, p.der_metal, p.der_crystal, p.destruyed
+            	p.destruyed, p.der_metal, p.der_crystal, p.tf_active, p.destruyed
                 FROM %%USERS%% as u, %%PLANETS%% as p WHERE
                 p.universe = :universe AND
                 p.galaxy = :targetGalaxy AND
@@ -322,7 +322,8 @@ class ShowFleetStep1Page extends AbstractGamePage
                 }
             }
 
-            if ($targetPlanetType == 2 && empty($planetData['der_metal']) && empty($planetData['der_crystal'])) {
+            if ($targetPlanetType == 2 && ($planetData['der_metal'] + $planetData['der_crystal']) == 0 && 
+                $planetData['tf_active'] == 0) {
                 $this->sendJSON($LNG['fl_error_empty_derbis']);
             }
 
