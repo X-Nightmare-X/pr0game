@@ -67,6 +67,9 @@ class CleanerCronjob implements CronjobTask
 			':time'	=> TIMESTAMP
 		));
 
+		$sql	= 'UPDATE %%PLANETS%% SET `tf_active` = 0 WHERE `tf_active` = 1;';
+		Database::get()->update($sql);
+
 		$sql	= 'SELECT `id` FROM %%USERS%% WHERE `authlevel` = :authlevel
 		AND ((`db_deaktjava` != 0 AND `db_deaktjava` < :timeDeleted) OR `onlinetime` < :timeInactive);';
 
