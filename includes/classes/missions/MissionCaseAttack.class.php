@@ -491,15 +491,15 @@ HTML;
         }
 
         $sql = 'UPDATE %%PLANETS%% SET
-		der_metal	= :metal,
-		der_crystal	= :crystal,
+        der_metal	= :metal,
+        der_crystal	= :crystal,
         tf_active = :new_debris
-		WHERE ' . $debrisType . ' = :planetId;';
+        WHERE ' . $debrisType . ' = :planetId;';
 
         $db->update($sql, [
             ':metal'    => $planetDebris[901],
             ':crystal'  => $planetDebris[902],
-            ':new_debris' => ($planetDebris[901] + $planetDebris[902]) > 0 ? 1 : 0,
+            ':new_debris' => 1,
             ':planetId' => $this->_fleet['fleet_end_id'],
         ]);
 
