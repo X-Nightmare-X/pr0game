@@ -24,8 +24,22 @@ class MissionCaseStay extends MissionFunctions implements Mission
 
     public function TargetEvent()
     {
+        $db = Database::get();
+
+        $sql = 'SELECT * FROM %%PLANETS%% WHERE id = :planetId;';
+        $targetPlanet = $db->selectSingle($sql, [
+            ':planetId' => $this->_fleet['fleet_end_id'],
+        ]);
+
+        // return fleet if target planet deleted
+        if ($targetPlanet == false) {
+            $this->setState(FLEET_RETURN);
+            $this->SaveFleet();
+            return;
+        }
+
         $sql = 'SELECT * FROM %%USERS%% WHERE id = :userId;';
-        $senderUser = Database::get()->selectSingle($sql, [
+        $senderUser = $db->selectSingle($sql, [
             ':userId'   => $this->_fleet['fleet_owner']
         ]);
 

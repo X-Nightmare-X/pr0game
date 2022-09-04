@@ -64,6 +64,18 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         $db = Database::get();
 
+        $sql = 'SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;';
+        $targetPlanet = $db->selectSingle($sql, [
+            ':planetId' => $this->_fleet['fleet_end_id'],
+        ]);
+
+        // return fleet if target planet deleted
+        if ($targetPlanet == false) {
+            $this->setState(FLEET_RETURN);
+            $this->SaveFleet();
+            return;
+        }
+
         $sql = 'SELECT * FROM %%USERS%% WHERE id = :userId;';
         $senderUser = $db->selectSingle($sql, [
             ':userId'   => $this->_fleet['fleet_owner'],
@@ -71,11 +83,6 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         $targetUser = $db->selectSingle($sql, [
             ':userId'   => $this->_fleet['fleet_target_owner']
-        ]);
-
-        $sql = 'SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;';
-        $targetPlanet = $db->selectSingle($sql, [
-            ':planetId' => $this->_fleet['fleet_end_id'],
         ]);
 
         $sql = 'SELECT name FROM %%PLANETS%% WHERE id = :planetId;';
@@ -265,12 +272,14 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
             $sql = 'UPDATE %%PLANETS%% SET
 			der_metal   = der_metal + :metal,
-			der_crystal = der_crystal + :crystal
+			der_crystal = der_crystal + :crystal,
+            tf_active = :new_debris
 			WHERE ' . $whereCol . ' = :planetId;';
 
             $db->update($sql, [
                 ':metal'    => $fleetAmount * $pricelist[210]['cost'][901] * $config->Fleet_Cdr / 100,
                 ':crystal'  => $fleetAmount * $pricelist[210]['cost'][902] * $config->Fleet_Cdr / 100,
+                ':new_debris' => 1,
                 ':planetId' => $this->_fleet['fleet_end_id'],
             ]);
 

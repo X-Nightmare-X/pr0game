@@ -1,5 +1,5 @@
 .idea
-cache/
+/cache/
 includes/config.php
 includes/error.log
 includes/ENABLE_INSTALL_TOOL

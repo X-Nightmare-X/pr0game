@@ -41,6 +41,8 @@ $LNG['sys_ship_count'] = 'Adet';
 $LNG['sys_ship_weapon'] = 'Silahlar';
 $LNG['sys_ship_shield'] = 'Kalkanlar';
 $LNG['sys_ship_armour'] = 'Zirh';
+$LNG['sys_def_rebuild'] = 'Savunma tesisleri kısmen onarılabilir:';
+$LNG['sys_ship_repaired'] = 'Onarıldı';
 $LNG['sys_destroyed'] = 'yok edildi';
 $LNG['fleet_attack_1'] = 'Saldiri filosunun ayni anda tum gucuyle ates halinde yararlanabilecegi atis gucu';
 $LNG['fleet_attack_2'] = '. Savunma kalkanlarinin reflekte ettigi zarar puani';
@@ -244,7 +246,7 @@ $LNG['sys_tran_mess_user'] = 'Dost Nakliye Filosu %s %s koordinatindan %s %s koo
     . ' Getirdigi madenler %s %s, %s %s ve %s %s.';
 $LNG['sys_mess_fleetback'] = 'Geri Donen Filo';
 $LNG['sys_tran_mess_back'] = 'Filolarinizdan biri %s %s.koordinatlarina geri dondu.';
-$LNG['sys_recy_gotten'] = 'Filonuz belirtilen koordinatlara ulasti %s %s ve %s %s geri donusum isleminden sonra'
+$LNG['sys_recy_gotten'] = 'Geri dönüşümcüleriniz %1$s koordinatlarındaki toplam %4$s %6$s ve %5$s %7$s %2$s %6$s ve %3$s %7$s topladı.'
     . ' gezegeninize getiriliyor. ';
 $LNG['sys_gain'] = 'Ele Geciriliyor';
 $LNG['sys_irak_subject'] = 'Roket Saldirisi';

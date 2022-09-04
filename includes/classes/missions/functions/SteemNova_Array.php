@@ -287,6 +287,7 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF)
     $DRESDefs = ['metal' => 0, 'crystal' => 0];
 
     // restore defense (70% +/- 20%)
+    $repairedDef = [];
     foreach ($defenders as $fleetID => $defender) {
         foreach ($defender['unit'] as $element => $amount) {
             if ($element < 300) {                           // flotte defenseur en CDR
@@ -307,6 +308,10 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF)
                     }
                 }
                 $defenders[$fleetID]['unit'][$element] += $giveback;
+                if ($lost > 0) {
+                    $repairedDef[$element]['units'] = $giveback;
+                    $repairedDef[$element]['percent'] = $giveback / $lost * 100;
+                }
                 $DRESDefs['metal'] += $pricelist[$element]['cost'][901] * ($lost - $giveback) ;
                 $DRESDefs['crystal'] += $pricelist[$element]['cost'][902] * ($lost - $giveback) ;
             }
@@ -339,5 +344,6 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF)
         ],
         'rw' => $ROUND,
         'unitLost' => $totalLost,
+        'repaired' => $repairedDef,
     ];
 }

@@ -533,6 +533,7 @@ CREATE TABLE `%PREFIX%planets` (
   `last_jump_time` int(11) NOT NULL DEFAULT '0',
   `der_metal` double(50,0) unsigned NOT NULL DEFAULT '0',
   `der_crystal` double(50,0) unsigned NOT NULL DEFAULT '0',
+  `tf_active` tinyint(1) NOT NULL DEFAULT '0',
   `id_luna` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id_luna` (`id_luna`),

@@ -9,20 +9,30 @@ class MissionCaseTransfer extends MissionFunctions implements Mission
 
 	function TargetEvent()
 	{
+        $db = Database::get();
+
+        $sql = 'SELECT * FROM %%PLANETS%% WHERE id = :planetId;';
+        $targetPlanet = $db->selectSingle($sql, [
+            ':planetId' => $this->_fleet['fleet_end_id'],
+        ]);
+
+        // return fleet if target planet deleted
+        if ($targetPlanet == false) {
+            $this->setState(FLEET_RETURN);
+            $this->SaveFleet();
+            return;
+        }
+
 		$sql = 'SELECT name FROM %%PLANETS%% WHERE `id` = :planetId;';
 
-		$startPlanetName	= Database::get()->selectSingle($sql, array(
+		$startPlanetName	= $db->selectSingle($sql, array(
 			':planetId'	=> $this->_fleet['fleet_start_id']
-		), 'name');
-
-		$targetPlanetName	= Database::get()->selectSingle($sql, array(
-			':planetId'	=> $this->_fleet['fleet_end_id']
 		), 'name');
 
 		$LNG			= $this->getLanguage(NULL, $this->_fleet['fleet_owner']);
 
 		$Message		= sprintf($LNG['sys_transfer_mess_owner'],
-			$targetPlanetName, GetTargetAddressLink($this->_fleet, ''),
+			$targetPlanet['name'], GetTargetAddressLink($this->_fleet, ''),
 			pretty_number($this->_fleet['fleet_resource_metal']), $LNG['tech'][901],
 			pretty_number($this->_fleet['fleet_resource_crystal']), $LNG['tech'][902],
 			pretty_number($this->_fleet['fleet_resource_deuterium']), $LNG['tech'][903]

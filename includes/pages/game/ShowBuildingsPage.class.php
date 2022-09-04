@@ -60,35 +60,10 @@ class ShowBuildingsPage extends AbstractGamePage
             $PLANET['b_building']       = 0;
             $PLANET['b_building_id']    = '';
         } else {
-            $BuildEndTime = TIMESTAMP;
-            $NewQueueArray = [];
+            $PLANET['b_building']       = 0;
+            $PLANET['b_building_id']    = '';
             foreach ($CurrentQueue as $ListIDArray) {
-                if ($Element == $ListIDArray[0]) {
-                    continue;
-                }
-
-                $BuildEndTime += BuildFunctions::getBuildingTime(
-                    $USER,
-                    $PLANET,
-                    $ListIDArray[0],
-                    $costResources,
-                    $ListIDArray[4] == 'destroy',
-                    null,
-                    0
-                );
-                $ListIDArray[3] = $BuildEndTime;
-                $NewQueueArray[] = $ListIDArray;
-            }
-
-            if (!empty($NewQueueArray)) {
-                $PLANET['b_building']       = TIMESTAMP;
-                $PLANET['b_building_id']    = serialize($NewQueueArray);
-                $this->ecoObj->setData($USER, $PLANET);
-                $this->ecoObj->SetNextQueueElementOnTop();
-                list($USER, $PLANET)        = $this->ecoObj->getData();
-            } else {
-                $PLANET['b_building']       = 0;
-                $PLANET['b_building_id']    = '';
+                $this->addBuildingToQueue($ListIDArray[0], 'build' == $ListIDArray[4]);
             }
         }
         return true;
@@ -113,35 +88,22 @@ class ShowBuildingsPage extends AbstractGamePage
         }
 
         $Element        = $CurrentQueue[$QueueID - 1][0];
-        $BuildEndTime   = $CurrentQueue[$QueueID - 2][3];
-        unset($CurrentQueue[$QueueID - 1]);
         $NewQueueArray = [];
-        foreach ($CurrentQueue as $ID => $ListIDArray) {
-            if ($ID < $QueueID - 1) {
-                $NewQueueArray[]    = $ListIDArray;
-            } else {
-                if ($Element == $ListIDArray[0] || empty($ListIDArray[0])) {
-                    continue;
-                }
-
-                $BuildEndTime += BuildFunctions::getBuildingTime(
-                    $USER,
-                    $PLANET,
-                    $ListIDArray[0],
-                    null,
-                    $ListIDArray[4] == 'destroy',
-                    $ListIDArray[1],
-                    $ID
-                );
-                $ListIDArray[3]     = $BuildEndTime;
-                $NewQueueArray[]    = $ListIDArray;
+        for ($i = $QueueID, $j = 0, $max = sizeof($CurrentQueue); $i <= $max; $i++, $j++) {
+            if ($i != $QueueID) {
+                $NewQueueArray[$j] = $CurrentQueue[$i - 1];
             }
+            unset($CurrentQueue[$i - 1]);
         }
 
-        if (!empty($NewQueueArray)) {
-            $PLANET['b_building_id'] = serialize($NewQueueArray);
+        if (!empty($CurrentQueue)) {
+            $PLANET['b_building_id'] = serialize($CurrentQueue);
         } else {
             $PLANET['b_building_id'] = "";
+        }
+
+        foreach ($NewQueueArray as $ListIDArray) {
+            $this->addBuildingToQueue($ListIDArray[0], 'build' == $ListIDArray[4]);
         }
 
         return true;
@@ -263,7 +225,7 @@ class ShowBuildingsPage extends AbstractGamePage
         $buildQueue     = unserialize($PLANET['b_building_id']);
 
         foreach ($buildQueue as $BuildArray) {
-            if ($BuildArray[3] < TIMESTAMP) {
+            if ($BuildArray[3] < TIMESTAMP && !$USER['urlaubs_modus']) {
                 continue;
             }
 
