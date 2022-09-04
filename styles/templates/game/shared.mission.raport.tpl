@@ -194,5 +194,53 @@
 {/if}
 
 {$Raport.additionalInfo}
+
+{if !empty($Raport.repaired)}
+	<br>
+	{$lastRound = count($Raport.rounds)-1}
+	<table class="auto">
+	<tr>
+		<td>
+			<table>
+				<tr>
+					<td colspan="4" class="transparent">{$LNG.sys_def_rebuild}</td>
+				</tr>
+				<tr>
+					<td class="transparent">{$LNG.sys_ship_type}</td>
+					<td class="transparent">{$LNG.sys_ship_repaired}</td>
+					<td class="transparent">%</td>
+					<td class="transparent">{$LNG.sys_destroyed}</td>
+				</tr>
+				{foreach $Raport.repaired as $ShipID => $ShipData}
+					<tr>
+						<td class="transparent">{$LNG.shortNames.{$ShipID}}</td>
+						<td class="transparent">{$ShipData.units} /
+							{if empty($Raport.rounds[$lastRound].defender[0].ships) || empty($Raport.rounds[$lastRound].defender[0].ships[$ShipID])}
+								{$Raport.rounds[0].defender[0].ships[$ShipID][0]}
+							{else}
+								{$Raport.rounds[0].defender[0].ships[$ShipID][0]-$Raport.rounds[$lastRound].defender[0].ships[$ShipID][0]}
+							{/if}
+						</td>
+						<td class="transparent">{$ShipData.percent|string_format:"%.1f"}</td>
+						<td class="transparent">
+							{$dest = 0}
+							{if empty($Raport.rounds[$lastRound].defender[0].ships) || empty($Raport.rounds[$lastRound].defender[0].ships[$ShipID])}
+								{$dest = $Raport.rounds[0].defender[0].ships[$ShipID][0]-{$ShipData.units}}
+							{else}
+								{$dest = $Raport.rounds[0].defender[0].ships[$ShipID][0]-$Raport.rounds[$lastRound].defender[0].ships[$ShipID][0]-{$ShipData.units}}
+							{/if}
+							{if $dest > 0}
+								<span style="color:#ee4d2e">-{$dest}</span>
+							{else}
+								{$dest}
+							{/if}
+						</td>
+					</tr>
+				{/foreach}
+			</table>
+		</td>
+	</tr>
+	</table>
+{/if}
 </div>
 {/block} 

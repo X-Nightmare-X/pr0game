@@ -26,7 +26,7 @@ class ShowRaportPage extends AbstractGamePage
 		parent::__construct();
 	}
 	
-	private function BCWrapperPreRev2321($combatReport)
+	private function BCWrapperPreRev2321($combatReport, $isDefender)
 	{
 		if(isset($combatReport['moon']['desfail']))
 		{
@@ -69,6 +69,10 @@ class ShowRaportPage extends AbstractGamePage
 				902	=> $combatReport['steal']['crystal'],
 				903	=> $combatReport['steal']['deuterium']
 			);
+		}
+
+		if (!$isDefender) {
+			$combatReport['repaired'] = [];
 		}
 		
 		return $combatReport;
@@ -163,7 +167,7 @@ class ShowRaportPage extends AbstractGamePage
 		}
 		
 		$combatReport['time']	= _date($LNG['php_tdformat'], $combatReport['time'], $USER['timezone']);
-		$combatReport			= $this->BCWrapperPreRev2321($combatReport);
+		$combatReport			= $this->BCWrapperPreRev2321($combatReport, $isDefender);
 		
 		$this->assign(array(
 			'Raport'	=> $combatReport,

@@ -218,6 +218,7 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF)
         'debris' => $debris,
         'rw' => $ROUND,
         'unitLost' => $totalLost,
+        'repaired' => [],
     ];
 }
 
