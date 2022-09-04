@@ -35,6 +35,7 @@ function GenerateReport($combatResult, $reportInfo)
 		'fleetDestroyChance'	=> (int) $reportInfo['fleetDestroyChance'],
 		'fleetDestroySuccess'	=> (int) $reportInfo['fleetDestroySuccess']
 	);
+	$DATA['repaired'] = $combatResult['repaired'];
 	
 	if(isset($reportInfo['additionalInfo']))
 	{
