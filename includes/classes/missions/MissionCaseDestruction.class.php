@@ -547,7 +547,7 @@ HTML;
         $db->update($sql, [
             ':metal'    => $planetDebris[901],
             ':crystal'  => $planetDebris[902],
-            ':new_debris' => ($planetDebris[901] + $planetDebris[902]) > 0,
+            ':new_debris' => ($planetDebris[901] + $planetDebris[902]) > 0 ? 1 : 0,
             ':planetId' => $this->_fleet['fleet_end_id'],
         ]);
 
