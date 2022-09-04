@@ -198,6 +198,7 @@
 {if !empty($Raport.repaired)}
 	<br>
 	{$lastRound = count($Raport.rounds)-1}
+	{$lastDefender = count($Raport.rounds[0].defender)-1}
 	<table class="auto">
 	<tr>
 		<td>
@@ -215,19 +216,19 @@
 					<tr>
 						<td class="transparent">{$LNG.shortNames.{$ShipID}}</td>
 						<td class="transparent">{$ShipData.units} /
-							{if empty($Raport.rounds[$lastRound].defender[0].ships) || empty($Raport.rounds[$lastRound].defender[0].ships[$ShipID])}
-								{$Raport.rounds[0].defender[0].ships[$ShipID][0]}
+							{if empty($Raport.rounds[$lastRound].defender[$lastDefender].ships) || empty($Raport.rounds[$lastRound].defender[$lastDefender].ships[$ShipID])}
+								{$Raport.rounds[0].defender[$lastDefender].ships[$ShipID][0]}
 							{else}
-								{$Raport.rounds[0].defender[0].ships[$ShipID][0]-$Raport.rounds[$lastRound].defender[0].ships[$ShipID][0]}
+								{$Raport.rounds[0].defender[$lastDefender].ships[$ShipID][0]-$Raport.rounds[$lastRound].defender[$lastDefender].ships[$ShipID][0]}
 							{/if}
 						</td>
 						<td class="transparent">{$ShipData.percent|string_format:"%.1f"}</td>
 						<td class="transparent">
 							{$dest = 0}
-							{if empty($Raport.rounds[$lastRound].defender[0].ships) || empty($Raport.rounds[$lastRound].defender[0].ships[$ShipID])}
-								{$dest = $Raport.rounds[0].defender[0].ships[$ShipID][0]-{$ShipData.units}}
+							{if empty($Raport.rounds[$lastRound].defender[$lastDefender].ships) || empty($Raport.rounds[$lastRound].defender[$lastDefender].ships[$ShipID])}
+								{$dest = $Raport.rounds[0].defender[$lastDefender].ships[$ShipID][0]-{$ShipData.units}}
 							{else}
-								{$dest = $Raport.rounds[0].defender[0].ships[$ShipID][0]-$Raport.rounds[$lastRound].defender[0].ships[$ShipID][0]-{$ShipData.units}}
+								{$dest = $Raport.rounds[0].defender[$lastDefender].ships[$ShipID][0]-$Raport.rounds[$lastRound].defender[$lastDefender].ships[$ShipID][0]-{$ShipData.units}}
 							{/if}
 							{if $dest > 0}
 								<span style="color:#ee4d2e">-{$dest}</span>
