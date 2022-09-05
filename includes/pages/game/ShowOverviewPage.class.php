@@ -89,7 +89,7 @@ class ShowOverviewPage extends AbstractGamePage
         $db = Database::get();
 
         foreach ($USER['PLANETS'] as $ID => $CPLANET) {
-            if ($ID == $PLANET['id'] || $CPLANET['planet_type'] == 3) {
+            if ($ID == $PLANET['id']) {
                 continue;
             }
 
@@ -108,12 +108,21 @@ class ShowOverviewPage extends AbstractGamePage
                 'name'  => $CPLANET['name'],
                 'image' => $CPLANET['image'],
                 'build' => $BuildPlanet,
+                'type'  => $CPLANET['planet_type'],
+                'galaxy'=> $CPLANET['galaxy'],
+                'system'=> $CPLANET['system'],
+                'planet'=> $CPLANET['planet'],
             ];
         }
 
         if ($PLANET['id_luna'] != 0) {
-            $sql = "SELECT id, name FROM %%PLANETS%% WHERE id = :lunaID;";
+            $sql = "SELECT id, name, image, planet_type FROM %%PLANETS%% WHERE id = :lunaID;";
             $Moon = $db->selectSingle($sql, [':lunaID'   => $PLANET['id_luna']]);
+        }
+
+        if ($PLANET['planet_type'] == 3) {
+            $sql = "SELECT id, name, image, planet_type FROM %%PLANETS%% WHERE id_luna = :id;";
+            $Moon = $db->selectSingle($sql, [':id'   => $PLANET['id']]);
         }
 
         if ($PLANET['b_building'] != 0) {
