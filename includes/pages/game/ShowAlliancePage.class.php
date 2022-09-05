@@ -353,8 +353,8 @@ class ShowAlliancePage extends AbstractGamePage
             }
 
             $this->printMessage($LNG['al_request_confirmation_message'], [[
-                'label' => $LNG['sys_back'],
-                'url' => '?page=alliance'
+                'label' => $LNG['al_ok'],
+                'url' => '?page=overview'
             ]]);
         }
 
