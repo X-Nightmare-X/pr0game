@@ -100,7 +100,7 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
 
         $Message = sprintf(
             $LNG['sys_recy_gotten'],
-            GetStartAddressLink($this->_fleet, ''),
+            GetTargetAddressLink($this->_fleet, ''),
             pretty_number($collectedGoods[901]),
             pretty_number($collectedGoods[902]),
             pretty_number($targetData[$resQuery[0]]),
