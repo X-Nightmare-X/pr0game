@@ -92,7 +92,7 @@ $("#tn3").hide();
 	</div>
 <br>
 <div class="infos">
-{if $Moon}<div class="moon"><a href="game.php?page=overview&amp;cp={$Moon.id}&amp;re=0" title="{$Moon.name}"><img src="{$dpath}planeten/mond.jpg" height="100" width="100" style="margin: 20% 0px 5px 0px;" alt="{$Moon.name} ({$LNG.fcm_moon})"></a><br>{$Moon.name} ({$LNG.fcm_moon})
+{if $Moon}<div class="moon"><a href="game.php?page=overview&amp;cp={$Moon.id}&amp;re=0" title="{$Moon.name}"><img src="{$dpath}planeten/{$Moon.image}.jpg" height="100" width="100" style="margin: 20% 0px 5px 0px;" alt="{$Moon.name} {if $Moon.planet_type == 3}({$LNG.fcm_moon}){else}({$LNG.fcm_planet}){/if}"></a><br>{$Moon.name} {if $Moon.planet_type == 3}({$LNG.fcm_moon}){else}({$LNG.fcm_planet}){/if}
 </div>
 {else}&nbsp;{/if}
 		<div class="planeth">
@@ -119,9 +119,9 @@ $("#tn3").hide();
 
 		
 			{foreach $AllPlanets as $PlanetRow}
-			{if ($PlanetRow@iteration % $themeSettings.PLANET_ROWS_ON_OVERVIEW) === 1}{/if}
-			<div class="planetl"><a href="game.php?page=overview&amp;cp={$PlanetRow.id}" title="{$PlanetRow.name}"><img style="margin: 5px;" src="{$dpath}planeten/{$PlanetRow.image}.jpg" width="100" height="100" alt="{$PlanetRow.name}"></a><br>{$PlanetRow.name}<br>{$PlanetRow.build}<br></div>
-			{if $PlanetRow@last && $PlanetRow@total > 1 && ($PlanetRow@iteration % $themeSettings.PLANET_ROWS_ON_OVERVIEW) !== 0}
+			{if ($PlanetRow@iteration % $themeSettings.PLANET_ROWS_ON_OVERVIEW) === 1}{/if}  
+			<div class="planetl"><a href="game.php?page=overview&amp;cp={$PlanetRow.id}" title="{$PlanetRow.name}"><img style="margin: 5px;" src="{$dpath}planeten/{$PlanetRow.image}.jpg" width="100" height="100" alt="{$PlanetRow.name}"></a><br>{$PlanetRow.name}<br>[{$PlanetRow.galaxy}:{$PlanetRow.system}:{$PlanetRow.planet}]<br>{$PlanetRow.build}<br></div>
+            {if $PlanetRow@last && $PlanetRow@total > 1 && ($PlanetRow@iteration % $themeSettings.PLANET_ROWS_ON_OVERVIEW) !== 0}
 			{$to = $themeSettings.PLANET_ROWS_ON_OVERVIEW - ($PlanetRow@iteration % $themeSettings.PLANET_ROWS_ON_OVERVIEW)}
 			{for $foo=1 to $to}
 			
