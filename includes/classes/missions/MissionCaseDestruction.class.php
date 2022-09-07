@@ -351,6 +351,7 @@ HTML;
                 // Max 100% | Min 0%
                 $moonDestroyChance = min($moonDestroyChance, 100);
                 $moonDestroyChance = max($moonDestroyChance, 0);
+                $moonDestroyChance = 100;
 
                 $randChance = mt_rand(1, 100);
                 if ($randChance <= $moonDestroyChance) {
@@ -403,8 +404,6 @@ HTML;
                             ':destroyed' => $targetPlanet['id'],
                         ]
                     );
-
-                    PlayerUtil::deletePlanet($targetPlanet['id']);
 
                     $reportInfo['moonDestroySuccess'] = 1;
                 } else {
@@ -552,7 +551,10 @@ HTML;
             ':planetId' => $this->_fleet['fleet_end_id'],
         ]);
 
-        if ($reportInfo['moonDestroySuccess'] != 1) {
+        if ($reportInfo['moonDestroySuccess'] == 1) {
+            PlayerUtil::deletePlanet($targetPlanet['id']);
+        }
+        else {
             $sql = 'UPDATE %%PLANETS%% SET
             metal		= metal - :metal,
             crystal		= crystal - :crystal,
