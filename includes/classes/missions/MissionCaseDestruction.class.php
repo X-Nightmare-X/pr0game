@@ -404,8 +404,6 @@ HTML;
                         ]
                     );
 
-                    PlayerUtil::deletePlanet($targetPlanet['id']);
-
                     $reportInfo['moonDestroySuccess'] = 1;
                 } else {
                     $reportInfo['moonDestroySuccess'] = 0;
@@ -552,7 +550,10 @@ HTML;
             ':planetId' => $this->_fleet['fleet_end_id'],
         ]);
 
-        if ($reportInfo['moonDestroySuccess'] != 1) {
+        if ($reportInfo['moonDestroySuccess'] == 1) {
+            PlayerUtil::deletePlanet($targetPlanet['id']);
+        }
+        else {
             $sql = 'UPDATE %%PLANETS%% SET
             metal		= metal - :metal,
             crystal		= crystal - :crystal,
