@@ -351,7 +351,6 @@ HTML;
                 // Max 100% | Min 0%
                 $moonDestroyChance = min($moonDestroyChance, 100);
                 $moonDestroyChance = max($moonDestroyChance, 0);
-                $moonDestroyChance = 100;
 
                 $randChance = mt_rand(1, 100);
                 if ($randChance <= $moonDestroyChance) {
