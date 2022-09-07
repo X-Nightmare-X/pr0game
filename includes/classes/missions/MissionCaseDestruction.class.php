@@ -316,7 +316,8 @@ HTML;
             $targetDebris = $db->selectSingle($sql, [
                 ':moonId'   => $this->_fleet['fleet_end_id']
             ]);
-            $targetPlanet += $targetDebris;
+            $targetPlanet['der_metal'] += $targetDebris['der_metal'];
+            $targetPlanet['der_crystal'] += $targetDebris['der_crystal'];
         }
 
         foreach ($debrisResource as $elementID) {
@@ -371,9 +372,9 @@ HTML;
 
                     $sql = 'UPDATE %%FLEETS%% SET
 					fleet_end_type	= 1,
-					fleet_end_id	= :moonId,
+					fleet_end_id	= :planetId,
 					fleet_mission	= IF(fleet_mission = :dest, 1, fleet_mission)
-					WHERE fleet_end_id = :planetId
+					WHERE fleet_end_id = :moonId
 					AND fleet_id != :fleetId;';
 
                     $db->update($sql, [
@@ -402,8 +403,6 @@ HTML;
                             ':destroyed' => $targetPlanet['id'],
                         ]
                     );
-
-                    PlayerUtil::deletePlanet($targetPlanet['id']);
 
                     $reportInfo['moonDestroySuccess'] = 1;
                 } else {
@@ -551,18 +550,23 @@ HTML;
             ':planetId' => $this->_fleet['fleet_end_id'],
         ]);
 
-        $sql = 'UPDATE %%PLANETS%% SET
-		metal		= metal - :metal,
-		crystal		= crystal - :crystal,
-		deuterium   = deuterium - :deuterium
-		WHERE id = :planetId;';
+        if ($reportInfo['moonDestroySuccess'] == 1) {
+            PlayerUtil::deletePlanet($targetPlanet['id']);
+        }
+        else {
+            $sql = 'UPDATE %%PLANETS%% SET
+            metal		= metal - :metal,
+            crystal		= crystal - :crystal,
+            deuterium   = deuterium - :deuterium
+            WHERE id = :planetId;';
 
-        $db->update($sql, [
-            ':metal'        => $stealResource[901],
-            ':crystal'      => $stealResource[902],
-            ':deuterium'    => $stealResource[903],
-            ':planetId'     => $this->_fleet['fleet_end_id'],
-        ]);
+            $db->update($sql, [
+                ':metal'        => $stealResource[901],
+                ':crystal'      => $stealResource[902],
+                ':deuterium'    => $stealResource[903],
+                ':planetId'     => $this->_fleet['fleet_end_id'],
+            ]);
+        }
 
         $sql = 'INSERT INTO %%TOPKB%% SET
 		units 		= :units,

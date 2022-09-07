@@ -353,8 +353,8 @@ class ShowAlliancePage extends AbstractGamePage
             }
 
             $this->printMessage($LNG['al_request_confirmation_message'], [[
-                'label' => $LNG['sys_back'],
-                'url' => '?page=alliance'
+                'label' => $LNG['al_ok'],
+                'url' => '?page=overview'
             ]]);
         }
 
@@ -822,7 +822,7 @@ class ShowAlliancePage extends AbstractGamePage
 
         $sql = "SELECT a.id, a.ally_name, a.ally_tag, ally_owner, ally_owner_range FROM %%DIPLO%% d
             JOIN %%ALLIANCE%% a ON a.id = d.owner_2
-            WHERE d.owner_1 = :AllianceID AND d.level = 1;";
+            WHERE d.owner_1 = :AllianceID AND d.level = 1 AND accept = 1;";
         $wingData = $db->select($sql, [
             ':AllianceID' => $this->allianceData['id']
         ]);

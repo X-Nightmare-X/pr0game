@@ -89,7 +89,7 @@ class ShowOverviewPage extends AbstractGamePage
         $db = Database::get();
 
         foreach ($USER['PLANETS'] as $ID => $CPLANET) {
-            if ($ID == $PLANET['id'] || $CPLANET['planet_type'] == 3) {
+            if ($ID == $PLANET['id']) {
                 continue;
             }
 
@@ -108,12 +108,41 @@ class ShowOverviewPage extends AbstractGamePage
                 'name'  => $CPLANET['name'],
                 'image' => $CPLANET['image'],
                 'build' => $BuildPlanet,
+                'type'  => $CPLANET['planet_type'],
+                'galaxy'=> $CPLANET['galaxy'],
+                'system'=> $CPLANET['system'],
+                'planet'=> $CPLANET['planet'],
             ];
         }
 
         if ($PLANET['id_luna'] != 0) {
-            $sql = "SELECT id, name FROM %%PLANETS%% WHERE id = :lunaID;";
+            $sql = "SELECT id, name, image, planet_type, b_building_id, b_building FROM %%PLANETS%% WHERE id = :lunaID;";
             $Moon = $db->selectSingle($sql, [':lunaID'   => $PLANET['id_luna']]);
+
+            if (!empty($Moon['b_building']) && $Moon['b_building'] > TIMESTAMP) {
+                $Queue = unserialize($Moon['b_building_id']);
+                $Moon['build'] = $LNG['tech'][$Queue[0][0]] . " (" . $Queue[0][1]
+                    . ")<br><span style=\"color:#7F7F7F;\">(" . pretty_time(
+                    $USER['urlaubs_modus'] ? ($Queue[0][3] - $USER['urlaubs_start']) : ($Queue[0][3] - TIMESTAMP)
+                    ) . ")</span>";
+            } else {
+                $Moon['build'] = $LNG['ov_free'];
+            }
+        }
+
+        if ($PLANET['planet_type'] == 3) {
+            $sql = "SELECT id, name, image, planet_type, b_building_id, b_building FROM %%PLANETS%% WHERE id_luna = :id;";
+            $Moon = $db->selectSingle($sql, [':id'   => $PLANET['id']]);
+
+            if (!empty($Moon['b_building']) && $Moon['b_building'] > TIMESTAMP) {
+                $Queue = unserialize($Moon['b_building_id']);
+                $Moon['build'] = $LNG['tech'][$Queue[0][0]] . " (" . $Queue[0][1]
+                    . ")<br><span style=\"color:#7F7F7F;\">(" . pretty_time(
+                    $USER['urlaubs_modus'] ? ($Queue[0][3] - $USER['urlaubs_start']) : ($Queue[0][3] - TIMESTAMP)
+                    ) . ")</span>";
+            } else {
+                $Moon['build'] = $LNG['ov_free'];
+            }
         }
 
         if ($PLANET['b_building'] != 0) {
