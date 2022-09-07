@@ -44,6 +44,13 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
             ':planetId' => $this->_fleet['fleet_end_id'],
         ]);
 
+        // return fleet if target planet deleted
+        if ($targetData == false) {
+            $this->setState(FLEET_RETURN);
+            $this->SaveFleet();
+            return;
+        }
+
         if (!empty($targetData['total'])) {
             $sql = 'SELECT * FROM %%USERS%% WHERE id = :userId;';
             $targetUser = Database::get()->selectSingle($sql, [
