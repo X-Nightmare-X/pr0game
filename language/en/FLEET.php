@@ -303,7 +303,7 @@ $LNG['sys_destruc_echec'] = 'Earthquakes shook the planet. But something went wr
     . ' disintegrated into a thousands pieces, the shockwaves took out the entire fleet.';
 $LNG['sys_destruc_reussi'] = 'The deathstars beams reached the moon and teared it to pieces. <br>The entire moon was'
     . ' destroyed.';
-$LNG['sys_destruc_null'] = 'The deathstars could not charge fully before firing and imploded.<br> The moon is not'
+$LNG['sys_destruc_null'] = 'The deathstars could not charge fully before firing.<br> The moon is not'
     . ' destroyed.';
 
 
