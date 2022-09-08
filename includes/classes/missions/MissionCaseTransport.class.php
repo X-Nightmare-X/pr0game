@@ -54,7 +54,9 @@ class MissionCaseTransport extends MissionFunctions implements Mission
 		 */
 		if ($targetPlanetName !== null) {
 			$Message		= sprintf(
-				$LNG['sys_tran_mess_owner'],
+				$LNG['sys_tran_mess_user'],
+				$startPlanetName,
+				GetStartAddressLink($this->_fleet, ''),
 				$targetPlanetName,
 				GetTargetAddressLink($this->_fleet, ''),
 				pretty_number($this->_fleet['fleet_resource_metal']),
@@ -63,6 +65,7 @@ class MissionCaseTransport extends MissionFunctions implements Mission
 				$LNG['tech'][902],
 				pretty_number($this->_fleet['fleet_resource_deuterium']),
 				$LNG['tech'][903]
+
 			);
 
 			PlayerUtil::sendMessage(
