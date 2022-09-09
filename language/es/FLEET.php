@@ -246,8 +246,8 @@ $LNG['sys_expe_back_home_ress'] = 'Han traído %s %s, %s %s y %s %s .';
 $LNG['sys_expe_back_home_ships_flound'] = 'Se encontraron las siguientes embarcaciones:';
 $LNG['sys_expe_back_home_ships_lost'] = 'Los siguientes barcos se perdieron:';
 $LNG['sys_mess_transport'] = 'Informe de transporte';
-$LNG['sys_tran_mess_owner'] = 'Una de tus flotas ha llegado sin interrupciones al planeta %s %s y ha entregado'
-    . ' %s %s, %s %s y %s %s.';
+$LNG['sys_tran_mess_owner'] = 'Una de tus flotas de %s %s ha llegado sin interrupciones al planeta %s %s y ha entregado'
+. ' %s %s, %s %s y %s %s.';
 $LNG['sys_tran_mess_user'] = 'Una flota pacífica de %s %s alcanzado %s %s y entrega %s %s, %s %s y %s %s.';
 $LNG['sys_mess_fleetback'] = 'Retorno de la flota';
 $LNG['sys_tran_mess_back'] = 'Una flota regreso al planeta %s %s.';
