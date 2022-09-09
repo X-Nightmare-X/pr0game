@@ -436,7 +436,7 @@ $LNG['tt_lvl'] = 'niveau ';
 //----------------------------------------------------------------------------//
 //INFOS
 $LNG['in_jump_gate_no_target'] = 'Cette cible n\est pas disponible a travers le portail.';
-$LNG['in_jump_gate_done'] = 'La porte de sauts vient d\'être utilisée, le prochain saut pourra être effectué dans : ';
+$LNG['in_jump_gate_done'] = 'La porte de sauts vient d\'être utilisée, le prochain saut pourra être effectué dans: %s';
 $LNG['in_jump_gate_error_data'] = 'Erreur, données pour le saut incorrectes !';
 $LNG['in_jump_gate_not_ready_target'] = 'La porte de sauts n\'est pas prête sur la lune d\'arrivée, elle sera prête'
     . ' dans ';
