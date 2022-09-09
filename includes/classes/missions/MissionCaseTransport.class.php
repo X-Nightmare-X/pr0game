@@ -54,7 +54,7 @@ class MissionCaseTransport extends MissionFunctions implements Mission
 		 */
 		if ($targetPlanetName !== null) {
 			$Message		= sprintf(
-				$LNG['sys_tran_mess_user'],
+				$LNG['sys_tran_mess_owner'],
 				$startPlanetName,
 				GetStartAddressLink($this->_fleet, ''),
 				$targetPlanetName,

@@ -151,6 +151,8 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
             $LNG['sys_tran_mess_owner'],
             $planetName,
             GetStartAddressLink($this->_fleet, ''),
+            $planetName,
+            GetStartAddressLink($this->_fleet, ''),
             pretty_number($this->_fleet['fleet_resource_metal']),
             $LNG['tech'][901],
             pretty_number($this->_fleet['fleet_resource_crystal']),
