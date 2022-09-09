@@ -257,7 +257,7 @@ $LNG['sys_destruc_echec'] = 'Des tremblements de terre secouent la planete. Un p
     . ' mort explosent en millions de fragments. <br>L onde de choc se repercute sur toute la flotte.';
 $LNG['sys_destruc_reussi'] = 'Les tirs des etoiles de la mort mettent la Lune en piece. <br>La Lune est completement'
     . ' detruite.';
-$LNG['sys_destruc_null'] = 'Les etoiles de la mort ne peuvent fournir leur plein rendement et implosent. La lune n est'
+$LNG['sys_destruc_null'] = 'Les etoiles de la mort ne peuvent fournir leur plein rendement. La lune n est'
     . ' pas detruite.';
 
 
