@@ -285,7 +285,7 @@ $LNG['sys_expe_back_home_ress'] = 'Sie haben %s %s, %s %s und %s %s mitgebracht.
 $LNG['sys_expe_back_home_ships_flound'] = 'Es wurden folgende Schiffe gefunden:';
 $LNG['sys_expe_back_home_ships_lost'] = 'Es gingen folgende Schiffe verloren:';
 $LNG['sys_mess_transport'] = 'Transportbericht';
-$LNG['sys_tran_mess_owner'] = 'Eine deiner Flotten erreicht den Planeten %s %s und liefert %s %s, %s %s und %s %s.';
+$LNG['sys_tran_mess_owner'] = 'Eine deiner Flotten von %s %s erreicht den Planeten %s %s und liefert %s %s, %s %s und %s %s.';
 $LNG['sys_tran_mess_user'] = 'Eine friedliche Flotte von %s %s erreicht %s %s und liefert %s %s, %s %s und %s %s.';
 
 $LNG['sys_mess_fleetback'] = 'Flottenrückkehr';
@@ -316,7 +316,7 @@ $LNG['sys_destruc_echec'] = 'Erdbeben erschüttern den Planeten. Doch etwas geht
     . ' zerfallen in tausende Einzelteile. <br>Die Druckwelle erreicht die komplette Flotte.';
 $LNG['sys_destruc_reussi'] = 'Die Strahlen der Todessterne erreichen den Mond und zerfetzen ihn.<br>Der gesamte Mond'
     . ' wurde zerstört.';
-$LNG['sys_destruc_null'] = 'Die Todessterne können ihre volle Leistung nicht aufbauen und implodieren.<br> Der Mond'
+$LNG['sys_destruc_null'] = 'Die Todessterne können ihre volle Leistung nicht aufbauen.<br> Der Mond'
     . ' wird nicht zerstört.';
 
 $LNG['fcp_colony'] = 'Kolonie';

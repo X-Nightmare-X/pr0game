@@ -225,7 +225,7 @@ $LNG['sys_expe_back_home_ress'] = 'Elle ramene %s %s, %s %s et %s %s.';
 $LNG['sys_expe_back_home_ships_flound'] = 'Les navires suivants ont été trouvés :';
 $LNG['sys_expe_back_home_ships_lost'] = 'Les navires suivants ont été perdus :';
 $LNG['sys_mess_transport'] = 'Rapport d\'exploitation';
-$LNG['sys_tran_mess_owner'] = 'Une de vos flottes atteint la planete %s %s et y delivre %s %s, %s %s et %s %s.';
+$LNG['sys_tran_mess_owner'] = 'Une de vos flottes de %s %s atteint la planete %s %s et y delivre %s %s, %s %s et %s %s.';
 $LNG['sys_tran_mess_user'] = 'Une flotte pacifique de %s %s atteint %s %s et y delivre %s %s, %s %s et %s %s.';
 $LNG['sys_mess_fleetback'] = 'Retour de la flotte';
 $LNG['sys_tran_mess_back'] = 'Une de vos flottes revient de la planete %s %s.';
@@ -257,7 +257,7 @@ $LNG['sys_destruc_echec'] = 'Des tremblements de terre secouent la planete. Un p
     . ' mort explosent en millions de fragments. <br>L onde de choc se repercute sur toute la flotte.';
 $LNG['sys_destruc_reussi'] = 'Les tirs des etoiles de la mort mettent la Lune en piece. <br>La Lune est completement'
     . ' detruite.';
-$LNG['sys_destruc_null'] = 'Les etoiles de la mort ne peuvent fournir leur plein rendement et implosent. La lune n est'
+$LNG['sys_destruc_null'] = 'Les etoiles de la mort ne peuvent fournir leur plein rendement. La lune n est'
     . ' pas detruite.';
 
 

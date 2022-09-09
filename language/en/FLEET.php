@@ -270,7 +270,7 @@ $LNG['sys_expe_back_home_ress'] = 'It deliveres %s %s, %s %s and %s %s.';
 $LNG['sys_expe_back_home_ships_flound'] = 'The following ships were found:';
 $LNG['sys_expe_back_home_ships_lost'] = 'The following ships were lost:';
 $LNG['sys_mess_transport'] = 'Transportmessage';
-$LNG['sys_tran_mess_owner'] = 'One of your fleets reaches the planet %s %s and delivers %s %s, %s %s and %s %s.';
+$LNG['sys_tran_mess_owner'] = 'One of your fleets from %s %s reaches the planet %s %s and delivers %s %s, %s %s and %s %s.';
 $LNG['sys_tran_mess_user'] = 'A peaceful fleet of %s %s reached %s %s and delivers %s %s, %s %s and %s %s.';
 $LNG['sys_transfer_mess_owner'] = 'One of your fleets reaches the planet %s %s and delivers %s %s, %s %s and %s %s. ';
 $LNG['sys_transfer_mess_user'] = 'A peaceful fleet of %s %s reached %s %s and delivers %s %s, %s %s and %s %s. ';
@@ -303,7 +303,7 @@ $LNG['sys_destruc_echec'] = 'Earthquakes shook the planet. But something went wr
     . ' disintegrated into a thousands pieces, the shockwaves took out the entire fleet.';
 $LNG['sys_destruc_reussi'] = 'The deathstars beams reached the moon and teared it to pieces. <br>The entire moon was'
     . ' destroyed.';
-$LNG['sys_destruc_null'] = 'The deathstars could not charge fully before firing and imploded.<br> The moon is not'
+$LNG['sys_destruc_null'] = 'The deathstars could not charge fully before firing.<br> The moon is not'
     . ' destroyed.';
 
 
