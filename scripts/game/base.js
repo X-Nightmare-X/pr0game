@@ -112,7 +112,7 @@ function GetRestTimeFormat(Secs,shorten) {
   let longest = -1
   for (let t in timethresh) {
     const inside = Math.floor(Secs / timethresh[t]);
-    if (inside === 0 && longest ===t-1) {
+    if (inside === 0 && longest ==t-1) {
       longest = t
     }
     Secs -= inside * timethresh[t]
