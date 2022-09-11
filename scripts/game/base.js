@@ -105,19 +105,32 @@ function getFormatedTime(time) {
   return dezInt(hours, 2) + ":" + dezInt(minutes, 2) + ":" + dezInt(seconds, 2);
 }
 
-function GetRestTimeFormat(Secs) {
-  var s = Secs;
-  var m = 0;
-  var h = 0;
-  if (s > 59) {
-    m = Math.floor(s / 60);
-    s = s - m * 60;
+function GetRestTimeFormat(Secs,shorten) {
+  const timethresh = [31536000, 2592000, 604800, 86400, 3600, 60, 1]
+  const ax = [0, 0, 0, 0, 0, 0, 0]
+  const fmt = ["Y", "M", "W", "d", "h", "m", "s"]
+  let longest = -1
+  for (let t in timethresh) {
+    const inside = Math.floor(Secs / timethresh[t]);
+    if (inside === 0 && longest ===t-1) {
+      longest = t
+    }
+    Secs -= inside * timethresh[t]
+    ax[t] = inside
   }
-  if (m > 59) {
-    h = Math.floor(m / 60);
-    m = m - h * 60;
+  let rstr = ""
+  longest = parseInt(longest) +1
+  for (let i = longest; i < 7 && (i-longest<3 || shorten!==true) ; i++) {
+    rstr += " " + pad(ax[i],2)  + fmt[i] + " "
+
   }
-  return dezInt(h, 2) + ':' + dezInt(m, 2) + ":" + dezInt(s, 2);
+  return rstr.slice(0, -1).trim()
+
+}
+function pad(num, size) {
+  num = num.toString();
+  while (num.length < size) num = "0" + num;
+  return num;
 }
 
 function OpenPopup(target_url, win_name, width, height) {
