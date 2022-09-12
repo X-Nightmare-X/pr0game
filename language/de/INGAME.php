@@ -756,7 +756,9 @@ $LNG['al_diplo_war_mes'] = 'Die Allianz %s hat der Allianz %s soeben den %s erkl
     . 'Informationen: Der Krieg ist in 24 Stunden gültig. Erst nach den 24 Stunden entfällt die Bashregel. <br>Weitere'
     . ' Informationen findest Du in den <a href="index.php?page=rules&lang=de" target="_blank">Regeln</a>.';
 $LNG['al_diplo_war_end'] = 'Krieg beendet';
+$LNG['al_diplo_war_end_request'] = 'Krieg beenden?';
 $LNG['al_diplo_war_end_mes'] = 'Der %s von der Allianz %s mit der Allianz %s wurde soeben für beendet erklärt.';
+$LNG['al_diplo_war_end_mes'] = 'Soll der %s von der Allianz %s mit der Allianz %s für beendet erklärt werden?.';
 $LNG['al_diplo_war_end_confirm'] = 'Möchtst Du wirklich den Krieg beenden?';
 $LNG['al_diplo_withdraw'] = 'Paktanfrage zurückgezogen';
 $LNG['al_diplo_withdraw_mes'] = 'Die Paktanfrage (%s) zwischen den Allianzen %s und %s wurde zurückgezogen';

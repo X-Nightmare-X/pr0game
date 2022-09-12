@@ -1935,8 +1935,7 @@ class ShowAlliancePage extends AbstractGamePage
         $id = HTTP::_GP('id', 0);
 
         $targetAlliance = $this->getTargetAlliance($id);
-
-        if ($targetAlliance['accept'] == 1) {
+        if ($targetAlliance['diplo'] == 5){
             $receivers = $this->getMessageReceivers($targetAlliance['id']);
 
             foreach ($receivers as $receiver) {
@@ -1946,9 +1945,32 @@ class ShowAlliancePage extends AbstractGamePage
                     $USER['id'],
                     $lang['al_circular_alliance'] . $this->allianceData['ally_tag'],
                     2,
-                    $targetAlliance['diplo'] == 5 ? $lang['al_diplo_war_end'] : $lang['al_diplo_delete'],
+                    $lang['al_diplo_war_end_request'],
                     sprintf(
-                        $targetAlliance['diplo'] == 5 ? $lang['al_diplo_war_end_mes'] : $lang['al_diplo_delete_mes'],
+                        $lang['al_diplo_war_end_mes_request'],
+                        $lang['al_diplo_level'][(int)$targetAlliance['diplo']],
+                        "[" . $this->allianceData['ally_tag'] . "] " . $this->allianceData['ally_name'],
+                        "[" . $targetAlliance['ally_tag'] . "] " . $targetAlliance['ally_name']
+                    ),
+                    TIMESTAMP
+                );
+            }
+            
+            
+
+        }else if ($targetAlliance['accept'] == 1) {
+            $receivers = $this->getMessageReceivers($targetAlliance['id']);
+
+            foreach ($receivers as $receiver) {
+                $lang = getLanguage($receiver['lang']);
+                PlayerUtil::sendMessage(
+                    $receiver['id'],
+                    $USER['id'],
+                    $lang['al_circular_alliance'] . $this->allianceData['ally_tag'],
+                    2,
+                    $lang['al_diplo_delete'],
+                    sprintf(
+                        $lang['al_diplo_delete_mes'],
                         $lang['al_diplo_level'][(int)$targetAlliance['diplo']],
                         "[" . $this->allianceData['ally_tag'] . "] " . $this->allianceData['ally_name'],
                         "[" . $targetAlliance['ally_tag'] . "] " . $targetAlliance['ally_name']
@@ -1978,12 +2000,12 @@ class ShowAlliancePage extends AbstractGamePage
                 );
             }
         }
-
-        $sql = "DELETE FROM %%DIPLO%% WHERE id = :id AND (owner_1 = :allianceId OR owner_2 = :allianceId);";
-        $db->delete($sql, [
-            ':allianceId' => $this->allianceData['id'],
-            ':id' => $id
-        ]);
+        if($targetAlliance['diplo'] != 5){
+            $sql = "DELETE FROM %%DIPLO%% WHERE id = :id AND (owner_1 = :allianceId OR owner_2 = :allianceId);";
+            $db->delete($sql, [
+                ':allianceId' => $this->allianceData['id'],
+                ':id' => $id
+            ]);
 
         $this->redirectTo('game.php?page=alliance&mode=admin&action=diplomacy');
     }
