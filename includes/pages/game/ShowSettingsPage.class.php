@@ -152,6 +152,7 @@ class ShowSettingsPage extends AbstractGamePage
                     $TechArray[3] += $umode_delta;
                 }
                 $USER['b_tech_queue'] = serialize($CurrentQueue);
+                unset($CurrentQueue);
                 $sql = "UPDATE %%USERS%% SET
                     b_tech = b_tech + :umode_delta,
                     b_tech_queue = :b_tech_queue
@@ -170,15 +171,14 @@ class ShowSettingsPage extends AbstractGamePage
                     $BuildArray[3] += $umode_delta;
                 }
                 $PLANET['b_building_id'] = serialize($CurrentQueue);
+                unset($CurrentQueue);
             }
-            $sql = "SELECT * FROM %%PLANETS%% WHERE id_owner = :userID AND destruyed = 0;";
+            $sql = "SELECT id, b_building, b_building_id FROM %%PLANETS%% WHERE id_owner = :userID AND destruyed = 0;";
             $query = $db->select($sql, [
                 ':userID'   => $USER['id'],
             ]);
             
             foreach ($query as $CPLANET) {
-                list($USER, $CPLANET) = $this->ecoObj->CalcResource($USER, $CPLANET, true);
-                
                 if (!empty($CPLANET['b_building'])) {
                     $CurrentQueue       = unserialize($CPLANET['b_building_id']);
                     foreach ($CurrentQueue as &$BuildArray) {
@@ -190,10 +190,9 @@ class ShowSettingsPage extends AbstractGamePage
                     WHERE id = :planetID;";
                     $db->update($sql, [
                         ':umode_delta' => $umode_delta,
-                        ':planetID'   => $PLANET['id'],
+                        ':planetID'   => $CPLANET['id'],
                         ':building_id' => serialize($CurrentQueue),
                     ]);
-                    
                 }
                 
                 unset($CPLANET);
