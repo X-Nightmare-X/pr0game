@@ -106,7 +106,7 @@ function getFormatedTime(time) {
 }
 
 function GetRestTimeFormat(Secs,shorten) {
-  const timethresh = [31536000, 2592000, 604800, 86400, 3600, 60, 1]
+  const timethresh = [31536000, 2592000, 604800, 86400, 3600, 60, 1] // y,m,w,d,h,m,s
   const ax = [0, 0, 0, 0, 0, 0, 0]
   const fmt = ["Y", "M", "W", "d", "h", "m", "s"]
   let longest = -1
@@ -120,11 +120,14 @@ function GetRestTimeFormat(Secs,shorten) {
   }
   let rstr = ""
   longest = parseInt(longest) +1
-  for (let i = longest; i < 7 && (i-longest<3 || shorten!==true) ; i++) {
-    rstr += " " + pad(ax[i],2)  + fmt[i] + " "
-
+  for (let i = longest; i < 7 && (i-longest<3 || shorten!=true) ; i++) {
+    if(i>3){
+      rstr += " " + pad(ax[i],2)  + fmt[i] + " "
+    }else{
+      rstr += " " + ax[i]  + fmt[i] + " "
+    }
   }
-  return rstr.slice(0, -1).trim()
+  return rstr.trim()
 
 }
 function pad(num, size) {
