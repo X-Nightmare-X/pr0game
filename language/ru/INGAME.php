@@ -287,6 +287,7 @@ $LNG['fl_acs_title'] = 'Совместная атака';
 $LNG['fl_hold_time'] = 'Время удерживания';
 $LNG['fl_resources'] = 'Ресурсы';
 $LNG['fl_max'] = 'все';
+$LNG['fl_null'] = 'нет';
 $LNG['fl_hours'] = 'Время в часах';
 $LNG['fl_resources_left'] = 'Остаток';
 $LNG['fl_all_resources'] = 'Все ресурсы';

@@ -296,6 +296,7 @@ $LNG['fl_acs_title'] = 'Ataques grupales';
 $LNG['fl_hold_time'] = 'Tiempo de estacionamiento';
 $LNG['fl_resources'] = 'Recursos';
 $LNG['fl_max'] = 'max';
+$LNG['fl_null'] = 'pas de';
 $LNG['fl_hours'] = 'Horas';
 $LNG['fl_resources_left'] = 'Restante';
 $LNG['fl_all_resources'] = 'Capacidad máxima de recursos';

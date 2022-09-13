@@ -288,6 +288,7 @@ $LNG['fl_acs_title'] = 'Attaques associées';
 $LNG['fl_hold_time'] = 'Temps de stationnement';
 $LNG['fl_resources'] = 'Ressources';
 $LNG['fl_max'] = 'max';
+$LNG['fl_null'] = 'aucun';
 $LNG['fl_hours'] = 'Heure(s)';
 $LNG['fl_resources_left'] = 'Restant';
 $LNG['fl_all_resources'] = 'Maximum de ressources chargées';

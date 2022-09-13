@@ -301,6 +301,7 @@ $LNG['fl_acs_title'] = 'Ataque de Aliança';
 $LNG['fl_hold_time'] = 'Em órbita';
 $LNG['fl_resources'] = 'Recursos';
 $LNG['fl_max'] = 'max';
+$LNG['fl_null'] = 'nenhuma';
 $LNG['fl_hours'] = 'Horas';
 $LNG['fl_resources_left'] = 'Capacidade Desponível';
 $LNG['fl_all_resources'] = 'Todos os recursos';

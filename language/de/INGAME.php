@@ -315,6 +315,7 @@ $LNG['fl_acs_title'] = 'Verbandsangriffe';
 $LNG['fl_hold_time'] = 'Haltezeit';
 $LNG['fl_resources'] = 'Rohstoffe';
 $LNG['fl_max'] = 'max';
+$LNG['fl_null'] = 'keine';
 $LNG['fl_hours'] = 'Stunde(n)';
 $LNG['fl_resources_left'] = 'Verbleiben';
 $LNG['fl_all_resources'] = 'Max Rohstoffe Laden';
