@@ -324,6 +324,7 @@ $LNG['fl_acs_title'] = 'Alliance attack';
 $LNG['fl_hold_time'] = 'At Flying';
 $LNG['fl_resources'] = 'Resources';
 $LNG['fl_max'] = 'max';
+$LNG['fl_null'] = 'none';
 $LNG['fl_hours'] = 'Hours';
 $LNG['fl_resources_left'] = 'Capacity avaliable';
 $LNG['fl_all_resources'] = 'All resources';

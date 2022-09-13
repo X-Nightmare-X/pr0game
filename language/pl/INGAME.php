@@ -304,6 +304,7 @@ $LNG['fl_acs_title'] = 'ACS Atak';
 $LNG['fl_hold_time'] = 'Czas postoju';
 $LNG['fl_resources'] = 'Zasoby';
 $LNG['fl_max'] = 'max';
+$LNG['fl_null'] = 'brak';
 $LNG['fl_hours'] = 'Godzina(y)';
 $LNG['fl_resources_left'] = 'Pozostało';
 $LNG['fl_all_resources'] = 'Załaduj max zasobów';

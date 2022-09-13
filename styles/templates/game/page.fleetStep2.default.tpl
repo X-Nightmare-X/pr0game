@@ -11,12 +11,12 @@
         	<th>{$LNG.fl_resources}</th>
         </tr>
 		<tr>
-			<td class="left top" style="width:50%;margin:0;padding:0;"{if $StaySelector} rowspan="5"{/if}>
+			<td class="left top" style="width:50%;margin:0;padding:0;"{if !empty($StaySelector)} rowspan="5"{/if}>
         		<table border="0" cellpadding="0" cellspacing="0" style="margin:0;padding:0;">
         			{foreach $MissionSelector as $MissionID}
 					<tr style="height:20px;">
 						<td class="transparent left">
-						<input id="radio_{$MissionID}" type="radio" name="mission" value="{$MissionID}" {if $mission == $MissionID || $MissionID@total == 1}checked="checked"{/if} style="width:60px;"><label for="radio_{$MissionID}">{$LNG["type_mission_{$MissionID}"]}</label><br>
+						<input id="radio_{$MissionID}" type="radio" name="mission" value="{$MissionID}" {if $mission == $MissionID || $MissionID@total == 1}checked="checked"{/if} onchange="checkHold({$MissionID})" style="width:60px;"><label for="radio_{$MissionID}">{$LNG["type_mission_{$MissionID}"]}</label><br>
 							{if $MissionID == 17}<br><div style="color:red;padding-left:13px;">{$LNG.fl_transfer_alert_message}</div><br>{/if}
 							{if $MissionID == 15}<br><div style="color:red;padding-left:13px;">{$LNG.fl_expedition_alert_message}</div><br>{/if}
 						</td>
@@ -112,11 +112,11 @@
 		</tr>
 		{/if}
 
-		{if $StaySelector}
-		<tr style="height:20px;">
+		{if !empty($StaySelector)}
+		<tr id="stay_head" style="height:20px;">
 			<th>{$LNG.fl_hold_time}</th>
 		</tr>
-		<tr style="height:20px;">
+		<tr id="stay" style="height:20px;">
 			<td>
 			{html_options name=staytime options=$StaySelector} {$LNG.fl_hours}
 			</td>

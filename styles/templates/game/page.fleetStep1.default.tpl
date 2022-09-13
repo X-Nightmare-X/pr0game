@@ -11,9 +11,9 @@
 		<tr style="height:20px;">
 			<td style="width:50%">{$LNG.fl_destiny}</td>
 			<td>
-				<input type="number" id="galaxy" name="galaxy" maxlength="4" onkeyup="updateVars()" value="{$galaxy}" style="max-width:4em">
-				<input type="number" id="system" name="system" maxlength="6" onkeyup="updateVars()" value="{$system}" style="max-width:6em">
-				<input type="number" id="planet" name="planet" maxlength="4" onkeyup="updateVars()" value="{$planet}" style="max-width:4em">
+				<input type="number" id="galaxy" name="galaxy" maxlength="4" oninput="updateVars()" value="{$galaxy}" style="max-width:4em">
+				<input type="number" id="system" name="system" maxlength="6" oninput="updateVars()" value="{$system}" style="max-width:6em">
+				<input type="number" id="planet" name="planet" maxlength="4" oninput="updateVars()" value="{$planet}" style="max-width:4em">
 				<select id="type" name="type" onchange="updateVars()">
 					{html_options options=$typeSelect selected=$type}
 				</select>
@@ -63,10 +63,10 @@
 	</tr>
 	<tr style="height:20px;">
 		<td>
-			<a href="javascript:setTarget({$galaxy},{$system},16,1);updateVars();">{$LNG.type_mission_15}[{$galaxy}:{$system}:16]</a>
+			<a href="javascript:setTarget({$galaxy},{$system},{$lastPlanet+1},1);updateVars();">{$LNG.type_mission_15}[{$galaxy}:{$system}:{$lastPlanet+1}]</a>
 		</td>
 		<td>
-			<a href="javascript:setTarget({$galaxy},{$system},17,1);updateVars();">{$LNG.type_mission_16}[{$galaxy}:{$system}:17]</a>
+			<a href="javascript:setTarget({$galaxy},{$system},{$lastPlanet+2},1);updateVars();">{$LNG.type_mission_16}[{$galaxy}:{$system}:{$lastPlanet+2}]</a>
 		</td>
 	</tr>
 </table>
@@ -178,5 +178,6 @@
 	data			= {$fleetdata|json};
 	shortCutRows	= {$themeSettings.SHORTCUT_ROWS_ON_FLEET1};
 	fl_no_shortcuts	= '{$LNG.fl_no_shortcuts}';
+	lastPlanet		= {$lastPlanet};
 </script>
 {/block}

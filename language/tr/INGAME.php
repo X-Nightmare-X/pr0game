@@ -303,6 +303,7 @@ $LNG['fl_acs_title'] = 'Ittifak Saldirisi';
 $LNG['fl_hold_time'] = 'Durma Suresi';
 $LNG['fl_resources'] = 'Hammadde';
 $LNG['fl_max'] = 'max';
+$LNG['fl_null'] = 'Hiçbiri';
 $LNG['fl_hours'] = 'Saat';
 $LNG['fl_resources_left'] = 'Kalan Depo';
 $LNG['fl_all_resources'] = 'Tum Hammaddeler';

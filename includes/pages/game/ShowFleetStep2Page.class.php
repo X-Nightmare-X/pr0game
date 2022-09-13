@@ -112,8 +112,45 @@ class ShowFleetStep2Page extends AbstractGamePage
         $_SESSION['fleet'][$token]['fleetSpeed']    = $fleetSpeed;
         $_SESSION['fleet'][$token]['ownPlanet']     = $PLANET['id'];
 
-        if (!empty($fleet_group)) {
+        if (!empty($fleetGroup)) {
             $targetMission  = MISSION_ACS;
+        }
+
+        if ($targetMission == 0) {
+            if (count($MissionOutput['MissionSelector']) == 1) {
+                $targetMission = $MissionOutput['MissionSelector'][0];
+            } else if ($targetPlanetData['id_owner'] == $USER['id']) {
+                $targetMission = MISSION_TRANSPORT;
+            }
+            else {
+                if (count($fleetArray) == 1 && isset($fleetArray[SHIP_PROBE])) {
+                    $targetMission = MISSION_SPY;
+                } else {
+                    $sql = "SELECT a.id, a.ally_tag, a.ally_name, d.level, d.owner_2
+                        FROM %%USERS%% u
+                        JOIN %%ALLIANCE%% a ON a.id = u.ally_id
+                        JOIN %%DIPLO%% d ON ((d.owner_1 = u.ally_id AND d.owner_2 = :ally_id) OR (d.owner_2 = u.ally_id AND d.owner_1 = :ally_id)) and d.accept = 1
+                        WHERE u.universe = :universe AND u.id = :targetPlayerId AND d.level IN (1,2,4,6);";
+                    $targetAllianceData = $db->selectSingle($sql, [
+                        ':universe' => Universe::current(),
+                        ':targetPlayerId' => $targetPlanetData['id_owner'],
+                        ':ally_id' => $USER['ally_id'],
+                    ]);
+            
+                    $sql = "SELECT count(*) as anz FROM %%BUDDY%% WHERE (sender = :id AND owner = :targetPlayerId) OR (sender = :targetPlayerId AND owner = :id);";
+                    $buddy = $db->selectSingle($sql, [
+                        ':id' => $USER['id'],
+                        ':targetPlayerId' => $targetPlanetData['id_owner'],
+                    ]);
+
+                    if ($targetAllianceData || $buddy['anz']> 0) {
+                        $targetMission = MISSION_TRANSPORT;
+                    }
+                    else {
+                        $targetMission = MISSION_ATTACK;
+                    }
+                }
+            }
         }
 
         $question = '';
@@ -161,7 +198,7 @@ class ShowFleetStep2Page extends AbstractGamePage
             'consumption'   => floatToString($consumption),
         ];
 
-        $this->tplObj->execscript('calculateTransportCapacity();');
+        $this->tplObj->execscript('calculateTransportCapacity();checkHold('.$targetMission.');');
         $this->assign([
             'question'          => $question,
             'fleetdata'         => $fleetData,

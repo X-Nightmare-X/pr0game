@@ -9,6 +9,12 @@ function updateVars($reset_acs = true)
 	dataFlyTime = GetDuration();
 	dataFlyConsumption = GetConsumption();
 	dataFlyCargoSpace = storage();
+	if (lastPlanet < document.getElementsByName("planet")[0].value) {
+		document.getElementsByName("type")[0].value = 1;
+		document.getElementsByName("type")[0].disabled = true;
+	} else {
+		document.getElementsByName("type")[0].disabled = false;
+	}
 	refreshFormData();
 }
 
@@ -297,6 +303,16 @@ function SaveShortcuts(reedit) {
 			}
 		}
 	});
+}
+
+function checkHold(mission) {
+	if ([5,15,16,17].includes(mission)) {
+		document.getElementById("stay_head").style.display = '';
+		document.getElementById("stay").style.display = '';
+	} else {
+		document.getElementById("stay_head").style.display = 'none';
+		document.getElementById("stay").style.display = 'none';
+	}
 }
 
 $(function() {
