@@ -10,7 +10,7 @@
 
 class ShowMarketPlacePage extends AbstractGamePage
 {
-    public static $requireModule = MODULE_BATTLEHALL;
+    public static $requireModule = MODULE_MISSION_TRADE;
 
     public function __construct()
     {

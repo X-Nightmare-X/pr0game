@@ -336,8 +336,6 @@ function floatToString($number, $Pro = 0, $output = false)
 
 function isModuleAvailable($ID)
 {
-    if ($ID == MODULE_MISSION_TRANSFER) return false;
-
     global $USER;
     $modules = explode(';', Config::get()->moduls);
     if (!isset($modules[$ID])) {

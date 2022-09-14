@@ -303,7 +303,7 @@ class MarketManager {
 	 * 		202 => 5, // kt?
 	 * 		203 => 4, // gt?
 	 * ]
-	 * @return number | default: MSE. $useScore = true: score
+	 * @return int | default: MSE. $useScore = true: score
 	 */
 	public function getFleetValue($fleetArray, $useScore = false)
 	{
@@ -380,7 +380,6 @@ class MarketManager {
 	{
 		$fleetScore = $this->getFleetValue($fleetArray, true);
 		$fleetValue = $this->getFleetValue($fleetArray);
-		//return $this->isPush($fleetValue, $ask, $sellerId, $buyerId, $fleetScore);
-		return true; //temporary hack to disable fleet transfers
+		return $this->isPush($fleetValue, $ask, $sellerId, $buyerId, $fleetScore);
 	}
 }

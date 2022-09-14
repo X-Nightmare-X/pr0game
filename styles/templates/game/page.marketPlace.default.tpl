@@ -8,12 +8,22 @@
 		</th>
 	</tr>
 	<tr>
-		<td>
-			<button id="resourceMBtn" class="marketOption selected">Resource market</button>
-		</td>
-		<td>
-			<button id="fleetMBtn" class="marketOption">Fleet market</button>
-		</td>
+		{if isModuleAvailable($smarty.const.MODULE_MARKET_TRADE) && isModuleAvailable($smarty.const.MODULE_MARKET_TRANSFER)}
+			<td>
+				<button id="resourceMBtn" class="marketOption selected">Resource market</button>
+			</td>
+			<td>
+				<button id="fleetMBtn" class="marketOption">Fleet market</button>
+			</td>
+		{elseif isModuleAvailable($smarty.const.MODULE_MARKET_TRADE)}
+			<td colspan="2">
+				<button id="resourceMBtn" class="marketOption selected">Resource market</button>
+			</td>
+		{elseif isModuleAvailable($smarty.const.MODULE_MARKET_TRANSFER)}
+			<td colspan="2">
+				<button id="fleetMBtn" class="marketOption selected">Fleet market</button>
+			</td>
+		{/if}
 	</tr>
 	<tr>
 		<td colspan="2">
@@ -272,16 +282,17 @@
 <script src="scripts/base/jquery.tablesorter.js"></script>
 <script>
 function reloadMarketBox() {
-	var cl = $("#resourceMBtn").attr("class");
+	var clRes = $("#resourceMBtn").attr("class");
+	var clFleet = $("#fleetMBtn").attr("class");
+
 	var resB = $("#resourceMarketBox");
-	if(cl !=null && cl.indexOf("selected") != -1)
+	if(clRes !=null && (clRes.indexOf("selected") != -1 || clFleet ==null))
 		resB.attr("style","display: inline");
 	else
 		resB.attr("style","display: none");
 
-	cl = $("#fleetMBtn").attr("class");
 	var fleetB = $("#fleetMarketBox");
-	if(cl !=null && cl.indexOf("selected") != -1)
+	if(clFleet !=null && (clFleet.indexOf("selected") != -1 || clRes ==null))
 		fleetB.attr("style","display: inline");
 	else
 		fleetB.attr("style","display: none");
