@@ -685,8 +685,8 @@ class PlayerUtil
         
         $db = Database::get();
         if (!isset($USER)) {
-            $this->USER = $GLOBALS['USER'];
-            $this->PLANET = $GLOBALS['PLANET'];
+            $USER = $GLOBALS['USER'];
+            $PLANET = $GLOBALS['PLANET'];
         }
         
         $sql = "SELECT urlaubs_start FROM %%USERS%% WHERE universe = :universe AND id = :userID;";
@@ -789,8 +789,8 @@ class PlayerUtil
     public static function enable_vmode($USER = null, $PLANET = null){
         $db = Database::get();
         if (!isset($USER)) {
-            $this->USER = $GLOBALS['USER'];
-            $this->PLANET = $GLOBALS['PLANET'];
+            $USER = $GLOBALS['USER'];
+            $PLANET = $GLOBALS['PLANET'];
         }
        
         $sql = "UPDATE %%USERS%% SET urlaubs_modus = '1', urlaubs_until = :time, urlaubs_start = :startTime"
