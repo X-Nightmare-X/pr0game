@@ -343,7 +343,7 @@ class ShowSettingsPage extends AbstractGamePage
                     ],
                 ]);
             } else {
-                PlayerUtil::enable_vmode($USER, $PLANET);
+                PlayerUtil::enable_vmode(&$USER, &$PLANET);
             }
         }
 
