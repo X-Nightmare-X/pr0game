@@ -146,7 +146,7 @@ class ShowSettingsPage extends AbstractGamePage
         ], 'urlaubs_start');
         $umode_delta = TIMESTAMP - $umode_start;
         if ($vacation == 1 && $USER['urlaubs_until'] <= TIMESTAMP) {
-            PlayerUtil::disable_vmode(&$USER, &$PLANET);
+            PlayerUtil::disable_vmode($USER, $PLANET);
         }
 
         if ($delete == 1) {
@@ -343,7 +343,7 @@ class ShowSettingsPage extends AbstractGamePage
                     ],
                 ]);
             } else {
-                PlayerUtil::enable_vmode(&$USER, &$PLANET);
+                PlayerUtil::enable_vmode($USER, $PLANET);
             }
         }
 
