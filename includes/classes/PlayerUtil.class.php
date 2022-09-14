@@ -681,10 +681,14 @@ class PlayerUtil
             ':universe' => $universe,
         ));
     }
-    public static function disable_vmode($USER, $PLANET = null){
+    public static function disable_vmode($USER = null, $PLANET = null){
         
         $db = Database::get();
-
+        if (!isset($USER)) {
+            $this->USER = $GLOBALS['USER'];
+            $this->PLANET = $GLOBALS['PLANET'];
+        }
+        
         $sql = "SELECT urlaubs_start FROM %%USERS%% WHERE universe = :universe AND id = :userID;";
         $umode_start = $db->selectSingle($sql, [
             ':universe' => Universe::current(),
@@ -782,8 +786,13 @@ class PlayerUtil
             list($USER, $PLANET) = $PlanetRess->CalcResource($USER, $PLANET, true);
         }
     }
-    public static function enable_vmode($USER, $PLANET = null){
+    public static function enable_vmode($USER = null, $PLANET = null){
         $db = Database::get();
+        if (!isset($USER)) {
+            $this->USER = $GLOBALS['USER'];
+            $this->PLANET = $GLOBALS['PLANET'];
+        }
+       
         $sql = "UPDATE %%USERS%% SET urlaubs_modus = '1', urlaubs_until = :time, urlaubs_start = :startTime"
                     . " WHERE id = :userID";
         $db->update($sql, [
