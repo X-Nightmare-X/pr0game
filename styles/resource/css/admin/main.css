@@ -34,10 +34,10 @@ table{
 	margin-right: auto;
 }
 tr:nth-child(even) {
-	background-color: #07353d;
+	background-color: #1c1c1c;
 }
 tr:nth-child(odd) {
-	background-color: #004e5974;
+	background-color: #3d3d3d;
 }
 
 .yes{
