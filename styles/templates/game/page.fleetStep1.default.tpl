@@ -179,5 +179,11 @@
 	shortCutRows	= {$themeSettings.SHORTCUT_ROWS_ON_FLEET1};
 	fl_no_shortcuts	= '{$LNG.fl_no_shortcuts}';
 	lastPlanet		= {$lastPlanet};
+
+	$('form').submit(function(e) {
+		$(':disabled').each(function(e) {
+			$(this).removeAttr('disabled');
+		})
+	});
 </script>
 {/block}
