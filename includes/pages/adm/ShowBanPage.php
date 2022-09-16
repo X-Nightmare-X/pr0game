@@ -19,6 +19,7 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowBanPage() 
 {
+	$db = Database::get();
 	global $LNG, $USER;
 	
 	$ORDER = $_GET['order'] == 'id' ? "id" : "username";
@@ -116,40 +117,52 @@ function ShowBanPage()
 		
 		if ($BANUSER['banaday'] > TIMESTAMP)
 		{
-			$SQL      = "UPDATE ".BANNED." SET ";
-			$SQL     .= "`who` = '". $Name ."', ";
-			$SQL     .= "`theme` = '". $reas ."', ";
-			$SQL     .= "`time` = '".TIMESTAMP."', ";
-			$SQL     .= "`longer` = '". $BannedUntil ."', ";
-			$SQL     .= "`author` = '". $admin ."', ";
-			$SQL     .= "`email` = '". $mail ."' ";
-			$SQL     .= "WHERE `who2` = '".$Name."' AND `universe` = '".Universe::getEmulated()."';";
-			$GLOBALS['DATABASE']->query($SQL);
+			$sql = "UPDATE %%BANNED%% SET theme = :reas, time = :time, 
+				longer = :longer, author = :author, email = :mail
+				WHERE who = :name AND universe = :universe;";
+			$db->update($sql, [
+				':reas'     => $reas,
+				':time'     => TIMESTAMP,
+				':longer'   => $BannedUntil,
+				':author'   => $admin,
+				':mail'     => $mail,
+				':name'  	=> $Name,
+				':universe' => Universe::getEmulated(),
+			]);
 		} else {
-			$SQL      = "INSERT INTO ".BANNED." SET ";
-			$SQL     .= "`who` = '". $Name ."', ";
-			$SQL     .= "`theme` = '". $reas ."', ";
-			$SQL     .= "`time` = '".TIMESTAMP."', ";
-			$SQL     .= "`longer` = '". $BannedUntil ."', ";
-			$SQL     .= "`author` = '". $admin ."', ";
-			$SQL     .= "`universe` = '".Universe::getEmulated()."', ";
-			$SQL     .= "`email` = '". $mail ."';";
-			$GLOBALS['DATABASE']->query($SQL);
+			$sql = "INSERT INTO %%BANNED%% SET who = :name, theme = :reas, time = :time, 
+				longer = :longer, author = :author, universe = :universe, email = :mail;";
+			
+			$db->insert($sql, [
+				':name'  	=> $Name,
+				':reas'     => $reas,
+				':time'     => TIMESTAMP,
+				':longer'   => $BannedUntil,
+				':author'   => $admin,
+				':universe' => Universe::getEmulated(),
+				':mail'     => $mail,
+			]);
 		}
-
-		$SQL     = "UPDATE ".USERS." SET ";
-		$SQL    .= "`bana` = '1', ";
-		$SQL    .= "`banaday` = '". $BannedUntil ."', ";
-		$SQL	.= isset($_POST['vacat']) ? "`urlaubs_modus` = '1'" : "`urlaubs_modus` = '0'";
-		$SQL    .= "WHERE ";
-		$SQL    .= "`username` = '". $Name ."' AND `universe` = '".Universe::getEmulated()."';";
-		$GLOBALS['DATABASE']->query($SQL);
-
+		$sql = "UPDATE %%USERS%% SET bana = 1, banaday = :bannedUntil 
+			WHERE username = :name AND universe = :universe;";
+		$db->update($sql, [
+            ':bannedUntil'  => $BannedUntil,
+            ':name'         => $Name,
+            ':universe'    	=> Universe::getEmulated(),
+        ]);
+		if(isset($_POST['vacat'])) {
+			PlayerUtil::enable_vmode($BANUSER);
+		}
 		$template->message($LNG['bo_the_player'].$Name.$LNG['bo_banned'], '?page=bans');
 		exit;
 	} elseif(isset($_POST['unban_name'])) {
 		$Name	= HTTP::_GP('unban_name', '', true);
-		$GLOBALS['DATABASE']->query("UPDATE ".USERS." SET bana = '0', banaday = '0' WHERE username = '".$GLOBALS['DATABASE']->sql_escape($Name)."' AND `universe` = '".Universe::getEmulated()."';");
+		$sql = "UPDATE %%USERS%% SET bana = 0, banaday = 0 
+			WHERE username = :name AND universe = :universe;";
+		$db->update($sql, [
+            ':name'         => $Name,
+            ':universe'    	=> Universe::getEmulated(),
+        ]);
 		#DELETE FROM ".BANNED." WHERE who = '".$GLOBALS['DATABASE']->sql_escape($Name)."' AND `universe` = '".Universe::getEmulated()."';
 		$template->message($LNG['bo_the_player2'].$Name.$LNG['bo_unbanned'], '?page=bans');
 		exit;

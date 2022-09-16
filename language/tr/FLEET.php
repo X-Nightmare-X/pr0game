@@ -240,8 +240,8 @@ $LNG['sys_expe_back_home_ress'] = 'Aktariliyor %s %s, %s %s ve %s %s.';
 $LNG['sys_expe_back_home_ships_flound'] = 'Aşağıdaki gemiler bulundu:';
 $LNG['sys_expe_back_home_ships_lost'] = 'Aşağıdaki gemiler kayboldu:';
 $LNG['sys_mess_transport'] = 'Nakliye Raporu';
-$LNG['sys_tran_mess_owner'] = 'Filolarinizdan birisi %s %s koordinatina ulasti.'
-    . ' Aktarilan madenler %s %s, %s %s ve %s %s.';
+$LNG['sys_tran_mess_owner'] = 'Filolarinizdan itibaren %s %s birisi %s %s koordinatina ulasti.'
+. ' Aktarilan madenler %s %s, %s %s ve %s %s.';
 $LNG['sys_tran_mess_user'] = 'Dost Nakliye Filosu %s %s koordinatindan %s %s koordinatina ulasiyor.'
     . ' Getirdigi madenler %s %s, %s %s ve %s %s.';
 $LNG['sys_mess_fleetback'] = 'Geri Donen Filo';

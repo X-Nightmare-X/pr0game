@@ -107,6 +107,8 @@ $LNG['ov_news'] = 'Actualités';
 $LNG['ov_place'] = 'Rang';
 $LNG['ov_of'] = 'de';
 $LNG['ov_planet'] = 'Planète';
+$LNG['ov_moon'] = 'Lune';
+$LNG['ov_planets'] = 'Planètes et lunes';
 $LNG['ov_server_time'] = 'Heure du Serveur ';
 $LNG['ov_events'] = 'Evènements';
 $LNG['ov_diameter'] = 'Diamètre';
@@ -288,6 +290,7 @@ $LNG['fl_acs_title'] = 'Attaques associées';
 $LNG['fl_hold_time'] = 'Temps de stationnement';
 $LNG['fl_resources'] = 'Ressources';
 $LNG['fl_max'] = 'max';
+$LNG['fl_null'] = 'aucun';
 $LNG['fl_hours'] = 'Heure(s)';
 $LNG['fl_resources_left'] = 'Restant';
 $LNG['fl_all_resources'] = 'Maximum de ressources chargées';
@@ -436,7 +439,7 @@ $LNG['tt_lvl'] = 'niveau ';
 //----------------------------------------------------------------------------//
 //INFOS
 $LNG['in_jump_gate_no_target'] = 'Cette cible n\est pas disponible a travers le portail.';
-$LNG['in_jump_gate_done'] = 'La porte de sauts vient d\'être utilisée, le prochain saut pourra être effectué dans : ';
+$LNG['in_jump_gate_done'] = 'La porte de sauts vient d\'être utilisée, le prochain saut pourra être effectué dans: %s';
 $LNG['in_jump_gate_error_data'] = 'Erreur, données pour le saut incorrectes !';
 $LNG['in_jump_gate_not_ready_target'] = 'La porte de sauts n\'est pas prête sur la lune d\'arrivée, elle sera prête'
     . ' dans ';

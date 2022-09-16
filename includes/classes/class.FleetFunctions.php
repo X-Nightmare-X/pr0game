@@ -485,6 +485,12 @@ class FleetFunctions
             ) {
                 $availableMissions[] = MISSION_RECYCLING;
             }
+        } elseif (
+            !empty($MissionInfo['IsAKS']) && !$YourPlanet && isModuleAvailable(MODULE_MISSION_ATTACK)
+            && isModuleAvailable(MODULE_MISSION_ACS)
+        ) {
+            $availableMissions[] = MISSION_ATTACK;
+            $availableMissions[] = MISSION_ACS;
         } else {
             if (!$UsedPlanet) {
                 if (
@@ -519,13 +525,6 @@ class FleetFunctions
                     }
                 } elseif (isModuleAvailable(MODULE_MISSION_STATION)) {
                     $availableMissions[] = MISSION_STATION;
-                }
-
-                if (
-                    !empty($MissionInfo['IsAKS']) && !$YourPlanet && isModuleAvailable(MODULE_MISSION_ATTACK)
-                    && isModuleAvailable(MODULE_MISSION_ACS)
-                ) {
-                    $availableMissions[] = MISSION_ACS;
                 }
 
                 if (

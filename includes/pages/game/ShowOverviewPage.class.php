@@ -95,12 +95,16 @@ class ShowOverviewPage extends AbstractGamePage
 
             if (!empty($CPLANET['b_building']) && $CPLANET['b_building'] > TIMESTAMP) {
                 $Queue = unserialize($CPLANET['b_building_id']);
-                $BuildPlanet = $LNG['tech'][$Queue[0][0]] . " (" . $Queue[0][1]
-                    . ")<br><span style=\"color:#7F7F7F;\">(" . pretty_time(
-                    $USER['urlaubs_modus'] ? ($Queue[0][3] - $USER['urlaubs_start']) : ($Queue[0][3] - TIMESTAMP)
-                    ) . ")</span>";
+                $timeleft = $USER['urlaubs_modus'] ? ($CPLANET['b_building'] - $USER['urlaubs_start']) : ($CPLANET['b_building'] - TIMESTAMP);
+                $BuildPlanet = [
+                    'id'        => $Queue[0][0],
+                    'level'     => $Queue[0][1],
+                    'timeleft'  => $timeleft,
+                    'time'      => $CPLANET['b_building'],
+                    'starttime' => pretty_time($timeleft),
+                ];
             } else {
-                $BuildPlanet = $LNG['ov_free'];
+                $BuildPlanet = false;
             }
 
             $AllPlanets[] = [
@@ -116,13 +120,26 @@ class ShowOverviewPage extends AbstractGamePage
         }
 
         if ($PLANET['id_luna'] != 0) {
-            $sql = "SELECT id, name, image, planet_type FROM %%PLANETS%% WHERE id = :lunaID;";
+            $sql = "SELECT id, name, image, planet_type, b_building_id, b_building FROM %%PLANETS%% WHERE id = :lunaID;";
             $Moon = $db->selectSingle($sql, [':lunaID'   => $PLANET['id_luna']]);
-        }
-
-        if ($PLANET['planet_type'] == 3) {
-            $sql = "SELECT id, name, image, planet_type FROM %%PLANETS%% WHERE id_luna = :id;";
+        } else if ($PLANET['planet_type'] == 3) {
+            $sql = "SELECT id, name, image, planet_type, b_building_id, b_building FROM %%PLANETS%% WHERE id_luna = :id;";
             $Moon = $db->selectSingle($sql, [':id'   => $PLANET['id']]);
+        }
+        if (!empty($Moon)) {
+            if (!empty($Moon['b_building']) && $Moon['b_building'] > TIMESTAMP) {
+                $Queue = unserialize($Moon['b_building_id']);
+                $timeleft = $USER['urlaubs_modus'] ? ($Moon['b_building'] - $USER['urlaubs_start']) : ($Moon['b_building'] - TIMESTAMP);
+                $Moon['build'] = [
+                    'id'        => $Queue[0][0],
+                    'level'     => $Queue[0][1],
+                    'timeleft'  => $timeleft,
+                    'time'      => $Moon['b_building'],
+                    'starttime' => pretty_time($timeleft),
+                ];
+            } else {
+                $Moon['build'] = false;
+            }
         }
 
         if ($PLANET['b_building'] != 0) {

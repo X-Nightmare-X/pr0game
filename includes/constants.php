@@ -165,7 +165,7 @@ define('AUTH_MOD', 1);
 define('AUTH_USR', 0);
 
 // Modules
-define('MODULE_AMOUNT', 43);
+define('MODULE_AMOUNT', 47); //+1 to largest index
 define('MODULE_ALLIANCE', 0);
 define('MODULE_BANLIST', 21);
 define('MODULE_BANNER', 37);
@@ -187,11 +187,11 @@ define('MODULE_MISSION_DESTROY', 29);
 define('MODULE_MISSION_EXPEDITION', 30);
 define('MODULE_MISSION_HOLD', 33);
 define('MODULE_MISSION_RECYCLE', 32);
-define('MODULE_MISSION_TRADE', 44);
+define('MODULE_MISSION_TRADE', 43);
 define('MODULE_MISSION_SPY', 24);
 define('MODULE_MISSION_STATION', 36);
 define('MODULE_MISSION_TRANSPORT', 34);
-define('MODULE_MISSION_TRANSFER', 45);
+define('MODULE_MISSION_TRANSFER', 44);
 define('MODULE_NOTICE', 17);
 define('MODULE_PHALANX', 19);
 define('MODULE_PLAYERCARD', 20);
@@ -206,6 +206,8 @@ define('MODULE_SIMULATOR', 39);
 define('MODULE_STATISTICS', 25);
 define('MODULE_SUPPORT', 27);
 define('MODULE_TECHTREE', 28);
+define('MODULE_MARKET_TRADE', 45);
+define('MODULE_MARKET_TRANSFER', 46);
 
 // FLEET STATE
 define('FLEET_OUTWARD', 0);
