@@ -62,7 +62,7 @@ $LNG['banned_message'] = 'Engellendiniz. Bir yanlış anlaşılma olduğunu dü�
 // Topnav
 $LNG['tn_player_title'] = 'Imparator';
 $LNG['tn_vacation_mode'] = 'Tatil modundasınız.<br><br>LÜTFEN DİKKAT: Tatil modu 4 hafta kullanılmadığında otomatik olarak devre dışı bırakılır.';
-$LNG['tn_vacation_mode'] = 'Saat en az %s olana kadar tatil modundasınız.<br><br>LÜTFEN DİKKAT: Tatil modu 4 hafta kullanılmadığında otomatik olarak devre dışı bırakılır.';
+$LNG['tn_vacation_mode_until'] = 'Saat en az %s olana kadar tatil modundasınız.<br><br>LÜTFEN DİKKAT: Tatil modu 4 hafta kullanılmadığında otomatik olarak devre dışı bırakılır.';
 $LNG['tn_delete_mode'] = 'Hesabiniz Silme Modunda Silinecegi Tarih :';
 
 //----------------------------------------------------------------------------//
