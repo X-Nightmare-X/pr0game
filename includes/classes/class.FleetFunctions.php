@@ -116,20 +116,63 @@ class FleetFunctions
         return isset(self::$allowedSpeed[$speed]);
     }
 
-    public static function getTargetDistance($start, $target)
-    {
-        if ($start[0] != $target[0]) {
-            return abs($start[0] - $target[0]) * 20000;
-        }
+    /**
+     * Calculates the distance to the target
+     * 
+     * Changes needs to be done in scripts/game/flotten.js#GetDistance() aswell
+     * 
+     * @return int
+     */
+    public static function getTargetDistance($start, $target) {       
+        $thisGalaxy = $start[0];
+        $thisSystem = $start[1];
+        $thisPlanet = $start[2];
+        $targetGalaxy = $target[0];
+        $targetSystem = $target[1];
+        $targetPlanet = $target[2];
 
-        if ($start[1] != $target[1]) {
-            return abs($start[1] - $target[1]) * 95 + 2700;
+        if ($thisGalaxy != $targetGalaxy) {
+            if (Config::get()->uni_type == 2)
+                return 20000;
+            else if (Config::get()->uni_type == 1) {
+                $max = Config::get()->max_galaxy;
+                $diff = abs($thisGalaxy - $targetGalaxy);
+                $dist = 0;
+                if ($thisGalaxy >= $diff && $targetGalaxy <= abs($thisGalaxy - ceil($targetGalaxy/2))) {
+                    $dist = min( ($targetGalaxy + abs($thisGalaxy - $max)), abs($thisGalaxy - $targetGalaxy) );
+                }
+                else if ($targetGalaxy >= $thisGalaxy + ceil($max/2)) {
+                    $dist = floor($max/2) - ($targetGalaxy - ($thisGalaxy + ceil($max / 2)));
+                }
+                else {
+                    $dist = abs($thisGalaxy - $targetGalaxy);
+                }
+                return $dist * 20000;
+            }
+            else
+                return abs($thisGalaxy - $targetGalaxy) * 20000;
         }
-
-        if ($start[2] != $target[2]) {
-            return abs($start[2] - $target[2]) * 5 + 1000;
+        else if ($thisSystem != $targetSystem) {
+            if (Config::get()->galaxy_type == 2)
+                return 95 + 2700;
+            else if (Config::get()->galaxy_type == 1) {
+                $max = Config::get()->max_system;
+                $diff = abs($thisSystem - $targetSystem);
+                $dist = 0;
+                if ($thisSystem >= $diff && $targetSystem <= abs($thisSystem - ceil($targetSystem / 2))) {
+                    $dist = min(($targetSystem + abs($thisSystem - $max)), abs($thisSystem - $targetSystem));
+                } else if ($targetSystem >= abs($thisSystem + ceil($max / 2))) {
+                    $dist = floor($max / 2) - ($targetSystem - ($thisSystem + ceil($max / 2)));
+                } else {
+                    $dist = abs($thisSystem - $targetSystem);
+                }
+                return $dist * 95 + 2700;
+            } else
+                return abs($thisSystem - $targetSystem) * 95 + 2700;
+        } 
+        else if ($thisPlanet != $targetPlanet) {
+            return abs($thisPlanet - $targetPlanet) * 5 + 1000;
         }
-
         return 5;
     }
 

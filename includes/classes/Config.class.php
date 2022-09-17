@@ -21,7 +21,11 @@ class Config
 	protected static $instances = array();
 
 
-	// Global configkeys
+	/**
+	 * Global configkeys
+	 * 
+	 * These keys will be changed for every univers of this server!
+	 */
 	protected static $globalConfigKeys	= array('VERSION', 'game_name', 'stat', 'stat_level', 'stat_last_update',
 										   'stat_settings', 'stat_update_time', 'stat_last_db_update', 'stats_fly_lock',
 										   'cron_lock', 'mail_active', 'mail_use', 'smtp_host',
@@ -31,6 +35,11 @@ class Config
 										   'del_user_automatic', 'del_oldstuff', 'del_user_manually', 'ref_max_referals',
 										   'disclamerAddress','disclamerPhone','disclamerMail','disclamerNotice', 'git_issues_link');
 
+	/**
+	 * Global configkeys
+	 * 
+	 * These keys will be changed for every univers of this server!
+	 */
 	public static function getGlobalConfigKeys()
 	{
 		return self::$globalConfigKeys;
@@ -43,7 +52,6 @@ class Config
 	 *
 	 * @return Config
 	 */
-
 	static public function get($universe = 0)
 	{
 		if (empty(self::$instances)) {

@@ -354,6 +354,25 @@ $LNG['se_per_hour'] = 'per hour';
 $LNG['se_metal_production'] = 'Production of Metal Basic';
 $LNG['se_crystal_production'] = 'Production of Crystal Basic';
 $LNG['se_deuterium_production'] = 'Production of Deuterium Basic';
+$LNG['se_galaxy_parameters'] = 'Galaxy settings';
+$LNG['se_uni_type'] = 'Universe type';
+$LNG['se_uni_type_info'] = '<TABLE>'
+    . '<tr><td>Linear universe</td><td>Distance to galaxy 1 increases with each galaxy.</td></tr>'
+    . '<tr><td>Ring universe</td><td>Last and first galaxy are connected. Distance of the rear galaxies to the first one is reduced in this way.</td></tr>'
+    . '<tr><td>Sphere universe</td><td>Each galaxy is equally distant to all others.</td></tr>'
+    . '</TABLE>';
+$LNG['se_line_uni'] = 'Linear universe (default)';
+$LNG['se_ring_uni'] = 'Ring universe';
+$LNG['se_sphere_uni'] = 'Sphere universe';
+$LNG['se_galaxy_type'] = 'Galaxies type';
+$LNG['se_galaxy_type_info'] = '<TABLE>'
+    . '<tr><td>Linear galaxies</td><td>Distance to system 1 increases with each system of the galaxy.</td></tr>'
+    . '<tr><td>Ring galaxies</td><td>Last and first system of a galaxy are connected. Distance of the rear systems to the first one is reduced in this way.</td></tr>'
+    . '<tr><td>Sphere galaxies</td><td>Each system in the same galaxy is equidistant from all others.</td></tr>'
+    . '</TABLE>';
+$LNG['se_line_galaxy'] = 'Linear galaxies (default)';
+$LNG['se_ring_galaxy'] = 'Ring galaxies';
+$LNG['se_sphere_galaxy'] = 'Sphere galaxies';
 $LNG['se_several_parameters'] = 'Other Parameters';
 $LNG['se_title_admins_protection'] = 'When this function is enabled, administrators or moderators can not be attacked';
 $LNG['se_admin_protection'] = 'Admin Game Protection';

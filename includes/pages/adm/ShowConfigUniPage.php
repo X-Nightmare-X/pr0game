@@ -60,6 +60,8 @@ function ShowConfigUniPage()
             'max_galaxy'            => $config->max_galaxy,
             'max_system'            => $config->max_system,
             'max_planets'           => $config->max_planets,
+            'uni_type'              => $config->uni_type,
+            'galaxy_type'           => $config->galaxy_type,
             'min_player_planets'    => $config->min_player_planets,
             'planets_tech'          => $config->planets_tech,
             'planets_per_tech'      => $config->planets_per_tech,
@@ -124,6 +126,8 @@ function ShowConfigUniPage()
         $max_galaxy             = HTTP::_GP('max_galaxy', 0);
         $max_system             = HTTP::_GP('max_system', 0);
         $max_planets            = HTTP::_GP('max_planets', 0);
+        $uni_type               = HTTP::_GP('uni_type', 0);
+        $galaxy_type            = HTTP::_GP('galaxy_type', 0);
         $min_player_planets     = HTTP::_GP('min_player_planets', 0);
         $planets_tech           = HTTP::_GP('planets_tech', 0);
         $planets_per_tech       = HTTP::_GP('planets_per_tech', 0.0);
@@ -183,6 +187,8 @@ function ShowConfigUniPage()
             'max_galaxy'            => $max_galaxy,
             'max_system'            => $max_system,
             'max_planets'           => $max_planets,
+            'uni_type'              => $uni_type,
+            'galaxy_type'           => $galaxy_type,
             'min_player_planets'    => $min_player_planets,
             'planets_tech'          => $planets_tech,
             'planets_per_tech'      => $planets_per_tech,
@@ -260,6 +266,11 @@ function ShowConfigUniPage()
         'se_admin_protection'           => $LNG['se_admin_protection'],
         'se_crystal_production'         => $LNG['se_crystal_production'],
         'se_deuterium_production'       => $LNG['se_deuterium_production'],
+        'se_galaxy_parameters'          => $LNG['se_galaxy_parameters'],
+        'se_uni_type'                   => $LNG['se_uni_type'],
+        'se_uni_type_info'              => $LNG['se_uni_type_info'],
+        'se_galaxy_type'                => $LNG['se_galaxy_type'],
+        'se_galaxy_type_info'           => $LNG['se_galaxy_type_info'],
         'se_several_parameters'         => $LNG['se_several_parameters'],
         'se_min_build_time'             => $LNG['se_min_build_time'],
         'se_reg_closed'                 => $LNG['se_reg_closed'],
@@ -419,11 +430,23 @@ function ShowConfigUniPage()
                 'ssl' => $LNG['se_smtp_ssl_2'],
                 'tls' => $LNG['se_smtp_ssl_3'],
             ],
+            'uni_types' => [
+                '0' => $LNG['se_line_uni'],
+                '1' => $LNG['se_ring_uni'],
+                '2' => $LNG['se_sphere_uni'],
+            ],
+            'galaxy_types' => [
+                '0' => $LNG['se_line_galaxy'],
+                '1' => $LNG['se_ring_galaxy'],
+                '2' => $LNG['se_sphere_galaxy'],
+            ],
         ],
         'lang'                          => $config->lang,
         'max_galaxy'                    => $config->max_galaxy,
         'max_system'                    => $config->max_system,
         'max_planets'                   => $config->max_planets,
+        'uni_type'                      => $config->uni_type,
+        'galaxy_type'                   => $config->galaxy_type,
         'min_player_planets'            => $config->min_player_planets,
         'planets_tech'                  => $config->planets_tech,
         'planets_per_tech'              => $config->planets_per_tech,
