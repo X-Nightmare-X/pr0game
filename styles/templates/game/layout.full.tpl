@@ -37,7 +37,7 @@
 		{elseif $delete}
 		<div class="infobox">{$delete}</div>
 		{elseif $vacation}
-		<div class="infobox">{$LNG.tn_vacation_mode} {$vacation}</div>
+		<div class="infobox">{$vacation}</div>
 		{/if}
 		
 		{block name="content"}{/block}

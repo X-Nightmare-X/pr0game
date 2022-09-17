@@ -61,7 +61,8 @@ $LNG['banned_message'] = 'Engellendiniz. Bir yanlış anlaşılma olduğunu dü�
 //----------------------------------------------------------------------------//
 // Topnav
 $LNG['tn_player_title'] = 'Imparator';
-$LNG['tn_vacation_mode'] = 'Su an tatil modundasiniz ';
+$LNG['tn_vacation_mode'] = 'Tatil modundasınız.<br><br>LÜTFEN DİKKAT: Tatil modu 4 hafta kullanılmadığında otomatik olarak devre dışı bırakılır.';
+$LNG['tn_vacation_mode'] = 'Saat en az %s olana kadar tatil modundasınız.<br><br>LÜTFEN DİKKAT: Tatil modu 4 hafta kullanılmadığında otomatik olarak devre dışı bırakılır.';
 $LNG['tn_delete_mode'] = 'Hesabiniz Silme Modunda Silinecegi Tarih :';
 
 //----------------------------------------------------------------------------//
@@ -883,7 +884,7 @@ $LNG['op_password_changed'] = 'Sifreniz degistirildi Lutfen Tekrar giris yapin<b
     . '<a href="index.php" target="_top">Geri</a>';
 $LNG['op_username_changed'] = 'Uye Adiniz degistirildi Lutfen Tekrar giris yapin<br />'
     . '<a href="index.php" target="_top">Geri</a>';
-$LNG['op_options_changed'] = 'Ayarlar Basarili Olarak Kayit Edildi.<br /><a href="game.php?page=settings">Geri Don</a>';
+$LNG['op_options_changed'] = 'Ayarlar kaydedilir.';
 $LNG['op_options_changed_vacation'] = 'Ayarlar kaydedilir.<br><br>LÜTFEN DİKKAT: Tatil modu 4 hafta kullanılmadığında otomatik olarak devre dışı bırakılır.';
 $LNG['op_vacation_mode_active_message'] = 'Tatil Modu Aktif :  ';
 $LNG['op_end_vacation_mode'] = 'Tatilden Cik';
