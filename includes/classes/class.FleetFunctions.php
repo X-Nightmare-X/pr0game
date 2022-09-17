@@ -136,16 +136,12 @@ class FleetFunctions
                 return 20000;
             else if (Config::get()->uni_type == 1) {
                 $max = Config::get()->max_galaxy;
-                $diff = abs($thisGalaxy - $targetGalaxy);
                 $dist = 0;
-                if ($thisGalaxy >= $diff && $targetGalaxy <= abs($thisGalaxy - ceil($targetGalaxy/2))) {
-                    $dist = min( ($targetGalaxy + abs($thisGalaxy - $max)), abs($thisGalaxy - $targetGalaxy) );
-                }
-                else if ($targetGalaxy >= $thisGalaxy + ceil($max/2)) {
-                    $dist = floor($max/2) - ($targetGalaxy - ($thisGalaxy + ceil($max / 2)));
-                }
-                else {
+
+                if (abs($thisGalaxy - $targetGalaxy) < ceil($max / 2)) {
                     $dist = abs($thisGalaxy - $targetGalaxy);
+                } else {
+                    $dist = floor($max / 2) - (abs($thisGalaxy - $targetGalaxy) - ceil($max / 2));
                 }
                 return $dist * 20000;
             }
@@ -157,14 +153,12 @@ class FleetFunctions
                 return 95 + 2700;
             else if (Config::get()->galaxy_type == 1) {
                 $max = Config::get()->max_system;
-                $diff = abs($thisSystem - $targetSystem);
                 $dist = 0;
-                if ($thisSystem >= $diff && $targetSystem <= abs($thisSystem - ceil($targetSystem / 2))) {
-                    $dist = min(($targetSystem + abs($thisSystem - $max)), abs($thisSystem - $targetSystem));
-                } else if ($targetSystem >= abs($thisSystem + ceil($max / 2))) {
-                    $dist = floor($max / 2) - ($targetSystem - ($thisSystem + ceil($max / 2)));
-                } else {
+
+                if (abs($thisSystem - $targetSystem) < ceil($max / 2)) {
                     $dist = abs($thisSystem - $targetSystem);
+                } else {
+                    $dist = floor($max / 2) - (abs($thisSystem - $targetSystem) - ceil($max / 2));
                 }
                 return $dist * 95 + 2700;
             } else
