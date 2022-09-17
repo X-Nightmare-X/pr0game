@@ -63,10 +63,10 @@
 	</tr>
 	<tr style="height:20px;">
 		<td>
-			<a href="javascript:setTarget({$galaxy},{$system},{$lastPlanet+1},1);updateVars();">{$LNG.type_mission_15}[{$galaxy}:{$system}:{$lastPlanet+1}]</a>
+			<a href="javascript:setTarget({$galaxy},{$system},{$config.max_planets+1},1);updateVars();">{$LNG.type_mission_15}[{$galaxy}:{$system}:{$config.max_planets+1}]</a>
 		</td>
 		<td>
-			<a href="javascript:setTarget({$galaxy},{$system},{$lastPlanet+2},1);updateVars();">{$LNG.type_mission_16}[{$galaxy}:{$system}:{$lastPlanet+2}]</a>
+			<a href="javascript:setTarget({$galaxy},{$system},{$config.max_planets+2},1);updateVars();">{$LNG.type_mission_16}[{$galaxy}:{$system}:{$config.max_planets+2}]</a>
 		</td>
 	</tr>
 </table>
@@ -177,8 +177,8 @@
 <script type="text/javascript">
 	data			= {$fleetdata|json};
 	shortCutRows	= {$themeSettings.SHORTCUT_ROWS_ON_FLEET1};
-	fl_no_shortcuts	= '{$LNG.fl_no_shortcuts}';
-	lastPlanet		= {$lastPlanet};
+	fl_no_shortcuts = '{$LNG.fl_no_shortcuts}';
+	config 			= {$config|json_encode};
 
 	$('form').submit(function(e) {
 		$(':disabled').each(function(e) {
