@@ -39,16 +39,13 @@ function GetDistance() {
 		} 
 		else if (config.uni_type == 1) {
 			var max = Number(config.max_galaxy);
-			var diff = Math.abs(thisGalaxy - targetGalaxy);
 			var dist = 0;
-			if (thisGalaxy >= diff && targetGalaxy <= Math.abs(thisGalaxy - Math.ceil(targetGalaxy / 2))) {
-				dist = Math.min((targetGalaxy + Math.abs(thisGalaxy - max)), Math.abs(thisGalaxy - targetGalaxy));
-			}
-			else if (targetGalaxy >= thisGalaxy + Math.ceil(max / 2)) {
-				dist = Math.floor(max / 2) - (targetGalaxy - (thisGalaxy + Math.ceil(max / 2)));
+
+			if (Math.abs(thisGalaxy - targetGalaxy) < Math.ceil(max / 2)) {
+				dist = Math.abs(thisGalaxy - targetGalaxy);
 			}
 			else {
-				dist = Math.abs(thisGalaxy - targetGalaxy);
+				dist = Math.floor(max / 2) - (Math.abs(thisGalaxy - targetGalaxy) - Math.ceil(max / 2));
 			}
 			return dist * 20000;
 		}
@@ -61,14 +58,13 @@ function GetDistance() {
 		}
         else if (config.galaxy_type == 1) {
 			var max = Number(config.max_system);
-			var diff = Math.abs(thisSystem - targetSystem);
 			var dist = 0;
-			if (thisSystem >= diff && targetSystem <= Math.abs(thisSystem - Math.ceil(targetSystem / 2))) {
-				dist = Math.min((targetSystem + Math.abs(thisSystem - max)), Math.abs(thisSystem - targetSystem));
-			} else if (targetSystem >= Math.abs(thisSystem + Math.ceil(max / 2))) {
-				dist = Math.floor(max / 2) - (targetSystem - (thisSystem + Math.ceil(max / 2)));
-			} else {
+
+			if (Math.abs(thisSystem - targetSystem) < Math.ceil(max / 2)) {
 				dist = Math.abs(thisSystem - targetSystem);
+			}
+			else {
+				dist = Math.floor(max / 2) - (Math.abs(thisSystem - targetSystem) - Math.ceil(max / 2));
 			}
 			return dist * 95 + 2700;
 		} else {
