@@ -56,7 +56,8 @@ $LNG['banned_message'] = 'Sie wurden gebannt. Wenn Sie glauben, dass es sich dab
 //----------------------------------------------------------------------------//
 //TOPNAV
 $LNG['tn_player_title'] = 'Imperator';
-$LNG['tn_vacation_mode'] = 'Sie sind im Urlaubsmodus ';
+$LNG['tn_vacation_mode'] = 'Sie sind im Urlaubsmodus.<br><br>ACHTUNG: Der Urlaubsmodus wird nach 4 Wochen Inaktivität automatisch deaktiviert.';
+$LNG['tn_vacation_mode_until'] = 'Sie sind bis mindestens %s Uhr im Urlaubsmodus.<br><br>ACHTUNG: Der Urlaubsmodus wird nach 4 Wochen Inaktivität automatisch deaktiviert.';
 $LNG['tn_delete_mode'] = 'Ihr Account wird am %s automatisch gelöscht!';
 
 //----------------------------------------------------------------------------//
@@ -318,6 +319,7 @@ $LNG['fl_hold_time'] = 'Haltezeit';
 $LNG['fl_resources'] = 'Rohstoffe';
 $LNG['fl_max'] = 'max';
 $LNG['fl_hours'] = 'Stunde(n)';
+$LNG['fl_null'] = 'keine';
 $LNG['fl_resources_left'] = 'Verbleiben';
 $LNG['fl_all_resources'] = 'Max Rohstoffe Laden';
 $LNG['fl_empty_target'] = 'Keine Missionen vorhanden (Planet vorhanden?)';
