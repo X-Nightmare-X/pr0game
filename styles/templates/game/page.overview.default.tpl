@@ -93,7 +93,7 @@
                 {foreach $fleets as $index => $fleet}
                     <li style=" padding: 3px; ">
                         <span id="fleettime_{$index}" class="fleets" data-fleet-end-time="{$fleet.returntime}" data-fleet-time="{$fleet.resttime}">
-                            {pretty_fly_time({$fleet.resttime})}
+                            {getRestTimeFormat({$fleet.resttime})}
                         </span>
                         <td id="fleettime_{$index}">{$fleet.text}</td>
                     </li>

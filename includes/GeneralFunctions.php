@@ -176,7 +176,7 @@ function CalculateMaxPlanetFields($planet)
 {
     global $resource;
     return $planet['field_max'] + ($planet[$resource[33]] * FIELDS_BY_TERRAFORMER) + ($planet[$resource[41]]
-            * FIELDS_BY_MOONBASIS_LEVEL);
+        * FIELDS_BY_MOONBASIS_LEVEL);
 }
 
 function pretty_time($seconds)
@@ -212,6 +212,31 @@ function pretty_fly_time($seconds)
     $second = floor($seconds % 60);
 
     return sprintf('%02d:%02d:%02d', $hour, $minute, $second);
+}
+
+function getRestTimeFormat($seconds, $shorten = false) {
+    $timethresh = [31536000, 2592000, 604800, 86400, 3600, 60, 1]; // y,m,w,d,h,m,s
+    $ax = [0, 0, 0, 0, 0, 0, 0];
+    $fmt = ["Y", "M", "W", "d", "h", "m", "s"];
+    $longest = -1;
+    foreach ($timethresh as $t => $v) {
+        $inside = floor($seconds / $v);
+        if ($inside == 0 && $longest == $t - 1) {
+            $longest = $t;
+        }
+        $seconds -= $inside * $v;
+        $ax[$t] = $inside;
+    }
+    $rstr = "";
+    $longest = $longest + 1;
+    for ($i = $longest; $i < 7 && ($i - $longest < 3 || $shorten != true); $i++) {
+        if ($i > 3) {
+            $rstr = $rstr . " " . sprintf('%02d', $ax[$i]) . $fmt[$i] . " ";
+        } else {
+            $rstr = $rstr . " " . $ax[$i] . $fmt[$i] . " ";
+        }
+    }
+    return trim($rstr);
 }
 
 function GetStartAddressLink($FleetRow, $FleetType = '')
