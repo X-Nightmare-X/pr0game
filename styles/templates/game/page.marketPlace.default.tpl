@@ -123,7 +123,7 @@
 		<td class="resource_deuterium">{$FlyingFleetRow.fleet_resource_deuterium|number}</td>
 		<td class="total_value"></td>
 		<td class="ratio"></td>
-		<td data-time="{$FlyingFleetRow.end}">{pretty_fly_time({$FlyingFleetRow.end})}</td>
+		<td data-time="{$FlyingFleetRow.end}">{getRestTimeFormat({$FlyingFleetRow.end})}</td>
 		<td class="no-background no-border">
 			{if $FlyingFleetRow.fleet_wanted_resource_id == 1}
 			<img src="{$dpath}images/metal.gif"/>
@@ -217,7 +217,7 @@
 		<td>{$smarty.foreach.FlyingFleets.iteration}</td>
 		<td>{$FlyingFleetRow.fleet}</td>
 		<td class="ratio">{$FlyingFleetRow.fleet_ratio}</td>
-		<td data-time="{$FlyingFleetRow.end}">{pretty_fly_time({$FlyingFleetRow.end})}</td>
+		<td data-time="{$FlyingFleetRow.end}">{getRestTimeFormat({$FlyingFleetRow.end})}</td>
 		<td class="no-background no-border">
 			{if $FlyingFleetRow.fleet_wanted_resource_id == 1}
 			<img src="{$dpath}images/metal.gif"/>

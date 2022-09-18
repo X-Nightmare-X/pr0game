@@ -6,7 +6,7 @@ $(document).ready(function () {
       if (s <= 0) {
         $(this).text('-');
       } else {
-        $(this).text(GetRestTimeFormat(s));
+        $(this).text(getRestTimeFormat(s));
       }
     })
   }, 1000);
@@ -22,7 +22,7 @@ $(document).ready(function () {
         s = 0;
       }
 
-      $(this).text(GetRestTimeFormat(s));
+      $(this).text(getRestTimeFormat(s));
     });
 
   $('.timershort').each(function () {
@@ -35,7 +35,7 @@ $(document).ready(function () {
       s = 0;
     }
 
-    $(this).text(GetRestTimeFormat(s,true));
+    $(this).text(getRestTimeFormat(s,true));
   });
 
   }, 1000);

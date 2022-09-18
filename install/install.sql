@@ -195,7 +195,7 @@ CREATE TABLE `%PREFIX%config` (
   `factor_university` tinyint(3) unsigned NOT NULL DEFAULT '8',
   `max_fleets_per_acs` tinyint(3) unsigned NOT NULL DEFAULT '16',
   `max_participants_per_acs` tinyint(3) unsigned NOT NULL DEFAULT '5',
-  `debris_moon` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  `debris_moon` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `vmode_min_time` int(11) NOT NULL DEFAULT '259200',
   `gate_wait_time` int(11) NOT NULL DEFAULT '3600',
   `metal_start` int(11) unsigned NOT NULL DEFAULT '500',
@@ -221,6 +221,8 @@ CREATE TABLE `%PREFIX%config` (
   `disclamerMail` text NOT NULL,
   `disclamerNotice` text NOT NULL,
   `alliance_create_min_points` BIGINT UNSIGNED NOT NULL DEFAULT 0,
+  `uni_type` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `galaxy_type` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`uni`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -858,13 +860,13 @@ INSERT INTO `%PREFIX%config` (`uni`, `VERSION`, `uni_name`, `game_name`, `close_
 (1, '%VERSION%', '', 'SteemNova', '', '', '', '', '', '', '');
 
 INSERT INTO `%PREFIX%cronjobs` (`cronjobID`, `name`, `isActive`, `min`, `hours`, `dom`, `month`, `dow`, `class`, `nextTime`, `lock`) VALUES
-(NULL, 'referral', 1, '0,30', '*', '*', '*', '*', 'ReferralCronjob', 0, NULL),
+(NULL, 'referral', 0, '0,30', '*', '*', '*', '*', 'ReferralCronjob', 0, NULL),
 (NULL, 'statistic', 1, '0,30', '*', '*', '*', '*', 'StatisticCronjob', 0, NULL),
 (NULL, 'daily', 1, '25', '2', '*', '*', '*', 'DailyCronjob', 0, NULL),
 (NULL, 'cleaner', 1, '45', '2', '*', '*', '6', 'CleanerCronjob', 0, NULL),
 (NULL, 'inactive', 1, '30', '1', '*', '*', '0,3,6', 'InactiveMailCronjob', 0, NULL),
-(NULL, 'databasedump', 1, '30', '1', '*', '*', '1', 'DumpCronjob', 0, NULL),
-(NULL, 'tracking', 1, FLOOR(RAND() * 60), FLOOR(RAND() * 24), '*', '*', '0', 'TrackingCronjob', 0, NULL);
+(NULL, 'databasedump', 0, '30', '1', '*', '*', '1', 'DumpCronjob', 0, NULL),
+(NULL, 'tracking', 0, FLOOR(RAND() * 60), FLOOR(RAND() * 24), '*', '*', '0', 'TrackingCronjob', 0, NULL);
 
 INSERT INTO `%PREFIX%system` (`dbVersion`) VALUES
 (%DB_VERSION%);

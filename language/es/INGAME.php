@@ -58,7 +58,8 @@ $LNG['banned_message'] = 'Has sido expulsado. Si crees que se trata de un malent
 //----------------------------------------------------------------------------//
 //TOPNAV
 $LNG['tn_player_title'] = 'Emperador';
-$LNG['tn_vacation_mode'] = 'Estas en modo vacaciones ';
+$LNG['tn_vacation_mode'] = 'Estás en modo vacaciones.<br><br>AVISO: El modo vacaciones se desactiva automáticamente después de 4 semanas de inactividad.';
+$LNG['tn_vacation_mode_until'] = 'Estás en modo de vacaciones hasta al menos las %s en punto.<br><br>AVISO: El modo vacaciones se desactiva automáticamente después de 4 semanas de inactividad.';
 $LNG['tn_delete_mode'] = 'Tu cuenta se encuentra en modo de eliminación. La misma será borrada el %s.';
 
 //----------------------------------------------------------------------------//

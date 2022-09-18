@@ -9,7 +9,7 @@ function updateVars($reset_acs = true)
 	dataFlyTime = GetDuration();
 	dataFlyConsumption = GetConsumption();
 	dataFlyCargoSpace = storage();
-	if (lastPlanet < document.getElementsByName("planet")[0].value) {
+	if (config.max_planet < document.getElementsByName("planet")[0].value) {
 		document.getElementsByName("type")[0].value = 1;
 		document.getElementsByName("type")[0].disabled = true;
 	} else {
@@ -18,23 +18,62 @@ function updateVars($reset_acs = true)
 	refreshFormData();
 }
 
+/**
+ * Calculates the distance to the target
+ * 
+ * Changes needs to be done in includes/classes/class.FleetFuntions.php#getTargetDistance() aswell
+ * 
+ * @returns int
+ */
 function GetDistance() {
-	var thisGalaxy = data.planet.galaxy;
-	var thisSystem = data.planet.system;
-	var thisPlanet = data.planet.planet;
-	var targetGalaxy = document.getElementsByName("galaxy")[0].value;
-	var targetSystem = document.getElementsByName("system")[0].value;
-	var targetPlanet = document.getElementsByName("planet")[0].value;
+	var thisGalaxy = Number(data.planet.galaxy);
+	var thisSystem = Number(data.planet.system);
+	var thisPlanet = Number(data.planet.planet);
+	var targetGalaxy = Number(document.getElementsByName("galaxy")[0].value);
+	var targetSystem = Number(document.getElementsByName("system")[0].value);
+	var targetPlanet = Number(document.getElementsByName("planet")[0].value);
 
-	if (targetGalaxy - thisGalaxy != 0) {
-		return Math.abs(targetGalaxy - thisGalaxy) * 20000;
-	} else if (targetSystem - thisSystem != 0) {
-		return Math.abs(targetSystem - thisSystem) * 5 * 19 + 2700;
-	} else if (targetPlanet - thisPlanet != 0) {
-		return Math.abs(targetPlanet - thisPlanet) * 5 + 1000;
-	} else {
-		return 5;
+	if (thisGalaxy != targetGalaxy) {
+		if (config.uni_type == 2) {
+			return 20000;
+		} 
+		else if (config.uni_type == 1) {
+			var max = Number(config.max_galaxy);
+			var dist = 0;
+
+			if (Math.abs(thisGalaxy - targetGalaxy) < Math.ceil(max / 2)) {
+				dist = Math.abs(thisGalaxy - targetGalaxy);
+			}
+			else {
+				dist = Math.floor(max / 2) - (Math.abs(thisGalaxy - targetGalaxy) - Math.ceil(max / 2));
+			}
+			return dist * 20000;
+		}
+		else {
+			return Math.abs(thisGalaxy - targetGalaxy) * 20000;
+		}
+	} else if (thisSystem != targetSystem) {
+		if (config.galaxy_type == 2) {
+			return 95 + 2700;
+		}
+        else if (config.galaxy_type == 1) {
+			var max = Number(config.max_system);
+			var dist = 0;
+
+			if (Math.abs(thisSystem - targetSystem) < Math.ceil(max / 2)) {
+				dist = Math.abs(thisSystem - targetSystem);
+			}
+			else {
+				dist = Math.floor(max / 2) - (Math.abs(thisSystem - targetSystem) - Math.ceil(max / 2));
+			}
+			return dist * 95 + 2700;
+		} else {
+			return Math.abs(thisSystem - targetSystem) * 95 + 2700;
+		}
+	} else if (thisPlanet != targetPlanet) {
+		return Math.abs(thisSystem - targetSystem) * 5 + 1000;
 	}
+	return 5;
 }
 
 function GetDuration() {

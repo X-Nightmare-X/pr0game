@@ -17,7 +17,7 @@ function ShipyardInit() {
         document.getElementById('auftrumode').options[0].innerHTML = Amount.toString() + " " + Shipyard[0][0] + " " + bd_operating;
         var n = new Date();
         var s = Shipyard[0][2] - hanger_id - Math.round((n.getTime() - v.getTime()) / 1000);
-        $("#bxumode").html(Shipyard[0][0] + " " + GetRestTimeFormat(s));
+        $("#bxumode").html(Shipyard[0][0] + " " + getRestTimeFormat(s));
     }
 }
 
@@ -50,7 +50,7 @@ function BuildlistShipyard() {
         v = new Date();
         s = 0;
     }
-    $("#bx").html(Shipyard[0][0] + " " + GetRestTimeFormat(s));
+    $("#bx").html(Shipyard[0][0] + " " + getRestTimeFormat(s));
 }
 
 function ShipyardList() {
@@ -88,7 +88,7 @@ $(document).ready(function()
 			if(s == 0) {
 				window.location.href = "game.php?page=overview";
 			} else {
-				$(this).text(GetRestTimeFormat(s));
+				$(this).text(getRestTimeFormat(s));
 			}
 		});
 	}, 1000);

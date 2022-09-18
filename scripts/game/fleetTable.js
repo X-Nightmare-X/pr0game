@@ -5,7 +5,7 @@ $(function() {
 			if(s <= 0) {
 				$(this).text('-');
 			} else {
-				$(this).text(GetRestTimeFormat(s));
+				$(this).text(getRestTimeFormat(s));
 			}
 		})
 	}, 1000);
