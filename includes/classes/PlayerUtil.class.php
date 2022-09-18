@@ -681,4 +681,145 @@ class PlayerUtil
             ':universe' => $universe,
         ));
     }
+    public static function disable_vmode($USER = null, $PLANET = null){
+        
+        $db = Database::get();
+        if (!isset($USER)) {
+            $USER = $GLOBALS['USER'];
+            $PLANET = $GLOBALS['PLANET'];
+        }
+        
+        $sql = "SELECT urlaubs_start FROM %%USERS%% WHERE universe = :universe AND id = :userID;";
+        $umode_start = $db->selectSingle($sql, [
+            ':universe' => Universe::current(),
+            ':userID'   => $USER['id'],
+        ], 'urlaubs_start');
+        $umode_delta = TIMESTAMP - $umode_start;
+        if ($USER['urlaubs_until'] <= TIMESTAMP) {
+            if (!empty($USER['b_tech'])) {
+                $CurrentQueue       = unserialize($USER['b_tech_queue']);
+                foreach ($CurrentQueue as &$TechArray) {
+                    $TechArray[3] += $umode_delta;
+                }
+                $USER['b_tech_queue'] = serialize($CurrentQueue);
+                unset($CurrentQueue);
+                $sql = "UPDATE %%USERS%% SET
+                    b_tech = b_tech + :umode_delta,
+                    b_tech_queue = :b_tech_queue
+                    WHERE id = :userID;";
+                $db->update($sql, [
+                    ':umode_delta' => $umode_delta,
+                    ':userID'   => $USER['id'],
+                    ':b_tech_queue' => $USER['b_tech_queue'],
+                ]);
+                $USER['b_tech'] = $USER['b_tech'] + $umode_delta;
+            }
+            if (isset($PLANET) && !empty($PLANET['b_building'])) {
+                $PLANET['b_building'] = $PLANET['b_building'] + $umode_delta;
+                $CurrentQueue       = unserialize($PLANET['b_building_id']);
+                foreach ($CurrentQueue as &$BuildArray) {
+                    $BuildArray[3] += $umode_delta;
+                }
+                $PLANET['b_building_id'] = serialize($CurrentQueue);
+                unset($CurrentQueue);
+            }
+            $sql = "SELECT id, b_building, b_building_id FROM %%PLANETS%% WHERE id_owner = :userID AND destruyed = 0;";
+            $query = $db->select($sql, [
+                ':userID'   => $USER['id'],
+            ]);
+            
+            foreach ($query as $CPLANET) {
+                if (!empty($CPLANET['b_building'])) {
+                    $CurrentQueue       = unserialize($CPLANET['b_building_id']);
+                    foreach ($CurrentQueue as &$BuildArray) {
+                        $BuildArray[3] += $umode_delta;
+                    }
+                    $sql = "UPDATE %%PLANETS%% SET
+                    b_building = b_building + :umode_delta,
+                    b_building_id = :building_id
+                    WHERE id = :planetID;";
+                    $db->update($sql, [
+                        ':umode_delta' => $umode_delta,
+                        ':planetID'   => $CPLANET['id'],
+                        ':building_id' => serialize($CurrentQueue),
+                    ]);
+                }
+                
+                unset($CPLANET);
+            }
+
+            $sql = "UPDATE %%USERS%% SET
+						urlaubs_modus = '0',
+						urlaubs_until = '0',
+                        urlaubs_start = '0'
+						WHERE id = :userID;";
+            $db->update($sql, [':userID'   => $USER['id']]);
+
+            $sql = "UPDATE %%PLANETS%% SET
+						last_update = :timestamp,
+						metal_mine_porcent = '10',
+						crystal_mine_porcent = '10',
+						deuterium_sintetizer_porcent = '10',
+						solar_plant_porcent = '10',
+						fusion_plant_porcent = '10',
+						solar_satelit_porcent = '10'
+						WHERE id_owner = :userID;";
+            $db->update($sql, [
+                ':userID'       => $USER['id'],
+                ':timestamp'    => TIMESTAMP,
+            ]);
+            
+            $USER['urlaubs_modus'] = 0;
+            $PLANET['last_update'] = TIMESTAMP;
+
+            $sql = "SELECT * FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :id;";
+            $PlanetsRAW = $db->select($sql, [
+                ':universe' => Universe::current(),
+                ':id' => $USER['id'],
+            ]);
+            $PlanetRess	= new ResourceUpdate();
+            foreach ($PlanetsRAW as $CPLANET) {
+                $CPLANET['eco_hash'] = '';
+                list($USER, $CPLANET) = $PlanetRess->CalcResource($USER, $CPLANET, true);
+            }
+            $PLANET['eco_hash'] = '';
+            list($USER, $PLANET) = $PlanetRess->CalcResource($USER, $PLANET, true);
+        }
+    }
+    public static function enable_vmode($USER = null, $PLANET = null){
+        $db = Database::get();
+        if (!isset($USER)) {
+            $USER = $GLOBALS['USER'];
+            $PLANET = $GLOBALS['PLANET'];
+        }
+       
+        $sql = "UPDATE %%USERS%% SET urlaubs_modus = '1', urlaubs_until = :time, urlaubs_start = :startTime"
+                    . " WHERE id = :userID";
+        $db->update($sql, [
+            ':userID'       => $USER['id'],
+            ':time'         => (TIMESTAMP + Config::get()->vmode_min_time),
+            ':startTime'    => TIMESTAMP,
+        ]);
+
+        $sql = "UPDATE %%PLANETS%% SET energy_used = '0', energy = '0', metal_mine_porcent = '0',"
+            . " crystal_mine_porcent = '0', deuterium_sintetizer_porcent = '0', solar_plant_porcent = '0',"
+            . " fusion_plant_porcent = '0', solar_satelit_porcent = '0', metal_perhour = '0',"
+            . " crystal_perhour = '0', deuterium_perhour = '0' WHERE id_owner = :userID;";
+        $db->update($sql, [
+            ':userID'   => $USER['id'],
+        ]);
+        if(isset($PLANET)){
+            $PLANET['energy_used'] = '0';
+            $PLANET['energy'] = '0';
+            $PLANET['metal_mine_porcent'] = '0';
+            $PLANET['crystal_mine_porcent'] = '0';
+            $PLANET['deuterium_sintetizer_porcent'] = '0';
+            $PLANET['solar_plant_porcent'] = '0';
+            $PLANET['fusion_plant_porcent'] = '0';
+            $PLANET['solar_satelit_porcent'] = '0';
+            $PLANET['metal_perhour'] = '0';
+            $PLANET['crystal_perhour'] = '0';
+            $PLANET['deuterium_perhour'] = '0';
+        }
+    }
 }

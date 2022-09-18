@@ -104,6 +104,13 @@ class ShowFleetStep1Page extends AbstractGamePage
             'speedSelect'   => FleetFunctions::$allowedSpeed,
             'typeSelect'    => [1 => $LNG['type_planet_1'], 2 => $LNG['type_planet_2'], 3 => $LNG['type_planet_3']],
             'fleetdata'     => $FleetData,
+            'config'        => [
+                'uni_type'     => Config::get()->uni_type,
+                'galaxy_type'  => Config::get()->galaxy_type,
+                'max_galaxy'    => Config::get()->max_galaxy,
+                'max_system'    => Config::get()->max_system,
+                'max_planets'    => Config::get()->max_planets,
+            ]
         ]);
 
         //check if all ships are available

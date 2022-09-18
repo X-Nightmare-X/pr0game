@@ -270,7 +270,7 @@ $LNG['sys_expe_back_home_ress'] = 'Флот доставил груз: %s %s, %s
 $LNG['sys_expe_back_home_ships_flound'] = 'Были найдены следующие корабли:';
 $LNG['sys_expe_back_home_ships_lost'] = 'Были потеряны следующие корабли:';
 $LNG['sys_mess_transport'] = 'Транспортировка';
-$LNG['sys_tran_mess_owner'] = 'Ваш флот достиг %s %s и доставил груз: %s %s, %s %s и %s %s.';
+$LNG['sys_tran_mess_owner'] = 'Ваш флот из %s %s достиг %s %s и доставил груз: %s %s, %s %s и %s %s.';
 $LNG['sys_tran_mess_user'] = 'Мирный флот из %s %s достиг %s %s и доставил груз: %s %s, %s %s и %s %s.';
 
 $LNG['sys_mess_fleetback'] = 'Возвращение флота';

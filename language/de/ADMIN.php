@@ -349,7 +349,26 @@ $LNG['se_per_hour'] = 'pro Stunde';
 $LNG['se_metal_production'] = 'Basisproduktion Metall';
 $LNG['se_crystal_production'] = 'Basisproduktion Kristall';
 $LNG['se_deuterium_production'] = 'Basisproduktion Deuterium';
-$LNG['se_several_parameters'] = 'Parameters several';
+$LNG['se_galaxy_parameters'] = 'Galaxie-Einstellungen';
+$LNG['se_uni_type'] = 'Uni-Typ';
+$LNG['se_uni_type_info'] = '<TABLE>'
+    . '<tr><td>Linear-Uni</td><td>Abstand zur Galaxie 1 wird mit jeder Galaxie größer.</td></tr>'
+    . '<tr><td>Ring-Uni</td><td>Letzte und erste Galaxie sind verbunden. Abstand der hinteren Galaxien zur Ersten wird so veringert.</td></tr>'
+    . '<tr><td>Kugel-Uni</td><td>Jede Galaxie ist gleich weit entfernt zu allen anderen.</td></tr>'
+    . '</TABLE>';
+$LNG['se_line_uni'] = 'Linear-Uni (Standard)';
+$LNG['se_ring_uni'] = 'Ring-Uni';
+$LNG['se_sphere_uni'] = 'Kugel-Uni';
+$LNG['se_galaxy_type'] = 'Galaxien-Typ';
+$LNG['se_galaxy_type_info'] = '<TABLE>'
+    . '<tr><td>Linear-Galaxien</td><td>Abstand zum System 1 wird mit jedem System der Galaxie größer.</td></tr>'
+    . '<tr><td>Ring-Galaxien</td><td>Letztes und erstes System einer Galaxie sind verbunden. Abstand der hinteren Systeme zum Ersten wird so veringert.</td></tr>'
+    . '<tr><td>Kugel-Galaxien</td><td>Jedes System in der gleichen Galaxie ist gleich weit entfernt zu allen anderen.</td></tr>'
+    . '</TABLE>';
+$LNG['se_line_galaxy'] = 'Linear-Galaxien (Standard)';
+$LNG['se_ring_galaxy'] = 'Ring-Galaxien';
+$LNG['se_sphere_galaxy'] = 'Kugel-Galaxien';
+$LNG['se_several_parameters'] = 'Diverse Parameter';
 $LNG['se_title_admins_protection'] = 'Wenn aktiviert, wird Administratoren und Moderratoren die Möglichkeit gegeben,'
     . ' sie nicht angreifbar zu machen.';
 $LNG['se_admin_protection'] = 'Adminschutz';
@@ -1008,7 +1027,7 @@ $LNG['modul_4'] = 'Bauen - Flotten';
 $LNG['modul_5'] = 'Bauen - Verteidigung';
 $LNG['modul_6'] = 'Buddylist';
 $LNG['modul_9'] = 'Flotte';
-$LNG['modul_10'] = 'Flotte - Handler';
+$LNG['modul_10'] = 'Flotte - Event-Handler';
 $LNG['modul_41'] = 'Flotten Shourtcuts';
 $LNG['modul_11'] = 'Galaxie';
 $LNG['modul_12'] = 'Hall of Fame';
@@ -1020,17 +1039,21 @@ $LNG['modul_42'] = 'Mission - AKS';
 $LNG['modul_1'] = 'Mission - Angreifen';
 $LNG['modul_30'] = 'Mission - Expedition';
 $LNG['modul_33'] = 'Mission - Halten';
+$LNG['modul_43'] = 'Mission - Handeln';
+$LNG['modul_40'] = 'Mission - Raketenangriff';
 $LNG['modul_35'] = 'Mission - Kolonisieren';
 $LNG['modul_24'] = 'Mission - Spionieren';
 $LNG['modul_36'] = 'Mission - Stationieren';
 $LNG['modul_34'] = 'Mission - Transport';
+$LNG['modul_44'] = 'Mission - Transferieren';
 $LNG['modul_29'] = 'Mission - Zerstören';
 $LNG['modul_16'] = 'Nachrichten';
 $LNG['modul_17'] = 'Notizen';
+$LNG['modul_45'] = 'Markt - Ressourcen';
+$LNG['modul_46'] = 'Markt - Flotte';
 $LNG['modul_19'] = 'Phalanx';
 $LNG['modul_20'] = 'Playercard';
 $LNG['modul_21'] = 'Pranger';
-$LNG['modul_40'] = 'Raketenangriff';
 $LNG['modul_22'] = 'Rekorde';
 $LNG['modul_23'] = 'Rohstoffe';
 $LNG['modul_38'] = 'Schrotthändler';

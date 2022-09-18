@@ -63,7 +63,8 @@ $LNG['banned_message'] = 'Foi banido. Se pensa que isto é um mal-entendido, esc
 //----------------------------------------------------------------------------//
 // Topnav
 $LNG['tn_player_title'] = 'Imperador';
-$LNG['tn_vacation_mode'] = 'Atualmente estás em Modo de Férias';
+$LNG['tn_vacation_mode'] = 'Encontra-se em modo de férias.<br>>br>PLEASE NOTA: O modo de férias é automaticamente desactivado após 4 semanas de inactividade.';
+$LNG['tn_vacation_mode_until'] = 'Está em modo de férias até, pelo menos, às % horas.<br>>br>PLEASE NOTA: O modo de férias é automaticamente desactivado após 4 semanas de inactividade.';
 $LNG['tn_delete_mode'] = 'A conta às %s será automaticamente apagada!';
 
 //----------------------------------------------------------------------------//
@@ -120,6 +121,8 @@ $LNG['ov_news'] = 'Noticias';
 $LNG['ov_place'] = 'Posição';
 $LNG['ov_of'] = 'de';
 $LNG['ov_planet'] = 'Planeta';
+$LNG['ov_moon'] = 'Lua';
+$LNG['ov_planets'] = 'Planetas e luas';
 $LNG['ov_server_time'] = 'Tempo de Servidor ';
 $LNG['ov_events'] = 'Actividades';
 $LNG['ov_diameter'] = 'Diâmetro';
@@ -301,6 +304,7 @@ $LNG['fl_acs_title'] = 'Ataque de Aliança';
 $LNG['fl_hold_time'] = 'Em órbita';
 $LNG['fl_resources'] = 'Recursos';
 $LNG['fl_max'] = 'max';
+$LNG['fl_null'] = 'nenhuma';
 $LNG['fl_hours'] = 'Horas';
 $LNG['fl_resources_left'] = 'Capacidade Desponível';
 $LNG['fl_all_resources'] = 'Todos os recursos';
@@ -872,7 +876,7 @@ $LNG['op_error'] = 'Erro';
 $LNG['op_cant_activate_vacation_mode'] = 'Você não pode ativar o modo férias enquanto estiver usando a frota.';
 $LNG['op_password_changed'] = 'Password alterada';
 $LNG['op_username_changed'] = 'Username alterado';
-$LNG['op_options_changed'] = 'Opções alteradas';
+$LNG['op_options_changed'] = 'Definições guardadas.';
 $LNG['op_options_changed_vacation'] = 'Definições guardadas.<br>>br>PLEASE NOTA: O modo de férias é automaticamente desactivado após 4 semanas de inactividade.';
 $LNG['op_vacation_mode_active_message'] = 'O modo de férias está activo e acabará em: ';
 $LNG['op_end_vacation_mode'] = 'Finalizar periodo de férias';

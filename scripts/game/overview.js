@@ -6,7 +6,7 @@ $(document).ready(function () {
       if (s <= 0) {
         $(this).text('-');
       } else {
-        $(this).text(GetRestTimeFormat(s));
+        $(this).text(getRestTimeFormat(s));
       }
     })
   }, 1000);
@@ -22,7 +22,21 @@ $(document).ready(function () {
         s = 0;
       }
 
-      $(this).text(GetRestTimeFormat(s));//macht die zeitformatierung kaputt
+      $(this).text(getRestTimeFormat(s));
     });
+
+  $('.timershort').each(function () {
+    var s = $(this).data('time')
+    if (!umode) {
+      s = s - (serverTime.getTime() - startTime) / 1000;
+    }
+
+    if (s <= 0) {
+      s = 0;
+    }
+
+    $(this).text(getRestTimeFormat(s,true));
+  });
+
   }, 1000);
 });

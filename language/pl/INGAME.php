@@ -59,7 +59,8 @@ $LNG['banned_message'] = 'Zostałeś zbanowany. Jeśli uważasz, że to nieporoz
 //----------------------------------------------------------------------------//
 //TOPNAV
 $LNG['tn_player_title'] = 'Imperator';
-$LNG['tn_vacation_mode'] = 'Jesteś w trybie urlopu ';
+$LNG['tn_vacation_mode'] = 'Jesteś w trybie wakacyjnym.<br><br>Uwaga: Tryb wakacyjny jest automatycznie wyłączany po 4 tygodniach nieaktywności.';
+$LNG['tn_vacation_mode_until'] = 'Jesteś w trybie wakacyjnym co najmniej do godziny %s.<br><br>Uwaga: Tryb wakacyjny jest automatycznie wyłączany po 4 tygodniach nieaktywności.';
 $LNG['tn_delete_mode'] = 'Twoje konto zostanie automatycznie usunięte %s ';
 
 //----------------------------------------------------------------------------//
@@ -117,6 +118,8 @@ $LNG['ov_news'] = 'Nowości';
 $LNG['ov_place'] = 'Miejsce';
 $LNG['ov_of'] = 'z';
 $LNG['ov_planet'] = 'Planeta';
+$LNG['ov_moon'] = 'Księżyc';
+$LNG['ov_planets'] = 'Planety i księżyce';
 $LNG['ov_server_time'] = 'Czas na serwerze ';
 $LNG['ov_events'] = 'Nowości';
 $LNG['ov_diameter'] = 'Średnica';
@@ -304,6 +307,7 @@ $LNG['fl_acs_title'] = 'ACS Atak';
 $LNG['fl_hold_time'] = 'Czas postoju';
 $LNG['fl_resources'] = 'Zasoby';
 $LNG['fl_max'] = 'max';
+$LNG['fl_null'] = 'brak';
 $LNG['fl_hours'] = 'Godzina(y)';
 $LNG['fl_resources_left'] = 'Pozostało';
 $LNG['fl_all_resources'] = 'Załaduj max zasobów';
@@ -873,7 +877,7 @@ $LNG['op_error'] = 'Błąd';
 $LNG['op_cant_activate_vacation_mode'] = 'Nie możesz aktywować trybu urlopowego podczas korzystania z floty.';
 $LNG['op_password_changed'] = 'Hasło zmienione<br><a href="index.php" target="_top">Wróć</a>';
 $LNG['op_username_changed'] = 'Nazwa użytkownika zmieniona<br><a href="index.php" target="_top">Wróć</a>';
-$LNG['op_options_changed'] = 'Zmiany zapisano.<br><a href="game.php?page=options">Wróć</a>';
+$LNG['op_options_changed'] = 'Ustawienia zapisane.';
 $LNG['op_options_changed_vacation'] = 'Ustawienia zapisane.<br><br>Uwaga: Tryb wakacyjny jest automatycznie wyłączany po 4 tygodniach nieaktywności.';
 $LNG['op_vacation_mode_active_message'] = 'Urlop będzie można zakończyć nie wcześniej niż: ';
 $LNG['op_end_vacation_mode'] = 'Koniec Urlopu';

@@ -49,6 +49,7 @@ function ShowModulePage()
             'name'  => $LNG['modul_' . $ID],
             'state' => isset($module[$ID]) ? $module[$ID] : 1,
         ];
+        $module[$ID] = $Modules[$ID]['state'];
     }
 
     asort($Modules);

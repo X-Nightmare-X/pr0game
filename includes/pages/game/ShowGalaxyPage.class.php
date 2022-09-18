@@ -43,15 +43,29 @@ class ShowGalaxyPage extends AbstractGamePage
 		$type			= HTTP::_GP('type', 1);
 		$current		= HTTP::_GP('current', 0);
 
-        if (!empty($galaxyLeft))
-            $galaxy	= max($galaxy - 1, 1);
-        elseif (!empty($galaxyRight))
-            $galaxy	= min($galaxy + 1, $config->max_galaxy);
+        if (!empty($galaxyLeft)) {
+			$galaxy	= $galaxy - 1;
+			if ($galaxy < 1) {
+				$galaxy = $config->max_galaxy;
+			}
+		} elseif (!empty($galaxyRight)) {
+			$galaxy	= $galaxy + 1;
+			if ($galaxy > $config->max_galaxy) {
+				$galaxy = 1;
+			}
+		}
 
-        if (!empty($systemLeft))
-            $system	= max($system - 1, 1);
-        elseif (!empty($systemRight))
-            $system	= min($system + 1, $config->max_system);
+		if (!empty($systemLeft)) {
+			$system	= $system - 1;
+			if ($system < 1) {
+				$system = $config->max_system;
+			}
+		} elseif (!empty($systemRight)) {
+			$system	= $system + 1;
+			if ($system > $config->max_system) {
+				$system = 1;
+			}
+		}
 
 		if ($galaxy != $PLANET['galaxy'] || $system != $PLANET['system'])
 		{

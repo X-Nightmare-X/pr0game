@@ -354,6 +354,25 @@ $LNG['se_per_hour'] = 'per hour';
 $LNG['se_metal_production'] = 'Production of Metal Basic';
 $LNG['se_crystal_production'] = 'Production of Crystal Basic';
 $LNG['se_deuterium_production'] = 'Production of Deuterium Basic';
+$LNG['se_galaxy_parameters'] = 'Galaxy settings';
+$LNG['se_uni_type'] = 'Universe type';
+$LNG['se_uni_type_info'] = '<TABLE>'
+    . '<tr><td>Linear universe</td><td>Distance to galaxy 1 increases with each galaxy.</td></tr>'
+    . '<tr><td>Ring universe</td><td>Last and first galaxy are connected. Distance of the rear galaxies to the first one is reduced in this way.</td></tr>'
+    . '<tr><td>Sphere universe</td><td>Each galaxy is equally distant to all others.</td></tr>'
+    . '</TABLE>';
+$LNG['se_line_uni'] = 'Linear universe (default)';
+$LNG['se_ring_uni'] = 'Ring universe';
+$LNG['se_sphere_uni'] = 'Sphere universe';
+$LNG['se_galaxy_type'] = 'Galaxies type';
+$LNG['se_galaxy_type_info'] = '<TABLE>'
+    . '<tr><td>Linear galaxies</td><td>Distance to system 1 increases with each system of the galaxy.</td></tr>'
+    . '<tr><td>Ring galaxies</td><td>Last and first system of a galaxy are connected. Distance of the rear systems to the first one is reduced in this way.</td></tr>'
+    . '<tr><td>Sphere galaxies</td><td>Each system in the same galaxy is equidistant from all others.</td></tr>'
+    . '</TABLE>';
+$LNG['se_line_galaxy'] = 'Linear galaxies (default)';
+$LNG['se_ring_galaxy'] = 'Ring galaxies';
+$LNG['se_sphere_galaxy'] = 'Sphere galaxies';
 $LNG['se_several_parameters'] = 'Other Parameters';
 $LNG['se_title_admins_protection'] = 'When this function is enabled, administrators or moderators can not be attacked';
 $LNG['se_admin_protection'] = 'Admin Game Protection';
@@ -1009,25 +1028,30 @@ $LNG['modul_4'] = 'Construction - Fleets';
 $LNG['modul_5'] = 'Building - Defense';
 $LNG['modul_6'] = 'Buddylist';
 $LNG['modul_9'] = 'Fleet';
-$LNG['modul_10'] = 'Fleet - Handler';
-$LNG['modul_40'] = 'Fleets Shourtcuts';
+$LNG['modul_10'] = 'Fleet - Event-Handler';
+$LNG['modul_41'] = 'Fleets Shourtcuts';
 $LNG['modul_11'] = 'Galaxy';
 $LNG['modul_12'] = 'Hall of Fame';
 $LNG['modul_13'] = 'Trader';
 $LNG['modul_14'] = 'Info';
 $LNG['modul_15'] = 'Empire';
 $LNG['modul_32'] = 'Mission - Recycle';
+$LNG['modul_42'] = 'Mission - ACS';
 $LNG['modul_1'] = 'Mission - Attack';
 $LNG['modul_30'] = 'Mission - Expedition';
 $LNG['modul_33'] = 'Mission - Hold';
+$LNG['modul_43'] = 'Mission - Trade';
+$LNG['modul_40'] = 'Mission - Rocket-Attack';
 $LNG['modul_35'] = 'Mission - Colonize';
 $LNG['modul_24'] = 'Mission - Spy';
 $LNG['modul_36'] = 'Mission - Deploy';
 $LNG['modul_34'] = 'Mission - Transport';
+$LNG['modul_44'] = 'Mission - Transfer';
 $LNG['modul_29'] = 'Mission - Destroy';
-$LNG['modul_42'] = 'Mission - ACS';
 $LNG['modul_16'] = 'News';
 $LNG['modul_17'] = 'Notes';
+$LNG['modul_45'] = 'Market - Ressources';
+$LNG['modul_46'] = 'Market - Fleet';
 $LNG['modul_19'] = 'Phalanx';
 $LNG['modul_20'] = 'Player Card';
 $LNG['modul_21'] = 'Banned';
@@ -1039,6 +1063,7 @@ $LNG['modul_37'] = 'Statistics Banner';
 $LNG['modul_26'] = 'Search';
 $LNG['modul_27'] = 'Support Tickets';
 $LNG['modul_28'] = 'Techtree';
+
 $LNG['mod_module'] = 'Modules';
 $LNG['mod_info'] = 'Modules in the Game';
 $LNG['mod_active'] = 'Active';

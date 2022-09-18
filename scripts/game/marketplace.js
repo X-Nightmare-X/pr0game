@@ -4,7 +4,7 @@ function Refrash() {
 	var now = new Date().getTime() / 1000;
 	$("[data-time]").each( function () {
 		var d = $(this).attr('data-time');
-		$(this).text(GetRestTimeFormat(d-(now-start)));
+		$(this).text(getRestTimeFormat(d-(now-start)));
 	});
 }
 

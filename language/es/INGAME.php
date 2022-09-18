@@ -58,7 +58,8 @@ $LNG['banned_message'] = 'Has sido expulsado. Si crees que se trata de un malent
 //----------------------------------------------------------------------------//
 //TOPNAV
 $LNG['tn_player_title'] = 'Emperador';
-$LNG['tn_vacation_mode'] = 'Estas en modo vacaciones ';
+$LNG['tn_vacation_mode'] = 'Estás en modo vacaciones.<br><br>AVISO: El modo vacaciones se desactiva automáticamente después de 4 semanas de inactividad.';
+$LNG['tn_vacation_mode_until'] = 'Estás en modo de vacaciones hasta al menos las %s en punto.<br><br>AVISO: El modo vacaciones se desactiva automáticamente después de 4 semanas de inactividad.';
 $LNG['tn_delete_mode'] = 'Tu cuenta se encuentra en modo de eliminación. La misma será borrada el %s.';
 
 //----------------------------------------------------------------------------//
@@ -115,6 +116,8 @@ $LNG['ov_news'] = 'Novedades';
 $LNG['ov_place'] = 'Lugar';
 $LNG['ov_of'] = 'de';
 $LNG['ov_planet'] = 'Planeta';
+$LNG['ov_moon'] = 'Luna';
+$LNG['ov_planets'] = 'Planetas y lunas';
 $LNG['ov_server_time'] = 'Hora del servidor ';
 $LNG['ov_events'] = 'Eventos';
 $LNG['ov_diameter'] = 'Di&aacute;metro';
@@ -296,6 +299,7 @@ $LNG['fl_acs_title'] = 'Ataques grupales';
 $LNG['fl_hold_time'] = 'Tiempo de estacionamiento';
 $LNG['fl_resources'] = 'Recursos';
 $LNG['fl_max'] = 'max';
+$LNG['fl_null'] = 'pas de';
 $LNG['fl_hours'] = 'Horas';
 $LNG['fl_resources_left'] = 'Restante';
 $LNG['fl_all_resources'] = 'Capacidad máxima de recursos';
