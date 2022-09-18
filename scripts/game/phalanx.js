@@ -8,7 +8,7 @@ function FleetTime() {
 		if(s <= 0) {
 			$(this).text('-');
 		} else {
-			$(this).text(GetRestTimeFormat(s));
+			$(this).text(getRestTimeFormat(s));
 		}
 	});
 	window.setTimeout('FleetTime()', 1000);

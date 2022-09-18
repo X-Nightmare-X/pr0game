@@ -20,9 +20,9 @@ function Buildlist() {
 		}, 1000);
 		return;
 	}
-	document.title = GetRestTimeFormat(rest) + ' - ' + buildname + ' - ' + Gamename;
+	document.title = getRestTimeFormat(rest) + ' - ' + buildname + ' - ' + Gamename;
 	
-	$('#time').text(GetRestTimeFormat(rest));
+	$('#time').text(getRestTimeFormat(rest));
 }
 
 $(document).ready(function() {
