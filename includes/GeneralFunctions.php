@@ -214,7 +214,8 @@ function pretty_fly_time($seconds)
     return sprintf('%02d:%02d:%02d', $hour, $minute, $second);
 }
 
-function getRestTimeFormat($seconds, $shorten = false) {
+function getRestTimeFormat($seconds, $shorten = false)
+{
     $timethresh = [31536000, 2592000, 604800, 86400, 3600, 60, 1]; // y,m,w,d,h,m,s
     $ax = [0, 0, 0, 0, 0, 0, 0];
     $fmt = ["Y", "M", "W", "d", "h", "m", "s"];
