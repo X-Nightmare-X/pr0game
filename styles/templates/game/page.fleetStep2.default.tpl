@@ -98,8 +98,14 @@
 					</td>
 					<td>
 						<select name="markettype">
-							<option value="0" selected>{$LNG.fl_mt_resources}</option>
-							<option value="1">{$LNG.fl_mt_fleet}</option>
+							{if isModuleAvailable($smarty.const.MODULE_MARKET_TRADE) && isModuleAvailable($smarty.const.MODULE_MARKET_TRANSFER)}
+								<option value="0" selected>{$LNG.fl_mt_resources}</option>
+								<option value="1">{$LNG.fl_mt_fleet}</option>
+							{elseif isModuleAvailable($smarty.const.MODULE_MARKET_TRADE)}
+								<option value="0" selected>{$LNG.fl_mt_resources}</option>
+							{elseif isModuleAvailable($smarty.const.MODULE_MARKET_TRANSFER)}
+								<option value="1" selected>{$LNG.fl_mt_fleet}</option>
+							{/if}
 						</select>
 					</td>
 				</tr>
