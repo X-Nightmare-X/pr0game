@@ -60,7 +60,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
     public function TargetEvent()
     {
-        global $pricelist, $reslist, $resource, $USER;
+        global $pricelist, $reslist, $resource;
 
         $db = Database::get();
 
@@ -189,6 +189,12 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         $template = new template();
 
+        require_once 'includes/classes/class.theme.php';
+        $THEME = new Theme();
+        if (!empty($senderUser['dpath'])) {
+            $THEME->setUserTheme($senderUser['dpath']);
+        }
+
         $template->caching = true;
         $template->compile_id = $senderUser['lang'];
         $template->loadFilter('output', 'trimwhitespace');
@@ -200,6 +206,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             'targetChance'  => $targetChance,
             'spyChance'     => $spyChance,
             'totalShipDefCount' => $totalShipDefCount,
+            'dpath'         => $THEME->getTheme(),
             'isBattleSim'   => ENABLE_SIMULATOR_LINK == true && isModuleAvailable(MODULE_SIMULATOR),
             'title'         => sprintf(
                 $LNG['sys_mess_head'],
