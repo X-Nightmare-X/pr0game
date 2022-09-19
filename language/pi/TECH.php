@@ -112,7 +112,7 @@ $LNG['tech'] = array(
     124 => 'Kolonisierungskunde',
     131 => 'Sägewerkzeug',
     132 => 'Spitzhackenschmiede',
-    133 => 'Braukunde',
+    133 => 'Destillationskunde',
     199 => 'Festungsforschung',
 
     200 => 'Schiffe',
