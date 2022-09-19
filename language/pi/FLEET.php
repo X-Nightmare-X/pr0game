@@ -183,7 +183,7 @@ $LNG['sys_expe_nothing_2'] = 'Deine Expedition hat wunderschöne Bilder eines Ge
 $LNG['sys_expe_nothing_3'] = 'Ein seltsamer Parasit legte kurz nach Verlassen des Hafens die Ruder'
     . ' lahm. Dies führte dazu, dass die gesamte Expeditionsflotte die ganze Zeit im Kreis segelte. Überflüssig zu sagen,'
     . ' dass die Expedition nicht besonders erfolgreich war.';
-$LNG['sys_expe_nothing_4'] = 'Eine unbekannte Droge aus die euch ein seltsamer Einheimischer verkauft hat, hat dafür gesorgt, dass sämtliche'
+$LNG['sys_expe_nothing_4'] = 'Eine unbekannte Droge die euch ein seltsamer Einheimischer verkauft hat, hat dafür gesorgt, dass sämtliche'
     . ' Expeditionsmitglieder tagelang auf hypnotischen Strukturen im Holz starrten. Als endlich die'
     . ' Meisten wieder klar im Kopf geworden waren, musste die Expedition aufgrund von akutem Rum-Mangel'
     . ' allerdings abgebrochen werden.';
@@ -273,7 +273,7 @@ $LNG['sys_expe_back_home_ress'] = 'Sie haben %s %s, %s %s und %s %s mitgebracht.
 $LNG['sys_expe_back_home_ships_flound'] = 'Es wurden folgende Schiffe gefunden:';
 $LNG['sys_expe_back_home_ships_lost'] = 'Es gingen folgende Schiffe verloren:';
 $LNG['sys_mess_transport'] = 'Transportbericht';
-$LNG['sys_tran_mess_owner'] = 'Eine deiner Flotten erreicht den Hafen %s %s und liefert %s %s, %s %s und %s %s.';
+$LNG['sys_tran_mess_owner'] = 'Eine deiner Flotten von %s %s erreicht den Hafen %s %s und liefert %s %s, %s %s und %s %s.';
 $LNG['sys_tran_mess_user'] = 'Eine friedliche Flotte von %s %s erreicht %s %s und liefert %s %s, %s %s und %s %s.';
 $LNG['sys_mess_fleetback'] = 'Flottenrückkehr';
 $LNG['sys_tran_mess_back'] = 'Eine deiner Flotten kehrt zum Hafen %s %s zurück.';

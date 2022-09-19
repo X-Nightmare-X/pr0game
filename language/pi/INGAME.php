@@ -55,7 +55,7 @@ $LNG['banned_message'] = 'Sie wurden gebannt. Wenn Sie glauben, dass es sich dab
 
 //----------------------------------------------------------------------------//
 //TOPNAV
-$LNG['tn_player_title'] = 'Imperator';
+$LNG['tn_player_title'] = 'Admiral';
 $LNG['tn_vacation_mode'] = 'Sie sind im Urlaubsmodus.<br><br>ACHTUNG: Der Urlaubsmodus wird nach 4 Wochen Inaktivität automatisch deaktiviert.';
 $LNG['tn_vacation_mode_until'] = 'Sie sind bis mindestens %s Uhr im Urlaubsmodus.<br><br>ACHTUNG: Der Urlaubsmodus wird nach 4 Wochen Inaktivität automatisch deaktiviert.';
 $LNG['tn_delete_mode'] = 'Ihr Account wird am %s automatisch gelöscht!';
@@ -73,7 +73,7 @@ $LNG['lm_defenses'] = 'Verteidigung';
 $LNG['lm_resources'] = 'Rohstoffe';
 $LNG['lm_fleettrader'] = 'Schrotthändler';
 $LNG['lm_technology'] = 'Technologie';
-$LNG['lm_messages'] = 'Nachrichten';
+$LNG['lm_messages'] = 'Flaschenpost';
 $LNG['lm_alliance'] = 'Allianz';
 $LNG['lm_buddylist'] = 'Buddylist';
 $LNG['lm_notes'] = 'Notizen';
