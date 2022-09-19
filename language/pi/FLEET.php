@@ -183,7 +183,7 @@ $LNG['sys_expe_nothing_2'] = 'Deine Expedition hat wunderschöne Bilder eines Ge
 $LNG['sys_expe_nothing_3'] = 'Ein seltsamer Parasit legte kurz nach Verlassen des Hafens die Ruder'
     . ' lahm. Dies führte dazu, dass die gesamte Expeditionsflotte die ganze Zeit im Kreis segelte. Überflüssig zu sagen,'
     . ' dass die Expedition nicht besonders erfolgreich war.';
-$LNG['sys_expe_nothing_4'] = 'Eine unbekannte Droge aus die euch ein seltsamer Einheimischer verkauft hat, hat dafür gesorgt, dass sämtliche'
+$LNG['sys_expe_nothing_4'] = 'Eine unbekannte Droge die euch ein seltsamer Einheimischer verkauft hat, hat dafür gesorgt, dass sämtliche'
     . ' Expeditionsmitglieder tagelang auf hypnotischen Strukturen im Holz starrten. Als endlich die'
     . ' Meisten wieder klar im Kopf geworden waren, musste die Expedition aufgrund von akutem Rum-Mangel'
     . ' allerdings abgebrochen werden.';

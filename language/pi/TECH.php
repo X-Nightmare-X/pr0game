@@ -149,7 +149,7 @@ $LNG['tech'] = array(
     411 => 'Orbitale Verteidigungsplattform',
 
     500 => 'Bomben',
-    502 => 'Löschbombe',
+    502 => 'Löschvorrichtung',
     503 => 'Brandbombe',
 
     900 => 'Rohstoffe',
