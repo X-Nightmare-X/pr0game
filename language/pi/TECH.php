@@ -89,7 +89,7 @@ $LNG['tech'] = array(
      33 => 'Pionierstation',
      34 => 'Anlegestelle',
      40 => 'Inselgebäude',
-     41 => 'Basisstützpunkt',
+     41 => 'Piratenbasis',
      42 => 'Krähennest',
      43 => 'Sprungstrudel',
      44 => 'Bombenlager',
@@ -112,7 +112,7 @@ $LNG['tech'] = array(
     124 => 'Kolonisierungskunde',
     131 => 'Sägewerkzeug',
     132 => 'Spitzhackenschmiede',
-    133 => 'Braukunde',
+    133 => 'Destillationskunde',
     199 => 'Festungsforschung',
 
     200 => 'Schiffe',
@@ -149,7 +149,7 @@ $LNG['tech'] = array(
     411 => 'Orbitale Verteidigungsplattform',
 
     500 => 'Bomben',
-    502 => 'Löschbombe',
+    502 => 'Löschvorrichtung',
     503 => 'Brandbombe',
 
     900 => 'Rohstoffe',
