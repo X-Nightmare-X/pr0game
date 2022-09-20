@@ -71,7 +71,7 @@ function GetDistance() {
 			return Math.abs(thisSystem - targetSystem) * 95 + 2700;
 		}
 	} else if (thisPlanet != targetPlanet) {
-		return Math.abs(thisSystem - targetSystem) * 5 + 1000;
+		return Math.abs(thisPlanet - targetPlanet) * 5 + 1000;
 	}
 	return 5;
 }
