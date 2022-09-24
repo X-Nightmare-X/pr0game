@@ -2,7 +2,7 @@
 
 /**
  *  2Moons
- *   by Jan-Otto Kröpke 2009-2016 - Übersetung Ogerfränkisch by Appendix / ASB8 2022
+ *   by Jan-Otto Kröpke 2009-2016 - Übersetzung Ogerfränkisch by Appendix / ASB8 2022
  *
  * For the full copyright and license information, please view the LICENSE
  *
@@ -428,8 +428,8 @@ $LNG['longDescription'] = array(
         . ' ausgeschdattet werdne gönnene hätt ich gsachd. Dadurch werdne weide Exbeditionsreisne in noch unerforschde Gebiede möglich'
         . ' Zudem erlaubne die Fordschridde die weidere Golonisation des Weldraumes. Bro zwei Schdufne dieser Dechnologie'
         . ' kann ßo ein weiderer Blanet nudzbar nausgrendert werdne und alles. ',
-    131 => 'Erhöhd die Broduktion der Medallmine um 2%',
-    132 => 'Erhöhd die Broduktion der Gristallmine um 2%',
+    131 => 'Erhöhd die Broduktion der Medallmine um 2%.',
+    132 => 'Erhöhd die Broduktion der Gristallmine um 2%.',
     133 => 'Erhöhd die Broduktion der Deuderiumsyndhedisierer um 2%.', 
     199 => 'Ein Gravidon is a Bartikel, des geine Masse und geine Ladung besidzd, welche die Gravitationsgraft'
         . ' beschdimmt hätt ich gsach. Etzala Durch Abschuss einer gonzentriertne Ladung vonääh Gravidonene kann a günstliches Gravidadionsfeld'
@@ -513,10 +513,10 @@ $LNG['longDescription'] = array(
     217 => 'Dieser Dransporter isd zwar langsamer aber dafür kann er jetzad mehr aufladne tadsächlich sogar. Doch wne man die richdige'
         . ' Forschung had is er faschd ßo schnell wie der große Dransporter',
     218 => 'Dieses Schiff is ne Werbesserung mehrerer Schiffe gleichzeidig und der Gaiser der Gampfsterne. ',
-    219 => 'Dieses Schiff is\' \'ne wahrhafd gigandische Recycelanlage im Weldraum mid Ademberaubender Geschwindiggeit'
+    219 => 'Dieses Schiff is ne wahrhafd gigandische Recycelanlage im Weldraum mid Ademberaubender Geschwindiggeit'
         . ' und riesigem Lagerraum hätt ich gsachd! Geschaffne für große Imberien alda.', 
 
-    401 => 'Der Ragetenwerfer is\' \'ne einfache aber gostengünstige Werteidigungsmöglichkeit und alles. Da er nur eine'
+    401 => 'Der Ragetenwerfer is ne einfache aber gostengünstige Werteidigungsmöglichkeit und alles. Da er nur eine'
         . ' Weiterentwigglung gewöhnlicher ballischdischer Feuerwaffne is, benödigd er geine weidere Forschung tadsächlich sogar. Seine'
         . ' geringne Herstellungsgostne rechdferdigne seinene Einsadz gecha gleinere Floddne, er verlierd aber mid der'
         . ' Zeid an Bedeudung. Pass auf, Schbäter wird er nur noch als Schussfang hinder großne Geschüdzne eingesedzd'
@@ -584,11 +584,11 @@ $LNG['longDescription'] = array(
         . ' gönnene diese Schilde noch verstärgt werdne. Schbäter kann man sogar ne große Schildguppel baune, die noch'
         . ' stärger isd hätt ich gsachd. Bro Blanet kann nur ne einzige gleine Schildguppel gebaud werdne.',
     408 => 'Die Weiterentwigglung der gleinene Schildguppel. Sie basierd uff den gleichne Dechnologien kann aber'
-        . ' wesendlich mehr Enegie einsedzne um feindliche Angriffe abzuhalden',
+        . ' wesendlich mehr Enegie einsedzne um feindliche Angriffe abzuhalden.',
     409 => 'Die Weiterentwigglung der großne Schildguppel des bascht scho. Sie basierd uff den gleichne Dechnologien kann aber'
-        . ' wesendlich mehr Enegie einsedzne um feindliche Angriffe abzuhalden',
+        . ' wesendlich mehr Enegie einsedzne um feindliche Angriffe abzuhalden.',
     410 => 'Sie basierd, wie der Name scho sagd, uff einer Gravitongraft, begannt aus dem Dodesstern und aus besseren'
-        . ' Schiffen. ',
+        . ' Schiffen.',
     411 => 'Diese Blattform, mid gigandischem Ausmaß, is des Größde was des Uniwersum je gesehne had. Etzala Es isd eine'
         . ' unbewegliche defensiwe Blattform tadsächlich sogar. Sie besidzd geinene diregtne Andrieb und wird durch Gravidonforschung in'
         . ' einer schdabilne Umlaufbahn des Blanetne gehaldne alde. Das Schdartne dieses Worgangs erforderd hohe Massne an'

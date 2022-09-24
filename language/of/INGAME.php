@@ -2,7 +2,7 @@
 
 /**
  *  2Moons
- *   by Jan-Otto Kröpke 2009-2016 -  Übersetung Ogerfränkisch by Appendix / ASB8 2022
+ *   by Jan-Otto Kröpke 2009-2016 -  Übersetzung Ogerfränkisch by Appendix / ASB8 2022
  * For the full copyright and license information, please view the LICENSE
  * @package 2Moons
  * @author Jan-Otto Kröpke <slaver7@gmail.com>
@@ -32,6 +32,7 @@ $LNG['type_mission_6'] = 'Schbionierne ';
 $LNG['type_mission_7'] = 'Golonisierne ';
 $LNG['type_mission_8'] = 'Abbaune ';
 $LNG['type_mission_9'] = 'Zermeddln ';
+$LNG['type_mission_10'] = 'Ragetenangriff';
 $LNG['type_mission_15'] = 'Exbedition ';
 
 $LNG['type_planet_1'] = 'Blanet';
@@ -55,7 +56,8 @@ $LNG['banned_message'] = 'Sie wurdne vom Banhammer erschlagne tadsächlich sogar
 //----------------------------------------------------------------------------//
 //TOPNAV
 $LNG['tn_player_title'] = 'Imberator';
-$LNG['tn_vacation_mode'] = 'Sie sind im Urlaubsmodus ';
+$LNG['tn_vacation_mode'] = 'Sie sind im Urlaubsmodus - des bascht scho. <br><br>ACHDUNG: Urlaubsmodus wird nach 4 Wochne Inagtivität audomadisch deagtiviert!';
+$LNG['tn_vacation_mode_until'] = 'Sie sind bis mindeschdens %s Uhr im Urlaubsmodus<br><br>ACHDUNG hätt ich gsachd: Der Urlaubsmodus wird nach 4 Wochne Inagtivität audomadisch deagtiviert.';
 $LNG['tn_delete_mode'] = 'Ihr Accound wird amääh %s audomadisch gelöschd tazächlich sogar! ';
 
 //----------------------------------------------------------------------------//
@@ -101,7 +103,8 @@ $LNG['ov_newname_specialchar'] = 'Pass auf, im Blanetennamne sind nur Zahlne, Bu
 $LNG['ov_newname_done'] = 'Blanet erfolgreich umbenannt!';
 $LNG['ov_planet_abandoned'] = 'Blanet erfolgreich aufgegeben';
 $LNG['ov_principal_planet_cant_abanone'] = 'Sie gönnene ned ihrne Haubtblanetne löschne!';
-$LNG['ov_abandon_planet_not_possible'] = 'Golonie ned löschbar, wne Floddenagtivitätne zu oder vonääh ihrer Golonie';
+$LNG['ov_abandon_planet_not_possible'] = 'Golonie ned löschbar, wne Floddenagtivitätne zu oder vonääh ihrer Golonie'
+. ' stadtfindne!';
 $LNG['ov_wrong_pass'] = 'Falsches Basswort. Wersuchne sie es noch einmal!';
 $LNG['ov_wrong_name'] = 'Falsches Name. Wersuchne sie es noch einmal!';
 $LNG['ov_have_new_message'] = 'Du haschd ne neue Nachrichd etzala';
@@ -112,6 +115,8 @@ $LNG['ov_news'] = 'News';
 $LNG['ov_place'] = 'Blatz';
 $LNG['ov_of'] = 'von';
 $LNG['ov_planet'] = 'Blanet';
+$LNG['ov_moon'] = 'Mond';
+$LNG['ov_planets'] = 'Planeten und Monde';
 $LNG['ov_server_time'] = 'Serverzeid ';
 $LNG['ov_events'] = 'Ereignisse';
 $LNG['ov_fleetbutton_hide'] = 'Ausblenden';
@@ -294,7 +299,7 @@ $LNG['fl_shortcuts'] = 'Shordcuds';
 $LNG['fl_dlte_shortcut'] = 'Löschen';
 $LNG['fl_shortcut_add'] = 'Hinzufügen';
 $LNG['fl_shortcut_edition'] = 'Shordcud edidieren';
-$LNG['fl_shortcut_save'] = 'Shordcud sbeichern';
+$LNG['fl_shortcut_save'] = 'Shordcud sbeicherne';
 $LNG['fl_shortcut_saved'] = 'Gesbeichert!';
 $LNG['fl_no_colony'] = 'geine Golonien vorhanden';
 $LNG['fl_send_fleet'] = 'Flodde verschiggen';
@@ -313,6 +318,7 @@ $LNG['fl_acs_title'] = 'Werbandsangriffe';
 $LNG['fl_hold_time'] = 'Haldezeid';
 $LNG['fl_resources'] = 'Rohschdoffe';
 $LNG['fl_max'] = 'maggs';
+$LNG['fl_null'] = 'geine';
 $LNG['fl_hours'] = 'Schdunden(n)';
 $LNG['fl_resources_left'] = 'Werbleiben';
 $LNG['fl_all_resources'] = 'Maggs Rohschdoffe laden';
@@ -374,7 +380,7 @@ $LNG['fl_only_planets_colonizable'] = 'Nur Blanetne gönnene golonisiert werden 
 $LNG['fl_player_is_noob'] = 'Was soln der fack? Schbieler befindeschd sich im Noobschutz!';
 $LNG['fl_player_is_strong'] = 'Schbieler isd zu starg - oder arbeitslos hädix8!';
 $LNG['fl_no_hold_depot'] = 'Am Ziel befindet sich gein Allianzdepot.';
-$LNG['fl_not_enough_Deuderium'] = 'Nichd genügend Deuderium vorhandne.';
+$LNG['fl_not_enough_deuterium'] = 'Nichd genügend Deuderium vorhandne.';
 $LNG['fl_not_enough_space'] = 'Sie habne ned genügend Laderaum vorhandne.';
 $LNG['fl_hold_time_not_exists'] = 'Ungüldige Haldezeid.';
 
@@ -627,7 +633,7 @@ $LNG['al_request_from_user'] = 'Bewerbung von Schbieler';
 $LNG['al_request_register_time'] = 'Regischdriert am';
 $LNG['al_request_last_onlinetime'] = 'Ledzde Agtivität';
 $LNG['al_message'] = 'Nachricht';
-$LNG['al_Bosition'] = 'Rang';
+$LNG['al_position'] = 'Rang';
 $LNG['al_points'] = 'Bunkte';
 $LNG['al_coords'] = 'Goords';
 $LNG['al_member_since'] = 'Beigetreten';

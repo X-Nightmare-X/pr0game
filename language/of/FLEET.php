@@ -73,8 +73,8 @@ $LNG['sys_colo_mess_report'] = 'Golonisierungsbericht ';
 $LNG['sys_colo_defaultname'] = 'Golonie';
 $LNG['sys_colo_notech'] = 'Eine deiner Floddne erreichd die Goordinatne %s. Als sich deine Siedler dem Blanetne '
     . 'näherdne, musschdne sie feschdschdellne, das ihre Ausrüschdung noch ned für die dord herrschendne Glimabedingungne'
-    . ' geeigned war und zuerschd Weiderentwiggelt werdne muss. Enddäuschd gehrtne die Siedler zurügg alda.';
-$LNG['sys_colo_arrival'] = '';
+    . 'geeigned war und zuerschd Weiderentwiggelt werdne muss. Enddäuschd gehrtne die Siedler zurügg alda.';
+$LNG['sys_colo_arrival'] = 'tadsächlich sogar.';
 $LNG['sys_colo_maxcolo'] = 'Eine deiner Floddne erreichd die Goordinatne %s Eine Besiedelung isd ned möglich, da du'
     . ' ned mehr als d% Blanetne habne gannst,  hätt ich gsachd. ';
 $LNG['sys_colo_allisok'] = 'Eine deiner Floddne erreichd die Goordinatne %s Die Siedler beginnene den neune Blanetne zu'
@@ -82,8 +82,7 @@ $LNG['sys_colo_allisok'] = 'Eine deiner Floddne erreichd die Goordinatne %s Die 
 $LNG['sys_colo_badpos'] = 'Eine deiner Floddne erreichd die Goordinatne %s Hier wurde geine Siedlungsmöglichgeit'
     . ' gefundne, enddäuschd gehrtne deine Siedler zurügg.';
 $LNG['sys_colo_notfree'] = 'Eine deiner Floddne erreichd die Goordinatne %s Als deine Siedler uff den Goordinaten'
-    . ' angamne, musschdne sie feschdschdellne des es dord bereids ne Golonie gibd hätt ich gsachd. Wöllig demoralisierd gehrtne sie um'
-    . ' tadsächlich sogar. ';
+    . ' angamne, musschdne sie feschdschdellne des es dord bereids ne Golonie gibd hätt ich gsachd. Wöllig demoralisierd gehrtne sie um.';
 
 $LNG['sys_expe_report'] = 'Exbeditionsbericht';
 $LNG['sys_recy_report'] = 'Recyclerberichd';
@@ -242,7 +241,7 @@ $LNG['sys_expe_attack_1_1_2'] = 'Einige brimitive Barbarne greifne uns mid Raums
     . ' sehne wir uns gezwungne das Feuer zu erwidern. ';
 $LNG['sys_expe_attack_1_1_3'] = 'Wir habne a baar Fungsprüche sehr betrungener Biratne aufgefangne. Anscheinend '
     . ' sollne wir überfallne werdne. ';
-$LNG['sys_expe_attack_1_1_4'] = 'Wir musschdne uns gecher einiche Biratne wehrne, die zum Glügg ned allzu zahlreich '
+$LNG['sys_expe_attack_1_1_4'] = 'Wir musschdne uns gechen einiche Biratne wehrne, die zum Glügg ned allzu zahlreich '
     . ' warne .';
 $LNG['sys_expe_attack_1_1_5'] = 'Unsere Exbeditionsflotte melded, das a gewisser Moa Dikarr und seine wilde Meude '
     . ' die bedingungslose Gapitulation unserer Flodde werlangne hätt ich gsachd. Solldne sie Ernschd machne, werdne sie feschdschdellne'
