@@ -394,7 +394,7 @@ $LNG['fl_stronger_techs'] = 'Deine Angriffsstärke/Werteidigung/Schilde/ sind zu
 $LNG['fl_hold_max_fleets'] = 'Es sind bereids zu wiele Floddne zu diesne Goordinatne underwegs. Die Flodde gonnte ned gesended werden.';
 $LNG['fl_hold_max_user'] = 'Die maggsimale Anzahl verdeidigender Imberien isd bereids erreichd des pascht scho. Die Flodde gonnte ned gesended werden.';
 $LNG['fl_attack_confirm_diplo'] = 'Es wurde ein Bakt (%s) mid der Allianz %s und Deiner Allianz geschlossne und alles. Möchtschd Du den Angriff wirglich durchführen?';
-$LNG['fl_attack_confirm_buddy'] = 'Das Ziel isd uff Deiner BuddyLischde- Möchtschd Du wirglich die Brügel rausschmeißne?';
+$LNG['fl_attack_confirm_buddy'] = 'Das Ziel isd uff Deiner BuddyLischde - Möchtschd Du wirglich die Brügel rausschmeißne?';
 
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES
@@ -403,7 +403,7 @@ $LNG['bd_paused'] = 'bausiert';
 $LNG['bd_cancel'] = 'Abbrechen';
 $LNG['bd_working'] = 'Beschäfdigd';
 $LNG['bd_build'] = 'Bauen';
-$LNG['bd_build_next_level'] = 'Ausbaune uff Schdufe ';
+$LNG['bd_build_next_level'] = 'ausbau uff Schdufe ';
 $LNG['bd_tech'] = 'Forschen';
 $LNG['bd_tech_next_level'] = 'Forschne uff Schdufe ';
 $LNG['bd_add_to_list'] = 'Zur Baulischde hinzufügen';
@@ -474,7 +474,7 @@ $LNG['tt_lvl'] = 'Schdufe ';
 //INFOS
 $LNG['in_jump_gate_done'] = 'Floddne erfolgreich verschiggt hätt ich gsachd. Sie gönnene dieses Schanzentor widda in %s nutzen.';
 $LNG['in_jump_gate_error_data'] = 'Fehler, Dadne sind ingorregt!';
-$LNG['in_jump_gate_not_ready_target'] = 'Das Zielsbrungtor is noch ned bereid:';
+$LNG['in_jump_gate_not_ready_target'] = 'Das Zielschanzentor is noch ned bereid:';
 $LNG['in_jump_gate_doesnt_have_one'] = 'Sie habne gein Schanzentor';
 $LNG['in_jump_gate_already_used'] = 'Dieses Schanzentor isd noch ned bereid: ';
 $LNG['in_jump_gate_available'] = 'Anzahl';
@@ -1105,7 +1105,7 @@ $LNG['ma_not_send_other_galaxy'] = 'Du gannst geine Ragedne in ne andere Galaggs
 $LNG['ma_planet_doesnt_exists'] = 'Blanet exischdiert nichd.';
 $LNG['ma_wrong_target'] = 'gein Ziel';
 $LNG['ma_no_missiles'] = 'Du haschd geine Interplanetarrageten';
-$LNG['ma_add_missile_number'] = 'Sie müssne ne Zahl eingeben!';
+$LNG['ma_add_missile_number'] = 'Sie müssne ne Zahl eingebene!';
 $LNG['ma_misil_launcher'] = 'Ragedenwerfer';
 $LNG['ma_small_laser'] = 'Leichdes Lasergeschüdz';
 $LNG['ma_big_laser'] = 'Schweres Lasergeschüdz';
