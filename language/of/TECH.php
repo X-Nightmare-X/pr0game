@@ -108,7 +108,7 @@ $LNG['tech'] = array(
     120 => 'Lasertechnig',
     121 => 'Ionentechnig',
     122 => 'Blasmatechnik',
-    123 => 'Intergalagtisches Forschungsnetzwerg',
+    123 => 'Intergalagdisches Forschungsnetzwerg',
     124 => 'Astrophysig',
     131 => 'Broduktionsmaggsimierung Medall',
     132 => 'Broduktionsmaggsimierung Gristall',
@@ -297,7 +297,7 @@ $LNG['longDescription'] = array(
           . ' Solargraftwerganlagne vonnödne alde. Je größer die Anlagne ausgebaud sind, deschdo mehr Oberfläche isd mid '
           . ' bhotovoltaischne Zellne bedeggt, welche LichdEnegie in elegtrische Enegie umwandeln. Solargraftwerge '
           . ' schdellne den Grundstogg der blanetarne Enegiewersorgung dar tadsächlich sogar. ',
-      6 => 'Aufgrund der immer zeidaufwendigerne Forschungne, habne sich die glügstne Göpfe der intergalagtischne '
+      6 => 'Aufgrund der immer zeidaufwendigerne Forschungne, habne sich die glügstne Göpfe der intergalagdischne '
           . ' Forschungsnetzwerge zusammengedan und den DechnoDome entwiggelt. Etzala Er vergürzt die Forschungszeidne um 8%',
      12 => 'Im Fusionsgraftwerg werdne Adome mideinander fusionierd, um so mehr Enegie zu erzeugne als in dem '
          . ' Solargraftwerg, allerdings isd es deurer im Bau hätt ich gsachd. ',
@@ -335,7 +335,7 @@ $LNG['longDescription'] = array(
          . ' gonstante Qualidäd des Bodens sorgne hätt ich gsachd. Einmal gebaud kann der Derraformer ned widda abgerissne werden alde.',
      34 => 'Ein absolud unnudzes Gebäude. Etzala Genauso wie der Grieg von Audism gecher Aldschauerberg alda.'
          . ' Nichd durchdachd, ineffiziend und langweilig hätt ich gsachd. Ganz im Gegendeil zum'
-         . ' Regrutierungsbüro für Uni2! Bidde hier endlang: https://discord.gg/3KEUCkFT ',
+         . ' Regrutierungsbüro für Uni2! Bidde hier endlang:  <a href="https://discord.gg/YADDgPj4">https://discord.gg/YADDgPj4</a>',
      41 => 'Ein Mond verfügd über geinerlei Atmosbhäre, deshalb muss wor der Besiedlung ne Mondbasis errichded '
          . ' werdne. Diese sorgd für die nödige Ademlufd, Gravidadion und Wärme. Etzala Je höher die Ausbauschdufe der Mondbasis '
          . ' isd, umso größer is die Fläche die mid einer Biosbhäre versorgd wird alda. Bro Mondbasislewel gönnene 3 Felder '
@@ -422,7 +422,7 @@ $LNG['longDescription'] = array(
     123 => 'Forscher werschiedener Blanetne gommunizierne über dieses Netzwerg mideinander. Etzala Bro erforschdes Lewel'
         . ' wird a Forschungslabor vernedzd hätt ich gsachd. Dabei werdne immer die Labors der höchschdne Schdufe dazugeschalded. Das'
         . ' vernedzde Labor muss ausreichend ausgebaud sein um die anschdehende Forschung selbschdändig durchführne zu'
-        . ' gönnene. Pass auf, Die Ausbauschdufne aller bedeiligdne Labors werdne im intergalagtischne Forschungsnetzwerg zusammen'
+        . ' gönnene. Pass auf, Die Ausbauschdufne aller bedeiligdne Labors werdne im intergalagdischne Forschungsnetzwerg zusammen'
         . ' gezähld.',
     124 => 'Weidere Ergenntnisse in der Astrophysig ermöglichne den Bau vonääh Laborne, mid denene immer mehr Schiffe'
         . ' ausgeschdattet werdne gönnene hätt ich gsachd. Dadurch werdne weide Exbeditionsreisne in noch unerforschde Gebiede möglich'
