@@ -108,12 +108,12 @@ class ShowRaportPage extends AbstractGamePage
 		$sql = "SELECT ally_id FROM %%USERS%% WHERE id = :pID;";
 		$allyID = $db->selectSingle($sql, array(
 			':pID'	=> $USER['id']
-		));
+		), 'ally_id');
 		if (!$showDetails && $allyID > 0) {
 			foreach ($attackers as $atterID) {
 				$aID = $db->selectSingle($sql, array(
 					':pID'	=> $atterID
-				));
+				), 'ally_id');
 				if ($allyID == $aID) {
 					$showDetails = true;
 					break;
@@ -123,7 +123,7 @@ class ShowRaportPage extends AbstractGamePage
 				foreach ($defenders as $defferID) {
 					$aID = $db->selectSingle($sql, array(
 						':pID'	=> $defferID
-					));
+					), 'ally_id');
 					if ($allyID == $aID) {
 						$showDetails = true;
 						break;
