@@ -681,7 +681,8 @@ class PlayerUtil
             ':universe' => $universe,
         ));
     }
-    public static function disable_vmode($USER = null, $PLANET = null){
+
+    public static function disable_vmode($USER = null, $PLANET = null, $planets = []) {
         
         $db = Database::get();
         if (!isset($USER)) {
@@ -723,27 +724,40 @@ class PlayerUtil
                 $PLANET['b_building_id'] = serialize($CurrentQueue);
                 unset($CurrentQueue);
             }
-            $sql = "SELECT id, b_building, b_building_id FROM %%PLANETS%% WHERE id_owner = :userID AND destruyed = 0;";
-            $query = $db->select($sql, [
-                ':userID'   => $USER['id'],
-            ]);
+
+            if (empty($planets)) {
+                $sql = "SELECT id, b_building, b_building_id FROM %%PLANETS%% WHERE id_owner = :userID AND destruyed = 0;";
+                $planets = $db->select($sql, [
+                    ':userID'   => $USER['id'],
+                ]);
+            }
             
-            foreach ($query as $CPLANET) {
+            foreach ($planets as $CPLANET) {
                 if (!empty($CPLANET['b_building'])) {
-                    $CurrentQueue       = unserialize($CPLANET['b_building_id']);
+                    $CurrentQueue = unserialize($CPLANET['b_building_id']);
                     foreach ($CurrentQueue as &$BuildArray) {
                         $BuildArray[3] += $umode_delta;
                     }
-                    $sql = "UPDATE %%PLANETS%% SET
-                    b_building = b_building + :umode_delta,
-                    b_building_id = :building_id
-                    WHERE id = :planetID;";
-                    $db->update($sql, [
-                        ':umode_delta' => $umode_delta,
-                        ':planetID'   => $CPLANET['id'],
-                        ':building_id' => serialize($CurrentQueue),
-                    ]);
+                    $CPLANET['b_building_id'] = serialize($CurrentQueue);
                 }
+                
+                $sql = "UPDATE %%PLANETS%% SET
+                b_building = b_building + :umode_delta,
+                b_building_id = :building_id,
+                last_update = :timestamp,
+                metal_mine_porcent = '10',
+                crystal_mine_porcent = '10',
+                deuterium_sintetizer_porcent = '10',
+                solar_plant_porcent = '10',
+                fusion_plant_porcent = '10',
+                solar_satelit_porcent = '10'
+                WHERE id = :planetID;";
+                $db->update($sql, [
+                    ':umode_delta' => $umode_delta,
+                    ':planetID'   => $CPLANET['id'],
+                    ':building_id' => $CPLANET['b_building_id'],
+                    ':timestamp'    => TIMESTAMP,
+                ]);
                 
                 unset($CPLANET);
             }
@@ -754,22 +768,10 @@ class PlayerUtil
                         urlaubs_start = '0'
 						WHERE id = :userID;";
             $db->update($sql, [':userID'   => $USER['id']]);
-
-            $sql = "UPDATE %%PLANETS%% SET
-						last_update = :timestamp,
-						metal_mine_porcent = '10',
-						crystal_mine_porcent = '10',
-						deuterium_sintetizer_porcent = '10',
-						solar_plant_porcent = '10',
-						fusion_plant_porcent = '10',
-						solar_satelit_porcent = '10'
-						WHERE id_owner = :userID;";
-            $db->update($sql, [
-                ':userID'       => $USER['id'],
-                ':timestamp'    => TIMESTAMP,
-            ]);
             
             $USER['urlaubs_modus'] = 0;
+            $USER['urlaubs_until'] = 0;
+            $USER['urlaubs_start'] = 0;
             $PLANET['last_update'] = TIMESTAMP;
 
             $sql = "SELECT * FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :id;";
@@ -777,6 +779,7 @@ class PlayerUtil
                 ':universe' => Universe::current(),
                 ':id' => $USER['id'],
             ]);
+
             $PlanetRess	= new ResourceUpdate();
             foreach ($PlanetsRAW as $CPLANET) {
                 $CPLANET['eco_hash'] = '';
@@ -786,7 +789,8 @@ class PlayerUtil
             list($USER, $PLANET) = $PlanetRess->CalcResource($USER, $PLANET, true);
         }
     }
-    public static function enable_vmode($USER = null, $PLANET = null){
+
+    public static function enable_vmode($USER = null, $PLANET = null) {
         $db = Database::get();
         if (!isset($USER)) {
             $USER = $GLOBALS['USER'];
@@ -808,7 +812,8 @@ class PlayerUtil
         $db->update($sql, [
             ':userID'   => $USER['id'],
         ]);
-        if(isset($PLANET)){
+
+        if (isset($PLANET)) {
             $PLANET['energy_used'] = '0';
             $PLANET['energy'] = '0';
             $PLANET['metal_mine_porcent'] = '0';

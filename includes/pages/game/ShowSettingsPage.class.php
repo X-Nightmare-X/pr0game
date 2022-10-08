@@ -138,15 +138,22 @@ class ShowSettingsPage extends AbstractGamePage
         $vacation   = HTTP::_GP('vacation', 0);
 
         $db = Database::get();
+        $db->startTransaction();
 
-        $sql = "SELECT urlaubs_start FROM %%USERS%% WHERE universe = :universe AND id = :userID;";
-        $umode_start = $db->selectSingle($sql, [
+        $sql = "SELECT id FROM %%USERS%% WHERE universe = :universe AND id = :userID FOR UPDATE;";
+        $db->selectSingle($sql, [
             ':universe' => Universe::current(),
             ':userID'   => $USER['id'],
-        ], 'urlaubs_start');
-        $umode_delta = TIMESTAMP - $umode_start;
+        ]);
+
         if ($vacation == 1 && $USER['urlaubs_until'] <= TIMESTAMP) {
-            PlayerUtil::disable_vmode($USER, $PLANET);
+            $sql = "SELECT * FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :userID FOR UPDATE;";
+            $planets = $db->selectSingle($sql, [
+                ':universe' => Universe::current(),
+                ':userID'   => $USER['id'],
+            ]);
+
+            PlayerUtil::disable_vmode(null, null, $planets);
         }
 
         if ($delete == 1) {
@@ -166,6 +173,8 @@ class ShowSettingsPage extends AbstractGamePage
                 'url'   => 'game.php?page=settings',
             ],
         ]);
+
+        $db->commit();
     }
 
     private function sendDefault()
