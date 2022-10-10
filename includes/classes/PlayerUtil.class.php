@@ -682,7 +682,7 @@ class PlayerUtil
         ));
     }
 
-    public static function disable_vmode($USER = null, $PLANET = null, $planets = []) {
+    public static function disable_vmode(&$USER = null, &$PLANET = null, $planets = []) {
         
         $db = Database::get();
         if (!isset($USER)) {
@@ -790,7 +790,7 @@ class PlayerUtil
         }
     }
 
-    public static function enable_vmode($USER = null, $PLANET = null) {
+    public static function enable_vmode(&$USER = null, &$PLANET = null) {
         $db = Database::get();
         if (!isset($USER)) {
             $USER = $GLOBALS['USER'];
