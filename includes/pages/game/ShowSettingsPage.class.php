@@ -148,7 +148,7 @@ class ShowSettingsPage extends AbstractGamePage
 
         if ($vacation == 1 && $USER['urlaubs_until'] <= TIMESTAMP) {
             $sql = "SELECT * FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :userID FOR UPDATE;";
-            $planets = $db->selectSingle($sql, [
+            $planets = $db->select($sql, [
                 ':universe' => Universe::current(),
                 ':userID'   => $USER['id'],
             ]);
@@ -352,7 +352,7 @@ class ShowSettingsPage extends AbstractGamePage
                     ],
                 ]);
             } else {
-                PlayerUtil::enable_vmode($USER, $PLANET);
+                PlayerUtil::enable_vmode(null, null);
             }
         }
 
