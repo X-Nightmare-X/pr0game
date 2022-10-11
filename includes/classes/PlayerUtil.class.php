@@ -682,13 +682,9 @@ class PlayerUtil
         ));
     }
 
-    public static function disable_vmode($USER = null, $PLANET = null, $planets = []) {
+    public static function disable_vmode(&$USER, &$PLANET = null) {
         
         $db = Database::get();
-        if (!isset($USER)) {
-            $USER = $GLOBALS['USER'];
-            $PLANET = $GLOBALS['PLANET'];
-        }
         
         $sql = "SELECT urlaubs_start FROM %%USERS%% WHERE universe = :universe AND id = :userID;";
         $umode_start = $db->selectSingle($sql, [
@@ -725,25 +721,25 @@ class PlayerUtil
                 unset($CurrentQueue);
             }
 
-            if (empty($planets)) {
-                $sql = "SELECT id, b_building, b_building_id FROM %%PLANETS%% WHERE id_owner = :userID AND destruyed = 0;";
-                $planets = $db->select($sql, [
-                    ':userID'   => $USER['id'],
-                ]);
-            }
+            $sql = "SELECT id, b_building, b_building_id FROM %%PLANETS%% WHERE id_owner = :userID AND destruyed = 0;";
+            $planets = $db->select($sql, [
+                ':userID'   => $USER['id'],
+            ]);
             
             foreach ($planets as $CPLANET) {
                 if (!empty($CPLANET['b_building'])) {
+                    $CPLANET['b_building'] = $CPLANET['b_building'] + $umode_delta;
                     $CurrentQueue = unserialize($CPLANET['b_building_id']);
                     foreach ($CurrentQueue as &$BuildArray) {
                         $BuildArray[3] += $umode_delta;
                     }
                     $CPLANET['b_building_id'] = serialize($CurrentQueue);
+                    unset($CurrentQueue);
                 }
                 
                 $sql = "UPDATE %%PLANETS%% SET
-                b_building = b_building + :umode_delta,
-                b_building_id = :building_id,
+                b_building = :building,
+                b_building_id = :current_queue,
                 last_update = :timestamp,
                 metal_mine_porcent = '10',
                 crystal_mine_porcent = '10',
@@ -753,10 +749,10 @@ class PlayerUtil
                 solar_satelit_porcent = '10'
                 WHERE id = :planetID;";
                 $db->update($sql, [
-                    ':umode_delta' => $umode_delta,
-                    ':planetID'   => $CPLANET['id'],
-                    ':building_id' => $CPLANET['b_building_id'],
-                    ':timestamp'    => TIMESTAMP,
+                    ':planetID' => $CPLANET['id'],
+                    ':building' => $CPLANET['b_building'],
+                    ':current_queue' => $CPLANET['b_building_id'],
+                    ':timestamp' => TIMESTAMP,
                 ]);
                 
                 unset($CPLANET);
@@ -790,12 +786,8 @@ class PlayerUtil
         }
     }
 
-    public static function enable_vmode($USER = null, $PLANET = null) {
+    public static function enable_vmode(&$USER, &$PLANET = null) {
         $db = Database::get();
-        if (!isset($USER)) {
-            $USER = $GLOBALS['USER'];
-            $PLANET = $GLOBALS['PLANET'];
-        }
        
         $sql = "UPDATE %%USERS%% SET urlaubs_modus = '1', urlaubs_until = :time, urlaubs_start = :startTime"
                     . " WHERE id = :userID";

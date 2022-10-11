@@ -147,13 +147,13 @@ class ShowSettingsPage extends AbstractGamePage
         ]);
 
         if ($vacation == 1 && $USER['urlaubs_until'] <= TIMESTAMP) {
-            $sql = "SELECT * FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :userID FOR UPDATE;";
-            $planets = $db->select($sql, [
+            $sql = "SELECT id FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :userID FOR UPDATE;";
+            $db->select($sql, [
                 ':universe' => Universe::current(),
                 ':userID'   => $USER['id'],
             ]);
 
-            PlayerUtil::disable_vmode(null, null, $planets);
+            PlayerUtil::disable_vmode($USER, $PLANET);
         }
 
         if ($delete == 1) {
@@ -352,7 +352,7 @@ class ShowSettingsPage extends AbstractGamePage
                     ],
                 ]);
             } else {
-                PlayerUtil::enable_vmode(null, null);
+                PlayerUtil::enable_vmode($USER, $PLANET);
             }
         }
 
