@@ -167,14 +167,14 @@ class ShowSettingsPage extends AbstractGamePage
             $db->update($sql, [':userID'   => $USER['id']]);
         }
 
+        $db->commit();
+
         $this->printMessage($LNG['op_options_changed'], [
             [
                 'label' => $LNG['sys_forward'],
                 'url'   => 'game.php?page=settings',
             ],
         ]);
-
-        $db->commit();
     }
 
     private function sendDefault()
