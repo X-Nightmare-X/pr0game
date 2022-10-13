@@ -565,10 +565,15 @@ class PlayerUtil
                 ':planetId' => $planetId
             ));
         } else {
-            $sql = 'DELETE FROM %%PLANETS%% WHERE id = :planetId OR id_luna = :planetId;';
-            $db->delete($sql, array(
-               ':planetId'  => $planetId
-            ));
+            $sql = "UPDATE %%PLANETS%% SET destruyed = :time WHERE id = :planetID;";
+            $db->update($sql, [
+                ':time'   => TIMESTAMP + 86400,
+                ':planetID' => $planetId,
+            ]);
+            $sql = "DELETE FROM %%PLANETS%% WHERE id = :lunaID;";
+            $db->delete($sql, [
+                ':lunaID' => $planetData['id_luna']
+            ]);
         }
 
         return true;
