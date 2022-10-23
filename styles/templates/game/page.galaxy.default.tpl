@@ -85,10 +85,11 @@
         <td></td>
         <td></td>
         <td></td>
-    {elseif $GalaxyRows[$planet].planet === false}
+    {elseif $GalaxyRows[$planet].destroyed === true}
 		<td>
 			{$planet}
 		</td>
+        {$currentPlanet = $GalaxyRows[$planet]}
         <td></td>
         <td style="white-space: nowrap;">{$LNG.gl_planet_destroyed}</td>
         <td></td>
