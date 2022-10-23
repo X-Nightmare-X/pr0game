@@ -44,14 +44,7 @@ class ShowLoginPage extends AbstractLoginPage
 
 		if (!empty($loginData))
 		{
-
-			$verify = "false";
-
-			if (password_verify($password, $loginData['password'])) {
-				$verify = "true";
-			}
-
-			if($verify == "false") {
+			if (!password_verify($password, $loginData['password'])) {
 				HTTP::redirectTo('index.php?code=1');
 			}
 
