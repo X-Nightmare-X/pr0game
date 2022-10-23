@@ -78,7 +78,7 @@ $LNG['sys_mess_spy_destroyed'] = '<font color="red">As tua frota foi descoberta 
 $LNG['sys_adress_planet'] = '[%s:%s:%s]';
 
 $LNG['sys_stat_mess_stay'] = 'Frota Localizada';
-$LNG['sys_stat_mess'] = 'A tua frota chegou ao planeta %s e entregou %s %s, %s %s e %s %s.';
+$LNG['sys_stat_mess'] = 'A tua frota chegou ao %s %s e entregou %s %s, %s %s e %s %s.';
 
 $LNG['sys_colo_mess_from'] = 'Colonização';
 $LNG['sys_colo_mess_report'] = 'Relatório de colonização';
@@ -99,6 +99,7 @@ $LNG['sys_colo_notfree'] = 'A nave de colonização chegou às coordenadas %s, A
 
 $LNG['sys_expe_report'] = 'Relatório de expedição';
 $LNG['sys_recy_report'] = 'Relatório de reciclagem';
+$LNG['sys_recy_mess'] = 'Uma das suas frotas de recicladores regressa a %s %s com %s %s, %s %s %s e %s %s %s';
 $LNG['sys_expe_blackholl_1'] = 'A frota foi sugada por um buraco negro, e foi praticamente toda destruída.';
 $LNG['sys_expe_blackholl_2'] = 'A frota foi sugada por um buraco negro, e foi completamente destruída!';
 $LNG['sys_expe_report_msg'] = 'Relatório de expedição da %s %s da frota:';
@@ -260,7 +261,7 @@ $LNG['sys_expe_back_home_ress'] = 'Consegiram recuperar %s %s, %s %s e %s %s.';
 $LNG['sys_expe_back_home_ships_flound'] = 'Foram encontrados os seguintes navios:';
 $LNG['sys_expe_back_home_ships_lost'] = 'Perderam-se os seguintes navios:';
 $LNG['sys_mess_transport'] = 'Transportar';
-$LNG['sys_tran_mess_owner'] = 'Uma das tuas frotas a partir de %s %s chega a %s %s e entrega: %s de %s, %s de %s, e %s de %s.';
+$LNG['sys_tran_mess_owner'] = 'Uma das suas frotas de %s %s chega ao %s %s %s e entrega %s %s, %s %s e %s %s';
 $LNG['sys_tran_mess_user'] = 'Uma frota de %s %s %s vem entregar %s %s %s unidades, unidades de %s %s %s %s unidades.';
 $LNG['sys_mess_fleetback'] = 'Regresso da frota';
 $LNG['sys_tran_mess_back'] = 'A Frota voltou ao planeta % s% s. A frota não entregou os recursos.';

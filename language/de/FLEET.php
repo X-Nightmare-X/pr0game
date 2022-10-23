@@ -66,7 +66,7 @@ $LNG['sys_mess_spy_destroyed'] = '<font color="red">Deine Spionagesonden wurden 
 $LNG['sys_adress_planet'] = '[%s:%s:%s]';
 
 $LNG['sys_stat_mess_stay'] = 'Stationierte Flotte';
-$LNG['sys_stat_mess'] = 'Deine Flotte erreicht den Planeten %s und liefert %s %s, %s %s und %s %s.';
+$LNG['sys_stat_mess'] = 'Deine Flotte erreicht den %s %s und liefert %s %s, %s %s und %s %s.';
 
 $LNG['sys_colo_mess_from'] = 'Kolonisierungsabteilung';
 $LNG['sys_colo_mess_report'] = 'Kolonisierungsbericht';
@@ -86,6 +86,7 @@ $LNG['sys_colo_notfree'] = 'Eine deiner Flotten erreicht die Koordinaten %s. Als
 
 $LNG['sys_expe_report'] = 'Expeditionsbericht';
 $LNG['sys_recy_report'] = 'Recyclerbericht';
+$LNG['sys_recy_mess'] = 'Eine deiner Recycler-Flotten kehrt nach %s %s mit %s %s, %s %s und %s %s zurück.';
 $LNG['sys_expe_found_ships_nothing'] = '- Es konnten keine Schiffe repariert werden.';
 $LNG['sys_expe_blackholl_1'] = 'Deine Flotte traf auf ein schwarzes Loch und wurde teilweise zerst&ouml;rt!';
 $LNG['sys_expe_blackholl_2'] = 'Deine Flotte traf auf ein schwarzes Loch und wurde komplett zerst&ouml;rt!';
@@ -285,7 +286,7 @@ $LNG['sys_expe_back_home_ress'] = 'Sie haben %s %s, %s %s und %s %s mitgebracht.
 $LNG['sys_expe_back_home_ships_flound'] = 'Es wurden folgende Schiffe gefunden:';
 $LNG['sys_expe_back_home_ships_lost'] = 'Es gingen folgende Schiffe verloren:';
 $LNG['sys_mess_transport'] = 'Transportbericht';
-$LNG['sys_tran_mess_owner'] = 'Eine deiner Flotten von %s %s erreicht den Planeten %s %s und liefert %s %s, %s %s und %s %s.';
+$LNG['sys_tran_mess_owner'] = 'Eine deiner Flotten von %s %s erreicht den %s %s %s und liefert %s %s, %s %s und %s %s.';
 $LNG['sys_tran_mess_user'] = 'Eine friedliche Flotte von %s %s erreicht %s %s und liefert %s %s, %s %s und %s %s.';
 
 $LNG['sys_mess_fleetback'] = 'Flottenrückkehr';

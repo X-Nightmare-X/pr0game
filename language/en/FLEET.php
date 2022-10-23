@@ -69,7 +69,7 @@ $LNG['sys_mess_spy_destroyed'] = '<font color="red">Your spy probes were destroy
 $LNG['sys_adress_planet'] = '[%s:%s:%s]';
 
 $LNG['sys_stat_mess_stay'] = 'Located fleet';
-$LNG['sys_stat_mess'] = 'Your fleet reaches the planet %s and delivers %s %s, %s %s and %s %s.';
+$LNG['sys_stat_mess'] = 'Your fleet reaches the %s %s and delivers %s %s, %s %s and %s %s.';
 
 $LNG['sys_colo_mess_from'] = 'Colonisation';
 $LNG['sys_colo_mess_report'] = 'Colonisation report';
@@ -89,6 +89,7 @@ $LNG['sys_colo_notfree'] = 'One of your fleets reaches the coordinates %s. When 
 
 $LNG['sys_expe_report'] = 'Expedition report';
 $LNG['sys_recy_report'] = 'Recycling Report';
+$LNG['sys_recy_mess'] = 'One of your recycler fleets returns to %s %s with %s %s, %s %s and %s %s.';
 $LNG['sys_expe_found_ships_nothing'] = 'No ships could be found.';
 $LNG['sys_expe_blackholl_1'] = 'Your fleet encountered a black hole and was partly destroyed! ';
 $LNG['sys_expe_blackholl_2'] = 'Your fleet encountered a black hole and was destroyed completely! ';
@@ -270,9 +271,9 @@ $LNG['sys_expe_back_home_ress'] = 'It deliveres %s %s, %s %s and %s %s.';
 $LNG['sys_expe_back_home_ships_flound'] = 'The following ships were found:';
 $LNG['sys_expe_back_home_ships_lost'] = 'The following ships were lost:';
 $LNG['sys_mess_transport'] = 'Transportmessage';
-$LNG['sys_tran_mess_owner'] = 'One of your fleets from %s %s reaches the planet %s %s and delivers %s %s, %s %s and %s %s.';
+$LNG['sys_tran_mess_owner'] = 'One of your fleets from %s %s reaches the %s %s %s and delivers %s %s, %s %s and %s %s.';
 $LNG['sys_tran_mess_user'] = 'A peaceful fleet of %s %s reached %s %s and delivers %s %s, %s %s and %s %s.';
-$LNG['sys_transfer_mess_owner'] = 'One of your fleets reaches the planet %s %s and delivers %s %s, %s %s and %s %s. ';
+$LNG['sys_transfer_mess_owner'] = 'One of your fleets reaches the %s %s %s and delivers %s %s, %s %s and %s %s. ';
 $LNG['sys_transfer_mess_user'] = 'A peaceful fleet of %s %s reached %s %s and delivers %s %s, %s %s and %s %s. ';
 
 $LNG['sys_mess_fleetback'] = 'Fleet return';

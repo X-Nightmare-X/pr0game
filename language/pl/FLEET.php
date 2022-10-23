@@ -69,7 +69,7 @@ $LNG['sys_mess_spy_destroyed'] = '<font color="red">Twoja sonda została zniszcz
 $LNG['sys_adress_planet'] = '[%s:%s:%s]';
 
 $LNG['sys_stat_mess_stay'] = 'Położenie floty';
-$LNG['sys_stat_mess'] = 'Twoja flota dotarła na  planetę %s i dostarczyła %s %s, %s %s i %s %s.';
+$LNG['sys_stat_mess'] = 'Twoja flota dotarła na %s %s i dostarczyła %s %s, %s %s i %s %s.';
 
 $LNG['sys_colo_mess_from'] = 'Kolonizacja';
 $LNG['sys_colo_mess_report'] = 'Raport kolonizacji';
@@ -89,6 +89,7 @@ $LNG['sys_colo_notech'] = 'Jedna z twoich flot doleciała na %s. I okazało się
 
 $LNG['sys_expe_report'] = 'Raport ekspedycji';
 $LNG['sys_recy_report'] = 'Raport zbierania';
+$LNG['sys_recy_mess'] = 'Jedna z twoich flot recyklerów wraca do %s %s z %s %s, %s %s i %s %s.';
 $LNG['sys_expe_blackholl_1'] = 'Twoja flota przelatywała zbyt blisko czarnej dziury, dzięki zręczności i opanowaniu'
     . ' Twojego Admirała tylko część jednostek uległa zniszczeniu!';
 $LNG['sys_expe_blackholl_2'] = 'Twoja flota wyszła z nadprzestrzeniu wprost w czarną dziurę, nic nie dało się już'
@@ -252,7 +253,7 @@ $LNG['sys_expe_back_home_ress'] = 'Flota dostarczyła %s %s, %s %s i %s %s.';
 $LNG['sys_expe_back_home_ships_flound'] = 'Znaleziono następujące statki:';
 $LNG['sys_expe_back_home_ships_lost'] = 'Stracono następujące statki:';
 $LNG['sys_mess_transport'] = 'Transport';
-$LNG['sys_tran_mess_owner'] = 'Jedna z twoich flot z %s %s osiągnęła planetę %s %s i dostarczyła %s %s, %s %s i %s %s.';
+$LNG['sys_tran_mess_owner'] = 'Jedna z twoich flot z %s %s osiągnęła %s %s %s i dostarczyła %s %s, %s %s i %s %s.';
 $LNG['sys_tran_mess_user'] = 'Pokojowo nastawiona flota z  %s %s osiągnęła %s %s i dostarczyła %s %s, %s %s i %s %s.';
 $LNG['sys_mess_fleetback'] = 'Powrót floty';
 $LNG['sys_tran_mess_back'] = 'Jedna z twoich flot wróciła z planety %s %s.';
