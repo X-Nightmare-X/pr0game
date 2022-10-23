@@ -45,7 +45,7 @@ class DailyCronJob implements CronjobTask
 	}
 
 	function cancelVacation() {
-		$sql = "SELECT id, b_tech, b_tech_queue, urlaubs_until, universe FROM %%USERS%%
+		$sql = "SELECT id, b_tech_planet, b_tech, b_tech_id, b_tech_queue, urlaubs_until, universe FROM %%USERS%%
 				WHERE urlaubs_modus = 1 AND onlinetime < :inactive AND bana = 0;";
 		$players = Database::get()->select($sql, [
 			':inactive' => TIMESTAMP - INACTIVE_LONG,
@@ -67,3 +67,22 @@ class DailyCronJob implements CronjobTask
 		]);
 	}
 }
+
+
+/* 
+	Enable to debug 
+	includes/classes/Universe.class.php set var $currentUniverse to 1 instead of NULL
+*/
+
+// require 'includes/constants.php';
+// require 'includes/classes/Database.class.php';
+// require 'includes/classes/Cache.class.php';
+// require 'includes/vars.php';
+// require 'includes/classes/PlayerUtil.class.php';
+// require 'includes/classes/class.PlanetRessUpdate.php';
+// require 'includes/classes/Config.class.php';
+// require 'includes/classes/Universe.class.php';
+// Config::get(1);
+// define('TIMESTAMP', time());
+// $class = new DailyCronJob();
+// $class->cancelVacation();
