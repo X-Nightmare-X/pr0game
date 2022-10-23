@@ -95,6 +95,7 @@ class Database
 
         $this->lastInsertId = false;
         $this->rowCount = false;
+        $qry = preg_replace('/(?<!:)\bsystem\b(?!`)/', '`system`', $qry);
         $qry    = str_replace($this->dbTableNames['keys'], $this->dbTableNames['names'], $qry);
         /** @var $stmt PDOStatement */
         $stmt   = $this->dbHandle->prepare($qry);
