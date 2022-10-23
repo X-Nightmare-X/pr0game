@@ -24,7 +24,7 @@ class GalaxyRows
     private $galaxyData;
     private $galaxyRow;
 
-    public const PLANET_DESTROYED = false;
+    public const PLANET_DESTROYED = true;
 
     public function __construct()
     {
@@ -85,7 +85,10 @@ class GalaxyRows
 
             if ($this->galaxyRow['destruyed'] != 0) {
                 $this->galaxyData[$this->galaxyRow['planet']] = [];
-                $this->galaxyData[$this->galaxyRow['planet']]['planet'] = self::PLANET_DESTROYED;
+                $this->galaxyData[$this->galaxyRow['planet']]['destroyed'] = self::PLANET_DESTROYED;
+                $this->galaxyData[$this->galaxyRow['planet']]['planet'] = [
+                    'id'      => $this->galaxyRow['id'],
+                ];
                 $this->getDebrisData();
                 continue;
             }
