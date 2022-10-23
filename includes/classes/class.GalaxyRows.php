@@ -84,7 +84,9 @@ class GalaxyRows
             $this->galaxyRow = $galaxyRow;
 
             if ($this->galaxyRow['destruyed'] != 0) {
-                $this->galaxyData[$this->galaxyRow['planet']] = self::PLANET_DESTROYED;
+                $this->galaxyData[$this->galaxyRow['planet']] = [];
+                $this->galaxyData[$this->galaxyRow['planet']]['planet'] = self::PLANET_DESTROYED;
+                $this->getDebrisData();
                 continue;
             }
 

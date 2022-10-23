@@ -224,7 +224,7 @@ class ShowFleetStep3Page extends AbstractGamePage
         if ($targetMission == MISSION_COLONISATION || $targetMission == MISSION_EXPEDITION || $targetMission == MISSION_TRADE) {
             $targetPlanetData = ['id' => 0, 'id_owner' => 0, 'planettype' => 1];
         } else {
-            if (!empty($targetPlanetData["destruyed"])) {
+            if (!empty($targetPlanetData["destruyed"]) && $targetMission != MISSION_RECYCLING) {
                 $this->printMessage($LNG['fl_no_target'], [[
                     'label' => $LNG['sys_back'],
                     'url'   => 'game.php?page=fleetStep1',
