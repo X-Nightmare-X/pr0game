@@ -83,8 +83,12 @@ class GalaxyRows
         foreach ($galaxyResult as $galaxyRow) {
             $this->galaxyRow = $galaxyRow;
 
+            $this->galaxyData[$this->galaxyRow['planet']] = [];
+
+            $this->isOwnPlanet();
+            $this->getAllowedMissions();
+
             if ($this->galaxyRow['destruyed'] != 0) {
-                $this->galaxyData[$this->galaxyRow['planet']] = [];
                 $this->galaxyData[$this->galaxyRow['planet']]['destroyed'] = self::PLANET_DESTROYED;
                 $this->galaxyData[$this->galaxyRow['planet']]['planet'] = [
                     'id'      => $this->galaxyRow['id'],
@@ -93,12 +97,8 @@ class GalaxyRows
                 continue;
             }
 
-            $this->galaxyData[$this->galaxyRow['planet']] = [];
-
-            $this->isOwnPlanet();
+            $this->galaxyData[$this->galaxyRow['planet']]['destroyed'] = !self::PLANET_DESTROYED;
             $this->setLastActivity();
-
-            $this->getAllowedMissions();
 
             $this->getPlayerData();
             $this->getPlanetData();
