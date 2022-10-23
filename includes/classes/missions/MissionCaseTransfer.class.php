@@ -32,7 +32,7 @@ class MissionCaseTransfer extends MissionFunctions implements Mission
 		$LNG			= $this->getLanguage(NULL, $this->_fleet['fleet_owner']);
 
 		$Message		= sprintf($LNG['sys_transfer_mess_owner'],
-			$targetPlanet['name'], GetTargetAddressLink($this->_fleet, ''),
+			$targetPlanet['name'], $LNG['type_planet_' . $this->_fleet['fleet_end_type']], GetTargetAddressLink($this->_fleet, ''),
 			pretty_number($this->_fleet['fleet_resource_metal']), $LNG['tech'][901],
 			pretty_number($this->_fleet['fleet_resource_crystal']), $LNG['tech'][902],
 			pretty_number($this->_fleet['fleet_resource_deuterium']), $LNG['tech'][903]
@@ -51,7 +51,7 @@ class MissionCaseTransfer extends MissionFunctions implements Mission
 		$LNG			= $this->getLanguage(NULL, $this->_fleet['fleet_target_owner']);
 		$Message        = sprintf($LNG['sys_transfer_mess_user'],
 			$startPlanetName, GetStartAddressLink($this->_fleet, ''),
-			$targetPlanetName, GetTargetAddressLink($this->_fleet, ''),
+			$targetPlanet['name'], GetTargetAddressLink($this->_fleet, ''),
 			pretty_number($this->_fleet['fleet_resource_metal']), $LNG['tech'][901],
 			pretty_number($this->_fleet['fleet_resource_crystal']), $LNG['tech'][902],
 			pretty_number($this->_fleet['fleet_resource_deuterium']), $LNG['tech'][903]
@@ -78,6 +78,7 @@ class MissionCaseTransfer extends MissionFunctions implements Mission
 		$LNG				= $this->getLanguage(NULL, $this->_fleet['fleet_owner']);
 
 		$Message     		= sprintf($LNG['sys_stat_mess'],
+			$LNG['type_planet_' . $this->_fleet['fleet_start_type']],
 			GetStartAddressLink($this->_fleet, ''),
 			pretty_number($this->_fleet['fleet_resource_metal']), $LNG['tech'][901],
 			pretty_number($this->_fleet['fleet_resource_crystal']), $LNG['tech'][902],

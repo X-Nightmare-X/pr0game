@@ -74,6 +74,7 @@ class MissionCaseStay extends MissionFunctions implements Mission
         $TargetUserID = $this->_fleet['fleet_target_owner'];
         $TargetMessage = sprintf(
             $LNG['sys_stat_mess'],
+            $LNG['type_planet_' . $this->_fleet['fleet_end_type']],
             GetTargetAddressLink($this->_fleet, ''),
             pretty_number($this->_fleet['fleet_resource_metal']),
             $LNG['tech'][901],

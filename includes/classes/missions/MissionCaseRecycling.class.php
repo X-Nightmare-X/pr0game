@@ -148,9 +148,7 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
         ], 'name');
 
         $Message = sprintf(
-            $LNG['sys_tran_mess_owner'],
-            $planetName,
-            GetStartAddressLink($this->_fleet, ''),
+            $LNG['sys_recy_mess'],
             $planetName,
             GetStartAddressLink($this->_fleet, ''),
             pretty_number($this->_fleet['fleet_resource_metal']),

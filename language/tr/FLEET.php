@@ -71,7 +71,7 @@ $LNG['sys_mess_spy_destroyed'] = '<font color="red">Casus sondaniz ile baglanti 
 $LNG['sys_adress_planet'] = '[%s:%s:%s]';
 
 $LNG['sys_stat_mess_stay'] = 'Filo Konuslandirma';
-$LNG['sys_stat_mess'] = 'Filolariniz gezegene ulasti %s ve aktariliyor %s %s, %s %s ve %s %s.';
+$LNG['sys_stat_mess'] = 'Filolariniz %s ulasti %s ve aktariliyor %s %s, %s %s ve %s %s.';
 
 $LNG['sys_colo_mess_from'] = 'Kolonilestirmek';
 $LNG['sys_colo_mess_report'] = 'Colonisation report';
@@ -92,6 +92,7 @@ $LNG['sys_colo_notfree'] = 'Filolariniz kolonilestirme islemi  icin %s koordinat
 
 $LNG['sys_expe_report'] = 'Kesif Raporu';
 $LNG['sys_recy_report'] = 'Geri Donusum Raporu';
+$LNG['sys_recy_mess'] = 'Geri dönüşüm filolarınızdan biri %s\'e %s %s %s, %s %s ve %s %s ile dönüyor.';
 $LNG['sys_expe_found_ships_nothing'] = 'Gemi bulunamadi.';
 $LNG['sys_expe_blackholl_1'] = 'Kesif filonuz kara delige yakalandi ve kara delik filonuzun bir kismini icine cekti.'
     . ' Malesef kaybolan filo ile irtibat kesildi.! ';
@@ -240,8 +241,7 @@ $LNG['sys_expe_back_home_ress'] = 'Aktariliyor %s %s, %s %s ve %s %s.';
 $LNG['sys_expe_back_home_ships_flound'] = 'Aşağıdaki gemiler bulundu:';
 $LNG['sys_expe_back_home_ships_lost'] = 'Aşağıdaki gemiler kayboldu:';
 $LNG['sys_mess_transport'] = 'Nakliye Raporu';
-$LNG['sys_tran_mess_owner'] = 'Filolarinizdan itibaren %s %s birisi %s %s koordinatina ulasti.'
-. ' Aktarilan madenler %s %s, %s %s ve %s %s.';
+$LNG['sys_tran_mess_owner'] = '%s %s filolarınızdan biri %s %s %s ulaştı ve %s %s, %s %s ve %s %s\'yi teslim etti.';
 $LNG['sys_tran_mess_user'] = 'Dost Nakliye Filosu %s %s koordinatindan %s %s koordinatina ulasiyor.'
     . ' Getirdigi madenler %s %s, %s %s ve %s %s.';
 $LNG['sys_mess_fleetback'] = 'Geri Donen Filo';
