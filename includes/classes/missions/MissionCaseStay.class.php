@@ -111,6 +111,7 @@ class MissionCaseStay extends MissionFunctions implements Mission
 
         $Message = sprintf(
             $LNG['sys_stat_mess'],
+            $LNG['type_planet_' . $this->_fleet['fleet_start_type']],
             GetStartAddressLink($this->_fleet, ''),
             pretty_number($this->_fleet['fleet_resource_metal']),
             $LNG['tech'][901],
