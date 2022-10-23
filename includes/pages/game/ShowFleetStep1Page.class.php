@@ -324,7 +324,7 @@ class ShowFleetStep1Page extends AbstractGamePage
             }
 
             if (!empty($planetData)) {
-                if ($planetData['destruyed'] != 0) {
+                if ($planetData['destruyed'] != 0 && $targetPlanetType != 2) {
                     $this->sendJSON($LNG['fl_error_not_avalible']);
                 }
             }

@@ -773,7 +773,6 @@ class PlayerUtil
             $USER['urlaubs_modus'] = 0;
             $USER['urlaubs_until'] = 0;
             $USER['urlaubs_start'] = 0;
-            $PLANET['last_update'] = TIMESTAMP;
 
             $sql = "SELECT * FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :id;";
             $PlanetsRAW = $db->select($sql, [
@@ -782,12 +781,16 @@ class PlayerUtil
             ]);
 
             $PlanetRess	= new ResourceUpdate();
+            if (isset($PLANET)) {
+                $PLANET['last_update'] = TIMESTAMP;
+                $PLANET['eco_hash'] = '';
+                list($USER, $PLANET) = $PlanetRess->CalcResource($USER, $PLANET, true);
+            }
+
             foreach ($PlanetsRAW as $CPLANET) {
                 $CPLANET['eco_hash'] = '';
                 list($USER, $CPLANET) = $PlanetRess->CalcResource($USER, $CPLANET, true);
             }
-            $PLANET['eco_hash'] = '';
-            list($USER, $PLANET) = $PlanetRess->CalcResource($USER, $PLANET, true);
         }
     }
 

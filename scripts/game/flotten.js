@@ -348,7 +348,7 @@ function checkHold(mission) {
 	if ([5,15,16,17].includes(mission)) {
 		document.getElementById("stay_head").style.display = '';
 		document.getElementById("stay").style.display = '';
-	} else {
+	} else if (document.getElementById("stay_head") != null) {
 		document.getElementById("stay_head").style.display = 'none';
 		document.getElementById("stay").style.display = 'none';
 	}

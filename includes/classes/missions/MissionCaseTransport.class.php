@@ -57,6 +57,7 @@ class MissionCaseTransport extends MissionFunctions implements Mission
 				$LNG['sys_tran_mess_owner'],
 				$startPlanetName,
 				GetStartAddressLink($this->_fleet, ''),
+				$LNG['type_planet_' . $this->_fleet['fleet_end_type']],
 				$targetPlanetName,
 				GetTargetAddressLink($this->_fleet, ''),
 				pretty_number($this->_fleet['fleet_resource_metal']),
