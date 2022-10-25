@@ -223,6 +223,7 @@ CREATE TABLE `%PREFIX%config` (
   `alliance_create_min_points` BIGINT UNSIGNED NOT NULL DEFAULT 0,
   `uni_type` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `galaxy_type` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `planet_creation` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`uni`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

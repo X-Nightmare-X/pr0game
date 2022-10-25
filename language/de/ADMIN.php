@@ -368,6 +368,10 @@ $LNG['se_galaxy_type_info'] = '<TABLE>'
 $LNG['se_line_galaxy'] = 'Linear-Galaxien (Standard)';
 $LNG['se_ring_galaxy'] = 'Ring-Galaxien';
 $LNG['se_sphere_galaxy'] = 'Kugel-Galaxien';
+$LNG['se_planet_creation'] = 'Hauptplaneten-Platzierung';
+$LNG['se_planet_creation_info'] = 'Planeten neuer Spieler können entweder iterativ durch Systeme und Galaxien aufsteigend oder zufällig verteilt platziert werden';
+$LNG['se_iter_planet_creation'] = 'Iterativ (Standard)';
+$LNG['se_random_planet_creation'] = 'Zufällig';
 $LNG['se_several_parameters'] = 'Diverse Parameter';
 $LNG['se_title_admins_protection'] = 'Wenn aktiviert, wird Administratoren und Moderratoren die Möglichkeit gegeben,'
     . ' sie nicht angreifbar zu machen.';
