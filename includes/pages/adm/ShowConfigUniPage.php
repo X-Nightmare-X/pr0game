@@ -62,6 +62,7 @@ function ShowConfigUniPage()
             'max_planets'           => $config->max_planets,
             'uni_type'              => $config->uni_type,
             'galaxy_type'           => $config->galaxy_type,
+            'planet_creation'       => $config->planet_creation,
             'min_player_planets'    => $config->min_player_planets,
             'planets_tech'          => $config->planets_tech,
             'planets_per_tech'      => $config->planets_per_tech,
@@ -131,6 +132,7 @@ function ShowConfigUniPage()
         $max_planets            = HTTP::_GP('max_planets', 0);
         $uni_type               = HTTP::_GP('uni_type', 0);
         $galaxy_type            = HTTP::_GP('galaxy_type', 0);
+        $planet_creation        = HTTP::_GP('planet_creation', 0);
         $min_player_planets     = HTTP::_GP('min_player_planets', 0);
         $planets_tech           = HTTP::_GP('planets_tech', 0);
         $planets_per_tech       = HTTP::_GP('planets_per_tech', 0.0);
@@ -195,6 +197,7 @@ function ShowConfigUniPage()
             'max_planets'           => $max_planets,
             'uni_type'              => $uni_type,
             'galaxy_type'           => $galaxy_type,
+            'planet_creation'       => $planet_creation,
             'min_player_planets'    => $min_player_planets,
             'planets_tech'          => $planets_tech,
             'planets_per_tech'      => $planets_per_tech,
@@ -375,6 +378,8 @@ function ShowConfigUniPage()
         'se_debris_moon_info'           => $LNG['se_debris_moon_info'],
         'se_deuterium_cost_galaxy'      => $LNG['se_deuterium_cost_galaxy'],
         'se_deuterium_cost_galaxy_info' => $LNG['se_deuterium_cost_galaxy_info'],
+        'se_planet_creation'            => $LNG['se_planet_creation'],
+        'se_planet_creation_info'       => $LNG['se_planet_creation_info'],
         'se_buildlist'                  => $LNG['se_buildlist'],
         'Deuterium'                     => $LNG['tech'][903],
         'se_ref'                        => $LNG['se_ref'],
@@ -449,6 +454,10 @@ function ShowConfigUniPage()
                 '1' => $LNG['se_ring_galaxy'],
                 '2' => $LNG['se_sphere_galaxy'],
             ],
+            'planet_creations' => [
+                '0' => $LNG['se_iter_planet_creation'],
+                '1' => $LNG['se_random_planet_creation'],
+            ],
         ],
         'lang'                          => $config->lang,
         'max_galaxy'                    => $config->max_galaxy,
@@ -456,6 +465,7 @@ function ShowConfigUniPage()
         'max_planets'                   => $config->max_planets,
         'uni_type'                      => $config->uni_type,
         'galaxy_type'                   => $config->galaxy_type,
+        'planet_creation'               => $config->planet_creation,
         'min_player_planets'            => $config->min_player_planets,
         'planets_tech'                  => $config->planets_tech,
         'planets_per_tech'              => $config->planets_per_tech,

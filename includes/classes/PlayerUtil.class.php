@@ -89,6 +89,7 @@ class PlayerUtil
         $userIpAddress = null
     ) {
         $config = Config::get($universe);
+        $db = Database::get();
 
         if (isset($universe, $galaxy, $system, $position)) {
             if (self::checkPosition($universe, $galaxy, $system, $position) === false) {
@@ -101,6 +102,75 @@ class PlayerUtil
                 throw new Exception(
                     sprintf("Position is not empty: %s:%s:%s!", $galaxy, $system, $position)
                 );
+            }
+        } elseif ($config->planet_creation == 1) {
+            //get avg planets per system per galaxy
+            $sql = 'SELECT tab.galaxy, (sum(tab.anz)/400) as AvgPlanetsPerSys FROM ( 
+                        SELECT galaxy, `system`, COUNT(planet) as anz 
+                        FROM %%PLANETS%% WHERE planet_type = 1 AND galaxy < :maxGala GROUP BY galaxy, `system` 
+                    ) as tab GROUP BY galaxy';
+            $avgPlanetsPerGala = $db->select($sql, [
+                ':maxGala' => $config->max_galaxy,
+            ]);
+
+            // get gala with min avg systems
+            $minAvg = $config->max_planets;
+            $galaxy = 0;
+            foreach ($avgPlanetsPerGala as $data) {
+                if ($data['AvgPlanetsPerSys'] < $minAvg) {
+                    $galaxy = $data['galaxy'];
+                    $minAvg = $data['AvgPlanetsPerSys'];
+                }
+            }
+
+            // get system with planet count for selected gala
+            $sql = 'SELECT `system`, count(planet) as cnt FROM %%PLANETS%% 
+                WHERE planet_type = 1 AND galaxy = :gala GROUP BY `system`';
+            $systems = $db->select($sql, [
+                ':gala' => $galaxy,
+            ]);
+
+            // get empty systems in selected gala
+            $emptySystems = [];
+            for ($i = 1; $i <= $config->max_system; $i++) {
+                $inArray = false;
+                foreach ($systems as $sysArray) {
+                    if ($sysArray['system'] == $i) {
+                        $inArray = true;
+                        break;
+                    }
+                }
+                if (!$inArray) {
+                    $emptySystems[] = $i;
+                }
+            }
+
+            if (!empty($emptySystems)) {
+                // find random empty system and random planet inside
+                do {
+                    $system = $emptySystems[array_rand($emptySystems)];
+                    $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
+                    if ($position < 3) {
+                        $position += 1;
+                    }
+                } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
+            } else {
+                // if no empty systems, list systems with less then 3 planets
+                $usableSystems = [];
+                foreach ($systems as $sysArray) {
+                    if ($sysArray['anz'] < 3) {
+                        $usableSystems[] = $sysArray['system'];
+                    }
+                }
+
+                // find random system and random planet inside
+                do {
+                    $system = $usableSystems[array_rand($usableSystems)];
+                    $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
+                    if ($position < 3) {
+                        $position += 1;
+                    }
+                } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
             }
         } else {
             $galaxy = $config->LastSettedGalaxyPos;
@@ -169,8 +239,6 @@ class PlayerUtil
 		dpath			= :dpath,
 		timezone		= :timezone,
 		uctime			= :nameLastChanged;';
-
-        $db = Database::get();
 
         $db->insert($sql, $params);
 
