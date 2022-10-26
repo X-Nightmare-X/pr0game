@@ -105,12 +105,17 @@ class PlayerUtil
             }
         } elseif ($config->planet_creation == 1) {
             //get avg planets per system per galaxy
-            $sql = 'SELECT tab.galaxy, (sum(tab.anz)/400) as AvgPlanetsPerSys FROM ( 
-                        SELECT galaxy, `system`, COUNT(planet) as anz 
-                        FROM %%PLANETS%% WHERE planet_type = 1 AND galaxy < :maxGala GROUP BY galaxy, `system` 
-                    ) as tab GROUP BY galaxy';
+            $sql = 'SELECT tab.galaxy, (sum(tab.anz)/:maxSys) as AvgPlanetsPerSys FROM ( 
+                        SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz 
+                        FROM %%PLANETS%% p
+    					JOIN %%USERS%% u on u.id = p.id_owner
+    					WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - 604800 )
+    					GROUP BY p.galaxy, p.`system` 
+                    ) as tab GROUP BY galaxy ORDER BY tab.galaxy ASC';
             $avgPlanetsPerGala = $db->select($sql, [
                 ':maxGala' => $config->max_galaxy,
+                ':maxSys' => $config->max_system,
+                ':ts' => TIMESTAMP,
             ]);
 
             // get gala with min avg systems
