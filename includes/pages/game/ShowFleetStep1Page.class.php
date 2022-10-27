@@ -277,6 +277,7 @@ class ShowFleetStep1Page extends AbstractGamePage
         $targetSystem = HTTP::_GP('system', 0);
         $targetPlanet = HTTP::_GP('planet', 0);
         $targetPlanetType = HTTP::_GP('planet_type', 1);
+        $koloShipInFleet = HTTP::_GP('kolo', 0);
 
         if (
             $targetGalaxy == $PLANET['galaxy'] && $targetSystem == $PLANET['system']
@@ -310,6 +311,10 @@ class ShowFleetStep1Page extends AbstractGamePage
                 $this->sendJSON($LNG['fl_error_no_moon']);
             }
 
+            if ($targetPlanetType == 1 && !isset($planetData) && !$koloShipInFleet) {
+                $this->sendJSON($LNG['fl_error_not_avalible']);
+            }
+
             if ($targetPlanetType != 2 && !empty($planetData['urlaubs_modus'])) {
                 $this->sendJSON($LNG['fl_in_vacation_player']);
             }
@@ -329,8 +334,8 @@ class ShowFleetStep1Page extends AbstractGamePage
                 }
             }
 
-            if ($targetPlanetType == 2 && ($planetData['der_metal'] + $planetData['der_crystal']) == 0 && 
-                $planetData['tf_active'] == 0) {
+            if ($targetPlanetType == 2 && (empty($planetData) || ($planetData['der_metal'] + $planetData['der_crystal']) == 0 && 
+                $planetData['tf_active'] == 0)) {
                 $this->sendJSON($LNG['fl_error_empty_derbis']);
             }
 
