@@ -277,6 +277,7 @@ class ShowFleetStep1Page extends AbstractGamePage
         $targetSystem = HTTP::_GP('system', 0);
         $targetPlanet = HTTP::_GP('planet', 0);
         $targetPlanetType = HTTP::_GP('planet_type', 1);
+        $koloShipInFleet = HTTP::_GP('kolo', 0);
 
         if (
             $targetGalaxy == $PLANET['galaxy'] && $targetSystem == $PLANET['system']
@@ -329,8 +330,8 @@ class ShowFleetStep1Page extends AbstractGamePage
                 }
             }
 
-            if ($targetPlanetType == 2 && ($planetData['der_metal'] + $planetData['der_crystal']) == 0 && 
-                $planetData['tf_active'] == 0) {
+            if ($targetPlanetType == 2 && (empty($planetData) || ($planetData['der_metal'] + $planetData['der_crystal']) == 0 && 
+                $planetData['tf_active'] == 0)) {
                 $this->sendJSON($LNG['fl_error_empty_derbis']);
             }
 
