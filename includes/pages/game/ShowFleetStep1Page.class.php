@@ -311,6 +311,10 @@ class ShowFleetStep1Page extends AbstractGamePage
                 $this->sendJSON($LNG['fl_error_no_moon']);
             }
 
+            if ($targetPlanetType == 1 && !isset($planetData) && !$koloShipInFleet) {
+                $this->sendJSON($LNG['fl_error_not_avalible']);
+            }
+
             if ($targetPlanetType != 2 && !empty($planetData['urlaubs_modus'])) {
                 $this->sendJSON($LNG['fl_in_vacation_player']);
             }
