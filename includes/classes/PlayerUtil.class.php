@@ -74,7 +74,70 @@ class PlayerUtil
             || $config->max_system < $system
             || $config->max_planets < $position);
     }
+    public static function randomHP($universe){
+        $config = Config::get($universe);
+        $db = Database::get();
+        //get avg planets per system per galaxy
+        $sql = 'SELECT tab.galaxy, (sum(tab.anz)/:maxSys) as AvgPlanetsPerSys FROM ( 
+            SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz 
+            FROM %%PLANETS%% p
+            JOIN %%USERS%% u on u.id = p.id_owner
+            WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - 604800 )
+            GROUP BY p.galaxy, p.`system` 
+        ) as tab GROUP BY galaxy ORDER BY tab.galaxy ASC';
+        $avgPlanetsPerGala = $db->select($sql, [
+            ':maxGala' => $config->max_galaxy,
+            ':maxSys' => $config->max_system,
+            ':ts' => TIMESTAMP,
+        ]);
 
+        // get gala with min avg systems
+        $minAvg = $config->max_planets;
+        $galaxy = 0;
+        $galaArray = array();
+        foreach ($avgPlanetsPerGala as $data) {
+            if ($data['AvgPlanetsPerSys'] < $minAvg) {
+                $minAvg = $data['AvgPlanetsPerSys'];
+            }
+        }
+        foreach ($avgPlanetsPerGala as $data) {
+            if ($data['AvgPlanetsPerSys'] = $minAvg) {
+                array_push($galaArray, $data['galaxy']);
+            }
+        }
+        $galaxy = $galaArray[rand(0, count($galaArray)-1)];
+
+        // get system with planet count for selected gala
+        $sql = 'SELECT `system`, count(planet) as cnt FROM %%PLANETS%% 
+            WHERE planet_type = 1 AND galaxy = :gala GROUP BY `system`';
+        $systems = $db->select($sql, [
+            ':gala' => $galaxy,
+        ]);
+
+        // get empty systems in selected gala
+        for ($planetamount = 0; $planetamount <= $config->max_planets; $planetamount++) {
+            $usableSystems = [];
+            foreach ($systems as $sysArray) {
+                if ($sysArray['anz'] = $planetamount) {
+                    $usableSystems[] = $sysArray['system'];
+                }
+            }
+
+            // find random system and random planet inside
+            do {
+                $system = $usableSystems[array_rand($usableSystems)];
+                do {
+                    $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
+                } while (!PlayerUtil::allowPlanetPosition($position));
+            } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
+        }
+    }
+    public static function bulkHP($universe){
+        $config = Config::get($universe);
+        $db = Database::get();
+        //ersten 50 setzungen nach random, dann alle systeme mit nur 1 planeten(generell nicht hp) nehmen 
+        //und random reinsetzen, falls nicht vorhanden gleiches für sys mit 2 planis, falls nicht vorhanden -> random
+    }
     public static function createPlayer(
         $universe,
         $userName,
@@ -104,60 +167,19 @@ class PlayerUtil
                 );
             }
         } elseif ($config->planet_creation == 1) {
-            //get avg planets per system per galaxy
-            $sql = 'SELECT tab.galaxy, (sum(tab.anz)/:maxSys) as AvgPlanetsPerSys FROM ( 
-                        SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz 
-                        FROM %%PLANETS%% p
-    					JOIN %%USERS%% u on u.id = p.id_owner
-    					WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - 604800 )
-    					GROUP BY p.galaxy, p.`system` 
-                    ) as tab GROUP BY galaxy ORDER BY tab.galaxy ASC';
-            $avgPlanetsPerGala = $db->select($sql, [
-                ':maxGala' => $config->max_galaxy,
-                ':maxSys' => $config->max_system,
-                ':ts' => TIMESTAMP,
-            ]);
-
-            // get gala with min avg systems
-            $minAvg = $config->max_planets;
-            $galaxy = 0;
-            $galaArray = array();
-            foreach ($avgPlanetsPerGala as $data) {
-                if ($data['AvgPlanetsPerSys'] < $minAvg) {
-                    $minAvg = $data['AvgPlanetsPerSys'];
+            PlayerUtil::randomHP($universe);
+        } else if($config->planet_creation == 2) {
+            PlayerUtil::bulkHP($universe);
+        } else if($config->planet_creation == 3) {
+            $rand_vs_bulk = rand(0,1);
+            switch($rand_vs_bulk){
+                case 0:
+                    PlayerUtil::randomHP($universe);
+                    break;
+                case 1:
+                    PlayerUtil::bulkHP($universe);
+                    break;
                 }
-            }
-            foreach ($avgPlanetsPerGala as $data) {
-                if ($data['AvgPlanetsPerSys'] = $minAvg) {
-                    array_push($galaArray, $data['galaxy']);
-                }
-            }
-            $galaxy = $galaArray[rand(0, count($galaArray)-1)];
-            
-            // get system with planet count for selected gala
-            $sql = 'SELECT `system`, count(planet) as cnt FROM %%PLANETS%% 
-                WHERE planet_type = 1 AND galaxy = :gala GROUP BY `system`';
-            $systems = $db->select($sql, [
-                ':gala' => $galaxy,
-            ]);
-
-            // get empty systems in selected gala
-            for ($planetamount = 0; $planetamount <= $config->max_planets; $planetamount++) {
-                $usableSystems = [];
-                foreach ($systems as $sysArray) {
-                    if ($sysArray['anz'] = $planetamount) {
-                        $usableSystems[] = $sysArray['system'];
-                    }
-                }
-
-                // find random system and random planet inside
-                do {
-                    $system = $usableSystems[array_rand($usableSystems)];
-                    do {
-                        $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
-                    } while (!PlayerUtil::allowPlanetPosition($position));
-                } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
-            }
         } else {
             $galaxy = $config->LastSettedGalaxyPos;
             $system = $config->LastSettedSystemPos;
