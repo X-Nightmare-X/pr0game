@@ -121,13 +121,19 @@ class PlayerUtil
             // get gala with min avg systems
             $minAvg = $config->max_planets;
             $galaxy = 0;
+            $galaArray = array();
             foreach ($avgPlanetsPerGala as $data) {
                 if ($data['AvgPlanetsPerSys'] < $minAvg) {
-                    $galaxy = $data['galaxy'];
                     $minAvg = $data['AvgPlanetsPerSys'];
                 }
             }
-
+            foreach ($avgPlanetsPerGala as $data) {
+                if ($data['AvgPlanetsPerSys'] = $minAvg) {
+                    array_push($galaArray, $data['galaxy']);
+                }
+            }
+            $galaxy = $galaArray[rand(0, count($galaArray)-1)];
+            
             // get system with planet count for selected gala
             $sql = 'SELECT `system`, count(planet) as cnt FROM %%PLANETS%% 
                 WHERE planet_type = 1 AND galaxy = :gala GROUP BY `system`';
@@ -136,34 +142,10 @@ class PlayerUtil
             ]);
 
             // get empty systems in selected gala
-            $emptySystems = [];
-            for ($i = 1; $i <= $config->max_system; $i++) {
-                $inArray = false;
-                foreach ($systems as $sysArray) {
-                    if ($sysArray['system'] == $i) {
-                        $inArray = true;
-                        break;
-                    }
-                }
-                if (!$inArray) {
-                    $emptySystems[] = $i;
-                }
-            }
-
-            if (!empty($emptySystems)) {
-                // find random empty system and random planet inside
-                do {
-                    $system = $emptySystems[array_rand($emptySystems)];
-                    $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
-                    if ($position < 3) {
-                        $position += 1;
-                    }
-                } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
-            } else {
-                // if no empty systems, list systems with less then 3 planets
+            for ($planetamount = 0; $planetamount <= $config->max_planets; $planetamount++) {
                 $usableSystems = [];
                 foreach ($systems as $sysArray) {
-                    if ($sysArray['anz'] < 3) {
+                    if ($sysArray['anz'] = $planetamount) {
                         $usableSystems[] = $sysArray['system'];
                     }
                 }
@@ -171,10 +153,9 @@ class PlayerUtil
                 // find random system and random planet inside
                 do {
                     $system = $usableSystems[array_rand($usableSystems)];
-                    $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
-                    if ($position < 3) {
-                        $position += 1;
-                    }
+                    do {
+                        $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
+                    } while (!PlayerUtil::allowPlanetPosition($position));
                 } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
             }
         } else {
@@ -691,13 +672,18 @@ class PlayerUtil
         );
     }
 
-    public static function allowPlanetPosition($position, $USER)
+    public static function allowPlanetPosition($position, $USER = NULL)
     {
         // http://owiki.de/index.php/Astrophysik#.C3.9Cbersicht
 
         global $resource;
         $config = Config::get($USER['universe']);
-        $astroTech = PlayerUtil::getAstroTech($USER);
+        if(isset($USER)){
+            $astroTech = PlayerUtil::getAstroTech($USER);
+        } else {
+            $astroTech = 1;
+        }
+        
 
         switch ($position) {
             case 1:
