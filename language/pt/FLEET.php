@@ -99,7 +99,7 @@ $LNG['sys_colo_notfree'] = 'A nave de colonização chegou às coordenadas %s, A
 
 $LNG['sys_expe_report'] = 'Relatório de expedição';
 $LNG['sys_recy_report'] = 'Relatório de reciclagem';
-$LNG['sys_recy_mess'] = 'Uma das suas frotas de recicladores regressa a %s %s com %s %s, %s %s %s e %s %s %s';
+$LNG['sys_recy_mess'] = 'Uma das suas frotas de recicladores regressa a %s %s com %s %s, %s %s e %s %s';
 $LNG['sys_expe_blackholl_1'] = 'A frota foi sugada por um buraco negro, e foi praticamente toda destruída.';
 $LNG['sys_expe_blackholl_2'] = 'A frota foi sugada por um buraco negro, e foi completamente destruída!';
 $LNG['sys_expe_report_msg'] = 'Relatório de expedição da %s %s da frota:';
