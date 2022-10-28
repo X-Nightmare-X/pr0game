@@ -131,12 +131,64 @@ class PlayerUtil
                 } while (!PlayerUtil::allowPlanetPosition($position));
             } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
         }
+        $pos = array('galaxy'   => $galaxy, 
+                     'system'   => $system, 
+                     'positon'  => $position);
+        return $pos;
     }
     public static function bulkHP($universe){
         $config = Config::get($universe);
         $db = Database::get();
         //ersten 50 setzungen nach random, dann alle systeme mit nur 1 planeten(generell nicht hp) nehmen 
         //und random reinsetzen, falls nicht vorhanden gleiches für sys mit 2 planis, falls nicht vorhanden -> random
+        $sql = 'SELECT Count(*) from %%USERS%% WHERE universe = :universe';
+        $usercount = $db->selectSingle($sql, [
+            ':universe' => $universe,
+        ]);
+        if($usercount < 50){
+            $pos = self::randomHP($universe);
+            return $pos;
+        }
+        $sql = 'SELECT tab.galaxy, tab.system FROM ( 
+            SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz 
+            FROM %%PLANETS%% p
+            JOIN %%USERS%% u on u.id = p.id_owner
+            WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - 604800 )
+            GROUP BY p.galaxy, p.`system` 
+        ) as tab where tab.anz = 1 ORDER BY tab.galaxy ASC';
+        $systems = $db->select($sql, [
+            ':maxGala' => $config->max_galaxy,
+            ':ts' => TIMESTAMP,
+        ]);
+        if(empty($system)){
+            $sql = 'SELECT tab.galaxy, tab.system FROM ( 
+                SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz 
+                FROM %%PLANETS%% p
+                JOIN %%USERS%% u on u.id = p.id_owner
+                WHERE planet_type = 2 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - 604800 )
+                GROUP BY p.galaxy, p.`system` 
+            ) as tab where tab.anz = 1 ORDER BY tab.galaxy ASC';
+            $systems = $db->select($sql, [
+                ':maxGala' => $config->max_galaxy,
+                ':ts' => TIMESTAMP,
+            ]);
+        }
+        if (!empty($systems)) {
+            $galasys = $systems[array_rand($systems)];
+            $galaxy = $galasys['galaxy'];
+            $system = $galasys['system'];
+            do {
+                $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
+            } while (!PlayerUtil::allowPlanetPosition($position));
+            $pos = array(
+                'galaxy'   => $galaxy, 
+                'system'   => $system, 
+                'positon'  => $position
+            );
+            return $pos;
+        }
+        $pos = self::randomHP($universe);
+        return $pos;
     }
     public static function createPlayer(
         $universe,
@@ -167,17 +219,17 @@ class PlayerUtil
                 );
             }
         } elseif ($config->planet_creation == 1) {
-            PlayerUtil::randomHP($universe);
+            $pos = PlayerUtil::randomHP($universe);
         } else if($config->planet_creation == 2) {
-            PlayerUtil::bulkHP($universe);
+            $pos = PlayerUtil::bulkHP($universe);
         } else if($config->planet_creation == 3) {
             $rand_vs_bulk = rand(0,1);
             switch($rand_vs_bulk){
                 case 0:
-                    PlayerUtil::randomHP($universe);
+                    $pos = PlayerUtil::randomHP($universe);
                     break;
                 case 1:
-                    PlayerUtil::bulkHP($universe);
+                    $pos = PlayerUtil::bulkHP($universe);
                     break;
                 }
         } else {
@@ -251,7 +303,7 @@ class PlayerUtil
         $db->insert($sql, $params);
 
         $userId = $db->lastInsertId();
-        $planetId = self::createPlanet($galaxy, $system, $position, $universe, $userId, $name, true, $authlevel);
+        $planetId = self::createPlanet($pos['galaxy'], $pos['system'], $pos['position'], $universe, $userId, $name, true, $authlevel);
 
         $currentUserAmount = $config->users_amount + 1;
         $config->users_amount = $currentUserAmount;
@@ -264,9 +316,9 @@ class PlayerUtil
 		WHERE id = :userId;";
 
         $db->update($sql, array(
-            ':galaxy'   => $galaxy,
-            ':system'   => $system,
-            ':position' => $position,
+            ':galaxy'   => $pos['galaxy'],
+            ':system'   => $pos['system'],
+            ':position' => $pos['position'],
             ':planetId' => $planetId,
             ':userId'   => $userId,
         ));
