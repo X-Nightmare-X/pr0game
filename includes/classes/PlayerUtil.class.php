@@ -74,6 +74,7 @@ class PlayerUtil
             || $config->max_system < $system
             || $config->max_planets < $position);
     }
+    public static function randomHP($universe){
 
     public static function randomHP($universe)
     {
