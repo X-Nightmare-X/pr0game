@@ -86,7 +86,7 @@ $LNG['sys_colo_notfree'] = 'Eine deiner Floddne erreichd die Goordinatne %s Als 
 
 $LNG['sys_expe_report'] = 'Exbeditionsbericht';
 $LNG['sys_recy_report'] = 'Recyclerberichd';
-$LNG['sys_recy_mess'] = 'Eine deiner Recycler-Flotten kehrt nach %s %s mit %s %s, %s %s und %s %s zurück.';
+$LNG['sys_recy_mess'] = 'Eine deiner Rescheikler-Flotten kehrt nach %s %s mit %s %s, %s %s und %s %s zurück.';
 $LNG['sys_expe_found_ships_nothing'] = '- Es gonntne geine Schiffe rebariert werdne und alles.';
 $LNG['sys_expe_blackholl_1'] = 'Deine Flodde draf uff a schwarzes Loch und wurde deilweise zermeddld etzala!';
 $LNG['sys_expe_blackholl_2'] = 'Deine Flodde draf uff ein schwarzes Loch und wurde gomplett zermeddld! ';
@@ -99,7 +99,7 @@ $LNG['sys_expe_found_ress_1_1'] = 'Deine Exbedition had nene gleinene Aschderoid
 $LNG['sys_expe_found_ress_1_2'] = 'Auf einem abgelegenene Blanetoidne wurdne einiche leichd zugängliche Ressourcenfelder'
     . ' gefundne und erfolgreich Rohschdoffe gewonnene.';
 $LNG['sys_expe_found_ress_1_3'] = 'Deine Exbedition schdieß uff sehr alde Raumschiffwraggs einer längschd wergangenene'
-    . ' Schlachd hätt ich gsachd. Einzelne Gomponentne gonnte man bergne und recyceln tadsächlich sogar.';
+    . ' Schlachd hätt ich gsachd. Einzelne Gomponentne gonnte man bergne und rescheikelne tadsächlich sogar.';
 $LNG['sys_expe_found_ress_1_4'] = 'Die Exbedition schdieß uff nene radioagtiv verschdrahltne Blanetoidne mid hochgifdiger '
     . ' Atmosbhäre. Jedoch ergabne Scans, das dieser Blanetoid sehr rohschdoffhaltig is. Pass auf, Middels audomadischer Drohnene '
     . ' wurde versuchd, a Maggsimum an Rohschdoffne zu gewinnene.';
@@ -286,7 +286,7 @@ $LNG['sys_expe_back_home_ress'] = 'Sie haben %s %s, %s %s und %s %s midgebrachd.
 $LNG['sys_expe_back_home_ships_flound'] = 'Es wurdne folgende Schiffe gefundne: ';
 $LNG['sys_expe_back_home_ships_lost'] = 'Es gingne folgende Schiffe werlorne: ';
 $LNG['sys_mess_transport'] = 'Dransportbericht ';
-$LNG['sys_tran_mess_owner'] = 'Eine deiner Floddne erreichd den %s %s %s und lieferd  %s %s, %s %s und %s %s.';
+$LNG['sys_tran_mess_owner'] = 'Eine deiner Floddne von %s %s erreichd den %s %s %s und lieferd %s %s, %s %s und %s %s.';
 $LNG['sys_tran_mess_user'] = 'Eine friedliche Flodde von %s %s erreichd %s %s und lieferd  %s %s, %s %s und %s %s.';
 
 $LNG['sys_mess_fleetback'] = 'Floddenrüggkehr ';
