@@ -45,6 +45,8 @@ function calculateSteal($attackFleets, $defenderPlanet, $simulate = false)
         $SortFleets[$FleetID] -= $Attacker['fleetDetail']['fleet_resource_metal'];
         $SortFleets[$FleetID] -= $Attacker['fleetDetail']['fleet_resource_crystal'];
         $SortFleets[$FleetID] -= $Attacker['fleetDetail']['fleet_resource_deuterium'];
+        if ($SortFleets[$FleetID] < 0) //if fleet is already full but spydrones are not factored in,
+            $SortFleets[$FleetID] = 0; //capacity can be negative, resulting in negative steel numbers.
         $capacity += $SortFleets[$FleetID];
     }
 
