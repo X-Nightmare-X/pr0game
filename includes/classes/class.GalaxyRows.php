@@ -201,7 +201,6 @@ class GalaxyRows
     protected function getPlayerData()
     {
         global $USER, $LNG;
-
         $IsNoobProtec = CheckNoobProtec($USER, $this->galaxyRow, $this->galaxyRow);
         $Class = userStatus($this->galaxyRow, $IsNoobProtec);
 
@@ -302,7 +301,7 @@ class GalaxyRows
             'name'    => htmlspecialchars($this->galaxyRow['name'], ENT_QUOTES, "UTF-8"),
             'image'   => $this->galaxyRow['image'],
             'phalanx' => isModuleAvailable(MODULE_PHALANX)
-                && ShowPhalanxPage::allowPhalanx($this->galaxyRow['galaxy'], $this->galaxyRow['system']),
+                && ShowPhalanxPage::allowPhalanx($this->galaxyRow['galaxy'], $this->galaxyRow['system'], $this->galaxyRow,),
         ];
     }
 }
