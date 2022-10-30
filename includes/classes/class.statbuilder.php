@@ -90,7 +90,7 @@ class statbuilder
             $statPoints->setTotalStats();
             $this->updateUserStats($statPoints);
 
-            if ($userData['ally_id'] != 0 && !($userData['onlinetime'] < TIMESTAMP - INACTIVE)) {
+            if ($userData['ally_id'] != 0) {
                 if (!isset($allianceScores[$userData['ally_id']])) {
                     $allianceScores[$userData['ally_id']] = new StatPoints(
                         $userData['ally_id'],
@@ -100,15 +100,17 @@ class statbuilder
                     );
                 }
 
-                $allianceScores[$userData['ally_id']]->build_count += (int)$userScores[$userData['id']]['build']['count'];
-                $allianceScores[$userData['ally_id']]->build_points += (int)$userScores[$userData['id']]['build']['points'] ?? 0;
-                $allianceScores[$userData['ally_id']]->fleet_count += (int)$fleetPoints['count'];
-                $allianceScores[$userData['ally_id']]->fleet_points += (int)$fleetPoints['points'];
-                $allianceScores[$userData['ally_id']]->defs_count += (int)$defensePoints['count'];
-                $allianceScores[$userData['ally_id']]->defs_points += (int)$defensePoints['points'];
-                $allianceScores[$userData['ally_id']]->tech_count += (int)$techPoints['count'];
-                $allianceScores[$userData['ally_id']]->tech_points += (int)$techPoints['points'];
-                $allianceScores[$userData['ally_id']]->setTotalStats();
+                if ($userData['onlinetime'] >= TIMESTAMP - INACTIVE) {
+                    $allianceScores[$userData['ally_id']]->build_count += (int)$userScores[$userData['id']]['build']['count'];
+                    $allianceScores[$userData['ally_id']]->build_points += (int)$userScores[$userData['id']]['build']['points'] ?? 0;
+                    $allianceScores[$userData['ally_id']]->fleet_count += (int)$fleetPoints['count'];
+                    $allianceScores[$userData['ally_id']]->fleet_points += (int)$fleetPoints['points'];
+                    $allianceScores[$userData['ally_id']]->defs_count += (int)$defensePoints['count'];
+                    $allianceScores[$userData['ally_id']]->defs_points += (int)$defensePoints['points'];
+                    $allianceScores[$userData['ally_id']]->tech_count += (int)$techPoints['count'];
+                    $allianceScores[$userData['ally_id']]->tech_points += (int)$techPoints['points'];
+                    $allianceScores[$userData['ally_id']]->setTotalStats();
+                }
             }
         }
 
@@ -460,3 +462,26 @@ class statbuilder
         fclose($fh);
     }
 }
+
+/* 
+	Enable to debug 
+*/
+// define('MODE', 'INSTALL');
+// define('ROOT_PATH', 'G:/xampp/htdocs/pr0game/');
+// set_include_path(
+//     ROOT_PATH . 'includes/libs/BBCodeParser2/' . PATH_SEPARATOR . ROOT_PATH . PATH_SEPARATOR . get_include_path()
+// );
+
+// require 'includes/pages/game/AbstractGamePage.class.php';
+// require 'includes/pages/game/ShowErrorPage.class.php';
+// require 'includes/common.php';
+
+// // require 'includes/classes/Database.class.php';
+// require 'includes/vars.php';
+// require 'includes/models/StatPoints.php';
+// $class = new statbuilder();
+// try {
+//     $class->generateStats();
+// } catch (\Throwable $th) {
+//     echo $th;
+// }
