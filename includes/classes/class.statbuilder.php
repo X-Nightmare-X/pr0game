@@ -90,7 +90,7 @@ class statbuilder
             $statPoints->setTotalStats();
             $this->updateUserStats($statPoints);
 
-            if ($userData['ally_id'] != 0) {
+            if ($userData['ally_id'] != 0 && !($userData['onlinetime'] < TIMESTAMP - INACTIVE)) {
                 if (!isset($allianceScores[$userData['ally_id']])) {
                     $allianceScores[$userData['ally_id']] = new StatPoints(
                         $userData['ally_id'],
