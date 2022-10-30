@@ -74,6 +74,7 @@ class DailyCronJob implements CronjobTask
 	includes/classes/Universe.class.php set var $currentUniverse to 1 instead of NULL
 */
 
+// define('MODE', 'INSTALL');
 // require 'includes/constants.php';
 // require 'includes/classes/Database.class.php';
 // require 'includes/classes/Cache.class.php';

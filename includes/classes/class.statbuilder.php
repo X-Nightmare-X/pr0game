@@ -100,15 +100,17 @@ class statbuilder
                     );
                 }
 
-                $allianceScores[$userData['ally_id']]->build_count += (int)$userScores[$userData['id']]['build']['count'];
-                $allianceScores[$userData['ally_id']]->build_points += (int)$userScores[$userData['id']]['build']['points'] ?? 0;
-                $allianceScores[$userData['ally_id']]->fleet_count += (int)$fleetPoints['count'];
-                $allianceScores[$userData['ally_id']]->fleet_points += (int)$fleetPoints['points'];
-                $allianceScores[$userData['ally_id']]->defs_count += (int)$defensePoints['count'];
-                $allianceScores[$userData['ally_id']]->defs_points += (int)$defensePoints['points'];
-                $allianceScores[$userData['ally_id']]->tech_count += (int)$techPoints['count'];
-                $allianceScores[$userData['ally_id']]->tech_points += (int)$techPoints['points'];
-                $allianceScores[$userData['ally_id']]->setTotalStats();
+                if ($userData['onlinetime'] >= TIMESTAMP - INACTIVE) {
+                    $allianceScores[$userData['ally_id']]->build_count += (int)$userScores[$userData['id']]['build']['count'];
+                    $allianceScores[$userData['ally_id']]->build_points += (int)$userScores[$userData['id']]['build']['points'] ?? 0;
+                    $allianceScores[$userData['ally_id']]->fleet_count += (int)$fleetPoints['count'];
+                    $allianceScores[$userData['ally_id']]->fleet_points += (int)$fleetPoints['points'];
+                    $allianceScores[$userData['ally_id']]->defs_count += (int)$defensePoints['count'];
+                    $allianceScores[$userData['ally_id']]->defs_points += (int)$defensePoints['points'];
+                    $allianceScores[$userData['ally_id']]->tech_count += (int)$techPoints['count'];
+                    $allianceScores[$userData['ally_id']]->tech_points += (int)$techPoints['points'];
+                    $allianceScores[$userData['ally_id']]->setTotalStats();
+                }
             }
         }
 
@@ -210,7 +212,7 @@ class statbuilder
 
         $Return['Fleets'] = $FlyingFleets;
         $Return['Planets'] = $database->select('SELECT SQL_BIG_RESULT DISTINCT ' . $select_buildings . ' p.id, p.universe, p.id_owner, u.authlevel, u.bana, u.username FROM %%PLANETS%% as p LEFT JOIN %%USERS%% as u ON u.id = p.id_owner;');
-        $Return['Users'] = $database->select('SELECT SQL_BIG_RESULT DISTINCT ' . $selected_tech . $select_fleets . $select_defenses . ' u.id, u.ally_id, u.authlevel, u.bana, u.universe, u.username, s.tech_rank AS old_tech_rank, s.build_rank AS old_build_rank, s.defs_rank AS old_defs_rank, s.fleet_rank AS old_fleet_rank, s.total_rank AS old_total_rank FROM %%USERS%% as u LEFT JOIN %%STATPOINTS%% as s ON s.stat_type = 1 AND s.id_owner = u.id LEFT JOIN %%PLANETS%% as p ON u.id = p.id_owner GROUP BY s.id_owner, u.id, u.authlevel;');
+        $Return['Users'] = $database->select('SELECT SQL_BIG_RESULT DISTINCT ' . $selected_tech . $select_fleets . $select_defenses . ' u.id, u.ally_id, u.authlevel, u.bana, u.universe, u.username, u.onlinetime, s.tech_rank AS old_tech_rank, s.build_rank AS old_build_rank, s.defs_rank AS old_defs_rank, s.fleet_rank AS old_fleet_rank, s.total_rank AS old_total_rank FROM %%USERS%% as u LEFT JOIN %%STATPOINTS%% as s ON s.stat_type = 1 AND s.id_owner = u.id LEFT JOIN %%PLANETS%% as p ON u.id = p.id_owner GROUP BY s.id_owner, u.id, u.authlevel;');
         $Return['Alliance'] = $database->select('SELECT SQL_BIG_RESULT DISTINCT a.id, a.ally_universe, s.tech_rank AS old_tech_rank, s.build_rank AS old_build_rank, s.defs_rank AS old_defs_rank, s.fleet_rank AS old_fleet_rank, s.total_rank AS old_total_rank FROM %%ALLIANCE%% as a LEFT JOIN %%STATPOINTS%% as s ON s.stat_type = 2 AND s.id_owner = a.id GROUP BY a.id;');
 
         return $Return;
@@ -460,3 +462,26 @@ class statbuilder
         fclose($fh);
     }
 }
+
+/* 
+	Enable to debug 
+*/
+// define('MODE', 'INSTALL');
+// define('ROOT_PATH', 'G:/xampp/htdocs/pr0game/');
+// set_include_path(
+//     ROOT_PATH . 'includes/libs/BBCodeParser2/' . PATH_SEPARATOR . ROOT_PATH . PATH_SEPARATOR . get_include_path()
+// );
+
+// require 'includes/pages/game/AbstractGamePage.class.php';
+// require 'includes/pages/game/ShowErrorPage.class.php';
+// require 'includes/common.php';
+
+// // require 'includes/classes/Database.class.php';
+// require 'includes/vars.php';
+// require 'includes/models/StatPoints.php';
+// $class = new statbuilder();
+// try {
+//     $class->generateStats();
+// } catch (\Throwable $th) {
+//     echo $th;
+// }

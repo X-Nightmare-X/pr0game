@@ -20,11 +20,13 @@ class ShowPhalanxPage extends AbstractGamePage
 {
 	public static $requireModule = MODULE_PHALANX;
 	
-	static function allowPhalanx($toGalaxy, $toSystem)
+	static function allowPhalanx($toGalaxy, $toSystem, $targetUser)
 	{
 		global $PLANET, $resource, $USER;
-
-		if ($PLANET['galaxy'] != $toGalaxy || $PLANET[$resource[42]] == 0 || !isModuleAvailable(MODULE_PHALANX) || $PLANET[$resource[903]] < PHALANX_DEUTERIUM || $USER['urlaubs_modus'] == 1) {
+		
+		$checknoob = CheckNoobProtec($USER, $targetUser, $targetUser);
+		
+		if ($PLANET['galaxy'] != $toGalaxy || $PLANET[$resource[42]] == 0 || !isModuleAvailable(MODULE_PHALANX) || $PLANET[$resource[903]] < PHALANX_DEUTERIUM || $USER['urlaubs_modus'] == 1 || $checknoob['NoobPlayer'] || $checknoob['StrongPlayer']) {
 			return false;
 		}
 		
@@ -56,11 +58,6 @@ class ShowPhalanxPage extends AbstractGamePage
 		$System 			= HTTP::_GP('system', 0);
 		$Planet 			= HTTP::_GP('planet', 0);
 		
-		if(!$this->allowPhalanx($Galaxy, $System))
-		{
-			$this->printMessage($LNG['px_out_of_range']);
-		}
-		
 		if ($PLANET[$resource[903]] < PHALANX_DEUTERIUM)
 		{
 			$this->printMessage($LNG['px_no_deuterium']);
@@ -84,6 +81,20 @@ class ShowPhalanxPage extends AbstractGamePage
 			':type'		=> 1
 		));
 
+		$sql = "SELECT u.id, s.total_points, u.onlinetime, u.banaday FROM %%USERS%% u ".
+		"LEFT JOIN %%STATPOINTS%% s ON s.id_owner = u.id AND s.stat_type = :statTypeUser ".
+		"WHERE u.universe = :universe AND id = :id_owner;";
+		
+		$TargetUser = $db->selectSingle($sql, array(
+			':statTypeUser'     => 1,
+			':universe'			=> Universe::current(),
+			':id_owner'			=> $TargetInfo['id_owner'],
+		));
+		
+		if(!$this->allowPhalanx($Galaxy, $System, $TargetUser))
+		{
+			$this->printMessage($LNG['px_out_of_range']);
+		}
 		if(empty($TargetInfo))
 		{
 			$this->printMessage($LNG['px_out_of_range']);
