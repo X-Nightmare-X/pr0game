@@ -826,5 +826,14 @@ class PlayerUtil
             $PLANET['crystal_perhour'] = '0';
             $PLANET['deuterium_perhour'] = '0';
         }
+        $sql = 'SELECT fleet_id, fleet_owner FROM %%FLEETS%% WHERE fleet_target_owner = :userid '
+                        . 'AND fleet_mission = 5;';
+        $fleets = $db->select($sql, array(
+            ':userid' => $USER['id'],
+        ));
+        
+        foreach ($fleets as $fleet) {
+            FleetFunctions::sendFleetBack(array('id' => $fleet['fleet_owner']), $fleet['fleet_id']);
+        }
     }
 }
