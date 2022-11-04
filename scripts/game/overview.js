@@ -26,17 +26,7 @@ $(document).ready(function () {
     });
 
 
-    function add_static_times(){
-      const mh = document.getElementsByClassName("statictimer")
-      for (let flight of mh) {
-        let nd = new Date(parseInt(flight.getAttribute("data-time")) * 1000);
-        flight.innerText =  nd.getHours() + ":" + pad(nd.getMinutes(), 2) + ":" + pad(nd.getSeconds(), 2)
-      }
 
-
-    }
-
-    add_static_times();
 
   $('.timershort').each(function () {
     var s = $(this).data('time')
@@ -53,3 +43,14 @@ $(document).ready(function () {
 
   }, 1000);
 });
+function add_static_times(){
+  const mh = document.getElementsByClassName("statictimer")
+  for (let flight of mh) {
+    let nd = new Date(parseInt(flight.getAttribute("data-time")) * 1000);
+    flight.innerText =  nd.getHours() + ":" + pad(nd.getMinutes(), 2) + ":" + pad(nd.getSeconds(), 2)
+  }
+
+
+}
+
+add_static_times();
