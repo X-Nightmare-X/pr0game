@@ -25,9 +25,6 @@ $(document).ready(function () {
       $(this).text(getRestTimeFormat(s));
     });
 
-
-
-
   $('.timershort').each(function () {
     var s = $(this).data('time')
     if (!umode) {
@@ -49,11 +46,6 @@ $(document).ready(function () {
       let nd = new Date(parseInt(flight.getAttribute("data-time")) * 1000);
       flight.innerText =  nd.getHours() + ":" + pad(nd.getMinutes(), 2) + ":" + pad(nd.getSeconds(), 2)
     }
-
-
   }
-
   add_static_times();
-
-
 });
