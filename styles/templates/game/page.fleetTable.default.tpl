@@ -51,6 +51,7 @@
 					<form action="game.php?page=fleetTable&amp;action=acs" method="post">
 						<input name="fleetID" value="{$FlyingFleetRow.id}" type="hidden">
 						<input value="{$LNG.fl_acs}" type="submit">
+            <span className="aborttime" starttime="{$FlyingFleetRow.startTime}"></span>
 					</form>
 				{/if}
 			{else}
