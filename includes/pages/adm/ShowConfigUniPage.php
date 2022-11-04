@@ -457,6 +457,7 @@ function ShowConfigUniPage()
             'planet_creations' => [
                 '0' => $LNG['se_iter_planet_creation'],
                 '1' => $LNG['se_random_planet_creation'],
+                '2' => $LNG['se_block_planet_creation'],
             ],
         ],
         'lang'                          => $config->lang,

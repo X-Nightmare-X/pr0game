@@ -369,9 +369,12 @@ $LNG['se_line_galaxy'] = 'Linear-Galaxien (Standard)';
 $LNG['se_ring_galaxy'] = 'Ring-Galaxien';
 $LNG['se_sphere_galaxy'] = 'Kugel-Galaxien';
 $LNG['se_planet_creation'] = 'Hauptplaneten-Platzierung';
-$LNG['se_planet_creation_info'] = 'Planeten neuer Spieler können entweder iterativ durch Systeme und Galaxien aufsteigend oder zufällig verteilt platziert werden';
+$LNG['se_planet_creation_info'] = 'Planeten neuer Spieler können iterativ durch Systeme und Galaxien aufsteigend, zufällig verteilt oder zu 50% zufällig und im Block platziert werden.<br>'
+    . 'Die zufällige Platzierung füllt hierbei Galaxien und Systeme gleichmäßig an zufälligen Positionen auf.<br>'
+    . 'Die Block-Platzierung sucht zufällig ein System mit einem oder 2 Planeten aus. Falls es kein System gibt, oder es weniger als 50 Spieler sind, wird zufällig platziert.';
 $LNG['se_iter_planet_creation'] = 'Iterativ (Standard)';
 $LNG['se_random_planet_creation'] = 'Zufällig';
+$LNG['se_block_planet_creation'] = 'Block';
 $LNG['se_expedition_parameters'] = 'Expeditions-Einstellungen';
 $LNG['se_ress_chance'] = 'Ressourcen-Wahrscheinlichkeiten';
 $LNG['se_several_parameters'] = 'Diverse Parameter';
