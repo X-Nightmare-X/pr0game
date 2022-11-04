@@ -92,7 +92,7 @@
             <ul style="list-style-type:none;" id="hidden-div2">
                 {foreach $fleets as $index => $fleet}
                     <li style=" padding: 3px; ">
-                      <span style="color:lime" data-time="{$fleet.returntime}" class="timer"></span>" | "
+                      <span style="color:yellow" data-time="{$fleet.returntime}" class="statictimer"></span> |
                       <span id="fleettime_{$index}" class="fleets" data-fleet-end-time="{$fleet.returntime}" data-fleet-time="{$fleet.resttime}">
                             {getRestTimeFormat({$fleet.resttime})}
                         </span>
