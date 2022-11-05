@@ -146,6 +146,11 @@
 			<td>{html_options name=galaxy_type options=$Selector.galaxy_types selected=$galaxy_type}</td>
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$se_galaxy_type_info}"></td>
 		</tr>
+		<tr>
+			<td>{$se_planet_creation}</td>
+			<td>{html_options name=planet_creation options=$Selector.planet_creations selected=$planet_creation}</td>
+			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$se_planet_creation_info}"></td>
+		</tr>
 
 		<tr>
 			<th colspan="2">{$LNG.se_server_colonisation_config}</th>

@@ -75,6 +75,128 @@ class PlayerUtil
             || $config->max_planets < $position);
     }
 
+    public static function randomHP($universe)
+    {
+        $config = Config::get($universe);
+        $db = Database::get();
+        //get avg planets per system per galaxy
+        $sql = 'SELECT tab.galaxy, (sum(tab.anz)/:maxSys) as AvgPlanetsPerSys FROM ( 
+            SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz 
+            FROM %%PLANETS%% p
+            JOIN %%USERS%% u on u.id = p.id_owner
+            WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive )
+            GROUP BY p.galaxy, p.`system` 
+        ) as tab GROUP BY galaxy ORDER BY tab.galaxy ASC';
+        $avgPlanetsPerGala = $db->select($sql, [
+            ':maxGala' => $config->max_galaxy,
+            ':maxSys' => $config->max_system,
+            ':ts' => TIMESTAMP,
+            ':inactive' => INACTIVE,
+        ]);
+
+        // get gala with min avg systems
+        $minAvg = $config->max_planets;
+        $galaxy = 0;
+        $galaArray = array();
+        foreach ($avgPlanetsPerGala as $data) {
+            if ($data['AvgPlanetsPerSys'] < $minAvg) {
+                $minAvg = $data['AvgPlanetsPerSys'];
+            }
+        }
+        foreach ($avgPlanetsPerGala as $data) {
+            if ($data['AvgPlanetsPerSys'] = $minAvg) {
+                array_push($galaArray, $data['galaxy']);
+            }
+        }
+        $galaxy = $galaArray[rand(0, count($galaArray)-1)];
+
+        // get system with planet count for selected gala
+        $sql = 'SELECT `system`, count(planet) as cnt FROM %%PLANETS%% 
+            WHERE planet_type = 1 AND galaxy = :gala GROUP BY `system`';
+        $systems = $db->select($sql, [
+            ':gala' => $galaxy,
+        ]);
+
+        // get empty systems in selected gala
+        for ($planetamount = 0; $planetamount <= $config->max_planets; $planetamount++) {
+            $usableSystems = [];
+            foreach ($systems as $sysArray) {
+                if ($sysArray['anz'] = $planetamount) {
+                    $usableSystems[] = $sysArray['system'];
+                }
+            }
+
+            // find random system and random planet inside
+            do {
+                $system = $usableSystems[array_rand($usableSystems)];
+                do {
+                    $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
+                } while (!PlayerUtil::allowPlanetPosition($position));
+            } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
+        }
+        $pos = array('galaxy'   => $galaxy, 
+                     'system'   => $system, 
+                     'positon'  => $position);
+        return $pos;
+    }
+
+    public static function blockHP($universe) 
+    {
+        $config = Config::get($universe);
+        $db = Database::get();
+        
+        //if less than 50 players, place randomly
+        $sql = 'SELECT Count(id) as usercount from %%USERS%% WHERE universe = :universe';
+        $usercount = $db->selectSingle($sql, [
+            ':universe' => $universe,
+        ], 'usercount');
+        if ($usercount < 50) {
+            $pos = self::randomHP($universe);
+            return $pos;
+        }
+
+        //Search for systems with one planet, if none, search for 2 planets
+        for ($planetamount = 1; $planetamount < 3; $planetamount++) {
+            $sql = 'SELECT tab.galaxy, tab.system FROM ( 
+                SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz 
+                FROM %%PLANETS%% p
+                JOIN %%USERS%% u on u.id = p.id_owner
+                WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive )
+                GROUP BY p.galaxy, p.`system` 
+            ) as tab where tab.anz = :planetamount ORDER BY tab.galaxy ASC';
+            $systems = $db->select($sql, [
+                ':planetamount' => $planetamount,
+                ':maxGala' => $config->max_galaxy,
+                ':ts' => TIMESTAMP,
+                ':inactive' => INACTIVE,
+            ]);
+
+            if (!empty($systems)) {
+                break;
+            }
+        }
+
+        // if systems found, place planet
+        if (!empty($systems)) {
+            $galasys = $systems[array_rand($systems)];
+            $galaxy = $galasys['galaxy'];
+            $system = $galasys['system'];
+            do {
+                $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
+            } while (!PlayerUtil::allowPlanetPosition($position));
+            $pos = array(
+                'galaxy'   => $galaxy, 
+                'system'   => $system, 
+                'positon'  => $position
+            );
+            return $pos;
+        }
+
+        // else place random planet
+        $pos = self::randomHP($universe);
+        return $pos;
+    }
+
     public static function createPlayer(
         $universe,
         $userName,
@@ -89,6 +211,7 @@ class PlayerUtil
         $userIpAddress = null
     ) {
         $config = Config::get($universe);
+        $db = Database::get();
 
         if (isset($universe, $galaxy, $system, $position)) {
             if (self::checkPosition($universe, $galaxy, $system, $position) === false) {
@@ -102,6 +225,18 @@ class PlayerUtil
                     sprintf("Position is not empty: %s:%s:%s!", $galaxy, $system, $position)
                 );
             }
+        } elseif ($config->planet_creation == 1) {
+            $pos = PlayerUtil::randomHP($universe);
+        } elseif ($config->planet_creation == 2) {
+            $rand_vs_block = rand(0,1);
+            switch ($rand_vs_block) {
+                case 0:
+                    $pos = PlayerUtil::randomHP($universe);
+                    break;
+                case 1:
+                    $pos = PlayerUtil::blockHP($universe);
+                    break;
+                }
         } else {
             $galaxy = $config->LastSettedGalaxyPos;
             $system = $config->LastSettedSystemPos;
@@ -170,12 +305,10 @@ class PlayerUtil
 		timezone		= :timezone,
 		uctime			= :nameLastChanged;';
 
-        $db = Database::get();
-
         $db->insert($sql, $params);
 
         $userId = $db->lastInsertId();
-        $planetId = self::createPlanet($galaxy, $system, $position, $universe, $userId, $name, true, $authlevel);
+        $planetId = self::createPlanet($pos['galaxy'], $pos['system'], $pos['position'], $universe, $userId, $name, true, $authlevel);
 
         $currentUserAmount = $config->users_amount + 1;
         $config->users_amount = $currentUserAmount;
@@ -188,9 +321,9 @@ class PlayerUtil
 		WHERE id = :userId;";
 
         $db->update($sql, array(
-            ':galaxy'   => $galaxy,
-            ':system'   => $system,
-            ':position' => $position,
+            ':galaxy'   => $pos['galaxy'],
+            ':system'   => $pos['system'],
+            ':position' => $pos['position'],
             ':planetId' => $planetId,
             ':userId'   => $userId,
         ));
@@ -618,13 +751,18 @@ class PlayerUtil
         );
     }
 
-    public static function allowPlanetPosition($position, $USER)
+    public static function allowPlanetPosition($position, $USER = NULL)
     {
         // http://owiki.de/index.php/Astrophysik#.C3.9Cbersicht
 
         global $resource;
         $config = Config::get($USER['universe']);
-        $astroTech = PlayerUtil::getAstroTech($USER);
+        if(isset($USER)){
+            $astroTech = PlayerUtil::getAstroTech($USER);
+        } else {
+            $astroTech = 1;
+        }
+        
 
         switch ($position) {
             case 1:
