@@ -11,14 +11,13 @@ $(function() {
     const abortfleet=document.getElementsByClassName("aborttime")
     let cdate=new Date(Date.now())
     for(let fleet of abortfleet){
-      let returntime=new Date(Date.now()+parseInt(fleet.starttime)*2)
+      let returntime=new Date(date.now() + date.now() - parseInt(fleet.starttime))
       let daydiff= Math.trunc((returntime - cdate) / (1000 * 60 * 60 * 24));
 
       if(daydiff>0){
-        fleet.innerText = daydiff + "T "  + daydiff.getHours() + ":" + pad(daydiff.getMinutes(), 2) + ":" + pad(daydiff.getSeconds())
+        fleet.innerText = daydiff + "T "  + returntime.getHours() + ":" + pad(returntime.getMinutes(), 2) + ":" + pad(returntime.getSeconds())
       }else{
-        fleet.innerText = daydiff.getHours() + ":" + pad(daydiff.getMinutes(), 2) + ":" + pad(daydiff.getSeconds())
-
+        fleet.innerText = returntime.getHours() + ":" + pad(returntime.getMinutes(), 2) + ":" + pad(returntime.getSeconds())
       }
     }
 	}, 1000);
