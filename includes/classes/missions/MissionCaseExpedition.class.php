@@ -138,10 +138,10 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
                 break;
         }
 
-        $chanceToFound = mt_rand(1, 6);
-        if ($chanceToFound > 3) {
+        $chanceToFound = mt_rand(1, 100);
+        if ($chanceToFound > 50) {
             $resourceId = RESOURCE_METAL; // 1/2
-        } elseif ($chanceToFound > 1) { // 1/3
+        } elseif ($chanceToFound > 16) { // 1/3
             $resourceId = RESOURCE_CRYSTAL;
             $factor = $factor / 2;
         } else { // 1/6

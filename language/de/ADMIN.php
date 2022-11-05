@@ -368,6 +368,11 @@ $LNG['se_galaxy_type_info'] = '<TABLE>'
 $LNG['se_line_galaxy'] = 'Linear-Galaxien (Standard)';
 $LNG['se_ring_galaxy'] = 'Ring-Galaxien';
 $LNG['se_sphere_galaxy'] = 'Kugel-Galaxien';
+$LNG['se_expedition_parameters'] = 'Expeditions-Einstellungen';
+$LNG['se_ress_chance'] = 'Ressourcen-Wahrscheinlichkeiten';
+$LNG['se_ress_metal_chance'] = 'Metall-Wahrscheinlichkeit';
+$LNG['se_ress_crystal_chance'] = 'Kristall-Wahrscheinlichkeit';
+$LNG['se_ress_deut_chance'] = 'Deuterium-Wahrscheinlichkeit';
 $LNG['se_several_parameters'] = 'Diverse Parameter';
 $LNG['se_title_admins_protection'] = 'Wenn aktiviert, wird Administratoren und Moderratoren die Möglichkeit gegeben,'
     . ' sie nicht angreifbar zu machen.';
