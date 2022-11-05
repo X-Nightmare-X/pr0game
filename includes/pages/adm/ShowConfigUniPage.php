@@ -92,7 +92,7 @@ function ShowConfigUniPage()
             'max_fleet_per_build'   => $config->max_fleet_per_build,
             'expo_ress_met_chance'     => $config->expo_ress_met_chance,
             'expo_ress_crys_chance'    => $config->expo_ress_crys_chance,
-            'expo_ress_deu_chance'    => $config->expo_ress_deu_chance,
+            'expo_ress_deut_chance'    => $config->expo_ress_deut_chance,
         ];
 
         $game_disable           = isset($_POST['closed']) && $_POST['closed'] == 'on' ? 1 : 0;
@@ -158,9 +158,9 @@ function ShowConfigUniPage()
         $silo_factor            = HTTP::_GP('silo_factor', 0);
         $ref_max_referals       = HTTP::_GP('ref_max_referals', 0);
         $alliance_create_min_points = HTTP::_GP('alliance_create_min_points', 0);
-        $expo_ress_met_chance = HTTP::_GP('expo_ress_met_chance', 0);
-        $expo_ress_crys_chance = HTTP::_GP('expo_ress_crys_chance', 0);
-        $expo_ress_deu_chance = HTTP::_GP('expo_ress_deu_chance', 0);
+        $expo_ress_met_chance = HTTP::_GP('expoMetal', 0);
+        $expo_ress_crys_chance = HTTP::_GP('expoCrystal', 0);
+        $expo_ress_deut_chance = HTTP::_GP('expoDeut', 0);
 
         $config_after = [
             'noobprotectiontime'    => $noobprotectiontime,
@@ -227,7 +227,7 @@ function ShowConfigUniPage()
             'max_fleet_per_build'   => $max_fleet_per_build,
             'expo_ress_met_chance'  => $expo_ress_met_chance,
             'expo_ress_crys_chance' => $expo_ress_crys_chance,
-            'expo_ress_deu_chance'  => $expo_ress_deu_chance,
+            'expo_ress_deut_chance'  => $expo_ress_deut_chance,
         ];
 
 
@@ -252,6 +252,7 @@ function ShowConfigUniPage()
     $template = new template();
     $template->loadscript('../base/jquery.autosize-min.js');
     $template->execscript('$(\'textarea\').autosize();');
+    $template->loadscript('../scripts/admin/Percentslider.js');
 
     $template->assign_vars([
         'se_server_parameters'          => $LNG['se_server_parameters'],
@@ -494,9 +495,9 @@ function ShowConfigUniPage()
         'ref_max_referals'              => $config->ref_max_referals,
         'silo_factor'                   => $config->silo_factor,
         'alliance_create_min_points'    => $config->alliance_create_min_points,
-        'expo_ress_met_chance'             => $config->expo_ress_met_chance,
-        'expo_ress_crys_chance'            => $config->expo_ress_crys_chance,
-        'expo_ress_deu_chance'            => $config->expo_ress_deu_chance,
+        'expo_ress_met_chance'          => $config->expo_ress_met_chance,
+        'expo_ress_crys_chance'         => $config->expo_ress_crys_chance,
+        'expo_ress_deut_chance'         => $config->expo_ress_deut_chance,
     ]);
 
     $template->show('ConfigBodyUni.tpl');
