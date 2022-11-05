@@ -11,7 +11,7 @@ $(function() {
     const abortfleet=document.getElementsByClassName("aborttime")
     let cdate=new Date(Date.now())
     for(let fleet of abortfleet){
-      let returntime=new Date(date.now() + date.now() - parseInt(fleet.starttime))
+      let returntime=new Date(Date.now() + Date.now() - parseInt(fleet.starttime))
       let daydiff= Math.trunc((returntime - cdate) / (1000 * 60 * 60 * 24));
 
       if(daydiff>0){
