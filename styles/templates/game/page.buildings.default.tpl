@@ -107,7 +107,7 @@
 					{/if}
 						
 				<br>
-						{$LNG.fgf_time}:{$Element.elementTime|date_format:"%H:%M:%S"}
+						{$LNG.fgf_time}:<span class="statictime" timestamp="{$Element.elementTime}"></span> 
 {if $Element.level > 0}
 							{if $ID == 43}<a href="#" onclick="return Dialog.info({$ID})">{$LNG.bd_jump_gate_action}</a>{/if}
 							{if ($ID == 44 && !$HaveMissiles) ||  $ID != 44}<br><a class="tooltip_sticky" data-tooltip-content="
@@ -124,7 +124,7 @@
 									{/foreach}
 									<tr>
 										<td>{$LNG.bd_destroy_time}</td>
-										<td>{$Element.destroyTime|date_format:"%H:%M:%S"}</td>
+										<td><span class="statictime" timestamp="{$Element.elementTime}"></span></td>
 									</tr>
 									<tr>
 										<td colspan='2'>
@@ -193,7 +193,7 @@
 					{/if}
 						
 				<br>
-						{$LNG.fgf_time}:{$Element.elementTime|date_format:"%H:%M:%S"}
+						{$LNG.fgf_time}:<span class="statictime" timestamp="{$Element.elementTime}"></span>
 {if $Element.level > 0}
 							{if $ID == 43}<a href="#" onclick="return Dialog.info({$ID})">{$LNG.bd_jump_gate_action}</a>{/if}
 							{if ($ID == 44 && !$HaveMissiles) ||  $ID != 44}<br><a class="tooltip_sticky" data-tooltip-content="
@@ -210,7 +210,7 @@
 									{/foreach}
 									<tr>
 										<td>{$LNG.bd_destroy_time}</td>
-										<td>{$Element.destroyTime|date_format:"%H:%M:%S"}</td>
+										<td><span class="statictime" timestamp="{$Element.elementTime}"></span></td>
 									</tr>
 									<tr>
 										<td colspan='2'>
