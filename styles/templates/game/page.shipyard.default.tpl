@@ -73,7 +73,7 @@
 					{/if}
 					
 					</p>{$LNG.fgf_time}
-					{$Element.elementTime|time}
+					{$Element.elementTime|date_format:"%H:%M:%S"}
 					
 					</div>
 				
