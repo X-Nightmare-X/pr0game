@@ -283,8 +283,7 @@ $(function () {
 });
 
 let humanInteraction = false;
-let lnks = document.querySelectorAll('*')
-observe(lnks);
+
 
 function observe(stuff) {
   for (let x of stuff) {
@@ -309,3 +308,15 @@ function check(e) {
     }
   }
 }
+function showtimes(){
+  for(let x of document.querySelectorAll(".statictime")){
+    x.innerText=getRestTimeFormat(x.getAttribute("timestamp"))
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  showtimes();
+  observe(document.querySelectorAll('*'));
+});
+
+

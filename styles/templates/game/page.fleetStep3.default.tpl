@@ -10,15 +10,15 @@
 	</tr>
     <tr style="height:20px">
         <td>{$LNG.fl_distance}</td>
-        <td>{$distance|number}</td>
+        <td>{number_format($distance, 0, ",", ".")}</td>
     </tr>
     <tr style="height:20px">
         <td>{$LNG.fl_fleet_speed}</td>
-        <td>{$MaxFleetSpeed|number}</td>
+        <td>{number_format($MaxFleetSpeed, 0, ",", ".")}</td>
     </tr>
     <tr style="height:20px">
         <td>{$LNG.fl_fuel_consumption}</td>
-        <td>{$consumption|number}</td>
+        <td>{number_format($consumption, 0, ",", ".")}</td>
     </tr>
     <tr style="height:20px">
         <td>{$LNG.fl_from}</td>
@@ -42,7 +42,7 @@
 	{foreach $FleetList as $ShipID => $ShipCount}
 	<tr>
 		<td>{$LNG.tech.{$ShipID}}</td>
-		<td>{$ShipCount|number}</td>
+		<td>{number_format($ShipCount, 0, ",", ".")}</td>
 	</tr>
 	{/foreach}
 </table>

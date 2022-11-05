@@ -25,23 +25,23 @@
 			<div class="no-mobile">
 				{if !isset($resourceData.current)}
 					{$resourceData.currentt = $resourceData.max + $resourceData.used}
-						<td class="res_current tooltip" data-tooltip-content="{$resourceData.currentt|number}">
-							<span{if $resourceData.currentt < 0} style="color:red"{/if}>{$resourceData.currentt|number}&nbsp;/&nbsp;{$resourceData.max|number} </span>
+						<td class="res_current tooltip" data-tooltip-content="{number_format($resourceData.currentt, 0, ",", ".")}">
+							<span{if $resourceData.currentt < 0} style="color:red"{/if}>{number_format($resourceData.currentt, 0, ",", ".")}&nbsp;/&nbsp;{number_format($resourceData.max, 0, ",", ".")} </span>
 						</td>
 				{else}
-					<div class="res_current" id="current_{$resourceData.name}" data-real="{$resourceData.current}">{$resourceData.current|number}</div>
+					<div class="res_current" id="current_{$resourceData.name}" data-real="{$resourceData.current}">{number_format($resourceData.current, 0, ",", ".")}</div>
 				{/if}
 				{if !isset($resourceData.current) || !isset($resourceData.max)}
 					<div>&nbsp;</div>
 				{else}
-					<div class="res_max" id="max_{$resourceData.name}" data-real="{$resourceData.current}">{$resourceData.max|number}</div>
+					<div class="res_max" id="max_{$resourceData.name}" data-real="{$resourceData.current}">{number_format($resourceData.max, 0, ",", ".")}</div>
 				{/if}
 			</div>
 
 			<div class="mobile">
 				{if !isset($resourceData.current)}
 					{$resourceData.currentt = $resourceData.max + $resourceData.used}
-						<td class="res_current tooltip" data-tooltip-content="{$resourceData.currentt|number}">
+						<td class="res_current tooltip" data-tooltip-content="{number_format($resourceData.currentt, 0, ",", ".")}">
 							<span{if $resourceData.currentt < 0} style="color:red"{/if}>{shortly_number($resourceData.currentt)}</span>
 						</td>
 {/if}
@@ -60,21 +60,21 @@
 			<div class="mobile">
 				{if !isset($resourceData.current)}
 					{$resourceData.current = $resourceData.max + $resourceData.used}
-						<td class="res_current tooltip mobile" data-tooltip-content="{$resourceData.current|number}">
+						<td class="res_current tooltip mobile" data-tooltip-content="{number_format($resourceData.current, 0, ",", ".")}">
 							<span{if $resourceData.current < 0} style="color:red"{/if}>!{shortly_number($resourceData.current)}</span>
-							<span{if $resourceData.current < 0} style="color:red"{/if} class="no-mobile">&nbsp;/&nbsp;@{$resourceData.max|number}</span>
+							<span{if $resourceData.current < 0} style="color:red"{/if} class="no-mobile">&nbsp;/&nbsp;@{number_format($resourceData.max, 0, ",", ".")}</span>
 						</td>
-						<td class="res_current tooltip no-mobile" data-tooltip-content="{$resourceData.current|number}">
+						<td class="res_current tooltip no-mobile" data-tooltip-content="{number_format($resourceData.current, 0, ",", ".")}">
 							<span{if $resourceData.current < 0} style="color:red"{/if}>!{$resourceData.current}</span>
-							<span{if $resourceData.current < 0} style="color:red"{/if} class="no-mobile">&nbsp;/&nbsp;@{$resourceData.max|number}</span>
+							<span{if $resourceData.current < 0} style="color:red"{/if} class="no-mobile">&nbsp;/&nbsp;@{number_format($resourceData.max, 0, ",", ".")}</span>
 						</td>
 				{else}
-					<td class="res_current tooltip mobile" id="current_{$resourceData.name}" data-real="{$resourceData.current}" data-tooltip-content="{$resourceData.current|number}">#{shortly_number($resourceData.current)}</td>
+					<td class="res_current tooltip mobile" id="current_{$resourceData.name}" data-real="{$resourceData.current}" data-tooltip-content="{number_format($resourceData.current, 0, ",", ".")}">#{shortly_number($resourceData.current)}</td>
 					<td class="res_current no-mobile" id="current_{$resourceData.name}" data-real="{$resourceData.current}">#{$resourceData.current}</td>
 				{/if}
 				{if !isset($resourceData.current) || !isset($resourceData.max)}
 				{else}
-					<div class="res_max no-mobile" id="max_{$resourceData.name}" data-real="{$resourceData.current}">{$resourceData.max|number}</div>
+					<div class="res_max no-mobile" id="max_{$resourceData.name}" data-real="{$resourceData.current}">{number_format($resourceData.max, 0, ",", ".")}</div>
 				{/if}
 			</div>
 			-->
@@ -84,21 +84,21 @@
 			{if true or $shortlyNumber}
 				{if !isset($resourceData.current)}
 				{$resourceData.current = $resourceData.max + $resourceData.used}
-				<td class="res_current tooltip" data-tooltip-content="{$resourceData.current|number}"><span{if $resourceData.current < 0} style="color:red"{/if}>{shortly_number($resourceData.current)}</span></td>
+				<td class="res_current tooltip" data-tooltip-content="{number_format($resourceData.current, 0, ",", ".")}"><span{if $resourceData.current < 0} style="color:red"{/if}>{shortly_number($resourceData.current)}</span></td>
 				{else}
-				<td class="res_current tooltip" id="current_{$resourceData.name}" data-real="{$resourceData.current}" data-tooltip-content="{$resourceData.current|number}">{shortly_number($resourceData.current)}</td>
+				<td class="res_current tooltip" id="current_{$resourceData.name}" data-real="{$resourceData.current}" data-tooltip-content="{number_format($resourceData.current, 0, ",", ".")}">{shortly_number($resourceData.current)}</td>
 				{/if}
 			{else}
 				{if !isset($resourceData.current)}
 				{$resourceData.current = $resourceData.max + $resourceData.used}
-				<div class="res_current"><span{if $resourceData.current < 0} style="color:red"{/if}>{$resourceData.current|number}&nbsp;/&nbsp;{$resourceData.max|number}</span></div>
+				<div class="res_current"><span{if $resourceData.current < 0} style="color:red"{/if}>{number_format($resourceData.current, 0, ",", ".")}&nbsp;/&nbsp;{number_format($resourceData.max, 0, ",", ".")}</span></div>
 				{else}
-				<div class="res_current" id="current_{$resourceData.name}" data-real="{$resourceData.current}">{$resourceData.current|number}</div>
+				<div class="res_current" id="current_{$resourceData.name}" data-real="{$resourceData.current}">{number_format($resourceData.current, 0, ",", ".")}</div>
 				{/if}
 				{if !isset($resourceData.current) || !isset($resourceData.max)}
 				<div>&nbsp;</div>
 				{else}
-				<div class="res_max" id="max_{$resourceData.name}" data-real="{$resourceData.current}">{$resourceData.max|number}</div>
+				<div class="res_max" id="max_{$resourceData.name}" data-real="{$resourceData.current}">{number_format($resourceData.max, 0, ",", ".")}</div>
 				{/if}
 			{/if}
 			</div>
@@ -152,9 +152,9 @@
 							{foreach $resourceTable as $resourceID => $resourceData}
 							{if !isset($resourceData.current)}
 							{$resourceData.current = $resourceData.max + $resourceData.used}
-							<td class="res_current tooltip" data-tooltip-content="{$resourceData.current|number}&nbsp;/&nbsp;{$resourceData.max|number}"><span{if $resourceData.current < 0} style="color:red"{/if}>{shortly_number($resourceData.current)}&nbsp;/&nbsp;{shortly_number($resourceData.max)}</span></td>
+							<td class="res_current tooltip" data-tooltip-content="{number_format($resourceData.current, 0, ",", ".")}&nbsp;/&nbsp;{number_format($resourceData.max, 0, ",", ".")}"><span{if $resourceData.current < 0} style="color:red"{/if}>{shortly_number($resourceData.current)}&nbsp;/&nbsp;{shortly_number($resourceData.max)}</span></td>
 							{else}
-							<td class="res_current tooltip" id="current_{$resourceData.name}" data-real="{$resourceData.current}" data-tooltip-content="{$resourceData.current|number}">{shortly_number($resourceData.current)}</td>
+							<td class="res_current tooltip" id="current_{$resourceData.name}" data-real="{$resourceData.current}" data-tooltip-content="{number_format($resourceData.current, 0, ",", ".")}">{shortly_number($resourceData.current)}</td>
 							{/if}
 							{/foreach}
 						</tr>
@@ -163,7 +163,7 @@
 							{if !isset($resourceData.current) || !isset($resourceData.max)}
 							<td>&nbsp;</td>
 							{else}
-							<td class="res_max tooltip" id="max_{$resourceData.name}" data-real="{$resourceData.max}" data-tooltip-content="{$resourceData.max|number}">{shortly_number($resourceData.max)}</td>
+							<td class="res_max tooltip" id="max_{$resourceData.name}" data-real="{$resourceData.max}" data-tooltip-content="{number_format($resourceData.max, 0, ",", ".")}">{shortly_number($resourceData.max)}</td>
 							{/if}
 							{/foreach}
 						</tr>
@@ -172,9 +172,9 @@
 							{foreach $resourceTable as $resourceID => $resourceData}
 							{if !isset($resourceData.current)}
 							{$resourceData.current = $resourceData.max + $resourceData.used}
-							<td class="res_current"><span{if $resourceData.current < 0} style="color:red"{/if}>{$resourceData.current|number}&nbsp;/&nbsp;{$resourceData.max|number}</span></td>
+							<td class="res_current"><span{if $resourceData.current < 0} style="color:red"{/if}>{number_format($resourceData.current, 0, ",", ".")}&nbsp;/&nbsp;{number_format($resourceData.max, 0, ",", ".")}</span></td>
 							{else}
-							<td class="res_current" id="current_{$resourceData.name}" data-real="{$resourceData.current}">{$resourceData.current|number}</td>
+							<td class="res_current" id="current_{$resourceData.name}" data-real="{$resourceData.current}">{number_format($resourceData.current, 0, ",", ".")}</td>
 							{/if}
 							{/foreach}
 						</tr>
@@ -183,7 +183,7 @@
 							{if !isset($resourceData.current) || !isset($resourceData.max)}
 							<td>&nbsp;</td>
 							{else}
-							<td class="res_max" id="max_{$resourceData.name}" data-real="{$resourceData.current}">{$resourceData.max|number}</td>
+							<td class="res_max" id="max_{$resourceData.name}" data-real="{$resourceData.current}">{number_format($resourceData.max, 0, ",", ".")}</td>
 							{/if}
 							{/foreach}
 						</tr>
@@ -197,15 +197,15 @@
 -->
 {if !$vmode}
 <script type="text/javascript">
-var viewShortlyNumber	= {$shortlyNumber|json};
+var viewShortlyNumber	= {$shortlyNumber|json_encode};
 var vacation			= {$vmode};
 $(function() {
 {foreach $resourceTable as $resourceID => $resourceData}
 {if isset($resourceData.production)}
 	resourceTicker({
-		available: {$resourceData.current|json},
-		limit: [0, {$resourceData.max|json}],
-		production: {$resourceData.production|json},
+		available: {$resourceData.current|json_encode},
+		limit: [0, {$resourceData.max|json_encode}],
+		production: {$resourceData.production|json_encode},
 		valueElem: "current_{$resourceData.name}"
 	}, true);
 {/if}

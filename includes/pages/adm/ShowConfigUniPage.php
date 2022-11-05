@@ -46,6 +46,7 @@ function ShowConfigUniPage()
             'halt_speed'            => $config->halt_speed,
             'energySpeed'           => $config->energySpeed,
             'initial_fields'        => $config->initial_fields,
+            'initial_temp'          => $config->initial_temp,
             'metal_basic_income'    => $config->metal_basic_income,
             'crystal_basic_income'  => $config->crystal_basic_income,
             'deuterium_basic_income' => $config->deuterium_basic_income,
@@ -90,6 +91,9 @@ function ShowConfigUniPage()
             'silo_factor'           => $config->silo_factor,
             'alliance_create_min_points' => $config->alliance_create_min_points,
             'max_fleet_per_build'   => $config->max_fleet_per_build,
+            'expo_ress_met_chance'     => $config->expo_ress_met_chance,
+            'expo_ress_crys_chance'    => $config->expo_ress_crys_chance,
+            'expo_ress_deut_chance'    => $config->expo_ress_deut_chance,
         ];
 
         $game_disable           = isset($_POST['closed']) && $_POST['closed'] == 'on' ? 1 : 0;
@@ -113,6 +117,7 @@ function ShowConfigUniPage()
         $halt_speed             = HTTP::_GP('halt_speed', 0.0);
         $energySpeed            = HTTP::_GP('energySpeed', 0.0);
         $initial_fields         = HTTP::_GP('initial_fields', 0);
+        $initial_temp           = HTTP::_GP('initial_temp', 0);
         $metal_basic_income     = HTTP::_GP('metal_basic_income', 0);
         $crystal_basic_income   = HTTP::_GP('crystal_basic_income', 0);
         $deuterium_basic_income = HTTP::_GP('deuterium_basic_income', 0);
@@ -155,6 +160,9 @@ function ShowConfigUniPage()
         $silo_factor            = HTTP::_GP('silo_factor', 0);
         $ref_max_referals       = HTTP::_GP('ref_max_referals', 0);
         $alliance_create_min_points = HTTP::_GP('alliance_create_min_points', 0);
+        $expo_ress_met_chance = HTTP::_GP('expoMetal', 0);
+        $expo_ress_crys_chance = HTTP::_GP('expoCrystal', 0);
+        $expo_ress_deut_chance = HTTP::_GP('expoDeut', 0);
 
         $config_after = [
             'noobprotectiontime'    => $noobprotectiontime,
@@ -176,6 +184,7 @@ function ShowConfigUniPage()
             'halt_speed'            => $halt_speed,
             'energySpeed'           => $energySpeed,
             'initial_fields'        => $initial_fields,
+            'initial_temp'          => $initial_temp,
             'metal_basic_income'    => $metal_basic_income,
             'crystal_basic_income'  => $crystal_basic_income,
             'deuterium_basic_income' => $deuterium_basic_income,
@@ -218,7 +227,10 @@ function ShowConfigUniPage()
             'ref_max_referals'      => $ref_max_referals,
             'silo_factor'           => $silo_factor,
             'alliance_create_min_points' => $alliance_create_min_points,
-            'max_fleet_per_build'   => $max_fleet_per_build
+            'max_fleet_per_build'   => $max_fleet_per_build,
+            'expo_ress_met_chance'  => $expo_ress_met_chance,
+            'expo_ress_crys_chance' => $expo_ress_crys_chance,
+            'expo_ress_deut_chance'  => $expo_ress_deut_chance,
         ];
 
 
@@ -243,6 +255,7 @@ function ShowConfigUniPage()
     $template = new template();
     $template->loadscript('../base/jquery.autosize-min.js');
     $template->execscript('$(\'textarea\').autosize();');
+    $template->loadscript('../scripts/admin/Percentslider.js');
 
     $template->assign_vars([
         'se_server_parameters'          => $LNG['se_server_parameters'],
@@ -265,6 +278,7 @@ function ShowConfigUniPage()
         'se_server_status_message'      => $LNG['se_server_status_message'],
         'se_server_planet_parameters'   => $LNG['se_server_planet_parameters'],
         'se_initial_fields'             => $LNG['se_initial_fields'],
+        'se_initial_temp'               => $LNG['se_initial_temp'],
         'se_metal_production'           => $LNG['se_metal_production'],
         'se_admin_protection'           => $LNG['se_admin_protection'],
         'se_crystal_production'         => $LNG['se_crystal_production'],
@@ -395,6 +409,7 @@ function ShowConfigUniPage()
         'energySpeed'                   => $config->energySpeed,
         'forum_url'                     => $config->forum_url,
         'initial_fields'                => $config->initial_fields,
+        'initial_temp'                  => $config->initial_temp,
         'metal_basic_income'            => $config->metal_basic_income,
         'crystal_basic_income'          => $config->crystal_basic_income,
         'deuterium_basic_income'        => $config->deuterium_basic_income,
@@ -485,6 +500,9 @@ function ShowConfigUniPage()
         'ref_max_referals'              => $config->ref_max_referals,
         'silo_factor'                   => $config->silo_factor,
         'alliance_create_min_points'    => $config->alliance_create_min_points,
+        'expo_ress_met_chance'          => $config->expo_ress_met_chance,
+        'expo_ress_crys_chance'         => $config->expo_ress_crys_chance,
+        'expo_ress_deut_chance'         => $config->expo_ress_deut_chance,
     ]);
 
     $template->show('ConfigBodyUni.tpl');

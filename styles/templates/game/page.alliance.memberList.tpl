@@ -155,7 +155,7 @@
 
 	var elements = document.getElementsByClassName('points');
 	for (var i = 0, l = elements.length; i < l; i++) {
-		elements[i].innerHTML = number_format(elements[i].innerHTML);
+		elements[i].innerHTML = number_format(elements[i].innerHTML, 0, ",", ".");
 	}
 
 	elements = document.getElementsByClassName('registerTime');

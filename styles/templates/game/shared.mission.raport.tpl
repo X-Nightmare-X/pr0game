@@ -39,9 +39,9 @@
 							<tr>
 								<td class="transparent">{$LNG.sys_ship_count}</td>
 								{foreach $Player.ships as $ShipID => $ShipData}
-									<td class="transparent">{$ShipData[0]|number}
+									<td class="transparent">{number_format($ShipData[0], 0, ",", ".")}
 										{if $Round > 0 && $ShipData[0] - $Raport.rounds[0].attacker[$PlayerNr].ships[$ShipID][0]}
-											<br><span style="color:#ee4d2e"> ({($ShipData[0] - $Raport.rounds[0].attacker[$PlayerNr].ships[$ShipID][0])|number})</span>
+											<br><span style="color:#ee4d2e"> ({number_format(($ShipData[0] - $Raport.rounds[0].attacker[$PlayerNr].ships[$ShipID][0]), 0, ",", ".")})</span>
 										{/if}
 									</td>
 								{/foreach}
@@ -50,19 +50,19 @@
 								<tr>
 									<td class="transparent">{$LNG.sys_ship_weapon}</td>
 									{foreach $Player.ships as $ShipID => $ShipData}
-									<td class="transparent">{$ShipData[1]|number}</td>
+									<td class="transparent">{number_format($ShipData[1], 0, ",", ".")}</td>
 									{/foreach}
 								</tr>
 								<tr>
 									<td class="transparent">{$LNG.sys_ship_shield}</td>
 									{foreach $Player.ships as $ShipID => $ShipData}
-									<td class="transparent">{$ShipData[2]|number}</td>
+									<td class="transparent">{number_format($ShipData[2], 0, ",", ".")}</td>
 									{/foreach}
 								</tr>
 								<tr>
 									<td class="transparent">{$LNG.sys_ship_armour}</td>
 									{foreach $Player.ships as $ShipID => $ShipData}
-									<td class="transparent">{$ShipData[3]|number}</td>
+									<td class="transparent">{number_format($ShipData[3], 0, ",", ".")}</td>
 									{/foreach}
 								</tr>
 							{/if}
@@ -103,9 +103,9 @@
 							<tr>
 								<td class="transparent">{$LNG.sys_ship_count}</td>
 								{foreach $Player.ships as $ShipID => $ShipData}
-								<td class="transparent">{$ShipData[0]|number}
+								<td class="transparent">{number_format($ShipData[0], 0, ",", ".")}
 									{if $Round > 0 && $ShipData[0] - $Raport.rounds[0].defender[$PlayerNr].ships[$ShipID][0]}
-										<br><span style="color:#ee4d2e"> ({($ShipData[0] - $Raport.rounds[0].defender[$PlayerNr].ships[$ShipID][0])|number})</span>
+										<br><span style="color:#ee4d2e"> ({number_format(($ShipData[0] - $Raport.rounds[0].defender[$PlayerNr].ships[$ShipID][0]), 0, ",", ".")})</span>
 									{/if}
 								</td>
 								{/foreach}
@@ -114,19 +114,19 @@
 								<tr>
 									<td class="transparent">{$LNG.sys_ship_weapon}</td>
 									{foreach $Player.ships as $ShipID => $ShipData}
-									<td class="transparent">{$ShipData[1]|number}</td>
+									<td class="transparent">{number_format($ShipData[1], 0, ",", ".")}</td>
 									{/foreach}
 								</tr>
 								<tr>
 									<td class="transparent">{$LNG.sys_ship_shield}</td>
 									{foreach $Player.ships as $ShipID => $ShipData}
-									<td class="transparent">{$ShipData[2]|number}</td>
+									<td class="transparent">{number_format($ShipData[2], 0, ",", ".")}</td>
 									{/foreach}
 								</tr>
 								<tr>
 									<td class="transparent">{$LNG.sys_ship_armour}</td>
 									{foreach $Player.ships as $ShipID => $ShipData}
-									<td class="transparent">{$ShipData[3]|number}</td>
+									<td class="transparent">{number_format($ShipData[3], 0, ",", ".")}</td>
 									{/foreach}
 								</tr>
 							{/if}
@@ -146,23 +146,23 @@
 	</tr>
 </table>
 {if !$RoundInfo@last}
-{$LNG.fleet_attack_1} {$RoundInfo.info[0]|number} {$LNG.fleet_attack_2} {$RoundInfo.info[3]|number} {$LNG.damage}<br>
-{$LNG.fleet_defs_1} {$RoundInfo.info[2]|number} {$LNG.fleet_defs_2} {$RoundInfo.info[1]|number} {$LNG.damage}<br><hr>
+{$LNG.fleet_attack_1} {number_format($RoundInfo.info[0], 0, ",", ".")} {$LNG.fleet_attack_2} {number_format($RoundInfo.info[3], 0, ",", ".")} {$LNG.damage}<br>
+{$LNG.fleet_defs_1} {number_format($RoundInfo.info[2], 0, ",", ".")} {$LNG.fleet_defs_2} {number_format($RoundInfo.info[1], 0, ",", ".")} {$LNG.damage}<br><hr>
 {/if}
 {/foreach}
 <br><br>
 {if $Raport.result == "a"}
 {$LNG.sys_attacker_won}<br>
-{$LNG.sys_stealed_ressources} {foreach $Raport.steal as $elementID => $amount}{$amount|number} {$LNG.tech.$elementID}{if ($amount@index + 2) == count($Raport.steal)} {$LNG.sys_and} {elseif !$amount@last}, {/if}{/foreach}
+{$LNG.sys_stealed_ressources} {foreach $Raport.steal as $elementID => $amount}{number_format($amount, 0, ",", ".")} {$LNG.tech.$elementID}{if ($amount@index + 2) == count($Raport.steal)} {$LNG.sys_and} {elseif !$amount@last}, {/if}{/foreach}
 {elseif $Raport.result == "r"}
 {$LNG.sys_defender_won}
 {else}
 {$LNG.sys_both_won}
 {/if}
 <br><br>
-{$LNG.sys_attacker_lostunits} {$Raport['units'][0]|number} {$LNG.sys_units}<br>
-{$LNG.sys_defender_lostunits} {$Raport['units'][1]|number} {$LNG.sys_units}<br>
-{$LNG.debree_field_1} {foreach $Raport.debris as $elementID => $amount}{$amount|number} {$LNG.tech.$elementID}{if ($amount@index + 2) == count($Raport.debris)} {$LNG.sys_and} {elseif !$amount@last}, {/if}{/foreach}{$LNG.debree_field_2}<br><br>
+{$LNG.sys_attacker_lostunits} {number_format($Raport['units'][0], 0, ",", ".")} {$LNG.sys_units}<br>
+{$LNG.sys_defender_lostunits} {number_format($Raport['units'][1], 0, ",", ".")} {$LNG.sys_units}<br>
+{$LNG.debree_field_1} {foreach $Raport.debris as $elementID => $amount}{number_format($amount, 0, ",", ".")} {$LNG.tech.$elementID}{if ($amount@index + 2) == count($Raport.debris)} {$LNG.sys_and} {elseif !$amount@last}, {/if}{/foreach}{$LNG.debree_field_2}<br><br>
 {if $Raport.mode == 1}
 	{* Destruction *}
 	{if $Raport.moon.moonDestroySuccess == -1}

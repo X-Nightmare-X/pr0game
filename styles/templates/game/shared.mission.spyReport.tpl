@@ -8,7 +8,7 @@
 	{foreach $elementIDs as $elementID => $amount}
 	{if ($amount@iteration % 2) === 1}<div class="spyRaportContainerRow clearfix">{/if}
 		<div class="spyRaportContainerCell"><a href='#' onclick='return Dialog.info({$elementID})' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$elementID}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$elementID}.{if $elementID >=600 && $elementID <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$elementID}</td></tr></table></tr></table>">{$LNG.tech.$elementID}</a></div>
-		<div class="spyRaportContainerCell">{$amount|number}</div>
+		<div class="spyRaportContainerCell">{number_format($amount, 0, ",", ".")}</div>
 	{if ($amount@iteration % 2) === 0}</div>{/if}
 	{/foreach}
 	</div>

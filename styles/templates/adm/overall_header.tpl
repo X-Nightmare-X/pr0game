@@ -33,8 +33,8 @@
 	var Skin		= "{$dpath}";
 	var Lang		= "{$lang}";
 	var head_info	= "{$LNG.fcm_info}";
-	var days 		= {$LNG.week_day|json|default:'[]'} 
-	var months 		= {$LNG.months|json|default:'[]'} ;
+	var days 		= {$LNG.week_day|json_encode|default:'[]'} 
+	var months 		= {$LNG.months|json_encode|default:'[]'} ;
 	var tdformat	= "{$LNG.js_tdformat}";
 	function openEdit(id, type) {
 		var editlist = window.open("?page=qeditor&edit="+type+"&id="+id, "edit", "scrollbars=yes,statusbar=no,toolbar=no,location=no,directories=no,resizable=no,menubar=no,width=850,height=600,screenX="+((xsize-600)/2)+",screenY="+((ysize-850)/2)+",top="+((ysize-600)/2)+",left="+((xsize-850)/2));
@@ -58,5 +58,5 @@
 	});
 	</script>
 </head>
-<body id="{$smarty.get.page|htmlspecialchars|default:'overview'}" class="{$bodyclass}">
+<body id="{$smarty.get.page|default:'overview'}" class="{$bodyclass}">
 	<div id="tooltip" class="tip"></div>

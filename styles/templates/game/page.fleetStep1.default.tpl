@@ -175,7 +175,7 @@
 	</table>
 </form>
 <script type="text/javascript">
-	data			= {$fleetdata|json};
+	data			= {$fleetdata|json_encode};
 	shortCutRows	= {$themeSettings.SHORTCUT_ROWS_ON_FLEET1};
 	fl_no_shortcuts = '{$LNG.fl_no_shortcuts}';
 	config 			= {$config|json_encode};
