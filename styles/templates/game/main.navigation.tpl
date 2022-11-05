@@ -58,7 +58,7 @@
   {/if}
 
   <li><a href="https://discord.gg/jhYYN3yuat" target="copy">Discord</a></li>
-  <!--<li><a href="https://www.patreon.com/pr0game" target="copy">Spenden</a></li>-->
+  <li><a href="https://ko-fi.com/pr0game" target="copy">Spenden</a></li>
   {if isModuleAvailable($smarty.const.MODULE_SUPPORT)}
     <li><a href="game.php?page=ticket">{$LNG.lm_support}</a></li>
   {/if}
