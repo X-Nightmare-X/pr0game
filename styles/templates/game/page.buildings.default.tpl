@@ -210,7 +210,7 @@
 									{/foreach}
 									<tr>
 										<td>{$LNG.bd_destroy_time}</td>
-										<td><span class='statictime' timestamp='{$Element.elementTime}'></span><script>showtimes()</script></td>
+										<td><span class=' statictime' timestamp='{$Element.elementTime}'></span><script>showtimes()</script></td>
 									</tr>
 									<tr>
 										<td colspan='2'>
@@ -223,7 +223,7 @@
 									</tr>
 								</table>
 								{* End Destruction Popup *}
-								{$LNG.bd_dismantle}</a>{/if}
+								">{$LNG.bd_dismantle}</a>{/if}
 						{else}
 							&nbsp;
 						{/if}
