@@ -377,8 +377,9 @@
 		</tr>
 	</table>
 </form>
+<script src="../scripts/admin/Percentslider.js"></script>
 <script>
-  addpercentsliderstuff(["expoMetal","expoCrystal","expoDeut"],100)
+  addpercentsliderstuff(["expoMetal","expoCrystal","expoDeut"])
 
 </script>
 
