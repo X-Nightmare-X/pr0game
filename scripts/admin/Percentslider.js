@@ -7,7 +7,7 @@ function addpercentsliderstuff(list) {
 
   for (let i = 0; i < list.length; i++) {
     document.getElementById(list[i] + "Value").innerText = 100 * (parseInt(objectlist[i].value) / totalamt) + " %"
-    objectlist[i].addEventListener("change", (e) => {
+    objectlist[i].oninput= function () {
       document.getElementById(list[i] + "Value").innerText = 100 * (parseInt(objectlist[i].value) / totalamt) + " %"
       let total = 0
       for (let slider of objectlist) {
@@ -34,6 +34,6 @@ function addpercentsliderstuff(list) {
           document.getElementById(list[cpos] + "Value").innerText = 100 * (nval / totalamt) + " %"
         }
       }
-    })
+    }
   }
 }
