@@ -30,5 +30,5 @@
 	<script>{if isset($code)}var loginError = {$code|json_encode};{/if}</script>
 	{block name="script"}{/block}	
 </head>
-<body id="{$smarty.get.page|htmlspecialchars|default:'overview'}" class="{$bodyclass}">
+<body id="{$smarty.get.page|default:'overview'}" class="{$bodyclass}">
 	<div id="page">

@@ -336,5 +336,5 @@ $("#600h").show();
 	});
 	</script>
 </head>
-<body id="{$smarty.get.page|htmlspecialchars|default:'overview'}" class="{$bodyclass}">
+<body id="{$smarty.get.page|default:'overview'}" class="{$bodyclass}">
 	<div id="tooltip" class="tip"></div>
