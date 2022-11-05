@@ -202,6 +202,11 @@
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
+			<td>{$LNG.se_initial_temp}</td>
+			<td><input name="initial_temp" maxlength="10" size="10" value="{$initial_temp}" type="text"> {$LNG.se_temp} </td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
 			<td>{$se_metal_production}</td>
 			<td><input name="metal_basic_income" maxlength="10" size="10" value="{$metal_basic_income}" type="text"> {$se_per_hour}</td>
 			<td>&nbsp;</td>

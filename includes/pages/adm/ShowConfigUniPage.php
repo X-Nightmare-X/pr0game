@@ -46,6 +46,7 @@ function ShowConfigUniPage()
             'halt_speed'            => $config->halt_speed,
             'energySpeed'           => $config->energySpeed,
             'initial_fields'        => $config->initial_fields,
+            'initial_temp'          => $config->initial_temp,
             'metal_basic_income'    => $config->metal_basic_income,
             'crystal_basic_income'  => $config->crystal_basic_income,
             'deuterium_basic_income' => $config->deuterium_basic_income,
@@ -113,6 +114,7 @@ function ShowConfigUniPage()
         $halt_speed             = HTTP::_GP('halt_speed', 0.0);
         $energySpeed            = HTTP::_GP('energySpeed', 0.0);
         $initial_fields         = HTTP::_GP('initial_fields', 0);
+        $initial_temp           = HTTP::_GP('initial_temp', 0);
         $metal_basic_income     = HTTP::_GP('metal_basic_income', 0);
         $crystal_basic_income   = HTTP::_GP('crystal_basic_income', 0);
         $deuterium_basic_income = HTTP::_GP('deuterium_basic_income', 0);
@@ -176,6 +178,7 @@ function ShowConfigUniPage()
             'halt_speed'            => $halt_speed,
             'energySpeed'           => $energySpeed,
             'initial_fields'        => $initial_fields,
+            'initial_temp'          => $initial_temp,
             'metal_basic_income'    => $metal_basic_income,
             'crystal_basic_income'  => $crystal_basic_income,
             'deuterium_basic_income' => $deuterium_basic_income,
@@ -265,6 +268,7 @@ function ShowConfigUniPage()
         'se_server_status_message'      => $LNG['se_server_status_message'],
         'se_server_planet_parameters'   => $LNG['se_server_planet_parameters'],
         'se_initial_fields'             => $LNG['se_initial_fields'],
+        'se_initial_temp'               => $LNG['se_initial_temp'],
         'se_metal_production'           => $LNG['se_metal_production'],
         'se_admin_protection'           => $LNG['se_admin_protection'],
         'se_crystal_production'         => $LNG['se_crystal_production'],
@@ -395,6 +399,7 @@ function ShowConfigUniPage()
         'energySpeed'                   => $config->energySpeed,
         'forum_url'                     => $config->forum_url,
         'initial_fields'                => $config->initial_fields,
+        'initial_temp'                  => $config->initial_temp,
         'metal_basic_income'            => $config->metal_basic_income,
         'crystal_basic_income'          => $config->crystal_basic_income,
         'deuterium_basic_income'        => $config->deuterium_basic_income,
