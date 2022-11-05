@@ -178,7 +178,7 @@
 	data			= {$fleetdata|json_encode};
 	shortCutRows	= {$themeSettings.SHORTCUT_ROWS_ON_FLEET1};
 	fl_no_shortcuts = '{$LNG.fl_no_shortcuts}';
-	config 			= {$config|json_encode_encode};
+	config 			= {$config|json_encode};
 
 	$('form').submit(function(e) {
 		$(':disabled').each(function(e) {
