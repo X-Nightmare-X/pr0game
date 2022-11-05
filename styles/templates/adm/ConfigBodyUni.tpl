@@ -202,6 +202,11 @@
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
+			<td>{$LNG.se_initial_temp}</td>
+			<td><input name="initial_temp" maxlength="10" size="10" value="{$initial_temp}" type="text"> {$LNG.se_temp} </td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
 			<td>{$se_metal_production}</td>
 			<td><input name="metal_basic_income" maxlength="10" size="10" value="{$metal_basic_income}" type="text"> {$se_per_hour}</td>
 			<td>&nbsp;</td>
@@ -230,6 +235,22 @@
 			<td>{$se_debris_moon}</td>
 			<td><input name="debris_moon" {if $debris_moon} checked="checked" {/if} type="checkbox"></td>
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$se_debris_moon_info}"></td>
+		</tr>
+
+		<tr>
+			<th colspan="2">{$LNG.se_expedition_parameters}</th>
+			<th>&nbsp;</th>
+		</tr>
+		<tr>
+			<td>{$LNG.se_ress_chance}</td>
+			<td>
+				<div class="slidecontainer">
+					<input type="range" min="0" max="100" value="{$expo_ress_met_chance}" class="slider" id="expoMetal"> {$LNG.tech.901}: <span id="expoMetalValue"></span><br>
+					<input type="range" min="0" max="100" value="{$expo_ress_crys_chance}" class="slider" id="expoCrystal"> {$LNG.tech.902}: <span id="expoCrystalValue"></span><br>
+					<input type="range" min="0" max="100" value="{$expo_ress_deut_chance}" class="slider" id="expoDeut"> {$LNG.tech.903}: <span id="expoDeutValue"></span>
+				</div>
+			</td>
+			<td></td>
 		</tr>
 
 		<tr>
@@ -361,4 +382,10 @@
 		</tr>
 	</table>
 </form>
+<script src="./scripts/admin/Percentslider.js?v={$REV}"></script>
+<script>
+  addpercentsliderstuff(["expoMetal","expoCrystal","expoDeut"])
+
+</script>
+
 {include file="overall_footer.tpl"}

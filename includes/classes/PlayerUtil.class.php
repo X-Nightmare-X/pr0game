@@ -74,7 +74,7 @@ class PlayerUtil
             || $config->max_system < $system
             || $config->max_planets < $position);
     }
-
+    
     public static function randomHP($universe)
     {
         $config = Config::get($universe);
@@ -111,7 +111,7 @@ class PlayerUtil
         $galaxy = $galaArray[rand(0, count($galaArray)-1)];
 
         // get system with planet count for selected gala
-        $sql = 'SELECT `system`, count(planet) as cnt FROM %%PLANETS%% 
+        $sql = 'SELECT `system`, count(planet) as anz FROM %%PLANETS%% 
             WHERE planet_type = 1 AND galaxy = :gala GROUP BY `system`';
         $systems = $db->select($sql, [
             ':gala' => $galaxy,
@@ -136,7 +136,7 @@ class PlayerUtil
         }
         $pos = array('galaxy'   => $galaxy, 
                      'system'   => $system, 
-                     'positon'  => $position);
+                     'position' => $position);
         return $pos;
     }
 
@@ -187,7 +187,7 @@ class PlayerUtil
             $pos = array(
                 'galaxy'   => $galaxy, 
                 'system'   => $system, 
-                'positon'  => $position
+                'position'  => $position
             );
             return $pos;
         }
@@ -240,7 +240,7 @@ class PlayerUtil
         } else {
             $galaxy = $config->LastSettedGalaxyPos;
             $system = $config->LastSettedSystemPos;
-            $planet = $config->LastSettedPlanetPos;
+            $position = $config->LastSettedPlanetPos;
 
             if ($galaxy > $config->max_galaxy) {
                 $galaxy = 1;
@@ -252,8 +252,8 @@ class PlayerUtil
 
             do {
                 $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
-                if ($planet < 3) {
-                    $planet += 1;
+                if ($position < 3) {
+                    $position += 1;
                 } else {
                     if ($system >= $config->max_system) {
                         $system = 1;
@@ -271,7 +271,11 @@ class PlayerUtil
             // Update last coordinates to config table
             $config->LastSettedGalaxyPos = $galaxy;
             $config->LastSettedSystemPos = $system;
-            $config->LastSettedPlanetPos = $planet;
+            $config->LastSettedPlanetPos = $position;
+
+            $pos = array('galaxy'   => $galaxy, 
+                         'system'   => $system, 
+                         'position' => $position);
         }
 
         $params = array(
@@ -328,7 +332,7 @@ class PlayerUtil
             ':userId'   => $userId,
         ));
 
-        $sql = "SELECT MAX(total_rank) as rank FROM %%STATPOINTS%% WHERE universe = :universe AND stat_type = :type;";
+        $sql = "SELECT MAX(total_rank) as `rank` FROM %%STATPOINTS%% WHERE universe = :universe AND stat_type = :type;";
         $rank = $db->selectSingle($sql, array(
             ':universe' => $universe,
             ':type'     => 1,
@@ -392,19 +396,17 @@ class PlayerUtil
         $config = Config::get($universe);
 
         $dataIndex = (int) ceil($position / ($config->max_planets / count($planetData)));
-        $maxTemperature = $planetData[$dataIndex]['temp'];
-        if (!empty($planetArray) && $planetArray['anz'] == 1) {
-            $maxTemperature = $planetData[$dataIndex]['avgTemp'];
-        }
-        $minTemperature = $maxTemperature - 40;
-
         if ($isHome) {
             $maxFields = $config->initial_fields;
+            $maxTemperature = $config->initial_temp;
         } elseif (!empty($planetArray) && $planetArray['anz'] == 1) {
             $maxFields = (int) floor($planetData[$dataIndex]['avgFields'] * $config->planet_factor);
+            $maxTemperature = $planetData[$dataIndex]['avgTemp'];
         } else {
             $maxFields = (int) floor($planetData[$dataIndex]['fields'] * $config->planet_factor);
+            $maxTemperature = $planetData[$dataIndex]['temp'];
         }
+        $minTemperature = $maxTemperature - 40;
 
         $diameter = (int) floor(1000 * sqrt($maxFields));
 
@@ -973,15 +975,6 @@ class PlayerUtil
             $PLANET['metal_perhour'] = '0';
             $PLANET['crystal_perhour'] = '0';
             $PLANET['deuterium_perhour'] = '0';
-        }
-        $sql = 'SELECT fleet_id, fleet_owner FROM %%FLEETS%% WHERE fleet_target_owner = :userid '
-                        . 'AND fleet_mission = 5;';
-        $fleets = $db->select($sql, array(
-            ':userid' => $USER['id'],
-        ));
-        
-        foreach ($fleets as $fleet) {
-            FleetFunctions::sendFleetBack(array('id' => $fleet['fleet_owner']), $fleet['fleet_id']);
         }
     }
 }

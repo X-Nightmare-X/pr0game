@@ -33,11 +33,11 @@
 	var Lang		= "{$lang}";
 	var head_info	= "{$LNG.fcm_info}";
 	var auth		= {$authlevel|default:'0'};
-	var days 		= {$LNG.week_day|json|default:'[]'} 
-	var months 		= {$LNG.months|json|default:'[]'} ;
+	var days 		= {$LNG.week_day|json_encode|default:'[]'} 
+	var months 		= {$LNG.months|json_encode|default:'[]'} ;
 	var tdformat	= "{$LNG.js_tdformat}";
 	var queryString	= "{$queryString|escape:'javascript'}";
-	var isPlayerCardActive	= "{$isPlayerCardActive|json}";
+	var isPlayerCardActive	= "{$isPlayerCardActive|json_encode}";
 	var relativeTime = Math.floor(Date.now() / 1000);
 
 	setInterval(function() {
@@ -336,5 +336,5 @@ $("#600h").show();
 	});
 	</script>
 </head>
-<body id="{$smarty.get.page|htmlspecialchars|default:'overview'}" class="{$bodyclass}">
+<body id="{$smarty.get.page|default:'overview'}" class="{$bodyclass}">
 	<div id="tooltip" class="tip"></div>
