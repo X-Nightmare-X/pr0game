@@ -95,7 +95,7 @@
 					{/if}
 					</br>
 						{$LNG.fgf_time}
-						{$Element.elementTime|default "0"|time}
+						{$Element.elementTime|time}
 					</div>
 </div>
 	{/foreach}
