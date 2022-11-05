@@ -375,6 +375,8 @@ $LNG['se_planet_creation_info'] = 'Planeten neuer Spieler können iterativ durch
 $LNG['se_iter_planet_creation'] = 'Iterativ (Standard)';
 $LNG['se_random_planet_creation'] = 'Zufällig';
 $LNG['se_block_planet_creation'] = 'Block';
+$LNG['se_expedition_parameters'] = 'Expeditions-Einstellungen';
+$LNG['se_ress_chance'] = 'Ressourcen-Wahrscheinlichkeiten';
 $LNG['se_several_parameters'] = 'Diverse Parameter';
 $LNG['se_title_admins_protection'] = 'Wenn aktiviert, wird Administratoren und Moderratoren die Möglichkeit gegeben,'
     . ' sie nicht angreifbar zu machen.';

@@ -117,6 +117,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
         global $resource;
 
         $LNG = $this->LNG;
+        $config = Config::get();
         $factor = 0;
 
         $fleetData = $this->calculatePointsAndCapacity();
@@ -138,13 +139,13 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
                 break;
         }
 
-        $chanceToFound = mt_rand(1, 6);
-        if ($chanceToFound > 3) {
-            $resourceId = RESOURCE_METAL; // 1/2
-        } elseif ($chanceToFound > 1) { // 1/3
+        $chanceToFound = mt_rand(1, 100);
+        if ($chanceToFound <= $config->expo_ress_met_chance) {
+            $resourceId = RESOURCE_METAL;
+        } elseif ($chanceToFound <= $config->expo_ress_met_chance + $config->expo_ress_crys_chance) {
             $resourceId = RESOURCE_CRYSTAL;
             $factor = $factor / 2;
-        } else { // 1/6
+        } else {
             $resourceId = RESOURCE_DEUT;
             $factor = $factor / 3;
         }
