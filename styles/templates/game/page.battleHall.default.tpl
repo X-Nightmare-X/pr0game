@@ -27,7 +27,7 @@
         {/if}
         </a></td>
         <td>{$row.date}</td>
-        <td>{$row.units|number}</td>
+        <td>{$row.units|number_format}</td>
     </tr>
 {/foreach}
 <tr>

@@ -15,7 +15,7 @@
             </td>
             {if !empty($elementRow)}
             <td>{foreach $elementRow as $user}<a href='#' onclick='return Dialog.Playercard({$user.userID});'>{$user.username}</a>{if !$user@last}<br>{/if}{/foreach}</td>
-            <td>{$elementRow[0].level|number}</td>
+            <td>{$elementRow[0].level|number_format}</td>
             {else}
             <td>-</td>
             <td>-</td>
@@ -32,7 +32,7 @@
             <td><a href='#' onclick='return Dialog.info({$elementID})' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$elementID}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$elementID}.{if $elementID >=600 && $elementID <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$elementID}</td></tr></table></tr></table>">{$LNG.tech.{$elementID}}</a></td>
             {if !empty($elementRow)}
             <td>{foreach $elementRow as $user}<a href='#' onclick='return Dialog.Playercard({$user.userID});'>{$user.username}</a>{if !$user@last}<br>{/if}{/foreach}</td>
-            <td>{$elementRow[0].level|number}</td>
+            <td>{$elementRow[0].level|number_format}</td>
             {else}
             <td>-</td>
             <td>-</td>
@@ -49,7 +49,7 @@
             <td><a href='#' onclick='return Dialog.info({$elementID})' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$elementID}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$elementID}.{if $elementID >=600 && $elementID <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$elementID}</td></tr></table></tr></table>">{$LNG.tech.{$elementID}}</a></td>
             {if !empty($elementRow)}
             <td>{foreach $elementRow as $user}<a href='#' onclick='return Dialog.Playercard({$user.userID});'>{$user.username}</a>{if !$user@last}<br>{/if}{/foreach}</td>
-            <td>{$elementRow[0].level|number}</td>
+            <td>{$elementRow[0].level|number_format}</td>
             {else}
             <td>-</td>
             <td>-</td>
@@ -66,7 +66,7 @@
             <td><a href='#' onclick='return Dialog.info({$elementID})' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$elementID}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$elementID}.{if $elementID >=600 && $elementID <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$elementID}</td></tr></table></tr></table>">{$LNG.tech.{$elementID}}</a></td>
             {if !empty($elementRow)}
             <td>{foreach $elementRow as $user}<a href='#' onclick='return Dialog.Playercard({$user.userID});'>{$user.username}</a>{if !$user@last}<br>{/if}{/foreach}</td>
-            <td>{$elementRow[0].level|number}</td>
+            <td>{$elementRow[0].level|number_format}</td>
             {else}
             <td>-</td>
             <td>-</td>

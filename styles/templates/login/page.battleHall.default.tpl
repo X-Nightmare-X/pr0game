@@ -23,7 +23,7 @@
 	{/if}
 	</a></td>
 	<td>{$hallRow.time}</td>
-	<td>{$hallRow.units|number}</td>
+	<td>{$hallRow.units|number_format}</td>
 </tr>
 {/foreach}
 <tr>
