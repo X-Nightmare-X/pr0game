@@ -190,7 +190,7 @@ class Language implements ArrayAccess {
     public function offsetUnset($offset) {
         unset($this->container[$offset]);
     }
-
+	#[\ReturnTypeWillChange]
     public function offsetGet($offset) {
         return isset($this->container[$offset]) ? $this->container[$offset] : $offset;
     }
