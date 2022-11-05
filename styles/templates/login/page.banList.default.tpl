@@ -33,7 +33,7 @@
 		<td style="text-align:right;" colspan="5">{$LNG.mg_page}: {if $page != 1}<a href="index.php?page=banList&amp;side={$page - 1}">&laquo;</a>&nbsp;{/if}{for $site=1 to $maxPage}<a href="index.php?page=banList&amp;side={$site}">{if $site == $page}<b>[{$site}]</b>{else}[{$site}]{/if}</a>{if $site != $maxPage}&nbsp;{/if}{/for}{if $page != $maxPage}&nbsp;<a href="index.php?page=banList&amp;side={$page + 1}">&raquo;</a>{/if}</td>
 	</tr>
 	<tr>
-		<td colspan="5">{$LNG.bn_exists}{$banCount|number_format}{$LNG.bn_players_banned}</td>
+		<td colspan="5">{$LNG.bn_exists}{number_format($banCount, 0, ",", ".")}{$LNG.bn_players_banned}</td>
 	</tr>
 {else}
 	<tr>
