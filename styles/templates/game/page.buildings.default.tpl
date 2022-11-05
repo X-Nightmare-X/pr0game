@@ -223,7 +223,7 @@
 									</tr>
 								</table>
 								{* End Destruction Popup *}
-								">{$LNG.bd_dismantle}</a>{/if}
+								{$LNG.bd_dismantle}</a>{/if}
 						{else}
 							&nbsp;
 						{/if}
