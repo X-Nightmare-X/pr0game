@@ -62,6 +62,7 @@ function ShowConfigUniPage()
             'max_planets'           => $config->max_planets,
             'uni_type'              => $config->uni_type,
             'galaxy_type'           => $config->galaxy_type,
+            'planet_creation'       => $config->planet_creation,
             'min_player_planets'    => $config->min_player_planets,
             'planets_tech'          => $config->planets_tech,
             'planets_per_tech'      => $config->planets_per_tech,
@@ -89,6 +90,9 @@ function ShowConfigUniPage()
             'silo_factor'           => $config->silo_factor,
             'alliance_create_min_points' => $config->alliance_create_min_points,
             'max_fleet_per_build'   => $config->max_fleet_per_build,
+            'expo_ress_met_chance'     => $config->expo_ress_met_chance,
+            'expo_ress_crys_chance'    => $config->expo_ress_crys_chance,
+            'expo_ress_deu_chance'    => $config->expo_ress_deu_chance,
         ];
 
         $game_disable           = isset($_POST['closed']) && $_POST['closed'] == 'on' ? 1 : 0;
@@ -128,6 +132,7 @@ function ShowConfigUniPage()
         $max_planets            = HTTP::_GP('max_planets', 0);
         $uni_type               = HTTP::_GP('uni_type', 0);
         $galaxy_type            = HTTP::_GP('galaxy_type', 0);
+        $planet_creation        = HTTP::_GP('planet_creation', 0);
         $min_player_planets     = HTTP::_GP('min_player_planets', 0);
         $planets_tech           = HTTP::_GP('planets_tech', 0);
         $planets_per_tech       = HTTP::_GP('planets_per_tech', 0.0);
@@ -153,6 +158,9 @@ function ShowConfigUniPage()
         $silo_factor            = HTTP::_GP('silo_factor', 0);
         $ref_max_referals       = HTTP::_GP('ref_max_referals', 0);
         $alliance_create_min_points = HTTP::_GP('alliance_create_min_points', 0);
+        $expo_ress_met_chance = HTTP::_GP('expo_ress_met_chance', 0);
+        $expo_ress_crys_chance = HTTP::_GP('expo_ress_crys_chance', 0);
+        $expo_ress_deu_chance = HTTP::_GP('expo_ress_deu_chance', 0);
 
         $config_after = [
             'noobprotectiontime'    => $noobprotectiontime,
@@ -189,6 +197,7 @@ function ShowConfigUniPage()
             'max_planets'           => $max_planets,
             'uni_type'              => $uni_type,
             'galaxy_type'           => $galaxy_type,
+            'planet_creation'       => $planet_creation,
             'min_player_planets'    => $min_player_planets,
             'planets_tech'          => $planets_tech,
             'planets_per_tech'      => $planets_per_tech,
@@ -215,7 +224,10 @@ function ShowConfigUniPage()
             'ref_max_referals'      => $ref_max_referals,
             'silo_factor'           => $silo_factor,
             'alliance_create_min_points' => $alliance_create_min_points,
-            'max_fleet_per_build'   => $max_fleet_per_build
+            'max_fleet_per_build'   => $max_fleet_per_build,
+            'expo_ress_met_chance'  => $expo_ress_met_chance,
+            'expo_ress_crys_chance' => $expo_ress_crys_chance,
+            'expo_ress_deu_chance'  => $expo_ress_deu_chance,
         ];
 
 
@@ -366,6 +378,8 @@ function ShowConfigUniPage()
         'se_debris_moon_info'           => $LNG['se_debris_moon_info'],
         'se_deuterium_cost_galaxy'      => $LNG['se_deuterium_cost_galaxy'],
         'se_deuterium_cost_galaxy_info' => $LNG['se_deuterium_cost_galaxy_info'],
+        'se_planet_creation'            => $LNG['se_planet_creation'],
+        'se_planet_creation_info'       => $LNG['se_planet_creation_info'],
         'se_buildlist'                  => $LNG['se_buildlist'],
         'Deuterium'                     => $LNG['tech'][903],
         'se_ref'                        => $LNG['se_ref'],
@@ -440,6 +454,11 @@ function ShowConfigUniPage()
                 '1' => $LNG['se_ring_galaxy'],
                 '2' => $LNG['se_sphere_galaxy'],
             ],
+            'planet_creations' => [
+                '0' => $LNG['se_iter_planet_creation'],
+                '1' => $LNG['se_random_planet_creation'],
+                '2' => $LNG['se_block_planet_creation'],
+            ],
         ],
         'lang'                          => $config->lang,
         'max_galaxy'                    => $config->max_galaxy,
@@ -447,6 +466,7 @@ function ShowConfigUniPage()
         'max_planets'                   => $config->max_planets,
         'uni_type'                      => $config->uni_type,
         'galaxy_type'                   => $config->galaxy_type,
+        'planet_creation'               => $config->planet_creation,
         'min_player_planets'            => $config->min_player_planets,
         'planets_tech'                  => $config->planets_tech,
         'planets_per_tech'              => $config->planets_per_tech,
@@ -474,6 +494,9 @@ function ShowConfigUniPage()
         'ref_max_referals'              => $config->ref_max_referals,
         'silo_factor'                   => $config->silo_factor,
         'alliance_create_min_points'    => $config->alliance_create_min_points,
+        'expo_ress_met_chance'             => $config->expo_ress_met_chance,
+        'expo_ress_crys_chance'            => $config->expo_ress_crys_chance,
+        'expo_ress_deu_chance'            => $config->expo_ress_deu_chance,
     ]);
 
     $template->show('ConfigBodyUni.tpl');
