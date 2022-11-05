@@ -521,6 +521,7 @@ HTML;
 		rid			= :reportId,
 		time		= :time,
 		universe    = :universe,
+		galaxy		= :galaxy,
 		result		= :result;';
 
         $db->insert($sql, [
@@ -528,6 +529,7 @@ HTML;
             ':reportId' => $reportID,
             ':time'     => $this->_fleet['fleet_start_time'],
             ':universe' => $this->_fleet['fleet_universe'],
+			':galaxy'	=> $this->_fleet['fleet_end_galaxy'], // hope for the best.
             ':result'   => $combatResult['won'],
         ]);
 

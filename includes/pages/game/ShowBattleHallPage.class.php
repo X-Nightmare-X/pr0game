@@ -27,26 +27,10 @@ class ShowBattleHallPage extends AbstractGamePage
 	function show()
 	{
 		global $USER, $LNG;
+    	require_once 'includes/classes/class.BattleHallFilter.php';
 
-		$db = Database::get();
-		$sql = "SELECT *, (
-			SELECT DISTINCT
-			IF(%%TOPKB_USERS%%.username = '', GROUP_CONCAT(%%USERS%%.username SEPARATOR ' & '), GROUP_CONCAT(%%TOPKB_USERS%%.username SEPARATOR ' & '))
-			FROM %%TOPKB_USERS%%
-			LEFT JOIN %%USERS%% ON uid = %%USERS%%.id
-			WHERE %%TOPKB_USERS%%.rid = %%TOPKB%%.rid AND role = 1
-		) as attacker,
-		(
-			SELECT DISTINCT
-			IF(%%TOPKB_USERS%%.username = '', GROUP_CONCAT(%%USERS%%.username SEPARATOR ' & '), GROUP_CONCAT(%%TOPKB_USERS%%.username SEPARATOR ' & '))
-			FROM %%TOPKB_USERS%% INNER JOIN %%USERS%% ON uid = id
-			WHERE %%TOPKB_USERS%%.rid = %%TOPKB%%.`rid` AND `role` = 2
-		) as defender
-		FROM %%TOPKB%% WHERE universe = :universe AND time < UNIX_TIMESTAMP() - 21600 ORDER BY %%TOPKB%%.units DESC LIMIT 100;";
-
-		$top = $db->select($sql, array(
-			':universe' => Universe::current()
-		));
+		$pBHFilter = new BattlehallFilter();
+		$top = $pBHFilter->getTopKBs();
 
 		$TopKBList	= array();
 		foreach($top as $data)
