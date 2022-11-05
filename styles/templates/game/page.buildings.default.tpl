@@ -124,7 +124,7 @@
 									{/foreach}
 									<tr>
 										<td>{$LNG.bd_destroy_time}</td>
-										<td><span class='statictime' timestamp='{$Element.elementTime}'></span></td>
+										<td><span class='statictime' timestamp='{$Element.elementTime}'></span><script>showtimes()</script></td>
 									</tr>
 									<tr>
 										<td colspan='2'>
@@ -210,7 +210,7 @@
 									{/foreach}
 									<tr>
 										<td>{$LNG.bd_destroy_time}</td>
-										<td><span class="statictime" timestamp="{$Element.elementTime}"></span></td>
+										<td><span class='statictime' timestamp='{$Element.elementTime}'></span><script>showtimes()</script></td>
 									</tr>
 									<tr>
 										<td colspan='2'>
