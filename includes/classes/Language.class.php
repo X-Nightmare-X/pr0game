@@ -16,7 +16,7 @@
  */
 
 class Language implements ArrayAccess {
-	#[\ReturnTypeWillChange]
+	
     private $container = array();
     private $language = array();
     static private $allLanguages = array();
@@ -174,7 +174,7 @@ class Language implements ArrayAccess {
 	}
 
 	/** ArrayAccess Functions **/
-
+	#[\ReturnTypeWillChange]
     public function offsetSet($offset, $value) {
         if (is_null($offset)) {
             $this->container[] = $value;
