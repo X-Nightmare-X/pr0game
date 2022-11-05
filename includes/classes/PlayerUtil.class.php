@@ -379,6 +379,12 @@ class PlayerUtil
                 sprintf("Position is not empty: %s:%s:%s!", $galaxy, $system, $position)
             );
         }
+        $db = Database::get();
+
+        $sql = 'SELECT count(id) as anz FROM %%PLANETS%% WHERE id_owner = :userId AND planet_type = 1';
+        $planetArray = $db->select($sql, [
+            ':userId' => $userId,
+        ]);
 
         $planetData = array();
         require 'includes/PlanetData.php';
@@ -387,10 +393,15 @@ class PlayerUtil
 
         $dataIndex = (int) ceil($position / ($config->max_planets / count($planetData)));
         $maxTemperature = $planetData[$dataIndex]['temp'];
+        if (!empty($planetArray) && $planetArray['anz'] == 1) {
+            $maxTemperature = $planetData[$dataIndex]['avgTemp'];
+        }
         $minTemperature = $maxTemperature - 40;
 
         if ($isHome) {
             $maxFields = $config->initial_fields;
+        } elseif (!empty($planetArray) && $planetArray['anz'] == 1) {
+            $maxFields = (int) floor($planetData[$dataIndex]['avgFields'] * $config->planet_factor);
         } else {
             $maxFields = (int) floor($planetData[$dataIndex]['fields'] * $config->planet_factor);
         }
@@ -445,7 +456,6 @@ class PlayerUtil
 		crystal		= :crystal_start,
 		deuterium   = :deuterium_start;';
 
-        $db = Database::get();
         $db->insert($sql, $params);
 
         return $db->lastInsertId();
