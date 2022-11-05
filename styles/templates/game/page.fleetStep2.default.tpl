@@ -138,6 +138,6 @@
     </table>
 </form>
 <script type="text/javascript">
-data	= {$fleetdata|json};
+data	= {$fleetdata|json_encode};
 </script>
 {/block}

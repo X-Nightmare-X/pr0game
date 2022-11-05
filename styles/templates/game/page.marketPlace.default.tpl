@@ -118,9 +118,9 @@
 		  {/if}
 	{if $FlyingFleetRow.possible_to_buy != true} trade-disallowed {/if}'>
 		<td>{$smarty.foreach.FlyingFleets.iteration}</td>
-		<td class="resource_metal">{$FlyingFleetRow.fleet_resource_metal|number}</td>
-		<td class="resource_crystal">{$FlyingFleetRow.fleet_resource_crystal|number}</td>
-		<td class="resource_deuterium">{$FlyingFleetRow.fleet_resource_deuterium|number}</td>
+		<td class="resource_metal">{number_format($FlyingFleetRow.fleet_resource_metal, 0, ",", ".")}</td>
+		<td class="resource_crystal">{number_format($FlyingFleetRow.fleet_resource_crystal, 0, ",", ".")}</td>
+		<td class="resource_deuterium">{number_format($FlyingFleetRow.fleet_resource_deuterium, 0, ",", ".")}</td>
 		<td class="total_value"></td>
 		<td class="ratio"></td>
 		<td data-time="{$FlyingFleetRow.end}">{getRestTimeFormat({$FlyingFleetRow.end})}</td>
@@ -134,7 +134,7 @@
 			{/if}
 		</td>
 		<td class="wanted-resource-{$FlyingFleetRow.fleet_wanted_resource_id}">{$FlyingFleetRow.fleet_wanted_resource}</td>
-		<td class="wanted-resource-amount">{$FlyingFleetRow.fleet_wanted_resource_amount|number}</td>
+		<td class="wanted-resource-amount">{number_format($FlyingFleetRow.fleet_wanted_resource_amount, 0, ",", ".")}</td>
 		<td>{pretty_fly_time({$FlyingFleetRow.from_duration})}</td>
 		<td class="LC" style="display: none;">{pretty_fly_time({$FlyingFleetRow.to_lc_duration})}</td>
 		<td class="HC">{pretty_fly_time({$FlyingFleetRow.to_hc_duration})}</td>
@@ -228,7 +228,7 @@
 			{/if}
 		</td>
 		<td class="wanted-resource-{$FlyingFleetRow.fleet_wanted_resource_id}">{$FlyingFleetRow.fleet_wanted_resource}</td>
-		<td class="wanted-resource-amount">{$FlyingFleetRow.fleet_wanted_resource_amount|number}</td>
+		<td class="wanted-resource-amount">{number_format($FlyingFleetRow.fleet_wanted_resource_amount, 0, ",", ".")}</td>
 		<td>{pretty_fly_time({$FlyingFleetRow.from_duration})}</td>
 		<td class="LC" style="display: none;">{pretty_fly_time({$FlyingFleetRow.to_lc_duration})}</td>
 		<td class="HC">{pretty_fly_time({$FlyingFleetRow.to_hc_duration})}</td>

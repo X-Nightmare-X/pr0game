@@ -5,10 +5,10 @@
 <div id="dialog" style="display:none;"></div>
 <script>
   var LoginConfig = {
-    'isMultiUniverse': {$isMultiUniverse|json},
-    'unisWildcast': {$unisWildcast|json},
-    'referralEnable' : {$referralEnable|json},
-    'basePath' : {$basepath|json}
+    'isMultiUniverse': {$isMultiUniverse|json_encode},
+    'unisWildcast': {$unisWildcast|json_encode},
+    'referralEnable' : {$referralEnable|json_encode},
+    'basePath' : {$basepath|json_encode}
   };
 </script>
 {if $analyticsEnable}
