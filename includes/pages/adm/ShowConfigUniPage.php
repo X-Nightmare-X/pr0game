@@ -89,6 +89,9 @@ function ShowConfigUniPage()
             'silo_factor'           => $config->silo_factor,
             'alliance_create_min_points' => $config->alliance_create_min_points,
             'max_fleet_per_build'   => $config->max_fleet_per_build,
+            'expo_ress_met_chance'     => $config->expo_ress_met_chance,
+            'expo_ress_crys_chance'    => $config->expo_ress_crys_chance,
+            'expo_ress_deu_chance'    => $config->expo_ress_deu_chance,
         ];
 
         $game_disable           = isset($_POST['closed']) && $_POST['closed'] == 'on' ? 1 : 0;
@@ -153,6 +156,9 @@ function ShowConfigUniPage()
         $silo_factor            = HTTP::_GP('silo_factor', 0);
         $ref_max_referals       = HTTP::_GP('ref_max_referals', 0);
         $alliance_create_min_points = HTTP::_GP('alliance_create_min_points', 0);
+        $expo_ress_met_chance = HTTP::_GP('expo_ress_met_chance', 0);
+        $expo_ress_crys_chance = HTTP::_GP('expo_ress_crys_chance', 0);
+        $expo_ress_deu_chance = HTTP::_GP('expo_ress_deu_chance', 0);
 
         $config_after = [
             'noobprotectiontime'    => $noobprotectiontime,
@@ -215,7 +221,10 @@ function ShowConfigUniPage()
             'ref_max_referals'      => $ref_max_referals,
             'silo_factor'           => $silo_factor,
             'alliance_create_min_points' => $alliance_create_min_points,
-            'max_fleet_per_build'   => $max_fleet_per_build
+            'max_fleet_per_build'   => $max_fleet_per_build,
+            'expo_ress_met_chance'  => $expo_ress_met_chance,
+            'expo_ress_crys_chance' => $expo_ress_crys_chance,
+            'expo_ress_deu_chance'  => $expo_ress_deu_chance,
         ];
 
 
@@ -474,6 +483,9 @@ function ShowConfigUniPage()
         'ref_max_referals'              => $config->ref_max_referals,
         'silo_factor'                   => $config->silo_factor,
         'alliance_create_min_points'    => $config->alliance_create_min_points,
+        'expo_ress_met_chance'             => $config->expo_ress_met_chance,
+        'expo_ress_crys_chance'            => $config->expo_ress_crys_chance,
+        'expo_ress_deu_chance'            => $config->expo_ress_deu_chance,
     ]);
 
     $template->show('ConfigBodyUni.tpl');
