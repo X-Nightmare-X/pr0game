@@ -372,48 +372,9 @@
 		</tr>
 	</table>
 </form>
-
 <script>
-var sliderMetal = document.getElementById("expoMetal");
-var valueMetal = document.getElementById("expoMetalValue");
-var sliderCrystal = document.getElementById("expoCrystal");
-var valueCrystal = document.getElementById("expoCrystalValue");
-var sliderDeut = document.getElementById("expoDeut");
-var valueDeut = document.getElementById("expoDeutValue");
+  addpercentsliderstuff(["expoMetal","expoCrystal","expoDeut"],100)
 
-sliderMetal.addEventListener("onChange",()=>{
-	valueMetal.innerHTML = sliderMetal.value;
-})
-valueCrystal.addEventListener("onChange",()=>{
-	valueCrystal.innerHTML = sliderCrystal.value;
-})
-valueDeut.addEventListener("onChange",()=>{
-	valueDeut.innerHTML = sliderDeut.value;
-})
-
-
-sliderMetal.oninput = function() {
-	let metslider=parseInt(sliderMetal.value)
-	let kristslider=parseInt(sliderCrystal.value)
-	let deutslider=parseInt(sliderDeut.value)
-	let todiff=100-metslider+kristslider+deutslider 
-	let nkrist=deutslider-todiff
-
-	if (nkrist<0) {
-		deutslider =deutslider - nkrist
-		nkrist=0
-	}
-	sliderMetal.value=metslider
-	sliderCrystal.value=nkrist
-	sliderDeut.value=deutslider
-}
-
-sliderCrystal.oninput = function() {
-	valueCrystal.innerHTML = this.value;
-}
-sliderDeut.oninput = function() {
-	valueDeut.innerHTML = this.value;
-}
 </script>
 
 {include file="overall_footer.tpl"}
