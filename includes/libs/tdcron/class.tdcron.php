@@ -320,20 +320,28 @@
 		 */
 
 		static private function getTimestamp($timestamp = null) {
-
+			$formatter = new IntlDateFormatter(
+				"de-DE",
+				IntlDateFormatter::FULL,
+				IntlDateFormatter::NONE
+			);
+			
+			
 			if (is_null($timestamp)) {
-				$arr	= explode(',', strftime('%M,%H,%d,%m,%w,%Y', time()));
+				//$arr	= explode(',', strftime('%M,%H,%d,%m,%w,%Y', time()));
+				$dateTime = new DateTime(time());
 			} else {
-				$arr	= explode(',', strftime('%M,%H,%d,%m,%w,%Y', $timestamp));
+				//$arr	= explode(',', strftime('%M,%H,%d,%m,%w,%Y', $timestamp));
+				$dateTime = new DateTime($timestamp);
 			}
 
 			// Remove leading zeros (or we'll get in trouble ;-)
-
-			foreach ($arr as $key=>$value) {
-				$arr[$key]	= (int)ltrim($value,'0');
-			}
-
-			return $arr;
+			/** 
+			*foreach ($arr as $key=>$value) {
+			*	$arr[$key]	= (int)ltrim($value,'0');
+			*}
+			*/
+			return $dateTime;
 
 		}
 
