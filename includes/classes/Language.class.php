@@ -175,6 +175,7 @@ class Language implements ArrayAccess {
 	/** ArrayAccess Functions **/
 
     public function offsetSet($offset, $value) {
+		#[\ReturnTypeWillChange]
         if (is_null($offset)) {
             $this->container[] = $value;
         } else {
