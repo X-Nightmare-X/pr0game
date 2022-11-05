@@ -182,11 +182,11 @@ class Language implements ArrayAccess {
             $this->container[$offset] = $value;
         }
     }
-
+	#[\ReturnTypeWillChange]
     public function offsetExists($offset) {
         return isset($this->container[$offset]);
     }
-
+	#[\ReturnTypeWillChange]
     public function offsetUnset($offset) {
         unset($this->container[$offset]);
     }
