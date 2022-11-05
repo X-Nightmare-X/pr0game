@@ -14,6 +14,8 @@
  * @version 1.8.0
  * @link https://github.com/jkroepke/2Moons
  */
+require 'includes/classes/Universe.class.php';
+
 class Config
 {
 	protected $configData = array();
@@ -79,12 +81,11 @@ class Config
 	static private function generateInstances()
 	{
 		$db     = Database::get();
-		$universe = Universe::get();
 		$configResult = $db->nativeQuery("SELECT * FROM %%CONFIG%%;");
 		foreach ($configResult as $configRow)
 		{
 			self::$instances[$configRow['uni']] = new self($configRow);
-			$universe->add($configRow['uni']);
+			Universe::add($configRow['uni']);
 		}
 	}
 
