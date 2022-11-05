@@ -79,8 +79,13 @@ function smarty_modifier_date_format($string, $format = null, $default_date = ''
             }
             $format = str_replace($_win_from, $_win_to, $format);
         }
+        $formatter = new IntlDateFormatter(
+            "de-DE",
+            IntlDateFormatter::NONE,
+            IntlDateFormatter::MEDIUM
+        );
         //$dateTime = new DateTime(time());
-        return date($format, $timestamp);
+        return $formatter->format($timestamp);
     } else {
         return date($format, $timestamp);
     }

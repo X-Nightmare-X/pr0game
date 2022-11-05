@@ -341,7 +341,7 @@
 			*	$arr[$key]	= (int)ltrim($value,'0');
 			*}
 			*/
-			return $dateTime;
+			return $formatter->format($dateTime);
 
 		}
 
