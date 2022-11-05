@@ -310,7 +310,7 @@ function check(e) {
   }
 }
 function showtimes(){
-  for(let x in document.querySelectorAll(".statictime")){
+  for(let x of document.querySelectorAll(".statictime")){
     x.innerText=getRestTimeFormat(x.getAttribute("timestamp"))
   }
 
