@@ -309,3 +309,11 @@ function check(e) {
     }
   }
 }
+function showtimes(){
+  for(let x in document.querySelectorAll(".statictime")){
+    x.innerText=getRestTimeFormat(x.getAttribute("timestamp"))
+  }
+
+}
+showtimes()
+
