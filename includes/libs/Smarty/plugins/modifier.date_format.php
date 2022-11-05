@@ -31,6 +31,7 @@ function smarty_modifier_date_format($string, $format = null, $default_date = ''
     if ($format === null) {
         $format = Smarty::$_DATE_FORMAT;
     }
+
     /**
      * require_once the {@link shared.make_timestamp.php} plugin
      */
@@ -78,7 +79,8 @@ function smarty_modifier_date_format($string, $format = null, $default_date = ''
             }
             $format = str_replace($_win_from, $_win_to, $format);
         }
-        return strftime($format, $timestamp);
+        //$dateTime = new DateTime(time());
+        return date($format, $timestamp);
     } else {
         return date($format, $timestamp);
     }

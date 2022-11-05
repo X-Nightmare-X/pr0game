@@ -323,7 +323,7 @@
 			$formatter = new IntlDateFormatter(
 				"de-DE",
 				IntlDateFormatter::FULL,
-				IntlDateFormatter::NONE
+				IntlDateFormatter::SHORT
 			);
 			
 			
