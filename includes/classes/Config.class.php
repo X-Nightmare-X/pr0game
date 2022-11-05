@@ -14,7 +14,7 @@
  * @version 1.8.0
  * @link https://github.com/jkroepke/2Moons
  */
-require 'includes/classes/Universe.class.php';
+require_once('includes/classes/Universe.class.php');
 
 class Config
 {
