@@ -79,11 +79,12 @@ class Config
 	static private function generateInstances()
 	{
 		$db     = Database::get();
+		$universe = Universe::get();
 		$configResult = $db->nativeQuery("SELECT * FROM %%CONFIG%%;");
 		foreach ($configResult as $configRow)
 		{
 			self::$instances[$configRow['uni']] = new self($configRow);
-			Universe::add($configRow['uni']);
+			$universe->add($configRow['uni']);
 		}
 	}
 

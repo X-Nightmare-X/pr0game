@@ -26,6 +26,15 @@ class Universe {
 	 * @return int
 	 */
 
+	protected static $instance = null;
+    public static function get()
+    {
+        if (!isset(self::$instance)) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
 	static public function current()
 	{
 		if(is_null(self::$currentUniverse))
