@@ -63,5 +63,5 @@
 </section>
 {/block}
 {block name="script" append}
-	<script>{if $code}alert({$code|json_encode});{/if}$(function() { $('#username').focus(); });</script>
+	<script>{if $code}alert({$code|json_encode_encode});{/if}$(function() { $('#username').focus(); });</script>
 {/block}

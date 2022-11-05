@@ -197,15 +197,15 @@
 -->
 {if !$vmode}
 <script type="text/javascript">
-var viewShortlyNumber	= {$shortlyNumber|json};
+var viewShortlyNumber	= {$shortlyNumber|json_encode};
 var vacation			= {$vmode};
 $(function() {
 {foreach $resourceTable as $resourceID => $resourceData}
 {if isset($resourceData.production)}
 	resourceTicker({
-		available: {$resourceData.current|json},
-		limit: [0, {$resourceData.max|json}],
-		production: {$resourceData.production|json},
+		available: {$resourceData.current|json_encode},
+		limit: [0, {$resourceData.max|json_encode}],
+		production: {$resourceData.production|json_encode},
 		valueElem: "current_{$resourceData.name}"
 	}, true);
 {/if}

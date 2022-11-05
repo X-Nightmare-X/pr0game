@@ -148,7 +148,7 @@
 		<td style="white-space: nowrap;">
 			{if $currentPlanet.action}
 				{if $currentPlanet.action.esp}
-				<a href="javascript:doit(6,{$currentPlanet.planet.id},{$spyShips|json|escape:'html'})">
+				<a href="javascript:doit(6,{$currentPlanet.planet.id},{$spyShips|json_encode|escape:'html'})">
 					<img src="{$dpath}img/e.gif" title="{$LNG.gl_spy}" alt="">
 				</a>{/if}
 				{if $currentPlanet.action.message}

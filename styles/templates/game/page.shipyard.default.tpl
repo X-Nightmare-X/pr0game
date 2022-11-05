@@ -86,7 +86,7 @@
 {/block}
 {block name="script" append}
 <script type="text/javascript">
-data			= {$BuildList|json};
+data			= {$BuildList|json_encode};
 bd_operating	= '{$LNG.bd_operating}';
 bd_available	= '{$LNG.bd_available}';
 </script>
