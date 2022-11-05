@@ -25,7 +25,7 @@
 			<div class="no-mobile">
 				{if !isset($resourceData.current)}
 					{$resourceData.currentt = $resourceData.max + $resourceData.used}
-						<td class="res_current tooltip" data-tooltip-content="{$resourceData.currentt|number_encode}">
+						<td class="res_current tooltip" data-tooltip-content="{$resourceData.currentt|number_format}">
 							<span{if $resourceData.currentt < 0} style="color:red"{/if}>{$resourceData.currentt|number}&nbsp;/&nbsp;{$resourceData.max|number} </span>
 						</td>
 				{else}
