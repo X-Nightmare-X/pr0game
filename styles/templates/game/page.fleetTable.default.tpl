@@ -46,8 +46,8 @@
 				<form action="game.php?page=fleetTable&amp;action=sendfleetback" method="post">
 					<input name="fleetID" value="{$FlyingFleetRow.id}" type="hidden">
 					<input value="{$LNG.fl_send_back}" type="submit">
-          <span class="aborttime" starttime="{$FlyingFleetRow.startTimestamp}"></span>
 				</form>
+        <span class="aborttime" starttime="{$FlyingFleetRow.startTimestamp}"></span>
 				{if $FlyingFleetRow.mission == 1}
 					<form action="game.php?page=fleetTable&amp;action=acs" method="post">
 						<input name="fleetID" value="{$FlyingFleetRow.id}" type="hidden">
