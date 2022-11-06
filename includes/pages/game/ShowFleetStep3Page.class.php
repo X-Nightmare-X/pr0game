@@ -481,7 +481,7 @@ class ShowFleetStep3Page extends AbstractGamePage
         $PLANET[$resource[902]] -= $fleetResource[902];
         $PLANET[$resource[903]] -= $fleetResource[903] + $consumption;
 
-        $fleetStartTime = $duration + TIMESTAMP;
+        $fleetStartTime = intval($duration) + TIMESTAMP;
         $timeDifference = round(max(0, $fleetStartTime - $ACSTime));
 
         if ($fleetGroup != 0) {
