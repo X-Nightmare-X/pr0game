@@ -157,12 +157,16 @@ class ShowAlliancePage extends AbstractGamePage
             ':userId' => $USER['id'],
             ':statType' => 1
         ], 'total_points');
-
+        if(ISSET($this->allianceData['ally_description'])) {
+            $allydesc = BBCode::parse($this->allianceData['ally_description']);
+        } else {
+            $allydesc = '';
+        }
         $this->assign([
             'diplomaticData' => $diplomaticmaticData,
             'diplomats' => $diplomats,
             'statisticData' => $statisticData,
-            'ally_description' => BBCode::parse($this->allianceData['ally_description']),
+            'ally_description' => $allydesc,
             'ally_id' => $this->allianceData['id'],
             'ally_image' => $this->allianceData['ally_image'],
             'ally_web' => $this->allianceData['ally_web'],
