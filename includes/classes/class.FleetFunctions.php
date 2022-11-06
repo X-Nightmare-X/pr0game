@@ -118,12 +118,12 @@ class FleetFunctions
 
     /**
      * Calculates the distance to the target
-     * 
+     *
      * Changes needs to be done in scripts/game/flotten.js#GetDistance() aswell
-     * 
+     *
      * @return int
      */
-    public static function getTargetDistance($start, $target) {       
+    public static function getTargetDistance($start, $target) {
         $thisGalaxy = $start[0];
         $thisSystem = $start[1];
         $thisPlanet = $start[2];
@@ -163,7 +163,7 @@ class FleetFunctions
                 return $dist * 95 + 2700;
             } else
                 return abs($thisSystem - $targetSystem) * 95 + 2700;
-        } 
+        }
         else if ($thisPlanet != $targetPlanet) {
             return abs($thisPlanet - $targetPlanet) * 5 + 1000;
         }
@@ -523,7 +523,7 @@ class FleetFunctions
                 $availableMissions[] = MISSION_RECYCLING;
             }
         } elseif (
-            !empty($MissionInfo['IsAKS']) && !$YourPlanet && $UsedPlanet && 
+            !empty($MissionInfo['IsAKS']) && !$YourPlanet && $UsedPlanet &&
             (isModuleAvailable(MODULE_MISSION_ATTACK) || isModuleAvailable(MODULE_MISSION_ACS))
         ) {
             if (isModuleAvailable(MODULE_MISSION_ATTACK)) {
@@ -859,4 +859,41 @@ class FleetFunctions
         ]);
         return $fleetId;
     }
+    // double this for resource finds!
+    public static function calculateMaxFactor($universeId)
+    {
+        $sql = "SELECT MAX(total_points) as total FROM %%STATPOINTS%%"
+            . " WHERE `stat_type` = :type AND `universe` = :universe;";
+
+        $topPoints = Database::get()->selectSingle($sql, [
+            ':type'     => 1,
+            ':universe' => $universeId
+        ], 'total');
+
+        if ($topPoints > 100000000) {
+            return 12500;
+        } elseif ($topPoints > 75000000) {
+            return 10500;
+        } elseif ($topPoints > 50000000) {
+            return 9000;
+        } elseif ($topPoints > 25000000) {
+            return 7500;
+        } elseif ($topPoints > 5000000) {
+            return 6000;
+        } elseif ($topPoints > 1000000) {
+            return 4500;
+        } elseif ($topPoints > 100000) {
+            return 3000;
+        } else {
+            return 1250;
+        }
+    }
+
+// for some reason, 1 value differs from the table. Danke Merkel.
+    public static function calculateMaxFactorRes($universeId)
+    {
+        $maxFactor = FleetFunctions::calculateMaxFactor($universeId) * 2;
+        return ($maxFactor != 2500 ? $maxFactor : 2400);
+    }
+
 }

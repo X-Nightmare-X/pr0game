@@ -93,7 +93,7 @@
 			<td>{$LNG.fl_ship_available}</td>
 			<td>-</td>
 			<td>-</td>
-			<td>-</td>
+			<td expocap="{$maxExpo}">-</td>
 		</tr>
 		{foreach $FleetsOnPlanet as $FleetRow}
 		<tr style="height:20px;">

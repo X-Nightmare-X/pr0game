@@ -274,6 +274,8 @@ class ShowFleetTablePage extends AbstractGamePage
             ];
         }
 
+        require_once('includes/classes/class.FleetFunctions.php');
+
         $this->assign([
             'FleetsOnPlanet'        => $FleetsOnPlanet,
             'FlyingFleetList'       => $FlyingFleetList,
@@ -294,6 +296,7 @@ class ShowFleetTablePage extends AbstractGamePage
             'bonusCombustion'       => $USER[$resource[115]] * 10,
             'bonusImpulse'          => $USER[$resource[117]] * 20,
             'bonusHyperspace'       => $USER[$resource[118]] * 30,
+            'maxExpo'               => FleetFunctions::calculateMaxFactorRes(Universe::current())
         ]);
 
         $this->display('page.fleetTable.default.tpl');

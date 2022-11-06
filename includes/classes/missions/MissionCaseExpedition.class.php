@@ -59,43 +59,6 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
         return [$fleetPoints, $fleetCapacity];
     }
 
-    // double this for resource finds!
-    private function calculateMaxFactor()
-    {
-        $sql = "SELECT MAX(total_points) as total FROM %%STATPOINTS%%"
-            . " WHERE `stat_type` = :type AND `universe` = :universe;";
-
-        $topPoints = Database::get()->selectSingle($sql, [
-                ':type'     => 1,
-                ':universe' => $this->_fleet['fleet_universe']
-        ], 'total');
-
-        if ($topPoints > 100000000) {
-            return 12500;
-        } elseif ($topPoints > 75000000) {
-            return 10500;
-        } elseif ($topPoints > 50000000) {
-            return 9000;
-        } elseif ($topPoints > 25000000) {
-            return 7500;
-        } elseif ($topPoints > 5000000) {
-            return 6000;
-        } elseif ($topPoints > 1000000) {
-            return 4500;
-        } elseif ($topPoints > 100000) {
-            return 3000;
-        } else {
-            return 1250;
-        }
-    }
-
-    // for some reason, 1 value differs from the table. Danke Merkel.
-    private function calculateMaxFactorRes()
-    {
-        $maxFactor = $this->calculateMaxFactor() * 2;
-        return ($maxFactor != 2500 ? $maxFactor : 2400);
-    }
-
     // 89 / 10 / 1%
     private function determineEventSize()
     {
@@ -150,7 +113,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
             $factor = $factor / 3;
         }
 
-        $foundResources = $factor * max(min($fleetPoints, $this->calculateMaxFactorRes()), 200);
+        $foundResources = $factor * max(min($fleetPoints,FleetFunctions::calculateMaxFactorRes($this['fleet_universe'])), 200);
 
         if ($fleetCapacity < $foundResources) {
             $foundResources = $fleetCapacity;
@@ -262,7 +225,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
                 break;
         }
 
-        $MaxPoints = $this->calculateMaxFactor();
+        $MaxPoints = FleetFunctions::calculateMaxFactor($this['fleet_universe']);
 
         if ($fleetPoints < $MaxPoints) {
             $this->logbook = $LNG['sys_expe_found_ships_logbook_' . mt_rand(1, 3)] . '<br>' . $this->logbook;
