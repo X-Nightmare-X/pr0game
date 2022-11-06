@@ -79,9 +79,7 @@ $LNG['sys_colo_defaultname'] = 'Colony';
 $LNG['sys_colo_notech'] = 'Filolariniz kolonilestirme islemi icin %s koordinatlarina ulasti. Ancak Kasifler bu'
     . ' yorungenin kullanilabilir olmadigina karar verdiler. Hayal kirikligi ile geri donuyorlar...';
 $LNG['sys_colo_arrival'] = '';
-$LNG['sys_colo_maxcolo'] = 'Filolariniz kolonilestirme islemi  icin  %s koordinatlarina ulasti. Ancak'
-    . ' imparatorlugunuzun maximum koloni yani somurge sayisina ulastiginiz bildirildi. Kargasa olmamasi icin bu islem'
-    . ' iptal edildi!  ';
+$LNG['sys_colo_maxcolo'] = 'Filolarınızdan biri %s koordinatlarına ulaştı. Yerleşim mümkün değil çünkü %d\'den fazla gezegeniniz olamaz.';
 $LNG['sys_colo_allisok'] = 'Filolariniz kolonilestirme islemi  icin %s koordinatlarina ulasti! Imparatorlugunuzun yeni'
     . ' gezegeni olusturuluyor...';
 $LNG['sys_colo_badpos'] = 'Filolariniz kolonilestirme islemi  icin %s koordinatlarina ulasti. Ancak kasifler bu'
