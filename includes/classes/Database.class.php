@@ -275,7 +275,7 @@ class Database
 
     public static function formatDate($time)
     {
-        return date('Y-m-d H:i:s', $time);
+        return date('Y-m-d H:i:s', floor($time));
     }
 
     public function quote($str)
