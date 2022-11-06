@@ -256,6 +256,7 @@ class ShowFleetTablePage extends AbstractGamePage
                 'amount'        => pretty_number($fleetsRow['fleet_amount']),
                 'returntime'    => $returnTime,
                 'resttime'      => $returnTime - TIMESTAMP,
+                'startTimestamp'=>  $fleetsRow['start_time'],
                 'FleetList'     => $FleetList[$fleetsRow['fleet_id']],
             ];
         }
