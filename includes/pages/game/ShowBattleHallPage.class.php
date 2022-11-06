@@ -24,12 +24,64 @@ class ShowBattleHallPage extends AbstractGamePage
 		parent::__construct();
 	}
 
+	private function assembleSelectors()
+	{
+		global $LNG;
+
+		$Selectors = [];
+		$Selectors['memorial'] = [
+			MEMORIAL_ALL => $LNG['tkb_all'],
+			MEMORIAL_EXCLUDE => $LNG['tkb_exclude'],
+			MEMORIAL_ONLY => $LNG['tkb_only'],
+		];
+
+		$Selectors['timeframe'] = [
+			TIMEFRAME_ALL => $LNG['tkb_all'],
+			TIMEFRAME_24H => $LNG['tkb_day'],
+			TIMEFRAME_1WK => $LNG['tkb_week'],
+			TIMEFRAME_1MTH => $LNG['tkb_month'],
+		];
+
+		$Selectors['diplomacy'] = [
+			DIPLOMACY_ALL => $LNG['tkb_all'],
+			DIPLOMACY_ALLIANCE => $LNG['pl_ally'],
+			DIPLOMACY_SELF => $LNG['tkb_self'],
+		];
+
+		$db = Database::get();
+		$sql = "SELECT `max_galaxy` FROM %%CONFIG%% WHERE `uni` = :universe ;";
+		$maxgala = $db->select($sql, array(
+			':universe' => Universe::current()
+		))[0]['max_galaxy'];
+
+		$Selectors['galaxy'] = [
+			0 => $LNG['tkb_all'],
+		];
+
+		for ($curgala = 1; $curgala <= $maxgala; $curgala++)
+		{ $Selectors['galaxy'][$curgala] = $curgala; }
+
+		return $Selectors;
+	}
+
 	function show()
 	{
 		global $USER, $LNG;
     	require_once 'includes/classes/class.BattleHallFilter.php';
 
-		$pBHFilter = new BattlehallFilter();
+		$memorial = HTTP::_GP('memorial', 0);
+		$timeframe = HTTP::_GP('timeframe', 0);
+		$diplomacy = HTTP::_GP('diplomacy', 0);
+		$galaxy = HTTP::_GP('galaxy', 0);
+
+		$filters = [
+			'memorial' => $memorial,
+			'timeframe' => $timeframe,
+			'diplomacy' => $diplomacy,
+			'galaxy' => $galaxy,
+		];
+
+		$pBHFilter = new BattleHallFilter($filters);
 		$top = $pBHFilter->getTopKBs();
 
 		$TopKBList	= array();
@@ -46,8 +98,15 @@ class ShowBattleHallPage extends AbstractGamePage
 			);
 		}
 
+		$Selectors = $this->assembleSelectors();
+
 		$this->assign(array(
 			'TopKBList'		=> $TopKBList,
+			'Selectors'		=> $Selectors,
+			'memorial'		=> $memorial,
+			'timeframe'		=> $timeframe,
+			'diplomacy'		=> $diplomacy,
+			'galaxy'		=> $galaxy,
 		));
 
 		$this->display('page.battleHall.default.tpl');

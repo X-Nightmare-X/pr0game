@@ -6,14 +6,13 @@
  *
  * initial purpose:
  * enable battlehall filtering by:
- * - memorial mode (AbschiedsKB include/only/exclude)
+ * - memorial mode (AbschiedsKB all/only/exclude)
  * - diplomacy (all/alliance/self)
  * - location (galaxy)
- * - time (24h, week, month, all)
+ * - time (all/day/week/month)
  *
  * GENERAL RULE: 0 = all / no filters
  *
- * ALTER TABLE `uni1_topkb` ADD `galaxy` TINYINT(3) NULL DEFAULT NULL AFTER `universe`, ADD `memorial` TINYINT(1) NOT NULL DEFAULT '0' AFTER `galaxy`;
  */
 
 // memorial KBs
@@ -39,12 +38,15 @@ class BattleHallFilter
 	private $_timeframe = 0;
 	private $_location = 0;
 
-	public function __construct ($memorial = 0, $diplomacy = 0, $timeframe = 0, $loc = 0)
+	public function __construct ($filterArray = null)
 	{
-		$this->_memorial = $memorial;
-		$this->_diplomacy = $diplomacy;
-		$this->_timeframe = $timeframe;
-		$this->_location = $loc;
+		if ($filterArray != null)
+		{
+			$this->_memorial = $filterArray['memorial'] ?: 0;
+			$this->_diplomacy = $filterArray['diplomacy'] ?: 0;
+			$this->_timeframe = $filterArray['timeframe'] ?: 0;
+			$this->_location = $filterArray['galaxy'] ?: 0;
+		}
 	}
 
 	private function filterMemorialKb($memorial)
@@ -80,7 +82,7 @@ class BattleHallFilter
 		}
 
 		$time += 21600; // 6h battlehall delay
-		$result = ' AND time > UNIX_TIMESTAMP - '.$time.' ';
+		$result = ' AND time > UNIX_TIMESTAMP() - '.$time.' ';
 
 		return $result;
 	}
@@ -93,7 +95,7 @@ class BattleHallFilter
 		{
 			case DIPLOMACY_SELF:
 				$userid = $USER['id'];
-				$subquery = 'SELECT DISTINCT rid FROM %%TOPKB%%'
+				$subquery = 'SELECT DISTINCT %%TOPKB%%.rid FROM %%TOPKB%%'
 						. ' JOIN %%TOPKB_USERS%%'
 						. ' ON %%TOPKB%%.rid = %%TOPKB_USERS%%.rid'
 						. ' WHERE %%TOPKB_USERS%%.uid = '.$userid;
@@ -103,11 +105,12 @@ class BattleHallFilter
 
 				return $result;
 			case DIPLOMACY_ALLIANCE:
-				$allyid = $USER['allyid'];
+				$allyid = $USER['ally_id'];
 				if (empty($allyid) || $allyid == 0) return ''; // no alliance
-				$allyuserquery = 'SELECT `id` FROM `users` WHERE `ally_id` = '.$allyid;
 
-				$subquery = 'SELECT DISTINCT rid FROM %%TOPKB%%'
+				$allyuserquery = 'SELECT `id` FROM %%USERS%% WHERE `ally_id` = '.$allyid;
+
+				$subquery = 'SELECT DISTINCT %%TOPKB%%.rid FROM %%TOPKB%%'
 						. ' JOIN %%TOPKB_USERS%%'
 						. ' ON %%TOPKB%%.rid = %%TOPKB_USERS%%.rid'
 						. ' WHERE %%TOPKB_USERS%%.uid IN ('.$allyuserquery.')';
@@ -124,7 +127,6 @@ class BattleHallFilter
 	private function assembleLocationFilter($galaxy)
 	{
 		if ($galaxy == 0 || !is_numeric($galaxy)) return '';
-		// TODO database change
 		$result = ' AND %%TOPKB%%.galaxy = '.$galaxy;
 		return $result;
 	}
@@ -147,10 +149,10 @@ class BattleHallFilter
 		) as defender
 		FROM %%TOPKB%%
 		 WHERE universe = :universe AND time < UNIX_TIMESTAMP() - 21600 "
-			. $this->filterMemorialKb(MEMORIAL_ALL)
-			. $this->assembleTimeFilter(TIMEFRAME_ALL)
-			. $this->assembleLocationFilter(0)
-			. $this->assembleDiplomacyFilter(DIPLOMACY_ALL)
+			. $this->filterMemorialKb($this->_memorial)
+			. $this->assembleTimeFilter($this->_timeframe)
+			. $this->assembleLocationFilter($this->_location)
+			. $this->assembleDiplomacyFilter($this->_diplomacy)
 			. " ORDER BY %%TOPKB%%.units DESC LIMIT 100;";
 
 		$top = $db->select($sql, array(
