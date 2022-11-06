@@ -481,7 +481,7 @@ class ShowFleetStep3Page extends AbstractGamePage
         $PLANET[$resource[902]] -= $fleetResource[902];
         $PLANET[$resource[903]] -= $fleetResource[903] + $consumption;
 
-        $fleetStartTime = round($duration) + TIMESTAMP;
+        $fleetStartTime = floor($duration) + TIMESTAMP;
         $timeDifference = round(max(0, $fleetStartTime - $ACSTime));
 
         if ($fleetGroup != 0) {
@@ -492,8 +492,8 @@ class ShowFleetStep3Page extends AbstractGamePage
             }
         }
 
-        $fleetStayTime = $fleetStartTime + $StayDuration;
-        $fleetEndTime = $fleetStayTime + $duration;
+        $fleetStayTime = floor($fleetStartTime + $StayDuration);
+        $fleetEndTime = floor($fleetStayTime + $duration);
 
         $fleet_id = FleetFunctions::sendFleet(
             $fleetArray,
