@@ -23,7 +23,7 @@ function ShowBanPage()
 	global $LNG, $USER;
 	if(!isset($_GET['order'])) { $_GET['order'] = ''; }
 	$ORDER = $_GET['order'] == 'id' ? "id" : "username";
-
+	$WHEREBANA = "";
 	if(!isset($_GET['view'])) { $_GET['view'] = ''; }
 	if ($_GET['view'] == 'bana')
 		$WHEREBANA	= "AND `bana` = '1'";

@@ -152,7 +152,7 @@ function ShowLogDetail()
 
 function ShowLogSettingsList()
 {
-    global $LNG;
+    global $LNG, $USER;
     $result = $GLOBALS['DATABASE']->query("SELECT l.id, l.admin, l.time, l.universe, l.target,u_a.username as"
         . " admin_username FROM " . LOG . " as l LEFT JOIN " . USERS . " as u_a ON  u_a.id = l.admin WHERE mode = 3"
         . " ORDER BY id DESC");
@@ -196,7 +196,7 @@ function ShowLogSettingsList()
 
 function ShowLogPlanetsList()
 {
-    global $LNG;
+    global $LNG, $USER;
 
     $result    = $GLOBALS['DATABASE']->query("SELECT DISTINCT l.id, l.admin, l.target, l.time, l.universe,u_t.username"
         . " as target_username, p.galaxy as target_galaxy, p.system as target_system, p.planet as target_planet,"
@@ -236,7 +236,7 @@ function ShowLogPlanetsList()
 
 function ShowLogPlayersList()
 {
-    global $LNG;
+    global $LNG, $USER;
 
     $result    = $GLOBALS['DATABASE']->query("SELECT DISTINCT l.id, l.admin, l.target, l.time, l.universe,u_t.username"
         . " as target_username,u_a.username as admin_username FROM " . LOG . " as l LEFT JOIN " . USERS
@@ -273,7 +273,7 @@ function ShowLogPlayersList()
 
 function ShowLogPresent()
 {
-    global $LNG;
+    global $LNG, $USER;
 
     $result    = $GLOBALS['DATABASE']->query("SELECT DISTINCT l.id, l.admin, l.target, l.time, l.universe, u_a.username"
         . " as admin_username FROM " . LOG . " as l LEFT JOIN " . USERS . " as u_a ON u_a.id = l.admin WHERE mode = 4"
