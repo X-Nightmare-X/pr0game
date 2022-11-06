@@ -168,7 +168,7 @@ class BuildFunctions
             $maxQueueIndex = max(0, $maxQueueIndex);
             $robo = $PLANET[$resource[14]];
             $nani = $PLANET[$resource[15]];
-            $CurrentQueue = unserialize($PLANET['b_building_id']);
+            $CurrentQueue = !empty($PLANET['b_building_id']) ? unserialize($PLANET['b_building_id']) : [];
             if (!empty($CurrentQueue) && count($CurrentQueue) != 0) {
                 foreach ($CurrentQueue as $index => $QueueSubArray) {
                     if ($index >= $maxQueueIndex) {

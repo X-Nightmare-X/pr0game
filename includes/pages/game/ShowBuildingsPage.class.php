@@ -27,7 +27,7 @@ class ShowBuildingsPage extends AbstractGamePage
     private function cancelBuildingFromQueue()
     {
         global $PLANET, $USER, $resource;
-        $CurrentQueue  = unserialize($PLANET['b_building_id']);
+        $CurrentQueue  = !empty($PLANET['b_building_id']) ? unserialize($PLANET['b_building_id']) : [];
         if (empty($CurrentQueue)) {
             $PLANET['b_building_id']    = '';
             $PLANET['b_building']       = 0;
@@ -123,7 +123,7 @@ class ShowBuildingsPage extends AbstractGamePage
             return;
         }
 
-        $CurrentQueue       = unserialize($PLANET['b_building_id']);
+        $CurrentQueue       = !empty($PLANET['b_building_id']) ? unserialize($PLANET['b_building_id']) : [];
         $DemolishedQueue = 0;
 
         if (!empty($CurrentQueue)) {
@@ -218,7 +218,7 @@ class ShowBuildingsPage extends AbstractGamePage
         $scriptData = [];
         $quickinfo = [];
 
-        if ($PLANET['b_building'] == 0 || $PLANET['b_building_id'] == "") {
+        if (empty($PLANET['b_building']) || empty($PLANET['b_building_id'])) {
             return ['queue' => $scriptData, 'quickinfo' => $quickinfo];
         }
 
