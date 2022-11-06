@@ -113,7 +113,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
             $factor = $factor / 3;
         }
 
-        $foundResources = $factor * max(min($fleetPoints,FleetFunctions::calculateMaxFactorRes($this['fleet_universe'])), 200);
+        $foundResources = $factor * max(min($fleetPoints,FleetFunctions::calculateMaxFactorRes($this->_fleet['fleet_universe'])), 200);
 
         if ($fleetCapacity < $foundResources) {
             $foundResources = $fleetCapacity;
@@ -225,7 +225,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
                 break;
         }
 
-        $MaxPoints = FleetFunctions::calculateMaxFactor($this['fleet_universe']);
+        $MaxPoints = FleetFunctions::calculateMaxFactor($this->_fleet['fleet_universe']);
 
         if ($fleetPoints < $MaxPoints) {
             $this->logbook = $LNG['sys_expe_found_ships_logbook_' . mt_rand(1, 3)] . '<br>' . $this->logbook;
