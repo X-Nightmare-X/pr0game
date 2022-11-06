@@ -722,7 +722,7 @@ class PlayerUtil
         
         $astroTech = $USER[$resource[124]];
         
-        $CurrentQueue = unserialize($USER['b_tech_queue']);
+        $CurrentQueue = !empty($USER['b_tech_queue']) ? unserialize($USER['b_tech_queue']) : [];
         if (!empty($CurrentQueue) && count($CurrentQueue) > 0) {
             foreach ($CurrentQueue as $ListIDArray) {
                 if ($ListIDArray[0] == 124 && $ListIDArray[3] <= TIMESTAMP) {
@@ -840,7 +840,7 @@ class PlayerUtil
         ], 'urlaubs_start');
         $umode_delta = TIMESTAMP - $umode_start;
         if ($USER['urlaubs_until'] <= TIMESTAMP) {
-            if (!empty($USER['b_tech'])) {
+            if (!empty($USER['b_tech']) && !empty($USER['b_tech_queue'])) {
                 $CurrentQueue       = unserialize($USER['b_tech_queue']);
                 foreach ($CurrentQueue as &$TechArray) {
                     $TechArray[3] += $umode_delta;
@@ -858,7 +858,7 @@ class PlayerUtil
                 ]);
                 $USER['b_tech'] = $USER['b_tech'] + $umode_delta;
             }
-            if (isset($PLANET) && !empty($PLANET['b_building'])) {
+            if (isset($PLANET) && !empty($PLANET['b_building']) && !empty($PLANET['b_building_id'])) {
                 $PLANET['b_building'] = $PLANET['b_building'] + $umode_delta;
                 $CurrentQueue       = unserialize($PLANET['b_building_id']);
                 foreach ($CurrentQueue as &$BuildArray) {
@@ -874,7 +874,7 @@ class PlayerUtil
             ]);
             
             foreach ($planets as $CPLANET) {
-                if (!empty($CPLANET['b_building'])) {
+                if (!empty($CPLANET['b_building']) && !empty($CPLANET['b_building_id'])) {
                     $CPLANET['b_building'] = $CPLANET['b_building'] + $umode_delta;
                     $CurrentQueue = unserialize($CPLANET['b_building_id']);
                     foreach ($CurrentQueue as &$BuildArray) {

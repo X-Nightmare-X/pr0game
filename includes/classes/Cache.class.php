@@ -70,7 +70,7 @@ class Cache
 	public function load($Key) {
 		$cacheData	= $this->cacheResource->open($Key);
 		
-		if($cacheData === false)
+		if(empty($cacheData))
 			return false;
 			
 		$cacheData	= unserialize($cacheData);
