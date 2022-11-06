@@ -117,6 +117,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
         global $resource;
 
         $LNG = $this->LNG;
+        $config = Config::get();
         $factor = 0;
 
         $fleetData = $this->calculatePointsAndCapacity();
@@ -138,13 +139,13 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
                 break;
         }
 
-        $chanceToFound = mt_rand(1, 6);
-        if ($chanceToFound > 3) {
-            $resourceId = RESOURCE_METAL; // 1/2
-        } elseif ($chanceToFound > 1) { // 1/3
+        $chanceToFound = mt_rand(1, 100);
+        if ($chanceToFound <= $config->expo_ress_met_chance) {
+            $resourceId = RESOURCE_METAL;
+        } elseif ($chanceToFound <= $config->expo_ress_met_chance + $config->expo_ress_crys_chance) {
             $resourceId = RESOURCE_CRYSTAL;
             $factor = $factor / 2;
-        } else { // 1/6
+        } else {
             $resourceId = RESOURCE_DEUT;
             $factor = $factor / 3;
         }
@@ -603,7 +604,7 @@ HTML;
         // Hold time bonus
         $holdTime = ($this->_fleet['fleet_end_stay'] - $this->_fleet['fleet_start_time']) / 3600;
 
-        $GetEvent = mt_rand(0, 1000 - $holdTime * 10);
+        $GetEvent = mt_rand(0, floor(1000 - $holdTime * 10));
         // Depletion check
         if ($expeditionsCount <= 10) {
             $chanceDepleted = 0;
@@ -642,7 +643,7 @@ HTML;
             GetStartAddressLink($this->_fleet, '')
         );
         // Get a seed into the number generator (to make the results unpredictable).
-        mt_srand(microtime(true) * 10000);
+        mt_srand(floor(microtime(true) * 10000));
         usleep(50);
 
 

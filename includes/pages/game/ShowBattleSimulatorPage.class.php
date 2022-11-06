@@ -188,6 +188,7 @@ class ShowBattleSimulatorPage extends AbstractGamePage
         ];
 
         $reportData = GenerateReport($combatResult, $reportInfo);
+        unset($reportData['repaired']);
         $reportID = md5(uniqid('', true) . TIMESTAMP);
 
         $db = Database::get();

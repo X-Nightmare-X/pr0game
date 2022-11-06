@@ -157,12 +157,16 @@ class ShowAlliancePage extends AbstractGamePage
             ':userId' => $USER['id'],
             ':statType' => 1
         ], 'total_points');
-
+        if(ISSET($this->allianceData['ally_description'])) {
+            $allydesc = BBCode::parse($this->allianceData['ally_description']);
+        } else {
+            $allydesc = '';
+        }
         $this->assign([
             'diplomaticData' => $diplomaticmaticData,
             'diplomats' => $diplomats,
             'statisticData' => $statisticData,
-            'ally_description' => BBCode::parse($this->allianceData['ally_description']),
+            'ally_description' => $allydesc,
             'ally_id' => $this->allianceData['id'],
             'ally_image' => $this->allianceData['ally_image'],
             'ally_web' => $this->allianceData['ally_web'],
@@ -617,7 +621,17 @@ class ShowAlliancePage extends AbstractGamePage
         $DiploCountOut = $db->selectSingle($sql, [
             ':AllianceID' => $this->allianceData['id']
         ], 'count');
-
+        if(ISSET($this->allianceData['ally_description'])) {
+            $allydesc = BBCode::parse($this->allianceData['ally_description']);
+        } else {
+            $allydesc = '';
+        }
+        if(ISSET($this->allianceData['ally_text'])) {
+            $allytext = BBCode::parse($this->allianceData['ally_text']);
+        } else {
+            $allytext = '';
+        }
+        
         $this->assign([
             'DiploInfo' => $this->getDiplomatic(),
             'ally_web' => $this->allianceData['ally_web'],
@@ -626,8 +640,8 @@ class ShowAlliancePage extends AbstractGamePage
             'ally_max_members' => $this->allianceData['ally_max_members'],
             'ally_name' => $this->allianceData['ally_name'],
             'ally_image' => $this->allianceData['ally_image'],
-            'ally_description' => BBCode::parse($this->allianceData['ally_description']),
-            'ally_text' => BBCode::parse($this->allianceData['ally_text']),
+            'ally_description' => $allydesc,
+            'ally_text' => $allytext,
             'rankName' => $rankName,
             'requests' => sprintf($LNG['al_new_requests'], $ApplyCount),
             'applyCount' => $ApplyCount,

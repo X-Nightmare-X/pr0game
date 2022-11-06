@@ -45,7 +45,7 @@
 {block name="script" append}
 <script src="scripts/game/fleettrader.js"></script>
 <script>
-var CostInfo = {$CostInfos|json};
+var CostInfo = {$CostInfos|json_encode};
 var Charge = {$Charge};
 $(function(){
     updateVars();

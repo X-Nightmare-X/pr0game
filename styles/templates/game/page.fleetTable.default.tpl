@@ -47,10 +47,12 @@
 					<input name="fleetID" value="{$FlyingFleetRow.id}" type="hidden">
 					<input value="{$LNG.fl_send_back}" type="submit">
 				</form>
+        <span class="aborttime" starttime="{$FlyingFleetRow.startTimestamp}"></span>
 				{if $FlyingFleetRow.mission == 1}
 					<form action="game.php?page=fleetTable&amp;action=acs" method="post">
 						<input name="fleetID" value="{$FlyingFleetRow.id}" type="hidden">
 						<input value="{$LNG.fl_acs}" type="submit">
+
 					</form>
 				{/if}
 			{else}
@@ -98,7 +100,7 @@
 		{foreach $FleetsOnPlanet as $FleetRow}
 		<tr style="height:20px;">
 			<td>{if $FleetRow.speed != 0} <a class='tooltip' data-tooltip-content='<table><tr><td>{$LNG.fl_speed_title}</td><td>{$FleetRow.speed}</td></tr></table>'>{$LNG.tech.{$FleetRow.id}}</a>{else}{$LNG.tech.{$FleetRow.id}}{/if}</td>
-			<td id="ship{$FleetRow.id}_value">{$FleetRow.count|number}</td>
+			<td id="ship{$FleetRow.id}_value">{number_format($FleetRow.count, 0, ",", ".")}</td>
 			{if $FleetRow.speed != 0}
 				<td><a href="javascript:noShip('ship{$FleetRow.id}');">{$LNG.fl_null}</a></td>
 				<td><a href="javascript:maxShip('ship{$FleetRow.id}');">{$LNG.fl_max}</a></td>
