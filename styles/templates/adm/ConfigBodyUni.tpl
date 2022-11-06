@@ -245,9 +245,9 @@
 			<td>{$LNG.se_ress_chance}</td>
 			<td>
 				<div class="slidecontainer">
-					<input type="range" min="0" max="100" value="{$expo_ress_met_chance}" class="slider" id="expoMetal"> {$LNG.tech.901}: <span id="expoMetalValue"></span><br>
-					<input type="range" min="0" max="100" value="{$expo_ress_crys_chance}" class="slider" id="expoCrystal"> {$LNG.tech.902}: <span id="expoCrystalValue"></span><br>
-					<input type="range" min="0" max="100" value="{$expo_ress_deut_chance}" class="slider" id="expoDeut"> {$LNG.tech.903}: <span id="expoDeutValue"></span>
+					<input name="expo_ress_met_chance" type="range" min="0" max="100" value="{$expo_ress_met_chance}" class="slider" id="expoMetal"> {$LNG.tech.901}: <span id="expoMetalValue"></span><br>
+					<input name="expo_ress_crys_chance" type="range" min="0" max="100" value="{$expo_ress_crys_chance}" class="slider" id="expoCrystal"> {$LNG.tech.902}: <span id="expoCrystalValue"></span><br>
+					<input name="expo_ress_deut_chance" type="range" min="0" max="100" value="{$expo_ress_deut_chance}" class="slider" id="expoDeut"> {$LNG.tech.903}: <span id="expoDeutValue"></span>
 				</div>
 			</td>
 			<td></td>
