@@ -26,6 +26,7 @@ function ShowAccountEditorPage()
     global $LNG, $reslist, $resource;
     $template = new template();
 
+    if(!isset($_GET['edit'])) { $_GET['edit'] = ''; }
     switch ($_GET['edit']) {
         case 'resources':
             $id = HTTP::_GP('id', 0);

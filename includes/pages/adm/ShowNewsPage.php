@@ -19,7 +19,7 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowNewsPage(){
 	global $LNG, $USER;
-
+	if(!isset($_GET['action'])) { $_GET['action'] = ''; }
 	if($_GET['action'] == 'send') {
 		$edit_id 	= HTTP::_GP('id', 0);
 		$title 		= $GLOBALS['DATABASE']->sql_escape(HTTP::_GP('title', '', true));
