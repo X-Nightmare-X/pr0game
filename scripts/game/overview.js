@@ -44,7 +44,7 @@ $(document).ready(function () {
     const mh = document.getElementsByClassName("statictimer")
     for (let flight of mh) {
       let nd = new Date(parseInt(flight.getAttribute("data-time")) * 1000);
-      flight.innerText =  nd.getHours() + ":" + pad(nd.getMinutes(), 2) + ":" + pad(nd.getSeconds(), 2)
+      flight.innerText =  pad(nd.getHours(), 2) + ":" + pad(nd.getMinutes(), 2) + ":" + pad(nd.getSeconds(), 2)
     }
   }
   add_static_times();

@@ -287,27 +287,26 @@ let humanInteraction = false;
 
 function observe(stuff) {
   for (let x of stuff) {
-    x.addEventListener('click', check);
+    x.addEventListener('click', function (e) {
+      if (e.isTrusted) {
+        humanInteraction = true;
+      } else {
+        if (!humanInteraction) {
+          $.post('/game.php?page=report', {
+              hi: humanInteraction,
+              u: document.location.href,
+              o: e.target.outerHTML,
+              ts: e.timestamp
+            },
+            function () {
+            });
+        }
+      }
+    });
   }
 }
 
-function check(e) {
-  if (e.isTrusted) {
-    humanInteraction = true;
-  } else {
-    if (!humanInteraction) {
-      $.post('/game.php?page=report', {
-        hi: humanInteraction,
-        u: document.location.href,
-        o: e.target.outerHTML,
-        ts: e.timestamp
-      },
-        function () {
 
-        });
-    }
-  }
-}
 function showtimes(){
   for(let x of document.querySelectorAll(".statictime")){
     x.innerText=getRestTimeFormat(x.getAttribute("timestamp"))
