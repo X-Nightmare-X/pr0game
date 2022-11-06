@@ -643,7 +643,7 @@ HTML;
             GetStartAddressLink($this->_fleet, '')
         );
         // Get a seed into the number generator (to make the results unpredictable).
-        mt_srand(microtime(true) * 10000);
+        mt_srand(floor(microtime(true) * 10000));
         usleep(50);
 
 
