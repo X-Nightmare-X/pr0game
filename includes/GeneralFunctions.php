@@ -185,13 +185,13 @@ function pretty_time($seconds)
     $day = $seconds / 86400;
     $day = floor($day);
     $hour = $seconds / 3600;
-    $hour = $hour % 24;
     $hour = floor($hour);
+    $hour = $hour % 24;
     $minute = $seconds / 60;
-    $minute = $minute % 60;
     $minute = floor($minute);
-    $second = $seconds % 60;
+    $minute = $minute % 60;
     $second = floor($seconds);
+    $second = $seconds % 60;
 
     $time = '';
 
