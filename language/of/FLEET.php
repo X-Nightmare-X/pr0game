@@ -76,7 +76,7 @@ $LNG['sys_colo_notech'] = 'Eine deiner Floddne erreichd die Goordinatne %s. Als 
     . 'geeigned war und zuerschd Weiderentwiggelt werdne muss. Enddäuschd gehrtne die Siedler zurügg alda.';
 $LNG['sys_colo_arrival'] = 'tadsächlich sogar.';
 $LNG['sys_colo_maxcolo'] = 'Eine deiner Floddne erreichd die Goordinatne %s Eine Besiedelung isd ned möglich, da du'
-    . ' ned mehr als d% Blanetne habne gannst,  hätt ich gsachd. ';
+    . ' ned mehr als %d Blanetne habne gannst,  hätt ich gsachd. ';
 $LNG['sys_colo_allisok'] = 'Eine deiner Floddne erreichd die Goordinatne %s Die Siedler beginnene den neune Blanetne zu'
     . ' besiedeln tadsächlich sogar.';
 $LNG['sys_colo_badpos'] = 'Eine deiner Floddne erreichd die Goordinatne %s Hier wurde geine Siedlungsmöglichgeit'
