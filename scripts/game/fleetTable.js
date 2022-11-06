@@ -24,5 +24,5 @@ $(function() {
         fleet.innerText = pad(cdate.getHours(),2) + ":" + pad(cdate.getMinutes(), 2) + ":" + pad(cdate.getSeconds(),2)
       }
     }
-	}, 1000);
+	}, 500);
 });
