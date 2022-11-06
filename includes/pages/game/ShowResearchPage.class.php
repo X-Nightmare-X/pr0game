@@ -36,7 +36,7 @@ class ShowResearchPage extends AbstractGamePage
         ]);
 
         foreach ($planets as $planet) {
-            if ($planet['b_building'] == 0) {
+            if (empty($planet['b_building']) || empty($planet['b_building_id'])) {
                 continue;
             }
 
@@ -54,7 +54,7 @@ class ShowResearchPage extends AbstractGamePage
     private function cancelBuildingFromQueue()
     {
         global $PLANET, $USER, $resource;
-        $CurrentQueue  = unserialize($USER['b_tech_queue']);
+        $CurrentQueue  = !empty($USER['b_tech_queue']) ? unserialize($USER['b_tech_queue']) : [];
         if (empty($CurrentQueue) || empty($USER['b_tech'])) {
             $USER['b_tech_queue']   = '';
             $USER['b_tech_planet']  = 0;
@@ -169,7 +169,7 @@ class ShowResearchPage extends AbstractGamePage
     {
         global $USER, $PLANET, $resource;
 
-        $CurrentQueue  = unserialize($USER['b_tech_queue']);
+        $CurrentQueue  = !empty($USER['b_tech_queue']) ? unserialize($USER['b_tech_queue']) : [];
         if ($QueueID <= 1 || empty($CurrentQueue)) {
             return false;
         }
@@ -237,7 +237,7 @@ class ShowResearchPage extends AbstractGamePage
             return false;
         }
 
-        $CurrentQueue       = unserialize($USER['b_tech_queue']);
+        $CurrentQueue       = !empty($USER['b_tech_queue']) ? unserialize($USER['b_tech_queue']) : [];
 
         if (!empty($CurrentQueue)) {
             $ActualCount    = count($CurrentQueue);
@@ -315,7 +315,7 @@ class ShowResearchPage extends AbstractGamePage
             return ['queue' => $scriptData, 'quickinfo' => $quickinfo];
         }
 
-        $CurrentQueue   = unserialize($USER['b_tech_queue']);
+        $CurrentQueue   = !empty($USER['b_tech_queue']) ? unserialize($USER['b_tech_queue']) : [];
 
         foreach ($CurrentQueue as $BuildArray) {
             if ($BuildArray[3] < TIMESTAMP && !$USER['urlaubs_modus']) {
