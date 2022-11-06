@@ -182,11 +182,14 @@ function CalculateMaxPlanetFields($planet)
 function pretty_time($seconds)
 {
     global $LNG;
-
-    $day = floor($seconds / 86400);
-    $hour = floor($seconds / 3600 % 24);
-    $minute = floor($seconds / 60 % 60);
-    $second = floor($seconds % 60);
+    $day = $seconds / 86400;
+    $day = floor($day);
+    $hour = $seconds / 3600 % 24;
+    $hour = floor($hour);
+    $minute = $seconds / 60 % 60;
+    $minute = floor($minute);
+    $second = $seconds % 60;
+    $second = floor($seconds);
 
     $time = '';
 
