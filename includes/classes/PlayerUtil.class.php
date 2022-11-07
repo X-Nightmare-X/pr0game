@@ -74,18 +74,18 @@ class PlayerUtil
             || $config->max_system < $system
             || $config->max_planets < $position);
     }
-    
+
     public static function randomHP($universe)
     {
         $config = Config::get($universe);
         $db = Database::get();
         //get avg planets per system per galaxy
-        $sql = 'SELECT tab.galaxy, (sum(tab.anz)/:maxSys) as AvgPlanetsPerSys FROM ( 
-            SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz 
+        $sql = 'SELECT tab.galaxy, (sum(tab.anz)/:maxSys) as AvgPlanetsPerSys FROM (
+            SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz
             FROM %%PLANETS%% p
             JOIN %%USERS%% u on u.id = p.id_owner
             WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive )
-            GROUP BY p.galaxy, p.`system` 
+            GROUP BY p.galaxy, p.`system`
         ) as tab GROUP BY galaxy ORDER BY tab.galaxy ASC';
         $avgPlanetsPerGala = $db->select($sql, [
             ':maxGala' => $config->max_galaxy,
@@ -111,7 +111,7 @@ class PlayerUtil
         $galaxy = $galaArray[rand(0, count($galaArray)-1)];
 
         // get system with planet count for selected gala
-        $sql = 'SELECT `system`, count(planet) as anz FROM %%PLANETS%% 
+        $sql = 'SELECT `system`, count(planet) as anz FROM %%PLANETS%%
             WHERE planet_type = 1 AND galaxy = :gala GROUP BY `system`';
         $systems = $db->select($sql, [
             ':gala' => $galaxy,
@@ -134,17 +134,17 @@ class PlayerUtil
                 } while (!PlayerUtil::allowPlanetPosition($position));
             } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
         }
-        $pos = array('galaxy'   => $galaxy, 
-                     'system'   => $system, 
+        $pos = array('galaxy'   => $galaxy,
+                     'system'   => $system,
                      'position' => $position);
         return $pos;
     }
 
-    public static function blockHP($universe) 
+    public static function blockHP($universe)
     {
         $config = Config::get($universe);
         $db = Database::get();
-        
+
         //if less than 50 players, place randomly
         $sql = 'SELECT Count(id) as usercount from %%USERS%% WHERE universe = :universe';
         $usercount = $db->selectSingle($sql, [
@@ -157,12 +157,12 @@ class PlayerUtil
 
         //Search for systems with one planet, if none, search for 2 planets
         for ($planetamount = 1; $planetamount < 3; $planetamount++) {
-            $sql = 'SELECT tab.galaxy, tab.system FROM ( 
-                SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz 
+            $sql = 'SELECT tab.galaxy, tab.system FROM (
+                SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz
                 FROM %%PLANETS%% p
                 JOIN %%USERS%% u on u.id = p.id_owner
                 WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive )
-                GROUP BY p.galaxy, p.`system` 
+                GROUP BY p.galaxy, p.`system`
             ) as tab where tab.anz = :planetamount ORDER BY tab.galaxy ASC';
             $systems = $db->select($sql, [
                 ':planetamount' => $planetamount,
@@ -185,8 +185,8 @@ class PlayerUtil
                 $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
             } while (!PlayerUtil::allowPlanetPosition($position));
             $pos = array(
-                'galaxy'   => $galaxy, 
-                'system'   => $system, 
+                'galaxy'   => $galaxy,
+                'system'   => $system,
                 'position'  => $position
             );
             return $pos;
@@ -225,6 +225,11 @@ class PlayerUtil
                     sprintf("Position is not empty: %s:%s:%s!", $galaxy, $system, $position)
                 );
             }
+            $pos = [
+                'galaxy'   => $galaxy,
+                'system'   => $system,
+                'position' => $position,
+            ];
         } elseif ($config->planet_creation == 1) {
             $pos = PlayerUtil::randomHP($universe);
         } elseif ($config->planet_creation == 2) {
@@ -273,8 +278,8 @@ class PlayerUtil
             $config->LastSettedSystemPos = $system;
             $config->LastSettedPlanetPos = $position;
 
-            $pos = array('galaxy'   => $galaxy, 
-                         'system'   => $system, 
+            $pos = array('galaxy'   => $galaxy,
+                         'system'   => $system,
                          'position' => $position);
         }
 
@@ -717,11 +722,11 @@ class PlayerUtil
     }
 
     private static function getAstroTech($USER) {
-        
+
         global $resource;
-        
+
         $astroTech = $USER[$resource[124]];
-        
+
         $CurrentQueue = !empty($USER['b_tech_queue']) ? unserialize($USER['b_tech_queue']) : [];
         if (!empty($CurrentQueue) && count($CurrentQueue) > 0) {
             foreach ($CurrentQueue as $ListIDArray) {
@@ -730,7 +735,7 @@ class PlayerUtil
                 }
             }
         }
-        
+
         return $astroTech;
     }
 
@@ -766,7 +771,7 @@ class PlayerUtil
         } else {
             $astroTech = 1;
         }
-        
+
 
         switch ($position) {
             case 1:
@@ -830,9 +835,9 @@ class PlayerUtil
     }
 
     public static function disable_vmode(&$USER, &$PLANET = null) {
-        
+
         $db = Database::get();
-        
+
         $sql = "SELECT urlaubs_start FROM %%USERS%% WHERE universe = :universe AND id = :userID;";
         $umode_start = $db->selectSingle($sql, [
             ':universe' => Universe::current(),
@@ -872,7 +877,7 @@ class PlayerUtil
             $planets = $db->select($sql, [
                 ':userID'   => $USER['id'],
             ]);
-            
+
             foreach ($planets as $CPLANET) {
                 if (!empty($CPLANET['b_building']) && !empty($CPLANET['b_building_id'])) {
                     $CPLANET['b_building'] = $CPLANET['b_building'] + $umode_delta;
@@ -883,7 +888,7 @@ class PlayerUtil
                     $CPLANET['b_building_id'] = serialize($CurrentQueue);
                     unset($CurrentQueue);
                 }
-                
+
                 $sql = "UPDATE %%PLANETS%% SET
                 b_building = :building,
                 b_building_id = :current_queue,
@@ -901,7 +906,7 @@ class PlayerUtil
                     ':current_queue' => $CPLANET['b_building_id'],
                     ':timestamp' => TIMESTAMP,
                 ]);
-                
+
                 unset($CPLANET);
             }
 
@@ -911,7 +916,7 @@ class PlayerUtil
                         urlaubs_start = '0'
 						WHERE id = :userID;";
             $db->update($sql, [':userID'   => $USER['id']]);
-            
+
             $USER['urlaubs_modus'] = 0;
             $USER['urlaubs_until'] = 0;
             $USER['urlaubs_start'] = 0;
@@ -938,7 +943,7 @@ class PlayerUtil
 
     public static function enable_vmode(&$USER, &$PLANET = null) {
         $db = Database::get();
-       
+
         $sql = "UPDATE %%USERS%% SET urlaubs_modus = '1', urlaubs_until = :time, urlaubs_start = :startTime"
                     . " WHERE id = :userID";
         $db->update($sql, [
