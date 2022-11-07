@@ -19,7 +19,7 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowNewsPage(){
 	global $LNG, $USER;
-
+	if(!isset($_GET['action'])) { $_GET['action'] = ''; }
 	if($_GET['action'] == 'send') {
 		$edit_id 	= HTTP::_GP('id', 0);
 		$title 		= $GLOBALS['DATABASE']->sql_escape(HTTP::_GP('title', '', true));
@@ -32,7 +32,7 @@ function ShowNewsPage(){
 	}
 
 	$query = $GLOBALS['DATABASE']->query("SELECT * FROM ".NEWS." ORDER BY id ASC");
-
+	$NewsList[]	= array();
 	while ($u = $GLOBALS['DATABASE']->fetch_array($query)) {
 		$NewsList[]	= array(
 			'id'		=> $u['id'],

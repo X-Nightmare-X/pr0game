@@ -82,7 +82,7 @@ function ShowRightsPage()
                 $template->show('ModerrationRightsPostPage.tpl');
                 exit;
             }
-
+            if(!isset($_GET['get'])) { $_GET['get'] = ''; }
             if ($_GET['get'] == 'adm') {
                 $WHEREUSERS =   "AND `authlevel` = '" . AUTH_ADM . "'";
             } elseif ($_GET['get'] == 'ope') {
@@ -150,7 +150,7 @@ function ShowRightsPage()
                 $template->message($LNG['ad_authlevel_succes'], '?page=rights&mode=users&sid=' . session_id());
                 exit;
             }
-
+            if(!isset($_GET['get'])) { $_GET['get'] = ''; }
             if ($_GET['get'] == 'adm') {
                 $WHEREUSERS =   "AND `authlevel` = '" . AUTH_ADM . "'";
             } elseif ($_GET['get'] == 'ope') {

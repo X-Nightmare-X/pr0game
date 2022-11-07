@@ -31,7 +31,7 @@ function ShowAccountDataPage()
             "SELECT `id`, `authlevel` FROM " . USERS . " WHERE `id` = '" . $id_u . "' AND"
             . " `universe` = '" . Universe::getEmulated() . "';"
         );
-
+        $SpecifyItemsUQ = "";
         if (!isset($OnlyQueryLogin)) {
             $template->message($LNG['ac_username_doesnt'], '?page=accoutdata');
         } else {

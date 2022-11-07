@@ -21,6 +21,7 @@ function ShowActivePage()
 {
 	global $LNG, $USER;
 	$id = HTTP::_GP('id', 0);
+	if(!isset($_GET['action'])) { $_GET['action'] = ''; }
 	if($_GET['action'] == 'delete' && !empty($id))
 		$GLOBALS['DATABASE']->query("DELETE FROM ".USERS_VALID." WHERE `validationID` = '".$id."' AND `universe` = '".Universe::getEmulated()."';");
 

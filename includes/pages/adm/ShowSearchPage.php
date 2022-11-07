@@ -279,7 +279,7 @@ function ShowSearchPage()
             $SearchFile
         );
     }
-
+    if(!isset($OrderBYParse)) { $OrderBYParse = ''; }
     $template->assign_vars([
         'Selector'              => $Selector,
         'limit'                 => $limit,

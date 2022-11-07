@@ -358,6 +358,13 @@ switch ($mode) {
                 break;
             case 3:
                 $template->assign(array(
+                    'getRequest' => [
+                        'host' => $_GET['host'] ?? '',
+                        'port' => $_GET['port'] ?? '',
+                        'user' => $_GET['user'] ?? '',
+                        'dbname' => $_GET['dbname'] ?? '',
+                        'prefix' => $_GET['prefix'] ?? '',
+                    ],
                     'host'     => getenv('DB_HOST'),
                     'user'     => getenv('DB_USER'),
                     'password' => getenv('DB_PASSWORD'),
