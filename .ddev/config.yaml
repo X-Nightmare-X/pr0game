@@ -1,7 +1,7 @@
 name: pr0game
 type: php
 docroot: ""
-php_version: "7.4"
+php_version: "8.1"
 webserver_type: apache-fpm
 router_http_port: "80"
 router_https_port: "443"
@@ -13,7 +13,7 @@ database:
   version: "8.0"
 nfs_mount_enabled: false
 mutagen_enabled: false
-webimage_extra_packages: [php7.4-imap, php7.4-opcache, php7.4-ds]
+webimage_extra_packages: [php8.1-imap, php8.1-opcache, php8.1-ds]
 use_dns_when_possible: true
 timezone: Europe/Berlin
 composer_version: ""
