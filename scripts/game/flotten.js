@@ -364,7 +364,12 @@ $(function() {
 
 function update_arrival() {
   const nd = new Date(new Date(serverTime).getTime() +parseInt(document.getElementById("arr_time").getAttribute("duration")) * 1000)
-  document.getElementById("arr_time").innerText = "Arrival:   " + nd.getHours() + ":" + pad(nd.getMinutes(), 2) + ":" + pad(nd.getSeconds(), 2)
+  let ddiv=Math.floor((nd-serverTime) / (1000 * 60 * 60 * 24));
+  let tamt=""
+  if(ddiv>0){
+    tamt=ddiv + "T "
+  }
+  document.getElementById("arr_time").innerText = tamt +  nd.getHours() + ":" + pad(nd.getMinutes(), 2) + ":" + pad(nd.getSeconds(), 2)
 }
 document.addEventListener("DOMContentLoaded", function() {
 if(document.getElementById("arr_time")){
