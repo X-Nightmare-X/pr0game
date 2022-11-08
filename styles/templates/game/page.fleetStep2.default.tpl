@@ -58,6 +58,9 @@
                     <tr style="height:20px;">
         				<td class="transparent" colspan="3">{$LNG.fl_fuel_consumption}: <span id="consumption" class="consumption">{$consumption}</span></td>
         			</tr>
+          <tr style="height:20px;">
+            <td class="transparent" colspan="3">Arrival: <span id="arr_time" duration="{$duration}"></span></td>
+          </tr>
 				</table>
 			</td>
 		</tr>
