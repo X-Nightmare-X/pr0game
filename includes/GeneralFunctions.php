@@ -627,7 +627,7 @@ Debug Backtrace:
 
     /* Debug via Support Ticket */
     global $USER;
-    if (isset($USER) && is_array($USER)) {
+    if (isset($USER) && is_array($USER) && !empty($USER['id']) && !empty($USER['username'])) {
         $ErrSource = $USER['id'];
         $ErrName = $USER['username'];
     } else {
