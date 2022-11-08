@@ -145,6 +145,10 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     ));
 
     if (!$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME') {
+        if (empty($USER)) {
+            $USER = [];
+        }
+
         $USER['lang'] = 'en';
         $USER['bana'] = 0;
         $USER['timezone'] = "Europe/Berlin";

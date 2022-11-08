@@ -375,6 +375,10 @@ class FleetFunctions
             ':fleetNoMReturn'  => 0,
         ]);
 
+        if (empty($fleetResult)) {
+            return false;
+        }
+
         if (empty($fleetResult['start_time'])) {
             $fleetResult['start_time'] = 0;
         }

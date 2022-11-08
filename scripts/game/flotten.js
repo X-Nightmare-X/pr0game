@@ -1,5 +1,5 @@
 var acstime = 0;
-	
+
 function updateVars($reset_acs = true)
 {
 	if ($reset_acs) {
@@ -20,9 +20,9 @@ function updateVars($reset_acs = true)
 
 /**
  * Calculates the distance to the target
- * 
+ *
  * Changes needs to be done in includes/classes/class.FleetFuntions.php#getTargetDistance() aswell
- * 
+ *
  * @returns int
  */
 function GetDistance() {
@@ -36,7 +36,7 @@ function GetDistance() {
 	if (thisGalaxy != targetGalaxy) {
 		if (config.uni_type == 2) {
 			return 20000;
-		} 
+		}
 		else if (config.uni_type == 1) {
 			var max = Number(config.max_galaxy);
 			var dist = 0;
@@ -129,7 +129,7 @@ function setTarget(galaxy, solarsystem, planet, type) {
 	document.getElementsByName("type")[0].value = type;
 }
 
-function FleetTime(){ 
+function FleetTime(){
 	var sekunden = serverTime.getSeconds();
 	var starttime = dataFlyTime;
 	var endtime	= starttime + dataFlyTime;
@@ -152,7 +152,7 @@ function maxResource(id) {
 	if (isNaN(thisresource)) {
 		thisresource = 0;
 	}
-	
+
 	var storCap = data.fleetroom - data.consumption;
 
 	if (id == 'deuterium') {
@@ -233,7 +233,7 @@ function setNumber(name, number) {
 function CheckTarget()
 {
 	kolo	= (typeof data.ships[208] == "object") ? 1 : 0;
-		
+
 	$.getJSON('game.php?page=fleetStep1&mode=checkTarget&galaxy='+document.getElementsByName("galaxy")[0].value+'&system='+document.getElementsByName("system")[0].value+'&planet='+document.getElementsByName("planet")[0].value+'&planet_type='+document.getElementsByName("type")[0].value+'&lang='+Lang+'&kolo='+kolo, function(data) {
 		if(data == "OK") {
 			document.getElementById('form').submit();
@@ -256,9 +256,9 @@ function AddShortcuts() {
 	HTML.find('input, select').attr('name', function(i, old) {
 		return old.replace("shortcut[]", "shortcut["+($('.shortcut-link').length)+"-new]");
 	});
-	
+
 	var nextFreeColum	= $('.shortcut-row:last td:not(.shortcut-isset):first');
-	
+
 	if(nextFreeColum.length == 0) {
 		if($('.shortcut-row:last').length)
 		{
@@ -266,62 +266,62 @@ function AddShortcuts() {
 			for (var i = 1; i <= shortCutRows; i++) {
 				newRow.append('<td class="shortcut-colum" style="width:'+(100 / shortCutRows)+'%">&nbsp</td>');
 			}
-			
+
 			var nextFreeColum	= $('.shortcut-row:last td:first');
 		} else {
 			var newRow			= $('<tr />').addClass('shortcut-row').insertAfter('.shortcut-none');
 			for (var i = 1; i <= shortCutRows; i++) {
 				newRow.append('<td class="shortcut-colum" style="width:'+(100 / shortCutRows)+'%">&nbsp;</td>');
 			}
-			
+
 			var nextFreeColum	= $('.shortcut-row:last td:first');
 			$('.shortcut-none').remove();
 		}
 	}
-	
+
 	nextFreeColum.html(HTML).addClass("shortcut-isset");
 }
 
-function SaveShortcuts(reedit) {		
+function SaveShortcuts(reedit) {
 	$.getJSON('game.php?page=fleetStep1&mode=saveShortcuts&ajax=1&'+$('.shortcut-row').find("input, select").serialize(), function(res) {
 		$(".shortcut-link").show();
-		$(".shortcut-edit").hide();		
-		
+		$(".shortcut-edit").hide();
+
 		var deadElements	= $(".shortcut-isset").filter(function() {
 			return $('input[name*=name]', this).val() == "" ||
 			$('input[name*=galaxy]', this).val() == "" || $('input[name*=galaxy]', this).val() == 0 ||
 			$('input[name*=system]', this).val() == "" || $('input[name*=system]', this).val() == 0 ||
 			$('input[name*=planet]', this).val() == "" || $('input[name*=planet]', this).val() == 0;
 		});
-		
+
 		if(deadElements.length % 2 === 1) {
 			deadElements.remove();
 			$(".shortcut-colum:last").after('<td class="shortcut-colum" style="width:'+(100 / shortCutRows)+'%">&nbsp;</td>');
 		}
-		
+
 		$(".shortcut-isset").unwrap();
-		
+
 		var activeElements	= Math.ceil($(".shortcut-isset").length / shortCutRows);
-		
+
 		if(activeElements === 0) {
 			$('<tr style="height:20px;" class="shortcut-none"><td colspan="'+shortCutRows+'">'+fl_no_shortcuts+'</td></tr>').insertAfter('.shortcut tr:first');
 		} else {
 			for (var i = 1; i <= activeElements; i++) {
 				$('<tr />').addClass('shortcut-row').insertAfter('.shortcut tr:first');
 			}
-			
+
 			$(".shortcut-colum").each(function(i, val) {
 				$(this).appendTo('tr.shortcut-row:eq('+Math.floor(i / 3)+')');
 			});
-			
+
 			$('.shortcut-colum').filter(function() {
 				return $(this).parent().is(':not(tr)')
 			}).remove();
-			
+
 			$('.shortcut-row').filter(function() {
 				return !$(this).children('.shortcut-isset').length;
 			}).remove();
-			
+
 			$(".shortcut-isset > .shortcut-link").html(function() {
 				if($(this).nextAll().find('input[name*=name]').val() === "") {
 					$(this).parent().html("&nbsp;");
@@ -331,9 +331,9 @@ function SaveShortcuts(reedit) {
 				return '<a href="javascript:setTarget('+Data.find('input[name*=galaxy]').val()+','+Data.find('input[name*=system]').val()+','+Data.find('input[name*=planet]').val()+','+Data.find('select[name*=type]').val()+');updateVars();">'+Data.find('input[name*=name]').val()+'('+Data.nextAll().find('select[name*=type] option:selected').text()[0]+') ['+Data.find('input[name*=galaxy]').val()+':'+Data.find('input[name*=system]').val()+':'+Data.find('input[name*=planet]').val()+']</a>';
 			});
 		}
-		
+
 		$('.shortcut-row:has(td:not(.shortcut-isset) + td)').remove();
-			
+
 		if(typeof reedit === "undefinded" || reedit !== true) {
 			NotifyBox(res);
 		} else {
@@ -360,4 +360,21 @@ $(function() {
 		$(this).parent().find('input');
 		SaveShortcuts(true);
 	});
+});
+
+function update_arrival() {
+  const nd = new Date(new Date(serverTime).getTime() +parseInt(document.getElementById("arr_time").getAttribute("duration")) * 1000)
+  let ddiv=Math.floor((nd-serverTime) / (1000 * 60 * 60 * 24));
+  let tamt=""
+  if(ddiv>0){
+    tamt=ddiv + "T "
+  }
+  document.getElementById("arr_time").innerText = tamt +  nd.getHours() + ":" + pad(nd.getMinutes(), 2) + ":" + pad(nd.getSeconds(), 2)
+}
+document.addEventListener("DOMContentLoaded", function() {
+if(document.getElementById("arr_time")){
+  update_arrival();
+  setInterval(update_arrival,1000)
+}
+
 });
