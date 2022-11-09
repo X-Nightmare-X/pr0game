@@ -47,8 +47,8 @@ class ShowFleetStep2Page extends AbstractGamePage
 
         $db = Database::get();
         $sql = "SELECT id, id_owner, der_metal, der_crystal, tf_active
-            FROM %%PLANETS%% 
-            WHERE universe = :universe AND galaxy = :targetGalaxy AND 
+            FROM %%PLANETS%%
+            WHERE universe = :universe AND galaxy = :targetGalaxy AND
             system = :targetSystem AND planet = :targetPlanet AND planet_type = '1';";
         $targetPlanetData = $db->selectSingle($sql, [
             ':universe' => Universe::current(),
@@ -57,7 +57,7 @@ class ShowFleetStep2Page extends AbstractGamePage
             ':targetPlanet' => $targetPlanet
         ]);
 
-        if ($targetType == 2 && !empty($targetPlanetData) && ($targetPlanetData['der_metal'] + $targetPlanetData['der_crystal']) == 0 && 
+        if ($targetType == 2 && !empty($targetPlanetData) && ($targetPlanetData['der_metal'] + $targetPlanetData['der_crystal']) == 0 &&
             $targetPlanetData['tf_active'] == 0) {
             $this->printMessage($LNG['fl_error_empty_derbis'], [[
                 'label' => $LNG['sys_back'],
@@ -136,7 +136,7 @@ class ShowFleetStep2Page extends AbstractGamePage
                         ':targetPlayerId' => $targetPlanetData['id_owner'],
                         ':ally_id' => $USER['ally_id'],
                     ]);
-            
+
                     $sql = "SELECT count(*) as anz FROM %%BUDDY%% WHERE (sender = :id AND owner = :targetPlayerId) OR (sender = :targetPlayerId AND owner = :id);";
                     $buddy = $db->selectSingle($sql, [
                         ':id' => $USER['id'],
@@ -165,13 +165,13 @@ class ShowFleetStep2Page extends AbstractGamePage
                 ':targetPlayerId' => $targetPlanetData['id_owner'],
                 ':ally_id' => $USER['ally_id'],
             ]);
-    
+
             $sql = "SELECT count(*) as anz FROM %%BUDDY%% WHERE (sender = :id AND owner = :targetPlayerId) OR (sender = :targetPlayerId AND owner = :id);";
             $buddy = $db->selectSingle($sql, [
                 ':id' => $USER['id'],
                 ':targetPlayerId' => $targetPlanetData['id_owner'],
             ]);
-            
+
             if ($targetAllianceData) {
                 if ($USER['lang'] == 'tr') {
                     $question = sprintf(
@@ -182,7 +182,7 @@ class ShowFleetStep2Page extends AbstractGamePage
                 }
                 else {
                     $question = sprintf(
-                        $LNG['fl_attack_confirm_diplo'], 
+                        $LNG['fl_attack_confirm_diplo'],
                         (($targetAllianceData['owner_2'] == $targetAllianceData['id'] && $targetAllianceData['level'] == 1) ? $LNG['al_diplo_level'][0] : $LNG['al_diplo_level'][$targetAllianceData['level']]),
                         '['.$targetAllianceData['ally_tag'].'] '.$targetAllianceData['ally_name']
                     );
@@ -213,6 +213,7 @@ class ShowFleetStep2Page extends AbstractGamePage
             'Exchange'          => $MissionOutput['Exchange'],
             'fl_continue'       => $LNG['fl_continue'],
             'token'             => $token,
+            'duration'          => $duration
         ]);
 
         foreach ($fleetArray as $Ship => $Count) {

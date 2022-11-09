@@ -99,7 +99,7 @@ class ShowOverviewPage extends AbstractGamePage
             }
         }
 
-        if (empty($PLANET['b_building']) && !empty($PLANET['b_building_id'])) {
+        if (!empty($PLANET['b_building']) && !empty($PLANET['b_building_id'])) {
             $Queue          = unserialize($PLANET['b_building_id']);
             $timeleft = $USER['urlaubs_modus'] ? ($PLANET['b_building'] - $USER['urlaubs_start']) : ($PLANET['b_building'] - TIMESTAMP);
             $buildInfo['buildings'] = [

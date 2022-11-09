@@ -175,7 +175,7 @@
 					// a little odd but thats the easiest way of adding/substracting a day without
 					// screwing up the date. Just trust me on that one ;-)
 
-					$rtime			= explode(',', strftime('%M,%H,%d,%m,%w,%Y', mktime($rtime[IDX_HOUR], $rtime[IDX_MINUTE], 0, $rtime[IDX_MONTH], $rtime[IDX_DAY], $rtime[IDX_YEAR]) + ((($next) ? 1 : -1) * 86400)));
+					$rtime			= explode(',', date('i,H,d,m,w,Y', mktime($rtime[IDX_HOUR], $rtime[IDX_MINUTE], 0, $rtime[IDX_MONTH], $rtime[IDX_DAY], $rtime[IDX_YEAR]) + ((($next) ? 1 : -1) * 86400)));
 
 				} else {
 
@@ -196,7 +196,7 @@
 							$nminute	= reset($cron[IDX_MINUTE]);
 							$nhour		= reset($cron[IDX_HOUR]);
 
-							$rtime		= explode(',', strftime('%M,%H,%d,%m,%w,%Y', mktime($nhour, $nminute, 0, $rtime[IDX_MONTH], $rtime[IDX_DAY], $rtime[IDX_YEAR]) + ((($next) ? 1 : -1) * 86400)));
+							$rtime		= explode(',', date('i,H,d,m,w,Y', mktime($nhour, $nminute, 0, $rtime[IDX_MONTH], $rtime[IDX_DAY], $rtime[IDX_YEAR]) + ((($next) ? 1 : -1) * 86400)));
 
 						} else {
 
@@ -276,7 +276,7 @@
 
 											// WIN! :-) We found a valid date...
 
-											$rtime			= explode(',', strftime('%M,%H,%d,%m,%w,%Y', mktime($rtime[IDX_HOUR], $rtime[IDX_MINUTE], 0, $nmonth, $nday, $nyear)));
+											$rtime			= explode(',', date('i,H,d,m,w,Y', mktime($rtime[IDX_HOUR], $rtime[IDX_MINUTE], 0, $nmonth, $nday, $nyear)));
 
 											return mktime($rtime[1], $rtime[0], 0, $rtime[3], $rtime[2], $rtime[5]);
 
@@ -320,28 +320,18 @@
 		 */
 
 		static private function getTimestamp($timestamp = null) {
-			$formatter = new IntlDateFormatter(
-				"de-DE",
-				IntlDateFormatter::FULL,
-				IntlDateFormatter::SHORT
-			);
-			
 			
 			if (is_null($timestamp)) {
-				//$arr	= explode(',', strftime('%M,%H,%d,%m,%w,%Y', time()));
-				$dateTime = new DateTime(time());
+				$arr	= explode(',', date('i,H,d,m,w,Y', time()));
 			} else {
-				//$arr	= explode(',', strftime('%M,%H,%d,%m,%w,%Y', $timestamp));
-				$dateTime = new DateTime($timestamp);
+				$arr	= explode(',', date('i,H,d,m,w,Y', $timestamp));
 			}
 
 			// Remove leading zeros (or we'll get in trouble ;-)
-			/** 
-			*foreach ($arr as $key=>$value) {
-			*	$arr[$key]	= (int)ltrim($value,'0');
-			*}
-			*/
-			return $formatter->format($dateTime);
+			foreach ($arr as $key=>$value) {
+				$arr[$key]	= (int)ltrim($value,'0');
+			}
+			return $arr;
 
 		}
 
