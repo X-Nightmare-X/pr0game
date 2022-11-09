@@ -280,6 +280,7 @@ function ShowSearchPage()
         );
     }
     if(!isset($OrderBYParse)) { $OrderBYParse = ''; }
+    if(!isset($RESULT['PAGES'])) { $RESULT['PAGES'] = ''; }
     $template->assign_vars([
         'Selector'              => $Selector,
         'limit'                 => $limit,
