@@ -174,6 +174,7 @@ function ShowBanPage()
 		'UserSelect'		=> $UserSelect,
 		'usercount'			=> $Users,
 		'bancount'			=> $Banneds,
+		'bo_select_title'           => $LNG['bo_select_title'],
 	));
 	
 	$template->show('BanPage.tpl');
