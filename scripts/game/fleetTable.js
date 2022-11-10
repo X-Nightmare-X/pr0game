@@ -13,7 +13,7 @@ $(function() {
 
     for(let fleet of abortfleet){
       let cdate=new Date(serverTime)
-      let startdate=new Date(1000*parseInt(fleet.getAttribute("starttime")))
+      let startdate=new Date(new Date(1000*parseInt(fleet.getAttribute("starttime")) ).toLocaleString('en-US', { timeZone: localtimezonestring }))
       let difftonow=cdate-startdate
       cdate.setMilliseconds(cdate.getMilliseconds() + difftonow)
       let daydiff= Math.trunc((cdate - new Date(serverTime)) / (1000 * 60 * 60 * 24));
