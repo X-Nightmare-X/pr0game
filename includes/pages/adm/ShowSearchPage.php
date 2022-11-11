@@ -281,6 +281,7 @@ function ShowSearchPage()
     }
     if(!isset($OrderBYParse)) { $OrderBYParse = ''; }
     if(!isset($RESULT['PAGES'])) { $RESULT['PAGES'] = ''; }
+    if(!isset($RESULT['LIST'])) { $RESULT['LIST'] = ''; }
     $template->assign_vars([
         'Selector'              => $Selector,
         'limit'                 => $limit,
@@ -304,6 +305,8 @@ function ShowSearchPage()
         'ac_minimize_maximize'  => $LNG['ac_minimize_maximize'],
         'LIST'                  => $RESULT['LIST'],
         'PAGES'                 => $RESULT['PAGES'],
+        'minimize'              => 'checked = "checked"',
+        'diisplaay'             => 'style="display:none;"',
     ]);
 
     $template->show('SearchPage.tpl');

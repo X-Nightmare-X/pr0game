@@ -39,6 +39,9 @@ function ShowRightsPage()
                 if (!isset($_POST['rights'])) {
                     $_POST['rights'] = [];
                 }
+                if (!isset($_POST['action'])) {
+                    $_POST['action'] = '';
+                }
 
                 if ($_POST['action'] == 'send') {
                     $GLOBALS['DATABASE']->query("UPDATE " . USERS . " SET `rights` = '"
@@ -70,19 +73,22 @@ function ShowRightsPage()
                 );
 
                 $template->assign_vars([
-                    'Files'              => $Files,
-                    'Rights'             => $Rights['rights'],
-                    'id'                 => $id,
-                    'yesorno'            => [1 => $LNG['one_is_yes_1'], 0 => $LNG['one_is_yes_0']],
-                    'ad_authlevel_title' => $LNG['ad_authlevel_title'],
-                    'button_submit'      => $LNG['button_submit'],
-                    'sid'                => session_id(),
+                    'Files'                 => $Files,
+                    'Rights'                => $Rights['rights'],
+                    'id'                    => $id,
+                    'yesorno'               => [1 => $LNG['one_is_yes_1'], 0 => $LNG['one_is_yes_0']],
+                    'ad_authlevel_title'    => $LNG['ad_authlevel_title'],
+                    'button_submit'         => $LNG['button_submit'],
+                    'sid'                   => session_id(),
+                    'User'                  => '',
+                    'ShowAccountDataPage'   => [],
                 ]);
 
                 $template->show('ModerrationRightsPostPage.tpl');
                 exit;
             }
             if(!isset($_GET['get'])) { $_GET['get'] = ''; }
+            $WHEREUSERS = '';
             if ($_GET['get'] == 'adm') {
                 $WHEREUSERS =   "AND `authlevel` = '" . AUTH_ADM . "'";
             } elseif ($_GET['get'] == 'ope') {
@@ -151,6 +157,7 @@ function ShowRightsPage()
                 exit;
             }
             if(!isset($_GET['get'])) { $_GET['get'] = ''; }
+            $WHEREUSERS = '';
             if ($_GET['get'] == 'adm') {
                 $WHEREUSERS =   "AND `authlevel` = '" . AUTH_ADM . "'";
             } elseif ($_GET['get'] == 'ope') {

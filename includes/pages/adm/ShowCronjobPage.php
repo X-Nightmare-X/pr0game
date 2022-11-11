@@ -190,7 +190,7 @@ function ShowCronjobOverview()
         if (!is_null($dataCronjobLog['lastExecution'])) {
             $lastExecutionTimestamp = (new DateTime($dataCronjobLog['lastExecution']))->getTimestamp();
         }
-
+        $lastExecutionTimestamp = isset($lastExecutionTimestamp) ? $lastExecutionTimestamp : 0;
         $CronjobArray[] = [
             'id'            => $CronjobRow['cronjobID'],
             'isActive'      => $CronjobRow['isActive'],

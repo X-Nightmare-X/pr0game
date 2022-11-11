@@ -32,7 +32,7 @@ function ShowNewsPage(){
 	}
 
 	$query = $GLOBALS['DATABASE']->query("SELECT * FROM ".NEWS." ORDER BY id ASC");
-	$NewsList[]	= array();
+	$NewsList = [];
 	while ($u = $GLOBALS['DATABASE']->fetch_array($query)) {
 		$NewsList[]	= array(
 			'id'		=> $u['id'],
@@ -59,6 +59,9 @@ function ShowNewsPage(){
 		$template->assign_vars(array(	
 			'mode'			=> 2,
 			'nws_head'		=> $LNG['nws_head_create'],
+			'news_id'		=> 0,
+			'news_title'	=> '',
+			'news_text'		=> '',
 		));
 	}
 	
