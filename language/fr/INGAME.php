@@ -1070,6 +1070,20 @@ $LNG['tkb_verlierer'] = '<b>-Perdant-</b>';
 $LNG['tkb_unentschieden'] = '<b>-Match Nul- </b>';
 $LNG['tkb_missing'] = '<br>Manquant : Le compte utilisateur impliqué n\'existe plus.';
 
+// filters
+$LNG['tkb_memorial'] = 'Mémoires';
+$LNG['tkb_timeframe'] = 'Cadre temporel';
+$LNG['tkb_diplomacy'] = 'Diplomatie';
+$LNG['tkb_galaxy'] = 'Galaxy';
+
+// filter options
+$LNG['tkb_all'] = 'tous';
+$LNG['tkb_only'] = 'uniquement';
+$LNG['tkb_exclude'] = 'exclure';
+$LNG['tkb_day'] = 'jour';
+$LNG['tkb_week'] = 'semaine';
+$LNG['tkb_month'] = 'mois';
+$LNG['tkb_self'] = 'propre';
 //----------------------------------------------------------------------------//
 // playercard.php
 $LNG['pl_overview'] = 'Présentation du joueur';

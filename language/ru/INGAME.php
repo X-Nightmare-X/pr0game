@@ -1039,6 +1039,21 @@ $LNG['tkb_verlierer'] = '<b>-Проигравший-</b>';
 $LNG['tkb_unentschieden'] = '<b>-Ничья- </b>';
 $LNG['tkb_missing'] = '<br>Аккаунт не существует.';
 
+// filters
+$LNG['tkb_memorial'] = 'Мемориалы';
+$LNG['tkb_timeframe'] = 'Таймфрейм';
+$LNG['tkb_diplomacy'] = 'Дипломатия';
+$LNG['tkb_galaxy'] = 'Галактика';
+
+// filter options
+$LNG['tkb_all'] = 'все';
+$LNG['tkb_only'] = 'только';
+$LNG['tkb_exclude'] = 'исключить';
+$LNG['tkb_day'] = 'день';
+$LNG['tkb_week'] = 'неделя';
+$LNG['tkb_month'] = 'месяц';
+$LNG['tkb_self'] = 'собственный';
+
 // Карточка игрока
 $LNG['pl_overview'] = 'Игрок';
 $LNG['pl_name'] = 'Имя';

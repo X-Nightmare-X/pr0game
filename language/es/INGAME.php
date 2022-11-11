@@ -1078,6 +1078,20 @@ $LNG['tkb_verlierer'] = '<b>-Perdedaor-</b>';
 $LNG['tkb_unentschieden'] = '<b>-Empatado- </b>';
 $LNG['tkb_missing'] = '<br>Desaparecido en Acción: La cuenta de usuario ya no existe.';
 
+// filters
+$LNG['tkb_memorial'] = 'Memorias';
+$LNG['tkb_timeframe'] = 'Marco temporal';
+$LNG['tkb_diplomacy'] = 'Diplomacia';
+$LNG['tkb_galaxy'] = 'Galaxia';
+
+// filter options
+$LNG['tkb_all'] = 'todo';
+$LNG['tkb_only'] = 'sólo';
+$LNG['tkb_exclude'] = 'excluir';
+$LNG['tkb_day'] = 'día';
+$LNG['tkb_week'] = 'semana';
+$LNG['tkb_month'] = 'mes';
+$LNG['tkb_self'] = 'propio';
 //----------------------------------------------------------------------------//
 // playercard.php
 $LNG['pl_overview'] = 'Carta de Usuario';
