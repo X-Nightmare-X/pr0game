@@ -50,16 +50,18 @@ class ShowBattleHallPage extends AbstractGamePage
 
 		$db = Database::get();
 		$sql = "SELECT `max_galaxy` FROM %%CONFIG%% WHERE `uni` = :universe ;";
-		$maxgala = $db->select($sql, array(
+		$maxgala = $db->selectSingle($sql, array(
 			':universe' => Universe::current()
-		))[0]['max_galaxy'];
+		))['max_galaxy'];
 
 		$Selectors['galaxy'] = [
 			0 => $LNG['tkb_all'],
 		];
 
 		for ($curgala = 1; $curgala <= $maxgala; $curgala++)
-		{ $Selectors['galaxy'][$curgala] = $curgala; }
+		{
+			$Selectors['galaxy'][$curgala] = $curgala;
+		}
 
 		return $Selectors;
 	}

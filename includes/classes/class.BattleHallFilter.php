@@ -54,10 +54,10 @@ class BattleHallFilter
 		switch ($memorial)
 		{
 			case MEMORIAL_EXCLUDE:
-				$result = " AND %%TOPKB%%.memorial = 0";
+				$result = " AND %%TOPKB%%.memorial = 0 ";
 				return $result;
 			case MEMORIAL_ONLY:
-				$result = " AND %%TOPKB%%.memorial = 1";
+				$result = " AND %%TOPKB%%.memorial = 1 ";
 				return $result;
 			default:
 				return '';
@@ -69,20 +69,20 @@ class BattleHallFilter
 		switch ($timeframe)
 		{
 			case TIMEFRAME_24H:
-				$time = 86400;
+				$time = TIME_24_HOURS;
 				break;
 			case TIMEFRAME_1WK:
-				$time = 604800;
+				$time = TIME_1_WEEK;
 				break;
 			case TIMEFRAME_1MTH:
-				$time = 2592000;
+				$time = TIME_1_MONTH;
 				break;
 			default:
 				return '';
 		}
 
-		$time += 21600; // 6h battlehall delay
-		$result = ' AND time > UNIX_TIMESTAMP() - '.$time.' ';
+		$time += TIME_6_HOURS; // 6h battlehall delay
+		$result = " AND time > UNIX_TIMESTAMP() - $time ";
 
 		return $result;
 	}
@@ -110,13 +110,13 @@ class BattleHallFilter
 
 				$allyuserquery = 'SELECT `id` FROM %%USERS%% WHERE `ally_id` = '.$allyid;
 
-				$subquery = 'SELECT DISTINCT %%TOPKB%%.rid FROM %%TOPKB%%'
-						. ' JOIN %%TOPKB_USERS%%'
-						. ' ON %%TOPKB%%.rid = %%TOPKB_USERS%%.rid'
-						. ' WHERE %%TOPKB_USERS%%.uid IN ('.$allyuserquery.')';
+				$subquery = "SELECT DISTINCT %%TOPKB%%.rid FROM %%TOPKB%%
+						 JOIN %%TOPKB_USERS%%
+						 ON %%TOPKB%%.rid = %%TOPKB_USERS%%.rid
+						 WHERE %%TOPKB_USERS%%.uid IN ($allyuserquery)";
 
-				$result = ' AND %%TOPKB%%.rid IN'
-						. ' ('.$subquery.')';
+				$result = " AND %%TOPKB%%.rid IN
+						 ($subquery)";
 
 				return $result;
 			default:
@@ -127,12 +127,17 @@ class BattleHallFilter
 	private function assembleLocationFilter($galaxy)
 	{
 		if ($galaxy == 0 || !is_numeric($galaxy)) return '';
-		$result = ' AND %%TOPKB%%.galaxy = '.$galaxy;
+		$result = " AND %%TOPKB%%.galaxy = $galaxy";
 		return $result;
 	}
 
 	public function getTopKBs()
 	{
+		$memorialString  = $this->filterMemorialKb($this->_memorial);
+		$timeString = $this->assembleTimeFilter($this->_timeframe);
+		$locationString = $this->assembleLocationFilter($this->_location);
+		$diplomacyString = $this->assembleDiplomacyFilter($this->_diplomacy);
+
 		$db = Database::get();
 		$sql = "SELECT *, (
 			SELECT DISTINCT
@@ -148,12 +153,9 @@ class BattleHallFilter
 			WHERE %%TOPKB_USERS%%.rid = %%TOPKB%%.`rid` AND `role` = 2
 		) as defender
 		FROM %%TOPKB%%
-		 WHERE universe = :universe AND time < UNIX_TIMESTAMP() - 21600 "
-			. $this->filterMemorialKb($this->_memorial)
-			. $this->assembleTimeFilter($this->_timeframe)
-			. $this->assembleLocationFilter($this->_location)
-			. $this->assembleDiplomacyFilter($this->_diplomacy)
-			. " ORDER BY %%TOPKB%%.units DESC LIMIT 100;";
+		 WHERE universe = :universe AND time < UNIX_TIMESTAMP() - 21600
+			$memorialString $timeString $locationString $diplomacyString
+		 ORDER BY %%TOPKB%%.units DESC LIMIT 100;";
 
 		$top = $db->select($sql, array(
 			':universe' => Universe::current()
