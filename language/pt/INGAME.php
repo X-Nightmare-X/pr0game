@@ -1078,6 +1078,20 @@ $LNG['tkb_verlierer'] = '<b>-Derrotados</b>';
 $LNG['tkb_unentschieden'] = '<b>-Empates </b>';
 $LNG['tkb_missing'] = '<br>Desaparecido em Combate: A conta do jogador já nao existe.';
 
+// filters
+$LNG['tkb_memorial'] = 'Memoriais';
+$LNG['tkb_timeframe'] = 'Calendário';
+$LNG['tkb_diplomacy'] = 'Diplomacia';
+$LNG['tkb_galaxy'] = 'Galáxia';
+
+// filter options
+$LNG['tkb_all'] = 'todos';
+$LNG['tkb_only'] = 'apenas';
+$LNG['tkb_exclude'] = 'excluir';
+$LNG['tkb_day'] = 'dia';
+$LNG['tkb_week'] = 'semana';
+$LNG['tkb_month'] = 'mês';
+$LNG['tkb_self'] = 'próprio';
 //----------------------------------------------------------------------------//
 // Perfil de Jogador
 $LNG['pl_overview'] = 'Perfil';

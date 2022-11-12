@@ -1091,6 +1091,20 @@ $LNG['tkb_verlierer'] = '<b>-Kaybeden-</b>';
 $LNG['tkb_unentschieden'] = '<b>-Berabere- </b>';
 $LNG['tkb_missing'] = '<br>Oyuncu artik mevcut degil.';
 
+// filters
+$LNG['tkb_memorial'] = 'Anıtlar';
+$LNG['tkb_timeframe'] = 'Zaman Çerçevesi';
+$LNG['tkb_diplomacy'] = 'Diplomasi';
+$LNG['tkb_galaxy'] = 'Galaksi';
+
+// filter options
+$LNG['tkb_all'] = 'hepsi';
+$LNG['tkb_only'] = 'sadece';
+$LNG['tkb_exclude'] = 'hariç tut';
+$LNG['tkb_day'] = 'gün';
+$LNG['tkb_week'] = 'hafta';
+$LNG['tkb_month'] = 'ay';
+$LNG['tkb_self'] = 'kendi';
 //----------------------------------------------------------------------------//
 //Profil
 $LNG['pl_overview'] = 'Oyuncu Profili';

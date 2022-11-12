@@ -24,29 +24,63 @@ class ShowBattleHallPage extends AbstractGamePage
 		parent::__construct();
 	}
 
+	private function assembleSelectors()
+	{
+		global $LNG;
+
+		$Selectors = [];
+		$Selectors['memorial'] = [
+			MEMORIAL_ALL => $LNG['tkb_all'],
+			MEMORIAL_EXCLUDE => $LNG['tkb_exclude'],
+			MEMORIAL_ONLY => $LNG['tkb_only'],
+		];
+
+		$Selectors['timeframe'] = [
+			TIMEFRAME_ALL => $LNG['tkb_all'],
+			TIMEFRAME_24H => $LNG['tkb_day'],
+			TIMEFRAME_1WK => $LNG['tkb_week'],
+			TIMEFRAME_1MTH => $LNG['tkb_month'],
+		];
+
+		$Selectors['diplomacy'] = [
+			DIPLOMACY_ALL => $LNG['tkb_all'],
+			DIPLOMACY_ALLIANCE => $LNG['pl_ally'],
+			DIPLOMACY_SELF => $LNG['tkb_self'],
+		];
+
+		$maxgala = Config::get()->max_galaxy;
+
+		$Selectors['galaxy'] = [
+			0 => $LNG['tkb_all'],
+		];
+
+		for ($curgala = 1; $curgala <= $maxgala; $curgala++)
+		{
+			$Selectors['galaxy'][$curgala] = $curgala;
+		}
+
+		return $Selectors;
+	}
+
 	function show()
 	{
 		global $USER, $LNG;
+    	require_once 'includes/classes/class.BattleHallFilter.php';
 
-		$db = Database::get();
-		$sql = "SELECT *, (
-			SELECT DISTINCT
-			IF(%%TOPKB_USERS%%.username = '', GROUP_CONCAT(%%USERS%%.username SEPARATOR ' & '), GROUP_CONCAT(%%TOPKB_USERS%%.username SEPARATOR ' & '))
-			FROM %%TOPKB_USERS%%
-			LEFT JOIN %%USERS%% ON uid = %%USERS%%.id
-			WHERE %%TOPKB_USERS%%.rid = %%TOPKB%%.rid AND role = 1
-		) as attacker,
-		(
-			SELECT DISTINCT
-			IF(%%TOPKB_USERS%%.username = '', GROUP_CONCAT(%%USERS%%.username SEPARATOR ' & '), GROUP_CONCAT(%%TOPKB_USERS%%.username SEPARATOR ' & '))
-			FROM %%TOPKB_USERS%% INNER JOIN %%USERS%% ON uid = id
-			WHERE %%TOPKB_USERS%%.rid = %%TOPKB%%.`rid` AND `role` = 2
-		) as defender
-		FROM %%TOPKB%% WHERE universe = :universe AND time < UNIX_TIMESTAMP() - 21600 ORDER BY %%TOPKB%%.units DESC LIMIT 100;";
+		$memorial = HTTP::_GP('memorial', 0);
+		$timeframe = HTTP::_GP('timeframe', 0);
+		$diplomacy = HTTP::_GP('diplomacy', 0);
+		$galaxy = HTTP::_GP('galaxy', 0);
 
-		$top = $db->select($sql, array(
-			':universe' => Universe::current()
-		));
+		$filters = [
+			'memorial' => $memorial,
+			'timeframe' => $timeframe,
+			'diplomacy' => $diplomacy,
+			'galaxy' => $galaxy,
+		];
+
+		$pBHFilter = new BattleHallFilter($filters);
+		$top = $pBHFilter->getTopKBs();
 
 		$TopKBList	= array();
 		foreach($top as $data)
@@ -62,8 +96,15 @@ class ShowBattleHallPage extends AbstractGamePage
 			);
 		}
 
+		$Selectors = $this->assembleSelectors();
+
 		$this->assign(array(
 			'TopKBList'		=> $TopKBList,
+			'Selectors'		=> $Selectors,
+			'memorial'		=> $memorial,
+			'timeframe'		=> $timeframe,
+			'diplomacy'		=> $diplomacy,
+			'galaxy'		=> $galaxy,
 		));
 
 		$this->display('page.battleHall.default.tpl');

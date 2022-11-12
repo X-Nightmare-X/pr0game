@@ -1144,6 +1144,20 @@ $LNG['tkb_verlierer'] = '<b>-Loser-</b>';
 $LNG['tkb_unentschieden'] = '<b>-Both Weisses, undecided- </b>';
 $LNG['tkb_missing'] = '<br>Missing in Action: The user account does not exist any more.';
 
+// filters
+$LNG['tkb_memorial'] = 'Memorials';
+$LNG['tkb_timeframe'] = 'Timeframe';
+$LNG['tkb_diplomacy'] = 'Diplomacy';
+$LNG['tkb_galaxy'] = 'Galaxy';
+
+// filter options
+$LNG['tkb_all'] = 'all';
+$LNG['tkb_only'] = 'only';
+$LNG['tkb_exclude'] = 'exclude';
+$LNG['tkb_day'] = 'day';
+$LNG['tkb_week'] = 'week';
+$LNG['tkb_month'] = 'month';
+$LNG['tkb_self'] = 'own only';
 //----------------------------------------------------------------------------//
 // Perfil de Jogador
 $LNG['pl_overview'] = 'Player Profile';

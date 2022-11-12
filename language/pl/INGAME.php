@@ -1072,7 +1072,20 @@ $LNG['tkb_verlierer'] = 'przegrał';
 $LNG['tkb_unentschieden'] = 'remis';
 $LNG['tkb_missing'] = 'Tego konta już nie ma.';
 
+// filters
+$LNG['tkb_memorial'] = 'Miejsca pamięci';
+$LNG['tkb_timeframe'] = 'Ramy czasowe';
+$LNG['tkb_diplomacy'] = 'Dyplomacja';
+$LNG['tkb_galaxy'] = 'Galaktyka';
 
+// filter options
+$LNG['tkb_all'] = 'wszystkie';
+$LNG['tkb_only'] = 'tylko';
+$LNG['tkb_exclude'] = 'wykluczyć';
+$LNG['tkb_day'] = 'dzień';
+$LNG['tkb_week'] = 'tydzień';
+$LNG['tkb_month'] = 'miesiąc';
+$LNG['tkb_self'] = 'własny';
 //----------------------------------------------------------------------------//
 // playercard.php
 $LNG['pl_overview'] = 'Strona gracza';
