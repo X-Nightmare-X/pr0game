@@ -319,3 +319,19 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+document.addEventListener("DOMContentLoaded", function() {
+  const captchakey="6LcRvuAiAAAAAKVHWqHMJaojmAnpuohslp-gUEsX"
+  $('form').submit(function(event) {
+    event.preventDefault();
+    grecaptcha.ready(()=> {
+      grecaptcha.execute(captchakey, {action: 'subscribe_newsletter'}).then((token)=> {
+        let hinpt=document.createElement("input")
+        hinpt.type="hidden"
+        hinpt.name="rcaptcha"
+        hinpt.value= token
+        this.insertBefore(hinpt, this.firstChild);
+        this.unbind('submit').submit();
+      });
+    });
+  });
+});

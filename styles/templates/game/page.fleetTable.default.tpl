@@ -95,7 +95,7 @@
 			<td>{$LNG.fl_ship_available}</td>
 			<td>-</td>
 			<td>-</td>
-			<td>-</td>
+			<td id="expocount" expocap="{$maxExpo}">-</td>
 		</tr>
 		{foreach $FleetsOnPlanet as $FleetRow}
 		<tr style="height:20px;">
@@ -116,11 +116,12 @@
 			{if count($FleetsOnPlanet) == 0}
 				<td colspan="5">{$LNG.fl_no_ships}</td>
 			{else}
-				<td colspan="2">&nbsp;</td>
+				<td id="cargospace" colspan="2">&nbsp;</td>
 				<td colspan="2"><a href="javascript:noShips();">{$LNG.fl_remove_all_ships}</a></td>
 				<td><a href="javascript:maxShips();">{$LNG.fl_select_all_ships}</a></td>
 			{/if}
 		</tr>
+    <tr id="customfleets"></tr>
 		{if $maxFleetSlots != $activeFleetSlots}
 			<tr style="height:20px;"><td colspan="5"><input type="submit" value="{$LNG.fl_continue}"></td>
 		{/if}

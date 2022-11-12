@@ -200,6 +200,7 @@ function maxShip(id) {
 		var amount = document.getElementById(id + "_value").innerHTML;
 		document.getElementsByName(id)[0].value = amount.replace(/\./g, "");
 	}
+  show_values();
 }
 
 function maxShips() {
@@ -207,6 +208,7 @@ function maxShips() {
 	$('input[name^="ship"]').each(function() {
 		maxShip($(this).attr('name'));
 	})
+  show_values();
 }
 
 
@@ -214,6 +216,7 @@ function noShip(id) {
 	if (document.getElementsByName(id)[0]) {
 		document.getElementsByName(id)[0].value = 0;
 	}
+  show_values();
 }
 
 
@@ -222,6 +225,7 @@ function noShips() {
 	$('input[name^="ship"]').each(function() {
 		noShip($(this).attr('name'));
 	});
+  show_values();
 }
 
 function setNumber(name, number) {
