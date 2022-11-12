@@ -95,20 +95,20 @@ class BattleHallFilter
 		{
 			case DIPLOMACY_SELF:
 				$userid = $USER['id'];
-				$subquery = 'SELECT DISTINCT %%TOPKB%%.rid FROM %%TOPKB%%'
-						. ' JOIN %%TOPKB_USERS%%'
-						. ' ON %%TOPKB%%.rid = %%TOPKB_USERS%%.rid'
-						. ' WHERE %%TOPKB_USERS%%.uid = '.$userid;
+				$subquery = 'SELECT DISTINCT %%TOPKB%%.rid FROM %%TOPKB%%
+						 	JOIN %%TOPKB_USERS%%
+						 	ON %%TOPKB%%.rid = %%TOPKB_USERS%%.rid
+						 	WHERE %%TOPKB_USERS%%.uid =' . $userid;
 
 				$result = ' AND %%TOPKB%%.rid IN'
-						. ' ('.$subquery.')';
+						. ' (' . $subquery . ')';
 
 				return $result;
 			case DIPLOMACY_ALLIANCE:
 				$allyid = $USER['ally_id'];
 				if (empty($allyid) || $allyid == 0) return ''; // no alliance
 
-				$allyuserquery = 'SELECT `id` FROM %%USERS%% WHERE `ally_id` = '.$allyid;
+				$allyuserquery = 'SELECT `id` FROM %%USERS%% WHERE `ally_id` = '. $allyid;
 
 				$subquery = "SELECT DISTINCT %%TOPKB%%.rid FROM %%TOPKB%%
 						 JOIN %%TOPKB_USERS%%

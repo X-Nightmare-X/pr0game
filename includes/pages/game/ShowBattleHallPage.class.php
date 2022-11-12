@@ -48,11 +48,7 @@ class ShowBattleHallPage extends AbstractGamePage
 			DIPLOMACY_SELF => $LNG['tkb_self'],
 		];
 
-		$db = Database::get();
-		$sql = "SELECT `max_galaxy` FROM %%CONFIG%% WHERE `uni` = :universe ;";
-		$maxgala = $db->selectSingle($sql, array(
-			':universe' => Universe::current()
-		))['max_galaxy'];
+		$maxgala = Config::get()->max_galaxy;
 
 		$Selectors['galaxy'] = [
 			0 => $LNG['tkb_all'],
