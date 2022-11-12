@@ -1,49 +1,45 @@
 <ul id="rules">
 	<li>
 		<h1>1. Accounts</h1>
-		<p>Der Besitzer eines Accounts ist immer der Inhaber der festen E-Mail Adresse. Ein Account darf ausschließlich alleine gespielt werden. Eine Ausnahme bildet nur das Sitten. Sollte es notwendig werden, dass der Account eines Anderen überwacht oder in den Urlaubsmodus gesetzt werden muss, so ist der zuständige Operator vorher zu informieren und dessen Genehmigung einzuholen. Für kurzfristiges Sitten unter 12 Stunden reicht eine Meldung an den Operator. Beim Sitten sind sämtliche Flottenbewegungen verboten, lediglich das Saven der Flotte auf Koordinaten des Gesitteten und das Verbauen der Rohstoffe auf dem Planeten, auf dem sie liegen, ist erlaubt. Ein Account darf für höchstens 72h gesittet werden. Bei Ausnahmen muss die Erlaubniss eines Operators vorliegen. Die Weitergabe eines Accounts darf max. alle 3 Monate und ausschliesslich unentgeltlich erfolgen. Ausnamhen beim Operator melden.</p>
+		<p>The owner of an account is always the owner of the fixed e-mail address. An account may only be played alone. The only exception is siting. If it becomes necessary to monitor another person's account or to put it into holiday mode, the operator in charge must be informed in advance and permission obtained. For short-term sittings of less than 12 hours, a report to the operator is sufficient. During siting, all fleet movements are forbidden, only the siting of the fleet on coordinates of the sitter and the building of resources on the planet on which they are located is allowed. An account may be sat for a maximum of 72 hours. In case of exceptions, the permission of an operator must be obtained. The passing on of an account may take place max. every 3 months and exclusively free of charge. Report the account to the operator.</p>
 	</li>
 	<li>
 		<h1>2. Multiaccounts</h1>
-		<p>Es ist jedem Spieler nur erlaubt, einen Account pro Universum zu spielen. Falls zwei oder mehrere Accounts üblicherweise, gelegentlich oder dauerhaft vom selben Internetanschluss aus gespielt werden (z.B. Schulen, Universitäten oder Internetcafés), so ist das im Vorhinein einem Admin zu melden. In solchen Fällen ist den betreffenden Accounts jeglicher Flottenkontakt untersagt, während sie den selben Internetanschluss nutzen. Ebenso sind weitere Gemeinsamkeiten untersagt.</p>
+		<p>Each player is only allowed to play one account per universe. If two or more accounts are usually, occasionally or permanently played from the same internet connection (e.g. schools, universities or internet cafés), this must be reported to an admin in advance. In such cases, the accounts in question are prohibited from having any fleet contact while using the same internet connection. Likewise, further commonalities are prohibited.</p>
 	</li>
 	<li>
-		<h1>3. Pushen</h1>
-		<p>Pushen ist grundsätzlich verboten. Als Pushing werden alle Transporte/Transfers und auch Mondversuche ohne angemessene Gegenleistung von punktschwächeren Accounts an punktstärkere Accounts gesehen. Ausnahmen müssen im Vorfeld vom Operator genehmigt werden. Eine fehlende Genehmigung kann eine Sperre nach sich ziehen. Ein Handel muss innerhalb 24 Stunden abgeschlossen oder bei einem Operator angemeldet und genehmigt sein. Der sendende Spieler muss nach dem Transfer weiterhin mehr Punkte als der Empfänger haben. Verkäufe an punktestärkere Spieler sind ab 75 Prozent des Wertes(Baupreis, Wert der Ressourcen) erlaubt, Verkäufe an punktschwächere Spieler sind bis zu maximal 125 Prozent des Preises erlaubt. Für die Umrechnung gilt der aktuell gängige Handelskurs.</p>
+		<h1>3. Pushing</h1>
+		<p>Pushing is forbidden as a matter of principle. Pushing is considered to be all transports/transfers and also moon attempts without appropriate consideration from accounts with lower points to accounts with higher points. Exceptions must be approved in advance by the operator. Failure to obtain approval may result in a ban. A trade must be completed within 24 hours or registered with an operator and approved. The sending player must still have more points than the recipient after the transfer. Sales to players with more points are allowed from 75 percent of the value (construction price, value of resources), sales to players with fewer points are allowed up to a maximum of 125 percent of the price. The current trade rate applies to the conversion.</p>
 	</li>
 	<li>
-		<h1>4. Bashen</h1>
-		<p>Mehr als 6 Angriffe innerhalb von 24 Stunden auf den gleichen Planeten zählen als Bashen und sind verboten - der Mond zählt als eigenständiger Planet. Angriffe mit Spiosonden oder Interplanetarraketen werden dabei nicht gezählt.</p>
-		<p>Die Bashregel gilt ausschließlich für aktive Spieler. Befinden sich die Parteien im Krieg, so sind weitere Angriffe erlaubt. Der Krieg muss mindestens 24 Stunden vor weiteren Angriffen im Forum erklärt werden (im Thema der Ankündigung müssen beide Allianzen bzw. der Name des kriegserklärenden Einzelspielers in korrekter Schreibweise genannt werden). Eine Kriegserklärung kann ausschließlich an Allianzen gerichtet werden, wobei die Kriegserklärung durch eine Allianz oder eine Einzelperson erfolgen kann.</p>
-		<p>Eine Annahme des Krieges ist nicht erforderlich. Kriege, die offensichtlich nur der massiven Umgehung der Bashregel dienen, sind verboten. Dies zu beurteilen obliegt den zuständigen Moderatoren und Operatoren.</p>
+		<h1>4. Bashing</h1>
+		<p>More than 6 attacks within 24 hours on the same planet count as bashing and are forbidden - the moon counts as an independent planet. Attacks with spy probes or interplanetary missiles are not counted.</p>
+		<p>The base rule applies exclusively to active players. If the parties are at war, further attacks are allowed. War must be declared in the forum at least 24 hours before further attacks (both alliances or the name of the individual declaring war must be correctly spelled in the topic of the announcement). A declaration of war can only be addressed to alliances, whereby the declaration of war can be made by an alliance or an individual.</p>
+		<p>Acceptance of the war is not required. Wars that obviously only serve the massive circumvention of the bash rule are forbidden. It is up to the responsible moderators and operators to judge this.</p>
 	</li>
 	<li>
-		<h1>5. Irak-Angriffe</h1>
-		<p>Es sind nur 1000 Irak-Angriffe pro 24 Stunden erlaubt. Die Anzahl der Raketen pro Angriff ist unabhängig.</p>
+		<h1>5. Interplanetary Missile-Attacks</h1>
+		<p>Only 1000 Iraq attacks per 24 hours are allowed. The number of missiles per attack is independent.</p>
 	</li>
 	<li>
 		<h1>6. Bugusing</h1>
-		<p>Bugs und/oder Fehler in der Programmierung auszunutzen ist verboten. Erkannte Bugs sollten so schnell wie möglich per <a href="%s" target="_blank">GIT Issue</a> oder im Discord Channel #bugs gemeldet werden. Cheaten ist ebenfalls verboten.</p>
+		<p>Exploiting bugs and errors in programming is prohibited. Detected bugs should be reported as soon as possible via <a href="%s" target="_blank">GIT Issue</a> or in the Discord channel #bugs. Cheating is also forbidden.</p>
 	</li>
 	<li>
-		<h1>6.1 Tools und Anwendungen</h1>
-		<p>Das Verwenden von externen Tools und Userskripten, die automatisiert Aktionen und/oder Requests im Spiel durchführen ist nicht gestattet. Jede Anwendung in diesem Kontext darf nur lokal verwendet werden und ein Export der Daten, sowie das aufarbeiten von Daten für den Export sind ebenfalls nicht erlaubt. Skripts und Tools sollten keinen spielerischen Vorteil bieten, den Spieler ohne diese nicht haben. Falls Unklarheiten bezüglich Regelkonformität eines Tools bestehen, ist ein Moderator/Administrator zu kontaktieren. Sollte ein Tool nicht diesen Regeln entsprechen, kann dieses nach einer Prüfung dennoch freigegeben werden. Für dieses Freigabeverfahren muss das Tool für einen vorgegebenen Prüfer bereitgestellt und genehmigt werden. Sollte ein Tool durch das Prüfverfahren freigegeben werden, so werden die Features davon (nicht das Tool selbst) von der Prüfinstanz veröffentlicht. Um das Freigabeverfahren einzuleiten muss sich an einen der Moderatoren/Administratoren gewendet werden.</p>
-		<p>Hinweis: Das Publizieren und Bereitstellen der eigens entwickelten Tools ist stark erwünscht, jedoch nicht verpflichtend.</p>
+		<h1>6.1 Tools and Applications</h1>
+		<p>The use of external tools and user scripts that perform automated actions and/or requests in the game is not permitted. Any application in this context may only be used locally and exporting data and processing data for export is also not permitted. Scripts and tools should not provide a game advantage that players without them do not have. If there is any doubt about the compliance of a tool, a moderator/administrator should be contacted. If a tool does not comply with these rules, it can still be released after a check. For this release procedure, the tool must be made available to a specified reviewer and approved. If a tool is released through the review process, the features of it (not the tool itself) are published by the reviewing body. To initiate the release procedure, one of the moderators/administrators must be contacted.</p>
+		<p>Note: The publication and provision of self developed tools is strongly encouraged, but not obligatory.</p>
 	</li>
 	<li>
-		<h1>7. Sprache im Spiel</h1>
-		<p>In allen entsprechenden Universen ist Deutsch/Englisch die offizielle Sprache im Spiel. Verstöße können mit einer Sperrung des Accounts geahndet werden. Fremdsprachliche Ingame- Nachrichten/ Allypages können unter Vorbehalt zu einer Sperrung des Accounts führen.</p>
+		<h1>7. Threats/insults</h1>
+		<p>RL blackmail and threats will result in exclusion from one or all game areas. Real-life blackmail and threats are in-game messages, forum posts, IRC dialogues in public channels and ICQ dialogues that clearly signal intentions to locate and harm a person or a close third party.</p>
 	</li>
 	<li>
-		<h1>8. Bedrohungen/Beleidigungen</h1>
-		<p>RL Erpressungen und -Bedrohungen führen zum Ausschluß aus einem oder allen Spiel Bereichen. Als Real-Life-Erpressungen und -bedrohungen werden Ingamenachrichten, Forenbeiträge, IRC-Dialoge in öffentlichen Channels und ICQ-Dialoge gewertet, die eindeutige Absichten signalisieren eine Person ausfindig zu machen und ihr oder einer nahestehenden dritten Person Schaden zuzufügen.</p>
+		<h1>8. Spam and erotica</h1>
+		<p>Spamming and third-party advertising is prohibited. Any form of eroticism and pornography is forbidden. And will be punished with a universe-wide and lifelong ban!</p>
 	</li>
 	<li>
-		<h1>9. Spam und Erotik</h1>
-		<p>Spammen und Fremdwerbung ist verboten. Jeweilige Form von Erotik und Pornografischen Darstellungen ist verboten. Und wird mit einer universumsweiten und lebenslangen Sperre geahndet!</p>
-	</li>
-	<li>
-		<h1>10. Die Regeln</h1>
-		<p>Die Regeln können sich ändern und jeder User ist verpflichtet sich ständig über den Stand zu Informieren!</p>
+		<h1>9. The rules</h1>
+		<p>The rules can change and every user is obliged to keep himself informed about the status!</p>
 	</li>
 </ul>
