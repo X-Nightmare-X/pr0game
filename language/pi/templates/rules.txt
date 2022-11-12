@@ -31,19 +31,15 @@
 		<p>Hinweis: Das Publizieren und Bereitstellen der eigens entwickelten Tools ist stark erwünscht, jedoch nicht verpflichtend.</p>
 	</li>
 	<li>
-		<h1>7. Sprache im Spiel</h1>
-		<p>In allen entsprechenden Universen ist Deutsch/Englisch die offizielle Sprache im Spiel. Verstöße können mit einer Sperrung des Accounts geahndet werden. Fremdsprachliche Ingame- Nachrichten/ Allypages können unter Vorbehalt zu einer Sperrung des Accounts führen.</p>
-	</li>
-	<li>
-		<h1>8. Bedrohungen/Beleidigungen</h1>
+		<h1>7. Bedrohungen/Beleidigungen</h1>
 		<p>RL Erpressungen und -Bedrohungen führen zum Ausschluß aus einem oder allen Spiel Bereichen. Als Real-Life-Erpressungen und -bedrohungen werden Ingamenachrichten, Forenbeiträge, IRC-Dialoge in öffentlichen Channels und ICQ-Dialoge gewertet, die eindeutige Absichten signalisieren eine Person ausfindig zu machen und ihr oder einer nahestehenden dritten Person Schaden zuzufügen.</p>
 	</li>
 	<li>
-		<h1>9. Spam und Erotik</h1>
+		<h1>8. Spam und Erotik</h1>
 		<p>Spammen und Fremdwerbung ist verboten. Jeweilige Form von Erotik und Pornografischen Darstellungen ist verboten. Und wird mit einer universumsweiten und lebenslangen Sperre geahndet!</p>
 	</li>
 	<li>
-		<h1>10. Die Regeln</h1>
+		<h1>9. Die Regeln</h1>
 		<p>Die Regeln können sich ändern und jeder User ist verpflichtet sich ständig über den Stand zu Informieren!</p>
 	</li>
 </ul>
