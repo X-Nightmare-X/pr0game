@@ -68,8 +68,8 @@ function shoot(&$attackers, $fleetID, $element, $unit, &$defenders, &$ad)
     }
     $ran = rand(0, $count - 1);
     $count = 0;
-    $victimShip;
-    $initialArmor;
+    $victimShip = 0;
+    $initialArmor = 0;
     foreach ($defenders as $fID => &$defender) {
         $count += count($defender['units']);
         if ($ran < $count) {
@@ -98,7 +98,7 @@ function shoot(&$attackers, $fleetID, $element, $unit, &$defenders, &$ad)
         //check destruction
         if (floor($victimShip['unit'] / 100) == 2) {
             if ($victimShip['armor'] > 0 && $victimShip['armor'] < 0.7 * $initialArmor) {
-                $ran = rand(0, $initialArmor);
+                $ran = rand(0, (int) $initialArmor);
                 if ($ran > $victimShip['armor']) {
                     $victimShip['explode'] = true;
                 }

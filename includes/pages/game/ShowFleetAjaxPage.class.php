@@ -239,7 +239,7 @@ class ShowFleetAjaxPage extends AbstractGamePage
             sprintf(
                 '%s %d %s %s %d:%d:%d ...',
                 $LNG['fa_sending'],
-                (int)array_sum($fleetArray),
+                (int)floor(array_sum($fleetArray)),
                 $LNG['tech'][$shipID[0]],
                 $LNG['gl_to'],
                 (int)$targetData['galaxy'],

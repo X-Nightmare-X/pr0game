@@ -160,9 +160,9 @@ function ShowConfigUniPage()
         $silo_factor            = HTTP::_GP('silo_factor', 0);
         $ref_max_referals       = HTTP::_GP('ref_max_referals', 0);
         $alliance_create_min_points = HTTP::_GP('alliance_create_min_points', 0);
-        $expo_ress_met_chance = HTTP::_GP('expoMetal', 0);
-        $expo_ress_crys_chance = HTTP::_GP('expoCrystal', 0);
-        $expo_ress_deut_chance = HTTP::_GP('expoDeut', 0);
+        $expo_ress_met_chance = HTTP::_GP('expo_ress_met_chance', 0);
+        $expo_ress_crys_chance = HTTP::_GP('expo_ress_crys_chance', 0);
+        $expo_ress_deut_chance = HTTP::_GP('expo_ress_deut_chance', 0);
 
         $config_after = [
             'noobprotectiontime'    => $noobprotectiontime,

@@ -13,7 +13,7 @@
 	{foreach $uniList as $uniID => $uniRow}
 	<tr style="height:23px;">
 		<td>{$uniID}</td>
-		<td>{number_format($uniRow.uni_name, 0, ",", ".")}</td>
+		<td>{$uniRow.uni_name}</td>
 		<td>{number_format(($uniRow.game_speed / 2500), 0, ",", ".")}</td>
 		<td>{number_format(($uniRow.fleet_speed / 2500), 0, ",", ".")}</td>
 		<td>{number_format($uniRow.resource_multiplier, 0, ",", ".")}</td>

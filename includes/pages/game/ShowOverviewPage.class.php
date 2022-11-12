@@ -50,7 +50,7 @@ class ShowOverviewPage extends AbstractGamePage
                 continue;
             }
 
-            if (!empty($CPLANET['b_building']) && $CPLANET['b_building'] > TIMESTAMP) {
+            if (!empty($CPLANET['b_building']) && !empty($CPLANET['b_building_id']) && $CPLANET['b_building'] > TIMESTAMP) {
                 $Queue = unserialize($CPLANET['b_building_id']);
                 $timeleft = $USER['urlaubs_modus'] ? ($CPLANET['b_building'] - $USER['urlaubs_start']) : ($CPLANET['b_building'] - TIMESTAMP);
                 $BuildPlanet = [
@@ -84,7 +84,7 @@ class ShowOverviewPage extends AbstractGamePage
             $Moon = $db->selectSingle($sql, [':id'   => $PLANET['id']]);
         }
         if (!empty($Moon)) {
-            if (!empty($Moon['b_building']) && $Moon['b_building'] > TIMESTAMP) {
+            if (!empty($Moon['b_building']) && !empty($Moon['b_building_id']) && $Moon['b_building'] > TIMESTAMP) {
                 $Queue = unserialize($Moon['b_building_id']);
                 $timeleft = $USER['urlaubs_modus'] ? ($Moon['b_building'] - $USER['urlaubs_start']) : ($Moon['b_building'] - TIMESTAMP);
                 $Moon['build'] = [
@@ -99,7 +99,7 @@ class ShowOverviewPage extends AbstractGamePage
             }
         }
 
-        if ($PLANET['b_building'] != 0) {
+        if (!empty($PLANET['b_building']) && !empty($PLANET['b_building_id'])) {
             $Queue          = unserialize($PLANET['b_building_id']);
             $timeleft = $USER['urlaubs_modus'] ? ($PLANET['b_building'] - $USER['urlaubs_start']) : ($PLANET['b_building'] - TIMESTAMP);
             $buildInfo['buildings'] = [
@@ -127,7 +127,7 @@ class ShowOverviewPage extends AbstractGamePage
             $buildInfo['fleet'] = false;
         }
         
-        if ($USER['b_tech_id'] != 0) {
+        if (!empty($USER['b_tech_id']) && !empty($USER['b_tech_queue'])) {
             $timeleft = $USER['urlaubs_modus'] ? ($USER['b_tech'] - $USER['urlaubs_start']) : ($USER['b_tech'] - TIMESTAMP);
             $Queue = unserialize($USER['b_tech_queue']);
             $buildInfo['tech'] = [

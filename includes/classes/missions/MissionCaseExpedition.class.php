@@ -604,7 +604,7 @@ HTML;
         // Hold time bonus
         $holdTime = ($this->_fleet['fleet_end_stay'] - $this->_fleet['fleet_start_time']) / 3600;
 
-        $GetEvent = mt_rand(0, 1000 - $holdTime * 10);
+        $GetEvent = mt_rand(0, floor(1000 - $holdTime * 10));
         // Depletion check
         if ($expeditionsCount <= 10) {
             $chanceDepleted = 0;
@@ -643,7 +643,7 @@ HTML;
             GetStartAddressLink($this->_fleet, '')
         );
         // Get a seed into the number generator (to make the results unpredictable).
-        mt_srand(microtime(true) * 10000);
+        mt_srand(floor(microtime(true) * 10000));
         usleep(50);
 
 

@@ -182,11 +182,16 @@ function CalculateMaxPlanetFields($planet)
 function pretty_time($seconds)
 {
     global $LNG;
-
-    $day = floor($seconds / 86400);
-    $hour = floor($seconds / 3600 % 24);
-    $minute = floor($seconds / 60 % 60);
-    $second = floor($seconds % 60);
+    $day = $seconds / 86400;
+    $day = floor($day);
+    $hour = $seconds / 3600;
+    $hour = floor($hour);
+    $hour = $hour % 24;
+    $minute = $seconds / 60;
+    $minute = floor($minute);
+    $minute = $minute % 60;
+    $second = floor($seconds);
+    $second = $seconds % 60;
 
     $time = '';
 
@@ -208,8 +213,10 @@ function pretty_time($seconds)
 function pretty_fly_time($seconds)
 {
     $hour = floor($seconds / 3600);
-    $minute = floor($seconds / 60 % 60);
-    $second = floor($seconds % 60);
+    $minute = floor($seconds / 60);
+    $minute = $minute % 60;
+    $second = floor($seconds);
+    $second = $second % 60;
 
     return sprintf('%02d:%02d:%02d', $hour, $minute, $second);
 }
@@ -620,7 +627,7 @@ Debug Backtrace:
 
     /* Debug via Support Ticket */
     global $USER;
-    if (isset($USER) && is_array($USER)) {
+    if (isset($USER) && is_array($USER) && !empty($USER['id']) && !empty($USER['username'])) {
         $ErrSource = $USER['id'];
         $ErrName = $USER['username'];
     } else {
