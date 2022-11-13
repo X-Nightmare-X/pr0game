@@ -37,12 +37,15 @@ class MarketManager {
 			AND buy_time >= CURDATE() - INTERVAL 7 DAY
 			AND filter_visibility != 1
 			AND ex_resource_type = :exprestype
+			AND seller.fleet_universe = :universe
 			ORDER BY buy_time DESC;';
 
-		$trades = $db->select($sql, [':exprestype' => $expectedrestype]);
+		$trades = $db->select($sql, [
+			':exprestype' => $expectedrestype,
+			':universe' => Universe::current(),
+		]);
 
-		if ($trades == [])
-		{
+		if (empty($trades)) {
 			$resAmount = ($expectedrestype == $this->_restype_metal) ? 4 : 1;
 			$trades []= [
 				'amount' => $resAmount,
@@ -68,12 +71,15 @@ class MarketManager {
 			AND buy_time >= CURDATE() - INTERVAL 7 DAY
 			AND filter_visibility != 1
 			AND ex_resource_type = :exprestype
+			AND seller.fleet_universe = :universe
 			ORDER BY buy_time DESC;';
 
-		$trades = $db->select($sql, [':exprestype' => $expectedrestype]);
+		$trades = $db->select($sql, [
+			':exprestype' => $expectedrestype,
+			':universe' => Universe::current(),
+		]);
 
-		if ($trades == [])
-		{
+		if (empty($trades)) {
 			$resAmount = ($expectedrestype == $this->_restype_metal) ? 4 : 1;
 			$trades []= [
 				'amount' => $resAmount,
@@ -99,12 +105,15 @@ class MarketManager {
 			AND buy_time >= CURDATE() - INTERVAL 7 DAY
 			AND filter_visibility != 1
 			AND ex_resource_type = :exprestype
+			AND seller.fleet_universe = :universe
 			ORDER BY buy_time DESC;';
 
-		$trades = $db->select($sql, [':exprestype' => $expectedrestype]);
+		$trades = $db->select($sql, [
+			':exprestype' => $expectedrestype,
+			':universe' => Universe::current(),
+		]);
 
-		if ($trades == [])
-		{
+		if (empty($trades)) {
 			$resAmount = ($expectedrestype == $this->_restype_metal) ? 4 : 1;
 			$trades []= [
 				'amount' => $resAmount,

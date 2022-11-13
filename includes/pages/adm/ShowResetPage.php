@@ -23,7 +23,7 @@ function ShowResetPage()
 {
     global $LNG, $reslist, $resource;
     $template = new template();
-    $config = Config::get(ROOT_UNI);
+    $config = Config::get(Universe::getEmulated());
 
     if ($_POST) {
         foreach ($reslist['build'] as $ID) {

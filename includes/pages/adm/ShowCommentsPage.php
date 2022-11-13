@@ -8,7 +8,11 @@ function ShowCommentsPage()
 
     $db = Database::get();
 
-    $sql = 'SELECT uc.id, u.username, a.ally_name, uc.comment, uc.created_at FROM %%USERS_COMMENTS%% AS uc LEFT JOIN %%USERS%% AS u ON u.id = uc.id LEFT JOIN %%ALLIANCE%% AS a ON a.id = u.ally_id WHERE u.universe = :uni ORDER BY created_at DESC;';
+    $sql = 'SELECT uc.id, u.username, a.ally_name, uc.comment, uc.created_at 
+    FROM %%USERS_COMMENTS%% AS uc 
+    LEFT JOIN %%USERS%% AS u ON u.id = uc.id 
+    LEFT JOIN %%ALLIANCE%% AS a ON a.id = u.ally_id 
+    WHERE u.universe = :uni ORDER BY created_at DESC;';
 
     $comments = $db->select($sql, [
         ':uni' => Universe::getEmulated()
