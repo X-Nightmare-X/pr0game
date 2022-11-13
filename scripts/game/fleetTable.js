@@ -65,7 +65,6 @@ function add_exp_eventlisteners() {
   for (let sid in exp_values) {
     let shipinpt = document.getElementById("ship" + sid + "_input")
     if (shipinpt) {
-      console.log(shipinpt)
       shipinpt.addEventListener("input", () => setTimeout(show_values, 100));
     }
   }
