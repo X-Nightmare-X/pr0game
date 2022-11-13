@@ -101,8 +101,10 @@ class ShowMarketPlacePage extends AbstractGamePage
 			FROM %%TRADES%%
 			JOIN %%LOG_FLEETS%% seller ON seller.fleet_id = seller_fleet_id
 			JOIN %%LOG_FLEETS%% buyer ON buyer.fleet_id = buyer_fleet_id
-			WHERE transaction_type = 0 ORDER BY time DESC LIMIT 40;';
-        $trades = $db->select($sql, []);
+			WHERE transaction_type = 0 AND seller.fleet_universe = :universe ORDER BY time DESC LIMIT 40;';
+        $trades = $db->select($sql, [
+            ':universe' => Universe::current(),
+        ]);
         return $trades;
     }
 
@@ -118,9 +120,11 @@ class ShowMarketPlacePage extends AbstractGamePage
 			FROM %%TRADES%%
 			JOIN %%LOG_FLEETS%% seller ON seller.fleet_id = seller_fleet_id
 			JOIN %%LOG_FLEETS%% buyer ON buyer.fleet_id = buyer_fleet_id
-			WHERE transaction_type = 1 ORDER BY time DESC LIMIT 40;';
+			WHERE transaction_type = 1 AND seller.fleet_universe = :universe ORDER BY time DESC LIMIT 40;';
 
-        $trades = $db->select($sql, []);
+        $trades = $db->select($sql, [
+            ':universe' => Universe::current(),
+        ]);
         for ($i = 0; $i < count($trades); $i++) {
             $fleet =  FleetFunctions::unserialize($trades[$i]['fleet']);
             $fleet_str = '';
