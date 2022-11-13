@@ -149,7 +149,7 @@ class PlayerUtil
                 $system = $usableSystems[array_rand($usableSystems)];
                 do {
                     $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
-                } while (!PlayerUtil::allowPlanetPosition($position));
+                } while (!PlayerUtil::allowPlanetPosition($position, null, $universe));
             } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
         }
         $pos = [
@@ -203,7 +203,7 @@ class PlayerUtil
             $system = $galasys['system'];
             do {
                 $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
-            } while (!PlayerUtil::allowPlanetPosition($position));
+            } while (!PlayerUtil::allowPlanetPosition($position, null, $universe));
             $pos = [
                 'galaxy'   => $galaxy,
                 'system'   => $system,
@@ -806,15 +806,15 @@ class PlayerUtil
         );
     }
 
-    public static function allowPlanetPosition($position, $USER = null)
+    public static function allowPlanetPosition($position, $USER = null, $universe = ROOT_UNI)
     {
         // http://owiki.de/index.php/Astrophysik#.C3.9Cbersicht
-
-        global $resource;
-        $config = Config::get($USER['universe']);
+        
         if (isset($USER)) {
+            $config = Config::get($USER['universe']);
             $astroTech = PlayerUtil::getAstroTech($USER);
         } else {
+            $config = Config::get($universe);
             $astroTech = 1;
         }
 
