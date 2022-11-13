@@ -99,7 +99,7 @@ class PlayerUtil
                 $avgPlanetsPerGala = [];
             }
             if (empty($avgPlanetsPerGala[$i])) {
-                $avgPlanetsPerGala[$i] = ['galaxy' => $i, 'AvgPlanetsPerSys' => 0];
+                $avgPlanetsPerGala[$i] = ['galaxy' => $i+1, 'AvgPlanetsPerSys' => 0];
             }
         }
 
@@ -131,7 +131,7 @@ class PlayerUtil
                 $systems = [];
             }
             if (empty($systems[$i])) {
-                $systems[$i] = ['system' => $i, 'anz' => 0];
+                $systems[$i] = ['system' => $i+1, 'anz' => 0];
             }
         }
 
