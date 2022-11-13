@@ -1131,6 +1131,20 @@ $LNG['tkb_verlierer'] = '<b>-Werlierer-</b>';
 $LNG['tkb_unentschieden'] = '<b>-Beide Weiss, unendschiedne- </b>';
 $LNG['tkb_missing'] = '<br>Missing in Action: Der Useraccount exischdiert ned mehr.';
 
+// filters
+$LNG['tkb_memorial'] = 'Abschiede';
+$LNG['tkb_timeframe'] = 'Zeitfenster';
+$LNG['tkb_diplomacy'] = 'Diplomatie';
+$LNG['tkb_galaxy'] = 'Galaxie';
+
+// filter options
+$LNG['tkb_all'] = 'alle';
+$LNG['tkb_only'] = 'anzeigen';
+$LNG['tkb_exclude'] = 'ausblenden';
+$LNG['tkb_day'] = 'Tag';
+$LNG['tkb_week'] = 'Woche';
+$LNG['tkb_month'] = 'Monat';
+$LNG['tkb_self'] = 'eigene';
 //----------------------------------------------------------------------------//
 // playercard.php
 $LNG['pl_overview'] = 'Blayercard';

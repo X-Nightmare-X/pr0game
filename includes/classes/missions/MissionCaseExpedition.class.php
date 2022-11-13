@@ -117,7 +117,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
         global $resource;
 
         $LNG = $this->LNG;
-        $config = Config::get();
+        $config = Config::get($this->_fleet['fleet_universe']);
         $factor = 0;
 
         $fleetData = $this->calculatePointsAndCapacity();

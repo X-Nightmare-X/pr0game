@@ -84,10 +84,11 @@ class PlayerUtil
             SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz
             FROM %%PLANETS%% p
             JOIN %%USERS%% u on u.id = p.id_owner
-            WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive )
+            WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive ) AND p.universe = :universe
             GROUP BY p.galaxy, p.`system`
         ) as tab GROUP BY galaxy ORDER BY tab.galaxy ASC';
         $avgPlanetsPerGala = $db->select($sql, [
+            ':universe' => $universe,
             ':maxGala' => $config->max_galaxy,
             ':maxSys' => $config->max_system,
             ':ts' => TIMESTAMP,
@@ -112,9 +113,10 @@ class PlayerUtil
 
         // get system with planet count for selected gala
         $sql = 'SELECT `system`, count(planet) as anz FROM %%PLANETS%%
-            WHERE planet_type = 1 AND galaxy = :gala GROUP BY `system`';
+            WHERE planet_type = 1 AND galaxy = :gala AND universe = :universe GROUP BY `system`';
         $systems = $db->select($sql, [
             ':gala' => $galaxy,
+            ':universe' => $universe,
         ]);
 
         // get empty systems in selected gala
@@ -163,10 +165,11 @@ class PlayerUtil
                 SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz
                 FROM %%PLANETS%% p
                 JOIN %%USERS%% u on u.id = p.id_owner
-                WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive )
+                WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive ) AND p.universe = :universe
                 GROUP BY p.galaxy, p.`system`
             ) as tab where tab.anz = :planetamount ORDER BY tab.galaxy ASC';
             $systems = $db->select($sql, [
+                ':universe' => $universe,
                 ':planetamount' => $planetamount,
                 ':maxGala' => $config->max_galaxy,
                 ':ts' => TIMESTAMP,
@@ -785,7 +788,7 @@ class PlayerUtil
         // http://owiki.de/index.php/Astrophysik#.C3.9Cbersicht
 
         global $resource;
-        $config = Config::get($USER['universe']);
+        $config = Config::get();
         if (isset($USER)) {
             $astroTech = PlayerUtil::getAstroTech($USER);
         } else {
