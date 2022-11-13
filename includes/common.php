@@ -237,7 +237,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
         $response = curl_exec($ch);
         curl_close($ch);
         $arrResponse = json_decode($response, true);
-        $sql = "insert into %%RECAPTCHA%% (userId, success, timestamp, score, url) VALUES (:userId, :success, :time, :score, :url);";
+        $sql = "insert into %%RECAPTCHA%% (userId, success, time, score, url) VALUES (:userId, :success, :time, :score, :url);";
         
         if($arrResponse['success'] == true){
             $db->insert($sql, array(
