@@ -139,7 +139,7 @@ class PlayerUtil
         for ($planetamount = 0; $planetamount <= $config->max_planets; $planetamount++) {
             $usableSystems = [];
             foreach ($systems as $sysArray) {
-                if ($sysArray['anz'] = $planetamount) {
+                if ($sysArray['anz'] == $planetamount) {
                     $usableSystems[] = $sysArray['system'];
                 }
             }
