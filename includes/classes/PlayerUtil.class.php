@@ -113,7 +113,7 @@ class PlayerUtil
             }
         }
         foreach ($avgPlanetsPerGala as $data) {
-            if ($data['AvgPlanetsPerSys'] = $minAvg) {
+            if ($data['AvgPlanetsPerSys'] == $minAvg) {
                 array_push($galaArray, $data['galaxy']);
             }
         }
