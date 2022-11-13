@@ -142,12 +142,12 @@ class ShowOverviewPage extends AbstractGamePage
         }
 
 
-        $sql = "SELECT id,username FROM %%USERS%% WHERE universe = :universe AND onlinetime >= :onlinetime"
-            . " AND authlevel > :authlevel;";
+        $sql = "SELECT id,username FROM %%USERS%% 
+            WHERE universe = :universe AND onlinetime >= :onlinetime AND authlevel > :authlevel;";
         $onlineAdmins = $db->select($sql, [
             ':universe'     => Universe::current(),
             ':onlinetime'   => TIMESTAMP - 10 * 60,
-            ':authlevel'    => AUTH_USR
+            ':authlevel'    => AUTH_USR,
         ]);
 
         foreach ($onlineAdmins as $AdminRow) {
@@ -158,7 +158,8 @@ class ShowOverviewPage extends AbstractGamePage
 
         // Fehler: Wenn Spieler gelöscht werden, werden sie nicht mehr in der Tabelle angezeigt.
         $sql = "SELECT u.id, u.username, s.total_points FROM %%USERS%% as u
-		LEFT JOIN %%STATPOINTS%% as s ON s.id_owner = u.id AND s.stat_type = '1' WHERE ref_id = :userID;";
+		    LEFT JOIN %%STATPOINTS%% as s ON s.id_owner = u.id AND s.stat_type = '1' 
+            WHERE ref_id = :userID;";
         $RefLinksRAW = $db->select($sql, [':userID'   => $USER['id']]);
 
         $config = Config::get();
@@ -172,11 +173,10 @@ class ShowOverviewPage extends AbstractGamePage
             }
         }
 
-        $sql    = 'SELECT total_points, total_rank
-		FROM %%STATPOINTS%%
-		WHERE id_owner = :userId AND stat_type = :statType';
+        $sql    = 'SELECT total_points, total_rank FROM %%STATPOINTS%%
+		    WHERE id_owner = :userId AND stat_type = :statType';
 
-        $statData   = Database::get()->selectSingle($sql, [
+        $statData   = $db->selectSingle($sql, [
             ':userId'   => $USER['id'],
             ':statType' => 1
         ]);
@@ -195,16 +195,14 @@ class ShowOverviewPage extends AbstractGamePage
             );
         }
 
-        $usersOnline = Database::get()->selectSingle(
-            'SELECT COUNT(*)
-			FROM %%USERS%% WHERE onlinetime >= UNIX_TIMESTAMP(NOW() - INTERVAL 15 MINUTE)'
-        )['COUNT(*)'];
+        $sql = 'SELECT COUNT(*) AS amount FROM %%USERS%% 
+            WHERE onlinetime >= UNIX_TIMESTAMP(NOW() - INTERVAL 15 MINUTE)';
+        $usersOnline = $db->selectSingle($sql, [], 'amount');
 
-        $fleetsOnline = Database::get()->selectSingle(
-            'SELECT COUNT(*)
-			FROM %%FLEETS%%'
-        )['COUNT(*)'];
+        $sql = 'SELECT COUNT(*) AS amount FROM %%FLEETS%%';
+        $fleetsOnline = $db->selectSingle($sql, [], 'amount');
         $colors = PlayerUtil::player_colors($USER);
+
         $this->assign([
             'umode'                     => $USER['urlaubs_modus'],
             'rankInfo'                  => $rankInfo,

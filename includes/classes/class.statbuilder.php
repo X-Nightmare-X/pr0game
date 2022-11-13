@@ -420,6 +420,7 @@ class statbuilder
         $columns = [
             '%%STATPOINTS%%.id_owner AS playerId',
             '%%USERS%%.username AS playerName',
+            '%%USERS%%.universe AS playerUniverse',
             '%%USERS%%.galaxy AS playerGalaxy',
             '%%STATPOINTS%%.id_ally AS allianceId',
             '(SELECT ally_name FROM %%ALLIANCE%% WHERE %%ALLIANCE%%.id = %%STATPOINTS%%.id_ally) AS allianceName',
@@ -443,23 +444,30 @@ class statbuilder
         ];
 
         $database = Database::get();
-        $scores = $database->select(trim("
-            SELECT SQL_BIG_RESULT
+        $sql = trim("SELECT SQL_BIG_RESULT
             " . implode(',', $columns) . "
             FROM %%STATPOINTS%%
             INNER JOIN %%USERS%%
             ON %%USERS%%.`id` = %%STATPOINTS%%.`id_owner`
-            WHERE %%STATPOINTS%%.`stat_type` = 1
-            ORDER BY %%STATPOINTS%%.`total_rank`
-        "));
+            WHERE %%STATPOINTS%%.`stat_type` = 1 AND %%USERS%%.universe = :universe
+            ORDER BY %%STATPOINTS%%.`total_rank`");
 
-        $fh = fopen(ROOT_PATH . 'stats/stats_' . date('Y-m-d_H') . '.json', 'w+');
-        fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
-        fclose($fh);
+        foreach ($this->universes as $uni) {
+            $scores = $database->select($sql, [
+                ':universe' => $uni,
+            ]);
 
-        $fh = fopen(ROOT_PATH . 'stats.json', 'w+');
-        fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
-        fclose($fh);
+            $name = Config::get($uni)->uni_name;
+            $name = str_replace(' ', '_', $name);
+    
+            $fh = fopen(ROOT_PATH . 'stats/stats_' . $name . '_' . date('Y-m-d_H') . '.json', 'w+');
+            fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
+            fclose($fh);
+    
+            $fh = fopen(ROOT_PATH . 'stats_' . $name . '.json', 'w+');
+            fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
+            fclose($fh);
+        }
     }
 }
 

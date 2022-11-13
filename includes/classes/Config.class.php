@@ -32,7 +32,7 @@ class Config
 										   'stat_settings', 'stat_update_time', 'stat_last_db_update', 'stats_fly_lock',
 										   'cron_lock', 'mail_active', 'mail_use', 'smtp_host',
 										   'smtp_port', 'smtp_user', 'smtp_pass', 'smtp_ssl', 'smtp_sendmail',
-										   'smail_path', 'fb_on', 'fb_apikey', 'fb_skey', 'ga_active', 'ga_key',
+										   'smail_path', 'ga_active', 'ga_key',
 										   'ttf_file', 'sendmail_inactive', 'del_user_sendmail',
 										   'del_user_automatic', 'del_oldstuff', 'del_user_manually', 'ref_max_referals',
 										   'disclamerAddress','disclamerPhone','disclamerMail','disclamerNotice', 'git_issues_link', 'recaptchaPrivKey', 'recaptchaPubKey');

@@ -26,7 +26,7 @@ function ShowVertify()
 	
 	switch($action) {
 		case 'check':
-			$REV	= explode(".", Config::get("VERSION"));
+			$REV	= explode(".", Config::get()->VERSION);
 			$REV	= $REV[2];
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_AUTOREFERER, true);

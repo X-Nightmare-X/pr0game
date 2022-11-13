@@ -109,8 +109,12 @@ function ShowUniversePage()
                 "Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3",
                 "Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4",
             ]);
+            if (str_contains(HTTP_HOST, '127.0.0.1') || str_contains(HTTP_HOST, 'localhost')) {
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            }
             curl_exec($ch);
-            $httpCode   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $httpCode   = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
 
             curl_close($ch);
             if ($httpCode != 302) {
