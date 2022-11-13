@@ -94,6 +94,15 @@ class PlayerUtil
             ':inactive' => INACTIVE,
         ]);
 
+        for ($i = 0; $i < $config->max_galaxy; $i++) {
+            if (empty($avgPlanetsPerGala)) {
+                $avgPlanetsPerGala = [];
+            }
+            if (empty($avgPlanetsPerGala[$i])) {
+                $avgPlanetsPerGala[$i] = ['galaxy' => $i, 'AvgPlanetsPerSys' => 0];
+            }
+        }
+
         // get gala with min avg systems
         $minAvg = $config->max_planets;
         $galaxy = 0;
@@ -116,6 +125,15 @@ class PlayerUtil
         $systems = $db->select($sql, [
             ':gala' => $galaxy,
         ]);
+
+        for ($i = 0; $i < $config->max_system; $i++) {
+            if (empty($systems)) {
+                $systems = [];
+            }
+            if (empty($systems[$i])) {
+                $systems[$i] = ['system' => $i, 'anz' => 0];
+            }
+        }
 
         // get empty systems in selected gala
         for ($planetamount = 0; $planetamount <= $config->max_planets; $planetamount++) {
