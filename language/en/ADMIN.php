@@ -381,7 +381,7 @@ $LNG['se_planet_creation_info'] = 'New player planets can be iteratively placed 
     . 'The block placement randomly picks a system with one or 2 planets. If there is no system or there are less than 50 players, the placement is random.';
 $LNG['se_iter_planet_creation'] = 'Iterative (default)';
 $LNG['se_random_planet_creation'] = 'Random';
-$LNG['se_bulk_planet_creation'] = 'Block';
+$LNG['se_block_planet_creation'] = 'Block';
 $LNG['se_expedition_parameters'] = 'Expedition Parameters';
 $LNG['se_ress_chance'] = 'Ressource-Chances';
 $LNG['se_several_parameters'] = 'Other Parameters';
