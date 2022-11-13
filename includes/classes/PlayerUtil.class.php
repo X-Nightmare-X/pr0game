@@ -145,12 +145,17 @@ class PlayerUtil
             }
 
             // find random system and random planet inside
-            do {
-                $system = $usableSystems[array_rand($usableSystems)];
+            if (!empty($usableSystems)) {
                 do {
-                    $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
-                } while (!PlayerUtil::allowPlanetPosition($position, null, $universe));
-            } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
+                    $system = $usableSystems[array_rand($usableSystems)];
+                    do {
+                        $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
+                    } while (!PlayerUtil::allowPlanetPosition($position, null, $universe));
+                } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
+            }
+            if (PlayerUtil::allowPlanetPosition($position, null, $universe) && self::isPositionFree($universe, $galaxy, $system, $position)) {
+                break;
+            }
         }
         $pos = [
             'galaxy'   => $galaxy,
@@ -198,12 +203,14 @@ class PlayerUtil
 
         // if systems found, place planet
         if (!empty($systems)) {
-            $galasys = $systems[array_rand($systems)];
-            $galaxy = $galasys['galaxy'];
-            $system = $galasys['system'];
             do {
-                $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
-            } while (!PlayerUtil::allowPlanetPosition($position, null, $universe));
+                $galasys = $systems[array_rand($systems)];
+                $galaxy = $galasys['galaxy'];
+                $system = $galasys['system'];
+                do {
+                    $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
+                } while (!PlayerUtil::allowPlanetPosition($position, null, $universe));
+            } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
             $pos = [
                 'galaxy'   => $galaxy,
                 'system'   => $system,
@@ -234,17 +241,6 @@ class PlayerUtil
         $db = Database::get();
 
         if (isset($universe, $galaxy, $system, $position)) {
-            if (self::checkPosition($universe, $galaxy, $system, $position) === false) {
-                throw new Exception(
-                    sprintf("Try to create a planet at position: %s:%s:%s!", $galaxy, $system, $position)
-                );
-            }
-
-            if (self::isPositionFree($universe, $galaxy, $system, $position) === false) {
-                throw new Exception(
-                    sprintf("Position is not empty: %s:%s:%s!", $galaxy, $system, $position)
-                );
-            }
             $pos = [
                 'galaxy'   => $galaxy,
                 'system'   => $system,
@@ -303,6 +299,20 @@ class PlayerUtil
                 'system'   => $system,
                 'position' => $position,
             ];
+        }
+
+        if (isset($universe, $galaxy, $system, $position)) {
+            if (self::checkPosition($universe, $galaxy, $system, $position) === false) {
+                throw new Exception(
+                    sprintf("Try to create a planet at position: %s:%s:%s!", $galaxy, $system, $position)
+                );
+            }
+
+            if (self::isPositionFree($universe, $galaxy, $system, $position) === false) {
+                throw new Exception(
+                    sprintf("Position is not empty: %s:%s:%s!", $galaxy, $system, $position)
+                );
+            }
         }
 
         $params = [
