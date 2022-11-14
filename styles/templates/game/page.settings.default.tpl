@@ -18,7 +18,7 @@
 		</tr>
 		<tr>
 			<td width="50%">{$LNG.op_username}</td>
-	    <td width="50%" style="height:22px;">{if $changeNickTime < 0}<input name="username" size="20" value="{$username}" type="text">{else}{$username}{/if}</td>
+	    <td width="50%" style="height:22px;">{if $changeNickTime < 0}<input name="username" size="20" value="{$username}" type="text" maxlength="32">{else}{$username}{/if}</td>
 	</tr>
 	<tr>
 	    <td>{$LNG.op_old_pass}</td>
@@ -34,7 +34,7 @@
 	</tr>
 	<tr>
 	    <td><a title="{$LNG.op_email_adress_descrip}">{$LNG.op_email_adress}</a></td>
-	    <td><input name="email" maxlength="64" size="20" value="{$email}" type="text"></td>
+	    <td><input name="email" maxlength="64" size="20" value="{$email}" type="text" maxlength="64"></td>
 	</tr>
 	<tr>
 	    <td style="height:22px;">{$LNG.op_permanent_email_adress}</td>
