@@ -87,19 +87,28 @@ class PlayerUtil
             WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive )
             GROUP BY p.galaxy, p.`system`
         ) as tab GROUP BY galaxy ORDER BY tab.galaxy ASC';
-        $avgPlanetsPerGala = $db->select($sql, [
+        $result = $db->select($sql, [
             ':maxGala' => $config->max_galaxy,
             ':maxSys' => $config->max_system,
             ':ts' => TIMESTAMP,
             ':inactive' => INACTIVE,
         ]);
 
-        for ($i = 0; $i < $config->max_galaxy; $i++) {
-            if (empty($avgPlanetsPerGala)) {
-                $avgPlanetsPerGala = [];
+        $avgPlanetsPerGala = [];
+        if (empty($result)) {
+            for ($i = 1; $i <= $config->max_galaxy; $i++) {
+                $avgPlanetsPerGala[] = ['galaxy' => $i, 'AvgPlanetsPerSys' => 0];
             }
-            if (empty($avgPlanetsPerGala[$i])) {
-                $avgPlanetsPerGala[$i] = ['galaxy' => $i+1, 'AvgPlanetsPerSys' => 0];
+        }
+        else {
+            $i = 1;
+            foreach($result as $resultArray) {
+                while($i < $resultArray['galaxy']) {
+                    $avgPlanetsPerGala[] = ['galaxy' => $i, 'AvgPlanetsPerSys' => 0];
+                    $i ++;
+                }
+                $avgPlanetsPerGala[] = $resultArray;
+                $i ++;
             }
         }
 
@@ -122,16 +131,25 @@ class PlayerUtil
         // get system with planet count for selected gala
         $sql = 'SELECT `system`, count(planet) as anz FROM %%PLANETS%%
             WHERE planet_type = 1 AND galaxy = :gala GROUP BY `system`';
-        $systems = $db->select($sql, [
+        $result = $db->select($sql, [
             ':gala' => $galaxy,
         ]);
 
-        for ($i = 0; $i < $config->max_system; $i++) {
-            if (empty($systems)) {
-                $systems = [];
+        $systems = [];
+        if (empty($result)) {
+            for ($i = 1; $i <= $config->max_system; $i++) {
+                $systems[] = ['system' => $i, 'anz' => 0];
             }
-            if (empty($systems[$i])) {
-                $systems[$i] = ['system' => $i+1, 'anz' => 0];
+        }
+        else {
+            $i = 1;
+            foreach($result as $resultArray) {
+                while($i < $resultArray['system']) {
+                    $systems[] = ['system' => $i, 'anz' => 0];
+                    $i ++;
+                }
+                $systems[] = $resultArray;
+                $i ++;
             }
         }
 
@@ -1032,4 +1050,22 @@ class PlayerUtil
             $PLANET['deuterium_perhour'] = '0';
         }
     }
+}
+
+try {
+    define('MODE', 'INSTALL');
+    define('ROOT_PATH', 'G:/xampp/htdocs/pr0game/');
+    set_include_path(
+        ROOT_PATH . 'includes/libs/BBCodeParser2/' . PATH_SEPARATOR . ROOT_PATH . PATH_SEPARATOR . get_include_path()
+    );
+    define('TIMESTAMP', time());
+    require 'includes/constants.php';
+    require 'includes/classes/Database.class.php';
+    require 'includes/classes/Cache.class.php';
+    require 'includes/vars.php';
+    require 'includes/classes/Config.class.php';
+
+    PlayerUtil::randomHP(1);
+} catch (Exception $e) {
+    
 }
