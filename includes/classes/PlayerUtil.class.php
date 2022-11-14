@@ -1051,21 +1051,22 @@ class PlayerUtil
         }
     }
 }
+/* 
+	Enable to debug 
+*/
+// try {
+//     define('MODE', 'INSTALL');
+//     define('ROOT_PATH', 'G:/xampp/htdocs/pr0game/');
+//     set_include_path(
+//         ROOT_PATH . 'includes/libs/BBCodeParser2/' . PATH_SEPARATOR . ROOT_PATH . PATH_SEPARATOR . get_include_path()
+//     );
+//     define('TIMESTAMP', time());
+//     require 'includes/constants.php';
+//     require 'includes/classes/Database.class.php';
+//     require 'includes/classes/Cache.class.php';
+//     require 'includes/vars.php';
+//     require 'includes/classes/Config.class.php';
 
-try {
-    define('MODE', 'INSTALL');
-    define('ROOT_PATH', 'G:/xampp/htdocs/pr0game/');
-    set_include_path(
-        ROOT_PATH . 'includes/libs/BBCodeParser2/' . PATH_SEPARATOR . ROOT_PATH . PATH_SEPARATOR . get_include_path()
-    );
-    define('TIMESTAMP', time());
-    require 'includes/constants.php';
-    require 'includes/classes/Database.class.php';
-    require 'includes/classes/Cache.class.php';
-    require 'includes/vars.php';
-    require 'includes/classes/Config.class.php';
-
-    PlayerUtil::randomHP(1);
-} catch (Exception $e) {
-    
-}
+//     PlayerUtil::randomHP(1);
+// } catch (Exception $e) {
+// }
