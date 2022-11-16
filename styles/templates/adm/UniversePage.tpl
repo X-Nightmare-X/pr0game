@@ -3,7 +3,7 @@
 	<tr>
 		<th>{$LNG.uvs_id}</th>
 		<th>{$LNG.uvs_name}</th>
-		<th colspan="5" title="{$LNG.uvs_speeds_full}">{$LNG.uvs_speeds}</th>
+		<th colspan="7" title="{$LNG.uvs_speeds_full}">{$LNG.uvs_speeds}</th>
 		<th>{$LNG.uvs_players}</th>
 		<th>{$LNG.uvs_planets}</th>
 		<th>{$LNG.uvs_inactive}</th>
@@ -14,7 +14,9 @@
 	<tr style="height:23px;">
 		<td>{$uniID}</td>
 		<td>{$uniRow.uni_name}</td>
-		<td>{number_format(($uniRow.game_speed / 2500), 0, ",", ".")}</td>
+		<td>{number_format(($uniRow.building_speed / 2500), 0, ",", ".")}</td>
+		<td>{number_format(($uniRow.shipyard_speed / 2500), 0, ",", ".")}</td>
+		<td>{number_format(($uniRow.research_speed / 2500), 0, ",", ".")}</td>
 		<td>{number_format(($uniRow.fleet_speed / 2500), 0, ",", ".")}</td>
 		<td>{number_format($uniRow.resource_multiplier, 0, ",", ".")}</td>
 		<td>{number_format($uniRow.halt_speed, 0, ",", ".")}</td>

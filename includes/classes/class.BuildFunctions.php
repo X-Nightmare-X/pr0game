@@ -189,16 +189,16 @@ class BuildFunctions
                     }
                 }
             }
-            $time = $elementCost / ($config->game_speed * (1 + $robo))
+            $time = $elementCost / ($config->building_speed * (1 + $robo))
                 * pow(0.5, $nani);
         } elseif (in_array($Element, $reslist['fleet'])) {
-            $time = $elementCost / ($config->game_speed * (1 + $PLANET[$resource[21]]))
+            $time = $elementCost / ($config->shipyard_speed * (1 + $PLANET[$resource[21]]))
                 * pow(0.5, $PLANET[$resource[15]]);
         } elseif (in_array($Element, $reslist['defense'])) {
-            $time = $elementCost / ($config->game_speed * (1 + $PLANET[$resource[21]]))
+            $time = $elementCost / ($config->shipyard_speed * (1 + $PLANET[$resource[21]]))
                 * pow(0.5, $PLANET[$resource[15]]);
         } elseif (in_array($Element, $reslist['missile'])) {
-            $time = $elementCost / ($config->game_speed * (1 + $PLANET[$resource[21]]))
+            $time = $elementCost / ($config->shipyard_speed * (1 + $PLANET[$resource[21]]))
                 * pow(0.5, $PLANET[$resource[15]]);
         } elseif (in_array($Element, $reslist['tech'])) {
             if (is_numeric($PLANET[$resource[31] . '_inter'])) {
@@ -212,7 +212,7 @@ class BuildFunctions
                 }
             }
 
-            $time = $elementCost / (1000 * (1 + $Level)) / ($config->game_speed / 2500)
+            $time = $elementCost / (1000 * (1 + $Level)) / ($config->research_speed / 2500)
                 * pow(1 - $config->factor_university / 100, $PLANET[$resource[6]]);
         }
 

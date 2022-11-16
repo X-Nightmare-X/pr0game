@@ -87,7 +87,6 @@ function ShowLogDetail()
     $Wrapper = [
         'resource_multiplier' => $LNG['se_resources_producion_speed'],
         'forum_url'           => $LNG['se_forum_link'],
-        'game_speed'          => $LNG['se_general_speed'],
 
         'stat_settings'     => $LNG['cs_point_per_resources_used'],
         'stat'              => $LNG['cs_points_to_zero'],
