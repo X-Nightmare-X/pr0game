@@ -9,7 +9,7 @@
 </tr>
 	{foreach $fleetTable as $index => $fleet}
 	<tr>
-    <td style="color:yellow" data-time="{$fleet.returntime}" class="statictimer"></td> |
+    <td style="color:yellow" data-time="{$fleet.returntime}" class="statictimer"></td>
 		<td id="fleettime_{$index}" class="fleets" data-fleet-end-time="{$fleet.returntime}" data-fleet-time="{$fleet.resttime}">00:00:00</td>
 		<td>{$fleet.text}</td>
 	</tr>
