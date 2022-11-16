@@ -319,20 +319,8 @@ abstract class AbstractGamePage
             'execscript' => implode("\n", $this->tplObj->script),
             'basepath' => PROTOCOL . HTTP_HOST . HTTP_BASE,
         ]);
-        if(!isset($USER,$USER['timezone'])){
+        if (!isset($USER,$USER['timezone'])) {
             $USER = array ('timezone' => 'Europe/Berlin');
-        }
-        if(!isset($USER,$USER['colors'])){
-            $db = Database::get();
-            $sql = "SELECT colorMission2friend, colorMission1Own, colorMission2Own, colorMission3Own, colorMission4Own, colorMission5Own,
-            colorMission6Own, colorMission7Own, colorMission7OwnReturn, colorMission8Own, colorMission9Own, colorMission10Own, colorMission15Own,
-            colorMission16Own, colorMission17Own, colorMissionReturnOwn, colorMission1Foreign, colorMission2Foreign, colorMission3Foreign,
-            colorMission4Foreign, colorMission5Foreign, colorMission6Foreign, colorMission7Foreign, colorMission8Foreign, colorMission9Foreign,
-            colorMission10Foreign, colorMission15Foreign, colorMission16Foreign, colorMission17Foreign, colorMissionReturnForeign FROM %%USERS%%  WHERE id = :userId;";
-            $colors = $db->selectSingle($sql, array(
-                ':userId'            => $USER['id'],
-            ));
-            $USER = array('colors' => $colors);
         }
 
         $this->assign([
