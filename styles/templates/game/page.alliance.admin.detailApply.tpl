@@ -1,5 +1,6 @@
 {block name="title" prepend}{$LNG.lm_alliance}{/block}
 {block name="content"}
+
 	<table class="table519">
 	<tr>
 		<th colspan="4">{sprintf($LNG.al_request_from,$applyDetail.username)} {$apply_time}</th>
@@ -113,9 +114,17 @@
 		<td colspan="4"><textarea name="text" cols="40" rows="10" class="tinymce" id="message"></textarea></td>
 	</tr>
 	<tr>
-		<td colspan="4"><button type="submit" name="answer" value="yes">{$LNG.al_acept_request}</button> <button type="submit" name="answer" value="no">{$LNG.al_decline_request}</button></td>
+
+		<td colspan="4"><input hidden name="answer"> <button  value="yes" type="submit">{$LNG.al_acept_request}</button> <button  value="no"   type="submit">{$LNG.al_decline_request}</button></td>
 	</tr>
 	</table>
+  <script>
+    function answer(){
+      document.getElementsByName("answer")[0].value=this.value
+    }
+    document.querySelector("button[value='yes']").onclick=answer;
+    document.querySelector("button[value='no']").onclick=answer;
+  </script>
 {/block}
 {block name="script" append}
 <script type="text/javascript" src="scripts/base/tinymce/tiny_mce_gzip.js"></script>
