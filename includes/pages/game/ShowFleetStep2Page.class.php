@@ -213,7 +213,8 @@ class ShowFleetStep2Page extends AbstractGamePage
             'Exchange'          => $MissionOutput['Exchange'],
             'fl_continue'       => $LNG['fl_continue'],
             'token'             => $token,
-            'duration'          => $duration
+            'duration'          => $duration,
+            'predefinedRes'     => $_SESSION['fleet'][$token]['predefinedResources']
         ]);
 
         foreach ($fleetArray as $Ship => $Count) {

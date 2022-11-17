@@ -331,6 +331,7 @@ $LNG['fl_null'] = 'none';
 $LNG['fl_hours'] = 'Hours';
 $LNG['fl_resources_left'] = 'Capacity avaliable';
 $LNG['fl_all_resources'] = 'All resources';
+$LNG['fl_selected_resources'] = 'selected resources';
 $LNG['fl_multi_alarm'] = 'Multi alarm!';
 $LNG['fl_empty_target'] = 'No mission available (does this planet exist?)';
 $LNG['fl_transfer_alert_message'] = 'Attention! Your fleet will be transferred to different user!';

@@ -182,6 +182,26 @@ function maxResources() {
 	maxResource('deuterium');
 }
 
+function selectedResources() {
+  let amt=document.getElementById("selectedres").getAttribute("data").split(",")
+  if(!isNaN(parseInt(amt[0]))){
+    document.getElementsByName("metal")[0].value =parseInt(amt[0])
+  }else{
+    document.getElementsByName("metal")[0].value =0
+  }
+  if(!isNaN(parseInt(amt[1]))){
+    document.getElementsByName("crystal")[0].value =parseInt(amt[1])
+  }else{
+    document.getElementsByName("crystal")[0].value =0
+  }
+  if(!isNaN(parseInt(amt[2]))){
+    document.getElementsByName("deuterium")[0].value =parseInt(amt[2])
+  }else{
+    document.getElementsByName("deuterium")[0].value =0
+  }
+  calculateTransportCapacity();
+}
+
 function calculateTransportCapacity() {
 	var metal = Math.abs(document.getElementsByName("metal")[0].value);
 	var crystal = Math.abs(document.getElementsByName("crystal")[0].value);

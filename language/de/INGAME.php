@@ -322,6 +322,7 @@ $LNG['fl_null'] = 'keine';
 $LNG['fl_hours'] = 'Stunde(n)';
 $LNG['fl_resources_left'] = 'Verbleiben';
 $LNG['fl_all_resources'] = 'Max Rohstoffe Laden';
+$LNG['fl_selected_resources'] = 'Ausgewählte Rohstoffe Laden';
 $LNG['fl_empty_target'] = 'Keine Missionen vorhanden (Planet vorhanden?)';
 $LNG['fl_expedition_alert_message'] = 'Achtung die Expedition bringt Gefahren mit sich, sie können bei der Expedition'
     . ' ihre gesamte Flotte verlieren!';
