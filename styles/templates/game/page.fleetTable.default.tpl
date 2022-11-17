@@ -126,6 +126,8 @@
 			<tr style="height:20px;"><td colspan="5"><input type="submit" value="{$LNG.fl_continue}"></td>
 		{/if}
 	</table>
+ <div style="text-align: center"><input name="met_storage" type="number" placeholder="{$LNG['tech'][901]}"> <input name="krist_storage" type="number" placeholder="{$LNG['tech'][902]}"> <input name="deut_storage" type="number" placeholder="{$LNG['tech'][903]}"></div>
+  <div style="text-align: center"><button type="button" id="gt_select">{$LNG['tech'][203]}<span id="gt_amt"></span></button> <button type="button" id="kt_select">{$LNG['tech'][202]}<span id="kt_amt"></span></button></div>
 </form>
 <br>
 <table class="table519">
