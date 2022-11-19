@@ -42,6 +42,50 @@ $LNG['type_mission_8'] = 'Reciclar';
 $LNG['type_mission_9'] = 'Destruir';
 $LNG['type_mission_10'] = 'Ataque de Misseis';
 $LNG['type_mission_15'] = 'Expedição';
+$LNG['type_mission_16'] = 'Comércio';
+$LNG['type_mission_17'] = 'Transferência';
+
+$LNG['type_mission_1_own'] = 'Ataque_próprio';
+$LNG['type_mission_2_own'] = 'Frota de ataque da própria federação';
+$LNG['type_mission_3_own'] = 'Transporte próprio';
+$LNG['type_mission_4_own'] = 'Estacionamento próprio';
+$LNG['type_mission_5_own'] = 'Detenção própria';
+$LNG['type_mission_6_own'] = 'Espionagem própria';
+$LNG['type_mission_7_own'] = 'Exploração_própria'; 
+$LNG['type_mission_7_own_return'] = 'Colonização própria'; 
+$LNG['type_mission_8_own'] = 'Reciclagem própria';
+$LNG['type_mission_9_own'] = 'Destruição_própria';
+$LNG['type_mission_10_own'] = 'Ataque_próprio de míssil';
+$LNG['type_mission_15_own'] = 'Expedição própria';
+$LNG['type_mission_16_own'] = 'Frota própria do mercado';
+$LNG['type_mission_17_own'] = 'Transferência própria';
+$LNG['type_mission_return_own'] = 'Devolução_própria';
+
+$LNG['type_mission_2_friend'] = 'Frota de ataque da federação amigável';
+
+$LNG['type_mission_1_foreign'] = 'Ataque estrangeiro';
+$LNG['type_mission_2_foreign'] = 'Frota de ataque de federação estrangeira';
+$LNG['type_mission_3_foreign'] = 'Transporte estrangeiro';
+$LNG['type_mission_4_foreign'] = 'Estacionamento no estrangeiro';
+$LNG['type_mission_5_foreign'] = 'Foreign holding';
+$LNG['type_mission_6_foreign'] = 'Espionagem estrangeira';
+$LNG['type_mission_7_foreign'] = 'Colonização estrangeira';
+$LNG['type_mission_8_foreign'] = 'Reciclagem estrangeira';
+$LNG['type_mission_9_foreign'] = 'Destruição por estrangeiros';
+$LNG['type_mission_10_foreign'] = 'Ataque a mísseis estrangeiros';
+$LNG['type_mission_15_foreign'] = 'Expedição estrangeira';
+$LNG['type_mission_16_foreign'] = 'Foreign marketplace fleet';
+$LNG['type_mission_17_foreign'] = 'Transferência para o estrangeiro';
+$LNG['type_mission_return_foreign'] = 'Retorno ao estrangeiro';
+
+$LNG['positivo'] = 'Positivo';
+$LNG['negativo'] = 'Negativo';
+$LNG['neutro'] = 'Neutro';
+$LNG['StaticTimer'] = 'Hora de chegada';
+
+$LNG['cores_próprias'] = 'Cores próprias';
+$LNG['Foreign_colors'] = 'Cores_estrangeiras';
+$LNG['general_colors'] = 'Cores gerais';
 
 $LNG['type_planet_1'] = 'Planeta';
 $LNG['type_planet_2'] = 'Campo de Destroços';

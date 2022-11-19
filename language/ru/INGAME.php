@@ -35,6 +35,50 @@ $LNG['type_mission_8'] = 'Переработать';
 $LNG['type_mission_9'] = 'Уничтожить';
 $LNG['type_mission_10'] = 'Ракетная атака';
 $LNG['type_mission_15'] = 'Экспедиция';
+$LNG['type_mission_16'] = 'Торговля';
+$LNG['type_mission_17'] = 'Передача';
+
+$LNG['type_mission_1_own'] = "Собственная атака";
+$LNG['type_mission_2_own'] = 'Собственный атакующий флот федерации';
+$LNG['type_mission_3_own'] = 'Собственный транспорт';
+$LNG['type_mission_4_own'] = 'Собственная станция';
+$LNG['type_mission_5_own'] = "Собственное удержание";
+$LNG['type_mission_6_own'] = "Собственный шпионаж";
+$LNG['type_mission_7_own'] = "Собственная колонизация";
+$LNG['type_mission_7_own_return'] = 'Вернуть собственную колонизацию';
+$LNG['type_mission_8_own'] = 'Собственная переработка';
+$LNG['type_mission_9_own'] = "Собственное уничтожение";
+$LNG['type_mission_10_own'] = 'Собственная ракетная атака';
+$LNG['type_mission_15_own'] = 'Собственная экспедиция';
+$LNG['type_mission_16_own'] = 'Собственный рыночный флот';
+$LNG['type_mission_17_own'] = "Собственный трансфер";
+$LNG['type_mission_return_own'] = "Собственный возврат";
+
+$LNG['type_mission_2_friend'] = "Дружественный атакующий флот федерации";
+
+$LNG['type_mission_1_foreign'] = "Иностранная атака";
+$LNG['type_mission_2_foreign'] = 'Атака флота иностранной федерации';
+$LNG['type_mission_3_foreign'] = 'Иностранный транспорт';
+$LNG['type_mission_4_foreign'] = 'Иностранное размещение';
+$LNG['type_mission_5_foreign'] = 'Foreign holding';
+$LNG['type_mission_6_foreign'] = 'Иностранный шпионаж';
+$LNG['type_mission_7_foreign'] = 'Иностранная колонизация';
+$LNG['type_mission_8_foreign'] = "Иностранная переработка";
+$LNG['type_mission_9_foreign'] = "Иностранное уничтожение";
+$LNG['type_mission_10_foreign'] = 'Иностранная ракетная атака';
+$LNG['type_mission_15_foreign'] = 'Иностранная экспедиция';
+$LNG['type_mission_16_foreign'] = 'Иностранный торговый флот';
+$LNG['type_mission_17_foreign'] = 'Иностранный трансфер';
+$LNG['type_mission_return_foreign'] = 'Иностранный возврат';
+
+$LNG['positive'] = 'Положительный';
+$LNG['negative'] = 'Отрицательный';
+$LNG['neutral'] = 'Нейтральный';
+$LNG['StaticTimer'] = 'Время прибытия';
+
+$LNG['own_colors'] = 'Собственные цвета';
+$LNG['foreign_colors'] = 'Иностранные цвета';
+$LNG['general_colors'] = 'Общие цвета';
 
 $LNG['type_planet_1'] = 'Планета';
 $LNG['type_planet_2'] = 'Поле обломков';
