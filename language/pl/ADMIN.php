@@ -754,10 +754,10 @@ $LNG['ac_suspended_time'] = 'Zablokowany';
 $LNG['ac_suspended_longer'] = 'Do';
 $LNG['ac_suspended_reason'] = 'Powód';
 $LNG['ac_suspended_autor'] = 'Zablokuj dla ';
-$LNG['ac_note_k'] = '<table><tr><th width=10%><font color=lime>T+</font></th><th>Biliardy</th></tr><tr><th width=10%>'
-    . '<font color=lime>T</font></th><th>Biliony</th></tr><tr><th width=10%><font color=lime>B</font></th>'
-    . '<th>Miliardy</th></tr><tr><th width=10%><font color=lime>M</font></th><th>Miliony</th></tr><tr><th width=10%>'
-    . '<font color=lime>K</font></th><th>Tysiące</th></tr></table>';
+$LNG['ac_note_k'] = '<table><tr><th width=10%><font class="colorPositive">T+</font></th><th>Biliardy</th></tr><tr><th width=10%>'
+    . '<font class="colorPositive">T</font></th><th>Biliony</th></tr><tr><th width=10%><font class="colorPositive">B</font></th>'
+    . '<th>Miliardy</th></tr><tr><th width=10%><font class="colorPositive">M</font></th><th>Miliony</th></tr><tr><th width=10%>'
+    . '<font class="colorPositive">K</font></th><th>Tysiące</th></tr></table>';
 $LNG['ac_leyend'] = '[ Legenda ]';
 $LNG['ac_no_rank_level'] = 'Brak odpowiednich uprawnień by to zobaczyć';
 //###########################################################//

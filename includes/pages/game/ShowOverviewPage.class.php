@@ -204,7 +204,7 @@ class ShowOverviewPage extends AbstractGamePage
             'SELECT COUNT(*)
 			FROM %%FLEETS%%'
         )['COUNT(*)'];
-
+        $colors = PlayerUtil::player_colors($USER);
         $this->assign([
             'umode'                     => $USER['urlaubs_modus'],
             'rankInfo'                  => $rankInfo,
@@ -239,6 +239,7 @@ class ShowOverviewPage extends AbstractGamePage
             'RefLinks'                  => $RefLinks,
             'servertime'                => _date("M D d H:i:s", TIMESTAMP, $USER['timezone']),
             'path'                      => HTTP_PATH,
+            'colors'                    => $colors,
         ]);
 
         $this->display('page.overview.default.tpl');

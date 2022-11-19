@@ -803,10 +803,10 @@ $LNG['ac_suspended_time'] = 'Suspended';
 $LNG['ac_suspended_longer'] = 'Until';
 $LNG['ac_suspended_reason'] = 'Reason';
 $LNG['ac_suspended_autor'] = 'Suspended by';
-$LNG['ac_note_k'] = '<table><tr><th width=10%><font color=lime>T+</font></th><th>More than Trillion</th></tr><tr>'
-    . '<th width=10%><font color=lime>T</font></th><th>More or same of Trillion</th></tr><tr><th width=10%>'
-    . '<font color=lime>B</font></th><th>More or same of Billion</th></tr><tr><th width=10%><font color=lime>M</font>'
-    . '</th><th>More or same of Million </th></tr><tr><th width=10%><font color=lime>K</font></th>'
+$LNG['ac_note_k'] = '<table><tr><th width=10%><font class="colorPositive">T+</font></th><th>More than Trillion</th></tr><tr>'
+    . '<th width=10%><font class="colorPositive">T</font></th><th>More or same of Trillion</th></tr><tr><th width=10%>'
+    . '<font class="colorPositive">B</font></th><th>More or same of Billion</th></tr><tr><th width=10%><font class="colorPositive">M</font>'
+    . '</th><th>More or same of Million </th></tr><tr><th width=10%><font class="colorPositive">K</font></th>'
     . '<th>More or same of Thousand</th></tr></table>';
 $LNG['ac_leyend'] = '[ Legend ]';
 $LNG['ac_no_rank_level'] = 'Dont have enough Permissions to see the informations of this user';

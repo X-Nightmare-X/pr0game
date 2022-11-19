@@ -1050,6 +1050,33 @@ class PlayerUtil
             $PLANET['deuterium_perhour'] = '0';
         }
     }
+
+    public static function player_colors($USER)
+    {
+        $db = Database::get();
+        $sql = "SELECT colorMission2friend, colorMission1Own, colorMission2Own, colorMission3Own, colorMission4Own, colorMission5Own,
+            colorMission6Own, colorMission7Own, colorMission7OwnReturn, colorMission8Own, colorMission9Own, colorMission10Own, colorMission15Own,
+            colorMission16Own, colorMission17Own, colorMissionReturnOwn, colorMission1Foreign, colorMission2Foreign, colorMission3Foreign,
+            colorMission4Foreign, colorMission5Foreign, colorMission6Foreign, colorMission7Foreign, colorMission8Foreign, colorMission9Foreign,
+            colorMission10Foreign, colorMission15Foreign, colorMission16Foreign, colorMission17Foreign, colorMissionReturnForeign,
+            colorStaticTimer, colorPositive, colorNegative, colorNeutral FROM %%USERS%%  WHERE id = :userId; and universe = :universe;";
+        $colors = $db->selectSingle($sql, array(
+            ':userId'       => $USER['id'],
+            ':universe'     => Universe::current(),
+        ));
+        return $colors;
+    }
+    public static function player_signal_colors($USER)
+    {
+        $db = Database::get();
+        $sql = "SELECT colorPositive, colorNegative, colorNeutral 
+            FROM %%USERS%%  WHERE id = :userId; and universe = :universe;";
+        $colors = $db->selectSingle($sql, array(
+            ':userId'       => $USER['id'],
+            ':universe'     => Universe::current(),
+        ));
+        return $colors;
+    }
 }
 /* 
 	Enable to debug 

@@ -1,5 +1,100 @@
 {block name="title" prepend}{$LNG.gl_phalanx}{/block}
 {block name="content"}
+<style>
+	.colorMission2friend{
+        color:{$colors.colorMission2friend}
+    } 
+    .colorMission1Own{
+        color:{$colors.colorMission1Own}
+    }
+	.colorMission2Own{
+		color:{$colors.colorMission2Own}
+	}
+	.colorMission3Own{
+		color:{$colors.colorMission3Own}
+	}
+	.colorMission4Own{
+		color:{$colors.colorMission4Own}
+	}
+	.colorMission5Own{
+		color:{$colors.colorMission5Own}
+	}
+	.colorMission6Own{
+		color:{$colors.colorMission6Own}
+	}
+	.colorMission7Own{
+		color:{$colors.colorMission7Own}
+	}
+	.colorMission7OwnReturn{
+		color:{$colors.colorMission7OwnReturn}
+	}
+	.colorMission8Own{
+		color:{$colors.colorMission8Own}
+	}
+	.colorMission9Own{
+		color:{$colors.colorMission9Own}
+	} 
+	.colorMission10Own{
+		color:{$colors.colorMission10Own}
+	}
+	.colorMission15Own{
+		color:{$colors.colorMission15Own}
+	}
+	.colorMission16Own{
+		color:{$colors.colorMission16Own}
+	}
+	.colorMission17Own{
+		color:{$colors.colorMission17Own}
+	}
+	.colorMissionReturnOwn{
+		color:{$colors.colorMissionReturnOwn}
+	}
+	.colorMission1Foreign{
+		color:{$colors.colorMission1Foreign}
+	}
+	.colorMission2Foreign{
+		color:{$colors.colorMission2Foreign}
+	}
+	.colorMission3Foreign{
+		color:{$colors.colorMission3Foreign}
+	}
+	.colorMission4Foreign{
+		color:{$colors.colorMission2friend}
+	}
+	.colorMission5Foreign{
+		color:{$colors.colorMission5Foreign}
+	} 
+	.colorMission6Foreign{
+		color:{$colors.colorMission6Foreign}
+	}
+	.colorMission7Foreign{
+		color:{$colors.colorMission7Foreign}
+	}
+	.colorMission8Foreign{
+		color:{$colors.colorMission8Foreign}
+	}
+	.colorMission9Foreign{
+		color:{$colors.colorMission9Foreign}
+	}
+	.colorMission10Foreign{
+		color:{$colors.colorMission10Foreign}
+	}
+	.colorMission15Foreign{
+		color:{$colors.colorMission15Foreign}
+	}
+	.colorMission16Foreign{
+		color:{$colors.colorMission16Foreign}
+	}
+	.colorMission17Foreign{
+		color:{$colors.colorMission17Foreign}
+	}
+	.colorMissionReturnForeign{
+		color:{$colors.colorMissionReturnForeign}
+	}
+	.statictimer{
+		color:{$colors.colorStaticTimer}
+	}
+</style>
 <table width="90%">
 <tr>
     <th colspan="3">{$LNG.px_scan_position} [{$galaxy}:{$system}:{$planet}] ({$name})</th>
@@ -9,7 +104,7 @@
 </tr>
 	{foreach $fleetTable as $index => $fleet}
 	<tr>
-    <td style="color:yellow" data-time="{$fleet.returntime}" class="statictimer"></td>
+    <td data-time="{$fleet.returntime}" class="statictimer"></td>
 		<td id="fleettime_{$index}" class="fleets" data-fleet-end-time="{$fleet.returntime}" data-fleet-time="{$fleet.resttime}">00:00:00</td>
 		<td>{$fleet.text}</td>
 	</tr>

@@ -18,12 +18,12 @@
 					{if !empty($FleetInfo)}
 					{if !empty($FleetInfo.rapidfire.to)}<p>
 					{foreach $FleetInfo.rapidfire.to as $rapidfireID => $shoots}
-					{$LNG.in_rf_again} {$LNG.tech.$rapidfireID}: <span style="color:#00ff00">{number_format($shoots, 0, ",", ".")}</span><br>
+					{$LNG.in_rf_again} {$LNG.tech.$rapidfireID}: <span class="colorPositive">{number_format($shoots, 0, ",", ".")}</span><br>
 					{/foreach}
 					</p>{/if}
 					{if !empty($FleetInfo.rapidfire.from)}<p>
 					{foreach $FleetInfo.rapidfire.from as $rapidfireID => $shoots}
-					{$LNG.in_rf_from} {$LNG.tech.$rapidfireID}: <span style="color:#ff0000">{number_format($shoots, 0, ",", ".")}</span><br>
+					{$LNG.in_rf_from} {$LNG.tech.$rapidfireID}: <span class="colorNegative">{number_format($shoots, 0, ",", ".")}</span><br>
 					{/foreach}
 					</p>{/if}
 					{/if}				

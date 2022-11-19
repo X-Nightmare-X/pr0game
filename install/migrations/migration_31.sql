@@ -29,3 +29,7 @@ ALTER TABLE `%PREFIX%users` ADD `colorMission15Foreign` varchar(7) NOT NULL DEFA
 ALTER TABLE `%PREFIX%users` ADD `colorMission16Foreign` varchar(7) NOT NULL DEFAULT '#39d0a0';
 ALTER TABLE `%PREFIX%users` ADD `colorMission17Foreign` varchar(7) NOT NULL DEFAULT '#39d0a0';
 ALTER TABLE `%PREFIX%users` ADD `colorMissionReturnForeign` varchar(7) NOT NULL DEFAULT '#6e8eea';
+ALTER TABLE `%PREFIX%users` ADD `colorStaticTimer` varchar(7) NOT NULL DEFAULT '#ffff00';
+ALTER TABLE `%PREFIX%users` ADD `colorPositive` varchar(7) NOT NULL DEFAULT '#00ff00';
+ALTER TABLE `%PREFIX%users` ADD `colorNegative` varchar(7) NOT NULL DEFAULT '#ff0000';
+ALTER TABLE `%PREFIX%users` ADD `colorNeutral` varchar(7) NOT NULL DEFAULT '#ffd600';

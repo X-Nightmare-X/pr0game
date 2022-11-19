@@ -1087,11 +1087,11 @@ $LNG['ac_suspended_time'] = 'Cezali';
 $LNG['ac_suspended_longer'] = 'Bitis';
 $LNG['ac_suspended_reason'] = 'Nedeni';
 $LNG['ac_suspended_autor'] = 'Cezayi Veren';
-$LNG['ac_note_k'] = '<table><tr><th width=10%><font color=lime>T+</font></th><th>Trilyondan fazla</th></tr>'
-    . '<tr><th width=10%><font color=lime>T</font></th><th>1 Trilyon Civari</th></tr>'
-    . '<tr><th width=10%><font color=lime>B</font></th><th>Asagi Yukari 1 Milyar</th></tr>'
-    . '<tr><th width=10%><font color=lime>M</font></th><th>Asagi Yukari 1 Milyon </th></tr>'
-    . '<tr><th width=10%><font color=lime>K</font></th><th>Asagi Yukari 1000</th></tr></table>';
+$LNG['ac_note_k'] = '<table><tr><th width=10%><font class="colorPositive">T+</font></th><th>Trilyondan fazla</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">T</font></th><th>1 Trilyon Civari</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">B</font></th><th>Asagi Yukari 1 Milyar</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">M</font></th><th>Asagi Yukari 1 Milyon </th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">K</font></th><th>Asagi Yukari 1000</th></tr></table>';
 $LNG['ac_leyend'] = '[ Bilgiler ]';
 $LNG['ac_no_rank_level'] = 'Bilgiyi gormek icin yeterli yetkiniz yok';
 //###########################################################//
