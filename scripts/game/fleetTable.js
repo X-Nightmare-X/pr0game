@@ -85,7 +85,7 @@ function show_values() {
     }
   }
   document.getElementById("expocount").innerText = "Exp:" + fpoints + " / " + document.getElementById("expocount").getAttribute("expocap")
-  document.getElementById("cargospace").innerText = "cargo:" + numberWithCommas(tpoints)
+  document.getElementById("cargospace").innerText = document.getElementById("cargospace").getAttribute("data") + ":" + numberWithCommas(tpoints)
 }
 
 document.addEventListener("DOMContentLoaded", function () {

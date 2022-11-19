@@ -116,7 +116,7 @@
 			{if count($FleetsOnPlanet) == 0}
 				<td colspan="5">{$LNG.fl_no_ships}</td>
 			{else}
-				<td id="cargospace" colspan="2">&nbsp;</td>
+				<td id="cargospace" colspan="2" data="{$LNG['in_capacity']}">&nbsp;</td>
 				<td colspan="2"><a href="javascript:noShips();">{$LNG.fl_remove_all_ships}</a></td>
 				<td><a href="javascript:maxShips();">{$LNG.fl_select_all_ships}</a></td>
 			{/if}
