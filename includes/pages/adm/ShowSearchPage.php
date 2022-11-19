@@ -464,12 +464,12 @@ function MyCrazyLittleSearch(
 
                 $WhileResult[6] = $LNG['rank_' . $WhileResult[6]];
                 if ($WhileResult[7] == '1') {
-                    $WhileResult[7] = "<font color=lime>" . $LNG['one_is_no_1'] . "</font>";
+                    $WhileResult[7] = "<font class="colorPositive">" . $LNG['one_is_no_1'] . "</font>";
                 } else {
                     $WhileResult[7] = $LNG['one_is_no_0'];
                 }
                 if ($WhileResult[8] == '1') {
-                    $WhileResult[8] = "<font color=lime>" . $LNG['one_is_no_1'] . "</font>";
+                    $WhileResult[8] = "<font class="colorPositive">" . $LNG['one_is_no_1'] . "</font>";
                 } else {
                     $WhileResult[8] = $LNG['one_is_no_0'];
                 }
@@ -487,7 +487,7 @@ function MyCrazyLittleSearch(
             if ($Table == "planets p") {
                 $WhileResult[3] = pretty_time(TIMESTAMP - $WhileResult[3]);
                 if ($WhileResult[7] > 0) {
-                    $WhileResult[7] = "<font color=lime>" . $LNG['one_is_no_1'] . "</font>";
+                    $WhileResult[7] = "<font class="colorPositive">" . $LNG['one_is_no_1'] . "</font>";
                 } else {
                     $WhileResult[7] = $LNG['one_is_no_0'];
                 }
@@ -535,7 +535,7 @@ function MyCrazyLittleSearch(
 
             $Search['LIST'] .= "</tr>";
         }
-        $Search['LIST'] .= "<tr><td colspan=\"20\">" . $LNG['se_input_hay'] . "<font color=lime>" . $CountQuery['total']
+        $Search['LIST'] .= "<tr><td colspan=\"20\">" . $LNG['se_input_hay'] . "<font class="colorPositive">" . $CountQuery['total']
             . "</font>" . $SName . "</td></tr>";
         $Search['LIST'] .= "</table>";
 

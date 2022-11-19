@@ -59,11 +59,11 @@
 	<td><a href="game.php?page=galaxy&amp;galaxy={$myBuddyRow.galaxy}&amp;system={$myBuddyRow.system}">[{$myBuddyRow.galaxy}:{$myBuddyRow.system}:{$myBuddyRow.planet}]</a></td>
 	<td>
 	{if $myBuddyRow.onlinetime < 4}
-	<span style="color:lime">{$LNG.bu_connected}</span>
+	<span class="colorPositive">{$LNG.bu_connected}</span>
 	{elseif $myBuddyRow.onlinetime >= 4 && $myBuddyRow.onlinetime <= 15}
 	<span style="color:yellow">{$myBuddyRow.onlinetime} {$LNG.bu_minutes}</span>
 	{else}
-	<span style="color:red">{$LNG.bu_disconnected}</span>
+	<span class="colorNegative">{$LNG.bu_disconnected}</span>
 	{/if}
 	</td>
 	<td><a href="game.php?page=buddyList&amp;mode=delete&amp;id={$myBuddyID}"><img src="styles/resource/images/false.png" alt="{$LNG.bu_delete}" title="{$LNG.bu_delete}"></a></td>

@@ -776,11 +776,11 @@ $LNG['ac_suspended_time'] = 'Suspendido';
 $LNG['ac_suspended_longer'] = 'Até';
 $LNG['ac_suspended_reason'] = 'Razão';
 $LNG['ac_suspended_autor'] = 'Suspenso por';
-$LNG['ac_note_k'] = '<table><tr><th width=10%><font color=lime>T+</font></th><th>Mais que o trilião</th></tr>'
-    . '<tr><th width=10%><font color=lime>T</font></th><th>Mais ou o mesmo que o trilião</th></tr>'
-    . '<tr><th width=10%><font color=lime>B</font></th><th>Mais ou o mesmo que o bilião</th></tr>'
-    . '<tr><th width=10%><font color=lime>M</font></th><th>Mais ou o mesmo que o milhão</th></tr>'
-    . '<tr><th width=10%><font color=lime>K</font></th><th>Mais ou o mesmo que o milhar</th></tr></table>';
+$LNG['ac_note_k'] = '<table><tr><th width=10%><font class="colorPositive">T+</font></th><th>Mais que o trilião</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">T</font></th><th>Mais ou o mesmo que o trilião</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">B</font></th><th>Mais ou o mesmo que o bilião</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">M</font></th><th>Mais ou o mesmo que o milhão</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">K</font></th><th>Mais ou o mesmo que o milhar</th></tr></table>';
 $LNG['ac_leyend'] = '[ Legenda ]';
 $LNG['ac_no_rank_level'] = 'Não tem permisões suficientes para ver informações acerca deste jogador!';
 //###########################################################//

@@ -34,9 +34,9 @@
         <td>{$row@iteration}</td>
         <td><a href="game.php?page=raport&amp;raport={$row.rid}" target="_blank">
         {if $row.result == "a"}
-        <span style="color:#00FF00">{$row.attacker}</span> VS <span style="color:#FF0000">{$row.defender}</span>
+        <span class="colorPositive">{$row.attacker}</span> VS <span class="colorNegative">{$row.defender}</span>
         {elseif $row.result == "r"}
-        <span style="color:#FF0000">{$row.attacker}</span> VS <span style="color:#00FF00">{$row.defender}</span>
+        <span class="colorNegative">{$row.attacker}</span> VS <span class="colorPositive">{$row.defender}</span>
         {else}
         {$row.attacker} VS {$row.defender}
         {/if}
@@ -46,7 +46,7 @@
     </tr>
 {/foreach}
 <tr>
-<td colspan="4">{$LNG.tkb_legende}<span style="color:#00FF00">{$LNG.tkb_gewinner}</span><span style="color:#FF0000">{$LNG.tkb_verlierer}</span></td></tr>
+<td colspan="4">{$LNG.tkb_legende}<span class="colorPositive">{$LNG.tkb_gewinner}</span><span class="colorNegative">{$LNG.tkb_verlierer}</span></td></tr>
 </tbody>
 </table>
 {/block}

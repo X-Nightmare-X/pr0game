@@ -750,10 +750,10 @@ $LNG['ac_suspended_time'] = 'Suspendido el';
 $LNG['ac_suspended_longer'] = 'Hasta el';
 $LNG['ac_suspended_reason'] = 'Razón';
 $LNG['ac_suspended_autor'] = 'Suspendido por';
-$LNG['ac_note_k'] = '<table><tr><th width=10%><font color=lime>T+</font></th><th>Supera el trillón</th></tr><tr>'
-    . '<th width=10%><font color=lime>T</font></th><th>Igual que el trillón</th></tr><tr><th width=10%>'
-    . '<font color=lime>B</font></th><th>Mayor o igual que el billón</th></tr><tr><th width=10%><font color=lime>M'
-    . '</font></th><th>Mayor o igual que el millón</th></tr><tr><th width=10%><font color=lime>K</font></th><th>Mayor o'
+$LNG['ac_note_k'] = '<table><tr><th width=10%><font class="colorPositive">T+</font></th><th>Supera el trillón</th></tr><tr>'
+    . '<th width=10%><font class="colorPositive">T</font></th><th>Igual que el trillón</th></tr><tr><th width=10%>'
+    . '<font class="colorPositive">B</font></th><th>Mayor o igual que el billón</th></tr><tr><th width=10%><font class="colorPositive">M'
+    . '</font></th><th>Mayor o igual que el millón</th></tr><tr><th width=10%><font class="colorPositive">K</font></th><th>Mayor o'
     . ' igual que los mil</th></tr></table>';
 $LNG['ac_leyend'] = '[ Leyenda ]';
 $LNG['ac_no_rank_level'] = 'No tienes los permisos suficientes para ver la información de éste usuario.';
