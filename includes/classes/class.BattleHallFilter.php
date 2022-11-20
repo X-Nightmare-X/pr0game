@@ -140,7 +140,7 @@ class BattleHallFilter
                 ':type'     => 1, // 1 = player, 2 = alliance
         ], 'total');
 		
-		$minSize = $topPoints / 10;
+		$minSize = $topPoints;
 		$stmt = " AND `units` != 0 AND `units` >= $minSize ";
 		
 		return $stmt;
