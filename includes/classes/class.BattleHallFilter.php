@@ -68,6 +68,9 @@ class BattleHallFilter
 	{
 		switch ($timeframe)
 		{
+			case TIMEFRAME_24H:
+				$time = TIME_24_HOURS;
+				break;
 			case TIMEFRAME_1WK:
 				$time = TIME_1_WEEK;
 				break;
