@@ -37,7 +37,6 @@ class ShowBattleHallPage extends AbstractGamePage
 
 		$Selectors['timeframe'] = [
 			TIMEFRAME_ALL => $LNG['tkb_all'],
-			TIMEFRAME_24H => $LNG['tkb_day'],
 			TIMEFRAME_1WK => $LNG['tkb_week'],
 			TIMEFRAME_1MTH => $LNG['tkb_month'],
 		];
