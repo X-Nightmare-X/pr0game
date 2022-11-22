@@ -73,6 +73,9 @@
     <li><a href="game.php?page=battleSimulator">{$LNG.lm_battlesim}</a></li>
   {/if}
   <li><a href="game.php?page=battleHall">{$LNG.lm_topkb}</a></li>
+  {if isModuleAvailable($smarty.const.MODULE_RECORDS)}
+    <li><a href="game.php?page=records">{$LNG.lm_records}</a></li>
+  {/if}
 
   <li class="menu-separator"></li>
   {if isModuleAvailable($smarty.const.MODULE_NOTICE)}
