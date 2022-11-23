@@ -455,7 +455,7 @@ function MyCrazyLittleSearch(
         while ($WhileResult = $GLOBALS['DATABASE']->fetch_num($FinalQuery)) {
             $Search['LIST']  .= "<tr>";
             if ($Table == "users") {
-                if ($_GET['search'] == "online") {
+                if (isset($_GET['search']) && $_GET['search'] == "online") {
                     $WhileResult[3] = pretty_time(TIMESTAMP - $WhileResult[3]);
                 } else {
                     $WhileResult[3] = _date($LNG['php_tdformat'], $WhileResult[3], $USER['timezone']);
