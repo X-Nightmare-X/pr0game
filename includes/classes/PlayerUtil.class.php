@@ -453,7 +453,7 @@ class PlayerUtil
         $db = Database::get();
 
         $sql = 'SELECT count(id) as anz FROM %%PLANETS%% WHERE id_owner = :userId AND planet_type = 1';
-        $planetArray = $db->select($sql, [
+        $planetArray = $db->selectSingle($sql, [
             ':userId' => $userId,
         ]);
 
