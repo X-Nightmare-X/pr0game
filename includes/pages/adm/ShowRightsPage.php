@@ -81,7 +81,6 @@ function ShowRightsPage()
                     'button_submit'         => $LNG['button_submit'],
                     'sid'                   => session_id(),
                     'User'                  => '',
-                    'ShowAccountDataPage'   => [],
                 ]);
 
                 $template->show('ModerrationRightsPostPage.tpl');
