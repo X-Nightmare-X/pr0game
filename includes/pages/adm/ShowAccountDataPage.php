@@ -48,7 +48,9 @@ function ShowAccountDataPage()
                 "SELECT " . $SpecifyItemsU . " FROM " . USERS . " as u LEFT JOIN " . ALLIANCE . " a ON a.id = u.ally_id"
                 . " WHERE u.`id` = '" . $id_u . "';"
             );
-
+            if(!isset($UserQuery['user_ua'])) {
+                $UserQuery['user_ua'] = '';
+            }
 
             $reg_time = _date($LNG['php_tdformat'], $UserQuery['register_time'], $USER['timezone']);
             $onlinetime = _date($LNG['php_tdformat'], $UserQuery['onlinetime'], $USER['timezone']);
@@ -244,21 +246,23 @@ function ShowAccountDataPage()
 
                 $total_points_ali = pretty_number($StatQueryAlly['total_points']);
             }
-
+            $SpecifyItemsPQ = '';
             foreach (array_merge($reslist['fleet'], $reslist['build'], $reslist['defense']) as $ID) {
-                $SpecifyItemsPQ .= "`" . $resource[$ID] . "`,";
+                $SpecifyItemsPQ .= $resource[$ID] . ",";
                 $RES[$resource[$ID]] = "<tr><td width=\"150\">" . $LNG['tech'][$ID] . "</td>";
             }
             $names = "<tr><th class=\"center\" width=\"150\">&nbsp;</th>";
 
             // COMIENZA EL SAQUEO DE DATOS DE LOS PLANETAS
-            $SpecifyItemsP = "planet_type,id,name,galaxy,system,planet,destruyed,diameter,field_current,field_max,"
+            $SpecifyItemsP = "planet_type,id,name,galaxy,`system`,planet,destruyed,diameter,field_current,field_max,"
                 . "temp_min,temp_max,metal,crystal,deuterium,energy," . $SpecifyItemsPQ . "energy_used";
 
             $PlanetsQuery = $GLOBALS['DATABASE']->query(
                 "SELECT " . $SpecifyItemsP . " FROM " . PLANETS . " WHERE `id_owner` = '" . $id_u . "';"
             );
-
+            $planets_moons = '';
+            $resources = '';
+            $MoonZ = 0;
             while ($PlanetsWhile = $GLOBALS['DATABASE']->fetch_array($PlanetsQuery)) {
                 if ($PlanetsWhile['planet_type'] == 3) {
                     $Planettt = sprintf(
@@ -368,22 +372,63 @@ function ShowAccountDataPage()
             foreach (array_merge($reslist['fleet'], $reslist['build'], $reslist['defense']) as $ID) {
                 $RES[$resource[$ID]] .= "</tr>";
             }
-
+            $build = '';
             foreach ($reslist['build'] as $ID) {
                 $build .= $RES[$resource[$ID]];
             }
-
+            $fleet = '';
             foreach ($reslist['fleet'] as $ID) {
                 $fleet .= $RES[$resource[$ID]];
             }
-
+            $defense = '';
             foreach ($reslist['defense'] as $ID) {
                 $defense .= $RES[$resource[$ID]];
             }
 
             // TODO: It was previously undefined, but assigned, remove it maybe?
             $input_id = null;
-
+            if(!isset($destroyed)) {
+                $destroyed = 0;
+            }
+            if(!isset($ali_lider)) {
+                $ali_lider = 0;
+            }
+            if(!isset($point_tecno_ali)) {
+                $point_tecno_ali = 0;
+                $count_tecno_ali = 0;
+                $ranking_tecno_ali = 0;
+                $point_def_ali = 0;
+                $count_def_ali = 0;
+                $ranking_def_ali = 0;
+                $point_fleet_ali = 0;
+                $count_fleet_ali = 0;
+                $ranking_fleet_ali = 0;
+                $point_builds_ali = 0;
+                $count_builds_ali = 0;
+                $ranking_builds_ali = 0;
+                $total_points_ali = 0;
+                $id_aliz = 0;
+                $tag = 0;
+                $ali_nom = 0;
+                $ali_ext = 0;
+                $ali_ext2 = 0;
+                $ali_int = 0;
+                $ali_int2 = 0;
+                $ali_sol2 = 0;
+                $ali_sol = 0;
+                $ali_logo = 0;
+                $ali_logo2 = 0;
+                $ali_web = 0;
+                $ally_register_time = 0;
+                $ali_cant = 0;
+                $alianza = 0;
+                $id_ali = 0;
+                $mas = 0;
+                $sus_time = 0;
+                $sus_longer = 0;
+                $sus_reason = '';
+                $sus_author = 0;
+            }
             $template->assign_vars([
                 'DestruyeD'                     => $DestruyeD,
                 'destroyed'                     => $destroyed,
@@ -524,6 +569,14 @@ function ShowAccountDataPage()
                 'researchs_title'               => $LNG['researchs_title'],
                 'ac_coords'                     => $LNG['ac_coords'],
                 'ac_time_destruyed'             => $LNG['ac_time_destruyed'],
+                'ac_ext_text'                   => '',
+                'ac_register_ally_time'         => 0,
+                'ac_ali_logo_11'                => '',
+                'ac_ali_text_11'                => '',
+                'ali_ext2'                      => '',
+                'ac_ali_text_22'                => '',
+                'ali_int2'                      => '',
+                'ac_ali_text_33'                => '',
             ]);
             $template->show('AccountDataPageDetail.tpl');
         }
