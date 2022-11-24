@@ -88,12 +88,7 @@ function show_values() {
   document.getElementById("cargospace").innerText = document.getElementById("cargospace").getAttribute("data") + ":" + numberWithCommas(tpoints)
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  show_values()
-  add_exp_eventlisteners()
-  addstoragelisteners()
-  updatebuttons();
-});
+
 
 function addstoragelisteners() {
   document.getElementsByName("met_storage")[0].addEventListener("input", updatebuttons);
@@ -137,4 +132,182 @@ function setamt() {
     }
   }
 }
+
+function toogle_custom_fleet(){
+  const table=document.getElementById("customfleet")
+  if(table.style.display === "none" ){
+    table.style.display="table";
+    document.getElementById("c_fleet_span").innerText="▲"
+  }else{
+    table.style.display="none";
+    document.getElementById("c_fleet_span").innerText="▼"
+  }
+
+}
+
+
+function save_fleet_Select() {
+  let obj = {}
+  for (let shipid in exp_values) {
+    if(document.getElementById("ship_" + shipid)===null){
+      continue
+    }
+
+    obj[shipid] = document.getElementById("ship_" + shipid)?.value
+  }
+  let fname = document.getElementById("cfleet_name").value
+  if(fname.trim()===""){
+    alert("Insert a fleet name please!")
+    return;
+  }
+  if (!(fname in cfleet)) {
+    let obj = document.createElement("option");
+    obj.value = fname;
+    obj.innerText = fname;
+    document.getElementById("cfleet_select").appendChild(obj);
+  }
+  document.getElementById("cfleet_select").value=fname
+  cfleet[fname] = obj
+  local_setValue("custom_fleets", cfleet)
+}
+
+function change_fleet_select() {
+
+  showfleet(document.getElementById("cfleet_select").value);
+}
+
+function cf_remove() {
+  let oname = document.getElementById("cfleet_select").value
+  let rv = confirm("Remove fleet template " + oname + " ?")
+
+  if (rv === false) {
+    return;
+  }
+
+  document.getElementById("cfleet_name").value = "";
+  let rmv = document.querySelector("#cfleet_select option[value='" + oname + "']")
+  if (rmv) {
+    rmv.remove()
+    delete cfleet[oname];
+    showfleet(document.getElementById("cfleet_select").value)
+  }
+
+  local_setValue("custom_fleets", cfleet)
+}
+
+function showfleet(name) {
+  document.getElementById("cfleet_name").value = name;
+  for (let sid in cfleet[name]) {
+    document.getElementById("ship_" + sid).value = cfleet[name][sid]
+
+  }
+  if(name===""){
+    for (let f in exp_values) {
+      if (document.getElementById("ship_" + f) === null) {
+        continue;
+      }
+      document.getElementById("ship_" + f).value = 0
+
+    }
+  }
+  showexpopoints();
+}
+
+function showexpopoints() {
+  let fleet = {}
+  for (let f in exp_values) {
+    if(document.getElementById("ship_" + f)===null){
+      continue
+    }
+
+    fleet[f] = document.getElementById("ship_" + f).value
+
+  }
+
+  document.getElementById("ship_expo_points").innerText = numberWithCommas(calcexpopoints(fleet))
+  document.getElementById("ship_cargo_points").innerText = numberWithCommas(calcstoragepoints(fleet))
+
+
+
+
+}
+function calcstoragepoints(fleet) {
+  let points = 0;
+  for (let f in fleet) {
+    if (ship_storage[f] === null) {
+      continue;
+    }
+    points += ship_storage[f] * parseInt(fleet[f])
+
+  }
+  return points;
+
+
+}
+
+function calcexpopoints(fleet) {
+  let points = 0;
+  for (let f in fleet) {
+    if (exp_values[f] === null) {
+      continue;
+    }
+    points += exp_values[f] * parseInt(fleet[f])
+
+  }
+  return points;
+
+
+}
+let cfleet={}
+
+function local_getValue(key, defaultv) {
+  let x = localStorage.getItem(key);
+  if (x === null) {
+    return defaultv;
+  }
+  return JSON.parse(x)
+}
+
+function local_setValue(key, value) {
+  localStorage.setItem(key, JSON.stringify(value))
+}
+
+
+function loadcustomfleets() {
+   cfleet = local_getValue("custom_fleets", {})
+  for (let cf in cfleet) {
+    showfleet(cf)
+    break
+  }
+  for (let cf in cfleet) {
+    let obj = document.createElement("option");
+    obj.value = cf;
+    obj.innerText = cf;
+    document.getElementById("cfleet_select").appendChild(obj);
+  }
+
+  document.getElementById("cfleet_select").addEventListener("change", change_fleet_select);
+  document.getElementById("cf_save").addEventListener("click", save_fleet_Select);
+  document.getElementById("cf_del").addEventListener("click", cf_remove);
+  for (let f in exp_values) {
+    if(document.getElementById("ship_" + f)===null){
+      continue
+    }
+
+    document.getElementById("ship_" + f)?.addEventListener("input", showexpopoints);
+
+  }
+  showexpopoints();
+
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  show_values()
+  add_exp_eventlisteners()
+  addstoragelisteners()
+  updatebuttons();
+  loadcustomfleets();
+});
+
 
