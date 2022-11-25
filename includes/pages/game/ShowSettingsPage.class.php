@@ -36,6 +36,7 @@ class ShowSettingsPage extends AbstractGamePage
 
             $this->display('page.settings.vacation.tpl');
         } else {
+            $colors = PlayerUtil::player_colors($USER);
             $this->assign([
                 'Selectors'         => [
                     'timezones' => get_timezone_selector(),
@@ -75,6 +76,7 @@ class ShowSettingsPage extends AbstractGamePage
                 'userid'            => $USER['id'],
                 'ref_active'        => Config::get()->ref_active,
                 'SELF_URL'          => PROTOCOL . HTTP_HOST . HTTP_ROOT,
+                'colors'            => $colors,
             ]);
 
             $this->display('page.settings.default.tpl');
@@ -213,7 +215,45 @@ class ShowSettingsPage extends AbstractGamePage
 
         $vacation           = HTTP::_GP('vacation', 0);
         $delete             = HTTP::_GP('delete', 0);
+        
+        $colorMission2friend = HTTP::_GP('colorMission2friend', '#ff00ff');
 
+        $colorMission1Own = HTTP::_GP('colorMission1Own', '#66cc33');
+        $colorMission2Own = HTTP::_GP('colorMission2Own', '#339966');
+        $colorMission3Own = HTTP::_GP('colorMission3Own', '#5bf1c2');
+        $colorMission4Own = HTTP::_GP('colorMission4Own', '#cf79de');
+        $colorMission5Own = HTTP::_GP('colorMission5Own', '#80a0c0');
+        $colorMission6Own = HTTP::_GP('colorMission6Own', '#ffcc66');
+        $colorMission7Own = HTTP::_GP('colorMission7Own', '#c1c1c1');
+        $colorMission7ReturnOwn = HTTP::_GP('colorMission7OwnReturn', '#cf79de');
+        $colorMission8Own = HTTP::_GP('colorMission8Own', '#ceff68');
+        $colorMission9Own = HTTP::_GP('colorMission9Own', '#ffff99');
+        $colorMission10Own = HTTP::_GP('colorMission10Own', '#ffcc66');
+        $colorMission15Own = HTTP::_GP('colorMission15Own', '#5bf1c2');
+        $colorMission16Own = HTTP::_GP('colorMission16Own', '#5bf1c2');
+        $colorMission17Own = HTTP::_GP('colorMission17Own', '#5bf1c2');
+        $colorMissionReturnOwn = HTTP::_GP('colorMissionReturnOwn', '#6e8eea');
+
+        $colorMission1Foreign = HTTP::_GP('colorMission1Foreign', '#ff0000');
+        $colorMission2Foreign = HTTP::_GP('colorMission2Foreign', '#aa0000');
+        $colorMission3Foreign = HTTP::_GP('colorMission3Foreign', '#00ff00');
+        $colorMission4Foreign = HTTP::_GP('colorMission4Foreign', '#ad57bc');
+        $colorMission5Foreign = HTTP::_GP('colorMission5Foreign', '#3399cc');
+        $colorMission6Foreign = HTTP::_GP('colorMission6Foreign', '#ff6600');
+        $colorMission7Foreign = HTTP::_GP('colorMission7Foreign', '#00ff00');
+        $colorMission8Foreign = HTTP::_GP('colorMission8Foreign', '#acdd46');
+        $colorMission9Foreign = HTTP::_GP('colorMission9Foreign', '#dddd77');
+        $colorMission10Foreign = HTTP::_GP('colorMission10Foreign', '#ff6600');
+        $colorMission15Foreign = HTTP::_GP('colorMission15Foreign', '#39d0a0');
+        $colorMission16Foreign = HTTP::_GP('colorMission16Foreign', '#39d0a0');
+        $colorMission17Foreign = HTTP::_GP('colorMission17Foreign', '#39d0a0');
+        $colorMissionReturnForeign = HTTP::_GP('colorMissionReturnForeign', '#6e8eea');
+
+        $colorStaticTimer = HTTP::_GP('colorStaticTimer', '#ffff00');
+        $colorPositive = HTTP::_GP('colorPositive', '#00ff00');
+        $colorNegative = HTTP::_GP('colorNegative', '#ff0000');
+        $colorNeutral = HTTP::_GP('colorNeutral', '#ffd600');
+        
         // Vertify
 
         $adminprotection    = ($adminprotection == 1 && $USER['authlevel'] != AUTH_USR) ? $USER['authlevel'] : 0;
@@ -368,21 +408,55 @@ class ShowSettingsPage extends AbstractGamePage
         }
 
         $sql =  "UPDATE %%USERS%% SET
-		dpath					= :theme,
-		timezone				= :timezone,
-		planet_sort				= :planetSort,
-		planet_sort_order		= :planetOrder,
-		spio_anz				= :spyCount,
-		settings_fleetactions	= :fleetActions,
-		settings_esp			= :galaxySpy,
-		settings_wri			= :galaxyMessage,
-		settings_bud			= :galaxyBuddyList,
-		settings_mis			= :galaxyMissle,
-		settings_blockPM		= :blockPM,
-		authattack				= :adminProtection,
-		lang					= :language,
-		hof						= :queueMessages,
-		spyMessagesMode			= :spyMessagesMode
+		dpath					    = :theme,
+		timezone				    = :timezone,
+		planet_sort				    = :planetSort,
+		planet_sort_order		    = :planetOrder,
+		spio_anz				    = :spyCount,
+		settings_fleetactions	    = :fleetActions,
+		settings_esp			    = :galaxySpy,
+		settings_wri			    = :galaxyMessage,
+		settings_bud			    = :galaxyBuddyList,
+		settings_mis			    = :galaxyMissle,
+		settings_blockPM		    = :blockPM,
+		authattack				    = :adminProtection,
+		lang					    = :language,
+		hof						    = :queueMessages,
+		spyMessagesMode			    = :spyMessagesMode,
+        colorMission2friend         = :colorMission2friend,
+        colorMission1Own            = :colorMission1Own,
+        colorMission2Own            = :colorMission2Own,
+        colorMission3Own            = :colorMission3Own,
+        colorMission4Own            = :colorMission4Own,
+        colorMission5Own            = :colorMission5Own,
+        colorMission6Own            = :colorMission6Own,
+        colorMission7Own            = :colorMission7Own,
+        colorMission7OwnReturn      = :colorMission7OwnReturn,
+        colorMission8Own            = :colorMission8Own,
+        colorMission9Own            = :colorMission9Own,
+        colorMission10Own           = :colorMission10Own,
+        colorMission15Own           = :colorMission15Own,
+        colorMission16Own           = :colorMission16Own,
+        colorMission17Own           = :colorMission17Own,
+        colorMissionReturnOwn       = :colorMissionReturnOwn,
+        colorMission1Foreign        = :colorMission1Foreign,
+        colorMission2Foreign        = :colorMission2Foreign,
+        colorMission3Foreign        = :colorMission3Foreign,
+        colorMission4Foreign        = :colorMission4Foreign,
+        colorMission5Foreign        = :colorMission5Foreign,
+        colorMission6Foreign        = :colorMission6Foreign,
+        colorMission7Foreign        = :colorMission7Foreign,
+        colorMission8Foreign        = :colorMission8Foreign,
+        colorMission9Foreign        = :colorMission9Foreign,
+        colorMission10Foreign       = :colorMission10Foreign,
+        colorMission15Foreign       = :colorMission15Foreign,
+        colorMission16Foreign       = :colorMission16Foreign,
+        colorMission17Foreign       = :colorMission17Foreign,
+        colorMissionReturnForeign   = :colorMissionReturnForeign,
+        colorStaticTimer            = :colorStaticTimer,
+        colorPositive               = :colorPositive,
+        colorNegative               = :colorNegative,
+        colorNeutral                = :colorNeutral
 		WHERE id = :userID;";
         $db->update($sql, [
             ':theme'            => $theme,
@@ -401,6 +475,40 @@ class ShowSettingsPage extends AbstractGamePage
             ':queueMessages'    => $queueMessages,
             ':spyMessagesMode'  => $spyMessagesMode,
             ':userID'           => $USER['id'],
+            ':colorMission2friend'          => $colorMission2friend,
+            ':colorMission1Own'             => $colorMission1Own,
+            ':colorMission2Own'             => $colorMission2Own,
+            ':colorMission3Own'             => $colorMission3Own,
+            ':colorMission4Own'             => $colorMission4Own,
+            ':colorMission5Own'             => $colorMission5Own,
+            ':colorMission6Own'             => $colorMission6Own,
+            ':colorMission7Own'             => $colorMission7Own,
+            ':colorMission7OwnReturn'       => $colorMission7ReturnOwn,
+            ':colorMission8Own'             => $colorMission8Own,
+            ':colorMission9Own'             => $colorMission9Own,
+            ':colorMission10Own'            => $colorMission10Own,
+            ':colorMission15Own'            => $colorMission15Own,
+            ':colorMission16Own'            => $colorMission16Own,
+            ':colorMission17Own'            => $colorMission17Own,
+            ':colorMissionReturnOwn'        => $colorMissionReturnOwn,
+            ':colorMission1Foreign'         => $colorMission1Foreign,
+            ':colorMission2Foreign'         => $colorMission2Foreign,
+            ':colorMission3Foreign'         => $colorMission3Foreign,
+            ':colorMission4Foreign'         => $colorMission4Foreign,
+            ':colorMission5Foreign'         => $colorMission5Foreign,
+            ':colorMission6Foreign'         => $colorMission6Foreign,
+            ':colorMission7Foreign'         => $colorMission7Foreign,
+            ':colorMission8Foreign'         => $colorMission8Foreign,
+            ':colorMission9Foreign'         => $colorMission9Foreign,
+            ':colorMission10Foreign'        => $colorMission10Foreign,
+            ':colorMission15Foreign'        => $colorMission15Foreign,
+            ':colorMission16Foreign'        => $colorMission16Foreign,
+            ':colorMission17Foreign'        => $colorMission17Foreign,
+            ':colorMissionReturnForeign'    => $colorMissionReturnForeign,
+            ':colorStaticTimer'             => $colorStaticTimer,
+            ':colorPositive'                => $colorPositive,
+            ':colorNegative'                => $colorNegative,
+            ':colorNeutral'                 => $colorNeutral,
         ]);
         
         $db->commit();

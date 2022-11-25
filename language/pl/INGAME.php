@@ -36,6 +36,50 @@ $LNG['type_mission_8'] = 'Recykling';
 $LNG['type_mission_9'] = 'Zniszcz';
 $LNG['type_mission_10'] = 'Atak Rakietowy';
 $LNG['type_mission_15'] = 'Ekspedycja';
+$LNG['type_mission_16'] = 'Handel';
+$LNG['type_mission_17'] = 'przenosić';
+
+$LNG['type_mission_1_own'] = 'Własny atak';
+$LNG['type_mission_2_own'] = 'Własna flota atakująca federacji';
+$LNG['type_mission_3_own'] = 'Własny transport';
+$LNG['type_mission_4_own'] = 'Własne stacjonowanie';
+$LNG['type_mission_5_own'] = 'Własne trzymanie';
+$LNG['type_mission_6_own'] = 'Własne szpiegowanie';
+$LNG['type_mission_7_own'] = 'Własna kolonizacja';
+$LNG['type_mission_7_own_return'] = 'Zwrot własnej kolonizacji';
+$LNG['type_mission_8_own'] = 'Własny recykling';
+$LNG['type_mission_9_own'] = 'Własne niszczenie';
+$LNG['type_mission_10_own'] = 'Własny atak rakietowy';
+$LNG['type_mission_15_own'] = 'Własna wyprawa';
+$LNG['type_mission_16_own'] = 'Własna flota targowa';
+$LNG['type_mission_17_own'] = 'Własny transfer';
+$LNG['type_mission_return_own'] = 'Własny powrót';
+
+$LNG['type_mission_2_friend'] = 'Przyjazna flota atakująca federacji';
+
+$LNG['type_mission_1_foreign'] = 'Atak obcej floty';
+$LNG['type_mission_2_foreign'] = 'Flota atakująca obcą federację';
+$LNG['type_mission_3_foreign'] = 'Obcy transport';;
+$LNG['type_mission_4_foreign'] = 'Obce stacjonowanie';;
+$LNG['type_mission_5_foreign'] = 'Foreign holding';;
+$LNG['type_mission_6_foreign'] = 'Obce szpiegostwo';
+$LNG['type_mission_7_foreign'] = 'Obca kolonizacja';
+$LNG['type_mission_8_foreign'] = 'Obcy recykling';;
+$LNG['type_mission_9_foreign'] = 'Zagraniczne niszczenie';
+$LNG['type_mission_10_foreign'] = 'Obcy atak rakietowy';
+$LNG['type_mission_15_foreign'] = 'Zagraniczna ekspedycja';
+$LNG['type_mission_16_foreign'] = 'Obca flota targowa';
+$LNG['type_mission_17_foreign'] = 'Zagraniczny transfer';
+$LNG['type_mission_return_foreign'] = 'Zwrot zagraniczny';
+
+$LNG['positive'] = 'Pozytywny';
+$LNG['negative'] = 'Negative'; 
+$LNG['neutral'] = 'Neutralny';
+$LNG['StaticTimer'] = 'Czas przybycia';
+
+$LNG['own_colors'] = 'Własne kolory';
+$LNG['foreign_colors'] = 'Kolory obce';
+$LNG['general_colors'] = 'Kolory ogólne';
 
 $LNG['type_planet_1'] = 'Planeta';
 $LNG['type_planet_2'] = 'Pole zniszczeń';
@@ -411,8 +455,8 @@ $LNG['bd_maxlevel'] = 'Maksymalny poziom';
 $LNG['bd_on'] = 'na';
 $LNG['bd_max_builds'] = 'Długość kolejki budowy [%d]';
 $LNG['bd_next_level'] = 'Następny poziom:';
-$LNG['bd_need_engine'] = 'Wymaga  <font color="#FF0000">%s</font> %s więcej';
-$LNG['bd_more_engine'] = 'Produkuje <font color="#00FF00">%s</font> %s więcej';
+$LNG['bd_need_engine'] = 'Wymaga  <font class="colorNegative">%s</font> %s więcej';
+$LNG['bd_more_engine'] = 'Produkuje <font class="colorPositive">%s</font> %s więcej';
 $LNG['bd_jump_gate_action'] = 'Skocz do';
 $LNG['bd_cancel_warning'] = 'Przerwanie produkcji zwróci ci tylko 60% kosztów budowy!';
 $LNG['bd_cancel_send'] = 'Usuń zaznaczone';

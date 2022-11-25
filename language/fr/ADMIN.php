@@ -786,14 +786,14 @@ $LNG['ac_suspended_time'] = 'Bannis';
 $LNG['ac_suspended_longer'] = 'Jusqu\'à';
 $LNG['ac_suspended_reason'] = 'Raison';
 $LNG['ac_suspended_autor'] = 'Bannis pour';
-$LNG['ac_note_k'] .= '<table><tr><th width=10%><font color=lime>T+</font></th><th>Dépasse les Milliards</th></tr>';
+$LNG['ac_note_k'] .= '<table><tr><th width=10%><font class="colorPositive">T+</font></th><th>Dépasse les Milliards</th></tr>';
 $LNG['ac_leyend'] = '[ Légende ]';
 $LNG['ac_no_rank_level'] = 'Vous n\'avez pas l\' autorisation suffisante pour voir les informations sur ce joueur !';
 /*
-$LNG['ac_note_k'] .= '<tr><th width=10%><font color=lime>T</font></th><th>Mille Milliards et Plus</th></tr>';
-$LNG['ac_note_k'] .= '<tr><th width=10%><font color=lime>B</font></th><th>Milliards et Plus</th></tr>';
-$LNG['ac_note_k'] .= '<tr><th width=10%><font color=lime>M</font></th><th>Millions et Plus</th></tr>';
-$LNG['ac_note_k'] .= '<tr><th width=10%><font color=lime>K</font></th><th>Mille et Plus</th></tr></table>';
+$LNG['ac_note_k'] .= '<tr><th width=10%><font class="colorPositive">T</font></th><th>Mille Milliards et Plus</th></tr>';
+$LNG['ac_note_k'] .= '<tr><th width=10%><font class="colorPositive">B</font></th><th>Milliards et Plus</th></tr>';
+$LNG['ac_note_k'] .= '<tr><th width=10%><font class="colorPositive">M</font></th><th>Millions et Plus</th></tr>';
+$LNG['ac_note_k'] .= '<tr><th width=10%><font class="colorPositive">K</font></th><th>Mille et Plus</th></tr></table>';
 */
 //###########################################################//
 

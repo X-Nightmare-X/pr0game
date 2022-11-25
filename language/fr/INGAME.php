@@ -27,6 +27,50 @@ $LNG['type_mission_8'] = 'Recycler';
 $LNG['type_mission_9'] = 'Détruire';
 $LNG['type_mission_10'] = 'MIP - Attaque missile interplanétaire';
 $LNG['type_mission_15'] = 'Expédition';
+$LNG['type_mission_16'] = 'Commerce' ;
+$LNG['type_mission_17'] = 'Transfert' ;
+
+$LNG['type_mission_1_own'] = 'Propre attaque' ;
+$LNG['type_mission_2_own'] = 'Propre flotte d\'attaque de la fédération' ;
+$LNG['type_mission_3_own'] = 'Propre transport' ;
+$LNG['type_mission_4_own'] = 'Propre stationnement' ;
+$LNG['type_mission_5_own'] = 'Own holding' ;
+$LNG['type_mission_6_own'] = 'Propre espionnage' ;
+$LNG['type_mission_7_own'] = 'Own colonising' ;
+$LNG['type_mission_7_own_return'] = 'Retourner sa propre colonisation' ;
+$LNG['type_mission_8_own'] = 'Propre recyclage' ;
+$LNG['type_mission_9_own'] = 'Propre destruction' ;
+$LNG['type_mission_10_own'] = 'Propre attaque de missiles' ;
+$LNG['type_mission_15_own'] = 'Propre expédition' ;
+$LNG['type_mission_16_own'] = 'Propre flotte de marché' ;
+$LNG['type_mission_17_own'] = 'Propre transfert' ;
+$LNG['type_mission_return_own'] = 'Propre retour' ;
+
+$LNG['type_mission_2_friend'] = 'Flotte d\'attaque de la fédération amie' ;
+
+$LNG['type_mission_1_foreign'] = 'Attaque étrangère' ;
+$LNG['type_mission_2_foreign'] = 'Flotte d\'attaque de la fédération étrangère' ;
+$LNG['type_mission_3_foreign'] = 'Transport étranger' ;
+$LNG['type_mission_4_foreign'] = 'Stationnement étranger' ;
+$LNG['type_mission_5_foreign'] = 'Détention à l\'étranger' ;
+$LNG['type_mission_6_foreign'] = 'Espionnage étranger' ;
+$LNG['type_mission_7_foreign'] = 'Colonisation étrangère' ;
+$LNG['type_mission_8_foreign'] = 'Recyclage étranger' ;
+$LNG['type_mission_9_foreign'] = 'Destruction de l\'étranger' ;
+$LNG['type_mission_10_foreign'] = 'Attaque de missiles étrangers' ;
+$LNG['type_mission_15_foreign'] = 'Expédition à l\'étranger' ;
+$LNG['type_mission_16_foreign'] = 'Flotte marchande étrangère' ;
+$LNG['type_mission_17_foreign'] = 'Transfert à l\'étranger' ;
+$LNG['type_mission_return_foreign'] = 'Retour à l\'étranger' ;
+
+$LNG['positive'] = 'Positive' ;
+$LNG['negative'] = 'Négatif' ;
+$LNG['neutral'] = 'Neutre' ;
+$LNG['StaticTimer'] = 'Heure d\'arrivée' ;
+
+$LNG['own_colors'] = 'Couleurs propres' ;
+$LNG['foreign_colors'] = 'Couleurs étrangères' ;
+$LNG['general_colors'] = 'Couleurs générales' ;
 
 $LNG['type_planet_1'] = 'Planète';
 $LNG['type_planet_2'] = 'Champ de débris';
@@ -397,8 +441,8 @@ $LNG['bd_maxlevel'] = 'Le niveau maximum est atteint';
 $LNG['bd_on'] = 'sur';
 $LNG['bd_max_builds'] = 'Vous pouvez au maximum envoyer %d ordres!';
 $LNG['bd_next_level'] = 'Niveau Suivant:';
-$LNG['bd_need_engine'] = 'Nécessite <font color="#FF0000">%s</font> %s de plus';
-$LNG['bd_more_engine'] = 'Produit <font color="#00FF00">%s</font> %s de plus';
+$LNG['bd_need_engine'] = 'Nécessite <font class="colorNegative">%s</font> %s de plus';
+$LNG['bd_more_engine'] = 'Produit <font class="colorPositive">%s</font> %s de plus';
 $LNG['bd_jump_gate_action'] = 'Sauter vers';
 $LNG['bd_cancel_warning'] = 'Lors de la démolition, seulement 60% des ressources sont récupérées !';
 $LNG['bd_cancel_send'] = 'Supprimé - Selectionné';

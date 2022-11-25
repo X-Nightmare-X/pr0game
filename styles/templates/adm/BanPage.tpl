@@ -108,7 +108,7 @@
 	</td>
 </tr><tr>
 	<td align="left">
-		{$LNG.bo_total_users}<span style="color:lime">{$usercount}</span>
+		{$LNG.bo_total_users}<span class="colorPositive">{$usercount}</span>
 	</td>
 </tr>
 </table>
@@ -174,7 +174,7 @@
 	<input TYPE="button" onClick="UsersBan.reset();this.form.regexp.value=''" value="{$LNG.button_reset}"></td>
 </tr><tr>
 	<td align="left">
-		{$LNG.bo_total_banneds}<span style="color:lime">{$bancount}</span>
+		{$LNG.bo_total_banneds}<span class="colorPositive">{$bancount}</span>
 	</td>
 </tr>
 </table>

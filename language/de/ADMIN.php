@@ -802,10 +802,10 @@ $LNG['ac_suspended_time'] = 'Gesperrt';
 $LNG['ac_suspended_longer'] = 'Bis';
 $LNG['ac_suspended_reason'] = 'Grund';
 $LNG['ac_suspended_autor'] = 'Gesperrt für';
-$LNG['ac_note_k'] = '<table><tr><th width=10%><font color=lime>T+</font></th><th>Billiarde</th></tr><tr><th width=10%>'
-    . '<font color=lime>T</font></th><th>Billion</th></tr><tr><th width=10%><font color=lime>B</font></th><th>Milliarde'
-    . '</th></tr><tr><th width=10%><font color=lime>M</font></th><th>Million</th></tr><tr><th width=10%>'
-    . '<font color=lime>K</font></th><th>Tausend</th></tr></table>';
+$LNG['ac_note_k'] = '<table><tr><th width=10%><font class="colorPositive">T+</font></th><th>Billiarde</th></tr><tr><th width=10%>'
+    . '<font class="colorPositive">T</font></th><th>Billion</th></tr><tr><th width=10%><font class="colorPositive">B</font></th><th>Milliarde'
+    . '</th></tr><tr><th width=10%><font class="colorPositive">M</font></th><th>Million</th></tr><tr><th width=10%>'
+    . '<font class="colorPositive">K</font></th><th>Tausend</th></tr></table>';
 $LNG['ac_leyend'] = '[ Legende ]';
 $LNG['ac_no_rank_level'] = 'Sie haben nicht die erforderliche Berechtigung um die Spielerinformationen sehen zu'
     . ' dürfen!';
