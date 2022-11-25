@@ -178,7 +178,7 @@ class ShowFleetTablePage extends AbstractGamePage
 
     public function show()
     {
-        global $USER, $PLANET, $reslist, $resource, $LNG;
+        global $USER, $PLANET, $reslist, $resource, $LNG, $pricelist;
 
         $acsData = [];
         $FleetID = HTTP::_GP('fleetID', 0);
@@ -242,28 +242,35 @@ class ShowFleetTablePage extends AbstractGamePage
                 'mission' => $fleetsRow['fleet_mission'],
                 'state' => $fleetsRow['fleet_mess'],
                 'no_returnable' => $fleetsRow['fleet_no_m_return'],
-                'startGalaxy'   => $fleetsRow['fleet_start_galaxy'],
-                'startSystem'   => $fleetsRow['fleet_start_system'],
-                'startPlanet'   => $fleetsRow['fleet_start_planet'],
-                'startTime'     => _date($LNG['php_tdformat'], $fleetsRow['fleet_start_time'], $USER['timezone']),
-                'endGalaxy'     => $fleetsRow['fleet_end_galaxy'],
-                'endSystem'     => $fleetsRow['fleet_end_system'],
-                'endPlanet'     => $fleetsRow['fleet_end_planet'],
-                'metal'         => $fleetsRow['fleet_resource_metal'],
-                'crystal'       => $fleetsRow['fleet_resource_crystal'],
-                'deuterium'     => $fleetsRow['fleet_resource_deuterium'],
-                'endTime'       => _date($LNG['php_tdformat'], $fleetsRow['fleet_end_time'], $USER['timezone']),
-                'amount'        => pretty_number($fleetsRow['fleet_amount']),
-                'returntime'    => $returnTime,
-                'resttime'      => $returnTime - TIMESTAMP,
-                'startTimestamp'=>  $fleetsRow['start_time'],
-                'FleetList'     => $FleetList[$fleetsRow['fleet_id']],
+                'startGalaxy' => $fleetsRow['fleet_start_galaxy'],
+                'startSystem' => $fleetsRow['fleet_start_system'],
+                'startPlanet' => $fleetsRow['fleet_start_planet'],
+                'startTime' => _date($LNG['php_tdformat'], $fleetsRow['fleet_start_time'], $USER['timezone']),
+                'endGalaxy' => $fleetsRow['fleet_end_galaxy'],
+                'endSystem' => $fleetsRow['fleet_end_system'],
+                'endPlanet' => $fleetsRow['fleet_end_planet'],
+                'metal' => $fleetsRow['fleet_resource_metal'],
+                'crystal' => $fleetsRow['fleet_resource_crystal'],
+                'deuterium' => $fleetsRow['fleet_resource_deuterium'],
+                'endTime' => _date($LNG['php_tdformat'], $fleetsRow['fleet_end_time'], $USER['timezone']),
+                'amount' => pretty_number($fleetsRow['fleet_amount']),
+                'returntime' => $returnTime,
+                'resttime' => $returnTime - TIMESTAMP,
+                'startTimestamp' => $fleetsRow['start_time'],
+                'FleetList' => $FleetList[$fleetsRow['fleet_id']],
             ];
         }
 
         $FleetsOnPlanet = [];
-
+        $shipinfos = [];
         foreach ($reslist['fleet'] as $FleetID) {
+            $shipinfos[] = [
+                'id' => $FleetID,
+                'expo' => ($pricelist[$FleetID]['cost'][901] + $pricelist[$FleetID]['cost'][902]) * 5 / 1000,
+                'capacity' => $pricelist[$FleetID]['capacity'],
+            ];
+
+
             if ($PLANET[$resource[$FleetID]] == 0) {
                 continue;
             }
@@ -297,7 +304,8 @@ class ShowFleetTablePage extends AbstractGamePage
             'bonusCombustion' => $USER[$resource[115]] * 10,
             'bonusImpulse' => $USER[$resource[117]] * 20,
             'bonusHyperspace' => $USER[$resource[118]] * 30,
-            'maxExpo' => FleetFunctions::calculateMaxFactorRes(Universe::current())
+            'maxExpo' => FleetFunctions::calculateMaxFactorRes(Universe::current()),
+            'shiptypes' => $shipinfos
         ]);
 
         $this->display('page.fleetTable.default.tpl');

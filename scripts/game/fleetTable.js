@@ -28,39 +28,6 @@ $(function () {
 });
 
 
-const exp_values = {
-  "202": 20,
-  "203": 60,
-  "204": 20,
-  "205": 50,
-  "206": 135,
-  "207": 300,
-  "208": 150,
-  "209": 80,
-  "210": 5,
-  "211": 375,
-  "212": 0,
-  "213": 550,
-  "214": 45000,
-  "215": 350
-}
-const ship_storage = {
-  "202": 5000,
-  "203": 25000,
-  "204": 50,
-  "205": 100,
-  "206": 800,
-  "207": 1500,
-  "208": 7500,
-  "209": 20000,
-  "210": 5,
-  "211": 500,
-  "212": 0,
-  "213": 2000,
-  "214": 1000000,
-  "215": 750
-}
-
 function add_exp_eventlisteners() {
   for (let sid in exp_values) {
     let shipinpt = document.getElementById("ship" + sid + "_input")
@@ -87,7 +54,6 @@ function show_values() {
   document.getElementById("expocount").innerText = "Exp:" + fpoints + " / " + document.getElementById("expocount").getAttribute("expocap")
   document.getElementById("cargospace").innerText = document.getElementById("cargospace").getAttribute("data") + ":" + numberWithCommas(tpoints)
 }
-
 
 
 function addstoragelisteners() {
@@ -133,14 +99,14 @@ function setamt() {
   }
 }
 
-function toogle_custom_fleet(){
-  const table=document.getElementById("customfleet")
-  if(table.style.display === "none" ){
-    table.style.display="table";
-    document.getElementById("c_fleet_span").innerText="▲"
-  }else{
-    table.style.display="none";
-    document.getElementById("c_fleet_span").innerText="▼"
+function toogle_custom_fleet() {
+  const table = document.getElementById("customfleet")
+  if (table.style.display === "none") {
+    table.style.display = "table";
+    document.getElementById("c_fleet_span").innerText = "▲"
+  } else {
+    table.style.display = "none";
+    document.getElementById("c_fleet_span").innerText = "▼"
   }
 
 }
@@ -149,14 +115,14 @@ function toogle_custom_fleet(){
 function save_fleet_Select() {
   let obj = {}
   for (let shipid in exp_values) {
-    if(document.getElementById("ship_" + shipid)===null){
+    if (document.getElementById("ship_" + shipid) === null) {
       continue
     }
 
     obj[shipid] = document.getElementById("ship_" + shipid)?.value
   }
   let fname = document.getElementById("cfleet_name").value
-  if(fname.trim()===""){
+  if (fname.trim() === "") {
     alert("Insert a fleet name please!")
     return;
   }
@@ -166,7 +132,7 @@ function save_fleet_Select() {
     obj.innerText = fname;
     document.getElementById("cfleet_select").appendChild(obj);
   }
-  document.getElementById("cfleet_select").value=fname
+  document.getElementById("cfleet_select").value = fname
   cfleet[fname] = obj
   local_setValue("custom_fleets", cfleet)
 }
@@ -201,7 +167,7 @@ function showfleet(name) {
     document.getElementById("ship_" + sid).value = cfleet[name][sid]
 
   }
-  if(name===""){
+  if (name === "") {
     for (let f in exp_values) {
       if (document.getElementById("ship_" + f) === null) {
         continue;
@@ -216,7 +182,7 @@ function showfleet(name) {
 function showexpopoints() {
   let fleet = {}
   for (let f in exp_values) {
-    if(document.getElementById("ship_" + f)===null){
+    if (document.getElementById("ship_" + f) === null) {
       continue
     }
 
@@ -228,9 +194,8 @@ function showexpopoints() {
   document.getElementById("ship_cargo_points").innerText = numberWithCommas(calcstoragepoints(fleet))
 
 
-
-
 }
+
 function calcstoragepoints(fleet) {
   let points = 0;
   for (let f in fleet) {
@@ -258,7 +223,8 @@ function calcexpopoints(fleet) {
 
 
 }
-let cfleet={}
+
+let cfleet = {}
 
 function local_getValue(key, defaultv) {
   let x = localStorage.getItem(key);
@@ -274,7 +240,7 @@ function local_setValue(key, value) {
 
 
 function loadcustomfleets() {
-   cfleet = local_getValue("custom_fleets", {})
+  cfleet = local_getValue("custom_fleets", {})
   for (let cf in cfleet) {
     showfleet(cf)
     break
@@ -290,7 +256,7 @@ function loadcustomfleets() {
   document.getElementById("cf_save").addEventListener("click", save_fleet_Select);
   document.getElementById("cf_del").addEventListener("click", cf_remove);
   for (let f in exp_values) {
-    if(document.getElementById("ship_" + f)===null){
+    if (document.getElementById("ship_" + f) === null) {
       continue
     }
 
