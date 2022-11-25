@@ -1,5 +1,17 @@
 {block name="title" prepend}{$LNG.lm_fleet}{/block}
 {block name="content"}
+  <script>
+    const exp_values = {
+        {foreach $shiptypes as $elementID => $fleetArray}
+        {$fleetArray.id}: {$fleetArray.expo},
+        {/foreach}
+    }
+    const ship_storage = {
+        {foreach $shiptypes as $elementID => $fleetArray}
+        {$fleetArray.id}: {$fleetArray.capacity},
+        {/foreach}
+    }
+  </script>
   <table>
     <tr>
       <th colspan="9">
@@ -161,10 +173,11 @@
         <td><input name="deut_storage" type="number"
                    placeholder="{$LNG['tech'][903]}"></td>
       </tr>
-      <tr >
-       <td colspan="3" style="text-align: center">
-         <button type="button" id="gt_select">{$LNG['tech'][203]}<span id="gt_amt"></span></button><button type="button" id="kt_select">{$LNG['tech'][202]}<span id="kt_amt"></span></button>
-       </td>
+      <tr>
+        <td colspan="3" style="text-align: center">
+          <button type="button" id="gt_select">{$LNG['tech'][203]}<span id="gt_amt"></span></button>
+          <button type="button" id="kt_select">{$LNG['tech'][202]}<span id="kt_amt"></span></button>
+        </td>
       </tr>
     </table>
 
@@ -198,7 +211,9 @@
   <br>
   <table class="table519">
     <tr>
-      <th colspan="3" onclick="toogle_custom_fleet()" style="border-spacing: 0px;cursor: pointer;"><span id="c_fleet_span">▼</span> Custom Flotten</th>
+      <th colspan="3" onclick="toogle_custom_fleet()" style="border-spacing: 0px;cursor: pointer;"><span
+          id="c_fleet_span">▼</span> Custom Flotten
+      </th>
     </tr>
   </table>
   <table id="customfleet" class="table519" style="display: none">
@@ -223,66 +238,20 @@
       <th colspan="2">{$LNG.tech.200}</th>
       <th colspan="1">{$LNG['rec_count']} </th>
     </tr>
-    <tr>
-      <td colspan="2">{$LNG.tech.202}</td>
-      <td colspan="1"><input id="ship_202" type="number" value="0"></td>
-    </tr>
-    <tr>
-      <td colspan="2">{$LNG.tech.203}</td>
-      <td colspan="1"><input id="ship_203" type="number" value="0"></td>
-    </tr>
-    <tr>
-      <td colspan="2">{$LNG.tech.204}</td>
-      <td colspan="1"><input id="ship_204" type="number" value="0"></td>
-    </tr>
-    <tr>
-      <td colspan="2">{$LNG.tech.205}</td>
-      <td colspan="1"><input id="ship_205" type="number" value="0"></td>
-    </tr>
-    <tr>
-      <td colspan="2">{$LNG.tech.206}</td>
-      <td colspan="1"><input id="ship_206" type="number" value="0"></td>
-    </tr>
-    <tr>
-      <td colspan="2">{$LNG.tech.207}</td>
-      <td colspan="1"><input id="ship_207" type="number" value="0"></td>
-    </tr>
-    <tr>
-      <td colspan="2">{$LNG.tech.215}</td>
-      <td colspan="1"><input id="ship_215" type="number" value="0"></td>
-    </tr>
-    <tr>
-      <td colspan="2">{$LNG.tech.213}</td>
-      <td colspan="1"><input id="ship_213" type="number" value="0"></td>
-    </tr>
-    <tr>
-      <td colspan="2">{$LNG.tech.211}</td>
-      <td colspan="1"><input id="ship_211" type="number" value="0"></td>
-    </tr>
-    <tr>
-      <td colspan="2">{$LNG.tech.214}</td>
-      <td colspan="1"><input id="ship_214" type="number" value="0"></td>
-    </tr>
-    <tr>
-      <td colspan="2">{$LNG.tech.210}</td>
-      <td colspan="1"><input id="ship_210" type="number" value="0"></td>
-    </tr>
-    <tr>
-      <td colspan="2">{$LNG.tech.209}</td>
-      <td colspan="1"><input id="ship_209" type="number" value="0"></td>
-    </tr>
-    <tr>
-      <td colspan="2">{$LNG.tech.208}</td>
-      <td colspan="1"><input id="ship_208" type="number" value="0"></td>
-    </tr>
+      {foreach $shiptypes as $elementID => $fleetArray}
+        <tr>
+          <td colspan="2">{$LNG.tech[$fleetArray.id]}</td>
+          <td colspan="1"><input id="ship_{$fleetArray.id}" type="number" value="0"></td>
+        </tr>
+      {/foreach}
 
     <tr>
       <td colspan="3" style="text-align: center;">
         <button id="cf_save" style="width:25%">
-          {$LNG['al_save']}
+            {$LNG['al_save']}
         </button>
         <button id="cf_del" style="width:25%">
-          {$LNG['al_dlte']}
+            {$LNG['al_dlte']}
         </button>
       </td>
     </tr>
