@@ -479,7 +479,7 @@ class statbuilder
 		{
 			$techName = $resource[$Techno];
 			
-            $sql = "SELECT id, " . $techName['name'] . " as level FROM %%USERS%% where " . $techName['name'] . " = (SELECT max(" . $techName['name'] . ") from %%USERS%%);";
+            $sql = "SELECT id, " . $techName . " as level FROM %%USERS%% where " . $techName . " = (SELECT max(" . $techName . ") from %%USERS%%);";
             $data = $db->select($sql);
             
             if($data[0]['level'] > 0) {
@@ -501,7 +501,7 @@ class statbuilder
         $result = array();
         foreach($reslist[$type] as $kind) {
             $kindName = $resource[$kind];
-            $sql = "SELECT id_owner as id, " . $kindName['name'] . " as level FROM %%PLANETS%% where " . $kindName['name'] . " = (select max(" . $kindName['name'] . ") from %%PLANETS%%);";
+            $sql = "SELECT id_owner as id, " . $kindName . " as level FROM %%PLANETS%% where " . $kindName . " = (select max(" . $kindName . ") from %%PLANETS%%);";
             $data = $db->select($sql);
             if($data[0]['level'] > 0) {
                 $dataFinal = array();
