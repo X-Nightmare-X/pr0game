@@ -471,15 +471,12 @@ class statbuilder
     }
     
     private function getHighestUser($type) {
-        GLOBAL $reslist;
+        GLOBAL $reslist, $resource;
         $db = Database::get();
         $result = array();
         foreach($reslist['tech'] as $Techno) 
 		{
-			$sql = "SELECT name FROM %%VARS%% where :id = elementID;";
-            $techName = $db->selectSingle($sql, [
-                ':id' => $Techno,
-            ]);
+			$techName = $resource[$Techno];
 			
             $sql = "SELECT id, " . $techName['name'] . " as level FROM %%USERS%% where " . $techName['name'] . " = (SELECT max(" . $techName['name'] . ") from %%USERS%%);";
             $data = $db->select($sql);
@@ -495,6 +492,7 @@ class statbuilder
         }
         return $result;
     }
+
     private function getHighestPlanet($type) {
         GLOBAL $reslist;
         $db = Database::get();
