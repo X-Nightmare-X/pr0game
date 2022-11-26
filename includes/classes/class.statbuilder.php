@@ -470,7 +470,8 @@ class statbuilder
         }
     }
     
-    private function getHighestUser($type) {
+    private function getHighestUser($type) 
+    {
         GLOBAL $reslist, $resource;
         $db = Database::get();
         $result = array();
@@ -493,16 +494,13 @@ class statbuilder
         return $result;
     }
 
-    private function getHighestPlanet($type) {
-        GLOBAL $reslist;
+    private function getHighestPlanet($type) 
+    {
+        GLOBAL $reslist, $resource;
         $db = Database::get();
         $result = array();
-        foreach($reslist[$type] as $kind) 
-		{
-            $sql = "SELECT name FROM %%VARS%% where :id = elementID;";
-            $kindName = $db->selectSingle($sql, [
-                ':id' => $kind,
-            ]);
+        foreach($reslist[$type] as $kind) {
+            $kindName = $resource[$kind];
             $sql = "SELECT id_owner as id, " . $kindName['name'] . " as level FROM %%PLANETS%% where " . $kindName['name'] . " = (select max(" . $kindName['name'] . ") from %%PLANETS%%);";
             $data = $db->select($sql);
             if($data[0]['level'] > 0) {
@@ -516,6 +514,7 @@ class statbuilder
         }
         return $result;
     }
+
     private function insertQueries($records) {
         $db = Database::get();
         $queries = array();
