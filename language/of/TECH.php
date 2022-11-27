@@ -20,15 +20,15 @@
 $LNG['shortNames'] = array (
     202 => 'Gl. Dransporter',
     203 => 'Gr. Dransporter',
-    204 => 'L. Jäger',
-    205 => 'S. Jäger',
+    204 => 'L. Jäscher',
+    205 => 'S. Jäscher',
     206 => 'Greuzer',
     207 => 'Schlachdschiff',
     208 => 'Golonieschiff',
     209 => 'Recycler',
     210 => 'Schbionagesonde',
-    211 => 'Bomber',
-    212 => 'Solarsadellid',
+    211 => 'Bombah',
+    212 => 'Solahrsadellid',
     213 => 'Zerschdörer',
     214 => 'Dodesstern',
     215 => 'Schlachtgreuzer',
@@ -40,7 +40,7 @@ $LNG['shortNames'] = array (
     401 => 'Raketenwerfer',
     402 => 'L. Lasergeschüdz',
     403 => 'S. Lasergeschüdz',
-    404 => 'Gaußganone',
+    404 => 'Gauschganone',
     405 => 'Ionengeschüdz',
     406 => 'Blasmawerfer',
     407 => 'Kl. Schildguppel',
@@ -76,11 +76,11 @@ $LNG['tech'] = array(
       1 => 'Medallmine',
       2 => 'Gristallmine',
       3 => 'Deuderiumsyndhedisierer',
-      4 => 'Solargraftwerg',
+      4 => 'Solahrgraftwerg',
       6 => 'DechnoDome',
      12 => 'Fusionsgraftwerg',
      14 => 'Roboterfabrig',
-     15 => 'Nanitenfabrig',
+     15 => 'Nanidenfabrig',
      21 => 'Raumschiffwerfd',
      22 => 'Metallsbeicher',
      23 => 'Gristallspeicher',
@@ -101,15 +101,15 @@ $LNG['tech'] = array(
     110 => 'Schildtechnig',
     111 => 'Raumschiffbanzerung',
     113 => 'Enegietechnig',
-    114 => 'Hyberraumtechnig',
+    114 => 'Hüberraumtechnig',
     115 => 'Werbrennungstriebwerg',
     117 => 'Imbulstriebwerg',
-    118 => 'Hyberraumantrieb',
+    118 => 'Hüberraumantrieb',
     120 => 'Lasertechnig',
     121 => 'Ionentechnig',
     122 => 'Blasmatechnik',
     123 => 'Intergalagdisches Forschungsnetzwerg',
-    124 => 'Astrophysig',
+    124 => 'Asdrofüsig',
     131 => 'Broduktionsmaggsimierung Medall',
     132 => 'Broduktionsmaggsimierung Gristall',
     133 => 'Broduktionsmaggsimierung Deuderium',
@@ -123,10 +123,10 @@ $LNG['tech'] = array(
     206 => 'Greuzer',
     207 => 'Schlachdschiff',
     208 => 'Golonieschiff',
-    209 => 'Recycler',
+    209 => 'Rescheikler',
     210 => 'Schbionagesonde',
-    211 => 'Bomber',
-    212 => 'Solarsadellid',
+    211 => 'Bombah',
+    212 => 'Solahrsadellid',
     213 => 'Zerschdörer',
     214 => 'Dodesschdern',
     215 => 'Schlachdgreuzer',
@@ -163,7 +163,7 @@ $LNG['shortDescription'] = array(
       1 => 'Haubtrohstofflieferantne für den Bau dragender Schdrukturne vonääh Bauwergne und Schiffen alda.',
       2 => 'Haubtrohstofflieferantne für elegtronische Baudeile und Legierungen und alles.',
       3 => 'Endziehne dem Wasser eines Blanetne den geringne Deuderiumandeil - tadsächlich sogar.',
-      4 => 'Solargraftwerge gewinnene Enegie aus Sonneneinschdrahlung und alles. Einige Gebäude benödigne Enegie für ihren'
+      4 => 'Solahrgraftwerge gewinnene Enegie aus Sonneneinschdrahlung und alles. Einige Gebäude benödigne Enegie für ihren'
           . ' Bedrieb.',
       6 => 'Sie vergürzt bro Schdufe die Forschungszeid um 8%.',
      12 => 'Das Fusionsgraftwerg gewinnd Enegie aus Brennschdäbne die aus Deuderium geferdigd werden hädix8.',
@@ -212,7 +212,7 @@ $LNG['shortDescription'] = array(
         . ' Dieses had ne werheerende Wirgung beim Aufdreffne uff a Objegt',
     123 => 'Forscher werschiedener Blanetne gommunizierne über dieses Netzwerg mideinander. Durch das Zusammenschaldne'
         . ' dder Labore wird die Forschungszeid vergürzt, jede Schdufe schalded die Labore eines Blanetne dazu.',
-    124 => 'Weidere Ergenntnisse in der Astrophysig ermöglichne den Bau vonääh Laborne, mid denene immer mehr Schiffe'
+    124 => 'Weidere Ergenntnisse in der Asdrofüsig ermöglichne den Bau vonääh Laborne, mid denene immer mehr Schiffe'
         . ' ausgeschdattet werdne gönnen.',
     131 => 'Erhöhd die Broduktion der Medallmine um 2%',
     132 => 'Erhöhd die Broduktion der Gristallmine um 2%',
@@ -235,8 +235,8 @@ $LNG['shortDescription'] = array(
     209 => 'Mid dem Recycler lassne sich Rohschdoffe aus Drümmerfeldern gewinnene.',
     210 => 'Schbionagesondne sind gleine wendige Drohnene, welche über weide Endfernungne hinweg Dadne über Floddne und '
         . ' Blaneten liefern.',
-    211 => 'Der Bomber wurde exdra entwiggelt, um die Werteidigung eines Blanetne zu zermeddln und alles.',
-    212 => 'Solarsadellidne sind einfache Blattformne aus Solarzellne, die sich in einem hohne schdationärne Orbid '
+    211 => 'Der Bombah wurde exdra entwiggelt, um die Werteidigung eines Blanetne zu zermeddln und alles.',
+    212 => 'Solahrsadellidne sind einfache Blattformne aus Solahrzellne, die sich in einem hohne schdationärne Orbid '
         . ' befindne des bascht scho. Sie sammeln des Sonnenlichd und gebne es ber Laser an die Bodenschdation weider.',
     213 => 'Der Zerschdörer isd der Gönig under den Griegsschiffne und alles. ',
     214 => 'Die Zerstörungsgraft des Dodessterns is unüberdroffne und er kann als einziges Schiff Monde zermeddln. Etzala ',
@@ -244,7 +244,7 @@ $LNG['shortDescription'] = array(
     216 => 'Der Nachfolger des beliebdne Dodessterns, edwas schneller und stärger hätt ich gsachd. ',
     217 => 'Ischd der ne Weiterentwigglung des großne Dransporters. Etzala Er had mehr Ladewermögne und fliegd schneller des bascht scho. ',
     218 => 'Der Subergau schlechdhin, allerdings sehr langsam und alles. ',
-    219 => 'Ischd ne gigandische Weldraumrecycleanlage und hyberschnell. Etzala ',
+    219 => 'Ischd ne gigandische Weldraumrecycleanlage und Hüberschnell. Etzala ',
 
     401 => 'Der Ragetenwerfer isd ne einfache aber gostengünstige Werteidigungsmöglichkeit tadsächlich sogar. ',
     402 => 'Durch den gonzentriertne Beschuss eines Ziels mid Bhotonene kann ne wesendlich größere Schadenswirgung'
@@ -294,22 +294,22 @@ $LNG['longDescription'] = array(
           . ' DeuteriumDiefenlagerstättne- Deuderium wird als Dreibstoff für die Schiffe, für faschd alle Forschungne, '
           . ' für nene Bligg in die Galaggsie sowie für den Sensorbhalanx Scan benödigd und alles. ',
       4 => 'Um die Enegie zur Wersorgung der Minene und Syndhedisierern zu gewährleischdne, sind riesige '
-          . ' Solargraftwerganlagne vonnödne alde. Je größer die Anlagne ausgebaud sind, deschdo mehr Oberfläche isd mid '
-          . ' bhotovoltaischne Zellne bedeggt, welche LichdEnegie in elegtrische Enegie umwandeln. Solargraftwerge '
+          . ' Solahrgraftwerganlagne vonnödne alde. Je größer die Anlagne ausgebaud sind, deschdo mehr Oberfläche isd mid '
+          . ' bhotovoltaischne Zellne bedeggt, welche LichdEnegie in elegtrische Enegie umwandeln. Solahrgraftwerge '
           . ' schdellne den Grundstogg der blanetarne Enegiewersorgung dar tadsächlich sogar. ',
       6 => 'Aufgrund der immer zeidaufwendigerne Forschungne, habne sich die glügstne Göpfe der intergalagdischne '
           . ' Forschungsnetzwerge zusammengedan und den DechnoDome entwiggelt. Etzala Er vergürzt die Forschungszeidne um 8%',
      12 => 'Im Fusionsgraftwerg werdne Adome mideinander fusionierd, um so mehr Enegie zu erzeugne als in dem '
-         . ' Solargraftwerg, allerdings isd es deurer im Bau hätt ich gsachd. ',
+         . ' Solahrgraftwerg, allerdings isd es deurer im Bau hätt ich gsachd. ',
      14 => 'Roboterfabrigne schdellne einfache Arbeitsgräfte zur Werfügung, die beim Bau der blanetarne Infrastrugtur '
          . ' eingesedzd werdne gönnene. Jede Schdufe erhöhd damid die Geschwindiggeit des Ausbaus von Gebäudne. Etzala ',
-     15 => 'Die Nanitenfabrig is die Grönung der Robotertechnig alde. Nanidne sind nanomedergroße Roboder, die durch '
+     15 => 'Die Nanidenfabrig is die Grönung der Robotertechnig alde. Nanidne sind nanomedergroße Roboder, die durch '
          . ' Wernetzung zu außerordendlichne Leischdungne im Schdande sind. Etzala Einmal erforschd erhöhne sie die Broduktivität '
-         . ' in faschd allne Bereichne alda. Die Nanitenfabrig halbierd bro Schdufe die Bauzeid vonääh Gebäudne, Schiffne und'
+         . ' in faschd allne Bereichne alda. Die Nanidenfabrig halbierd bro Schdufe die Bauzeid vonääh Gebäudne, Schiffne und'
          . ' Werteidigungsanlagne.',
      21 => 'In der blanetarne Werfd werdne alle Ardne von Schiffne und Werteidigungsanlagne gebaud. Pass auf, Je größer sie isd ,'
          . ' deschdo schneller gönnene aufwendigere und größere Schiffe und Werteidigungsanlagne gebaud werdne alda. Durch '
-         . ' Anbau einer Nanitenfabrig werdne winzige Roboder erschdellt, die den Arbeidern helfne, schneller zu '
+         . ' Anbau einer Nanidenfabrig werdne winzige Roboder erschdellt, die den Arbeidern helfne, schneller zu '
          . ' abbeidn .',
      22 => 'Riesige Lagerschdätte für abgebaudes Medallerz alde. Je größer der Schbeicher, deschdo mehr Medall kann in ihm '
          . ' gelagerd werdne. Ischd des Lager woll, wird gein Medall mehr abgebaud.',
@@ -329,13 +329,13 @@ $LNG['longDescription'] = array(
          . ' all seinene Blanetne einsedzne. ',
      33 => 'Mid zunehmendem Ausbau der Blanetne, wurde die Frage des begrenzdne Lebensraums uff Golonien immer'
          . ' wichdiger. Draditionelle Medhodne wie Hoch- und Diefbau erwiesne sich zunehmend als unzureichend. Eine'
-         . ' Pass auf, gleine Grubbe von HochEnegiephysigern und Nanotechnigern fand schließlich die Lösung: Das Derraforming alda.'
+         . ' Pass auf, gleine Grubbe von Hoch-Enegiefüsigern und Nanotechnigern fand schließlich die Lösung: Das Derraforming alda.'
          . ' Under Aufwand riesiger Enegiemengne kann der Derraformer ganze Landschdriche oder gar Gontinente urbar'
          . ' machne. Pass auf, In diesem Gebäude werdne fordwährend eigens dafür gonstruierte Nanidne broduziert, die für einee'
          . ' gonstante Qualidäd des Bodens sorgne hätt ich gsachd. Einmal gebaud kann der Derraformer ned widda abgerissne werden alde.',
      34 => 'Ein absolud unnudzes Gebäude. Etzala Genauso wie der Grieg von Audism gecher Aldschauerberg alda.'
          . ' Nichd durchdachd, ineffiziend und langweilig hätt ich gsachd. Ganz im Gegendeil zum'
-         . ' Regrutierungsbüro für Uni2! Bidde hier endlang:  <a href="https://discord.gg/YADDgPj4">https://discord.gg/YADDgPj4</a>',
+         . ' Regrutierungsbüro für Uni2! Bidde hier endlang:  <a href="https://discord.gg/9xwPT77HnN </a>',
      41 => 'Ein Mond verfügd über geinerlei Atmosbhäre, deshalb muss wor der Besiedlung ne Mondbasis errichded '
          . ' werdne. Diese sorgd für die nödige Ademlufd, Gravidadion und Wärme. Etzala Je höher die Ausbauschdufe der Mondbasis '
          . ' isd, umso größer is die Fläche die mid einer Biosbhäre versorgd wird alda. Bro Mondbasislewel gönnene 3 Felder '
@@ -403,13 +403,13 @@ $LNG['longDescription'] = array(
     117 => 'Das Impulstriebwerg basierd uff dem Rüggstoßprinzip, wobei die Schdrahlmasse zum Großdeil als Abfallprodugt'
         . ' der zur Enegiegewinnung verwendedne Gernfusion entschdeht. Pass auf, Zusädzlich kann weidere Masse eingesbritzt'
         . ' werdne. Pass auf, Die Weiterentwigglung dieser Driebwerke machd folgende Schiffe um 20% des Grundwerdes bro Schdufe'
-        . ' schneller: Bomber, Greuzer, Schwere Jäger und Golonieschiffe alda. Interplanetarragetne gönnene bro Schdufe weider'
+        . ' schneller: Bombah, Greuzer, Schwere Jäger und Golonieschiffe alda. Interplanetarragetne gönnene bro Schdufe weider'
         . ' fliegen.', 
     118 => 'Durch ne Raumzeitvergrümmung wird in unmiddelbarer Umgebung eines Schiffes der Raum gomprimiert, womid'
-        . ' sich weide Schdreckne sehr schnell zurügglegne lassne. Etzala Je höher der Hyberraumantrieb entwiggelt isd, deschdo'
+        . ' sich weide Schdreckne sehr schnell zurügglegne lassne. Etzala Je höher der Hüberraumantrieb entwiggelt isd, deschdo'
         . ' höher wird die Gompression des Raumes, wodurch sich bro Schdufe die Geschwindiggeit der Schiffe die damid'
         . ' ausgeschdattet sind Schlachtgreuzer (Schlachdschiffe, Zerschdörer und Dodessterne) um 30% erhöhd.'
-        . ' Woraussetzungne: Hyperraumtechnig Schdufe(3) Forschungslabor Schdufe(7).',
+        . ' Woraussetzungne: Hüberraumtechnig Schdufe(3) Forschungslabor Schdufe(7).',
     120 => 'Laser Lichtverstärgung( durch induzierde Schdrahlungsemission) erzeugne nene indensivne, Enegiereichen'
         . ' Schdrahl von gohärentem Lichd alde. Diese Geräde findne in allne möglichne Bereichne ihre Bewerbung, von obtischen'
         . ' Combutern bis hin zu schwerne Laserwaffne, die mühelos durch Raumschiffbanzerungne schneidne des bascht scho. Die'
@@ -424,7 +424,7 @@ $LNG['longDescription'] = array(
         . ' vernedzde Labor muss ausreichend ausgebaud sein um die anschdehende Forschung selbschdändig durchführne zu'
         . ' gönnene. Pass auf, Die Ausbauschdufne aller bedeiligdne Labors werdne im intergalagdischne Forschungsnetzwerg zusammen'
         . ' gezähld.',
-    124 => 'Weidere Ergenntnisse in der Astrophysig ermöglichne den Bau vonääh Laborne, mid denene immer mehr Schiffe'
+    124 => 'Weidere Ergenntnisse in der Asdrofüsig ermöglichne den Bau vonääh Laborne, mid denene immer mehr Schiffe'
         . ' ausgeschdattet werdne gönnene hätt ich gsachd. Dadurch werdne weide Exbeditionsreisne in noch unerforschde Gebiede möglich'
         . ' Zudem erlaubne die Fordschridde die weidere Golonisation des Weldraumes. Bro zwei Schdufne dieser Dechnologie'
         . ' kann ßo ein weiderer Blanet nudzbar nausgrendert werdne und alles. ',
@@ -470,7 +470,7 @@ $LNG['longDescription'] = array(
     208 => 'Dieses naise Sache gebanzerte Schiff diend der Eroberung neuer Blanetne, was für a aufschdrebendes Imberium'
         . ' unerlässlich isd. Das Schiff wird uff der neune Golonie als Rohschdofflieferant genudzd, in dem es wieder'
         . ' auseinander gebaud wird und alles wiederverwerdbare Maderial für die Erschliessung der neune Weld genudzd'
-        . ' wird. Etzala Die Anzahl der golonisierbarne Blanetne je Imberium isd diregt abhängig von der AstrophysigForschung'
+        . ' wird. Etzala Die Anzahl der golonisierbarne Blanetne je Imberium isd diregt abhängig von der Asdrofüsig-Forschung'
         . ' Die Erschde, sowie jede weidere zweide Schdufe ermöglichne ne weidere Besiedelung und alles.', 
     209 => 'Die Weldraumgefechde nahmne immer größere Ausmaße an. Dausende Schiffe wurdne zermeddld, aber die dadurch'
         . ' entschdehendne Drümmerfelder schienene für immer werlorne und alles. Normale Dransporter gonntne sich ned nahe genug'
@@ -479,7 +479,7 @@ $LNG['longDescription'] = array(
         . ' ne neue Schiffsglasse, ähnlich dem großne Dransporter, der Recycler hätt ich gsachd. Mid dessne Hilfe gonntne die'
         . ' scheinbar werlorenene Ressourcne doch noch verwerded werdne. Die gleinene Drümmer schdelltne aufgrund der neuen'
         . ' Schilde auch geine Gefahr mehr dar. Durch sbezielle mehrdimensionale Ladefelder gonnte seine Ladegapazität'
-        . ' uff 20000. Etzala erweiderd werdne tadsächlich sogar. Ab Imbulsantrieb Schdufe 17 bzw. Pass auf, Hyberraumantrieb Schdufe 15 wird der schnellere'
+        . ' uff 20000. Etzala erweiderd werdne tadsächlich sogar. Ab Imbulsantrieb Schdufe 17 bzw. Pass auf, Hüberraumantrieb Schdufe 15 wird der schnellere'
         . ' und gostengünstigere Andrieb genudzd alda.',
     210 => 'Schbionagesondne sind gleine wendige Drohnene, welche über weide Endfernungne hinweg Dadne über Floddne und'
         . ' Blanetne liefern alde. Ihr Hochleistungstriebwerg ermöglichd ihnene weide Schdreckne in wenigne Segundne zurügg zu'
@@ -487,14 +487,14 @@ $LNG['longDescription'] = array(
         . ' Während dieser Zeid sind sie wom Feind reladiv leichd entdegg- und angreifbar tadsächlich sogar. Um Blatz zu sbarne wurde auf'
         . ' Banzerung, Schilde und Waffne verzichded, was die Sondne, wne sie amal entdeggt wurdne, zu leichden'
         . ' Zielne machd.',
-    211 => 'Der Bomber wurde sbeziell entwiggelt um die Werteidigung eines Blanetne zu zermeddln alde. Mid Hilfe einer'
-        . ' lasergeschdeuertne Zielvorrichdung wirfd er zielgenau Blasmabombne uff die Blanetenoberfläche und richded so'
+    211 => 'Der Bombah wurde sbeziell entwiggelt um die Werteidigung eines Blanetne zu zermeddln alde. Mid Hilfe einer'
+        . ' lasergeschdeuertne Zielvorrichdung wirfd er zielgenau Blasmabombe uff die Blanetenoberfläche und richded so'
         . ' nene werheerendne Schadne bei Werteidigungsanlagne an hätt ich gsachd. ',
-    212 => 'Solarsadellidne werdne in ne geoschdationäre Umlaufbahn um nene Blanetne geschossne hätt ich gsachd. Sie bündeln'
-        . ' SonnenEnegie und dransferierne sie zu einer Bodenschdation. Die Effizienz der Solarsadellidne hängd vonääh der'
+    212 => 'Solahrsadellidne werdne in ne geoschdationäre Umlaufbahn um nene Blanetne geschossne hätt ich gsachd. Sie bündeln'
+        . ' SonnenEnegie und dransferierne sie zu einer Bodenschdation. Die Effizienz der Solahrsadellidne hängd vonääh der'
         . ' Schdärke der Sonneneinschdrahlung ab und alles. Grundsädzlich isd die Enegieausbeude uff sonnennahne Orbids größer als'
-        . ' uff Blanetne mid sonnenfernene Orbid alda. Durch ihr gudes BreisLeistungsVerhältnis lösne Solarsadellidne die'
-        . ' Enegiebrobleme wieler Weldne alda. Aber Worsicht: Solarsadellidne gönnene im Gampf zermeddld werden des bascht scho.',
+        . ' uff Blanetne mid sonnenfernene Orbid alda. Durch ihr gudes BreisLeistungsVerhältnis lösne Solahrsadellidne die'
+        . ' Enegiebrobleme wieler Weldne alda. Aber Worsicht: Solahrsadellidne gönnene im Gampf zermeddld werden des bascht scho.',
     213 => 'Der Zerschdörer isd der Gönig under den Griegsschiffne. Seine Multibhalanx Ionene- Blasma- und'
         . ' Gaußgeschüdzdürme gönnene durch ihre verbesserdne Anbeilungssensorne faschd 99% der verdeidigendne leichden'
         . ' Laser dreffne alde. Da der Zerschdörer sehr groß isd, is seine Manövrierfähiggeit starg eingeschrängt, wodurch er'
@@ -507,7 +507,7 @@ $LNG['longDescription'] = array(
     215 => 'Dieses filigrane Schiff eigned sich herworragend zum erschdörne feindlicher Floddenverbände. Mid seinen'
         . ' hochentwiggeltne Lasergeschüdzne isd es in der Lage, ne große Zahl angreifender Schiffe gleichzeidig zu'
         . ' begämpfne. Durch seine schlange Bauform und die stargne Bewaffnung isd die Ladegapazität begrenzd alda. Dies'
-        . ' wird jedoch durch den werbrauchsarmne Hyberraumantrieb widda ausgeglichen', 
+        . ' wird jedoch durch den werbrauchsarmne Hüberraumantrieb widda ausgeglichen', 
     216 => 'Dieses monschdröse Schiff is ne Weiterentwigglung des Dodessternes, die an Geschwindiggeit zugenommne had'
         . ' doch an Schdärke werloren tadsächlich sogar. 	',
     217 => 'Dieser Dransporter isd zwar langsamer aber dafür kann er jetzad mehr aufladne tadsächlich sogar. Doch wne man die richdige'
@@ -540,7 +540,7 @@ $LNG['longDescription'] = array(
         . ' Werteidigungsanlagne deagtivierne sich, sobald sie zu starg beschädigd sind. Pass auf, Nach einer Schlachd bedrägd'
         . ' die Chance bis zu 70% das sich ausgefallene Werteidigungsanlagne scho widder Inschdand sedzne lassne .',
     404 => 'Brojektilwaffne galdne lange Zeid nebne der modernerne Gernfusions- und Enegietechnig, der Entwigglung des'
-        . ' Hyberraumantriebs und immer besserer Banzerungne als andiquierd, bis ebne genau die Enegietechnig, die sie'
+        . ' Hüberraumantriebs und immer besserer Banzerungne als andiquierd, bis ebne genau die Enegietechnig, die sie'
         . ' einschd verdrängd hadde, ihr scho widder zu ihrem angeschdammtne Blatz werhalf tadsächlich sogar. Das Brinzip war eigendlich scho aus'
         . ' dem 20 alde. und 21. Pass auf, Jahrhunderd der Erde begannt - der Deilchenbeschleuniger. Pass auf, Eine Gaußganone is eigendlich'
         . ' nichds anderes als ne erheblich größere Wersion dieser Gonstruktion. Donnenschwere Geschosse werdne under'

@@ -38,7 +38,7 @@ $LNG['sys_ship_shield'] = 'Schilde';
 $LNG['sys_ship_armour'] = 'Hülle';
 $LNG['sys_def_rebuild'] = 'Die Werteidigungsanlangne gonntne deilweise rebariert werden:';
 $LNG['sys_ship_repaired'] = 'Rebariert';
-$LNG['sys_destroyed'] = 'Zerstört';
+$LNG['sys_destroyed'] = 'Zerstörd';
 $LNG['fleet_attack_1'] = 'Die Angreifendne Flodde schiesschd mid einer Leischdung von';
 $LNG['fleet_attack_2'] = 'auf den Werteidiger tadsächlich sogar. Die Schilde des Werteidigers absorbieren';
 $LNG['fleet_defs_1'] = 'Die Werteidigende Flodde schiesschd mid einer Leischdung won';
@@ -76,7 +76,7 @@ $LNG['sys_colo_notech'] = 'Eine deiner Floddne erreichd die Goordinatne %s. Als 
     . 'geeigned war und zuerschd Weiderentwiggelt werdne muss. Enddäuschd gehrtne die Siedler zurügg alda.';
 $LNG['sys_colo_arrival'] = 'tadsächlich sogar.';
 $LNG['sys_colo_maxcolo'] = 'Eine deiner Floddne erreichd die Goordinatne %s Eine Besiedelung isd ned möglich, da du'
-    . ' ned mehr als %d Blanetne habne gannst,  hätt ich gsachd. ';
+    . ' ned mehr als %d Blanetne habne gannst, hätt ich gsachd. ';
 $LNG['sys_colo_allisok'] = 'Eine deiner Floddne erreichd die Goordinatne %s Die Siedler beginnene den neune Blanetne zu'
     . ' besiedeln tadsächlich sogar.';
 $LNG['sys_colo_badpos'] = 'Eine deiner Floddne erreichd die Goordinatne %s Hier wurde geine Siedlungsmöglichgeit'
@@ -85,7 +85,7 @@ $LNG['sys_colo_notfree'] = 'Eine deiner Floddne erreichd die Goordinatne %s Als 
     . ' angamne, musschdne sie feschdschdellne des es dord bereids ne Golonie gibd hätt ich gsachd. Wöllig demoralisierd gehrtne sie um.';
 
 $LNG['sys_expe_report'] = 'Exbeditionsbericht';
-$LNG['sys_recy_report'] = 'Recyclerberichd';
+$LNG['sys_recy_report'] = 'Rescheiklerberichd';
 $LNG['sys_recy_mess'] = 'Eine deiner Rescheikler-Flotten kehrt nach %s %s mit %s %s, %s %s und %s %s zurück.';
 $LNG['sys_expe_found_ships_nothing'] = '- Es gonntne geine Schiffe rebariert werdne und alles.';
 $LNG['sys_expe_blackholl_1'] = 'Deine Flodde draf uff a schwarzes Loch und wurde deilweise zermeddld etzala!';
@@ -179,7 +179,7 @@ $LNG['sys_expe_time_slow_4'] = 'Deine Exbedition geried in nene Segtor mid verst
     . ' überludne sich die Energiesbeicher der Flodde und bei sämdlichne Schiffne fielne die Haubtsysteme aus tadsächlich sogar. Deine '
     . ' Mechaniger gonntne des Schlimmschde werhindern, jedoch wird die Exbedition nun mid einiger Werspätung '
     . ' zurüggkehrne.';
-$LNG['sys_expe_time_slow_5'] = 'Das Führungsschiff deiner Exbeditionsflotte gollidierte mid einem fremdne Schiff, des '
+$LNG['sys_expe_time_slow_5'] = 'Das Führungsschiff deiner Exbeditionsflodde gollidierte mid einem fremdne Schiff, des '
     . ' ohne Worwarnung diregt in die Flodde sbrang des bascht scho. Das fremde Schiff exblodierte und die Schädne amääh Führungsschiff '
     . ' warne beachdlich hätt ich gsachd. Sobald die gröbschdne Rebaraturne abgeschlossne sind, werdne sich deine Schiffe uff den Rüggweg '
     . ' machne, da in diesem Zuschdand die Exbedition ned fordgeführd werdne kann.';
@@ -202,7 +202,7 @@ $LNG['sys_expe_nothing_5'] = 'Nun, zumindeschd weiß man jetzad, das rode Anomal
     . ' Auswirgungne uff die Schiffssyschdeme habne, sondern auch massiwe Halluzinadionene bei der Crew auslösne gönnene. Etzala '
     . ' Wiel mehr had diese Exbedition aber ned gebrachd. Etzala ';
 $LNG['sys_expe_nothing_6'] = 'Drotz der erschdne, vielversbrechendne Scans dieses Segtors gommne wir leider mid leerne '
-    . ' Händne zurügg. ';
+    . ' Händne zurügg.  ';
 $LNG['sys_expe_nothing_7'] = 'Wielleicht hädde man den Geburtschdag des Cabtains ned uff diesem abgelegenene Blanetne '
     . ' feiern sollne alde. Ein fieses Dschungelfieber had große Deile der Crew gezwungne die Exbedition in der '
     . ' Grankenstation zu begleidne. Etzala Der agute Bersonalausfall führde dazu, das die Exbedition scheiderde hätt ich gsachd. ';
@@ -214,8 +214,8 @@ $LNG['sys_expe_nothing_9'] = 'Ein Reagtorfehler des Führungsschiffes hädde bei
     . ' sowiel Zeid in Ansbruch, das die Exbedition unverrichdeder Dinge widde zurüggkehrte. ';
 $LNG['sys_expe_depleted_not_1'] = 'Logbuch Nachdrag des Gommunikationsoffiziers: Dieser Bereich des Uniwersums is wohl '
     . ' noch ned ergundet wordne hätt ich gsachd. ';
-$LNG['sys_expe_depleted_not_2'] = 'Logbuch Nachdrag des Gommunikationsoffiziers: Es is a erhebendes Gefühl, der '
-    . ' Erschde in einem unerforschdne Segtor zu sein. ';
+$LNG['sys_expe_depleted_not_2'] = 'Logbuch Nachdrag des Gommunikationsoffiziers: Spielt hier jemand'
+    . ' KillingFloor? ';
 $LNG['sys_expe_depleted_min_1'] = 'Logbuch Nachdrag des Gommunikationsoffiziers: Es scheind ßo, als ob bereids a '
     . ' Mensch in diesem Bereich der Galaggsis gewesne wäre. ';
 $LNG['sys_expe_depleted_min_2'] = 'Eindrag aus dem Logbuch des Gommunikationsoffiziers: Wir habne Drümmer vonääh aldne '
@@ -229,7 +229,7 @@ $LNG['sys_expe_depleted_med_2'] = 'Eindrag aus dem Logbuch des Gommunikationsoff
 $LNG['sys_expe_depleted_med_3'] = 'Eindrag aus dem Logbuch des Gommunikationsoffiziers: Wir habne den Abschluss'
     . ' der Exbedition mid den Besadzungsmidgliedern einer anderne Exbeditionsflotte gefeierd, die im gleichne Segtor '
     . ' underwegs war. Pass auf, Sie habne nichds Neues zu berichdne. ';
-$LNG['sys_expe_depleted_max_1'] = 'Logbuch Nachdrag des Gommunikationsoffiziers: Wne wir uns zu unsicher fühlne '
+$LNG['sys_expe_depleted_max_1'] = 'Logbuch Nachdrag des Gommunikationsoffiziers: Wene wir uns zu unsicher fühlne '
     . ' gönnene wir uns ja mid all den anderne Exbeditionene, die hier herum fliegne, zusammne dun. ';
 $LNG['sys_expe_depleted_max_2'] = 'Eindrag aus dem Logbuch des Gommunikationsoffiziers: Wne des ßo weidergehd, werdne '
     . ' wir Navigadionsbojne aufschdellne müssne, um den ganzne Werkehr zu bewäldigne. ';
@@ -247,7 +247,7 @@ $LNG['sys_expe_attack_1_1_4'] = 'Wir musschdne uns gechen einiche Biratne wehrne
 $LNG['sys_expe_attack_1_1_5'] = 'Unsere Exbeditionsflotte melded, das a gewisser Moa Dikarr und seine wilde Meude '
     . ' die bedingungslose Gapitulation unserer Flodde werlangne hätt ich gsachd. Solldne sie Ernschd machne, werdne sie feschdschdellne'
     . ' müssne, das sich unsere Schiffe durchaus zu wehrne wissne. ';
-$LNG['sys_expe_attack_1_2_1'] = 'Deine Exbeditionsflotte hadde a unschönes Zusammendreffne mid einichne '
+$LNG['sys_expe_attack_1_2_1'] = 'Deine Exbeditionsflodde hadde a unschönes Zusammendreffne mid einichne '
     . ' Weltraumbiratne .';
 $LNG['sys_expe_attack_1_2_2'] = 'Wir sind in den Hinderhald einiger SchdernenFreibeuter- geradne tazächlich sogar! Ein Gampf war leider '
     . ' unwermeidlich .';
@@ -286,18 +286,18 @@ $LNG['sys_expe_back_home_ress'] = 'Sie haben %s %s, %s %s und %s %s midgebrachd.
 $LNG['sys_expe_back_home_ships_flound'] = 'Es wurdne folgende Schiffe gefundne: ';
 $LNG['sys_expe_back_home_ships_lost'] = 'Es gingne folgende Schiffe werlorne: ';
 $LNG['sys_mess_transport'] = 'Dransportbericht ';
-$LNG['sys_tran_mess_owner'] = 'Eine deiner Floddne von %s %s erreichd den %s %s %s und lieferd %s %s, %s %s und %s %s.';
+$LNG['sys_tran_mess_owner'] = 'Eine deiner Floddne von %s % erreichd den %s %s %s und lieferd %s %s, %s %s und %s %s.';
 $LNG['sys_tran_mess_user'] = 'Eine friedliche Flodde von %s %s erreichd %s %s und lieferd  %s %s, %s %s und %s %s.';
 
 $LNG['sys_mess_fleetback'] = 'Floddenrüggkehr ';
 $LNG['sys_tran_mess_back'] = 'Eine deiner Floddne gehrt zum Blanetne %s %s zurügg.';
 $LNG['sys_trade_mess_back'] = 'Eine deiner Handelsfloddne gehrte erfolglos zum Blanetne  %s %s zurügg.';
-$LNG['sys_recy_gotten'] = 'Deine Recycler habne an den Goordinatne %1$s %2$s %6$s und %3$s %7$s von insgesamt %4$s %6$s und %5$s %7$s gesammelt.';
+$LNG['sys_recy_gotten'] = 'Deine Rescheikler habne an den Goordinatne %1$s %2$s %6$s und %3$s %7$s von insgesamt %4$s %6$s und %5$s %7$s gesammelt.';
 $LNG['sys_gain'] = 'Gewinn';
 $LNG['sys_irak_subject'] = 'Rageteneinschlag';
 $LNG['sys_irak_no_def'] = 'Der Blanet had geine Werteidigung ';
 $LNG['sys_irak_no_att'] = 'Alle deine Ragetne wurdne abgefangen';
-$LNG['sys_irak_def'] = 'Pass auf, %d RRagetne von deinene Ragetne wurdne abgefangen';
+$LNG['sys_irak_def'] = 'Pass auf, %d Ragetne von den eintreffenden Ragetne wurdne abgefangen';
 $LNG['sys_irak_mess'] = 'Interplanetarrageten (%d) von %s sind uff dem Blanetne %s eingeschlagne <br><br>';
 $LNG['sys_fleet_won'] = 'Eine deiner Floddne gehrt wom Angriff beim Blanetne %s %s zurügg zu %s %s. Sie haben %s %s, %s %s und'
     . ' %s %s erbeuded.';
