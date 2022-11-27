@@ -19,6 +19,7 @@ class MarketManager {
 
 	private $_pushTolerance = 0.3; // accepted market volatility percentage, not triggering push check
 
+    // return useful default values for when there are no trades
 	private function getDefaultRatio($expectedrestype)
 	{
 		if ($expectedrestype == $this->_restype_metal) return 3;
