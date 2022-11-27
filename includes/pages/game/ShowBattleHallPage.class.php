@@ -67,7 +67,7 @@ class ShowBattleHallPage extends AbstractGamePage
 		global $USER, $LNG;
     	require_once 'includes/classes/class.BattleHallFilter.php';
 
-		$memorial = HTTP::_GP('memorial', 0);
+		$memorial = HTTP::_GP('memorial', 1);
 		$timeframe = HTTP::_GP('timeframe', 0);
 		$diplomacy = HTTP::_GP('diplomacy', 0);
 		$galaxy = HTTP::_GP('galaxy', 0);

@@ -24,6 +24,7 @@ class StatisticCronjob implements CronjobTask
             require_once('includes/models/StatPoints.php');
             $stat = new Statbuilder();
             $stat->generateStats();
+		    $stat -> buildRecords();
         } catch (Exception $exception) {
             echo $exception->getMessage();
         }

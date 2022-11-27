@@ -19,7 +19,7 @@
 		{$File}
 	</td>
 	<td>
-		{$yesorno.1} <input class="yes" name="rights[{$File}]" type="radio"{if $Rights.$File == 1} checked="checked"{/if} value="1"> {$yesorno.0} <input class="no" name="rights[{$File}]" type="radio"{if $Rights.$File != 1} checked="checked"{/if} value="0">
+		{$yesorno.1} <input class="yes" name="rights[{$File}]" type="radio"{if !empty($Rights.$File) && $Rights.$File == 1} checked="checked"{/if} value="1"> {$yesorno.0} <input class="no" name="rights[{$File}]" type="radio"{if !empty($Rights.$File) && $Rights.$File != 1} checked="checked"{/if} value="0">
 	</td>
 </tr>
 {/foreach}

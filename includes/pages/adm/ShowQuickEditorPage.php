@@ -240,6 +240,7 @@ function ShowQuickEditorPage()
                 'system'        => $UserData['system'],
                 'planet'        => $UserData['planet'],
                 'authlevel'     => $UserData['authlevel'],
+                'qe_change'     => '',
                 'authattack'    => $UserData['authattack'],
                 'multi'         => $GLOBALS['DATABASE']->getFirstCell(
                     "SELECT COUNT(*) FROM " . MULTI . " WHERE userID = " . $id . ";"

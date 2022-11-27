@@ -50,7 +50,7 @@ $LNG['bad_forum_url'] = 'geine ForenURL- definierd';
 $LNG['admin_access_1'] = 'Sie habne temborärne Zugriff uff adminischdrative Fungtionen.';
 $LNG['admin_access_link'] = 'Deagtivierne Sie diesne Zugriff';
 $LNG['admin_access_2'] = ', wne Sie ihn ned länger benödigen';
-$LNG['banned_message'] = 'Sie wurdne vom Banhammer erschlagne tadsächlich sogar. Wne Sie glaubne, das es sich dabei um ein Missverschdändnis handeld,'
+$LNG['banned_message'] = 'Sie wurdne vom Banhammer erschlagne tadsächlich sogar. Wene Sie glaubne, das es sich dabei um ein Missverschdändnis handeld,'
     . 'schreibne Sie uns über Discord:  <a href="https://discord.gg/jhYYN3yuat">https://discord.gg/jhYYN3yuat</a>';
 
 //----------------------------------------------------------------------------//
@@ -241,7 +241,7 @@ $LNG['gl_to'] = 'nach';
 
 //----------------------------------------------------------------------------//
 //PHALANX
-$LNG['px_no_Deuderium'] = 'Sie habne ned genügend Deuderium!';
+$LNG['px_no_Deuderium'] = 'Sache mal, sie habne ned genügend Deuderium!';
 $LNG['px_scan_Bosition'] = 'Scan Bosition';
 $LNG['px_fleet_movement'] = 'Momendane Floddenbewegungne';
 $LNG['px_no_fleet'] = 'geine  Floddenbewegungne vorhanden.';
@@ -328,7 +328,7 @@ $LNG['fl_expedition_alert_message'] = 'Achdung die Exbedition bringd Gefahrne mi
 $LNG['fl_vacation_mode_active'] = 'Sie befindne sich im Urlaubsmodus';
 $LNG['fl_expedition_fleets_limit'] = 'Sie gönnene ned mehr Exbeditionene startne!';
 $LNG['fl_week_player'] = 'Schbieler is zu schwach für sie!';
-$LNG['fl_strong_player'] = 'SSchbieler isd zu starg für sie!';
+$LNG['fl_strong_player'] = 'Schbieler isd zu starg für sie!';
 $LNG['fl_in_vacation_player'] = 'Schbieler befinded sich im Urlaubsmodus';
 $LNG['fl_multi_alarm'] = 'MuldiAlarm!';
 $LNG['fl_no_slots'] = 'geine Slods mehr verfügbar!';
@@ -374,7 +374,7 @@ $LNG['fl_bash_protection'] = 'Ischd des dein ernschd? Du schtehst vor meiner Dü
 $LNG['fl_admin_attack'] = 'Du gannst geine Adminischdratorne angreifne';
 $LNG['fl_target_exists'] = 'Zielblanet exischdiert';
 $LNG['fl_target_not_exists'] = 'Zielblanet exischdiert ned!';
-$LNG['fl_expedition_tech_required'] = 'Es wird die Forschung *ferstellt Schdimme:* "Äh, Astrophysik" Schdufe( 1 oder höher) benödigd, um eine'
+$LNG['fl_expedition_tech_required'] = 'Es wird die Forschung *ferstellt Schdimme:* "Äh, Astrofüsig" Schdufe( 1 oder höher) benödigd, um eine'
     . ' Exbedition zu starten.';
 $LNG['fl_only_planets_colonizable'] = 'Nur Blanetne gönnene golonisiert werden hädix8!';
 $LNG['fl_player_is_noob'] = 'Was soln der fack? Schbieler befindeschd sich im Noobschutz!';
@@ -1047,13 +1047,13 @@ $LNG['cr_destroyed'] = 'Zerschdört!';
 
 //----------------------------------------------------------------------------//
 // FleetAjax.php
-$LNG['fa_not_enough_probes'] = 'Fehler, geine  Sonden vorhanden';
+$LNG['fa_not_enough_probes'] = 'Fehler, geine Sonden vorhandne';
 $LNG['fa_galaxy_not_exist'] = 'Fehler, Galaggsie ned vorhanden';
 $LNG['fa_system_not_exist'] = 'Fehler, System ned vorhanden';
 $LNG['fa_planet_not_exist'] = 'Fehler, Blanet ned vorhanden';
 $LNG['fa_not_enough_fuel'] = 'Fehler, ned genügend Deuderium vorhanden';
 $LNG['fa_no_more_slots'] = 'Fehler, geine Slots verfügbar';
-$LNG['fa_no_recyclers'] = 'Fehler, geine Recycler vorhanden';
+$LNG['fa_no_recyclers'] = 'Fehler, geine Rescheikler vorhanden';
 $LNG['fa_no_fleetroom'] = 'Fehler, Deuderiumverbrauch größer als Dransportkapazität';
 $LNG['fa_mission_not_available'] = 'Fehler, Mission ned verfügbar';
 $LNG['fa_no_spios'] = 'Fehler, geine Sonden vorhanden';
@@ -1063,7 +1063,7 @@ $LNG['fa_strong_player'] = 'Fehler, Schbieler ist zu stark';
 $LNG['fa_not_spy_yourself'] = 'Fehler, Sie können sich ned selber spionieren';
 $LNG['fa_not_attack_yourself'] = 'Fehler, Sie können sich ned selber angreifne';
 $LNG['fa_action_not_allowed'] = 'Fehler, Syschdemfehler';
-$LNG['fa_vacation_mode_current'] = 'Fehler, Sie befindne  sich im Urlaubsmodus';
+$LNG['fa_vacation_mode_current'] = 'Fehler, Sie befindne sich im Urlaubsmodus';
 $LNG['fa_sending'] = 'Gesended';
 
 //----------------------------------------------------------------------------//
