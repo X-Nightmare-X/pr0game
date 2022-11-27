@@ -100,10 +100,10 @@
 	</tr>
 {if $id != $yourid}
 	<tr>
-		<th colspan="4>{$LNG.pl_etc}</th>
+		<th colspan="4">{$LNG.pl_etc}</th>
 	</tr>
 	<tr>
-		<td><a href="#" onclick="return Dialog.Buddy({$id})">{$LNG.pl_buddy}</a></td><td colspan="2"><a href="#" onclick="return Dialog.PM({$id});" title="{$LNG.pl_message}">{$LNG.pl_message}</a></td>
+		<td><a href="#" onclick="return Dialog.Buddy({$id})">{$LNG.pl_buddy}</a></td><td colspan="3"><a href="#" onclick="return Dialog.PM({$id});" title="{$LNG.pl_message}">{$LNG.pl_message}</a></td>
 	</tr>
 {/if}
 </table>
