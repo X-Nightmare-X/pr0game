@@ -304,3 +304,6 @@ $LNG['type_planet_3'] = 'Luna';
 
 $LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
 $LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
+$LNG['fleet_table_custom_empty_name'] = 'Introduzca el nombre de la flota, por favor.';
+$LNG['custom_fleet'] = 'Flotas personalizadas';
+$LNG['custom_fleet_confirm'] = '¿Quitar la plantilla de la flota %s?';

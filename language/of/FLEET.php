@@ -344,3 +344,6 @@ $LNG['type_planet_3'] = 'Mond';
 
 $LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
 $LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
+$LNG['fleet_table_custom_empty_name'] = 'Bitte einen Floddennamen eingebene!';
+$LNG['custom_fleet'] = 'Benutzerdefinierte Flodden';
+$LNG['custom_fleet_confirm'] = 'Floddenvorlage %s wegmeddln?';

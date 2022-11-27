@@ -331,3 +331,6 @@ $LNG['type_planet_short_3'] = 'M';
 $LNG['type_planet_1'] = 'Planet';
 $LNG['type_planet_2'] = 'Debris';
 $LNG['type_planet_3'] = 'Moon';
+$LNG['fleet_table_custom_empty_name'] = 'Insert a fleet name please!';
+$LNG['custom_fleet'] = 'Custom fleets';
+$LNG['custom_fleet_confirm'] = 'Remove fleet template %s?';
