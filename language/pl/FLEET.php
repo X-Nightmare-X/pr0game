@@ -307,6 +307,8 @@ $LNG['type_planet_3'] = 'Księżyc';
 
 $LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
 $LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
-
+$LNG['fleet_table_custom_empty_name'] = 'Proszę wstawić nazwę floty!';
+$LNG['custom_fleet'] = 'Floty niestandardowe';
+$LNG['custom_fleet_confirm'] = 'Usunąć szablon floty %s?';
 // Translated into Polish by Sirgomo . All rights reversed (C) 2012
 // Edited by TheRavikin. All rights resteemed (C) 2018

@@ -212,11 +212,11 @@
   <table class="table519">
     <tr>
       <th colspan="3" onclick="toogle_custom_fleet()" style="border-spacing: 0px;cursor: pointer;"><span
-          id="c_fleet_span">▼</span> Custom Flotten
+          id="c_fleet_span">▼</span> {$LNG["custom_fleet"]}
       </th>
     </tr>
   </table>
-  <table id="customfleet" class="table519" style="display: none">
+  <table id="customfleet" class="table519" style="display: none" data-noname="{$LNG['fleet_table_custom_empty_name']}" data-delconf="{$LNG['custom_fleet_confirm']}">
     <tr>
       <th colspan=3><select id="cfleet_select" style="width:100%">
 
@@ -226,7 +226,7 @@
       <th colspan=3 style="text-align: center"><input id="cfleet_name" placeholder="name" style="width:90%"></th>
     </tr>
     <tr>
-      <td colspan=1>Expo points:</td>
+      <td colspan=1>{$LNG['type_mission_15']}</td>
       <td colspan=2 id="ship_expo_points"></td>
     </tr>
     <tr>

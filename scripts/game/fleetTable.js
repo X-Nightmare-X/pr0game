@@ -123,7 +123,7 @@ function save_fleet_Select() {
   }
   let fname = document.getElementById("cfleet_name").value
   if (fname.trim() === "") {
-    alert("Insert a fleet name please!")
+    alert()
     return;
   }
   if (!(fname in cfleet)) {
@@ -144,7 +144,7 @@ function change_fleet_select() {
 
 function cf_remove() {
   let oname = document.getElementById("cfleet_select").value
-  let rv = confirm("Remove fleet template " + oname + " ?")
+  let rv = confirm(document.getElementById("customfleet").getAttribute("data-delconf").replace("%s",oname))
 
   if (rv === false) {
     return;
