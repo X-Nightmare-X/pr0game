@@ -19,6 +19,13 @@ class MarketManager {
 
 	private $_pushTolerance = 0.3; // accepted market volatility percentage, not triggering push check
 
+	private function getDefaultRatio($expectedrestype)
+	{
+		if ($expectedrestype == $this->_restype_metal) return 3;
+		if ($expectedrestype == $this->_restype_crystal) return 2;
+		else return 1;
+	}
+
 	/**
 	 * the following 3 functions get a 7 day trade list of all trades on a single resource pair
 	 */
@@ -46,10 +53,9 @@ class MarketManager {
 		]);
 
 		if (empty($trades)) {
-			$resAmount = ($expectedrestype == $this->_restype_metal) ? 4 : 1;
 			$trades []= [
-				'amount' => $resAmount,
-				'metal' => 4,
+				'amount' => $this->getDefaultRatio($expectedrestype),
+				'metal' => $this->getDefaultRatio($this->_restype_metal),
 			];
 		}
 
@@ -80,10 +86,9 @@ class MarketManager {
 		]);
 
 		if (empty($trades)) {
-			$resAmount = ($expectedrestype == $this->_restype_metal) ? 4 : 1;
 			$trades []= [
-				'amount' => $resAmount,
-				'crystal' => 1,
+				'amount' => $this->getDefaultRatio($expectedrestype),
+				'crystal' => $this->getDefaultRatio($this->_restype_crystal),
 			];
 		}
 
@@ -114,10 +119,9 @@ class MarketManager {
 		]);
 
 		if (empty($trades)) {
-			$resAmount = ($expectedrestype == $this->_restype_metal) ? 4 : 1;
 			$trades []= [
-				'amount' => $resAmount,
-				'deuterium' => 1,
+				'amount' => $this->getDefaultRatio($expectedrestype),
+				'deuterium' => $this->getDefaultRatio($this->_restype_deuterium),
 			];
 		}
 		return $trades;
