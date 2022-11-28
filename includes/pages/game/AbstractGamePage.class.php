@@ -311,6 +311,9 @@ abstract class AbstractGamePage
         if ($this->getWindow() !== 'ajax') {
             $this->getPageData();
         }
+        if(!isset($USER,$USER['timezone'])){
+            $USER = array ('timezone' => 'Europe/Berlin');
+        }
 
         $this->assign([
             'lang' => $LNG->getLanguage(),
@@ -318,6 +321,7 @@ abstract class AbstractGamePage
             'scripts' => $this->tplObj->jsscript,
             'execscript' => implode("\n", $this->tplObj->script),
             'basepath' => PROTOCOL . HTTP_HOST . HTTP_BASE,
+            'TIMEZONESTRING' => $USER['timezone']
         ]);
         if (!isset($USER,$USER['timezone'])) {
             $USER = array ('timezone' => 'Europe/Berlin');
