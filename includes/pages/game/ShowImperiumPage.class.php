@@ -95,9 +95,9 @@ class ShowImperiumPage extends AbstractGamePage
 				$basic[901][$Planet['id']] = $config->metal_basic_income * $config->resource_multiplier;
 				$basic[902][$Planet['id']] = $config->crystal_basic_income * $config->resource_multiplier;
 				$basic[903][$Planet['id']] = $config->deuterium_basic_income * $config->resource_multiplier;
-                $planetList['resourceFull'][901][$Planet['id']]			= floor(max($Planet['metal_max'] - $Planet['metal'],0)/$basic[901][$Planet['id']]);
-                $planetList['resourceFull'][902][$Planet['id']]			= floor(max($Planet['crystal_max'] - $Planet['crystal'],0)/$basic[901][$Planet['id']]);
-                $planetList['resourceFull'][903][$Planet['id']]			= floor(max($Planet['deuterium_max'] - $Planet['deuterium'],0)/$basic[901][$Planet['id']]);
+                $planetList['resourceFull'][901][$Planet['id']]			= floor(max($Planet['metal_max'] - $Planet['metal'],0)/max(1,$Planet['metal_perhour']+$basic[901][$Planet['id']]));
+                $planetList['resourceFull'][902][$Planet['id']]			= floor(max($Planet['crystal_max'] - $Planet['crystal'],0)/max(1, $Planet['crystal_perhour']+$basic[902][$Planet['id']]));
+                $planetList['resourceFull'][903][$Planet['id']]			= floor(max($Planet['deuterium_max'] - $Planet['deuterium'],0)/max($basic[903][$Planet['id']]+ $Planet['deuterium_perhour'],1));
 			}else{
 				$basic[901][$Planet['id']] = 0;
 				$basic[902][$Planet['id']] = 0;
