@@ -195,20 +195,60 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $THEME->setUserTheme($senderUser['dpath']);
         }
 
+        // die(var_dump($targetUser));
+        // die(var_dump($targetPlanet["metal"]));
+        // print(var_dump($targetPlanet));
+
+        function getRessoucesByDsuValue($metal, $crystal, $deuterium)
+        {
+            
+            $ressoucesByDsuValue = $metal / 4.5 + $crystal / 0.8 + $deuterium / 1;
+            return $ressoucesByDsuValue;
+
+        }
+
+        // // hier kladeradatsch berechenen
+        $ressources = (int) $targetPlanet['metal']+$targetPlanet['crystal']+$targetPlanet['deuterium'];
+        $danger = "2";
+        $ressourcesToRaid = $ressources / 2;
+        $ressourcesByMarketValue = (int) getRessoucesByDsuValue($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']);
+        $recyclePotential= "5";
+        $nessesarryKT= "6";
+        $nessesarryGT= "7";
+        $nessesarryTransportUnits = $nessesarryKT . " KT / " . $nessesarryGT . " GT";
+        $nessesarryRecy= "8";
+        $energy = "9";
+        $bestRessPerTime = "10";
+        $bestPlanet = "1:1:3";
+        $actuallRessPerTime = "11";
+        
         $template->caching = true;
         $template->compile_id = $senderUser['lang'];
         $template->loadFilter('output', 'trimwhitespace');
         list($tplDir) = $template->getTemplateDir();
         $template->setTemplateDir($tplDir . 'game/');
         $template->assign_vars([
-            'spyData'       => $spyData,
-            'targetPlanet'  => $targetPlanet,
-            'targetChance'  => $targetChance,
-            'spyChance'     => $spyChance,
-            'totalShipDefCount' => $totalShipDefCount,
-            'dpath'         => $THEME->getTheme(),
-            'isBattleSim'   => ENABLE_SIMULATOR_LINK == true && isModuleAvailable(MODULE_SIMULATOR),
-            'title'         => sprintf(
+            'ressources'                        => $ressources,
+            'danger'                            => $danger,
+            'ressourcesToRaid'                  => $ressourcesToRaid,
+            'recyclePotential'                  => $recyclePotential,
+            'nessesarryTransportUnits'          => $nessesarryTransportUnits,
+            'nessesarryRecy'                    => $nessesarryRecy,
+            'ressourcesByMarketValue'           => $ressourcesByMarketValue,
+            'energy'                            => $energy,
+            'bestRessPerTime'                   => $bestRessPerTime,
+            'bestPlanet'                        => $bestPlanet,
+            'actuallRessPerTime'                => $actuallRessPerTime,
+            'nessesarryGT'                      => $nessesarryGT,
+            'nessesarryKT'                      => $nessesarryKT,
+            'spyData'                           => $spyData,
+            'targetPlanet'                      => $targetPlanet,
+            'targetChance'                      => $targetChance,
+            'spyChance'                         => $spyChance,
+            'totalShipDefCount'                 => $totalShipDefCount,
+            'dpath'                             => $THEME->getTheme(),
+            'isBattleSim'                       => ENABLE_SIMULATOR_LINK == true && isModuleAvailable(MODULE_SIMULATOR),
+            'title'                 => sprintf(
                 $LNG['sys_mess_head'],
                 $targetPlanet['name'],
                 $targetPlanet['galaxy'],
@@ -223,6 +263,8 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         ], false);
 
         $spyReport = $template->fetch('shared.mission.spyReport.tpl');
+
+        // die($spyReport);
 
         PlayerUtil::sendMessage(
             $this->_fleet['fleet_owner'],
