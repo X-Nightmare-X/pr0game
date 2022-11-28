@@ -58,8 +58,6 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         return $planetdef;
     }
 
-
-
     public function TargetEvent()
     {
         global $pricelist, $reslist, $resource;
@@ -135,42 +133,45 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         $classIDs[900] = array_merge($reslist['resstype'][1], $reslist['resstype'][2]);
 
+
         if ($SpyFleet) {
             $classIDs[200] = $reslist['fleet'];
         }
-
+        
         if ($SpyDef) {
             $classIDs[400] = array_merge($reslist['defense'], $reslist['missile']);
         }
-
+        
         if ($SpyBuild) {
             $classIDs[0] = $reslist['build'];
         }
-
+        
         if ($SpyTechno) {
             $classIDs[100] = $reslist['tech'];
         }
-
+        
+        // die(var_dump($reslist['fleet']));
+        
         // what is seen by the 'attacker' is already calculated above.
         // if target planet does not have fleet or def, it is safe to set $targetChance to -1
         // so probes are no longer destroyed by thin air or something
-
+        
         $totalShipDefCount = 0;
         foreach (array_values($this->getPlanetFleet($targetPlanet)) as $ships) {
             $totalShipDefCount += $ships;
         }
-
+        
         // $targetChance = mt_rand(0, min(($fleetAmount / 4) * ($targetSpyTech / $senderSpyTech), 100));
         
         // New calculation: 1% Counterspy-Chance for 250 Ships * target spy bonus, if > sender spy tec
         // $targetChance = ($totalShipDefCount/250)*MAX($senderSpyTech-$targetSpyTech, 1) + (($fleetAmount / 4) * ($targetSpyTech / $senderSpyTech));
-
+        
         // Calculation from https://ogame.fandom.com/wiki/Counterespionage
         $targetChance = min(round( pow(2, $targetSpyTech-$senderSpyTech) * $fleetAmount * $totalShipDefCount * 0.0025), 100);
         
         $spyChance = mt_rand(0, 100);
         $spyData = [];
-
+        
         foreach ($classIDs as $classID => $elementIDs) {
             foreach ($elementIDs as $elementID) {
                 if (isset($targetUser[$resource[$elementID]])) {
@@ -179,12 +180,13 @@ class MissionCaseSpy extends MissionFunctions implements Mission
                     $spyData[$classID][$elementID] = $targetPlanet[$resource[$elementID]];
                 }
             }
-
+            
             if ($senderUser['spyMessagesMode'] == 1) {
                 $spyData[$classID] = array_filter($spyData[$classID]);
             }
         }
-
+        // die(var_dump($spyData["200"]["204"]));
+        
         // I'm use template class here, because i want to exclude HTML in PHP.
 
         require_once 'includes/classes/class.template.php';
@@ -197,44 +199,28 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $THEME->setUserTheme($senderUser['dpath']);
         }
 
-        // die(var_dump($totalShipDefCount));
-        // die(var_dump($targetUser));
+        // die(var_dump($reslist['fleet']));
+        // die(var_dump($spyData));
         // die(var_dump($targetPlanet["metal"]));
         // print(var_dump($totalShipDefCount));
 
-        function getRessoucesByDsuValue($metal, $crystal, $deuterium)
-        {
-            
-            $ressoucesByDsuValue = $metal / 4.5 + $crystal / 0.8 + $deuterium / 1;
-            return round($ressoucesByDsuValue);
-    
-        }
-
-        function calculateNeededCapacity($metal, $crystal, $deuterium){
-            $capacity = 0;
-
-            $capacity = 0.5 * max($metal + $crystal + $deuterium, min(0.75 * (2 * $metal + $crystal + $deuterium), 2 * $metal + $deuterium));
-
-            return $capacity;
-        }
-
-        function estimateSmallTransporters($capacity) {
-            return ceil($capacity / 5000) + 1;
-        }
-
-        function estimateGreatTransporters($capacity) {
-            return ceil($capacity / 25000) + 1;
-        }
-
         // // hier kladeradatsch berechenen
         $ressources = round($targetPlanet['metal']+$targetPlanet['crystal']+$targetPlanet['deuterium']);
-        $danger = "TODO";
+        // $danger = "TODO";
+
+        if (isset($classIDs[400])){
+            $danger = $this->getDangerValue($spyData, true);
+        } elseif (isset($classIDs[200])){
+            $danger = $this->getDangerValue($spyData, false);
+        } else {
+            $danger = 0;
+        }
         $ressourcesToRaid = round($ressources / 2);
         // $ressourcesByMarketValue = round($targetPlanet['metal'] / 4.5 + $targetPlanet['crystal'] / 0.8 + $targetPlanet['deuterium'] / 1);
-        $ressourcesByMarketValue = getRessoucesByDsuValue($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']);
+        $ressourcesByMarketValue = $this->getRessoucesByDsuValue($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']);
         $recyclePotential= "TODO";
-        $nessesarryKT= estimateSmallTransporters(calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
-        $nessesarryGT= estimateGreatTransporters(calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
+        $nessesarryKT= $this->estimateSmallTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
+        $nessesarryGT= $this->estimateGreatTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
         // $nessesarryTransportUnits = $nessesarryKT . " KT / " . $nessesarryGT . " GT";
         $nessesarryRecy= "TODO";
         $energy = "TODO";
@@ -360,6 +346,114 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $this->SaveFleet();
         }
     }
+
+
+    public function getRessoucesByDsuValue($metal, $crystal, $deuterium)
+    {         
+        $ressoucesByDsuValue = $metal / 4.5 + $crystal / 0.8 + $deuterium / 1;
+        return round($ressoucesByDsuValue);
+    }
+
+    public function calculateNeededCapacity($metal, $crystal, $deuterium){
+        $capacity = 0;
+        $capacity = 0.5 * max($metal + $crystal + $deuterium, min(0.75 * (2 * $metal + $crystal + $deuterium), 2 * $metal + $deuterium));
+        return $capacity;
+    }
+
+    public function estimateSmallTransporters($capacity) {
+        return ceil($capacity / 5000) + 1;
+    }
+
+    public function estimateGreatTransporters($capacity) {
+        return ceil($capacity / 25000) + 1;
+    }
+
+    public function getDangerValue($foo) {
+        
+        if (!$foo){
+            return 0;
+        } 
+        $dangerValue = 0;
+
+        // KT
+        if (isset($foo["200"][202]) && $foo["200"][202] !== 0) {
+            $dangerValue += $foo["200"][202] * 5;
+        }
+
+        if (isset($foo["200"][203]) && $foo["200"][203] !== 0) {
+            $dangerValue += $foo["200"][203] * 5;
+        }
+        if (isset($foo["200"][204]) && $foo["200"][204] !== 0) {
+            $dangerValue += $foo["200"][204] * 50;
+        }
+        if (isset($foo["200"][205]) && $foo["200"][205] !== 0) {
+            $dangerValue += $foo["200"][205] * 150;
+        }
+        if (isset($foo["200"][206]) && $foo["200"][206] !== 0) {
+            $dangerValue += $foo["200"][206] * 400;
+        }
+        if (isset($foo["200"][207]) && $foo["200"][207] !== 0) {
+            $dangerValue += $foo["200"][207] * 1000;
+        }
+        if (isset($foo["200"][208]) && $foo["200"][208] !== 0) {
+            $dangerValue += $foo["200"][208] * 50;
+        }
+        if (isset($foo["200"][209]) && $foo["200"][209] !== 0) {
+            $dangerValue += $foo["200"][209] * 1;
+        }
+        if (isset($foo["200"][211]) && $foo["200"][211] !== 0) {
+            $dangerValue += $foo["200"][211] * 1000;
+        }
+        if (isset($foo["200"][213]) && $foo["200"][213] !== 0) {
+            $dangerValue += $foo["200"][213] * 2000;
+        }
+        if (isset($foo["200"][214]) && $foo["200"][214] !== 0) {
+            $dangerValue += $foo["200"][214] * 200000;
+        }
+        if (isset($foo["200"][215]) && $foo["200"][215] !== 0) {
+            $dangerValue += $foo["200"][215] * 700;
+        }
+       
+        return  $dangerValue;
+
+    }
+
+    // "202": 5,
+    // "203": 5,
+    // "204": 50,
+    // "205": 150,
+    // "206": 400,
+    // "207": 1000,
+    // "208": 50,
+    // "209": 1,
+    // "211": 1000,
+    // "213": 2000,
+    // "214": 200000,
+    // "215": 700,
+    // "401": 80,
+    // "402": 100,
+    // "403": 250,
+    // "404": 1100,
+    // "405": 150,
+    // "406": 3000,
+
+
+
+    // foreach ($classIDs as $classID => $elementIDs) {
+    //     foreach ($elementIDs as $elementID) {
+    //         if (isset($targetUser[$resource[$elementID]])) {
+    //             $spyData[$classID][$elementID] = $targetUser[$resource[$elementID]];
+    //         } else {
+    //             $spyData[$classID][$elementID] = $targetPlanet[$resource[$elementID]];
+    //         }
+    //     }
+
+    //     if ($senderUser['spyMessagesMode'] == 1) {
+    //         $spyData[$classID] = array_filter($spyData[$classID]);
+    //     }
+    // }
+
+
 
     public function EndStayEvent()
     {
