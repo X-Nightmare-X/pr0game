@@ -1217,3 +1217,6 @@ $LNG['lo_notify'] = '<span id="seconds">5</span> saniye icinde yonlendirileceksi
 $LNG['lo_continue'] = 'Beklemek istemiyorsaniz tiklayiniz';
 
 //----------------------------------------------------------------------------//
+$LNG['fleet_table_custom_empty_name'] = 'Bir filo ismi giriniz lütfen!';
+$LNG['custom_fleet'] = 'Özel filolar';
+$LNG['custom_fleet_confirm'] = 'Filo şablonu %s kaldırılsın mı?';

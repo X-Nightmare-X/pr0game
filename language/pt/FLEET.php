@@ -315,6 +315,4 @@ $LNG['type_planet_3'] = 'Lua';
 
 $LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
 $LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
-$LNG['fleet_table_custom_empty_name'] = 'Insira um nome de frota, por favor!';
-$LNG['custom_fleet'] = 'Frotas personalizadas';
-$LNG['custom_fleet_confirm'] = 'Remover modelo de frota %s?';
+

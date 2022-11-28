@@ -1259,5 +1259,8 @@ $LNG['lo_continue'] = 'Glickne Sie hier, um ned zu warden';
 
 //----------------------------------------------------------------------------//
 
+$LNG['fleet_table_custom_empty_name'] = 'Bitte einen Floddennamen eingebene!';
+$LNG['custom_fleet'] = 'Benutzerdefinierte Flodden';
+$LNG['custom_fleet_confirm'] = 'Floddenvorlage %s wegmeddln?';
 
 // Translated into Oger by Appendix (ASB8).

@@ -1272,3 +1272,6 @@ $LNG['lo_notify'] = 'Will be redirected in <span id="seconds">5</span> seconds';
 $LNG['lo_continue'] = 'Click to continue.';
 
 //----------------------------------------------------------------------------//
+$LNG['fleet_table_custom_empty_name'] = 'Insert a fleet name please!';
+$LNG['custom_fleet'] = 'Custom fleets';
+$LNG['custom_fleet_confirm'] = 'Remove fleet template %s?';

@@ -286,6 +286,3 @@ $LNG['type_planet_3'] = 'Lune';
 
 $LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
 $LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
-$LNG['fleet_table_custom_empty_name'] = 'Insérez un nom de flotte s\'il vous plaît !';
-$LNG['custom_fleet'] = 'Flottes personnalisées';
-$LNG['custom_fleet_confirm'] = 'Supprimer le modèle de flotte %s ?';

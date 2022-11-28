@@ -1195,3 +1195,6 @@ $LNG['lo_logout'] = 'Session terminée';
 $LNG['lo_redirect'] = 'avant';
 $LNG['lo_notify'] = 'Vous serez redirigé dans <span id="seconds"> 5 </ span> secondes';
 $LNG['lo_continue'] = 'Cliquez ici pour être redirigé immédiatement.';
+$LNG['fleet_table_custom_empty_name'] = 'Insérez un nom de flotte s\'il vous plaît !';
+$LNG['custom_fleet'] = 'Flottes personnalisées';
+$LNG['custom_fleet_confirm'] = 'Supprimer le modèle de flotte %s ?';

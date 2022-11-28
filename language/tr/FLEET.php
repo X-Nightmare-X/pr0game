@@ -302,6 +302,4 @@ $LNG['type_planet_3'] = 'Ay';
 
 $LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
 $LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
-$LNG['fleet_table_custom_empty_name'] = 'Bir filo ismi giriniz lütfen!';
-$LNG['custom_fleet'] = 'Özel filolar';
-$LNG['custom_fleet_confirm'] = 'Filo şablonu %s kaldırılsın mı?';
+

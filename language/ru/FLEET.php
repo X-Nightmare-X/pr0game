@@ -328,6 +328,4 @@ $LNG['type_planet_3'] = 'Луна';
 
 $LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
 $LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
-$LNG['fleet_table_custom_empty_name'] = 'Вставьте название флота, пожалуйста!';
-$LNG['custom_fleet'] = 'Индивидуальные автопарки';
-$LNG['custom_fleet_confirm'] = 'Удалить шаблон флота %s?';
+

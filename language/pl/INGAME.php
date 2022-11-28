@@ -1200,6 +1200,8 @@ $LNG['lo_notify'] = 'Zostaniesz przeniesiony za <span id="seconds"> 5 </span> s'
 $LNG['lo_continue'] = 'Kliknij tutaj, jeśli nie chcesz zostać przeniesiony';
 //----------------------------------------------------------------------------//
 
-
+$LNG['fleet_table_custom_empty_name'] = 'Proszę wstawić nazwę floty!';
+$LNG['custom_fleet'] = 'Floty niestandardowe';
+$LNG['custom_fleet_confirm'] = 'Usunąć szablon floty %s?';
 // Translated into Polish by Sirgomo . All rights reversed (C) 2012
 // Edited by TheRavikin. All rights resteemed (C) 2018

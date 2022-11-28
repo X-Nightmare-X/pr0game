@@ -1205,6 +1205,9 @@ $LNG['lo_notify'] = 'Seras redireccionado en <span id="seconds"> 5 </span> s';
 $LNG['lo_continue'] = 'Pulsa aquí si no redirecciona tu navegador.';
 
 //----------------------------------------------------------------------------//
+$LNG['fleet_table_custom_empty_name'] = 'Introduzca el nombre de la flota, por favor.';
+$LNG['custom_fleet'] = 'Flotas personalizadas';
+$LNG['custom_fleet_confirm'] = '¿Quitar la plantilla de la flota %s?';
 
 
 // Translated into Spanish by Angelus_ira . All rights reversed (C) 2011
