@@ -39,7 +39,7 @@
 					Notwendige Transporter
 				</div>
 				<div class="spyRaportContainerCell" >
-					{$nessesarryTransportUnits}
+					{$nessesarryKT} KT / {$nessesarryGT} GT
 				</div>
 				<div class="spyRaportContainerCell" >
 					Notwendige Recycler

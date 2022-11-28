@@ -58,6 +58,8 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         return $planetdef;
     }
 
+
+
     public function TargetEvent()
     {
         global $pricelist, $reslist, $resource;
@@ -195,32 +197,50 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $THEME->setUserTheme($senderUser['dpath']);
         }
 
+        // die(var_dump($totalShipDefCount));
         // die(var_dump($targetUser));
         // die(var_dump($targetPlanet["metal"]));
-        // print(var_dump($targetPlanet));
+        // print(var_dump($totalShipDefCount));
 
         function getRessoucesByDsuValue($metal, $crystal, $deuterium)
         {
             
             $ressoucesByDsuValue = $metal / 4.5 + $crystal / 0.8 + $deuterium / 1;
-            return $ressoucesByDsuValue;
+            return round($ressoucesByDsuValue);
+    
+        }
 
+        function calculateNeededCapacity($metal, $crystal, $deuterium){
+            $capacity = 0;
+
+            $capacity = 0.5 * max($metal + $crystal + $deuterium, min(0.75 * (2 * $metal + $crystal + $deuterium), 2 * $metal + $deuterium));
+
+            return $capacity;
+        }
+
+        function estimateSmallTransporters($capacity) {
+            return ceil($capacity / 5000) + 1;
+        }
+
+        function estimateGreatTransporters($capacity) {
+            return ceil($capacity / 25000) + 1;
         }
 
         // // hier kladeradatsch berechenen
-        $ressources = (int) $targetPlanet['metal']+$targetPlanet['crystal']+$targetPlanet['deuterium'];
-        $danger = "2";
-        $ressourcesToRaid = $ressources / 2;
-        $ressourcesByMarketValue = (int) getRessoucesByDsuValue($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']);
-        $recyclePotential= "5";
-        $nessesarryKT= "6";
-        $nessesarryGT= "7";
-        $nessesarryTransportUnits = $nessesarryKT . " KT / " . $nessesarryGT . " GT";
-        $nessesarryRecy= "8";
-        $energy = "9";
-        $bestRessPerTime = "10";
-        $bestPlanet = "1:1:3";
-        $actuallRessPerTime = "11";
+        $ressources = round($targetPlanet['metal']+$targetPlanet['crystal']+$targetPlanet['deuterium']);
+        $danger = "TODO";
+        $ressourcesToRaid = round($ressources / 2);
+        // $ressourcesByMarketValue = round($targetPlanet['metal'] / 4.5 + $targetPlanet['crystal'] / 0.8 + $targetPlanet['deuterium'] / 1);
+        $ressourcesByMarketValue = getRessoucesByDsuValue($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']);
+        $recyclePotential= "TODO";
+        $nessesarryKT= estimateSmallTransporters(calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
+        $nessesarryGT= estimateGreatTransporters(calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
+        // $nessesarryTransportUnits = $nessesarryKT . " KT / " . $nessesarryGT . " GT";
+        $nessesarryRecy= "TODO";
+        $energy = "TODO";
+        $bestRessPerTime = "TODO";
+        $bestPlanet = "TODO";
+        $actuallRessPerTime = "TODO";
         
         $template->caching = true;
         $template->compile_id = $senderUser['lang'];
@@ -232,7 +252,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             'danger'                            => $danger,
             'ressourcesToRaid'                  => $ressourcesToRaid,
             'recyclePotential'                  => $recyclePotential,
-            'nessesarryTransportUnits'          => $nessesarryTransportUnits,
+            // 'nessesarryTransportUnits'          => $nessesarryTransportUnits,
             'nessesarryRecy'                    => $nessesarryRecy,
             'ressourcesByMarketValue'           => $ressourcesByMarketValue,
             'energy'                            => $energy,
