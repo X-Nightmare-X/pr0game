@@ -152,7 +152,7 @@
             <td><a href="javascript:maxShips();">{$LNG.fl_select_all_ships}</a></td>
           {/if}
       </tr>
-      <tr id="customfleets"></tr>
+      <tr><td id="customfleets" colspan="5"></td></tr>
         {if $maxFleetSlots != $activeFleetSlots}
       <tr style="height:20px;">
         <td colspan="5"><input type="submit" value="{$LNG.fl_continue}"></td>

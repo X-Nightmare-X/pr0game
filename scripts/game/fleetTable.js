@@ -135,6 +135,7 @@ function save_fleet_Select() {
   document.getElementById("cfleet_select").value = fname
   cfleet[fname] = obj
   local_setValue("custom_fleets", cfleet)
+  customfleet_show()
 }
 
 function change_fleet_select() {
@@ -159,6 +160,7 @@ function cf_remove() {
   }
 
   local_setValue("custom_fleets", cfleet)
+  customfleet_show()
 }
 
 function showfleet(name) {
@@ -266,7 +268,31 @@ function loadcustomfleets() {
   showexpopoints();
 
 }
+function custom_fleet(k) {
+  noShips();
+  const custom_fleet = local_getValue("custom_fleets", {})[k]
+  for (let stype in custom_fleet) {
+    let obj = document.getElementById(`ship${stype}_input`)
+    if (obj) {
+      obj.value = custom_fleet[stype]
 
+    }
+
+  }
+  showexpopoints();
+
+}
+function customfleet_show() {
+  let cfleet = local_getValue("custom_fleets", {})
+  let x = ""
+  for (let k in cfleet) {
+    x += '   <a  href="javascript:;" onclick="custom_fleet(\''+k+'\')">' + k + '</a>'
+
+  }
+  console.log(cfleet,x)
+  document.getElementById("customfleets").innerHTML=x
+
+}
 
 document.addEventListener("DOMContentLoaded", function () {
   show_values()
@@ -274,6 +300,7 @@ document.addEventListener("DOMContentLoaded", function () {
   addstoragelisteners()
   updatebuttons();
   loadcustomfleets();
+  customfleet_show();
 });
 
 
