@@ -366,11 +366,8 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         return ceil($capacity / 25000) + 1;
     }
 
-    public function getDangerValue($foo) {
+    public function getDangerValue($foo, $bar) {
         
-        if (!$foo){
-            return 0;
-        } 
         $dangerValue = 0;
 
         // KT
@@ -410,6 +407,13 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         }
         if (isset($foo["200"][215]) && $foo["200"][215] !== 0) {
             $dangerValue += $foo["200"][215] * 700;
+        }
+        
+        if ($bar){
+            if (isset($foo["200"][215]) && $foo["200"][215] !== 0) {
+                $dangerValue += $foo["200"][215] * 700;
+            }
+            
         }
        
         return  $dangerValue;
