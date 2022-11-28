@@ -289,7 +289,6 @@ function customfleet_show() {
     x += '   <a  href="javascript:;" onclick="custom_fleet(\''+k+'\')">' + k + '</a>'
 
   }
-  console.log(cfleet,x)
   document.getElementById("customfleets").innerHTML=x
 
 }
