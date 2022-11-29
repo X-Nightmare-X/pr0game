@@ -104,6 +104,15 @@ class ShowImperiumPage extends AbstractGamePage
 				$basic[903][$Planet['id']] = 0;
 
 			}
+            if (!empty($Planet['b_building_id'])) {
+                $Queue = unserialize($Planet['b_building_id']);
+                $planetList['currentBuilding'][$Planet['id']]= $Queue[0][0];
+                $planetList['currentBuildinglvl'][$Planet['id']]= $Queue[0][1];
+            }else{
+                $planetList['currentBuilding'][$Planet['id']]= -1;
+                $planetList['currentBuildinglvl'][$Planet['id']]= -1;
+            }
+
 
 			$planetList['resourcePerHour'][901][$Planet['id']]			= $basic[901][$Planet['id']] + $Planet['metal_perhour'];
 			$planetList['resourcePerHour'][902][$Planet['id']]			= $basic[902][$Planet['id']] + $Planet['crystal_perhour'];
@@ -115,14 +124,25 @@ class ShowImperiumPage extends AbstractGamePage
 			foreach($reslist['build'] as $elementID) {
 				$planetList['build'][$elementID][$Planet['id']]	= $Planet[$resource[$elementID]];
 			}
-
+            $planetList['currentShipyard'][$Planet['id']]=[];
 			foreach($reslist['fleet'] as $elementID) {
 				$planetList['fleet'][$elementID][$Planet['id']]	= $Planet[$resource[$elementID]];
+                $planetList['currentShipyard'][$elementID][$Planet['id']]=0;
+
 			}
 
-			foreach($reslist['defense'] as $elementID) {
+
+            foreach($reslist['defense'] as $elementID) {
 				$planetList['defense'][$elementID][$Planet['id']]	= $Planet[$resource[$elementID]];
+                $planetList['currentShipyard'][$elementID][$Planet['id']]=0;
 			}
+            if (!empty($Planet['b_hangar_id'])) {
+                foreach(unserialize($Planet['b_hangar_id']) as $que)
+                {
+                    $planetList['currentShipyard'][$que[0]][$Planet['id']]+=$que[1];
+
+                }
+            }
 
 			$planetList['missiles'][502][$Planet['id']]         = $Planet[$resource[502]];
             		$planetList['missiles'][503][$Planet['id']]         = $Planet[$resource[503]];

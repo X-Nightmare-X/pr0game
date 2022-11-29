@@ -53,7 +53,7 @@
 			<td><a href='#' onclick='return Dialog.info({$elementID})' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$elementID}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$elementID}.{if $elementID >=600 && $elementID <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$elementID}</td></tr></table></tr></table>">{$LNG.tech.$elementID}</a></td>
 			<td>{number_format(array_sum($buildArray), 0, ",", ".")}</td>
 			{foreach $buildArray as $planetID => $build}
-				<td>{number_format($build, 0, ",", ".")}</td>
+        <td>{number_format($build, 0, ",", ".")}{if $planetList.currentBuilding[$planetID]==$elementID} <span class="colorNeutral"> ⬆ {$planetList.currentBuildinglvl[$planetID]}</span>{/if}</td>
 			{/foreach}
 		</tr>
 		{/foreach}
@@ -75,9 +75,9 @@
 		{foreach $planetList.fleet as $elementID => $fleetArray}
 		<tr>
 			<td><a href='#' onclick='return Dialog.info({$elementID})' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$elementID}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$elementID}.{if $elementID >=600 && $elementID <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$elementID}</td></tr></table></tr></table>">{$LNG.tech.$elementID}</a></td>
-			<td>{number_format(array_sum($fleetArray), 0, ",", ".")}</td>
+			<td>{number_format(array_sum($fleetArray), 0, ",", ".")}{if array_sum($planetList.currentShipyard[$elementID])!=0} <span class="colorNeutral"> ⬆ {number_format(array_sum($planetList.currentShipyard[$elementID]),0,",",".")}</span>{/if}</td>
 			{foreach $fleetArray as $planetID => $fleet}
-				<td>{number_format($fleet, 0, ",", ".")}</td>
+				<td>{number_format($fleet, 0, ",", ".")} {if $planetList.currentShipyard[$elementID][$planetID]!=0} <span class="colorNeutral"> ⬆ {number_format($planetList.currentShipyard[$elementID][$planetID],0,",",".")}</span>{/if}</td>
 			{/foreach}
 		</tr>
 		{/foreach}
@@ -87,9 +87,9 @@
 		{foreach $planetList.defense as $elementID => $fleetArray}
 		<tr>
 			<td><a href='#' onclick='return Dialog.info({$elementID})' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$elementID}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$elementID}.{if $elementID >=600 && $elementID <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$elementID}</td></tr></table></tr></table>">{$LNG.tech.$elementID}</a></td>
-			<td>{number_format(array_sum($fleetArray), 0, ",", ".")}</td>
+			<td>{number_format(array_sum($fleetArray), 0, ",", ".")}{if array_sum($planetList.currentShipyard[$elementID])!=0} <span class="colorNeutral"> ⬆ {number_format(array_sum($planetList.currentShipyard[$elementID]),0,",",".")}</span>{/if}</td>
 			{foreach $fleetArray as $planetID => $fleet}
-				<td>{number_format($fleet, 0, ",", ".")}</td>
+				<td>{number_format($fleet, 0, ",", ".")}{if $planetList.currentShipyard[$elementID][$planetID]!=0} <span class="colorNeutral"> ⬆ {number_format($planetList.currentShipyard[$elementID][$planetID],0,",",".")}</span>{/if}</td>
 			{/foreach}
 		</tr>
 		{/foreach}
