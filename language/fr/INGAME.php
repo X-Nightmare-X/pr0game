@@ -368,6 +368,7 @@ $LNG['fl_acs_invitation_title'] = 'Invitation à ACS';
 $LNG['fl_sac_of_fleet'] = 'flotte ACS';
 $LNG['fl_modify_sac_name'] = 'Modifier le nom de l\'ACS';
 $LNG['fl_members_invited'] = 'Membres invités';
+$LNG['fl_selected_resources'] = 'ressources sélectionnées' ;
 $LNG['fl_invite_members'] = 'Inviteer d\'autres membres';
 $LNG['fl_simulate'] = 'Simuler';
 $LNG['fl_bonus'] = 'Bonus';

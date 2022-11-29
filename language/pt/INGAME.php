@@ -368,6 +368,7 @@ $LNG['fl_not_ally_deposit'] = 'Não tens Depósito de Alianca';
 $LNG['fl_deploy_only_your_planets'] = 'Sie können nur Flotten auf Ihren eigenen Planeten stationieren!';
 $LNG['fl_fleet_sended'] = 'Frota enviada';
 $LNG['fl_from'] = 'De';
+$LNG['fl_selected_resources'] = 'recursos seleccionados';
 $LNG['fl_arrival_time'] = 'Tempo de Destino';
 $LNG['fl_return_time'] = 'Tempo de Regresso';
 $LNG['fl_fleet'] = 'Frota';

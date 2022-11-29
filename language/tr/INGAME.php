@@ -369,6 +369,7 @@ $LNG['fl_no_same_alliance'] = 'Dusman gezegende durulamaz!';
 $LNG['fl_not_ally_deposit'] = 'Yeterli Kademede Ittifak Deposu Yok';
 $LNG['fl_deploy_only_your_planets'] = 'Sadece Kendi Gezegenlerinize Konuslandirmak yapabilirsiniz!';
 $LNG['fl_fleet_sended'] = 'Filo basariyla gonderildi';
+$LNG['fl_selected_resources'] = 'seçilen kaynaklar';
 $LNG['fl_from'] = 'Kalkis';
 $LNG['fl_arrival_time'] = 'Varis Zamani';
 $LNG['fl_return_time'] = 'Donus Zamani';

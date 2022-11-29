@@ -368,6 +368,7 @@ $LNG['fl_sac_of_fleet'] = 'САБ';
 $LNG['fl_modify_sac_name'] = 'Название САБ';
 $LNG['fl_members_invited'] = 'Приглашённые игроки';
 $LNG['fl_invite_members'] = 'Пригласить игрока в САБ';
+$LNG['fl_selected_resources'] = 'выбранные ресурсы';
 $LNG['fl_simulate'] = 'Симулировать';
 $LNG['fl_bonus'] = 'Бонусы';
 $LNG['fl_bonus_attack'] = 'Вооружение';

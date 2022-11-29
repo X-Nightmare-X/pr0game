@@ -368,6 +368,7 @@ $LNG['fl_no_slots'] = 'Sloty niedostępne!';
 $LNG['fl_planet_populed'] = 'Ta planeta jest zajęta!';
 $LNG['fl_no_same_alliance'] = 'Gracz musi być w twoim sojuszu lub na liście znajomych!';
 $LNG['fl_not_ally_deposit'] = 'Brak depozytu sojuszniczego';
+$LNG['fl_selected_resources'] = 'wybrane zasoby';
 $LNG['fl_deploy_only_your_planets'] = 'Możesz stacjonować tylko na swoich planetach!';
 $LNG['fl_fleet_sended'] = 'Flota wysłana';
 $LNG['fl_from'] = 'Od';
