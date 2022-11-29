@@ -368,6 +368,7 @@ $LNG['fl_expedition_alert_message'] = 'Achtung die Expedition bringt Gefahren mi
     . ' ihre gesamte Flotte verlieren!';
 $LNG['fl_vacation_mode_active'] = 'Sie befinden sich im Urlaubsmodus';
 $LNG['fl_expedition_fleets_limit'] = 'Sie können nicht mehr Expeditionen starten!';
+$LNG['fl_selected_resources'] = 'Ausgewählte Rohstoffe Laden';
 $LNG['fl_week_player'] = 'Spieler ist zu schwach für sie!';
 $LNG['fl_strong_player'] = 'Spieler ist zu stark für sie!';
 $LNG['fl_in_vacation_player'] = 'Spieler befindet sich im Urlaubsmodus';

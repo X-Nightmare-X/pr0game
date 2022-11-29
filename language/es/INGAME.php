@@ -368,6 +368,7 @@ $LNG['fl_return_time'] = 'Hora de regreso';
 $LNG['fl_fleet'] = 'Flota';
 $LNG['fl_player'] = 'El jugador ';
 $LNG['fl_add_to_attack'] = ' fue agregado al ataque.';
+$LNG['fl_selected_resources'] = 'recursos seleccionados';
 $LNG['fl_already_invited'] = ' Ya ha sido invitado.';
 $LNG['fl_dont_exist'] = ' no existe.';
 $LNG['fl_acs_invitation_message'] = ' te invita a participar en un SAC.';

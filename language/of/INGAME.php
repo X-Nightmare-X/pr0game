@@ -368,6 +368,7 @@ $LNG['fl_expedition_alert_message'] = 'Achdung die Exbedition bringd Gefahrne mi
     . ' ihre gesamte Flodde weggemeddelt werden!';
 $LNG['fl_vacation_mode_active'] = 'Sie befindne sich im Urlaubsmodus';
 $LNG['fl_expedition_fleets_limit'] = 'Sie gönnene ned mehr Exbeditionene startne!';
+$LNG['fl_selected_resources'] = 'Ausgewählte Rohstoffe Laden';
 $LNG['fl_week_player'] = 'Schbieler is zu schwach für sie!';
 $LNG['fl_strong_player'] = 'SSchbieler isd zu starg für sie!';
 $LNG['fl_in_vacation_player'] = 'Schbieler befinded sich im Urlaubsmodus';
