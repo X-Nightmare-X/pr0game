@@ -1,8 +1,11 @@
--- change Config game_disable to uni_status (combined login and reg status) and drop reg_closed
-
-ALTER TABLE `%PREFIX%config` RENAME COLUMN `game_disable` TO `uni_status`;
-UPDATE `%PREFIX%config` SET `reg_closed` = 0; -- discard reg status
-UPDATE `%PREFIX%config` SET `reg_closed` = 1 WHERE `uni_status` = 0; -- save closed status
-UPDATE `%PREFIX%config` SET `uni_status` = 0 WHERE `uni_status` = 1; -- update open status to new value
-UPDATE `%PREFIX%config` SET `uni_status` = 1 WHERE `reg_closed` = 1; -- load closed status to new value
-ALTER TABLE `%PREFIX%config` DROP COLUMN `reg_closed`; -- drop old reg status
+-- add config for fleetprio
+ALTER TABLE `%PREFIX%users` ADD `prioMission1` tinyint(2) NOT NULL DEFAULT 1;
+ALTER TABLE `%PREFIX%users` ADD `prioMission2` tinyint(2) NOT NULL DEFAULT 2;
+ALTER TABLE `%PREFIX%users` ADD `prioMission3` tinyint(2) NOT NULL DEFAULT 0;
+ALTER TABLE `%PREFIX%users` ADD `prioMission4` tinyint(2) NOT NULL DEFAULT 3;
+ALTER TABLE `%PREFIX%users` ADD `prioMission5` tinyint(2) NOT NULL DEFAULT 4;
+ALTER TABLE `%PREFIX%users` ADD `prioMission6` tinyint(2) NOT NULL DEFAULT 5;
+ALTER TABLE `%PREFIX%users` ADD `prioMission7` tinyint(2) NOT NULL DEFAULT 6;
+ALTER TABLE `%PREFIX%users` ADD `prioMission8` tinyint(2) NOT NULL DEFAULT 7;
+ALTER TABLE `%PREFIX%users` ADD `prioMission9` tinyint(2) NOT NULL DEFAULT 8;
+ALTER TABLE `%PREFIX%users` ADD `prioMission17` tinyint(2) NOT NULL DEFAULT 9;
