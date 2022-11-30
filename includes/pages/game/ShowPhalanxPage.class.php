@@ -107,13 +107,14 @@ class ShowPhalanxPage extends AbstractGamePage
 		$fleetTableObj->setUser($TargetInfo['id_owner']);
 		$fleetTableObj->setPlanet($TargetInfo['id']);
 		$fleetTable	=  $fleetTableObj->renderTable();
-		
+		$colors = PlayerUtil::player_colors($USER);
 		$this->assign(array(
 			'galaxy'  		=> $Galaxy,
 			'system'  		=> $System,
 			'planet'   		=> $Planet,
 			'name'    		=> $TargetInfo['name'],
 			'fleetTable'	=> $fleetTable,
+			'colors'		=> $colors,
 		));
 		
 		$this->display('page.phalanx.default.tpl');			

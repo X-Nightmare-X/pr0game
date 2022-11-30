@@ -50,7 +50,7 @@
 					-
 				{/if}
 			{/if}
-			<br><span style="color:lime" data-time="{$List.endtime}" data-umode="{$umode}" class="timer">{if $umode == 0}{$List.display}{else}{$LNG.bd_paused}{/if}</span>
+			<br><span class="colorPositive" data-time="{$List.endtime}" data-umode="{$umode}" class="timer">{if $umode == 0}{$List.display}{else}{$LNG.bd_paused}{/if}</span>
 			</div>
 		{/foreach}
 	</div>
@@ -79,18 +79,18 @@
 
 	<div class="buildl">
 						<span>{foreach $Element.costResources as $RessID => $RessAmount}
-                        <a href='#' onclick='return Dialog.info({$RessID})' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$RessID}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$RessID}.{if $RessID >=600 && $RessID <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$RessID}</td></tr></table></tr></table>">{$LNG.tech.{$RessID}}</a>: <b><span style="color:{if $Element.costOverflow[$RessID] == 0}lime{else}red{/if}">{number_format($RessAmount, 0, ",", ".")}</span></b>
+                        <a href='#' onclick='return Dialog.info({$RessID})' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$RessID}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$RessID}.{if $RessID >=600 && $RessID <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$RessID}</td></tr></table></tr></table>">{$LNG.tech.{$RessID}}</a>: <b><span class="{if $Element.costOverflow[$RessID] == 0}colorPositive{else}colorNegative{/if}">{number_format($RessAmount, 0, ",", ".")}</span></b>
 					{/foreach}</span>
 <br>
 	{if $Element.maxLevel == $Element.levelToBuild}
-						<span style="color:#ffd600">{$LNG.bd_maxlevel}</span>
+						<span class="colorNeutral">{$LNG.bd_maxlevel}</span>
 					{elseif $IsLabinBuild || $IsFullQueue || !$Element.buyable}
-						<span style="color:#ffd600">{if $Element.level == 0 && $Element.levelToBuild == 0}{$LNG.bd_tech}{else}{$LNG.bd_tech_next_level}{$Element.levelToBuild + 1}{/if}</span>
+						<span class="colorNeutral">{if $Element.level == 0 && $Element.levelToBuild == 0}{$LNG.bd_tech}{else}{$LNG.bd_tech_next_level}{$Element.levelToBuild + 1}{/if}</span>
 					{else}
 						<form action="game.php?page=research" method="post" class="build_form">
 							<input type="hidden" name="cmd" value="insert">
 							<input type="hidden" name="tech" value="{$ID}">
-							<button type="submit" class="build_submit">{if $Element.level == 0 && $Element.levelToBuild == 0}{$LNG.bd_tech}{else}{$LNG.bd_tech_next_level}{$Element.levelToBuild + 1}{/if}</button>
+							<button type="submit" class="colorPositive build_submit">{if $Element.level == 0 && $Element.levelToBuild == 0}{$LNG.bd_tech}{else}{$LNG.bd_tech_next_level}{$Element.levelToBuild + 1}{/if}</button>
 						</form>
 					{/if}
 					</br>

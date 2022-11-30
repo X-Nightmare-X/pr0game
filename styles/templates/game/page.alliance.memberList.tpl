@@ -26,7 +26,7 @@
 		<td class="points" data-points="{$memberListRow.points}">{$memberListRow.points}</td>
 		<td><a href="game.php?page=galaxy&amp;galaxy={$memberListRow.galaxy}&amp;system={$memberListRow.system}" data-postion="{$memberListRow.galaxy}:{$memberListRow.system}:{$memberListRow.planet}">[{$memberListRow.galaxy}:{$memberListRow.system}:{$memberListRow.planet}]</a></td>
 		<td class="registerTime" data-time="{$memberListRow.register_time}">{$memberListRow.register_time}</td>
-		<td>{if $rights.ONLINESTATE}{if $memberListRow.onlinetime < 4}<span style="color:lime">{$LNG.al_memberlist_on}</span>{elseif $memberListRow.onlinetime <= 60}<span style="color:yellow">{$memberListRow.onlinetime} {$LNG.al_memberlist_min}</span>{else}<span style="color:red">{$LNG.al_memberlist_off}</span>{/if}{else}-{/if}</td>
+		<td>{if $rights.ONLINESTATE}{if $memberListRow.onlinetime < 4}<span class="colorPositive">{$LNG.al_memberlist_on}</span>{elseif $memberListRow.onlinetime <= 60}<span style="color:yellow">{$memberListRow.onlinetime} {$LNG.al_memberlist_min}</span>{else}<span class="colorNegative">{$LNG.al_memberlist_off}</span>{/if}{else}-{/if}</td>
 	</tr>
 	{/foreach}
 	</tbody>
@@ -63,7 +63,7 @@
 			<td class="points" data-points="{$memberListRow.points}">{$memberListRow.points}</td>
 			<td><a href="game.php?page=galaxy&amp;galaxy={$memberListRow.galaxy}&amp;system={$memberListRow.system}" data-postion="{$memberListRow.galaxy}:{$memberListRow.system}:{$memberListRow.planet}">[{$memberListRow.galaxy}:{$memberListRow.system}:{$memberListRow.planet}]</a></td>
 			<td class="registerTime" data-time="{$memberListRow.register_time}">{$memberListRow.register_time}</td>
-			<td>{if $rights.ONLINESTATE}{if $memberListRow.onlinetime < 4}<span style="color:lime">{$LNG.al_memberlist_on}</span>{elseif $memberListRow.onlinetime <= 60}<span style="color:yellow">{$memberListRow.onlinetime} {$LNG.al_memberlist_min}</span>{else}<span style="color:red">{$LNG.al_memberlist_off}</span>{/if}{else}-{/if}</td>
+			<td>{if $rights.ONLINESTATE}{if $memberListRow.onlinetime < 4}<span class="colorPositive">{$LNG.al_memberlist_on}</span>{elseif $memberListRow.onlinetime <= 60}<span style="color:yellow">{$memberListRow.onlinetime} {$LNG.al_memberlist_min}</span>{else}<span class="colorNegative">{$LNG.al_memberlist_off}</span>{/if}{else}-{/if}</td>
 		</tr>
 		{/foreach}
 		</tbody>
@@ -99,7 +99,7 @@
 			<td class="points" data-points="{$memberListRow.points}">{$memberListRow.points}</td>
 			<td><a href="game.php?page=galaxy&amp;galaxy={$memberListRow.galaxy}&amp;system={$memberListRow.system}" data-postion="{$memberListRow.galaxy}:{$memberListRow.system}:{$memberListRow.planet}">[{$memberListRow.galaxy}:{$memberListRow.system}:{$memberListRow.planet}]</a></td>
 			<td class="registerTime" data-time="{$memberListRow.register_time}">{$memberListRow.register_time}</td>
-			<td>{if $rights.ONLINESTATE}{if $memberListRow.onlinetime < 4}<span style="color:lime">{$LNG.al_memberlist_on}</span>{elseif $memberListRow.onlinetime <= 60}<span style="color:yellow">{$memberListRow.onlinetime} {$LNG.al_memberlist_min}</span>{else}<span style="color:red">{$LNG.al_memberlist_off}</span>{/if}{else}-{/if}</td>
+			<td>{if $rights.ONLINESTATE}{if $memberListRow.onlinetime < 4}<span class="colorPositive">{$LNG.al_memberlist_on}</span>{elseif $memberListRow.onlinetime <= 60}<span style="color:yellow">{$memberListRow.onlinetime} {$LNG.al_memberlist_min}</span>{else}<span class="colorNegative">{$LNG.al_memberlist_off}</span>{/if}{else}-{/if}</td>
 		</tr>
 		{/foreach}
 		</tbody>

@@ -727,11 +727,11 @@ $LNG['ac_suspended_time'] = 'Когда';
 $LNG['ac_suspended_longer'] = 'Заблокирован до';
 $LNG['ac_suspended_reason'] = 'Причина';
 $LNG['ac_suspended_autor'] = 'Кто забанил';
-$LNG['ac_note_k'] = '<table><tr><th width=10%><font color=lime>T+</font></th><th>Больше 1кккк (триллион)</th></tr>'
-    . '<tr><th width=10%><font color=lime>T</font></th><th>Меньше или равно 1кккк (триллион)</th></tr>'
-    . '<tr><th width=10%><font color=lime>B</font></th><th>Меньше или равно 1ккк (миллиард)</th></tr>'
-    . '<tr><th width=10%><font color=lime>M</font></th><th>Меньше или равно 1кк (миллион)</th></tr>'
-    . '<tr><th width=10%><font color=lime>K</font></th><th>Меньше или равно 1к (тысяча)</th></tr></table>';
+$LNG['ac_note_k'] = '<table><tr><th width=10%><font class="colorPositive">T+</font></th><th>Больше 1кккк (триллион)</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">T</font></th><th>Меньше или равно 1кккк (триллион)</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">B</font></th><th>Меньше или равно 1ккк (миллиард)</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">M</font></th><th>Меньше или равно 1кк (миллион)</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">K</font></th><th>Меньше или равно 1к (тысяча)</th></tr></table>';
 $LNG['ac_leyend'] = '[ Легенда ]';
 $LNG['ac_no_rank_level'] = 'Вы имеете недостаточно прав для просмотра информации об этом игроке.';
 

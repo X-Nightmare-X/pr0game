@@ -313,7 +313,7 @@ function ShowAccountDataPage()
                     if ($SumOfEnergy < 0) {
                         $Color = "<font color=#FF6600>" . shortly_number($SumOfEnergy) . "</font>";
                     } elseif ($SumOfEnergy > 0) {
-                        $Color = "<font color=lime>" . shortly_number($SumOfEnergy) . "</font>";
+                        $Color = "<font class="colorPositive">" . shortly_number($SumOfEnergy) . "</font>";
                     } else {
                         $Color = shortly_number($SumOfEnergy);
                     }

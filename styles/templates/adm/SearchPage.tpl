@@ -74,7 +74,7 @@
 {if !empty($error)}
 <tr>
 	<td colspan="8">
-		<span style="color:red">{$error}</span>
+		<span class="colorNegative">{$error}</span>
 	</td>
 </tr>
 {/if}

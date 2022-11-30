@@ -5,6 +5,17 @@
 <!--[if IE 9 ]>    <html lang="{$lang}" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html lang="{$lang}" class="no-js"> <!--<![endif]-->
+<style>
+    .colorPositive{
+        color:{$signalColors.colorPositive}
+    } 
+    .colorNegative{
+        color:{$signalColors.colorNegative} !important;
+    }
+	.colorNeutral{
+		color:{$signalColors.colorNeutral} 
+	}
+</style>
 <head>
 	<title>{block name="title"} - {$uni_name} - {$game_name}{/block}</title>
 	<meta charset="utf-8">

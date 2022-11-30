@@ -5,9 +5,9 @@
 {block name="content"}
 	
 <style>
-.techi {
-        display:none;	}
-.minus {
+    .techi {
+       display:none;	}
+    .minus {
         display:none;	}
 </style>
 {if $messages}
@@ -29,7 +29,7 @@
 </br>
 {$LNG.tt_requirements}: </br>
 {foreach $requireList as $requireID => $NeedLevel}
-<a href="#" onclick="return Dialog.info({$requireID})"><span style="color:{if $NeedLevel.own < $NeedLevel.count}#ffd600{else}lime{/if};">{$LNG.tech.$requireID} ({$LNG.tt_lvl} {$NeedLevel.own}/{$NeedLevel.count})</span></a>{if !$NeedLevel@last}<br>{/if}
+<a href="#" onclick="return Dialog.info({$requireID})"><span class="{if $NeedLevel.own < $NeedLevel.count}colorNeutral{else}colorPositive{/if}">{$LNG.tech.$requireID} ({$LNG.tt_lvl} {$NeedLevel.own}/{$NeedLevel.count})</span></a>{if !$NeedLevel@last}<br>{/if}
 
 {/foreach}
 </div>

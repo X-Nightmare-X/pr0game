@@ -79,186 +79,89 @@
                       <input name="fleetID" value="{$FlyingFleetRow.id}" type="hidden">
                       <input value="{$LNG.fl_acs}" type="submit">
 
-                    </form>
-                  {/if}
-              {else}
-                &nbsp;-&nbsp;
-              {/if}
-          </td>
-        </tr>
-          {foreachelse}
-        <tr>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-      {/foreach}
-      {if $maxFleetSlots == $activeFleetSlots}
-        <tr>
-          <td colspan="9">{$LNG.fl_no_more_slots}</td>
-        </tr>
-      {/if}
-  </table>
-    {if !empty($acsData)}
-        {include file="shared.fleetTable.acsTable.tpl"}
-    {/if}
-  <form action="?page=fleetStep1" method="post">
-    <input type="hidden" name="galaxy" value="{$targetGalaxy}">
-    <input type="hidden" name="system" value="{$targetSystem}">
-    <input type="hidden" name="planet" value="{$targetPlanet}">
-    <input type="hidden" name="type" value="{$targetType}">
-    <input type="hidden" name="target_mission" value="{$targetMission}">
-    <table class="table519">
-      <tr>
-        <th colspan="5">{$LNG.fl_new_mission_title}</th>
-      </tr>
-      <tr style="height:20px;">
-        <td>{$LNG.fl_ship_type}</td>
-        <td>{$LNG.fl_ship_available}</td>
-        <td>-</td>
-        <td>-</td>
-        <td id="expocount" expocap="{$maxExpo}">-</td>
-      </tr>
-        {foreach $FleetsOnPlanet as $FleetRow}
-          <tr style="height:20px;">
-            <td>{if $FleetRow.speed != 0} <a class='tooltip'
-                                             data-tooltip-content='<table><tr><td>{$LNG.fl_speed_title}</td><td>{$FleetRow.speed}</td></tr></table>'>{$LNG.tech.{$FleetRow.id}}</a>{else}{$LNG.tech.{$FleetRow.id}}{/if}
-            </td>
-            <td id="ship{$FleetRow.id}_value">{number_format($FleetRow.count, 0, ",", ".")}</td>
-              {if $FleetRow.speed != 0}
-                <td><a href="javascript:noShip('ship{$FleetRow.id}');">{$LNG.fl_null}</a></td>
-                <td><a href="javascript:maxShip('ship{$FleetRow.id}');">{$LNG.fl_max}</a></td>
-                <td><input type="number" name="ship{$FleetRow.id}" id="ship{$FleetRow.id}_input" size="10" value="0"
-                           style="max-width: 10em;"></td>
-              {else}
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-              {/if}
-          </tr>
-        {/foreach}
-      <tr style="height:20px;">
-          {if count($FleetsOnPlanet) == 0}
-            <td colspan="5">{$LNG.fl_no_ships}</td>
-          {else}
-            <td id="cargospace" colspan="2" data="{$LNG['in_capacity']}">&nbsp;</td>
-            <td colspan="2"><a href="javascript:noShips();">{$LNG.fl_remove_all_ships}</a></td>
-            <td><a href="javascript:maxShips();">{$LNG.fl_select_all_ships}</a></td>
-          {/if}
-      </tr>
-      <tr><td id="customfleets" colspan="5"></td></tr>
-        {if $maxFleetSlots != $activeFleetSlots}
-      <tr style="height:20px;">
-        <td colspan="5"><input type="submit" value="{$LNG.fl_continue}"></td>
-          {/if}
-    </table>
-    <table class="table519">
-      <tr>
-        <td>{$LNG['tech'][901]}</td>
-        <td>{$LNG['tech'][902]}</td>
-        <td>{$LNG['tech'][903]}</td>
-      </tr>
-      <tr>
-        <td><input name="met_storage"
-                   type="number"
-                   placeholder="{$LNG['tech'][901]}"></td>
-        <td><input name="krist_storage" type="number"
-                   placeholder="{$LNG['tech'][902]}"></td>
-        <td><input name="deut_storage" type="number"
-                   placeholder="{$LNG['tech'][903]}"></td>
-      </tr>
-      <tr>
-        <td colspan="3" style="text-align: center">
-          <button type="button" id="gt_select">{$LNG['tech'][203]}<span id="gt_amt"></span></button>
-          <button type="button" id="kt_select">{$LNG['tech'][202]}<span id="kt_amt"></span></button>
-        </td>
-      </tr>
-    </table>
-
-  </form>
-  <br>
-  <table class="table519">
-    <tr>
-      <th colspan="3">{$LNG.fl_bonus}</th>
-    </tr>
-    <tr>
-      <th style="width:33%">{$LNG.fl_bonus_attack}</th>
-      <th style="width:33%">{$LNG.fl_bonus_shield}</th>
-      <th style="width:33%">{$LNG.fl_bonus_defensive}</th>
-    </tr>
-    <tr>
-      <td>+{$bonusAttack} %</td>
-      <td>+{$bonusShield} %</td>
-      <td>+{$bonusDefensive} %</td>
-    </tr>
-    <tr>
-      <th style="width:33%">{$LNG.tech.115}</th>
-      <th style="width:33%">{$LNG.tech.117}</th>
-      <th style="width:33%">{$LNG.tech.118}</th>
-    </tr>
-    <tr>
-      <td>+{$bonusCombustion} %</td>
-      <td>+{$bonusImpulse} %</td>
-      <td>+{$bonusHyperspace} %</td>
-    </tr>
-  </table>
-  <br>
-  <table class="table519">
-    <tr>
-      <th colspan="3" onclick="toogle_custom_fleet()" style="border-spacing: 0px;cursor: pointer;"><span
-          id="c_fleet_span">▼</span> {$LNG["custom_fleet"]}
-      </th>
-    </tr>
-  </table>
-  <table id="customfleet" class="table519" style="display: none" data-noname="{$LNG['fleet_table_custom_empty_name']}" data-delconf="{$LNG['custom_fleet_confirm']}">
-    <tr>
-      <th colspan=3><select id="cfleet_select" style="width:100%">
-
-        </select></th>
-    </tr>
-    <tr>
-      <th colspan=3 style="text-align: center"><input id="cfleet_name" placeholder="name" style="width:90%"></th>
-    </tr>
-    <tr>
-      <td colspan=1>{$LNG['type_mission_15']}</td>
-      <td colspan=2 id="ship_expo_points"></td>
-    </tr>
-    <tr>
-      <td colspan=1>{$LNG['in_capacity']}</td>
-      <td colspan=2 id="ship_cargo_points"></td>
-    </tr>
-
-    <tr>
-      <th colspan="2">{$LNG.tech.200}</th>
-      <th colspan="1">{$LNG['rec_count']} </th>
-    </tr>
-      {foreach $shiptypes as $elementID => $fleetArray}
-        <tr>
-          <td colspan="2">{$LNG.tech[$fleetArray.id]}</td>
-          <td colspan="1"><input id="ship_{$fleetArray.id}" type="number" value="0"></td>
-        </tr>
-      {/foreach}
-
-    <tr>
-      <td colspan="3" style="text-align: center;">
-        <button id="cf_save" style="width:25%">
-            {$LNG['al_save']}
-        </button>
-        <button id="cf_del" style="width:25%">
-            {$LNG['al_dlte']}
-        </button>
-      </td>
-    </tr>
-
-
-  </table>
+					</form>
+				{/if}
+			{else}
+				&nbsp;-&nbsp;
+			{/if}
+		</td>
+	</tr>
+	{foreachelse}
+	<tr>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+	</tr>
+	{/foreach}
+	{if $maxFleetSlots == $activeFleetSlots}
+		<tr><td colspan="9">{$LNG.fl_no_more_slots}</td></tr>
+	{/if}
+</table>
+{if !empty($acsData)}
+	{include file="shared.fleetTable.acsTable.tpl"}
+{/if}
+<form action="?page=fleetStep1" method="post">
+	<input type="hidden" name="galaxy" value="{$targetGalaxy}">
+	<input type="hidden" name="system" value="{$targetSystem}">
+	<input type="hidden" name="planet" value="{$targetPlanet}">
+	<input type="hidden" name="type" value="{$targetType}">
+	<input type="hidden" name="target_mission" value="{$targetMission}">
+	<table class="table519">
+		<tr>
+			<th colspan="5">{$LNG.fl_new_mission_title}</th>
+		</tr>
+		<tr style="height:20px;">
+			<td>{$LNG.fl_ship_type}</td>
+			<td>{$LNG.fl_ship_available}</td>
+			<td>-</td>
+			<td>-</td>
+			<td id="expocount" expocap="{$maxExpo}">-</td>
+		</tr>
+		{foreach $FleetsOnPlanet as $FleetRow}
+		<tr style="height:20px;">
+			<td>{if $FleetRow.speed != 0} <a class='tooltip' data-tooltip-content='<table><tr><td>{$LNG.fl_speed_title}</td><td>{$FleetRow.speed}</td></tr></table>'>{$LNG.tech.{$FleetRow.id}}</a>{else}{$LNG.tech.{$FleetRow.id}}{/if}</td>
+			<td id="ship{$FleetRow.id}_value">{number_format($FleetRow.count, 0, ",", ".")}</td>
+			{if $FleetRow.speed != 0}
+				<td><a href="javascript:noShip('ship{$FleetRow.id}');">{$LNG.fl_null}</a></td>
+				<td><a href="javascript:maxShip('ship{$FleetRow.id}');">{$LNG.fl_max}</a></td>
+				<td><input type="number" name="ship{$FleetRow.id}" id="ship{$FleetRow.id}_input" size="10" value="0" style="max-width: 10em;"></td>
+			{else}
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			{/if}
+		</tr>
+		{/foreach}
+		<tr style="height:20px;">
+			{if count($FleetsOnPlanet) == 0}
+				<td colspan="5">{$LNG.fl_no_ships}</td>
+			{else}
+				<td id="cargospace" colspan="2" data="{$LNG['in_capacity']}">&nbsp;</td>
+				<td colspan="2"><a href="javascript:noShips();">{$LNG.fl_remove_all_ships}</a></td>
+				<td><a href="javascript:maxShips();">{$LNG.fl_select_all_ships}</a></td>
+			{/if}
+		</tr>
+    <tr id="customfleets"></tr>
+		{if $maxFleetSlots != $activeFleetSlots}
+			<tr style="height:20px;"><td colspan="5"><input type="submit" value="{$LNG.fl_continue}"></td>
+		{/if}
+	</table>
+  <div style="text-align: center"><span style="white-space:nowrap;">{$LNG['tech'][901]}:<input name="met_storage" type="number" placeholder="{$LNG['tech'][901]}"></span> <span style="white-space:nowrap;">{$LNG['tech'][902]}:<input name="krist_storage" type="number" placeholder="{$LNG['tech'][902]}"></span> <span style="white-space:nowrap;">{$LNG['tech'][903]}:<input name="deut_storage" type="number" placeholder="{$LNG['tech'][903]}"></span></div>
+  <div style="text-align: center"><button type="button" id="gt_select">{$LNG['tech'][203]}<span id="gt_amt"></span></button> <button type="button" id="kt_select">{$LNG['tech'][202]}<span id="kt_amt"></span></button></div>
+</form>
+<br>
+<table class="table519">
+	<tr><th colspan="3">{$LNG.fl_bonus}</th></tr>
+	<tr><th style="width:33%">{$LNG.fl_bonus_attack}</th><th style="width:33%">{$LNG.fl_bonus_shield}</th><th style="width:33%">{$LNG.fl_bonus_defensive}</th></tr>
+	<tr><td>+{$bonusAttack} %</td><td>+{$bonusShield} %</td><td>+{$bonusDefensive} %</td></tr>
+	<tr><th style="width:33%">{$LNG.tech.115}</th><th style="width:33%">{$LNG.tech.117}</th><th style="width:33%">{$LNG.tech.118}</th></tr>
+	<tr><td>+{$bonusCombustion} %</td><td>+{$bonusImpulse} %</td><td>+{$bonusHyperspace} %</td></tr>
+</table>
 {/block}
-{block name="script" append}
-  <script src="scripts/game/fleetTable.js"></script>
-{/block}
+{block name="script" append}<script src="scripts/game/fleetTable.js"></script>{/block}

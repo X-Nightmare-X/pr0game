@@ -20,9 +20,9 @@
 			<td style="width:150px;">{$notesRow.time}</td>
 			<td><a href="game.php?page=notes&amp;mode=detail&amp;id={$notesID}">
 			{if $notesRow.priority == 0}
-			<span style="color:lime">{$notesRow.title}</span>
+			<span class="colorPositive">{$notesRow.title}</span>
 			{elseif $notesRow.priority == 2}
-			<span style="color:red">{$notesRow.title}</span>
+			<span class="colorNegative">{$notesRow.title}</span>
 			{else}
 			<span style="color:yellow">{$notesRow.title}</span>
 			{/if}
