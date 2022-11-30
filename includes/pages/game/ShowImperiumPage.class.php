@@ -18,145 +18,139 @@
 
 class ShowImperiumPage extends AbstractGamePage
 {
-	public static $requireModule = MODULE_IMPERIUM;
+    public static $requireModule = MODULE_IMPERIUM;
 
-	function __construct()
-	{
-		parent::__construct();
-	}
+    function __construct()
+    {
+        parent::__construct();
+    }
 
-	function show()
-	{
-		global $USER, $resource, $reslist;
+    function show()
+    {
+        global $USER, $resource, $reslist;
 
         $db = Database::get();
-		$db->startTransaction();
-		$order = $USER['planet_sort_order'] == 1 ? 'DESC' : 'ASC';
+        $db->startTransaction();
+        $order = $USER['planet_sort_order'] == 1 ? 'DESC' : 'ASC';
 
-		$sql = "SELECT * FROM %%PLANETS%% WHERE id_owner = :userID AND destruyed = '0' ORDER BY ";
+        $sql = "SELECT * FROM %%PLANETS%% WHERE id_owner = :userID AND destruyed = '0' ORDER BY ";
 
-		switch($USER['planet_sort'])
-		{
-			case 2:
-				$sql .= 'name '.$order;
-				break;
-			case 1:
-				$sql .= 'galaxy '.$order.', system '.$order.', planet '.$order.', planet_type '.$order;
-				break;
-			default:
-				$sql .= 'id '.$order;
-				break;
-		}
+        switch ($USER['planet_sort']) {
+            case 2:
+                $sql .= 'name ' . $order;
+                break;
+            case 1:
+                $sql .= 'galaxy ' . $order . ', system ' . $order . ', planet ' . $order . ', planet_type ' . $order;
+                break;
+            default:
+                $sql .= 'id ' . $order;
+                break;
+        }
 
-		$sql .= " FOR UPDATE";
+        $sql .= " FOR UPDATE";
         $PlanetsRAW = $db->select($sql, array(
-            ':userID'   => $USER['id']
+            ':userID' => $USER['id']
         ));
 
-        $PLANETS	= array();
+        $PLANETS = array();
 
-		$PlanetRess	= new ResourceUpdate();
+        $PlanetRess = new ResourceUpdate();
 
-		foreach ($PlanetsRAW as $CPLANET)
-		{
-            list($USER, $CPLANET)	= $PlanetRess->CalcResource($USER, $CPLANET, true);
+        foreach ($PlanetsRAW as $CPLANET) {
+            list($USER, $CPLANET) = $PlanetRess->CalcResource($USER, $CPLANET, true);
 
-			$PLANETS[]	= $CPLANET;
-			unset($CPLANET);
-		}
+            $PLANETS[] = $CPLANET;
+            unset($CPLANET);
+        }
 
-		$db->commit();
+        $db->commit();
 
-        $planetList	= array();
-		$config		= Config::get($USER['universe']);
-		foreach($PLANETS as $Planet)
-		{
-			$planetList['name'][$Planet['id']]					= $Planet['name'];
-			$planetList['image'][$Planet['id']]					= $Planet['image'];
+        $planetList = array();
+        $config = Config::get($USER['universe']);
+        foreach ($PLANETS as $Planet) {
+            $planetList['name'][$Planet['id']] = $Planet['name'];
+            $planetList['image'][$Planet['id']] = $Planet['image'];
 
-			$planetList['coords'][$Planet['id']]['galaxy']		= $Planet['galaxy'];
-			$planetList['coords'][$Planet['id']]['system']		= $Planet['system'];
-			$planetList['coords'][$Planet['id']]['planet']		= $Planet['planet'];
+            $planetList['coords'][$Planet['id']]['galaxy'] = $Planet['galaxy'];
+            $planetList['coords'][$Planet['id']]['system'] = $Planet['system'];
+            $planetList['coords'][$Planet['id']]['planet'] = $Planet['planet'];
 
-			$planetList['field'][$Planet['id']]['current']		= $Planet['field_current'];
-			$planetList['field'][$Planet['id']]['max']			= CalculateMaxPlanetFields($Planet);
+            $planetList['field'][$Planet['id']]['current'] = $Planet['field_current'];
+            $planetList['field'][$Planet['id']]['max'] = CalculateMaxPlanetFields($Planet);
 
-			$planetList['energy_used'][$Planet['id']]			= $Planet['energy'] + $Planet['energy_used'];
+            $planetList['energy_used'][$Planet['id']] = $Planet['energy'] + $Planet['energy_used'];
 
 
-			$planetList['resource'][901][$Planet['id']]			= $Planet['metal'];
-			$planetList['resource'][902][$Planet['id']]			= $Planet['crystal'];
-			$planetList['resource'][903][$Planet['id']]			= $Planet['deuterium'];
-			$planetList['resource'][911][$Planet['id']]			= $Planet['energy'] + $Planet['energy_used'];
+            $planetList['resource'][901][$Planet['id']] = $Planet['metal'];
+            $planetList['resource'][902][$Planet['id']] = $Planet['crystal'];
+            $planetList['resource'][903][$Planet['id']] = $Planet['deuterium'];
+            $planetList['resource'][911][$Planet['id']] = $Planet['energy'] + $Planet['energy_used'];;
 
-            ;
+            if ($Planet['planet_type'] == 1) {
+                $basic[901][$Planet['id']] = $config->metal_basic_income * $config->resource_multiplier;
+                $basic[902][$Planet['id']] = $config->crystal_basic_income * $config->resource_multiplier;
+                $basic[903][$Planet['id']] = $config->deuterium_basic_income * $config->resource_multiplier;
+                $planetList['resourceFull'][901][$Planet['id']] = floor(max($Planet['metal_max'] - $Planet['metal'], 0) / max(1, $Planet['metal_perhour'] + $basic[901][$Planet['id']]));
+                $planetList['resourceFull'][902][$Planet['id']] = floor(max($Planet['crystal_max'] - $Planet['crystal'], 0) / max(1, $Planet['crystal_perhour'] + $basic[902][$Planet['id']]));
+                $planetList['resourceFull'][903][$Planet['id']] = floor(max($Planet['deuterium_max'] - $Planet['deuterium'], 0) / max($basic[903][$Planet['id']] + $Planet['deuterium_perhour'], 1));
+            } else {
+                $basic[901][$Planet['id']] = 0;
+                $basic[902][$Planet['id']] = 0;
+                $basic[903][$Planet['id']] = 0;
 
-			if($Planet['planet_type'] == 1){
-				$basic[901][$Planet['id']] = $config->metal_basic_income * $config->resource_multiplier;
-				$basic[902][$Planet['id']] = $config->crystal_basic_income * $config->resource_multiplier;
-				$basic[903][$Planet['id']] = $config->deuterium_basic_income * $config->resource_multiplier;
-                $planetList['resourceFull'][901][$Planet['id']]			= floor(max($Planet['metal_max'] - $Planet['metal'],0)/max(1,$Planet['metal_perhour']+$basic[901][$Planet['id']]));
-                $planetList['resourceFull'][902][$Planet['id']]			= floor(max($Planet['crystal_max'] - $Planet['crystal'],0)/max(1, $Planet['crystal_perhour']+$basic[902][$Planet['id']]));
-                $planetList['resourceFull'][903][$Planet['id']]			= floor(max($Planet['deuterium_max'] - $Planet['deuterium'],0)/max($basic[903][$Planet['id']]+ $Planet['deuterium_perhour'],1));
-			}else{
-				$basic[901][$Planet['id']] = 0;
-				$basic[902][$Planet['id']] = 0;
-				$basic[903][$Planet['id']] = 0;
-
-			}
+            }
             if (!empty($Planet['b_building_id'])) {
                 $Queue = unserialize($Planet['b_building_id']);
-                $planetList['currentBuilding'][$Planet['id']]= $Queue[0][0];
-                $planetList['currentBuildinglvl'][$Planet['id']]= $Queue[0][1];
-            }else{
-                $planetList['currentBuilding'][$Planet['id']]= -1;
-                $planetList['currentBuildinglvl'][$Planet['id']]= -1;
+                $planetList['currentBuilding'][$Planet['id']] = $Queue[0][0];
+                $planetList['currentBuildinglvl'][$Planet['id']] = $Queue[0][1];
+            } else {
+                $planetList['currentBuilding'][$Planet['id']] = -1;
+                $planetList['currentBuildinglvl'][$Planet['id']] = -1;
             }
 
 
-			$planetList['resourcePerHour'][901][$Planet['id']]			= $basic[901][$Planet['id']] + $Planet['metal_perhour'];
-			$planetList['resourcePerHour'][902][$Planet['id']]			= $basic[902][$Planet['id']] + $Planet['crystal_perhour'];
-			$planetList['resourcePerHour'][903][$Planet['id']]			= $basic[903][$Planet['id']] + $Planet['deuterium_perhour'];
+            $planetList['resourcePerHour'][901][$Planet['id']] = $basic[901][$Planet['id']] + $Planet['metal_perhour'];
+            $planetList['resourcePerHour'][902][$Planet['id']] = $basic[902][$Planet['id']] + $Planet['crystal_perhour'];
+            $planetList['resourcePerHour'][903][$Planet['id']] = $basic[903][$Planet['id']] + $Planet['deuterium_perhour'];
 
-			$planetList['planet_type'][$Planet['id']] = $Planet['planet_type'];
-
-
-			foreach($reslist['build'] as $elementID) {
-				$planetList['build'][$elementID][$Planet['id']]	= $Planet[$resource[$elementID]];
-			}
-            $planetList['currentShipyard'][$Planet['id']]=[];
-			foreach($reslist['fleet'] as $elementID) {
-				$planetList['fleet'][$elementID][$Planet['id']]	= $Planet[$resource[$elementID]];
-                $planetList['currentShipyard'][$elementID][$Planet['id']]=0;
-
-			}
+            $planetList['planet_type'][$Planet['id']] = $Planet['planet_type'];
 
 
-            foreach($reslist['defense'] as $elementID) {
-				$planetList['defense'][$elementID][$Planet['id']]	= $Planet[$resource[$elementID]];
-                $planetList['currentShipyard'][$elementID][$Planet['id']]=0;
-			}
+            foreach ($reslist['build'] as $elementID) {
+                $planetList['build'][$elementID][$Planet['id']] = $Planet[$resource[$elementID]];
+            }
+            $planetList['currentShipyard'][$Planet['id']] = [];
+            foreach ($reslist['fleet'] as $elementID) {
+                $planetList['fleet'][$elementID][$Planet['id']] = $Planet[$resource[$elementID]];
+                $planetList['currentShipyard'][$elementID][$Planet['id']] = 0;
+
+            }
+
+
+            foreach ($reslist['defense'] as $elementID) {
+                $planetList['defense'][$elementID][$Planet['id']] = $Planet[$resource[$elementID]];
+                $planetList['currentShipyard'][$elementID][$Planet['id']] = 0;
+            }
             if (!empty($Planet['b_hangar_id'])) {
-                foreach(unserialize($Planet['b_hangar_id']) as $que)
-                {
-                    $planetList['currentShipyard'][$que[0]][$Planet['id']]+=$que[1];
+                foreach (unserialize($Planet['b_hangar_id']) as $que) {
+                    $planetList['currentShipyard'][$que[0]][$Planet['id']] += $que[1];
 
                 }
             }
 
-			$planetList['missiles'][502][$Planet['id']]         = $Planet[$resource[502]];
-            		$planetList['missiles'][503][$Planet['id']]         = $Planet[$resource[503]];
-		}
+            $planetList['missiles'][502][$Planet['id']] = $Planet[$resource[502]];
+            $planetList['missiles'][503][$Planet['id']] = $Planet[$resource[503]];
+        }
 
-		foreach($reslist['tech'] as $elementID){
-			$planetList['tech'][$elementID]	= $USER[$resource[$elementID]];
-		}
+        foreach ($reslist['tech'] as $elementID) {
+            $planetList['tech'][$elementID] = $USER[$resource[$elementID]];
+        }
 
-		$this->assign(array(
-			'colspan'		=> count($PLANETS) + 2,
-			'planetList'	=> $planetList,
-		));
+        $this->assign(array(
+            'colspan' => count($PLANETS) + 2,
+            'planetList' => $planetList,
+        ));
 
-		$this->display('page.empire.default.tpl');
-	}
+        $this->display('page.empire.default.tpl');
+    }
 }
