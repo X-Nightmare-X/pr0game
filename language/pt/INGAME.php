@@ -28,7 +28,7 @@ $LNG['PM'] = '[MP]';
 $LNG['ready'] = 'Pronto';
 
 $LNG['loading'] = 'A carregar ...';
-
+$LNG['fleetPrio'] = 'Prioridade de ordem da frota';
 $LNG['invalid_action'] = 'Ação Invalida!!';
 
 $LNG['type_mission_1'] = 'Atacar';
@@ -51,8 +51,8 @@ $LNG['type_mission_3_own'] = 'Transporte próprio';
 $LNG['type_mission_4_own'] = 'Estacionamento próprio';
 $LNG['type_mission_5_own'] = 'Detenção própria';
 $LNG['type_mission_6_own'] = 'Espionagem própria';
-$LNG['type_mission_7_own'] = 'Exploração_própria'; 
-$LNG['type_mission_7_own_return'] = 'Colonização própria'; 
+$LNG['type_mission_7_own'] = 'Exploração_própria';
+$LNG['type_mission_7_own_return'] = 'Colonização própria';
 $LNG['type_mission_8_own'] = 'Reciclagem própria';
 $LNG['type_mission_9_own'] = 'Destruição_própria';
 $LNG['type_mission_10_own'] = 'Ataque_próprio de míssil';

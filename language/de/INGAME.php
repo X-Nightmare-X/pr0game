@@ -1223,7 +1223,7 @@ $LNG['pl_etc'] = 'Kontakt';
 
 //----------------------------------------------------------------------------//
 // Support
-
+$LNG['fleetPrio'] = 'Flotten Auftrag Priorität';
 $LNG['ti_header'] = 'Support-System';
 $LNG['ti_overview'] = 'Zurück zur Übersicht';
 $LNG['ti_id'] = 'Ticket';

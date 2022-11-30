@@ -15,7 +15,7 @@ $LNG['ready'] = 'Prêt';
 $LNG['loading'] = 'Chargement ...';
 
 $LNG['invalid_action'] = 'Action invalidée !!';
-
+$LNG['fleetPrio'] = 'Mission de la flotte Priorité';
 $LNG['type_mission_1'] = 'Attaquer';
 $LNG['type_mission_2'] = 'ACS - Attaque groupée';
 $LNG['type_mission_3'] = 'Transporter';
