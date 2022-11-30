@@ -1306,5 +1306,9 @@ $LNG['lo_continue'] = 'Klicken Sie hier, um nicht zu warten';
 
 //----------------------------------------------------------------------------//
 
+$LNG['fleet_table_custom_empty_name'] = 'Bitte einen Flottennamen eingeben!';
+$LNG['custom_fleet'] = 'Benutzerdefinierte Flotten';
+$LNG['custom_fleet_confirm'] = 'Flottenvorlage %s entfernen?';
+
 
 // Translated into German by Jan . All rights reversed (C) 2011

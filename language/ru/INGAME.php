@@ -1199,3 +1199,6 @@ $LNG['lo_logout'] = 'Сессия завершена.';
 $LNG['lo_redirect'] = 'Перенаправление';
 $LNG['lo_notify'] = 'Вы будете перенаправлены через <span id="seconds">5</span> секунд';
 $LNG['lo_continue'] = 'Нажмите здесь, если не хотите ждать';
+$LNG['fleet_table_custom_empty_name'] = 'Вставьте название флота, пожалуйста!';
+$LNG['custom_fleet'] = 'Индивидуальные автопарки';
+$LNG['custom_fleet_confirm'] = 'Удалить шаблон флота %s?';

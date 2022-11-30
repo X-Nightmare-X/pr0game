@@ -1,57 +1,83 @@
 {block name="title" prepend}{$LNG.lm_fleet}{/block}
 {block name="content"}
-<table>
-	<tr>
-		<th colspan="9">
-			<div class="transparent" style="text-align:left;float:left;">{$LNG.fl_fleets} {$activeFleetSlots} / {$maxFleetSlots}</div>
-			<div class="transparent" style="text-align:right;float:right;">{$activeExpedition} / {$maxExpedition} {$LNG.fl_expeditions}</div>
-		</th>
-	</tr>
-	<tr>
-		<td>{$LNG.fl_number}</td>
-		<td>{$LNG.fl_mission}</td>
-		<td>{$LNG.fl_ammount}</td>
-		<td>{$LNG.fl_beginning}</td>
-		<td>{$LNG.fl_departure}</td>
-		<td>{$LNG.fl_destiny}</td>
-		<td>{$LNG.fl_arrival}</td>
-		<td>{$LNG.fl_objective}</td>
-		<td>{$LNG.fl_order}</td>
-	</tr>
-	{foreach name=FlyingFleets item=FlyingFleetRow from=$FlyingFleetList}
-	<tr>
-		<td>{$smarty.foreach.FlyingFleets.iteration}</td>
-		<td>
-			<a data-tooltip-content="<table style='width:200px'><tr><td style='width:50%;color:white'>{$LNG['tech'][901]}</td><td style='width:50%;color:white'>{$FlyingFleetRow.metal}</td></tr><tr><td style='width:50%;color:white'>{$LNG['tech'][902]}</td><td style='width:50%;color:white'>{$FlyingFleetRow.crystal}</td></tr><tr><td style='width:50%;color:white'>{$LNG['tech'][903]}</td><td style='width:50%;color:white'>{$FlyingFleetRow.deuterium}</td></tr></table>" class="tooltip">
-				{$LNG["type_mission_{$FlyingFleetRow.mission}"]}
-			</a>
-			{if $FlyingFleetRow.state == 1}
-				<br><a title="{$LNG.fl_returning}">{$LNG.fl_r}</a>
-			{else}
-				<br><a title="{$LNG.fl_onway}">{$LNG.fl_a}</a>
-			{/if}
-		</td>
-		<td><a class="tooltip_sticky" data-tooltip-content="<table><tr><th colspan='2' style='text-align:center;'>{$LNG.fl_info_detail}</th></tr>{foreach $FlyingFleetRow.FleetList as $shipID => $shipCount}<tr><td class='transparent'>{$LNG.tech.{$shipID}}:</td><td class='transparent'>{$shipCount}</td></tr>{/foreach}</table>">{$FlyingFleetRow.amount}</a></td>
-		<td><a href="game.php?page=galaxy&amp;galaxy={$FlyingFleetRow.startGalaxy}&amp;system={$FlyingFleetRow.startSystem}">[{$FlyingFleetRow.startGalaxy}:{$FlyingFleetRow.startSystem}:{$FlyingFleetRow.startPlanet}]</a></td>
-		<td{if $FlyingFleetRow.state == 0} class="colorPositive"{/if}>{$FlyingFleetRow.startTime}</td>
-		<td><a href="game.php?page=galaxy&amp;galaxy={$FlyingFleetRow.endGalaxy}&amp;system={$FlyingFleetRow.endSystem}">[{$FlyingFleetRow.endGalaxy}:{$FlyingFleetRow.endSystem}:{$FlyingFleetRow.endPlanet}]</a></td>
-		{if $FlyingFleetRow.mission == 4 && $FlyingFleetRow.state == 0}
-			<td>-</td>
-		{else}
-			<td{if $FlyingFleetRow.state != 0} class="colorPositive"{/if}>{$FlyingFleetRow.endTime}</td>
-		{/if}
-		<td id="fleettime_{$smarty.foreach.FlyingFleets.iteration}" class="fleets" data-fleet-end-time="{$FlyingFleetRow.returntime}" data-fleet-time="{$FlyingFleetRow.resttime}">{getRestTimeFormat({$FlyingFleetRow.resttime})}</td>
-		<td>
-			{if !$isVacation && $FlyingFleetRow.state != 1 && $FlyingFleetRow.no_returnable != 1}
-				<form action="game.php?page=fleetTable&amp;action=sendfleetback" method="post">
-					<input name="fleetID" value="{$FlyingFleetRow.id}" type="hidden">
-					<input value="{$LNG.fl_send_back}" type="submit">
-				</form>
-        <span class="aborttime" starttime="{$FlyingFleetRow.startTimestamp}"></span>
-				{if $FlyingFleetRow.mission == 1}
-					<form action="game.php?page=fleetTable&amp;action=acs" method="post">
-						<input name="fleetID" value="{$FlyingFleetRow.id}" type="hidden">
-						<input value="{$LNG.fl_acs}" type="submit">
+  <script>
+    const exp_values = {
+        {foreach $shiptypes as $elementID => $fleetArray}
+        {$fleetArray.id}: {$fleetArray.expo},
+        {/foreach}
+    }
+    const ship_storage = {
+        {foreach $shiptypes as $elementID => $fleetArray}
+        {$fleetArray.id}: {$fleetArray.capacity},
+        {/foreach}
+    }
+  </script>
+  <table>
+    <tr>
+      <th colspan="9">
+        <div class="transparent" style="text-align:left;float:left;">{$LNG.fl_fleets} {$activeFleetSlots}
+          / {$maxFleetSlots}</div>
+        <div class="transparent" style="text-align:right;float:right;">{$activeExpedition}
+          / {$maxExpedition} {$LNG.fl_expeditions}</div>
+      </th>
+    </tr>
+    <tr>
+      <td>{$LNG.fl_number}</td>
+      <td>{$LNG.fl_mission}</td>
+      <td>{$LNG.fl_ammount}</td>
+      <td>{$LNG.fl_beginning}</td>
+      <td>{$LNG.fl_departure}</td>
+      <td>{$LNG.fl_destiny}</td>
+      <td>{$LNG.fl_arrival}</td>
+      <td>{$LNG.fl_objective}</td>
+      <td>{$LNG.fl_order}</td>
+    </tr>
+      {foreach name=FlyingFleets item=FlyingFleetRow from=$FlyingFleetList}
+        <tr>
+          <td>{$smarty.foreach.FlyingFleets.iteration}</td>
+          <td>
+            <a
+              data-tooltip-content="<table style='width:200px'><tr><td style='width:50%;color:white'>{$LNG['tech'][901]}</td><td style='width:50%;color:white'>{$FlyingFleetRow.metal}</td></tr><tr><td style='width:50%;color:white'>{$LNG['tech'][902]}</td><td style='width:50%;color:white'>{$FlyingFleetRow.crystal}</td></tr><tr><td style='width:50%;color:white'>{$LNG['tech'][903]}</td><td style='width:50%;color:white'>{$FlyingFleetRow.deuterium}</td></tr></table>"
+              class="tooltip">
+                {$LNG["type_mission_{$FlyingFleetRow.mission}"]}
+            </a>
+              {if $FlyingFleetRow.state == 1}
+                <br>
+                <a title="{$LNG.fl_returning}">{$LNG.fl_r}</a>
+              {else}
+                <br>
+                <a title="{$LNG.fl_onway}">{$LNG.fl_a}</a>
+              {/if}
+          </td>
+          <td><a class="tooltip_sticky"
+                 data-tooltip-content="<table><tr><th colspan='2' style='text-align:center;'>{$LNG.fl_info_detail}</th></tr>{foreach $FlyingFleetRow.FleetList as $shipID => $shipCount}<tr><td class='transparent'>{$LNG.tech.{$shipID}}:</td><td class='transparent'>{$shipCount}</td></tr>{/foreach}</table>">{$FlyingFleetRow.amount}</a>
+          </td>
+          <td><a
+              href="game.php?page=galaxy&amp;galaxy={$FlyingFleetRow.startGalaxy}&amp;system={$FlyingFleetRow.startSystem}">[{$FlyingFleetRow.startGalaxy}
+              :{$FlyingFleetRow.startSystem}:{$FlyingFleetRow.startPlanet}]</a></td>
+          <td{if $FlyingFleetRow.state == 0} style="color:lime"{/if}>{$FlyingFleetRow.startTime}</td>
+          <td><a
+              href="game.php?page=galaxy&amp;galaxy={$FlyingFleetRow.endGalaxy}&amp;system={$FlyingFleetRow.endSystem}">[{$FlyingFleetRow.endGalaxy}
+              :{$FlyingFleetRow.endSystem}:{$FlyingFleetRow.endPlanet}]</a></td>
+            {if $FlyingFleetRow.mission == 4 && $FlyingFleetRow.state == 0}
+              <td>-</td>
+            {else}
+              <td{if $FlyingFleetRow.state != 0} style="color:lime"{/if}>{$FlyingFleetRow.endTime}</td>
+            {/if}
+          <td id="fleettime_{$smarty.foreach.FlyingFleets.iteration}" class="fleets"
+              data-fleet-end-time="{$FlyingFleetRow.returntime}"
+              data-fleet-time="{$FlyingFleetRow.resttime}">{getRestTimeFormat({$FlyingFleetRow.resttime})}</td>
+          <td>
+              {if !$isVacation && $FlyingFleetRow.state != 1 && $FlyingFleetRow.no_returnable != 1}
+                <form action="game.php?page=fleetTable&amp;action=sendfleetback" method="post">
+                  <input name="fleetID" value="{$FlyingFleetRow.id}" type="hidden">
+                  <input value="{$LNG.fl_send_back}" type="submit">
+                </form>
+                <span class="aborttime" starttime="{$FlyingFleetRow.startTimestamp}"></span>
+                  {if $FlyingFleetRow.mission == 1}
+                    <form action="game.php?page=fleetTable&amp;action=acs" method="post">
+                      <input name="fleetID" value="{$FlyingFleetRow.id}" type="hidden">
+                      <input value="{$LNG.fl_acs}" type="submit">
 
 					</form>
 				{/if}
