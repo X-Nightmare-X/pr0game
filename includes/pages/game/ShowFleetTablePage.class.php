@@ -285,27 +285,27 @@ class ShowFleetTablePage extends AbstractGamePage
         require_once('includes/classes/class.FleetFunctions.php');
 
         $this->assign([
-            'FleetsOnPlanet' => $FleetsOnPlanet,
-            'FlyingFleetList' => $FlyingFleetList,
-            'activeExpedition' => $activeExpedition,
-            'maxExpedition' => $maxExpedition,
-            'activeFleetSlots' => $activeFleetSlots,
-            'maxFleetSlots' => $maxFleetSlots,
-            'targetGalaxy' => $targetGalaxy,
-            'targetSystem' => $targetSystem,
-            'targetPlanet' => $targetPlanet,
-            'targetType' => $targetType,
-            'targetMission' => $targetMission,
-            'acsData' => $acsData,
-            'isVacation' => IsVacationMode($USER),
-            'bonusAttack' => $USER[$resource[109]] * 10,
-            'bonusShield' => $USER[$resource[110]] * 10,
-            'bonusDefensive' => $USER[$resource[111]] * 10,
-            'bonusCombustion' => $USER[$resource[115]] * 10,
-            'bonusImpulse' => $USER[$resource[117]] * 20,
-            'bonusHyperspace' => $USER[$resource[118]] * 30,
-            'maxExpo' => FleetFunctions::calculateMaxFactorRes(Universe::current()),
-            'shiptypes' => $shipinfos
+            'FleetsOnPlanet'        => $FleetsOnPlanet,
+            'FlyingFleetList'       => $FlyingFleetList,
+            'activeExpedition'      => $activeExpedition,
+            'maxExpedition'         => $maxExpedition,
+            'activeFleetSlots'      => $activeFleetSlots,
+            'maxFleetSlots'         => $maxFleetSlots,
+            'targetGalaxy'          => $targetGalaxy,
+            'targetSystem'          => $targetSystem,
+            'targetPlanet'          => $targetPlanet,
+            'targetType'            => $targetType,
+            'targetMission'         => $targetMission,
+            'acsData'               => $acsData,
+            'isVacation'            => IsVacationMode($USER),
+            'bonusAttack'           => $USER[$resource[109]] * 10,
+            'bonusShield'           => $USER[$resource[110]] * 10,
+            'bonusDefensive'        => $USER[$resource[111]] * 10,
+            'bonusCombustion'       => $USER[$resource[115]] * 10,
+            'bonusImpulse'          => $USER[$resource[117]] * 20,
+            'bonusHyperspace'       => $USER[$resource[118]] * 30,
+            'maxExpo'               => FleetFunctions::calculateMaxFactorRes(Universe::current()),
+            'shiptypes'             => $shipinfos
         ]);
 
         $this->display('page.fleetTable.default.tpl');
