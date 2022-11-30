@@ -54,7 +54,8 @@
             <td>{number_format($resource, 0, ",", ".")} {if in_array($elementID, array(901,902,903)) && $planetList.planet_type[$planetID] == 1}
                 <span
                   class="colorPositive">{number_format($planetList.resourcePerHour[$elementID][$planetID], 0, ",", ".")}
-                /h</span> <span
+                /h</span>
+                <span
                 class="{if $planetList.resourceFull[$elementID][$planetID]>23}colorPositive{/if}{if $planetList.resourceFull[$elementID][$planetID]<24 && $planetList.resourceFull[$elementID][$planetID]>6}colorNeutral{/if}{if $planetList.resourceFull[$elementID][$planetID]<7}colorNegative{/if}">{number_format($planetList.resourceFull[$elementID][$planetID],0,",",".")}
                 h</span>{/if}</td>
           {/foreach}

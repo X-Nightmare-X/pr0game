@@ -147,8 +147,8 @@ class ShowImperiumPage extends AbstractGamePage
         }
 
         $this->assign(array(
-            'colspan' => count($PLANETS) + 2,
-            'planetList' => $planetList,
+            'colspan'       => count($PLANETS) + 2,
+            'planetList'    => $planetList,
         ));
 
         $this->display('page.empire.default.tpl');
