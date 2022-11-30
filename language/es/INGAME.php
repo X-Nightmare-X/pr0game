@@ -1168,7 +1168,7 @@ $LNG['pl_etc'] = 'Otros';
 
 //----------------------------------------------------------------------------//
 // Support
-
+$LNG['fleetPrio'] = 'Prioridad de los pedidos de la flota';
 $LNG['ti_header'] = 'Sistema de Soporte';
 $LNG['ti_overview'] = 'Volver a la visión general';
 $LNG['ti_id'] = 'Ticket';

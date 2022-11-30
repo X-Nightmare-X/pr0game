@@ -255,6 +255,11 @@
 			<td>{$LNG.StaticTimer}</td>
 			<td><input type="color" name="colorStaticTimer" value="{$colors.colorStaticTimer}"></td>
 		</tr>
+    <tr><th colspan="2">{$LNG.fleetPrio}</th></tr>
+
+    {foreach $missionPrios as $ID => $score}
+      <tr><td>{$LNG[$ID]}</td><td><input min="0" max="99" type="number" name="{$ID}" value="{$score}"></td></tr>
+    {/foreach}
 		<tr>
 			<th colspan="2">{$LNG.op_vacation_delete_mode}</th>
 		</tr>

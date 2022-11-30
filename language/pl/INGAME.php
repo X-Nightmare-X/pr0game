@@ -22,7 +22,7 @@ $LNG['PM'] = '[PW]';
 $LNG['ready'] = 'Gotowe';
 
 $LNG['loading'] = 'Ładuję';
-
+$LNG['fleetPrio'] = 'Priorytet kolejności floty';
 $LNG['invalid_action'] = 'Niedozwolona akcja';
 
 $LNG['type_mission_1'] = 'Atak';
@@ -73,7 +73,7 @@ $LNG['type_mission_17_foreign'] = 'Zagraniczny transfer';
 $LNG['type_mission_return_foreign'] = 'Zwrot zagraniczny';
 
 $LNG['positive'] = 'Pozytywny';
-$LNG['negative'] = 'Negative'; 
+$LNG['negative'] = 'Negative';
 $LNG['neutral'] = 'Neutralny';
 $LNG['StaticTimer'] = 'Czas przybycia';
 

@@ -17,7 +17,7 @@
 // 2Moons - Copyright (C) 2010-2012 Slaver
 // Grammar Pedantry fixes @etaletai 2018
 
-
+$LNG['fleetPrio'] = 'Fleet order priority';
 $LNG['Messages'] = 'Messages';
 
 $LNG['PM'] = '[PM]';

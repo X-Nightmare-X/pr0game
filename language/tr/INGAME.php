@@ -1181,7 +1181,7 @@ $LNG['pl_etc'] = 'Digerleri ';
 
 //----------------------------------------------------------------------------//
 // Destek
-
+$LNG['fleetPrio'] = 'Filo sipariş önceliği';
 $LNG['ti_header'] = 'Destek Sistemi';
 $LNG['ti_overview'] = 'Geri';
 $LNG['ti_id'] = 'Ticket';
