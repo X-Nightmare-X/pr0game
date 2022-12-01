@@ -123,7 +123,7 @@ function save_fleet_Select() {
   }
   let fname = document.getElementById("cfleet_name").value
   if (fname.trim() === "") {
-    alert()
+    alert(document.getElementById("customfleet").getAttribute("data-noname"))
     return;
   }
   if (!(fname in cfleet)) {
