@@ -20,7 +20,12 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 function ShowInformationPage()
 {
 	global $LNG, $USER;
-
+	if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
 	$config = Config::get();
 
 	// @ for open_basedir
@@ -80,6 +85,7 @@ function ShowInformationPage()
 		'php_tz'			=> $dateTimePHP->getOffset() / 3600,
 		'conf_tz'			=> $dateTimeServer->getOffset() / 3600,
 		'user_tz'			=> $dateTimeUser->getOffset() / 3600,
+		'signalColors'		=> $signalColors,
 	));
 
 	$template->show('ShowInformationPage.tpl');

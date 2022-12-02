@@ -19,9 +19,14 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowConfigBasicPage()
 {
-	global $LNG;
+	global $LNG, $USER;
 	$config = Config::get(Universe::getEmulated());
-
+	if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
 	if (!empty($_POST))
 	{
 		$config_before = array(
@@ -145,6 +150,7 @@ function ShowConfigBasicPage()
 		'dst'           				=> $config->dst,
 		'message_delete_behavior'  		=> $config->message_delete_behavior,
 		'message_delete_days'         	=> $config->message_delete_days,
+		'signalColors'					=> $signalColors,	
 		'Selector'						=> array(
 		    'timezone' => $TimeZones,
             'mail' => $LNG['se_mail_sel'],

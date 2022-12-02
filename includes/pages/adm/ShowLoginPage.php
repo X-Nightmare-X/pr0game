@@ -23,7 +23,12 @@ if ($USER['authlevel'] == AUTH_USR)
 function ShowLoginPage()
 {
 	global $USER;
-
+	if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
 	$session	= Session::create();
 	if($session->adminAccess == 1)
 	{
@@ -43,8 +48,9 @@ function ShowLoginPage()
 	$template	= new template();
 
 	$template->assign_vars(array(
-		'bodyclass'	=> 'standalone',
-		'username'	=> $USER['username'],
+		'bodyclass'		=> 'standalone',
+		'username'		=> $USER['username'],
+		'signalColors'  => $signalColors
 	));
 	$template->show('LoginPage.tpl');
 }

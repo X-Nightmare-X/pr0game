@@ -19,8 +19,13 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowStatsPage() 
 {
-	global $LNG;
-
+	global $LNG, $USER;
+	if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
 	$config = Config::get(Universe::getEmulated());
 
 	if ($_POST)
@@ -68,6 +73,7 @@ function ShowStatsPage()
 		'cs_resources'						=> $LNG['cs_resources'],
 		'cs_save_changes'					=> $LNG['cs_save_changes'],
 		'Selector'							=> array(1 => $LNG['cs_yes'], 2 => $LNG['cs_no_view'], 0 => $LNG['cs_no']),
+		'signalColors'						=> $signalColors,
 	));
 		
 	$template->show('StatsPage.tpl');
