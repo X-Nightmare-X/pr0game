@@ -215,7 +215,7 @@ class ShowFleetTablePage extends AbstractGamePage
         $targetSystem = HTTP::_GP('system', (int)$PLANET['system']);
         $targetPlanet = HTTP::_GP('planet', (int)$PLANET['planet']);
         $targetType = HTTP::_GP('planettype', (int)$PLANET['planet_type']);
-        $targetMission = HTTP::_GP('target_mission', 0);
+        $targetMission = HTTP::_GP('target_mission', -1);
 
         $sql = "SELECT * FROM %%FLEETS%% WHERE fleet_owner = :userID AND fleet_mission <> :missile"
             . " ORDER BY fleet_end_time ASC;";

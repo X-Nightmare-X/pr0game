@@ -20,7 +20,7 @@ $LNG['PM'] = '[PN]';
 $LNG['ready'] = 'Ferdig';
 
 $LNG['loading'] = 'Lade ...';
-
+$LNG['fleetPrio'] = 'Flodden Auftrag Prioritätene';
 $LNG['invalid_action'] = 'Ungüldige Agtion';
 
 $LNG['type_mission_1'] = 'Angreifne ';

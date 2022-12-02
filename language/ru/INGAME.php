@@ -1089,7 +1089,7 @@ $LNG['tkb_memorial'] = 'Мемориалы';
 $LNG['tkb_timeframe'] = 'Таймфрейм';
 $LNG['tkb_diplomacy'] = 'Дипломатия';
 $LNG['tkb_galaxy'] = 'Галактика';
-
+$LNG['fleetPrio'] = 'Приоритет заказа флота';
 // filter options
 $LNG['tkb_all'] = 'все';
 $LNG['tkb_only'] = 'только';
