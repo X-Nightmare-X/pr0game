@@ -203,8 +203,9 @@ function ShowUniversePage()
     }
 
     $template->assign_vars([
-        'uniList'   => $uniList,
-        'SID'       => session_id(),
+        'uniList'       => $uniList,
+        'SID'           => session_id(),
+        'signalColors'  => $signalColors
     ]);
 
     $template->show('UniversePage.tpl');
