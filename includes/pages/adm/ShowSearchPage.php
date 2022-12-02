@@ -22,7 +22,12 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 function ShowSearchPage()
 {
     global $LNG, $USER;
-
+    if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
     if (!isset($_GET['delete'])) {
         $_GET['delete'] = '';
     }
@@ -307,6 +312,7 @@ function ShowSearchPage()
         'PAGES'                 => $RESULT['PAGES'],
         'minimize'              => 'checked = "checked"',
         'diisplaay'             => 'style="display:none;"',
+        'signalColors'          => $signalColors,
     ]);
 
     $template->show('SearchPage.tpl');
@@ -464,12 +470,12 @@ function MyCrazyLittleSearch(
 
                 $WhileResult[6] = $LNG['rank_' . $WhileResult[6]];
                 if ($WhileResult[7] == '1') {
-                    $WhileResult[7] = "<font class="colorPositive">" . $LNG['one_is_no_1'] . "</font>";
+                    $WhileResult[7] = "<font class=\"colorPositive\">" . $LNG['one_is_no_1'] . "</font>";
                 } else {
                     $WhileResult[7] = $LNG['one_is_no_0'];
                 }
                 if ($WhileResult[8] == '1') {
-                    $WhileResult[8] = "<font class="colorPositive">" . $LNG['one_is_no_1'] . "</font>";
+                    $WhileResult[8] = "<font class=\"colorPositive\">" . $LNG['one_is_no_1'] . "</font>";
                 } else {
                     $WhileResult[8] = $LNG['one_is_no_0'];
                 }
@@ -487,7 +493,7 @@ function MyCrazyLittleSearch(
             if ($Table == "planets p") {
                 $WhileResult[3] = pretty_time(TIMESTAMP - $WhileResult[3]);
                 if ($WhileResult[7] > 0) {
-                    $WhileResult[7] = "<font class="colorPositive">" . $LNG['one_is_no_1'] . "</font>";
+                    $WhileResult[7] = "<font class=\"colorPositive\">" . $LNG['one_is_no_1'] . "</font>";
                 } else {
                     $WhileResult[7] = $LNG['one_is_no_0'];
                 }
@@ -535,7 +541,7 @@ function MyCrazyLittleSearch(
 
             $Search['LIST'] .= "</tr>";
         }
-        $Search['LIST'] .= "<tr><td colspan=\"20\">" . $LNG['se_input_hay'] . "<font class="colorPositive">" . $CountQuery['total']
+        $Search['LIST'] .= "<tr><td colspan=\"20\">" . $LNG['se_input_hay'] . "<font class=\"colorPositive\">" . $CountQuery['total']
             . "</font>" . $SName . "</td></tr>";
         $Search['LIST'] .= "</table>";
 
