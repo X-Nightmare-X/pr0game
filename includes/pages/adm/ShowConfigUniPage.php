@@ -236,6 +236,18 @@ function ShowConfigUniPage()
             'expo_ress_deut_chance'  => $expo_ress_deut_chance,
         ];
 
+        // If login is opened, update all planet timestamps to avoid resource produciton during closed login times.
+        if (($uni_status == STATUS_OPEN || $uni_status == STATUS_LOGIN_ONLY) && ($config->uni_status == STATUS_CLOSED || $config->uni_status == STATUS_REG_ONLY)) {
+            Database::get()->update("UPDATE %%PLANETS%% SET `last_update` = :newTime, `eco_hash` = '' WHERE `universe` = :universe;", [
+                ':newTime' => time(),
+                ':universe' => Universe::getEmulated(),
+            ]);
+        }
+        elseif (($uni_status == STATUS_CLOSED || $uni_status == STATUS_REG_ONLY) && ($config->uni_status == STATUS_OPEN || $config->uni_status == STATUS_LOGIN_ONLY)) {
+            // Open: calc ress for all planets when uni login gets closed? Otherwise ress will be lost when reopened.
+            // $ecoObj = new ResourceUpdate();
+        }
+
         foreach ($config_after as $key => $value) {
             $config->$key = $value;
         }
