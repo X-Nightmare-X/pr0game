@@ -35,10 +35,11 @@ class ShowLoginPage extends AbstractLoginPage
 
 		$username = HTTP::_GP('username', '', UTF8_SUPPORT);
 		$password = HTTP::_GP('password', '', true);
+		$universe = Universe::current();
 
 		$sql = "SELECT id, password FROM %%USERS%% WHERE universe = :universe AND username = :username;";
 		$loginData = $db->selectSingle($sql, array(
-			':universe'	=> Universe::current(),
+			':universe'	=> $universe,
 			':username'	=> $username
 		));
 
@@ -53,6 +54,7 @@ class ShowLoginPage extends AbstractLoginPage
 			$session->adminAccess	= 0;
 			$session->save();
 
+			setcookie('uni', $universe, 2147483647, '/');
 			HTTP::redirectTo('game.php');
 		}
 		else
