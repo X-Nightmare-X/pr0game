@@ -42,6 +42,8 @@ $LNG['menu_register']               = 'Регистрация';
 $LNG['chose_a_uni']                 = 'Выбрать...';
 $LNG['universe']                    = 'Вселенная';
 $LNG['uni_closed']                  = ' (отключена)';
+$LNG['uni_reg_closed']				= ' (Регистрация закрыта)';
+$LNG['uni_reg_open']				= ' (Только регистрация)';
 
 // Кнопки
 $LNG['buttonRegister']              = 'Зарегистрироваться';

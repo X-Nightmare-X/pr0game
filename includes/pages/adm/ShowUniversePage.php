@@ -30,12 +30,12 @@ function ShowUniversePage()
     switch ($action) {
         case 'open':
             $config = Config::get($universe);
-            $config->game_disable = 1;
+            $config->uni_status = 0;
             $config->save();
             break;
         case 'closed':
             $config = Config::get($universe);
-            $config->game_disable = 0;
+            $config->uni_status = 1;
             $config->save();
             break;
         case 'delete':
@@ -185,7 +185,7 @@ function ShowUniversePage()
     $uniList = [];
 
     $uniResult  = $GLOBALS['DATABASE']->query("
-    SELECT uni, users_amount, game_disable, energySpeed, halt_speed, resource_multiplier, fleet_speed, building_speed,
+    SELECT uni, users_amount, uni_status, energySpeed, halt_speed, resource_multiplier, fleet_speed, building_speed,
     shipyard_speed, research_speed, uni_name, COUNT(DISTINCT inac.id) as inactive, COUNT(planet.id) as planet
 	FROM " . CONFIG . " conf
 	LEFT JOIN " . USERS . " as inac ON uni = inac.universe AND inac.onlinetime < " . (TIMESTAMP - INACTIVE) . "

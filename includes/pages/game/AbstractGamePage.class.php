@@ -222,7 +222,7 @@ abstract class AbstractGamePage
             'avatar' => $avatar,
             'resourceTable' => $resourceTable,
             'shortlyNumber' => $themeSettings['TOPNAV_SHORTLY_NUMBER'],
-            'closed' => !$config->game_disable,
+            'uni_status' => $config->uni_status,
             'hasBoard' => filter_var($config->forum_url, FILTER_VALIDATE_URL),
             'hasAdminAccess' => !empty(Session::load()->adminAccess),
             'hasGate' => $PLANET[$resource[43]] > 0,
