@@ -174,7 +174,11 @@ $LNG['se_fleet_speed'] = 'Filo Ucus Hizi';
 $LNG['se_resources_producion_speed'] = 'Hammadde Uretim Hizi';
 $LNG['se_halt_speed'] = 'Kesif Hizi';
 $LNG['se_forum_link'] = 'Forum Linki';
-$LNG['se_server_op_close'] = 'Server Online?';
+$LNG['se_uni_status'] = 'Üniversite statüsü';
+$LNG['se_uni_status_regopen_gameopen'] = 'Kayıt ve giriş açık';
+$LNG['se_uni_status_regclosed_gameclosed'] = 'Kayıt ve giriş kapalı (örn. bakım)';
+$LNG['se_uni_status_regopen_gameclosed'] = 'Kayıt açık, giriş kapalı (örn. yeni üniversiteler)';
+$LNG['se_uni_status_regclosed_gameopen'] = 'Kayıt kapalı, giriş açık (örn. eski üniversiteler)';
 $LNG['se_server_status_message'] = 'Server offline mesaji';
 $LNG['se_server_planet_parameters'] = '<font color=yellow>Gezegen Ayarlari</font>';
 $LNG['se_initial_fields'] = 'Baslangic Alani:';
@@ -206,7 +210,6 @@ $LNG['se_noob_protect_e3'] = 'Bu ayarla sadirabildikleriniz : Sizin puan x burad
     . ' anlami eger 1000 puaniniz varsa sadece 5x1000 yani puani 5000\'den az olan oyunculara saldirabilirsiniz, yada,'
     . ' eger 50.000 puaniniz varsa 50.000/10 = 10.000 ve 50.000x10 =100.000 puanlari arasindaki oyuncularsa'
     . ' savasabilirsiniz.';
-$LNG['se_reg_closed'] = 'Yeni uye kaydi kapali';
 $LNG['se_min_build_time'] = 'Min. Yapi/uretim suresi';
 $LNG['se_trader_head'] = '<font color="yellow">Uzay hurdacisi ayarlari</font>';
 $LNG['se_trader_ships'] = 'Hurdaciya verilebilecek gemiler:';

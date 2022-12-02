@@ -347,7 +347,11 @@ $LNG['se_resources_producion_speed'] = 'Speed of production of resources';
 $LNG['se_storage_producion_speed'] = 'Resource storage multiplicator';
 $LNG['se_halt_speed'] = 'Expedition speed';
 $LNG['se_forum_link'] = 'Forum Link';
-$LNG['se_server_op_close'] = 'Server Online?';
+$LNG['se_uni_status'] = 'Uni status';
+$LNG['se_uni_status_regopen_gameopen'] = 'Registration and login open';
+$LNG['se_uni_status_regclosed_gameclosed'] = 'Registration and login closed (e.g. maintenance)';
+$LNG['se_uni_status_regopen_gameclosed'] = 'Registration open, login closed (e.g. new unis)';
+$LNG['se_uni_status_regclosed_gameopen'] = 'Registration closed, login open (e.g. old unis)';
 $LNG['se_server_status_message'] = 'Closed server message';
 $LNG['se_server_planet_parameters'] = 'Settings of the planets';
 $LNG['se_initial_fields'] = 'Initial Fields:';
@@ -409,7 +413,6 @@ $LNG['se_noob_protect_e3'] = 'You can only attack users where their points is be
     . ' example *18 , it means, if you have 1000 points, you can attack users with less than 18000 points, or, if you'
     . ' have 50000 points, you can be attacked from users where you enter in their range points, like if a enemy or a'
     . ' neutral user have 20000 points, * 18 will be 360000, so you are in their range and you can be attacked by him';
-$LNG['se_reg_closed'] = 'Closed Registration';
 $LNG['se_min_build_time'] = 'Min. Construction';
 $LNG['se_trader_head'] = 'The settings of Merchant Fleet';
 $LNG['se_trader_ships'] = 'Authorized ships:';

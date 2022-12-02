@@ -220,7 +220,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     }
 
     if (
-        $config->game_disable == 0 && $USER['authlevel'] == AUTH_USR &&
+        ($config->uni_status == 1 || $config->uni_status == 2) && $USER['authlevel'] == AUTH_USR &&
         (!isset($_GET['page']) || $_GET['page'] !== 'logout')
     ) {
         ShowErrorPage::printError($LNG['sys_closed_game'] . '<br><br>' . $config->close_reason, false);

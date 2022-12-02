@@ -39,7 +39,9 @@ $LNG['menu_register']				= 'Regischdration';
 // Universe select
 $LNG['chose_a_uni']					= 'Wähle a Uniwersum ';
 $LNG['universe']					= 'Uniwersum';
-$LNG['uni_closed']					= ' (closed)';
+$LNG['uni_closed']					= ' (geschlossen)';
+$LNG['uni_reg_closed']				= ' (Registrierung geschlossen)';
+$LNG['uni_reg_open']				= ' (nur Registrierung)';
 
 // Button
 $LNG['buttonRegister']				= 'Erschdelle deinene Accound!';

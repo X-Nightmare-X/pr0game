@@ -92,7 +92,6 @@ abstract class AbstractLoginPage
         $this->tplObj->assign_vars(array(
 			'gameName' 				=> $config->game_name,
 			'mailEnable'			=> $config->mail_active,
-			'reg_close'				=> $config->reg_closed,
 			'referralEnable'		=> $config->ref_active,
 			'analyticsEnable'		=> $config->ga_active,
 			'analyticsUID'			=> $config->ga_key,

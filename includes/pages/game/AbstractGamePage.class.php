@@ -222,7 +222,7 @@ abstract class AbstractGamePage
             'avatar' => $avatar,
             'resourceTable' => $resourceTable,
             'shortlyNumber' => $themeSettings['TOPNAV_SHORTLY_NUMBER'],
-            'closed' => !$config->game_disable,
+            'uni_status' => $config->uni_status,
             'hasBoard' => filter_var($config->forum_url, FILTER_VALIDATE_URL),
             'hasAdminAccess' => !empty(Session::load()->adminAccess),
             'hasGate' => $PLANET[$resource[43]] > 0,
@@ -329,9 +329,19 @@ abstract class AbstractGamePage
             'TIMEZONESTRING' => $USER['timezone'],
             'signalColors'      => $signalColors
         ]);
-        
+        if (!isset($USER,$USER['timezone'])) {
+            $USER = array ('timezone' => 'Europe/Berlin');
+        }
+        if(isset($USER['id'])) {
+            $signalColors = PlayerUtil::player_signal_colors($USER);
+        }
+        else {
+            $signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+        }
         $this->assign([
-            'LNG'               => $LNG
+            'LNG'               => $LNG,
+            'TIMEZONESTRING'    => $USER['timezone'],
+            'signalColors'      => $signalColors,
         ], false);
 
         $this->tplObj->display('extends:layout.' . $this->getWindow() . '.tpl|' . $file);

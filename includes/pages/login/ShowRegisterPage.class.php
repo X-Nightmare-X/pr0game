@@ -29,7 +29,18 @@ class ShowRegisterPage extends AbstractLoginPage
 
         foreach (Universe::availableUniverses() as $uniId) {
             $config = Config::get($uniId);
-            $universeSelect[$uniId] = $config->uni_name . ($config->game_disable == 0 || $config->reg_closed == 1 ? $LNG['uni_closed'] : '');
+            if ($config->uni_status == 1) {
+                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_closed'];
+            }
+            elseif ($config->uni_status == 2) {
+                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_open'];
+            }
+            elseif ($config->uni_status == 3) {
+                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_closed'];
+            }
+            else {
+                $universeSelect[$uniId] = $config->uni_name;
+            }
         }
 
         $config = Config::get();
@@ -63,7 +74,7 @@ class ShowRegisterPage extends AbstractLoginPage
         global $LNG;
         $config = Config::get();
 
-        if ($config->game_disable == 0 || $config->reg_closed == 1) {
+        if ($config->uni_status == 1 || $config->uni_status == 3) {
             $this->printMessage($LNG['registerErrorUniClosed'], [[
                 'label' => $LNG['registerBack'],
                 'url' => 'javascript:window.history.back()',
