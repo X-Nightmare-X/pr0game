@@ -376,44 +376,75 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         if (isset($foo["200"][202]) && $foo["200"][202] !== 0) {
             $dangerValue += $foo["200"][202] * 5;
         }
-
+        // GT
         if (isset($foo["200"][203]) && $foo["200"][203] !== 0) {
             $dangerValue += $foo["200"][203] * 5;
         }
+        // LJ
         if (isset($foo["200"][204]) && $foo["200"][204] !== 0) {
             $dangerValue += $foo["200"][204] * 50;
         }
+        // SJ
         if (isset($foo["200"][205]) && $foo["200"][205] !== 0) {
             $dangerValue += $foo["200"][205] * 150;
         }
+        // Xer:innen
         if (isset($foo["200"][206]) && $foo["200"][206] !== 0) {
             $dangerValue += $foo["200"][206] * 400;
         }
+        // SS
         if (isset($foo["200"][207]) && $foo["200"][207] !== 0) {
             $dangerValue += $foo["200"][207] * 1000;
         }
+        // Kolo
         if (isset($foo["200"][208]) && $foo["200"][208] !== 0) {
             $dangerValue += $foo["200"][208] * 50;
         }
+        // Rec
         if (isset($foo["200"][209]) && $foo["200"][209] !== 0) {
             $dangerValue += $foo["200"][209] * 1;
         }
+        // BBer
         if (isset($foo["200"][211]) && $foo["200"][211] !== 0) {
             $dangerValue += $foo["200"][211] * 1000;
         }
+        // Zerren
         if (isset($foo["200"][213]) && $foo["200"][213] !== 0) {
             $dangerValue += $foo["200"][213] * 2000;
         }
+        // RIP
         if (isset($foo["200"][214]) && $foo["200"][214] !== 0) {
             $dangerValue += $foo["200"][214] * 200000;
         }
+        // SXer
         if (isset($foo["200"][215]) && $foo["200"][215] !== 0) {
             $dangerValue += $foo["200"][215] * 700;
         }
         
         if ($bar){
-            if (isset($foo["200"][215]) && $foo["200"][215] !== 0) {
-                $dangerValue += $foo["200"][215] * 700;
+            // Rak
+            if (isset($foo["200"][401]) && $foo["200"][401] !== 0) {
+                $dangerValue += $foo["200"][401] * 80;
+            }
+            // LL
+            if (isset($foo["200"][402]) && $foo["200"][402] !== 0) {
+                $dangerValue += $foo["200"][402] * 100;
+            }
+            // SL
+            if (isset($foo["200"][403]) && $foo["200"][403] !== 0) {
+                $dangerValue += $foo["200"][403] * 250;
+            }
+            // Gaus
+            if (isset($foo["200"][404]) && $foo["200"][404] !== 0) {
+                $dangerValue += $foo["200"][404] * 1100;
+            }
+            // Ionen
+            if (isset($foo["200"][405]) && $foo["200"][405] !== 0) {
+                $dangerValue += $foo["200"][405] * 150;
+            }
+            // Plasma
+            if (isset($foo["200"][406]) && $foo["200"][406] !== 0) {
+                $dangerValue += $foo["200"][406] * 3000;
             }
             
         }
