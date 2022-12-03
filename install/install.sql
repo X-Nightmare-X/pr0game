@@ -348,6 +348,7 @@ CREATE TABLE `%PREFIX%log_fleets` (
   `fleet_id` bigint(11) unsigned NOT NULL,
   `fleet_owner` int(11) unsigned NOT NULL DEFAULT '0',
   `fleet_owner_name` varchar(32) NOT NULL DEFAULT '',
+  `fleet_owner_points` double(50,0) unsigned NOT NULL DEFAULT '0',
   `fleet_mission` tinyint(3) unsigned NOT NULL DEFAULT '3',
   `fleet_amount` bigint(20) unsigned NOT NULL DEFAULT '0',
   `fleet_array` text,
@@ -380,6 +381,7 @@ CREATE TABLE `%PREFIX%log_fleets` (
 	`fleet_no_m_return` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `fleet_target_owner` int(11) unsigned NOT NULL DEFAULT '0',
   `fleet_target_owner_name` varchar(32) NOT NULL DEFAULT '',
+  `fleet_target_owner_points` double(50,0) unsigned NOT NULL DEFAULT '0'
   `fleet_group` varchar(15) NOT NULL DEFAULT '0',
   `fleet_mess` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `start_time` int(11) NOT NULL DEFAULT '0',
