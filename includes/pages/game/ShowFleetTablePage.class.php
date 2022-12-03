@@ -55,6 +55,12 @@ class ShowFleetTablePage extends AbstractGamePage
             ':fleetID' => $fleetID,
         ]);
 
+        $sql = "UPDATE %%LOG_FLEETS%% SET fleet_group = :acsID WHERE fleet_id = :fleetID;";
+        $db->update($sql, [
+            ':acsID' => $acsID,
+            ':fleetID' => $fleetID,
+        ]);
+
         return [
             'name' => $acsName,
             'id' => $acsID,
