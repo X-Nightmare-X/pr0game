@@ -94,7 +94,7 @@ class ResourceUpdate
         $this->TIME = is_null($TIME) ? TIMESTAMP : $TIME;
         $this->config = Config::get($this->USER['universe']);
 
-        if ($this->USER['urlaubs_modus'] == 1) {
+        if ($this->USER['urlaubs_modus'] == 1 || $this->config->uni_status == STATUS_CLOSED || $this->config->uni_status == STATUS_REG_ONLY) {
             return $this->ReturnVars();
         }
 
@@ -117,7 +117,7 @@ class ResourceUpdate
         return $this->ReturnVars();
     }
 
-    public function UpdateResource($TIME, $HASH = false)
+    private function UpdateResource($TIME, $HASH = false)
     {
         $this->ProductionTime = ($TIME - $this->PLANET['last_update']);
 

@@ -35,12 +35,12 @@ function ShowUniversePage()
     switch ($action) {
         case 'open':
             $config = Config::get($universe);
-            $config->uni_status = 0;
+            $config->uni_status = STATUS_OPEN;
             $config->save();
             break;
         case 'closed':
             $config = Config::get($universe);
-            $config->uni_status = 1;
+            $config->uni_status = STATUS_CLOSED;
             $config->save();
             break;
         case 'delete':
@@ -147,7 +147,8 @@ function ShowUniversePage()
             }
 
             $configSQL[]    = '`uni_name` = "' . $LNG['fcm_universe'] . ' ' . ($universeCount + 1) . '"';
-            $configSQL[]    = '`close_reason` = ""';
+            $configSQL[]    = '`uni_status` = "1"';
+            $configSQL[]    = '`close_reason` = "The universe is being set up. Please wait."';
             $configSQL[]    = '`OverviewNewsText` = "' . $GLOBALS['DATABASE']->escape($config->OverviewNewsText) . '"';
 
             $GLOBALS['DATABASE']->query("INSERT INTO " . CONFIG . " SET " . implode(', ', $configSQL) . ";");
