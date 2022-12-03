@@ -90,6 +90,8 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             ':planetId' => $this->_fleet['fleet_start_id']
         ], 'name');
 
+        // die(var_dump($senderUser["id"]));
+
         $LNG = $this->getLanguage($senderUser['lang']);
 
         $planetUpdater = new ResourceUpdate();
@@ -230,7 +232,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $nessesarryRecy= $this->estimateRecyclers($recyclePotential);
         $energy = "TODO";
         $bestRessPerTime = "TODO";
-        $bestPlanet = "TODO";
+        $bestPlanet = $this->bestplanet($senderUser["id"]);
         $actuallRessPerTime = "TODO";
         
         $template->caching = true;
@@ -534,6 +536,18 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
     public function estimateRecyclers($recycleValue) {
         return ceil($recycleValue / 20000) + 1;
+    }
+
+    public function bestplanet($foo){
+        $db = Database::get();
+        $universe = Universe::current();
+
+        // die(print($foo));
+
+
+        $sql = "Select galaxy, system, planet from uni1_planets where universe = $universe and id_owner = $foo";
+        $targetPlanet = $db->selectSingle($sql);
+        // die(var_dump($targetPlanet));
     }
 
     // "202": 5,
