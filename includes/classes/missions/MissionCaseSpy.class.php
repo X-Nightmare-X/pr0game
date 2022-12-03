@@ -140,6 +140,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         
         if ($SpyDef) {
             $classIDs[400] = array_merge($reslist['defense'], $reslist['missile']);
+            // die(var_dump($classIDs[400][6]));
         }
         
         if ($SpyBuild) {
@@ -150,7 +151,6 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $classIDs[100] = $reslist['tech'];
         }
         
-        // die(var_dump($reslist['fleet']));
         
         // what is seen by the 'attacker' is already calculated above.
         // if target planet does not have fleet or def, it is safe to set $targetChance to -1
@@ -214,6 +214,9 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $danger = $this->getDangerValue($spyData, false);
         } else {
             $danger = 0;
+        }
+        if (isset($classIDs[200])){
+            $danger = $this->getRecyleValue($spyData);
         }
         $ressourcesToRaid = round($ressources / 2);
         // $ressourcesByMarketValue = round($targetPlanet['metal'] / 4.5 + $targetPlanet['crystal'] / 0.8 + $targetPlanet['deuterium'] / 1);
@@ -366,87 +369,153 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         return ceil($capacity / 25000) + 1;
     }
 
-    public function getDangerValue($foo, $bar) {
+    public function getDangerValue($spyData, $bar) {
         
         $dangerValue = 0;
 
         // KT
-        if (isset($foo["200"][202]) && $foo["200"][202] !== 0) {
-            $dangerValue += $foo["200"][202] * 5;
+        if (isset($spyData["200"][202]) && $spyData["200"][202] !== 0) {
+            $dangerValue += $spyData["200"][202] * 5;
         }
         // GT
-        if (isset($foo["200"][203]) && $foo["200"][203] !== 0) {
-            $dangerValue += $foo["200"][203] * 5;
+        if (isset($spyData["200"][203]) && $spyData["200"][203] !== 0) {
+            $dangerValue += $spyData["200"][203] * 5;
         }
         // LJ
-        if (isset($foo["200"][204]) && $foo["200"][204] !== 0) {
-            $dangerValue += $foo["200"][204] * 50;
+        if (isset($spyData["200"][204]) && $spyData["200"][204] !== 0) {
+            $dangerValue += $spyData["200"][204] * 50;
         }
         // SJ
-        if (isset($foo["200"][205]) && $foo["200"][205] !== 0) {
-            $dangerValue += $foo["200"][205] * 150;
+        if (isset($spyData["200"][205]) && $spyData["200"][205] !== 0) {
+            $dangerValue += $spyData["200"][205] * 150;
         }
         // Xer:innen
-        if (isset($foo["200"][206]) && $foo["200"][206] !== 0) {
-            $dangerValue += $foo["200"][206] * 400;
+        if (isset($spyData["200"][206]) && $spyData["200"][206] !== 0) {
+            $dangerValue += $spyData["200"][206] * 400;
         }
         // SS
-        if (isset($foo["200"][207]) && $foo["200"][207] !== 0) {
-            $dangerValue += $foo["200"][207] * 1000;
+        if (isset($spyData["200"][207]) && $spyData["200"][207] !== 0) {
+            $dangerValue += $spyData["200"][207] * 1000;
         }
         // Kolo
-        if (isset($foo["200"][208]) && $foo["200"][208] !== 0) {
-            $dangerValue += $foo["200"][208] * 50;
+        if (isset($spyData["200"][208]) && $spyData["200"][208] !== 0) {
+            $dangerValue += $spyData["200"][208] * 50;
         }
         // Rec
-        if (isset($foo["200"][209]) && $foo["200"][209] !== 0) {
-            $dangerValue += $foo["200"][209] * 1;
+        if (isset($spyData["200"][209]) && $spyData["200"][209] !== 0) {
+            $dangerValue += $spyData["200"][209] * 1;
         }
         // BBer
-        if (isset($foo["200"][211]) && $foo["200"][211] !== 0) {
-            $dangerValue += $foo["200"][211] * 1000;
+        if (isset($spyData["200"][211]) && $spyData["200"][211] !== 0) {
+            $dangerValue += $spyData["200"][211] * 1000;
         }
         // Zerren
-        if (isset($foo["200"][213]) && $foo["200"][213] !== 0) {
-            $dangerValue += $foo["200"][213] * 2000;
+        if (isset($spyData["200"][213]) && $spyData["200"][213] !== 0) {
+            $dangerValue += $spyData["200"][213] * 2000;
         }
         // RIP
-        if (isset($foo["200"][214]) && $foo["200"][214] !== 0) {
-            $dangerValue += $foo["200"][214] * 200000;
+        if (isset($spyData["200"][214]) && $spyData["200"][214] !== 0) {
+            $dangerValue += $spyData["200"][214] * 200000;
         }
         // SXer
-        if (isset($foo["200"][215]) && $foo["200"][215] !== 0) {
-            $dangerValue += $foo["200"][215] * 700;
+        if (isset($spyData["200"][215]) && $spyData["200"][215] !== 0) {
+            $dangerValue += $spyData["200"][215] * 700;
         }
         
+        // die(var_dump($bar));
         if ($bar){
+            // die(var_dump($spyData["400"]));
             // Rak
-            if (isset($foo["200"][401]) && $foo["200"][401] !== 0) {
-                $dangerValue += $foo["200"][401] * 80;
+            if (isset($spyData["400"][401]) && $spyData["400"][401] !== 0) {
+                $dangerValue += $spyData["400"][401] * 80;
             }
             // LL
-            if (isset($foo["200"][402]) && $foo["200"][402] !== 0) {
-                $dangerValue += $foo["200"][402] * 100;
+            if (isset($spyData["400"][402]) && $spyData["400"][402] !== 0) {
+                $dangerValue += $spyData["400"][402] * 100;
             }
             // SL
-            if (isset($foo["200"][403]) && $foo["200"][403] !== 0) {
-                $dangerValue += $foo["200"][403] * 250;
+            if (isset($spyData["400"][403]) && $spyData["400"][403] !== 0) {
+                $dangerValue += $spyData["400"][403] * 250;
             }
             // Gaus
-            if (isset($foo["200"][404]) && $foo["200"][404] !== 0) {
-                $dangerValue += $foo["200"][404] * 1100;
+            if (isset($spyData["400"][404]) && $spyData["400"][404] !== 0) {
+                $dangerValue += $spyData["400"][404] * 1100;
             }
             // Ionen
-            if (isset($foo["200"][405]) && $foo["200"][405] !== 0) {
-                $dangerValue += $foo["200"][405] * 150;
+            if (isset($spyData["400"][405]) && $spyData["400"][405] !== 0) {
+                $dangerValue += $spyData["400"][405] * 150;
             }
             // Plasma
-            if (isset($foo["200"][406]) && $foo["200"][406] !== 0) {
-                $dangerValue += $foo["200"][406] * 3000;
+            if (isset($spyData["400"][406]) && $spyData["400"][406] !== 0) {
+                $dangerValue += $spyData["400"][406] * 3000;
+            }
+            // KSchild
+            if (isset($spyData["400"][407]) && $spyData["400"][407] !== 0) {
+                $dangerValue += $spyData["400"][407] * 1;
+            }
+            // G Schild
+            if (isset($spyData["400"][408]) && $spyData["400"][408] !== 0) {
+                $dangerValue += $spyData["400"][408] * 1;
             }
             
         }
        
+        return  $dangerValue;
+
+    }
+    public function getRecyleValue($spyData, $bar) {
+        
+        $dangerValue = 0;
+
+        // KT
+        if (isset($spyData["200"][202]) && $spyData["200"][202] !== 0) {
+            $dangerValue += $spyData["200"][202] * 5;
+        }
+        // GT
+        if (isset($spyData["200"][203]) && $spyData["200"][203] !== 0) {
+            $dangerValue += $spyData["200"][203] * 5;
+        }
+        // LJ
+        if (isset($spyData["200"][204]) && $spyData["200"][204] !== 0) {
+            $dangerValue += $spyData["200"][204] * 50;
+        }
+        // SJ
+        if (isset($spyData["200"][205]) && $spyData["200"][205] !== 0) {
+            $dangerValue += $spyData["200"][205] * 150;
+        }
+        // Xer:innen
+        if (isset($spyData["200"][206]) && $spyData["200"][206] !== 0) {
+            $dangerValue += $spyData["200"][206] * 400;
+        }
+        // SS
+        if (isset($spyData["200"][207]) && $spyData["200"][207] !== 0) {
+            $dangerValue += $spyData["200"][207] * 1000;
+        }
+        // Kolo
+        if (isset($spyData["200"][208]) && $spyData["200"][208] !== 0) {
+            $dangerValue += $spyData["200"][208] * 50;
+        }
+        // Rec
+        if (isset($spyData["200"][209]) && $spyData["200"][209] !== 0) {
+            $dangerValue += $spyData["200"][209] * 1;
+        }
+        // BBer
+        if (isset($spyData["200"][211]) && $spyData["200"][211] !== 0) {
+            $dangerValue += $spyData["200"][211] * 1000;
+        }
+        // Zerren
+        if (isset($spyData["200"][213]) && $spyData["200"][213] !== 0) {
+            $dangerValue += $spyData["200"][213] * 2000;
+        }
+        // RIP
+        if (isset($spyData["200"][214]) && $spyData["200"][214] !== 0) {
+            $dangerValue += $spyData["200"][214] * 200000;
+        }
+        // SXer
+        if (isset($spyData["200"][215]) && $spyData["200"][215] !== 0) {
+            $dangerValue += $spyData["200"][215] * 700;
+        }
+
         return  $dangerValue;
 
     }
