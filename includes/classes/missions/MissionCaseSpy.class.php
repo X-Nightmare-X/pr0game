@@ -216,12 +216,14 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $danger = 0;
         }
         if (isset($classIDs[200])){
-            $danger = $this->getRecyleValue($spyData);
+            $recyclePotential = $this->getRecyleValue($spyData);
+        } else {
+            $recyclePotential = 0;
         }
         $ressourcesToRaid = round($ressources / 2);
         // $ressourcesByMarketValue = round($targetPlanet['metal'] / 4.5 + $targetPlanet['crystal'] / 0.8 + $targetPlanet['deuterium'] / 1);
         $ressourcesByMarketValue = $this->getRessoucesByDsuValue($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']);
-        $recyclePotential= "TODO";
+        // $recyclePotential= "TODO";
         $nessesarryKT= $this->estimateSmallTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
         $nessesarryGT= $this->estimateGreatTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
         // $nessesarryTransportUnits = $nessesarryKT . " KT / " . $nessesarryGT . " GT";
@@ -463,60 +465,68 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         return  $dangerValue;
 
     }
-    public function getRecyleValue($spyData, $bar) {
+    public function getRecyleValue($spyData) {
         
-        $dangerValue = 0;
+        $recycleValue = 0;
 
         // KT
         if (isset($spyData["200"][202]) && $spyData["200"][202] !== 0) {
-            $dangerValue += $spyData["200"][202] * 5;
+            $recycleValue += $spyData["200"][202] * 1200;
         }
         // GT
         if (isset($spyData["200"][203]) && $spyData["200"][203] !== 0) {
-            $dangerValue += $spyData["200"][203] * 5;
+            $recycleValue += $spyData["200"][203] * 3600;
         }
         // LJ
         if (isset($spyData["200"][204]) && $spyData["200"][204] !== 0) {
-            $dangerValue += $spyData["200"][204] * 50;
+            $recycleValue += $spyData["200"][204] * 1200;
         }
         // SJ
         if (isset($spyData["200"][205]) && $spyData["200"][205] !== 0) {
-            $dangerValue += $spyData["200"][205] * 150;
+            $recycleValue += $spyData["200"][205] * 3000;
         }
         // Xer:innen
         if (isset($spyData["200"][206]) && $spyData["200"][206] !== 0) {
-            $dangerValue += $spyData["200"][206] * 400;
+            $recycleValue += $spyData["200"][206] * 8100;
         }
         // SS
         if (isset($spyData["200"][207]) && $spyData["200"][207] !== 0) {
-            $dangerValue += $spyData["200"][207] * 1000;
+            $recycleValue += $spyData["200"][207] * 18000;
         }
         // Kolo
         if (isset($spyData["200"][208]) && $spyData["200"][208] !== 0) {
-            $dangerValue += $spyData["200"][208] * 50;
+            $recycleValue += $spyData["200"][208] * 9000;
         }
         // Rec
         if (isset($spyData["200"][209]) && $spyData["200"][209] !== 0) {
-            $dangerValue += $spyData["200"][209] * 1;
+            $recycleValue += $spyData["200"][209] * 4800;
+        }
+        // Spio
+        if (isset($spyData["200"][210]) && $spyData["200"][210] !== 0) {
+            $recycleValue += $spyData["200"][210] * 300;
         }
         // BBer
         if (isset($spyData["200"][211]) && $spyData["200"][211] !== 0) {
-            $dangerValue += $spyData["200"][211] * 1000;
+            $recycleValue += $spyData["200"][211] * 22500;
+        }
+        // Sat
+        if (isset($spyData["200"][212]) && $spyData["200"][212] !== 0) {
+            $recycleValue += $spyData["200"][212] * 600;
         }
         // Zerren
         if (isset($spyData["200"][213]) && $spyData["200"][213] !== 0) {
-            $dangerValue += $spyData["200"][213] * 2000;
+            $recycleValue += $spyData["200"][213] * 33000;
         }
         // RIP
         if (isset($spyData["200"][214]) && $spyData["200"][214] !== 0) {
-            $dangerValue += $spyData["200"][214] * 200000;
+            $recycleValue += $spyData["200"][214] * 2700000;
         }
         // SXer
         if (isset($spyData["200"][215]) && $spyData["200"][215] !== 0) {
-            $dangerValue += $spyData["200"][215] * 700;
+            $recycleValue += $spyData["200"][215] * 21000;
         }
 
-        return  $dangerValue;
+        return  $recycleValue;
 
     }
 
