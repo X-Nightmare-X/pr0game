@@ -17,6 +17,8 @@
 
 // VARS DB -> SCRIPT WRAPPER
 
+require_once 'includes/classes/Cache.class.php';
+
 $cache  = Cache::get();
 $cache->add('vars', 'VarsBuildCache');
 extract($cache->getData('vars'));

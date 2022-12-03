@@ -19,6 +19,8 @@ class VarsBuildCache implements BuildCache
 {
     public function buildCache()
     {
+        require_once 'includes/classes/Database.class.php';
+        
         $resource = [];
         $requeriments = [];
         $pricelist = [];

@@ -44,7 +44,7 @@ class Database
     protected function __construct()
     {
         $database = [];
-        require 'includes/config.php';
+        require_once 'includes/config.php';
         //Connect
         $db = new PDO(
             "mysql:host=" . $database['host'] . ";port=" . $database['port'] . ";dbname=" . $database['databasename'],

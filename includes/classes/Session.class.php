@@ -140,6 +140,8 @@ class Session
 
     public function __construct()
     {
+        require_once 'includes/constants.php';
+        require_once 'includes/classes/Database.class.php';
         self::init();
     }
 

@@ -43,6 +43,7 @@ class Universe {
 	
 	static public function getEmulated()
 	{
+		require_once 'includes/classes/Session.class.php';
 		if(is_null(self::$emulatedUniverse))
 		{
 			$session	= Session::load();
@@ -65,6 +66,7 @@ class Universe {
 		{
 			throw new Exception('Unknown universe ID: '.$universeId);
 		}
+		require_once 'includes/classes/Session.class.php';
 
 		$session	= Session::load();
 		$session->emulatedUniverse	= $universeId;
@@ -83,6 +85,8 @@ class Universe {
 
 	static private function defineCurrentUniverse()
 	{
+		require_once 'includes/constants.php';
+		require_once 'includes/classes/HTTP.class.php';
 		$universe = NULL;
 		if(MODE === 'INSTALL')
 		{

@@ -19,6 +19,7 @@ class HTTP {
 	
 	static public function redirectTo($URL, $external = false)
 	{
+		require_once 'includes/constants.php';
 		if($external)
 		{
 			self::sendHeader('Location', $URL);
@@ -37,6 +38,7 @@ class HTTP {
 
 	static public function redirectToUniverse($universe)
 	{
+		require_once 'includes/constants.php';
 		HTTP::redirectTo(PROTOCOL.HTTP_HOST.HTTP_BASE."uni".$universe."/".HTTP_FILE, true);
 	}
 
