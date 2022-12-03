@@ -22,7 +22,7 @@
 			</div>
 			<div class="spyRaportContainerRow clearfix">
 				<div class="spyRaportContainerCell">
-					Potenziell zu erbeutende Ressourcen (ohne Recycling)
+					Potenzielle Ressourcen
 				</div>
 				<div class="spyRaportContainerCell">
 					{$ressourcesToRaid}
@@ -86,10 +86,10 @@
 			</div>
 			<div class="spyRaportContainerRow clearfix">
 				<div class="spyRaportContainerCell" style="width: 50% !important;">
-					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[203]=4">Mit 4 GT angreifen</a>
+					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[203]={$nessesarryKT}">Mit {$nessesarryKT} GT angreifen</a>
 				</div>
 				<div class="spyRaportContainerCell" style="width: 50% !important;">
-					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[202]=4">Mit 4 KT angreifen</a>
+					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[202]={$nessesarryGT}">Mit {$nessesarryGT} KT angreifen</a>
 				</div>
 			</div>
 		</div>

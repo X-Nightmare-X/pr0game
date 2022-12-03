@@ -227,7 +227,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $nessesarryKT= $this->estimateSmallTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
         $nessesarryGT= $this->estimateGreatTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
         // $nessesarryTransportUnits = $nessesarryKT . " KT / " . $nessesarryGT . " GT";
-        $nessesarryRecy= "TODO";
+        $nessesarryRecy= $this->estimateRecyclers($recyclePotential);
         $energy = "TODO";
         $bestRessPerTime = "TODO";
         $bestPlanet = "TODO";
@@ -530,6 +530,10 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         return  $recycleValue;
 
+    }
+
+    public function estimateRecyclers($recycleValue) {
+        return ceil($recycleValue / 20000) + 1;
     }
 
     // "202": 5,
