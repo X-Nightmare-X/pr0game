@@ -90,7 +90,8 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             ':planetId' => $this->_fleet['fleet_start_id']
         ], 'name');
 
-        // die(var_dump($senderUser["id"]));
+        // die(var_dump($senderUser));
+        // TODO -> Techs ziehn
 
         $LNG = $this->getLanguage($senderUser['lang']);
 
