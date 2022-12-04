@@ -32,6 +32,7 @@
 		<tr>
 			<td style="background-color:transparent;border:0px;" colspan="2">
 				<input type="submit" value="{$LNG.gl_show}">
+        <input type="button" value="Sync" id="gala_sync">
 			</td>
 		</tr>
 	</table>
@@ -194,6 +195,12 @@
 			<span id="elementID209">{number_format($recyclers, 0, ",", ".")}</span> {$LNG.gl_avaible_recyclers}
 		</td>
 	</tr>
+    <tr>
+      <td colspan="2"><button id="gala_exportjson">Export JSON</button></td>
+      <td colspan="2"><button id="gala_exportcsv">Export CSV</button></td>
+      <td colspan="2">Import JSON: <input id="gala_upload" type="file" accept=".json"></td>
+      <td colspan="2"><button id="gala_reset">reset data</button></td>
+    </tr>
 	<tr style="display: none;" id="fleetstatusrow">
 		<th colspan="8">{$LNG.cff_fleet_target}</th>
 	</tr>
