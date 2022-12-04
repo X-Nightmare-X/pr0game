@@ -34,7 +34,18 @@ class ShowIndexPage extends AbstractLoginPage
 
         foreach (Universe::availableUniverses() as $uniId) {
             $config = Config::get($uniId);
-            $universeSelect[$uniId] = $config->uni_name . ($config->game_disable == 0 ? $LNG['uni_closed'] : '');
+            if ($config->uni_status == STATUS_CLOSED) {
+                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_closed'];
+            }
+            elseif ($config->uni_status == STATUS_REG_ONLY) {
+                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_open'];
+            }
+            elseif ($config->uni_status == STATUS_LOGIN_ONLY) {
+                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_closed'];
+            }
+            else {
+                $universeSelect[$uniId] = $config->uni_name;
+            }
         }
 
         $Code = HTTP::_GP('code', 0);

@@ -54,6 +54,33 @@ class MissionFunctions
 
     protected function SaveFleet()
     {
+        $targetMission = $this->_fleet['fleet_mission'];
+        if ($targetMission != MISSION_COLONISATION && $targetMission != MISSION_EXPEDITION && $targetMission != MISSION_TRADE) {
+            // set points of fleet and target owner during arival (SaveFleet is always called on TargetEvent)
+            if ($this->_fleet['fleet_group'] != 0) {
+                $sql = 'UPDATE %%LOG_FLEETS%% SET 
+                    fleet_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_owner AND stat_type = 1),
+                    fleet_target_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_target_owner AND stat_type = 1)
+                    WHERE `fleet_id` = (SELECT fleet_id FROM %%FLEETS%% WHERE fleet_group = :acsId);';
+                Database::get()->update($sql, [
+                    ':fleet_owner'  => $this->_fleet['fleet_owner'],
+                    ':fleet_target_owner'  => $this->_fleet['fleet_target_owner'],
+                    ':acsId'  => $this->_fleet['fleet_group'],
+                ]);
+            }
+            else {
+                $sql = 'UPDATE %%LOG_FLEETS%% SET 
+                    fleet_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_owner AND stat_type = 1),
+                    fleet_target_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_target_owner AND stat_type = 1)
+                    WHERE `fleet_id` = :fleetId;';
+                Database::get()->update($sql, [
+                    ':fleet_owner'  => $this->_fleet['fleet_owner'],
+                    ':fleet_target_owner'  => $this->_fleet['fleet_target_owner'],
+                    ':fleetId'  => $this->_fleet['fleet_id'],
+                ]);
+            }
+        }
+
         if ($this->kill == 1) {
             return;
         }

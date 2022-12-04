@@ -25,7 +25,7 @@
 				{foreach $gateData.fleetList as $fleetID => $amount}
 				<tr>
 					<td style="width:33%;">{$LNG.tech.$fleetID}</td>
-					<td style="width:33%;"><span id="ship{$fleetID}_value">{$amount|number}</span></td>
+					<td style="width:33%;"><span id="ship{$fleetID}_value">{number_format($amount, 0, ",", ".")}</span></td>
 					<td style="width:33%;"><input class="jumpgate" name="ship[{$fleetID}]" id="ship{$fleetID}_input" size="7" value="0" type="text"><input onclick="Gate.max({$fleetID});" value="max" type="button"></td>
 				</tr>
 				{/foreach}
@@ -34,7 +34,7 @@
 				</tr>
 			{else}
 				<tr style="height:20px;">
-					<td colspan="3"><span style="color:red">{$LNG.in_jump_gate_no_target}</span></td>
+					<td colspan="3"><span class="colorNegative">{$LNG.in_jump_gate_no_target}</span></td>
 				</tr>
 			{/if}
 		{/if}

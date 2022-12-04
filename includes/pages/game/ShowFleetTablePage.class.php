@@ -36,28 +36,34 @@ class ShowFleetTablePage extends AbstractGamePage
         $db = Database::get();
         $sql = "INSERT INTO %%AKS%% SET name = :acsName, ankunft = :time, target = :target;";
         $db->insert($sql, [
-            ':acsName'  => $acsName,
-            ':time'     => $fleetData['fleet_start_time'],
-            ':target'   => $fleetData['fleet_end_id'],
+            ':acsName' => $acsName,
+            ':time' => $fleetData['fleet_start_time'],
+            ':target' => $fleetData['fleet_end_id'],
         ]);
 
         $acsID = $db->lastInsertId();
 
         $sql = "INSERT INTO %%USERS_ACS%% SET acsID = :acsID, userID = :userID;";
         $db->insert($sql, [
-            ':acsID'    => $acsID,
-            ':userID'   => $acsCreator,
+            ':acsID' => $acsID,
+            ':userID' => $acsCreator,
         ]);
 
         $sql = "UPDATE %%FLEETS%% SET fleet_group = :acsID WHERE fleet_id = :fleetID;";
         $db->update($sql, [
-            ':acsID'    => $acsID,
-            ':fleetID'  => $fleetID,
+            ':acsID' => $acsID,
+            ':fleetID' => $fleetID,
+        ]);
+
+        $sql = "UPDATE %%LOG_FLEETS%% SET fleet_group = :acsID WHERE fleet_id = :fleetID;";
+        $db->update($sql, [
+            ':acsID' => $acsID,
+            ':fleetID' => $fleetID,
         ]);
 
         return [
-            'name'          => $acsName,
-            'id'            => $acsID,
+            'name' => $acsName,
+            'id' => $acsID,
         ];
     }
 
@@ -69,8 +75,8 @@ class ShowFleetTablePage extends AbstractGamePage
         $sql = "SELECT id, name FROM %%USERS_ACS%% INNER JOIN %%AKS%% ON acsID = id"
             . " WHERE userID = :userID AND acsID = :acsID;";
         $acsResult = $db->selectSingle($sql, [
-            ':userID'   => $USER['id'],
-            ':acsID'    => $fleetData['fleet_group'],
+            ':userID' => $USER['id'],
+            ':acsID' => $fleetData['fleet_group'],
         ]);
 
         return $acsResult;
@@ -84,7 +90,7 @@ class ShowFleetTablePage extends AbstractGamePage
 
         $sql = "SELECT fleet_start_time, fleet_end_id, fleet_group, fleet_mess FROM %%FLEETS%%"
             . " WHERE fleet_id = :fleetID;";
-        $fleetData = $db->selectSingle($sql, [':fleetID'  => $fleetID]);
+        $fleetData = $db->selectSingle($sql, [':fleetID' => $fleetID]);
 
         if ($db->rowCount() != 1) {
             return [];
@@ -112,8 +118,8 @@ class ShowFleetTablePage extends AbstractGamePage
 
             $sql = "UPDATE %%AKS%% SET name = :acsName WHERE id = :acsID;";
             $db->update($sql, [
-                ':acsName'  => $acsName,
-                ':acsID'    => $acsData['id'],
+                ':acsName' => $acsName,
+                ':acsID' => $acsData['id'],
             ]);
             $this->sendJSON(false);
         }
@@ -121,7 +127,7 @@ class ShowFleetTablePage extends AbstractGamePage
         $invitedUsers = [];
 
         $sql = "SELECT id, username FROM %%USERS_ACS%% INNER JOIN %%USERS%% ON userID = id WHERE acsID = :acsID;";
-        $userResult = $db->select($sql, [':acsID'    => $acsData['id']]);
+        $userResult = $db->select($sql, [':acsID' => $acsData['id']]);
 
         foreach ($userResult as $userRow) {
             $invitedUsers[$userRow['id']] = $userRow['username'];
@@ -145,8 +151,8 @@ class ShowFleetTablePage extends AbstractGamePage
 
                 $sql = "INSERT INTO %%USERS_ACS%% SET acsID = :acsID, userID = :newUserID;";
                 $db->insert($sql, [
-                    ':acsID'        => $acsData['id'],
-                    ':newUserID'    => $newUserID,
+                    ':acsID' => $acsData['id'],
+                    ':newUserID' => $newUserID,
                 ]);
 
                 $invitedUsers[$newUserID] = $newUser;
@@ -169,16 +175,16 @@ class ShowFleetTablePage extends AbstractGamePage
         }
 
         return [
-            'invitedUsers'  => $invitedUsers,
-            'acsName'       => $acsData['name'],
-            'mainFleetID'   => $fleetID,
+            'invitedUsers' => $invitedUsers,
+            'acsName' => $acsData['name'],
+            'mainFleetID' => $fleetID,
             'statusMessage' => $statusMessage,
         ];
     }
 
     public function show()
     {
-        global $USER, $PLANET, $reslist, $resource, $LNG;
+        global $USER, $PLANET, $reslist, $resource, $LNG, $pricelist;
 
         $acsData = [];
         $FleetID = HTTP::_GP('fleetID', 0);
@@ -211,17 +217,17 @@ class ShowFleetTablePage extends AbstractGamePage
 
         $maxFleetSlots = FleetFunctions::getMaxFleetSlots($USER);
 
-        $targetGalaxy = HTTP::_GP('galaxy', (int) $PLANET['galaxy']);
-        $targetSystem = HTTP::_GP('system', (int) $PLANET['system']);
-        $targetPlanet = HTTP::_GP('planet', (int) $PLANET['planet']);
-        $targetType = HTTP::_GP('planettype', (int) $PLANET['planet_type']);
-        $targetMission = HTTP::_GP('target_mission', 0);
+        $targetGalaxy = HTTP::_GP('galaxy', (int)$PLANET['galaxy']);
+        $targetSystem = HTTP::_GP('system', (int)$PLANET['system']);
+        $targetPlanet = HTTP::_GP('planet', (int)$PLANET['planet']);
+        $targetType = HTTP::_GP('planettype', (int)$PLANET['planet_type']);
+        $targetMission = HTTP::_GP('target_mission', -1);
 
         $sql = "SELECT * FROM %%FLEETS%% WHERE fleet_owner = :userID AND fleet_mission <> :missile"
             . " ORDER BY fleet_end_time ASC;";
         $fleetResult = $db->select($sql, [
-            ':userID'   => $USER['id'],
-            ':missile'  => MISSION_MISSILE
+            ':userID' => $USER['id'],
+            ':missile' => MISSION_MISSILE
         ]);
 
         $activeFleetSlots = $db->rowCount();
@@ -238,41 +244,51 @@ class ShowFleetTablePage extends AbstractGamePage
             }
 
             $FlyingFleetList[] = [
-                'id'            => $fleetsRow['fleet_id'],
-                'mission'       => $fleetsRow['fleet_mission'],
-                'state'         => $fleetsRow['fleet_mess'],
-                'no_returnable' => $fleetsRow['fleet_no_m_return'],
-                'startGalaxy'   => $fleetsRow['fleet_start_galaxy'],
-                'startSystem'   => $fleetsRow['fleet_start_system'],
-                'startPlanet'   => $fleetsRow['fleet_start_planet'],
-                'startTime'     => _date($LNG['php_tdformat'], $fleetsRow['fleet_start_time'], $USER['timezone']),
-                'endGalaxy'     => $fleetsRow['fleet_end_galaxy'],
-                'endSystem'     => $fleetsRow['fleet_end_system'],
-                'endPlanet'     => $fleetsRow['fleet_end_planet'],
-                'metal'         => $fleetsRow['fleet_resource_metal'],
-                'crystal'       => $fleetsRow['fleet_resource_crystal'],
-                'deuterium'     => $fleetsRow['fleet_resource_deuterium'],
-                'endTime'       => _date($LNG['php_tdformat'], $fleetsRow['fleet_end_time'], $USER['timezone']),
-                'amount'        => pretty_number($fleetsRow['fleet_amount']),
-                'returntime'    => $returnTime,
-                'resttime'      => $returnTime - TIMESTAMP,
-                'FleetList'     => $FleetList[$fleetsRow['fleet_id']],
+                'id'                => $fleetsRow['fleet_id'],
+                'mission'           => $fleetsRow['fleet_mission'],
+                'state'             => $fleetsRow['fleet_mess'],
+                'no_returnable'     => $fleetsRow['fleet_no_m_return'],
+                'startGalaxy'       => $fleetsRow['fleet_start_galaxy'],
+                'startSystem'       => $fleetsRow['fleet_start_system'],
+                'startPlanet'       => $fleetsRow['fleet_start_planet'],
+                'startTime'         => _date($LNG['php_tdformat'], $fleetsRow['fleet_start_time'], $USER['timezone']),
+                'endGalaxy'         => $fleetsRow['fleet_end_galaxy'],
+                'endSystem'         => $fleetsRow['fleet_end_system'],
+                'endPlanet'         => $fleetsRow['fleet_end_planet'],
+                'metal'             => $fleetsRow['fleet_resource_metal'],
+                'crystal'           => $fleetsRow['fleet_resource_crystal'],
+                'deuterium'         => $fleetsRow['fleet_resource_deuterium'],
+                'endTime'           => _date($LNG['php_tdformat'], $fleetsRow['fleet_end_time'], $USER['timezone']),
+                'amount'            => pretty_number($fleetsRow['fleet_amount']),
+                'returntime'        => $returnTime,
+                'resttime'          => $returnTime - TIMESTAMP,
+                'startTimestamp'    => $fleetsRow['start_time'],
+                'FleetList'         => $FleetList[$fleetsRow['fleet_id']],
             ];
         }
 
         $FleetsOnPlanet = [];
-
+        $shipinfos = [];
         foreach ($reslist['fleet'] as $FleetID) {
+            $shipinfos[] = [
+                'id' => $FleetID,
+                'expo' => ($pricelist[$FleetID]['cost'][901] + $pricelist[$FleetID]['cost'][902]) * 5 / 1000,
+                'capacity' => $pricelist[$FleetID]['capacity'],
+            ];
+
+
             if ($PLANET[$resource[$FleetID]] == 0) {
                 continue;
             }
 
             $FleetsOnPlanet[] = [
-                'id'    => $FleetID,
+                'id' => $FleetID,
                 'speed' => FleetFunctions::getFleetMaxSpeed($FleetID, $USER),
                 'count' => $PLANET[$resource[$FleetID]],
             ];
         }
+
+        require_once('includes/classes/class.FleetFunctions.php');
 
         $this->assign([
             'FleetsOnPlanet'        => $FleetsOnPlanet,
@@ -294,6 +310,8 @@ class ShowFleetTablePage extends AbstractGamePage
             'bonusCombustion'       => $USER[$resource[115]] * 10,
             'bonusImpulse'          => $USER[$resource[117]] * 20,
             'bonusHyperspace'       => $USER[$resource[118]] * 30,
+            'maxExpo'               => FleetFunctions::calculateMaxFactorRes(Universe::current()),
+            'shiptypes'             => $shipinfos
         ]);
 
         $this->display('page.fleetTable.default.tpl');

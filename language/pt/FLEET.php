@@ -87,8 +87,7 @@ $LNG['sys_colo_notech'] = 'As tuas naves alcançaram as coordenadas %s. Quando o
     . ' planeta, eles tinham que determinar que seu equipamento ainda não para o clima predominante foi adequado e deve'
     . ' ser desenvolvido primeiro. Decepcionado, os colonos voltaram.';
 $LNG['sys_colo_arrival'] = 'A nave de colonização chegou às coordenadas ';
-$LNG['sys_colo_maxcolo'] = 'A nave de colonização chegou às coordenadas %s, Mas infelizmente, não pode colonizar, não'
-    . ' podes ter mais de ';
+$LNG['sys_colo_maxcolo'] = 'Uma das suas frotas atinge as coordenadas %s. A colonização não é possível porque não se pode ter mais do que %d de planetas.';
 $LNG['sys_colo_allisok'] = 'A nave de colonização chegou às coordenadas %s, A tua colónia acabou de ser colonizada'
     . ' podes começar a construir nela.';
 $LNG['sys_colo_badpos'] = 'A nave de colonização chegou às coordenadas %s, A nave de colonização chegou ao destino e'
@@ -316,3 +315,4 @@ $LNG['type_planet_3'] = 'Lua';
 
 $LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
 $LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
+

@@ -26,16 +26,21 @@ function ShowUniversePage()
 
     $action     = HTTP::_GP('action', '');
     $universe   = HTTP::_GP('uniID', 0);
-
+    if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
     switch ($action) {
         case 'open':
             $config = Config::get($universe);
-            $config->game_disable = 1;
+            $config->uni_status = STATUS_OPEN;
             $config->save();
             break;
         case 'closed':
             $config = Config::get($universe);
-            $config->game_disable = 0;
+            $config->uni_status = STATUS_CLOSED;
             $config->save();
             break;
         case 'delete':
@@ -109,8 +114,12 @@ function ShowUniversePage()
                 "Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3",
                 "Accept-Language: de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4",
             ]);
+            if (str_contains(HTTP_HOST, '127.0.0.1') || str_contains(HTTP_HOST, 'localhost')) {
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            }
             curl_exec($ch);
-            $httpCode   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $httpCode   = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
 
             curl_close($ch);
             if ($httpCode != 302) {
@@ -138,7 +147,8 @@ function ShowUniversePage()
             }
 
             $configSQL[]    = '`uni_name` = "' . $LNG['fcm_universe'] . ' ' . ($universeCount + 1) . '"';
-            $configSQL[]    = '`close_reason` = ""';
+            $configSQL[]    = '`uni_status` = "1"';
+            $configSQL[]    = '`close_reason` = "The universe is being set up. Please wait."';
             $configSQL[]    = '`OverviewNewsText` = "' . $GLOBALS['DATABASE']->escape($config->OverviewNewsText) . '"';
 
             $GLOBALS['DATABASE']->query("INSERT INTO " . CONFIG . " SET " . implode(', ', $configSQL) . ";");
@@ -181,8 +191,8 @@ function ShowUniversePage()
     $uniList = [];
 
     $uniResult  = $GLOBALS['DATABASE']->query("
-    SELECT uni, users_amount, game_disable, energySpeed, halt_speed, resource_multiplier, fleet_speed, game_speed,
-           uni_name, COUNT(DISTINCT inac.id) as inactive, COUNT(planet.id) as planet
+    SELECT uni, users_amount, uni_status, energySpeed, halt_speed, resource_multiplier, fleet_speed, building_speed,
+    shipyard_speed, research_speed, uni_name, COUNT(DISTINCT inac.id) as inactive, COUNT(planet.id) as planet
 	FROM " . CONFIG . " conf
 	LEFT JOIN " . USERS . " as inac ON uni = inac.universe AND inac.onlinetime < " . (TIMESTAMP - INACTIVE) . "
 	LEFT JOIN " . PLANETS . " as planet ON uni = planet.universe
@@ -194,8 +204,9 @@ function ShowUniversePage()
     }
 
     $template->assign_vars([
-        'uniList'   => $uniList,
-        'SID'       => session_id(),
+        'uniList'       => $uniList,
+        'SID'           => session_id(),
+        'signalColors'  => $signalColors
     ]);
 
     $template->show('UniversePage.tpl');

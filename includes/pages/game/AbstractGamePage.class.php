@@ -175,7 +175,7 @@ abstract class AbstractGamePage
             }
         }
 
-        $sql = "SELECT COUNT(r.applyID) AS applies 
+        $sql = "SELECT COUNT(r.applyID) AS applies
             FROM %%ALLIANCE_REQUEST%% r
             JOIN %%USERS%% u ON u.ally_id = r.allianceID
             JOIN %%ALLIANCE%% a ON a.id = u.ally_id
@@ -186,8 +186,8 @@ abstract class AbstractGamePage
             ':userID' => $USER['id']
         ], 'applies');
 
-        $sql = "SELECT COUNT(d.id) AS diplos 
-            FROM %%DIPLO%% d 
+        $sql = "SELECT COUNT(d.id) AS diplos
+            FROM %%DIPLO%% d
             JOIN %%USERS%% u ON u.ally_id = d.owner_2
             JOIN %%ALLIANCE%% a ON a.id = u.ally_id
             LEFT JOIN %%ALLIANCE_RANK%% ra ON ra.allianceID = u.ally_id AND ra.rankID = u.ally_rank_id
@@ -196,7 +196,7 @@ abstract class AbstractGamePage
             ':allianceID' => $USER['ally_id'],
             ':userID' => $USER['id']
         ], 'diplos');
-        
+
         $allyrequests = $allyApplyRequests + $allyDiploRequests;
 
         $vacation = false;
@@ -222,7 +222,7 @@ abstract class AbstractGamePage
             'avatar' => $avatar,
             'resourceTable' => $resourceTable,
             'shortlyNumber' => $themeSettings['TOPNAV_SHORTLY_NUMBER'],
-            'closed' => !$config->game_disable,
+            'uni_status' => $config->uni_status,
             'hasBoard' => filter_var($config->forum_url, FILTER_VALIDATE_URL),
             'hasAdminAccess' => !empty(Session::load()->adminAccess),
             'hasGate' => $PLANET[$resource[43]] > 0,
@@ -304,24 +304,44 @@ abstract class AbstractGamePage
 
     protected function display($file)
     {
-        global $THEME, $LNG;
+        global $THEME, $LNG, $USER;
 
         $this->save();
 
         if ($this->getWindow() !== 'ajax') {
             $this->getPageData();
         }
-
+        if(!isset($USER,$USER['timezone'])){
+            $USER = array ('timezone' => 'Europe/Berlin');
+        }
+        if(isset($USER['id'])) {
+            $signalColors = PlayerUtil::player_signal_colors($USER);
+        }
+        else {
+            $signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+        }
         $this->assign([
             'lang' => $LNG->getLanguage(),
             'dpath' => $THEME->getTheme(),
             'scripts' => $this->tplObj->jsscript,
             'execscript' => implode("\n", $this->tplObj->script),
             'basepath' => PROTOCOL . HTTP_HOST . HTTP_BASE,
+            'TIMEZONESTRING' => $USER['timezone'],
+            'signalColors'      => $signalColors
         ]);
-
+        if (!isset($USER,$USER['timezone'])) {
+            $USER = array ('timezone' => 'Europe/Berlin');
+        }
+        if(isset($USER['id'])) {
+            $signalColors = PlayerUtil::player_signal_colors($USER);
+        }
+        else {
+            $signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+        }
         $this->assign([
-            'LNG' => $LNG,
+            'LNG'               => $LNG,
+            'TIMEZONESTRING'    => $USER['timezone'],
+            'signalColors'      => $signalColors,
         ], false);
 
         $this->tplObj->display('extends:layout.' . $this->getWindow() . '.tpl|' . $file);

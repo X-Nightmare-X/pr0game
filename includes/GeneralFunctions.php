@@ -103,7 +103,7 @@ function get_timezone_selector()
     $timezone_identifiers = DateTimeZone::listIdentifiers();
 
     foreach ($timezone_identifiers as $value) {
-        if (preg_match('/^(America|Antartica|Arctic|Asia|Atlantic|Europe|Indian|Pacific)\//', $value)) {
+        if (preg_match('/^(America|Antartica|Arctic|Asia|Atlantic|Europe|Indian|Pacific|Australia)\//', $value)) {
             $ex = explode('/', $value); //obtain continent,city
             $city = isset($ex[2]) ? $ex[1] . ' - ' . $ex[2] : $ex[1]; //in case a timezone has more than one
             $timezones[$ex[0]][$value] = str_replace('_', ' ', $city);
@@ -182,11 +182,16 @@ function CalculateMaxPlanetFields($planet)
 function pretty_time($seconds)
 {
     global $LNG;
-
-    $day = floor($seconds / 86400);
-    $hour = floor($seconds / 3600 % 24);
-    $minute = floor($seconds / 60 % 60);
-    $second = floor($seconds % 60);
+    $day = $seconds / 86400;
+    $day = floor($day);
+    $hour = $seconds / 3600;
+    $hour = floor($hour);
+    $hour = $hour % 24;
+    $minute = $seconds / 60;
+    $minute = floor($minute);
+    $minute = $minute % 60;
+    $second = floor($seconds);
+    $second = $seconds % 60;
 
     $time = '';
 
@@ -208,8 +213,10 @@ function pretty_time($seconds)
 function pretty_fly_time($seconds)
 {
     $hour = floor($seconds / 3600);
-    $minute = floor($seconds / 60 % 60);
-    $second = floor($seconds % 60);
+    $minute = floor($seconds / 60);
+    $minute = $minute % 60;
+    $second = floor($seconds);
+    $second = $second % 60;
 
     return sprintf('%02d:%02d:%02d', $hour, $minute, $second);
 }
@@ -492,7 +499,10 @@ function exceptionHandler($exception)
         E_USER_WARNING => 'USER WARNING',
         E_USER_NOTICE => 'USER NOTICE',
         E_STRICT => 'STRICT NOTICE',
-        E_RECOVERABLE_ERROR => 'RECOVERABLE ERROR'
+        E_RECOVERABLE_ERROR => 'RECOVERABLE ERROR',
+        E_DEPRECATED => 'DEPRECATED',
+        E_USER_DEPRECATED => 'USER DEPRECATED',
+        E_ALL => 'ALL',
     ];
 
     if (file_exists(ROOT_PATH . 'install/VERSION')) {
@@ -617,7 +627,7 @@ Debug Backtrace:
 
     /* Debug via Support Ticket */
     global $USER;
-    if (isset($USER) && is_array($USER)) {
+    if (isset($USER) && is_array($USER) && !empty($USER['id']) && !empty($USER['username'])) {
         $ErrSource = $USER['id'];
         $ErrName = $USER['username'];
     } else {

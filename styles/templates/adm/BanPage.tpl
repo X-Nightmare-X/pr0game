@@ -60,7 +60,7 @@
 	{$UserSelect.List}
 	</select>
 	<br>
-	<a href="?page=bans">{$LNG.bo_order_username}</a> &nbsp; <a href="?page=bans&amp;order=id">{$bo_order_id}</a> &nbsp; 
+	<a href="?page=bans">{$LNG.bo_order_username}</a> &nbsp; <a href="?page=bans&amp;order=id">{$LNG.bo_order_id}</a> &nbsp; 
 	<a href="?page=bans&amp;view=bana">{$LNG.bo_order_banned}</a>
 	<script TYPE="text/javascript">
 		var UserList = new filterlist(document.getElementsByName('ban_name')[0]);
@@ -108,7 +108,7 @@
 	</td>
 </tr><tr>
 	<td align="left">
-		{$LNG.bo_total_users}<span style="color:lime">{$usercount}</span>
+		{$LNG.bo_total_users}<span class="colorPositive">{$usercount}</span>
 	</td>
 </tr>
 </table>
@@ -174,7 +174,7 @@
 	<input TYPE="button" onClick="UsersBan.reset();this.form.regexp.value=''" value="{$LNG.button_reset}"></td>
 </tr><tr>
 	<td align="left">
-		{$LNG.bo_total_banneds}<span style="color:lime">{$bancount}</span>
+		{$LNG.bo_total_banneds}<span class="colorPositive">{$bancount}</span>
 	</td>
 </tr>
 </table>

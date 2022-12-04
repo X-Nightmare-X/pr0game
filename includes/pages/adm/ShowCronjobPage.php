@@ -175,13 +175,19 @@ function ShowCronjobEnable($cronjobId)
 
 function ShowCronjobOverview()
 {
+    global $LNG, $USER;
     $data    = $GLOBALS['DATABASE']->query("SELECT * FROM " . CRONJOBS . ";");
 
     $template   = new template();
     if (!$data) {
         $template->message($LNG['cronjob_no_data']);
     }
-
+    if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
     $CronjobArray = [];
     while ($CronjobRow = $GLOBALS['DATABASE']->fetch_array($data)) {
         $cronjobLogLastExecSql = "SELECT MAX(`executionTime`) AS lastExecution FROM " . CRONJOBS_LOG
@@ -190,7 +196,7 @@ function ShowCronjobOverview()
         if (!is_null($dataCronjobLog['lastExecution'])) {
             $lastExecutionTimestamp = (new DateTime($dataCronjobLog['lastExecution']))->getTimestamp();
         }
-
+        $lastExecutionTimestamp = isset($lastExecutionTimestamp) ? $lastExecutionTimestamp : 0;
         $CronjobArray[] = [
             'id'            => $CronjobRow['cronjobID'],
             'isActive'      => $CronjobRow['isActive'],
@@ -207,12 +213,22 @@ function ShowCronjobOverview()
         ];
     }
     $template   = new template();
-    $template->assign_vars(['CronjobArray'  => $CronjobArray]);
+    $template->assign_vars([
+        'CronjobArray' => $CronjobArray,
+        'signalColors' => $signalColors
+    ]);
     $template->show("CronjobOverview.tpl");
 }
 
 function ShowCronjobDetail($detail, $error_msg = null)
 {
+    global $USER;
+    if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
     $template   = new template();
 
 
@@ -250,6 +266,7 @@ function ShowCronjobDetail($detail, $error_msg = null)
             ),
             'class'         => isset($_POST['class']) ? HTTP::_GP('class', '') : $CronjobRow['class'],
             'error_msg'     => $error_msg,
+            'signalColors'  => $signalColors
         ]);
     } else {
         $template->assign_vars([
@@ -262,6 +279,7 @@ function ShowCronjobDetail($detail, $error_msg = null)
             'dow'           => isset($_POST['dow_all']) ? [0 => '*'] : HTTP::_GP('dow', []),
             'class'         => HTTP::_GP('class', ''),
             'error_msg'     => $error_msg,
+            'signalColors'  => $signalColors
         ]);
     }
     $template->show("CronjobDetail.tpl");

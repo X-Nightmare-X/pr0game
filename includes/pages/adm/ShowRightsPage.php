@@ -22,10 +22,19 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 function ShowRightsPage()
 {
     global $LNG, $USER;
+    if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
     $mode   = HTTP::_GP('mode', '');
     switch ($mode) {
         case 'rights':
             $template   = new template();
+            $template->assign_vars([
+                'signalColors' => $signalColors
+            ]);
             $template->loadscript('filterlist.js');
 
             if ($_POST) {
@@ -38,6 +47,9 @@ function ShowRightsPage()
 
                 if (!isset($_POST['rights'])) {
                     $_POST['rights'] = [];
+                }
+                if (!isset($_POST['action'])) {
+                    $_POST['action'] = '';
                 }
 
                 if ($_POST['action'] == 'send') {
@@ -70,19 +82,21 @@ function ShowRightsPage()
                 );
 
                 $template->assign_vars([
-                    'Files'              => $Files,
-                    'Rights'             => $Rights['rights'],
-                    'id'                 => $id,
-                    'yesorno'            => [1 => $LNG['one_is_yes_1'], 0 => $LNG['one_is_yes_0']],
-                    'ad_authlevel_title' => $LNG['ad_authlevel_title'],
-                    'button_submit'      => $LNG['button_submit'],
-                    'sid'                => session_id(),
+                    'Files'                 => $Files,
+                    'Rights'                => $Rights['rights'],
+                    'id'                    => $id,
+                    'yesorno'               => [1 => $LNG['one_is_yes_1'], 0 => $LNG['one_is_yes_0']],
+                    'ad_authlevel_title'    => $LNG['ad_authlevel_title'],
+                    'button_submit'         => $LNG['button_submit'],
+                    'sid'                   => session_id(),
+                    'User'                  => '',
                 ]);
 
                 $template->show('ModerrationRightsPostPage.tpl');
                 exit;
             }
-
+            if(!isset($_GET['get'])) { $_GET['get'] = ''; }
+            $WHEREUSERS = '';
             if ($_GET['get'] == 'adm') {
                 $WHEREUSERS =   "AND `authlevel` = '" . AUTH_ADM . "'";
             } elseif ($_GET['get'] == 'ope') {
@@ -130,6 +144,9 @@ function ShowRightsPage()
             break;
         case 'users':
             $template   = new template();
+            $template->assign_vars([
+                'signalColors' => $signalColors
+            ]);
             $template->loadscript('filterlist.js');
 
             if ($_POST) {
@@ -150,7 +167,8 @@ function ShowRightsPage()
                 $template->message($LNG['ad_authlevel_succes'], '?page=rights&mode=users&sid=' . session_id());
                 exit;
             }
-
+            if(!isset($_GET['get'])) { $_GET['get'] = ''; }
+            $WHEREUSERS = '';
             if ($_GET['get'] == 'adm') {
                 $WHEREUSERS =   "AND `authlevel` = '" . AUTH_ADM . "'";
             } elseif ($_GET['get'] == 'ope') {

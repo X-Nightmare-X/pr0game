@@ -13,7 +13,7 @@
 				<td style="color:green"><b>{$mod_active}</b></td>
 				<td><a href="?page=module&amp;mode=deaktiv&amp;id={$ID}">{$mod_change_deactive}</a></td>
 			{else}
-				<td style="color:red"><b>{$mod_deactive}</b></td>
+				<td class="colorNegative"><b>{$mod_deactive}</b></td>
 				<td><a href="?page=module&amp;mode=aktiv&amp;id={$ID}">{$mod_change_active}</a></td>
 			{/if}
 		</tr>

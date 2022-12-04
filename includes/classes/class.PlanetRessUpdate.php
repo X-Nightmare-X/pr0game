@@ -94,7 +94,7 @@ class ResourceUpdate
         $this->TIME = is_null($TIME) ? TIMESTAMP : $TIME;
         $this->config = Config::get($this->USER['universe']);
 
-        if ($this->USER['urlaubs_modus'] == 1) {
+        if ($this->USER['urlaubs_modus'] == 1 || $this->config->uni_status == STATUS_CLOSED || $this->config->uni_status == STATUS_REG_ONLY) {
             return $this->ReturnVars();
         }
 
@@ -117,7 +117,7 @@ class ResourceUpdate
         return $this->ReturnVars();
     }
 
-    public function UpdateResource($TIME, $HASH = false)
+    private function UpdateResource($TIME, $HASH = false)
     {
         $this->ProductionTime = ($TIME - $this->PLANET['last_update']);
 
@@ -334,7 +334,7 @@ class ResourceUpdate
     {
         global $resource;
 
-        $BuildQueue = unserialize($this->PLANET['b_hangar_id']);
+        $BuildQueue = !empty($this->PLANET['b_hangar_id']) ? unserialize($this->PLANET['b_hangar_id']) : [];
         if (!$BuildQueue) {
             $this->PLANET['b_hangar'] = 0;
             $this->PLANET['b_hangar_id'] = '';
@@ -408,7 +408,7 @@ class ResourceUpdate
     {
         global $resource, $reslist;
 
-        if (empty($this->PLANET['b_building_id']) || $this->PLANET['b_building'] > $this->TIME) {
+        if (empty($this->PLANET['b_building_id']) || empty($this->PLANET['b_building_id']) || $this->PLANET['b_building'] > $this->TIME) {
             return false;
         }
 
@@ -458,7 +458,7 @@ class ResourceUpdate
             return false;
         }
 
-        $CurrentQueue = unserialize($this->PLANET['b_building_id']);
+        $CurrentQueue = !empty($this->PLANET['b_building_id']) ? unserialize($this->PLANET['b_building_id']) : [];
         $Loop = true;
 
         $BuildEndTime = 0;
@@ -603,7 +603,7 @@ class ResourceUpdate
             $this->Builded[$this->USER['b_tech_id']] = 0;
         }
 
-        $CurrentQueue = unserialize($this->USER['b_tech_queue']);
+        $CurrentQueue = !empty($this->USER['b_tech_queue']) ? unserialize($this->USER['b_tech_queue']) : [];
 
         $BuildLevel = $CurrentQueue[0][1];
 
@@ -637,7 +637,7 @@ class ResourceUpdate
             return false;
         }
 
-        $CurrentQueue = unserialize($this->USER['b_tech_queue']);
+        $CurrentQueue = !empty($this->USER['b_tech_queue']) ? unserialize($this->USER['b_tech_queue']) : [];
         $Loop = true;
         while ($Loop == true) {
             $ListIDArray = $CurrentQueue[0];

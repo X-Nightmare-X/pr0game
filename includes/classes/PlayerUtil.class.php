@@ -33,13 +33,13 @@ class PlayerUtil
 		AND planet = :position
 		AND planet_type = :type;";
 
-        $count = $db->selectSingle($sql, array(
+        $count = $db->selectSingle($sql, [
             ':universe' => $universe,
             ':galaxy'   => $galaxy,
             ':system'   => $system,
             ':position' => $position,
             ':type'     => $type,
-        ), 'record');
+        ], 'record');
 
         return $count == 0;
     }
@@ -80,71 +80,116 @@ class PlayerUtil
         $config = Config::get($universe);
         $db = Database::get();
         //get avg planets per system per galaxy
-        $sql = 'SELECT tab.galaxy, (sum(tab.anz)/:maxSys) as AvgPlanetsPerSys FROM ( 
-            SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz 
+        $sql = 'SELECT tab.galaxy, (sum(tab.anz)/:maxSys) as AvgPlanetsPerSys FROM (
+            SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz
             FROM %%PLANETS%% p
             JOIN %%USERS%% u on u.id = p.id_owner
-            WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive )
-            GROUP BY p.galaxy, p.`system` 
+            WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive ) AND p.universe = :universe
+            GROUP BY p.galaxy, p.`system`
         ) as tab GROUP BY galaxy ORDER BY tab.galaxy ASC';
-        $avgPlanetsPerGala = $db->select($sql, [
+        $result = $db->select($sql, [
+            ':universe' => $universe,
             ':maxGala' => $config->max_galaxy,
             ':maxSys' => $config->max_system,
             ':ts' => TIMESTAMP,
             ':inactive' => INACTIVE,
         ]);
 
+        $avgPlanetsPerGala = [];
+        if (empty($result)) {
+            for ($i = 1; $i <= $config->max_galaxy; $i++) {
+                $avgPlanetsPerGala[] = ['galaxy' => $i, 'AvgPlanetsPerSys' => 0];
+            }
+        }
+        else {
+            $i = 1;
+            foreach($result as $resultArray) {
+                while($i < $resultArray['galaxy']) {
+                    $avgPlanetsPerGala[] = ['galaxy' => $i, 'AvgPlanetsPerSys' => 0];
+                    $i ++;
+                }
+                $avgPlanetsPerGala[] = $resultArray;
+                $i ++;
+            }
+        }
+
         // get gala with min avg systems
         $minAvg = $config->max_planets;
         $galaxy = 0;
-        $galaArray = array();
+        $galaArray = [];
         foreach ($avgPlanetsPerGala as $data) {
             if ($data['AvgPlanetsPerSys'] < $minAvg) {
                 $minAvg = $data['AvgPlanetsPerSys'];
             }
         }
         foreach ($avgPlanetsPerGala as $data) {
-            if ($data['AvgPlanetsPerSys'] = $minAvg) {
+            if ($data['AvgPlanetsPerSys'] == $minAvg) {
                 array_push($galaArray, $data['galaxy']);
             }
         }
-        $galaxy = $galaArray[rand(0, count($galaArray)-1)];
+        $galaxy = $galaArray[rand(0, count($galaArray) - 1)];
 
         // get system with planet count for selected gala
-        $sql = 'SELECT `system`, count(planet) as cnt FROM %%PLANETS%% 
-            WHERE planet_type = 1 AND galaxy = :gala GROUP BY `system`';
-        $systems = $db->select($sql, [
+        $sql = 'SELECT `system`, count(planet) as anz FROM %%PLANETS%%
+            WHERE planet_type = 1 AND galaxy = :gala AND universe = :universe GROUP BY `system`';
+        $result = $db->select($sql, [
             ':gala' => $galaxy,
+            ':universe' => $universe,
         ]);
+
+        $systems = [];
+        if (empty($result)) {
+            for ($i = 1; $i <= $config->max_system; $i++) {
+                $systems[] = ['system' => $i, 'anz' => 0];
+            }
+        }
+        else {
+            $i = 1;
+            foreach($result as $resultArray) {
+                while($i < $resultArray['system']) {
+                    $systems[] = ['system' => $i, 'anz' => 0];
+                    $i ++;
+                }
+                $systems[] = $resultArray;
+                $i ++;
+            }
+        }
 
         // get empty systems in selected gala
         for ($planetamount = 0; $planetamount <= $config->max_planets; $planetamount++) {
             $usableSystems = [];
             foreach ($systems as $sysArray) {
-                if ($sysArray['anz'] = $planetamount) {
+                if ($sysArray['anz'] == $planetamount) {
                     $usableSystems[] = $sysArray['system'];
                 }
             }
 
             // find random system and random planet inside
-            do {
-                $system = $usableSystems[array_rand($usableSystems)];
+            if (!empty($usableSystems)) {
                 do {
-                    $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
-                } while (!PlayerUtil::allowPlanetPosition($position));
-            } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
+                    $system = $usableSystems[array_rand($usableSystems)];
+                    do {
+                        $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
+                    } while (!PlayerUtil::allowPlanetPosition($position, null, $universe));
+                } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
+            }
+            if (PlayerUtil::allowPlanetPosition($position, null, $universe) && self::isPositionFree($universe, $galaxy, $system, $position)) {
+                break;
+            }
         }
-        $pos = array('galaxy'   => $galaxy, 
-                     'system'   => $system, 
-                     'positon'  => $position);
+        $pos = [
+            'galaxy'   => $galaxy,
+            'system'   => $system,
+            'position' => $position,
+        ];
         return $pos;
     }
 
-    public static function blockHP($universe) 
+    public static function blockHP($universe)
     {
         $config = Config::get($universe);
         $db = Database::get();
-        
+
         //if less than 50 players, place randomly
         $sql = 'SELECT Count(id) as usercount from %%USERS%% WHERE universe = :universe';
         $usercount = $db->selectSingle($sql, [
@@ -157,14 +202,15 @@ class PlayerUtil
 
         //Search for systems with one planet, if none, search for 2 planets
         for ($planetamount = 1; $planetamount < 3; $planetamount++) {
-            $sql = 'SELECT tab.galaxy, tab.system FROM ( 
-                SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz 
+            $sql = 'SELECT tab.galaxy, tab.system FROM (
+                SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz
                 FROM %%PLANETS%% p
                 JOIN %%USERS%% u on u.id = p.id_owner
-                WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive )
-                GROUP BY p.galaxy, p.`system` 
+                WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive ) AND p.universe = :universe
+                GROUP BY p.galaxy, p.`system`
             ) as tab where tab.anz = :planetamount ORDER BY tab.galaxy ASC';
             $systems = $db->select($sql, [
+                ':universe' => $universe,
                 ':planetamount' => $planetamount,
                 ':maxGala' => $config->max_galaxy,
                 ':ts' => TIMESTAMP,
@@ -178,17 +224,19 @@ class PlayerUtil
 
         // if systems found, place planet
         if (!empty($systems)) {
-            $galasys = $systems[array_rand($systems)];
-            $galaxy = $galasys['galaxy'];
-            $system = $galasys['system'];
             do {
-                $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
-            } while (!PlayerUtil::allowPlanetPosition($position));
-            $pos = array(
-                'galaxy'   => $galaxy, 
-                'system'   => $system, 
-                'positon'  => $position
-            );
+                $galasys = $systems[array_rand($systems)];
+                $galaxy = $galasys['galaxy'];
+                $system = $galasys['system'];
+                do {
+                    $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
+                } while (!PlayerUtil::allowPlanetPosition($position, null, $universe));
+            } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
+            $pos = [
+                'galaxy'   => $galaxy,
+                'system'   => $system,
+                'position'  => $position,
+            ];
             return $pos;
         }
 
@@ -214,21 +262,15 @@ class PlayerUtil
         $db = Database::get();
 
         if (isset($universe, $galaxy, $system, $position)) {
-            if (self::checkPosition($universe, $galaxy, $system, $position) === false) {
-                throw new Exception(
-                    sprintf("Try to create a planet at position: %s:%s:%s!", $galaxy, $system, $position)
-                );
-            }
-
-            if (self::isPositionFree($universe, $galaxy, $system, $position) === false) {
-                throw new Exception(
-                    sprintf("Position is not empty: %s:%s:%s!", $galaxy, $system, $position)
-                );
-            }
+            $pos = [
+                'galaxy'   => $galaxy,
+                'system'   => $system,
+                'position' => $position,
+            ];
         } elseif ($config->planet_creation == 1) {
             $pos = PlayerUtil::randomHP($universe);
         } elseif ($config->planet_creation == 2) {
-            $rand_vs_block = rand(0,1);
+            $rand_vs_block = rand(0, 1);
             switch ($rand_vs_block) {
                 case 0:
                     $pos = PlayerUtil::randomHP($universe);
@@ -236,11 +278,11 @@ class PlayerUtil
                 case 1:
                     $pos = PlayerUtil::blockHP($universe);
                     break;
-                }
+            }
         } else {
             $galaxy = $config->LastSettedGalaxyPos;
             $system = $config->LastSettedSystemPos;
-            $planet = $config->LastSettedPlanetPos;
+            $position = $config->LastSettedPlanetPos;
 
             if ($galaxy > $config->max_galaxy) {
                 $galaxy = 1;
@@ -252,8 +294,8 @@ class PlayerUtil
 
             do {
                 $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
-                if ($planet < 3) {
-                    $planet += 1;
+                if ($position < 3) {
+                    $position += 1;
                 } else {
                     if ($system >= $config->max_system) {
                         $system = 1;
@@ -271,24 +313,44 @@ class PlayerUtil
             // Update last coordinates to config table
             $config->LastSettedGalaxyPos = $galaxy;
             $config->LastSettedSystemPos = $system;
-            $config->LastSettedPlanetPos = $planet;
+            $config->LastSettedPlanetPos = $position;
+
+            $pos = [
+                'galaxy'   => $galaxy,
+                'system'   => $system,
+                'position' => $position,
+            ];
         }
 
-        $params = array(
-            ':username'             => $userName,
-            ':email'                => $userMail,
-            ':email2'               => $userMail,
-            ':authlevel'            => $authlevel,
-            ':universe'             => $universe,
-            ':language'             => $userLanguage,
-            ':registerAddress'      => !empty($userIpAddress) ? $userIpAddress : Session::getClientIp(),
-            ':onlinetime'           => TIMESTAMP,
-            ':registerTimestamp'    => TIMESTAMP,
-            ':password'             => $userPassword,
-            ':dpath'                => DEFAULT_THEME,
-            ':timezone'             => $config->timezone,
-            ':nameLastChanged'      => 0,
-        );
+        if (isset($universe, $galaxy, $system, $position)) {
+            if (self::checkPosition($universe, $galaxy, $system, $position) === false) {
+                throw new Exception(
+                    sprintf("Try to create a planet at position: %s:%s:%s!", $galaxy, $system, $position)
+                );
+            }
+
+            if (self::isPositionFree($universe, $galaxy, $system, $position) === false) {
+                throw new Exception(
+                    sprintf("Position is not empty: %s:%s:%s!", $galaxy, $system, $position)
+                );
+            }
+        }
+
+        $params = [
+            ':username'          => $userName,
+            ':email'             => $userMail,
+            ':email2'            => $userMail,
+            ':authlevel'         => $authlevel,
+            ':universe'          => $universe,
+            ':language'          => $userLanguage,
+            ':registerAddress'   => !empty($userIpAddress) ? $userIpAddress : Session::getClientIp(),
+            ':onlinetime'        => TIMESTAMP,
+            ':registerTimestamp' => TIMESTAMP,
+            ':password'          => $userPassword,
+            ':dpath'             => DEFAULT_THEME,
+            ':timezone'          => $config->timezone,
+            ':nameLastChanged'   => 0,
+        ];
 
         $sql = 'INSERT INTO %%USERS%% SET
 		username		= :username,
@@ -308,7 +370,16 @@ class PlayerUtil
         $db->insert($sql, $params);
 
         $userId = $db->lastInsertId();
-        $planetId = self::createPlanet($pos['galaxy'], $pos['system'], $pos['position'], $universe, $userId, $name, true, $authlevel);
+        $planetId = self::createPlanet(
+            $pos['galaxy'],
+            $pos['system'],
+            $pos['position'],
+            $universe,
+            $userId,
+            $name,
+            true,
+            $authlevel
+        );
 
         $currentUserAmount = $config->users_amount + 1;
         $config->users_amount = $currentUserAmount;
@@ -320,19 +391,19 @@ class PlayerUtil
 		id_planet = :planetId
 		WHERE id = :userId;";
 
-        $db->update($sql, array(
+        $db->update($sql, [
             ':galaxy'   => $pos['galaxy'],
             ':system'   => $pos['system'],
             ':position' => $pos['position'],
             ':planetId' => $planetId,
             ':userId'   => $userId,
-        ));
+        ]);
 
-        $sql = "SELECT MAX(total_rank) as rank FROM %%STATPOINTS%% WHERE universe = :universe AND stat_type = :type;";
-        $rank = $db->selectSingle($sql, array(
+        $sql = "SELECT MAX(total_rank) as `rank` FROM %%STATPOINTS%% WHERE universe = :universe AND stat_type = :type;";
+        $rank = $db->selectSingle($sql, [
             ':universe' => $universe,
             ':type'     => 1,
-        ), 'rank');
+        ], 'rank');
 
         $sql = "INSERT INTO %%STATPOINTS%% SET
 				id_owner	= :userId,
@@ -344,16 +415,19 @@ class PlayerUtil
 				fleet_rank	= :rank,
 				total_rank	= :rank;";
 
-        $db->insert($sql, array(
+        $db->insert($sql, [
            ':universe'  => $universe,
            ':userId'    => $userId,
            ':type'      => 1,
            ':rank'      => $rank + 1,
-        ));
+        ]);
 
         $config->save();
 
-        return array($userId, $planetId);
+        return [
+            $userId,
+            $planetId
+        ];
     }
 
     public static function createPlanet(
@@ -379,21 +453,30 @@ class PlayerUtil
                 sprintf("Position is not empty: %s:%s:%s!", $galaxy, $system, $position)
             );
         }
+        $db = Database::get();
 
-        $planetData = array();
+        $sql = 'SELECT count(id) as anz FROM %%PLANETS%% WHERE id_owner = :userId AND planet_type = 1';
+        $planetArray = $db->selectSingle($sql, [
+            ':userId' => $userId,
+        ]);
+
+        $planetData = [];
         require 'includes/PlanetData.php';
 
         $config = Config::get($universe);
 
         $dataIndex = (int) ceil($position / ($config->max_planets / count($planetData)));
-        $maxTemperature = $planetData[$dataIndex]['temp'];
-        $minTemperature = $maxTemperature - 40;
-
         if ($isHome) {
             $maxFields = $config->initial_fields;
+            $maxTemperature = $config->initial_temp;
+        } elseif (!empty($planetArray) && $planetArray['anz'] == 1) {
+            $maxFields = (int) floor($planetData[$dataIndex]['avgFields'] * $config->planet_factor);
+            $maxTemperature = $planetData[$dataIndex]['avgTemp'];
         } else {
             $maxFields = (int) floor($planetData[$dataIndex]['fields'] * $config->planet_factor);
+            $maxTemperature = $planetData[$dataIndex]['temp'];
         }
+        $minTemperature = $maxTemperature - 40;
 
         $diameter = (int) floor(1000 * sqrt($maxFields));
 
@@ -408,7 +491,7 @@ class PlayerUtil
             $name = $isHome ? $LNG['fcm_mainplanet'] : $LNG['fcp_colony'];
         }
 
-        $params = array(
+        $params = [
             ':name'             => $name,
             ':universe'         => $universe,
             ':userId'           => $userId,
@@ -425,7 +508,7 @@ class PlayerUtil
             ':metal_start'      => $config->metal_start,
             ':crystal_start'    => $config->crystal_start,
             ':deuterium_start'  => $config->deuterium_start
-        );
+        ];
 
         $sql = 'INSERT INTO %%PLANETS%% SET
 		name		= :name,
@@ -445,7 +528,6 @@ class PlayerUtil
 		crystal		= :crystal_start,
 		deuterium   = :deuterium_start;';
 
-        $db = Database::get();
         $db->insert($sql, $params);
 
         return $db->lastInsertId();
@@ -473,13 +555,13 @@ class PlayerUtil
 				AND planet = :position
 				AND planet_type = :type;";
 
-        $parentPlanet = $db->selectSingle($sql, array(
+        $parentPlanet = $db->selectSingle($sql, [
             ':universe' => $universe,
             ':galaxy'   => $galaxy,
             ':system'   => $system,
             ':position' => $position,
             ':type'     => 1,
-        ));
+        ]);
 
         if ($parentPlanet['id_luna'] != 0) {
             return false;
@@ -517,7 +599,7 @@ class PlayerUtil
 		deuterium			= :deuterium,
 		deuterium_perhour   = :deuPerHour;";
 
-        $db->insert($sql, array(
+        $db->insert($sql, [
             ':name'             => $moonName,
             ':owner'            => $userId,
             ':universe'         => $universe,
@@ -537,16 +619,16 @@ class PlayerUtil
             ':cryPerHour'       => 0,
             ':deuterium'        => 0,
             ':deuPerHour'       => 0,
-        ));
+        ]);
 
         $moonId = $db->lastInsertId();
 
         $sql = "UPDATE %%PLANETS%% SET id_luna = :moonId WHERE id = :planetId;";
 
-        $db->update($sql, array(
+        $db->update($sql, [
             ':moonId'   => $moonId,
             ':planetId' => $parentPlanet['id'],
-        ));
+        ]);
 
         return $moonId;
     }
@@ -560,9 +642,9 @@ class PlayerUtil
 
         $db = Database::get();
         $sql = 'SELECT universe, ally_id FROM %%USERS%% WHERE id = :userId;';
-        $userData = $db->selectSingle($sql, array(
+        $userData = $db->selectSingle($sql, [
             ':userId'   => $userId
-        ));
+        ]);
 
         if (empty($userData)) {
             return false;
@@ -570,84 +652,84 @@ class PlayerUtil
 
         if (!empty($userData['ally_id'])) {
             $sql = 'SELECT ally_members FROM %%ALLIANCE%% WHERE id = :allianceId;';
-            $memberCount = $db->selectSingle($sql, array(
+            $memberCount = $db->selectSingle($sql, [
                 ':allianceId'   => $userData['ally_id']
-            ), 'ally_members');
+            ], 'ally_members');
 
             if ($memberCount > 1) {
                 $sql = 'UPDATE %%ALLIANCE%% SET ally_members = ally_members - 1 WHERE id = :allianceId;';
-                $db->update($sql, array(
+                $db->update($sql, [
                     ':allianceId'   => $userData['ally_id']
-                ));
+                ]);
             } else {
                 $sql = 'DELETE FROM %%ALLIANCE%% WHERE id = :allianceId;';
-                $db->delete($sql, array(
+                $db->delete($sql, [
                     ':allianceId'   => $userData['ally_id']
-                ));
+                ]);
 
                 $sql = 'DELETE FROM %%STATPOINTS%% WHERE stat_type = :type AND id_owner = :allianceId;';
-                $db->delete($sql, array(
+                $db->delete($sql, [
                     ':allianceId'   => $userData['ally_id'],
                     ':type'         => 2
-                ));
+                ]);
 
                 $sql = 'UPDATE %%STATPOINTS%% SET id_ally = :resetId WHERE id_ally = :allianceId;';
-                $db->update($sql, array(
+                $db->update($sql, [
                     ':allianceId'   => $userData['ally_id'],
                     ':resetId'      => 0
-                ));
+                ]);
             }
         }
 
         $sql = 'DELETE FROM %%ALLIANCE_REQUEST%% WHERE userID = :userId;';
-        $db->delete($sql, array(
+        $db->delete($sql, [
             ':userId'   => $userId
-        ));
+        ]);
 
         $sql = 'DELETE FROM %%BUDDY%% WHERE owner = :userId OR sender = :userId;';
-        $db->delete($sql, array(
+        $db->delete($sql, [
             ':userId'   => $userId
-        ));
+        ]);
 
         $sql = 'DELETE %%FLEETS%%, %%FLEETS_EVENT%%
 		FROM %%FLEETS%% LEFT JOIN %%FLEETS_EVENT%% on fleet_id = fleetId
 		WHERE fleet_owner = :userId;';
-        $db->delete($sql, array(
+        $db->delete($sql, [
             ':userId'   => $userId
-        ));
+        ]);
 
         $sql = 'DELETE FROM %%MESSAGES%% WHERE message_owner = :userId;';
-        $db->delete($sql, array(
+        $db->delete($sql, [
             ':userId'   => $userId
-        ));
+        ]);
 
         $sql = 'DELETE FROM %%NOTES%% WHERE owner = :userId;';
-        $db->delete($sql, array(
+        $db->delete($sql, [
             ':userId'   => $userId
-        ));
+        ]);
 
         $sql = 'DELETE FROM %%PLANETS%% WHERE id_owner = :userId;';
-        $db->delete($sql, array(
+        $db->delete($sql, [
             ':userId'   => $userId
-        ));
+        ]);
 
         $sql = 'DELETE FROM %%USERS%% WHERE id = :userId;';
-        $db->delete($sql, array(
+        $db->delete($sql, [
             ':userId'   => $userId
-        ));
+        ]);
 
         $sql = 'DELETE FROM %%STATPOINTS%% WHERE stat_type = :type AND id_owner = :userId;';
-        $db->delete($sql, array(
+        $db->delete($sql, [
             ':userId'   => $userId,
             ':type'     => 1
-        ));
+        ]);
 
-        $fleetIds = $db->select('SELECT fleet_id FROM %%FLEETS%% WHERE fleet_target_owner = :userId;', array(
+        $fleetIds = $db->select('SELECT fleet_id FROM %%FLEETS%% WHERE fleet_target_owner = :userId;', [
             ':userId'   => $userId
-        ));
+        ]);
 
         foreach ($fleetIds as $fleetId) {
-            FleetFunctions::sendFleetBack(array('id' => $userId), $fleetId['fleet_id']);
+            FleetFunctions::sendFleetBack(['id' => $userId], $fleetId['fleet_id']);
         }
 
         /*
@@ -667,9 +749,9 @@ class PlayerUtil
         $db = Database::get();
         $sql = 'SELECT id_owner, planet_type, id_luna FROM %%PLANETS%% '
                 . 'WHERE id = :planetId AND id NOT IN (SELECT id_planet FROM %%USERS%%);';
-        $planetData = $db->selectSingle($sql, array(
+        $planetData = $db->selectSingle($sql, [
             ':planetId' => $planetId
-        ));
+        ]);
 
         if (empty($planetData)) {
             throw new Exception("Can not found planet #" . $planetId . "!");
@@ -677,26 +759,26 @@ class PlayerUtil
 
         $sql = 'SELECT fleet_id FROM %%FLEETS%% WHERE fleet_end_id = :planetId '
                         . 'OR (fleet_end_type = 3 AND fleet_end_id = :moondId);';
-        $fleetIds = $db->select($sql, array(
+        $fleetIds = $db->select($sql, [
             ':planetId' => $planetId,
             ':moondId'  => $planetData['id_luna']
-        ));
+        ]);
 
         foreach ($fleetIds as $fleetId) {
-            FleetFunctions::sendFleetBack(array('id' => $planetData['id_owner']), $fleetId['fleet_id']);
+            FleetFunctions::sendFleetBack(['id' => $planetData['id_owner']], $fleetId['fleet_id']);
         }
 
         if ($planetData['planet_type'] == 3) {
             $sql = 'DELETE FROM %%PLANETS%% WHERE id = :planetId;';
-            $db->delete($sql, array(
+            $db->delete($sql, [
                 ':planetId' => $planetId
-            ));
+            ]);
 
             $sql = 'UPDATE %%PLANETS%% SET id_luna = :resetId WHERE id_luna = :planetId;';
-            $db->update($sql, array(
+            $db->update($sql, [
                 ':resetId'  => 0,
                 ':planetId' => $planetId
-            ));
+            ]);
         } else {
             $sql = "UPDATE %%PLANETS%% SET destruyed = :time WHERE id = :planetID;";
             $db->update($sql, [
@@ -712,13 +794,14 @@ class PlayerUtil
         return true;
     }
 
-    private static function getAstroTech($USER) {
-        
+    private static function getAstroTech($USER)
+    {
+
         global $resource;
-        
+
         $astroTech = $USER[$resource[124]];
-        
-        $CurrentQueue = unserialize($USER['b_tech_queue']);
+
+        $CurrentQueue = !empty($USER['b_tech_queue']) ? unserialize($USER['b_tech_queue']) : [];
         if (!empty($CurrentQueue) && count($CurrentQueue) > 0) {
             foreach ($CurrentQueue as $ListIDArray) {
                 if ($ListIDArray[0] == 124 && $ListIDArray[3] <= TIMESTAMP) {
@@ -726,7 +809,7 @@ class PlayerUtil
                 }
             }
         }
-        
+
         return $astroTech;
     }
 
@@ -747,22 +830,25 @@ class PlayerUtil
 
         // http://owiki.de/index.php/Astrophysik#.C3.9Cbersicht
         return (int) ceil(
-            $config->min_player_planets + min($planetPerTech, PlayerUtil::getAstroTech($USER) * $config->planets_per_tech)
+            $config->min_player_planets + min(
+                $planetPerTech,
+                PlayerUtil::getAstroTech($USER) * $config->planets_per_tech
+            )
         );
     }
 
-    public static function allowPlanetPosition($position, $USER = NULL)
+    public static function allowPlanetPosition($position, $USER = null, $universe = ROOT_UNI)
     {
         // http://owiki.de/index.php/Astrophysik#.C3.9Cbersicht
-
-        global $resource;
-        $config = Config::get($USER['universe']);
-        if(isset($USER)){
+        
+        if (isset($USER)) {
+            $config = Config::get($USER['universe']);
             $astroTech = PlayerUtil::getAstroTech($USER);
         } else {
+            $config = Config::get($universe);
             $astroTech = 1;
         }
-        
+
 
         switch ($position) {
             case 1:
@@ -812,7 +898,7 @@ class PlayerUtil
 		message_unread		= :unread,
 		message_universe 	= :universe;";
 
-        $db->insert($sql, array(
+        $db->insert($sql, [
             ':userId'   => $userId,
             ':sender'   => $senderId,
             ':time'     => $time,
@@ -822,13 +908,14 @@ class PlayerUtil
             ':text'     => $text,
             ':unread'   => $unread,
             ':universe' => $universe,
-        ));
+        ]);
     }
 
-    public static function disable_vmode(&$USER, &$PLANET = null) {
-        
+    public static function disable_vmode(&$USER, &$PLANET = null)
+    {
+
         $db = Database::get();
-        
+
         $sql = "SELECT urlaubs_start FROM %%USERS%% WHERE universe = :universe AND id = :userID;";
         $umode_start = $db->selectSingle($sql, [
             ':universe' => Universe::current(),
@@ -836,7 +923,7 @@ class PlayerUtil
         ], 'urlaubs_start');
         $umode_delta = TIMESTAMP - $umode_start;
         if ($USER['urlaubs_until'] <= TIMESTAMP) {
-            if (!empty($USER['b_tech'])) {
+            if (!empty($USER['b_tech']) && !empty($USER['b_tech_queue'])) {
                 $CurrentQueue       = unserialize($USER['b_tech_queue']);
                 foreach ($CurrentQueue as &$TechArray) {
                     $TechArray[3] += $umode_delta;
@@ -854,7 +941,7 @@ class PlayerUtil
                 ]);
                 $USER['b_tech'] = $USER['b_tech'] + $umode_delta;
             }
-            if (isset($PLANET) && !empty($PLANET['b_building'])) {
+            if (isset($PLANET) && !empty($PLANET['b_building']) && !empty($PLANET['b_building_id'])) {
                 $PLANET['b_building'] = $PLANET['b_building'] + $umode_delta;
                 $CurrentQueue       = unserialize($PLANET['b_building_id']);
                 foreach ($CurrentQueue as &$BuildArray) {
@@ -868,9 +955,9 @@ class PlayerUtil
             $planets = $db->select($sql, [
                 ':userID'   => $USER['id'],
             ]);
-            
+
             foreach ($planets as $CPLANET) {
-                if (!empty($CPLANET['b_building'])) {
+                if (!empty($CPLANET['b_building']) && !empty($CPLANET['b_building_id'])) {
                     $CPLANET['b_building'] = $CPLANET['b_building'] + $umode_delta;
                     $CurrentQueue = unserialize($CPLANET['b_building_id']);
                     foreach ($CurrentQueue as &$BuildArray) {
@@ -879,7 +966,7 @@ class PlayerUtil
                     $CPLANET['b_building_id'] = serialize($CurrentQueue);
                     unset($CurrentQueue);
                 }
-                
+
                 $sql = "UPDATE %%PLANETS%% SET
                 b_building = :building,
                 b_building_id = :current_queue,
@@ -897,7 +984,7 @@ class PlayerUtil
                     ':current_queue' => $CPLANET['b_building_id'],
                     ':timestamp' => TIMESTAMP,
                 ]);
-                
+
                 unset($CPLANET);
             }
 
@@ -907,7 +994,7 @@ class PlayerUtil
                         urlaubs_start = '0'
 						WHERE id = :userID;";
             $db->update($sql, [':userID'   => $USER['id']]);
-            
+
             $USER['urlaubs_modus'] = 0;
             $USER['urlaubs_until'] = 0;
             $USER['urlaubs_start'] = 0;
@@ -918,7 +1005,7 @@ class PlayerUtil
                 ':id' => $USER['id'],
             ]);
 
-            $PlanetRess	= new ResourceUpdate();
+            $PlanetRess = new ResourceUpdate();
             if (isset($PLANET)) {
                 $PLANET['last_update'] = TIMESTAMP;
                 $PLANET['eco_hash'] = '';
@@ -932,9 +1019,10 @@ class PlayerUtil
         }
     }
 
-    public static function enable_vmode(&$USER, &$PLANET = null) {
+    public static function enable_vmode(&$USER, &$PLANET = null)
+    {
         $db = Database::get();
-       
+
         $sql = "UPDATE %%USERS%% SET urlaubs_modus = '1', urlaubs_until = :time, urlaubs_start = :startTime"
                     . " WHERE id = :userID";
         $db->update($sql, [
@@ -964,14 +1052,51 @@ class PlayerUtil
             $PLANET['crystal_perhour'] = '0';
             $PLANET['deuterium_perhour'] = '0';
         }
-        $sql = 'SELECT fleet_id, fleet_owner FROM %%FLEETS%% WHERE fleet_target_owner = :userid '
-                        . 'AND fleet_mission = 5;';
-        $fleets = $db->select($sql, array(
-            ':userid' => $USER['id'],
+    }
+
+    public static function player_colors($USER)
+    {
+        $db = Database::get();
+        $sql = "SELECT colorMission2friend, colorMission1Own, colorMission2Own, colorMission3Own, colorMission4Own, colorMission5Own,
+            colorMission6Own, colorMission7Own, colorMission7OwnReturn, colorMission8Own, colorMission9Own, colorMission10Own, colorMission15Own,
+            colorMission16Own, colorMission17Own, colorMissionReturnOwn, colorMission1Foreign, colorMission2Foreign, colorMission3Foreign,
+            colorMission4Foreign, colorMission5Foreign, colorMission6Foreign, colorMission7Foreign, colorMission8Foreign, colorMission9Foreign,
+            colorMission10Foreign, colorMission15Foreign, colorMission16Foreign, colorMission17Foreign, colorMissionReturnForeign,
+            colorStaticTimer, colorPositive, colorNegative, colorNeutral FROM %%USERS%%  WHERE id = :userId; and universe = :universe;";
+        $colors = $db->selectSingle($sql, array(
+            ':userId'       => $USER['id'],
+            ':universe'     => Universe::current(),
         ));
-        
-        foreach ($fleets as $fleet) {
-            FleetFunctions::sendFleetBack(array('id' => $fleet['fleet_owner']), $fleet['fleet_id']);
-        }
+        return $colors;
+    }
+    public static function player_signal_colors($USER)
+    {
+        $db = Database::get();
+        $sql = "SELECT colorPositive, colorNegative, colorNeutral 
+            FROM %%USERS%%  WHERE id = :userId; and universe = :universe;";
+        $colors = $db->selectSingle($sql, array(
+            ':userId'       => $USER['id'],
+            ':universe'     => Universe::current(),
+        ));
+        return $colors;
     }
 }
+/* 
+	Enable to debug 
+*/
+// try {
+//     define('MODE', 'INSTALL');
+//     define('ROOT_PATH', 'G:/xampp/htdocs/pr0game/');
+//     set_include_path(
+//         ROOT_PATH . 'includes/libs/BBCodeParser2/' . PATH_SEPARATOR . ROOT_PATH . PATH_SEPARATOR . get_include_path()
+//     );
+//     define('TIMESTAMP', time());
+//     require 'includes/constants.php';
+//     require 'includes/classes/Database.class.php';
+//     require 'includes/classes/Cache.class.php';
+//     require 'includes/vars.php';
+//     require 'includes/classes/Config.class.php';
+
+//     PlayerUtil::randomHP(1);
+// } catch (Exception $e) {
+// }

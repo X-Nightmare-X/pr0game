@@ -19,7 +19,13 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowNewsPage(){
 	global $LNG, $USER;
-
+	if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
+	if(!isset($_GET['action'])) { $_GET['action'] = ''; }
 	if($_GET['action'] == 'send') {
 		$edit_id 	= HTTP::_GP('id', 0);
 		$title 		= $GLOBALS['DATABASE']->sql_escape(HTTP::_GP('title', '', true));
@@ -32,7 +38,7 @@ function ShowNewsPage(){
 	}
 
 	$query = $GLOBALS['DATABASE']->query("SELECT * FROM ".NEWS." ORDER BY id ASC");
-
+	$NewsList = [];
 	while ($u = $GLOBALS['DATABASE']->fetch_array($query)) {
 		$NewsList[]	= array(
 			'id'		=> $u['id'],
@@ -59,6 +65,9 @@ function ShowNewsPage(){
 		$template->assign_vars(array(	
 			'mode'			=> 2,
 			'nws_head'		=> $LNG['nws_head_create'],
+			'news_id'		=> 0,
+			'news_title'	=> '',
+			'news_text'		=> '',
 		));
 	}
 	
@@ -74,6 +83,7 @@ function ShowNewsPage(){
 		'nws_del'		=> $LNG['nws_del'],
 		'nws_create'	=> $LNG['nws_create'],
 		'nws_content'	=> $LNG['nws_content'],
+		'signalColors'	=> $signalColors,
 	));
 	
 	$template->show('NewsPage.tpl');

@@ -328,7 +328,9 @@ $LNG['se_server_parameters'] = 'Ustawienia serwera';
 $LNG['se_game_name'] = 'Nazwa (Gry)';
 $LNG['se_uni_name'] = 'Nazwa (Universum)';
 $LNG['se_lang'] = 'Język';
-$LNG['se_general_speed'] = 'Szybkość gry';
+$LNG['se_building_speed'] = 'Szybkość budowy';
+$LNG['se_shipyard_speed'] = 'Prędkość stoczni';
+$LNG['se_research_speed'] = 'Tempo badań';
 $LNG['se_normal_speed'] = 'Normalna szybkość: 1 <br> Zalecana maksymalna szybkość: 20';
 $LNG['se_normal_speed_resoruces'] = 'Normalna szybkość wydobycia zasobów: 1 <br> Zalecana maksymalna szybkość: 20';
 $LNG['se_normal_speed_fleet'] = 'Normalna szybkość flot: 1 <br> Zalecana maksymalna szybkość: 20';
@@ -338,7 +340,11 @@ $LNG['se_resources_producion_speed'] = 'Szybkość wydobywania zasobów';
 $LNG['se_halt_speed'] = 'Expospeed';
 $LNG['se_energy_speed'] = 'Mnożnik energii';
 $LNG['se_forum_link'] = 'Forum link';
-$LNG['se_server_op_close'] = 'Gra otwarta';
+$LNG['se_uni_status'] = 'Status Uni';
+$LNG['se_uni_status_regopen_gameopen'] = 'Rejestracja i logowanie otwarte';
+$LNG['se_uni_status_regclosed_gameclosed'] = 'Rejestracja i logowanie zamknięte (np. konserwacja)';
+$LNG['se_uni_status_regopen_gameclosed'] = 'Rejestracja otwarta, logowanie zamknięte (np. nowe uczelnie)';
+$LNG['se_uni_status_regclosed_gameopen'] = 'Rejestracja zamknięta, logowanie otwarte (np. stare uczelnie)';
 $LNG['se_server_status_message'] = 'Powód zamknięcia';
 $LNG['se_server_planet_parameters'] = 'Ustawienia planet';
 $LNG['se_initial_fields'] = 'Ilość pól:';
@@ -368,7 +374,6 @@ $LNG['se_noob_protect2'] = 'Ochrona do ilości punktów';
 $LNG['se_noob_protect3'] = 'Mnożnik dla ochrony nowych graczy';
 $LNG['se_noob_protect_e2'] = 'Do tej ilości punktów jest nowy gracz chroniony';
 $LNG['se_noob_protect_e3'] = 'Kliknij tutaj, by dowiedzieć się więcej';
-$LNG['se_reg_closed'] = 'Zamknij rejstrację';
 $LNG['se_min_build_time'] = 'Minimalny czas budowy';
 $LNG['se_min_build_time_info'] = 'Tutaj ustawisz minimalny czas budowy wszystkich obiektów i floty. Standardowo 1'
     . ' sekunda.<br>Jeśli ustawisz 0 to taka funkcja będzie nie aktywna.<br><font color=orange>Ustawienie tego na 0'
@@ -752,10 +757,10 @@ $LNG['ac_suspended_time'] = 'Zablokowany';
 $LNG['ac_suspended_longer'] = 'Do';
 $LNG['ac_suspended_reason'] = 'Powód';
 $LNG['ac_suspended_autor'] = 'Zablokuj dla ';
-$LNG['ac_note_k'] = '<table><tr><th width=10%><font color=lime>T+</font></th><th>Biliardy</th></tr><tr><th width=10%>'
-    . '<font color=lime>T</font></th><th>Biliony</th></tr><tr><th width=10%><font color=lime>B</font></th>'
-    . '<th>Miliardy</th></tr><tr><th width=10%><font color=lime>M</font></th><th>Miliony</th></tr><tr><th width=10%>'
-    . '<font color=lime>K</font></th><th>Tysiące</th></tr></table>';
+$LNG['ac_note_k'] = '<table><tr><th width=10%><font class="colorPositive">T+</font></th><th>Biliardy</th></tr><tr><th width=10%>'
+    . '<font class="colorPositive">T</font></th><th>Biliony</th></tr><tr><th width=10%><font class="colorPositive">B</font></th>'
+    . '<th>Miliardy</th></tr><tr><th width=10%><font class="colorPositive">M</font></th><th>Miliony</th></tr><tr><th width=10%>'
+    . '<font class="colorPositive">K</font></th><th>Tysiące</th></tr></table>';
 $LNG['ac_leyend'] = '[ Legenda ]';
 $LNG['ac_no_rank_level'] = 'Brak odpowiednich uprawnień by to zobaczyć';
 //###########################################################//

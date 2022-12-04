@@ -30,6 +30,8 @@ $LNG['menu_register']				= 'S\'enregistrer';
 $LNG['chose_a_uni']					= 'Choisir un univers';
 $LNG['universe']					= 'Univers';
 $LNG['uni_closed']					= ' (fermée)';
+$LNG['uni_reg_closed']				= ' (Enregistrement fermé)';
+$LNG['uni_reg_open']				= ' (Enregistrement seulement)';
 
 // Button
 $LNG['buttonRegister']				= 'S\'enregistrer maintenant!';

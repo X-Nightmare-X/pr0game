@@ -270,3 +270,15 @@ define('MISSION_MISSILE', 10);
 define('MISSION_EXPEDITION', 15);
 define('MISSION_TRADE', 16);
 define('MISSION_TRANSFER', 17);
+
+// general time constants
+define('TIME_6_HOURS', 21600);
+define('TIME_24_HOURS', 86400);
+define('TIME_1_WEEK', 604800);
+define('TIME_1_MONTH', 2592000);
+
+// universe status
+define('STATUS_OPEN', 0);
+define('STATUS_CLOSED', 1);
+define('STATUS_REG_ONLY', 2);
+define('STATUS_LOGIN_ONLY', 3);

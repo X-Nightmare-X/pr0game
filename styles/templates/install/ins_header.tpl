@@ -36,7 +36,7 @@
 	});
 	</script>
 </head>
-<body id="step{$smarty.get.step|htmlspecialchars|default:'intro'}">
+<body id="step{$smarty.get.step|default:'intro'}">
 <div id="tooltip" class="tip"></div>
 <div><p>&nbsp;</p></div>
 <table width="960">

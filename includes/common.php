@@ -57,7 +57,7 @@ require 'includes/classes/HTTP.class.php';
 require 'includes/classes/Language.class.php';
 require 'includes/classes/PlayerUtil.class.php';
 require 'includes/classes/Session.class.php';
-require 'includes/classes/Universe.class.php';
+require_once('includes/classes/Universe.class.php');
 
 require 'includes/classes/class.theme.php';
 require 'includes/classes/class.template.php';
@@ -145,6 +145,10 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     ));
 
     if (!$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME') {
+        if (empty($USER)) {
+            $USER = [];
+        }
+
         $USER['lang'] = 'en';
         $USER['bana'] = 0;
         $USER['timezone'] = "Europe/Berlin";
@@ -210,17 +214,42 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
         } elseif (MODE === 'ADMIN') {
             error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
-            $USER['rights']     = unserialize($USER['rights']);
+            $USER['rights']     = !empty($USER['rights']) ? unserialize($USER['rights']) : [];
             $LNG->includeData(array('ADMIN', 'CUSTOM'));
         }
     }
 
     if (
-        $config->game_disable == 0 && $USER['authlevel'] == AUTH_USR &&
+        ($config->uni_status == STATUS_CLOSED || $config->uni_status == STATUS_REG_ONLY) && $USER['authlevel'] == AUTH_USR &&
         (!isset($_GET['page']) || $_GET['page'] !== 'logout')
     ) {
         ShowErrorPage::printError($LNG['sys_closed_game'] . '<br><br>' . $config->close_reason, false);
     }
+    $privKey = $config->recaptchaPrivKey;
+    $rcaptcha = HTTP::_GP('rcaptcha', '');
+
+    if(isset($privKey) && isset($rcaptcha)){
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('secret' => $privKey, 'response' => $rcaptcha)));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $arrResponse = json_decode($response, true);
+        $sql = "insert into %%RECAPTCHA%% (userId, success, time, score, url) VALUES (:userId, :success, :time, :score, :url);";
+        
+        if($arrResponse['success'] == true){
+            $db->insert($sql, array(
+                ':userId'   => $USER['id'],
+                ':success'  => $arrResponse['success'],
+                ':time'     => TIMESTAMP,
+                ':score'    => $arrResponse['score'],
+                ':url'      => $_SERVER['REQUEST_URI'],
+            ));
+        }
+    }
+
 } elseif (MODE === 'LOGIN') {
     $LNG    = new Language();
     $LNG->getUserAgentLanguage();

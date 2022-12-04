@@ -39,6 +39,50 @@ $LNG['type_mission_8'] = 'Sokmek';
 $LNG['type_mission_9'] = 'Yoketmek';
 $LNG['type_mission_10'] = 'Roket Saldirisi';
 $LNG['type_mission_15'] = 'Kesif Ucusu';
+$LNG['type_mission_16'] = 'Ticaret';
+$LNG['type_mission_17'] = 'Transfer';
+
+$LNG['type_mission_1_own'] = 'Kendi saldırısı';
+$LNG['type_mission_2_own'] = 'Kendi federasyon saldırı filosu';
+$LNG['type_mission_3_own'] = 'Kendi nakliye aracı';
+$LNG['type_mission_4_own'] = 'İstasyon sahibi';
+$LNG['type_mission_5_own'] = 'Own holding';
+$LNG['type_mission_6_own'] = 'Kendi casusluk';
+$LNG['type_mission_7_own'] = 'Kendi kolonizasyon';
+$LNG['type_mission_7_own_return'] = 'Kendi kolonizasyonunu iade et';
+$LNG['type_mission_8_own'] = 'Kendi geri dönüşümü';
+$LNG['type_mission_9_own'] = 'Kendi yıkımı';
+$LNG['type_mission_10_own'] = 'Kendi füze saldırısı';
+$LNG['type_mission_15_own'] = 'Kendi seferi';
+$LNG['type_mission_16_own'] = 'Kendi pazar yeri filosu';
+$LNG['type_mission_17_own'] = 'Kendi transfer';
+$LNG['type_mission_return_own'] = 'Kendi dönüşü';
+
+$LNG['type_mission_2_friend'] = 'Dost federasyon saldırı filosu';
+
+$LNG['type_mission_1_foreign'] = 'Yabancı saldırı';
+$LNG['type_mission_2_foreign'] = 'Yabancı federasyon saldırı filosu';
+$LNG['type_mission_3_foreign'] = 'Yabancı nakliye';
+$LNG['type_mission_4_foreign'] = 'Yabancı istasyon';
+$LNG['type_mission_5_foreign'] = 'Yabancı bekletme';
+$LNG['type_mission_6_foreign'] = 'Yabancı casusluk';
+$LNG['type_mission_7_foreign'] = 'Yabancı kolonileştirme';
+$LNG['type_mission_8_foreign'] = 'Yabancı geri dönüşüm';
+$LNG['type_mission_9_foreign'] = 'Yabancı imha';
+$LNG['type_mission_10_foreign'] = 'Yabancı füze saldırısı';
+$LNG['type_mission_15_foreign'] = 'Yabancı sefer';
+$LNG['type_mission_16_foreign'] = 'Yabancı pazar filosu';
+$LNG['type_mission_17_foreign'] = 'Yabancı transfer';
+$LNG['type_mission_return_foreign'] = 'Yabancı dönüş';
+
+$LNG['pozitif'] = 'Pozitif';
+$LNG['negatif'] = 'Negatif';
+$LNG['nötr'] = 'Nötr';
+$LNG['StaticTimer'] = 'Varış zamanı';
+
+$LNG['own_colors'] = 'Kendi renkleri';
+$LNG['foreign_colors'] = 'Yabancı renkler';
+$LNG['general_colors'] = 'Genel renkler';
 
 $LNG['type_planet_1'] = 'Gezegen';
 $LNG['type_planet_2'] = 'Harabe alani';
@@ -325,6 +369,7 @@ $LNG['fl_no_same_alliance'] = 'Dusman gezegende durulamaz!';
 $LNG['fl_not_ally_deposit'] = 'Yeterli Kademede Ittifak Deposu Yok';
 $LNG['fl_deploy_only_your_planets'] = 'Sadece Kendi Gezegenlerinize Konuslandirmak yapabilirsiniz!';
 $LNG['fl_fleet_sended'] = 'Filo basariyla gonderildi';
+$LNG['fl_selected_resources'] = 'seçilen kaynaklar';
 $LNG['fl_from'] = 'Kalkis';
 $LNG['fl_arrival_time'] = 'Varis Zamani';
 $LNG['fl_return_time'] = 'Donus Zamani';
@@ -412,8 +457,8 @@ $LNG['bd_maxlevel'] = 'Maksimum kademeye ulasildi';
 $LNG['bd_on'] = 'baglandi';
 $LNG['bd_max_builds'] = 'Maksimum  %d binayi insaa listesine ekleyebilirsin!';
 $LNG['bd_next_level'] = 'Sonraki kademe icin :';
-$LNG['bd_need_engine'] = 'Ihtiyacin olan <font color="#FF0000">%s</font>  %s';
-$LNG['bd_more_engine'] = 'Uretildi  <font color="#00FF00">%s</font> %s more';
+$LNG['bd_need_engine'] = 'Ihtiyacin olan <font class="colorNegative">%s</font>  %s';
+$LNG['bd_more_engine'] = 'Uretildi  <font class="colorPositive">%s</font> %s more';
 $LNG['bd_jump_gate_action'] = 'Sicra';
 $LNG['bd_cancel_warning'] = 'DIKKAT! <br> İptal edilen üretimin %60 ı geri iade edilir!.';
 $LNG['bd_cancel_send'] = 'Iptal Et';
@@ -1091,6 +1136,20 @@ $LNG['tkb_verlierer'] = '<b>-Kaybeden-</b>';
 $LNG['tkb_unentschieden'] = '<b>-Berabere- </b>';
 $LNG['tkb_missing'] = '<br>Oyuncu artik mevcut degil.';
 
+// filters
+$LNG['tkb_memorial'] = 'Anıtlar';
+$LNG['tkb_timeframe'] = 'Zaman Çerçevesi';
+$LNG['tkb_diplomacy'] = 'Diplomasi';
+$LNG['tkb_galaxy'] = 'Galaksi';
+
+// filter options
+$LNG['tkb_all'] = 'hepsi';
+$LNG['tkb_only'] = 'sadece';
+$LNG['tkb_exclude'] = 'hariç tut';
+$LNG['tkb_day'] = 'gün';
+$LNG['tkb_week'] = 'hafta';
+$LNG['tkb_month'] = 'ay';
+$LNG['tkb_self'] = 'kendi';
 //----------------------------------------------------------------------------//
 //Profil
 $LNG['pl_overview'] = 'Oyuncu Profili';
@@ -1122,7 +1181,7 @@ $LNG['pl_etc'] = 'Digerleri ';
 
 //----------------------------------------------------------------------------//
 // Destek
-
+$LNG['fleetPrio'] = 'Filo sipariş önceliği';
 $LNG['ti_header'] = 'Destek Sistemi';
 $LNG['ti_overview'] = 'Geri';
 $LNG['ti_id'] = 'Ticket';
@@ -1203,3 +1262,6 @@ $LNG['lo_notify'] = '<span id="seconds">5</span> saniye icinde yonlendirileceksi
 $LNG['lo_continue'] = 'Beklemek istemiyorsaniz tiklayiniz';
 
 //----------------------------------------------------------------------------//
+$LNG['fleet_table_custom_empty_name'] = 'Bir filo ismi giriniz lütfen!';
+$LNG['custom_fleet'] = 'Özel filolar';
+$LNG['custom_fleet_confirm'] = 'Filo şablonu %s kaldırılsın mı?';

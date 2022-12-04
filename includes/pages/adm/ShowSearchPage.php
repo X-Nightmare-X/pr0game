@@ -22,7 +22,12 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 function ShowSearchPage()
 {
     global $LNG, $USER;
-
+    if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
     if (!isset($_GET['delete'])) {
         $_GET['delete'] = '';
     }
@@ -279,7 +284,9 @@ function ShowSearchPage()
             $SearchFile
         );
     }
-
+    if(!isset($OrderBYParse)) { $OrderBYParse = ''; }
+    if(!isset($RESULT['PAGES'])) { $RESULT['PAGES'] = ''; }
+    if(!isset($RESULT['LIST'])) { $RESULT['LIST'] = ''; }
     $template->assign_vars([
         'Selector'              => $Selector,
         'limit'                 => $limit,
@@ -303,6 +310,9 @@ function ShowSearchPage()
         'ac_minimize_maximize'  => $LNG['ac_minimize_maximize'],
         'LIST'                  => $RESULT['LIST'],
         'PAGES'                 => $RESULT['PAGES'],
+        'minimize'              => 'checked = "checked"',
+        'diisplaay'             => 'style="display:none;"',
+        'signalColors'          => $signalColors,
     ]);
 
     $template->show('SearchPage.tpl');
@@ -451,7 +461,7 @@ function MyCrazyLittleSearch(
         while ($WhileResult = $GLOBALS['DATABASE']->fetch_num($FinalQuery)) {
             $Search['LIST']  .= "<tr>";
             if ($Table == "users") {
-                if ($_GET['search'] == "online") {
+                if (isset($_GET['search']) && $_GET['search'] == "online") {
                     $WhileResult[3] = pretty_time(TIMESTAMP - $WhileResult[3]);
                 } else {
                     $WhileResult[3] = _date($LNG['php_tdformat'], $WhileResult[3], $USER['timezone']);
@@ -460,12 +470,12 @@ function MyCrazyLittleSearch(
 
                 $WhileResult[6] = $LNG['rank_' . $WhileResult[6]];
                 if ($WhileResult[7] == '1') {
-                    $WhileResult[7] = "<font color=lime>" . $LNG['one_is_no_1'] . "</font>";
+                    $WhileResult[7] = "<font class=\"colorPositive\">" . $LNG['one_is_no_1'] . "</font>";
                 } else {
                     $WhileResult[7] = $LNG['one_is_no_0'];
                 }
                 if ($WhileResult[8] == '1') {
-                    $WhileResult[8] = "<font color=lime>" . $LNG['one_is_no_1'] . "</font>";
+                    $WhileResult[8] = "<font class=\"colorPositive\">" . $LNG['one_is_no_1'] . "</font>";
                 } else {
                     $WhileResult[8] = $LNG['one_is_no_0'];
                 }
@@ -483,7 +493,7 @@ function MyCrazyLittleSearch(
             if ($Table == "planets p") {
                 $WhileResult[3] = pretty_time(TIMESTAMP - $WhileResult[3]);
                 if ($WhileResult[7] > 0) {
-                    $WhileResult[7] = "<font color=lime>" . $LNG['one_is_no_1'] . "</font>";
+                    $WhileResult[7] = "<font class=\"colorPositive\">" . $LNG['one_is_no_1'] . "</font>";
                 } else {
                     $WhileResult[7] = $LNG['one_is_no_0'];
                 }
@@ -531,7 +541,7 @@ function MyCrazyLittleSearch(
 
             $Search['LIST'] .= "</tr>";
         }
-        $Search['LIST'] .= "<tr><td colspan=\"20\">" . $LNG['se_input_hay'] . "<font color=lime>" . $CountQuery['total']
+        $Search['LIST'] .= "<tr><td colspan=\"20\">" . $LNG['se_input_hay'] . "<font class=\"colorPositive\">" . $CountQuery['total']
             . "</font>" . $SName . "</td></tr>";
         $Search['LIST'] .= "</table>";
 

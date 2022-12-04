@@ -73,6 +73,9 @@
     <li><a href="game.php?page=battleSimulator">{$LNG.lm_battlesim}</a></li>
   {/if}
   <li><a href="game.php?page=battleHall">{$LNG.lm_topkb}</a></li>
+  {if isModuleAvailable($smarty.const.MODULE_RECORDS)}
+    <li><a href="game.php?page=records">{$LNG.lm_records}</a></li>
+  {/if}
 
   <li class="menu-separator"></li>
   {if isModuleAvailable($smarty.const.MODULE_NOTICE)}
@@ -84,7 +87,7 @@
   <li><a href="game.php?page=settings">{$LNG.lm_options}</a></li>
   <li><a href="game.php?page=logout">{$LNG.lm_logout}</a></li>
   {if $authlevel > 0}
-    <li><a href="./admin.php" style="color:lime">{$LNG.lm_administration} ({$VERSION})</a></li>
+    <li><a href="./admin.php" class="colorPositive">{$LNG.lm_administration} ({$VERSION})</a></li>
   {/if}
 </ul>
 <div id="disclamer" class="no-mobile">

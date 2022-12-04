@@ -21,9 +21,16 @@ function ShowBanPage()
 {
 	$db = Database::get();
 	global $LNG, $USER;
-	
+	if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
+	if(!isset($_GET['order'])) { $_GET['order'] = ''; }
 	$ORDER = $_GET['order'] == 'id' ? "id" : "username";
-
+	$WHEREBANA = "";
+	if(!isset($_GET['view'])) { $_GET['view'] = ''; }
 	if ($_GET['view'] == 'bana')
 		$WHEREBANA	= "AND `bana` = '1'";
 
@@ -40,6 +47,7 @@ function ShowBanPage()
 
 	$GLOBALS['DATABASE']->free_result($UserList);
 	
+	if(!isset($_GET['order2'])) { $_GET['order2'] = ''; }
 	$ORDER2 = $_GET['order2'] == 'id' ? "id" : "username";
 		
 	$Banneds		=0;
@@ -53,6 +61,9 @@ function ShowBanPage()
 	$GLOBALS['DATABASE']->free_result($UserListBan);
 
 	$template	= new template();
+	$template->assign_vars([
+		'signalColors'      => $signalColors,
+	]);
 	$template->loadscript('filterlist.js');
 
 
@@ -172,6 +183,7 @@ function ShowBanPage()
 		'UserSelect'		=> $UserSelect,
 		'usercount'			=> $Users,
 		'bancount'			=> $Banneds,
+		'bo_select_title'           => $LNG['bo_select_title'],
 	));
 	
 	$template->show('BanPage.tpl');

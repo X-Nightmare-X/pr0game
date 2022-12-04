@@ -20,7 +20,7 @@ $LNG['PM'] = '[PN]';
 $LNG['ready'] = 'Ferdig';
 
 $LNG['loading'] = 'Lade ...';
-
+$LNG['fleetPrio'] = 'Flodden Auftrag Prioritätene';
 $LNG['invalid_action'] = 'Ungüldige Agtion';
 
 $LNG['type_mission_1'] = 'Angreifne ';
@@ -34,6 +34,47 @@ $LNG['type_mission_8'] = 'Abbaune ';
 $LNG['type_mission_9'] = 'Zermeddln ';
 $LNG['type_mission_10'] = 'Ragetenangriff';
 $LNG['type_mission_15'] = 'Exbedition ';
+$LNG['type_mission_16'] = 'Marktplatz';
+$LNG['type_mission_17'] = 'Transfer';
+
+
+$LNG['type_mission_1_own'] = 'Eigener Angriff';
+$LNG['type_mission_2_own'] = 'Eigene Verbandsangriffsflotte';
+$LNG['type_mission_3_own'] = 'Eigener Transport';
+$LNG['type_mission_4_own'] = 'Eigenes Stationieren';
+$LNG['type_mission_5_own'] = 'Eigenes Halten';
+$LNG['type_mission_6_own'] = 'Eigenes Spionieren';
+$LNG['type_mission_7_own'] = 'Eigenes Kolonisieren';
+$LNG['type_mission_7_own_return'] = 'Rückkehr Eigenes Kolonisieren';
+$LNG['type_mission_8_own'] = 'Eigenes Abbauen';
+$LNG['type_mission_9_own'] = 'Eigenes Zerstören';
+$LNG['type_mission_10_own'] = 'Eigener Raketenangriff';
+$LNG['type_mission_15_own'] = 'Eigene Expedition';
+$LNG['type_mission_16_own'] = 'Eigene Marktplatzflotte';
+$LNG['type_mission_17_own'] = 'Eigener Transfer';
+$LNG['type_mission_return_own'] = 'Eigene Rückkehr';
+
+$LNG['type_mission_2_friend'] = 'Befreundete Verbandsangriffsflotte';
+
+$LNG['type_mission_1_foreign'] = 'Fremder Angriff';
+$LNG['type_mission_2_foreign'] = 'Fremde Verbandsangriffsflotte';
+$LNG['type_mission_3_foreign'] = 'Fremder Transport';
+$LNG['type_mission_4_foreign'] = 'Fremdes Stationieren';
+$LNG['type_mission_5_foreign'] = 'Fremdes Halten';
+$LNG['type_mission_6_foreign'] = 'Fremdes Spionieren';
+$LNG['type_mission_7_foreign'] = 'Fremdes Kolonisieren';
+$LNG['type_mission_8_foreign'] = 'Fremdes Abbauen';
+$LNG['type_mission_9_foreign'] = 'Fremdes Zerstören';
+$LNG['type_mission_10_foreign'] = 'Fremder Raketenangriff';
+$LNG['type_mission_15_foreign'] = 'Fremde Expedition';
+$LNG['type_mission_16_foreign'] = 'Fremde Marktplatzflotte';
+$LNG['type_mission_17_foreign'] = 'Fremder Transfer';
+$LNG['type_mission_return_foreign'] = 'Fremde Rückkehr';
+
+$LNG['positiv'] = 'Positiv';
+$LNG['negativ'] = 'Negativ';
+$LNG['neutral'] = 'Neutral';
+$LNG['StaticTimer'] = 'Ankunftszeit';
 
 $LNG['type_planet_1'] = 'Blanet';
 $LNG['type_planet_2'] = 'Drümmerfeld ';
@@ -50,7 +91,7 @@ $LNG['bad_forum_url'] = 'geine ForenURL- definierd';
 $LNG['admin_access_1'] = 'Sie habne temborärne Zugriff uff adminischdrative Fungtionen.';
 $LNG['admin_access_link'] = 'Deagtivierne Sie diesne Zugriff';
 $LNG['admin_access_2'] = ', wne Sie ihn ned länger benödigen';
-$LNG['banned_message'] = 'Sie wurdne vom Banhammer erschlagne tadsächlich sogar. Wne Sie glaubne, das es sich dabei um ein Missverschdändnis handeld,'
+$LNG['banned_message'] = 'Sie wurdne vom Banhammer erschlagne tadsächlich sogar. Wene Sie glaubne, das es sich dabei um ein Missverschdändnis handeld,'
     . 'schreibne Sie uns über Discord:  <a href="https://discord.gg/jhYYN3yuat">https://discord.gg/jhYYN3yuat</a>';
 
 //----------------------------------------------------------------------------//
@@ -241,7 +282,7 @@ $LNG['gl_to'] = 'nach';
 
 //----------------------------------------------------------------------------//
 //PHALANX
-$LNG['px_no_Deuderium'] = 'Sie habne ned genügend Deuderium!';
+$LNG['px_no_Deuderium'] = 'Sache mal, sie habne ned genügend Deuderium!';
 $LNG['px_scan_Bosition'] = 'Scan Bosition';
 $LNG['px_fleet_movement'] = 'Momendane Floddenbewegungne';
 $LNG['px_no_fleet'] = 'geine  Floddenbewegungne vorhanden.';
@@ -327,8 +368,9 @@ $LNG['fl_expedition_alert_message'] = 'Achdung die Exbedition bringd Gefahrne mi
     . ' ihre gesamte Flodde weggemeddelt werden!';
 $LNG['fl_vacation_mode_active'] = 'Sie befindne sich im Urlaubsmodus';
 $LNG['fl_expedition_fleets_limit'] = 'Sie gönnene ned mehr Exbeditionene startne!';
+$LNG['fl_selected_resources'] = 'Ausgewählte Rohstoffe Laden';
 $LNG['fl_week_player'] = 'Schbieler is zu schwach für sie!';
-$LNG['fl_strong_player'] = 'SSchbieler isd zu starg für sie!';
+$LNG['fl_strong_player'] = 'Schbieler isd zu starg für sie!';
 $LNG['fl_in_vacation_player'] = 'Schbieler befinded sich im Urlaubsmodus';
 $LNG['fl_multi_alarm'] = 'MuldiAlarm!';
 $LNG['fl_no_slots'] = 'geine Slods mehr verfügbar!';
@@ -374,7 +416,7 @@ $LNG['fl_bash_protection'] = 'Ischd des dein ernschd? Du schtehst vor meiner Dü
 $LNG['fl_admin_attack'] = 'Du gannst geine Adminischdratorne angreifne';
 $LNG['fl_target_exists'] = 'Zielblanet exischdiert';
 $LNG['fl_target_not_exists'] = 'Zielblanet exischdiert ned!';
-$LNG['fl_expedition_tech_required'] = 'Es wird die Forschung *ferstellt Schdimme:* "Äh, Astrophysik" Schdufe( 1 oder höher) benödigd, um eine'
+$LNG['fl_expedition_tech_required'] = 'Es wird die Forschung *ferstellt Schdimme:* "Äh, Astrofüsig" Schdufe( 1 oder höher) benödigd, um eine'
     . ' Exbedition zu starten.';
 $LNG['fl_only_planets_colonizable'] = 'Nur Blanetne gönnene golonisiert werden hädix8!';
 $LNG['fl_player_is_noob'] = 'Was soln der fack? Schbieler befindeschd sich im Noobschutz!';
@@ -431,8 +473,8 @@ $LNG['bd_maxlevel'] = 'Maggsimale Schdufe erreichd';
 $LNG['bd_on'] = 'auf';
 $LNG['bd_max_builds'] = 'Sie gönnene maggs. %d Aufdräge versenden!';
 $LNG['bd_next_level'] = 'Nexd Lewel:';
-$LNG['bd_need_engine'] = 'Werbraucht  <span style="color:#FF0000">%s</span> %s mehr';
-$LNG['bd_more_engine'] = 'Broduziert  <span style="color:#00FF00">%s</span> %s mehr';
+$LNG['bd_need_engine'] = 'Werbraucht  <span class="colorNegative">%s</span> %s mehr';
+$LNG['bd_more_engine'] = 'Broduziert  <span class="colorPositive">%s</span> %s mehr';
 $LNG['bd_jump_gate_action'] = 'Schbringen';
 $LNG['bd_cancel_warning'] = 'Bei Abbruch werdne nur 60% der Ressourcne wiederhergeschdellt!';
 $LNG['bd_cancel_send'] = 'Margierte - Löschen';
@@ -1047,13 +1089,13 @@ $LNG['cr_destroyed'] = 'Zerschdört!';
 
 //----------------------------------------------------------------------------//
 // FleetAjax.php
-$LNG['fa_not_enough_probes'] = 'Fehler, geine  Sonden vorhanden';
+$LNG['fa_not_enough_probes'] = 'Fehler, geine Sonden vorhandne';
 $LNG['fa_galaxy_not_exist'] = 'Fehler, Galaggsie ned vorhanden';
 $LNG['fa_system_not_exist'] = 'Fehler, System ned vorhanden';
 $LNG['fa_planet_not_exist'] = 'Fehler, Blanet ned vorhanden';
 $LNG['fa_not_enough_fuel'] = 'Fehler, ned genügend Deuderium vorhanden';
 $LNG['fa_no_more_slots'] = 'Fehler, geine Slots verfügbar';
-$LNG['fa_no_recyclers'] = 'Fehler, geine Recycler vorhanden';
+$LNG['fa_no_recyclers'] = 'Fehler, geine Rescheikler vorhanden';
 $LNG['fa_no_fleetroom'] = 'Fehler, Deuderiumverbrauch größer als Dransportkapazität';
 $LNG['fa_mission_not_available'] = 'Fehler, Mission ned verfügbar';
 $LNG['fa_no_spios'] = 'Fehler, geine Sonden vorhanden';
@@ -1063,7 +1105,7 @@ $LNG['fa_strong_player'] = 'Fehler, Schbieler ist zu stark';
 $LNG['fa_not_spy_yourself'] = 'Fehler, Sie können sich ned selber spionieren';
 $LNG['fa_not_attack_yourself'] = 'Fehler, Sie können sich ned selber angreifne';
 $LNG['fa_action_not_allowed'] = 'Fehler, Syschdemfehler';
-$LNG['fa_vacation_mode_current'] = 'Fehler, Sie befindne  sich im Urlaubsmodus';
+$LNG['fa_vacation_mode_current'] = 'Fehler, Sie befindne sich im Urlaubsmodus';
 $LNG['fa_sending'] = 'Gesended';
 
 //----------------------------------------------------------------------------//
@@ -1131,6 +1173,20 @@ $LNG['tkb_verlierer'] = '<b>-Werlierer-</b>';
 $LNG['tkb_unentschieden'] = '<b>-Beide Weiss, unendschiedne- </b>';
 $LNG['tkb_missing'] = '<br>Missing in Action: Der Useraccount exischdiert ned mehr.';
 
+// filters
+$LNG['tkb_memorial'] = 'Abschiede';
+$LNG['tkb_timeframe'] = 'Zeitfenster';
+$LNG['tkb_diplomacy'] = 'Diplomatie';
+$LNG['tkb_galaxy'] = 'Galaxie';
+
+// filter options
+$LNG['tkb_all'] = 'alle';
+$LNG['tkb_only'] = 'anzeigen';
+$LNG['tkb_exclude'] = 'ausblenden';
+$LNG['tkb_day'] = 'Tag';
+$LNG['tkb_week'] = 'Woche';
+$LNG['tkb_month'] = 'Monat';
+$LNG['tkb_self'] = 'eigene';
 //----------------------------------------------------------------------------//
 // playercard.php
 $LNG['pl_overview'] = 'Blayercard';
@@ -1245,5 +1301,8 @@ $LNG['lo_continue'] = 'Glickne Sie hier, um ned zu warden';
 
 //----------------------------------------------------------------------------//
 
+$LNG['fleet_table_custom_empty_name'] = 'Bitte einen Floddennamen eingebene!';
+$LNG['custom_fleet'] = 'Benutzerdefinierte Flodden';
+$LNG['custom_fleet_confirm'] = 'Floddenvorlage %s wegmeddln?';
 
 // Translated into Oger by Appendix (ASB8).

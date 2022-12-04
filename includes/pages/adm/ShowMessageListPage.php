@@ -20,6 +20,12 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 function ShowMessageListPage()
 {
 	global $LNG, $USER;
+	if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
 	$page		= HTTP::_GP('side', 1);
 	$type		= HTTP::_GP('type', 100);
 	$sender		= HTTP::_GP('sender', '', UTF8_SUPPORT);
@@ -130,6 +136,8 @@ function ShowMessageListPage()
 		'dateEnd'		=> $dateEnd,
 		'sender'		=> $sender,
 		'receiver'		=> $receiver,
+		'Selected'		=> 0,
+		'signalColors'	=> $signalColors
 	));
 				
 	$template->show('MessageList.tpl');

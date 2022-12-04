@@ -36,6 +36,50 @@ $LNG['type_mission_8'] = 'Reciclar';
 $LNG['type_mission_9'] = 'Destruir';
 $LNG['type_mission_10'] = 'Ataque con Misiles';
 $LNG['type_mission_15'] = 'Expedición';
+$LNG['type_mission_16'] = 'Comercio';
+$LNG['type_mission_17'] = 'Transferencia';
+
+$LNG['type_mission_1_own'] = 'Ataque propio';
+$LNG['type_mission_2_own'] = 'Flota de ataque propia de la federación';
+$LNG['type_mission_3_own'] = 'Transporte propio';
+$LNG['type_mission_4_own'] = "Estacionamiento propio";
+$LNG['type_mission_5_own'] = 'Mantenimiento propio';
+$LNG['type_mission_6_own'] = 'Espionaje propio';
+$LNG['type_mission_7_own'] = 'Colonización propia';
+$LNG['type_mission_7_own_return'] = 'Devuelve la colonización propia';
+$LNG['type_mission_8_own'] = 'Reciclaje propio';
+$LNG['type_mission_9_own'] = 'Destrucción propia';
+$LNG['type_mission_10_own'] = 'Ataque de misiles propio';
+$LNG['type_mission_15_own'] = 'Expedición propia';
+$LNG['type_mission_16_own'] = 'Flota de mercado propia';
+$LNG['type_mission_17_own'] = 'Transferencia propia';
+$LNG['type_mission_return_own'] = 'Retorno propio';
+
+$LNG['type_mission_2_friend'] = 'Flota de ataque amiga de la federación';
+
+$LNG['type_mission_1_foreign'] = 'Ataque extranjero';
+$LNG['type_mission_2_foreign'] = 'Flota de ataque de la federación extranjera';
+$LNG['type_mission_3_foreign'] = 'Transporte extranjero';
+$LNG['type_mission_4_foreign'] = 'Estacionamiento extranjero';
+$LNG['type_mission_5_foreign'] = 'Holding extranjero';
+$LNG['type_mission_6_foreign'] = 'Espionaje extranjero';
+$LNG['type_mission_7_foreign'] = 'Colonización extranjera';
+$LNG['type_mission_8_foreign'] = 'Reciclaje extranjero';
+$LNG['type_mission_9_foreign'] = 'Destrucción extranjera';
+$LNG['type_mission_10_foreign'] = 'Ataque con misiles extranjeros';
+$LNG['type_mission_15_foreign'] = 'Expedición extranjera';
+$LNG['type_mission_16_foreign'] = 'Flota de mercado extranjera';
+$LNG['type_mission_17_foreign'] = 'Transferencia extranjera';
+$LNG['type_mission_return_foreign'] = 'Retorno extranjero';
+
+$LNG['positive'] = 'Positivo';
+$LNG['negative'] = 'Negativo';
+$LNG['neutral'] = 'Neutral';
+$LNG['StaticTimer'] = 'Hora de llegada';
+
+$LNG['own_colors'] = 'Colores propios';
+$LNG['foreign_colors'] = 'Colores extranjeros';
+$LNG['general_colors'] = 'Colores generales';
 
 $LNG['type_planet_1'] = 'Planeta';
 $LNG['type_planet_2'] = 'Escombros';
@@ -324,6 +368,7 @@ $LNG['fl_return_time'] = 'Hora de regreso';
 $LNG['fl_fleet'] = 'Flota';
 $LNG['fl_player'] = 'El jugador ';
 $LNG['fl_add_to_attack'] = ' fue agregado al ataque.';
+$LNG['fl_selected_resources'] = 'recursos seleccionados';
 $LNG['fl_already_invited'] = ' Ya ha sido invitado.';
 $LNG['fl_dont_exist'] = ' no existe.';
 $LNG['fl_acs_invitation_message'] = ' te invita a participar en un SAC.';
@@ -404,8 +449,8 @@ $LNG['bd_maxlevel'] = 'Nivel m&aacute;ximo alcanzado';
 $LNG['bd_on'] = 'en';
 $LNG['bd_max_builds'] = 'Puede max. %d enviar ordenes!';
 $LNG['bd_next_level'] = 'Próximo nivel:';
-$LNG['bd_need_engine'] = 'Consume  <font color="#FF0000">%s</font> %s';
-$LNG['bd_more_engine'] = 'Produce <font color="#00FF00">%s</font> %s';
+$LNG['bd_need_engine'] = 'Consume  <font class="colorNegative">%s</font> %s';
+$LNG['bd_more_engine'] = 'Produce <font class="colorPositive">%s</font> %s';
 $LNG['bd_jump_gate_action'] = 'Saltar a';
 $LNG['bd_cancel_warning'] = 'Durante la demolición, sólo el 60% de los recursos se restaurará.';
 $LNG['bd_cancel_send'] = 'Eliminar - Seleccionar';
@@ -1078,6 +1123,20 @@ $LNG['tkb_verlierer'] = '<b>-Perdedaor-</b>';
 $LNG['tkb_unentschieden'] = '<b>-Empatado- </b>';
 $LNG['tkb_missing'] = '<br>Desaparecido en Acción: La cuenta de usuario ya no existe.';
 
+// filters
+$LNG['tkb_memorial'] = 'Memorias';
+$LNG['tkb_timeframe'] = 'Marco temporal';
+$LNG['tkb_diplomacy'] = 'Diplomacia';
+$LNG['tkb_galaxy'] = 'Galaxia';
+
+// filter options
+$LNG['tkb_all'] = 'todo';
+$LNG['tkb_only'] = 'sólo';
+$LNG['tkb_exclude'] = 'excluir';
+$LNG['tkb_day'] = 'día';
+$LNG['tkb_week'] = 'semana';
+$LNG['tkb_month'] = 'mes';
+$LNG['tkb_self'] = 'propio';
 //----------------------------------------------------------------------------//
 // playercard.php
 $LNG['pl_overview'] = 'Carta de Usuario';
@@ -1109,7 +1168,7 @@ $LNG['pl_etc'] = 'Otros';
 
 //----------------------------------------------------------------------------//
 // Support
-
+$LNG['fleetPrio'] = 'Prioridad de los pedidos de la flota';
 $LNG['ti_header'] = 'Sistema de Soporte';
 $LNG['ti_overview'] = 'Volver a la visión general';
 $LNG['ti_id'] = 'Ticket';
@@ -1191,6 +1250,9 @@ $LNG['lo_notify'] = 'Seras redireccionado en <span id="seconds"> 5 </span> s';
 $LNG['lo_continue'] = 'Pulsa aquí si no redirecciona tu navegador.';
 
 //----------------------------------------------------------------------------//
+$LNG['fleet_table_custom_empty_name'] = 'Introduzca el nombre de la flota, por favor.';
+$LNG['custom_fleet'] = 'Flotas personalizadas';
+$LNG['custom_fleet_confirm'] = '¿Quitar la plantilla de la flota %s?';
 
 
 // Translated into Spanish by Angelus_ira . All rights reversed (C) 2011

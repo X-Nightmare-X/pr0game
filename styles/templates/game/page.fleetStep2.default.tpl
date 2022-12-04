@@ -55,9 +55,15 @@
                     <tr style="height:20px;">
         				<td class="transparent" colspan="3"><a href="javascript:maxResources()">{$LNG.fl_all_resources}</a></td>
         			</tr>
+          <tr style="height:20px;">
+            <td class="transparent" colspan="3"><a  id="selectedres" href="javascript:selectedResources(this)" data="{$predefinedRes['met']},{$predefinedRes['krist']},{$predefinedRes['deut']}">{$LNG.fl_selected_resources}</a></td>
+          </tr>
                     <tr style="height:20px;">
         				<td class="transparent" colspan="3">{$LNG.fl_fuel_consumption}: <span id="consumption" class="consumption">{$consumption}</span></td>
         			</tr>
+          <tr style="height:20px;">
+            <td class="transparent" colspan="3">Arrival: <span id="arr_time" duration="{$duration}"></span></td>
+          </tr>
 				</table>
 			</td>
 		</tr>
@@ -138,6 +144,6 @@
     </table>
 </form>
 <script type="text/javascript">
-data	= {$fleetdata|json};
+data	= {$fleetdata|json_encode};
 </script>
 {/block}

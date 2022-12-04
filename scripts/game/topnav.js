@@ -29,6 +29,7 @@ function resourceTicker(config, init) {
 			element.html(NumberGetHumanReadable(nrResource));
 		}
 	} else {
+		element.addClass('colorNegative');
 		element.addClass('res_current_max');
 	}
 }

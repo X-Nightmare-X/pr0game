@@ -20,7 +20,7 @@ $LNG['PM'] = '[PN]';
 $LNG['ready'] = 'Fertig';
 
 $LNG['loading'] = 'Lade ...';
-
+$LNG['fleetPrio'] = 'Flotten Auftrag Priorität';
 $LNG['invalid_action'] = 'Ungültige Aktion!';
 
 $LNG['type_mission_1'] = 'Angreifen';
@@ -34,6 +34,47 @@ $LNG['type_mission_8'] = 'Abbauen';
 $LNG['type_mission_9'] = 'Zerstören';
 $LNG['type_mission_10'] = 'Raketenangriff';
 $LNG['type_mission_15'] = 'Expedition';
+$LNG['type_mission_16'] = 'Marktplatz';
+$LNG['type_mission_17'] = 'Transfer';
+
+
+$LNG['type_mission_1_own'] = 'Eigener Angriff';
+$LNG['type_mission_2_own'] = 'Eigene Verbandsangriffsflotte';
+$LNG['type_mission_3_own'] = 'Eigener Transport';
+$LNG['type_mission_4_own'] = 'Eigenes Stationieren';
+$LNG['type_mission_5_own'] = 'Eigenes Halten';
+$LNG['type_mission_6_own'] = 'Eigenes Spionieren';
+$LNG['type_mission_7_own'] = 'Eigenes Kolonisieren';
+$LNG['type_mission_7_own_return'] = 'Rückkehr Eigenes Kolonisieren';
+$LNG['type_mission_8_own'] = 'Eigenes Abbauen';
+$LNG['type_mission_9_own'] = 'Eigenes Zerstören';
+$LNG['type_mission_10_own'] = 'Eigener Raketenangriff';
+$LNG['type_mission_15_own'] = 'Eigene Expedition';
+$LNG['type_mission_16_own'] = 'Eigene Marktplatzflotte';
+$LNG['type_mission_17_own'] = 'Eigener Transfer';
+$LNG['type_mission_return_own'] = 'Eigene Rückkehr';
+
+$LNG['type_mission_2_friend'] = 'Befreundete Verbandsangriffsflotte';
+
+$LNG['type_mission_1_foreign'] = 'Fremder Angriff';
+$LNG['type_mission_2_foreign'] = 'Fremde Verbandsangriffsflotte';
+$LNG['type_mission_3_foreign'] = 'Fremder Transport';
+$LNG['type_mission_4_foreign'] = 'Fremdes Stationieren';
+$LNG['type_mission_5_foreign'] = 'Fremdes Halten';
+$LNG['type_mission_6_foreign'] = 'Fremdes Spionieren';
+$LNG['type_mission_7_foreign'] = 'Fremdes Kolonisieren';
+$LNG['type_mission_8_foreign'] = 'Fremdes Abbauen';
+$LNG['type_mission_9_foreign'] = 'Fremdes Zerstören';
+$LNG['type_mission_10_foreign'] = 'Fremder Raketenangriff';
+$LNG['type_mission_15_foreign'] = 'Fremde Expedition';
+$LNG['type_mission_16_foreign'] = 'Fremde Marktplatzflotte';
+$LNG['type_mission_17_foreign'] = 'Fremder Transfer';
+$LNG['type_mission_return_foreign'] = 'Fremde Rückkehr';
+
+$LNG['positiv'] = 'Positiv';
+$LNG['negativ'] = 'Negativ';
+$LNG['neutral'] = 'Neutral';
+$LNG['StaticTimer'] = 'Ankunftszeit';
 
 $LNG['type_planet_1'] = 'Hafen';
 $LNG['type_planet_2'] = 'Wrackfeld';
@@ -327,6 +368,7 @@ $LNG['fl_expedition_alert_message'] = 'Achtung die Expedition bringt Gefahren mi
     . ' ihre gesamte Flotte verlieren!';
 $LNG['fl_vacation_mode_active'] = 'Sie befinden sich im Urlaubsmodus';
 $LNG['fl_expedition_fleets_limit'] = 'Sie können nicht mehr Expeditionen starten!';
+$LNG['fl_selected_resources'] = 'Ausgewählte Rohstoffe Laden';
 $LNG['fl_week_player'] = 'Spieler ist zu schwach für sie!';
 $LNG['fl_strong_player'] = 'Spieler ist zu stark für sie!';
 $LNG['fl_in_vacation_player'] = 'Spieler befindet sich im Urlaubsmodus';
@@ -431,8 +473,8 @@ $LNG['bd_maxlevel'] = 'Maximale Stufe erreicht';
 $LNG['bd_on'] = 'auf';
 $LNG['bd_max_builds'] = 'Sie können max. %d Aufträge versenden!';
 $LNG['bd_next_level'] = 'Next Level:';
-$LNG['bd_need_engine'] = 'Verbraucht <span style="color:#FF0000">%s</span> %s mehr';
-$LNG['bd_more_engine'] = 'Produziert <span style="color:#00FF00">%s</span> %s mehr';
+$LNG['bd_need_engine'] = 'Verbraucht <span class="colorNegative">%s</span> %s mehr';
+$LNG['bd_more_engine'] = 'Produziert <span class="colorPositive">%s</span> %s mehr';
 $LNG['bd_jump_gate_action'] = 'Springen';
 $LNG['bd_cancel_warning'] = 'Bei Abbruch werden nur 60% der Ressourcen wiederhergestellt!';
 $LNG['bd_cancel_send'] = 'Markierte - Löschen';
@@ -1131,6 +1173,20 @@ $LNG['tkb_verlierer'] = '<b>-Verlierer-</b>';
 $LNG['tkb_unentschieden'] = '<b>-Beide Weiss, unentschieden- </b>';
 $LNG['tkb_missing'] = '<br>Missing in Action: Der Useraccount existiert nicht mehr.';
 
+// filters
+$LNG['tkb_memorial'] = 'Abschiede';
+$LNG['tkb_timeframe'] = 'Zeitfenster';
+$LNG['tkb_diplomacy'] = 'Diplomatie';
+$LNG['tkb_galaxy'] = 'Meer';
+
+// filter options
+$LNG['tkb_all'] = 'alle';
+$LNG['tkb_only'] = 'anzeigen';
+$LNG['tkb_exclude'] = 'ausblenden';
+$LNG['tkb_day'] = 'Tag';
+$LNG['tkb_week'] = 'Woche';
+$LNG['tkb_month'] = 'Monat';
+$LNG['tkb_self'] = 'eigene';
 //----------------------------------------------------------------------------//
 // playercard.php
 $LNG['pl_overview'] = 'Playercard';
@@ -1244,6 +1300,9 @@ $LNG['lo_notify'] = 'Sie werden in <span id="seconds">5</span>s weitergeleitet';
 $LNG['lo_continue'] = 'Klicken Sie hier, um nicht zu warten';
 
 //----------------------------------------------------------------------------//
+$LNG['fleet_table_custom_empty_name'] = 'Bitte einen Flottennamen eingeben!';
+$LNG['custom_fleet'] = 'Benutzerdefinierte Flotten';
+$LNG['custom_fleet_confirm'] = 'Flottenvorlage %s entfernen?';
 
 
 // Translated into German by Jan . All rights reversed (C) 2011

@@ -18,7 +18,7 @@
 		</tr>
 		<tr>
 			<td width="50%">{$LNG.op_username}</td>
-	    <td width="50%" style="height:22px;">{if $changeNickTime < 0}<input name="username" size="20" value="{$username}" type="text">{else}{$username}{/if}</td>
+	    <td width="50%" style="height:22px;">{if $changeNickTime < 0}<input name="username" size="20" value="{$username}" type="text" maxlength="32">{else}{$username}{/if}</td>
 	</tr>
 	<tr>
 	    <td>{$LNG.op_old_pass}</td>
@@ -34,7 +34,7 @@
 	</tr>
 	<tr>
 	    <td><a title="{$LNG.op_email_adress_descrip}">{$LNG.op_email_adress}</a></td>
-	    <td><input name="email" maxlength="64" size="20" value="{$email}" type="text"></td>
+	    <td><input name="email" maxlength="64" size="20" value="{$email}" type="text" maxlength="64"></td>
 	</tr>
 	<tr>
 	    <td style="height:22px;">{$LNG.op_permanent_email_adress}</td>
@@ -112,6 +112,154 @@
 			<td><img src="{$dpath}img/r.gif" alt="">{$LNG.op_missile_attack}</td>
 			<td><input name="galaxyMissle" type="checkbox" value="1" {if $galaxyMissle == 1}checked="checked"{/if}></td>
 		</tr>
+		<tr>
+			<th colspan="2">{$LNG.own_colors}</th>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_1_own}</td>
+			<td><input type="color" name="colorMission1Own" value="{$colors.colorMission1Own}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_2_own}</td>
+			<td><input type="color" name="colorMission2Own" value="{$colors.colorMission2Own}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_2_friend}</td>
+			<td><input type="color" name="colorMission2friend" value="{$colors.colorMission2friend}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_3_own}</td>
+			<td><input type="color" name="colorMission3Own" value="{$colors.colorMission3Own}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_4_own}</td>
+			<td><input type="color" name="colorMission4Own" value="{$colors.colorMission4Own}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_5_own}</td>
+			<td><input type="color" name="colorMission5Own" value="{$colors.colorMission5Own}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_6_own}</td>
+			<td><input type="color" name="colorMission6Own" value="{$colors.colorMission6Own}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_7_own}</td>
+			<td><input type="color" name="colorMission7Own" value="{$colors.colorMission7Own}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_7_own_return}</td>
+			<td><input type="color" name="colorMission7OwnReturn" value="{$colors.colorMission7OwnReturn}"></td>
+		<tr>
+			<td>{$LNG.type_mission_8_own}</td>
+			<td><input type="color" name="colorMission8Own" value="{$colors.colorMission8Own}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_9_own}</td>
+			<td><input type="color" name="colorMission9Own" value="{$colors.colorMission9Own}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_10_own}</td>
+			<td><input type="color" name="colorMission10Own" value="{$colors.colorMission10Own}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_15_own}</td>
+			<td><input type="color" name="colorMission15Own" value="{$colors.colorMission15Own}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_16_own}</td>
+			<td><input type="color" name="colorMission16Own" value="{$colors.colorMission16Own}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_17_own}</td>
+			<td><input type="color" name="colorMission17Own" value="{$colors.colorMission17Own}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_return_own}</td>
+			<td><input type="color" name="colorMissionReturnOwn" value="{$colors.colorMissionReturnOwn}"></td>
+		</tr>
+		<tr>
+			<th colspan="2">{$LNG.foreign_colors}</th>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_1_foreign}</td>
+			<td><input type="color" name="colorMission1Foreign" value="{$colors.colorMission1Foreign}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_2_foreign}</td>
+			<td><input type="color" name="colorMission2Foreign" value="{$colors.colorMission2Foreign}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_3_foreign}</td>
+			<td><input type="color" name="colorMission3Foreign" value="{$colors.colorMission3Foreign}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_4_foreign}</td>
+			<td><input type="color" name="colorMission4Foreign" value="{$colors.colorMission4Foreign}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_5_foreign}</td>
+			<td><input type="color" name="colorMission5Foreign" value="{$colors.colorMission5Foreign}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_6_foreign}</td>
+			<td><input type="color" name="colorMission6Foreign" value="{$colors.colorMission6Foreign}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_7_foreign}</td>
+			<td><input type="color" name="colorMission7Foreign" value="{$colors.colorMission7Foreign}"></td>
+		</tr>
+			<td>{$LNG.type_mission_8_foreign}</td>
+			<td><input type="color" name="colorMission8Foreign" value="{$colors.colorMission8Foreign}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_9_foreign}</td>
+			<td><input type="color" name="colorMission9Foreign" value="{$colors.colorMission9Foreign}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_10_foreign}</td>
+			<td><input type="color" name="colorMission10Foreign" value="{$colors.colorMission10Foreign}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_15_foreign}</td>
+			<td><input type="color" name="colorMission15Foreign" value="{$colors.colorMission15Foreign}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_16_foreign}</td>
+			<td><input type="color" name="colorMission16Foreign" value="{$colors.colorMission16Foreign}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_17_foreign}</td>
+			<td><input type="color" name="colorMission17Foreign" value="{$colors.colorMission17Foreign}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.type_mission_return_foreign}</td>
+			<td><input type="color" name="colorMissionReturnForeign" value="{$colors.colorMissionReturnForeign}"></td>
+		</tr>
+		<tr>
+			<th colspan="2">{$LNG.general_colors}</th>
+		</tr>
+		<tr>
+			<td>{$LNG.positiv}</td>
+			<td><input type="color" name="colorPositive" value="{$colors.colorPositive}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.negativ}</td>
+			<td><input type="color" name="colorNegative" value="{$colors.colorNegative}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.neutral}</td>
+			<td><input type="color" name="colorNeutral" value="{$colors.colorNeutral}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.StaticTimer}</td>
+			<td><input type="color" name="colorStaticTimer" value="{$colors.colorStaticTimer}"></td>
+		</tr>
+    <tr><th colspan="2">{$LNG.fleetPrio}</th></tr>
+
+    {foreach $missionPrios as $ID => $score}
+      <tr><td>{$LNG[$ID]}</td><td><input min="0" max="99" type="number" name="{$ID}" value="{$score}"></td></tr>
+    {/foreach}
 		<tr>
 			<th colspan="2">{$LNG.op_vacation_delete_mode}</th>
 		</tr>

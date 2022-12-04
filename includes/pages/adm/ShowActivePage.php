@@ -20,7 +20,14 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 function ShowActivePage()
 {
 	global $LNG, $USER;
+	if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
 	$id = HTTP::_GP('id', 0);
+	if(!isset($_GET['action'])) { $_GET['action'] = ''; }
 	if($_GET['action'] == 'delete' && !empty($id))
 		$GLOBALS['DATABASE']->query("DELETE FROM ".USERS_VALID." WHERE `validationID` = '".$id."' AND `universe` = '".Universe::getEmulated()."';");
 
@@ -44,6 +51,7 @@ function ShowActivePage()
 	$template->assign_vars(array(	
 		'Users'				=> $Users,
 		'uni'				=> Universe::getEmulated(),
+		'signalColors'      => $signalColors,
 	));
 	
 	$template->show('ActivePage.tpl');

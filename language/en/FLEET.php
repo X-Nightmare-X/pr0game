@@ -78,7 +78,7 @@ $LNG['sys_colo_notech'] = 'One of your fleets reached the coordinates %s. When y
     . ' they had to determine that their equipment still not for the prevailing climate was suitable and must be'
     . ' developed first. Disappointed, the settlers returned.';
 $LNG['sys_colo_arrival'] = '';
-$LNG['sys_colo_maxcolo'] = 'One of your fleets reaches the coordinates %s. Ssettlement is not possible as you can only'
+$LNG['sys_colo_maxcolo'] = 'One of your fleets reaches the coordinates %s. Settlement is not possible as you can only'
     . ' have %d planets. ';
 $LNG['sys_colo_allisok'] = 'One of your fleets reaches the coordinates %s. The settlers start to colonise the new'
     . ' planet.';
@@ -331,3 +331,4 @@ $LNG['type_planet_short_3'] = 'M';
 $LNG['type_planet_1'] = 'Planet';
 $LNG['type_planet_2'] = 'Debris';
 $LNG['type_planet_3'] = 'Moon';
+

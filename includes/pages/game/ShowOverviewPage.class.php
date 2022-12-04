@@ -50,7 +50,7 @@ class ShowOverviewPage extends AbstractGamePage
                 continue;
             }
 
-            if (!empty($CPLANET['b_building']) && $CPLANET['b_building'] > TIMESTAMP) {
+            if (!empty($CPLANET['b_building']) && !empty($CPLANET['b_building_id']) && $CPLANET['b_building'] > TIMESTAMP) {
                 $Queue = unserialize($CPLANET['b_building_id']);
                 $timeleft = $USER['urlaubs_modus'] ? ($CPLANET['b_building'] - $USER['urlaubs_start']) : ($CPLANET['b_building'] - TIMESTAMP);
                 $BuildPlanet = [
@@ -84,7 +84,7 @@ class ShowOverviewPage extends AbstractGamePage
             $Moon = $db->selectSingle($sql, [':id'   => $PLANET['id']]);
         }
         if (!empty($Moon)) {
-            if (!empty($Moon['b_building']) && $Moon['b_building'] > TIMESTAMP) {
+            if (!empty($Moon['b_building']) && !empty($Moon['b_building_id']) && $Moon['b_building'] > TIMESTAMP) {
                 $Queue = unserialize($Moon['b_building_id']);
                 $timeleft = $USER['urlaubs_modus'] ? ($Moon['b_building'] - $USER['urlaubs_start']) : ($Moon['b_building'] - TIMESTAMP);
                 $Moon['build'] = [
@@ -99,7 +99,7 @@ class ShowOverviewPage extends AbstractGamePage
             }
         }
 
-        if ($PLANET['b_building'] != 0) {
+        if (!empty($PLANET['b_building']) && !empty($PLANET['b_building_id'])) {
             $Queue          = unserialize($PLANET['b_building_id']);
             $timeleft = $USER['urlaubs_modus'] ? ($PLANET['b_building'] - $USER['urlaubs_start']) : ($PLANET['b_building'] - TIMESTAMP);
             $buildInfo['buildings'] = [
@@ -127,7 +127,7 @@ class ShowOverviewPage extends AbstractGamePage
             $buildInfo['fleet'] = false;
         }
         
-        if ($USER['b_tech_id'] != 0) {
+        if (!empty($USER['b_tech_id']) && !empty($USER['b_tech_queue'])) {
             $timeleft = $USER['urlaubs_modus'] ? ($USER['b_tech'] - $USER['urlaubs_start']) : ($USER['b_tech'] - TIMESTAMP);
             $Queue = unserialize($USER['b_tech_queue']);
             $buildInfo['tech'] = [
@@ -142,12 +142,12 @@ class ShowOverviewPage extends AbstractGamePage
         }
 
 
-        $sql = "SELECT id,username FROM %%USERS%% WHERE universe = :universe AND onlinetime >= :onlinetime"
-            . " AND authlevel > :authlevel;";
+        $sql = "SELECT id,username FROM %%USERS%% 
+            WHERE universe = :universe AND onlinetime >= :onlinetime AND authlevel > :authlevel;";
         $onlineAdmins = $db->select($sql, [
             ':universe'     => Universe::current(),
             ':onlinetime'   => TIMESTAMP - 10 * 60,
-            ':authlevel'    => AUTH_USR
+            ':authlevel'    => AUTH_USR,
         ]);
 
         foreach ($onlineAdmins as $AdminRow) {
@@ -158,7 +158,8 @@ class ShowOverviewPage extends AbstractGamePage
 
         // Fehler: Wenn Spieler gelöscht werden, werden sie nicht mehr in der Tabelle angezeigt.
         $sql = "SELECT u.id, u.username, s.total_points FROM %%USERS%% as u
-		LEFT JOIN %%STATPOINTS%% as s ON s.id_owner = u.id AND s.stat_type = '1' WHERE ref_id = :userID;";
+		    LEFT JOIN %%STATPOINTS%% as s ON s.id_owner = u.id AND s.stat_type = '1' 
+            WHERE ref_id = :userID;";
         $RefLinksRAW = $db->select($sql, [':userID'   => $USER['id']]);
 
         $config = Config::get();
@@ -172,11 +173,10 @@ class ShowOverviewPage extends AbstractGamePage
             }
         }
 
-        $sql    = 'SELECT total_points, total_rank
-		FROM %%STATPOINTS%%
-		WHERE id_owner = :userId AND stat_type = :statType';
+        $sql    = 'SELECT total_points, total_rank FROM %%STATPOINTS%%
+		    WHERE id_owner = :userId AND stat_type = :statType';
 
-        $statData   = Database::get()->selectSingle($sql, [
+        $statData   = $db->selectSingle($sql, [
             ':userId'   => $USER['id'],
             ':statType' => 1
         ]);
@@ -195,15 +195,13 @@ class ShowOverviewPage extends AbstractGamePage
             );
         }
 
-        $usersOnline = Database::get()->selectSingle(
-            'SELECT COUNT(*)
-			FROM %%USERS%% WHERE onlinetime >= UNIX_TIMESTAMP(NOW() - INTERVAL 15 MINUTE)'
-        )['COUNT(*)'];
+        $sql = 'SELECT COUNT(*) AS amount FROM %%USERS%% 
+            WHERE onlinetime >= UNIX_TIMESTAMP(NOW() - INTERVAL 15 MINUTE)';
+        $usersOnline = $db->selectSingle($sql, [], 'amount');
 
-        $fleetsOnline = Database::get()->selectSingle(
-            'SELECT COUNT(*)
-			FROM %%FLEETS%%'
-        )['COUNT(*)'];
+        $sql = 'SELECT COUNT(*) AS amount FROM %%FLEETS%%';
+        $fleetsOnline = $db->selectSingle($sql, [], 'amount');
+        $colors = PlayerUtil::player_colors($USER);
 
         $this->assign([
             'umode'                     => $USER['urlaubs_modus'],
@@ -239,6 +237,7 @@ class ShowOverviewPage extends AbstractGamePage
             'RefLinks'                  => $RefLinks,
             'servertime'                => _date("M D d H:i:s", TIMESTAMP, $USER['timezone']),
             'path'                      => HTTP_PATH,
+            'colors'                    => $colors,
         ]);
 
         $this->display('page.overview.default.tpl');

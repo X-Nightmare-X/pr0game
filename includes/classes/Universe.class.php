@@ -103,6 +103,11 @@ class Universe {
 				{
 					$universe = (int) $_REQUEST['uni'];
 				}
+
+				if (is_null($universe)) {
+                    $allUniverses = self::availableUniverses();
+					$universe = end($allUniverses);
+				}
 			}
 			elseif(MODE == 'ADMIN' && isset($_SESSION['admin_uni']))
 			{

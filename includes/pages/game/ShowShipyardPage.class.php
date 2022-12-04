@@ -28,7 +28,7 @@ class ShowShipyardPage extends AbstractGamePage
     private function cancelAuftr()
     {
         global $USER, $PLANET, $resource;
-        $ElementQueue = unserialize($PLANET['b_hangar_id']);
+        $ElementQueue = !empty($PLANET['b_hangar_id']) ? unserialize($PLANET['b_hangar_id']) : [];
 
         $CancelArray = HTTP::_GP('auftr', []);
 
@@ -154,7 +154,7 @@ class ShowShipyardPage extends AbstractGamePage
 
         $NotBuilding = true;
         if (!empty($PLANET['b_building_id'])) {
-            $CurrentQueue = unserialize($PLANET['b_building_id']);
+            $CurrentQueue = !empty($PLANET['b_building_id']) ? unserialize($PLANET['b_building_id']) : [];
             foreach ($CurrentQueue as $ElementArray) {
                 if ($ElementArray[0] == 21 || $ElementArray[0] == 15) {
                     $NotBuilding = false;
@@ -163,7 +163,7 @@ class ShowShipyardPage extends AbstractGamePage
             }
         }
 
-        $ElementQueue = unserialize($PLANET['b_hangar_id']);
+        $ElementQueue = !empty($PLANET['b_hangar_id']) ? unserialize($PLANET['b_hangar_id']) : [];
         if (empty($ElementQueue)) {
             $Count = 0;
         } else {
@@ -186,7 +186,7 @@ class ShowShipyardPage extends AbstractGamePage
         }
 
         $elementInQueue = [];
-        $ElementQueue = unserialize($PLANET['b_hangar_id']);
+        $ElementQueue = !empty($PLANET['b_hangar_id']) ? unserialize($PLANET['b_hangar_id']) : [];
         $buildList = [];
         $elementList = [];
 

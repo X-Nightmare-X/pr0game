@@ -74,7 +74,7 @@ border:0px;background:url(./styles/resource/images/admin/blank.gif);text-align:r
 			<tr><td width="15%" class="centrado">{$defenses_title}</td><td width="40%">{$point_def} ({$count_def} {$defenses_title})</td><td width="5%" class="ranking"># {$ranking_def}</td></tr>
 			<tr><td width="15%" class="centrado">{$ships_title}</td><td width="40%">{$point_fleet} ({$count_fleet} {$ships_title})</td><td width="5%" class="ranking"># {$ranking_fleet}</td></tr>
 			<tr><td width="15%" class="centrado">{$buildings_title}</td><td width="40%">{$point_builds} ({$count_builds} {$buildings_title})</td><td width="5%" class="ranking"># {$ranking_builds}</td></tr>
-			<tr><td colspan="3" class="total">{$ac_total_points}<span style="color:#FF0000">{$total_points}</span></td></tr>
+			<tr><td colspan="3" class="total">{$ac_total_points}<span class="colorNegative">{$total_points}</span></td></tr>
 			</table>
 			<br>
 			</div>
@@ -157,7 +157,7 @@ border:0px;background:url(./styles/resource/images/admin/blank.gif);text-align:r
 			<tr><td width="15%">{$defenses_title}</td><td width="40%">{$point_def_ali} ({$count_def_ali} {$defenses_title})</td><td width="5%"># {$ranking_def_ali}</td></tr>
 			<tr><td width="15%">{$ships_title}</td><td width="40%">{$point_fleet_ali} ({$count_fleet_ali} {$ships_title})</td><td width="5%"># {$ranking_fleet_ali}</td></tr>
 			<tr><td width="15%">{$buildings_title}</td><td width="40%">{$point_builds_ali} ({$count_builds_ali} {$buildings_title})</td><td width="5%"># {$ranking_builds_ali}</td></tr>
-			<tr><td colspan="3">{$ac_total_points}<span style="color:#FF0000">{$total_points_ali}</span></td></tr>
+			<tr><td colspan="3">{$ac_total_points}<span class="colorNegative">{$total_points_ali}</span></td></tr>
 			</table>
 			<br>
 			</div>

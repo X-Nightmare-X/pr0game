@@ -22,6 +22,12 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 function ShowQuickEditorPage()
 {
     global $USER, $LNG, $reslist, $resource;
+    if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
     $action = HTTP::_GP('action', '');
     $edit = HTTP::_GP('edit', '');
     $id = HTTP::_GP('id', 0);
@@ -147,6 +153,7 @@ function ShowQuickEditorPage()
                 'metal_c'       => pretty_number($PlanetData['metal']),
                 'crystal_c'     => pretty_number($PlanetData['crystal']),
                 'deuterium_c'   => pretty_number($PlanetData['deuterium']),
+                'signalColors'  => $signalColors
             ]);
             $template->show('QuickEditorPlanet.tpl');
             break;
@@ -240,12 +247,14 @@ function ShowQuickEditorPage()
                 'system'        => $UserData['system'],
                 'planet'        => $UserData['planet'],
                 'authlevel'     => $UserData['authlevel'],
+                'qe_change'     => '',
                 'authattack'    => $UserData['authattack'],
                 'multi'         => $GLOBALS['DATABASE']->getFirstCell(
                     "SELECT COUNT(*) FROM " . MULTI . " WHERE userID = " . $id . ";"
                 ),
                 'ChangePW'      => $ChangePW,
                 'yesorno'       => [1 => $LNG['one_is_yes_1'], 0 => $LNG['one_is_yes_0']],
+                'signalColors'  => $signalColors
             ]);
             $template->show('QuickEditorUser.tpl');
             break;
