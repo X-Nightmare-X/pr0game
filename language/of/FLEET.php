@@ -286,7 +286,7 @@ $LNG['sys_expe_back_home_ress'] = 'Sie haben %s %s, %s %s und %s %s midgebrachd.
 $LNG['sys_expe_back_home_ships_flound'] = 'Es wurdne folgende Schiffe gefundne: ';
 $LNG['sys_expe_back_home_ships_lost'] = 'Es gingne folgende Schiffe werlorne: ';
 $LNG['sys_mess_transport'] = 'Dransportbericht ';
-$LNG['sys_tran_mess_owner'] = 'Eine deiner Floddne von %s %s erreichd den %s %s %s und lieferd %s %s, %s %s und %s %s.';
+$LNG['sys_tran_mess_owner'] = 'Eine deiner Floddne von %s % erreichd den %s %s %s und lieferd %s %s, %s %s und %s %s.';
 $LNG['sys_tran_mess_user'] = 'Eine friedliche Flodde von %s %s erreichd %s %s und lieferd  %s %s, %s %s und %s %s.';
 
 $LNG['sys_mess_fleetback'] = 'Floddenrüggkehr ';

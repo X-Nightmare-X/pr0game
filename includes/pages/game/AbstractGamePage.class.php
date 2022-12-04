@@ -321,27 +321,16 @@ abstract class AbstractGamePage
             $signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
         }
         $this->assign([
-            'lang' => $LNG->getLanguage(),
-            'dpath' => $THEME->getTheme(),
-            'scripts' => $this->tplObj->jsscript,
-            'execscript' => implode("\n", $this->tplObj->script),
-            'basepath' => PROTOCOL . HTTP_HOST . HTTP_BASE,
-            'TIMEZONESTRING' => $USER['timezone'],
+            'lang'              => $LNG->getLanguage(),
+            'dpath'             => $THEME->getTheme(),
+            'scripts'           => $this->tplObj->jsscript,
+            'execscript'        => implode("\n", $this->tplObj->script),
+            'basepath'          => PROTOCOL . HTTP_HOST . HTTP_BASE,
+            'TIMEZONESTRING'    => $USER['timezone'],
             'signalColors'      => $signalColors
         ]);
-        if (!isset($USER,$USER['timezone'])) {
-            $USER = array ('timezone' => 'Europe/Berlin');
-        }
-        if(isset($USER['id'])) {
-            $signalColors = PlayerUtil::player_signal_colors($USER);
-        }
-        else {
-            $signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-        }
         $this->assign([
-            'LNG'               => $LNG,
-            'TIMEZONESTRING'    => $USER['timezone'],
-            'signalColors'      => $signalColors,
+            'LNG' => $LNG
         ], false);
 
         $this->tplObj->display('extends:layout.' . $this->getWindow() . '.tpl|' . $file);
