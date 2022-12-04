@@ -19,24 +19,25 @@ define('MODE', 'LOGIN');
 define('ROOT_PATH', str_replace('\\', '/', dirname(__FILE__)) . '/');
 set_include_path(ROOT_PATH);
 
+$page = HTTP::_GP('page', 'index');
+$mode = HTTP::_GP('mode', 'show');
+$page = str_replace(['_', '\\', '/', '.', "\0"], '', $page);
+
+if ($page == 'Verify' && isset($_COOKIE['uni'])) {
+    setcookie('uni', '', -1, '/');
+    unset($_COOKIE['uni']);
+}
+
 require 'includes/pages/login/AbstractLoginPage.class.php';
 require 'includes/pages/login/ShowErrorPage.class.php';
 require 'includes/common.php';
 
-$page = HTTP::_GP('page', 'index');
-$mode = HTTP::_GP('mode', 'show');
-$page = str_replace(['_', '\\', '/', '.', "\0"], '', $page);
 $pageClass = 'Show' . ucfirst($page) . 'Page';
 
 $path = 'includes/pages/login/' . $pageClass . '.class.php';
 
 if (!file_exists($path)) {
     ShowErrorPage::printError($LNG['page_doesnt_exist']);
-}
-
-if ($page == 'Verify' && isset($_COOKIE['uni'])) {
-    setcookie('uni', '', -1, '/');
-    unset($_COOKIE['uni']);
 }
 
 // Added Autoload in feature Versions
