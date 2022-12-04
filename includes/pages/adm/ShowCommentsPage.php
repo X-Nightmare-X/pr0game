@@ -4,8 +4,13 @@ if (!allowedTo('ShowMultiIPPage')) throw new Exception("Permission error!");
 
 function ShowCommentsPage()
 {
-    global $LNG;
-
+    global $LNG, $USER;
+    if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
     $db = Database::get();
 
     $sql = 'SELECT uc.id, u.username, a.ally_name, uc.comment, uc.created_at 
@@ -24,7 +29,8 @@ function ShowCommentsPage()
 
     $template	= new template();
 	$template->assign_vars(array(
-		'comments'	=> $comments,
+		'comments'	    => $comments,
+        'signalColors'  => $signalColors,
 	));
 	$template->show('Comments.tpl');
 }

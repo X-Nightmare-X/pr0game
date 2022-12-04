@@ -34,7 +34,7 @@ class ShowFleetStep2Page extends AbstractGamePage
         $targetSystem = HTTP::_GP('system', 0);
         $targetPlanet = HTTP::_GP('planet', 0);
         $targetType = HTTP::_GP('type', 0);
-        $targetMission = HTTP::_GP('target_mission', 0);
+        $targetMission = HTTP::_GP('target_mission', -1);
         $fleetSpeed = HTTP::_GP('speed', 0);
         $fleetGroup = HTTP::_GP('fleet_group', 0);
         $token = HTTP::_GP('token', '');
@@ -42,6 +42,7 @@ class ShowFleetStep2Page extends AbstractGamePage
         if (!isset($_SESSION['fleet'][$token])) {
             FleetFunctions::gotoFleetPage();
         }
+
 
         $fleetArray = $_SESSION['fleet'][$token]['fleet'];
 
@@ -82,6 +83,26 @@ class ShowFleetStep2Page extends AbstractGamePage
             ]]);
         }
 
+        if($targetMission==-1){
+            $sql = "SELECT prioMission1 as '1',prioMission2 as '2',prioMission3 as '3',prioMission4 as '4',prioMission5 as '5',prioMission6 as '6',
+                    prioMission7 as '7',prioMission8 as '8',prioMission9 as '9',prioMission17 as '17'
+                    FROM %%USERS%% WHERE universe = :universe AND id = :userID ;";
+            $missionprios =$db->selectSingle($sql, [
+                ':universe' => Universe::current(),
+                ':userID'   => $USER['id'],
+            ]);
+            $bestmission=999;
+            foreach ($MissionOutput['MissionSelector']  as $mission1 => $mission) {
+                    if(array_key_exists($mission,$missionprios)) {
+                        $score = $missionprios[$mission];
+                        if ($score < $bestmission) {
+                            $targetMission = $mission;
+                            $bestmission = $score;
+                        }
+                    }
+                }
+
+        }
         $GameSpeedFactor = FleetFunctions::getGameSpeedFactor();
         $MaxFleetSpeed = FleetFunctions::getFleetMaxSpeed($fleetArray, $USER);
         $distance = FleetFunctions::getTargetDistance(
@@ -213,7 +234,8 @@ class ShowFleetStep2Page extends AbstractGamePage
             'Exchange'          => $MissionOutput['Exchange'],
             'fl_continue'       => $LNG['fl_continue'],
             'token'             => $token,
-            'duration'          => $duration
+            'duration'          => $duration,
+            'predefinedRes'     => $_SESSION['fleet'][$token]['predefinedResources']
         ]);
 
         foreach ($fleetArray as $Ship => $Count) {
@@ -224,6 +246,8 @@ class ShowFleetStep2Page extends AbstractGamePage
                 ]]);
             }
         }
+
+
 
         $this->display('page.fleetStep2.default.tpl');
     }

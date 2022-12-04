@@ -1,10 +1,10 @@
 {include file="overall_header.tpl"}
 <center>
 	<h1>{$LNG.ow_title}</h1>
-	<table width="90%" style="border:2px {if empty($Messages)}lime{else}red{/if} solid;text-align:center;font-weight:bold;">
+	<table width="90%" style="border:2px {if empty($Messages)}colorPositive{else}colorNegative{/if} solid;text-align:center;font-weight:bold;">
 		<tr>
 			<td class="transparent">{foreach item=Message from=$Messages}
-					<span style="color:red">{$Message}</span><br>
+					<span class="colorNegative">{$Message}</span><br>
 					{foreachelse}{$LNG.ow_none}{/foreach}
 			</td>
 		</tr>
@@ -88,7 +88,7 @@
 						<td class="transparent" colspan="3"><h3>{$LNG.ow_proyect_leader}</h3></td>
 					</tr>
 					<tr>
-						<td class="transparent" colspan="3"><h3><a target="_blank" href="https://github.com/jkroepke" style="color:red">Jan</a></h3></td>
+						<td class="transparent" colspan="3"><h3><a target="_blank" href="https://github.com/jkroepke" class="colorNegative">Jan</a></h3></td>
 					</tr>
 				</table>
 				<div style="width:100%">
@@ -99,7 +99,7 @@
 						</tr>
 						<tr>
 							<td class="transparent">
-								<a target="_blank" href="https://github.com/jkroepke" style="color:red">Jan</a><br>
+								<a target="_blank" href="https://github.com/jkroepke" class="colorNegative">Jan</a><br>
 							</td>
 						</tr>
 					</table>

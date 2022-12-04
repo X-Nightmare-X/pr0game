@@ -42,7 +42,7 @@
 		<td><a href="admin.php?page=support&amp;mode=view&amp;id={$TicketID}">{$TicketInfo.subject}</a></td>
 		<td>{$TicketInfo.answer - 1}</td>
 		<td>{$TicketInfo.time}</td>
-		<td><span style="color:red">{$LNG.ti_status_closed}</span></td>
+		<td><span class="colorNegative">{$LNG.ti_status_closed}</span></td>
 	</tr>
 	{/if}
 	{/foreach}

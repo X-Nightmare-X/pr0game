@@ -146,13 +146,21 @@ class template extends Smarty
 	
 	public function message($mes, $dest = false, $time = 3, $Fatal = false)
 	{
-		global $LNG, $THEME;
-	
+		global $LNG, $THEME, $USER;
+
+		if(isset($USER['id'])) {
+			$signalColors = PlayerUtil::player_signal_colors($USER);
+		}
+		else {
+			$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+		}
+		
 		$this->assign_vars(array(
-			'mes'		=> $mes,
-			'fcm_info'	=> $LNG['fcm_info'],
-			'Fatal'		=> $Fatal,
-            'dpath'		=> $THEME->getTheme(),
+			'mes'			=> $mes,
+			'fcm_info'		=> $LNG['fcm_info'],
+			'Fatal'			=> $Fatal,
+            'dpath'			=> $THEME->getTheme(),
+			'signalColors'  => $signalColors
 		));
 		
 		$this->gotoside($dest, $time);

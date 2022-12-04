@@ -26,7 +26,12 @@ function ShowTopnavPage()
 		$config = Config::get($uniId);
 		$universeSelect[$uniId]	= sprintf('%s (ID: %d)', $config->uni_name, $uniId);
 	}
-
+	if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
 	ksort($universeSelect);
 	$template->assign_vars(array(	
 		'ad_authlevel_title'	=> $LNG['ad_authlevel_title'],
@@ -41,6 +46,7 @@ function ShowTopnavPage()
 		'authlevel'				=> $USER['authlevel'],
 		'AvailableUnis'			=> $universeSelect,
 		'UNI'					=> Universe::getEmulated(),
+		'signalColors'      	=> $signalColors
 	));
 	
 	$template->show('ShowTopnavPage.tpl');

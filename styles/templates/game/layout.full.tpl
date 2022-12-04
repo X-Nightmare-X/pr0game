@@ -32,7 +32,7 @@
 		{$LNG.admin_access_1} <a id="drop-admin">{$LNG.admin_access_link}</a>{$LNG.admin_access_2}
 		</div>
 		{/if}
-		{if $closed}
+		{if $uni_status == 1 || $uni_status == 2}
 		<div class="infobox">{$LNG.ov_closed}</div>
 		{elseif $delete}
 		<div class="infobox">{$delete}</div>

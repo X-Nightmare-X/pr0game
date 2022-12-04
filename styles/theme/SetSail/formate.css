@@ -186,10 +186,6 @@ select {
   color: skyblue;
 }
 
-.res_max {
-  color: #0F0
-}
-
 .res_name {
   color: red;
   font-weight: 700
@@ -320,7 +316,6 @@ select {
   text-align: center;
   font-weight: bold;
   padding: 3px;
-  color: lime;
   min-width: 150px;
   min-height: 35px;
 }
@@ -418,7 +413,7 @@ th a, .res_current {
   color: #FFF
 }
 
-.res_current_max, .attack, .error {
+.attack, .error {
   color: red
 }
 
@@ -750,7 +745,6 @@ th a, .res_current {
   text-align: center;
   font-weight: bold;
   padding: 3px;
-  color: lime;
   min-height: 40px;
 }
 

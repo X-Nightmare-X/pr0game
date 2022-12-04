@@ -21,8 +21,13 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 
 function ShowModulePage()
 {
-    global $LNG;
-
+    global $LNG, $USER;
+    if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
     $config = Config::get(Universe::getEmulated());
     $module = explode(';', $config->moduls);
 
@@ -63,6 +68,7 @@ function ShowModulePage()
         'mod_deactive'          => $LNG['mod_deactive'],
         'mod_change_active'     => $LNG['mod_change_active'],
         'mod_change_deactive'   => $LNG['mod_change_deactive'],
+        'signalColors'          => $signalColors,
     ]);
 
     $template->show('ModulePage.tpl');

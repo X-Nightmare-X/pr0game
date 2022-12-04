@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-define('DB_VERSION_REQUIRED', 29);
+define('DB_VERSION_REQUIRED', 37);
 define('DB_NAME'			, $database['databasename']);
 define('DB_PREFIX'			, $database['tableprefix']);
 
@@ -45,6 +45,7 @@ $dbTableNames   = array(
     'PLANETS'           => DB_PREFIX . 'planets',
     'RW'                => DB_PREFIX . 'raports',
     'RECORDS'           => DB_PREFIX . 'records',
+    'RECAPTCHA'         => DB_PREFIX . 'recaptcha',
     'SESSION'           => DB_PREFIX . 'session',
     'SHORTCUTS'         => DB_PREFIX . 'shortcuts',
     'STATPOINTS'        => DB_PREFIX . 'statpoints',
@@ -55,6 +56,7 @@ $dbTableNames   = array(
     'TOPKB'             => DB_PREFIX . 'topkb',
     'TOPKB_USERS'       => DB_PREFIX . 'users_to_topkb',
     'USERS'             => DB_PREFIX . 'users',
+    'USERS_TO_ACS'      => DB_PREFIX . 'users_to_acs',
     'USERS_COMMENTS'    => DB_PREFIX . 'users_comments',
     'USERS_ACS'         => DB_PREFIX . 'users_to_acs',
     'USERS_VALID'       => DB_PREFIX . 'users_valid',

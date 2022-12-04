@@ -35,7 +35,7 @@ class Config
 										   'smail_path', 'ga_active', 'ga_key',
 										   'ttf_file', 'sendmail_inactive', 'del_user_sendmail',
 										   'del_user_automatic', 'del_oldstuff', 'del_user_manually', 'ref_max_referals',
-										   'disclamerAddress','disclamerPhone','disclamerMail','disclamerNotice', 'git_issues_link');
+										   'disclamerAddress','disclamerPhone','disclamerMail','disclamerNotice', 'git_issues_link', 'recaptchaPrivKey', 'recaptchaPubKey');
 
 	/**
 	 * Global configkeys

@@ -34,7 +34,7 @@
 				</tr>
 			{else}
 				<tr style="height:20px;">
-					<td colspan="3"><span style="color:red">{$LNG.in_jump_gate_no_target}</span></td>
+					<td colspan="3"><span class="colorNegative">{$LNG.in_jump_gate_no_target}</span></td>
 				</tr>
 			{/if}
 		{/if}

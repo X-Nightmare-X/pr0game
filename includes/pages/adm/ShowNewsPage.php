@@ -19,6 +19,12 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowNewsPage(){
 	global $LNG, $USER;
+	if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
 	if(!isset($_GET['action'])) { $_GET['action'] = ''; }
 	if($_GET['action'] == 'send') {
 		$edit_id 	= HTTP::_GP('id', 0);
@@ -77,6 +83,7 @@ function ShowNewsPage(){
 		'nws_del'		=> $LNG['nws_del'],
 		'nws_create'	=> $LNG['nws_create'],
 		'nws_content'	=> $LNG['nws_content'],
+		'signalColors'	=> $signalColors,
 	));
 	
 	$template->show('NewsPage.tpl');

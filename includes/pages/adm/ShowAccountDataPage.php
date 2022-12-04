@@ -24,7 +24,15 @@ function ShowAccountDataPage()
     global $USER, $reslist, $resource, $LNG;
 
     $template = new template();
-
+    if(isset($USER['id'])) {
+		$signalColors = PlayerUtil::player_signal_colors($USER);
+	}
+	else {
+		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+	}
+    $template->assign_vars([
+        'signalColors'  => $signalColors
+    ]);
     $id_u = HTTP::_GP('id_u', 0);
     if (!empty($id_u)) {
         $OnlyQueryLogin = $GLOBALS['DATABASE']->getFirstRow(
@@ -317,7 +325,7 @@ function ShowAccountDataPage()
                     if ($SumOfEnergy < 0) {
                         $Color = "<font color=#FF6600>" . shortly_number($SumOfEnergy) . "</font>";
                     } elseif ($SumOfEnergy > 0) {
-                        $Color = "<font color=lime>" . shortly_number($SumOfEnergy) . "</font>";
+                        $Color = "<font class=\"colorPositive\">" . shortly_number($SumOfEnergy) . "</font>";
                     } else {
                         $Color = shortly_number($SumOfEnergy);
                     }

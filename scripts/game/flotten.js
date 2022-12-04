@@ -182,6 +182,26 @@ function maxResources() {
 	maxResource('deuterium');
 }
 
+function selectedResources() {
+  let amt=document.getElementById("selectedres").getAttribute("data").split(",")
+  if(!isNaN(parseInt(amt[0]))){
+    document.getElementsByName("metal")[0].value =parseInt(amt[0])
+  }else{
+    document.getElementsByName("metal")[0].value =0
+  }
+  if(!isNaN(parseInt(amt[1]))){
+    document.getElementsByName("crystal")[0].value =parseInt(amt[1])
+  }else{
+    document.getElementsByName("crystal")[0].value =0
+  }
+  if(!isNaN(parseInt(amt[2]))){
+    document.getElementsByName("deuterium")[0].value =parseInt(amt[2])
+  }else{
+    document.getElementsByName("deuterium")[0].value =0
+  }
+  calculateTransportCapacity();
+}
+
 function calculateTransportCapacity() {
 	var metal = Math.abs(document.getElementsByName("metal")[0].value);
 	var crystal = Math.abs(document.getElementsByName("crystal")[0].value);
@@ -200,6 +220,7 @@ function maxShip(id) {
 		var amount = document.getElementById(id + "_value").innerHTML;
 		document.getElementsByName(id)[0].value = amount.replace(/\./g, "");
 	}
+  show_values();
 }
 
 function maxShips() {
@@ -207,6 +228,7 @@ function maxShips() {
 	$('input[name^="ship"]').each(function() {
 		maxShip($(this).attr('name'));
 	})
+  show_values();
 }
 
 
@@ -214,6 +236,7 @@ function noShip(id) {
 	if (document.getElementsByName(id)[0]) {
 		document.getElementsByName(id)[0].value = 0;
 	}
+  show_values();
 }
 
 
@@ -222,6 +245,7 @@ function noShips() {
 	$('input[name^="ship"]').each(function() {
 		noShip($(this).attr('name'));
 	});
+  show_values();
 }
 
 function setNumber(name, number) {
