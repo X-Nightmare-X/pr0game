@@ -42,7 +42,8 @@ class ShowPlayerCardPage extends AbstractGamePage
 				u.username, u.galaxy, u.system, u.planet, u.wons, u.loos, u.draws, u.kbmetal, u.kbcrystal, u.lostunits, u.desunits, u.ally_id,
 				p.name,
 				s.tech_rank, s.tech_points, s.build_rank, s.build_points, s.defs_rank, s.defs_points, s.fleet_rank, s.fleet_points, s.total_rank, s.total_points,
-				a.ally_name
+				a.ally_name, (s.tech_points / s.total_points * 100) as tech_percent, (s.build_points / s.total_points * 100) as build_percent, 
+				(s.defs_points / s.total_points * 100) as defs_percent, (s.fleet_points / s.total_points * 100) as fleet_percent
 				FROM %%USERS%% u
 				INNER JOIN %%PLANETS%% p ON p.id = u.id_planet
 				LEFT JOIN %%STATPOINTS%% s ON s.id_owner = u.id AND s.stat_type = 1
@@ -101,6 +102,10 @@ class ShowPlayerCardPage extends AbstractGamePage
 			'siegprozent'   => round($siegprozent, 2),
 			'loosprozent'   => round($loosprozent, 2),
 			'drawsprozent'  => round($drawsprozent, 2),
+			'tech_percent'  => $query['tech_percent'] == 0 ? '0,00' : round($query['tech_percent'], 2),
+			'build_percent' => $query['build_percent'] == 0 ? '0,00' : round($query['build_percent'], 2),
+			'defs_percent'  => $query['defs_percent'] == 0 ? '0,00' : round($query['defs_percent'], 2),
+			'fleet_percent' => $query['fleet_percent'] == 0 ? '0,00' : round($query['fleet_percent'], 2),
 		));
 
 		$this->display('page.playerCard.default.tpl');
