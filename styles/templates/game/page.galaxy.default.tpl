@@ -9,36 +9,36 @@
 					<tr>
 						<th colspan="3">{$LNG.gl_galaxy}</th>
 					</tr>
-					<tr>
-						<td><input type="button" name="galaxyLeft" value="&lt;-" onclick="galaxy_submit('galaxyLeft')"></td>
-						<td><input type="number" name="galaxy" value="{$galaxy}" size="5" maxlength="3" tabindex="1" style="max-width: 4em;"></td>
-						<td><input type="button" name="galaxyRight" value="-&gt;" onclick="galaxy_submit('galaxyRight')"></td>
-					</tr>
-				</table>
-			</td>
-			<td class="transparent">
-				<table>
-					<tr>
-						<th colspan="3">{$LNG.gl_solar_system}</th>
-					</tr>
-					<tr>
-						<td><input type="button" name="systemLeft" value="&lt;-" onclick="galaxy_submit('systemLeft')"></td>
-						<td><input type="number" name="system" value="{$system}" size="5" maxlength="3" tabindex="2" style="max-width: 4em;"></td>
-						<td><input type="button" name="systemRight" value="-&gt;" onclick="galaxy_submit('systemRight')"></td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-		<tr>
-			<td style="background-color:transparent;border:0px;" colspan="2">
-				<input type="submit" value="{$LNG.gl_show}">
-        <input type="button" value="Sync" id="gala_sync">
-			</td>
-		</tr>
-	</table>
-	</form>
-	{if $action == 'sendMissle'}
-    <form action="?page=fleetMissile" method="post">
+      <tr>
+        <td><input type="button" name="galaxyLeft" value="&lt;-" onclick="galaxy_submit('galaxyLeft')"></td>
+        <td><input type="number" name="galaxy" value="{$galaxy}" size="5" maxlength="3" tabindex="1" style="max-width: 4em;"></td>
+        <td><input type="button" name="galaxyRight" value="-&gt;" onclick="galaxy_submit('galaxyRight')"></td>
+      </tr>
+      </table>
+      </td>
+      <td class="transparent">
+        <table>
+          <tr>
+            <th colspan="3">{$LNG.gl_solar_system}</th>
+          </tr>
+          <tr>
+            <td><input type="button" name="systemLeft" value="&lt;-" onclick="galaxy_submit('systemLeft')"></td>
+            <td><input type="number" name="system" value="{$system}" size="5" maxlength="3" tabindex="2" style="max-width: 4em;"></td>
+            <td><input type="button" name="systemRight" value="-&gt;" onclick="galaxy_submit('systemRight')"></td>
+          </tr>
+        </table>
+      </td>
+      </tr>
+      <tr>
+        <td style="background-color:transparent;border:0px;" colspan="2">
+          <input type="submit" value="{$LNG.gl_show}">
+          <input type="button" value="Sync" id="gala_sync">
+        </td>
+      </tr>
+      </table>
+    </form>
+    {if $action == 'sendMissle'}
+      <form action="?page=fleetMissile" method="post">
 	<input type="hidden" name="galaxy" value="{$galaxy}">
 	<input type="hidden" name="system" value="{$system}">
 	<input type="hidden" name="planet" value="{$planet}">
@@ -205,6 +205,33 @@
 		<th colspan="8">{$LNG.cff_fleet_target}</th>
 	</tr>
 	</table>
+  <script>
+    const galakey="{$galaxy}:{$system}"
+    const systemdata={
+    {for $planet=1 to $max_planets}
+        {if !isset($GalaxyRows[$planet])}
+        {$planet}:null,
+        {elseif $GalaxyRows[$planet].destroyed == true}
+        {$planet}:null,
+        {else}
+        {$currentPlanet = $GalaxyRows[$planet]}
+        {$planet}: {
+          planetname: "{$currentPlanet.planet.name}",
+          hasmoon: {if $currentPlanet.moon}true{else}false{/if},
+          playerid: {$currentPlanet.user.id},
+          name: "{$currentPlanet.user.username}",
+            {if $currentPlanet.alliance}
+          allianceid:{$currentPlanet.alliance.id},
+          alliancename:"{$currentPlanet.alliance.name}",{else}
+          allianceid: -1,
+          alliancename: "-",{/if}
+          special:{if !empty($currentPlanet.user.class)}"{foreach $currentPlanet.user.class as $class}{$ShortStatus.$class}{/foreach}"{else}""{/if},
+        },
+        {/if}
+    {/for}
+      timepoint : Date.now(),
+    }
+  </script>
 	<script type="text/javascript">
 		status_ok		= '{$LNG.gl_ajax_status_ok}';
 		status_fail		= '{$LNG.gl_ajax_status_fail}';
