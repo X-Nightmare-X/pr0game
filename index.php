@@ -34,6 +34,11 @@ if (!file_exists($path)) {
     ShowErrorPage::printError($LNG['page_doesnt_exist']);
 }
 
+if ($page == 'Verify' && isset($_COOKIE['uni'])) {
+    setcookie('uni', '', -1, '/');
+    unset($_COOKIE['uni']);
+}
+
 // Added Autoload in feature Versions
 require($path);
 
