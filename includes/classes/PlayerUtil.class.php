@@ -164,6 +164,9 @@ class PlayerUtil
                 }
             }
 
+            $position = 0;
+            $system = 0;
+
             // find random system and random planet inside
             if (!empty($usableSystems)) {
                 do {
