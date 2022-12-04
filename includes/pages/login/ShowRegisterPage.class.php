@@ -221,6 +221,11 @@ class ShowRegisterPage extends AbstractLoginPage
 
         $validationID = $db->lastInsertId();
         $verifyURL = 'index.php?page=vertify&i=' . $validationID . '&k=' . $validationKey;
+        
+        if (isset($_COOKIE['uni'])) {
+            setcookie('uni', '', -1, '/');
+            unset($_COOKIE['uni']);
+        }
 
         if ($config->user_valid == 0) {
             $this->redirectTo($verifyURL);
