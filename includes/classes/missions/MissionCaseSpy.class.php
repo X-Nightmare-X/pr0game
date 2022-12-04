@@ -139,41 +139,41 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         if ($SpyFleet) {
             $classIDs[200] = $reslist['fleet'];
         }
-        
+
         if ($SpyDef) {
             $classIDs[400] = array_merge($reslist['defense'], $reslist['missile']);
             // die(var_dump($classIDs[400][6]));
         }
-        
+
         if ($SpyBuild) {
             $classIDs[0] = $reslist['build'];
         }
-        
+
         if ($SpyTechno) {
             $classIDs[100] = $reslist['tech'];
         }
-        
-        
+
+
         // what is seen by the 'attacker' is already calculated above.
         // if target planet does not have fleet or def, it is safe to set $targetChance to -1
         // so probes are no longer destroyed by thin air or something
-        
+
         $totalShipDefCount = 0;
         foreach (array_values($this->getPlanetFleet($targetPlanet)) as $ships) {
             $totalShipDefCount += $ships;
         }
-        
+
         // $targetChance = mt_rand(0, min(($fleetAmount / 4) * ($targetSpyTech / $senderSpyTech), 100));
-        
+
         // New calculation: 1% Counterspy-Chance for 250 Ships * target spy bonus, if > sender spy tec
         // $targetChance = ($totalShipDefCount/250)*MAX($senderSpyTech-$targetSpyTech, 1) + (($fleetAmount / 4) * ($targetSpyTech / $senderSpyTech));
-        
+
         // Calculation from https://ogame.fandom.com/wiki/Counterespionage
-        $targetChance = min(round( pow(2, $targetSpyTech-$senderSpyTech) * $fleetAmount * $totalShipDefCount * 0.0025), 100);
-        
+        $targetChance = min(round(pow(2, $targetSpyTech - $senderSpyTech) * $fleetAmount * $totalShipDefCount * 0.0025), 100);
+
         $spyChance = mt_rand(0, 100);
         $spyData = [];
-        
+
         foreach ($classIDs as $classID => $elementIDs) {
             foreach ($elementIDs as $elementID) {
                 if (isset($targetUser[$resource[$elementID]])) {
@@ -182,13 +182,13 @@ class MissionCaseSpy extends MissionFunctions implements Mission
                     $spyData[$classID][$elementID] = $targetPlanet[$resource[$elementID]];
                 }
             }
-            
+
             if ($senderUser['spyMessagesMode'] == 1) {
                 $spyData[$classID] = array_filter($spyData[$classID]);
             }
         }
         // die(var_dump($spyData["200"]["204"]));
-        
+
         // I'm use template class here, because i want to exclude HTML in PHP.
 
         require_once 'includes/classes/class.template.php';
@@ -207,34 +207,40 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         // print(var_dump($totalShipDefCount));
 
         // // hier kladeradatsch berechenen
-        $ressources = round($targetPlanet['metal']+$targetPlanet['crystal']+$targetPlanet['deuterium']);
+        $ressources = round($targetPlanet['metal'] + $targetPlanet['crystal'] + $targetPlanet['deuterium']);
         // $danger = "TODO";
 
-        if (isset($classIDs[400])){
+        if (isset($classIDs[400])) {
             $danger = $this->getDangerValue($spyData, true);
-        } elseif (isset($classIDs[200])){
+        } elseif (isset($classIDs[200])) {
             $danger = $this->getDangerValue($spyData, false);
         } else {
             $danger = 0;
         }
-        if (isset($classIDs[200])){
+        if (isset($classIDs[200])) {
             $recyclePotential = $this->getRecyleValue($spyData);
         } else {
             $recyclePotential = 0;
         }
         $ressourcesToRaid = round($ressources / 2);
-        // $ressourcesByMarketValue = round($targetPlanet['metal'] / 4.5 + $targetPlanet['crystal'] / 0.8 + $targetPlanet['deuterium'] / 1);
         $ressourcesByMarketValue = $this->getRessoucesByDsuValue($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']);
-        // $recyclePotential= "TODO";
-        $nessesarryKT= $this->estimateSmallTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
-        $nessesarryGT= $this->estimateGreatTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
-        // $nessesarryTransportUnits = $nessesarryKT . " KT / " . $nessesarryGT . " GT";
-        $nessesarryRecy= $this->estimateRecyclers($recyclePotential);
-        $energy = "TODO";
+        $nessesarryKT = $this->estimateSmallTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
+        $nessesarryGT = $this->estimateGreatTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
+        $nessesarryRecy = $this->estimateRecyclers($recyclePotential);
+        $targetCoordinates = [$targetPlanet["galaxy"],$targetPlanet["system"],$targetPlanet["planet"]];
+        $bestPlanetArray = $this->bestplanet($senderUser["id"], $targetCoordinates);
+
+        $energy = $targetPlanet["energy"];
+
         $bestRessPerTime = "TODO";
-        $bestPlanet = $this->bestplanet($senderUser["id"]);
-        $actuallRessPerTime = "TODO";
         
+        // die(var_dump($targetPlanet));
+        $bestPlanet = $bestPlanetArray[1][0] . ":" . $bestPlanetArray[1][1] . ":" . $bestPlanetArray[1][2];
+        // die(print($bestPlanet));
+
+
+        $actuallRessPerTime = "TODO";
+
         $template->caching = true;
         $template->compile_id = $senderUser['lang'];
         $template->loadFilter('output', 'trimwhitespace');
@@ -356,27 +362,31 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
 
     public function getRessoucesByDsuValue($metal, $crystal, $deuterium)
-    {         
+    {
         $ressoucesByDsuValue = $metal / 4.5 + $crystal / 0.8 + $deuterium / 1;
         return round($ressoucesByDsuValue);
     }
 
-    public function calculateNeededCapacity($metal, $crystal, $deuterium){
+    public function calculateNeededCapacity($metal, $crystal, $deuterium)
+    {
         $capacity = 0;
         $capacity = 0.5 * max($metal + $crystal + $deuterium, min(0.75 * (2 * $metal + $crystal + $deuterium), 2 * $metal + $deuterium));
         return $capacity;
     }
 
-    public function estimateSmallTransporters($capacity) {
+    public function estimateSmallTransporters($capacity)
+    {
         return ceil($capacity / 5000) + 1;
     }
 
-    public function estimateGreatTransporters($capacity) {
+    public function estimateGreatTransporters($capacity)
+    {
         return ceil($capacity / 25000) + 1;
     }
 
-    public function getDangerValue($spyData, $bar) {
-        
+    public function getDangerValue($spyData, $bar)
+    {
+
         $dangerValue = 0;
 
         // KT
@@ -427,9 +437,9 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         if (isset($spyData["200"][215]) && $spyData["200"][215] !== 0) {
             $dangerValue += $spyData["200"][215] * 700;
         }
-        
+
         // die(var_dump($bar));
-        if ($bar){
+        if ($bar) {
             // die(var_dump($spyData["400"]));
             // Rak
             if (isset($spyData["400"][401]) && $spyData["400"][401] !== 0) {
@@ -463,14 +473,13 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             if (isset($spyData["400"][408]) && $spyData["400"][408] !== 0) {
                 $dangerValue += $spyData["400"][408] * 1;
             }
-            
         }
-       
-        return  $dangerValue;
 
+        return  $dangerValue;
     }
-    public function getRecyleValue($spyData) {
-        
+    public function getRecyleValue($spyData)
+    {
+
         $recycleValue = 0;
 
         // KT
@@ -531,45 +540,58 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         }
 
         return  $recycleValue;
-
     }
 
-    public function estimateRecyclers($recycleValue) {
+    public function estimateRecyclers($recycleValue)
+    {
         return ceil($recycleValue / 20000) + 1;
     }
 
-    public function bestplanet($foo){
+    public function bestplanet($owner, $targetCoordinates)
+    {
         $db = Database::get();
         $universe = Universe::current();
+        
+        $sql = "Select galaxy, system, planet from %%PLANETS%% where universe = :universe and id_owner = :owner ;";
+        $targetPlanet = $db->select($sql,[
+            ':universe' => $universe,
+            ':owner'    => $owner
+        ]);
 
-        // die(print($foo));
+        $bestPlanet = [];
+        $bestDistance = 0;
 
+        foreach ($targetPlanet as $positions) {
+            
+            // die(var_dump($positions));
+            $distance = FleetFunctions::getTargetDistance(
+                [
+                    $positions["galaxy"],
+                    $positions["system"],
+                    $positions["planet"]
+                    // $this->_fleet['fleet_start_galaxy'],
+                    // $this->_fleet['fleet_start_system'],
+                    // $this->_fleet['fleet_start_planet']
+                ],
+                [
+                    $targetCoordinates['0'],
+                    $targetCoordinates['1'],
+                    $targetCoordinates['2']
+                    // $this->_fleet[2],
+                    // $this->_fleet['fleet_end_planet']
+                ]
+            );
 
-        $sql = "Select galaxy, system, planet from uni1_planets where universe = $universe and id_owner = $foo";
-        $targetPlanet = $db->selectSingle($sql);
-        // die(var_dump($targetPlanet));
+            if (( $bestDistance === 0 ) || ($bestDistance > $distance) ){
+                $bestDistance = $distance;
+                $bestPlanet = [$positions["galaxy"],$positions["system"],$positions["planet"]];
+            }
+
+            // die(print($distance));
+        }
+
+        return [$bestDistance,$bestPlanet];
     }
-
-    // "202": 5,
-    // "203": 5,
-    // "204": 50,
-    // "205": 150,
-    // "206": 400,
-    // "207": 1000,
-    // "208": 50,
-    // "209": 1,
-    // "211": 1000,
-    // "213": 2000,
-    // "214": 200000,
-    // "215": 700,
-    // "401": 80,
-    // "402": 100,
-    // "403": 250,
-    // "404": 1100,
-    // "405": 150,
-    // "406": 3000,
-
-
 
     // foreach ($classIDs as $classID => $elementIDs) {
     //     foreach ($elementIDs as $elementID) {
