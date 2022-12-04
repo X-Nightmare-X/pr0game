@@ -94,11 +94,6 @@ class Universe {
 		{
 			if(MODE == 'LOGIN')
 			{
-				if (isset($_COOKIE['uni']) && !empty($_COOKIE['uni']))
-				{
-					$universe = (int) $_COOKIE['uni'];
-				}
-
 				if(isset($_REQUEST['uni']))
 				{
 					$universe = (int) $_REQUEST['uni'];
@@ -145,11 +140,7 @@ class Universe {
 					}
 					else
 					{
-						$allUniverses = self::availableUniverses();
-						$universe = end($allUniverses);
-						if (is_null($universe)) {
-							$universe = ROOT_UNI;
-						}
+						$universe = ROOT_UNI;
 					}
 				}
 

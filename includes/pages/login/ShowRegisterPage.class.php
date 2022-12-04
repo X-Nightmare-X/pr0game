@@ -24,6 +24,7 @@ class ShowRegisterPage extends AbstractLoginPage
     {
         global $LNG;
         $universeSelect = [];
+        $universeSelected = Universe::current();
         $referralData = ['id' => 0, 'name' => ''];
         $accountName = "";
 
@@ -34,12 +35,14 @@ class ShowRegisterPage extends AbstractLoginPage
             }
             elseif ($config->uni_status == STATUS_REG_ONLY) {
                 $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_open'];
+                $universeSelected = $uniId;
             }
             elseif ($config->uni_status == STATUS_LOGIN_ONLY) {
                 $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_closed'];
             }
             else {
                 $universeSelect[$uniId] = $config->uni_name;
+                $universeSelected = $uniId;
             }
         }
 
@@ -62,6 +65,7 @@ class ShowRegisterPage extends AbstractLoginPage
             'referralData' => $referralData,
             'accountName' => $accountName,
             'universeSelect' => $universeSelect,
+            'universeSelected' => $universeSelected,
             'registerPasswordDesc' => sprintf($LNG['registerPasswordDesc'], 6),
             'registerRulesDesc' => sprintf($LNG['registerRulesDesc'], '<a href="index.php?page=rules&lang=' . ($GLOBALS['_COOKIE']['lang'] ?? 'de') . '">' . $LNG['menu_rules'] . '</a>')
         ]);
@@ -221,11 +225,6 @@ class ShowRegisterPage extends AbstractLoginPage
 
         $validationID = $db->lastInsertId();
         $verifyURL = 'index.php?page=vertify&i=' . $validationID . '&k=' . $validationKey;
-        
-        if (isset($_COOKIE['uni'])) {
-            setcookie('uni', '', -1, '/');
-            unset($_COOKIE['uni']);
-        }
 
         if ($config->user_valid == 0) {
             $this->redirectTo($verifyURL);
