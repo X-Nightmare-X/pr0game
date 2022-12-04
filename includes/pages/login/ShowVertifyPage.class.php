@@ -29,8 +29,8 @@ class ShowVertifyPage extends AbstractLoginPage
 		global $LNG;
 
 		if (isset($_COOKIE['uni'])) {
-			unset($_COOKIE['uni']);
     		setcookie('uni', '', -1, '/');
+			unset($_COOKIE['uni']);
 		}
 
 		$validationID	= HTTP::_GP('i', 0);

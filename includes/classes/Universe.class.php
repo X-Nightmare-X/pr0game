@@ -94,7 +94,7 @@ class Universe {
 		{
 			if(MODE == 'LOGIN')
 			{
-				if(isset($_COOKIE['uni']))
+				if (isset($_COOKIE['uni']) && !empty($_COOKIE['uni']))
 				{
 					$universe = (int) $_COOKIE['uni'];
 				}
