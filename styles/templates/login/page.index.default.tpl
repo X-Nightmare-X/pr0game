@@ -61,6 +61,9 @@
 		</div>
 	</div> -->
 </section>
+{if $captchakey!=""}
+	<p>{$LNG['disclamerRecaptcha']}</p>
+{/if}
 {/block}
 {block name="script" append}
 	<script>{if $code}alert({$code|json_encode});{/if}$(function() { $('#username').focus(); });</script>

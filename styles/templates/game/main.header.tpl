@@ -60,10 +60,11 @@
 		}
 	}, 1);
 	</script>
-  <script src="https://www.google.com/recaptcha/api.js?render=6LcRvuAiAAAAAKVHWqHMJaojmAnpuohslp-gUEsX"></script>
+  {if $captchakey!=""}
+  <script src="https://www.google.com/recaptcha/api.js?render={$captchakey}"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const captchakey="6LcRvuAiAAAAAKVHWqHMJaojmAnpuohslp-gUEsX"
+      const captchakey="{$captchakey}"
       $('form').submit(function(event) {
         event.preventDefault();
         grecaptcha.ready(()=> {
@@ -78,9 +79,13 @@
         });
       });
     });
-
-
-  </script>
+    </script>
+    <style>
+        .grecaptcha-badge { 
+            visibility: hidden;
+        }
+    </style>
+  {/if}
 
 
 	<script type="text/javascript" src="./scripts/base/jquery.js?v={$REV}"></script>

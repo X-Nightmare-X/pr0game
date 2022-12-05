@@ -62,14 +62,16 @@ class ShowIndexPage extends AbstractLoginPage
 		}
 
         $config = Config::get();
+        $captchakey = $config->recaptchaPubKey;
         $this->assign([
-            'universeSelect' => $universeSelect,
-            'universeSelected' => $universeSelected,
-            'code' => $loginCode,
-            'descHeader' => sprintf($LNG['loginWelcome'], $config->game_name),
-            'descText' => sprintf($LNG['loginServerDesc'], $config->game_name),
-            'gameInformations' => explode("\n", $LNG['gameInformations']),
-            'loginInfo' => sprintf($LNG['loginInfo'], '<a href="index.php?page=rules&lang=' . ($GLOBALS['_COOKIE']['lang'] ?? 'de') . '">' . $LNG['menu_rules'] . '</a>')
+            'universeSelect'    => $universeSelect,
+            'universeSelected'  => $universeSelected,
+            'code'              => $loginCode,
+            'descHeader'        => sprintf($LNG['loginWelcome'], $config->game_name),
+            'descText'          => sprintf($LNG['loginServerDesc'], $config->game_name),
+            'gameInformations'  => explode("\n", $LNG['gameInformations']),
+            'loginInfo'         => sprintf($LNG['loginInfo'], '<a href="index.php?page=rules&lang=' . ($GLOBALS['_COOKIE']['lang'] ?? 'de') . '">' . $LNG['menu_rules'] . '</a>'),
+            'captchakey'        => $captchakey,
         ]);
 
 
