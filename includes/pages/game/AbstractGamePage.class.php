@@ -320,6 +320,8 @@ abstract class AbstractGamePage
         else {
             $signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
         }
+        $config = Config::get();
+        $captchakey = $config->recaptchaPubKey;
         $this->assign([
             'lang'              => $LNG->getLanguage(),
             'dpath'             => $THEME->getTheme(),
@@ -327,7 +329,8 @@ abstract class AbstractGamePage
             'execscript'        => implode("\n", $this->tplObj->script),
             'basepath'          => PROTOCOL . HTTP_HOST . HTTP_BASE,
             'TIMEZONESTRING'    => $USER['timezone'],
-            'signalColors'      => $signalColors
+            'signalColors'      => $signalColors,
+            'captchakey'        => $captchakey,
         ]);
         $this->assign([
             'LNG' => $LNG

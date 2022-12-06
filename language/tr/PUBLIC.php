@@ -160,3 +160,5 @@ $LNG['disclamerLabelNotice']		= 'Ayrintili bilgi';
 
  //Giris Sayfasi
  $LNG['Browser']				= 'Onerilen browser.';
+
+ $LNG['disclamerRecaptcha'] = 'Bu sayfa reCAPTCHA kullanır ve Google <a href="https://policies.google.com/privacy">gizlilik bildirimi</a> ve <a href="https://policies.google.com/terms">kullanım şartları</a> geçerlidir.';

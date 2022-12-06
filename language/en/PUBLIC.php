@@ -154,3 +154,5 @@ $LNG['disclamerLabelAddress']		= 'Game Address:';
 $LNG['disclamerLabelPhone']			= 'Telephone Nr.:';
 $LNG['disclamerLabelMail']			= 'Support Email:';
 $LNG['disclamerLabelNotice']		= 'More information';
+
+$LNG['disclamerRecaptcha']          = 'This page uses reCAPTCHA and the Google <a href="https://policies.google.com/privacy">privacy statement</a> and <a href="https://policies.google.com/terms">terms of use</a> apply.';
