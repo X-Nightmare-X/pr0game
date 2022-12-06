@@ -172,3 +172,17 @@ Unter "Textverwaltung" kannst du die Allianztexte ändern. Den externen Text sie
 Bei den Einstellungen kannst du ein Bild verlinken, dass auf der Allianzseite dargestellt wird, sowie einen Link zu einem Allianzforum eingeben, falls du eines hast. Außerdem kannst du festlegen, ob Bewerbungen möglich sind oder nicht, und welchen Rangnamen du als Gründer verwenden willst. Wenn du dort nichts eingibst, ist dein Rangname "Gründer".<br>
 Mit "Allianz auflösen" kannst du logischerweise die Allianz auflösen, und mit "Allianz abtreten/übernehmen" kannst du die Allianz an ein anderes Allianzmitglied übergeben, dieses bekommt dann den Gründerstatus.</p>
 BODY;
+$LNG['questions'][2][5]['title']	= 'Links';
+$LNG['questions'][2][5]['body']		= <<<BODY
+<h3>Wo finde ich weitere Informationen?</h3>
+<p>Deutsch:<br>
+<a href="https://www.owiki.de/index.php/Aufbautaktik" target="_blank">Aufbautaktiken</a><br>
+<a href="https://www.owiki.de/index.php/Miner" target="_blank">Spielstil: Miner</a> <br>
+<a href="https://www.owiki.de/index.php/Raideraccount" target="_blank">Spielstil: Fleeter</a> <br>
+<a href="https://www.owiki.de/index.php/Comber" target="_blank">Spielstil: Comber</a> <br>
+<a href="https://www.owiki.de/index.php/Saven" target="_blank">Saven</a></p>
+<p>Englisch:<br>
+<a href="https://ogame.fandom.com/wiki/Quick_Start_Guide" target="_blank">Quick start guide</a><br>
+<a href="https://ogame.fandom.com/wiki/Playing_Styles" target="_blank">Playing Styles (Miner, Fleeter, Comber)</a><br>
+<a href="https://ogame.fandom.com/wiki/Fleetsaving" target="_blank">Saving</a></p>
+BODY;

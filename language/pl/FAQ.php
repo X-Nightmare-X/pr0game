@@ -146,7 +146,21 @@ $LNG['questions'][2][4]['body']		= <<<BODY
 Pamiętaj, że w nazwach nie możesz używać znaków specjalnych.<br>
 <h3>Menu zarządzania sojuszem</h3>
 <p>Wszystkie działania związane z istnieniem sojuszu ustawiasz w panelu zarządzania sojuszem. Dotyczy to rang w sojuszu, wiadomości, przykładowych podań czy też polityki z innymi sojuszami. Ważne by osoba, która zarządza sojuszem, miała zacięcie dyplomatyczne, które pomaga nie tylko podczas wojen, ale również podczas szukania innych sojuszników, paktowania z innymi sojuszami itd.<br>
-
+BODY;
+// Translated into Polish by Sirgomo . All rights reversed (C) 2012
+$LNG['questions'][2][5]['title']	= 'Linki';
+$LNG['questions'][2][5]['body']		= <<<BODY
+<h3>Gdzie mogę znaleźć więcej informacji?</h3>
+<p>Niemiecki:<br>
+<a href="https://www.owiki.de/index.php/Aufbautaktik" target="_blank">Przewodnik dla początkujących (niemiecki)</a><br>
+<a href="https://www.owiki.de/index.php/Miner" target="_blank">Playstyle: Górnik (niemiecki)</a> <br>
+<a href="https://www.owiki.de/index.php/Raideraccount" target="_blank">Playstyle: Fleeter(niemiecki)</a> <br>
+<a href="https://www.owiki.de/index.php/Comber" target="_blank">Playstyle: Cokmber(niemiecki)</a> <br>
+<a href="https://www.owiki.de/index.php/Saven" target="_blank">Oszczędzanie(niemiecki)</a></p>
+<p>Angielski:<br>
+<a href="https://ogame.fandom.com/wiki/Quick_Start_Guide" target="_blank">Skrócona instrukcja obsługi (angielski)</a><br>
+<a href="https://ogame.fandom.com/wiki/Playing_Styles" target="_blank">Style gry (Górnik, Fleeter, Comber)(angielski)</a><br>
+<a href="https://ogame.fandom.com/wiki/Fleetsaving" target="_blank">Oszczędzanie(angielski)</a></p>
 BODY;
 
-// Translated into Polish by Sirgomo . All rights reversed (C) 2012
+

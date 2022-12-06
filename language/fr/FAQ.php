@@ -104,4 +104,17 @@ $LNG['questions'][2][4]['body'] = <<< BODY
 <h3>Gestion de l'Alliance</h3>
 <p>Dans ce menu, vous pouvez modifier la description de l'Alliance, la supprimer, modifier les rangs ou grades, les pactes ou encore éditer les membres.<br> Le texte externe est une brève description de votre Alliance pour tous les membres qui visitent la page de l'Alliance, alors que le texte interne est un contenu exclusif pour les membres de l'Alliance, comme ennemis.<br>Dans les paramètres, vous pouvez également modifier l'image qui est affichée pour l'Alliance et vous pouvez aussi spécifier l'état du recrutement. Vous pouvez modifier le nom du rang de l'administrateur, qui est typiquement «leader» ou «fondateur»<br>"Dissoudre l'Alliance" est la fonction qui permet de supprimer l'Alliance définitivement.</p>
 BODY;
-
+$LNG['questions'][2][5]['title']	= 'Liens';
+$LNG['questions'][2][5]['body']		= <<<BODY
+<h3>Où puis-je trouver plus d'informations ?</h3>
+<p>Allemand:<br>
+<a href="https://www.owiki.de/index.php/Aufbautaktik" target="_blank">Guide de démarrage (allemand)</a><br>
+<a href="https://www.owiki.de/index.php/Miner" target="_blank">Style de jeu: Miner (allemand)</a> <br>
+<a href="https://www.owiki.de/index.php/Raideraccount" target="_blank">Style de jeu: Fleeter (allemand)</a> <br>
+<a href="https://www.owiki.de/index.php/Comber" target="_blank">Style de jeu: Comber (allemand)</a> <br>
+<a href="https://www.owiki.de/index.php/Saven" target="_blank">Sauver (allemand)</a></p>
+<p>Anglais:<br>
+<a href="https://ogame.fandom.com/wiki/Quick_Start_Guide" target="_blank">Guide de démarrage rapide (anglais)</a><br>
+<a href="https://ogame.fandom.com/wiki/Playing_Styles" target="_blank">Styles de jeu(Miner, Fleeter, Comber)(anglais)</a><br>
+<a href="https://ogame.fandom.com/wiki/Fleetsaving" target="_blank">Sauver (anglais)</a></p>
+BODY;
