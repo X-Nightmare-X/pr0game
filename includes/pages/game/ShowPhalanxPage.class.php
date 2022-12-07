@@ -48,7 +48,7 @@ class ShowPhalanxPage extends AbstractGamePage
 	
 	function show()
 	{
-		global $PLANET, $LNG, $resource;
+		global $PLANET, $LNG, $resource, $USER;
 
 		$this->initTemplate();
 		$this->setWindow('popup');
