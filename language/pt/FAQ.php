@@ -138,3 +138,16 @@ O texto externo é uma breve descrição da tua aliança para todos os membros q
 Também nas configurações, poderás editar a imagem que é exibida da Aliança e tambem poderás especificar o texto de aplicação. Também podes mudar o nome da posição de administrador, que normalmente é "Leader" ou "Fundador"<br>
 "Dissolver Aliança" é a função que faz apagar por completo a aliança. Se queres abandonar a aliança mas não desejas apagar, ai fazes Abdicar / Aceitar aliança</p>
 BODY;
+$LNG['questions'][2][5]['title']	= 'Ligações';
+$LNG['questions'][2][5]['body']		= <<<BODY
+<h3>Onde posso encontrar mais informações?</h3>
+<p>Alemão:<br>
+<a href="https://www.owiki.de/index.php/Aufbautaktik" target="_blank">Guia de partidao (alemão)</a> <br>
+<a href="https://www.owiki.de/index.php/Raideraccount" target="_blank">Estilo de jogo: Fleeter (alemão)</a> <br>
+<a href="https://www.owiki.de/index.php/Comber" target="_blank">Estilo de jogo: Comber (alemão)</a> <br>
+<a href="https://www.owiki.de/index.php/Saven" target="_blank">Poupança (alemão)</a></p>
+<p>Ingles:<br>
+<a href="https://ogame.fandom.com/wiki/Quick_Start_Guide" target="_blank">Guia de início rápido (ingles)</a><br>
+<a href="https://ogame.fandom.com/wiki/Playing_Styles" target="_blank">Estilos de jogo (Mineiro, Fleeter, Comber)(ingles)</a><br>
+<a href="https://ogame.fandom.com/wiki/Fleetsaving" target="_blank">Poupança (ingles)</a></p>
+BODY;

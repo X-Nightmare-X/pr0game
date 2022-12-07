@@ -17,7 +17,7 @@
 // 2Moons - Copyright (C) 2010-2012 Slaver
 // Grammar Pedantry fixes @etaletai 2018
 
-
+$LNG['fleetPrio'] = 'Fleet order priority';
 $LNG['Messages'] = 'Messages';
 
 $LNG['PM'] = '[PM]';
@@ -42,6 +42,48 @@ $LNG['type_mission_10'] = 'Missile attack';
 $LNG['type_mission_15'] = 'Expedition';
 $LNG['type_mission_16'] = 'Trade';
 $LNG['type_mission_17'] = 'Transfer';
+
+$LNG['type_mission_1_own'] = 'Own attack';
+$LNG['type_mission_2_own'] = 'Own federation attack fleet';
+$LNG['type_mission_3_own'] = 'Own transport';
+$LNG['type_mission_4_own'] = 'Own stationing';
+$LNG['type_mission_5_own'] = 'Own holding';
+$LNG['type_mission_6_own'] = 'Own spying';
+$LNG['type_mission_7_own'] = 'Own colonising';
+$LNG['type_mission_7_own_return'] = 'Return own colonising';
+$LNG['type_mission_8_own'] = 'Own recycling';
+$LNG['type_mission_9_own'] = 'Own destruction';
+$LNG['type_mission_10_own'] = 'Own missile attack';
+$LNG['type_mission_15_own'] = 'Own expedition';
+$LNG['type_mission_16_own'] = 'Own marketplace fleet';
+$LNG['type_mission_17_own'] = 'Own transfer';
+$LNG['type_mission_return_own'] = 'Own return';
+
+$LNG['type_mission_2_friend'] = 'Friendly federation attack fleet';
+
+$LNG['type_mission_1_foreign'] = 'Foreign attack';
+$LNG['type_mission_2_foreign'] = 'Foreign federation attack fleet';
+$LNG['type_mission_3_foreign'] = 'Foreign transport';
+$LNG['type_mission_4_foreign'] = 'Foreign stationing';
+$LNG['type_mission_5_foreign'] = 'Foreign holding';
+$LNG['type_mission_6_foreign'] = 'Foreign spying';
+$LNG['type_mission_7_foreign'] = 'Foreign colonising';
+$LNG['type_mission_8_foreign'] = 'Foreign recycling';
+$LNG['type_mission_9_foreign'] = 'Foreign destruction';
+$LNG['type_mission_10_foreign'] = 'Foreign missile attack';
+$LNG['type_mission_15_foreign'] = 'Foreign expedition';
+$LNG['type_mission_16_foreign'] = 'Foreign marketplace fleet';
+$LNG['type_mission_17_foreign'] = 'Foreign transfer';
+$LNG['type_mission_return_foreign'] = 'Foreign return';
+
+$LNG['positive'] = 'Positive';
+$LNG['negative'] = 'Negative';
+$LNG['neutral'] = 'Neutral';
+$LNG['StaticTimer'] = 'Arrival time';
+
+$LNG['own_colors'] = 'Own colours';
+$LNG['foreign_colors'] = 'Foreign colours';
+$LNG['general_colors'] = 'General colours';
 
 $LNG['type_planet_1'] = 'Planet';
 $LNG['type_planet_2'] = 'Debris Field';
@@ -331,6 +373,7 @@ $LNG['fl_null'] = 'none';
 $LNG['fl_hours'] = 'Hours';
 $LNG['fl_resources_left'] = 'Capacity avaliable';
 $LNG['fl_all_resources'] = 'All resources';
+$LNG['fl_selected_resources'] = 'selected resources';
 $LNG['fl_multi_alarm'] = 'Multi alarm!';
 $LNG['fl_empty_target'] = 'No mission available (does this planet exist?)';
 $LNG['fl_transfer_alert_message'] = 'Attention! Your fleet will be transferred to different user!';
@@ -445,8 +488,8 @@ $LNG['bd_maxlevel'] = 'Maximum level reached';
 $LNG['bd_on'] = 'connected';
 $LNG['bd_max_builds'] = 'You will have only max. %d queue building!';
 $LNG['bd_next_level'] = 'Next level:';
-$LNG['bd_need_engine'] = 'Requires <font color="#FF0000">%s</font> more %s';
-$LNG['bd_more_engine'] = 'Will produce <font color="#00FF00">%s</font> %s more';
+$LNG['bd_need_engine'] = 'Requires <font class="colorNegative">%s</font> more %s';
+$LNG['bd_more_engine'] = 'Will produce <font class="colorPositive">%s</font> %s more';
 $LNG['bd_jump_gate_action'] = 'Jump';
 $LNG['bd_cancel_warning'] = 'ATTENTION! <br> If you cancel only will recoup 60% of your cost.';
 $LNG['bd_cancel_send'] = 'Cancel construction';
@@ -1271,3 +1314,6 @@ $LNG['lo_notify'] = 'Will be redirected in <span id="seconds">5</span> seconds';
 $LNG['lo_continue'] = 'Click to continue.';
 
 //----------------------------------------------------------------------------//
+$LNG['fleet_table_custom_empty_name'] = 'Insert a fleet name please!';
+$LNG['custom_fleet'] = 'Custom fleets';
+$LNG['custom_fleet_confirm'] = 'Remove fleet template %s?';

@@ -220,11 +220,36 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     }
 
     if (
-        $config->game_disable == 0 && $USER['authlevel'] == AUTH_USR &&
+        ($config->uni_status == STATUS_CLOSED || $config->uni_status == STATUS_REG_ONLY) && $USER['authlevel'] == AUTH_USR &&
         (!isset($_GET['page']) || $_GET['page'] !== 'logout')
     ) {
         ShowErrorPage::printError($LNG['sys_closed_game'] . '<br><br>' . $config->close_reason, false);
     }
+    $privKey = $config->recaptchaPrivKey;
+    $rcaptcha = HTTP::_GP('rcaptcha', '');
+
+    if(isset($privKey) && isset($rcaptcha)){
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('secret' => $privKey, 'response' => $rcaptcha)));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $arrResponse = json_decode($response, true);
+        $sql = "insert into %%RECAPTCHA%% (userId, success, time, score, url) VALUES (:userId, :success, :time, :score, :url);";
+        
+        if($arrResponse['success'] == true){
+            $db->insert($sql, array(
+                ':userId'   => $USER['id'],
+                ':success'  => $arrResponse['success'],
+                ':time'     => TIMESTAMP,
+                ':score'    => $arrResponse['score'],
+                ':url'      => $_SERVER['REQUEST_URI'],
+            ));
+        }
+    }
+
 } elseif (MODE === 'LOGIN') {
     $LNG    = new Language();
     $LNG->getUserAgentLanguage();

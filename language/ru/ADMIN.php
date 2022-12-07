@@ -313,13 +313,19 @@ $LNG['se_normal_speed_resoruces'] = 'Рекомендованная скорос
 $LNG['se_normal_speed_fleet'] = 'Рекомендованная скорость флота: 1.<br>Рекомендованная максимальная скорость флота: 20';
 $LNG['se_normal_speed_halt'] = 'Рекомендованная скорость экспедиции: 1.<br>Рекомендованная максимальная скорость'
     . ' экспедиции: 20';
-$LNG['se_general_speed'] = 'Скорость игры';
+$LNG['se_building_speed'] = 'Скорость строительства';
+$LNG['se_shipyard_speed'] = 'Скорость судостроительного завода';
+$LNG['se_research_speed'] = 'Скорость исследования';
 $LNG['se_fleet_speed'] = 'Скорость флота';
 $LNG['se_resources_producion_speed'] = 'Скорость производства ресурсов';
 $LNG['se_halt_speed'] = 'Скорость экспедиции';
 $LNG['se_energy_speed'] = 'Скорость энергии';
 $LNG['se_forum_link'] = 'Адрес форума';
-$LNG['se_server_op_close'] = 'Включить игру';
+$LNG['se_uni_status'] = 'Статус универа';
+$LNG['se_uni_status_regopen_gameopen'] = 'Регистрация и вход открыты';
+$LNG['se_uni_status_regclosed_gameclosed'] = 'Регистрация и вход закрыты (например, техническое обслуживание)';
+$LNG['se_uni_status_regopen_gameclosed'] = 'Регистрация открыта, вход закрыт (например, новые университеты)';
+$LNG['se_uni_status_regclosed_gameopen'] = 'Регистрация закрыта, вход открыт (например, в старых университетах)';
 $LNG['se_server_status_message'] = 'Причина отключения';
 $LNG['se_server_planet_parameters'] = 'Новые планеты';
 $LNG['se_initial_fields'] = 'Поля';
@@ -349,7 +355,6 @@ $LNG['se_noob_protect2'] = 'Верхняя планка защиты';
 $LNG['se_noob_protect3'] = 'Нижняя планка защиты';
 $LNG['se_noob_protect_e2'] = 'Количество очков при котором на игрока перестаёт распространяться защита новичков.';
 $LNG['se_noob_protect_e3'] = 'Количество очков при котором на игрока начинает распространяться защита новичков.';
-$LNG['se_reg_closed'] = 'Отключить регистрацию';
 $LNG['se_min_build_time'] = 'Время строительства';
 $LNG['se_min_build_time_info'] = 'Минимальное время строительства построек, флота, обороны и проведения исследований.'
     . ' По умолчанию установлено значение - 1 секунда (0 - не ограничено).<br><font color=orange>Если указать 0,'
@@ -725,11 +730,11 @@ $LNG['ac_suspended_time'] = 'Когда';
 $LNG['ac_suspended_longer'] = 'Заблокирован до';
 $LNG['ac_suspended_reason'] = 'Причина';
 $LNG['ac_suspended_autor'] = 'Кто забанил';
-$LNG['ac_note_k'] = '<table><tr><th width=10%><font color=lime>T+</font></th><th>Больше 1кккк (триллион)</th></tr>'
-    . '<tr><th width=10%><font color=lime>T</font></th><th>Меньше или равно 1кккк (триллион)</th></tr>'
-    . '<tr><th width=10%><font color=lime>B</font></th><th>Меньше или равно 1ккк (миллиард)</th></tr>'
-    . '<tr><th width=10%><font color=lime>M</font></th><th>Меньше или равно 1кк (миллион)</th></tr>'
-    . '<tr><th width=10%><font color=lime>K</font></th><th>Меньше или равно 1к (тысяча)</th></tr></table>';
+$LNG['ac_note_k'] = '<table><tr><th width=10%><font class="colorPositive">T+</font></th><th>Больше 1кккк (триллион)</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">T</font></th><th>Меньше или равно 1кккк (триллион)</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">B</font></th><th>Меньше или равно 1ккк (миллиард)</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">M</font></th><th>Меньше или равно 1кк (миллион)</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">K</font></th><th>Меньше или равно 1к (тысяча)</th></tr></table>';
 $LNG['ac_leyend'] = '[ Легенда ]';
 $LNG['ac_no_rank_level'] = 'Вы имеете недостаточно прав для просмотра информации об этом игроке.';
 

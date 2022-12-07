@@ -328,7 +328,9 @@ $LNG['se_server_parameters'] = 'Paramètres serveur';
 $LNG['se_game_name'] = 'Nom (Jeu)';
 $LNG['se_uni_name'] = 'Nom (Univers)';
 $LNG['se_lang'] = 'Langage';
-$LNG['se_general_speed'] = 'Vitesse globale du jeu';
+$LNG['se_building_speed'] = 'Vitesse de construction';
+$LNG['se_shipyard_speed'] = 'Vitesse du chantier';
+$LNG['se_research_speed'] = 'Vitesse de recherche';
 $LNG['se_energy_speed'] = 'Facteur d\'ènergie (vitesse)';
 $LNG['se_normal_speed'] = 'Vitesse normale du Jeu : 1 <br> Vitesse de Jeu maximum recommandée : 20';
 $LNG['se_normal_speed_resoruces'] = 'Vitesse normale de Production : 1 <br> Vitesse de Production maximum recommandée'
@@ -339,8 +341,11 @@ $LNG['se_fleet_speed'] = 'Vitesse des Flottes';
 $LNG['se_resources_producion_speed'] = 'Vitesse de Production des Ressources';
 $LNG['se_halt_speed'] = 'Vitesse Expo';
 $LNG['se_forum_link'] = 'Lien vers votre Forum';
-$LNG['se_server_op_close'] = 'Est ce que votre serveur est en ligne ? - Cochez la case pour ouvrir votre serveur aux'
-    . ' joueurs';
+$LNG['se_uni_status'] = 'Statut Uni';
+$LNG['se_uni_status_regopen_gameopen'] = 'Inscription et connexion ouvertes';
+$LNG['se_uni_status_regclosed_gameclosed'] = 'Inscription et connexion fermées (par exemple, maintenance)';
+$LNG['se_uni_status_regopen_gameclosed'] = 'Inscription ouverte, connexion fermée (par ex. nouvelles universités)';
+$LNG['se_uni_status_regclosed_gameopen'] = 'Inscription fermée, connexion ouverte (ex. anciennes universités)';
 $LNG['se_server_status_message'] = 'Message serveur - Mettez le statut de votre server (Maintenance par exmple) ici';
 $LNG['se_server_planet_parameters'] = 'Paramètre Planète Mère';
 $LNG['se_initial_fields'] = 'Cases Planète Mère';
@@ -372,7 +377,6 @@ $LNG['se_noob_protect2'] = 'Protection Newbie x Points';
 $LNG['se_noob_protect3'] = 'Facteur Protection Newbie';
 $LNG['se_noob_protect_e2'] = 'La protection Newbie est active pour ce joueur jusqu\'à ce Score';
 $LNG['se_noob_protect_e3'] = 'Cliquer ici pour voir plus d\'informations';
-$LNG['se_reg_closed'] = 'Clôre inscription';
 $LNG['se_min_build_time'] = 'Construction minimum';
 $LNG['se_trader_head'] = 'Réglages Flotte Marchand';
 $LNG['se_trader_ships'] = 'Navires autorisés:';
@@ -784,14 +788,14 @@ $LNG['ac_suspended_time'] = 'Bannis';
 $LNG['ac_suspended_longer'] = 'Jusqu\'à';
 $LNG['ac_suspended_reason'] = 'Raison';
 $LNG['ac_suspended_autor'] = 'Bannis pour';
-$LNG['ac_note_k'] .= '<table><tr><th width=10%><font color=lime>T+</font></th><th>Dépasse les Milliards</th></tr>';
+$LNG['ac_note_k'] .= '<table><tr><th width=10%><font class="colorPositive">T+</font></th><th>Dépasse les Milliards</th></tr>';
 $LNG['ac_leyend'] = '[ Légende ]';
 $LNG['ac_no_rank_level'] = 'Vous n\'avez pas l\' autorisation suffisante pour voir les informations sur ce joueur !';
 /*
-$LNG['ac_note_k'] .= '<tr><th width=10%><font color=lime>T</font></th><th>Mille Milliards et Plus</th></tr>';
-$LNG['ac_note_k'] .= '<tr><th width=10%><font color=lime>B</font></th><th>Milliards et Plus</th></tr>';
-$LNG['ac_note_k'] .= '<tr><th width=10%><font color=lime>M</font></th><th>Millions et Plus</th></tr>';
-$LNG['ac_note_k'] .= '<tr><th width=10%><font color=lime>K</font></th><th>Mille et Plus</th></tr></table>';
+$LNG['ac_note_k'] .= '<tr><th width=10%><font class="colorPositive">T</font></th><th>Mille Milliards et Plus</th></tr>';
+$LNG['ac_note_k'] .= '<tr><th width=10%><font class="colorPositive">B</font></th><th>Milliards et Plus</th></tr>';
+$LNG['ac_note_k'] .= '<tr><th width=10%><font class="colorPositive">M</font></th><th>Millions et Plus</th></tr>';
+$LNG['ac_note_k'] .= '<tr><th width=10%><font class="colorPositive">K</font></th><th>Mille et Plus</th></tr></table>';
 */
 //###########################################################//
 

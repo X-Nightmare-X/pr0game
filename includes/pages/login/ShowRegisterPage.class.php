@@ -24,12 +24,26 @@ class ShowRegisterPage extends AbstractLoginPage
     {
         global $LNG;
         $universeSelect = [];
+        $universeSelected = Universe::current();
         $referralData = ['id' => 0, 'name' => ''];
         $accountName = "";
 
         foreach (Universe::availableUniverses() as $uniId) {
             $config = Config::get($uniId);
-            $universeSelect[$uniId] = $config->uni_name . ($config->game_disable == 0 || $config->reg_closed == 1 ? $LNG['uni_closed'] : '');
+            if ($config->uni_status == STATUS_CLOSED) {
+                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_closed'];
+            }
+            elseif ($config->uni_status == STATUS_REG_ONLY) {
+                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_open'];
+                $universeSelected = $uniId;
+            }
+            elseif ($config->uni_status == STATUS_LOGIN_ONLY) {
+                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_closed'];
+            }
+            else {
+                $universeSelect[$uniId] = $config->uni_name;
+                $universeSelected = $uniId;
+            }
         }
 
         $config = Config::get();
@@ -51,6 +65,7 @@ class ShowRegisterPage extends AbstractLoginPage
             'referralData' => $referralData,
             'accountName' => $accountName,
             'universeSelect' => $universeSelect,
+            'universeSelected' => $universeSelected,
             'registerPasswordDesc' => sprintf($LNG['registerPasswordDesc'], 6),
             'registerRulesDesc' => sprintf($LNG['registerRulesDesc'], '<a href="index.php?page=rules&lang=' . ($GLOBALS['_COOKIE']['lang'] ?? 'de') . '">' . $LNG['menu_rules'] . '</a>')
         ]);
@@ -63,7 +78,7 @@ class ShowRegisterPage extends AbstractLoginPage
         global $LNG;
         $config = Config::get();
 
-        if ($config->game_disable == 0 || $config->reg_closed == 1) {
+        if ($config->uni_status == STATUS_CLOSED || $config->uni_status == STATUS_LOGIN_ONLY) {
             $this->printMessage($LNG['registerErrorUniClosed'], [[
                 'label' => $LNG['registerBack'],
                 'url' => 'javascript:window.history.back()',

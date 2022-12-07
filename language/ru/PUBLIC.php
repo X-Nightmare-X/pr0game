@@ -42,6 +42,8 @@ $LNG['menu_register']               = 'Регистрация';
 $LNG['chose_a_uni']                 = 'Выбрать...';
 $LNG['universe']                    = 'Вселенная';
 $LNG['uni_closed']                  = ' (отключена)';
+$LNG['uni_reg_closed']				= ' (Регистрация закрыта)';
+$LNG['uni_reg_open']				= ' (Только регистрация)';
 
 // Кнопки
 $LNG['buttonRegister']              = 'Зарегистрироваться';
@@ -149,3 +151,5 @@ $LNG['disclamerLabelAddress']       = 'Адрес:';
 $LNG['disclamerLabelPhone']         = 'Телефон:';
 $LNG['disclamerLabelMail']          = 'Электронная почта:';
 $LNG['disclamerLabelNotice']        = 'Дополнительная информация';
+
+$LNG['disclamerRecaptcha'] = 'На этой странице используется reCAPTCHA и применяются положения Google <a href="https://policies.google.com/privacy">заявление о конфиденциальности</a> и <a href="https://policies.google.com/terms">условия использования</a>.';

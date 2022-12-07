@@ -5,6 +5,17 @@
 <!--[if IE 9 ]>    <html lang="{$lang}" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html lang="{$lang}" class="no-js"> <!--<![endif]-->
+<style>
+    .colorPositive{
+        color:{$signalColors.colorPositive}
+    } 
+    .colorNegative{
+        color:{$signalColors.colorNegative} !important;
+    }
+	.colorNeutral{
+		color:{$signalColors.colorNeutral} 
+	}
+</style>
 <head>
 	<title>{block name="title"} - {$uni_name} - {$game_name}{/block}</title>
 	<meta charset="utf-8">
@@ -21,6 +32,7 @@
 	<link rel="stylesheet" type="text/css" href="{$dpath}formate.css?v={$REV}">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css">
 	<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+
 	<script type="text/javascript">
 	var ServerTimezoneOffset = {$Offset};
 	var serverTime 	= new Date({$date.0}, {$date.1 - 1}, {$date.2}, {$date.3}, {$date.4}, {$date.5});
@@ -48,6 +60,34 @@
 		}
 	}, 1);
 	</script>
+  {if $captchakey!=""}
+  <script src="https://www.google.com/recaptcha/api.js?render={$captchakey}"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const captchakey="{$captchakey}"
+      $('form').submit(function(event) {
+        event.preventDefault();
+        grecaptcha.ready(()=> {
+          grecaptcha.execute(captchakey).then((token)=> {
+            let hinpt=document.createElement("input")
+            hinpt.type="hidden"
+            hinpt.name="rcaptcha"
+            hinpt.value= token
+            this.insertBefore(hinpt, this.firstChild);
+            this.submit()
+          });
+        });
+      });
+    });
+    </script>
+    <style>
+        .grecaptcha-badge { 
+            visibility: hidden;
+        }
+    </style>
+  {/if}
+
+
 	<script type="text/javascript" src="./scripts/base/jquery.js?v={$REV}"></script>
 	<script type="text/javascript" src="./scripts/base/jquery.ui.js?v={$REV}"></script>
 	<script type="text/javascript" src="./scripts/base/jquery.cookie.js?v={$REV}"></script>

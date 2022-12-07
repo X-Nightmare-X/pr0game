@@ -31,10 +31,24 @@ class ShowIndexPage extends AbstractLoginPage
         }
 
         $universeSelect = [];
+        $universeSelected = Universe::current();
 
         foreach (Universe::availableUniverses() as $uniId) {
             $config = Config::get($uniId);
-            $universeSelect[$uniId] = $config->uni_name . ($config->game_disable == 0 ? $LNG['uni_closed'] : '');
+            if ($config->uni_status == STATUS_CLOSED) {
+                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_closed'];
+            }
+            elseif ($config->uni_status == STATUS_REG_ONLY) {
+                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_open'];
+            }
+            elseif ($config->uni_status == STATUS_LOGIN_ONLY) {
+                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_closed'];
+                $universeSelected = $uniId;
+            }
+            else {
+                $universeSelect[$uniId] = $config->uni_name;
+                $universeSelected = $uniId;
+            }
         }
 
         $Code = HTTP::_GP('code', 0);
@@ -43,16 +57,21 @@ class ShowIndexPage extends AbstractLoginPage
             $loginCode = $LNG['login_error_' . $Code];
         }
 
-        $db = Database::get();
+		if (isset($_COOKIE['uni']) && !empty($_COOKIE['uni'])) {
+			$universeSelected = (int) $_COOKIE['uni'];
+		}
 
         $config = Config::get();
+        $captchakey = $config->recaptchaPubKey;
         $this->assign([
-            'universeSelect' => $universeSelect,
-            'code' => $loginCode,
-            'descHeader' => sprintf($LNG['loginWelcome'], $config->game_name),
-            'descText' => sprintf($LNG['loginServerDesc'], $config->game_name),
-            'gameInformations' => explode("\n", $LNG['gameInformations']),
-            'loginInfo' => sprintf($LNG['loginInfo'], '<a href="index.php?page=rules&lang=' . ($GLOBALS['_COOKIE']['lang'] ?? 'de') . '">' . $LNG['menu_rules'] . '</a>')
+            'universeSelect'    => $universeSelect,
+            'universeSelected'  => $universeSelected,
+            'code'              => $loginCode,
+            'descHeader'        => sprintf($LNG['loginWelcome'], $config->game_name),
+            'descText'          => sprintf($LNG['loginServerDesc'], $config->game_name),
+            'gameInformations'  => explode("\n", $LNG['gameInformations']),
+            'loginInfo'         => sprintf($LNG['loginInfo'], '<a href="index.php?page=rules&lang=' . ($GLOBALS['_COOKIE']['lang'] ?? 'de') . '">' . $LNG['menu_rules'] . '</a>'),
+            'captchakey'        => $captchakey,
         ]);
 
 

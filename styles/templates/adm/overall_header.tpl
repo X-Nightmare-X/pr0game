@@ -4,6 +4,17 @@
 <!--[if IE 8 ]>    <html lang="{$lang}" class="no-js ie8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="{$lang}" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="{$lang}" class="no-js"> <!--<![endif]-->
+<style>
+    .colorPositive{
+        color:{$signalColors.colorPositive}
+    } 
+    .colorNegative{
+        color:{$signalColors.colorNegative} !important;
+    }
+	.colorNeutral{
+		color:{$signalColors.colorNeutral} 
+	}
+</style>
 <head>
 	<title>{$title}</title>
 	{if !empty($goto)}

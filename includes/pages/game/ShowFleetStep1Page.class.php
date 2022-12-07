@@ -31,7 +31,7 @@ class ShowFleetStep1Page extends AbstractGamePage
         $targetPlanet = HTTP::_GP('planet', (int) $PLANET['planet']);
         $targetType = HTTP::_GP('type', (int) $PLANET['planet_type']);
 
-        $mission = HTTP::_GP('target_mission', 0);
+        $mission = HTTP::_GP('target_mission', -1);
 
         $Fleet = [];
         $FleetRoom = 0;
@@ -62,7 +62,7 @@ class ShowFleetStep1Page extends AbstractGamePage
             ],
             'maxspeed'          => FleetFunctions::getFleetMaxSpeed($Fleet, $USER),
             'ships'             => FleetFunctions::getFleetShipInfo($Fleet, $USER),
-            'fleetMinDuration'  => MIN_FLEET_TIME,
+            'fleetMinDuration'  => MIN_FLEET_TIME
         ];
 
         $token = getRandomString();
@@ -71,6 +71,11 @@ class ShowFleetStep1Page extends AbstractGamePage
             'time'      => TIMESTAMP,
             'fleet'     => $Fleet,
             'fleetRoom' => $FleetRoom,
+            'predefinedResources'=>[
+                'met'=>  HTTP::_GP('met_storage', ""),
+                'krist'=>  HTTP::_GP('krist_storage', ""),
+                'deut'=>  HTTP::_GP('deut_storage', "")
+            ]
         ];
 
         $shortcutList = $this->GetUserShotcut();
@@ -252,7 +257,7 @@ class ShowFleetStep1Page extends AbstractGamePage
                 $sql = "SELECT acsID
                 FROM %%USERS_ACS%%
                 WHERE userID = :userID AND acsID = :aksID
-                AND ( :maxParticipants > (SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% WHERE fleet_group = :aksID) 
+                AND ( :maxParticipants > (SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% WHERE fleet_group = :aksID)
                 OR 1 = (SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% WHERE fleet_group = :aksID AND fleet_owner = :userID) );";
                 $ACSResult2 = $db->select($sql, [
                     ':userID' => $USER['id'],
@@ -334,7 +339,7 @@ class ShowFleetStep1Page extends AbstractGamePage
                 }
             }
 
-            if ($targetPlanetType == 2 && (empty($planetData) || ($planetData['der_metal'] + $planetData['der_crystal']) == 0 && 
+            if ($targetPlanetType == 2 && (empty($planetData) || ($planetData['der_metal'] + $planetData['der_crystal']) == 0 &&
                 $planetData['tf_active'] == 0)) {
                 $this->sendJSON($LNG['fl_error_empty_derbis']);
             }

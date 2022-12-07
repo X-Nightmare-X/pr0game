@@ -38,7 +38,12 @@ class ShowSupportPage
 	public function show()
 	{
 		global $USER, $LNG;
-				
+		if(isset($USER['id'])) {
+			$signalColors = PlayerUtil::player_signal_colors($USER);
+		}
+		else {
+			$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+		}
 		$ticketResult	= $GLOBALS['DATABASE']->query("SELECT t.*, u.username, COUNT(a.ticketID) as answer FROM ".TICKETS." t INNER JOIN ".TICKETS_ANSWER." a USING (ticketID) INNER JOIN ".USERS." u ON u.id = t.ownerID WHERE t.universe = ".Universe::getEmulated()." GROUP BY a.ticketID ORDER BY t.ticketID DESC;");
 		$ticketList		= array();
 		
@@ -50,9 +55,10 @@ class ShowSupportPage
 		
 		$GLOBALS['DATABASE']->free_result($ticketResult);
 		
-		$this->tplObj->assign_vars(array(	
-			'ticketList'	=> $ticketList
-		));
+		$this->tplObj->assign_vars([	
+			'ticketList'	=> $ticketList,
+			'signalColors'	=> $signalColors,
+		]);
 			
 		$this->tplObj->show('page.ticket.default.tpl');
 	}
@@ -103,7 +109,12 @@ class ShowSupportPage
 	function view() 
 	{
 		global $USER, $LNG;
-				
+		if(isset($USER['id'])) {
+			$signalColors = PlayerUtil::player_signal_colors($USER);
+		}
+		else {
+			$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
+		}
 		$ticketID			= HTTP::_GP('id', 0);
 		$answerResult		= $GLOBALS['DATABASE']->query("SELECT a.*, t.categoryID, t.status FROM ".TICKETS_ANSWER." a INNER JOIN ".TICKETS." t USING(ticketID) WHERE a.ticketID = ".$ticketID." ORDER BY a.answerID;");
 		$answerList			= array();
@@ -126,12 +137,13 @@ class ShowSupportPage
 			
 		$categoryList	= $this->ticketObj->getCategoryList();
 		
-		$this->tplObj->assign_vars(array(
+		$this->tplObj->assign_vars([
 			'ticketID'		=> $ticketID,
 			'ticket_status' => $ticket_status,
 			'categoryList'	=> $categoryList,
 			'answerList'	=> $answerList,
-		));
+			'signalColors'	=> $signalColors,
+		]);
 			
 		$this->tplObj->show('page.ticket.view.tpl');		
 	}
