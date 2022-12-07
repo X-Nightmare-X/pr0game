@@ -30,12 +30,12 @@
 	</tr>
 	<tr>
 		<td colspan="3">
-			<textarea name="text" id="text" cols="70" rows="15" class="tinymce">{$text}</textarea>
+			<textarea name="text" id="text" cols="70" rows="15">{$text}</textarea>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="3">
-			<input type="reset" value="{$LNG.al_circular_reset}"> 
+			<input type="reset" value="{$LNG.al_circular_reset}">
 			<input type="submit" value="{$LNG.al_save}">
 		</td>
 	</tr>
@@ -102,7 +102,7 @@
 	</tr>
 	<tr>
 		<td><form action="game.php?page=alliance&amp;mode=admin&amp;action=close" method="post"><input type="submit" value="{$LNG.al_continue}" onclick="return confirm('{$LNG.al_close_ally}');"></form></td>
-	</tr>  
+	</tr>
 </table>
 <table>
 	<tr>
@@ -110,7 +110,7 @@
 	</tr>
 	<tr>
 		<td><form action="game.php?page=alliance&amp;mode=admin&amp;action=transfer" method="post"><input type="submit" value="{$LNG.al_continue}"></form></td>
-	</tr>  
+	</tr>
 </table>
 {/if}
 {/block}
