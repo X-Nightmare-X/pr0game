@@ -97,6 +97,7 @@ function setamt() {
       gt.value = parseInt(document.getElementById("kt_amt").innerText.replaceAll(".", "").replaceAll("(", "").replaceAll(")", ""))
     }
   }
+  show_values();
 }
 
 function toogle_custom_fleet() {
@@ -279,7 +280,7 @@ function custom_fleet(k) {
     }
 
   }
-  showexpopoints();
+  show_values();
 
 }
 function customfleet_show() {

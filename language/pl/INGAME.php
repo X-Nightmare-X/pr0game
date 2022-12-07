@@ -127,6 +127,7 @@ $LNG['lm_notes'] = 'Notatki';
 $LNG['lm_statistics'] = 'Statystyki';
 $LNG['lm_search'] = 'Szukaj';
 $LNG['lm_options'] = 'Opcje';
+$LNG['donate'] = 'Darowizna';
 $LNG['lm_banned'] = 'Zbanowani';
 
 $LNG['lm_forums'] = 'Forum';

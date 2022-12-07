@@ -131,6 +131,9 @@ class ShowImperiumPage extends AbstractGamePage
                 $planetList['defense'][$elementID][$Planet['id']] = $Planet[$resource[$elementID]];
                 $planetList['currentShipyard'][$elementID][$Planet['id']] = 0;
             }
+
+            $planetList['currentShipyard'][502][$Planet['id']] = 0;
+            $planetList['currentShipyard'][503][$Planet['id']] = 0;
             if (!empty($Planet['b_hangar_id'])) {
                 foreach (unserialize($Planet['b_hangar_id']) as $que) {
                     $planetList['currentShipyard'][$que[0]][$Planet['id']] += $que[1];

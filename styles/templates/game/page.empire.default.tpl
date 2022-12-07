@@ -45,18 +45,16 @@
         <td><a href='#' onclick='return Dialog.info({$elementID});' class='tooltip'
                data-tooltip-content="<table><tr><th>{$LNG.tech.{$elementID}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$elementID}.{if $elementID >=600 && $elementID <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$elementID}</td></tr></table></tr></table>">{$LNG.tech.$elementID}</a>
         </td>
-        <td>{number_format(array_sum($resourceArray), 0, ",", ".")} {if in_array($elementID, array(901,902,903))}<span
+        <td>{number_format(array_sum($resourceArray), 0, ",", ".")} {if in_array($elementID, array(901,902,903))}<br><span
             class="colorPositive">{number_format(array_sum($planetList.resourcePerHour[$elementID]), 0, ",", ".")}
-            /h</span> <span
+            /h</span><br><span
             class="{if min($planetList.resourceFull[$elementID])>23}colorPositive{/if}{if min($planetList.resourceFull[$elementID])<24 && min($planetList.resourceFull[$elementID])>6}colorNeutral{/if}{if min($planetList.resourceFull[$elementID])<7}colorNegative{/if}">{number_format(min($planetList.resourceFull[$elementID]),0,",",".")}
             h</span>{/if}</td>
           {foreach $resourceArray as $planetID => $resource}
             <td>{number_format($resource, 0, ",", ".")} {if in_array($elementID, array(901,902,903)) && $planetList.planet_type[$planetID] == 1}
-                <span
+                <br><span
                   class="colorPositive">{number_format($planetList.resourcePerHour[$elementID][$planetID], 0, ",", ".")}
-                /h</span>
-                <span
-                class="{if $planetList.resourceFull[$elementID][$planetID]>23}colorPositive{/if}{if $planetList.resourceFull[$elementID][$planetID]<24 && $planetList.resourceFull[$elementID][$planetID]>6}colorNeutral{/if}{if $planetList.resourceFull[$elementID][$planetID]<7}colorNegative{/if}">{number_format($planetList.resourceFull[$elementID][$planetID],0,",",".")}
+                /h</span><br><span   class="{if $planetList.resourceFull[$elementID][$planetID]>23}colorPositive{/if}{if $planetList.resourceFull[$elementID][$planetID]<24 && $planetList.resourceFull[$elementID][$planetID]>6}colorNeutral{/if}{if $planetList.resourceFull[$elementID][$planetID]<7}colorNegative{/if}">{number_format($planetList.resourceFull[$elementID][$planetID],0,",",".")}
                 h</span>{/if}</td>
           {/foreach}
       </tr>

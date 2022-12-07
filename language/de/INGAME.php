@@ -123,6 +123,7 @@ $LNG['lm_alliance'] = 'Allianz';
 $LNG['lm_buddylist'] = 'Buddylist';
 $LNG['lm_notes'] = 'Notizen';
 $LNG['lm_statistics'] = 'Statistik';
+$LNG['donate'] = 'Spenden';
 $LNG['lm_search'] = 'Suche';
 $LNG['lm_options'] = 'Einstellungen';
 $LNG['lm_banned'] = 'Pranger';
