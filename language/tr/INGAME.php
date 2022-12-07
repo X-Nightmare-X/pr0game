@@ -132,6 +132,7 @@ $LNG['lm_search'] = 'Arama';
 $LNG['lm_options'] = 'Ayarlar';
 $LNG['lm_banned'] = 'Banlananlar';
 $LNG['lm_forums'] = 'Forum';
+$LNG['donate'] = 'Bağışla';
 $LNG['lm_logout'] = 'Cikis';
 $LNG['lm_administration'] = 'Administration';
 $LNG['lm_queue'] = 'Kuyruk';

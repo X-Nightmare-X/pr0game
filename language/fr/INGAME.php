@@ -118,6 +118,7 @@ $LNG['lm_statistics'] = 'Classement';
 $LNG['lm_search'] = 'Recherche';
 $LNG['lm_options'] = 'Options';
 $LNG['lm_banned'] = 'Pilori';
+$LNG['donate'] = 'faire un don';
 $LNG['lm_forums'] = 'Forum';
 $LNG['lm_logout'] = 'Déconnexion';
 $LNG['lm_administration'] = 'Administration';

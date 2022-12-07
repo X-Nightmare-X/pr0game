@@ -124,6 +124,7 @@ $LNG['lm_options'] = 'Einschdellungen';
 $LNG['lm_banned'] = 'Branger';
 $LNG['lm_forums'] = 'Forum';
 $LNG['lm_logout'] = 'Logout';
+$LNG['donate'] = 'Spendne';
 $LNG['lm_administration'] = 'Adminischdration';
 $LNG['lm_queue'] = 'Queues';
 $LNG['lm_topkb'] = 'Baddle Hall';
