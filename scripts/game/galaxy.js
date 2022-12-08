@@ -106,7 +106,7 @@ function onReaderLoad_import(event){
 function export_csv(){
  let keys = Object.keys(universe)
 keys.sort(compareFn)
-  var outcsv=""
+  var outcsv="coords,moon?,name,ally,status,\n"
   for(let k of keys){
     for(let p=1;p<16;p++){
       console.log(universe[k],k,universe[k][p]!==null,p)
