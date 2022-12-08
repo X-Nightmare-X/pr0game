@@ -139,4 +139,17 @@ $LNG['questions'][2][4]['body']		= <<<BODY
 <p>Bu menuden ittifakla ilgili bilgileri duzenleyebilirsiniz. Ittifagin tanimi,  metinler ve sayfasi gibi. Ayni zamanda uyeleri yonet menusuyle rutbeler belirleyip, uyelerin yekilerini atayabilirsiniz. Eger ilerde ittifagi devretmek isterseniz uyelerden birine Sag Kol ozelligi vermeniz gerkmektedir.
 <br> Ayni zamanda ittifagi dagit menusuyle de ittifagi dagitabilirsiniz Ama ittifaktan ayril dediginizde Ittifak belirlediginiz Sag Kol’a devredilir. Ayni zamanda kurucu yada kurucunun yetki verdigi uyeler bu sayfadan uye basvurularini degerlendirebilir. </p>
 BODY;
-
+$LNG['questions'][2][5]['title']	= 'Bağlantılar';
+$LNG['questions'][2][5]['body']		= <<<BODY
+<h3>Daha fazla bilgiyi nerede bulabilirim?</h3>
+<p>Alman:<br>
+<a href="https://www.owiki.de/index.php/Aufbautaktik" target="_blank">Başlangıç Kılavuzu (Alman)</a><br>
+<a href="https://www.owiki.de/index.php/Miner" target="_blank">Oyun Stili: Madenci (Alman)</a> <br>
+<a href="https://www.owiki.de/index.php/Raideraccount" target="_blank">Oyun Stili: Fleeter (Alman)</a> <br>
+<a href="https://www.owiki.de/index.php/Comber" target="_blank">Oyun Stili: Comber (Alman)</a> <br>
+<a href="https://www.owiki.de/index.php/Saven" target="_blank">Tasarruf (Alman)</a></p>
+<p>İngilizce:<br>
+<a href="https://ogame.fandom.com/wiki/Quick_Start_Guide" target="_blank">Hızlı başlangıç kılavuzu (İngilizce)</a><br>
+<a href="https://ogame.fandom.com/wiki/Playing_Styles" target="_blank">Oyun Tarzları(Madenci, Fleeter, Comber)(İngilizce)</a><br>
+<a href="https://ogame.fandom.com/wiki/Fleetsaving" target="_blank">Tasarruf (İngilizce)</a></p>
+BODY;

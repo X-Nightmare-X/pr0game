@@ -124,6 +124,7 @@ $LNG['lm_statistics'] = 'Статистика';
 $LNG['lm_search'] = 'Поиск';
 $LNG['lm_options'] = 'Настройки';
 $LNG['lm_banned'] = 'Заблокированные';
+$LNG['donate'] = "Пожертвовать";
 $LNG['lm_forums'] = 'Форум';
 $LNG['lm_logout'] = 'Выход';
 $LNG['lm_administration'] = 'Админка';

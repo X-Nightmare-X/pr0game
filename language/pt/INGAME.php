@@ -133,6 +133,7 @@ $LNG['lm_statistics'] = 'Estatisticas';
 $LNG['lm_search'] = 'Procurar';
 $LNG['lm_options'] = 'Opções';
 $LNG['lm_banned'] = 'Banidos';
+$LNG['donate'] = 'Doar';
 $LNG['lm_forums'] = 'Forum';
 $LNG['lm_logout'] = 'Logout';
 $LNG['lm_administration'] = 'Administração';

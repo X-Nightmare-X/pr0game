@@ -152,3 +152,5 @@ $LNG['disclamerLabelAddress']		= 'Adresse:';
 $LNG['disclamerLabelPhone']			= 'Telefon Nr.:';
 $LNG['disclamerLabelMail']			= 'E-Mail Adresse:';
 $LNG['disclamerLabelNotice']		= 'Weitere Informationen';
+
+$LNG['disclamerRecaptcha']		    = 'Diese Seite nutzt reCAPTCHA und die Google <a href="https://policies.google.com/privacy">Datenschutzerklärung</a> und <a href="https://policies.google.com/terms">Nutzungsbedingungen</a> gelten.';

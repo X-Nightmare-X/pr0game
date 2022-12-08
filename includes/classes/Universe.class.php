@@ -94,19 +94,9 @@ class Universe {
 		{
 			if(MODE == 'LOGIN')
 			{
-				if(isset($_COOKIE['uni']))
-				{
-					$universe = (int) $_COOKIE['uni'];
-				}
-
 				if(isset($_REQUEST['uni']))
 				{
 					$universe = (int) $_REQUEST['uni'];
-				}
-
-				if (is_null($universe)) {
-                    $allUniverses = self::availableUniverses();
-					$universe = end($allUniverses);
 				}
 			}
 			elseif(MODE == 'ADMIN' && isset($_SESSION['admin_uni']))

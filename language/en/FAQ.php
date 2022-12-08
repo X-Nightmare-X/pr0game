@@ -119,3 +119,17 @@ $LNG['questions'][2][4]['body']		= <<<BODY
 <h3>Management of Alliance</h3>
 <p>In this menu you can s edit the description of the Alliance, if you wish to delete, if you want to edit the "patents" or ranks, the pacts and still edit the members<br>The external text is a brief description of your Alliance for all members who visit the page of the Alliance, as also the inner text serves to exclusive content only of the members of the Alliance, as enemy, allied coordenadadas, coordinates, etc.<br>Also in the settings, you can edit the image that's displayed from the Alliance and also you can s specify the text of the application. you can also change the name of the position of administrator, that is typically "Leader" or "founder"<br>"Dissolve Alliance" is the function that makes clear the Alliance. If you want to abandon the Alliance but do you want to delete, then do Give/Accept Alliance</p>
 BODY;
+$LNG['questions'][2][5]['title']	= 'Links';
+$LNG['questions'][2][5]['body']		= <<<BODY
+<h3>Where can I find more information?</h3>
+<p>German:<br>
+<a href="https://www.owiki.de/index.php/Aufbautaktik" target="_blank">Startingguide (german)</a><br>
+<a href="https://www.owiki.de/index.php/Miner" target="_blank">Playstyle: Miner (german)</a> <br>
+<a href="https://www.owiki.de/index.php/Raideraccount" target="_blank">Playstyle: Fleeter (german)</a> <br>
+<a href="https://www.owiki.de/index.php/Comber" target="_blank">Playstyle: Comber (german)</a> <br>
+<a href="https://www.owiki.de/index.php/Saven" target="_blank">Saving (german)</a></p>
+<p>English:<br>
+<a href="https://ogame.fandom.com/wiki/Quick_Start_Guide" target="_blank">Quick start guide</a><br>
+<a href="https://ogame.fandom.com/wiki/Playing_Styles" target="_blank">Playing Styles (Miner, Fleeter, Comber)</a><br>
+<a href="https://ogame.fandom.com/wiki/Fleetsaving" target="_blank">Saving</a></p>
+BODY;

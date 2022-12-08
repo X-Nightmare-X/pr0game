@@ -142,4 +142,5 @@ $LNG['disclamerLabelPhone']			= 'Num. de téléphone:';
 $LNG['disclamerLabelMail']			= 'Email support:';
 $LNG['disclamerLabelNotice']		= 'Plus d\'informations';
 
+$LNG['disclamerRecaptcha']          = 'Ce site utilise reCAPTCHA et les <a href="https://policies.google.com/privacy">Conditions de confidentialité</a> et <a href="https://policies.google.com/terms">Conditions d\'utilisation</a> de Google s\'appliquent.';
 ?>

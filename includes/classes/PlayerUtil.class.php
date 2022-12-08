@@ -111,6 +111,9 @@ class PlayerUtil
                 $avgPlanetsPerGala[] = $resultArray;
                 $i ++;
             }
+            for (; $i <= $config->max_galaxy; $i++) {
+                $avgPlanetsPerGala[] = ['galaxy' => $i, 'AvgPlanetsPerSys' => 0];
+            }
         }
 
         // get gala with min avg systems
@@ -153,6 +156,9 @@ class PlayerUtil
                 $systems[] = $resultArray;
                 $i ++;
             }
+            for (; $i <= $config->max_system; $i++) {
+                $systems[] = ['system' => $i, 'anz' => 0];
+            }
         }
 
         // get empty systems in selected gala
@@ -163,6 +169,9 @@ class PlayerUtil
                     $usableSystems[] = $sysArray['system'];
                 }
             }
+
+            $position = 0;
+            $system = 0;
 
             // find random system and random planet inside
             if (!empty($usableSystems)) {
