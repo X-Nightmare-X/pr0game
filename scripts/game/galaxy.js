@@ -137,7 +137,7 @@ function reset(){
 function syncsys(){
   universe[galakey]=systemdata;
   for(let pos in systemdata){
-    if(pos=="timepoint" || systemdata[pos]===null){
+    if(pos==="timepoint" || systemdata[pos]===null){
       continue
     }
     playerids[systemdata[pos].playerid]={name:systemdata[pos].name,timepoint:systemdata.timepoint}
@@ -178,4 +178,42 @@ function download(filename, text) {
   element.click();
 
   document.body.removeChild(element);
+}
+
+
+var keypressRegistered = false;
+document.addEventListener('keydown', logKey);
+
+function logKey(e) {
+  if (!keypressRegistered) {
+    console.log(e);
+    const callback = {
+      "a"  : leftHandler,
+      "ArrowLeft"  : leftHandler,
+      "d"  : rightHandler,
+      "ArrowRight" : rightHandler,
+      "w"    : upHandler,
+      "ArrowUp"    : upHandler,
+      "s"  : downHandler,
+      "ArrowDown"  : downHandler,
+    }[event.key]
+    callback?.()
+  }
+}
+
+function leftHandler(){
+  location.assign("javascript:galaxy_submit('systemLeft')");
+  keypressRegistered = true;
+}
+function rightHandler(){
+  location.assign("javascript:galaxy_submit('systemRight')");
+  keypressRegistered = true;
+}
+function upHandler(){
+  location.assign("javascript:galaxy_submit('galaxyLeft')");
+  keypressRegistered = true;
+}
+function downHandler(){
+  location.assign("javascript:galaxy_submit('galaxyRight')");
+  keypressRegistered = true;
 }
