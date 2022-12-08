@@ -437,7 +437,7 @@ class FlyingFleetsTable
                 $FleetClass = $Owner ? 'colorMission3Own' : 'colorMission3Foreign';
             } else if ($MissionType == MISSION_STATION) {
                 $FleetClass = $Owner ? 'colorMission4Own' : 'colorMission4Foreign';
-            } else if ($MissionType = MISSION_HOLD) {
+            } else if ($MissionType == MISSION_HOLD) {
                 $FleetClass = $Owner ? 'colorMission5Own' : 'colorMission5Foreign';
             } else if ($MissionType == MISSION_SPY) {
                 $FleetClass = $Owner ? 'colorMission6Own' : 'colorMission6Foreign';
@@ -451,9 +451,9 @@ class FlyingFleetsTable
                 $FleetClass = $Owner ? 'colorMission10Own' : 'colorMission10Foreign';
             } else if ($MissionType == MISSION_EXPEDITION) {
                 $FleetClass = $Owner ? 'colorMission15Own' : 'colorMission15Foreign';
-            } else if ($MissionType = MISSION_TRADE) {
+            } else if ($MissionType == MISSION_TRADE) {
                 $FleetClass = $Owner ? 'colorMission16Own' : 'colorMission16Foreign';
-            } else if ($MissionType = MISSION_TRANSFER) {
+            } else if ($MissionType == MISSION_TRANSFER) {
                 $FleetClass = $Owner ? 'colorMission17Own' : 'colorMission17Foreign';
             }
         } else {
