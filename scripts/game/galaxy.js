@@ -25,7 +25,8 @@ function galaxy_submit(value) {
 }
 
 const universe = GM_getValue("universe", {})
-
+const playerids = GM_getValue("playerids", {})
+const allyids = GM_getValue("allyids", {})
 function GM_getValue(key, defaultv) {
   let x = localStorage.getItem(key);
   if (x === null) {
@@ -67,23 +68,114 @@ function onChange_import(event) {
 }
 
 function onReaderLoad_import(event){
-  console.log(event.target.result);
-  var obj = JSON.parse(event.target.result);
-console.log(obj)
+  var ttl = JSON.parse(event.target.result);
+  let obj=ttl[0]
+  let pid=ttl[1]
+  let aid=ttl[2]
+  for(let k in obj){
+    if(k in universe ){
+      if(universe[k].timepoint<obj[k].timepoint){
+        universe[k]=obj[k]
+      }
+    }else{
+      universe[k]=obj[k]
+    }
+  }
+  for(let k in pid){
+    if(k in playerids ){
+      if(playerids[k].timepoint<pid[k].timepoint){
+        playerids[k]=pid[k]
+      }
+    }else{
+      playerids[k]=pid[k]
+    }
+  }
+  for(let k in aid){
+    if(k in allyids ){
+      if(allyids[k].timepoint<aid[k].timepoint){
+        allyids[k]=aid[k]
+      }
+    }else{
+      allyids[k]=aid[k]
+    }
+  }
+  GM_setValue("universe", universe)
+  GM_setValue("playerids", playerids)
+  GM_setValue("allyids", allyids)
 }
 function export_csv(){
-
-
+ let keys = Object.keys(universe)
+keys.sort(compareFn)
+  var outcsv=""
+  for(let k of keys){
+    for(let p=1;p<16;p++){
+      console.log(universe[k],k,universe[k][p]!==null,p)
+      if(universe[k][p]!==null){
+        let hasmoon = universe[k][p].hasmoon ? 'X' : ''
+        outcsv+=k+":"+p + "," + hasmoon + ","+ playerids[universe[k][p].playerid].name + "("+universe[k][p].playerid + ")"+
+          ","+ allyids[universe[k][p].allianceid].name +"("+ universe[k][p].allianceid +")," + universe[k][p].special + ",\n"
+      }
+    }
+  }
+  download("universe.csv",outcsv)
 }
 function export_json(){
-
+  download("universe.json",JSON.stringify([universe,playerids,allyids]))
 }
 function reset(){
-
+  if(confirm("delete data?")===false){
+    return;
+  }
+  Object.keys(universe).forEach(key => delete universe[key]);
+  Object.keys(playerids).forEach(key => delete playerids[key]);
+  Object.keys(allyids).forEach(key => delete allyids[key]);
+  GM_setValue("universe", universe)
+  GM_setValue("playerids", playerids)
+  GM_setValue("allyids", allyids)
 }
 
 function syncsys(){
   universe[galakey]=systemdata;
+  for(let pos in systemdata){
+    if(pos=="timepoint" || systemdata[pos]===null){
+      continue
+    }
+    playerids[systemdata[pos].playerid]={name:systemdata[pos].name,timepoint:systemdata.timepoint}
+    allyids[systemdata[pos].allianceid]={name:systemdata[pos].alliancename,timepoint:systemdata.timepoint}
+  }
   GM_setValue("universe", universe)
+  GM_setValue("playerids", playerids)
+  GM_setValue("allyids", allyids)
 
+}
+function compareFn(a, b) {
+  let spa=a.split(":")
+  let spb=b.split(":")
+  if (parseInt(spa[0])<parseInt(spb[0])) {
+    return -1;
+  }else{
+    if(spa[0]!==spb[0]){
+      return 1
+    }
+  }
+  if (parseInt(spa[1])<parseInt(spb[1])) {
+    return -1;
+  }else{
+    if(spa[1]!==spb[1]){
+      return 1
+    }
+  }
+  return 0;
+}
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
 }
