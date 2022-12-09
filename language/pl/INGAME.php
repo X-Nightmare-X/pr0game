@@ -17,7 +17,7 @@
 
 $LNG['Messages'] = 'Wiadomości';
 $LNG['write_message'] = 'Napisz wiadomość';
-
+$LNG['type_planet_short_3'] = 'M';
 $LNG['PM'] = '[PW]';
 $LNG['ready'] = 'Gotowe';
 

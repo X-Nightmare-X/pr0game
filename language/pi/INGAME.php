@@ -18,7 +18,7 @@ $LNG['write_message'] = 'Schreibe eine Nachricht';
 
 $LNG['PM'] = '[PN]';
 $LNG['ready'] = 'Fertig';
-
+$LNG['type_planet_short_3'] = 'M';
 $LNG['loading'] = 'Lade ...';
 $LNG['fleetPrio'] = 'Flotten Auftrag Priorität';
 $LNG['invalid_action'] = 'Ungültige Aktion!';

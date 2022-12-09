@@ -16,7 +16,7 @@
 // Translated into English by QwataKayean . All rights reversed (C) 2012
 // 2Moons - Copyright (C) 2010-2012 Slaver
 // Grammar Pedantry fixes @etaletai 2018
-
+$LNG['type_planet_short_3'] = 'M';
 $LNG['fleetPrio'] = 'Fleet order priority';
 $LNG['Messages'] = 'Messages';
 

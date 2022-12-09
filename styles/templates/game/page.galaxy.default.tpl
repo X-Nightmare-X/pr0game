@@ -236,5 +236,7 @@
 		status_ok		= '{$LNG.gl_ajax_status_ok}';
 		status_fail		= '{$LNG.gl_ajax_status_fail}';
 		MaxFleetSetting = {$settings_fleetactions};
+    const planetlng="{$LNG['bonus']['Planets']}"
+    const moonshortlng="{$LNG['type_planet_short_3']}"
 	</script>
 {/block}

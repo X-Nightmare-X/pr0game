@@ -110,7 +110,6 @@ function export_csv() {
   var outcsv = "coords,moon?,name,ally,status,\n"
   for (let k of keys) {
     for (let p = 1; p < 16; p++) {
-      console.log(universe[k], k, universe[k][p] !== null, p)
       if (universe[k][p] !== null) {
         let hasmoon = universe[k][p].hasmoon ? 'X' : ''
         outcsv += k + ":" + p + "," + hasmoon + "," + playerids[universe[k][p].playerid].name + "(" + universe[k][p].playerid + ")" +
@@ -154,14 +153,13 @@ function syncsys() {
 
 function showplayerinfos() {
   for (let username of document.getElementsByClassName(" galaxy-username")) {
-    console.log(username.getAttribute("playerid"),)
     annotatehover(username.getAttribute("playerid"), username.parentElement)
   }
 }
 
 function annotatehover(id, htmlobject) {
   let anostr = htmlobject.getAttribute("data-tooltip-content").replace("</table>", "")
-  anostr += "<tr><th colspan='2'>Planets</th></tr>"
+  anostr += "<tr><th colspan='2'>"+planetlng+"</th></tr>"
   let baseurl = location.href.split("?")[0] + "?page=galaxy&galaxy="
   let toshow = []
   for (let k in universe) {
@@ -172,7 +170,7 @@ function annotatehover(id, htmlobject) {
       if (universe[k][p].playerid == id) {
         let gala = k.split(":")[0]
         let sys = k.split(":")[1]
-        toshow.push([gala, sys, p, universe[k][p].hasmoon ? 'M' : ''])
+        toshow.push([gala, sys, p, universe[k][p].hasmoon ? moonshortlng : ''])
       }
     }
   }
@@ -238,7 +236,6 @@ document.addEventListener('keydown', logKey);
 
 function logKey(e) {
   if (!keypressRegistered) {
-    console.log(e);
     const callback = {
       "a": leftHandler,
       "ArrowLeft": leftHandler,
