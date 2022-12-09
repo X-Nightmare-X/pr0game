@@ -117,143 +117,245 @@
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_1_own}</td>
-			<td><input type="color" name="colorMission1Own" value="{$colors.colorMission1Own}"></td>
+			<td>
+				<input type="color" name="colorMission1Own" value="{$colors.colorMission1Own}" basecolor="{$defaultColors.colorMission1Own}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_2_own}</td>
-			<td><input type="color" name="colorMission2Own" value="{$colors.colorMission2Own}"></td>
+			<td>
+				<input type="color" name="colorMission2Own" value="{$colors.colorMission2Own}" basecolor="{$defaultColors.colorMission2Own}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_2_friend}</td>
-			<td><input type="color" name="colorMission2friend" value="{$colors.colorMission2friend}"></td>
+			<td>
+				<input type="color" name="colorMission2friend" value="{$colors.colorMission2friend}" basecolor="{$defaultColors.colorMission2friend}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_3_own}</td>
-			<td><input type="color" name="colorMission3Own" value="{$colors.colorMission3Own}"></td>
+			<td>
+				<input type="color" name="colorMission3Own" value="{$colors.colorMission3Own}" basecolor="{$defaultColors.colorMission3Own}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_4_own}</td>
-			<td><input type="color" name="colorMission4Own" value="{$colors.colorMission4Own}"></td>
+			<td>
+				<input type="color" name="colorMission4Own" value="{$colors.colorMission4Own}" basecolor="{$defaultColors.colorMission4Own}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_5_own}</td>
-			<td><input type="color" name="colorMission5Own" value="{$colors.colorMission5Own}"></td>
+			<td>
+				<input type="color" name="colorMission5Own" value="{$colors.colorMission5Own}" basecolor="{$defaultColors.colorMission5Own}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_6_own}</td>
-			<td><input type="color" name="colorMission6Own" value="{$colors.colorMission6Own}"></td>
+			<td>
+				<input type="color" name="colorMission6Own" value="{$colors.colorMission6Own}" basecolor="{$defaultColors.colorMission6Own}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_7_own}</td>
-			<td><input type="color" name="colorMission7Own" value="{$colors.colorMission7Own}"></td>
+			<td>
+				<input type="color" name="colorMission7Own" value="{$colors.colorMission7Own}" basecolor="{$defaultColors.colorMission7Own}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_7_own_return}</td>
-			<td><input type="color" name="colorMission7OwnReturn" value="{$colors.colorMission7OwnReturn}"></td>
+			<td>
+				<input type="color" name="colorMission7OwnReturn" value="{$colors.colorMission7OwnReturn}" basecolor="{$defaultColors.colorMission7OwnReturn}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		<tr>
 			<td>{$LNG.type_mission_8_own}</td>
-			<td><input type="color" name="colorMission8Own" value="{$colors.colorMission8Own}"></td>
+			<td>
+				<input type="color" name="colorMission8Own" value="{$colors.colorMission8Own}" basecolor="{$defaultColors.colorMission8Own}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_9_own}</td>
-			<td><input type="color" name="colorMission9Own" value="{$colors.colorMission9Own}"></td>
+			<td>
+				<input type="color" name="colorMission9Own" value="{$colors.colorMission9Own}" basecolor="{$defaultColors.colorMission9Own}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_10_own}</td>
-			<td><input type="color" name="colorMission10Own" value="{$colors.colorMission10Own}"></td>
+			<td>
+				<input type="color" name="colorMission10Own" value="{$colors.colorMission10Own}" basecolor="{$defaultColors.colorMission10Own}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_15_own}</td>
-			<td><input type="color" name="colorMission15Own" value="{$colors.colorMission15Own}"></td>
+			<td>
+				<input type="color" name="colorMission15Own" value="{$colors.colorMission15Own}" basecolor="{$defaultColors.colorMission15Own}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_16_own}</td>
-			<td><input type="color" name="colorMission16Own" value="{$colors.colorMission16Own}"></td>
+			<td>
+				<input type="color" name="colorMission16Own" value="{$colors.colorMission16Own}" basecolor="{$defaultColors.colorMission16Own}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_17_own}</td>
-			<td><input type="color" name="colorMission17Own" value="{$colors.colorMission17Own}"></td>
+			<td>
+				<input type="color" name="colorMission17Own" value="{$colors.colorMission17Own}" basecolor="{$defaultColors.colorMission17Own}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_return_own}</td>
-			<td><input type="color" name="colorMissionReturnOwn" value="{$colors.colorMissionReturnOwn}"></td>
+			<td>
+				<input type="color" name="colorMissionReturnOwn" value="{$colors.colorMissionReturnOwn}" basecolor="{$defaultColors.colorMissionReturnOwn}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<th colspan="2">{$LNG.foreign_colors}</th>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_1_foreign}</td>
-			<td><input type="color" name="colorMission1Foreign" value="{$colors.colorMission1Foreign}"></td>
+			<td>
+				<input type="color" name="colorMission1Foreign" value="{$colors.colorMission1Foreign}" basecolor="{$defaultColors.colorMission1Foreign}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_2_foreign}</td>
-			<td><input type="color" name="colorMission2Foreign" value="{$colors.colorMission2Foreign}"></td>
+			<td>
+				<input type="color" name="colorMission2Foreign" value="{$colors.colorMission2Foreign}" basecolor="{$defaultColors.colorMission2Foreign}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_3_foreign}</td>
-			<td><input type="color" name="colorMission3Foreign" value="{$colors.colorMission3Foreign}"></td>
+			<td>
+				<input type="color" name="colorMission3Foreign" value="{$colors.colorMission3Foreign}" basecolor="{$defaultColors.colorMission3Foreign}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_4_foreign}</td>
-			<td><input type="color" name="colorMission4Foreign" value="{$colors.colorMission4Foreign}"></td>
+			<td>
+				<input type="color" name="colorMission4Foreign" value="{$colors.colorMission4Foreign}" basecolor="{$defaultColors.colorMission4Foreign}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_5_foreign}</td>
-			<td><input type="color" name="colorMission5Foreign" value="{$colors.colorMission5Foreign}"></td>
+			<td>
+				<input type="color" name="colorMission5Foreign" value="{$colors.colorMission5Foreign}" basecolor="{$defaultColors.colorMission5Foreign}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_6_foreign}</td>
-			<td><input type="color" name="colorMission6Foreign" value="{$colors.colorMission6Foreign}"></td>
+			<td>
+				<input type="color" name="colorMission6Foreign" value="{$colors.colorMission6Foreign}" basecolor="{$defaultColors.colorMission6Foreign}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_7_foreign}</td>
-			<td><input type="color" name="colorMission7Foreign" value="{$colors.colorMission7Foreign}"></td>
+			<td>
+				<input type="color" name="colorMission7Foreign" value="{$colors.colorMission7Foreign}" basecolor="{$defaultColors.colorMission7Foreign}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 			<td>{$LNG.type_mission_8_foreign}</td>
-			<td><input type="color" name="colorMission8Foreign" value="{$colors.colorMission8Foreign}"></td>
+			<td>
+				<input type="color" name="colorMission8Foreign" value="{$colors.colorMission8Foreign}" basecolor="{$defaultColors.colorMission8Foreign}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_9_foreign}</td>
-			<td><input type="color" name="colorMission9Foreign" value="{$colors.colorMission9Foreign}"></td>
+			<td>
+				<input type="color" name="colorMission9Foreign" value="{$colors.colorMission9Foreign}" basecolor="{$defaultColors.colorMission9Foreign}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_10_foreign}</td>
-			<td><input type="color" name="colorMission10Foreign" value="{$colors.colorMission10Foreign}"></td>
+			<td>
+				<input type="color" name="colorMission10Foreign" value="{$colors.colorMission10Foreign}" basecolor="{$defaultColors.colorMission10Foreign}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_15_foreign}</td>
-			<td><input type="color" name="colorMission15Foreign" value="{$colors.colorMission15Foreign}"></td>
+			<td>
+				<input type="color" name="colorMission15Foreign" value="{$colors.colorMission15Foreign}" basecolor="{$defaultColors.colorMission15Foreign}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_16_foreign}</td>
-			<td><input type="color" name="colorMission16Foreign" value="{$colors.colorMission16Foreign}"></td>
+			<td>
+				<input type="color" name="colorMission16Foreign" value="{$colors.colorMission16Foreign}" basecolor="{$defaultColors.colorMission16Foreign}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_17_foreign}</td>
-			<td><input type="color" name="colorMission17Foreign" value="{$colors.colorMission17Foreign}"></td>
+			<td>
+				<input type="color" name="colorMission17Foreign" value="{$colors.colorMission17Foreign}" basecolor="{$defaultColors.colorMission17Foreign}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.type_mission_return_foreign}</td>
-			<td><input type="color" name="colorMissionReturnForeign" value="{$colors.colorMissionReturnForeign}"></td>
+			<td>
+				<input type="color" name="colorMissionReturnForeign" value="{$colors.colorMissionReturnForeign}" basecolor="{$defaultColors.colorMissionReturnForeign}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<th colspan="2">{$LNG.general_colors}</th>
 		</tr>
 		<tr>
 			<td>{$LNG.positiv}</td>
-			<td><input type="color" name="colorPositive" value="{$signalColors.colorPositive}"></td>
+			<td>
+				<input type="color" name="colorPositive" value="{$signalColors.colorPositive}" basecolor="{$defaultSignalColors.colorPositive}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.negativ}</td>
-			<td><input type="color" name="colorNegative" value="{$signalColors.colorNegative}"></td>
+			<td>
+				<input type="color" name="colorNegative" value="{$signalColors.colorNegative}" basecolor="{$defaultSignalColors.colorNegative}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.neutral}</td>
-			<td><input type="color" name="colorNeutral" value="{$signalColors.colorNeutral}"></td>
+			<td>
+				<input type="color" name="colorNeutral" value="{$signalColors.colorNeutral}" basecolor="{$defaultSignalColors.colorNeutral}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
 		<tr>
 			<td>{$LNG.StaticTimer}</td>
-			<td><input type="color" name="colorStaticTimer" value="{$colors.colorStaticTimer}"></td>
+			<td>
+				<input type="color" name="colorStaticTimer" value="{$colors.colorStaticTimer}" basecolor="{$defaultColors.colorStaticTimer}">
+				<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button">{$LNG['nt_reset']}</button>
+			</td>
 		</tr>
     <tr><th colspan="2">{$LNG.fleetPrio}</th></tr>
 

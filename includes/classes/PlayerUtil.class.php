@@ -1065,8 +1065,8 @@ class PlayerUtil
 
     public static function player_colors($USER = null)
     {
-        if (empty($USER)) {
-            [
+        if (!isset($USER)) {
+            return [
                 'colorMission2friend' => '#ff00ff',
 
                 'colorMission1Own' => '#66cc33',
@@ -1148,7 +1148,7 @@ class PlayerUtil
 
     public static function player_signal_colors($USER = null)
     {
-        if (empty($USER)) {
+        if (!isset($USER)) {
             return [
                 'colorPositive' => '#00ff00',
                 'colorNegative' => '#ff0000',
