@@ -60,9 +60,9 @@ class ShowIndexPage extends AbstractLoginPage
 		if (isset($_COOKIE['uni']) && !empty($_COOKIE['uni'])) {
 			$universeSelected = (int) $_COOKIE['uni'];
 		}
-
-        $config = Config::get();
-        $captchakey = $config->recaptchaPubKey;
+        $db = Database::get();
+        $sql = "SELECT count(*) FROM %%CONFIG%% WHERE recaptchaPubKey != ''";
+        $captchakey = $db->selectSingle($sql);
         $this->assign([
             'universeSelect'    => $universeSelect,
             'universeSelected'  => $universeSelected,

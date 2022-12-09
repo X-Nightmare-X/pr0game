@@ -61,7 +61,7 @@
 		</div>
 	</div> -->
 </section>
-{if $captchakey!=""}
+{if $captchakey!=0}
 	<p>{$LNG['disclamerRecaptcha']}</p>
 {/if}
 {/block}
