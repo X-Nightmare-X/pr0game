@@ -168,8 +168,8 @@ function annotatehover(id, htmlobject) {
         continue
       }
       if (universe[k][p].playerid == id) {
-        let gala = k.split(":")[0]
-        let sys = k.split(":")[1]
+        let gala = parseInt(k.split(":")[0])
+        let sys = parseInt(k.split(":")[1])
         toshow.push([gala, sys, p, universe[k][p].hasmoon ? moonshortlng : ''])
       }
     }
