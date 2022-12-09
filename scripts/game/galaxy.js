@@ -174,6 +174,7 @@ function annotatehover(id, htmlobject) {
       }
     }
   }
+  toshow.sort()
   let cgala = galakey.split(":")[0]
   let csys = galakey.split(":")[1]
   for (let coord of toshow) {
