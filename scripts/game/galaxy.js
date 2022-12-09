@@ -125,7 +125,7 @@ function export_json() {
 }
 
 function reset() {
-  if (confirm("delete data?") === false) {
+  if (confirm(confirmlng) === false) {
     return;
   }
   Object.keys(universe).forEach(key => delete universe[key]);

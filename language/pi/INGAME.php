@@ -15,7 +15,7 @@
 
 $LNG['Messages'] = 'Nachrichten';
 $LNG['write_message'] = 'Schreibe eine Nachricht';
-
+$LNG["delete_confirm_gala"] = 'Lokale Universumsdaten löschen?';
 $LNG['PM'] = '[PN]';
 $LNG['ready'] = 'Fertig';
 $LNG['type_planet_short_3'] = 'M';

@@ -20,7 +20,7 @@ $LNG['write_message'] = 'Escribir mensaje';
 $LNG['type_planet_short_3'] = 'M';
 $LNG['PM'] = '[MP]';
 $LNG['ready'] = 'Listo';
-
+$LNG["delete_confirm_gala"] = '¿Borrar datos del universo local?';
 $LNG['loading'] = 'Cargando ...';
 
 $LNG['invalid_action'] = 'Acción no valida!';

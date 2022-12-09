@@ -19,7 +19,7 @@
 $LNG['type_planet_short_3'] = 'M';
 $LNG['fleetPrio'] = 'Fleet order priority';
 $LNG['Messages'] = 'Messages';
-
+$LNG["delete_confirm_gala"] = 'Delete local universe data?';
 $LNG['PM'] = '[PM]';
 $LNG['write_message'] = 'Write message';
 

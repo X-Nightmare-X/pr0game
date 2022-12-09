@@ -12,6 +12,8 @@
  * @version 1.8.0
  * @link https://github.com/jkroepke/2Moons
  */
+$LNG["delete_confirm_gala"] = 'Lokale Universumsdaten löschen?';
+
 $LNG['type_planet_short_3'] = 'M';
 $LNG['Messages'] = 'Nachrichten';
 $LNG['write_message'] = 'Schreibe eine Nachricht';

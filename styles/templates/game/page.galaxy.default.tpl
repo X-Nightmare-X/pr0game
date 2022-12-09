@@ -238,5 +238,6 @@
 		MaxFleetSetting = {$settings_fleetactions};
     const planetlng="{$LNG['bonus']['Planets']}"
     const moonshortlng="{$LNG['type_planet_short_3']}"
+    const confirmlng="{$LNG["delete_confirm_gala"]}"
 	</script>
 {/block}

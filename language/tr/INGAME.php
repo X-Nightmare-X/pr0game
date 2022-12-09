@@ -25,7 +25,7 @@ $LNG['PM'] = '[O.M.]';
 $LNG['write_message'] = 'Mesaj Yaz';
 $LNG['ready'] = 'Bitti';
 $LNG['loading'] = 'yukleniyor ...';
-
+$LNG["delete_confirm_gala"] = 'Yerel evren verileri silinsin mi?';
 $LNG['invalid_action'] = 'Hata Olustu!!';
 
 $LNG['type_mission_1'] = 'Saldiri';
