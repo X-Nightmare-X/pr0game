@@ -23,12 +23,6 @@ if ($USER['authlevel'] == AUTH_USR)
 function ShowDumpPage()
 {
 	global $LNG, $USER;
-	if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
 	if(!isset($_POST['action'])) { $_POST['action'] = ''; }
 	switch($_POST['action'])
 	{
@@ -76,7 +70,7 @@ function ShowDumpPage()
 
 			$template->assign_vars(array(	
 				'dumpData'		=> $dumpData,
-				'signalColors' 	=> $signalColors
+				'signalColors' 	=> $USER['signalColors']
 			));
 			
 			$template->show('DumpPage.tpl');

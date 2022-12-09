@@ -26,12 +26,6 @@ function ShowUniversePage()
 
     $action     = HTTP::_GP('action', '');
     $universe   = HTTP::_GP('uniID', 0);
-    if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
     switch ($action) {
         case 'open':
             $config = Config::get($universe);
@@ -206,7 +200,7 @@ function ShowUniversePage()
     $template->assign_vars([
         'uniList'       => $uniList,
         'SID'           => session_id(),
-        'signalColors'  => $signalColors
+        'signalColors'  => $USER['signalColors']
     ]);
 
     $template->show('UniversePage.tpl');

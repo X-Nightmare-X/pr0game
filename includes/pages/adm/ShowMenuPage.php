@@ -19,15 +19,9 @@ function ShowMenuPage()
 {
 	global $USER;
 	$template	= new template();
-	if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
 	$template->assign_vars(array(	
 		'supportticks'	=> $GLOBALS['DATABASE']->getFirstCell("SELECT COUNT(*) FROM ".TICKETS." WHERE universe = ".Universe::getEmulated()." AND status = 0;"),
-		'signalColors'	=> $signalColors,
+		'signalColors'	=> $USER['signalColors'],
 	));
 	
 	$template->show('ShowMenuPage.tpl');

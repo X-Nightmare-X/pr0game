@@ -241,15 +241,15 @@
 		</tr>
 		<tr>
 			<td>{$LNG.positiv}</td>
-			<td><input type="color" name="colorPositive" value="{$colors.colorPositive}"></td>
+			<td><input type="color" name="colorPositive" value="{$signalColors.colorPositive}"></td>
 		</tr>
 		<tr>
 			<td>{$LNG.negativ}</td>
-			<td><input type="color" name="colorNegative" value="{$colors.colorNegative}"></td>
+			<td><input type="color" name="colorNegative" value="{$signalColors.colorNegative}"></td>
 		</tr>
 		<tr>
 			<td>{$LNG.neutral}</td>
-			<td><input type="color" name="colorNeutral" value="{$colors.colorNeutral}"></td>
+			<td><input type="color" name="colorNeutral" value="{$signalColors.colorNeutral}"></td>
 		</tr>
 		<tr>
 			<td>{$LNG.StaticTimer}</td>

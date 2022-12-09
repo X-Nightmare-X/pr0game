@@ -20,12 +20,6 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 function ShowDisclamerPage()
 {
 	global $LNG, $USER;
-	if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
 
 	$config = Config::get(Universe::getEmulated());
 
@@ -78,7 +72,7 @@ function ShowDisclamerPage()
 		'se_disclaimerPhone'	=> $LNG['se_disclaimerPhone'],
 		'se_disclaimerMail'		=> $LNG['se_disclaimerMail'],
 		'se_disclaimerNotice'	=> $LNG['se_disclaimerNotice'],
-		'signalColors'			=> $signalColors,
+		'signalColors'			=> $USER['signalColors'],
 	));
 	
 	$template->show('DisclamerConfigBody.tpl');

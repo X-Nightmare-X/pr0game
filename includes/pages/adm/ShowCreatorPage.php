@@ -22,12 +22,6 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 function ShowCreatorPage()
 {
     global $LNG, $USER;
-    if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
     $template   = new template();
 
     if (empty($_GET['mode'])) {
@@ -159,7 +153,7 @@ function ShowCreatorPage()
                 'lang_reg'              => $LNG['lang_reg'],
                 'new_title'             => $LNG['new_title'],
                 'Selector'              => ['auth' => $AUTH, 'lang' => $LNG->getAllowedLangs(false)],
-                'signalColors'          => $signalColors
+                'signalColors'          => $USER['signalColors']
             ]);
             $template->show('CreatePageUser.tpl');
             break;
@@ -212,7 +206,7 @@ function ShowCreatorPage()
                 'new_creator_refresh'   => $LNG['new_creator_refresh'],
                 'mo_moon'               => $LNG['fcm_moon'],
                 'new_creator_go_back'   => $LNG['new_creator_go_back'],
-                'signalColors'          => $signalColors
+                'signalColors'          => $USER['signalColors']
             ]);
 
             $template->show('CreatePageMoon.tpl');
@@ -283,7 +277,7 @@ function ShowCreatorPage()
                 'po_colony'             => $LNG['fcp_colony'],
                 'new_creator_refresh'   => $LNG['new_creator_refresh'],
                 'new_creator_go_back'   => $LNG['new_creator_go_back'],
-                'signalColors'          => $signalColors,
+                'signalColors'          => $USER['signalColors'],
             ]);
 
             $template->show('CreatePagePlanet.tpl');
@@ -294,7 +288,7 @@ function ShowCreatorPage()
                 'new_creator_title_p'   => $LNG['new_creator_title_p'],
                 'new_creator_title_l'   => $LNG['new_creator_title_l'],
                 'new_creator_title'     => $LNG['new_creator_title'],
-                'signalColors'          => $signalColors,
+                'signalColors'          => $USER['signalColors'],
             ]);
 
             $template->show('CreatePage.tpl');

@@ -20,16 +20,10 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 function ShowClearCachePage()
 {
 	global $LNG, $USER;
-	if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
 	ClearCache();
 	$template = new template();
 	$template->assign_vars(array(
-		'signalColors'	=> $signalColors
+		'signalColors'	=> $USER['signalColors']
 	));
 	$template->message($LNG['cc_cache_clear'],);
 }

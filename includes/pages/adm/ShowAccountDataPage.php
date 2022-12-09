@@ -24,14 +24,8 @@ function ShowAccountDataPage()
     global $USER, $reslist, $resource, $LNG;
 
     $template = new template();
-    if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
     $template->assign_vars([
-        'signalColors'  => $signalColors
+        'signalColors'  => $USER['signalColors']
     ]);
     $id_u = HTTP::_GP('id_u', 0);
     if (!empty($id_u)) {
