@@ -61,7 +61,7 @@ class MissionFunctions
                 $sql = 'UPDATE %%LOG_FLEETS%% SET 
                     fleet_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_owner AND stat_type = 1),
                     fleet_target_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_target_owner AND stat_type = 1)
-                    WHERE `fleet_id` = (SELECT fleet_id FROM %%FLEETS%% WHERE fleet_group = :acsId);';
+                    WHERE `fleet_id` IN (SELECT fleet_id FROM %%FLEETS%% WHERE fleet_group = :acsId);';
                 Database::get()->update($sql, [
                     ':fleet_owner'  => $this->_fleet['fleet_owner'],
                     ':fleet_target_owner'  => $this->_fleet['fleet_target_owner'],
