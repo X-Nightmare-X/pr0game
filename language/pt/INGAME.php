@@ -20,10 +20,10 @@
 // pelo Ministério da Educação de Portugal - convertido pelo Lince.
 
 // 2Moons - Copyright (C) 2012  Jan Kröpke
-
+$LNG['type_planet_short_3'] = 'L';
 $LNG['Messages'] = 'Mensagens';
 $LNG['write_message'] = 'Escrever mensagem';
-
+$LNG["delete_confirm_gala"] = 'Apagar dados do universo local?';
 $LNG['PM'] = '[MP]';
 $LNG['ready'] = 'Pronto';
 

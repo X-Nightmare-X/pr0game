@@ -15,10 +15,10 @@
 
 $LNG['Messages'] = 'Nachrichden';
 $LNG['write_message'] = 'Schreibe ne Nachricht';
-
+$LNG['type_planet_short_3'] = 'M';
 $LNG['PM'] = '[PN]';
 $LNG['ready'] = 'Ferdig';
-
+$LNG["delete_confirm_gala"] = 'Logale Unifersumsdadne löschne Hä?';
 $LNG['loading'] = 'Lade ...';
 $LNG['fleetPrio'] = 'Flodden Auftrag Prioritätene';
 $LNG['invalid_action'] = 'Ungüldige Agtion';

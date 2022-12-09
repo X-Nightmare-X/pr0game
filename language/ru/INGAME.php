@@ -16,14 +16,14 @@
  */
 
 // Translation into Russian - Copyright © 2010-2013 InquisitorEA <support@moon-hunt.ru>
-
+$LNG['type_planet_short_3'] = 'Л';
 $LNG['Messages'] = 'Сообщения';
 $LNG['write_message'] = 'Написать сообщение';
 $LNG['PM'] = '[ЛС]';
 $LNG['ready'] = 'Готово';
 $LNG['loading'] = 'Загрузка...';
 $LNG['invalid_action'] = 'Недопустимое действие.';
-
+$LNG["delete_confirm_gala"] = 'Удалить данные локальной вселенной?';
 $LNG['type_mission_1'] = 'Атака';
 $LNG['type_mission_2'] = 'Совместная атака';
 $LNG['type_mission_3'] = 'Транспорт';

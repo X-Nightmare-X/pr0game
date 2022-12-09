@@ -6,10 +6,10 @@
 // Version 1.1 - Decode accent HTML to UTF-8 format & small spellchecking
 
 $LNG['Messages'] = 'Messages';
-
+$LNG['type_planet_short_3'] = 'L';
 $LNG['PM'] = '[PM]';
 $LNG['write_message'] = 'Rédiger un message';
-
+$LNG["delete_confirm_gala"] = "Effacer les données de l'univers local ?";
 $LNG['ready'] = 'Prêt';
 
 $LNG['loading'] = 'Chargement ...';
