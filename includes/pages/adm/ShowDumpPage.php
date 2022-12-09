@@ -44,7 +44,7 @@ function ShowDumpPage()
 			
 			$template	= new template();
 			$template->assign_vars([
-				'signalColors' => $signalColors
+				'signalColors' => $USER['signalColors']
 			]);
 			$template->message(sprintf($LNG['du_success'], 'includes/backups/'.$fileName));
 			break;
