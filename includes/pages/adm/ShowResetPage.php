@@ -22,12 +22,6 @@ if ($USER['id'] != ROOT_USER || $_GET['sid'] != session_id()) {
 function ShowResetPage()
 {
     global $LNG, $reslist, $resource, $USER;
-    if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
     $template = new template();
     $config = Config::get(Universe::getEmulated());
 
@@ -221,7 +215,7 @@ function ShowResetPage()
             );
         }
         $template->assign_vars([
-            'signalColors' => $signalColors
+            'signalColors' => $USER['signalColors']
         ]);
         $template->message($LNG['re_reset_excess'], '?page=reset&sid=' . session_id(), 3);
         exit;
@@ -259,7 +253,7 @@ function ShowResetPage()
         're_reset_player'                   => $LNG['re_reset_player'],
         're_player_and_planets'             => $LNG['re_player_and_planets'],
         're_general'                        => $LNG['re_general'],
-        'signalColors'                      => $signalColors,
+        'signalColors'                      => $USER['signalColors'],
     ]);
 
     $template->show('ResetPage.tpl');

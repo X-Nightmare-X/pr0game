@@ -20,12 +20,6 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowSendMessagesPage() {
 	global $USER, $LNG;
-	if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
 	$ACTION	= HTTP::_GP('action', '');
 	if ($ACTION == 'send')
 	{
@@ -98,7 +92,7 @@ function ShowSendMessagesPage() {
 	$template->assign_vars(array(
 		'langSelector' 	=> array_merge(array('' => $LNG['ma_all']), $LNG->getAllowedLangs(false)),
 		'modes' 		=> $sendModes,
-		'signalColors' 	=> $signalColors,
+		'signalColors' 	=> $USER['signalColors'],
 	));
 	$template->show('SendMessagesPage.tpl');
 }

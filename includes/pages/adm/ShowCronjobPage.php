@@ -182,12 +182,6 @@ function ShowCronjobOverview()
     if (!$data) {
         $template->message($LNG['cronjob_no_data']);
     }
-    if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
     $CronjobArray = [];
     while ($CronjobRow = $GLOBALS['DATABASE']->fetch_array($data)) {
         $cronjobLogLastExecSql = "SELECT MAX(`executionTime`) AS lastExecution FROM " . CRONJOBS_LOG
@@ -215,7 +209,7 @@ function ShowCronjobOverview()
     $template   = new template();
     $template->assign_vars([
         'CronjobArray' => $CronjobArray,
-        'signalColors' => $signalColors
+        'signalColors' => $USER['signalColors']
     ]);
     $template->show("CronjobOverview.tpl");
 }
@@ -223,12 +217,6 @@ function ShowCronjobOverview()
 function ShowCronjobDetail($detail, $error_msg = null)
 {
     global $USER;
-    if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
     $template   = new template();
 
 
@@ -266,7 +254,7 @@ function ShowCronjobDetail($detail, $error_msg = null)
             ),
             'class'         => isset($_POST['class']) ? HTTP::_GP('class', '') : $CronjobRow['class'],
             'error_msg'     => $error_msg,
-            'signalColors'  => $signalColors
+            'signalColors'  => $USER['signalColors']
         ]);
     } else {
         $template->assign_vars([
@@ -279,7 +267,7 @@ function ShowCronjobDetail($detail, $error_msg = null)
             'dow'           => isset($_POST['dow_all']) ? [0 => '*'] : HTTP::_GP('dow', []),
             'class'         => HTTP::_GP('class', ''),
             'error_msg'     => $error_msg,
-            'signalColors'  => $signalColors
+            'signalColors'  => $USER['signalColors']
         ]);
     }
     $template->show("CronjobDetail.tpl");

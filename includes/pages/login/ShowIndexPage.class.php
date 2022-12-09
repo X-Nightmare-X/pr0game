@@ -60,9 +60,9 @@ class ShowIndexPage extends AbstractLoginPage
 		if (isset($_COOKIE['uni']) && !empty($_COOKIE['uni'])) {
 			$universeSelected = (int) $_COOKIE['uni'];
 		}
-
-        $config = Config::get();
-        $captchakey = $config->recaptchaPubKey;
+        $db = Database::get();
+        $sql = "SELECT count(*) as count FROM %%CONFIG%% WHERE recaptchaPubKey != ''";
+        $countcaptchakey = $db->selectSingle($sql, [], 'count');
         $this->assign([
             'universeSelect'    => $universeSelect,
             'universeSelected'  => $universeSelected,
@@ -71,7 +71,7 @@ class ShowIndexPage extends AbstractLoginPage
             'descText'          => sprintf($LNG['loginServerDesc'], $config->game_name),
             'gameInformations'  => explode("\n", $LNG['gameInformations']),
             'loginInfo'         => sprintf($LNG['loginInfo'], '<a href="index.php?page=rules&lang=' . ($GLOBALS['_COOKIE']['lang'] ?? 'de') . '">' . $LNG['menu_rules'] . '</a>'),
-            'captchakey'        => $captchakey,
+            'countcaptchakey'   => $countcaptchakey,
         ]);
 
 

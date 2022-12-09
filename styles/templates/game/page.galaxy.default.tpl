@@ -9,35 +9,36 @@
 					<tr>
 						<th colspan="3">{$LNG.gl_galaxy}</th>
 					</tr>
-					<tr>
-						<td><input type="button" name="galaxyLeft" value="&lt;-" onclick="galaxy_submit('galaxyLeft')"></td>
-						<td><input type="number" name="galaxy" value="{$galaxy}" size="5" maxlength="3" tabindex="1" style="max-width: 4em;"></td>
-						<td><input type="button" name="galaxyRight" value="-&gt;" onclick="galaxy_submit('galaxyRight')"></td>
-					</tr>
-				</table>
-			</td>
-			<td class="transparent">
-				<table>
-					<tr>
-						<th colspan="3">{$LNG.gl_solar_system}</th>
-					</tr>
-					<tr>
-						<td><input type="button" name="systemLeft" value="&lt;-" onclick="galaxy_submit('systemLeft')"></td>
-						<td><input type="number" name="system" value="{$system}" size="5" maxlength="3" tabindex="2" style="max-width: 4em;"></td>
-						<td><input type="button" name="systemRight" value="-&gt;" onclick="galaxy_submit('systemRight')"></td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-		<tr>
-			<td style="background-color:transparent;border:0px;" colspan="2">
-				<input type="submit" value="{$LNG.gl_show}">
-			</td>
-		</tr>
-	</table>
-	</form>
-	{if $action == 'sendMissle'}
-    <form action="?page=fleetMissile" method="post">
+      <tr>
+        <td><input type="button" name="galaxyLeft" value="&lt;-" onclick="galaxy_submit('galaxyLeft')"></td>
+        <td><input type="number" name="galaxy" value="{$galaxy}" size="5" maxlength="3" tabindex="1" style="max-width: 4em;"></td>
+        <td><input type="button" name="galaxyRight" value="-&gt;" onclick="galaxy_submit('galaxyRight')"></td>
+      </tr>
+      </table>
+      </td>
+      <td class="transparent">
+        <table>
+          <tr>
+            <th colspan="3">{$LNG.gl_solar_system}</th>
+          </tr>
+          <tr>
+            <td><input type="button" name="systemLeft" value="&lt;-" onclick="galaxy_submit('systemLeft')"></td>
+            <td><input type="number" name="system" value="{$system}" size="5" maxlength="3" tabindex="2" style="max-width: 4em;"></td>
+            <td><input type="button" name="systemRight" value="-&gt;" onclick="galaxy_submit('systemRight')"></td>
+          </tr>
+        </table>
+      </td>
+      </tr>
+      <tr>
+        <td style="background-color:transparent;border:0px;" colspan="2">
+          <input type="submit" value="{$LNG.gl_show}">
+          <input type="button" value="Sync" id="gala_sync">
+        </td>
+      </tr>
+      </table>
+    </form>
+    {if $action == 'sendMissle'}
+      <form action="?page=fleetMissile" method="post">
 	<input type="hidden" name="galaxy" value="{$galaxy}">
 	<input type="hidden" name="system" value="{$system}">
 	<input type="hidden" name="planet" value="{$planet}">
@@ -129,10 +130,10 @@
         {/if}
 		</td>
 		<td>
-			<a class="tooltip_sticky" data-tooltip-content="<table style='width:240px'><tr><th colspan='2'>{$currentPlanet.user.playerrank}</th></tr><tr>{if !$currentPlanet.ownPlanet}{if !$currentPlanet.user.isBuddy}<tr><td><a href='#' onclick='return Dialog.Buddy({$currentPlanet.user.id})'>{$LNG.gl_buddy_request}</a></td></tr>{/if}<tr><td><a href='#' onclick='return Dialog.Playercard({$currentPlanet.user.id});'>{$LNG.gl_playercard}</a></td></tr>{/if}<tr><td><a href='?page=statistics&amp;who=1&amp;start={$currentPlanet.user.rank}'>{$LNG.gl_see_on_stats}</a></td></tr></table>">
-				<span class="{foreach $currentPlanet.user.class as $class}{if !$class@first} {/if}galaxy-username-{$class}{/foreach} galaxy-username{if $currentPlanet.user.isBuddy} galaxy-friend{/if}">{$currentPlanet.user.username}</span>
-				{if $currentPlanet.user.is_leader}<a style="color:yellow" class="tooltip" data-tooltip-content="<table width='100%'><tr><th colspan='2' style='text-align:center;'>{$currentPlanet.user.ally_owner_range}</th></tr><tr><td class='transparent'>{$currentPlanet.alliance.name}</td></tr></table>"><i class="fas fa-trophy"></i></a>{/if} 
-				{if $currentPlanet.user.is_diplo}<a style="color:orange" class="tooltip" data-tooltip-content="<table width='100%'><tr><th colspan='2' style='text-align:center;'>{$LNG.al_rank_diplo}</th></tr><tr><td class='transparent'>{$currentPlanet.alliance.name}</td></tr></table>"><i class="fas fa-handshake"></i></a>{/if}		
+			<a class="tooltip_sticky" data-tooltip-content="<table style='width:240px'><tr><th colspan='2'>{$currentPlanet.user.playerrank}</th></tr><tr>{if !$currentPlanet.ownPlanet}{if !$currentPlanet.user.isBuddy}<tr><td><a href='#' onclick='return Dialog.Buddy({$currentPlanet.user.id})'>{$LNG.gl_buddy_request}</a></td></tr>{/if}<tr><td><a href='#' playerid='{$currentPlanet.user.id}' onclick='return Dialog.Playercard({$currentPlanet.user.id});'>{$LNG.gl_playercard}</a></td></tr>{/if}<tr><td><a href='?page=statistics&amp;who=1&amp;start={$currentPlanet.user.rank}'>{$LNG.gl_see_on_stats}</a></td></tr></table>">
+				<span playerid='{$currentPlanet.user.id}' class="{foreach $currentPlanet.user.class as $class}{if !$class@first} {/if}galaxy-username-{$class}{/foreach} galaxy-username{if $currentPlanet.user.isBuddy} galaxy-friend{/if}">{$currentPlanet.user.username}</span>
+				{if $currentPlanet.user.is_leader}<a style="color:yellow" class="tooltip" data-tooltip-content="<table width='100%'><tr><th colspan='2' style='text-align:center;'>{$currentPlanet.user.ally_owner_range}</th></tr><tr><td class='transparent'>{$currentPlanet.alliance.name}</td></tr></table>"><i class="fas fa-trophy"></i></a>{/if}
+				{if $currentPlanet.user.is_diplo}<a style="color:orange" class="tooltip" data-tooltip-content="<table width='100%'><tr><th colspan='2' style='text-align:center;'>{$LNG.al_rank_diplo}</th></tr><tr><td class='transparent'>{$currentPlanet.alliance.name}</td></tr></table>"><i class="fas fa-handshake"></i></a>{/if}
 				{if !empty($currentPlanet.user.class)}
 				<span>(</span>{foreach $currentPlanet.user.class as $class}{if !$class@first}&nbsp;{/if}<span class="galaxy-short-{$class} galaxy-short">{$ShortStatus.$class}</span>{/foreach}<span>)</span>
 				{/if}
@@ -140,7 +141,7 @@
 		</td>
 		<td style="white-space: nowrap;">
 			{if $currentPlanet.alliance}
-			<a class="tooltip_sticky" data-tooltip-content="<table style='width:240px'><tr><th>{$LNG.gl_alliance} {$currentPlanet.alliance.name} {$currentPlanet.alliance.member}</th></tr><td><table><tr><td><a href='?page=alliance&amp;mode=info&amp;id={$currentPlanet.alliance.id}'>{$LNG.gl_alliance_page}</a></td></tr><tr><td><a href='?page=statistics&amp;start={$currentPlanet.alliance.rank}&amp;who=2'>{$LNG.gl_see_on_stats}</a></td></tr>{if $currentPlanet.alliance.web}<tr><td><a href='{$currentPlanet.alliance.web}' target='allyweb'>{$LNG.gl_alliance_web_page}</td></tr>{/if}</table></td></table>">
+			<a allyid={$currentPlanet.alliance.id} class="tooltip_sticky" data-tooltip-content="<table style='width:240px'><tr><th>{$LNG.gl_alliance} {$currentPlanet.alliance.name} {$currentPlanet.alliance.member}</th></tr><td><table><tr><td><a href='?page=alliance&amp;mode=info&amp;id={$currentPlanet.alliance.id}'>{$LNG.gl_alliance_page}</a></td></tr><tr><td><a href='?page=statistics&amp;start={$currentPlanet.alliance.rank}&amp;who=2'>{$LNG.gl_see_on_stats}</a></td></tr>{if $currentPlanet.alliance.web}<tr><td><a href='{$currentPlanet.alliance.web}' target='allyweb'>{$LNG.gl_alliance_web_page}</td></tr>{/if}</table></td></table>">
 				<span class="{foreach $currentPlanet.alliance.class as $class}{if !$class@first} {/if}galaxy-alliance-{$class}{/foreach} galaxy-alliance">{$currentPlanet.alliance.tag}</span>
 			</a>
 			{else}-{/if}
@@ -194,13 +195,49 @@
 			<span id="elementID209">{number_format($recyclers, 0, ",", ".")}</span> {$LNG.gl_avaible_recyclers}
 		</td>
 	</tr>
+    <tr>
+      <td colspan="2"><button id="gala_exportjson">Export JSON</button></td>
+      <td colspan="2"><button id="gala_exportcsv">Export CSV</button></td>
+      <td colspan="2">Import JSON: <input id="gala_upload" type="file" accept=".json"></td>
+      <td colspan="2"><button id="gala_reset">reset data</button></td>
+    </tr>
 	<tr style="display: none;" id="fleetstatusrow">
 		<th colspan="8">{$LNG.cff_fleet_target}</th>
 	</tr>
 	</table>
+  <script>
+    const galakey="{$galaxy}:{$system}"
+    const systemdata={
+    {for $planet=1 to $max_planets}
+        {if !isset($GalaxyRows[$planet])}
+        {$planet}:null,
+        {elseif $GalaxyRows[$planet].destroyed == true}
+        {$planet}:null,
+        {else}
+        {$currentPlanet = $GalaxyRows[$planet]}
+        {$planet}: {
+          planetname: "{$currentPlanet.planet.name}",
+          hasmoon: {if $currentPlanet.moon}true{else}false{/if},
+          playerid: {$currentPlanet.user.id},
+          name: "{$currentPlanet.user.username}",
+            {if $currentPlanet.alliance}
+          allianceid:{$currentPlanet.alliance.id},
+          alliancename:"{$currentPlanet.alliance.name}",{else}
+          allianceid: -1,
+          alliancename: "-",{/if}
+          special:{if !empty($currentPlanet.user.class)}"{foreach $currentPlanet.user.class as $class}{$ShortStatus.$class}{/foreach}"{else}""{/if},
+        },
+        {/if}
+    {/for}
+      timepoint : Date.now(),
+    }
+  </script>
 	<script type="text/javascript">
 		status_ok		= '{$LNG.gl_ajax_status_ok}';
 		status_fail		= '{$LNG.gl_ajax_status_fail}';
 		MaxFleetSetting = {$settings_fleetactions};
+    const planetlng="{$LNG['bonus']['Planets']}"
+    const moonshortlng="{$LNG['type_planet_short_3']}"
+    const confirmlng="{$LNG["delete_confirm_gala"]}"
 	</script>
 {/block}

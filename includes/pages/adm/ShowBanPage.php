@@ -21,12 +21,6 @@ function ShowBanPage()
 {
 	$db = Database::get();
 	global $LNG, $USER;
-	if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
 	if(!isset($_GET['order'])) { $_GET['order'] = ''; }
 	$ORDER = $_GET['order'] == 'id' ? "id" : "username";
 	$WHEREBANA = "";
@@ -62,7 +56,7 @@ function ShowBanPage()
 
 	$template	= new template();
 	$template->assign_vars([
-		'signalColors'      => $signalColors,
+		'signalColors'      => $USER['signalColors'],
 	]);
 	$template->loadscript('filterlist.js');
 

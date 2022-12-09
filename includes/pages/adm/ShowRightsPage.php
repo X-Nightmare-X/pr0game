@@ -22,18 +22,12 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 function ShowRightsPage()
 {
     global $LNG, $USER;
-    if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
     $mode   = HTTP::_GP('mode', '');
     switch ($mode) {
         case 'rights':
             $template   = new template();
             $template->assign_vars([
-                'signalColors' => $signalColors
+                'signalColors' => $USER['signalColors']
             ]);
             $template->loadscript('filterlist.js');
 
@@ -144,9 +138,6 @@ function ShowRightsPage()
             break;
         case 'users':
             $template   = new template();
-            $template->assign_vars([
-                'signalColors' => $signalColors
-            ]);
             $template->loadscript('filterlist.js');
 
             if ($_POST) {
@@ -209,6 +200,7 @@ function ShowRightsPage()
                 'ad_authlevel_jj'           => $LNG['ad_authlevel_jj'],
                 'ad_authlevel_tt'           => $LNG['ad_authlevel_tt'],
                 'sid'                       => session_id(),
+                'signalColors'              => $USER['signalColors']
             ]);
 
             $template->show('ModerrationUsersPage.tpl');
