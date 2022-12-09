@@ -25,12 +25,6 @@ function ShowAccountEditorPage()
 {
     global $LNG, $reslist, $resource, $USER;
     $template = new template();
-    if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
     if(!isset($_GET['edit'])) { $_GET['edit'] = ''; }
     switch ($_GET['edit']) {
         case 'resources':
@@ -87,7 +81,7 @@ function ShowAccountEditorPage()
                     $LOG->save();
                 }
                 $template->assign_vars([
-                    'signalColors'      => $signalColors,
+                    'signalColors'      => $USER['signalColors'],
                 ]);
                 if ($_POST['add']) {
                     $template->message($LNG['ad_add_res_sucess'], '?page=accounteditor&edit=resources');
@@ -98,7 +92,7 @@ function ShowAccountEditorPage()
             }
 
             $template->assign_vars([
-                'signalColors'      => $signalColors,
+                'signalColors'      => $USER['signalColors'],
             ]);
             $template->show('AccountEditorPageResources.tpl');
             break;
@@ -150,7 +144,7 @@ function ShowAccountEditorPage()
                 $LOG->new = $after;
                 $LOG->save();
                 $template->assign_vars([
-                    'signalColors'      => $signalColors,
+                    'signalColors'      => $USER['signalColors'],
                 ]);
                 if ($_POST['add']) {
                     $template->message($LNG['ad_add_ships_sucess'], '?page=accounteditor&edit=ships');
@@ -169,7 +163,7 @@ function ShowAccountEditorPage()
 
             $template->assign_vars([
                 'inputlist'     => $INPUT,
-                'signalColors'  => $signalColors,
+                'signalColors'  => $USER['signalColors'],
             ]);
 
             $template->show('AccountEditorPageShips.tpl');
@@ -222,7 +216,7 @@ function ShowAccountEditorPage()
                 $LOG->new = $after;
                 $LOG->save();
                 $template->assign_vars([
-                    'signalColors'      => $signalColors,
+                    'signalColors'      => $USER['signalColors'],
                 ]);
                 if ($_POST['add']) {
                     $template->message($LNG['ad_add_defenses_success'], '?page=accounteditor&edit=defenses');
@@ -238,7 +232,7 @@ function ShowAccountEditorPage()
 
             $template->assign_vars([
                 'inputlist' => $INPUT,
-                'signalColors'  => $signalColors
+                'signalColors'  => $USER['signalColors']
             ]);
 
             $template->show('AccountEditorPageDefenses.tpl');
@@ -300,7 +294,7 @@ function ShowAccountEditorPage()
                 $LOG->new = $after;
                 $LOG->save();
                 $template->assign_vars([
-                    'signalColors'      => $signalColors,
+                    'signalColors'      => $USER['signalColors'],
                 ]);
                 if ($_POST['add']) {
                     $template->message($LNG['ad_add_build_success'], '?page=accounteditor&edit=buildings');
@@ -316,7 +310,7 @@ function ShowAccountEditorPage()
 
             $template->assign_vars([
                 'inputlist' => $INPUT,
-                'signalColors'  => $signalColors
+                'signalColors'  => $USER['signalColors']
             ]);
 
             $template->show('AccountEditorPageBuilds.tpl');
@@ -368,7 +362,7 @@ function ShowAccountEditorPage()
                 $LOG->new = $after;
                 $LOG->save();
                 $template->assign_vars([
-                    'signalColors'      => $signalColors,
+                    'signalColors'      => $USER['signalColors'],
                 ]);
                 if ($_POST['add']) {
                     $template->message($LNG['ad_add_tech_success'], '?page=accounteditor&edit=researchs');
@@ -384,7 +378,7 @@ function ShowAccountEditorPage()
 
             $template->assign_vars([
                 'inputlist'     => $INPUT,
-                'signalColors'  => $signalColors
+                'signalColors'  => $USER['signalColors']
             ]);
 
             $template->show('AccountEditorPageResearch.tpl');
@@ -449,7 +443,7 @@ function ShowAccountEditorPage()
                 $LOG->new = $after;
                 $LOG->save();
                 $template->assign_vars([
-                    'signalColors'      => $signalColors,
+                    'signalColors'      => $USER['signalColors'],
                 ]);
                 $template->message($LNG['ad_personal_succes'], '?page=accounteditor&edit=personal');
                 exit;
@@ -457,7 +451,7 @@ function ShowAccountEditorPage()
 
             $template->assign_vars([
                 'Selector'      => ['' => $LNG['select_option'], 'yes' => $LNG['one_is_no_1'], 'no' => $LNG['one_is_no_0']],
-                'signalColors'  => $signalColors
+                'signalColors'  => $USER['signalColors']
             ]);
 
             $template->show('AccountEditorPagePersonal.tpl');
@@ -587,7 +581,7 @@ function ShowAccountEditorPage()
                             )
                         ) {
                             $template->assign_vars([
-                                'signalColors'      => $signalColors,
+                                'signalColors'      => $USER['signalColors'],
                             ]);
                             $template->message($LNG['ad_pla_error_planets5'], '?page=accounteditor&edit=planets');
                             exit;
@@ -626,13 +620,13 @@ function ShowAccountEditorPage()
                     }
                 }
                 $template->assign_vars([
-                    'signalColors'      => $signalColors,
+                    'signalColors'      => $USER['signalColors'],
                 ]);
                 $template->message($LNG['ad_pla_succes'], '?page=accounteditor&edit=planets');
                 exit;
             }
             $template->assign_vars([
-                'signalColors'      => $signalColors,
+                'signalColors'      => $USER['signalColors'],
             ]);
             $template->show('AccountEditorPagePlanets.tpl');
             break;
@@ -716,20 +710,20 @@ function ShowAccountEditorPage()
                 }
 
                 $template->assign_vars([
-                    'signalColors'      => $signalColors,
+                    'signalColors'      => $USER['signalColors'],
                 ]);
                 $template->message($LNG['ad_ally_succes'], '?page=accounteditor&edit=alliances');
                 exit;
             }
             $template->assign_vars([
-                'signalColors'      => $signalColors,
+                'signalColors'      => $USER['signalColors'],
             ]);
             $template->show('AccountEditorPageAlliance.tpl');
             break;
 
         default:
             $template->assign_vars([
-                'signalColors'      => $signalColors,
+                'signalColors'      => $USER['signalColors'],
             ]);
             $template->show('AccountEditorPageMenu.tpl');
             break;

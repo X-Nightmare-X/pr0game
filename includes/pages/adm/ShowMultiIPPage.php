@@ -20,12 +20,6 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 function ShowMultiIPPage()
 {
 	global $LNG, $USER;
-	if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
 
 	if(!isset($_GET['action'])) { $_GET['action'] = ''; }
 	switch($_GET['action'])
@@ -54,7 +48,7 @@ function ShowMultiIPPage()
 	$template	= new template();
 	$template->assign_vars(array(
 		'multiGroups'	=> $IPs,
-		'signalColors'	=> $signalColors,
+		'signalColors'	=> $USER['signalColors'],
 	));
 	$template->show('MultiIPs.tpl');
 }

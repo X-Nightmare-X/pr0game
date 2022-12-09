@@ -110,7 +110,9 @@ date_default_timezone_set($config->timezone);
 if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     $session    = Session::load();
 
-    if (!(!$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME')) {
+    $raportWithoutSession = !$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME';
+
+    if (!$raportWithoutSession) {
         if (!$session->isValidSession()) {
             $session->delete();
             HTTP::redirectTo('index.php?code=3');
@@ -127,7 +129,6 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
 
     $db     = Database::get();
 
-
     $sql    = "SELECT
 	user.*, s.total_points,
 	COUNT(message.message_id) as messages
@@ -137,28 +138,27 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
 	WHERE user.id = :userId
 	GROUP BY message.message_owner;";
 
-
     $USER   = $db->selectSingle($sql, array(
         ':statTypeUser'     => 1,
         ':unread'           => 1,
         ':userId'           => $session->userId
     ));
 
-    if (!$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME') {
+    if ($raportWithoutSession) {
         if (empty($USER)) {
             $USER = [];
         }
 
         $USER['lang'] = 'en';
         $USER['bana'] = 0;
-        $USER['timezone'] = "Europe/Berlin";
+        $USER['timezone'] = $config->timezone;
         $USER['urlaubs_modus'] = 0;
         $USER['authlevel'] = 0;
         $USER['id'] = 0;
+        $USER['signalColors'] = PlayerUtil::player_signal_colors();
+        $USER['colors'] = PlayerUtil::player_colors();
     }
-
-
-    if (!(!$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME')) {
+    else {
         if (empty($USER)) {
             HTTP::redirectTo('index.php?code=3');
         } else {
@@ -170,6 +170,9 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
                 $USER['bana'] = 0;
                 $USER['banaday'] = 0;
             }
+
+            $USER['signalColors'] = PlayerUtil::player_signal_colors($USER);
+            $USER['colors'] = PlayerUtil::player_colors($USER);
         }
     }
 
@@ -183,7 +186,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
         ShowErrorPage::printError("<font size=\"6px\">" . $LNG['css_account_banned_message'] . "</font><br><br>" . sprintf($LNG['css_account_banned_expire'], _date($LNG['php_tdformat'], $USER['banaday'], $USER['timezone'])) . "<br><br>" . $LNG['css_goto_homeside'], false);
     }
 
-    if (!(!$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME')) {
+    if (!$raportWithoutSession) {
         if (MODE === 'INGAME') {
             $universeAmount = count(Universe::availableUniverses());
             if (Universe::current() != $USER['universe'] && $universeAmount > 1) {
@@ -228,7 +231,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     $privKey = $config->recaptchaPrivKey;
     $rcaptcha = HTTP::_GP('rcaptcha', '');
 
-    if(isset($privKey) && isset($rcaptcha)){
+    if (isset($privKey) && isset($rcaptcha)) {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -239,7 +242,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
         $arrResponse = json_decode($response, true);
         $sql = "insert into %%RECAPTCHA%% (userId, success, time, score, url) VALUES (:userId, :success, :time, :score, :url);";
         
-        if($arrResponse['success'] == true){
+        if ($arrResponse['success'] == true) {
             $db->insert($sql, array(
                 ':userId'   => $USER['id'],
                 ':success'  => $arrResponse['success'],

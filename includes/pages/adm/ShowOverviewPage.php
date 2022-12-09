@@ -20,12 +20,6 @@ function ShowOverviewPage()
 	global $LNG, $USER;
 	
 	$Message	= array();
-	if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
 	if ($USER['authlevel'] >= AUTH_ADM)
 	{
 		if(file_exists(ROOT_PATH.'update.php'))
@@ -61,7 +55,7 @@ function ShowOverviewPage()
 		'ow_donate'			=> $LNG['ow_donate'],
 		'Messages'			=> $Message,
 		'date'				=> date('m\_Y', TIMESTAMP),
-		'signalColors'		=> $signalColors,
+		'signalColors'		=> $USER['signalColors'],
 	));
 	
 	$template->show('OverviewBody.tpl');

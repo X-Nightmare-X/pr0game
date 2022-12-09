@@ -24,12 +24,6 @@ function ShowConfigUniPage()
     global $LNG, $USER;
 
     $config = Config::get(Universe::getEmulated());
-    if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
     if (!empty($_POST)) {
         $config_before = [
             'noobprotectiontime'    => $config->noobprotectiontime,
@@ -388,7 +382,7 @@ function ShowConfigUniPage()
         'expo_ress_met_chance'          => $config->expo_ress_met_chance,
         'expo_ress_crys_chance'         => $config->expo_ress_crys_chance,
         'expo_ress_deut_chance'         => $config->expo_ress_deut_chance,
-        'signalColors'                  => $signalColors
+        'signalColors'                  => $USER['signalColors']
     ]);
 
     $template->show('ConfigBodyUni.tpl');

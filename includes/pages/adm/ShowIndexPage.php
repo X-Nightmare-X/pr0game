@@ -19,16 +19,10 @@ function ShowIndexPage()
 {
 	global $LNG, $USER;
 	$template	= new template();
-	if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
 	$template->assign_vars(array(	
 		'game_name'		=> Config::get()->game_name,
 		'adm_cp_title'	=> $LNG['adm_cp_title'],
-		'signalColors'  => $signalColors
+		'signalColors'  => $USER['signalColors']
 	));
 	
 	$template->display('adm/ShowIndexPage.tpl');

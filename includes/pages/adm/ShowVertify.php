@@ -24,14 +24,8 @@ function ShowVertify()
 	$action 	= HTTP::_GP("action", "");
 	$file	 	= HTTP::_GP("file", "");
 	$template	= new template();
-	if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
 	$template->assign_vars([
-        'signalColors'  => $signalColors
+        'signalColors'  => $USER['signalColors']
     ]);
 	switch($action) {
 		case 'check':

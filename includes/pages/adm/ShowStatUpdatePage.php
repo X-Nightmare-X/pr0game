@@ -18,12 +18,6 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 function ShowStatUpdatePage()
 {
     global $LNG, $USER;
-    if(isset($USER['id'])) {
-		$signalColors = PlayerUtil::player_signal_colors($USER);
-	}
-	else {
-		$signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-	}
 
     try {
         require_once('includes/classes/class.statbuilder.php');
@@ -41,13 +35,13 @@ function ShowStatUpdatePage()
 
         $template = new template();
         $template->assign_vars([
-            'signalColors' => $signalColors
+            'signalColors' => $USER['signalColors']
         ]);
         $template->message($LNG['sb_stats_updated'] . $stats_end_time . $memory_i . $memory_e . $memory_p . $stats_sql, false, 0, true);
     } catch (Exception $exception) {
         $template = new template();
         $template->assign_vars([
-            'signalColors' => $signalColors
+            'signalColors' => $USER['signalColors']
         ]);
         $template->message($exception->getMessage(), false, 0, true);
 
