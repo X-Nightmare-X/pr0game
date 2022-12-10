@@ -510,7 +510,7 @@ class ShowMarketPlacePage extends AbstractGamePage
             ':al'       => $USER['ally_id'],
             ':trade'    => MISSION_TRADE,
 			':buyerid' => $USER['id'],
-			':universe' => Universe::current();
+			':universe' => Universe::current(),
         ]);
 
         $FlyingFleetList = [];
