@@ -15,9 +15,9 @@
 	<td>{$hallRow@iteration}</td>
 	<td><a href="game.php?page=raport&amp;raport={$hallRow.rid}" target="_blank">
 	{if $hallRow.result == "a"}
-	<span class="colorPositive">{$hallRow.attacker}</span><span style="color:#FFFFFF"><b> VS </b></span><span class="colorNegative{">{$hallRow.defender}</span>
+	<span class="colorPositive">{$hallRow.attacker}</span><span style="color:#FFFFFF"><b> VS </b></span><span class="colorNegative">{$hallRow.defender}</span>
 	{elseif $hallRow.result == "r"}
-	<span class="colorNegative{">{$hallRow.attacker}</span><span style="color:#FFFFFF"><b> VS </b></span><span class="colorPositive">{$hallRow.defender}</span>
+	<span class="colorNegative">{$hallRow.attacker}</span><span style="color:#FFFFFF"><b> VS </b></span><span class="colorPositive">{$hallRow.defender}</span>
 	{else}
 	{$hallRow.attacker}<b> VS </b>{$hallRow.defender}
 	{/if}
@@ -27,7 +27,7 @@
 </tr>
 {/foreach}
 <tr>
-<td colspan="4"><p>{$LNG.tkb_legende}<span class="colorPositive">{$LNG.tkb_gewinner}</span><span class="colorNegative{">{$LNG.tkb_verlierer}</span></p></td>
+<td colspan="4"><p>{$LNG.tkb_legende}<span class="colorPositive">{$LNG.tkb_gewinner}</span><span class="colorNegative">{$LNG.tkb_verlierer}</span></p></td>
 </tr>
 </table>
 {/block}
