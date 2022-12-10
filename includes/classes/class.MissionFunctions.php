@@ -55,7 +55,7 @@ class MissionFunctions
     protected function SaveFleet()
     {
         $targetMission = $this->_fleet['fleet_mission'];
-        if ($targetMission != MISSION_COLONISATION && $targetMission != MISSION_EXPEDITION && $targetMission != MISSION_TRADE) {
+        if ($this->_fleet['fleet_mess'] != FLEET_RETURN && $targetMission != MISSION_COLONISATION && $targetMission != MISSION_EXPEDITION && $targetMission != MISSION_TRADE) {
             // set points of fleet and target owner during arival (SaveFleet is always called on TargetEvent)
             if ($this->_fleet['fleet_group'] != 0) {
                 $sql = 'UPDATE %%LOG_FLEETS%% SET 
