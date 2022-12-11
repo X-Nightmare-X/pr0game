@@ -223,7 +223,10 @@ class ShowRegisterPage extends AbstractLoginPage
             ':referralID' => $referralID,
         ]);
 
-        $validationID = $db->lastInsertId();
+        $sql = "SELECT validationID AS id FROM %%USERS_VALID%% WHERE validationKey = :validationKey;";
+        $validationID = $db->selectSingle($sql, [
+            ':validationKey' => $validationKey,
+        ], 'id');
         $verifyURL = 'index.php?page=vertify&i=' . $validationID . '&k=' . $validationKey;
 
         if ($config->user_valid == 0) {
