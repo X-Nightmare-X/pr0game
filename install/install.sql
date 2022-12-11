@@ -567,7 +567,8 @@ CREATE TABLE `%PREFIX%raports` (
 CREATE TABLE `%PREFIX%records` (
   `userID` int(10) unsigned NOT NULL,
   `elementID` smallint(5) unsigned NOT NULL,
-  `level` bigint(20) unsigned NOT NULL
+  `level` bigint(20) unsigned NOT NULL,
+  `universe` tinyint unsigned NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%session` (
