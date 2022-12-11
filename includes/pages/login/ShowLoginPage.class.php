@@ -20,15 +20,15 @@ class ShowLoginPage extends AbstractLoginPage
 {
 	public static $requireModule = 0;
 
-	function __construct() 
+	function __construct()
 	{
 		parent::__construct();
 	}
-	
-	function show() 
+
+	function show()
 	{
 		if (empty($_POST)) {
-			HTTP::redirectTo('index.php');	
+			HTTP::redirectTo('index.php');
 		}
 
 		$db = Database::get();
@@ -43,8 +43,13 @@ class ShowLoginPage extends AbstractLoginPage
 			':username'	=> $username
 		));
 
-		if (!empty($loginData))
-		{
+		$sql = "SELECT * FROM %%USERS_VALID%% WHERE universe = :universe AND userName = :username;";
+		$validationData = $db->selectSingle($sql, array(
+			':universe'	=> $universe,
+			':username'	=> $username
+		));
+
+		if (!empty($loginData)) {
 			if (!password_verify($password, $loginData['password'])) {
 				HTTP::redirectTo('index.php?code=1');
 			}
@@ -56,9 +61,14 @@ class ShowLoginPage extends AbstractLoginPage
 
 			setcookie('uni', $universe, 2147483647, '/');
 			HTTP::redirectTo('game.php');
-		}
-		else
-		{
+		} elseif (!empty($validationData) && Config::get()->user_valid == 0) {
+			if (!password_verify($password, $validationData['password'])) {
+				HTTP::redirectTo('index.php?code=1');
+			}
+
+			$verifyURL = 'index.php?page=vertify&i=' . $validationData['validationID'] . '&k=' . $validationData['validationKey'];
+			HTTP::redirectTo($verifyURL);
+		} else {
 			HTTP::redirectTo('index.php?code=1');
 		}
 	}
