@@ -30,11 +30,14 @@ class ShowRecordsPage extends AbstractGamePage
         global $USER, $LNG, $reslist;
 
         $db = Database::get();
-
-        $sql = "SELECT elementID, level, userID, username
-		FROM %%USERS%%
-		INNER JOIN %%RECORDS%% ON userID = id
-		WHERE universe = :universe;";
+        require_once('includes/classes/class.statbuilder.php');
+            require_once('includes/models/StatPoints.php');
+            $stat = new Statbuilder();
+		    $stat -> buildRecords();
+        $sql = "SELECT r.elementID, r.level, r.userID, u.username
+		FROM %%USERS%% u
+		INNER JOIN %%RECORDS%% r ON r.userID = u.id
+		WHERE r.universe = :universe;";
 
         $recordResult = $db->select($sql, [':universe' => Universe::current()]);
 
