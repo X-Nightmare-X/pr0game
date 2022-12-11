@@ -278,4 +278,82 @@ class MissionFunctions
         PlayerUtil::sendMessage($this->_fleet['fleet_owner'], 0, $LNG['sys_mess_tower'], 4, $LNG['sys_mess_fleetback'],
             $Message, $this->_fleet['fleet_end_time'], NULL, 1, $this->_fleet['fleet_universe']);
     }
+
+    static function updateDestroyedAdvancedStats($attacker, $defender, $Element, $amount = 1)
+    {
+        if ($attacker > 0) {
+            global $resource;
+            require_once 'includes/classes/Database.class.php';
+            $db = Database::get();
+        
+            $sql = "UPDATE %%ADVANCED_STATS%% SET destroyed_" . $Element . " = destroyed_" . $Element . " + :" . $resource[$Element] . " WHERE userId = :userId";
+            $db->update($sql, [
+                ':' . $resource[$Element] => $amount,
+                ':userId' => $attacker,
+            ]);
+        } 
+
+        if ($defender > 0) {
+            $fleetArray = [$Element => $amount];
+            MissionFunctions::updateLostAdvancedStats($defender, $fleetArray);
+        }
+    }
+
+    static function updateLostAdvancedStats($user, $fleetArray)
+    {
+        if ($user <= 0) {
+            return;
+        }
+
+        global $resource;
+        require_once 'includes/classes/Database.class.php';
+        $db = Database::get();
+
+        $field = [];
+        $params = [':userId' => $user];
+        foreach ($fleetArray as $Element => $Count) {
+            if (empty($field)) {
+                $field[] = 'lost_' . $Element . ' = lost_' . $Element . ' + :' . $resource[$Element];
+            } else {
+                $field[] = ', lost_' . $Element . ' = lost_' . $Element . ' + :' . $resource[$Element];
+            }
+            $params[':' . $resource[$Element]] = $Count;
+        }
+
+        $sql = "UPDATE %%ADVANCED_STATS%% SET " . implode("\n", $field) . " WHERE userId = :userId;";
+        $db->update($sql, $params);
+    }
+
+    function updateFoundRessAdvancedStats($user, $Element, $amount = 1)
+    {
+        require_once 'includes/classes/Database.class.php';
+        $db = Database::get();
+    
+        $sql = "UPDATE %%ADVANCED_STATS%% SET found_" . $Element . " = found_" . $Element . " + :" . $Element . " WHERE userId = :userId";
+        $db->update($sql, [
+            ':' . $Element => $amount,
+            ':userId' => $user,
+        ]);
+    }
+
+    function updateFoundShipsAdvancedStats($user, $fleetArray)
+    {
+        global $resource;
+        require_once 'includes/classes/Database.class.php';
+        $db = Database::get();
+
+        $field = [];
+        $params = [':userId' => $user];
+        foreach ($fleetArray as $Element => $Count) {
+            if (empty($field)) {
+                $field[] = 'found_' . $Element . ' = found_' . $Element . ' + :' . $resource[$Element];
+            } else {
+                $field[] = ', found_' . $Element . ' = found_' . $Element . ' + :' . $resource[$Element];
+            }
+            $params[':' . $resource[$Element]] = $Count;
+        }
+
+        $sql = "UPDATE %%ADVANCED_STATS%% SET " . implode("\n", $field) . " WHERE userId = :userId;";
+        $db->update($sql, $params);
+    }
 }

@@ -50,6 +50,8 @@ class MissionCaseMIP extends MissionFunctions implements Mission
 
         // kill fleet if target planet deleted
         if ($targetData == false) {
+			$fleetArray = FleetFunctions::unserialize($this->_fleet['fleet_array']);
+			MissionFunctions::updateLostAdvancedStats($this->_fleet['fleet_owner'], $fleetArray);
             $this->KillFleet();
             return;
         }
@@ -101,6 +103,8 @@ class MissionCaseMIP extends MissionFunctions implements Mission
 				':amount'	=> $this->_fleet['fleet_amount'],
 				':planetId'	=> $targetData['id']
 			));
+			MissionFunctions::updateDestroyedAdvancedStats($this->_fleet['fleet_target_owner'], $this->_fleet['fleet_owner'], 503, $this->_fleet['fleet_amount']);
+			MissionFunctions::updateLostAdvancedStats($this->_fleet['fleet_target_owner'], [502 => $this->_fleet['fleet_amount']]);
 		} else {
 			if ($targetData[$resource[502]] > 0) {
 				$where 	= $this->_fleet['fleet_end_type'] == 3 ? 'id_luna' : 'id';
@@ -110,6 +114,9 @@ class MissionCaseMIP extends MissionFunctions implements Mission
 					':amount'	=> 0,
 					':planetId'	=> $targetData['id']
 				));
+
+				MissionFunctions::updateDestroyedAdvancedStats($this->_fleet['fleet_target_owner'], $this->_fleet['fleet_owner'], 503, $targetData[$resource[502]]);
+				MissionFunctions::updateLostAdvancedStats($this->_fleet['fleet_target_owner'], [502 => $targetData[$resource[502]]]);
 			}
 
 			$targetDefensive = array_filter($targetDefensive);
@@ -142,7 +149,9 @@ class MissionCaseMIP extends MissionFunctions implements Mission
 						':planetId' => $targetData['id'],
 						':amount'	=> $destroy
 					));
+					MissionFunctions::updateDestroyedAdvancedStats($this->_fleet['fleet_owner'], $this->_fleet['fleet_target_owner'], $Element, $destroy);
 				}
+				MissionFunctions::updateLostAdvancedStats($this->_fleet['fleet_owner'], [503 => $this->_fleet['fleet_amount'] - $targetData[$resource[502]]]);
 			} else {
 				$senderData['MSG'] 	= $senderData['LNG']['sys_irak_no_def'];
 				$targetData['MSG']	= $targetData['LNG']['sys_irak_no_def'];
