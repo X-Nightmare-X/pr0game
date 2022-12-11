@@ -290,7 +290,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
                 ':planetId' => $this->_fleet['fleet_end_id'],
             ]);
 
-            MissionFunctions::updateDestroyedAdvancedStats($this->_fleet['fleet_owner'], $this->_fleet['fleet_target_owner'], 210, $fleetAmount);
+            MissionFunctions::updateDestroyedAdvancedStats($this->_fleet['fleet_target_owner'], $this->_fleet['fleet_owner'], 210, $fleetAmount);
 
             $this->KillFleet();
         } else {
