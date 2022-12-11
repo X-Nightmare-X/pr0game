@@ -470,7 +470,7 @@ class statbuilder
         }
     }
     
-    private function getHighestUser($type) 
+    private function getHighestUser($type, $uni) 
     {
         GLOBAL $reslist, $resource;
         $db = Database::get();
@@ -479,8 +479,10 @@ class statbuilder
 		{
 			$techName = $resource[$Techno];
 			
-            $sql = "SELECT id, " . $techName . " as level FROM %%USERS%% where " . $techName . " = (SELECT max(" . $techName . ") from %%USERS%%);";
-            $data = $db->select($sql);
+            $sql = "SELECT id, " . $techName . " as level FROM %%USERS%% where " . $techName . " = (SELECT max(" . $techName . ") from %%USERS%% where universe = :universe) and universe = :universe;";
+            $data = $db->select($sql, [
+                ':universe' => $uni
+            ]);
             
             if($data[0]['level'] > 0) {
                 $dataFinal = array();
@@ -494,15 +496,17 @@ class statbuilder
         return $result;
     }
 
-    private function getHighestPlanet($type) 
+    private function getHighestPlanet($type, $uni) 
     {
         GLOBAL $reslist, $resource;
         $db = Database::get();
         $result = array();
         foreach($reslist[$type] as $kind) {
             $kindName = $resource[$kind];
-            $sql = "SELECT id_owner as id, " . $kindName . " as level FROM %%PLANETS%% where " . $kindName . " = (select max(" . $kindName . ") from %%PLANETS%%);";
-            $data = $db->select($sql);
+            $sql = "SELECT id_owner as id, " . $kindName . " as level FROM %%PLANETS%% where " . $kindName . " = (select max(" . $kindName . ") from %%PLANETS%% where universe = :universe) and universe = :universe;";
+            $data = $db->select($sql,[
+                ':universe' => $uni
+            ]);
             if($data[0]['level'] > 0) {
                 $dataFinal = array();
                 foreach($data as $row) {
@@ -515,34 +519,36 @@ class statbuilder
         return $result;
     }
 
-    private function insertQueries($records) {
+    private function insertQueries($records, $uni) {
         $db = Database::get();
-        $queries = array();
         foreach($records as $record) {
             foreach($record as $row) {
-                $sql = "INSERT INTO %%RECORDS%% (userID, elementID, level) VALUES (:userID, :elementID, :level);";
+                $sql = "INSERT INTO %%RECORDS%% (userID, elementID, level, universe) VALUES (:userID, :elementID, :level, :universe);";
                 $db->insert($sql, [
                     ':userID' => $row['id'],
                     ':elementID' => $row['0'],
                     ':level' => $row['level'],
-                ]);
+                    ':universe' => $uni
+                ]);                
             }
-            
         }
+        
     }
 
     public function buildRecords() {
         $db = Database::get();
-        $tech = $this->getHighestUser('tech');
-        $buildings = $this->getHighestPlanet('build');
-        //$defenses = $this->getHighestPlanet('defense');
-        //$fleet = $this->getHighestPlanet('fleet');
-        //$missiles = $this->getHighestPlanet('missile');
         $sql = "DELETE FROM %%RECORDS%%;";
         $db->delete($sql);
-        $this->insertQueries($tech);
-        $this->insertQueries($buildings);
 
+        foreach ($this->universes as $uni) {
+            $tech = $this->getHighestUser('tech', $uni);
+            $buildings = $this->getHighestPlanet('build', $uni);
+            //$defenses = $this->getHighestPlanet('defense', $uni);
+            //$fleet = $this->getHighestPlanet('fleet', $uni);
+            //$missiles = $this->getHighestPlanet('missile', $uni);
+            $this->insertQueries($tech, $uni);
+            $this->insertQueries($buildings, $uni);
+        }
 	}
 }
 
