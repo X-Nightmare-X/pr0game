@@ -356,4 +356,16 @@ class MissionFunctions
         $sql = "UPDATE %%ADVANCED_STATS%% SET " . implode("\n", $field) . " WHERE userId = :userId;";
         $db->update($sql, $params);
     }
+
+    static function updateRepairedDefAdvancedStats($user, $Element, $amount = 1)
+    {
+        require_once 'includes/classes/Database.class.php';
+        $db = Database::get();
+    
+        $sql = "UPDATE %%ADVANCED_STATS%% SET repaired_" . $Element . " = repaired_" . $Element . " + :" . $Element . " WHERE userId = :userId";
+        $db->update($sql, [
+            ':' . $Element => $amount,
+            ':userId' => $user,
+        ]);
+    }
 }

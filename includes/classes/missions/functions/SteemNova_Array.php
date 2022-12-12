@@ -320,6 +320,8 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
                 if ($lost > 0) {
                     $repairedDef[$element]['units'] = $giveback;
                     $repairedDef[$element]['percent'] = $giveback / $lost * 100;
+
+                    MissionFunctions::updateRepairedDefAdvancedStats($defender['player']['id'], $element, $giveback);
                 }
                 $DRESDefs['metal'] += $pricelist[$element]['cost'][901] * ($lost - $giveback);
                 $DRESDefs['crystal'] += $pricelist[$element]['cost'][902] * ($lost - $giveback);
