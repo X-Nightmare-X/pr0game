@@ -133,11 +133,13 @@ class BattleHallFilter
 
 	private function getMinSizeCondition()
 	{
-		$sql = "SELECT MAX(total_points) as total FROM %%STATPOINTS%%
-			WHERE `stat_type` = :type";
+		$sql = "SELECT MAX(total_points) as total 
+			FROM %%STATPOINTS%%
+			WHERE `stat_type` = :type and universe = :universe";
 
         $topPoints = Database::get()->selectSingle($sql, [
                 ':type'     => 1, // 1 = player, 2 = alliance
+				':universe' => Universe::current()
         ], 'total');
 		
 		$minSize = $topPoints;

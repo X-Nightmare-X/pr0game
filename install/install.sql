@@ -137,7 +137,7 @@ CREATE TABLE `%PREFIX%config` (
   `uni_name` varchar(30) NOT NULL,
   `game_name` varchar(30) NOT NULL,
   `uni_status` tinyint(1) unsigned NOT NULL DEFAULT '1',
-  `close_reason` text NOT NULL DEFAULT 'The universe is being set up. Please wait.',
+  `close_reason` text NOT NULL,
   `metal_basic_income` int(11) NOT NULL DEFAULT '20',
   `crystal_basic_income` int(11) NOT NULL DEFAULT '10',
   `deuterium_basic_income` int(11) NOT NULL DEFAULT '0',
@@ -381,7 +381,7 @@ CREATE TABLE `%PREFIX%log_fleets` (
 	`fleet_no_m_return` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `fleet_target_owner` int(11) unsigned NOT NULL DEFAULT '0',
   `fleet_target_owner_name` varchar(32) NOT NULL DEFAULT '',
-  `fleet_target_owner_points` double(50,0) unsigned NOT NULL DEFAULT '0'
+  `fleet_target_owner_points` double(50,0) unsigned NOT NULL DEFAULT '0',
   `fleet_group` varchar(15) NOT NULL DEFAULT '0',
   `fleet_mess` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `start_time` int(11) NOT NULL DEFAULT '0',
