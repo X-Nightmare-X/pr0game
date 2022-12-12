@@ -135,6 +135,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
         $this->UpdateFleet($fleetColName, $this->_fleet[$fleetColName] + $foundResources);
         $logColName = 'fleet_gained_' . $resource[$resourceId];
         $this->UpdateFleetLog($logColName, $foundResources);
+        $this->updateFoundRessAdvancedStats($this->_fleet['fleet_owner'], $resourceId, $foundResources);
 
         return $Message;
     }
@@ -262,6 +263,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 
         $this->UpdateFleet('fleet_array', $NewFleetArray);
         $this->UpdateFleet('fleet_amount', $CountTotal);
+        $this->updateFoundShipsAdvancedStats($this->_fleet['fleet_owner'], $Found);
 
         return $Message;
     }
@@ -622,6 +624,7 @@ HTML;
             $Message .= $this->handleEventCombat();
         } elseif ($GetEvent < 722) {
             // Black hole: 0,3%
+            MissionFunctions::updateLostAdvancedStats($this->_fleet['fleet_owner'], $fleetArray);
             $this->KillFleet();
             $Message .= $LNG['sys_expe_lost_fleet_' . mt_rand(1, 4)];
         } elseif ($GetEvent < 812) {

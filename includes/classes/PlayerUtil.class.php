@@ -431,6 +431,11 @@ class PlayerUtil
            ':rank'      => $rank + 1,
         ]);
 
+        $sql = "INSERT INTO %%ADVANCED_STATS%% SET userId = :userId;";
+        $db->insert($sql, [
+            ':userId'    => $userId,
+        ]);
+
         $config->save();
 
         return [
@@ -731,6 +736,11 @@ class PlayerUtil
         $db->delete($sql, [
             ':userId'   => $userId,
             ':type'     => 1
+        ]);
+
+        $sql = "DELETE FROM %%ADVANCED_STATS%% WHERE userId = :userId;";
+        $db->insert($sql, [
+            ':userId'    => $userId,
         ]);
 
         $fleetIds = $db->select('SELECT fleet_id FROM %%FLEETS%% WHERE fleet_target_owner = :userId;', [

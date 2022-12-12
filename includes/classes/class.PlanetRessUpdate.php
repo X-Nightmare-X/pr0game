@@ -836,6 +836,11 @@ class ResourceUpdate
                             . $resource[$Element];
                         $params[':' . $resource[$Element]] = floatToString($Count);
                     }
+                    if ($Element >= 200) { // Update Builded stats for ships, def and rockets
+                        $buildQueries[] = ', s.build_' . $Element . ' = s.build_' . $Element . ' + :'
+                            . $resource[$Element];
+                        $params[':' . $resource[$Element]] = floatToString($Count);
+                    }
                 } elseif (isset($USER[$resource[$Element]])) { // Set research level directly
                     $buildQueries[] = ', u.' . $resource[$Element] . ' = :'
                         . $resource[$Element];
@@ -844,7 +849,7 @@ class ResourceUpdate
             }
         }
 
-        $sql = 'UPDATE %%PLANETS%% as p,%%USERS%% as u SET
+        $sql = 'UPDATE %%PLANETS%% as p, %%USERS%% as u, %%ADVANCED_STATS%% as s SET
 		p.metal = :metal,
 		p.crystal = :crystal,
 		p.deuterium = :deuterium,
@@ -868,7 +873,7 @@ class ResourceUpdate
 		u.b_tech_planet = :b_tech_planet,
 		u.b_tech_queue = :b_tech_queue
 		' . implode("\n", $buildQueries) . '
-		WHERE p.id = :planetId AND u.id = :userId;';
+		WHERE p.id = :planetId AND u.id = :userId AND s.userId = :userId;';
 
         Database::get()->update($sql, $params);
 

@@ -163,8 +163,8 @@ function ShowCreatorPage()
                 $MoonName   = HTTP::_GP('name', '', UTF8_SUPPORT);
                 $Diameter   = HTTP::_GP('diameter', 0);
 
-                $MoonPlanet = $GLOBALS['DATABASE']->getFirstRow("SELECT temp_max, temp_min, id_luna, galaxy, system,"
-                    . "planet, planet_type, destruyed, id_owner FROM " . PLANETS . " WHERE id = '" . $PlanetID
+                $MoonPlanet = $GLOBALS['DATABASE']->getFirstRow("SELECT temp_max, temp_min, id_luna, galaxy, `system`,"
+                    . " planet, planet_type, destruyed, id_owner FROM " . PLANETS . " WHERE id = '" . $PlanetID
                     . "' AND universe = '" . Universe::getEmulated() . "' AND planet_type = '1' AND destruyed = '0';");
 
                 if (!isset($MoonPlanet)) {
