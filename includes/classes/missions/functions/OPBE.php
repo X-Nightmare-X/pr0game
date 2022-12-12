@@ -59,7 +59,7 @@ define('CRYSTAL_ID', 902);
  * @param mixed $DefTF
  * @return array
  */
-function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF)
+function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = false)
 {
     //null == use default handlers
     $errorHandler = null;

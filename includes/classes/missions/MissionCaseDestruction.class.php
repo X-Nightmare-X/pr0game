@@ -271,7 +271,7 @@ HTML;
                         ':fleetState'   => FLEET_HOLD,
                     ]);
 
-                    unset($fleetAttack[$fleetID]);
+                    unset($fleetDefend[$fleetID]);
                 } elseif ($totalCount > 0) {
                     $sql = "UPDATE %%FLEETS%% fleet, %%LOG_FLEETS%% log SET
 					fleet.fleet_array   = :fleetData,
@@ -413,6 +413,7 @@ HTML;
 
                 $randChance = mt_rand(1, 100);
                 if ($randChance <= $fleetDestroyChance) {
+                    MissionFunctions::updateLostAdvancedStats($this->_fleet['fleet_owner'], $fleetAttack[$this->_fleet['fleet_id']]['unit']);
                     $this->KillFleet();
                     $reportInfo['fleetDestroySuccess'] = true;
                 } else {

@@ -68,6 +68,19 @@ define('AJAX_REQUEST', HTTP::_GP('ajax', 0));
 
 $THEME      = new Theme();
 
+$config = Config::get();
+date_default_timezone_set($config->timezone);
+
+$USER = [];
+$USER['lang'] = 'en';
+$USER['bana'] = 0;
+$USER['timezone'] = $config->timezone;
+$USER['urlaubs_modus'] = 0;
+$USER['authlevel'] = 0;
+$USER['id'] = 0;
+$USER['signalColors'] = PlayerUtil::player_signal_colors();
+$USER['colors'] = PlayerUtil::player_colors();
+
 if (MODE === 'INSTALL') {
     return;
 }
@@ -102,10 +115,6 @@ if (defined('DATABASE_VERSION') && DATABASE_VERSION === 'OLD') {
         define(substr($dbAlias, 2, -2), $dbName);
     }
 }
-
-$config = Config::get();
-date_default_timezone_set($config->timezone);
-
 
 if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     $session    = Session::load();
@@ -144,21 +153,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
         ':userId'           => $session->userId
     ));
 
-    if ($raportWithoutSession) {
-        if (empty($USER)) {
-            $USER = [];
-        }
-
-        $USER['lang'] = 'en';
-        $USER['bana'] = 0;
-        $USER['timezone'] = $config->timezone;
-        $USER['urlaubs_modus'] = 0;
-        $USER['authlevel'] = 0;
-        $USER['id'] = 0;
-        $USER['signalColors'] = PlayerUtil::player_signal_colors();
-        $USER['colors'] = PlayerUtil::player_colors();
-    }
-    else {
+    if (!$raportWithoutSession) {
         if (empty($USER)) {
             HTTP::redirectTo('index.php?code=3');
         } else {

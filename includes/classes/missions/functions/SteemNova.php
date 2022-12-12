@@ -15,20 +15,20 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-function fight(&$attackers, &$defenders)
+function fight(&$attackers, &$defenders, $sim)
 {
     $attack = new Ds\Map(['attack' => 0, 'shield' => 0]);
     $defense = new Ds\Map(['attack' => 0, 'shield' => 0]);
     // attackers shoot
     foreach ($attackers as $fleetID => $attacker) {
         foreach ($attacker['units'] as $element => $unit) {
-            shoot($attackers, $fleetID, $element, $unit, $defenders, $attack);
+            shoot($attacker['player']['id'], $unit, $defenders, $attack, $sim);
         }
     }
     // defenders shoot
     foreach ($defenders as $fleetID => $defender) {
         foreach ($defender['units'] as $element => $unit) {
-            shoot($defenders, $fleetID, $element, $unit, $attackers, $defense);
+            shoot($defender['player']['id'], $unit, $attackers, $defense, $sim);
         }
     }
     return new Ds\Map([
@@ -41,9 +41,7 @@ function fight(&$attackers, &$defenders)
 
 function destroy(&$attackers)
 {
-    global $pricelist;
     foreach ($attackers as $fleetID => &$attacker) {
-        $armorTech = (1 + (0.1 * $attacker['player']['defence_tech']));
         // foreach ($attacker['units'] as $element => $unit)
         for ($i = 0; $i < count($attacker['units']); $i++) {
             $unit = $attacker['units'][$i];
@@ -57,7 +55,7 @@ function destroy(&$attackers)
     }
 }
 
-function shoot(&$attackers, $fleetID, $element, $unit, &$defenders, &$ad)
+function shoot($attacker, $unit, &$defenders, &$ad, $sim)
 {
     // SHOOT
     global $CombatCaps, $pricelist;
@@ -67,16 +65,18 @@ function shoot(&$attackers, $fleetID, $element, $unit, &$defenders, &$ad)
     }
     $ran = rand(0, $count - 1);
     $count = 0;
+    $victim = 0;
     $victimShip = 0;
     $initialArmor = 0;
     foreach ($defenders as $fID => &$defender) {
         $count += count($defender['units']);
         if ($ran < $count) {
+            $victim = $defender['player']['id'];
             $victimShipId = rand(0, count($defender['units']) - 1);
             $victimShip = &$defender['units'][$victimShipId];
             $armorTech = (1 + (0.1 * $defender['player']['defence_tech']));
             $initialArmor = ($pricelist[$victimShip['unit']]['cost'][901]
-                    + $pricelist[$victimShip['unit']]['cost'][902]) / 10 * $armorTech;
+                + $pricelist[$victimShip['unit']]['cost'][902]) / 10 * $armorTech;
             break;
         }
     }
@@ -95,13 +95,22 @@ function shoot(&$attackers, $fleetID, $element, $unit, &$defenders, &$ad)
         }
 
         //check destruction
-        if (floor($victimShip['unit'] / 100) == 2) {
+        if (floor($victimShip['unit'] / 100) == 2 && !$victimShip['explode']) {
             if ($victimShip['armor'] > 0 && $victimShip['armor'] < 0.7 * $initialArmor) {
                 $ran = rand(0, (int) $initialArmor);
                 if ($ran > $victimShip['armor']) {
                     $victimShip['explode'] = true;
+                    if (!$sim) {
+                        require_once 'includes/classes/class.MissionFunctions.php';
+                        MissionFunctions::updateDestroyedAdvancedStats($attacker, $victim, $victimShip['unit']);
+                    }
                 }
             }
+        }
+        if (!$sim && $victimShip['armor'] <= 0 && !$victimShip['explode']) {
+            $victimShip['explode'] = true;
+            require_once 'includes/classes/class.MissionFunctions.php';
+            MissionFunctions::updateDestroyedAdvancedStats($attacker, $victim, $victimShip['unit']);
         }
     }
     // else bounced hit (Weaponry of the shooting unit is less than 1% of the Shielding of the target unit)
@@ -112,7 +121,7 @@ function shoot(&$attackers, $fleetID, $element, $unit, &$defenders, &$ad)
             if ($victimShip['unit'] == $sdId) {
                 $ran = rand(0, $count);
                 if ($ran < $count) {
-                    shoot($attackers, $fleetID, $element, $unit, $defenders, $ad);
+                    shoot($attacker, $unit, $defenders, $ad, $sim);
                 }
             }
         }
@@ -187,7 +196,7 @@ function restoreShields(&$fleets)
     }
 }
 
-function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF)
+function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = false)
 {
     global $pricelist, $CombatCaps, $resource;
 
@@ -217,7 +226,7 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF)
             if ($element < 300) {
                 // ships
                 $DRES['metal'] += $pricelist[$element]['cost'][901] * $amount;
-                $DRES['crystal'] += $pricelist[$element]['cost'][902] * $amount ;
+                $DRES['crystal'] += $pricelist[$element]['cost'][902] * $amount;
             } else {
                 // defense
                 if (!isset($STARTDEF[$element])) {
@@ -249,7 +258,7 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF)
 
         if ($att['attackAmount']['total'] > 0 && $def['attackAmount']['total'] > 0 && $ROUNDC < MAX_ATTACK_ROUNDS) {
             // FIGHT
-            $fightResults = fight($attackers, $defenders);
+            $fightResults = fight($attackers, $defenders, $sim);
 
             destroy($attackers);
             destroy($defenders);
@@ -277,11 +286,11 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF)
     // CDR
     foreach ($attackers as $fleetID => $attacker) {                    // flotte attaquant en CDR
         foreach ($attacker['unit'] as $element => $amount) {
-            $TRES['attacker'] -= $pricelist[$element]['cost'][901] * $amount ;
-            $TRES['attacker'] -= $pricelist[$element]['cost'][902] * $amount ;
+            $TRES['attacker'] -= $pricelist[$element]['cost'][901] * $amount;
+            $TRES['attacker'] -= $pricelist[$element]['cost'][902] * $amount;
 
-            $ARES['metal'] -= $pricelist[$element]['cost'][901] * $amount ;
-            $ARES['crystal'] -= $pricelist[$element]['cost'][902] * $amount ;
+            $ARES['metal'] -= $pricelist[$element]['cost'][901] * $amount;
+            $ARES['crystal'] -= $pricelist[$element]['cost'][902] * $amount;
         }
     }
 
@@ -292,14 +301,14 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF)
     foreach ($defenders as $fleetID => $defender) {
         foreach ($defender['unit'] as $element => $amount) {
             if ($element < 300) {                           // flotte defenseur en CDR
-                $DRES['metal'] -= $pricelist[$element]['cost'][901] * $amount ;
-                $DRES['crystal'] -= $pricelist[$element]['cost'][902] * $amount ;
+                $DRES['metal'] -= $pricelist[$element]['cost'][901] * $amount;
+                $DRES['crystal'] -= $pricelist[$element]['cost'][902] * $amount;
 
-                $TRES['defender'] -= $pricelist[$element]['cost'][901] * $amount ;
-                $TRES['defender'] -= $pricelist[$element]['cost'][902] * $amount ;
+                $TRES['defender'] -= $pricelist[$element]['cost'][901] * $amount;
+                $TRES['defender'] -= $pricelist[$element]['cost'][902] * $amount;
             } else {                                    // defs defenseur en CDR + reconstruction
-                $TRES['defender'] -= $pricelist[$element]['cost'][901] * $amount ;
-                $TRES['defender'] -= $pricelist[$element]['cost'][902] * $amount ;
+                $TRES['defender'] -= $pricelist[$element]['cost'][901] * $amount;
+                $TRES['defender'] -= $pricelist[$element]['cost'][902] * $amount;
 
                 $lost = $STARTDEF[$element] - $amount;
                 $giveback = 0;
@@ -313,8 +322,8 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF)
                     $repairedDef[$element]['units'] = $giveback;
                     $repairedDef[$element]['percent'] = $giveback / $lost * 100;
                 }
-                $DRESDefs['metal'] += $pricelist[$element]['cost'][901] * ($lost - $giveback) ;
-                $DRESDefs['crystal'] += $pricelist[$element]['cost'][902] * ($lost - $giveback) ;
+                $DRESDefs['metal'] += $pricelist[$element]['cost'][901] * ($lost - $giveback);
+                $DRESDefs['crystal'] += $pricelist[$element]['cost'][902] * ($lost - $giveback);
             }
         }
     }
