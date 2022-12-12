@@ -153,6 +153,7 @@ class MissionCaseMIP extends MissionFunctions implements Mission
 				}
 				MissionFunctions::updateLostAdvancedStats($this->_fleet['fleet_owner'], [503 => $this->_fleet['fleet_amount'] - $targetData[$resource[502]]]);
 			} else {
+				MissionFunctions::updateLostAdvancedStats($this->_fleet['fleet_owner'], [503 => $this->_fleet['fleet_amount']]);
 				$senderData['MSG'] 	= $senderData['LNG']['sys_irak_no_def'];
 				$targetData['MSG']	= $targetData['LNG']['sys_irak_no_def'];
 			}

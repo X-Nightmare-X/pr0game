@@ -66,6 +66,18 @@ CREATE TABLE `%PREFIX%advanced_stats` (
   `lost_411` bigint(20) unsigned NOT NULL DEFAULT '0',
   `lost_502` bigint(20) unsigned NOT NULL DEFAULT '0',
   `lost_503` bigint(20) unsigned NOT NULL DEFAULT '0',
+
+  `repaired_401` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `repaired_402` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `repaired_403` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `repaired_404` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `repaired_405` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `repaired_406` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `repaired_407` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `repaired_408` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `repaired_409` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `repaired_410` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `repaired_411` bigint(20) unsigned NOT NULL DEFAULT '0',
   
   `destroyed_202` bigint(20) unsigned NOT NULL DEFAULT '0',
   `destroyed_203` bigint(20) unsigned NOT NULL DEFAULT '0',
