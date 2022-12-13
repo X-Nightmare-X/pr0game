@@ -103,7 +103,9 @@ class ShowRaportPage extends AbstractGamePage
 		$defenders = explode(",", $reportData['defender']);
 		$isAttacker = empty($reportData['attacker']) || in_array($USER['id'], $attackers);
 		$isDefender = empty($reportData['defender']) || in_array($USER['id'], $defenders);
-
+		if($USER['authlevel'] > 0) {
+			$isDefender = true;
+		}
 		$showDetails = $isAttacker || $isDefender;
 		$sql = "SELECT ally_id FROM %%USERS%% WHERE id = :pID;";
 		$allyID = $db->selectSingle($sql, array(
