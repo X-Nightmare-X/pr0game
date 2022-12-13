@@ -138,22 +138,22 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
 
     $db     = Database::get();
 
-    $sql    = "SELECT
-	user.*, s.total_points,
-	COUNT(message.message_id) as messages
-	FROM %%USERS%% as user
-    LEFT JOIN %%STATPOINTS%% s ON s.id_owner = user.id AND s.stat_type = :statTypeUser
-	LEFT JOIN %%MESSAGES%% as message ON message.message_owner = user.id AND message.message_unread = :unread
-	WHERE user.id = :userId
-	GROUP BY message.message_owner;";
-
-    $USER   = $db->selectSingle($sql, array(
-        ':statTypeUser'     => 1,
-        ':unread'           => 1,
-        ':userId'           => $session->userId
-    ));
-
     if (!$raportWithoutSession) {
+        $sql    = "SELECT
+    	user.*, s.total_points,
+    	COUNT(message.message_id) as messages
+    	FROM %%USERS%% as user
+        LEFT JOIN %%STATPOINTS%% s ON s.id_owner = user.id AND s.stat_type = :statTypeUser
+    	LEFT JOIN %%MESSAGES%% as message ON message.message_owner = user.id AND message.message_unread = :unread
+    	WHERE user.id = :userId
+    	GROUP BY message.message_owner;";
+
+        $USER   = $db->selectSingle($sql, array(
+            ':statTypeUser'     => 1,
+            ':unread'           => 1,
+            ':userId'           => $session->userId
+        ));
+        
         if (empty($USER)) {
             HTTP::redirectTo('index.php?code=3');
         } else {
