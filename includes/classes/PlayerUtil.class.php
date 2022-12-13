@@ -1058,6 +1058,19 @@ class PlayerUtil
             ':userID'   => $USER['id'],
         ]);
 
+        $sql = "SELECT fleet_id, fleet_owner FROM %%FLEETS%% 
+            WHERE fleet_universe = :universe 
+            AND fleet_mission = :fleet_mision 
+            AND fleet_target_owner = :id;";
+        $FleetsRAW = $db->select($sql, [
+            ':universe'     => Universe::current(),
+            ':fleet_mision' => MISSION_HOLD,
+            ':id'           => $USER['id'],
+        ]);
+        foreach ($FleetsRAW as $Fleet) {
+            $attacker['id'] = $Fleet['fleet_owner'];
+            FleetFunctions::SendFleetBack($attacker, $Fleet['fleet_id']);
+        }
         if (isset($PLANET)) {
             $PLANET['energy_used'] = '0';
             $PLANET['energy'] = '0';
