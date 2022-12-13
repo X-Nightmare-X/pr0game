@@ -103,7 +103,7 @@ class ShowRaportPage extends AbstractGamePage
 		$defenders = explode(",", $reportData['defender']);
 		$isAttacker = empty($reportData['attacker']) || in_array($USER['id'], $attackers);
 		$isDefender = empty($reportData['defender']) || in_array($USER['id'], $defenders);
-		if($USER['authlevel'] > 0) {
+		if(array_key_exists('authlevel', $USER) && $USER['authlevel'] > 0) {
 			$isDefender = true;
 		}
 		$showDetails = $isAttacker || $isDefender;
