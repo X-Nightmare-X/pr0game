@@ -393,7 +393,7 @@ function ShowAccountEditorPage()
                 $vacation = HTTP::_GP('vacation', '');
 
                 $before = $GLOBALS['DATABASE']->getFirstRow(
-                    "SELECT `username`,`email`,`email_2`,`password`,`urlaubs_modus`,`urlaubs_until` FROM " . USERS
+                    "SELECT `username`,`email`,`email_2`,`password`,`urlaubs_modus`,`urlaubs_until`, `universe` FROM " . USERS
                     . " WHERE `id` = '" . HTTP::_GP('id', 0) . "';"
                 );
                 $after = [];
