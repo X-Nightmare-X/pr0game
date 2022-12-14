@@ -252,16 +252,6 @@ $(function () {
   });
 
 
-  window.setInterval(function () {
-    $('.countdown').each(function () {
-      var s = $(this).data('time') - (serverTime.getTime() - startTime) / 1000;
-      if (s <= 0) {
-        $(this).text('-');
-      } else {
-        $(this).text(getRestTimeFormat(s));
-      }
-    });
-  }, 1000);
 
   $('#planetSelector').on('change', function () {
     document.location = '?' + queryString + '&cp=' + $(this).val();
@@ -284,7 +274,19 @@ $(function () {
 
 let humanInteraction = false;
 
+function show_countdowns(){
+  $('.countdown').each(function () {
+    var s = $(this).data('time') - (serverTime.getTime() - startTime) / 1000;
+    if (s <= 0) {
+      $(this).text('-');
+    } else {
+      $(this).text(getRestTimeFormat(s));
+    }
+  });
 
+}
+
+window.setInterval(show_countdowns, 1000);
 function observe(stuff) {
   for (let x of stuff) {
     x.addEventListener('click', function (e) {
@@ -316,6 +318,7 @@ function showtimes(){
 document.addEventListener("DOMContentLoaded", function() {
   showtimes();
   observe(document.querySelectorAll('*'));
+  show_countdowns();
 });
 
 
