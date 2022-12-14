@@ -316,6 +316,9 @@ function showtimes(){
 document.addEventListener("DOMContentLoaded", function() {
   showtimes();
   observe(document.querySelectorAll('*'));
+  for(let k of document.querySelectorAll("input[type='number']")){
+    k.onclick = function(){this.value="";};
+  }
 });
 
 
