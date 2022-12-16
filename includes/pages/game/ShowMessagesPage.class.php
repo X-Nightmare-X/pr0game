@@ -185,7 +185,7 @@ class ShowMessagesPage extends AbstractGamePage
         $db = Database::get();
 
         $MessCategory  	= HTTP::_GP('messcat', 100);
-        $page		 	= HTTP::_GP('page', 1);
+        $page		 	= HTTP::_GP('side', 1);
         $messageIDs		= HTTP::_GP('messageID', array());
 
         $redirectUrl	= 'game.php?page=messages&category='.$MessCategory.'&side='.$page;
