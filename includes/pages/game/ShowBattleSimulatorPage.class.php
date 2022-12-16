@@ -54,13 +54,13 @@ class ShowBattleSimulatorPage extends AbstractGamePage
                 $attacker['player'] = [
                     'id' => (1000 + $BattleSlotID + 1),
                     'username'  => $LNG['bs_atter'] . ' Nr.' . ($BattleSlotID + 1),
-                    'military_tech' => $BattleSlot[0][109],
-                    'shield_tech' => $BattleSlot[0][110],
-                    'defence_tech' => $BattleSlot[0][111],
+                    'military_tech' => getNumber($BattleSlot[0][109]),
+                    'shield_tech' => getNumber($BattleSlot[0][110]),
+                    'defence_tech' => getNumber($BattleSlot[0][111]),
                 ];
 
                 foreach ($BattleSlot[0] as $ID => $Count) {
-                    if (!in_array($ID, $reslist['fleet']) || $BattleSlot[0][$ID] <= 0) {
+                    if (!in_array($ID, $reslist['fleet']) || getNumber($BattleSlot[0][$ID]) <= 0) {
                         unset($BattleSlot[0][$ID]);
                     }
                 }
@@ -89,15 +89,15 @@ class ShowBattleSimulatorPage extends AbstractGamePage
                 $defender['player'] = [
                     'id' => (2000 + $BattleSlotID + 1),
                     'username'  => $LNG['bs_deffer'] . ' Nr.' . ($BattleSlotID + 1),
-                    'military_tech' => $BattleSlot[1][109],
-                    'shield_tech' => $BattleSlot[1][110],
-                    'defence_tech' => $BattleSlot[1][111],
+                    'military_tech' => getNumber($BattleSlot[1][109]),
+                    'shield_tech' => getNumber($BattleSlot[1][110]),
+                    'defence_tech' => getNumber($BattleSlot[1][111]),
                 ];
 
                 foreach ($BattleSlot[1] as $ID => $Count) {
                     if (
                         (!in_array($ID, $reslist['fleet'])
-                            && !in_array($ID, $reslist['defense'])) || $BattleSlot[1][$ID] <= 0
+                            && !in_array($ID, $reslist['defense'])) || getNumber($BattleSlot[1][$ID]) <= 0
                     ) {
                         unset($BattleSlot[1][$ID]);
                     }

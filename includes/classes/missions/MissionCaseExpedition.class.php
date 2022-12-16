@@ -259,11 +259,11 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
             $Message .= '<br><br>' . $LNG['sys_expe_found_ships_nothing'];
         } else {
             $Message .= '<br><br>' . $LNG['sys_expe_back_home_ships_flound'] . $FoundShipMess;
+            $this->updateFoundShipsAdvancedStats($this->_fleet['fleet_owner'], $Found);
         }
 
         $this->UpdateFleet('fleet_array', $NewFleetArray);
         $this->UpdateFleet('fleet_amount', $CountTotal);
-        $this->updateFoundShipsAdvancedStats($this->_fleet['fleet_owner'], $Found);
 
         return $Message;
     }
