@@ -1,4 +1,5 @@
 <ul id="menu">
+  {nocache}
   <li class="menu-separator"></li>
   <li><a href="game.php?page=overview">{$LNG.lm_overview}</a></li>
   {if isModuleAvailable($smarty.const.MODULE_IMPERIUM)}
@@ -89,6 +90,7 @@
   {if $authlevel > 0}
     <li><a href="./admin.php" class="colorPositive">{$LNG.lm_administration} ({$VERSION})</a></li>
   {/if}
+  {/nocache}
 </ul>
 <div id="disclamer" class="no-mobile">
 

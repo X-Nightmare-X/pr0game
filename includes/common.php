@@ -245,14 +245,6 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
                 ':score'    => $arrResponse['score'],
                 ':url'      => $_SERVER['REQUEST_URI'],
             ));
-        } else {
-            $db->insert($sql, array(
-                ':userId'   => $USER['id'],
-                ':success'  => 0,
-                ':time'     => TIMESTAMP,
-                ':score'    => 0,
-                ':url'      => $_SERVER['REQUEST_URI'],
-            ));
         }
     }
 
