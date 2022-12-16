@@ -30,7 +30,7 @@ body {
   /* font-family: Whitney,Source Sans Pro,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; */
 }
 
-body, input, select, button, textarea, a, td, th, tr, table, a:visited {
+body, input, select, button, textarea, a, td, th, tr, table,a:visited {
   color: #fff;
 }
 
@@ -68,10 +68,8 @@ input[type="radio"] {
 }
 
 a:hover {
-  color: #ffd600;
-  text-decoration: none;
-  font-weight: bold;
-
+  color:#FFF;
+  text-decoration: underline;
 }
 
 table, td, th {
@@ -240,72 +238,8 @@ select {
   text-decoration: line-through
 }
 
-.ownattack {
-  color: #6c3
-}
-
-.owncolony {
-  color: #c1c1c1
-}
-
-.owndeploy {
-  color: #cf79de
-}
-
-.owndestroy {
-  color: #ff9
-}
-
-.ownfederation {
-  color: #6c3
-}
-
-.hostilefederation {
-  color: #c66
-}
-
-.ownharvest {
-  color: #ceff68
-}
-
-.ownhold {
-  color: #80a0c0
-}
-
-.destroy {
-  color: #d4a017
-}
-
-.hold {
-  color: #39c
-}
-
-.warning {
-  color: #FF8040
-}
-
-.notice {
-  color: #FF0
-}
-
-.return {
-  color: #6e8eea;
-}
-
 .allymember, .colony, .deploy, .harvest, .transport, .success {
   color: lime
-}
-
-.owntransport {
-  color: #5bf1c2
-}
-
-.ownespionage, .ownmissile {
-  color: #fc6
-}
-
-.espionage, .missile {
-  color: #f60
 }
 
 .build_submit {
@@ -786,7 +720,7 @@ input:hover {
   div .buildc {
     border: none;
   }
-  
+
   div .buildb {
     border: none;
   }
@@ -825,3 +759,4 @@ input:hover {
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
 }
+input:invalid, textarea:invalid { background-color: #2a2e31; }
