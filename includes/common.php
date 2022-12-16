@@ -237,12 +237,20 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
         $arrResponse = json_decode($response, true);
         $sql = "insert into %%RECAPTCHA%% (userId, success, time, score, url) VALUES (:userId, :success, :time, :score, :url);";
         
-        if ($arrResponse['success'] == true) {
+        if (isset($arrResponse) && $arrResponse['success'] == true) {
             $db->insert($sql, array(
                 ':userId'   => $USER['id'],
                 ':success'  => $arrResponse['success'],
                 ':time'     => TIMESTAMP,
                 ':score'    => $arrResponse['score'],
+                ':url'      => $_SERVER['REQUEST_URI'],
+            ));
+        } else {
+            $db->insert($sql, array(
+                ':userId'   => $USER['id'],
+                ':success'  => 0,
+                ':time'     => TIMESTAMP,
+                ':score'    => 0,
                 ':url'      => $_SERVER['REQUEST_URI'],
             ));
         }

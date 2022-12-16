@@ -367,6 +367,11 @@ function floatToString($number, $Pro = 0, $output = false)
     return sprintf("%." . $Pro . "f", $number);
 }
 
+function getNumber($from, $default = 0) 
+{
+    return is_numeric($from) ? $from : $default;
+}
+
 function isModuleAvailable($ID)
 {
     global $USER;
