@@ -284,7 +284,19 @@ $(function () {
 
 let humanInteraction = false;
 
+function show_countdowns(){
+  $('.countdown').each(function () {
+    var s = $(this).data('time') - (serverTime.getTime() - startTime) / 1000;
+    if (s <= 0) {
+      $(this).text('-');
+    } else {
+      $(this).text(getRestTimeFormat(s));
+    }
+  });
 
+}
+
+window.setInterval(show_countdowns, 1000);
 function observe(stuff) {
   for (let x of stuff) {
     x.addEventListener('click', function (e) {
@@ -316,6 +328,10 @@ function showtimes(){
 document.addEventListener("DOMContentLoaded", function() {
   showtimes();
   observe(document.querySelectorAll('*'));
+  show_countdowns();
+  for(let k of document.querySelectorAll("input[type='number']")){
+    k.onclick = function(){this.value="";};
+  }
 });
 
 

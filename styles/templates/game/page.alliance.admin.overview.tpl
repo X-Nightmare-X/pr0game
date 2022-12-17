@@ -30,7 +30,7 @@
 	</tr>
 	<tr>
 		<td colspan="3">
-			<textarea name="text" id="text" cols="70" rows="15">{$text}</textarea>
+			<textarea name="text" id="text" cols="70" rows="15" {if $textMode == 'apply'}maxlength="1000"{/if}>{$text}</textarea>
 		</td>
 	</tr>
 	<tr>
