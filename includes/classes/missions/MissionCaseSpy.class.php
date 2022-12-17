@@ -91,6 +91,9 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         ], 'name');
 
         // die(var_dump($senderUser));
+        // die(var_dump($senderUser["combustion_tech"]));
+        // die(var_dump($senderUser["impulse_motor_tech"]));
+        // die(var_dump($senderUser["hyperspace_motor_tech"]));
         // TODO -> Techs ziehn
 
         $LNG = $this->getLanguage($senderUser['lang']);
@@ -233,9 +236,9 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         $energy = $targetPlanet["energy"];
 
-        $bestRessPerTime = "TODO";
+        $bestRessPerTime = $this->bestRessPerTime($bestPlanetArray[0], $senderUser);
         
-        // die(var_dump($targetPlanet));
+        // die(var_dump($bestPlanetArray[0]));
         $bestPlanet = $bestPlanetArray[1][0] . ":" . $bestPlanetArray[1][1] . ":" . $bestPlanetArray[1][2];
         // die(print($bestPlanet));
 
@@ -590,6 +593,26 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         }
 
         return [$bestDistance,$bestPlanet];
+    }
+
+    public function bestRessPerTime($distance, $senderUser)
+    {
+        // $flytime = FleetFunctions::getMissionDuration($SpeedFactor, $MaxFleetSpeed, $Distance, $GameSpeed, $USER);
+        $fleetArray = [214 => 1];
+        $MaxFleetSpeed = FleetFunctions::getFleetMaxSpeed($fleetArray, $senderUser);
+        $GameSpeed = Config::get()->fleet_speed / 2500;
+        $flytime = FleetFunctions::getMissionDuration(100, $MaxFleetSpeed, $distance, $GameSpeed, $senderUser);
+
+
+        $pMarket = new MarketManager();
+		$refrates = $pMarket->getReferenceRatios();
+        // $referenceRatios = MarketManager::getReferenceRatios();
+        die(print($refrates));
+
+        // calculateResourceMarketValuePerSecond = (calculateResourceMarketValue(met, kris, deut) / (flytime * 2));
+        // calculateResourceMarketValuePerSecond = calculateResourceMarketValuePerSecond.toFixed(2);
+
+        return $flytime;
     }
 
     // foreach ($classIDs as $classID => $elementIDs) {
