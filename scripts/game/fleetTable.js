@@ -294,6 +294,18 @@ function customfleet_show() {
 
 }
 
+function fillShipps(){
+  let ships = [...document.location.hash.matchAll(/ship_input\[(?<shiptype>[0-9]+)\]=(?<shipamount>[0-9]+)/g)];
+  ships.forEach(ship => {
+    let input = document.querySelector(`input#ship${ship.groups.shiptype}_input`);
+    if (input !== null) {
+      input.value = ship.groups.shipamount;
+    }
+  });  
+  show_values();
+};
+
+
 document.addEventListener("DOMContentLoaded", function () {
   show_values()
   add_exp_eventlisteners()
@@ -301,6 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
   updatebuttons();
   loadcustomfleets();
   customfleet_show();
+  fillShipps()
 });
 
 

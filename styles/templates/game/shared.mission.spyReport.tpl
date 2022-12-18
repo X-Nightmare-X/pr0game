@@ -1,4 +1,15 @@
 <div class="spyRaport">
+
+{literal}
+<style>
+	.danger {background-color : red;}
+    .lowRess { background-color: indianred;}
+    .midRess { background-color: chocolate;}
+    .highRess { background-color: seagreen;}
+    .realHighRess { background-color: royalblue;}
+	/* .nonedanger {background-color : green;} */
+</style>
+{/literal}
 	<div class="spyRaportHead">
 		<a href="game.php?page=galaxy&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}">{$title}</a>
 	</div>
@@ -13,10 +24,10 @@
 				<div class="spyRaportContainerCell 15">
 					{$ressources}
 				</div>
-				<div class="spyRaportContainerCell">
+				<div class="spyRaportContainerCell {$dangerClass}">
 					Gefahrenpotenzial
 				</div>
-				<div class="spyRaportContainerCell">
+				<div class="spyRaportContainerCell {$dangerClass}">
 					{$danger}
 				</div>
 			</div>
@@ -49,10 +60,10 @@
 				</div>
 			</div>
 			<div class="spyRaportContainerRow clearfix">
-				<div class="spyRaportContainerCell" >
+				<div class="spyRaportContainerCell {$ressourceClass}" >
 					Marktwert
 				</div>
-				<div class="spyRaportContainerCell" >
+				<div class="spyRaportContainerCell {$ressourceClass}" >
 					{$ressourcesByMarketValue}
 				</div>
 				<div class="spyRaportContainerCell" >
@@ -78,18 +89,10 @@
 			</div>
 			<div class="spyRaportContainerRow clearfix">
 				<div class="spyRaportContainerCell" style="width: 50% !important;">
-					actuallRessPerTime
+					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[202]={$nessesarryKT}">Mit {$nessesarryKT} KT angreifen</a>
 				</div>
 				<div class="spyRaportContainerCell" style="width: 50% !important;">
-					{$actuallRessPerTime}
-				</div>
-			</div>
-			<div class="spyRaportContainerRow clearfix">
-				<div class="spyRaportContainerCell" style="width: 50% !important;">
-					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[203]={$nessesarryKT}">Mit {$nessesarryKT} GT angreifen</a>
-				</div>
-				<div class="spyRaportContainerCell" style="width: 50% !important;">
-					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[202]={$nessesarryGT}">Mit {$nessesarryGT} KT angreifen</a>
+					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[203]={$nessesarryGT}">Mit {$nessesarryGT} GT angreifen</a>
 				</div>
 			</div>
 		</div>

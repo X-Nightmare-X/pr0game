@@ -233,17 +233,11 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $nessesarryRecy = $this->estimateRecyclers($recyclePotential);
         $targetCoordinates = [$targetPlanet["galaxy"],$targetPlanet["system"],$targetPlanet["planet"]];
         $bestPlanetArray = $this->bestplanet($senderUser["id"], $targetCoordinates);
-
         $energy = $targetPlanet["energy"];
-
-        $bestRessPerTime = $this->bestRessPerTime($bestPlanetArray[0], $senderUser);
-        
-        // die(var_dump($bestPlanetArray[0]));
+        $bestRessPerTime = $this->bestRessPerTime($bestPlanetArray[0], $senderUser, $ressourcesByMarketValue);
+        $dangerClass = $danger > 0 ? "danger" : "nonedanger";
         $bestPlanet = $bestPlanetArray[1][0] . ":" . $bestPlanetArray[1][1] . ":" . $bestPlanetArray[1][2];
-        // die(print($bestPlanet));
 
-
-        $actuallRessPerTime = "TODO";
 
         $template->caching = true;
         $template->compile_id = $senderUser['lang'];
@@ -253,15 +247,14 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $template->assign_vars([
             'ressources'                        => $ressources,
             'danger'                            => $danger,
+            'dangerClass'                       => $dangerClass,
             'ressourcesToRaid'                  => $ressourcesToRaid,
             'recyclePotential'                  => $recyclePotential,
-            // 'nessesarryTransportUnits'          => $nessesarryTransportUnits,
             'nessesarryRecy'                    => $nessesarryRecy,
             'ressourcesByMarketValue'           => $ressourcesByMarketValue,
             'energy'                            => $energy,
             'bestRessPerTime'                   => $bestRessPerTime,
             'bestPlanet'                        => $bestPlanet,
-            'actuallRessPerTime'                => $actuallRessPerTime,
             'nessesarryGT'                      => $nessesarryGT,
             'nessesarryKT'                      => $nessesarryKT,
             'spyData'                           => $spyData,
@@ -367,7 +360,14 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
     public function getRessoucesByDsuValue($metal, $crystal, $deuterium)
     {
-        $ressoucesByDsuValue = $metal / 4.5 + $crystal / 0.8 + $deuterium / 1;
+        require_once 'includes/classes/class.MarketManager.php';
+        $pMarket = new MarketManager();
+		$refrates = $pMarket->getReferenceRatios();
+        $refratesMetal = $refrates["metal"];
+        $refratesCrystal = $refrates["crystal"];
+        $refratesDeuterium = $refrates["deuterium"];
+
+        $ressoucesByDsuValue = $metal / $refratesMetal + $crystal / $refratesCrystal + $deuterium / $refratesDeuterium;
         return round($ressoucesByDsuValue);
     }
 
@@ -597,41 +597,18 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         return [$bestDistance,$bestPlanet];
     }
 
-    public function bestRessPerTime($distance, $senderUser)
+    public function bestRessPerTime($distance, $senderUser, $ressourcesByMarketValue)
     {
         // $flytime = FleetFunctions::getMissionDuration($SpeedFactor, $MaxFleetSpeed, $Distance, $GameSpeed, $USER);
         $fleetArray = [214 => 1];
         $MaxFleetSpeed = FleetFunctions::getFleetMaxSpeed($fleetArray, $senderUser);
         $GameSpeed = Config::get()->fleet_speed / 2500;
-        $flytime = FleetFunctions::getMissionDuration(100, $MaxFleetSpeed, $distance, $GameSpeed, $senderUser);
+        $flytime = FleetFunctions::getMissionDuration(100, $MaxFleetSpeed, $distance, $GameSpeed, $senderUser);   
 
+        $ressPerTime = $ressourcesByMarketValue / ($flytime * 2);
 
-        $pMarket = new MarketManager();
-		$refrates = $pMarket->getReferenceRatios();
-        // $referenceRatios = MarketManager::getReferenceRatios();
-        die(print($refrates));
-
-        // calculateResourceMarketValuePerSecond = (calculateResourceMarketValue(met, kris, deut) / (flytime * 2));
-        // calculateResourceMarketValuePerSecond = calculateResourceMarketValuePerSecond.toFixed(2);
-
-        return $flytime;
+        return round($ressPerTime, 2);
     }
-
-    // foreach ($classIDs as $classID => $elementIDs) {
-    //     foreach ($elementIDs as $elementID) {
-    //         if (isset($targetUser[$resource[$elementID]])) {
-    //             $spyData[$classID][$elementID] = $targetUser[$resource[$elementID]];
-    //         } else {
-    //             $spyData[$classID][$elementID] = $targetPlanet[$resource[$elementID]];
-    //         }
-    //     }
-
-    //     if ($senderUser['spyMessagesMode'] == 1) {
-    //         $spyData[$classID] = array_filter($spyData[$classID]);
-    //     }
-    // }
-
-
 
     public function EndStayEvent()
     {
