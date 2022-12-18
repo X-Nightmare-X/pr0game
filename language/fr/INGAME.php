@@ -1001,8 +1001,8 @@ $LNG['bn_writemail'] = 'Ecrire un mail à %s';
 
 
 $LNG['css_account_banned_message'] = 'Votre compte a été suspendu ! ';
-$LNG['css_account_banned_expire'] = 'Vous avez été bannis jusqu\'à %s !<br>'
-    . '<a href="./index.php?page=pranger">Pilori</a>';
+$LNG['css_account_banned_expire'] = 'You are banned until %s!<br>In case of questions, please open a ticket on our <a style="color: -webkit-link;" href="https://discord.gg/jhYYN3yuat">Discord server (link)</a>';
+$LNG['css_account_banned_reason'] = 'Reason: %s';
 $LNG['css_goto_homeside'] = '<a href="./index.php">Se rendre à la page d\'accueil</a>';
 $LNG['css_server_maintrace'] = 'Maintenance du serveur<br><br>Le jeu est momentanément suspendu. <br><br>Raison : %s';
 
