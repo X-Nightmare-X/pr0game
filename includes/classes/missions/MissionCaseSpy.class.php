@@ -204,9 +204,9 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         } else {
             $danger = 0;
         }
-        
+
         $dangerClass = $danger > 0 ? "danger" : "nonedanger";
-        
+
         if (isset($classIDs[200])) {
             $recyclePotential = $this->getRecyleValue($spyData);
         } else {
@@ -216,50 +216,43 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $ressourcesToRaid = round($ressources / 2);
         $ressourcesByMarketValue = $this->getRessoucesByDsuValue($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']);
 
-        if ($ressourcesByMarketValue > 150000 ){
+        if ($ressourcesByMarketValue > 150000) {
             $ressourcesByMarketValueClass = "realHighRess";
-        }
-        elseif ($ressourcesByMarketValue > 90000) {
+        } elseif ($ressourcesByMarketValue > 90000) {
             $ressourcesByMarketValueClass = "highRess";
-        }
-        elseif ($ressourcesByMarketValue > 30000) {
+        } elseif ($ressourcesByMarketValue > 30000) {
             $ressourcesByMarketValueClass = "midRess";
-        }
-        else{
+        } else {
             $ressourcesByMarketValueClass = "lowRess";
         }
 
         $nessesarryKT = $this->estimateSmallTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
         $nessesarryGT = $this->estimateGreatTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
         $nessesarryRecy = $this->estimateRecyclers($recyclePotential);
-        $targetCoordinates = [$targetPlanet["galaxy"],$targetPlanet["system"],$targetPlanet["planet"]];
+        $targetCoordinates = [$targetPlanet["galaxy"], $targetPlanet["system"], $targetPlanet["planet"]];
         $bestPlanetArray = $this->bestplanet($senderUser["id"], $targetCoordinates);
         $energy = $targetPlanet["energy"];
 
-        if ($energy > 100000 ){
+        if ($energy > 100000) {
             $energyClass = "midRess";
         } elseif ($energy > 250000) {
             $energyClass = "lowRess";
-        }
-        else{
+        } else {
             $energyClass = "";
         }
 
         $bestRessPerTime = $this->bestRessPerTime($bestPlanetArray[0], $senderUser, $ressourcesByMarketValue);
-        
-        if ($bestRessPerTime > 20 ){
+
+        if ($bestRessPerTime > 20) {
             $bestRessPerTimeClass = "realHighRess";
-        }
-        elseif ($bestRessPerTime > 10) {
+        } elseif ($bestRessPerTime > 10) {
             $bestRessPerTimeClass = "highRess";
-        }
-        elseif ($bestRessPerTime > 5) {
+        } elseif ($bestRessPerTime > 5) {
             $bestRessPerTimeClass = "midRess";
-        }
-        else{
+        } else {
             $bestRessPerTimeClass = "lowRess";
         }
-        
+
         $bestPlanet = $bestPlanetArray[1][0] . ":" . $bestPlanetArray[1][1] . ":" . $bestPlanetArray[1][2];
 
 
@@ -387,12 +380,13 @@ class MissionCaseSpy extends MissionFunctions implements Mission
     {
         require_once 'includes/classes/class.MarketManager.php';
         $pMarket = new MarketManager();
-		$refrates = $pMarket->getReferenceRatios();
+        $refrates = $pMarket->getReferenceRatios();
         $refratesMetal = $refrates["metal"];
         $refratesCrystal = $refrates["crystal"];
         $refratesDeuterium = $refrates["deuterium"];
 
         $ressoucesByDsuValue = $metal / $refratesMetal + $crystal / $refratesCrystal + $deuterium / $refratesDeuterium;
+        
         return round($ressoucesByDsuValue);
     }
 
@@ -578,9 +572,9 @@ class MissionCaseSpy extends MissionFunctions implements Mission
     {
         $db = Database::get();
         $universe = Universe::current();
-        
+
         $sql = "Select galaxy, system, planet from %%PLANETS%% where universe = :universe and id_owner = :owner ;";
-        $targetPlanet = $db->select($sql,[
+        $targetPlanet = $db->select($sql, [
             ':universe' => $universe,
             ':owner'    => $owner
         ]);
@@ -603,13 +597,13 @@ class MissionCaseSpy extends MissionFunctions implements Mission
                 ]
             );
 
-            if (( $bestDistance === 0 ) || ($bestDistance > $distance) ){
+            if (($bestDistance === 0) || ($bestDistance > $distance)) {
                 $bestDistance = $distance;
-                $bestPlanet = [$positions["galaxy"],$positions["system"],$positions["planet"]];
+                $bestPlanet = [$positions["galaxy"], $positions["system"], $positions["planet"]];
             }
         }
 
-        return [$bestDistance,$bestPlanet];
+        return [$bestDistance, $bestPlanet];
     }
 
     public function bestRessPerTime($distance, $senderUser, $ressourcesByMarketValue)
@@ -617,7 +611,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $fleetArray = [214 => 1];
         $MaxFleetSpeed = FleetFunctions::getFleetMaxSpeed($fleetArray, $senderUser);
         $GameSpeed = Config::get()->fleet_speed / 2500;
-        $flytime = FleetFunctions::getMissionDuration(100, $MaxFleetSpeed, $distance, $GameSpeed, $senderUser);   
+        $flytime = FleetFunctions::getMissionDuration(100, $MaxFleetSpeed, $distance, $GameSpeed, $senderUser);
 
         $ressPerTime = $ressourcesByMarketValue / ($flytime * 2);
 
