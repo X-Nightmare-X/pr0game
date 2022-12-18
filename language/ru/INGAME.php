@@ -16,14 +16,14 @@
  */
 
 // Translation into Russian - Copyright © 2010-2013 InquisitorEA <support@moon-hunt.ru>
-
+$LNG['type_planet_short_3'] = 'Л';
 $LNG['Messages'] = 'Сообщения';
 $LNG['write_message'] = 'Написать сообщение';
 $LNG['PM'] = '[ЛС]';
 $LNG['ready'] = 'Готово';
 $LNG['loading'] = 'Загрузка...';
 $LNG['invalid_action'] = 'Недопустимое действие.';
-
+$LNG["delete_confirm_gala"] = 'Удалить данные локальной вселенной?';
 $LNG['type_mission_1'] = 'Атака';
 $LNG['type_mission_2'] = 'Совместная атака';
 $LNG['type_mission_3'] = 'Транспорт';
@@ -124,6 +124,7 @@ $LNG['lm_statistics'] = 'Статистика';
 $LNG['lm_search'] = 'Поиск';
 $LNG['lm_options'] = 'Настройки';
 $LNG['lm_banned'] = 'Заблокированные';
+$LNG['donate'] = "Пожертвовать";
 $LNG['lm_forums'] = 'Форум';
 $LNG['lm_logout'] = 'Выход';
 $LNG['lm_administration'] = 'Админка';
@@ -368,6 +369,7 @@ $LNG['fl_sac_of_fleet'] = 'САБ';
 $LNG['fl_modify_sac_name'] = 'Название САБ';
 $LNG['fl_members_invited'] = 'Приглашённые игроки';
 $LNG['fl_invite_members'] = 'Пригласить игрока в САБ';
+$LNG['fl_selected_resources'] = 'выбранные ресурсы';
 $LNG['fl_simulate'] = 'Симулировать';
 $LNG['fl_bonus'] = 'Бонусы';
 $LNG['fl_bonus_attack'] = 'Вооружение';
@@ -1088,7 +1090,7 @@ $LNG['tkb_memorial'] = 'Мемориалы';
 $LNG['tkb_timeframe'] = 'Таймфрейм';
 $LNG['tkb_diplomacy'] = 'Дипломатия';
 $LNG['tkb_galaxy'] = 'Галактика';
-
+$LNG['fleetPrio'] = 'Приоритет заказа флота';
 // filter options
 $LNG['tkb_all'] = 'все';
 $LNG['tkb_only'] = 'только';
@@ -1198,3 +1200,6 @@ $LNG['lo_logout'] = 'Сессия завершена.';
 $LNG['lo_redirect'] = 'Перенаправление';
 $LNG['lo_notify'] = 'Вы будете перенаправлены через <span id="seconds">5</span> секунд';
 $LNG['lo_continue'] = 'Нажмите здесь, если не хотите ждать';
+$LNG['fleet_table_custom_empty_name'] = 'Вставьте название флота, пожалуйста!';
+$LNG['custom_fleet'] = 'Индивидуальные автопарки';
+$LNG['custom_fleet_confirm'] = 'Удалить шаблон флота %s?';

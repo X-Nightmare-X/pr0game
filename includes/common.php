@@ -68,6 +68,19 @@ define('AJAX_REQUEST', HTTP::_GP('ajax', 0));
 
 $THEME      = new Theme();
 
+$config = Config::get();
+date_default_timezone_set($config->timezone);
+
+$USER = [];
+$USER['lang'] = 'en';
+$USER['bana'] = 0;
+$USER['timezone'] = $config->timezone;
+$USER['urlaubs_modus'] = 0;
+$USER['authlevel'] = 0;
+$USER['id'] = 0;
+$USER['signalColors'] = PlayerUtil::player_signal_colors();
+$USER['colors'] = PlayerUtil::player_colors();
+
 if (MODE === 'INSTALL') {
     return;
 }
@@ -103,14 +116,12 @@ if (defined('DATABASE_VERSION') && DATABASE_VERSION === 'OLD') {
     }
 }
 
-$config = Config::get();
-date_default_timezone_set($config->timezone);
-
-
 if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     $session    = Session::load();
 
-    if (!(!$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME')) {
+    $raportWithoutSession = !$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME';
+
+    if (!$raportWithoutSession) {
         if (!$session->isValidSession()) {
             $session->delete();
             HTTP::redirectTo('index.php?code=3');
@@ -127,38 +138,22 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
 
     $db     = Database::get();
 
+    if (!$raportWithoutSession) {
+        $sql    = "SELECT
+    	user.*, s.total_points,
+    	COUNT(message.message_id) as messages
+    	FROM %%USERS%% as user
+        LEFT JOIN %%STATPOINTS%% s ON s.id_owner = user.id AND s.stat_type = :statTypeUser
+    	LEFT JOIN %%MESSAGES%% as message ON message.message_owner = user.id AND message.message_unread = :unread
+    	WHERE user.id = :userId
+    	GROUP BY message.message_owner;";
 
-    $sql    = "SELECT
-	user.*, s.total_points,
-	COUNT(message.message_id) as messages
-	FROM %%USERS%% as user
-    LEFT JOIN %%STATPOINTS%% s ON s.id_owner = user.id AND s.stat_type = :statTypeUser
-	LEFT JOIN %%MESSAGES%% as message ON message.message_owner = user.id AND message.message_unread = :unread
-	WHERE user.id = :userId
-	GROUP BY message.message_owner;";
-
-
-    $USER   = $db->selectSingle($sql, array(
-        ':statTypeUser'     => 1,
-        ':unread'           => 1,
-        ':userId'           => $session->userId
-    ));
-
-    if (!$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME') {
-        if (empty($USER)) {
-            $USER = [];
-        }
-
-        $USER['lang'] = 'en';
-        $USER['bana'] = 0;
-        $USER['timezone'] = "Europe/Berlin";
-        $USER['urlaubs_modus'] = 0;
-        $USER['authlevel'] = 0;
-        $USER['id'] = 0;
-    }
-
-
-    if (!(!$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME')) {
+        $USER   = $db->selectSingle($sql, array(
+            ':statTypeUser'     => 1,
+            ':unread'           => 1,
+            ':userId'           => $session->userId
+        ));
+        
         if (empty($USER)) {
             HTTP::redirectTo('index.php?code=3');
         } else {
@@ -170,6 +165,9 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
                 $USER['bana'] = 0;
                 $USER['banaday'] = 0;
             }
+
+            $USER['signalColors'] = PlayerUtil::player_signal_colors($USER);
+            $USER['colors'] = PlayerUtil::player_colors($USER);
         }
     }
 
@@ -183,7 +181,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
         ShowErrorPage::printError("<font size=\"6px\">" . $LNG['css_account_banned_message'] . "</font><br><br>" . sprintf($LNG['css_account_banned_expire'], _date($LNG['php_tdformat'], $USER['banaday'], $USER['timezone'])) . "<br><br>" . $LNG['css_goto_homeside'], false);
     }
 
-    if (!(!$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME')) {
+    if (!$raportWithoutSession) {
         if (MODE === 'INGAME') {
             $universeAmount = count(Universe::availableUniverses());
             if (Universe::current() != $USER['universe'] && $universeAmount > 1) {
@@ -220,7 +218,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     }
 
     if (
-        $config->game_disable == 0 && $USER['authlevel'] == AUTH_USR &&
+        ($config->uni_status == STATUS_CLOSED || $config->uni_status == STATUS_REG_ONLY) && $USER['authlevel'] == AUTH_USR &&
         (!isset($_GET['page']) || $_GET['page'] !== 'logout')
     ) {
         ShowErrorPage::printError($LNG['sys_closed_game'] . '<br><br>' . $config->close_reason, false);
@@ -228,7 +226,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     $privKey = $config->recaptchaPrivKey;
     $rcaptcha = HTTP::_GP('rcaptcha', '');
 
-    if(isset($privKey) && isset($rcaptcha)){
+    if (isset($privKey) && isset($rcaptcha)) {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -239,7 +237,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
         $arrResponse = json_decode($response, true);
         $sql = "insert into %%RECAPTCHA%% (userId, success, time, score, url) VALUES (:userId, :success, :time, :score, :url);";
         
-        if($arrResponse['success'] == true){
+        if (isset($arrResponse) && $arrResponse['success'] == true) {
             $db->insert($sql, array(
                 ':userId'   => $USER['id'],
                 ':success'  => $arrResponse['success'],

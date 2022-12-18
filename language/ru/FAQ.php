@@ -183,3 +183,17 @@ $LNG['questions'][2][4]['body']  = <<<BODY
 В настройках можно вставить ссылку на картинку, которую будет видно на странице альянса в игре, а также ссылку к форуму альянса, если таковой имеется. Кроме того, можно включать и отключать приём заявок, и редактировать название ранга для основателя альянса. Если ранг оставить пустым, то автоматически он будет называться "Основатель".<br>
 Распустить альянс можно соответствующей кнопкой, а "Покинуть/перенять альянс" передаёт управление альянсом другому игроку.</p>
 BODY;
+$LNG['questions'][2][5]['title']	= 'Ссылки';
+$LNG['questions'][2][5]['body']		= <<<BODY
+<h3>Где я могу найти дополнительную информацию?</h3>
+<p>Немецкий:<br>
+<a href="https://www.owiki.de/index.php/Aufbautaktik" target="_blank">Начальный справочник (немецкий)</a><br>
+<a href="https://www.owiki.de/index.php/Miner" target="_blank">Стиль игры: Шахтер (немецкий)</a> <br>
+<a href="https://www.owiki.de/index.php/Raideraccount" target="_blank">Стиль игры: флиттер (немецкий)</a> <br>
+<a href="https://www.owiki.de/index.php/Comber" target="_blank">Стиль игры: комбайнер (немецкий)</a> <br>
+<a href="https://www.owiki.de/index.php/Saven" target="_blank">Экономия (немецкий)</a></p>
+<p>Английский язык:<br>
+<a href="https://ogame.fandom.com/wiki/Quick_Start_Guide" target="_blank">Краткое руководство пользователя (Английский язык)</a><br>
+<a href="https://ogame.fandom.com/wiki/Playing_Styles" target="_blank">Игровые стили (Шахтер, флиттер, комбайнер)(Английский язык)</a><br>
+<a href="https://ogame.fandom.com/wiki/Fleetsaving" target="_blank">Экономия (Английский язык)</a></p>
+BODY;

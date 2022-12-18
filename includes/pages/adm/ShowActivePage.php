@@ -45,6 +45,7 @@ function ShowActivePage()
 	$template->assign_vars(array(	
 		'Users'				=> $Users,
 		'uni'				=> Universe::getEmulated(),
+		'signalColors'      => $USER['signalColors'],
 	));
 	
 	$template->show('ActivePage.tpl');

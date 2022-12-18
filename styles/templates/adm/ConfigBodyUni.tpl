@@ -62,8 +62,8 @@
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
-			<td>{$LNG.se_server_op_close}<br></td>
-			<td><input name="closed" {if $game_disable == '1'} checked="checked" {/if} type="checkbox"></td>
+			<td>{$LNG.se_uni_status}</td>
+			<td>{html_options name=uni_status options=$Selector.uni_status selected=$uni_status}</td>
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
@@ -271,11 +271,6 @@
 			<td>{$LNG.se_min_build_time}</td>
 			<td><input name="min_build_time" maxlength="2" size="5" value="{$min_build_time}" type="text"></td>
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_min_build_time_info}" /></td>
-		</tr>
-		<tr>
-			<td>{$LNG.se_reg_closed}<br></td>
-			<td><input name="reg_closed" {if $reg_closed} checked="checked" {/if} type="checkbox"></td>
-			<td>&nbsp;</td>
 		</tr>
 		<tr>
 			<td>{$LNG.se_verfiy_mail}<br></td>

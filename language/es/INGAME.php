@@ -17,10 +17,10 @@
 
 $LNG['Messages'] = 'Mensajes';
 $LNG['write_message'] = 'Escribir mensaje';
-
+$LNG['type_planet_short_3'] = 'M';
 $LNG['PM'] = '[MP]';
 $LNG['ready'] = 'Listo';
-
+$LNG["delete_confirm_gala"] = '¿Borrar datos del universo local?';
 $LNG['loading'] = 'Cargando ...';
 
 $LNG['invalid_action'] = 'Acción no valida!';
@@ -126,6 +126,7 @@ $LNG['lm_notes'] = 'Notas';
 $LNG['lm_statistics'] = 'Estadísticas';
 $LNG['lm_search'] = 'Buscador';
 $LNG['lm_options'] = 'Configuración';
+$LNG['donate'] = 'Donar';
 $LNG['lm_banned'] = 'Sancionados';
 $LNG['lm_forums'] = 'Foro';
 $LNG['lm_logout'] = 'Salir';
@@ -368,6 +369,7 @@ $LNG['fl_return_time'] = 'Hora de regreso';
 $LNG['fl_fleet'] = 'Flota';
 $LNG['fl_player'] = 'El jugador ';
 $LNG['fl_add_to_attack'] = ' fue agregado al ataque.';
+$LNG['fl_selected_resources'] = 'recursos seleccionados';
 $LNG['fl_already_invited'] = ' Ya ha sido invitado.';
 $LNG['fl_dont_exist'] = ' no existe.';
 $LNG['fl_acs_invitation_message'] = ' te invita a participar en un SAC.';
@@ -1167,7 +1169,7 @@ $LNG['pl_etc'] = 'Otros';
 
 //----------------------------------------------------------------------------//
 // Support
-
+$LNG['fleetPrio'] = 'Prioridad de los pedidos de la flota';
 $LNG['ti_header'] = 'Sistema de Soporte';
 $LNG['ti_overview'] = 'Volver a la visión general';
 $LNG['ti_id'] = 'Ticket';
@@ -1249,6 +1251,9 @@ $LNG['lo_notify'] = 'Seras redireccionado en <span id="seconds"> 5 </span> s';
 $LNG['lo_continue'] = 'Pulsa aquí si no redirecciona tu navegador.';
 
 //----------------------------------------------------------------------------//
+$LNG['fleet_table_custom_empty_name'] = 'Introduzca el nombre de la flota, por favor.';
+$LNG['custom_fleet'] = 'Flotas personalizadas';
+$LNG['custom_fleet_confirm'] = '¿Quitar la plantilla de la flota %s?';
 
 
 // Translated into Spanish by Angelus_ira . All rights reversed (C) 2011

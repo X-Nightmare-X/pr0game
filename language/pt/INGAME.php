@@ -20,15 +20,15 @@
 // pelo Ministério da Educação de Portugal - convertido pelo Lince.
 
 // 2Moons - Copyright (C) 2012  Jan Kröpke
-
+$LNG['type_planet_short_3'] = 'L';
 $LNG['Messages'] = 'Mensagens';
 $LNG['write_message'] = 'Escrever mensagem';
-
+$LNG["delete_confirm_gala"] = 'Apagar dados do universo local?';
 $LNG['PM'] = '[MP]';
 $LNG['ready'] = 'Pronto';
 
 $LNG['loading'] = 'A carregar ...';
-
+$LNG['fleetPrio'] = 'Prioridade de ordem da frota';
 $LNG['invalid_action'] = 'Ação Invalida!!';
 
 $LNG['type_mission_1'] = 'Atacar';
@@ -51,8 +51,8 @@ $LNG['type_mission_3_own'] = 'Transporte próprio';
 $LNG['type_mission_4_own'] = 'Estacionamento próprio';
 $LNG['type_mission_5_own'] = 'Detenção própria';
 $LNG['type_mission_6_own'] = 'Espionagem própria';
-$LNG['type_mission_7_own'] = 'Exploração_própria'; 
-$LNG['type_mission_7_own_return'] = 'Colonização própria'; 
+$LNG['type_mission_7_own'] = 'Exploração_própria';
+$LNG['type_mission_7_own_return'] = 'Colonização própria';
 $LNG['type_mission_8_own'] = 'Reciclagem própria';
 $LNG['type_mission_9_own'] = 'Destruição_própria';
 $LNG['type_mission_10_own'] = 'Ataque_próprio de míssil';
@@ -133,6 +133,7 @@ $LNG['lm_statistics'] = 'Estatisticas';
 $LNG['lm_search'] = 'Procurar';
 $LNG['lm_options'] = 'Opções';
 $LNG['lm_banned'] = 'Banidos';
+$LNG['donate'] = 'Doar';
 $LNG['lm_forums'] = 'Forum';
 $LNG['lm_logout'] = 'Logout';
 $LNG['lm_administration'] = 'Administração';
@@ -368,6 +369,7 @@ $LNG['fl_not_ally_deposit'] = 'Não tens Depósito de Alianca';
 $LNG['fl_deploy_only_your_planets'] = 'Sie können nur Flotten auf Ihren eigenen Planeten stationieren!';
 $LNG['fl_fleet_sended'] = 'Frota enviada';
 $LNG['fl_from'] = 'De';
+$LNG['fl_selected_resources'] = 'recursos seleccionados';
 $LNG['fl_arrival_time'] = 'Tempo de Destino';
 $LNG['fl_return_time'] = 'Tempo de Regresso';
 $LNG['fl_fleet'] = 'Frota';
@@ -1249,6 +1251,8 @@ $LNG['lo_notify'] = 'Serás redirecionado em <span id="seconds">5</span> segundo
 $LNG['lo_continue'] = 'Clica aqui para não esperar';
 
 //----------------------------------------------------------------------------//
-
+$LNG['fleet_table_custom_empty_name'] = 'Insira um nome de frota, por favor!';
+$LNG['custom_fleet'] = 'Frotas personalizadas';
+$LNG['custom_fleet_confirm'] = 'Remover modelo de frota %s?';
 
 // Translated into Portuguese by QwataKayean . All rights reversed (C) 2012

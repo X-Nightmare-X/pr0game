@@ -19,6 +19,14 @@ class MarketManager {
 
 	private $_pushTolerance = 0.3; // accepted market volatility percentage, not triggering push check
 
+    // return useful default values for when there are no trades
+	private function getDefaultRatio($expectedrestype)
+	{
+		if ($expectedrestype == $this->_restype_metal) return 3;
+		if ($expectedrestype == $this->_restype_crystal) return 2;
+		else return 1;
+	}
+
 	/**
 	 * the following 3 functions get a 7 day trade list of all trades on a single resource pair
 	 */
@@ -37,16 +45,18 @@ class MarketManager {
 			AND buy_time >= CURDATE() - INTERVAL 7 DAY
 			AND filter_visibility != 1
 			AND ex_resource_type = :exprestype
+			AND seller.fleet_universe = :universe
 			ORDER BY buy_time DESC;';
 
-		$trades = $db->select($sql, [':exprestype' => $expectedrestype]);
+		$trades = $db->select($sql, [
+			':exprestype' => $expectedrestype,
+			':universe' => Universe::current(),
+		]);
 
-		if ($trades == [])
-		{
-			$resAmount = ($expectedrestype == $this->_restype_metal) ? 4 : 1;
+		if (empty($trades)) {
 			$trades []= [
-				'amount' => $resAmount,
-				'metal' => 4,
+				'amount' => $this->getDefaultRatio($expectedrestype),
+				'metal' => $this->getDefaultRatio($this->_restype_metal),
 			];
 		}
 
@@ -68,16 +78,18 @@ class MarketManager {
 			AND buy_time >= CURDATE() - INTERVAL 7 DAY
 			AND filter_visibility != 1
 			AND ex_resource_type = :exprestype
+			AND seller.fleet_universe = :universe
 			ORDER BY buy_time DESC;';
 
-		$trades = $db->select($sql, [':exprestype' => $expectedrestype]);
+		$trades = $db->select($sql, [
+			':exprestype' => $expectedrestype,
+			':universe' => Universe::current(),
+		]);
 
-		if ($trades == [])
-		{
-			$resAmount = ($expectedrestype == $this->_restype_metal) ? 4 : 1;
+		if (empty($trades)) {
 			$trades []= [
-				'amount' => $resAmount,
-				'crystal' => 1,
+				'amount' => $this->getDefaultRatio($expectedrestype),
+				'crystal' => $this->getDefaultRatio($this->_restype_crystal),
 			];
 		}
 
@@ -99,16 +111,18 @@ class MarketManager {
 			AND buy_time >= CURDATE() - INTERVAL 7 DAY
 			AND filter_visibility != 1
 			AND ex_resource_type = :exprestype
+			AND seller.fleet_universe = :universe
 			ORDER BY buy_time DESC;';
 
-		$trades = $db->select($sql, [':exprestype' => $expectedrestype]);
+		$trades = $db->select($sql, [
+			':exprestype' => $expectedrestype,
+			':universe' => Universe::current(),
+		]);
 
-		if ($trades == [])
-		{
-			$resAmount = ($expectedrestype == $this->_restype_metal) ? 4 : 1;
+		if (empty($trades)) {
 			$trades []= [
-				'amount' => $resAmount,
-				'deuterium' => 1,
+				'amount' => $this->getDefaultRatio($expectedrestype),
+				'deuterium' => $this->getDefaultRatio($this->_restype_deuterium),
 			];
 		}
 		return $trades;

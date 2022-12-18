@@ -36,7 +36,15 @@ class ShowSettingsPage extends AbstractGamePage
 
             $this->display('page.settings.vacation.tpl');
         } else {
-            $colors = PlayerUtil::player_colors($USER);
+            $db = Database::get();
+            $sql = "SELECT prioMission1 as 'type_mission_1',prioMission2 as 'type_mission_2',prioMission3 as 'type_mission_3',prioMission4 as 'type_mission_4'
+,prioMission5 as 'type_mission_5',prioMission6 as 'type_mission_6',
+                    prioMission7 as 'type_mission_7',prioMission8 as 'type_mission_8',prioMission9 as 'type_mission_9',prioMission17 as 'type_mission_17'
+                    FROM %%USERS%% WHERE universe = :universe AND id = :userID ;";
+            $missionprios =$db->selectSingle($sql, [
+                ':universe' => Universe::current(),
+                ':userID'   => $USER['id'],
+            ]);
             $this->assign([
                 'Selectors'         => [
                     'timezones' => get_timezone_selector(),
@@ -52,31 +60,35 @@ class ShowSettingsPage extends AbstractGamePage
                     'Skins' => Theme::getAvalibleSkins(),
                     'lang' => $LNG->getAllowedLangs(false),
                 ],
-                'adminProtection'   => $USER['authattack'],
-                'userAuthlevel'     => $USER['authlevel'],
-                'changeNickTime'    => ($USER['uctime'] + USERNAME_CHANGETIME) - TIMESTAMP,
-                'username'          => $USER['username'],
-                'email'             => $USER['email'],
-                'permaEmail'        => $USER['email_2'],
-                'userLang'          => $USER['lang'],
-                'theme'             => $USER['dpath'],
-                'planetSort'        => $USER['planet_sort'],
-                'planetOrder'       => $USER['planet_sort_order'],
-                'spycount'          => $USER['spio_anz'],
-                'fleetActions'      => $USER['settings_fleetactions'],
-                'timezone'          => $USER['timezone'],
-                'delete'            => $USER['db_deaktjava'],
-                'queueMessages'     => $USER['hof'],
-                'spyMessagesMode'   => $USER['spyMessagesMode'],
-                'galaxySpy'         => $USER['settings_esp'],
-                'galaxyBuddyList'   => $USER['settings_bud'],
-                'galaxyMissle'      => $USER['settings_mis'],
-                'galaxyMessage'     => $USER['settings_wri'],
-                'blockPM'           => $USER['settings_blockPM'],
-                'userid'            => $USER['id'],
-                'ref_active'        => Config::get()->ref_active,
-                'SELF_URL'          => PROTOCOL . HTTP_HOST . HTTP_ROOT,
-                'colors'            => $colors,
+                'adminProtection'       => $USER['authattack'],
+                'userAuthlevel'         => $USER['authlevel'],
+                'changeNickTime'        => ($USER['uctime'] + USERNAME_CHANGETIME) - TIMESTAMP,
+                'username'              => $USER['username'],
+                'email'                 => $USER['email'],
+                'permaEmail'            => $USER['email_2'],
+                'userLang'              => $USER['lang'],
+                'theme'                 => $USER['dpath'],
+                'planetSort'            => $USER['planet_sort'],
+                'planetOrder'           => $USER['planet_sort_order'],
+                'spycount'              => $USER['spio_anz'],
+                'fleetActions'          => $USER['settings_fleetactions'],
+                'timezone'              => $USER['timezone'],
+                'delete'                => $USER['db_deaktjava'],
+                'queueMessages'         => $USER['hof'],
+                'spyMessagesMode'       => $USER['spyMessagesMode'],
+                'galaxySpy'             => $USER['settings_esp'],
+                'galaxyBuddyList'       => $USER['settings_bud'],
+                'galaxyMissle'          => $USER['settings_mis'],
+                'galaxyMessage'         => $USER['settings_wri'],
+                'blockPM'               => $USER['settings_blockPM'],
+                'userid'                => $USER['id'],
+                'ref_active'            => Config::get()->ref_active,
+                'SELF_URL'              => PROTOCOL . HTTP_HOST . HTTP_ROOT,
+                'colors'                => $USER['colors'],
+                'signalColors'          => $USER['signalColors'],
+                'defaultColors'         => PlayerUtil::player_colors(),
+                'defaultSignalColors'   => PlayerUtil::player_signal_colors(),
+                'missionPrios'          => $missionprios,
             ]);
 
             $this->display('page.settings.default.tpl');
@@ -106,7 +118,7 @@ class ShowSettingsPage extends AbstractGamePage
             ':userID'   => $USER['id'],
             ':planetID' => $PLANET['id'],
         ]);
-        
+
         foreach ($query as $CPLANET) {
             list($USER, $CPLANET) = $this->ecoObj->CalcResource($USER, $CPLANET, true);
             /*
@@ -117,7 +129,7 @@ class ShowSettingsPage extends AbstractGamePage
             */
             unset($CPLANET);
         }
-        
+
 		$db->commit();
         return true;
     }
@@ -141,6 +153,7 @@ class ShowSettingsPage extends AbstractGamePage
 
         $db = Database::get();
         $db->startTransaction();
+
 
         $sql = "SELECT id FROM %%USERS%% WHERE universe = :universe AND id = :userID FOR UPDATE;";
         $db->selectSingle($sql, [
@@ -215,7 +228,7 @@ class ShowSettingsPage extends AbstractGamePage
 
         $vacation           = HTTP::_GP('vacation', 0);
         $delete             = HTTP::_GP('delete', 0);
-        
+
         $colorMission2friend = HTTP::_GP('colorMission2friend', '#ff00ff');
 
         $colorMission1Own = HTTP::_GP('colorMission1Own', '#66cc33');
@@ -253,7 +266,19 @@ class ShowSettingsPage extends AbstractGamePage
         $colorPositive = HTTP::_GP('colorPositive', '#00ff00');
         $colorNegative = HTTP::_GP('colorNegative', '#ff0000');
         $colorNeutral = HTTP::_GP('colorNeutral', '#ffd600');
-        
+
+        $prio1 = HTTP::_GP('type_mission_1', 1);
+        $prio2 = HTTP::_GP('type_mission_2', 2);
+        $prio3 = HTTP::_GP('type_mission_3', 0);
+        $prio4 = HTTP::_GP('type_mission_4', 3);
+        $prio5 = HTTP::_GP('type_mission_5', 4);
+        $prio6 = HTTP::_GP('type_mission_6', 5);
+        $prio7 = HTTP::_GP('type_mission_7', 6);
+        $prio8 = HTTP::_GP('type_mission_8', 7);
+        $prio9 = HTTP::_GP('type_mission_9', 8);
+        $prio17 =HTTP::_GP('type_mission_17', 9);
+
+
         // Vertify
 
         $adminprotection    = ($adminprotection == 1 && $USER['authlevel'] != AUTH_USR) ? $USER['authlevel'] : 0;
@@ -456,25 +481,35 @@ class ShowSettingsPage extends AbstractGamePage
         colorStaticTimer            = :colorStaticTimer,
         colorPositive               = :colorPositive,
         colorNegative               = :colorNegative,
-        colorNeutral                = :colorNeutral
+        colorNeutral                = :colorNeutral,
+        prioMission1                = :prioMission1,
+        prioMission2                = :prioMission2,
+        prioMission3                = :prioMission3,
+        prioMission4                = :prioMission4,
+        prioMission5                = :prioMission5,
+        prioMission6                = :prioMission6,
+        prioMission7                = :prioMission7,
+        prioMission8                = :prioMission8,
+        prioMission9                = :prioMission9,
+        prioMission17               = :prioMission17
 		WHERE id = :userID;";
         $db->update($sql, [
-            ':theme'            => $theme,
-            ':timezone'         => $timezone,
-            ':planetSort'       => $planetSort,
-            ':planetOrder'      => $planetOrder,
-            ':spyCount'         => $spycount,
-            ':fleetActions'     => $fleetactions,
-            ':galaxySpy'        => $galaxySpy,
-            ':galaxyMessage'    => $galaxyMessage,
-            ':galaxyBuddyList'  => $galaxyBuddyList,
-            ':galaxyMissle'     => $galaxyMissle,
-            ':blockPM'          => $blockPM,
-            ':adminProtection'  => $adminprotection,
-            ':language'         => $language,
-            ':queueMessages'    => $queueMessages,
-            ':spyMessagesMode'  => $spyMessagesMode,
-            ':userID'           => $USER['id'],
+            ':theme'                        => $theme,
+            ':timezone'                     => $timezone,
+            ':planetSort'                   => $planetSort,
+            ':planetOrder'                  => $planetOrder,
+            ':spyCount'                     => $spycount,
+            ':fleetActions'                 => $fleetactions,
+            ':galaxySpy'                    => $galaxySpy,
+            ':galaxyMessage'                => $galaxyMessage,
+            ':galaxyBuddyList'              => $galaxyBuddyList,
+            ':galaxyMissle'                 => $galaxyMissle,
+            ':blockPM'                      => $blockPM,
+            ':adminProtection'              => $adminprotection,
+            ':language'                     => $language,
+            ':queueMessages'                => $queueMessages,
+            ':spyMessagesMode'              => $spyMessagesMode,
+            ':userID'                       => $USER['id'],
             ':colorMission2friend'          => $colorMission2friend,
             ':colorMission1Own'             => $colorMission1Own,
             ':colorMission2Own'             => $colorMission2Own,
@@ -509,11 +544,22 @@ class ShowSettingsPage extends AbstractGamePage
             ':colorPositive'                => $colorPositive,
             ':colorNegative'                => $colorNegative,
             ':colorNeutral'                 => $colorNeutral,
+            ':prioMission1'                 => $prio1,
+            ':prioMission2'                 => $prio2,
+            ':prioMission3'                 => $prio3,
+            ':prioMission4'                 => $prio4,
+            ':prioMission5'                 => $prio5,
+            ':prioMission6'                 => $prio6,
+            ':prioMission7'                 => $prio7,
+            ':prioMission8'                 => $prio8,
+            ':prioMission9'                 => $prio9,
+            ':prioMission17'                => $prio17
+
         ]);
-        
+
         $db->commit();
 
-        
+
         if ($vacation == 1) {
             $this->printMessage($LNG['op_options_changed_vacation'], [
                 [

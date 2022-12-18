@@ -21,8 +21,7 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 
 function ShowModulePage()
 {
-    global $LNG;
-
+    global $LNG, $USER;
     $config = Config::get(Universe::getEmulated());
     $module = explode(';', $config->moduls);
 
@@ -43,14 +42,17 @@ function ShowModulePage()
     $ignoreList = [7,8,18,31];
     foreach ($IDs as $ID => $Name) {
         if (in_array($ID, $ignoreList)) {
-            continue;
+            $module[$ID] = 0;
+        } else {
+            $Modules[$ID] = [
+                'name'  => $LNG['modul_' . $ID],
+                'state' => isset($module[$ID]) ? getNumber($module[$ID], 1) : 1,
+            ];
+            $module[$ID] = $Modules[$ID]['state'];
         }
-        $Modules[$ID] = [
-            'name'  => $LNG['modul_' . $ID],
-            'state' => isset($module[$ID]) ? $module[$ID] : 1,
-        ];
-        $module[$ID] = $Modules[$ID]['state'];
     }
+    $config->moduls = implode(";", $module);
+    $config->save();
 
     asort($Modules);
     $template = new template();
@@ -63,6 +65,7 @@ function ShowModulePage()
         'mod_deactive'          => $LNG['mod_deactive'],
         'mod_change_active'     => $LNG['mod_change_active'],
         'mod_change_deactive'   => $LNG['mod_change_deactive'],
+        'signalColors'          => $USER['signalColors'],
     ]);
 
     $template->show('ModulePage.tpl');

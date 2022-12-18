@@ -147,6 +147,7 @@ function ShowQuickEditorPage()
                 'metal_c'       => pretty_number($PlanetData['metal']),
                 'crystal_c'     => pretty_number($PlanetData['crystal']),
                 'deuterium_c'   => pretty_number($PlanetData['deuterium']),
+                'signalColors'  => $USER['signalColors']
             ]);
             $template->show('QuickEditorPlanet.tpl');
             break;
@@ -240,12 +241,14 @@ function ShowQuickEditorPage()
                 'system'        => $UserData['system'],
                 'planet'        => $UserData['planet'],
                 'authlevel'     => $UserData['authlevel'],
+                'qe_change'     => '',
                 'authattack'    => $UserData['authattack'],
                 'multi'         => $GLOBALS['DATABASE']->getFirstCell(
                     "SELECT COUNT(*) FROM " . MULTI . " WHERE userID = " . $id . ";"
                 ),
                 'ChangePW'      => $ChangePW,
                 'yesorno'       => [1 => $LNG['one_is_yes_1'], 0 => $LNG['one_is_yes_0']],
+                'signalColors'  => $USER['signalColors']
             ]);
             $template->show('QuickEditorUser.tpl');
             break;

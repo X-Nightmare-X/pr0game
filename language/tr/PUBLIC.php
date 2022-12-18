@@ -43,7 +43,9 @@ $LNG['menu_register']				= 'Kayit';
 // Universe select
 $LNG['chose_a_uni']					= 'Evreni Seciniz';
 $LNG['universe']					= 'Evren';
-$LNG['uni_closed']					= ' (Offline)';
+$LNG['uni_closed']					= ' (kapalı)';
+$LNG['uni_reg_closed']				= ' (Kayıtlar kapandı)';
+$LNG['uni_reg_open']				= ' (Sadece kayıt)';
 
 // Button
 $LNG['buttonRegister']				= 'Kayit Ol!';
@@ -158,3 +160,5 @@ $LNG['disclamerLabelNotice']		= 'Ayrintili bilgi';
 
  //Giris Sayfasi
  $LNG['Browser']				= 'Onerilen browser.';
+
+ $LNG['disclamerRecaptcha'] = 'Bu sayfa reCAPTCHA kullanır ve Google <a href="https://policies.google.com/privacy">gizlilik bildirimi</a> ve <a href="https://policies.google.com/terms">kullanım şartları</a> geçerlidir.';

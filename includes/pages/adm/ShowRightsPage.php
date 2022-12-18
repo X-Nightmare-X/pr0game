@@ -26,6 +26,9 @@ function ShowRightsPage()
     switch ($mode) {
         case 'rights':
             $template   = new template();
+            $template->assign_vars([
+                'signalColors' => $USER['signalColors']
+            ]);
             $template->loadscript('filterlist.js');
 
             if ($_POST) {
@@ -81,7 +84,6 @@ function ShowRightsPage()
                     'button_submit'         => $LNG['button_submit'],
                     'sid'                   => session_id(),
                     'User'                  => '',
-                    'ShowAccountDataPage'   => [],
                 ]);
 
                 $template->show('ModerrationRightsPostPage.tpl');
@@ -198,6 +200,7 @@ function ShowRightsPage()
                 'ad_authlevel_jj'           => $LNG['ad_authlevel_jj'],
                 'ad_authlevel_tt'           => $LNG['ad_authlevel_tt'],
                 'sid'                       => session_id(),
+                'signalColors'              => $USER['signalColors']
             ]);
 
             $template->show('ModerrationUsersPage.tpl');

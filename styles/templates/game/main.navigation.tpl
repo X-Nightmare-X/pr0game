@@ -1,4 +1,5 @@
 <ul id="menu">
+  {nocache}
   <li class="menu-separator"></li>
   <li><a href="game.php?page=overview">{$LNG.lm_overview}</a></li>
   {if isModuleAvailable($smarty.const.MODULE_IMPERIUM)}
@@ -58,7 +59,7 @@
   {/if}
 
   <li><a href="https://discord.gg/jhYYN3yuat" target="copy">Discord</a></li>
-  <li><a href="https://ko-fi.com/pr0game" target="copy">Spenden</a></li>
+  <li><a href="https://ko-fi.com/pr0game" target="copy">{$LNG.donate}</a></li>
   {if isModuleAvailable($smarty.const.MODULE_SUPPORT)}
     <li><a href="game.php?page=ticket">{$LNG.lm_support}</a></li>
   {/if}
@@ -73,6 +74,9 @@
     <li><a href="game.php?page=battleSimulator">{$LNG.lm_battlesim}</a></li>
   {/if}
   <li><a href="game.php?page=battleHall">{$LNG.lm_topkb}</a></li>
+  {if isModuleAvailable($smarty.const.MODULE_RECORDS)}
+    <li><a href="game.php?page=records">{$LNG.lm_records}</a></li>
+  {/if}
 
   <li class="menu-separator"></li>
   {if isModuleAvailable($smarty.const.MODULE_NOTICE)}
@@ -86,6 +90,7 @@
   {if $authlevel > 0}
     <li><a href="./admin.php" class="colorPositive">{$LNG.lm_administration} ({$VERSION})</a></li>
   {/if}
+  {/nocache}
 </ul>
 <div id="disclamer" class="no-mobile">
 

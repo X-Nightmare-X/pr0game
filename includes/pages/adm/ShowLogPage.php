@@ -62,14 +62,17 @@ function ShowLog()
 
 function ShowLogOverview()
 {
-    global $LNG;
+    global $USER;
     $template   = new template();
+    $template->assign_vars([
+        'signalColors' => $USER['signalColors']
+    ]);
     $template->show("LogOverview.tpl");
 }
 
 function ShowLogDetail()
 {
-    global $LNG;
+    global $LNG, $USER;
     $logid = HTTP::_GP('id', 0);
     $result     = $GLOBALS['DATABASE']->getFirstRow("SELECT l.*, u_a.username as admin_username FROM " . LOG
         . " as l LEFT JOIN " . USERS . " as u_a ON  u_a.id = l.admin  WHERE l.id = " . $logid . "");
@@ -130,6 +133,9 @@ function ShowLogDetail()
     }
 
     $template   = new template();
+    if(!isset($LogArray)) {
+        $LogArray = array();
+    }
     $template->assign_vars([
         'LogArray'      => $LogArray,
         'admin'         => $result['admin_username'],
@@ -144,6 +150,7 @@ function ShowLogDetail()
         'log_element'   => $LNG['log_element'],
         'log_old'       => $LNG['log_old'],
         'log_new'       => $LNG['log_new'],
+        'signalColors'  => $USER['signalColors']
     ]);
 
     $template->show("LogDetail.tpl");
@@ -157,6 +164,9 @@ function ShowLogSettingsList()
         . " ORDER BY id DESC");
 
     $template   = new template();
+    $template->assign_vars([
+        'signalColors' => $USER['signalColors']
+    ]);
     if (!$result) {
         $template->message($LNG['log_no_data']);
     }
@@ -180,8 +190,11 @@ function ShowLogSettingsList()
         ];
     }
     $GLOBALS['DATABASE']->free_result($result);
+    if(!isset($LogArray)) {
+        $LogArray = array();
+    }
     $template->assign_vars([
-        'LogArray'              => $LogArray,
+        'LogArray'      => $LogArray,
         'log_log'       => $LNG['log_log'],
         'log_admin'     => $LNG['log_admin'],
         'log_time'      => $LNG['log_time'],
@@ -196,7 +209,6 @@ function ShowLogSettingsList()
 function ShowLogPlanetsList()
 {
     global $LNG, $USER;
-
     $result    = $GLOBALS['DATABASE']->query("SELECT DISTINCT l.id, l.admin, l.target, l.time, l.universe,u_t.username"
         . " as target_username, p.galaxy as target_galaxy, p.system as target_system, p.planet as target_planet,"
         . "u_a.username as admin_username FROM " . LOG . " as l LEFT JOIN " . USERS . " as u_a ON  u_a.id = l.admin"
@@ -204,6 +216,9 @@ function ShowLogPlanetsList()
         . " WHERE mode = 2 ORDER BY id DESC");
 
     $template   = new template();
+    $template->assign_vars([
+        'signalColors' => $USER['signalColors']
+    ]);
     if (!$result) {
         $template->message($LNG['log_no_data']);
     }
@@ -220,6 +235,9 @@ function ShowLogPlanetsList()
     }
     $GLOBALS['DATABASE']->free_result($result);
     $template   = new template();
+    if(!isset($LogArray)) {
+        $LogArray = array();
+    }
     $template->assign_vars([
         'LogArray'      => $LogArray,
         'log_log'       => $LNG['log_log'],
@@ -229,6 +247,7 @@ function ShowLogPlanetsList()
         'log_target'    => $LNG['log_target_planet'],
         'log_id'        => $LNG['log_id'],
         'log_view'      => $LNG['log_view'],
+        'signalColors'  => $USER['signalColors']
     ]);
     $template->show("LogList.tpl");
 }
@@ -236,13 +255,15 @@ function ShowLogPlanetsList()
 function ShowLogPlayersList()
 {
     global $LNG, $USER;
-
     $result    = $GLOBALS['DATABASE']->query("SELECT DISTINCT l.id, l.admin, l.target, l.time, l.universe,u_t.username"
         . " as target_username,u_a.username as admin_username FROM " . LOG . " as l LEFT JOIN " . USERS
         . " as u_a ON  u_a.id = l.admin LEFT JOIN " . USERS . " as u_t ON u_t.id = l.target WHERE mode = 1 ORDER BY"
         . " l.id DESC");
 
     $template   = new template();
+    $template->assign_vars([
+        'signalColors' => $USER['signalColors']
+    ]);
     if (!$result) {
         $template->message($LNG['log_no_data']);
     }
@@ -257,6 +278,9 @@ function ShowLogPlayersList()
         ];
     }
     $GLOBALS['DATABASE']->free_result($result);
+    if(!isset($LogArray)) {
+        $LogArray = array();
+    }
     $template->assign_vars([
         'LogArray'      => $LogArray,
         'log_log'       => $LNG['log_log'],
@@ -273,12 +297,14 @@ function ShowLogPlayersList()
 function ShowLogPresent()
 {
     global $LNG, $USER;
-
     $result    = $GLOBALS['DATABASE']->query("SELECT DISTINCT l.id, l.admin, l.target, l.time, l.universe, u_a.username"
         . " as admin_username FROM " . LOG . " as l LEFT JOIN " . USERS . " as u_a ON u_a.id = l.admin WHERE mode = 4"
         . " ORDER BY l.id DESC;");
 
     $template   = new template();
+    $template->assign_vars([
+        'signalColors' => $USER['signalColors']
+    ]);
     if (!$result) {
         $template->message($LNG['log_no_data']);
     }
@@ -291,6 +317,9 @@ function ShowLogPresent()
             'target'    => $LNG['fcm_universe'],
             'time'      => _date($LNG['php_tdformat'], $LogRow['time'], $USER['timezone']),
         ];
+    }
+    if(!isset($LogArray)) {
+        $LogArray = array();
     }
     $GLOBALS['DATABASE']->free_result($result);
     $template->assign_vars([

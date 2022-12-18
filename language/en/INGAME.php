@@ -16,10 +16,10 @@
 // Translated into English by QwataKayean . All rights reversed (C) 2012
 // 2Moons - Copyright (C) 2010-2012 Slaver
 // Grammar Pedantry fixes @etaletai 2018
-
-
+$LNG['type_planet_short_3'] = 'M';
+$LNG['fleetPrio'] = 'Fleet order priority';
 $LNG['Messages'] = 'Messages';
-
+$LNG["delete_confirm_gala"] = 'Delete local universe data?';
 $LNG['PM'] = '[PM]';
 $LNG['write_message'] = 'Write message';
 
@@ -132,6 +132,7 @@ $LNG['lm_notes'] = 'Notes';
 $LNG['lm_statistics'] = 'Statistics';
 $LNG['lm_search'] = 'Search';
 $LNG['lm_options'] = 'Options';
+$LNG['donate'] = 'Donate';
 $LNG['lm_banned'] = 'Banned';
 $LNG['lm_forums'] = 'Forum';
 $LNG['lm_logout'] = 'Logout';
@@ -1314,3 +1315,6 @@ $LNG['lo_notify'] = 'Will be redirected in <span id="seconds">5</span> seconds';
 $LNG['lo_continue'] = 'Click to continue.';
 
 //----------------------------------------------------------------------------//
+$LNG['fleet_table_custom_empty_name'] = 'Insert a fleet name please!';
+$LNG['custom_fleet'] = 'Custom fleets';
+$LNG['custom_fleet_confirm'] = 'Remove fleet template %s?';

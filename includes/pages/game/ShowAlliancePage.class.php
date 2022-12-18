@@ -758,7 +758,7 @@ class ShowAlliancePage extends AbstractGamePage
 
         $sql = "SELECT a.id, a.ally_name, a.ally_tag, ally_owner, ally_owner_range FROM %%DIPLO%% d
             JOIN %%ALLIANCE%% a ON a.id = d.owner_1
-            WHERE d.owner_2 = :AllianceID AND d.level = 1;";
+            WHERE d.owner_2 = :AllianceID AND d.level = 1 AND accept = 1;";
         $mainData = $db->select($sql, [
             ':AllianceID' => $this->allianceData['id']
         ]);
@@ -2016,9 +2016,10 @@ class ShowAlliancePage extends AbstractGamePage
 
         $diplomaticMode = HTTP::_GP('diploMode', 0);
 
-        $sql = "SELECT ally_tag,ally_name,id FROM %%ALLIANCE%% WHERE id != :allianceId ORDER BY ally_tag ASC;";
+        $sql = "SELECT ally_tag,ally_name,id FROM %%ALLIANCE%% WHERE id != :allianceId AND ally_universe = :universe ORDER BY ally_tag ASC;";
         $diplomaticAlly = $db->select($sql, [
-            ':allianceId' => $USER['ally_id']
+            ':allianceId' => $USER['ally_id'],
+            ':universe' => Universe::current()
         ]);
 
         $AllyList = [];

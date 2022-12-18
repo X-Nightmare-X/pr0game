@@ -23,9 +23,8 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 
 function ShowAccountEditorPage()
 {
-    global $LNG, $reslist, $resource;
+    global $LNG, $reslist, $resource, $USER;
     $template = new template();
-
     if(!isset($_GET['edit'])) { $_GET['edit'] = ''; }
     switch ($_GET['edit']) {
         case 'resources':
@@ -81,7 +80,9 @@ function ShowAccountEditorPage()
                     $LOG->new = $after;
                     $LOG->save();
                 }
-
+                $template->assign_vars([
+                    'signalColors'      => $USER['signalColors'],
+                ]);
                 if ($_POST['add']) {
                     $template->message($LNG['ad_add_res_sucess'], '?page=accounteditor&edit=resources');
                 } elseif ($_POST['delete']) {
@@ -90,7 +91,9 @@ function ShowAccountEditorPage()
                 exit;
             }
 
-
+            $template->assign_vars([
+                'signalColors'      => $USER['signalColors'],
+            ]);
             $template->show('AccountEditorPageResources.tpl');
             break;
         case 'ships':
@@ -140,7 +143,9 @@ function ShowAccountEditorPage()
                 $LOG->old = $before;
                 $LOG->new = $after;
                 $LOG->save();
-
+                $template->assign_vars([
+                    'signalColors'      => $USER['signalColors'],
+                ]);
                 if ($_POST['add']) {
                     $template->message($LNG['ad_add_ships_sucess'], '?page=accounteditor&edit=ships');
                 } elseif ($_POST['delete']) {
@@ -156,7 +161,10 @@ function ShowAccountEditorPage()
                 ];
             }
 
-            $template->assign_vars(['inputlist' => $INPUT]);
+            $template->assign_vars([
+                'inputlist'     => $INPUT,
+                'signalColors'  => $USER['signalColors'],
+            ]);
 
             $template->show('AccountEditorPageShips.tpl');
             break;
@@ -207,7 +215,9 @@ function ShowAccountEditorPage()
                 $LOG->old = $before;
                 $LOG->new = $after;
                 $LOG->save();
-
+                $template->assign_vars([
+                    'signalColors'      => $USER['signalColors'],
+                ]);
                 if ($_POST['add']) {
                     $template->message($LNG['ad_add_defenses_success'], '?page=accounteditor&edit=defenses');
                 } elseif ($_POST['delete']) {
@@ -220,7 +230,10 @@ function ShowAccountEditorPage()
                 $INPUT[$ID] = ['type'  => $resource[$ID]];
             }
 
-            $template->assign_vars(['inputlist' => $INPUT]);
+            $template->assign_vars([
+                'inputlist' => $INPUT,
+                'signalColors'  => $USER['signalColors']
+            ]);
 
             $template->show('AccountEditorPageDefenses.tpl');
             break;
@@ -280,7 +293,9 @@ function ShowAccountEditorPage()
                 $LOG->old = $before;
                 $LOG->new = $after;
                 $LOG->save();
-
+                $template->assign_vars([
+                    'signalColors'      => $USER['signalColors'],
+                ]);
                 if ($_POST['add']) {
                     $template->message($LNG['ad_add_build_success'], '?page=accounteditor&edit=buildings');
                 } elseif ($_POST['delete']) {
@@ -293,7 +308,10 @@ function ShowAccountEditorPage()
                 $INPUT[$ID] = ['type'  => $resource[$ID]];
             }
 
-            $template->assign_vars(['inputlist' => $INPUT]);
+            $template->assign_vars([
+                'inputlist' => $INPUT,
+                'signalColors'  => $USER['signalColors']
+            ]);
 
             $template->show('AccountEditorPageBuilds.tpl');
             break;
@@ -343,7 +361,9 @@ function ShowAccountEditorPage()
                 $LOG->old = $before;
                 $LOG->new = $after;
                 $LOG->save();
-
+                $template->assign_vars([
+                    'signalColors'      => $USER['signalColors'],
+                ]);
                 if ($_POST['add']) {
                     $template->message($LNG['ad_add_tech_success'], '?page=accounteditor&edit=researchs');
                 } elseif ($_POST['delete']) {
@@ -356,7 +376,10 @@ function ShowAccountEditorPage()
                 $INPUT[$ID] = ['type'  => $resource[$ID]];
             }
 
-            $template->assign_vars(['inputlist' => $INPUT]);
+            $template->assign_vars([
+                'inputlist'     => $INPUT,
+                'signalColors'  => $USER['signalColors']
+            ]);
 
             $template->show('AccountEditorPageResearch.tpl');
             break;
@@ -419,13 +442,16 @@ function ShowAccountEditorPage()
                 $LOG->old = $before;
                 $LOG->new = $after;
                 $LOG->save();
-
+                $template->assign_vars([
+                    'signalColors'      => $USER['signalColors'],
+                ]);
                 $template->message($LNG['ad_personal_succes'], '?page=accounteditor&edit=personal');
                 exit;
             }
 
             $template->assign_vars([
-                'Selector' => ['' => $LNG['select_option'], 'yes' => $LNG['one_is_no_1'], 'no' => $LNG['one_is_no_0']],
+                'Selector'      => ['' => $LNG['select_option'], 'yes' => $LNG['one_is_no_1'], 'no' => $LNG['one_is_no_0']],
+                'signalColors'  => $USER['signalColors']
             ]);
 
             $template->show('AccountEditorPagePersonal.tpl');
@@ -554,6 +580,9 @@ function ShowAccountEditorPage()
                                 $P['planet_type']
                             )
                         ) {
+                            $template->assign_vars([
+                                'signalColors'      => $USER['signalColors'],
+                            ]);
                             $template->message($LNG['ad_pla_error_planets5'], '?page=accounteditor&edit=planets');
                             exit;
                         }
@@ -590,11 +619,15 @@ function ShowAccountEditorPage()
                         );
                     }
                 }
-
+                $template->assign_vars([
+                    'signalColors'      => $USER['signalColors'],
+                ]);
                 $template->message($LNG['ad_pla_succes'], '?page=accounteditor&edit=planets');
                 exit;
             }
-
+            $template->assign_vars([
+                'signalColors'      => $USER['signalColors'],
+            ]);
             $template->show('AccountEditorPagePlanets.tpl');
             break;
 
@@ -676,15 +709,22 @@ function ShowAccountEditorPage()
                     );
                 }
 
-
+                $template->assign_vars([
+                    'signalColors'      => $USER['signalColors'],
+                ]);
                 $template->message($LNG['ad_ally_succes'], '?page=accounteditor&edit=alliances');
                 exit;
             }
-
+            $template->assign_vars([
+                'signalColors'      => $USER['signalColors'],
+            ]);
             $template->show('AccountEditorPageAlliance.tpl');
             break;
 
         default:
+            $template->assign_vars([
+                'signalColors'      => $USER['signalColors'],
+            ]);
             $template->show('AccountEditorPageMenu.tpl');
             break;
     }

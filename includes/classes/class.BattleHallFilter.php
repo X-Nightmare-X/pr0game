@@ -131,12 +131,30 @@ class BattleHallFilter
 		return $result;
 	}
 
-	public function getTopKBs()
+	private function getMinSizeCondition()
+	{
+		$sql = "SELECT MAX(total_points) as total 
+			FROM %%STATPOINTS%%
+			WHERE `stat_type` = :type and universe = :universe";
+
+        $topPoints = Database::get()->selectSingle($sql, [
+                ':type'     => 1, // 1 = player, 2 = alliance
+				':universe' => Universe::current()
+        ], 'total');
+		
+		$minSize = $topPoints;
+		$stmt = " AND `units` != 0 AND `units` >= $minSize ";
+		
+		return $stmt;
+	}
+
+	public function getTopKBs($limit = 100)
 	{
 		$memorialString  = $this->filterMemorialKb($this->_memorial);
 		$timeString = $this->assembleTimeFilter($this->_timeframe);
 		$locationString = $this->assembleLocationFilter($this->_location);
 		$diplomacyString = $this->assembleDiplomacyFilter($this->_diplomacy);
+		$minSizeString = $this->getMinSizeCondition();
 
 		$db = Database::get();
 		$sql = "SELECT *, (
@@ -154,8 +172,8 @@ class BattleHallFilter
 		) as defender
 		FROM %%TOPKB%%
 		 WHERE universe = :universe AND time < UNIX_TIMESTAMP() - 21600
-			$memorialString $timeString $locationString $diplomacyString
-		 ORDER BY %%TOPKB%%.units DESC LIMIT 100;";
+			$memorialString $timeString $locationString $diplomacyString $minSizeString
+		 ORDER BY %%TOPKB%%.units DESC LIMIT $limit;";
 
 		$top = $db->select($sql, array(
 			':universe' => Universe::current()

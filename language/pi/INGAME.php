@@ -15,12 +15,12 @@
 
 $LNG['Messages'] = 'Nachrichten';
 $LNG['write_message'] = 'Schreibe eine Nachricht';
-
+$LNG["delete_confirm_gala"] = 'Lokale Universumsdaten löschen?';
 $LNG['PM'] = '[PN]';
 $LNG['ready'] = 'Fertig';
-
+$LNG['type_planet_short_3'] = 'M';
 $LNG['loading'] = 'Lade ...';
-
+$LNG['fleetPrio'] = 'Flotten Auftrag Priorität';
 $LNG['invalid_action'] = 'Ungültige Aktion!';
 
 $LNG['type_mission_1'] = 'Angreifen';
@@ -120,6 +120,7 @@ $LNG['lm_buddylist'] = 'Buddylist';
 $LNG['lm_notes'] = 'Notizen';
 $LNG['lm_statistics'] = 'Statistik';
 $LNG['lm_search'] = 'Suche';
+$LNG['donate'] = 'Spenden';
 $LNG['lm_options'] = 'Einstellungen';
 $LNG['lm_banned'] = 'Pranger';
 $LNG['lm_forums'] = 'Forum';
@@ -368,6 +369,7 @@ $LNG['fl_expedition_alert_message'] = 'Achtung die Expedition bringt Gefahren mi
     . ' ihre gesamte Flotte verlieren!';
 $LNG['fl_vacation_mode_active'] = 'Sie befinden sich im Urlaubsmodus';
 $LNG['fl_expedition_fleets_limit'] = 'Sie können nicht mehr Expeditionen starten!';
+$LNG['fl_selected_resources'] = 'Ausgewählte Rohstoffe Laden';
 $LNG['fl_week_player'] = 'Spieler ist zu schwach für sie!';
 $LNG['fl_strong_player'] = 'Spieler ist zu stark für sie!';
 $LNG['fl_in_vacation_player'] = 'Spieler befindet sich im Urlaubsmodus';
@@ -1299,6 +1301,9 @@ $LNG['lo_notify'] = 'Sie werden in <span id="seconds">5</span>s weitergeleitet';
 $LNG['lo_continue'] = 'Klicken Sie hier, um nicht zu warten';
 
 //----------------------------------------------------------------------------//
+$LNG['fleet_table_custom_empty_name'] = 'Bitte einen Flottennamen eingeben!';
+$LNG['custom_fleet'] = 'Benutzerdefinierte Flotten';
+$LNG['custom_fleet_confirm'] = 'Flottenvorlage %s entfernen?';
 
 
 // Translated into German by Jan . All rights reversed (C) 2011

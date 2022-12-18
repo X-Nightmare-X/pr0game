@@ -146,13 +146,14 @@ class template extends Smarty
 	
 	public function message($mes, $dest = false, $time = 3, $Fatal = false)
 	{
-		global $LNG, $THEME;
-	
+		global $LNG, $THEME, $USER;
+		
 		$this->assign_vars(array(
-			'mes'		=> $mes,
-			'fcm_info'	=> $LNG['fcm_info'],
-			'Fatal'		=> $Fatal,
-            'dpath'		=> $THEME->getTheme(),
+			'mes'			=> $mes,
+			'fcm_info'		=> $LNG['fcm_info'],
+			'Fatal'			=> $Fatal,
+            'dpath'			=> $THEME->getTheme(),
+			'signalColors'  => $USER['signalColors'],
 		));
 		
 		$this->gotoside($dest, $time);

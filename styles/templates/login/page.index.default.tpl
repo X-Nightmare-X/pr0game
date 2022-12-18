@@ -13,8 +13,8 @@
 				<h1>{$LNG.loginHeader}</h1>
 				<form id="login" name="login" action="index.php?page=login" data-action="index.php?page=login" method="post">
 					<div class="row">
-						<select name="uni" id="universe" class="changeAction">{html_options options=$universeSelect selected=$UNI}</select>
-						<input name="username" id="username" type="text" placeholder="{$LNG.loginUsername}">
+						<select name="uni" id="universe" class="changeAction">{html_options options=$universeSelect selected=$universeSelected}</select>
+						<input name="username" id="username" type="text" placeholder="{$LNG.loginUsername}" maxlength="32">
 						<input name="password" id="password" type="password" placeholder="{$LNG.loginPassword}">
 						<input type="submit" value="{$LNG.loginButton}">
 
@@ -61,6 +61,9 @@
 		</div>
 	</div> -->
 </section>
+{if $countcaptchakey!=0}
+	<p>{$LNG['disclamerRecaptcha']}</p>
+{/if}
 {/block}
 {block name="script" append}
 	<script>{if $code}alert({$code|json_encode});{/if}$(function() { $('#username').focus(); });</script>

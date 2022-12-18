@@ -23,7 +23,6 @@ if ($USER['authlevel'] == AUTH_USR)
 function ShowLoginPage()
 {
 	global $USER;
-
 	$session	= Session::create();
 	if($session->adminAccess == 1)
 	{
@@ -43,8 +42,9 @@ function ShowLoginPage()
 	$template	= new template();
 
 	$template->assign_vars(array(
-		'bodyclass'	=> 'standalone',
-		'username'	=> $USER['username'],
+		'bodyclass'		=> 'standalone',
+		'username'		=> $USER['username'],
+		'signalColors'  => $USER['signalColors']
 	));
 	$template->show('LoginPage.tpl');
 }

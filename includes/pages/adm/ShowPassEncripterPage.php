@@ -19,7 +19,7 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowPassEncripterPage()
 {
-	global $LNG;
+	global $LNG, $USER;
 	$Password	= HTTP::_GP('md5q', '', true);
 	
 	$template	= new template();
@@ -31,6 +31,7 @@ function ShowPassEncripterPage()
 		'et_encript' 		=> $LNG['et_encript'],
 		'et_result' 		=> $LNG['et_result'],
 		'et_pass' 			=> $LNG['et_pass'],
+		'signalColors'		=> $USER['signalColors']
 	));
 	
 	$template->show('PassEncripterPage.tpl');

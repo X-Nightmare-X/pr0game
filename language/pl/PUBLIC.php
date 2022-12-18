@@ -40,6 +40,8 @@ $LNG['menu_register']				= 'Rejestracja';
 $LNG['chose_a_uni']					= 'Wybór Universum';
 $LNG['universe']					= 'Universum';
 $LNG['uni_closed']					= ' (Zamknięte)';
+$LNG['uni_reg_closed']				= ' (Rejestracja zamknięta)';
+$LNG['uni_reg_open']				= ' (Tylko rejestracja)';
 
 // Button
 $LNG['buttonRegister']				= 'Zarejestruj się!';
@@ -151,3 +153,5 @@ $LNG['disclamerLabelAddress']		= 'Dane właściela';
 $LNG['disclamerLabelPhone']			= 'Numer telefonu';
 $LNG['disclamerLabelMail']			= 'Adres e-mail';
 $LNG['disclamerLabelNotice']		= 'Więcej informacji';
+
+$LNG['disclamerRecaptcha'] = 'Ta strona używa reCAPTCHA i obowiązują na niej zasady Google <a href="https://policies.google.com/privacy">oświadczenia o prywatności</a> i <a href="https://policies.google.com/terms">warunków użytkowania</a>.';

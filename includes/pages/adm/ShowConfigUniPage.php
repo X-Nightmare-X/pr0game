@@ -21,10 +21,9 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 
 function ShowConfigUniPage()
 {
-    global $LNG;
+    global $LNG, $USER;
 
     $config = Config::get(Universe::getEmulated());
-
     if (!empty($_POST)) {
         $config_before = [
             'noobprotectiontime'    => $config->noobprotectiontime,
@@ -32,10 +31,9 @@ function ShowConfigUniPage()
             'noobprotection'        => $config->noobprotection,
             'Defs_Cdr'              => $config->Defs_Cdr,
             'Fleet_Cdr'             => $config->Fleet_Cdr,
-            'game_disable'          => $config->game_disable,
+            'uni_status'            => $config->uni_status,
             'close_reason'          => $config->close_reason,
             'OverviewNewsFrame'     => $config->OverviewNewsFrame,
-            'reg_closed'            => $config->reg_closed,
             'OverviewNewsText'      => $config->OverviewNewsText,
             'uni_name'              => $config->uni_name,
             'forum_url'             => $config->forum_url,
@@ -98,17 +96,16 @@ function ShowConfigUniPage()
             'expo_ress_deut_chance'    => $config->expo_ress_deut_chance,
         ];
 
-        $game_disable           = isset($_POST['closed']) && $_POST['closed'] == 'on' ? 1 : 0;
         $noobprotection         = isset($_POST['noobprotection']) && $_POST['noobprotection'] == 'on' ? 1 : 0;
         $debug                  = isset($_POST['debug']) && $_POST['debug'] == 'on' ? 1 : 0;
         $adm_attack             = isset($_POST['adm_attack']) && $_POST['adm_attack'] == 'on' ? 1 : 0;
         $OverviewNewsFrame      = isset($_POST['newsframe']) && $_POST['newsframe'] == 'on' ? 1 : 0;
-        $reg_closed             = isset($_POST['reg_closed']) && $_POST['reg_closed'] == 'on' ? 1 : 0;
         $user_valid             = isset($_POST['user_valid']) && $_POST['user_valid'] == 'on' ? 1 : 0;
         $debris_moon            = isset($_POST['debris_moon']) && $_POST['debris_moon'] == 'on' ? 1 : 0;
         $ref_active             = isset($_POST['ref_active']) && $_POST['ref_active'] == 'on' ? 1 : 0;
 
         $OverviewNewsText       = $_POST['NewsText'];
+        $uni_status             = HTTP::_GP('uni_status', 0);
         $close_reason           = HTTP::_GP('close_reason', '', true);
         $uni_name               = HTTP::_GP('uni_name', '', true);
         $forum_url              = HTTP::_GP('forum_url', '', true);
@@ -174,10 +171,9 @@ function ShowConfigUniPage()
             'noobprotection'        => $noobprotection,
             'Defs_Cdr'              => $Defs_Cdr,
             'Fleet_Cdr'             => $Fleet_Cdr,
-            'game_disable'          => $game_disable,
+            'uni_status'            => $uni_status,
             'close_reason'          => $close_reason,
             'OverviewNewsFrame'     => $OverviewNewsFrame,
-            'reg_closed'            => $reg_closed,
             'OverviewNewsText'      => $OverviewNewsText,
             'uni_name'              => $uni_name,
             'forum_url'             => $forum_url,
@@ -239,6 +235,18 @@ function ShowConfigUniPage()
             'expo_ress_deut_chance'  => $expo_ress_deut_chance,
         ];
 
+        // If login is opened, update all planet timestamps to avoid resource produciton during closed login times.
+        if (($uni_status == STATUS_OPEN || $uni_status == STATUS_LOGIN_ONLY) && ($config->uni_status == STATUS_CLOSED || $config->uni_status == STATUS_REG_ONLY)) {
+            Database::get()->update("UPDATE %%PLANETS%% SET `last_update` = :newTime, `eco_hash` = '' WHERE `universe` = :universe;", [
+                ':newTime' => time(),
+                ':universe' => Universe::getEmulated(),
+            ]);
+        }
+        elseif (($uni_status == STATUS_CLOSED || $uni_status == STATUS_REG_ONLY) && ($config->uni_status == STATUS_OPEN || $config->uni_status == STATUS_LOGIN_ONLY)) {
+            // Open: calc ress for all planets when uni login gets closed? Otherwise ress will be lost when reopened.
+            // $ecoObj = new ResourceUpdate();
+        }
+
         foreach ($config_after as $key => $value) {
             $config->$key = $value;
         }
@@ -279,7 +287,7 @@ function ShowConfigUniPage()
         'metal_basic_income'            => $config->metal_basic_income,
         'crystal_basic_income'          => $config->crystal_basic_income,
         'deuterium_basic_income'        => $config->deuterium_basic_income,
-        'game_disable'                  => $config->game_disable,
+        'uni_status'                    => $config->uni_status,
         'close_reason'                  => $config->close_reason,
         'debug'                         => $config->debug,
         'adm_attack'                    => $config->adm_attack,
@@ -299,13 +307,18 @@ function ShowConfigUniPage()
         'smtp_ssl'                      => $config->smtp_ssl,
         'user_valid'                    => $config->user_valid,
         'newsframe'                     => $config->OverviewNewsFrame,
-        'reg_closed'                    => $config->reg_closed,
         'NewsTextVal'                   => $config->OverviewNewsText,
         'min_build_time'                => $config->min_build_time,
         'trade_allowed_ships'           => $config->trade_allowed_ships,
         'trade_charge'                  => $config->trade_charge,
         'Selector'                      => [
             'langs' => $LNG->getAllowedLangs(false),
+            'uni_status' => [
+                '0' => $LNG['se_uni_status_regopen_gameopen'],
+                '1' => $LNG['se_uni_status_regclosed_gameclosed'],
+                '2' => $LNG['se_uni_status_regopen_gameclosed'],
+                '3' => $LNG['se_uni_status_regclosed_gameopen'],
+            ],
             'mail'  => [
                 0 => $LNG['se_mail_sel_0'],
                 1 => $LNG['se_mail_sel_1'],
@@ -369,6 +382,7 @@ function ShowConfigUniPage()
         'expo_ress_met_chance'          => $config->expo_ress_met_chance,
         'expo_ress_crys_chance'         => $config->expo_ress_crys_chance,
         'expo_ress_deut_chance'         => $config->expo_ress_deut_chance,
+        'signalColors'                  => $USER['signalColors']
     ]);
 
     $template->show('ConfigBodyUni.tpl');

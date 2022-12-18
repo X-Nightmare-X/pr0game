@@ -6,16 +6,16 @@
 // Version 1.1 - Decode accent HTML to UTF-8 format & small spellchecking
 
 $LNG['Messages'] = 'Messages';
-
+$LNG['type_planet_short_3'] = 'L';
 $LNG['PM'] = '[PM]';
 $LNG['write_message'] = 'Rédiger un message';
-
+$LNG["delete_confirm_gala"] = "Effacer les données de l'univers local ?";
 $LNG['ready'] = 'Prêt';
 
 $LNG['loading'] = 'Chargement ...';
 
 $LNG['invalid_action'] = 'Action invalidée !!';
-
+$LNG['fleetPrio'] = 'Mission de la flotte Priorité';
 $LNG['type_mission_1'] = 'Attaquer';
 $LNG['type_mission_2'] = 'ACS - Attaque groupée';
 $LNG['type_mission_3'] = 'Transporter';
@@ -118,6 +118,7 @@ $LNG['lm_statistics'] = 'Classement';
 $LNG['lm_search'] = 'Recherche';
 $LNG['lm_options'] = 'Options';
 $LNG['lm_banned'] = 'Pilori';
+$LNG['donate'] = 'faire un don';
 $LNG['lm_forums'] = 'Forum';
 $LNG['lm_logout'] = 'Déconnexion';
 $LNG['lm_administration'] = 'Administration';
@@ -368,6 +369,7 @@ $LNG['fl_acs_invitation_title'] = 'Invitation à ACS';
 $LNG['fl_sac_of_fleet'] = 'flotte ACS';
 $LNG['fl_modify_sac_name'] = 'Modifier le nom de l\'ACS';
 $LNG['fl_members_invited'] = 'Membres invités';
+$LNG['fl_selected_resources'] = 'ressources sélectionnées' ;
 $LNG['fl_invite_members'] = 'Inviteer d\'autres membres';
 $LNG['fl_simulate'] = 'Simuler';
 $LNG['fl_bonus'] = 'Bonus';
@@ -1239,3 +1241,6 @@ $LNG['lo_logout'] = 'Session terminée';
 $LNG['lo_redirect'] = 'avant';
 $LNG['lo_notify'] = 'Vous serez redirigé dans <span id="seconds"> 5 </ span> secondes';
 $LNG['lo_continue'] = 'Cliquez ici pour être redirigé immédiatement.';
+$LNG['fleet_table_custom_empty_name'] = 'Insérez un nom de flotte s\'il vous plaît !';
+$LNG['custom_fleet'] = 'Flottes personnalisées';
+$LNG['custom_fleet_confirm'] = 'Supprimer le modèle de flotte %s ?';

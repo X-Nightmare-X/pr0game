@@ -84,10 +84,11 @@ class PlayerUtil
             SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz
             FROM %%PLANETS%% p
             JOIN %%USERS%% u on u.id = p.id_owner
-            WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive )
+            WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive ) AND p.universe = :universe
             GROUP BY p.galaxy, p.`system`
         ) as tab GROUP BY galaxy ORDER BY tab.galaxy ASC';
         $result = $db->select($sql, [
+            ':universe' => $universe,
             ':maxGala' => $config->max_galaxy,
             ':maxSys' => $config->max_system,
             ':ts' => TIMESTAMP,
@@ -110,6 +111,9 @@ class PlayerUtil
                 $avgPlanetsPerGala[] = $resultArray;
                 $i ++;
             }
+            for (; $i <= $config->max_galaxy; $i++) {
+                $avgPlanetsPerGala[] = ['galaxy' => $i, 'AvgPlanetsPerSys' => 0];
+            }
         }
 
         // get gala with min avg systems
@@ -130,9 +134,10 @@ class PlayerUtil
 
         // get system with planet count for selected gala
         $sql = 'SELECT `system`, count(planet) as anz FROM %%PLANETS%%
-            WHERE planet_type = 1 AND galaxy = :gala GROUP BY `system`';
+            WHERE planet_type = 1 AND galaxy = :gala AND universe = :universe GROUP BY `system`';
         $result = $db->select($sql, [
             ':gala' => $galaxy,
+            ':universe' => $universe,
         ]);
 
         $systems = [];
@@ -151,6 +156,9 @@ class PlayerUtil
                 $systems[] = $resultArray;
                 $i ++;
             }
+            for (; $i <= $config->max_system; $i++) {
+                $systems[] = ['system' => $i, 'anz' => 0];
+            }
         }
 
         // get empty systems in selected gala
@@ -161,6 +169,9 @@ class PlayerUtil
                     $usableSystems[] = $sysArray['system'];
                 }
             }
+
+            $position = 0;
+            $system = 0;
 
             // find random system and random planet inside
             if (!empty($usableSystems)) {
@@ -204,10 +215,11 @@ class PlayerUtil
                 SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz
                 FROM %%PLANETS%% p
                 JOIN %%USERS%% u on u.id = p.id_owner
-                WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive )
+                WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive ) AND p.universe = :universe
                 GROUP BY p.galaxy, p.`system`
             ) as tab where tab.anz = :planetamount ORDER BY tab.galaxy ASC';
             $systems = $db->select($sql, [
+                ':universe' => $universe,
                 ':planetamount' => $planetamount,
                 ':maxGala' => $config->max_galaxy,
                 ':ts' => TIMESTAMP,
@@ -417,6 +429,11 @@ class PlayerUtil
            ':userId'    => $userId,
            ':type'      => 1,
            ':rank'      => $rank + 1,
+        ]);
+
+        $sql = "INSERT INTO %%ADVANCED_STATS%% SET userId = :userId;";
+        $db->insert($sql, [
+            ':userId'    => $userId,
         ]);
 
         $config->save();
@@ -719,6 +736,11 @@ class PlayerUtil
         $db->delete($sql, [
             ':userId'   => $userId,
             ':type'     => 1
+        ]);
+
+        $sql = "DELETE FROM %%ADVANCED_STATS%% WHERE userId = :userId;";
+        $db->insert($sql, [
+            ':userId'    => $userId,
         ]);
 
         $fleetIds = $db->select('SELECT fleet_id FROM %%FLEETS%% WHERE fleet_target_owner = :userId;', [
@@ -1036,6 +1058,19 @@ class PlayerUtil
             ':userID'   => $USER['id'],
         ]);
 
+        $sql = "SELECT fleet_id, fleet_owner FROM %%FLEETS%% 
+            WHERE fleet_universe = :universe 
+            AND fleet_mission = :fleet_mision 
+            AND fleet_target_owner = :id;";
+        $FleetsRAW = $db->select($sql, [
+            ':universe'     => Universe::current(),
+            ':fleet_mision' => MISSION_HOLD,
+            ':id'           => $USER['id'],
+        ]);
+        foreach ($FleetsRAW as $Fleet) {
+            $attacker['id'] = $Fleet['fleet_owner'];
+            FleetFunctions::SendFleetBack($attacker, $Fleet['fleet_id']);
+        }
         if (isset($PLANET)) {
             $PLANET['energy_used'] = '0';
             $PLANET['energy'] = '0';
@@ -1051,31 +1086,104 @@ class PlayerUtil
         }
     }
 
-    public static function player_colors($USER)
+    public static function player_colors($USER = null)
     {
-        $db = Database::get();
-        $sql = "SELECT colorMission2friend, colorMission1Own, colorMission2Own, colorMission3Own, colorMission4Own, colorMission5Own,
-            colorMission6Own, colorMission7Own, colorMission7OwnReturn, colorMission8Own, colorMission9Own, colorMission10Own, colorMission15Own,
-            colorMission16Own, colorMission17Own, colorMissionReturnOwn, colorMission1Foreign, colorMission2Foreign, colorMission3Foreign,
-            colorMission4Foreign, colorMission5Foreign, colorMission6Foreign, colorMission7Foreign, colorMission8Foreign, colorMission9Foreign,
-            colorMission10Foreign, colorMission15Foreign, colorMission16Foreign, colorMission17Foreign, colorMissionReturnForeign,
-            colorStaticTimer, colorPositive, colorNegative, colorNeutral FROM %%USERS%%  WHERE id = :userId; and universe = :universe;";
-        $colors = $db->selectSingle($sql, array(
-            ':userId'       => $USER['id'],
-            ':universe'     => Universe::current(),
-        ));
-        return $colors;
+        if (!isset($USER)) {
+            return [
+                'colorMission2friend' => '#ff00ff',
+
+                'colorMission1Own' => '#66cc33',
+                'colorMission2Own' => '#339966',
+                'colorMission3Own' => '#5bf1c2',
+                'colorMission4Own' => '#cf79de',
+                'colorMission5Own' => '#80a0c0',
+                'colorMission6Own' => '#ffcc66',
+                'colorMission7Own' => '#c1c1c1',
+                'colorMission7OwnReturn' => '#cf79de',
+                'colorMission8Own' => '#ceff68',
+                'colorMission9Own' => '#ffff99',
+                'colorMission10Own' => '#ffcc66',
+                'colorMission15Own' => '#5bf1c2',
+                'colorMission16Own' => '#5bf1c2',
+                'colorMission17Own' => '#5bf1c2',
+
+                'colorMissionReturnOwn' => '#6e8eea',
+
+                'colorMission1Foreign' => '#ff0000',
+                'colorMission2Foreign' => '#aa0000',
+                'colorMission3Foreign' => '#00ff00',
+                'colorMission4Foreign' => '#ad57bc',
+                'colorMission5Foreign' => '#3399cc',
+                'colorMission6Foreign' => '#ff6600',
+                'colorMission7Foreign' => '#00ff00',
+                'colorMission8Foreign' => '#acdd46',
+                'colorMission9Foreign' => '#dddd77',
+                'colorMission10Foreign' => '#ff6600',
+                'colorMission15Foreign' => '#39d0a0',
+                'colorMission16Foreign' => '#39d0a0',
+                'colorMission17Foreign' => '#39d0a0',
+    
+                'colorMissionReturnForeign' => '#6e8eea',
+    
+                'colorStaticTimer' => '#ffff00',
+            ];
+        }
+
+        return [
+            'colorMission2friend' => $USER['colorMission2friend'],
+
+            'colorMission1Own' => $USER['colorMission1Own'],
+            'colorMission2Own' => $USER['colorMission2Own'],
+            'colorMission3Own' => $USER['colorMission3Own'],
+            'colorMission4Own' => $USER['colorMission4Own'],
+            'colorMission5Own' => $USER['colorMission5Own'],
+            'colorMission6Own' => $USER['colorMission6Own'],
+            'colorMission7Own' => $USER['colorMission7Own'],
+            'colorMission7OwnReturn' => $USER['colorMission7OwnReturn'],
+            'colorMission8Own' => $USER['colorMission8Own'],
+            'colorMission9Own' => $USER['colorMission9Own'],
+            'colorMission10Own' => $USER['colorMission10Own'],
+            'colorMission15Own' => $USER['colorMission15Own'],
+            'colorMission16Own' => $USER['colorMission16Own'],
+            'colorMission17Own' => $USER['colorMission17Own'],
+
+            'colorMissionReturnOwn' => $USER['colorMissionReturnOwn'],
+
+            'colorMission1Foreign' => $USER['colorMission1Foreign'],
+            'colorMission2Foreign' => $USER['colorMission2Foreign'],
+            'colorMission3Foreign' => $USER['colorMission3Foreign'],
+            'colorMission4Foreign' => $USER['colorMission4Foreign'],
+            'colorMission5Foreign' => $USER['colorMission5Foreign'],
+            'colorMission6Foreign' => $USER['colorMission6Foreign'],
+            'colorMission7Foreign' => $USER['colorMission7Foreign'],
+            'colorMission8Foreign' => $USER['colorMission8Foreign'],
+            'colorMission9Foreign' => $USER['colorMission9Foreign'],
+            'colorMission10Foreign' => $USER['colorMission10Foreign'],
+            'colorMission15Foreign' => $USER['colorMission15Foreign'],
+            'colorMission16Foreign' => $USER['colorMission16Foreign'],
+            'colorMission17Foreign' => $USER['colorMission17Foreign'],
+
+            'colorMissionReturnForeign' => $USER['colorMissionReturnForeign'],
+
+            'colorStaticTimer' => $USER['colorStaticTimer'],
+        ];
     }
-    public static function player_signal_colors($USER)
+
+    public static function player_signal_colors($USER = null)
     {
-        $db = Database::get();
-        $sql = "SELECT colorPositive, colorNegative, colorNeutral 
-            FROM %%USERS%%  WHERE id = :userId; and universe = :universe;";
-        $colors = $db->selectSingle($sql, array(
-            ':userId'       => $USER['id'],
-            ':universe'     => Universe::current(),
-        ));
-        return $colors;
+        if (!isset($USER)) {
+            return [
+                'colorPositive' => '#00ff00',
+                'colorNegative' => '#ff0000',
+                'colorNeutral' => '#ffd600',
+            ];
+        }
+
+        return [
+            'colorPositive' => $USER['colorPositive'],
+            'colorNegative' => $USER['colorNegative'],
+            'colorNeutral' => $USER['colorNeutral'],
+        ];
     }
 }
 /* 

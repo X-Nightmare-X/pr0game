@@ -420,6 +420,7 @@ class statbuilder
         $columns = [
             '%%STATPOINTS%%.id_owner AS playerId',
             '%%USERS%%.username AS playerName',
+            '%%USERS%%.universe AS playerUniverse',
             '%%USERS%%.galaxy AS playerGalaxy',
             '%%STATPOINTS%%.id_ally AS allianceId',
             '(SELECT ally_name FROM %%ALLIANCE%% WHERE %%ALLIANCE%%.id = %%STATPOINTS%%.id_ally) AS allianceName',
@@ -443,24 +444,112 @@ class statbuilder
         ];
 
         $database = Database::get();
-        $scores = $database->select(trim("
-            SELECT SQL_BIG_RESULT
+        $sql = trim("SELECT SQL_BIG_RESULT
             " . implode(',', $columns) . "
             FROM %%STATPOINTS%%
             INNER JOIN %%USERS%%
             ON %%USERS%%.`id` = %%STATPOINTS%%.`id_owner`
-            WHERE %%STATPOINTS%%.`stat_type` = 1
-            ORDER BY %%STATPOINTS%%.`total_rank`
-        "));
+            WHERE %%STATPOINTS%%.`stat_type` = 1 AND %%USERS%%.universe = :universe
+            ORDER BY %%STATPOINTS%%.`total_rank`");
 
-        $fh = fopen(ROOT_PATH . 'stats/stats_' . date('Y-m-d_H') . '.json', 'w+');
-        fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
-        fclose($fh);
+        foreach ($this->universes as $uni) {
+            $scores = $database->select($sql, [
+                ':universe' => $uni,
+            ]);
 
-        $fh = fopen(ROOT_PATH . 'stats.json', 'w+');
-        fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
-        fclose($fh);
+            $name = Config::get($uni)->uni_name;
+            $name = str_replace(' ', '_', $name);
+    
+            $fh = fopen(ROOT_PATH . 'stats/stats_' . $name . '_' . date('Y-m-d_H') . '.json', 'w+');
+            fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
+            fclose($fh);
+    
+            $fh = fopen(ROOT_PATH . 'stats_' . $name . '.json', 'w+');
+            fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
+            fclose($fh);
+        }
     }
+    
+    private function getHighestUser($type, $uni) 
+    {
+        GLOBAL $reslist, $resource;
+        $db = Database::get();
+        $result = array();
+        foreach($reslist['tech'] as $Techno) 
+		{
+			$techName = $resource[$Techno];
+			
+            $sql = "SELECT id, " . $techName . " as level FROM %%USERS%% where " . $techName . " = (SELECT max(" . $techName . ") from %%USERS%% where universe = :universe) and universe = :universe;";
+            $data = $db->select($sql, [
+                ':universe' => $uni
+            ]);
+            
+            if($data[0]['level'] > 0) {
+                $dataFinal = array();
+                foreach($data as $row) {
+                    array_push($row, $Techno);
+                    array_push($dataFinal, $row);
+                }
+                array_push($result, $dataFinal);
+            }
+        }
+        return $result;
+    }
+
+    private function getHighestPlanet($type, $uni) 
+    {
+        GLOBAL $reslist, $resource;
+        $db = Database::get();
+        $result = array();
+        foreach($reslist[$type] as $kind) {
+            $kindName = $resource[$kind];
+            $sql = "SELECT id_owner as id, " . $kindName . " as level FROM %%PLANETS%% where " . $kindName . " = (select max(" . $kindName . ") from %%PLANETS%% where universe = :universe) and universe = :universe;";
+            $data = $db->select($sql,[
+                ':universe' => $uni
+            ]);
+            if($data[0]['level'] > 0) {
+                $dataFinal = array();
+                foreach($data as $row) {
+                    array_push($row, $kind);
+                    array_push($dataFinal, $row);
+                }
+                array_push($result, $dataFinal);
+            }
+        }
+        return $result;
+    }
+
+    private function insertQueries($records, $uni) {
+        $db = Database::get();
+        foreach($records as $record) {
+            foreach($record as $row) {
+                $sql = "INSERT INTO %%RECORDS%% (userID, elementID, level, universe) VALUES (:userID, :elementID, :level, :universe);";
+                $db->insert($sql, [
+                    ':userID' => $row['id'],
+                    ':elementID' => $row['0'],
+                    ':level' => $row['level'],
+                    ':universe' => $uni
+                ]);                
+            }
+        }
+        
+    }
+
+    public function buildRecords() {
+        $db = Database::get();
+        $sql = "DELETE FROM %%RECORDS%%;";
+        $db->delete($sql);
+
+        foreach ($this->universes as $uni) {
+            $tech = $this->getHighestUser('tech', $uni);
+            $buildings = $this->getHighestPlanet('build', $uni);
+            //$defenses = $this->getHighestPlanet('defense', $uni);
+            //$fleet = $this->getHighestPlanet('fleet', $uni);
+            //$missiles = $this->getHighestPlanet('missile', $uni);
+            $this->insertQueries($tech, $uni);
+            $this->insertQueries($buildings, $uni);
+        }
+	}
 }
 
 /* 

@@ -19,13 +19,13 @@
 // 2Moons - Copyright (C) 2010-2012 Slaver
 // Translated into Turkish by Ibraihm Senyer . All rights reversed (C) 2013
 // 2Moons - Copyright (C) 2010-2012 Slaver
-
+$LNG['type_planet_short_3'] = 'A';
 $LNG['Messages'] = 'Mesajlar';
 $LNG['PM'] = '[O.M.]';
 $LNG['write_message'] = 'Mesaj Yaz';
 $LNG['ready'] = 'Bitti';
 $LNG['loading'] = 'yukleniyor ...';
-
+$LNG["delete_confirm_gala"] = 'Yerel evren verileri silinsin mi?';
 $LNG['invalid_action'] = 'Hata Olustu!!';
 
 $LNG['type_mission_1'] = 'Saldiri';
@@ -132,6 +132,7 @@ $LNG['lm_search'] = 'Arama';
 $LNG['lm_options'] = 'Ayarlar';
 $LNG['lm_banned'] = 'Banlananlar';
 $LNG['lm_forums'] = 'Forum';
+$LNG['donate'] = 'Bağışla';
 $LNG['lm_logout'] = 'Cikis';
 $LNG['lm_administration'] = 'Administration';
 $LNG['lm_queue'] = 'Kuyruk';
@@ -369,6 +370,7 @@ $LNG['fl_no_same_alliance'] = 'Dusman gezegende durulamaz!';
 $LNG['fl_not_ally_deposit'] = 'Yeterli Kademede Ittifak Deposu Yok';
 $LNG['fl_deploy_only_your_planets'] = 'Sadece Kendi Gezegenlerinize Konuslandirmak yapabilirsiniz!';
 $LNG['fl_fleet_sended'] = 'Filo basariyla gonderildi';
+$LNG['fl_selected_resources'] = 'seçilen kaynaklar';
 $LNG['fl_from'] = 'Kalkis';
 $LNG['fl_arrival_time'] = 'Varis Zamani';
 $LNG['fl_return_time'] = 'Donus Zamani';
@@ -1180,7 +1182,7 @@ $LNG['pl_etc'] = 'Digerleri ';
 
 //----------------------------------------------------------------------------//
 // Destek
-
+$LNG['fleetPrio'] = 'Filo sipariş önceliği';
 $LNG['ti_header'] = 'Destek Sistemi';
 $LNG['ti_overview'] = 'Geri';
 $LNG['ti_id'] = 'Ticket';
@@ -1261,3 +1263,6 @@ $LNG['lo_notify'] = '<span id="seconds">5</span> saniye icinde yonlendirileceksi
 $LNG['lo_continue'] = 'Beklemek istemiyorsaniz tiklayiniz';
 
 //----------------------------------------------------------------------------//
+$LNG['fleet_table_custom_empty_name'] = 'Bir filo ismi giriniz lütfen!';
+$LNG['custom_fleet'] = 'Özel filolar';
+$LNG['custom_fleet_confirm'] = 'Filo şablonu %s kaldırılsın mı?';

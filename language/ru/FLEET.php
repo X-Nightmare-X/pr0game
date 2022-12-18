@@ -328,3 +328,4 @@ $LNG['type_planet_3'] = 'Луна';
 
 $LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
 $LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
+

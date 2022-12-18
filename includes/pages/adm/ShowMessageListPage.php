@@ -131,6 +131,7 @@ function ShowMessageListPage()
 		'sender'		=> $sender,
 		'receiver'		=> $receiver,
 		'Selected'		=> 0,
+		'signalColors'	=> $USER['signalColors']
 	));
 				
 	$template->show('MessageList.tpl');

@@ -6,12 +6,12 @@
 <input type="hidden" value="{$referralData.id}" name="referralID">
 	<div class="rowForm">
 		<label for="universe">{$LNG.universe}</label>
-		<select name="uni" id="universe" class="changeAction">{html_options options=$universeSelect selected=$UNI}</select>
+		<select name="uni" id="universe" class="changeAction">{html_options options=$universeSelect selected=$universeSelected}</select>
 		{if !empty($error.uni)}<span class="error errorUni"></span>{/if}
 	</div>
 	<div class="rowForm">
 		<label for="username">{$LNG.registerUsername}</label>
-		<input type="text" class="input" name="username" id="username" maxlenght="32">
+		<input type="text" class="input" name="username" id="username" maxlength="32">
 		{if !empty($error.username)}<span class="error errorUsername"></span>{/if}
 		<span class="inputDesc">{$LNG.registerUsernameDesc}</span>
 	</div>
@@ -29,13 +29,13 @@
 	</div>
 	<div class="rowForm">
 		<label for="email">{$LNG.registerEmail}</label>
-		<input type="email" class="input" name="email" id="email">
+		<input type="email" class="input" name="email" id="email" maxlength="64">
 		{if !empty($error.email)}<span class="error errorEmail"></span>{/if}
 		<span class="inputDesc">{$LNG.registerEmailDesc}</span>
 	</div>
 	<div class="rowForm">
 		<label for="emailReplay">{$LNG.registerEmailReplay}</label>
-		<input type="email" class="input" name="emailReplay" id="emailReplay">
+		<input type="email" class="input" name="emailReplay" id="emailReplay" maxlength="64">
 		{if !empty($error.emailReplay)}<span class="error errorEmailReplay"></span>{/if}
 		<span class="inputDesc">{$LNG.registerEmailReplayDesc}</span>
 	</div>

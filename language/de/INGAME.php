@@ -12,7 +12,9 @@
  * @version 1.8.0
  * @link https://github.com/jkroepke/2Moons
  */
+$LNG["delete_confirm_gala"] = 'Lokale Universumsdaten löschen?';
 
+$LNG['type_planet_short_3'] = 'M';
 $LNG['Messages'] = 'Nachrichten';
 $LNG['write_message'] = 'Schreibe eine Nachricht';
 
@@ -123,6 +125,7 @@ $LNG['lm_alliance'] = 'Allianz';
 $LNG['lm_buddylist'] = 'Buddylist';
 $LNG['lm_notes'] = 'Notizen';
 $LNG['lm_statistics'] = 'Statistik';
+$LNG['donate'] = 'Spenden';
 $LNG['lm_search'] = 'Suche';
 $LNG['lm_options'] = 'Einstellungen';
 $LNG['lm_banned'] = 'Pranger';
@@ -1223,7 +1226,7 @@ $LNG['pl_etc'] = 'Kontakt';
 
 //----------------------------------------------------------------------------//
 // Support
-
+$LNG['fleetPrio'] = 'Flotten Auftrag Priorität';
 $LNG['ti_header'] = 'Support-System';
 $LNG['ti_overview'] = 'Zurück zur Übersicht';
 $LNG['ti_id'] = 'Ticket';
@@ -1305,6 +1308,10 @@ $LNG['lo_notify'] = 'Sie werden in <span id="seconds">5</span>s weitergeleitet';
 $LNG['lo_continue'] = 'Klicken Sie hier, um nicht zu warten';
 
 //----------------------------------------------------------------------------//
+
+$LNG['fleet_table_custom_empty_name'] = 'Bitte einen Flottennamen eingeben!';
+$LNG['custom_fleet'] = 'Benutzerdefinierte Flotten';
+$LNG['custom_fleet_confirm'] = 'Flottenvorlage %s entfernen?';
 
 
 // Translated into German by Jan . All rights reversed (C) 2011

@@ -31,7 +31,7 @@ class ShowFleetStep1Page extends AbstractGamePage
         $targetPlanet = HTTP::_GP('planet', (int) $PLANET['planet']);
         $targetType = HTTP::_GP('type', (int) $PLANET['planet_type']);
 
-        $mission = HTTP::_GP('target_mission', 0);
+        $mission = HTTP::_GP('target_mission', -1);
 
         $Fleet = [];
         $FleetRoom = 0;

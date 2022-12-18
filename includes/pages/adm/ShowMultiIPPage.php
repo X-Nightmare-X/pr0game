@@ -19,7 +19,7 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowMultiIPPage()
 {
-	global $LNG;
+	global $LNG, $USER;
 
 	if(!isset($_GET['action'])) { $_GET['action'] = ''; }
 	switch($_GET['action'])
@@ -48,6 +48,7 @@ function ShowMultiIPPage()
 	$template	= new template();
 	$template->assign_vars(array(
 		'multiGroups'	=> $IPs,
+		'signalColors'	=> $USER['signalColors'],
 	));
 	$template->show('MultiIPs.tpl');
 }

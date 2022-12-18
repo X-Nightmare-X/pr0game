@@ -26,7 +26,6 @@ function ShowTopnavPage()
 		$config = Config::get($uniId);
 		$universeSelect[$uniId]	= sprintf('%s (ID: %d)', $config->uni_name, $uniId);
 	}
-
 	ksort($universeSelect);
 	$template->assign_vars(array(	
 		'ad_authlevel_title'	=> $LNG['ad_authlevel_title'],
@@ -41,6 +40,7 @@ function ShowTopnavPage()
 		'authlevel'				=> $USER['authlevel'],
 		'AvailableUnis'			=> $universeSelect,
 		'UNI'					=> Universe::getEmulated(),
+		'signalColors'      	=> $USER['signalColors']
 	));
 	
 	$template->show('ShowTopnavPage.tpl');

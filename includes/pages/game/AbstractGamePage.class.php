@@ -222,7 +222,7 @@ abstract class AbstractGamePage
             'avatar' => $avatar,
             'resourceTable' => $resourceTable,
             'shortlyNumber' => $themeSettings['TOPNAV_SHORTLY_NUMBER'],
-            'closed' => !$config->game_disable,
+            'uni_status' => $config->uni_status,
             'hasBoard' => filter_var($config->forum_url, FILTER_VALIDATE_URL),
             'hasAdminAccess' => !empty(Session::load()->adminAccess),
             'hasGate' => $PLANET[$resource[43]] > 0,
@@ -311,27 +311,20 @@ abstract class AbstractGamePage
         if ($this->getWindow() !== 'ajax') {
             $this->getPageData();
         }
-
+        $config = Config::get();
+        $captchakey = $config->recaptchaPubKey;
         $this->assign([
-            'lang' => $LNG->getLanguage(),
-            'dpath' => $THEME->getTheme(),
-            'scripts' => $this->tplObj->jsscript,
-            'execscript' => implode("\n", $this->tplObj->script),
-            'basepath' => PROTOCOL . HTTP_HOST . HTTP_BASE,
-        ]);
-        if (!isset($USER,$USER['timezone'])) {
-            $USER = array ('timezone' => 'Europe/Berlin');
-        }
-        if(isset($USER['id'])) {
-            $signalColors = PlayerUtil::player_signal_colors($USER);
-        }
-        else {
-            $signalColors = array('colorPositive' => '#00ff00', 'colorNegative' => '#ff0000', 'colorNeutral' => '#ffd600');
-        }
-        $this->assign([
-            'LNG'               => $LNG,
+            'lang'              => $LNG->getLanguage(),
+            'dpath'             => $THEME->getTheme(),
+            'scripts'           => $this->tplObj->jsscript,
+            'execscript'        => implode("\n", $this->tplObj->script),
+            'basepath'          => PROTOCOL . HTTP_HOST . HTTP_BASE,
             'TIMEZONESTRING'    => $USER['timezone'],
-            'signalColors'      => $signalColors,
+            'signalColors'      => $USER['signalColors'],
+            'captchakey'        => $captchakey,
+        ]);
+        $this->assign([
+            'LNG' => $LNG
         ], false);
 
         $this->tplObj->display('extends:layout.' . $this->getWindow() . '.tpl|' . $file);

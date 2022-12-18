@@ -28,7 +28,7 @@ class ShowGalaxyPage extends AbstractGamePage
 
 	public function show()
 	{
-		global $USER, $PLANET, $resource, $LNG, $reslist;
+		global $USER, $PLANET, $resource, $LNG, $reslist, $pricelist;
 
 		$config			= Config::get();
 
@@ -109,6 +109,8 @@ class ShowGalaxyPage extends AbstractGamePage
 			$Result = [];
 		}
 
+		$hiddenDebris = ($pricelist[SHIP_PROBE]['cost'][RESOURCE_METAL] + $pricelist[SHIP_PROBE]['cost'][RESOURCE_CRYSTAL]) * ($config->Fleet_Cdr / 100);
+
         $this->tplObj->loadscript('galaxy.js');
         $this->assign(array(
 			'GalaxyRows'				=> $Result,
@@ -133,6 +135,7 @@ class ShowGalaxyPage extends AbstractGamePage
 			'planet_type' 				=> $PLANET['planet_type'],
             'max_planets'               => $config->max_planets,
 			'missileSelector'			=> $missileSelector,
+			'hiddenDebris'					=> $hiddenDebris,
 			'ShortStatus'				=> array(
 				'vacation'					=> $LNG['gl_short_vacation'],
 				'banned'					=> $LNG['gl_short_ban'],

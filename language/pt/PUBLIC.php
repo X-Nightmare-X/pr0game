@@ -44,6 +44,8 @@ $LNG['menu_register']				= 'Registo';
 $LNG['chose_a_uni']					= 'Escolhe o universo';
 $LNG['universe']					= 'Universo';
 $LNG['uni_closed']					= ' (fechado)';
+$LNG['uni_reg_closed']				= ' (Registo encerrado)';
+$LNG['uni_reg_open']				= ' (Apenas registo)';
 
 // Button
 $LNG['buttonRegister']				= 'Regista Agora!';
@@ -154,3 +156,5 @@ $LNG['disclamerLabelAddress']		= 'Game Address:';
 $LNG['disclamerLabelPhone']			= 'Telephone Nr.:';
 $LNG['disclamerLabelMail']			= 'Support Adress:';
 $LNG['disclamerLabelNotice']		= 'More information';
+
+$LNG['disclamerRecaptcha'] = 'Esta página utiliza reCAPTCHA e o Google <a href="https://policies.google.com/privacy">provacy statement</a> e <a href="https://policies.google.com/terms">terms of use</a> apply.';

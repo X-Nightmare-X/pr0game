@@ -17,12 +17,12 @@
 
 $LNG['Messages'] = 'Wiadomości';
 $LNG['write_message'] = 'Napisz wiadomość';
-
+$LNG['type_planet_short_3'] = 'M';
 $LNG['PM'] = '[PW]';
 $LNG['ready'] = 'Gotowe';
-
+$LNG["delete_confirm_gala"] = 'Usunąć dane lokalnego uniwersum?';
 $LNG['loading'] = 'Ładuję';
-
+$LNG['fleetPrio'] = 'Priorytet kolejności floty';
 $LNG['invalid_action'] = 'Niedozwolona akcja';
 
 $LNG['type_mission_1'] = 'Atak';
@@ -73,7 +73,7 @@ $LNG['type_mission_17_foreign'] = 'Zagraniczny transfer';
 $LNG['type_mission_return_foreign'] = 'Zwrot zagraniczny';
 
 $LNG['positive'] = 'Pozytywny';
-$LNG['negative'] = 'Negative'; 
+$LNG['negative'] = 'Negative';
 $LNG['neutral'] = 'Neutralny';
 $LNG['StaticTimer'] = 'Czas przybycia';
 
@@ -127,6 +127,7 @@ $LNG['lm_notes'] = 'Notatki';
 $LNG['lm_statistics'] = 'Statystyki';
 $LNG['lm_search'] = 'Szukaj';
 $LNG['lm_options'] = 'Opcje';
+$LNG['donate'] = 'Darowizna';
 $LNG['lm_banned'] = 'Zbanowani';
 
 $LNG['lm_forums'] = 'Forum';
@@ -368,6 +369,7 @@ $LNG['fl_no_slots'] = 'Sloty niedostępne!';
 $LNG['fl_planet_populed'] = 'Ta planeta jest zajęta!';
 $LNG['fl_no_same_alliance'] = 'Gracz musi być w twoim sojuszu lub na liście znajomych!';
 $LNG['fl_not_ally_deposit'] = 'Brak depozytu sojuszniczego';
+$LNG['fl_selected_resources'] = 'wybrane zasoby';
 $LNG['fl_deploy_only_your_planets'] = 'Możesz stacjonować tylko na swoich planetach!';
 $LNG['fl_fleet_sended'] = 'Flota wysłana';
 $LNG['fl_from'] = 'Od';
@@ -1244,6 +1246,8 @@ $LNG['lo_notify'] = 'Zostaniesz przeniesiony za <span id="seconds"> 5 </span> s'
 $LNG['lo_continue'] = 'Kliknij tutaj, jeśli nie chcesz zostać przeniesiony';
 //----------------------------------------------------------------------------//
 
-
+$LNG['fleet_table_custom_empty_name'] = 'Proszę wstawić nazwę floty!';
+$LNG['custom_fleet'] = 'Floty niestandardowe';
+$LNG['custom_fleet_confirm'] = 'Usunąć szablon floty %s?';
 // Translated into Polish by Sirgomo . All rights reversed (C) 2012
 // Edited by TheRavikin. All rights resteemed (C) 2018

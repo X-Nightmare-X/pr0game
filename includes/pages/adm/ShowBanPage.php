@@ -55,6 +55,9 @@ function ShowBanPage()
 	$GLOBALS['DATABASE']->free_result($UserListBan);
 
 	$template	= new template();
+	$template->assign_vars([
+		'signalColors'      => $USER['signalColors'],
+	]);
 	$template->loadscript('filterlist.js');
 
 
