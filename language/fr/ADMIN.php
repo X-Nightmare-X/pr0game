@@ -210,8 +210,8 @@ $LNG['bo_permanent'] = 'Ban permanent';
 $LNG['bo_bbb_title_1'] = 'Système bannissement';
 $LNG['bo_bbb_title_2'] = 'Quand le bannissement sera levé';
 $LNG['bo_bbb_title_3'] = 'Système bannissement<br><font color=red>Note: Cet utilisateur est déjà banni !';
-$LNG['bo_bbb_title_4'] = 'Pour soustraire des jours, des heures etc. Ajouter un signe ( - ) devant le nombre, Exemple :'
-    . ' -5 ';
+$LNG['bo_bbb_title_4'] = 'In order to reduce the time duration, it is necessary to add a "-" before the numbers'
+    . ', such as: -5<br>With previous perma-lock, the lock is reduced to the entered positive time';
 $LNG['bo_bbb_title_5'] = 'Banni jusqu\'à';
 $LNG['bo_bbb_title_6'] = 'Changer date';
 $LNG['bo_characters_1'] = 'Caractères disponibles : ';

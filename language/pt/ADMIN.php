@@ -242,8 +242,8 @@ $LNG['bo_permanent'] = 'Ban Permanente';
 $LNG['bo_bbb_title_1'] = 'Sistema de Suspensão';
 $LNG['bo_bbb_title_2'] = 'Quando deve ser desbloqueado';
 $LNG['bo_bbb_title_3'] = 'Sistema de Suspensão &bull; <font color=red>Este jogador encontra-se bloqueado';
-$LNG['bo_bbb_title_4'] = 'A fim de reduzir o tempo de duração, é necessário adicionar um sinal de subração antes do'
-    . ' numero introduzido desejado, que consta o numero de minutos que desejas reduzir, tal como: -5 ';
+$LNG['bo_bbb_title_4'] = 'In order to reduce the time duration, it is necessary to add a "-" before the numbers'
+    . ', such as: -5<br>With previous perma-lock, the lock is reduced to the entered positive time';
 $LNG['bo_bbb_title_5'] = 'Trancado';
 $LNG['bo_bbb_title_6'] = 'Data de modificação';
 $LNG['bo_characters_1'] = 'Letras disponiveis ';

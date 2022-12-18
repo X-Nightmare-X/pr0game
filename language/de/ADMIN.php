@@ -219,8 +219,8 @@ $LNG['bo_permanent'] = 'Permanente Sperre';
 $LNG['bo_bbb_title_1'] = 'Suspension system';
 $LNG['bo_bbb_title_2'] = 'Wann soll die Sperre aufgehoben werden';
 $LNG['bo_bbb_title_3'] = 'Suspension System &bull; <font color=red>Dieser Spieler ist bereits gesperrt';
-$LNG['bo_bbb_title_4'] = 'Um die Dauer der Sperre zu verkürzen, füge ein Minus vor der Minutenzahl hinzu,'
-    . 'Beispiel: -5 ';
+$LNG['bo_bbb_title_4'] = 'Um die Dauer der Sperre zu verkürzen, füge ein Minus vor den Zeiten hinzu, '
+    . 'Beispiel: -5<br>Bei vorheriger Perma-Sperre wird die Sperre auf die eingegebene positive Zeit veringert';
 $LNG['bo_bbb_title_5'] = 'gesperrt bis';
 $LNG['bo_bbb_title_6'] = 'Datum ändern';
 $LNG['bo_characters_1'] = 'verfügbare Buchstaben ';
@@ -231,6 +231,7 @@ $LNG['bo_order_banned'] = '[nach Sperre sortieren]';
 $LNG['bo_total_users'] = 'Spieler insgesamt: ';
 $LNG['bo_total_banneds'] = 'gesperrte Spieler: ';
 $LNG['bo_ban'] = 'Sperren';
+$LNG['bo_ban_change'] = 'Ändern';
 $LNG['bo_unban'] = 'Entsperren';
 //###########################################################//
 

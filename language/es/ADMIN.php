@@ -212,7 +212,8 @@ $LNG['bo_permanent'] = 'Bloqueo Permanente';
 $LNG['bo_bbb_title_1'] = 'Sistema de suspensión';
 $LNG['bo_bbb_title_2'] = 'Establecer fecha en la que perdera la suspensión';
 $LNG['bo_bbb_title_3'] = 'Sistema de suspensión<br><font color=red>Atención, este usuario ya esta suspendido';
-$LNG['bo_bbb_title_4'] = 'Para restar dias, horas, etc agrega un signo menos ( - ) delante del número, Ejemplo: -5';
+$LNG['bo_bbb_title_4'] = 'In order to reduce the time duration, it is necessary to add a "-" before the numbers'
+    . ', such as: -5<br>With previous perma-lock, the lock is reduced to the entered positive time';
 $LNG['bo_bbb_title_5'] = 'Suspendido hasta el';
 $LNG['bo_bbb_title_6'] = 'Cambiar fecha';
 $LNG['bo_characters_1'] = 'Caracteres disponibles: ';
