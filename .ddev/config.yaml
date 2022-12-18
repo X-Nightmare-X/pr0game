@@ -9,8 +9,8 @@ xdebug_enabled: false
 additional_hostnames: []
 additional_fqdns: []
 database:
-  type: mysql
-  version: "8.0"
+  type: mariadb
+  version: "10.3"
 nfs_mount_enabled: false
 mutagen_enabled: false
 webimage_extra_packages: [php8.1-imap, php8.1-opcache, php8.1-ds]
