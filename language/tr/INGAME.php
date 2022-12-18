@@ -1015,7 +1015,8 @@ $LNG['bn_writemail'] = 'Mail at %s';
 
 // Bakimlar ve Banlamalar
 $LNG['css_account_banned_message'] = 'Hesabiniz banlandi!';
-$LNG['css_account_banned_expire'] = 'Cezanin Bitis Tarihi %s!';
+$LNG['css_account_banned_expire'] = 'You are banned until %s!<br>In case of questions, please open a ticket on our <a style="color: -webkit-link;" href="https://discord.gg/jhYYN3yuat">Discord server (link)</a>';
+$LNG['css_account_banned_reason'] = 'Reason: %s';
 $LNG['css_goto_homeside'] = '<a href="./index.php">Ana Sayfaya Git</a>';
 $LNG['css_server_maintrace'] = 'Sunucuda bakim var <br><br>Evren su an kapali.<br><br>Até: %s';
 
