@@ -90,12 +90,6 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             ':planetId' => $this->_fleet['fleet_start_id']
         ], 'name');
 
-        // die(var_dump($senderUser));
-        // die(var_dump($senderUser["combustion_tech"]));
-        // die(var_dump($senderUser["impulse_motor_tech"]));
-        // die(var_dump($senderUser["hyperspace_motor_tech"]));
-        // TODO -> Techs ziehn
-
         $LNG = $this->getLanguage($senderUser['lang']);
 
         $planetUpdater = new ResourceUpdate();
@@ -146,7 +140,6 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         if ($SpyDef) {
             $classIDs[400] = array_merge($reslist['defense'], $reslist['missile']);
-            // die(var_dump($classIDs[400][6]));
         }
 
         if ($SpyBuild) {
@@ -156,7 +149,6 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         if ($SpyTechno) {
             $classIDs[100] = $reslist['tech'];
         }
-
 
         // what is seen by the 'attacker' is already calculated above.
         // if target planet does not have fleet or def, it is safe to set $targetChance to -1
@@ -191,8 +183,6 @@ class MissionCaseSpy extends MissionFunctions implements Mission
                 $spyData[$classID] = array_filter($spyData[$classID]);
             }
         }
-        // die(var_dump($spyData["200"]["204"]));
-
         // I'm use template class here, because i want to exclude HTML in PHP.
 
         require_once 'includes/classes/class.template.php';
@@ -205,14 +195,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $THEME->setUserTheme($senderUser['dpath']);
         }
 
-        // die(var_dump($reslist['fleet']));
-        // die(var_dump($spyData));
-        // die(var_dump($targetPlanet["metal"]));
-        // print(var_dump($totalShipDefCount));
-
-        // // hier kladeradatsch berechenen
         $ressources = round($targetPlanet['metal'] + $targetPlanet['crystal'] + $targetPlanet['deuterium']);
-        // $danger = "TODO";
 
         if (isset($classIDs[400])) {
             $danger = $this->getDangerValue($spyData, true);
@@ -323,8 +306,6 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         ], false);
 
         $spyReport = $template->fetch('shared.mission.spyReport.tpl');
-
-        // die($spyReport);
 
         PlayerUtil::sendMessage(
             $this->_fleet['fleet_owner'],
@@ -486,9 +467,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $dangerValue += $spyData["200"][215] * 700;
         }
 
-        // die(var_dump($bar));
         if ($bar) {
-            // die(var_dump($spyData["400"]));
             // Rak
             if (isset($spyData["400"][401]) && $spyData["400"][401] !== 0) {
                 $dangerValue += $spyData["400"][401] * 80;
@@ -610,23 +589,17 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $bestDistance = 0;
 
         foreach ($targetPlanet as $positions) {
-            
-            // die(var_dump($positions));
+
             $distance = FleetFunctions::getTargetDistance(
                 [
                     $positions["galaxy"],
                     $positions["system"],
                     $positions["planet"]
-                    // $this->_fleet['fleet_start_galaxy'],
-                    // $this->_fleet['fleet_start_system'],
-                    // $this->_fleet['fleet_start_planet']
                 ],
                 [
                     $targetCoordinates['0'],
                     $targetCoordinates['1'],
                     $targetCoordinates['2']
-                    // $this->_fleet[2],
-                    // $this->_fleet['fleet_end_planet']
                 ]
             );
 
@@ -634,8 +607,6 @@ class MissionCaseSpy extends MissionFunctions implements Mission
                 $bestDistance = $distance;
                 $bestPlanet = [$positions["galaxy"],$positions["system"],$positions["planet"]];
             }
-
-            // die(print($distance));
         }
 
         return [$bestDistance,$bestPlanet];
@@ -643,7 +614,6 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
     public function bestRessPerTime($distance, $senderUser, $ressourcesByMarketValue)
     {
-        // $flytime = FleetFunctions::getMissionDuration($SpeedFactor, $MaxFleetSpeed, $Distance, $GameSpeed, $USER);
         $fleetArray = [214 => 1];
         $MaxFleetSpeed = FleetFunctions::getFleetMaxSpeed($fleetArray, $senderUser);
         $GameSpeed = Config::get()->fleet_speed / 2500;
