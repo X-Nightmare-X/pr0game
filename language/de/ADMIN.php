@@ -231,6 +231,7 @@ $LNG['bo_order_banned'] = '[nach Sperre sortieren]';
 $LNG['bo_total_users'] = 'Spieler insgesamt: ';
 $LNG['bo_total_banneds'] = 'gesperrte Spieler: ';
 $LNG['bo_ban'] = 'Sperren';
+$LNG['bo_ban_change'] = 'Ändern';
 $LNG['bo_unban'] = 'Entsperren';
 //###########################################################//
 

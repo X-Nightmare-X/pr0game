@@ -236,6 +236,7 @@ $LNG['bo_order_banned'] = '[Sort by suspended]';
 $LNG['bo_total_users'] = 'Total players:';
 $LNG['bo_total_banneds'] = 'Suspended Players:';
 $LNG['bo_ban'] = 'Block';
+$LNG['bo_ban_change'] = 'Change';
 $LNG['bo_unban'] = 'Unlock';
 //###########################################################//
 
