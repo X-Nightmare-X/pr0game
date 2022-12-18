@@ -60,24 +60,24 @@
 				</div>
 			</div>
 			<div class="spyRaportContainerRow clearfix">
-				<div class="spyRaportContainerCell {$ressourceClass}" >
+				<div class="spyRaportContainerCell {$ressourcesByMarketValueClass}" >
 					Marktwert
 				</div>
-				<div class="spyRaportContainerCell {$ressourceClass}" >
+				<div class="spyRaportContainerCell {$ressourcesByMarketValueClass}" >
 					{$ressourcesByMarketValue}
 				</div>
-				<div class="spyRaportContainerCell" >
+				<div class="spyRaportContainerCell {$energyClass}" >
 					Energy
 				</div>
-				<div class="spyRaportContainerCell" >
+				<div class="spyRaportContainerCell {$energyClass}" >
 					{$energy}
 				</div>
 			</div>
 			<div class="spyRaportContainerRow clearfix">
-				<div class="spyRaportContainerCell" >
+				<div class="spyRaportContainerCell {$bestRessPerTimeClass}" >
 					bestRessPerTime
 				</div>
-				<div class="spyRaportContainerCell" >
+				<div class="spyRaportContainerCell {$bestRessPerTimeClass}" >
 					{$bestRessPerTime}
 				</div>
 				<div class="spyRaportContainerCell" >
