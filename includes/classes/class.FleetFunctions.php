@@ -170,16 +170,32 @@ class FleetFunctions
 
     public static function getMissionDuration($SpeedFactor, $MaxFleetSpeed, $Distance, $GameSpeed, $USER)
     {
-        $SpeedFactor = (3500 / ($SpeedFactor * 0.1));
-        $SpeedFactor *= pow($Distance * 10 / $MaxFleetSpeed, 0.5);
-        $SpeedFactor += 10;
-        $SpeedFactor /= $GameSpeed;
+        $duration = (3500 / ($SpeedFactor * 0.1));
+        $duration *= pow($Distance * 10 / $MaxFleetSpeed, 0.5);
+        $duration += 10;
+        $duration /= $GameSpeed;
 
         if (isset($USER['factor']['FlyTime'])) {
-            $SpeedFactor *= max(0, 1 + $USER['factor']['FlyTime']);
+            $duration *= max(0, 1 + $USER['factor']['FlyTime']);
         }
 
-        return max($SpeedFactor, MIN_FLEET_TIME);
+        return max($duration, MIN_FLEET_TIME);
+    }
+
+    public static function getFleetSpeedFactor($duration, $MaxFleetSpeed, $Distance, $GameSpeed, $USER)
+    {
+        if (isset($USER['factor']['FlyTime']) && $USER['factor']['FlyTime'] > -1) {
+            $duration /= 1 + $USER['factor']['FlyTime'];
+        }
+        $duration *= $GameSpeed;
+        $duration -= 10;
+        $duration /= pow($Distance * 10 / $MaxFleetSpeed, 0.5);
+        $SpeedFactor = (3500 / $duration) / 0.1;
+
+        $SpeedFactor = min(10, $SpeedFactor);
+        $SpeedFactor = max(1, $SpeedFactor);
+
+        return $SpeedFactor;
     }
 
     public static function getMIPDuration($startSystem, $targetSystem)
@@ -240,6 +256,22 @@ class FleetFunctions
             $consumption += $basicConsumption * $MissionDistance / 35000 * (($spd / 10) + 1) * (($spd / 10) + 1);
         }
         return (round($consumption) + 1);
+    }
+
+    public static function calculateFleetReturnDuration($fleet, $fleetArray)
+    {
+        $sql = 'SELECT * FROM %%USERS%% WHERE id = :userId;';
+        $senderData = Database::get()->selectSingle($sql, [
+            ':userId' => $fleet['fleet_owner'],
+        ]);
+        $fleetMaxSpeed = FleetFunctions::getFleetMaxSpeed($fleetArray, $senderData);
+        $distance = FleetFunctions::getTargetDistance(
+            [$fleet['fleet_start_galaxy'], $fleet['fleet_start_system'], $fleet['fleet_start_planet']],
+            [$fleet['fleet_end_galaxy'], $fleet['fleet_end_system'], $fleet['fleet_end_planet']]
+        );
+        $gameSpeedFactor = FleetFunctions::getGameSpeedFactor();
+        $duration = FleetFunctions::getMissionDuration(10, $fleetMaxSpeed, $distance, $gameSpeedFactor, $senderData);
+        return $fleet['fleet_end_stay'] + $duration;
     }
 
     public static function getFleetMissions($USER, $MisInfo, $Planet)

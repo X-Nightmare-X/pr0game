@@ -112,6 +112,13 @@ class ShowFleetStep2Page extends AbstractGamePage
         $duration = FleetFunctions::getMissionDuration($fleetSpeed, $MaxFleetSpeed, $distance, $GameSpeedFactor, $USER);
         $consumption = FleetFunctions::getFleetConsumption($fleetArray, $duration, $distance, $USER, $GameSpeedFactor);
 
+        if ($targetMission == MISSION_COLONISATION) {
+            $fleetReturnArray = $fleetArray;
+            $fleetReturnArray[SHIP_COLONIZER] -= 1;
+            $consumptionReturn = FleetFunctions::getFleetConsumption($fleetReturnArray, $duration, $distance, $USER, $GameSpeedFactor) / 2;
+            $consumption += $consumptionReturn;
+        }
+
         if ($consumption > $PLANET['deuterium']) {
             $this->printMessage($LNG['fl_not_enough_deuterium'], [[
                 'label' => $LNG['sys_back'],

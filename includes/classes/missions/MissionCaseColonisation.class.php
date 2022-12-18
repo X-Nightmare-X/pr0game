@@ -110,7 +110,9 @@ class MissionCaseColonisation extends MissionFunctions implements Mission
                                     $NewFleet .= $Class[0] . "," . $Class[1] . ";";
                                 }
                             }
-
+                            
+                            $duration = FleetFunctions::calculateFleetReturnDuration($this->_fleet, $NewFleet);
+                            $this->UpdateFleet('fleet_end_time', $duration);
                             $this->UpdateFleet('fleet_array', $NewFleet);
                             $this->UpdateFleet('fleet_amount', ($this->_fleet['fleet_amount'] - 1));
                             $this->UpdateFleet('fleet_resource_metal', 0);

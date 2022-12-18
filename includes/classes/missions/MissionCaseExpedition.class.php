@@ -262,6 +262,9 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
             $this->updateFoundShipsAdvancedStats($this->_fleet['fleet_owner'], $Found);
         }
 
+        $duration = FleetFunctions::calculateFleetReturnDuration($this->_fleet, $NewFleetArray);
+        
+        $this->UpdateFleet('fleet_end_time', $duration);
         $this->UpdateFleet('fleet_array', $NewFleetArray);
         $this->UpdateFleet('fleet_amount', $CountTotal);
 

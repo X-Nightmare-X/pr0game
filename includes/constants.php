@@ -251,6 +251,7 @@ define('SHIP_LIGHT_FIGHTER', 204);
 define('SHIP_HEAVY_FIGHTER', 205);
 define('SHIP_CRUISER', 206);
 define('SHIP_BATTLESHIP', 207);
+define('SHIP_COLONIZER', 208);
 define('SHIP_PROBE', 210);
 define('SHIP_BOMBER', 211);
 define('SHIP_DESTROYER', 213);
