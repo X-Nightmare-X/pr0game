@@ -17,7 +17,7 @@
 	{$changedate_advert}
 </tr><tr>
 	<td>{$LNG.bo_permanent}</td>
-	<td><input name="permanent" type="checkbox"></td>
+	<td><input name="permanent" type="checkbox"{if $perma} checked = "checked"{/if}></td>
 	{if $changedate_advert}<td>&nbsp;</td>{/if}
 </tr><tr>
 	<td>{$LNG.time_days}</td>

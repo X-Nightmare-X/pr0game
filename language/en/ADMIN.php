@@ -224,8 +224,8 @@ $LNG['bo_permanent'] = 'Ban permanent';
 $LNG['bo_bbb_title_1'] = 'Suspension System';
 $LNG['bo_bbb_title_2'] = 'When it should be unlocked';
 $LNG['bo_bbb_title_3'] = 'Suspension system • <font color="red">This player is locked</font>';
-$LNG['bo_bbb_title_4'] = 'In order to reduce the time duration, it is necessary to add a "-" before the number desired'
-    . ' introduced, that is in the number of minutes that you want to reduce, such as: -5';
+$LNG['bo_bbb_title_4'] = 'In order to reduce the time duration, it is necessary to add a "-" before the numbers'
+    . ', such as: -5<br>With previous perma-lock, the lock is reduced to the entered positive time';
 $LNG['bo_bbb_title_5'] = 'Locked';
 $LNG['bo_bbb_title_6'] = 'Date modified';
 $LNG['bo_characters_1'] = 'Available Chars';

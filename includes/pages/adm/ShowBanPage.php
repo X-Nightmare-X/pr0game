@@ -98,6 +98,7 @@ function ShowBanPage()
 			'reas'				=> $reas,
 			'changedate_advert'	=> $changedate_advert,
 			'timesus'			=> $timesus,
+			'perma'				=> $BANUSER['banaday'] = 2147483647,
 			'vacation'			=> $vacation,
 		));
 	} elseif (isset($_POST['bannow']) && $BANUSER['id'] != 1) {
@@ -111,8 +112,9 @@ function ShowBanPage()
 		$mail              = $USER['email'];
 		$BanTime           = $days * 86400 + $hour * 3600 + $mins * 60 + $secs;
 
-		if ($BANUSER['longer'] > TIMESTAMP)
+		if ($BANUSER['longer'] > TIMESTAMP && $BANUSER['banaday'] != 2147483647) {
 			$BanTime          += ($BANUSER['longer'] - TIMESTAMP);
+		}
 		
 		if (isset($_POST['permanent'])) {
 			$BannedUntil = 2147483647;
