@@ -221,21 +221,62 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         } else {
             $danger = 0;
         }
+        
+        $dangerClass = $danger > 0 ? "danger" : "nonedanger";
+        
         if (isset($classIDs[200])) {
             $recyclePotential = $this->getRecyleValue($spyData);
         } else {
             $recyclePotential = 0;
         }
+
         $ressourcesToRaid = round($ressources / 2);
         $ressourcesByMarketValue = $this->getRessoucesByDsuValue($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']);
+
+        if ($ressourcesByMarketValue > 150000 ){
+            $ressourcesByMarketValueClass = "realHighRess";
+        }
+        elseif ($ressourcesByMarketValue > 90000) {
+            $ressourcesByMarketValueClass = "highRess";
+        }
+        elseif ($ressourcesByMarketValue > 30000) {
+            $ressourcesByMarketValueClass = "midRess";
+        }
+        else{
+            $ressourcesByMarketValueClass = "lowRess";
+        }
+
         $nessesarryKT = $this->estimateSmallTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
         $nessesarryGT = $this->estimateGreatTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
         $nessesarryRecy = $this->estimateRecyclers($recyclePotential);
         $targetCoordinates = [$targetPlanet["galaxy"],$targetPlanet["system"],$targetPlanet["planet"]];
         $bestPlanetArray = $this->bestplanet($senderUser["id"], $targetCoordinates);
         $energy = $targetPlanet["energy"];
+
+        if ($energy > 100000 ){
+            $energyClass = "midRess";
+        } elseif ($energy > 250000) {
+            $energyClass = "lowRess";
+        }
+        else{
+            $energyClass = "";
+        }
+
         $bestRessPerTime = $this->bestRessPerTime($bestPlanetArray[0], $senderUser, $ressourcesByMarketValue);
-        $dangerClass = $danger > 0 ? "danger" : "nonedanger";
+        
+        if ($bestRessPerTime > 20 ){
+            $bestRessPerTimeClass = "realHighRess";
+        }
+        elseif ($bestRessPerTime > 10) {
+            $bestRessPerTimeClass = "highRess";
+        }
+        elseif ($bestRessPerTime > 5) {
+            $bestRessPerTimeClass = "midRess";
+        }
+        else{
+            $bestRessPerTimeClass = "lowRess";
+        }
+        
         $bestPlanet = $bestPlanetArray[1][0] . ":" . $bestPlanetArray[1][1] . ":" . $bestPlanetArray[1][2];
 
 
@@ -252,8 +293,11 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             'recyclePotential'                  => $recyclePotential,
             'nessesarryRecy'                    => $nessesarryRecy,
             'ressourcesByMarketValue'           => $ressourcesByMarketValue,
+            'ressourcesByMarketValueClass'      => $ressourcesByMarketValueClass,
             'energy'                            => $energy,
+            'energyClass'                       => $energyClass,
             'bestRessPerTime'                   => $bestRessPerTime,
+            'bestRessPerTimeClass'              => $bestRessPerTimeClass,
             'bestPlanet'                        => $bestPlanet,
             'nessesarryGT'                      => $nessesarryGT,
             'nessesarryKT'                      => $nessesarryKT,
