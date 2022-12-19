@@ -251,9 +251,13 @@ define('SHIP_LIGHT_FIGHTER', 204);
 define('SHIP_HEAVY_FIGHTER', 205);
 define('SHIP_CRUISER', 206);
 define('SHIP_BATTLESHIP', 207);
+define('SHIP_COLOSHIP', 208);
+define('SHIP_RECYCLER', 209);
 define('SHIP_PROBE', 210);
 define('SHIP_BOMBER', 211);
+define('SHIP_SOLSAT', 212);
 define('SHIP_DESTROYER', 213);
+define('SHIP_RIP', 214);
 define('SHIP_BATTLECRUISER', 215);
 
 // Missions
