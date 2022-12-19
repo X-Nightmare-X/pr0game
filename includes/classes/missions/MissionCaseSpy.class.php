@@ -230,8 +230,8 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         }
 
         // calculate the needed transporters
-        $nessesarryKT = $this->estimateSmallTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
-        $nessesarryGT = $this->estimateLargeTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
+        $nessesarrySmallTransporter = $this->estimateSmallTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
+        $nessesarryGreatTransporter = $this->estimateLargeTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
         
         // get the best planet to start the raid from and the ress per time from there
         $targetCoordinates = [$targetPlanet["galaxy"], $targetPlanet["system"], $targetPlanet["planet"]];
@@ -277,8 +277,8 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             'bestRessPerTime'                   => $bestRessPerTime,
             'bestRessPerTimeClass'              => $bestRessPerTimeClass,
             'bestPlanet'                        => $bestPlanet,
-            'nessesarryGT'                      => $nessesarryGT,
-            'nessesarryKT'                      => $nessesarryKT,
+            'nessesarryGreatTransporter'        => $nessesarryGreatTransporter,
+            'nessesarrySmallTransporter'        => $nessesarrySmallTransporter,
             'spyData'                           => $spyData,
             'targetPlanet'                      => $targetPlanet,
             'targetChance'                      => $targetChance,
@@ -402,7 +402,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
     public function estimateSmallTransporters($capacity)
     {
         global $pricelist;
-        return ceil($capacity / $pricelist[SHIP_LARGE_CARGO]['capacity']) + 1;
+        return ceil($capacity / $pricelist[SHIP_SMALL_CARGO]['capacity']) + 1;
     }
 
     public function estimateLargeTransporters($capacity)
