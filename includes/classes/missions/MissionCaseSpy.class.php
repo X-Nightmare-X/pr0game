@@ -227,7 +227,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         }
 
         $nessesarryKT = $this->estimateSmallTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
-        $nessesarryGT = $this->estimateGreatTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
+        $nessesarryGT = $this->estimateLargeTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
         $nessesarryRecy = $this->estimateRecyclers($recyclePotential);
         $targetCoordinates = [$targetPlanet["galaxy"], $targetPlanet["system"], $targetPlanet["planet"]];
         $bestPlanetArray = $this->bestplanet($senderUser["id"], $targetCoordinates);
@@ -399,12 +399,14 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
     public function estimateSmallTransporters($capacity)
     {
-        return ceil($capacity / 5000) + 1;
+        global $pricelist;
+        return ceil($capacity / $pricelist[SHIP_LARGE_CARGO]['capacity']) + 1;
     }
 
-    public function estimateGreatTransporters($capacity)
+    public function estimateLargeTransporters($capacity)
     {
-        return ceil($capacity / 25000) + 1;
+        global $pricelist;
+        return ceil($capacity / $pricelist[SHIP_LARGE_CARGO]['capacity']) + 1;
     }
 
     public function getDangerValue($spyData, $bar)
@@ -498,7 +500,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         return  $dangerValue;
     }
-    
+
     public function getRecyleValue($spyData)
     {
 
