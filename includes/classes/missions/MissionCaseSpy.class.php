@@ -512,9 +512,6 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $fleetIntoDebris = $config->Fleet_Cdr;
         $defIntoDebris = $config->Defs_Cdr;
 
-        // die(var_dump($pricelist[SHIP_SMALL_CARGO]['cost']));
-        die(print($fleetIntoDebris));
-
         $recycleValue = 0;
 
         // SHIP_SMALL_CARGO
@@ -573,6 +570,8 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         if (isset($spyData["200"][215]) && $spyData["200"][215] !== 0) {
             $recycleValue += $spyData["200"][215] * (($pricelist[SHIP_BATTLECRUISER]['cost'][RESOURCE_METAL] + $pricelist[SHIP_BATTLECRUISER]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
         }
+
+        // TODO: DEFF ins TF
 
         return  $recycleValue;
     }
