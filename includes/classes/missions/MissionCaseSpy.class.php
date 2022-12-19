@@ -195,8 +195,11 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $THEME->setUserTheme($senderUser['dpath']);
         }
 
+        // Summ up all ress from the planet and calculate how many you could raid
         $ressources = round($targetPlanet['metal'] + $targetPlanet['crystal'] + $targetPlanet['deuterium']);
+        $ressourcesToRaid = round($ressources / 2);
 
+        // determine if the spy report detects ships or deff
         if (isset($classIDs[400])) {
             $danger = $this->getDangerValue($spyData, true);
         } elseif (isset($classIDs[200])) {
@@ -204,18 +207,18 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         } else {
             $danger = 0;
         }
-
         $dangerClass = $danger > 0 ? "danger" : "nonedanger";
 
+        // if the spy report got ships get the approximately number of needet recylers
         if (isset($classIDs[200])) {
             $recyclePotential = $this->getRecyleValue($spyData);
         } else {
             $recyclePotential = 0;
         }
+        $nessesarryRecy = $this->estimateRecyclers($recyclePotential);
 
-        $ressourcesToRaid = round($ressources / 2);
+        // get the ressource value by market and set the background color class
         $ressourcesByMarketValue = $this->getRessoucesByDsuValue($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']);
-
         if ($ressourcesByMarketValue > 150000) {
             $ressourcesByMarketValueClass = "realHighRess";
         } elseif ($ressourcesByMarketValue > 90000) {
@@ -226,23 +229,15 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $ressourcesByMarketValueClass = "lowRess";
         }
 
+        // calculate the needed transporters
         $nessesarryKT = $this->estimateSmallTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
         $nessesarryGT = $this->estimateLargeTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
-        $nessesarryRecy = $this->estimateRecyclers($recyclePotential);
+        
+        // get the best planet to start the raid from and the ress per time from there
         $targetCoordinates = [$targetPlanet["galaxy"], $targetPlanet["system"], $targetPlanet["planet"]];
         $bestPlanetArray = $this->bestplanet($senderUser["id"], $targetCoordinates);
-        $energy = $targetPlanet["energy"];
-
-        if ($energy > 100000) {
-            $energyClass = "midRess";
-        } elseif ($energy > 250000) {
-            $energyClass = "lowRess";
-        } else {
-            $energyClass = "";
-        }
-
+        $bestPlanet = $bestPlanetArray[1][0] . ":" . $bestPlanetArray[1][1] . ":" . $bestPlanetArray[1][2];
         $bestRessPerTime = $this->bestRessPerTime($bestPlanetArray[0], $senderUser, $ressourcesByMarketValue);
-
         if ($bestRessPerTime > 20) {
             $bestRessPerTimeClass = "realHighRess";
         } elseif ($bestRessPerTime > 10) {
@@ -252,9 +247,16 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         } else {
             $bestRessPerTimeClass = "lowRess";
         }
-
-        $bestPlanet = $bestPlanetArray[1][0] . ":" . $bestPlanetArray[1][1] . ":" . $bestPlanetArray[1][2];
-
+        
+        // get the energy to indicate if someone is pushing to gravi
+        $energy = $targetPlanet["energy"];
+        if ($energy > 100000) {
+            $energyClass = "midRess";
+        } elseif ($energy > 250000) {
+            $energyClass = "lowRess";
+        } else {
+            $energyClass = "";
+        }
 
         $template->caching = true;
         $template->compile_id = $senderUser['lang'];
