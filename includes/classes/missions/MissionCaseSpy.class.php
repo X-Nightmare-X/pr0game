@@ -506,7 +506,6 @@ class MissionCaseSpy extends MissionFunctions implements Mission
     public function getRecyleValue($spyData)
     {
         global $pricelist;
-        $pricelist[SHIP_SMALL_CARGO]['cost'][RESOURCE_METAL];
 
         $config = Config::get($this->_fleet['fleet_universe']);
         $fleetIntoDebris = $config->Fleet_Cdr;
@@ -578,7 +577,8 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
     public function estimateRecyclers($recycleValue)
     {
-        return ceil($recycleValue / 20000) + 1;
+        global $pricelist;
+        return ceil($recycleValue / $pricelist[SHIP_RECYCLER]["capacity"]) + 1;
     }
 
     public function bestplanet($owner, $targetCoordinates)
