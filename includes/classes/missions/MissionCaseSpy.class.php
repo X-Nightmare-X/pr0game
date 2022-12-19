@@ -505,64 +505,73 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
     public function getRecyleValue($spyData)
     {
+        global $pricelist;
+        $pricelist[SHIP_SMALL_CARGO]['cost'][RESOURCE_METAL];
+
+        $config = Config::get($this->_fleet['fleet_universe']);
+        $fleetIntoDebris = $config->Fleet_Cdr;
+        $defIntoDebris = $config->Defs_Cdr;
+
+        // die(var_dump($pricelist[SHIP_SMALL_CARGO]['cost']));
+        die(print($fleetIntoDebris));
 
         $recycleValue = 0;
 
-        // KT
+        // SHIP_SMALL_CARGO
         if (isset($spyData["200"][202]) && $spyData["200"][202] !== 0) {
-            $recycleValue += $spyData["200"][202] * 1200;
+            $recycleValue += $spyData["200"][202] * (($pricelist[SHIP_SMALL_CARGO]['cost'][RESOURCE_METAL] + $pricelist[SHIP_SMALL_CARGO]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
         }
-        // GT
+        // SHIP_LARGE_CARGO
         if (isset($spyData["200"][203]) && $spyData["200"][203] !== 0) {
-            $recycleValue += $spyData["200"][203] * 3600;
+            $recycleValue += $spyData["200"][203] * (($pricelist[SHIP_LARGE_CARGO]['cost'][RESOURCE_METAL] + $pricelist[SHIP_LARGE_CARGO]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
         }
-        // LJ
+        // SHIP_LIGHT_FIGHTER
         if (isset($spyData["200"][204]) && $spyData["200"][204] !== 0) {
-            $recycleValue += $spyData["200"][204] * 1200;
+            $recycleValue += $spyData["200"][204] * (($pricelist[SHIP_LIGHT_FIGHTER]['cost'][RESOURCE_METAL] + $pricelist[SHIP_LIGHT_FIGHTER]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
         }
-        // SJ
+        // SHIP_HEAVY_FIGHTER
         if (isset($spyData["200"][205]) && $spyData["200"][205] !== 0) {
-            $recycleValue += $spyData["200"][205] * 3000;
+            $recycleValue += $spyData["200"][205] * (($pricelist[SHIP_HEAVY_FIGHTER]['cost'][RESOURCE_METAL] + $pricelist[SHIP_HEAVY_FIGHTER]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
         }
-        // Xer:innen
+        // Xer:innen SHIP_CRUISER 
         if (isset($spyData["200"][206]) && $spyData["200"][206] !== 0) {
-            $recycleValue += $spyData["200"][206] * 8100;
+            $recycleValue += $spyData["200"][206] * (($pricelist[SHIP_CRUISER]['cost'][RESOURCE_METAL] + $pricelist[SHIP_CRUISER]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
         }
-        // SS
+        // SHIP_BATTLESHIP
         if (isset($spyData["200"][207]) && $spyData["200"][207] !== 0) {
-            $recycleValue += $spyData["200"][207] * 18000;
+            $recycleValue += $spyData["200"][207] * (($pricelist[SHIP_BATTLESHIP]['cost'][RESOURCE_METAL] + $pricelist[SHIP_BATTLESHIP]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
         }
-        // Kolo
+        // SHIP_COLOSHIP
         if (isset($spyData["200"][208]) && $spyData["200"][208] !== 0) {
-            $recycleValue += $spyData["200"][208] * 9000;
+            $recycleValue += $spyData["200"][208] * (($pricelist[SHIP_COLOSHIP]['cost'][RESOURCE_METAL] + $pricelist[SHIP_COLOSHIP]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
         }
-        // Rec
+        // SHIP_RECYCLER
         if (isset($spyData["200"][209]) && $spyData["200"][209] !== 0) {
-            $recycleValue += $spyData["200"][209] * 4800;
+            $recycleValue += $spyData["200"][209] * (($pricelist[SHIP_RECYCLER]['cost'][RESOURCE_METAL] + $pricelist[SHIP_RECYCLER]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
         }
-        // Spio
+        // SHIP_PROBE
         if (isset($spyData["200"][210]) && $spyData["200"][210] !== 0) {
-            $recycleValue += $spyData["200"][210] * 300;
+            $recycleValue += $spyData["200"][210] * (($pricelist[SHIP_PROBE]['cost'][RESOURCE_METAL] + $pricelist[SHIP_PROBE]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
         }
-        // BBer
+        // SHIP_BOMBER
         if (isset($spyData["200"][211]) && $spyData["200"][211] !== 0) {
-            $recycleValue += $spyData["200"][211] * 22500;
+            $recycleValue += $spyData["200"][211] * (($pricelist[SHIP_BOMBER]['cost'][RESOURCE_METAL] + $pricelist[SHIP_BOMBER]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
         }
-        // Sat
+        // SHIP_SOLSAT
         if (isset($spyData["200"][212]) && $spyData["200"][212] !== 0) {
-            $recycleValue += $spyData["200"][212] * 600;
+            $recycleValue += $spyData["200"][212] * (($pricelist[SHIP_SOLSAT]['cost'][RESOURCE_METAL] + $pricelist[SHIP_SOLSAT]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
         }
-        // Zerren
+        // SHIP_DESTROYER
         if (isset($spyData["200"][213]) && $spyData["200"][213] !== 0) {
-            $recycleValue += $spyData["200"][213] * 33000;
+            $recycleValue += $spyData["200"][213] * (($pricelist[SHIP_DESTROYER]['cost'][RESOURCE_METAL] + $pricelist[SHIP_DESTROYER]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
         }
-        // RIP
+        // SHIP_RIP
         if (isset($spyData["200"][214]) && $spyData["200"][214] !== 0) {
-            $recycleValue += $spyData["200"][214] * 2700000;
+            $recycleValue += $spyData["200"][214] * (($pricelist[SHIP_RIP]['cost'][RESOURCE_METAL] + $pricelist[SHIP_RIP]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
         }
-        // SXer
+        // SHIP_BATTLECRUISER
         if (isset($spyData["200"][215]) && $spyData["200"][215] !== 0) {
-            $recycleValue += $spyData["200"][215] * 21000;
+            $recycleValue += $spyData["200"][215] * (($pricelist[SHIP_BATTLECRUISER]['cost'][RESOURCE_METAL] + $pricelist[SHIP_BATTLECRUISER]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
         }
 
         return  $recycleValue;
