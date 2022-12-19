@@ -386,7 +386,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $refratesDeuterium = $refrates["deuterium"];
 
         $ressoucesByDsuValue = $metal / $refratesMetal + $crystal / $refratesCrystal + $deuterium / $refratesDeuterium;
-        
+
         return round($ressoucesByDsuValue);
     }
 
@@ -498,6 +498,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         return  $dangerValue;
     }
+    
     public function getRecyleValue($spyData)
     {
 
