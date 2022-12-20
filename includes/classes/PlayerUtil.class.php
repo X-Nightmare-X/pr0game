@@ -1173,24 +1173,24 @@ class PlayerUtil
     {
         if (!isset($USER)) {
             return [
-                'STB_small_ress'    => 500,
-                'STB_med_ress'      => 3000,
-                'STB_big_ress'      => 7000,
-                'STB_small_time'    => 1,
-                'STB_med_time'      => 2,
-                'STB_big_time'      => 3,
-                'STB_enabled'       => 0,
+                'stb_small_ress'    => 500,
+                'stb_med_ress'      => 3000,
+                'stb_big_ress'      => 7000,
+                'stb_small_time'    => 1,
+                'stb_med_time'      => 2,
+                'stb_big_time'      => 3,
+                'stb_enabled'       => 0,
             ];
         }
 
         return [
-            'STB_small_ress'    => $USER['STB_small_ress'],
-            'STB_med_ress'      => $USER['STB_med_ress'],
-            'STB_big_ress'      => $USER['STB_big_ress'],
-            'STB_small_time'    => $USER['STB_small_time'],
-            'STB_med_time'      => $USER['STB_med_time'],
-            'STB_big_time'      => $USER['STB_big_time'],
-            'STB_enabled'       => $USER['STB_enabled'],
+            'stb_small_ress'    => $USER['stb_small_ress'],
+            'stb_med_ress'      => $USER['stb_med_ress'],
+            'stb_big_ress'      => $USER['stb_big_ress'],
+            'stb_small_time'    => $USER['stb_small_time'],
+            'stb_med_time'      => $USER['stb_med_time'],
+            'stb_big_time'      => $USER['stb_big_time'],
+            'stb_enabled'       => $USER['stb_enabled'],
         ];
     }
 

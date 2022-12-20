@@ -195,6 +195,10 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $THEME->setUserTheme($senderUser['dpath']);
         }
 
+        // Scavengers Tool Box
+
+        $stbSettings = PlayerUtil::player_stb_settings($senderUser);
+
         // Summ up all ress from the planet and calculate how many you could raid
         $ressources = round($targetPlanet['metal'] + $targetPlanet['crystal'] + $targetPlanet['deuterium']);
         $ressourcesToRaid = round($ressources / 2);
@@ -209,11 +213,11 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         // get the ressource value by market and set the background color class
         $ressourcesByMarketValue = $this->getRessoucesByDsuValue($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']);
-        if ($ressourcesByMarketValue > 150000) {
+        if ($ressourcesByMarketValue > $stbSettings['stb_big_ress']) {
             $ressourcesByMarketValueClass = "realHighRess";
-        } elseif ($ressourcesByMarketValue > 90000) {
+        } elseif ($ressourcesByMarketValue > $stbSettings['stb_med_ress']) {
             $ressourcesByMarketValueClass = "highRess";
-        } elseif ($ressourcesByMarketValue > 30000) {
+        } elseif ($ressourcesByMarketValue > $stbSettings['stb_small_ress']) {
             $ressourcesByMarketValueClass = "midRess";
         } else {
             $ressourcesByMarketValueClass = "lowRess";
@@ -228,11 +232,11 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $bestPlanetArray = $this->bestplanet($senderUser["id"], $targetCoordinates);
         $bestPlanet = $bestPlanetArray[1][0] . ":" . $bestPlanetArray[1][1] . ":" . $bestPlanetArray[1][2];
         $bestRessPerTime = $this->bestRessPerTime($bestPlanetArray[0], $senderUser, $ressourcesByMarketValue);
-        if ($bestRessPerTime > 20) {
+        if ($bestRessPerTime > $stbSettings['stb_big_time']) {
             $bestRessPerTimeClass = "realHighRess";
-        } elseif ($bestRessPerTime > 10) {
+        } elseif ($bestRessPerTime > $stbSettings['stb_med_time']) {
             $bestRessPerTimeClass = "highRess";
-        } elseif ($bestRessPerTime > 5) {
+        } elseif ($bestRessPerTime > $stbSettings['stb_small_time']) {
             $bestRessPerTimeClass = "midRess";
         } else {
             $bestRessPerTimeClass = "lowRess";
@@ -254,6 +258,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         list($tplDir) = $template->getTemplateDir();
         $template->setTemplateDir($tplDir . 'game/');
         $template->assign_vars([
+            'stbEnabled'                        => $stbSettings['stb_enabled'],
             'ressources'                        => $ressources,
             'danger'                            => $danger,
             'dangerClass'                       => $dangerClass,

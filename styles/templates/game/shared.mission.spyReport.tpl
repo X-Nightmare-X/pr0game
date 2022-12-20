@@ -13,7 +13,8 @@
 	<div class="spyRaportHead">
 		<a href="game.php?page=galaxy&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}">{$title}</a>
 	</div>
-		<div class="spyRaportContainer">
+	<div class="spyRaportContainer">
+		{if {$stbEnabled}}
 			<div class="spyRaportContainerHead">
 				{$LNG.spy_summary}
 			</div>
@@ -95,7 +96,8 @@
 					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[203]={$nessesarryGreatTransporter}">{$LNG.spy_attack_with} {$nessesarryGreatTransporter} GT {$LNG.spy_large_transporter}</a>
 				</div>
 			</div>
-		</div>
+			</div>
+		{/if}
 	</div>
 	{foreach $spyData as $Class => $elementIDs}
 	<div class="spyRaportContainer">
