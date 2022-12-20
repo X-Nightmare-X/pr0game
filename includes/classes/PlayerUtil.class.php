@@ -1169,6 +1169,31 @@ class PlayerUtil
         ];
     }
 
+    public static function player_stb_settings($USER = null)
+    {
+        if (!isset($USER)) {
+            return [
+                'STB_small_ress'    => 500,
+                'STB_med_ress'      => 3000,
+                'STB_big_ress'      => 7000,
+                'STB_small_time'    => 1,
+                'STB_med_time'      => 2,
+                'STB_big_time'      => 3,
+                'STB_enabled'       => 0,
+            ];
+        }
+
+        return [
+            'STB_small_ress'    => $USER['STB_small_ress'],
+            'STB_med_ress'      => $USER['STB_med_ress'],
+            'STB_big_ress'      => $USER['STB_big_ress'],
+            'STB_small_time'    => $USER['STB_small_time'],
+            'STB_med_time'      => $USER['STB_med_time'],
+            'STB_big_time'      => $USER['STB_big_time'],
+            'STB_enabled'       => $USER['STB_enabled'],
+        ];
+    }
+
     public static function player_signal_colors($USER = null)
     {
         if (!isset($USER)) {
