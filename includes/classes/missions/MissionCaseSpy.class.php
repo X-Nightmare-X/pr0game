@@ -211,9 +211,9 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         // if the spy report got ships get the approximately number of needet recylers
         if (isset($classIDs[400])) {
-            $danger = $this->getRecyleValue($spyData, true);
+            $recyclePotential = $this->getRecyleValue($spyData, true);
         } elseif (isset($classIDs[200])) {
-            $danger = $this->getRecyleValue($spyData, false);
+            $recyclePotential = $this->getRecyleValue($spyData, false);
         } else {
             $recyclePotential = 0;
         }
