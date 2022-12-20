@@ -200,23 +200,11 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $ressourcesToRaid = round($ressources / 2);
 
         // determine if the spy report detects ships or deff
-        if (isset($classIDs[400])) {
-            $danger = $this->getDangerValue($spyData, true);
-        } elseif (isset($classIDs[200])) {
-            $danger = $this->getDangerValue($spyData, false);
-        } else {
-            $danger = 0;
-        }
+        $danger = $this->getDangerValue($spyData);
         $dangerClass = $danger > 0 ? "danger" : "nonedanger";
 
         // if the spy report got ships get the approximately number of needet recylers
-        if (isset($classIDs[400])) {
-            $recyclePotential = $this->getRecyleValue($spyData, true);
-        } elseif (isset($classIDs[200])) {
-            $recyclePotential = $this->getRecyleValue($spyData, false);
-        } else {
-            $recyclePotential = 0;
-        }
+        $recyclePotential = $this->getRecyleValue($spyData);
         $nessesarryRecy = $this->estimateRecyclers($recyclePotential);
 
         // get the ressource value by market and set the background color class
@@ -379,7 +367,9 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         }
     }
 
-    // calculates the given ressources, based by the worth of 1 deuterium
+    /**
+     * calculates the given ressources, based by the worth of 1 deuterium
+     */
     public function getRessoucesByDsuValue($metal, $crystal, $deuterium)
     {
         require_once 'includes/classes/class.MarketManager.php';
@@ -413,99 +403,35 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         return ceil($capacity / $pricelist[SHIP_LARGE_CARGO]['capacity']) + 1;
     }
 
-    public function getDangerValue($spyData, $intelligenceSuccessfull)
+    /**
+     * Returns the combined base attack values of ships and defences 
+     */
+    public function getDangerValue($spyData)
     {
-
+        global $CombatCaps;
         $dangerValue = 0;
 
-        // KT
-        if (isset($spyData["200"][202]) && $spyData["200"][202] !== 0) {
-            $dangerValue += $spyData["200"][202] * 5;
-        }
-        // GT
-        if (isset($spyData["200"][203]) && $spyData["200"][203] !== 0) {
-            $dangerValue += $spyData["200"][203] * 5;
-        }
-        // LJ
-        if (isset($spyData["200"][204]) && $spyData["200"][204] !== 0) {
-            $dangerValue += $spyData["200"][204] * 50;
-        }
-        // SJ
-        if (isset($spyData["200"][205]) && $spyData["200"][205] !== 0) {
-            $dangerValue += $spyData["200"][205] * 150;
-        }
-        // Xer:innen
-        if (isset($spyData["200"][206]) && $spyData["200"][206] !== 0) {
-            $dangerValue += $spyData["200"][206] * 400;
-        }
-        // SS
-        if (isset($spyData["200"][207]) && $spyData["200"][207] !== 0) {
-            $dangerValue += $spyData["200"][207] * 1000;
-        }
-        // Kolo
-        if (isset($spyData["200"][208]) && $spyData["200"][208] !== 0) {
-            $dangerValue += $spyData["200"][208] * 50;
-        }
-        // Rec
-        if (isset($spyData["200"][209]) && $spyData["200"][209] !== 0) {
-            $dangerValue += $spyData["200"][209] * 1;
-        }
-        // BBer
-        if (isset($spyData["200"][211]) && $spyData["200"][211] !== 0) {
-            $dangerValue += $spyData["200"][211] * 1000;
-        }
-        // Zerren
-        if (isset($spyData["200"][213]) && $spyData["200"][213] !== 0) {
-            $dangerValue += $spyData["200"][213] * 2000;
-        }
-        // RIP
-        if (isset($spyData["200"][214]) && $spyData["200"][214] !== 0) {
-            $dangerValue += $spyData["200"][214] * 200000;
-        }
-        // SXer
-        if (isset($spyData["200"][215]) && $spyData["200"][215] !== 0) {
-            $dangerValue += $spyData["200"][215] * 700;
+        // ships
+        if (isset($spyData[200])) {
+            foreach ($spyData[200] as $elementID => $amount) {
+                $dangerValue += $CombatCaps[$elementID]['attack'] * $amount;
+            }
         }
 
-        if ($intelligenceSuccessfull) {
-            // Rak
-            if (isset($spyData["400"][401]) && $spyData["400"][401] !== 0) {
-                $dangerValue += $spyData["400"][401] * 80;
-            }
-            // LL
-            if (isset($spyData["400"][402]) && $spyData["400"][402] !== 0) {
-                $dangerValue += $spyData["400"][402] * 100;
-            }
-            // SL
-            if (isset($spyData["400"][403]) && $spyData["400"][403] !== 0) {
-                $dangerValue += $spyData["400"][403] * 250;
-            }
-            // Gaus
-            if (isset($spyData["400"][404]) && $spyData["400"][404] !== 0) {
-                $dangerValue += $spyData["400"][404] * 1100;
-            }
-            // Ionen
-            if (isset($spyData["400"][405]) && $spyData["400"][405] !== 0) {
-                $dangerValue += $spyData["400"][405] * 150;
-            }
-            // Plasma
-            if (isset($spyData["400"][406]) && $spyData["400"][406] !== 0) {
-                $dangerValue += $spyData["400"][406] * 3000;
-            }
-            // KSchild
-            if (isset($spyData["400"][407]) && $spyData["400"][407] !== 0) {
-                $dangerValue += $spyData["400"][407] * 1;
-            }
-            // G Schild
-            if (isset($spyData["400"][408]) && $spyData["400"][408] !== 0) {
-                $dangerValue += $spyData["400"][408] * 1;
+        // defence
+        if (isset($spyData[400])) {
+            foreach ($spyData[400] as $elementID => $amount) {
+                $dangerValue += $CombatCaps[$elementID]['attack'] * $amount;
             }
         }
 
         return  $dangerValue;
     }
 
-    public function getRecyleValue($spyData, $intelligenceSuccessfull)
+    /**
+     * Returns the combined recycle values of ships and defences 
+     */
+    public function getRecyleValue($spyData)
     {
         global $pricelist;
 
@@ -515,95 +441,19 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         $recycleValue = 0;
 
-        // SHIP_SMALL_CARGO
-        if (isset($spyData["200"][202]) && $spyData["200"][202] !== 0) {
-            $recycleValue += $spyData["200"][202] * (($pricelist[SHIP_SMALL_CARGO]['cost'][RESOURCE_METAL] + $pricelist[SHIP_SMALL_CARGO]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
-        }
-        // SHIP_LARGE_CARGO
-        if (isset($spyData["200"][203]) && $spyData["200"][203] !== 0) {
-            $recycleValue += $spyData["200"][203] * (($pricelist[SHIP_LARGE_CARGO]['cost'][RESOURCE_METAL] + $pricelist[SHIP_LARGE_CARGO]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
-        }
-        // SHIP_LIGHT_FIGHTER
-        if (isset($spyData["200"][204]) && $spyData["200"][204] !== 0) {
-            $recycleValue += $spyData["200"][204] * (($pricelist[SHIP_LIGHT_FIGHTER]['cost'][RESOURCE_METAL] + $pricelist[SHIP_LIGHT_FIGHTER]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
-        }
-        // SHIP_HEAVY_FIGHTER
-        if (isset($spyData["200"][205]) && $spyData["200"][205] !== 0) {
-            $recycleValue += $spyData["200"][205] * (($pricelist[SHIP_HEAVY_FIGHTER]['cost'][RESOURCE_METAL] + $pricelist[SHIP_HEAVY_FIGHTER]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
-        }
-        // Xer:innen SHIP_CRUISER 
-        if (isset($spyData["200"][206]) && $spyData["200"][206] !== 0) {
-            $recycleValue += $spyData["200"][206] * (($pricelist[SHIP_CRUISER]['cost'][RESOURCE_METAL] + $pricelist[SHIP_CRUISER]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
-        }
-        // SHIP_BATTLESHIP
-        if (isset($spyData["200"][207]) && $spyData["200"][207] !== 0) {
-            $recycleValue += $spyData["200"][207] * (($pricelist[SHIP_BATTLESHIP]['cost'][RESOURCE_METAL] + $pricelist[SHIP_BATTLESHIP]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
-        }
-        // SHIP_COLOSHIP
-        if (isset($spyData["200"][208]) && $spyData["200"][208] !== 0) {
-            $recycleValue += $spyData["200"][208] * (($pricelist[SHIP_COLOSHIP]['cost'][RESOURCE_METAL] + $pricelist[SHIP_COLOSHIP]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
-        }
-        // SHIP_RECYCLER
-        if (isset($spyData["200"][209]) && $spyData["200"][209] !== 0) {
-            $recycleValue += $spyData["200"][209] * (($pricelist[SHIP_RECYCLER]['cost'][RESOURCE_METAL] + $pricelist[SHIP_RECYCLER]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
-        }
-        // SHIP_PROBE
-        if (isset($spyData["200"][210]) && $spyData["200"][210] !== 0) {
-            $recycleValue += $spyData["200"][210] * (($pricelist[SHIP_PROBE]['cost'][RESOURCE_METAL] + $pricelist[SHIP_PROBE]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
-        }
-        // SHIP_BOMBER
-        if (isset($spyData["200"][211]) && $spyData["200"][211] !== 0) {
-            $recycleValue += $spyData["200"][211] * (($pricelist[SHIP_BOMBER]['cost'][RESOURCE_METAL] + $pricelist[SHIP_BOMBER]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
-        }
-        // SHIP_SOLSAT
-        if (isset($spyData["200"][212]) && $spyData["200"][212] !== 0) {
-            $recycleValue += $spyData["200"][212] * (($pricelist[SHIP_SOLSAT]['cost'][RESOURCE_METAL] + $pricelist[SHIP_SOLSAT]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
-        }
-        // SHIP_DESTROYER
-        if (isset($spyData["200"][213]) && $spyData["200"][213] !== 0) {
-            $recycleValue += $spyData["200"][213] * (($pricelist[SHIP_DESTROYER]['cost'][RESOURCE_METAL] + $pricelist[SHIP_DESTROYER]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
-        }
-        // SHIP_RIP
-        if (isset($spyData["200"][214]) && $spyData["200"][214] !== 0) {
-            $recycleValue += $spyData["200"][214] * (($pricelist[SHIP_RIP]['cost'][RESOURCE_METAL] + $pricelist[SHIP_RIP]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
-        }
-        // SHIP_BATTLECRUISER
-        if (isset($spyData["200"][215]) && $spyData["200"][215] !== 0) {
-            $recycleValue += $spyData["200"][215] * (($pricelist[SHIP_BATTLECRUISER]['cost'][RESOURCE_METAL] + $pricelist[SHIP_BATTLECRUISER]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
+        // ships
+        if (isset($spyData[200]) && $fleetIntoDebris > 0) {
+            foreach ($spyData[200] as $elementID => $amount) {
+                $recycleValue += (($pricelist[$elementID]['cost'][RESOURCE_METAL] + 
+                    $pricelist[$elementID]['cost'][RESOURCE_CRYSTAL]) * $fleetIntoDebris / 100) * $amount;
+            }
         }
 
-        if ($intelligenceSuccessfull) {
-            // Rak
-            if (isset($spyData["400"][401]) && $spyData["400"][401] !== 0) {
-                $recycleValue += $spyData["400"][401] * (($pricelist[MISSILE_LAUNCHER]['cost'][RESOURCE_METAL] + $pricelist[MISSILE_LAUNCHER]['cost'][RESOURCE_CRYSTAL]) / 100 * $defIntoDebris);
-            }
-            // LL
-            if (isset($spyData["400"][402]) && $spyData["400"][402] !== 0) {
-                $recycleValue += $spyData["400"][402] * (($pricelist[LIGHT_LASER_TURRET]['cost'][RESOURCE_METAL] + $pricelist[LIGHT_LASER_TURRET]['cost'][RESOURCE_CRYSTAL]) / 100 * $defIntoDebris);
-            }
-            // SL
-            if (isset($spyData["400"][403]) && $spyData["400"][403] !== 0) {
-                $recycleValue += $spyData["400"][403] * (($pricelist[HEAVY_LASER_TURRET]['cost'][RESOURCE_METAL] + $pricelist[HEAVY_LASER_TURRET]['cost'][RESOURCE_CRYSTAL]) / 100 * $defIntoDebris);
-            }
-            // Gaus
-            if (isset($spyData["400"][404]) && $spyData["400"][404] !== 0) {
-                $recycleValue += $spyData["400"][404] * (($pricelist[GAUSS_CANNON]['cost'][RESOURCE_METAL] + $pricelist[GAUSS_CANNON]['cost'][RESOURCE_CRYSTAL]) / 100 * $defIntoDebris);
-            }
-            // Ionen
-            if (isset($spyData["400"][405]) && $spyData["400"][405] !== 0) {
-                $recycleValue += $spyData["400"][405] * (($pricelist[ION_CANNON]['cost'][RESOURCE_METAL] + $pricelist[ION_CANNON]['cost'][RESOURCE_CRYSTAL]) / 100 * $defIntoDebris);
-            }
-            // Plasma
-            if (isset($spyData["400"][406]) && $spyData["400"][406] !== 0) {
-                $recycleValue += $spyData["400"][406] * (($pricelist[PLASMA_CANNON]['cost'][RESOURCE_METAL] + $pricelist[PLASMA_CANNON]['cost'][RESOURCE_CRYSTAL]) / 100 * $defIntoDebris);
-            }
-            // KSchild
-            if (isset($spyData["400"][407]) && $spyData["400"][407] !== 0) {
-                $recycleValue += $spyData["400"][407] * (($pricelist[SMALL_SHIELD_DOME]['cost'][RESOURCE_METAL] + $pricelist[SMALL_SHIELD_DOME]['cost'][RESOURCE_CRYSTAL]) / 100 * $defIntoDebris);
-            }
-            // G Schild
-            if (isset($spyData["400"][408]) && $spyData["400"][408] !== 0) {
-                $recycleValue += $spyData["400"][408] * (($pricelist[LARGE_SHIELD_DOME]['cost'][RESOURCE_METAL] + $pricelist[LARGE_SHIELD_DOME]['cost'][RESOURCE_CRYSTAL]) / 100 * $defIntoDebris);
+        // defence
+        if (isset($spyData[400]) && $defIntoDebris > 0) {
+            foreach ($spyData[400] as $elementID => $amount) {
+                $recycleValue += (($pricelist[$elementID]['cost'][RESOURCE_METAL] + 
+                    $pricelist[$elementID]['cost'][RESOURCE_CRYSTAL]) * $defIntoDebris / 100) * $amount;
             }
         }
 
@@ -656,7 +506,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
     public function bestRessPerTime($distance, $senderUser, $ressourcesByMarketValue)
     {
-        $fleetArray = [214 => 1];
+        $fleetArray = [SHIP_RIP => 1];
         $MaxFleetSpeed = FleetFunctions::getFleetMaxSpeed($fleetArray, $senderUser);
         $GameSpeed = Config::get()->fleet_speed / 2500;
         $flytime = FleetFunctions::getMissionDuration(100, $MaxFleetSpeed, $distance, $GameSpeed, $senderUser);

@@ -303,3 +303,20 @@ $LNG['type_planet_3'] = 'Ay';
 $LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
 $LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
 
+
+//----------------------------------------------------------------------------//
+// Scavengers Toolbox
+$LNG['spy_summary'] = 'Özet';
+$LNG['spy_total_resources'] = 'Toplam Kaynaklar';
+$LNG['spy_hazard_potential'] = 'Tehlike potansiyeli';
+$LNG['spy_potential_resources'] = 'Potansiyel kaynaklar';
+$LNG['spy_potential_recycling'] = 'Geri dönüşüm potenzial';
+$LNG['spy_necessary_transporters'] = 'Gerekli taşıyıcılar';
+$LNG['spy_necessary_recycler'] = 'Gerekli geri dönüştürücüler';
+$LNG['spy_market_value'] = 'Piyasa değeri';
+$LNG['spy_energy'] = 'Enerji';
+$LNG['spy_best_resources_per_second'] = 'saniyede en iyi ress';
+$LNG['spy_best_planet'] = 'en iyi gezegen';
+$LNG['spy_attack_with'] = 'İle saldır';
+$LNG['spy_small_transporter'] = 'Küçük';
+$LNG['spy_large_transporter'] = 'Büyük';
