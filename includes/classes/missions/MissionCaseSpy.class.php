@@ -210,8 +210,10 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $dangerClass = $danger > 0 ? "danger" : "nonedanger";
 
         // if the spy report got ships get the approximately number of needet recylers
-        if (isset($classIDs[200])) {
-            $recyclePotential = $this->getRecyleValue($spyData);
+        if (isset($classIDs[400])) {
+            $danger = $this->getRecyleValue($spyData, true);
+        } elseif (isset($classIDs[200])) {
+            $danger = $this->getRecyleValue($spyData, false);
         } else {
             $recyclePotential = 0;
         }
@@ -411,7 +413,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         return ceil($capacity / $pricelist[SHIP_LARGE_CARGO]['capacity']) + 1;
     }
 
-    public function getDangerValue($spyData, $bar)
+    public function getDangerValue($spyData, $intelligenceSuccessfull)
     {
 
         $dangerValue = 0;
@@ -465,7 +467,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $dangerValue += $spyData["200"][215] * 700;
         }
 
-        if ($bar) {
+        if ($intelligenceSuccessfull) {
             // Rak
             if (isset($spyData["400"][401]) && $spyData["400"][401] !== 0) {
                 $dangerValue += $spyData["400"][401] * 80;
@@ -503,7 +505,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         return  $dangerValue;
     }
 
-    public function getRecyleValue($spyData)
+    public function getRecyleValue($spyData, $intelligenceSuccessfull)
     {
         global $pricelist;
 
@@ -570,7 +572,40 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $recycleValue += $spyData["200"][215] * (($pricelist[SHIP_BATTLECRUISER]['cost'][RESOURCE_METAL] + $pricelist[SHIP_BATTLECRUISER]['cost'][RESOURCE_CRYSTAL]) / 100 * $fleetIntoDebris);
         }
 
-        // TODO: DEFF ins TF
+        if ($intelligenceSuccessfull) {
+            // Rak
+            if (isset($spyData["400"][401]) && $spyData["400"][401] !== 0) {
+                $recycleValue += $spyData["400"][401] * 80;
+            }
+            // LL
+            if (isset($spyData["400"][402]) && $spyData["400"][402] !== 0) {
+                $recycleValue += $spyData["400"][402] * 100;
+            }
+            // SL
+            if (isset($spyData["400"][403]) && $spyData["400"][403] !== 0) {
+                $recycleValue += $spyData["400"][403] * 250;
+            }
+            // Gaus
+            if (isset($spyData["400"][404]) && $spyData["400"][404] !== 0) {
+                $recycleValue += $spyData["400"][404] * 1100;
+            }
+            // Ionen
+            if (isset($spyData["400"][405]) && $spyData["400"][405] !== 0) {
+                $recycleValue += $spyData["400"][405] * 150;
+            }
+            // Plasma
+            if (isset($spyData["400"][406]) && $spyData["400"][406] !== 0) {
+                $recycleValue += $spyData["400"][406] * 3000;
+            }
+            // KSchild
+            if (isset($spyData["400"][407]) && $spyData["400"][407] !== 0) {
+                $recycleValue += $spyData["400"][407] * 1;
+            }
+            // G Schild
+            if (isset($spyData["400"][408]) && $spyData["400"][408] !== 0) {
+                $recycleValue += $spyData["400"][408] * 1;
+            }
+        }
 
         return  $recycleValue;
     }
