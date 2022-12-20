@@ -261,14 +261,14 @@ define('SHIP_RIP', 214);
 define('SHIP_BATTLECRUISER', 215);
 
 // Defense
-define('Missile Launcher', 401);
-define('Light Laser Turret', 402);
-define('Heavy Laser Turret', 403);
-define('Gauss Cannon', 404);
-define('Ion Cannon', 405);
-define('Plasma Cannon', 406);
-define('Small Shield Dome', 407);
-define('Large Shield Dome', 408);
+define('MISSILE_LAUNCHER', 401);
+define('LIGHT_LASER_TURRET', 402);
+define('HEAVY_LASER_TURRET', 403);
+define('GAUSS_CANNON', 404);
+define('ION_CANNON', 405);
+define('PLASMA_CANNON', 406);
+define('SMALL_SHIELD_DOME', 407);
+define('LARGE_SHIELD_DOME', 408);
 
 // Missions
 define('MISSION_ATTACK', 1);
