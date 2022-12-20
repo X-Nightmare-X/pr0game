@@ -260,6 +260,16 @@ define('SHIP_DESTROYER', 213);
 define('SHIP_RIP', 214);
 define('SHIP_BATTLECRUISER', 215);
 
+// Defense
+define('Missile Launcher', 401);
+define('Light Laser Turret', 402);
+define('Heavy Laser Turret', 403);
+define('Gauss Cannon', 404);
+define('Ion Cannon', 405);
+define('Plasma Cannon', 406);
+define('Small Shield Dome', 407);
+define('Large Shield Dome', 408);
+
 // Missions
 define('MISSION_ATTACK', 1);
 define('MISSION_ACS', 2);
