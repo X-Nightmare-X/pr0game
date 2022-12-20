@@ -15,17 +15,17 @@
 	</div>
 		<div class="spyRaportContainer">
 			<div class="spyRaportContainerHead">
-				Zusammenfassung
+				{$LNG.spy_summary}
 			</div>
 			<div class="spyRaportContainerRow clearfix">
 				<div class="spyRaportContainerCell 35">
-					Gesamte Ressourcen
+					{$LNG.spy_total_resources}
 				</div>
 				<div class="spyRaportContainerCell 15">
 					{$ressources}
 				</div>
 				<div class="spyRaportContainerCell {$dangerClass}">
-					Gefahrenpotenzial
+					{$LNG.spy_hazard_potential}
 				</div>
 				<div class="spyRaportContainerCell {$dangerClass}">
 					{$danger}
@@ -33,13 +33,13 @@
 			</div>
 			<div class="spyRaportContainerRow clearfix">
 				<div class="spyRaportContainerCell">
-					Potenzielle Ressourcen
+					{$LNG.spy_potential_resources}
 				</div>
 				<div class="spyRaportContainerCell">
 					{$ressourcesToRaid}
 				</div>
 				<div class="spyRaportContainerCell">
-					Recyclepotenzial
+					{$LNG.spy_potential_recycling}
 				</div>
 				<div class="spyRaportContainerCell">
 					{$recyclePotential}
@@ -47,13 +47,13 @@
 			</div>
 			<div class="spyRaportContainerRow clearfix">
 				<div class="spyRaportContainerCell" >
-					Notwendige Transporter
+					{$LNG.spy_necessary_transporters}
 				</div>
 				<div class="spyRaportContainerCell" >
-					{$nessesarrySmallTransporter} KT / {$nessesarryGreatTransporter} GT
+					{$nessesarrySmallTransporter} {$LNG.spy_small_transporter} / {$nessesarryGreatTransporter} {$LNG.spy_large_transporter}
 				</div>
 				<div class="spyRaportContainerCell" >
-					Notwendige Recycler
+					{$LNG.spy_necessary_recycler} 
 				</div>
 				<div class="spyRaportContainerCell" >
 					{$nessesarryRecy}
@@ -61,13 +61,13 @@
 			</div>
 			<div class="spyRaportContainerRow clearfix">
 				<div class="spyRaportContainerCell {$ressourcesByMarketValueClass}" >
-					Marktwert
+					{$LNG.spy_market_value} 
 				</div>
 				<div class="spyRaportContainerCell {$ressourcesByMarketValueClass}" >
 					{$ressourcesByMarketValue}
 				</div>
 				<div class="spyRaportContainerCell {$energyClass}" >
-					Energy
+					{$LNG.spy_energy} 
 				</div>
 				<div class="spyRaportContainerCell {$energyClass}" >
 					{$energy}
@@ -75,13 +75,13 @@
 			</div>
 			<div class="spyRaportContainerRow clearfix">
 				<div class="spyRaportContainerCell {$bestRessPerTimeClass}" >
-					bestRessPerTime
+					{$LNG.spy_best_resources_per_second}
 				</div>
 				<div class="spyRaportContainerCell {$bestRessPerTimeClass}" >
 					{$bestRessPerTime}
 				</div>
 				<div class="spyRaportContainerCell" >
-					bestPlanet
+					{$LNG.spy_best_planet}
 				</div>
 				<div class="spyRaportContainerCell" >
 					{$bestPlanet}
@@ -89,10 +89,10 @@
 			</div>
 			<div class="spyRaportContainerRow clearfix">
 				<div class="spyRaportContainerCell {$dangerClass}" style="width: 50% !important;">
-					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[202]={$nessesarrySmallTransporter}">mit {$nessesarrySmallTransporter} KT angreifen</a>
+					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[202]={$nessesarrySmallTransporter}">{$LNG.spy_attack_with} {$nessesarrySmallTransporter} {$LNG.spy_small_transporter}</a>
 				</div>
 				<div class="spyRaportContainerCell {$dangerClass}" style="width: 50% !important;">
-					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[203]={$nessesarryGreatTransporter}">mit {$nessesarryGreatTransporter} GT angreifen</a>
+					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[203]={$nessesarryGreatTransporter}">{$LNG.spy_attack_with} {$nessesarryGreatTransporter} GT {$LNG.spy_large_transporter}</a>
 				</div>
 			</div>
 		</div>
