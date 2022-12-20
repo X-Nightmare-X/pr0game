@@ -80,6 +80,7 @@ $USER['authlevel'] = 0;
 $USER['id'] = 0;
 $USER['signalColors'] = PlayerUtil::player_signal_colors();
 $USER['colors'] = PlayerUtil::player_colors();
+$USER['stb_settings'] = PlayerUtil::player_stb_settings();
 
 if (MODE === 'INSTALL') {
     return;
@@ -178,7 +179,15 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     }
 
     if ($USER['bana'] == 1) {
-        ShowErrorPage::printError("<font size=\"6px\">" . $LNG['css_account_banned_message'] . "</font><br><br>" . sprintf($LNG['css_account_banned_expire'], _date($LNG['php_tdformat'], $USER['banaday'], $USER['timezone'])) . "<br><br>" . $LNG['css_goto_homeside'], false);
+        $sql = 'SELECT theme FROM %%BANNED%% WHERE who = :username';
+        $reason = $db->selectSingle($sql, [
+            ':username' => $USER['username'],
+        ], 'theme');
+
+        ShowErrorPage::printError("<font size=\"6px\">" . $LNG['css_account_banned_message'] . "</font><br><br>" . 
+        sprintf($LNG['css_account_banned_expire'], _date($LNG['php_tdformat'], $USER['banaday'], $USER['timezone']), $config->forum_url) . "<br><br>" . 
+        sprintf($LNG['css_account_banned_reason'], $reason) . "<br><br>" . 
+        $LNG['css_goto_homeside'], false);
     }
 
     if (!$raportWithoutSession) {
