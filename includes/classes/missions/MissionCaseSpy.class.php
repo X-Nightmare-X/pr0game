@@ -575,35 +575,35 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         if ($intelligenceSuccessfull) {
             // Rak
             if (isset($spyData["400"][401]) && $spyData["400"][401] !== 0) {
-                $recycleValue += $spyData["400"][401] * 80;
+                $recycleValue += $spyData["400"][401] * (($pricelist[MISSILE_LAUNCHER]['cost'][RESOURCE_METAL] + $pricelist[MISSILE_LAUNCHER]['cost'][RESOURCE_CRYSTAL]) / 100 * $defIntoDebris);
             }
             // LL
             if (isset($spyData["400"][402]) && $spyData["400"][402] !== 0) {
-                $recycleValue += $spyData["400"][402] * 100;
+                $recycleValue += $spyData["400"][402] * (($pricelist[LIGHT_LASER_TURRET]['cost'][RESOURCE_METAL] + $pricelist[LIGHT_LASER_TURRET]['cost'][RESOURCE_CRYSTAL]) / 100 * $defIntoDebris);
             }
             // SL
             if (isset($spyData["400"][403]) && $spyData["400"][403] !== 0) {
-                $recycleValue += $spyData["400"][403] * 250;
+                $recycleValue += $spyData["400"][403] * (($pricelist[HEAVY_LASER_TURRET]['cost'][RESOURCE_METAL] + $pricelist[HEAVY_LASER_TURRET]['cost'][RESOURCE_CRYSTAL]) / 100 * $defIntoDebris);
             }
             // Gaus
             if (isset($spyData["400"][404]) && $spyData["400"][404] !== 0) {
-                $recycleValue += $spyData["400"][404] * 1100;
+                $recycleValue += $spyData["400"][404] * (($pricelist[GAUSS_CANNON]['cost'][RESOURCE_METAL] + $pricelist[GAUSS_CANNON]['cost'][RESOURCE_CRYSTAL]) / 100 * $defIntoDebris);
             }
             // Ionen
             if (isset($spyData["400"][405]) && $spyData["400"][405] !== 0) {
-                $recycleValue += $spyData["400"][405] * 150;
+                $recycleValue += $spyData["400"][405] * (($pricelist[ION_CANNON]['cost'][RESOURCE_METAL] + $pricelist[ION_CANNON]['cost'][RESOURCE_CRYSTAL]) / 100 * $defIntoDebris);
             }
             // Plasma
             if (isset($spyData["400"][406]) && $spyData["400"][406] !== 0) {
-                $recycleValue += $spyData["400"][406] * 3000;
+                $recycleValue += $spyData["400"][406] * (($pricelist[PLASMA_CANNON]['cost'][RESOURCE_METAL] + $pricelist[PLASMA_CANNON]['cost'][RESOURCE_CRYSTAL]) / 100 * $defIntoDebris);
             }
             // KSchild
             if (isset($spyData["400"][407]) && $spyData["400"][407] !== 0) {
-                $recycleValue += $spyData["400"][407] * 1;
+                $recycleValue += $spyData["400"][407] * (($pricelist[SMALL_SHIELD_DOME]['cost'][RESOURCE_METAL] + $pricelist[SMALL_SHIELD_DOME]['cost'][RESOURCE_CRYSTAL]) / 100 * $defIntoDebris);
             }
             // G Schild
             if (isset($spyData["400"][408]) && $spyData["400"][408] !== 0) {
-                $recycleValue += $spyData["400"][408] * 1;
+                $recycleValue += $spyData["400"][408] * (($pricelist[LARGE_SHIELD_DOME]['cost'][RESOURCE_METAL] + $pricelist[LARGE_SHIELD_DOME]['cost'][RESOURCE_CRYSTAL]) / 100 * $defIntoDebris);
             }
         }
 
