@@ -360,8 +360,73 @@
     <tr><th colspan="2">{$LNG.fleetPrio}</th></tr>
 
     {foreach $missionPrios as $ID => $score}
-      <tr><td>{$LNG[$ID]}</td><td><input min="0" max="99" type="number" name="{$ID}" value="{$score}"></td></tr>
+		<tr>
+	  		<td>{$LNG[$ID]}</td>
+	  		<td><input min="0" max="99" type="number" name="{$ID}" value="{$score}"></td>
+		</tr>
     {/foreach}
+
+		<tr>
+			<th colspan="2">Scavengers Toolbox</th>
+		</tr>
+		<tr>
+			<td>Scavengers Toolbox Aktiviert</td>
+			<td>
+				<input name="stb_enabled" type="checkbox" value="1" {if $stb_enabled == 1}checked="checked"{/if}>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a title="Wenn weniger Ressoucen als eingegeben auf dem Planeten sind, wird der der Spionagebericht hellrot (schlecht) gekennzeichnet.">Geringe Ressourcen auf dem Zielplaneten vorhanden</a>
+			</td>
+			<td>
+				<input name="stb_small_ress" size="{$stb_small_ress|count_characters + 3}" value="{$stb_small_ress}" type="int">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a title="Wenn weniger Ressoucen als eingegeben auf dem Planeten sind, wird der der Spionagebericht hellorange (mittel) gekennzeichnet.">Mittlere Ressourcen auf dem Zielplaneten vorhanden</a>
+			</td>
+			<td>
+				<input name="stb_med_ress" size="{$stb_med_ress|count_characters + 3}" value="{$stb_med_ress}" type="int">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a title="Wenn weniger Ressoucen als eingegeben auf dem Planeten sind, wird der der Spionagebericht hellgrün (gut) gekennzeichnet. Spionageberichte mit Ressourcen oberhalb dieses Wertes werden hellblau (optimal) angezeigt.">Viele Ressourcen auf dem Zielplaneten vorhanden</a>
+			</td>
+			<td>
+				<input name="stb_big_ress" size="{$stb_big_ress|count_characters + 3}" value="{$stb_big_ress}" type="int">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a title="Irgendwas">kleine ressourcen</a>
+			</td>
+			<td>
+				<input name="stb_small_time" size="{$stb_small_time|count_characters + 3}" value="{$stb_small_time}" type="int">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a title="Irgendwas">kleine ressourcen</a>
+			</td>
+			<td>
+				<input name="stb_med_time" size="{$stb_med_time|count_characters + 3}" value="{$stb_med_time}" type="int">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a title="Irgendwas">kleine ressourcen</a>
+			</td>
+			<td>
+				<input name="stb_big_time" size="{$stb_big_time|count_characters + 3}" value="{$stb_big_time}" type="int">
+			</td>
+		</tr>
+
+
+
+
 		<tr>
 			<th colspan="2">{$LNG.op_vacation_delete_mode}</th>
 		</tr>
