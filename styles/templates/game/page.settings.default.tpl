@@ -370,14 +370,14 @@
 			<th colspan="2">Scavengers Toolbox</th>
 		</tr>
 		<tr>
-			<td>Scavengers Toolbox Aktiviert</td>
+			<td>{$LNG.stb_activ}</td>
 			<td>
 				<input name="stb_enabled" type="checkbox" value="1" {if $stb_enabled == 1}checked="checked"{/if}>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<a title="Wenn weniger Ressoucen als eingegeben auf dem Planeten sind, wird der der Spionagebericht hellrot (schlecht) gekennzeichnet.">Geringe Ressourcen auf dem Zielplaneten vorhanden</a>
+				<a title="{$LNG.stb_low_ress_tooltip}">{$LNG.stb_low_ress}</a>
 			</td>
 			<td>
 				<input name="stb_small_ress" size="{$stb_small_ress|count_characters + 3}" value="{$stb_small_ress}" type="int">
@@ -385,7 +385,7 @@
 		</tr>
 		<tr>
 			<td>
-				<a title="Wenn weniger Ressoucen als eingegeben auf dem Planeten sind, wird der der Spionagebericht hellorange (mittel) gekennzeichnet.">Mittlere Ressourcen auf dem Zielplaneten vorhanden</a>
+				<a title="{$LNG.stb_mid_ress_tooltip}">{$LNG.stb_mid_ress}</a>
 			</td>
 			<td>
 				<input name="stb_med_ress" size="{$stb_med_ress|count_characters + 3}" value="{$stb_med_ress}" type="int">
@@ -393,7 +393,7 @@
 		</tr>
 		<tr>
 			<td>
-				<a title="Wenn weniger Ressoucen als eingegeben auf dem Planeten sind, wird der der Spionagebericht hellgrün (gut) gekennzeichnet. Spionageberichte mit Ressourcen oberhalb dieses Wertes werden hellblau (optimal) angezeigt.">Viele Ressourcen auf dem Zielplaneten vorhanden</a>
+				<a title="{$LNG.stb_big_ress_tooltip}">{$LNG.stb_big_ress}</a>
 			</td>
 			<td>
 				<input name="stb_big_ress" size="{$stb_big_ress|count_characters + 3}" value="{$stb_big_ress}" type="int">
@@ -401,7 +401,7 @@
 		</tr>
 		<tr>
 			<td>
-				<a title="Irgendwas">kleine ressourcen</a>
+				<a title="{$LNG.stb_small_time_tooltip}">{$LNG.stb_small_time}</a>
 			</td>
 			<td>
 				<input name="stb_small_time" size="{$stb_small_time|count_characters + 3}" value="{$stb_small_time}" type="int">
@@ -409,7 +409,7 @@
 		</tr>
 		<tr>
 			<td>
-				<a title="Irgendwas">kleine ressourcen</a>
+				<a title="{$LNG.stb_med_time_tooltip}">{$LNG.stb_small_time}</a>
 			</td>
 			<td>
 				<input name="stb_med_time" size="{$stb_med_time|count_characters + 3}" value="{$stb_med_time}" type="int">
@@ -417,7 +417,7 @@
 		</tr>
 		<tr>
 			<td>
-				<a title="Irgendwas">kleine ressourcen</a>
+				<a title="{$LNG.stb_big_time_tooltip}">{$LNG.stb_small_time}</a>
 			</td>
 			<td>
 				<input name="stb_big_time" size="{$stb_big_time|count_characters + 3}" value="{$stb_big_time}" type="int">
