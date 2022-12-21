@@ -45,6 +45,7 @@ class ShowSettingsPage extends AbstractGamePage
                 ':universe' => Universe::current(),
                 ':userID'   => $USER['id'],
             ]);
+            
             $this->assign([
                 'Selectors'         => [
                     'timezones' => get_timezone_selector(),
@@ -88,6 +89,13 @@ class ShowSettingsPage extends AbstractGamePage
                 'signalColors'          => $USER['signalColors'],
                 'defaultColors'         => PlayerUtil::player_colors(),
                 'defaultSignalColors'   => PlayerUtil::player_signal_colors(),
+                'stb_small_ress'        => $USER['stb_small_ress'],
+                'stb_med_ress'          => $USER['stb_med_ress'],
+                'stb_big_ress'          => $USER['stb_big_ress'],
+                'stb_small_time'        => $USER['stb_small_time'],
+                'stb_med_time'          => $USER['stb_med_time'],
+                'stb_big_time'          => $USER['stb_big_time'],
+                'stb_enabled'           => $USER['stb_enabled'],
                 'missionPrios'          => $missionprios,
             ]);
 
@@ -267,6 +275,14 @@ class ShowSettingsPage extends AbstractGamePage
         $colorNegative = HTTP::_GP('colorNegative', '#ff0000');
         $colorNeutral = HTTP::_GP('colorNeutral', '#ffd600');
 
+        $prio1 = HTTP::_GP('stbSettings', 1);
+        $prio2 = HTTP::_GP('type_mission_2', 2);
+        $prio3 = HTTP::_GP('type_mission_3', 0);
+        $prio4 = HTTP::_GP('type_mission_4', 3);
+        $prio5 = HTTP::_GP('type_mission_5', 4);
+        $prio6 = HTTP::_GP('type_mission_6', 5);
+        $prio7 = HTTP::_GP('type_mission_7', 6);
+        
         $prio1 = HTTP::_GP('type_mission_1', 1);
         $prio2 = HTTP::_GP('type_mission_2', 2);
         $prio3 = HTTP::_GP('type_mission_3', 0);
