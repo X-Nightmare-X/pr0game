@@ -93,7 +93,7 @@
 					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[202]={$nessesarrySmallTransporter}">{$LNG.spy_attack_with} {$nessesarrySmallTransporter} {$LNG.spy_small_transporter}</a>
 				</div>
 				<div class="spyRaportContainerCell {$dangerClass}" style="width: 50% !important;">
-					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[203]={$nessesarryGreatTransporter}">{$LNG.spy_attack_with} {$nessesarryGreatTransporter} GT {$LNG.spy_large_transporter}</a>
+					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[203]={$nessesarryGreatTransporter}">{$LNG.spy_attack_with} {$nessesarryGreatTransporter} {$LNG.spy_large_transporter}</a>
 				</div>
 			</div>
 			</div>
