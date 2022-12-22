@@ -1257,3 +1257,26 @@ $LNG['custom_fleet_confirm'] = '¿Quitar la plantilla de la flota %s?';
 
 
 // Translated into Spanish by Angelus_ira . All rights reversed (C) 2011
+
+
+//----------------------------------------------------------------------------//
+//Scavengers Toolbox
+$LNG['stb_activ'] = 'Scavengers Toolbox enabled';
+
+$LNG['stb_low_ress_tooltip'] = 'Si hay menos recursos de los ingresados en el planeta, el informe espía está marcado como rojo brillante (malo).';
+$LNG['stb_low_ress'] = 'Bajos recursos presentes en el planeta objetivo';
+
+$LNG['stb_mid_ress_tooltip'] = 'Si hay menos recursos de los ingresados en el planeta, el informe espía está marcado como naranja claro (medio).';
+$LNG['stb_mid_ress'] = 'Recursos medios presentes en el planeta objetivo';
+
+$LNG['stb_big_ress_tooltip'] = 'Si hay menos recursos de los ingresados en el planeta, el informe espía está marcado en verde claro (bueno). Los informes espía con recursos superiores a este valor se muestran en azul claro (óptimo).';
+$LNG['stb_big_ress'] = 'Muchos recursos presentes en el planeta objetivo';
+
+$LNG['stb_small_time_tooltip'] = 'Describe el mejor rendimiento posible de recursos por segundo, redondeado a dos decimales. Una relación inferior al valor registrado se interpreta como mala (rojo claro).';
+$LNG['stb_small_time'] = 'Low resources per second ratio';
+
+$LNG['stb_med_time_tooltip'] = 'Describe el mejor rendimiento posible de recursos por segundo, redondeado a dos decimales. Una relación inferior al valor registrado se interpreta como media (naranja claro).';
+$LNG['stb_med_time'] = 'Ratio medio de recursos por segundo';
+
+$LNG['stb_big_time_tooltip'] = 'Describe el mejor rendimiento posible de recursos por segundo, redondeado a dos decimales. Una relación inferior al valor introducido se interpreta como buena (verde claro), un valor superior como óptimo (azul claro).';
+$LNG['stb_big_time'] = 'Buena relación recursos por segundo';

@@ -1266,3 +1266,26 @@ $LNG['lo_continue'] = 'Beklemek istemiyorsaniz tiklayiniz';
 $LNG['fleet_table_custom_empty_name'] = 'Bir filo ismi giriniz lütfen!';
 $LNG['custom_fleet'] = 'Özel filolar';
 $LNG['custom_fleet_confirm'] = 'Filo şablonu %s kaldırılsın mı?';
+
+//----------------------------------------------------------------------------//
+//Scavengers Toolbox
+$LNG['stb_activ'] = 'Çöpçüler Araç Kutusu etkin';
+
+$LNG['stb_low_ress_tooltip'] = 'Gezegene girilenden daha az kaynak varsa, casus raporu parlak kırmızı (kötü) olarak işaretlenir.';
+$LNG['stb_low_ress'] = 'Hedef gezegende mevcut düşük kaynaklar';
+
+$LNG['stb_mid_ress_tooltip'] = 'Gezegene girilenden daha az kaynak varsa, casus raporu açık turuncu (orta) olarak işaretlenir.';
+$LNG['stb_mid_ress'] = 'Hedef gezegende bulunan orta kaynaklar';
+
+$LNG['stb_big_ress_tooltip'] = 'Gezegene girilenden daha az kaynak varsa, casus raporu açık yeşil (iyi) olarak işaretlenir. Bu değerin üzerinde kaynaklara sahip casus raporları açık mavi (optimal) olarak görüntülenir.';
+$LNG['stb_big_ress'] = 'Hedef gezegende birçok kaynak mevcut';
+
+
+$LNG['stb_small_time_tooltip'] = 'İki ondalık basamağa yuvarlanmış, saniyede mümkün olan en iyi kaynak verimini açıklar. Kayıtlı değerden daha düşük bir oran kötü (açık kırmızı) olarak yorumlanır.';
+$LNG['stb_small_time'] = 'Saniye başına düşük kaynak oranı';
+
+$LNG['stb_med_time_tooltip'] = 'İki ondalık basamağa yuvarlanmış, saniyede mümkün olan en iyi kaynak verimini açıklar. Kayıtlı değerden daha düşük bir oran orta (açık turuncu) olarak yorumlanır.';
+$LNG['stb_med_time'] = 'Saniye başına ortalama kaynak oranı';
+
+$LNG['stb_big_time_tooltip'] = 'İki ondalık basamağa yuvarlanmış, saniyede mümkün olan en iyi kaynak verimini açıklar. Girilen değerden daha düşük bir oran iyi (açık yeşil), yukarıdaki bir değer optimal (açık mavi) olarak yorumlanır.';
+$LNG['stb_big_time'] = 'Saniye başına iyi kaynak oranı';

@@ -1244,3 +1244,25 @@ $LNG['lo_continue'] = 'Cliquez ici pour être redirigé immédiatement.';
 $LNG['fleet_table_custom_empty_name'] = 'Insérez un nom de flotte s\'il vous plaît !';
 $LNG['custom_fleet'] = 'Flottes personnalisées';
 $LNG['custom_fleet_confirm'] = 'Supprimer le modèle de flotte %s ?';
+
+//----------------------------------------------------------------------------//
+//Scavengers Toolbox
+$LNG['stb_activ'] = 'Scavengers Toolbox activé';
+
+$LNG['stb_low_ress_tooltip'] = 'S\'il y a moins de ressources que celles entrées sur la planète, le rapport d\'espionnage est marqué rouge vif (mauvais).';
+$LNG['stb_low_ress'] = 'Faibles ressources présentes sur la planète cible';
+
+$LNG['stb_mid_ress_tooltip'] = 'S\'il y a moins de ressources que celles entrées sur la planète, le rapport d\'espionnage est marqué orange clair (moyen).';
+$LNG['stb_mid_ress'] = 'Ressources moyennes présentes sur la planète cible';
+
+$LNG['stb_big_ress_tooltip'] = 'S\'il y a moins de ressources que celles entrées sur la planète, le rapport d\'espionnage est marqué en vert clair (bon). Les rapports d\'espionnage dont les ressources dépassent cette valeur sont affichés en bleu clair (optimal).';
+$LNG['stb_big_ress'] = 'De nombreuses ressources présentes sur la planète cible';
+
+$LNG['stb_small_time_tooltip'] = 'Décrit le meilleur rendement possible en ressources par seconde, arrondi à deux décimales. Un rapport inférieur à la valeur enregistrée est interprété comme mauvais (rouge clair).';
+$LNG['stb_small_time'] = 'Faible ratio de ressources par seconde';
+
+$LNG['stb_med_time_tooltip'] = 'Décrit le meilleur rendement possible des ressources par seconde, arrondi à deux décimales. Un rapport inférieur à la valeur enregistrée est interprété comme moyen (orange clair).';
+$LNG['stb_med_time'] = 'Ratio moyen des ressources par seconde';
+
+$LNG['stb_big_time_tooltip'] = 'Décrit le meilleur rendement possible en ressources par seconde, arrondi à deux décimales. Un rapport inférieur à la valeur saisie est interprété comme bon (vert clair), une valeur supérieure à optimal (bleu clair).';
+$LNG['stb_big_time'] = 'Bon ratio ressources par seconde';

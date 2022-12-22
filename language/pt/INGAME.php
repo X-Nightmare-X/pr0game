@@ -1256,3 +1256,25 @@ $LNG['custom_fleet'] = 'Frotas personalizadas';
 $LNG['custom_fleet_confirm'] = 'Remover modelo de frota %s?';
 
 // Translated into Portuguese by QwataKayean . All rights reversed (C) 2012
+
+//----------------------------------------------------------------------------//
+//Scavengers Toolbox
+$LNG['stb_activ'] = 'Scavengers Toolbox habilitado';
+
+$LNG['stb_low_ress_tooltip'] = 'Se houver menos recursos do que os inscritos no planeta, o relatório de espionagem está marcado como vermelho brilhante (mau).';
+$LNG['stb_low_ress'] = 'Recursos baixos presentes no planeta-alvo';
+
+$LNG['stb_mid_ress_tooltip'] = 'Se houver menos recursos do que os introduzidos no planeta, o relatório de espionagem é marcado como laranja claro (médio).';
+$LNG ['stb_mid_ress'] = 'Recursos médios presentes no planeta-alvo';
+
+$LNG ['stb_big_ress_tooltip'] = 'Se houver menos recursos do que os inscritos no planeta, o relatório de espionagem é marcado como verde claro (bom). Os relatórios de espionagem com recursos acima deste valor são apresentados em azul claro (ideal).';
+$LNG ['stb_big_ress'] = 'Muitos recursos presentes no planeta-alvo';
+
+$LNG['stb_small_time_tooltip'] = 'Descreve o melhor rendimento possível de recursos por segundo, arredondado para duas casas decimais. Um rácio inferior ao valor registado é interpretado como mau (vermelho-claro).';
+$LNG['stb_small_time'] = 'Baixos recursos por segundo rácio';
+
+$LNG['stb_med_time_tooltip'] = 'Descreve o melhor rendimento possível de recursos por segundo, arredondado para duas casas decimais. Uma relação inferior ao valor registado é interpretada como média (laranja claro).';
+$LNG['stb_med_time'] = 'Recursos médios por segundo rácio';
+
+$LNG['stb_big_time_tooltip'] = 'Descreve o melhor rendimento possível de recursos por segundo, arredondado para duas casas decimais. Uma relação inferior ao valor introduzido é interpretada como boa (verde claro), um valor acima como ótimo (azul claro).';
+$LNG['stb_big_time'] = 'Bons recursos por segundo';
