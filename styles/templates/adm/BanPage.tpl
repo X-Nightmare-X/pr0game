@@ -17,7 +17,7 @@
 	{$changedate_advert}
 </tr><tr>
 	<td>{$LNG.bo_permanent}</td>
-	<td><input name="permanent" type="checkbox"></td>
+	<td><input name="permanent" type="checkbox"{if $perma} checked = "checked"{/if}></td>
 	{if $changedate_advert}<td>&nbsp;</td>{/if}
 </tr><tr>
 	<td>{$LNG.time_days}</td>
@@ -104,7 +104,7 @@
 </tr><tr>
 	<td>
 	<input type="submit" value="{$LNG.bo_ban}" name="panel" style="width:20%;">&nbsp;
-	<input TYPE="button" onClick="UserList.reset();this.form.regexp.value=''" value="{$LNG.button_reset}">
+	<input TYPE="button" onClick="UserList.reset();this.form.regexp.value=''" value="{$LNG.button_deselect}">
 	</td>
 </tr><tr>
 	<td align="left">
@@ -170,8 +170,11 @@
 </td>
 </tr>
 <tr>
-	<td><input value="{$LNG.bo_unban}" type="submit" style="width:20%;">&nbsp;
-	<input TYPE="button" onClick="UsersBan.reset();this.form.regexp.value=''" value="{$LNG.button_reset}"></td>
+	<td>
+	<input value="{$LNG.bo_unban}" type="submit" style="width:20%;">&nbsp;
+	<input type="submit" value="{$LNG.bo_ban_change}" name="panel_change" style="width:20%;">&nbsp;
+	<input TYPE="button" onClick="UsersBan.reset();this.form.regexp.value=''" value="{$LNG.button_deselect}">
+	</td>
 </tr><tr>
 	<td align="left">
 		{$LNG.bo_total_banneds}<span class="colorPositive">{$bancount}</span>

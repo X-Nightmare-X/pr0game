@@ -1028,7 +1028,8 @@ $LNG['bn_writemail'] = 'Mail an %s schreiben';
 //class.CheckSession.php
 
 $LNG['css_account_banned_message'] = 'Dein Accound wurde gesberrt - hädix8!';
-$LNG['css_account_banned_expire'] = 'Du bischd bis zum %s gesberrt!<br><a href="./index.php?page=pranger">Pranger</a>';
+$LNG['css_account_banned_expire'] = 'Du bist bis zum %s gesperrt!<br>Bitte melde dich ggf. im <a style="color: -webkit-link;" href="https://discord.gg/jhYYN3yuat">Discord per Ticket (link)</a>';
+$LNG['css_account_banned_reason'] = 'Grund: %s';
 $LNG['css_goto_homeside'] = '<a href="./index.php">Zur Startseite</a>';
 $LNG['css_server_maintrace'] = 'Serwer Maintenance<br><br>Schbiel zurzeid geschlossen.<br><br>Grund: %s';
 

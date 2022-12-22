@@ -1042,7 +1042,8 @@ $LNG['bn_writemail'] = 'Mail to %s';
 
 // Manutenção & Banido
 $LNG['css_account_banned_message'] = 'Your account has been banned!';
-$LNG['css_account_banned_expire'] = 'Your account is already unbanned %s!';
+$LNG['css_account_banned_expire'] = 'You are banned until %s!<br>In case of questions, please open a ticket on our <a style="color: -webkit-link;" href="https://discord.gg/jhYYN3yuat">Discord server (link)</a>';
+$LNG['css_account_banned_reason'] = 'Reason: %s';
 $LNG['css_goto_homeside'] = '<a href="./index.php">Go to the homepage</a>';
 $LNG['css_server_maintrace'] = 'Maintenance of the server<br><br>The game is closed.<br><br>Até: %s';
 

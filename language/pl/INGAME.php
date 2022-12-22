@@ -1007,7 +1007,8 @@ $LNG['bn_writemail'] = 'Mail do %s';
 //class.CheckSession.php
 
 $LNG['css_account_banned_message'] = 'Twoje konto zostało zbanowane! ';
-$LNG['css_account_banned_expire'] = 'Jesteś zbanowwany do %s <br><a href="./index.php?page=pranger">Banlist</a>';
+$LNG['css_account_banned_expire'] = 'You are banned until %s!<br>In case of questions, please open a ticket on our <a style="color: -webkit-link;" href="https://discord.gg/jhYYN3yuat">Discord server (link)</a>';
+$LNG['css_account_banned_reason'] = 'Reason: %s';
 $LNG['css_goto_homeside'] = '<a href="./index.php">Strona startowa</a>';
 $LNG['css_server_maintrace'] = 'Konserwacja serwera<br><br>Play unanimously at present. <br><br>Powód: %s';
 

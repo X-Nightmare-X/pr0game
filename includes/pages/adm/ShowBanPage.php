@@ -61,11 +61,13 @@ function ShowBanPage()
 	$template->loadscript('filterlist.js');
 
 
-	$Name					= HTTP::_GP('ban_name', '', true);
-	$BANUSER				= $GLOBALS['DATABASE']->getFirstRow("SELECT b.theme, b.longer, u.id, u.urlaubs_modus, u.banaday FROM ".USERS." as u LEFT JOIN ".BANNED." as b ON u.`username` = b.`who` WHERE u.`username` = '".$GLOBALS['DATABASE']->sql_escape($Name)."' AND u.`universe` = '".Universe::getEmulated()."';");
+	$Name = HTTP::_GP('ban_name', '', true);
+	if (isset($_POST['panel_change'])) {
+		$Name = HTTP::_GP('unban_name', '', true);
+	}
+	$BANUSER = $GLOBALS['DATABASE']->getFirstRow("SELECT b.theme, b.longer, u.id, u.urlaubs_modus, u.banaday FROM ".USERS." as u LEFT JOIN ".BANNED." as b ON u.`username` = b.`who` WHERE u.`username` = '".$GLOBALS['DATABASE']->sql_escape($Name)."' AND u.`universe` = '".Universe::getEmulated()."';");
 
-	if(isset($_POST['panel']))
-	{
+	if (isset($_POST['panel']) || isset($_POST['panel_change'])) {
 		if ($BANUSER['banaday'] <= TIMESTAMP)
 		{
 			$title			= $LNG['bo_bbb_title_1'];
@@ -90,6 +92,7 @@ function ShowBanPage()
 		
 		
 		$vacation	= ($BANUSER['urlaubs_modus'] == 1) ? true : false;
+		$perma = ($BANUSER['banaday'] == 2147483647) ? true : false;
 		
 		$template->assign_vars(array(	
 			'name'				=> $Name,
@@ -98,6 +101,7 @@ function ShowBanPage()
 			'reas'				=> $reas,
 			'changedate_advert'	=> $changedate_advert,
 			'timesus'			=> $timesus,
+			'perma'				=> $perma,
 			'vacation'			=> $vacation,
 		));
 	} elseif (isset($_POST['bannow']) && $BANUSER['id'] != 1) {
@@ -111,8 +115,9 @@ function ShowBanPage()
 		$mail              = $USER['email'];
 		$BanTime           = $days * 86400 + $hour * 3600 + $mins * 60 + $secs;
 
-		if ($BANUSER['longer'] > TIMESTAMP)
+		if ($BANUSER['longer'] > TIMESTAMP && $BANUSER['banaday'] != 2147483647) {
 			$BanTime          += ($BANUSER['longer'] - TIMESTAMP);
+		}
 		
 		if (isset($_POST['permanent'])) {
 			$BannedUntil = 2147483647;
@@ -160,7 +165,7 @@ function ShowBanPage()
 		}
 		$template->message($LNG['bo_the_player'].$Name.$LNG['bo_banned'], '?page=bans');
 		exit;
-	} elseif(isset($_POST['unban_name'])) {
+	} elseif (isset($_POST['unban_name'])) {
 		$Name	= HTTP::_GP('unban_name', '', true);
 		$sql = "UPDATE %%USERS%% SET bana = 0, banaday = 0 
 			WHERE username = :name AND universe = :universe;";

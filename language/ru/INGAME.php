@@ -979,7 +979,8 @@ $LNG['bn_writemail'] = 'Написать на электронную почту 
 
 // Сессия
 $LNG['css_account_banned_message'] = 'Ваш аккаунт заблокирован.';
-$LNG['css_account_banned_expire'] = 'Вы заблокированы до %s.<br><a href="index.php?page=pranger">Заблокированные</a>';
+$LNG['css_account_banned_expire'] = 'You are banned until %s!<br>In case of questions, please open a ticket on our <a style="color: -webkit-link;" href="https://discord.gg/jhYYN3yuat">Discord server (link)</a>';
+$LNG['css_account_banned_reason'] = 'Reason: %s';
 $LNG['css_goto_homeside'] = '<a href="index.php">Главная страница</a>';
 $LNG['css_server_maintrace'] = 'Пожалуйста, подождите, происходит техническое обслуживание сервера.<br><br>Причина: %s';
 
