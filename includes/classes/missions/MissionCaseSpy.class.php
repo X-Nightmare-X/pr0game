@@ -225,7 +225,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         // calculate the needed transporters
         $nessesarrySmallTransporter = $this->estimateSmallTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
-        $nessesarryGreatTransporter = $this->estimateLargeTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
+        $nessesarryLargeTransporter = $this->estimateLargeTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
         
         // get the best planet to start the raid from and the ress per time from there
         $targetCoordinates = [$targetPlanet["galaxy"], $targetPlanet["system"], $targetPlanet["planet"]];
@@ -272,7 +272,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             'bestRessPerTime'                   => $bestRessPerTime,
             'bestRessPerTimeClass'              => $bestRessPerTimeClass,
             'bestPlanet'                        => $bestPlanet,
-            'nessesarryGreatTransporter'        => $nessesarryGreatTransporter,
+            'nessesarryLargeTransporter'        => $nessesarryLargeTransporter,
             'nessesarrySmallTransporter'        => $nessesarrySmallTransporter,
             'spyData'                           => $spyData,
             'targetPlanet'                      => $targetPlanet,
