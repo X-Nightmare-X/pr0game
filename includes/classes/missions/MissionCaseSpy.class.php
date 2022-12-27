@@ -226,12 +226,17 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         // calculate the needed transporters
         $nessesarrySmallTransporter = $this->estimateSmallTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
         $nessesarryLargeTransporter = $this->estimateLargeTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
-        
+
         // get the best planet to start the raid from and the ress per time from there
         $targetCoordinates = [$targetPlanet["galaxy"], $targetPlanet["system"], $targetPlanet["planet"]];
         $bestPlanetArray = $this->bestplanet($senderUser["id"], $targetCoordinates);
-        $bestPlanet = $bestPlanetArray[1][0] . ":" . $bestPlanetArray[1][1] . ":" . $bestPlanetArray[1][2];
-        $bestRessPerTime = $this->bestRessPerTime($bestPlanetArray[0], $senderUser, $ressourcesByMarketValue);
+        if (!isset($bestPlanetArray) || !isset($bestPlanetArray[1])) {
+            $bestRessPerTime = 0;
+            $bestPlanet = $senderUser['galaxy'] . ":" . $senderUser['system'] . ":" . $senderUser['planet'];
+        } else {
+            $bestPlanet = $bestPlanetArray[1][0] . ":" . $bestPlanetArray[1][1] . ":" . $bestPlanetArray[1][2];
+            $bestRessPerTime = $this->bestRessPerTime($bestPlanetArray[0], $senderUser, $ressourcesByMarketValue);
+        }
         if ($bestRessPerTime > $stbSettings['stb_big_time']) {
             $bestRessPerTimeClass = "realHighRess";
         } elseif ($bestRessPerTime > $stbSettings['stb_med_time']) {
@@ -241,7 +246,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         } else {
             $bestRessPerTimeClass = "lowRess";
         }
-        
+
         // get the energy to indicate if someone is pushing to gravi
         $energy = $targetPlanet["energy"];
         if ($energy > 100000) {
@@ -409,7 +414,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
     }
 
     /**
-     * Returns the combined base attack values of ships and defences 
+     * Returns the combined base attack values of ships and defences
      */
     public function getDangerValue($spyData)
     {
@@ -434,7 +439,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
     }
 
     /**
-     * Returns the combined recycle values of ships and defences 
+     * Returns the combined recycle values of ships and defences
      */
     public function getRecyleValue($spyData)
     {
@@ -449,7 +454,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         // ships
         if (isset($spyData[200]) && $fleetIntoDebris > 0) {
             foreach ($spyData[200] as $elementID => $amount) {
-                $recycleValue += (($pricelist[$elementID]['cost'][RESOURCE_METAL] + 
+                $recycleValue += (($pricelist[$elementID]['cost'][RESOURCE_METAL] +
                     $pricelist[$elementID]['cost'][RESOURCE_CRYSTAL]) * $fleetIntoDebris / 100) * $amount;
             }
         }
@@ -457,7 +462,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         // defence
         if (isset($spyData[400]) && $defIntoDebris > 0) {
             foreach ($spyData[400] as $elementID => $amount) {
-                $recycleValue += (($pricelist[$elementID]['cost'][RESOURCE_METAL] + 
+                $recycleValue += (($pricelist[$elementID]['cost'][RESOURCE_METAL] +
                     $pricelist[$elementID]['cost'][RESOURCE_CRYSTAL]) * $defIntoDebris / 100) * $amount;
             }
         }
@@ -476,34 +481,30 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $db = Database::get();
         $universe = Universe::current();
 
-        $sql = "Select galaxy, system, planet from %%PLANETS%% where universe = :universe and id_owner = :owner ;";
-        $targetPlanet = $db->select($sql, [
+        $sql = "SELECT galaxy, `system`, planet FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :ownerId AND  ;";
+        $targetPlanets = $db->select($sql, [
             ':universe' => $universe,
-            ':owner'    => $owner
+            ':ownerId'  => $owner
         ]);
 
-        $bestPlanet = [];
+        $bestPlanet = [1, 1, 1];
         $bestDistance = 0;
 
-        foreach ($targetPlanet as $positions) {
+        foreach ($targetPlanets as $position) {
 
             $distance = FleetFunctions::getTargetDistance(
-                [
-                    $positions["galaxy"],
-                    $positions["system"],
-                    $positions["planet"]
-                ],
-                [
-                    $targetCoordinates['0'],
-                    $targetCoordinates['1'],
-                    $targetCoordinates['2']
-                ]
+                $position,
+                $targetCoordinates
             );
 
             if (($bestDistance === 0) || ($bestDistance > $distance)) {
                 $bestDistance = $distance;
-                $bestPlanet = [$positions["galaxy"], $positions["system"], $positions["planet"]];
+                $bestPlanet = $position;
             }
+        }
+
+        if ($bestDistance === 0) {
+            return null;
         }
 
         return [$bestDistance, $bestPlanet];
