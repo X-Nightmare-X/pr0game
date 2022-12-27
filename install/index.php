@@ -15,7 +15,13 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-define('MODE', 'INSTALL');
+$mode = HTTP::_GP('mode', '');
+
+if ($mode === 'upgrade') {
+    define('MODE', 'UPGRADE');
+} else {
+    define('MODE', 'INSTALL');
+}
 define('ROOT_PATH', str_replace('\\', '/', dirname(dirname(__FILE__))) . '/');
 set_include_path(ROOT_PATH);
 chdir(ROOT_PATH);
@@ -25,8 +31,6 @@ $THEME->setUserTheme('gow');
 $LNG = new Language();
 $LNG->getUserAgentLanguage();
 $LNG->includeData(['L18N', 'INGAME', 'INSTALL', 'CUSTOM']);
-
-$mode = HTTP::_GP('mode', '');
 
 $template = new template();
 $template->setCaching(false);

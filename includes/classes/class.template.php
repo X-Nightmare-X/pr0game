@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -16,15 +16,15 @@
  */
 
 require('includes/libs/Smarty/Smarty.class.php');
-		
+
 class template extends Smarty
 {
 	protected $window	= 'full';
 	public $jsscript	= array();
 	public $script		= array();
-	
+
 	function __construct()
-	{	
+	{
 		parent::__construct();
 		$this->smartySettings();
 	}
@@ -50,9 +50,9 @@ class template extends Smarty
 
 		return sys_get_temp_dir();
 	}
-		
-	public function assign_vars($var, $nocache = true) 
-	{		
+
+	public function assign_vars($var, $nocache = true)
+	{
 		parent::assign($var, NULL, $nocache);
 	}
 
@@ -65,11 +65,11 @@ class template extends Smarty
 	{
 		$this->script[]				= $script;
 	}
-	
+
 	private function adm_main()
 	{
 		global $LNG, $USER;
-		
+
 		$dateTimeServer		= new DateTime("now");
 		if(isset($USER['timezone'])) {
 			try {
@@ -96,9 +96,9 @@ class template extends Smarty
 			'bodyclass'			=> 'full'
 		));
 	}
-	
+
 	public function show($file)
-	{		
+	{
 		global $LNG, $THEME;
 
 		if($THEME->isCustomTPL($file))
@@ -107,8 +107,8 @@ class template extends Smarty
 		}
 
 		$tplDir	= $this->getTemplateDir();
-			
-		if(MODE === 'INSTALL') {
+
+		if (MODE === 'INSTALL' || MODE === 'UPGRADE') {
 			$this->setTemplateDir($tplDir[0].'install/');
 		} elseif(MODE === 'ADMIN') {
 			$this->setTemplateDir($tplDir[0].'adm/');
@@ -123,19 +123,19 @@ class template extends Smarty
 		$this->assign_vars(array(
 			'LNG'			=> $LNG,
 		), false);
-		
+
 		$this->compile_id	= $LNG->getLanguage();
-		
+
 		parent::display($file);
 	}
-	
+
 	public function display($file = NULL, $cache_id = NULL, $compile_id = NULL, $parent = NULL)
 	{
 		global $LNG;
 		$this->compile_id	= $LNG->getLanguage();
 		parent::display($file);
 	}
-	
+
 	public function gotoside($dest, $time = 3)
 	{
 		$this->assign_vars(array(
@@ -143,11 +143,11 @@ class template extends Smarty
 			'goto'		=> $dest,
 		));
 	}
-	
+
 	public function message($mes, $dest = false, $time = 3, $Fatal = false)
 	{
 		global $LNG, $THEME, $USER;
-		
+
 		$this->assign_vars(array(
 			'mes'			=> $mes,
 			'fcm_info'		=> $LNG['fcm_info'],
@@ -155,21 +155,21 @@ class template extends Smarty
             'dpath'			=> $THEME->getTheme(),
 			'signalColors'  => $USER['signalColors'],
 		));
-		
+
 		$this->gotoside($dest, $time);
 		$this->show('error_message_body.tpl');
 	}
-	
+
 	public static function printMessage($Message, $fullSide = true, $redirect = NULL) {
 		$template	= new self;
 		if(!isset($redirect)) {
 			$redirect	= array(false, 0);
 		}
-		
+
 		$template->message($Message, $redirect[0], $redirect[1], !$fullSide);
 		exit;
 	}
-	
+
     /**
     * Workaround  for new Smarty Method to add custom props...
     */
@@ -190,7 +190,7 @@ class template extends Smarty
             return $this->{$name};
         }
     }
-	
+
     public function __set($name, $value)
     {
         $allowed = array(
