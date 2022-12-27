@@ -68,6 +68,9 @@ define('AJAX_REQUEST', HTTP::_GP('ajax', 0));
 
 $THEME      = new Theme();
 
+if (MODE === 'INSTALL') {
+    return;
+}
 
 if (!file_exists('includes/config.php') || filesize('includes/config.php') === 0) {
     HTTP::redirectTo('install/index.php');
@@ -86,7 +89,7 @@ $USER['id'] = 0;
 $USER['signalColors'] = PlayerUtil::player_signal_colors();
 $USER['colors'] = PlayerUtil::player_colors();
 
-if (MODE === 'INSTALL') {
+if (MODE === 'UPGRADE') {
     return;
 }
 
