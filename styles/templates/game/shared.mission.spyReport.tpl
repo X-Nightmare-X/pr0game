@@ -23,13 +23,13 @@
 					{$LNG.spy_total_resources}
 				</div>
 				<div class="spyRaportContainerCell 15">
-					{$ressources}
+          {number_format($ressources, 0, ",", ".")}
 				</div>
 				<div class="spyRaportContainerCell {$dangerClass}">
 					{$LNG.spy_hazard_potential}
 				</div>
 				<div class="spyRaportContainerCell {$dangerClass}">
-					{$danger}
+          {number_format($danger, 0, ",", ".")}
 				</div>
 			</div>
 			<div class="spyRaportContainerRow clearfix">
@@ -37,13 +37,13 @@
 					{$LNG.spy_potential_resources}
 				</div>
 				<div class="spyRaportContainerCell">
-					{$ressourcesToRaid}
+					{number_format($ressourcesToRaid, 0, ",", ".")}
 				</div>
 				<div class="spyRaportContainerCell">
 					{$LNG.spy_potential_recycling}
 				</div>
 				<div class="spyRaportContainerCell">
-					{$recyclePotential}
+					{number_format($recyclePotential, 0, ",", ".")}
 				</div>
 			</div>
 			<div class="spyRaportContainerRow clearfix">
@@ -51,27 +51,27 @@
 					{$LNG.spy_necessary_transporters}
 				</div>
 				<div class="spyRaportContainerCell" >
-					{$nessesarrySmallTransporter} {$LNG.spy_small_transporter} / {$nessesarryLargeTransporter} {$LNG.spy_large_transporter}
+					{number_format($nessesarrySmallTransporter, 0, ",", ".")} {$LNG.spy_small_transporter} / {number_format($nessesarryLargeTransporter, 0, ",", ".")} {$LNG.spy_large_transporter}
 				</div>
 				<div class="spyRaportContainerCell" >
-					{$LNG.spy_necessary_recycler} 
+					{$LNG.spy_necessary_recycler}
 				</div>
 				<div class="spyRaportContainerCell" >
-					{$nessesarryRecy}
+					{number_format($nessesarryRecy, 0, ",", ".")}
 				</div>
 			</div>
 			<div class="spyRaportContainerRow clearfix">
 				<div class="spyRaportContainerCell {$ressourcesByMarketValueClass}" >
-					{$LNG.spy_market_value} 
+					{$LNG.spy_market_value}
 				</div>
 				<div class="spyRaportContainerCell {$ressourcesByMarketValueClass}" >
-					{$ressourcesByMarketValue}
+					{number_format($ressourcesByMarketValue, 0, ",", ".")}
 				</div>
 				<div class="spyRaportContainerCell {$energyClass}" >
-					{$LNG.spy_energy} 
+					{$LNG.spy_energy}
 				</div>
 				<div class="spyRaportContainerCell {$energyClass}" >
-					{$energy}
+					{number_format($energy, 0, ",", ".")}
 				</div>
 			</div>
 			<div class="spyRaportContainerRow clearfix">
@@ -79,7 +79,7 @@
 					{$LNG.spy_best_resources_per_second}
 				</div>
 				<div class="spyRaportContainerCell {$bestRessPerTimeClass}" >
-					{$bestRessPerTime}
+					{number_format($bestRessPerTime, 0, ",", ".")}
 				</div>
 				<div class="spyRaportContainerCell" >
 					{$LNG.spy_best_planet}
