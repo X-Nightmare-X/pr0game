@@ -153,7 +153,7 @@ class template extends Smarty
 			'fcm_info'		=> $LNG['fcm_info'],
 			'Fatal'			=> $Fatal,
             'dpath'			=> $THEME->getTheme(),
-			'signalColors'  => $USER['signalColors'],
+			'signalColors'  => PlayerUtil::player_signal_colors($USER),
 		));
 
 		$this->gotoside($dest, $time);
