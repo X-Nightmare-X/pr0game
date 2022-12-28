@@ -26,8 +26,7 @@
       <td>{$LNG.lv_coords}</td>
       <td>-</td>
         {foreach $planetList.coords as $coords}
-          <td><a href="game.php?page=galaxy&amp;galaxy={$coords.galaxy}&amp;system={$coords.system}">[{$coords.galaxy}
-              :{$coords.system}:{$coords.planet}]</a></td>
+          <td><a href="game.php?page=galaxy&amp;galaxy={$coords.galaxy}&amp;system={$coords.system}">[{$coords.galaxy}:{$coords.system}:{$coords.planet}]</a></td>
         {/foreach}
     </tr>
     <tr>
