@@ -17,6 +17,7 @@
 
 // Translation into Russian - Copyright © 2010-2013 InquisitorEA <support@moon-hunt.ru>
 $LNG['type_planet_short_3'] = 'Л';
+$LNG["whenbuildable"] = 'Возможно в';
 $LNG['Messages'] = 'Сообщения';
 $LNG['write_message'] = 'Написать сообщение';
 $LNG['PM'] = '[ЛС]';

@@ -22,7 +22,7 @@ $LNG['PM'] = '[MP]';
 $LNG['ready'] = 'Listo';
 $LNG["delete_confirm_gala"] = '¿Borrar datos del universo local?';
 $LNG['loading'] = 'Cargando ...';
-
+$LNG["whenbuildable"] = 'Posible en';
 $LNG['invalid_action'] = 'Acción no valida!';
 
 $LNG['type_mission_1'] = 'Atacar';

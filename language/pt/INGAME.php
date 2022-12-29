@@ -26,7 +26,7 @@ $LNG['write_message'] = 'Escrever mensagem';
 $LNG["delete_confirm_gala"] = 'Apagar dados do universo local?';
 $LNG['PM'] = '[MP]';
 $LNG['ready'] = 'Pronto';
-
+$LNG["whenbuildable"] = 'Possível em';
 $LNG['loading'] = 'A carregar ...';
 $LNG['fleetPrio'] = 'Prioridade de ordem da frota';
 $LNG['invalid_action'] = 'Ação Invalida!!';

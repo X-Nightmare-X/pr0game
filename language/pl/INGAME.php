@@ -24,7 +24,7 @@ $LNG["delete_confirm_gala"] = 'Usunąć dane lokalnego uniwersum?';
 $LNG['loading'] = 'Ładuję';
 $LNG['fleetPrio'] = 'Priorytet kolejności floty';
 $LNG['invalid_action'] = 'Niedozwolona akcja';
-
+$LNG["whenbuildable"] = 'Możliwe w';
 $LNG['type_mission_1'] = 'Atak';
 $LNG['type_mission_2'] = 'ACS Atak';
 $LNG['type_mission_3'] = 'Transport';
