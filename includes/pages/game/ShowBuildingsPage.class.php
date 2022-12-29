@@ -363,6 +363,7 @@ class ShowBuildingsPage extends AbstractGamePage
                 $timetobuild=max($timetobuild,$costOverflow[901]/$metproduction);
             }
             $timetobuild = floor($timetobuild*3600) ;
+
             $elementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $Element, $costResources);
             $destroyResources = BuildFunctions::getElementPrice($USER, $PLANET, $Element, true);
             $destroyTime = BuildFunctions::getBuildingTime($USER, $PLANET, $Element, $destroyResources);
