@@ -357,10 +357,10 @@ class ShowBuildingsPage extends AbstractGamePage
                 $timetobuild=max($timetobuild,$costOverflow[901]/$metproduction);
             }
             if(array_key_exists(902, $costOverflow) && $costOverflow[902]!=0){
-                $timetobuild=max($timetobuild,$costOverflow[901]/$metproduction);
+                $timetobuild=max($timetobuild,$costOverflow[902]/$kristproduction);
             }
             if(array_key_exists(903, $costOverflow) && $costOverflow[903]!=0 && $deutproduction >0){
-                $timetobuild=max($timetobuild,$costOverflow[901]/$metproduction);
+                $timetobuild=max($timetobuild,$costOverflow[903]/$deutproduction);
             }
             $timetobuild = floor($timetobuild*3600) ;
 
