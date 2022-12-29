@@ -22,7 +22,7 @@ $LNG['type_planet_short_3'] = 'M';
 $LNG['loading'] = 'Lade ...';
 $LNG['fleetPrio'] = 'Flotten Auftrag Priorität';
 $LNG['invalid_action'] = 'Ungültige Aktion!';
-
+$LNG["whenbuildable"] = 'Möglich in';
 $LNG['type_mission_1'] = 'Angreifen';
 $LNG['type_mission_2'] = 'Verbandsangriff';
 $LNG['type_mission_3'] = 'Transport';
