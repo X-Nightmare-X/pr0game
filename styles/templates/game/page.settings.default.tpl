@@ -367,7 +367,7 @@
     {/foreach}
 
 		<tr>
-			<th colspan="2">Scavengers Toolbox</th>
+			<th colspan="2">Scavengers Toolbox <a href="https://codeberg.org/pr0game/userscripts#user-content-scavengers-toolbox" target="_blank">❓ FAQ ❓</a></th>
 		</tr>
 		<tr>
 			<td>{$LNG.stb_activ}</td>
