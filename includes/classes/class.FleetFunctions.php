@@ -125,12 +125,12 @@ class FleetFunctions
      */
     public static function getTargetDistance($start, $target)
     {
-        $thisGalaxy = $start[0];
-        $thisSystem = $start[1];
-        $thisPlanet = $start[2];
-        $targetGalaxy = $target[0];
-        $targetSystem = $target[1];
-        $targetPlanet = $target[2];
+        $thisGalaxy = $start['galaxy'];
+        $thisSystem = $start['system'];
+        $thisPlanet = $start['planet'];
+        $targetGalaxy = $target['galaxy'];
+        $targetSystem = $target['system'];
+        $targetPlanet = $target['planet'];
 
         if ($thisGalaxy != $targetGalaxy) {
             if (Config::get()->uni_type == 2)
