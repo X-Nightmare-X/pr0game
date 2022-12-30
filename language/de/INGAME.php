@@ -1317,7 +1317,7 @@ $LNG['custom_fleet_confirm'] = 'Flottenvorlage %s entfernen?';
 
 //----------------------------------------------------------------------------//
 //Scavengers Toolbox
-$LNG['stb_activ'] = 'Erweiterter Spionagebericht (Scavengers Toolbox) ➡️ FAQ ⬅️';
+$LNG['stb_activ'] = 'Erweiterter Spionagebericht (Scavengers Toolbox) aktivieren';
 
 $LNG['stb_low_ress_tooltip'] = 'Wenn weniger Ressoucen als eingegeben auf dem Planeten sind, wird der der Spionagebericht hellrot (schlecht) gekennzeichnet.';
 $LNG['stb_low_ress'] = 'Wenig Ressourcen am Ziel, kleiner als:';
