@@ -923,6 +923,7 @@ CREATE TABLE `%PREFIX%users` (
   `prioMission8` tinyint(2) NOT NULL DEFAULT 7,
   `prioMission9` tinyint(2) NOT NULL DEFAULT 8,
   `prioMission17` tinyint(2) NOT NULL DEFAULT 9,
+ `records_optIn` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `authlevel` (`authlevel`),
   KEY `ref_bonus` (`ref_bonus`),

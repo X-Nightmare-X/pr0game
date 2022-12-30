@@ -39,42 +39,45 @@ $LNG['type_mission_17'] = 'Transfer';
 
 
 $LNG['type_mission_1_own'] = 'Eigener Angriff';
-$LNG['type_mission_2_own'] = 'Eigene Verbandsangriffsflotte';
-$LNG['type_mission_3_own'] = 'Eigener Transport';
-$LNG['type_mission_4_own'] = 'Eigenes Stationieren';
-$LNG['type_mission_5_own'] = 'Eigenes Halten';
-$LNG['type_mission_6_own'] = 'Eigenes Spionieren';
-$LNG['type_mission_7_own'] = 'Eigenes Kolonisieren';
-$LNG['type_mission_7_own_return'] = 'Rückkehr Eigenes Kolonisieren';
-$LNG['type_mission_8_own'] = 'Eigenes Abbauen';
-$LNG['type_mission_9_own'] = 'Eigenes Zerstören';
-$LNG['type_mission_10_own'] = 'Eigener Raketenangriff';
-$LNG['type_mission_15_own'] = 'Eigene Expedition';
-$LNG['type_mission_16_own'] = 'Eigene Marktplatzflotte';
-$LNG['type_mission_17_own'] = 'Eigener Transfer';
-$LNG['type_mission_return_own'] = 'Eigene Rückkehr';
+$LNG['type_mission_2_own'] = 'Eigene Ferbandsangriffsflodde';
+$LNG['type_mission_3_own'] = 'Eigener Dransbord';
+$LNG['type_mission_4_own'] = 'Eigenes Sdadionierne';
+$LNG['type_mission_5_own'] = 'Eigenes Haldne';
+$LNG['type_mission_6_own'] = 'Eigenes Sbionierne';
+$LNG['type_mission_7_own'] = 'Eigenes Golonisierne';
+$LNG['type_mission_7_own_return'] = 'Rückkehr Eigenes Golonisierne';
+$LNG['type_mission_8_own'] = 'Eigenes Abbaune';
+$LNG['type_mission_9_own'] = 'Eigenes Dsersdörne';
+$LNG['type_mission_10_own'] = 'Eigener Ragedenangriff';
+$LNG['type_mission_15_own'] = 'Eigene Eggsbedidion';
+$LNG['type_mission_16_own'] = 'Eigene Margdbladdsflodde';
+$LNG['type_mission_17_own'] = 'Eigener Dransfer';
+$LNG['type_mission_return_own'] = 'Eigene Rücggehr';
 
-$LNG['type_mission_2_friend'] = 'Befreundete Verbandsangriffsflotte';
+$LNG['type_mission_2_friend'] = 'Befreundede Ferbandsangriffsflodde';
 
 $LNG['type_mission_1_foreign'] = 'Fremder Angriff';
-$LNG['type_mission_2_foreign'] = 'Fremde Verbandsangriffsflotte';
-$LNG['type_mission_3_foreign'] = 'Fremder Transport';
-$LNG['type_mission_4_foreign'] = 'Fremdes Stationieren';
-$LNG['type_mission_5_foreign'] = 'Fremdes Halten';
-$LNG['type_mission_6_foreign'] = 'Fremdes Spionieren';
-$LNG['type_mission_7_foreign'] = 'Fremdes Kolonisieren';
-$LNG['type_mission_8_foreign'] = 'Fremdes Abbauen';
-$LNG['type_mission_9_foreign'] = 'Fremdes Zerstören';
-$LNG['type_mission_10_foreign'] = 'Fremder Raketenangriff';
-$LNG['type_mission_15_foreign'] = 'Fremde Expedition';
-$LNG['type_mission_16_foreign'] = 'Fremde Marktplatzflotte';
-$LNG['type_mission_17_foreign'] = 'Fremder Transfer';
-$LNG['type_mission_return_foreign'] = 'Fremde Rückkehr';
+$LNG['type_mission_2_foreign'] = 'Fremde Ferbandsangriffsflodde';
+$LNG['type_mission_3_foreign'] = 'Fremder Dransbord';
+$LNG['type_mission_4_foreign'] = 'Fremdes Sdadionierne';
+$LNG['type_mission_5_foreign'] = 'Fremdes Haldne';
+$LNG['type_mission_6_foreign'] = 'Fremdes Sbionierne';
+$LNG['type_mission_7_foreign'] = 'Fremdes Golonisierne';
+$LNG['type_mission_8_foreign'] = 'Fremdes Abbaune';
+$LNG['type_mission_9_foreign'] = 'Fremdes Dsersdörne';
+$LNG['type_mission_10_foreign'] = 'Fremder Ragedenangriff';
+$LNG['type_mission_15_foreign'] = 'Fremde Eggsbedidion';
+$LNG['type_mission_16_foreign'] = 'Fremde Margdbladdsflodde';
+$LNG['type_mission_17_foreign'] = 'Fremder Dransfer';
+$LNG['type_mission_return_foreign'] = 'Fremde Rücggehr';
 
-$LNG['positiv'] = 'Positiv';
-$LNG['negativ'] = 'Negativ';
-$LNG['neutral'] = 'Neutral';
-$LNG['StaticTimer'] = 'Ankunftszeit';
+$LNG['positiv'] = 'Bosidif';
+$LNG['negativ'] = 'Negadif';
+$LNG['neutral'] = 'Neudral';
+$LNG['StaticTimer'] = 'Angunfdsdseid';
+
+$LNG['own'] = 'Eigene';
+$LNG['recordsOptIn'] = 'Deine Regorde allne Sbielern andseigne';
 
 $LNG['type_planet_1'] = 'Blanet';
 $LNG['type_planet_2'] = 'Drümmerfeld ';

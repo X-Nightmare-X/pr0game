@@ -87,6 +87,9 @@ $LNG['cores_próprias'] = 'Cores próprias';
 $LNG['Foreign_colors'] = 'Cores_estrangeiras';
 $LNG['general_colors'] = 'Cores gerais';
 
+$LNG['próprio'] = 'Próprio';
+$LNG['recordsOptIn'] = 'Mostre os seus discos a todos os jogadores';
+
 $LNG['type_planet_1'] = 'Planeta';
 $LNG['type_planet_2'] = 'Campo de Destroços';
 $LNG['type_planet_3'] = 'Lua';

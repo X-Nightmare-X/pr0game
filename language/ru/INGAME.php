@@ -80,6 +80,9 @@ $LNG['own_colors'] = 'Собственные цвета';
 $LNG['foreign_colors'] = 'Иностранные цвета';
 $LNG['general_colors'] = 'Общие цвета';
 
+$LNG['own'] = 'Собственный';
+$LNG['recordsOptIn'] = 'Показать свои записи всем игрокам';
+
 $LNG['type_planet_1'] = 'Планета';
 $LNG['type_planet_2'] = 'Поле обломков';
 $LNG['type_planet_3'] = 'Луна';

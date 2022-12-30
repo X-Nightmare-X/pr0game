@@ -81,6 +81,9 @@ $LNG['own_colors'] = 'Własne kolory';
 $LNG['foreign_colors'] = 'Kolory obce';
 $LNG['general_colors'] = 'Kolory ogólne';
 
+$LNG['own'] = 'Własne';
+$LNG['recordsOptIn'] = 'Pokaż swoje rekordy wszystkim graczom';
+
 $LNG['type_planet_1'] = 'Planeta';
 $LNG['type_planet_2'] = 'Pole zniszczeń';
 $LNG['type_planet_3'] = 'Księżyc';

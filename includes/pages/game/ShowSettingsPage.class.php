@@ -37,10 +37,12 @@ class ShowSettingsPage extends AbstractGamePage
             $this->display('page.settings.vacation.tpl');
         } else {
             $db = Database::get();
-            $sql = "SELECT prioMission1 as 'type_mission_1',prioMission2 as 'type_mission_2',prioMission3 as 'type_mission_3',prioMission4 as 'type_mission_4'
-,prioMission5 as 'type_mission_5',prioMission6 as 'type_mission_6',
-                    prioMission7 as 'type_mission_7',prioMission8 as 'type_mission_8',prioMission9 as 'type_mission_9',prioMission17 as 'type_mission_17'
-                    FROM %%USERS%% WHERE universe = :universe AND id = :userID ;";
+            $sql = "SELECT prioMission1 as 'type_mission_1', prioMission2 as 'type_mission_2', 
+            prioMission3 as 'type_mission_3',prioMission4 as 'type_mission_4', 
+            prioMission5 as 'type_mission_5',prioMission6 as 'type_mission_6',
+            prioMission7 as 'type_mission_7',prioMission8 as 'type_mission_8', 
+            prioMission9 as 'type_mission_9', prioMission17 as 'type_mission_17'
+            FROM %%USERS%% WHERE universe = :universe AND id = :userID ;";
             $missionprios =$db->selectSingle($sql, [
                 ':universe' => Universe::current(),
                 ':userID'   => $USER['id'],
@@ -89,6 +91,7 @@ class ShowSettingsPage extends AbstractGamePage
                 'defaultColors'         => PlayerUtil::player_colors(),
                 'defaultSignalColors'   => PlayerUtil::player_signal_colors(),
                 'missionPrios'          => $missionprios,
+                'recordsOptIn'          => $USER['records_optIn'],
             ]);
 
             $this->display('page.settings.default.tpl');
@@ -277,6 +280,7 @@ class ShowSettingsPage extends AbstractGamePage
         $prio8 = HTTP::_GP('type_mission_8', 7);
         $prio9 = HTTP::_GP('type_mission_9', 8);
         $prio17 =HTTP::_GP('type_mission_17', 9);
+        $recordsOptIn = HTTP::_GP('recordsOptIn', 0);
 
 
         // Vertify
@@ -491,7 +495,8 @@ class ShowSettingsPage extends AbstractGamePage
         prioMission7                = :prioMission7,
         prioMission8                = :prioMission8,
         prioMission9                = :prioMission9,
-        prioMission17               = :prioMission17
+        prioMission17               = :prioMission17,
+        records_optIn               = :records_optIn
 		WHERE id = :userID;";
         $db->update($sql, [
             ':theme'                        => $theme,
@@ -553,7 +558,8 @@ class ShowSettingsPage extends AbstractGamePage
             ':prioMission7'                 => $prio7,
             ':prioMission8'                 => $prio8,
             ':prioMission9'                 => $prio9,
-            ':prioMission17'                => $prio17
+            ':prioMission17'                => $prio17,
+            ':records_optIn'                => $recordsOptIn
 
         ]);
 

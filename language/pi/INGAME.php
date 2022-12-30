@@ -76,6 +76,9 @@ $LNG['negativ'] = 'Negativ';
 $LNG['neutral'] = 'Neutral';
 $LNG['StaticTimer'] = 'Ankunftszeit';
 
+$LNG['own'] = 'Eigene';
+$LNG['recordsOptIn'] = 'Deine Rekorde allen Spielern anzeigen';
+
 $LNG['type_planet_1'] = 'Hafen';
 $LNG['type_planet_2'] = 'Wrackfeld';
 $LNG['type_planet_3'] = 'Insel';

@@ -82,6 +82,9 @@ $LNG['own_colors'] = 'Eigene Farben';
 $LNG['foreign_colors'] = 'Gegnerische Farben';
 $LNG['general_colors'] = 'Generelle Farben';
 
+$LNG['own'] = 'Eigene';
+$LNG['recordsOptIn'] = 'Deine Rekorde allen Spielern anzeigen';
+
 $LNG['type_planet_1'] = 'Planet';
 $LNG['type_planet_2'] = 'Trümmerfeld';
 $LNG['type_planet_3'] = 'Mond';
