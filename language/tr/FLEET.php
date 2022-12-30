@@ -318,5 +318,5 @@ $LNG['spy_energy'] = 'Enerji';
 $LNG['spy_best_resources_per_second'] = 'saniyede en iyi ress';
 $LNG['spy_best_planet'] = 'en iyi gezegen';
 $LNG['spy_attack_with'] = 'İle saldır';
-$LNG['spy_small_transporter'] = 'Küçük';
-$LNG['spy_large_transporter'] = 'Büyük';
+$LNG['spy_small_transporter'] = 'küçük taşıyıcı';
+$LNG['spy_large_transporter'] = 'büyük taşıyıcı';
