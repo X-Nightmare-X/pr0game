@@ -263,7 +263,13 @@ class MarketManager
             'deuterium' => 1,
         ];
 
-        return $result;
+		$result2 = [
+			'mc' => round($ratios['mc'], 1),
+			'md' => round($ratios['md'], 1),
+			'cd' => round($ratios['cd'], 1),
+		];
+
+        return $result2;
     }
 
     /**
