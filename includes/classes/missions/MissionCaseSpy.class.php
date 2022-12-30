@@ -481,7 +481,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $db = Database::get();
         $universe = Universe::current();
 
-        $sql = "SELECT galaxy, `system`, planet FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :ownerId AND  ;";
+        $sql = "SELECT galaxy, `system`, planet FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :ownerId AND destruyed = 0 ;";
         $targetPlanets = $db->select($sql, [
             ':universe' => $universe,
             ':ownerId'  => $owner
