@@ -229,12 +229,12 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         // get the best planet to start the raid from and the ress per time from there
         $bestPlanetArray = $this->bestplanet($senderUser["id"], $targetPlanet);
-        if (!isset($bestPlanetArray) || !isset($bestPlanetArray[1])) {
+        if (!isset($bestPlanetArray) || !isset($bestPlanetArray['coords'])) {
             $bestRessPerTime = 0;
             $bestPlanet = $senderUser['galaxy'] . ":" . $senderUser['system'] . ":" . $senderUser['planet'];
         } else {
-            $bestPlanet = $bestPlanetArray[1][0] . ":" . $bestPlanetArray[1][1] . ":" . $bestPlanetArray[1][2];
-            $bestRessPerTime = $this->bestRessPerTime($bestPlanetArray[0], $senderUser, $ressourcesByMarketValue);
+            $bestPlanet = $bestPlanetArray['coords']['galaxy'] . ":" . $bestPlanetArray['coords']['system'] . ":" . $bestPlanetArray['coords']['planet'];
+            $bestRessPerTime = $this->bestRessPerTime($bestPlanetArray['distance'], $senderUser, $ressourcesByMarketValue);
         }
         if ($bestRessPerTime > $stbSettings['stb_big_time']) {
             $bestRessPerTimeClass = "realHighRess";
@@ -496,8 +496,16 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         foreach ($targetPlanets as $position) {
 
             $distance = FleetFunctions::getTargetDistance(
-                $position,
-                $targetCoordinates
+                [
+                    $position['galaxy'],
+                    $position['system'],
+                    $position['planet']
+                ],
+                [
+                    $targetCoordinates['galaxy'],
+                    $targetCoordinates['system'],
+                    $targetCoordinates['planet']
+                ]
             );
 
             if (($bestDistance === 0) || ($bestDistance > $distance)) {
@@ -510,7 +518,10 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             return null;
         }
 
-        return [$bestDistance, $bestPlanet];
+        return [
+            'distance' => $bestDistance,
+            'coords' => $bestPlanet
+        ];
     }
 
     public function bestRessPerTime($distance, $senderUser, $ressourcesByMarketValue)
