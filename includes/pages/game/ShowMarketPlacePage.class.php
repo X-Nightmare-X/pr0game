@@ -632,7 +632,7 @@ class ShowMarketPlacePage extends AbstractGamePage
         }
 
         $pMarket = new MarketManager();
-        $refrates = $pMarket->getReferenceRatios();
+        $refrates = $pMarket->getAllTradeRatios();
 
         $this->assign([
             'message' => $message,
