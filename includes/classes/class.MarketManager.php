@@ -240,31 +240,12 @@ class MarketManager {
 	public function getAllTradeRatios()
 	{
 		$result = [
-			'mc' => $this->getMetCrysRatio(),
-			'md' => $this->getMetdeutRatio(),
-			'cd' => $this->getCrysDeutRatio(),
+			'mc' => round($this->getMetCrysRatio(),1),
+			'md' => round($this->getMetdeutRatio(),1),
+			'cd' => round($this->getCrysDeutRatio(),1),
 		];
 
 		return $result;
-	}
-
-	public function getReferenceRatios()
-	{
-		$ratios = $this->getAllTradeRatios();
-
-		$result = [
-			'metal' => round($ratios['md'], 1),
-			'crystal' => round($ratios['cd'], 1),
-			'deuterium' => 1,
-		];
-
-		$result2 = [
-			'mc' => round($ratios['mc'], 1),
-			'md' => round($ratios['md'], 1),
-			'cd' => round($ratios['cd'], 1),
-		];
-
-		return $result2;
 	}
 
 	/**
