@@ -99,6 +99,7 @@
 			</div>
 		{/if}
 	</div>
+	<br>
 	{foreach $spyData as $Class => $elementIDs}
 	<div class="spyRaportContainer">
 	<div class="spyRaportContainerHead spyRaportContainerHeadClass{$Class}">{$LNG.tech.$Class}</div>

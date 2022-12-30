@@ -331,5 +331,5 @@ $LNG['spy_energy'] = 'Energia';
 $LNG['spy_best_resources_per_second'] = 'melhor ress por segundo';
 $LNG['spy_best_planet'] = 'melhor planeta';
 $LNG['spy_attack_with'] = 'Ataque com';
-$LNG['spy_small_transporter'] = 'Pequeno';
-$LNG['spy_large_transporter'] = 'Grande';
+$LNG['spy_small_transporter'] = 'pequeno transportador';
+$LNG['spy_large_transporter'] = 'transporte grande';
