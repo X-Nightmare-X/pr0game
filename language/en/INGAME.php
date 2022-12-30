@@ -1323,7 +1323,7 @@ $LNG['custom_fleet_confirm'] = 'Remove fleet template %s?';
 
 //----------------------------------------------------------------------------//
 //Scavengers Toolbox
-$LNG['stb_activ'] = 'Scavengers Toolbox enabled';
+$LNG['stb_activ'] = 'detailed Spymessage Scavengers Toolbox enabled';
 
 $LNG['stb_low_ress_tooltip'] = 'If there are fewer resources than entered on the planet, the spy report is marked bright red (bad).';
 $LNG['stb_low_ress'] = 'Low resources attarget, less then';
