@@ -1326,13 +1326,13 @@ $LNG['custom_fleet_confirm'] = 'Remove fleet template %s?';
 $LNG['stb_activ'] = 'Scavengers Toolbox enabled';
 
 $LNG['stb_low_ress_tooltip'] = 'If there are fewer resources than entered on the planet, the spy report is marked bright red (bad).';
-$LNG['stb_low_ress'] = 'Low resources present on the target planet';
+$LNG['stb_low_ress'] = 'Low resources attarget, less then';
 
 $LNG['stb_mid_ress_tooltip'] = 'If there are fewer resources than entered on the planet, the spy report is marked light orange (medium).';
-$LNG['stb_mid_ress'] = 'Medium resources present on the target planet';
+$LNG['stb_mid_ress'] = 'Medium resources attarget, less then';
 
 $LNG['stb_big_ress_tooltip'] = 'If there are fewer resources than entered on the planet, the spy report is marked light green (good). Spy reports with resources above this value are displayed in light blue (optimal).';
-$LNG['stb_big_ress'] = 'Many resources present on the target planet';
+$LNG['stb_big_ress'] = 'Many resources attarget, less then';
 
 
 $LNG['stb_small_time_tooltip'] = 'Describes the best possible resource yield per second, rounded to two decimal places. A ratio less than the registered value is interpreted as bad (light red).';
