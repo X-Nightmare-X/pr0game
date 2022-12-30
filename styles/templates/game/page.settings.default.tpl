@@ -409,7 +409,7 @@
 		</tr>
 		<tr>
 			<td>
-				<a title="{$LNG.stb_med_time_tooltip}">{$LNG.stb_small_time}</a>
+				<a title="{$LNG.stb_med_time_tooltip}">{$LNG.stb_med_time}</a>
 			</td>
 			<td>
 				<input name="stb_med_time" size="{$stb_med_time|count_characters + 3}" value="{$stb_med_time}" type="int">
@@ -417,7 +417,7 @@
 		</tr>
 		<tr>
 			<td>
-				<a title="{$LNG.stb_big_time_tooltip}">{$LNG.stb_small_time}</a>
+				<a title="{$LNG.stb_big_time_tooltip}">{$LNG.stb_big_time}</a>
 			</td>
 			<td>
 				<input name="stb_big_time" size="{$stb_big_time|count_characters + 3}" value="{$stb_big_time}" type="int">
