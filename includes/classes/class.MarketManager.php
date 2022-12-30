@@ -4,7 +4,7 @@
  * pr0game powered by steemnova
  * trade calculations for marketplace
  * (c) 2022 havoc
- * 
+ *
  */
 
 class MarketManager {
@@ -258,7 +258,13 @@ class MarketManager {
 			'deuterium' => 1,
 		];
 
-		return $result;
+		$result2 = [
+			'mc' => round($ratios['mc'], 1),
+			'md' => round($ratios['md'], 1),
+			'cd' => round($ratios['cd'], 1),
+		];
+
+		return $result2;
 	}
 
 	/**
@@ -271,9 +277,9 @@ class MarketManager {
 		if (!array_key_exists('crystal', $input)) $input['crystal'] = 0;
 		if (!array_key_exists('deuterium', $input)) $input['deuterium'] = 0;
 
-		return (int) round($input['metal'] 
-			+ ($input['crystal'] * $this->getMetCrysRatio()) 
-			+ ($input['deuterium'] * $this->getMetDeutRatio())); 
+		return (int) round($input['metal']
+			+ ($input['crystal'] * $this->getMetCrysRatio())
+			+ ($input['deuterium'] * $this->getMetDeutRatio()));
 	}
 
 	/** @param aray [901, 902, 903] mkd **/
@@ -357,11 +363,11 @@ class MarketManager {
 				':universe'	=> Universe::current(),
 				':playerID'	=> $playerid,
 		));
-		
+
 		if(!$query) {
 			throw new Exception('the requested player does not exist');
 		}
-		
+
 		return $query['total_points'] ?: 0;
 	}
 
@@ -377,7 +383,7 @@ class MarketManager {
 
 		// special case: buyer is weaker, but becomes stronger when receiving fleet
 		$specialFleetPush = ($fleetScore != 0
-				&& ($sellerScore > $buyerScore) 
+				&& ($sellerScore > $buyerScore)
 				&& ($sellerScore - $fleetScore < $buyerScore + $fleetScore));
 
 		$highestValue = ($offer > $ask) ? $offer : $ask;
