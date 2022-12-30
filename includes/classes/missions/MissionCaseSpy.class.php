@@ -228,8 +228,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $nessesarryLargeTransporter = $this->estimateLargeTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
 
         // get the best planet to start the raid from and the ress per time from there
-        $targetCoordinates = [$targetPlanet["galaxy"], $targetPlanet["system"], $targetPlanet["planet"]];
-        $bestPlanetArray = $this->bestplanet($senderUser["id"], $targetCoordinates);
+        $bestPlanetArray = $this->bestplanet($senderUser["id"], $targetPlanet);
         if (!isset($bestPlanetArray) || !isset($bestPlanetArray[1])) {
             $bestRessPerTime = 0;
             $bestPlanet = $senderUser['galaxy'] . ":" . $senderUser['system'] . ":" . $senderUser['planet'];
@@ -487,7 +486,11 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             ':ownerId'  => $owner
         ]);
 
-        $bestPlanet = [1, 1, 1];
+        $bestPlanet = [
+            'galaxy' => 1,
+            'system' => 1,
+            'planet' => 1,
+        ];
         $bestDistance = 0;
 
         foreach ($targetPlanets as $position) {
