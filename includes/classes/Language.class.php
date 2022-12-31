@@ -16,7 +16,7 @@
  */
 
 class Language implements ArrayAccess {
-	
+
     private $container = array();
     private $language = array();
     static private $allLanguages = array();
@@ -49,7 +49,7 @@ class Language implements ArrayAccess {
 			return true;
 		}
 
-   		if ((MODE === 'LOGIN' || MODE === 'INSTALL') && isset($_COOKIE['lang']) && in_array($_COOKIE['lang'], self::getAllowedLangs()))
+   		if ((MODE === 'LOGIN' || MODE === 'INSTALL' || MODE === 'UPGRADE') && isset($_COOKIE['lang']) && in_array($_COOKIE['lang'], self::getAllowedLangs()))
 		{
 			$this->setLanguage($_COOKIE['lang']);
 			return true;
@@ -146,7 +146,7 @@ class Language implements ArrayAccess {
 				require $filePath;
 			}
 		}
-		
+
 		$DEFAULT = $LNG;
 
 		// Get current client language
@@ -157,7 +157,7 @@ class Language implements ArrayAccess {
 				require $filePath;
 			}
 		}
-		
+
 		// Build missing language data from English to client language
 		foreach ($DEFAULT as $TextKey => $TextData) {
 			if (is_array($TextData)) {

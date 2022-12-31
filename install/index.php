@@ -15,18 +15,24 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-define('MODE', 'INSTALL');
 define('ROOT_PATH', str_replace('\\', '/', dirname(dirname(__FILE__))) . '/');
 set_include_path(ROOT_PATH);
 chdir(ROOT_PATH);
+
+require_once 'includes/classes/HTTP.class.php';
+$mode = HTTP::_GP('mode', '');
+
+if ($mode === 'upgrade') {
+    define('MODE', 'UPGRADE');
+} else {
+    define('MODE', 'INSTALL');
+}
 
 require 'includes/common.php';
 $THEME->setUserTheme('gow');
 $LNG = new Language();
 $LNG->getUserAgentLanguage();
 $LNG->includeData(['L18N', 'INGAME', 'INSTALL', 'CUSTOM']);
-
-$mode = HTTP::_GP('mode', '');
 
 $template = new template();
 $template->setCaching(false);
@@ -39,9 +45,8 @@ $template->assign(array(
 ));
 
 $enableInstallToolFile = 'includes/ENABLE_INSTALL_TOOL';
-$quickStartFile        = 'includes/FIRST_INSTALL';
-// If include/FIRST_INSTALL is present and can be deleted, automatically create include/ENABLE_INSTALL_TOOL
-if (is_file($quickStartFile) && is_writeable($quickStartFile) && unlink($quickStartFile)) {
+// If is install mode, automatically create include/ENABLE_INSTALL_TOOL
+if (MODE === 'INSTALL') {
     @touch($enableInstallToolFile);
 }
 // Only allow Install Tool access if the file "include/ENABLE_INSTALL_TOOL" is found
