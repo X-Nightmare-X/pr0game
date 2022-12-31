@@ -173,8 +173,28 @@ class GalaxyRows
         }
 
         $Range = FleetFunctions::GetMissileRange($USER[$resource[117]]);
-        $systemMin = $PLANET['system'] - $Range;
-        $systemMax = $PLANET['system'] + $Range;
+        // if (Config::get()->galaxy_type == 2) {
+        // TODO or else
+        // } else if
+        if (Config::get()->galaxy_type == 1) {
+            $max = Config::get()->max_system;
+            $thisSystem = $PLANET['system'];
+
+            if ($thisSystem + $Range > $max) {
+                $systemMax = $thisSystem + $Range - $max;
+            } else {
+                $systemMax = $thisSystem + $Range;
+            }
+
+            if ($thisSystem - $Range < 1) {
+                $systemMin = $max + ($thisSystem - $Range);
+            } else {
+                $systemMin = $thisSystem - $Range;
+            }
+        } else {
+            $systemMin = $PLANET['system'] - $Range;
+            $systemMax = $PLANET['system'] + $Range;
+        }
 
         return $this->galaxyRow['system'] >= $systemMin && $this->galaxyRow['system'] <= $systemMax;
     }
