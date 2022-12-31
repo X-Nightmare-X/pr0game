@@ -81,9 +81,11 @@
         <td><a href='#' onclick='return Dialog.info({$elementID})' class='tooltip'
                data-tooltip-content="<table><tr><th>{$LNG.tech.{$elementID}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$elementID}.{if $elementID >=600 && $elementID <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$elementID}</td></tr></table></tr></table>">{$LNG.tech.$elementID}</a>
         </td>
-        <td>{number_format($tech, 0, ",", ".")}</td>
-          {foreach $planetList.name as $name}
-            <td>{number_format($tech, 0, ",", ".")}</td>
+        <td>{number_format($tech, 0, ",", ".")} {if $elementID== $researchq_id} <span
+            class="colorNeutral"> ⬆ {$researchq_lvl}</span>{/if}</td>
+          {foreach $buildArray as $planetID => $build}
+            <td>{number_format($tech, 0, ",", ".")} {if $planetID==$researchq_planet && $elementID== $researchq_id} <span
+                class="colorNeutral"> ⬆ {$researchq_lvl}</span>{/if}</td>
           {/foreach}
       </tr>
     {/foreach}
