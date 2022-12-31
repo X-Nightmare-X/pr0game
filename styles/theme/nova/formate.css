@@ -299,7 +299,6 @@ menu a {
 
 menu a:hover {
   color: #2cbbf7;
-  font-weight: bold;
 }
 
 div#disclamer a {
@@ -435,7 +434,7 @@ th a, .res_current {
   background: #161618;
   text-align: center;
   border: #161618;
-  border-radius: 15px;
+  border-radius: 15px 15px 0px 0px;
   padding: 5px;
 }
 
@@ -598,7 +597,7 @@ th a, .res_current {
 }
 
 .buildn {
-  border-radius: 15px;
+  border-radius: 15px 15px 0px 0px;
   padding: 6px;
   overflow: auto;
   background: #ee4d2e;
