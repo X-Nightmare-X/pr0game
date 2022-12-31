@@ -22,7 +22,7 @@ $LNG["delete_confirm_gala"] = 'Logale Unifersumsdadne löschne Hä?';
 $LNG['loading'] = 'Lade ...';
 $LNG['fleetPrio'] = 'Flodden Auftrag Prioritätene';
 $LNG['invalid_action'] = 'Ungüldige Agtion';
-
+$LNG["whenbuildable"] = 'Möglich in';
 $LNG['type_mission_1'] = 'Angreifne ';
 $LNG['type_mission_2'] = 'Werbandsangriff ';
 $LNG['type_mission_3'] = 'Dransport ';

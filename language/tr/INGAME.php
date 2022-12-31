@@ -27,7 +27,7 @@ $LNG['ready'] = 'Bitti';
 $LNG['loading'] = 'yukleniyor ...';
 $LNG["delete_confirm_gala"] = 'Yerel evren verileri silinsin mi?';
 $LNG['invalid_action'] = 'Hata Olustu!!';
-
+$LNG["whenbuildable"] = 'İçinde mümkün';
 $LNG['type_mission_1'] = 'Saldiri';
 $LNG['type_mission_2'] = 'Ittifak Saldirisi';
 $LNG['type_mission_3'] = 'Nakliye';

@@ -11,7 +11,7 @@ $LNG['PM'] = '[PM]';
 $LNG['write_message'] = 'Rédiger un message';
 $LNG["delete_confirm_gala"] = "Effacer les données de l'univers local ?";
 $LNG['ready'] = 'Prêt';
-
+$LNG["whenbuildable"] = 'Possible en';
 $LNG['loading'] = 'Chargement ...';
 
 $LNG['invalid_action'] = 'Action invalidée !!';

@@ -386,7 +386,10 @@ class ShowResearchPage extends AbstractGamePage
         $TechQueue      = $queueData['queue'];
         $QueueCount     = count($TechQueue);
         $ResearchList   = [];
-
+        $config         = Config::get();
+        $metproduction  = $PLANET['metal_perhour'] + $config->metal_basic_income * $config->resource_multiplier;
+        $kristproduction = $PLANET['crystal_perhour'] + $config->crystal_basic_income * $config->resource_multiplier;
+        $deutproduction = $PLANET['deuterium_perhour']  + $config->deuterium_basic_income * $config->resource_multiplier;
         foreach ($reslist['tech'] as $elementId) {
             if (!BuildFunctions::isTechnologieAccessible($USER, $PLANET, $elementId)) {
                 continue;
@@ -400,6 +403,17 @@ class ShowResearchPage extends AbstractGamePage
 
             $costResources = BuildFunctions::getElementPrice($USER, $PLANET, $elementId, false, $levelToBuild + 1);
             $costOverflow = BuildFunctions::getRestPrice($USER, $PLANET, $elementId, $costResources);
+            $timetobuild= 0;
+            if(array_key_exists(901, $costOverflow) && $costOverflow[901]!=0){
+                $timetobuild=max($timetobuild,$costOverflow[901]/$metproduction);
+            }
+            if(array_key_exists(902, $costOverflow) && $costOverflow[902]!=0){
+                $timetobuild=max($timetobuild,$costOverflow[902]/$kristproduction);
+            }
+            if(array_key_exists(903, $costOverflow) && $costOverflow[903]!=0 && $deutproduction >0){
+                $timetobuild=max($timetobuild,$costOverflow[903]/$deutproduction);
+            }
+            $timetobuild = floor($timetobuild*3600) ;
             $elementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $elementId, $costResources);
             $buyable = $QueueCount != 0 || BuildFunctions::isElementBuyable($USER, $PLANET, $elementId, $costResources);
 
@@ -412,6 +426,7 @@ class ShowResearchPage extends AbstractGamePage
                 'elementTime'       => $elementTime,
                 'buyable'           => $buyable,
                 'levelToBuild'      => $levelToBuild,
+                'timetobuild'       => $timetobuild
             ];
         }
 
