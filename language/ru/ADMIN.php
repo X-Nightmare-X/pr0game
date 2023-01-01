@@ -212,7 +212,8 @@ $LNG['bo_permanent'] = 'Перманентная блокировка';
 $LNG['bo_bbb_title_1'] = 'Панель блокировки';
 $LNG['bo_bbb_title_2'] = 'Длительность блокировки';
 $LNG['bo_bbb_title_3'] = 'Панель блокировки<br><font color=red>Этот игрок уже заблокирован.';
-$LNG['bo_bbb_title_4'] = 'Для сокращения срока блокировки необходимо добавить число с минусом, например, -5.';
+$LNG['bo_bbb_title_4'] = 'In order to reduce the time duration, it is necessary to add a "-" before the numbers'
+    . ', such as: -5<br>With previous perma-lock, the lock is reduced to the entered positive time';
 $LNG['bo_bbb_title_5'] = 'Заблокирован до';
 $LNG['bo_bbb_title_6'] = 'Длительность блокировки';
 $LNG['bo_characters_1'] = 'Доступно символов ';

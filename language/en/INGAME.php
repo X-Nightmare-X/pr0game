@@ -22,7 +22,7 @@ $LNG['Messages'] = 'Messages';
 $LNG["delete_confirm_gala"] = 'Delete local universe data?';
 $LNG['PM'] = '[PM]';
 $LNG['write_message'] = 'Write message';
-
+$LNG["whenbuildable"] = 'Possible in';
 $LNG['ready'] = 'Ready';
 
 $LNG['loading'] = 'Loading ...';
@@ -1042,7 +1042,8 @@ $LNG['bn_writemail'] = 'Mail to %s';
 
 // Manutenção & Banido
 $LNG['css_account_banned_message'] = 'Your account has been banned!';
-$LNG['css_account_banned_expire'] = 'Your account is already unbanned %s!';
+$LNG['css_account_banned_expire'] = 'You are banned until %s!<br>In case of questions, please open a ticket on our <a style="color: -webkit-link;" href="https://discord.gg/jhYYN3yuat">Discord server (link)</a>';
+$LNG['css_account_banned_reason'] = 'Reason: %s';
 $LNG['css_goto_homeside'] = '<a href="./index.php">Go to the homepage</a>';
 $LNG['css_server_maintrace'] = 'Maintenance of the server<br><br>The game is closed.<br><br>Até: %s';
 
@@ -1318,3 +1319,27 @@ $LNG['lo_continue'] = 'Click to continue.';
 $LNG['fleet_table_custom_empty_name'] = 'Insert a fleet name please!';
 $LNG['custom_fleet'] = 'Custom fleets';
 $LNG['custom_fleet_confirm'] = 'Remove fleet template %s?';
+
+
+//----------------------------------------------------------------------------//
+//Scavengers Toolbox
+$LNG['stb_activ'] = 'detailed Spymessage Scavengers Toolbox enabled';
+
+$LNG['stb_low_ress_tooltip'] = 'If there are fewer resources than entered on the planet, the spy report is marked bright red (bad).';
+$LNG['stb_low_ress'] = 'Low resources attarget, less then';
+
+$LNG['stb_mid_ress_tooltip'] = 'If there are fewer resources than entered on the planet, the spy report is marked light orange (medium).';
+$LNG['stb_mid_ress'] = 'Medium resources attarget, less then';
+
+$LNG['stb_big_ress_tooltip'] = 'If there are fewer resources than entered on the planet, the spy report is marked light green (good). Spy reports with resources above this value are displayed in light blue (optimal).';
+$LNG['stb_big_ress'] = 'Many resources attarget, less then';
+
+
+$LNG['stb_small_time_tooltip'] = 'Describes the best possible resource yield per second, rounded to two decimal places. A ratio less than the registered value is interpreted as bad (light red).';
+$LNG['stb_small_time'] = 'Low resources per second ratio';
+
+$LNG['stb_med_time_tooltip'] = 'Describes the best possible resource yield per second, rounded to two decimal places. A ratio less than the registered value is interpreted as medium (light orange).';
+$LNG['stb_med_time'] = 'Average resources per second ratio';
+
+$LNG['stb_big_time_tooltip'] = 'Describes the best possible resource yield per second, rounded to two decimal places. A ratio less than the entered value is interpreted as good (light green), a value above as optimal (light blue).';
+$LNG['stb_big_time'] = 'Good resources per second ratio';

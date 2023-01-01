@@ -329,3 +329,20 @@ $LNG['type_planet_3'] = 'Луна';
 $LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
 $LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
 
+
+//----------------------------------------------------------------------------//
+// Scavengers Toolbox
+$LNG['spy_summary'] = 'Сводка';
+$LNG['spy_total_resources'] = 'Всего ресурсов';
+$LNG['spy_hazard_potential'] = 'Потенциал опасности';
+$LNG['spy_potential_resources'] = 'Потенциальные ресурсы';
+$LNG['spy_potential_recycling'] = 'Потенциал переработки';
+$LNG['spy_necessary_transporters'] = 'Необходимые транспортеры';
+$LNG['spy_necessary_recycler'] = 'Необходимые переработчики';
+$LNG['spy_market_value'] = 'Рыночная стоимость';
+$LNG['spy_energy'] = 'Энергия';
+$LNG['spy_best_resources_per_second'] = 'лучшее разрешение в секунду';
+$LNG['spy_best_planet'] = 'лучшая планета';
+$LNG['spy_attack_with'] = 'Атака с помощью';
+$LNG['spy_small_transporter'] = 'малый транспортер';
+$LNG['spy_large_transporter'] = 'крупногабаритный транспортер';

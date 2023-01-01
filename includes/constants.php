@@ -251,10 +251,24 @@ define('SHIP_LIGHT_FIGHTER', 204);
 define('SHIP_HEAVY_FIGHTER', 205);
 define('SHIP_CRUISER', 206);
 define('SHIP_BATTLESHIP', 207);
+define('SHIP_COLOSHIP', 208);
+define('SHIP_RECYCLER', 209);
 define('SHIP_PROBE', 210);
 define('SHIP_BOMBER', 211);
+define('SHIP_SOLSAT', 212);
 define('SHIP_DESTROYER', 213);
+define('SHIP_RIP', 214);
 define('SHIP_BATTLECRUISER', 215);
+
+// Defense
+define('MISSILE_LAUNCHER', 401);
+define('LIGHT_LASER_TURRET', 402);
+define('HEAVY_LASER_TURRET', 403);
+define('GAUSS_CANNON', 404);
+define('ION_CANNON', 405);
+define('PLASMA_CANNON', 406);
+define('SMALL_SHIELD_DOME', 407);
+define('LARGE_SHIELD_DOME', 408);
 
 // Missions
 define('MISSION_ATTACK', 1);

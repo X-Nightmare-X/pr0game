@@ -220,7 +220,8 @@ $LNG['bo_permanent'] = 'Ban na stałe';
 $LNG['bo_bbb_title_1'] = 'System Banowania';
 $LNG['bo_bbb_title_2'] = 'Kiedy odbanować';
 $LNG['bo_bbb_title_3'] = 'Zarządzanie banami &bull; <font color=red>Ten gracz już jest zbanowany';
-$LNG['bo_bbb_title_4'] = 'By skrócić czas bana, podaj np. minus w minutach, np: -5 ';
+$LNG['bo_bbb_title_4'] = 'In order to reduce the time duration, it is necessary to add a "-" before the numbers'
+    . ', such as: -5<br>With previous perma-lock, the lock is reduced to the entered positive time';
 $LNG['bo_bbb_title_5'] = 'ban do';
 $LNG['bo_bbb_title_6'] = 'Data zmiany';
 $LNG['bo_characters_1'] = 'dostępne litery ';

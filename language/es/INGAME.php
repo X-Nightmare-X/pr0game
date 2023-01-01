@@ -22,7 +22,7 @@ $LNG['PM'] = '[MP]';
 $LNG['ready'] = 'Listo';
 $LNG["delete_confirm_gala"] = '¿Borrar datos del universo local?';
 $LNG['loading'] = 'Cargando ...';
-
+$LNG["whenbuildable"] = 'Posible en';
 $LNG['invalid_action'] = 'Acción no valida!';
 
 $LNG['type_mission_1'] = 'Atacar';
@@ -1006,8 +1006,8 @@ $LNG['bn_writemail'] = 'Mail a %s';
 //class.CheckSession.php
 
 $LNG['css_account_banned_message'] = '!Tu cuenta ha sido sancionada¡';
-$LNG['css_account_banned_expire'] = 'Por esta razón %s estás sancionado.<br>'
-    . '<a href="./index.php?page=pranger">Sancionados</a>';
+$LNG['css_account_banned_expire'] = 'You are banned until %s!<br>In case of questions, please open a ticket on our <a style="color: -webkit-link;" href="https://discord.gg/jhYYN3yuat">Discord server (link)</a>';
+$LNG['css_account_banned_reason'] = 'Reason: %s';
 $LNG['css_goto_homeside'] = '<a href="./index.php">Ir a la página de Inicio</a>';
 $LNG['css_server_maintrace'] = 'Servidor en mantenimiento<br><br>El juego está cerrado.<br><br>Razón: %s';
 
@@ -1257,3 +1257,26 @@ $LNG['custom_fleet_confirm'] = '¿Quitar la plantilla de la flota %s?';
 
 
 // Translated into Spanish by Angelus_ira . All rights reversed (C) 2011
+
+
+//----------------------------------------------------------------------------//
+//Scavengers Toolbox
+$LNG['stb_activ'] = 'Scavengers Toolbox enabled';
+
+$LNG['stb_low_ress_tooltip'] = 'Si hay menos recursos de los ingresados en el planeta, el informe espía está marcado como rojo brillante (malo).';
+$LNG['stb_low_ress'] = 'Bajos recursos presentes en el planeta objetivo';
+
+$LNG['stb_mid_ress_tooltip'] = 'Si hay menos recursos de los ingresados en el planeta, el informe espía está marcado como naranja claro (medio).';
+$LNG['stb_mid_ress'] = 'Recursos medios presentes en el planeta objetivo';
+
+$LNG['stb_big_ress_tooltip'] = 'Si hay menos recursos de los ingresados en el planeta, el informe espía está marcado en verde claro (bueno). Los informes espía con recursos superiores a este valor se muestran en azul claro (óptimo).';
+$LNG['stb_big_ress'] = 'Muchos recursos presentes en el planeta objetivo';
+
+$LNG['stb_small_time_tooltip'] = 'Describe el mejor rendimiento posible de recursos por segundo, redondeado a dos decimales. Una relación inferior al valor registrado se interpreta como mala (rojo claro).';
+$LNG['stb_small_time'] = 'Low resources per second ratio';
+
+$LNG['stb_med_time_tooltip'] = 'Describe el mejor rendimiento posible de recursos por segundo, redondeado a dos decimales. Una relación inferior al valor registrado se interpreta como media (naranja claro).';
+$LNG['stb_med_time'] = 'Ratio medio de recursos por segundo';
+
+$LNG['stb_big_time_tooltip'] = 'Describe el mejor rendimiento posible de recursos por segundo, redondeado a dos decimales. Una relación inferior al valor introducido se interpreta como buena (verde claro), un valor superior como óptimo (azul claro).';
+$LNG['stb_big_time'] = 'Buena relación recursos por segundo';

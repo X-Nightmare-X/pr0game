@@ -22,7 +22,7 @@ $LNG["delete_confirm_gala"] = 'Logale Unifersumsdadne löschne Hä?';
 $LNG['loading'] = 'Lade ...';
 $LNG['fleetPrio'] = 'Flodden Auftrag Prioritätene';
 $LNG['invalid_action'] = 'Ungüldige Agtion';
-
+$LNG["whenbuildable"] = 'Möglich in';
 $LNG['type_mission_1'] = 'Angreifne ';
 $LNG['type_mission_2'] = 'Werbandsangriff ';
 $LNG['type_mission_3'] = 'Dransport ';
@@ -1028,7 +1028,8 @@ $LNG['bn_writemail'] = 'Mail an %s schreiben';
 //class.CheckSession.php
 
 $LNG['css_account_banned_message'] = 'Dein Accound wurde gesberrt - hädix8!';
-$LNG['css_account_banned_expire'] = 'Du bischd bis zum %s gesberrt!<br><a href="./index.php?page=pranger">Pranger</a>';
+$LNG['css_account_banned_expire'] = 'Du bist bis zum %s gesperrt!<br>Bitte melde dich ggf. im <a style="color: -webkit-link;" href="https://discord.gg/jhYYN3yuat">Discord per Ticket (link)</a>';
+$LNG['css_account_banned_reason'] = 'Grund: %s';
 $LNG['css_goto_homeside'] = '<a href="./index.php">Zur Startseite</a>';
 $LNG['css_server_maintrace'] = 'Serwer Maintenance<br><br>Schbiel zurzeid geschlossen.<br><br>Grund: %s';
 
@@ -1307,3 +1308,27 @@ $LNG['custom_fleet'] = 'Benutzerdefinierte Flodden';
 $LNG['custom_fleet_confirm'] = 'Floddenvorlage %s wegmeddln?';
 
 // Translated into Oger by Appendix (ASB8).
+
+
+//----------------------------------------------------------------------------//
+//Scavengers Toolbox
+$LNG['stb_activ'] = 'Scavengers Toolbox enabled';
+
+$LNG['stb_low_ress_tooltip'] = 'If there are fewer resources than entered on the planet, the spy report is marked bright red (bad).';
+$LNG['stb_low_ress'] = 'Low resources present on the target planet';
+
+$LNG['stb_mid_ress_tooltip'] = 'If there are fewer resources than entered on the planet, the spy report is marked light orange (medium).';
+$LNG['stb_mid_ress'] = 'Medium resources present on the target planet';
+
+$LNG['stb_big_ress_tooltip'] = 'If there are fewer resources than entered on the planet, the spy report is marked light green (good). Spy reports with resources above this value are displayed in light blue (optimal).';
+$LNG['stb_big_ress'] = 'Many resources present on the target planet';
+
+
+$LNG['stb_small_time_tooltip'] = 'Describes the best possible resource yield per second, rounded to two decimal places. A ratio less than the registered value is interpreted as bad (light red).';
+$LNG['stb_small_time'] = 'Low resources per second ratio';
+
+$LNG['stb_med_time_tooltip'] = 'Describes the best possible resource yield per second, rounded to two decimal places. A ratio less than the registered value is interpreted as medium (light orange).';
+$LNG['stb_med_time'] = 'Average resources per second ratio';
+
+$LNG['stb_big_time_tooltip'] = 'Describes the best possible resource yield per second, rounded to two decimal places. A ratio less than the entered value is interpreted as good (light green), a value above as optimal (light blue).';
+$LNG['stb_big_time'] = 'Good resources per second ratio';

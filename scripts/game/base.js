@@ -324,6 +324,28 @@ function showtimes(){
     x.innerText=getRestTimeFormat(x.getAttribute("timestamp"))
   }
 }
+function add_static_times(){
+  const mh = document.getElementsByClassName("statictimer")
+  for (let flight of mh) {
+    let nd = new Date(new Date(parseInt(flight.getAttribute("data-time")) * 1000 ).toLocaleString('en-US', { timeZone: localtimezonestring }))
+    let ddiv=Math.floor((nd-serverTime) / (1000 * 60 * 60 * 24));
+    let tamt=""
+    if(ddiv>0){
+      tamt=ddiv + "T "
+    }
+
+    flight.innerText =tamt +   pad(nd.getHours(), 2) + ":" + pad(nd.getMinutes(), 2) + ":" + pad(nd.getSeconds(), 2)
+  }
+}
+
+getRestTimeFormat
+
+function countdown_buildable(){
+  const mh = document.getElementsByClassName("buildcountdown")
+  for (let flight of mh) {
+    flight.innerText = getRestTimeFormat(parseInt(flight.getAttribute("timestamp")), true)
+  }
+}
 
 document.addEventListener("DOMContentLoaded", function() {
   showtimes();
@@ -332,6 +354,9 @@ document.addEventListener("DOMContentLoaded", function() {
   for(let k of document.querySelectorAll("input[type='number']")){
     k.onclick = function(){this.value="";};
   }
+  add_static_times();
+  countdown_buildable();
+  setInterval(countdown_buildable,1000);
 });
 
 

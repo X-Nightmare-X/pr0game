@@ -53,7 +53,7 @@ require 'includes/classes/Cache.class.php';
 require 'includes/classes/Database.class.php';
 require 'includes/classes/Config.class.php';
 require 'includes/classes/class.FleetFunctions.php';
-require 'includes/classes/HTTP.class.php';
+require_once 'includes/classes/HTTP.class.php';
 require 'includes/classes/Language.class.php';
 require 'includes/classes/PlayerUtil.class.php';
 require 'includes/classes/Session.class.php';
@@ -68,6 +68,14 @@ define('AJAX_REQUEST', HTTP::_GP('ajax', 0));
 
 $THEME      = new Theme();
 
+if (MODE === 'INSTALL') {
+    return;
+}
+
+if (!file_exists('includes/config.php') || filesize('includes/config.php') === 0) {
+    HTTP::redirectTo('install/index.php');
+}
+
 $config = Config::get();
 date_default_timezone_set($config->timezone);
 
@@ -80,13 +88,10 @@ $USER['authlevel'] = 0;
 $USER['id'] = 0;
 $USER['signalColors'] = PlayerUtil::player_signal_colors();
 $USER['colors'] = PlayerUtil::player_colors();
+$USER['stb_settings'] = PlayerUtil::player_stb_settings();
 
-if (MODE === 'INSTALL') {
+if (MODE === 'UPGRADE') {
     return;
-}
-
-if (!file_exists('includes/config.php') || filesize('includes/config.php') === 0) {
-    HTTP::redirectTo('install/index.php');
 }
 
 try {
@@ -153,7 +158,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
             ':unread'           => 1,
             ':userId'           => $session->userId
         ));
-        
+
         if (empty($USER)) {
             HTTP::redirectTo('index.php?code=3');
         } else {
@@ -178,7 +183,15 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     }
 
     if ($USER['bana'] == 1) {
-        ShowErrorPage::printError("<font size=\"6px\">" . $LNG['css_account_banned_message'] . "</font><br><br>" . sprintf($LNG['css_account_banned_expire'], _date($LNG['php_tdformat'], $USER['banaday'], $USER['timezone'])) . "<br><br>" . $LNG['css_goto_homeside'], false);
+        $sql = 'SELECT theme FROM %%BANNED%% WHERE who = :username';
+        $reason = $db->selectSingle($sql, [
+            ':username' => $USER['username'],
+        ], 'theme');
+
+        ShowErrorPage::printError("<font size=\"6px\">" . $LNG['css_account_banned_message'] . "</font><br><br>" .
+        sprintf($LNG['css_account_banned_expire'], _date($LNG['php_tdformat'], $USER['banaday'], $USER['timezone']), $config->forum_url) . "<br><br>" .
+        sprintf($LNG['css_account_banned_reason'], $reason) . "<br><br>" .
+        $LNG['css_goto_homeside'], false);
     }
 
     if (!$raportWithoutSession) {
@@ -236,7 +249,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
         curl_close($ch);
         $arrResponse = json_decode($response, true);
         $sql = "insert into %%RECAPTCHA%% (userId, success, time, score, url) VALUES (:userId, :success, :time, :score, :url);";
-        
+
         if (isset($arrResponse) && $arrResponse['success'] == true) {
             $db->insert($sql, array(
                 ':userId'   => $USER['id'],

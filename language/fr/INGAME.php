@@ -11,7 +11,7 @@ $LNG['PM'] = '[PM]';
 $LNG['write_message'] = 'Rédiger un message';
 $LNG["delete_confirm_gala"] = "Effacer les données de l'univers local ?";
 $LNG['ready'] = 'Prêt';
-
+$LNG["whenbuildable"] = 'Possible en';
 $LNG['loading'] = 'Chargement ...';
 
 $LNG['invalid_action'] = 'Action invalidée !!';
@@ -1001,8 +1001,8 @@ $LNG['bn_writemail'] = 'Ecrire un mail à %s';
 
 
 $LNG['css_account_banned_message'] = 'Votre compte a été suspendu ! ';
-$LNG['css_account_banned_expire'] = 'Vous avez été bannis jusqu\'à %s !<br>'
-    . '<a href="./index.php?page=pranger">Pilori</a>';
+$LNG['css_account_banned_expire'] = 'You are banned until %s!<br>In case of questions, please open a ticket on our <a style="color: -webkit-link;" href="https://discord.gg/jhYYN3yuat">Discord server (link)</a>';
+$LNG['css_account_banned_reason'] = 'Reason: %s';
 $LNG['css_goto_homeside'] = '<a href="./index.php">Se rendre à la page d\'accueil</a>';
 $LNG['css_server_maintrace'] = 'Maintenance du serveur<br><br>Le jeu est momentanément suspendu. <br><br>Raison : %s';
 
@@ -1244,3 +1244,25 @@ $LNG['lo_continue'] = 'Cliquez ici pour être redirigé immédiatement.';
 $LNG['fleet_table_custom_empty_name'] = 'Insérez un nom de flotte s\'il vous plaît !';
 $LNG['custom_fleet'] = 'Flottes personnalisées';
 $LNG['custom_fleet_confirm'] = 'Supprimer le modèle de flotte %s ?';
+
+//----------------------------------------------------------------------------//
+//Scavengers Toolbox
+$LNG['stb_activ'] = 'Scavengers Toolbox activé';
+
+$LNG['stb_low_ress_tooltip'] = 'S\'il y a moins de ressources que celles entrées sur la planète, le rapport d\'espionnage est marqué rouge vif (mauvais).';
+$LNG['stb_low_ress'] = 'Faibles ressources présentes sur la planète cible';
+
+$LNG['stb_mid_ress_tooltip'] = 'S\'il y a moins de ressources que celles entrées sur la planète, le rapport d\'espionnage est marqué orange clair (moyen).';
+$LNG['stb_mid_ress'] = 'Ressources moyennes présentes sur la planète cible';
+
+$LNG['stb_big_ress_tooltip'] = 'S\'il y a moins de ressources que celles entrées sur la planète, le rapport d\'espionnage est marqué en vert clair (bon). Les rapports d\'espionnage dont les ressources dépassent cette valeur sont affichés en bleu clair (optimal).';
+$LNG['stb_big_ress'] = 'De nombreuses ressources présentes sur la planète cible';
+
+$LNG['stb_small_time_tooltip'] = 'Décrit le meilleur rendement possible en ressources par seconde, arrondi à deux décimales. Un rapport inférieur à la valeur enregistrée est interprété comme mauvais (rouge clair).';
+$LNG['stb_small_time'] = 'Faible ratio de ressources par seconde';
+
+$LNG['stb_med_time_tooltip'] = 'Décrit le meilleur rendement possible des ressources par seconde, arrondi à deux décimales. Un rapport inférieur à la valeur enregistrée est interprété comme moyen (orange clair).';
+$LNG['stb_med_time'] = 'Ratio moyen des ressources par seconde';
+
+$LNG['stb_big_time_tooltip'] = 'Décrit le meilleur rendement possible en ressources par seconde, arrondi à deux décimales. Un rapport inférieur à la valeur saisie est interprété comme bon (vert clair), une valeur supérieure à optimal (bleu clair).';
+$LNG['stb_big_time'] = 'Bon ratio ressources par seconde';

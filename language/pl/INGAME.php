@@ -24,7 +24,7 @@ $LNG["delete_confirm_gala"] = 'Usunąć dane lokalnego uniwersum?';
 $LNG['loading'] = 'Ładuję';
 $LNG['fleetPrio'] = 'Priorytet kolejności floty';
 $LNG['invalid_action'] = 'Niedozwolona akcja';
-
+$LNG["whenbuildable"] = 'Możliwe w';
 $LNG['type_mission_1'] = 'Atak';
 $LNG['type_mission_2'] = 'ACS Atak';
 $LNG['type_mission_3'] = 'Transport';
@@ -1007,7 +1007,8 @@ $LNG['bn_writemail'] = 'Mail do %s';
 //class.CheckSession.php
 
 $LNG['css_account_banned_message'] = 'Twoje konto zostało zbanowane! ';
-$LNG['css_account_banned_expire'] = 'Jesteś zbanowwany do %s <br><a href="./index.php?page=pranger">Banlist</a>';
+$LNG['css_account_banned_expire'] = 'You are banned until %s!<br>In case of questions, please open a ticket on our <a style="color: -webkit-link;" href="https://discord.gg/jhYYN3yuat">Discord server (link)</a>';
+$LNG['css_account_banned_reason'] = 'Reason: %s';
 $LNG['css_goto_homeside'] = '<a href="./index.php">Strona startowa</a>';
 $LNG['css_server_maintrace'] = 'Konserwacja serwera<br><br>Play unanimously at present. <br><br>Powód: %s';
 
@@ -1251,3 +1252,26 @@ $LNG['custom_fleet'] = 'Floty niestandardowe';
 $LNG['custom_fleet_confirm'] = 'Usunąć szablon floty %s?';
 // Translated into Polish by Sirgomo . All rights reversed (C) 2012
 // Edited by TheRavikin. All rights resteemed (C) 2018
+
+//----------------------------------------------------------------------------//
+//Scavengers Toolbox
+$LNG['stb_activ'] = 'Scavengers Toolbox włączony';
+
+$LNG['stb_low_ress_tooltip'] = "Jeśli na planecie jest mniej zasobów niż wprowadzono, raport szpiegowski jest oznaczony na czerwono (zły).";
+$LNG['stb_low_ress'] = 'niskie zasoby obecne na docelowej planecie';
+
+$LNG['stb_mid_ress_tooltip'] = "Jeśli na planecie jest mniej zasobów niż wprowadzono, raport szpiegowski jest oznaczony jasnopomarańczowym (średnim).";
+$LNG['stb_mid_ress'] = 'średnie zasoby obecne na docelowej planecie';
+
+$LNG['stb_big_ress_tooltip'] = "Jeśli na planecie jest mniej zasobów niż wprowadzono, raport szpiegowski jest oznaczony jasnozielonym (dobrym). Raporty szpiegowskie z zasobami powyżej tej wartości są wyświetlane w kolorze jasnoniebieskim (optymalnym).";
+$LNG['stb_big_ress'] = 'Wiele zasobów obecnych na docelowej planecie';
+
+
+$LNG['stb_small_time_tooltip'] = 'Opisuje najlepszy możliwy zysk zasobów na sekundę, zaokrąglony do dwóch miejsc po przecinku. Stosunek mniejszy niż zarejestrowana wartość jest interpretowany jako zły (jasnoczerwony).';
+$LNG['stb_small_time'] = 'Niski stosunek zasobów na sekundę';
+
+$LNG['stb_med_time_tooltip'] = 'Opisuje najlepszy możliwy zysk z zasobów na sekundę, zaokrąglony do dwóch miejsc po przecinku. Stosunek mniejszy niż zarejestrowana wartość interpretuje się jako średni (jasnopomarańczowy).';
+$LNG['stb_med_time'] = 'stosunek średnich zasobów na sekundę';
+
+$LNG['stb_big_time_tooltip'] = 'Opisuje najlepszy możliwy zysk zasobów na sekundę, zaokrąglony do dwóch miejsc po przecinku. Stosunek mniejszy niż wprowadzona wartość jest interpretowany jako dobry (jasnozielony), a wartość powyżej jako optymalna (jasnoniebieski).';
+$LNG['stb_big_time'] = 'Stosunek dobrych zasobów na sekundę';
