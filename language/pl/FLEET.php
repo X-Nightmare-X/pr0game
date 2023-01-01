@@ -310,3 +310,20 @@ $LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
 
 // Translated into Polish by Sirgomo . All rights reversed (C) 2012
 // Edited by TheRavikin. All rights resteemed (C) 2018
+
+//----------------------------------------------------------------------------//
+// Scavengers Toolbox
+$LNG['spy_summary'] = 'Streszczenie';
+$LNG['spy_total_resources'] = 'Zasoby ogółem';
+$LNG['spy_hazard_potential'] = 'Potencjalne zagrożenie';
+$LNG['spy_potential_resources'] = 'Potencjalne zasoby';
+$LNG['spy_potential_recycling'] = 'Potencjał recyklingu';
+$LNG['spy_necessary_transporters'] = 'Niezbędne transportery';
+$LNG['spy_necessary_recycler'] = 'Niezbędne recyklery';
+$LNG['spy_market_value'] = 'Wartość rynkowa';
+$LNG['spy_energy'] = 'Energia';
+$LNG['spy_best_resources_per_second'] = 'Najlepsza ress na sekundę';
+$LNG['spy_best_planet'] = 'Najlepsza planeta';
+$LNG['spy_attack_with'] = 'Atak z';
+$LNG['spy_small_transporter'] = 'mały transporter';
+$LNG['spy_large_transporter'] = 'duży transporter';

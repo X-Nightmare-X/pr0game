@@ -1252,3 +1252,26 @@ $LNG['custom_fleet'] = 'Floty niestandardowe';
 $LNG['custom_fleet_confirm'] = 'Usunąć szablon floty %s?';
 // Translated into Polish by Sirgomo . All rights reversed (C) 2012
 // Edited by TheRavikin. All rights resteemed (C) 2018
+
+//----------------------------------------------------------------------------//
+//Scavengers Toolbox
+$LNG['stb_activ'] = 'Scavengers Toolbox włączony';
+
+$LNG['stb_low_ress_tooltip'] = "Jeśli na planecie jest mniej zasobów niż wprowadzono, raport szpiegowski jest oznaczony na czerwono (zły).";
+$LNG['stb_low_ress'] = 'niskie zasoby obecne na docelowej planecie';
+
+$LNG['stb_mid_ress_tooltip'] = "Jeśli na planecie jest mniej zasobów niż wprowadzono, raport szpiegowski jest oznaczony jasnopomarańczowym (średnim).";
+$LNG['stb_mid_ress'] = 'średnie zasoby obecne na docelowej planecie';
+
+$LNG['stb_big_ress_tooltip'] = "Jeśli na planecie jest mniej zasobów niż wprowadzono, raport szpiegowski jest oznaczony jasnozielonym (dobrym). Raporty szpiegowskie z zasobami powyżej tej wartości są wyświetlane w kolorze jasnoniebieskim (optymalnym).";
+$LNG['stb_big_ress'] = 'Wiele zasobów obecnych na docelowej planecie';
+
+
+$LNG['stb_small_time_tooltip'] = 'Opisuje najlepszy możliwy zysk zasobów na sekundę, zaokrąglony do dwóch miejsc po przecinku. Stosunek mniejszy niż zarejestrowana wartość jest interpretowany jako zły (jasnoczerwony).';
+$LNG['stb_small_time'] = 'Niski stosunek zasobów na sekundę';
+
+$LNG['stb_med_time_tooltip'] = 'Opisuje najlepszy możliwy zysk z zasobów na sekundę, zaokrąglony do dwóch miejsc po przecinku. Stosunek mniejszy niż zarejestrowana wartość interpretuje się jako średni (jasnopomarańczowy).';
+$LNG['stb_med_time'] = 'stosunek średnich zasobów na sekundę';
+
+$LNG['stb_big_time_tooltip'] = 'Opisuje najlepszy możliwy zysk zasobów na sekundę, zaokrąglony do dwóch miejsc po przecinku. Stosunek mniejszy niż wprowadzona wartość jest interpretowany jako dobry (jasnozielony), a wartość powyżej jako optymalna (jasnoniebieski).';
+$LNG['stb_big_time'] = 'Stosunek dobrych zasobów na sekundę';

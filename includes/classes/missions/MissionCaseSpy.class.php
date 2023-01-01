@@ -133,6 +133,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         $classIDs[900] = array_merge($reslist['resstype'][1], $reslist['resstype'][2]);
 
+
         if ($SpyFleet) {
             $classIDs[200] = $reslist['fleet'];
         }
@@ -159,13 +160,13 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         }
 
         // $targetChance = mt_rand(0, min(($fleetAmount / 4) * ($targetSpyTech / $senderSpyTech), 100));
-        
+
         // New calculation: 1% Counterspy-Chance for 250 Ships * target spy bonus, if > sender spy tec
         // $targetChance = ($totalShipDefCount/250)*MAX($senderSpyTech-$targetSpyTech, 1) + (($fleetAmount / 4) * ($targetSpyTech / $senderSpyTech));
 
         // Calculation from https://ogame.fandom.com/wiki/Counterespionage
-        $targetChance = min(round( pow(2, $targetSpyTech-$senderSpyTech) * $fleetAmount * $totalShipDefCount * 0.0025), 100);
-        
+        $targetChance = min(round(pow(2, $targetSpyTech - $senderSpyTech) * $fleetAmount * $totalShipDefCount * 0.0025), 100);
+
         $spyChance = mt_rand(0, 100);
         $spyData = [];
 
@@ -182,7 +183,6 @@ class MissionCaseSpy extends MissionFunctions implements Mission
                 $spyData[$classID] = array_filter($spyData[$classID]);
             }
         }
-
         // I'm use template class here, because i want to exclude HTML in PHP.
 
         require_once 'includes/classes/class.template.php';
@@ -195,20 +195,97 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $THEME->setUserTheme($senderUser['dpath']);
         }
 
+        // Scavengers Tool Box
+
+        $stbSettings = PlayerUtil::player_stb_settings($senderUser);
+
+        // Summ up all ress from the planet and calculate how many you could raid
+        $ressources = round($targetPlanet['metal'] + $targetPlanet['crystal'] + $targetPlanet['deuterium']);
+        $ressourcesToRaid = round($ressources / 2);
+
+        // determine if the spy report detects ships or deff
+        $danger = $this->getDangerValue($spyData);
+        $dangerClass = $danger > 0 ? "danger" : "nonedanger";
+
+        // if the spy report got ships get the approximately number of needet recylers
+        $recyclePotential = $this->getRecyleValue($spyData);
+        $nessesarryRecy = $this->estimateRecyclers($recyclePotential);
+
+        // get the ressource value by market and set the background color class
+        $ressourcesByMarketValue = $this->getRessoucesByDsuValue($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']);
+        if ($ressourcesByMarketValue > $stbSettings['stb_big_ress']) {
+            $ressourcesByMarketValueClass = "realHighRess";
+        } elseif ($ressourcesByMarketValue > $stbSettings['stb_med_ress']) {
+            $ressourcesByMarketValueClass = "highRess";
+        } elseif ($ressourcesByMarketValue > $stbSettings['stb_small_ress']) {
+            $ressourcesByMarketValueClass = "midRess";
+        } else {
+            $ressourcesByMarketValueClass = "lowRess";
+        }
+
+        // calculate the needed transporters
+        $nessesarrySmallTransporter = $this->estimateSmallTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
+        $nessesarryLargeTransporter = $this->estimateLargeTransporters($this->calculateNeededCapacity($targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']));
+
+        // get the best planet to start the raid from and the ress per time from there
+        $bestPlanetArray = $this->bestplanet($senderUser["id"], $targetPlanet);
+        if (!isset($bestPlanetArray) || !isset($bestPlanetArray['coords'])) {
+            $bestRessPerTime = 0;
+            $bestPlanet = $senderUser['galaxy'] . ":" . $senderUser['system'] . ":" . $senderUser['planet'];
+        } else {
+            $bestPlanet = $bestPlanetArray['coords']['galaxy'] . ":" . $bestPlanetArray['coords']['system'] . ":" . $bestPlanetArray['coords']['planet'];
+            $bestRessPerTime = $this->bestRessPerTime($bestPlanetArray['distance'], $senderUser, $ressourcesByMarketValue);
+        }
+        if ($bestRessPerTime > $stbSettings['stb_big_time']) {
+            $bestRessPerTimeClass = "realHighRess";
+        } elseif ($bestRessPerTime > $stbSettings['stb_med_time']) {
+            $bestRessPerTimeClass = "highRess";
+        } elseif ($bestRessPerTime > $stbSettings['stb_small_time']) {
+            $bestRessPerTimeClass = "midRess";
+        } else {
+            $bestRessPerTimeClass = "lowRess";
+        }
+
+        // get the energy to indicate if someone is pushing to gravi
+        $energy = $targetPlanet["energy"];
+        if ($energy > 100000) {
+            $energyClass = "midRess";
+        } elseif ($energy > 250000) {
+            $energyClass = "lowRess";
+        } else {
+            $energyClass = "";
+        }
+
         $template->caching = true;
         $template->compile_id = $senderUser['lang'];
         $template->loadFilter('output', 'trimwhitespace');
         list($tplDir) = $template->getTemplateDir();
         $template->setTemplateDir($tplDir . 'game/');
         $template->assign_vars([
-            'spyData'       => $spyData,
-            'targetPlanet'  => $targetPlanet,
-            'targetChance'  => $targetChance,
-            'spyChance'     => $spyChance,
-            'totalShipDefCount' => $totalShipDefCount,
-            'dpath'         => $THEME->getTheme(),
-            'isBattleSim'   => ENABLE_SIMULATOR_LINK == true && isModuleAvailable(MODULE_SIMULATOR),
-            'title'         => sprintf(
+            'stbEnabled'                        => $stbSettings['stb_enabled'],
+            'ressources'                        => $ressources,
+            'danger'                            => $danger,
+            'dangerClass'                       => $dangerClass,
+            'ressourcesToRaid'                  => $ressourcesToRaid,
+            'recyclePotential'                  => $recyclePotential,
+            'nessesarryRecy'                    => $nessesarryRecy,
+            'ressourcesByMarketValue'           => $ressourcesByMarketValue,
+            'ressourcesByMarketValueClass'      => $ressourcesByMarketValueClass,
+            'energy'                            => $energy,
+            'energyClass'                       => $energyClass,
+            'bestRessPerTime'                   => $bestRessPerTime,
+            'bestRessPerTimeClass'              => $bestRessPerTimeClass,
+            'bestPlanet'                        => $bestPlanet,
+            'nessesarryLargeTransporter'        => $nessesarryLargeTransporter,
+            'nessesarrySmallTransporter'        => $nessesarrySmallTransporter,
+            'spyData'                           => $spyData,
+            'targetPlanet'                      => $targetPlanet,
+            'targetChance'                      => $targetChance,
+            'spyChance'                         => $spyChance,
+            'totalShipDefCount'                 => $totalShipDefCount,
+            'dpath'                             => $THEME->getTheme(),
+            'isBattleSim'                       => ENABLE_SIMULATOR_LINK == true && isModuleAvailable(MODULE_SIMULATOR),
+            'title'                 => sprintf(
                 $LNG['sys_mess_head'],
                 $targetPlanet['name'],
                 $targetPlanet['galaxy'],
@@ -297,6 +374,166 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $this->setState(FLEET_RETURN);
             $this->SaveFleet();
         }
+    }
+
+    /**
+     * calculates the given ressources, based by the worth of 1 deuterium
+     */
+    public function getRessoucesByDsuValue($metal, $crystal, $deuterium)
+    {
+        require_once 'includes/classes/class.MarketManager.php';
+        $pMarket = new MarketManager();
+        $refrates = $pMarket->getReferenceRatios();
+        $refratesMetal = $refrates["metal"];
+        $refratesCrystal = $refrates["crystal"];
+        $refratesDeuterium = $refrates["deuterium"];
+
+        $ressoucesByDsuValue = $metal / $refratesMetal + $crystal / $refratesCrystal + $deuterium / $refratesDeuterium;
+
+        return round($ressoucesByDsuValue);
+    }
+
+    public function calculateNeededCapacity($metal, $crystal, $deuterium)
+    {
+        $capacity = 0;
+        $capacity = 0.5 * max($metal + $crystal + $deuterium, min(0.75 * (2 * $metal + $crystal + $deuterium), 2 * $metal + $deuterium));
+        return $capacity;
+    }
+
+    public function estimateSmallTransporters($capacity)
+    {
+        global $pricelist;
+        return ceil($capacity / $pricelist[SHIP_SMALL_CARGO]['capacity']) + 1;
+    }
+
+    public function estimateLargeTransporters($capacity)
+    {
+        global $pricelist;
+        return ceil($capacity / $pricelist[SHIP_LARGE_CARGO]['capacity']) + 1;
+    }
+
+    /**
+     * Returns the combined base attack values of ships and defences
+     */
+    public function getDangerValue($spyData)
+    {
+        global $CombatCaps;
+        $dangerValue = 0;
+
+        // ships
+        if (isset($spyData[200])) {
+            foreach ($spyData[200] as $elementID => $amount) {
+                $dangerValue += $CombatCaps[$elementID]['attack'] * $amount;
+            }
+        }
+
+        // defence
+        if (isset($spyData[400])) {
+            foreach ($spyData[400] as $elementID => $amount) {
+                $dangerValue += $CombatCaps[$elementID]['attack'] * $amount;
+            }
+        }
+
+        return  $dangerValue;
+    }
+
+    /**
+     * Returns the combined recycle values of ships and defences
+     */
+    public function getRecyleValue($spyData)
+    {
+        global $pricelist;
+
+        $config = Config::get($this->_fleet['fleet_universe']);
+        $fleetIntoDebris = $config->Fleet_Cdr;
+        $defIntoDebris = $config->Defs_Cdr;
+
+        $recycleValue = 0;
+
+        // ships
+        if (isset($spyData[200]) && $fleetIntoDebris > 0) {
+            foreach ($spyData[200] as $elementID => $amount) {
+                $recycleValue += (($pricelist[$elementID]['cost'][RESOURCE_METAL] +
+                    $pricelist[$elementID]['cost'][RESOURCE_CRYSTAL]) * $fleetIntoDebris / 100) * $amount;
+            }
+        }
+
+        // defence
+        if (isset($spyData[400]) && $defIntoDebris > 0) {
+            foreach ($spyData[400] as $elementID => $amount) {
+                $recycleValue += (($pricelist[$elementID]['cost'][RESOURCE_METAL] +
+                    $pricelist[$elementID]['cost'][RESOURCE_CRYSTAL]) * $defIntoDebris / 100) * $amount;
+            }
+        }
+
+        return  $recycleValue;
+    }
+
+    public function estimateRecyclers($recycleValue)
+    {
+        global $pricelist;
+        return ceil($recycleValue / $pricelist[SHIP_RECYCLER]["capacity"]) + 1;
+    }
+
+    public function bestplanet($owner, $targetCoordinates)
+    {
+        $db = Database::get();
+        $universe = Universe::current();
+
+        $sql = "SELECT galaxy, `system`, planet FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :ownerId AND destruyed = 0 ;";
+        $targetPlanets = $db->select($sql, [
+            ':universe' => $universe,
+            ':ownerId'  => $owner
+        ]);
+
+        $bestPlanet = [
+            'galaxy' => 1,
+            'system' => 1,
+            'planet' => 1,
+        ];
+        $bestDistance = 0;
+
+        foreach ($targetPlanets as $position) {
+
+            $distance = FleetFunctions::getTargetDistance(
+                [
+                    $position['galaxy'],
+                    $position['system'],
+                    $position['planet']
+                ],
+                [
+                    $targetCoordinates['galaxy'],
+                    $targetCoordinates['system'],
+                    $targetCoordinates['planet']
+                ]
+            );
+
+            if (($bestDistance === 0) || ($bestDistance > $distance)) {
+                $bestDistance = $distance;
+                $bestPlanet = $position;
+            }
+        }
+
+        if ($bestDistance === 0) {
+            return null;
+        }
+
+        return [
+            'distance' => $bestDistance,
+            'coords' => $bestPlanet
+        ];
+    }
+
+    public function bestRessPerTime($distance, $senderUser, $ressourcesByMarketValue)
+    {
+        $fleetArray = [SHIP_RIP => 1];
+        $MaxFleetSpeed = FleetFunctions::getFleetMaxSpeed($fleetArray, $senderUser);
+        $GameSpeed = Config::get()->fleet_speed / 2500;
+        $flytime = FleetFunctions::getMissionDuration(100, $MaxFleetSpeed, $distance, $GameSpeed, $senderUser);
+
+        $ressPerTime = $ressourcesByMarketValue / ($flytime * 2);
+
+        return round($ressPerTime, 2);
     }
 
     public function EndStayEvent()

@@ -88,6 +88,7 @@ $USER['authlevel'] = 0;
 $USER['id'] = 0;
 $USER['signalColors'] = PlayerUtil::player_signal_colors();
 $USER['colors'] = PlayerUtil::player_colors();
+$USER['stb_settings'] = PlayerUtil::player_stb_settings();
 
 if (MODE === 'UPGRADE') {
     return;

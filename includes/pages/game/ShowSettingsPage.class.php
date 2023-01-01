@@ -45,6 +45,7 @@ class ShowSettingsPage extends AbstractGamePage
                 ':universe' => Universe::current(),
                 ':userID'   => $USER['id'],
             ]);
+            
             $this->assign([
                 'Selectors'         => [
                     'timezones' => get_timezone_selector(),
@@ -88,6 +89,13 @@ class ShowSettingsPage extends AbstractGamePage
                 'signalColors'          => $USER['signalColors'],
                 'defaultColors'         => PlayerUtil::player_colors(),
                 'defaultSignalColors'   => PlayerUtil::player_signal_colors(),
+                'stb_small_ress'        => $USER['stb_small_ress'],
+                'stb_med_ress'          => $USER['stb_med_ress'],
+                'stb_big_ress'          => $USER['stb_big_ress'],
+                'stb_small_time'        => $USER['stb_small_time'],
+                'stb_med_time'          => $USER['stb_med_time'],
+                'stb_big_time'          => $USER['stb_big_time'],
+                'stb_enabled'           => $USER['stb_enabled'],
                 'missionPrios'          => $missionprios,
             ]);
 
@@ -267,6 +275,14 @@ class ShowSettingsPage extends AbstractGamePage
         $colorNegative = HTTP::_GP('colorNegative', '#ff0000');
         $colorNeutral = HTTP::_GP('colorNeutral', '#ffd600');
 
+        $stb_small_ress     = HTTP::_GP('stb_small_ress', 500 );
+        $stb_med_ress       = HTTP::_GP('stb_med_ress', 3000 );
+        $stb_big_ress       = HTTP::_GP('stb_big_ress', 7000 );
+        $stb_small_time     = HTTP::_GP('stb_small_time', 1 );
+        $stb_med_time       = HTTP::_GP('stb_med_time', 2 );
+        $stb_big_time       = HTTP::_GP('stb_big_time', 3 );
+        $stb_enabled        = HTTP::_GP('stb_enabled', 0 );
+        
         $prio1 = HTTP::_GP('type_mission_1', 1);
         $prio2 = HTTP::_GP('type_mission_2', 2);
         $prio3 = HTTP::_GP('type_mission_3', 0);
@@ -491,7 +507,15 @@ class ShowSettingsPage extends AbstractGamePage
         prioMission7                = :prioMission7,
         prioMission8                = :prioMission8,
         prioMission9                = :prioMission9,
-        prioMission17               = :prioMission17
+        prioMission17               = :prioMission17,
+        stb_small_ress              = :stb_small_ress,
+        stb_med_ress                = :stb_med_ress,
+        stb_big_ress                = :stb_big_ress,
+        stb_small_time              = :stb_small_time,
+        stb_med_time                = :stb_med_time,
+        stb_big_time                = :stb_big_time,
+        stb_enabled                 = :stb_enabled
+
 		WHERE id = :userID;";
         $db->update($sql, [
             ':theme'                        => $theme,
@@ -553,7 +577,15 @@ class ShowSettingsPage extends AbstractGamePage
             ':prioMission7'                 => $prio7,
             ':prioMission8'                 => $prio8,
             ':prioMission9'                 => $prio9,
-            ':prioMission17'                => $prio17
+            ':prioMission17'                => $prio17,
+            ':stb_small_ress'               => $stb_small_ress,
+            ':stb_med_ress'                 => $stb_med_ress,
+            ':stb_big_ress'                 => $stb_big_ress,
+            ':stb_small_time'               => $stb_small_time,
+            ':stb_med_time'                 => $stb_med_time,
+            ':stb_big_time'                 => $stb_big_time,
+            ':stb_enabled'                  => $stb_enabled
+            
 
         ]);
 
