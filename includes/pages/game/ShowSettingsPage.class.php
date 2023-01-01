@@ -512,7 +512,7 @@ class ShowSettingsPage extends AbstractGamePage
         prioMission8                = :prioMission8,
         prioMission9                = :prioMission9,
         prioMission17               = :prioMission17,
-        records_optIn               = :records_optIn
+        records_optIn               = :records_optIn,
         stb_small_ress              = :stb_small_ress,
         stb_med_ress                = :stb_med_ress,
         stb_big_ress                = :stb_big_ress,
