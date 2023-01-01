@@ -49,12 +49,18 @@ class ShowPhalanxPage extends AbstractGamePage
             } else {
                 $systemMin = $thisSystem - $PhRange;
             }
+
+            if ($systemMin <= $systemMax) {
+                return $toSystem >= $systemMin && $toSystem <= $systemMax;
+            } else {
+                return ($toSystem >= $systemMin && $toSystem <= $max) || ($toSystem >= 1 && $toSystem <= $systemMax);
+            }
         } else {
             $systemMin  = max(1, $PLANET['system'] - $PhRange);
             $systemMax  = $PLANET['system'] + $PhRange;
-        }
 
-		return $toSystem >= $systemMin && $toSystem <= $systemMax;
+            return $toSystem >= $systemMin && $toSystem <= $systemMax;
+        }
 	}
 
 	static function GetPhalanxRange($PhalanxLevel)

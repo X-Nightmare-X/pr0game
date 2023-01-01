@@ -179,6 +179,7 @@ class GalaxyRows
         if (Config::get()->galaxy_type == 1) {
             $max = Config::get()->max_system;
             $thisSystem = $PLANET['system'];
+            $toSystem = $this->galaxyRow['system'];
 
             if ($thisSystem + $Range > $max) {
                 $systemMax = $thisSystem + $Range - $max;
@@ -191,12 +192,18 @@ class GalaxyRows
             } else {
                 $systemMin = $thisSystem - $Range;
             }
+
+            if ($systemMin <= $systemMax) {
+                return $toSystem >= $systemMin && $toSystem <= $systemMax;
+            } else {
+                return ($toSystem >= $systemMin && $toSystem <= $max) || ($toSystem >= 1 && $toSystem <= $systemMax);
+            }
         } else {
             $systemMin = $PLANET['system'] - $Range;
             $systemMax = $PLANET['system'] + $Range;
-        }
 
-        return $this->galaxyRow['system'] >= $systemMin && $this->galaxyRow['system'] <= $systemMax;
+            return $this->galaxyRow['system'] >= $systemMin && $this->galaxyRow['system'] <= $systemMax;
+        }
     }
 
     protected function getActionButtons()
