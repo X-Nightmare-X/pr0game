@@ -147,6 +147,7 @@ function ShowQuickEditorPage()
                 'metal_c'       => pretty_number($PlanetData['metal']),
                 'crystal_c'     => pretty_number($PlanetData['crystal']),
                 'deuterium_c'   => pretty_number($PlanetData['deuterium']),
+                'signalColors'  => $USER['signalColors']
             ]);
             $template->show('QuickEditorPlanet.tpl');
             break;
@@ -247,6 +248,7 @@ function ShowQuickEditorPage()
                 ),
                 'ChangePW'      => $ChangePW,
                 'yesorno'       => [1 => $LNG['one_is_yes_1'], 0 => $LNG['one_is_yes_0']],
+                'signalColors'  => $USER['signalColors']
             ]);
             $template->show('QuickEditorUser.tpl');
             break;

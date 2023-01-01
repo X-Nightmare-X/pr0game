@@ -286,7 +286,7 @@ $LNG['sys_expe_back_home_ress'] = 'Sie haben %s %s, %s %s und %s %s midgebrachd.
 $LNG['sys_expe_back_home_ships_flound'] = 'Es wurdne folgende Schiffe gefundne: ';
 $LNG['sys_expe_back_home_ships_lost'] = 'Es gingne folgende Schiffe werlorne: ';
 $LNG['sys_mess_transport'] = 'Dransportbericht ';
-$LNG['sys_tran_mess_owner'] = 'Eine deiner Floddne von %s % erreichd den %s %s %s und lieferd %s %s, %s %s und %s %s.';
+$LNG['sys_tran_mess_owner'] = 'Eine deiner Floddne von %s %s erreichd den %s %s %s und lieferd %s %s, %s %s und %s %s.';
 $LNG['sys_tran_mess_user'] = 'Eine friedliche Flodde von %s %s erreichd %s %s und lieferd  %s %s, %s %s und %s %s.';
 
 $LNG['sys_mess_fleetback'] = 'Floddenrüggkehr ';
@@ -344,3 +344,20 @@ $LNG['type_planet_3'] = 'Mond';
 
 $LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
 $LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
+
+//----------------------------------------------------------------------------//
+// Scavengers Toolbox
+$LNG['spy_summary'] = 'Zusammenfassung';
+$LNG['spy_total_resources'] = 'Gesamte Ressourcen';
+$LNG['spy_hazard_potential'] = 'Gefahrenpotenzial';
+$LNG['spy_potential_resources'] = 'Potenzielle Ressourcen';
+$LNG['spy_potential_recycling'] = 'Recycling potenzial';
+$LNG['spy_necessary_transporters'] = 'Notwendige Transporter';
+$LNG['spy_necessary_recycler'] = 'Notwendige Recycler';
+$LNG['spy_market_value'] = 'Marktwert';
+$LNG['spy_energy'] = 'Energie';
+$LNG['spy_best_resources_per_second'] = 'beste Ress pro Sekunde';
+$LNG['spy_best_planet'] = 'bester Planet';
+$LNG['spy_attack_with'] = 'angreifen mit';
+$LNG['spy_small_transporter'] = 'Kleine Transporter';
+$LNG['spy_large_transporter'] = 'Große Transporter';

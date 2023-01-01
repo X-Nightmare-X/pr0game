@@ -331,3 +331,20 @@ $LNG['type_planet_short_3'] = 'M';
 $LNG['type_planet_1'] = 'Planet';
 $LNG['type_planet_2'] = 'Debris';
 $LNG['type_planet_3'] = 'Moon';
+
+//----------------------------------------------------------------------------//
+// Scavengers Toolbox
+$LNG['spy_summary'] = 'Summary';
+$LNG['spy_total_resources'] = 'Total Resources';
+$LNG['spy_hazard_potential'] = 'Hazard potential';
+$LNG['spy_potential_resources'] = 'Potential resources';
+$LNG['spy_potential_recycling'] = 'Recycling potential';
+$LNG['spy_necessary_transporters'] = 'Necessary transporters';
+$LNG['spy_necessary_recycler'] = 'Necessary recyclers';
+$LNG['spy_market_value'] = 'Market value';
+$LNG['spy_energy'] = 'Energy';
+$LNG['spy_best_resources_per_second'] = 'best ress per second';
+$LNG['spy_best_planet'] = 'best planet';
+$LNG['spy_attack_with'] = 'Attack with';
+$LNG['spy_small_transporter'] = 'small transporter';
+$LNG['spy_large_transporter'] = 'large transporter';

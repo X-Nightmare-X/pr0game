@@ -30,6 +30,8 @@ $LNG['menu_register']				= 'S\'enregistrer';
 $LNG['chose_a_uni']					= 'Choisir un univers';
 $LNG['universe']					= 'Univers';
 $LNG['uni_closed']					= ' (fermée)';
+$LNG['uni_reg_closed']				= ' (Enregistrement fermé)';
+$LNG['uni_reg_open']				= ' (Enregistrement seulement)';
 
 // Button
 $LNG['buttonRegister']				= 'S\'enregistrer maintenant!';
@@ -140,4 +142,5 @@ $LNG['disclamerLabelPhone']			= 'Num. de téléphone:';
 $LNG['disclamerLabelMail']			= 'Email support:';
 $LNG['disclamerLabelNotice']		= 'Plus d\'informations';
 
+$LNG['disclamerRecaptcha']          = 'Ce site utilise reCAPTCHA et les <a href="https://policies.google.com/privacy">Conditions de confidentialité</a> et <a href="https://policies.google.com/terms">Conditions d\'utilisation</a> de Google s\'appliquent.';
 ?>

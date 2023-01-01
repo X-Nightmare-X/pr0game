@@ -19,11 +19,14 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowVertify() 
 {
+	global $USER;
 	$EXT		= explode("|", HTTP::_GP("ext", ""));
 	$action 	= HTTP::_GP("action", "");
 	$file	 	= HTTP::_GP("file", "");
 	$template	= new template();
-	
+	$template->assign_vars([
+        'signalColors'  => $USER['signalColors']
+    ]);
 	switch($action) {
 		case 'check':
 			$REV	= explode(".", Config::get()->VERSION);

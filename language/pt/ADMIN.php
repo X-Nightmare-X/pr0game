@@ -242,8 +242,8 @@ $LNG['bo_permanent'] = 'Ban Permanente';
 $LNG['bo_bbb_title_1'] = 'Sistema de Suspensão';
 $LNG['bo_bbb_title_2'] = 'Quando deve ser desbloqueado';
 $LNG['bo_bbb_title_3'] = 'Sistema de Suspensão &bull; <font color=red>Este jogador encontra-se bloqueado';
-$LNG['bo_bbb_title_4'] = 'A fim de reduzir o tempo de duração, é necessário adicionar um sinal de subração antes do'
-    . ' numero introduzido desejado, que consta o numero de minutos que desejas reduzir, tal como: -5 ';
+$LNG['bo_bbb_title_4'] = 'In order to reduce the time duration, it is necessary to add a "-" before the numbers'
+    . ', such as: -5<br>With previous perma-lock, the lock is reduced to the entered positive time';
 $LNG['bo_bbb_title_5'] = 'Trancado';
 $LNG['bo_bbb_title_6'] = 'Data de modificação';
 $LNG['bo_characters_1'] = 'Letras disponiveis ';
@@ -349,7 +349,9 @@ $LNG['se_server_parameters'] = 'Configurações do Universo';
 $LNG['se_game_name'] = 'Nome do Jogo';
 $LNG['se_uni_name'] = 'Nome do Universo';
 $LNG['se_lang'] = 'Idioma';
-$LNG['se_general_speed'] = 'Velocidade do jogo';
+$LNG['se_building_speed'] = 'Velocidade de construção';
+$LNG['se_shipyard_speed'] = 'Velocidade do estaleiro';
+$LNG['se_research_speed'] = 'Velocidade da investigação';
 $LNG['se_normal_speed'] = 'Velocidade normal: 1';
 $LNG['se_normal_speed_resoruces'] = 'Velocidade normal: 1';
 $LNG['se_normal_speed_fleet'] = 'Velocidade normal: 1';
@@ -359,7 +361,11 @@ $LNG['se_fleet_speed'] = 'Velocidade de Frota';
 $LNG['se_resources_producion_speed'] = 'Velocidade de produção de recursos';
 $LNG['se_halt_speed'] = 'Velocidade de expedição';
 $LNG['se_forum_link'] = 'Link de Forum';
-$LNG['se_server_op_close'] = 'Servidor Online?';
+$LNG['se_uni_status'] = 'Estatuto de Uni';
+$LNG['se_uni_status_regopen_gameopen'] = 'Registo e login abertos';
+$LNG['se_uni_status_regclosed_gameclosed'] = 'Registo e login fechados (por exemplo, manutenção)';
+$LNG['se_uni_status_regopen_gameclosed'] = 'Registo aberto, login fechado (por exemplo, novas unidades)';
+$LNG['se_uni_status_regclosed_gameopen'] = 'Registo fechado, login aberto (por exemplo, antigas unidades)';
 $LNG['se_server_status_message'] = 'Mensagem de servidor fechado';
 $LNG['se_server_planet_parameters'] = 'Configurações de planetas';
 $LNG['se_initial_fields'] = 'Campos iniciais:';
@@ -388,7 +394,6 @@ $LNG['se_noob_protect2'] = 'Proteção N. pontos';
 $LNG['se_noob_protect3'] = 'Proteção N. limite de pontos';
 $LNG['se_noob_protect_e2'] = 'Limite de pontos para deixares de ser novato';
 $LNG['se_noob_protect_e3'] = '';
-$LNG['se_reg_closed'] = 'Registo Fechado';
 $LNG['se_min_build_time'] = 'Construção Mínima';
 $LNG['se_trader_head'] = 'Configurações do Mercador de Frota';
 $LNG['se_trader_ships'] = 'Naves autorizadas:';
@@ -774,11 +779,11 @@ $LNG['ac_suspended_time'] = 'Suspendido';
 $LNG['ac_suspended_longer'] = 'Até';
 $LNG['ac_suspended_reason'] = 'Razão';
 $LNG['ac_suspended_autor'] = 'Suspenso por';
-$LNG['ac_note_k'] = '<table><tr><th width=10%><font color=lime>T+</font></th><th>Mais que o trilião</th></tr>'
-    . '<tr><th width=10%><font color=lime>T</font></th><th>Mais ou o mesmo que o trilião</th></tr>'
-    . '<tr><th width=10%><font color=lime>B</font></th><th>Mais ou o mesmo que o bilião</th></tr>'
-    . '<tr><th width=10%><font color=lime>M</font></th><th>Mais ou o mesmo que o milhão</th></tr>'
-    . '<tr><th width=10%><font color=lime>K</font></th><th>Mais ou o mesmo que o milhar</th></tr></table>';
+$LNG['ac_note_k'] = '<table><tr><th width=10%><font class="colorPositive">T+</font></th><th>Mais que o trilião</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">T</font></th><th>Mais ou o mesmo que o trilião</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">B</font></th><th>Mais ou o mesmo que o bilião</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">M</font></th><th>Mais ou o mesmo que o milhão</th></tr>'
+    . '<tr><th width=10%><font class="colorPositive">K</font></th><th>Mais ou o mesmo que o milhar</th></tr></table>';
 $LNG['ac_leyend'] = '[ Legenda ]';
 $LNG['ac_no_rank_level'] = 'Não tem permisões suficientes para ver informações acerca deste jogador!';
 //###########################################################//

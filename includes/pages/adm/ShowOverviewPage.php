@@ -20,7 +20,6 @@ function ShowOverviewPage()
 	global $LNG, $USER;
 	
 	$Message	= array();
-
 	if ($USER['authlevel'] >= AUTH_ADM)
 	{
 		if(file_exists(ROOT_PATH.'update.php'))
@@ -56,6 +55,7 @@ function ShowOverviewPage()
 		'ow_donate'			=> $LNG['ow_donate'],
 		'Messages'			=> $Message,
 		'date'				=> date('m\_Y', TIMESTAMP),
+		'signalColors'		=> $USER['signalColors'],
 	));
 	
 	$template->show('OverviewBody.tpl');

@@ -367,6 +367,11 @@ function floatToString($number, $Pro = 0, $output = false)
     return sprintf("%." . $Pro . "f", $number);
 }
 
+function getNumber($from, $default = 0)
+{
+    return is_numeric($from) ? $from : $default;
+}
+
 function isModuleAvailable($ID)
 {
     global $USER;
@@ -522,7 +527,7 @@ function exceptionHandler($exception)
     }
 
 
-    $DIR = MODE == 'INSTALL' ? '..' : '.';
+    $DIR = (MODE === 'INSTALL' || MODE === 'UPGRADE') ? '..' : '.';
     ob_start();
     echo '<!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="de" class="no-js ie6"> <![endif]-->
@@ -605,8 +610,10 @@ Debug Backtrace:
 </body>
 </html>';
 
-    require_once 'includes/classes/class.Discord.php';
-    Discord::sendException($exception);
+    if (MODE !== 'INSTALL') {
+        require_once 'includes/classes/class.Discord.php';
+        Discord::sendException($exception);
+    }
 
     echo str_replace(['\\', ROOT_PATH, substr(ROOT_PATH, 0, 15)], ['/', '/', 'FILEPATH '], ob_get_clean());
 

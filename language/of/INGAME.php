@@ -15,14 +15,14 @@
 
 $LNG['Messages'] = 'Nachrichden';
 $LNG['write_message'] = 'Schreibe ne Nachricht';
-
+$LNG['type_planet_short_3'] = 'M';
 $LNG['PM'] = '[PN]';
 $LNG['ready'] = 'Ferdig';
-
+$LNG["delete_confirm_gala"] = 'Logale Unifersumsdadne löschne Hä?';
 $LNG['loading'] = 'Lade ...';
-
+$LNG['fleetPrio'] = 'Flodden Auftrag Prioritätene';
 $LNG['invalid_action'] = 'Ungüldige Agtion';
-
+$LNG["whenbuildable"] = 'Möglich in';
 $LNG['type_mission_1'] = 'Angreifne ';
 $LNG['type_mission_2'] = 'Werbandsangriff ';
 $LNG['type_mission_3'] = 'Dransport ';
@@ -34,6 +34,47 @@ $LNG['type_mission_8'] = 'Abbaune ';
 $LNG['type_mission_9'] = 'Zermeddln ';
 $LNG['type_mission_10'] = 'Ragetenangriff';
 $LNG['type_mission_15'] = 'Exbedition ';
+$LNG['type_mission_16'] = 'Marktplatz';
+$LNG['type_mission_17'] = 'Transfer';
+
+
+$LNG['type_mission_1_own'] = 'Eigener Angriff';
+$LNG['type_mission_2_own'] = 'Eigene Verbandsangriffsflotte';
+$LNG['type_mission_3_own'] = 'Eigener Transport';
+$LNG['type_mission_4_own'] = 'Eigenes Stationieren';
+$LNG['type_mission_5_own'] = 'Eigenes Halten';
+$LNG['type_mission_6_own'] = 'Eigenes Spionieren';
+$LNG['type_mission_7_own'] = 'Eigenes Kolonisieren';
+$LNG['type_mission_7_own_return'] = 'Rückkehr Eigenes Kolonisieren';
+$LNG['type_mission_8_own'] = 'Eigenes Abbauen';
+$LNG['type_mission_9_own'] = 'Eigenes Zerstören';
+$LNG['type_mission_10_own'] = 'Eigener Raketenangriff';
+$LNG['type_mission_15_own'] = 'Eigene Expedition';
+$LNG['type_mission_16_own'] = 'Eigene Marktplatzflotte';
+$LNG['type_mission_17_own'] = 'Eigener Transfer';
+$LNG['type_mission_return_own'] = 'Eigene Rückkehr';
+
+$LNG['type_mission_2_friend'] = 'Befreundete Verbandsangriffsflotte';
+
+$LNG['type_mission_1_foreign'] = 'Fremder Angriff';
+$LNG['type_mission_2_foreign'] = 'Fremde Verbandsangriffsflotte';
+$LNG['type_mission_3_foreign'] = 'Fremder Transport';
+$LNG['type_mission_4_foreign'] = 'Fremdes Stationieren';
+$LNG['type_mission_5_foreign'] = 'Fremdes Halten';
+$LNG['type_mission_6_foreign'] = 'Fremdes Spionieren';
+$LNG['type_mission_7_foreign'] = 'Fremdes Kolonisieren';
+$LNG['type_mission_8_foreign'] = 'Fremdes Abbauen';
+$LNG['type_mission_9_foreign'] = 'Fremdes Zerstören';
+$LNG['type_mission_10_foreign'] = 'Fremder Raketenangriff';
+$LNG['type_mission_15_foreign'] = 'Fremde Expedition';
+$LNG['type_mission_16_foreign'] = 'Fremde Marktplatzflotte';
+$LNG['type_mission_17_foreign'] = 'Fremder Transfer';
+$LNG['type_mission_return_foreign'] = 'Fremde Rückkehr';
+
+$LNG['positiv'] = 'Positiv';
+$LNG['negativ'] = 'Negativ';
+$LNG['neutral'] = 'Neutral';
+$LNG['StaticTimer'] = 'Ankunftszeit';
 
 $LNG['type_planet_1'] = 'Blanet';
 $LNG['type_planet_2'] = 'Drümmerfeld ';
@@ -83,6 +124,7 @@ $LNG['lm_options'] = 'Einschdellungen';
 $LNG['lm_banned'] = 'Branger';
 $LNG['lm_forums'] = 'Forum';
 $LNG['lm_logout'] = 'Logout';
+$LNG['donate'] = 'Spendne';
 $LNG['lm_administration'] = 'Adminischdration';
 $LNG['lm_queue'] = 'Queues';
 $LNG['lm_topkb'] = 'Baddle Hall';
@@ -327,6 +369,7 @@ $LNG['fl_expedition_alert_message'] = 'Achdung die Exbedition bringd Gefahrne mi
     . ' ihre gesamte Flodde weggemeddelt werden!';
 $LNG['fl_vacation_mode_active'] = 'Sie befindne sich im Urlaubsmodus';
 $LNG['fl_expedition_fleets_limit'] = 'Sie gönnene ned mehr Exbeditionene startne!';
+$LNG['fl_selected_resources'] = 'Ausgewählte Rohstoffe Laden';
 $LNG['fl_week_player'] = 'Schbieler is zu schwach für sie!';
 $LNG['fl_strong_player'] = 'Schbieler isd zu starg für sie!';
 $LNG['fl_in_vacation_player'] = 'Schbieler befinded sich im Urlaubsmodus';
@@ -431,8 +474,8 @@ $LNG['bd_maxlevel'] = 'Maggsimale Schdufe erreichd';
 $LNG['bd_on'] = 'auf';
 $LNG['bd_max_builds'] = 'Sie gönnene maggs. %d Aufdräge versenden!';
 $LNG['bd_next_level'] = 'Nexd Lewel:';
-$LNG['bd_need_engine'] = 'Werbraucht  <span style="color:#FF0000">%s</span> %s mehr';
-$LNG['bd_more_engine'] = 'Broduziert  <span style="color:#00FF00">%s</span> %s mehr';
+$LNG['bd_need_engine'] = 'Werbraucht  <span class="colorNegative">%s</span> %s mehr';
+$LNG['bd_more_engine'] = 'Broduziert  <span class="colorPositive">%s</span> %s mehr';
 $LNG['bd_jump_gate_action'] = 'Schbringen';
 $LNG['bd_cancel_warning'] = 'Bei Abbruch werdne nur 60% der Ressourcne wiederhergeschdellt!';
 $LNG['bd_cancel_send'] = 'Margierte - Löschen';
@@ -985,7 +1028,8 @@ $LNG['bn_writemail'] = 'Mail an %s schreiben';
 //class.CheckSession.php
 
 $LNG['css_account_banned_message'] = 'Dein Accound wurde gesberrt - hädix8!';
-$LNG['css_account_banned_expire'] = 'Du bischd bis zum %s gesberrt!<br><a href="./index.php?page=pranger">Pranger</a>';
+$LNG['css_account_banned_expire'] = 'Du bist bis zum %s gesperrt!<br>Bitte melde dich ggf. im <a style="color: -webkit-link;" href="https://discord.gg/jhYYN3yuat">Discord per Ticket (link)</a>';
+$LNG['css_account_banned_reason'] = 'Grund: %s';
 $LNG['css_goto_homeside'] = '<a href="./index.php">Zur Startseite</a>';
 $LNG['css_server_maintrace'] = 'Serwer Maintenance<br><br>Schbiel zurzeid geschlossen.<br><br>Grund: %s';
 
@@ -1259,5 +1303,32 @@ $LNG['lo_continue'] = 'Glickne Sie hier, um ned zu warden';
 
 //----------------------------------------------------------------------------//
 
+$LNG['fleet_table_custom_empty_name'] = 'Bitte einen Floddennamen eingebene!';
+$LNG['custom_fleet'] = 'Benutzerdefinierte Flodden';
+$LNG['custom_fleet_confirm'] = 'Floddenvorlage %s wegmeddln?';
 
 // Translated into Oger by Appendix (ASB8).
+
+
+//----------------------------------------------------------------------------//
+//Scavengers Toolbox
+$LNG['stb_activ'] = 'Scavengers Toolbox enabled';
+
+$LNG['stb_low_ress_tooltip'] = 'If there are fewer resources than entered on the planet, the spy report is marked bright red (bad).';
+$LNG['stb_low_ress'] = 'Low resources present on the target planet';
+
+$LNG['stb_mid_ress_tooltip'] = 'If there are fewer resources than entered on the planet, the spy report is marked light orange (medium).';
+$LNG['stb_mid_ress'] = 'Medium resources present on the target planet';
+
+$LNG['stb_big_ress_tooltip'] = 'If there are fewer resources than entered on the planet, the spy report is marked light green (good). Spy reports with resources above this value are displayed in light blue (optimal).';
+$LNG['stb_big_ress'] = 'Many resources present on the target planet';
+
+
+$LNG['stb_small_time_tooltip'] = 'Describes the best possible resource yield per second, rounded to two decimal places. A ratio less than the registered value is interpreted as bad (light red).';
+$LNG['stb_small_time'] = 'Low resources per second ratio';
+
+$LNG['stb_med_time_tooltip'] = 'Describes the best possible resource yield per second, rounded to two decimal places. A ratio less than the registered value is interpreted as medium (light orange).';
+$LNG['stb_med_time'] = 'Average resources per second ratio';
+
+$LNG['stb_big_time_tooltip'] = 'Describes the best possible resource yield per second, rounded to two decimal places. A ratio less than the entered value is interpreted as good (light green), a value above as optimal (light blue).';
+$LNG['stb_big_time'] = 'Good resources per second ratio';

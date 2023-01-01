@@ -212,7 +212,8 @@ $LNG['bo_permanent'] = 'Bloqueo Permanente';
 $LNG['bo_bbb_title_1'] = 'Sistema de suspensión';
 $LNG['bo_bbb_title_2'] = 'Establecer fecha en la que perdera la suspensión';
 $LNG['bo_bbb_title_3'] = 'Sistema de suspensión<br><font color=red>Atención, este usuario ya esta suspendido';
-$LNG['bo_bbb_title_4'] = 'Para restar dias, horas, etc agrega un signo menos ( - ) delante del número, Ejemplo: -5';
+$LNG['bo_bbb_title_4'] = 'In order to reduce the time duration, it is necessary to add a "-" before the numbers'
+    . ', such as: -5<br>With previous perma-lock, the lock is reduced to the entered positive time';
 $LNG['bo_bbb_title_5'] = 'Suspendido hasta el';
 $LNG['bo_bbb_title_6'] = 'Cambiar fecha';
 $LNG['bo_characters_1'] = 'Caracteres disponibles: ';
@@ -314,7 +315,9 @@ $LNG['se_server_parameters'] = 'Parámetros del servidor';
 $LNG['se_game_name'] = 'Nombre (Juego)';
 $LNG['se_uni_name'] = 'Nombre (Universo)';
 $LNG['se_lang'] = 'Idioma';
-$LNG['se_general_speed'] = 'Velocidad general';
+$LNG['se_building_speed'] = 'Velocidad de construcción';
+$LNG['se_shipyard_speed'] = 'Velocidad del astillero';
+$LNG['se_research_speed'] = 'Velocidad de investigación';
 $LNG['se_normal_speed'] = 'Velocidad normal del juego: 1<br>Velocidad máxima recomendada: 20';
 $LNG['se_normal_speed_resoruces'] = 'Velocidad normal de producción: 1<br>Velocidad máxima recomendada: 20';
 $LNG['se_normal_speed_fleet'] = 'Velocidad normal de las flotas: 1<br>Velocidad máxima recomendada: 20';
@@ -324,7 +327,11 @@ $LNG['se_resources_producion_speed'] = 'Velocidad de producción';
 $LNG['se_halt_speed'] = 'Factor-Expedición';
 $LNG['se_energy_speed'] = 'Factor-Energía';
 $LNG['se_forum_link'] = 'Enlace del foro';
-$LNG['se_server_op_close'] = '¿Servidor en linea?';
+$LNG['se_uni_status'] = 'Estatus de la Uni';
+$LNG['se_uni_status_regopen_gameopen'] = 'Registro e inicio de sesión abiertos';
+$LNG['se_uni_status_regclosed_gameclosed'] = 'Registro e inicio de sesión cerrados (por ejemplo, por mantenimiento)';
+$LNG['se_uni_status_regopen_gameclosed'] = 'Registro abierta, inicio de sesión cerrado (por ejemplo, nuevas unis)';
+$LNG['se_uni_status_regclosed_gameopen'] = 'Registro cerrado, inicio de sesión abierto (por ejemplo, las antiguas unis)';
 $LNG['se_server_status_message'] = 'Mensaje del estado fuera de Linea';
 $LNG['se_server_planet_parameters'] = 'Parámetros de los planetas nuevos';
 $LNG['se_initial_fields'] = 'Campos iniciales';
@@ -356,7 +363,6 @@ $LNG['se_noob_protect2'] = 'Protección N. puntos';
 $LNG['se_noob_protect3'] = 'Protección N. puntos limite';
 $LNG['se_noob_protect_e2'] = 'Límite de puntos en el que dejas de ser novato';
 $LNG['se_noob_protect_e3'] = 'Click para más información';
-$LNG['se_reg_closed'] = 'Bloquear registro';
 $LNG['se_min_build_time'] = 'Tiempo Mínimo de Construcción';
 $LNG['se_min_build_time_info'] = 'Aquí se ajusta el tiempo mínimo de construcción de Edificios, Investigaciones, Naves'
     . ' y Defensas. El valor por defecto es 1 segundo.<br>Para desactivarlo insertar el valor 0<br>'
@@ -748,10 +754,10 @@ $LNG['ac_suspended_time'] = 'Suspendido el';
 $LNG['ac_suspended_longer'] = 'Hasta el';
 $LNG['ac_suspended_reason'] = 'Razón';
 $LNG['ac_suspended_autor'] = 'Suspendido por';
-$LNG['ac_note_k'] = '<table><tr><th width=10%><font color=lime>T+</font></th><th>Supera el trillón</th></tr><tr>'
-    . '<th width=10%><font color=lime>T</font></th><th>Igual que el trillón</th></tr><tr><th width=10%>'
-    . '<font color=lime>B</font></th><th>Mayor o igual que el billón</th></tr><tr><th width=10%><font color=lime>M'
-    . '</font></th><th>Mayor o igual que el millón</th></tr><tr><th width=10%><font color=lime>K</font></th><th>Mayor o'
+$LNG['ac_note_k'] = '<table><tr><th width=10%><font class="colorPositive">T+</font></th><th>Supera el trillón</th></tr><tr>'
+    . '<th width=10%><font class="colorPositive">T</font></th><th>Igual que el trillón</th></tr><tr><th width=10%>'
+    . '<font class="colorPositive">B</font></th><th>Mayor o igual que el billón</th></tr><tr><th width=10%><font class="colorPositive">M'
+    . '</font></th><th>Mayor o igual que el millón</th></tr><tr><th width=10%><font class="colorPositive">K</font></th><th>Mayor o'
     . ' igual que los mil</th></tr></table>';
 $LNG['ac_leyend'] = '[ Leyenda ]';
 $LNG['ac_no_rank_level'] = 'No tienes los permisos suficientes para ver la información de éste usuario.';

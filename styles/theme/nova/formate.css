@@ -30,7 +30,7 @@ body {
   /* font-family: Whitney,Source Sans Pro,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; */
 }
 
-body, input, select, button, textarea, a, td, th, tr, table, a:visited {
+body, input, select, button, textarea, a, td, th, tr, table,a:visited {
   color: #fff;
 }
 
@@ -68,10 +68,8 @@ input[type="radio"] {
 }
 
 a:hover {
-  color: #ffd600;
-  text-decoration: none;
-  font-weight: bold;
-
+  color:#FFF;
+  text-decoration: underline;
 }
 
 table, td, th {
@@ -186,10 +184,6 @@ select {
   color: skyblue;
 }
 
-.res_max {
-  color: #0F0
-}
-
 .res_name {
   color: red;
   font-weight: 700
@@ -244,72 +238,8 @@ select {
   text-decoration: line-through
 }
 
-.ownattack {
-  color: #6c3
-}
-
-.owncolony {
-  color: #c1c1c1
-}
-
-.owndeploy {
-  color: #cf79de
-}
-
-.owndestroy {
-  color: #ff9
-}
-
-.ownfederation {
-  color: #6c3
-}
-
-.hostilefederation {
-  color: #c66
-}
-
-.ownharvest {
-  color: #ceff68
-}
-
-.ownhold {
-  color: #80a0c0
-}
-
-.destroy {
-  color: #d4a017
-}
-
-.hold {
-  color: #39c
-}
-
-.warning {
-  color: #FF8040
-}
-
-.notice {
-  color: #FF0
-}
-
-.return {
-  color: #6e8eea;
-}
-
 .allymember, .colony, .deploy, .harvest, .transport, .success {
   color: lime
-}
-
-.owntransport {
-  color: #5bf1c2
-}
-
-.ownespionage, .ownmissile {
-  color: #fc6
-}
-
-.espionage, .missile {
-  color: #f60
 }
 
 .build_submit {
@@ -320,7 +250,6 @@ select {
   text-align: center;
   font-weight: bold;
   padding: 3px;
-  color: lime;
   min-width: 150px;
   min-height: 35px;
 }
@@ -370,7 +299,6 @@ menu a {
 
 menu a:hover {
   color: #2cbbf7;
-  font-weight: bold;
 }
 
 div#disclamer a {
@@ -418,7 +346,7 @@ th a, .res_current {
   color: #FFF
 }
 
-.res_current_max, .attack, .error {
+.attack, .error {
   color: red
 }
 
@@ -506,7 +434,7 @@ th a, .res_current {
   background: #161618;
   text-align: center;
   border: #161618;
-  border-radius: 15px;
+  border-radius: 15px 15px 0px 0px;
   padding: 5px;
 }
 
@@ -669,7 +597,7 @@ th a, .res_current {
 }
 
 .buildn {
-  border-radius: 15px;
+  border-radius: 15px 15px 0px 0px;
   padding: 6px;
   overflow: auto;
   background: #ee4d2e;
@@ -750,7 +678,6 @@ th a, .res_current {
   text-align: center;
   font-weight: bold;
   padding: 3px;
-  color: lime;
   min-height: 40px;
 }
 
@@ -792,7 +719,7 @@ input:hover {
   div .buildc {
     border: none;
   }
-  
+
   div .buildb {
     border: none;
   }
@@ -831,3 +758,4 @@ input:hover {
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
 }
+input:invalid, textarea:invalid { background-color: #2a2e31; }

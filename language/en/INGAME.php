@@ -16,13 +16,13 @@
 // Translated into English by QwataKayean . All rights reversed (C) 2012
 // 2Moons - Copyright (C) 2010-2012 Slaver
 // Grammar Pedantry fixes @etaletai 2018
-
-
+$LNG['type_planet_short_3'] = 'M';
+$LNG['fleetPrio'] = 'Fleet order priority';
 $LNG['Messages'] = 'Messages';
-
+$LNG["delete_confirm_gala"] = 'Delete local universe data?';
 $LNG['PM'] = '[PM]';
 $LNG['write_message'] = 'Write message';
-
+$LNG["whenbuildable"] = 'Possible in';
 $LNG['ready'] = 'Ready';
 
 $LNG['loading'] = 'Loading ...';
@@ -42,6 +42,48 @@ $LNG['type_mission_10'] = 'Missile attack';
 $LNG['type_mission_15'] = 'Expedition';
 $LNG['type_mission_16'] = 'Trade';
 $LNG['type_mission_17'] = 'Transfer';
+
+$LNG['type_mission_1_own'] = 'Own attack';
+$LNG['type_mission_2_own'] = 'Own federation attack fleet';
+$LNG['type_mission_3_own'] = 'Own transport';
+$LNG['type_mission_4_own'] = 'Own stationing';
+$LNG['type_mission_5_own'] = 'Own holding';
+$LNG['type_mission_6_own'] = 'Own spying';
+$LNG['type_mission_7_own'] = 'Own colonising';
+$LNG['type_mission_7_own_return'] = 'Return own colonising';
+$LNG['type_mission_8_own'] = 'Own recycling';
+$LNG['type_mission_9_own'] = 'Own destruction';
+$LNG['type_mission_10_own'] = 'Own missile attack';
+$LNG['type_mission_15_own'] = 'Own expedition';
+$LNG['type_mission_16_own'] = 'Own marketplace fleet';
+$LNG['type_mission_17_own'] = 'Own transfer';
+$LNG['type_mission_return_own'] = 'Own return';
+
+$LNG['type_mission_2_friend'] = 'Friendly federation attack fleet';
+
+$LNG['type_mission_1_foreign'] = 'Foreign attack';
+$LNG['type_mission_2_foreign'] = 'Foreign federation attack fleet';
+$LNG['type_mission_3_foreign'] = 'Foreign transport';
+$LNG['type_mission_4_foreign'] = 'Foreign stationing';
+$LNG['type_mission_5_foreign'] = 'Foreign holding';
+$LNG['type_mission_6_foreign'] = 'Foreign spying';
+$LNG['type_mission_7_foreign'] = 'Foreign colonising';
+$LNG['type_mission_8_foreign'] = 'Foreign recycling';
+$LNG['type_mission_9_foreign'] = 'Foreign destruction';
+$LNG['type_mission_10_foreign'] = 'Foreign missile attack';
+$LNG['type_mission_15_foreign'] = 'Foreign expedition';
+$LNG['type_mission_16_foreign'] = 'Foreign marketplace fleet';
+$LNG['type_mission_17_foreign'] = 'Foreign transfer';
+$LNG['type_mission_return_foreign'] = 'Foreign return';
+
+$LNG['positive'] = 'Positive';
+$LNG['negative'] = 'Negative';
+$LNG['neutral'] = 'Neutral';
+$LNG['StaticTimer'] = 'Arrival time';
+
+$LNG['own_colors'] = 'Own colours';
+$LNG['foreign_colors'] = 'Foreign colours';
+$LNG['general_colors'] = 'General colours';
 
 $LNG['type_planet_1'] = 'Planet';
 $LNG['type_planet_2'] = 'Debris Field';
@@ -90,6 +132,7 @@ $LNG['lm_notes'] = 'Notes';
 $LNG['lm_statistics'] = 'Statistics';
 $LNG['lm_search'] = 'Search';
 $LNG['lm_options'] = 'Options';
+$LNG['donate'] = 'Donate';
 $LNG['lm_banned'] = 'Banned';
 $LNG['lm_forums'] = 'Forum';
 $LNG['lm_logout'] = 'Logout';
@@ -331,6 +374,7 @@ $LNG['fl_null'] = 'none';
 $LNG['fl_hours'] = 'Hours';
 $LNG['fl_resources_left'] = 'Capacity avaliable';
 $LNG['fl_all_resources'] = 'All resources';
+$LNG['fl_selected_resources'] = 'selected resources';
 $LNG['fl_multi_alarm'] = 'Multi alarm!';
 $LNG['fl_empty_target'] = 'No mission available (does this planet exist?)';
 $LNG['fl_transfer_alert_message'] = 'Attention! Your fleet will be transferred to different user!';
@@ -445,8 +489,8 @@ $LNG['bd_maxlevel'] = 'Maximum level reached';
 $LNG['bd_on'] = 'connected';
 $LNG['bd_max_builds'] = 'You will have only max. %d queue building!';
 $LNG['bd_next_level'] = 'Next level:';
-$LNG['bd_need_engine'] = 'Requires <font color="#FF0000">%s</font> more %s';
-$LNG['bd_more_engine'] = 'Will produce <font color="#00FF00">%s</font> %s more';
+$LNG['bd_need_engine'] = 'Requires <font class="colorNegative">%s</font> more %s';
+$LNG['bd_more_engine'] = 'Will produce <font class="colorPositive">%s</font> %s more';
 $LNG['bd_jump_gate_action'] = 'Jump';
 $LNG['bd_cancel_warning'] = 'ATTENTION! <br> If you cancel only will recoup 60% of your cost.';
 $LNG['bd_cancel_send'] = 'Cancel construction';
@@ -998,7 +1042,8 @@ $LNG['bn_writemail'] = 'Mail to %s';
 
 // Manutenção & Banido
 $LNG['css_account_banned_message'] = 'Your account has been banned!';
-$LNG['css_account_banned_expire'] = 'Your account is already unbanned %s!';
+$LNG['css_account_banned_expire'] = 'You are banned until %s!<br>In case of questions, please open a ticket on our <a style="color: -webkit-link;" href="https://discord.gg/jhYYN3yuat">Discord server (link)</a>';
+$LNG['css_account_banned_reason'] = 'Reason: %s';
 $LNG['css_goto_homeside'] = '<a href="./index.php">Go to the homepage</a>';
 $LNG['css_server_maintrace'] = 'Maintenance of the server<br><br>The game is closed.<br><br>Até: %s';
 
@@ -1271,3 +1316,30 @@ $LNG['lo_notify'] = 'Will be redirected in <span id="seconds">5</span> seconds';
 $LNG['lo_continue'] = 'Click to continue.';
 
 //----------------------------------------------------------------------------//
+$LNG['fleet_table_custom_empty_name'] = 'Insert a fleet name please!';
+$LNG['custom_fleet'] = 'Custom fleets';
+$LNG['custom_fleet_confirm'] = 'Remove fleet template %s?';
+
+
+//----------------------------------------------------------------------------//
+//Scavengers Toolbox
+$LNG['stb_activ'] = 'detailed Spymessage Scavengers Toolbox enabled';
+
+$LNG['stb_low_ress_tooltip'] = 'If there are fewer resources than entered on the planet, the spy report is marked bright red (bad).';
+$LNG['stb_low_ress'] = 'Low resources attarget, less then';
+
+$LNG['stb_mid_ress_tooltip'] = 'If there are fewer resources than entered on the planet, the spy report is marked light orange (medium).';
+$LNG['stb_mid_ress'] = 'Medium resources attarget, less then';
+
+$LNG['stb_big_ress_tooltip'] = 'If there are fewer resources than entered on the planet, the spy report is marked light green (good). Spy reports with resources above this value are displayed in light blue (optimal).';
+$LNG['stb_big_ress'] = 'Many resources attarget, less then';
+
+
+$LNG['stb_small_time_tooltip'] = 'Describes the best possible resource yield per second, rounded to two decimal places. A ratio less than the registered value is interpreted as bad (light red).';
+$LNG['stb_small_time'] = 'Low resources per second ratio';
+
+$LNG['stb_med_time_tooltip'] = 'Describes the best possible resource yield per second, rounded to two decimal places. A ratio less than the registered value is interpreted as medium (light orange).';
+$LNG['stb_med_time'] = 'Average resources per second ratio';
+
+$LNG['stb_big_time_tooltip'] = 'Describes the best possible resource yield per second, rounded to two decimal places. A ratio less than the entered value is interpreted as good (light green), a value above as optimal (light blue).';
+$LNG['stb_big_time'] = 'Good resources per second ratio';

@@ -22,7 +22,7 @@ if ($USER['authlevel'] == AUTH_USR)
 
 function ShowDumpPage()
 {
-	global $LNG;
+	global $LNG, $USER;
 	if(!isset($_POST['action'])) { $_POST['action'] = ''; }
 	switch($_POST['action'])
 	{
@@ -43,8 +43,11 @@ function ShowDumpPage()
 			$dump->dumpTablesToFile($dbTables, $filePath);
 			
 			$template	= new template();
+			$template->assign_vars([
+				'signalColors' => $USER['signalColors']
+			]);
 			$template->message(sprintf($LNG['du_success'], 'includes/backups/'.$fileName));
-		break;
+			break;
 		default:
 			$dumpData['perRequest']		= 100;
 
@@ -66,7 +69,8 @@ function ShowDumpPage()
 			$template	= new template();
 
 			$template->assign_vars(array(	
-				'dumpData'	=> $dumpData,
+				'dumpData'		=> $dumpData,
+				'signalColors' 	=> $USER['signalColors']
 			));
 			
 			$template->show('DumpPage.tpl');

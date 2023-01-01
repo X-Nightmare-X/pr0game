@@ -20,7 +20,7 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 }
 function ShowGiveaway()
 {
-    global $LNG, $resource, $reslist;
+    global $LNG, $resource, $reslist, $USER;
     $template = new template();
     $action = HTTP::_GP('action', '');
     if ($action == 'send') {
@@ -86,11 +86,16 @@ function ShowGiveaway()
         $LOG->old = $logOld;
         $LOG->new = $logNew;
         $LOG->save();
-
+        $template->assign_vars([
+            'signalColors'  => $USER['signalColors'],
+        ]);
         $template->message($LNG['ga_success']);
         exit;
     }
 
-    $template->assign_vars(['reslist' => $reslist]);
+    $template->assign_vars([
+        'reslist'       => $reslist,
+        'signalColors'  => $USER['signalColors'],
+    ]);
     $template->show("giveaway.tpl");
 }

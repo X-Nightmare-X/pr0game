@@ -77,6 +77,7 @@ function ShowNewsPage(){
 		'nws_del'		=> $LNG['nws_del'],
 		'nws_create'	=> $LNG['nws_create'],
 		'nws_content'	=> $LNG['nws_content'],
+		'signalColors'	=> $USER['signalColors'],
 	));
 	
 	$template->show('NewsPage.tpl');

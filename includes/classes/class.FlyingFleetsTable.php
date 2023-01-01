@@ -206,7 +206,9 @@ class FlyingFleetsTable
 
     public function getEventData($fleetRow, $Status)
     {
-        global $LNG;
+        global $LNG, $USER;
+
+        $db = Database::get();
         $Owner          = $fleetRow['fleet_owner'] == $this->userId;
         $friendly = !$Owner && $fleetRow['fleet_target_owner'] != $this->userId;
         $FleetStyle  = [
@@ -255,7 +257,7 @@ class FlyingFleetsTable
             $LNG['type_mission_' . $MissionType],
             $FleetPrefix . $FleetStyle[$MissionType]
         );
-        $FleetStatus = [0 => 'flight', 1 => 'return' , 2 => 'holding'];
+        $FleetClass = '';
         $StartType = $LNG['type_planet_' . $fleetRow['fleet_start_type']];
         $TargetType = $LNG['type_planet_' . $fleetRow['fleet_end_type']];
 
@@ -413,8 +415,56 @@ class FlyingFleetsTable
                     );
                 }
             }
+        }if($Status == FLEET_OUTWARD) {
+            if ($MissionType == MISSION_ACS) {
+                $sql = "SELECT count(uta.acsID) FROM %%USERS_TO_ACS%% AS uta 
+                    INNER JOIN %%FLEETS%% AS f ON uta.acsID = f.fleet_group 
+                    WHERE uta.userID = :userId AND f.fleet_id = :fleetId;";
+                $friend = $db->selectSingle($sql, array(
+                    ':userId'   => $USER['id'],
+                    ':fleetId'  => $fleetRow['fleet_id']
+                ));
+                if ( $Owner == true) {
+                    $FleetClass = 'colorMission2Own';
+                } else if ($friend > 0 ) {
+                    $FleetClass = 'colorMission2friend';
+                } else {
+                    $FleetClass = 'colorMission2Foreign';
+                }
+            } else if ($MissionType == MISSION_ATTACK) {
+                $FleetClass = $Owner ? 'colorMission1Own' : 'colorMission1Foreign';
+            } else if ($MissionType == MISSION_TRANSPORT) {
+                $FleetClass = $Owner ? 'colorMission3Own' : 'colorMission3Foreign';
+            } else if ($MissionType == MISSION_STATION) {
+                $FleetClass = $Owner ? 'colorMission4Own' : 'colorMission4Foreign';
+            } else if ($MissionType == MISSION_HOLD) {
+                $FleetClass = $Owner ? 'colorMission5Own' : 'colorMission5Foreign';
+            } else if ($MissionType == MISSION_SPY) {
+                $FleetClass = $Owner ? 'colorMission6Own' : 'colorMission6Foreign';
+            } else if ($MissionType == MISSION_COLONISATION) {
+                $FleetClass = $Owner ? 'colorMission7Own' : 'colorMission7Foreign';
+            } else if ($MissionType == MISSION_RECYCLING) {
+                $FleetClass = $Owner ? 'colorMission8Own' : 'colorMission8Foreign';
+            } else if ($MissionType == MISSION_DESTRUCTION) {
+                $FleetClass = $Owner ? 'colorMission9Own' : 'colorMission9Foreign';
+            } else if ($MissionType == MISSION_MISSILE) {
+                $FleetClass = $Owner ? 'colorMission10Own' : 'colorMission10Foreign';
+            } else if ($MissionType == MISSION_EXPEDITION) {
+                $FleetClass = $Owner ? 'colorMission15Own' : 'colorMission15Foreign';
+            } else if ($MissionType == MISSION_TRADE) {
+                $FleetClass = $Owner ? 'colorMission16Own' : 'colorMission16Foreign';
+            } else if ($MissionType == MISSION_TRANSFER) {
+                $FleetClass = $Owner ? 'colorMission17Own' : 'colorMission17Foreign';
+            }
+        } else {
+            if($MissionType == MISSION_COLONISATION) {
+                $FleetClass = $Owner ? 'colorMission7OwnReturn' : 'colorMissionReturnForeign';
+            } else {
+                $FleetClass = $Owner ? 'colorMissionReturnOwn' : 'colorMissionReturnForeign';
+            }
         }
-        $EventString = '<span class="' . $FleetStatus[$Status] . ' ' . $FleetType . '">' . $EventString . '</span>';
+        
+        $EventString = '<span class="' . $FleetClass . '">' . $EventString . '</span>';
 
         if ($Status == FLEET_OUTWARD) {
             $Time = $fleetRow['fleet_start_time'];

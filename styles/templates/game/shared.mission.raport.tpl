@@ -3,9 +3,9 @@
 {if isset($Info)}
 <table>
 	<tr>
-		<td class="transparent" style="width:40%;font-size:22px;font-weight:bold;padding:10px 0 30px;color:{if $Raport.result == "a"}lime{elseif $Raport.result == "r"}red{else}white{/if}">{$Info.0}</td>
+		<td class="transparent" style="width:40%;font-size:22px;font-weight:bold;padding:10px 0 30px;color:{if $Raport.result == "a"}colorPositive{elseif $Raport.result == "r"}colorNegative{else}white{/if}">{$Info.0}</td>
 		<td class="transparent" style="font-size:22px;font-weight:bold;padding:10px 0 30px;">VS</td>
-		<td class="transparent" style="width:40%;font-size:22px;font-weight:bold;padding:10px 0 30px;color:{if $Raport.result == "r"}lime{elseif $Raport.result == "a"}red{else}white{/if}">{$Info.1}</td>
+		<td class="transparent" style="width:40%;font-size:22px;font-weight:bold;padding:10px 0 30px;color:{if $Raport.result == "r"}colorPositive{elseif $Raport.result == "a"}colorNegative{else}white{/if}">{$Info.1}</td>
 	</tr>
 </table>
 {/if}

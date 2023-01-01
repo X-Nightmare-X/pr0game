@@ -19,9 +19,8 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowConfigBasicPage()
 {
-	global $LNG;
+	global $LNG, $USER;
 	$config = Config::get(Universe::getEmulated());
-
 	if (!empty($_POST))
 	{
 		$config_before = array(
@@ -145,6 +144,7 @@ function ShowConfigBasicPage()
 		'dst'           				=> $config->dst,
 		'message_delete_behavior'  		=> $config->message_delete_behavior,
 		'message_delete_days'         	=> $config->message_delete_days,
+		'signalColors'					=> $USER['signalColors'],	
 		'Selector'						=> array(
 		    'timezone' => $TimeZones,
             'mail' => $LNG['se_mail_sel'],

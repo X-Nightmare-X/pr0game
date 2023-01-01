@@ -24,10 +24,10 @@
 {foreach $productionList as $productionID => $productionRow}
 <tr style="height:22px">
 	<td><a href='#' onclick='return Dialog.info({$productionID});' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$productionID}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$productionID}.{if $productionID >=600 && $productionID <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.{$productionID}}</td></tr></table></tr></table>">{$LNG.tech.$productionID }</a> ({if $productionID  > 200}{$LNG.rs_amount}{else}{$LNG.rs_lvl}{/if} {$productionRow.elementLevel})</td>
-	<td><span style="color:{if $productionRow.production.901 > 0}lime{elseif $productionRow.production.901 < 0}red{else}white{/if}">{number_format($productionRow.production.901, 0, ",", ".")}</span></td>
-	<td><span style="color:{if $productionRow.production.902 > 0}lime{elseif $productionRow.production.902 < 0}red{else}white{/if}">{number_format($productionRow.production.902, 0, ",", ".")}</span></td>
-	<td><span style="color:{if $productionRow.production.903 > 0}lime{elseif $productionRow.production.903 < 0}red{else}white{/if}">{number_format($productionRow.production.903, 0, ",", ".")}</span></td>
-	<td><span style="color:{if $productionRow.production.911 > 0}lime{elseif $productionRow.production.911 < 0}red{else}white{/if}">{number_format($productionRow.production.911, 0, ",", ".")}</span></td>
+	<td><span class="{if $productionRow.production.901 > 0}colorPositive{elseif $productionRow.production.901 < 0}colorNegative{else}white{/if}">{number_format($productionRow.production.901, 0, ",", ".")}</span></td>
+	<td><span class="{if $productionRow.production.902 > 0}colorPositive{elseif $productionRow.production.902 < 0}colorNegative{else}white{/if}">{number_format($productionRow.production.902, 0, ",", ".")}</span></td>
+	<td><span class="{if $productionRow.production.903 > 0}colorPositive{elseif $productionRow.production.903 < 0}colorNegative{else}white{/if}">{number_format($productionRow.production.903, 0, ",", ".")}</span></td>
+	<td><span class="{if $productionRow.production.911 > 0}colorPositive{elseif $productionRow.production.911 < 0}colorNegative{else}white{/if}">{number_format($productionRow.production.911, 0, ",", ".")}</span></td>
 	<td style="width:10%">
 		{html_options name="prod[{$productionID}]" options=$prodSelector selected=$productionRow.prodLevel}
 	</td>
@@ -35,39 +35,39 @@
 {/foreach}
 <tr style="height:22px">
 	<td>{$LNG.rs_ress_bonus}</td>
-	<td><span style="color:{if $bonusProduction.901 > 0}lime{elseif $bonusProduction.901 < 0}red{else}white{/if}">{number_format($bonusProduction.901, 0, ",", ".")}</span></td>
-	<td><span style="color:{if $bonusProduction.902 > 0}lime{elseif $bonusProduction.902 < 0}red{else}white{/if}">{number_format($bonusProduction.902, 0, ",", ".")}</span></td>
-	<td><span style="color:{if $bonusProduction.903 > 0}lime{elseif $bonusProduction.903 < 0}red{else}white{/if}">{number_format($bonusProduction.903, 0, ",", ".")}</span></td>
-	<td><span style="color:{if $bonusProduction.911 > 0}lime{elseif $bonusProduction.911 < 0}red{else}white{/if}">{number_format($bonusProduction.911, 0, ",", ".")}</span></td>
+	<td><span class="{if $bonusProduction.901 > 0}colorPositive{elseif $bonusProduction.901 < 0}colorNegative{else}white{/if}">{number_format($bonusProduction.901, 0, ",", ".")}</span></td>
+	<td><span class="{if $bonusProduction.902 > 0}colorPositive{elseif $bonusProduction.902 < 0}colorNegative{else}white{/if}">{number_format($bonusProduction.902, 0, ",", ".")}</span></td>
+	<td><span class="{if $bonusProduction.903 > 0}colorPositive{elseif $bonusProduction.903 < 0}colorNegative{else}white{/if}">{number_format($bonusProduction.903, 0, ",", ".")}</span></td>
+	<td><span class="{if $bonusProduction.911 > 0}colorPositive{elseif $bonusProduction.911 < 0}colorNegative{else}white{/if}">{number_format($bonusProduction.911, 0, ",", ".")}</span></td>
 	<td><input value="{$LNG.rs_calculate}" type="submit"></td>
 </tr>
 <tr style="height:22px">
 	<td>{$LNG.rs_storage_capacity}</td>
-	<td><span style="color:lime;">{$storage.901}</span></td>
-	<td><span style="color:lime;">{$storage.902}</span></td>
-	<td><span style="color:lime;">{$storage.903}</span></td>
+	<td><span class="colorPositive">{$storage.901}</span></td>
+	<td><span class="colorPositive">{$storage.902}</span></td>
+	<td><span class="colorPositive">{$storage.903}</span></td>
 	<td>-</td>
 </tr>
 <tr style="height:22px">
 	<td>{$LNG.rs_sum}:</td>
-	<td><span style="color:{if $totalProduction.901 > 0}lime{elseif $totalProduction.901 < 0}red{else}white{/if}">{number_format($totalProduction.901, 0, ",", ".")}</span></td>
-	<td><span style="color:{if $totalProduction.902 > 0}lime{elseif $totalProduction.902 < 0}red{else}white{/if}">{number_format($totalProduction.902, 0, ",", ".")}</span></td>
-	<td><span style="color:{if $totalProduction.903 > 0}lime{elseif $totalProduction.903 < 0}red{else}white{/if}">{number_format($totalProduction.903, 0, ",", ".")}</span></td>
-	<td><span style="color:{if $totalProduction.911 > 0}lime{elseif $totalProduction.911 < 0}red{else}white{/if}">{number_format($totalProduction.911, 0, ",", ".")}</span></td>
+	<td><span class="{if $totalProduction.901 > 0}colorPositive{elseif $totalProduction.901 < 0}colorNegative{else}white{/if}">{number_format($totalProduction.901, 0, ",", ".")}</span></td>
+	<td><span class="{if $totalProduction.902 > 0}colorPositive{elseif $totalProduction.902 < 0}colorNegative{else}white{/if}">{number_format($totalProduction.902, 0, ",", ".")}</span></td>
+	<td><span class="{if $totalProduction.903 > 0}colorPositive{elseif $totalProduction.903 < 0}colorNegative{else}white{/if}">{number_format($totalProduction.903, 0, ",", ".")}</span></td>
+	<td><span class="{if $totalProduction.911 > 0}colorPositive{elseif $totalProduction.911 < 0}colorNegative{else}white{/if}">{number_format($totalProduction.911, 0, ",", ".")}</span></td>
 </tr>
 <tr style="height:22px">
 	<td>{$LNG.rs_daily}</td>
-	<td><span style="color:{if $dailyProduction.901 > 0}lime{elseif $dailyProduction.901 < 0}red{else}white{/if}">{number_format($dailyProduction.901, 0, ",", ".")}</span></td>
-	<td><span style="color:{if $dailyProduction.902 > 0}lime{elseif $dailyProduction.902 < 0}red{else}white{/if}">{number_format($dailyProduction.902, 0, ",", ".")}</span></td>
-	<td><span style="color:{if $dailyProduction.903 > 0}lime{elseif $dailyProduction.903 < 0}red{else}white{/if}">{number_format($dailyProduction.903, 0, ",", ".")}</span></td>
-	<td><span style="color:{if $dailyProduction.911 > 0}lime{elseif $dailyProduction.911 < 0}red{else}white{/if}">{number_format($dailyProduction.911, 0, ",", ".")}</span></td>
+	<td><span class="{if $dailyProduction.901 > 0}colorPositive{elseif $dailyProduction.901 < 0}colorNegative{else}white{/if}">{number_format($dailyProduction.901, 0, ",", ".")}</span></td>
+	<td><span class="{if $dailyProduction.902 > 0}colorPositive{elseif $dailyProduction.902 < 0}colorNegative{else}white{/if}">{number_format($dailyProduction.902, 0, ",", ".")}</span></td>
+	<td><span class="{if $dailyProduction.903 > 0}colorPositive{elseif $dailyProduction.903 < 0}colorNegative{else}white{/if}">{number_format($dailyProduction.903, 0, ",", ".")}</span></td>
+	<td><span class="{if $dailyProduction.911 > 0}colorPositive{elseif $dailyProduction.911 < 0}colorNegative{else}white{/if}">{number_format($dailyProduction.911, 0, ",", ".")}</span></td>
 </tr>
 <tr style="height:22px">
 	<td>{$LNG.rs_weekly}</td>
-	<td><span style="color:{if $weeklyProduction.901 > 0}lime{elseif $weeklyProduction.901 < 0}red{else}white{/if}">{number_format($weeklyProduction.901, 0, ",", ".")}</span></td>
-	<td><span style="color:{if $weeklyProduction.902 > 0}lime{elseif $weeklyProduction.902 < 0}red{else}white{/if}">{number_format($weeklyProduction.902, 0, ",", ".")}</span></td>
-	<td><span style="color:{if $weeklyProduction.903 > 0}lime{elseif $weeklyProduction.903 < 0}red{else}white{/if}">{number_format($weeklyProduction.903, 0, ",", ".")}</span></td>
-	<td><span style="color:{if $weeklyProduction.911 > 0}lime{elseif $weeklyProduction.911 < 0}red{else}white{/if}">{number_format($weeklyProduction.911, 0, ",", ".")}</span></td>
+	<td><span class="{if $weeklyProduction.901 > 0}colorPositive{elseif $weeklyProduction.901 < 0}colorNegative{else}white{/if}">{number_format($weeklyProduction.901, 0, ",", ".")}</span></td>
+	<td><span class="{if $weeklyProduction.902 > 0}colorPositive{elseif $weeklyProduction.902 < 0}colorNegative{else}white{/if}">{number_format($weeklyProduction.902, 0, ",", ".")}</span></td>
+	<td><span class="{if $weeklyProduction.903 > 0}colorPositive{elseif $weeklyProduction.903 < 0}colorNegative{else}white{/if}">{number_format($weeklyProduction.903, 0, ",", ".")}</span></td>
+	<td><span class="{if $weeklyProduction.911 > 0}colorPositive{elseif $weeklyProduction.911 < 0}colorNegative{else}white{/if}">{number_format($weeklyProduction.911, 0, ",", ".")}</span></td>
 </tr>
 </tbody>
 </table>

@@ -19,8 +19,11 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowClearCachePage()
 {
-	global $LNG;
+	global $LNG, $USER;
 	ClearCache();
 	$template = new template();
-	$template->message($LNG['cc_cache_clear']);
+	$template->assign_vars(array(
+		'signalColors'	=> $USER['signalColors']
+	));
+	$template->message($LNG['cc_cache_clear'],);
 }

@@ -20,7 +20,6 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 function ShowInformationPage()
 {
 	global $LNG, $USER;
-
 	$config = Config::get();
 
 	// @ for open_basedir
@@ -80,6 +79,7 @@ function ShowInformationPage()
 		'php_tz'			=> $dateTimePHP->getOffset() / 3600,
 		'conf_tz'			=> $dateTimeServer->getOffset() / 3600,
 		'user_tz'			=> $dateTimeUser->getOffset() / 3600,
+		'signalColors'		=> $USER['signalColors'],
 	));
 
 	$template->show('ShowInformationPage.tpl');

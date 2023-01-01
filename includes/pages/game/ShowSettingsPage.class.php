@@ -36,6 +36,16 @@ class ShowSettingsPage extends AbstractGamePage
 
             $this->display('page.settings.vacation.tpl');
         } else {
+            $db = Database::get();
+            $sql = "SELECT prioMission1 as 'type_mission_1',prioMission2 as 'type_mission_2',prioMission3 as 'type_mission_3',prioMission4 as 'type_mission_4'
+,prioMission5 as 'type_mission_5',prioMission6 as 'type_mission_6',
+                    prioMission7 as 'type_mission_7',prioMission8 as 'type_mission_8',prioMission9 as 'type_mission_9',prioMission17 as 'type_mission_17'
+                    FROM %%USERS%% WHERE universe = :universe AND id = :userID ;";
+            $missionprios =$db->selectSingle($sql, [
+                ':universe' => Universe::current(),
+                ':userID'   => $USER['id'],
+            ]);
+            
             $this->assign([
                 'Selectors'         => [
                     'timezones' => get_timezone_selector(),
@@ -51,30 +61,42 @@ class ShowSettingsPage extends AbstractGamePage
                     'Skins' => Theme::getAvalibleSkins(),
                     'lang' => $LNG->getAllowedLangs(false),
                 ],
-                'adminProtection'   => $USER['authattack'],
-                'userAuthlevel'     => $USER['authlevel'],
-                'changeNickTime'    => ($USER['uctime'] + USERNAME_CHANGETIME) - TIMESTAMP,
-                'username'          => $USER['username'],
-                'email'             => $USER['email'],
-                'permaEmail'        => $USER['email_2'],
-                'userLang'          => $USER['lang'],
-                'theme'             => $USER['dpath'],
-                'planetSort'        => $USER['planet_sort'],
-                'planetOrder'       => $USER['planet_sort_order'],
-                'spycount'          => $USER['spio_anz'],
-                'fleetActions'      => $USER['settings_fleetactions'],
-                'timezone'          => $USER['timezone'],
-                'delete'            => $USER['db_deaktjava'],
-                'queueMessages'     => $USER['hof'],
-                'spyMessagesMode'   => $USER['spyMessagesMode'],
-                'galaxySpy'         => $USER['settings_esp'],
-                'galaxyBuddyList'   => $USER['settings_bud'],
-                'galaxyMissle'      => $USER['settings_mis'],
-                'galaxyMessage'     => $USER['settings_wri'],
-                'blockPM'           => $USER['settings_blockPM'],
-                'userid'            => $USER['id'],
-                'ref_active'        => Config::get()->ref_active,
-                'SELF_URL'          => PROTOCOL . HTTP_HOST . HTTP_ROOT,
+                'adminProtection'       => $USER['authattack'],
+                'userAuthlevel'         => $USER['authlevel'],
+                'changeNickTime'        => ($USER['uctime'] + USERNAME_CHANGETIME) - TIMESTAMP,
+                'username'              => $USER['username'],
+                'email'                 => $USER['email'],
+                'permaEmail'            => $USER['email_2'],
+                'userLang'              => $USER['lang'],
+                'theme'                 => $USER['dpath'],
+                'planetSort'            => $USER['planet_sort'],
+                'planetOrder'           => $USER['planet_sort_order'],
+                'spycount'              => $USER['spio_anz'],
+                'fleetActions'          => $USER['settings_fleetactions'],
+                'timezone'              => $USER['timezone'],
+                'delete'                => $USER['db_deaktjava'],
+                'queueMessages'         => $USER['hof'],
+                'spyMessagesMode'       => $USER['spyMessagesMode'],
+                'galaxySpy'             => $USER['settings_esp'],
+                'galaxyBuddyList'       => $USER['settings_bud'],
+                'galaxyMissle'          => $USER['settings_mis'],
+                'galaxyMessage'         => $USER['settings_wri'],
+                'blockPM'               => $USER['settings_blockPM'],
+                'userid'                => $USER['id'],
+                'ref_active'            => Config::get()->ref_active,
+                'SELF_URL'              => PROTOCOL . HTTP_HOST . HTTP_ROOT,
+                'colors'                => $USER['colors'],
+                'signalColors'          => $USER['signalColors'],
+                'defaultColors'         => PlayerUtil::player_colors(),
+                'defaultSignalColors'   => PlayerUtil::player_signal_colors(),
+                'stb_small_ress'        => $USER['stb_small_ress'],
+                'stb_med_ress'          => $USER['stb_med_ress'],
+                'stb_big_ress'          => $USER['stb_big_ress'],
+                'stb_small_time'        => $USER['stb_small_time'],
+                'stb_med_time'          => $USER['stb_med_time'],
+                'stb_big_time'          => $USER['stb_big_time'],
+                'stb_enabled'           => $USER['stb_enabled'],
+                'missionPrios'          => $missionprios,
             ]);
 
             $this->display('page.settings.default.tpl');
@@ -104,7 +126,7 @@ class ShowSettingsPage extends AbstractGamePage
             ':userID'   => $USER['id'],
             ':planetID' => $PLANET['id'],
         ]);
-        
+
         foreach ($query as $CPLANET) {
             list($USER, $CPLANET) = $this->ecoObj->CalcResource($USER, $CPLANET, true);
             /*
@@ -115,7 +137,7 @@ class ShowSettingsPage extends AbstractGamePage
             */
             unset($CPLANET);
         }
-        
+
 		$db->commit();
         return true;
     }
@@ -139,6 +161,7 @@ class ShowSettingsPage extends AbstractGamePage
 
         $db = Database::get();
         $db->startTransaction();
+
 
         $sql = "SELECT id FROM %%USERS%% WHERE universe = :universe AND id = :userID FOR UPDATE;";
         $db->selectSingle($sql, [
@@ -213,6 +236,64 @@ class ShowSettingsPage extends AbstractGamePage
 
         $vacation           = HTTP::_GP('vacation', 0);
         $delete             = HTTP::_GP('delete', 0);
+
+        $colorMission2friend = HTTP::_GP('colorMission2friend', '#ff00ff');
+
+        $colorMission1Own = HTTP::_GP('colorMission1Own', '#66cc33');
+        $colorMission2Own = HTTP::_GP('colorMission2Own', '#339966');
+        $colorMission3Own = HTTP::_GP('colorMission3Own', '#5bf1c2');
+        $colorMission4Own = HTTP::_GP('colorMission4Own', '#cf79de');
+        $colorMission5Own = HTTP::_GP('colorMission5Own', '#80a0c0');
+        $colorMission6Own = HTTP::_GP('colorMission6Own', '#ffcc66');
+        $colorMission7Own = HTTP::_GP('colorMission7Own', '#c1c1c1');
+        $colorMission7ReturnOwn = HTTP::_GP('colorMission7OwnReturn', '#cf79de');
+        $colorMission8Own = HTTP::_GP('colorMission8Own', '#ceff68');
+        $colorMission9Own = HTTP::_GP('colorMission9Own', '#ffff99');
+        $colorMission10Own = HTTP::_GP('colorMission10Own', '#ffcc66');
+        $colorMission15Own = HTTP::_GP('colorMission15Own', '#5bf1c2');
+        $colorMission16Own = HTTP::_GP('colorMission16Own', '#5bf1c2');
+        $colorMission17Own = HTTP::_GP('colorMission17Own', '#5bf1c2');
+        $colorMissionReturnOwn = HTTP::_GP('colorMissionReturnOwn', '#6e8eea');
+
+        $colorMission1Foreign = HTTP::_GP('colorMission1Foreign', '#ff0000');
+        $colorMission2Foreign = HTTP::_GP('colorMission2Foreign', '#aa0000');
+        $colorMission3Foreign = HTTP::_GP('colorMission3Foreign', '#00ff00');
+        $colorMission4Foreign = HTTP::_GP('colorMission4Foreign', '#ad57bc');
+        $colorMission5Foreign = HTTP::_GP('colorMission5Foreign', '#3399cc');
+        $colorMission6Foreign = HTTP::_GP('colorMission6Foreign', '#ff6600');
+        $colorMission7Foreign = HTTP::_GP('colorMission7Foreign', '#00ff00');
+        $colorMission8Foreign = HTTP::_GP('colorMission8Foreign', '#acdd46');
+        $colorMission9Foreign = HTTP::_GP('colorMission9Foreign', '#dddd77');
+        $colorMission10Foreign = HTTP::_GP('colorMission10Foreign', '#ff6600');
+        $colorMission15Foreign = HTTP::_GP('colorMission15Foreign', '#39d0a0');
+        $colorMission16Foreign = HTTP::_GP('colorMission16Foreign', '#39d0a0');
+        $colorMission17Foreign = HTTP::_GP('colorMission17Foreign', '#39d0a0');
+        $colorMissionReturnForeign = HTTP::_GP('colorMissionReturnForeign', '#6e8eea');
+
+        $colorStaticTimer = HTTP::_GP('colorStaticTimer', '#ffff00');
+        $colorPositive = HTTP::_GP('colorPositive', '#00ff00');
+        $colorNegative = HTTP::_GP('colorNegative', '#ff0000');
+        $colorNeutral = HTTP::_GP('colorNeutral', '#ffd600');
+
+        $stb_small_ress     = HTTP::_GP('stb_small_ress', 500 );
+        $stb_med_ress       = HTTP::_GP('stb_med_ress', 3000 );
+        $stb_big_ress       = HTTP::_GP('stb_big_ress', 7000 );
+        $stb_small_time     = HTTP::_GP('stb_small_time', 1 );
+        $stb_med_time       = HTTP::_GP('stb_med_time', 2 );
+        $stb_big_time       = HTTP::_GP('stb_big_time', 3 );
+        $stb_enabled        = HTTP::_GP('stb_enabled', 0 );
+        
+        $prio1 = HTTP::_GP('type_mission_1', 1);
+        $prio2 = HTTP::_GP('type_mission_2', 2);
+        $prio3 = HTTP::_GP('type_mission_3', 0);
+        $prio4 = HTTP::_GP('type_mission_4', 3);
+        $prio5 = HTTP::_GP('type_mission_5', 4);
+        $prio6 = HTTP::_GP('type_mission_6', 5);
+        $prio7 = HTTP::_GP('type_mission_7', 6);
+        $prio8 = HTTP::_GP('type_mission_8', 7);
+        $prio9 = HTTP::_GP('type_mission_9', 8);
+        $prio17 =HTTP::_GP('type_mission_17', 9);
+
 
         // Vertify
 
@@ -368,44 +449,149 @@ class ShowSettingsPage extends AbstractGamePage
         }
 
         $sql =  "UPDATE %%USERS%% SET
-		dpath					= :theme,
-		timezone				= :timezone,
-		planet_sort				= :planetSort,
-		planet_sort_order		= :planetOrder,
-		spio_anz				= :spyCount,
-		settings_fleetactions	= :fleetActions,
-		settings_esp			= :galaxySpy,
-		settings_wri			= :galaxyMessage,
-		settings_bud			= :galaxyBuddyList,
-		settings_mis			= :galaxyMissle,
-		settings_blockPM		= :blockPM,
-		authattack				= :adminProtection,
-		lang					= :language,
-		hof						= :queueMessages,
-		spyMessagesMode			= :spyMessagesMode
+		dpath					    = :theme,
+		timezone				    = :timezone,
+		planet_sort				    = :planetSort,
+		planet_sort_order		    = :planetOrder,
+		spio_anz				    = :spyCount,
+		settings_fleetactions	    = :fleetActions,
+		settings_esp			    = :galaxySpy,
+		settings_wri			    = :galaxyMessage,
+		settings_bud			    = :galaxyBuddyList,
+		settings_mis			    = :galaxyMissle,
+		settings_blockPM		    = :blockPM,
+		authattack				    = :adminProtection,
+		lang					    = :language,
+		hof						    = :queueMessages,
+		spyMessagesMode			    = :spyMessagesMode,
+        colorMission2friend         = :colorMission2friend,
+        colorMission1Own            = :colorMission1Own,
+        colorMission2Own            = :colorMission2Own,
+        colorMission3Own            = :colorMission3Own,
+        colorMission4Own            = :colorMission4Own,
+        colorMission5Own            = :colorMission5Own,
+        colorMission6Own            = :colorMission6Own,
+        colorMission7Own            = :colorMission7Own,
+        colorMission7OwnReturn      = :colorMission7OwnReturn,
+        colorMission8Own            = :colorMission8Own,
+        colorMission9Own            = :colorMission9Own,
+        colorMission10Own           = :colorMission10Own,
+        colorMission15Own           = :colorMission15Own,
+        colorMission16Own           = :colorMission16Own,
+        colorMission17Own           = :colorMission17Own,
+        colorMissionReturnOwn       = :colorMissionReturnOwn,
+        colorMission1Foreign        = :colorMission1Foreign,
+        colorMission2Foreign        = :colorMission2Foreign,
+        colorMission3Foreign        = :colorMission3Foreign,
+        colorMission4Foreign        = :colorMission4Foreign,
+        colorMission5Foreign        = :colorMission5Foreign,
+        colorMission6Foreign        = :colorMission6Foreign,
+        colorMission7Foreign        = :colorMission7Foreign,
+        colorMission8Foreign        = :colorMission8Foreign,
+        colorMission9Foreign        = :colorMission9Foreign,
+        colorMission10Foreign       = :colorMission10Foreign,
+        colorMission15Foreign       = :colorMission15Foreign,
+        colorMission16Foreign       = :colorMission16Foreign,
+        colorMission17Foreign       = :colorMission17Foreign,
+        colorMissionReturnForeign   = :colorMissionReturnForeign,
+        colorStaticTimer            = :colorStaticTimer,
+        colorPositive               = :colorPositive,
+        colorNegative               = :colorNegative,
+        colorNeutral                = :colorNeutral,
+        prioMission1                = :prioMission1,
+        prioMission2                = :prioMission2,
+        prioMission3                = :prioMission3,
+        prioMission4                = :prioMission4,
+        prioMission5                = :prioMission5,
+        prioMission6                = :prioMission6,
+        prioMission7                = :prioMission7,
+        prioMission8                = :prioMission8,
+        prioMission9                = :prioMission9,
+        prioMission17               = :prioMission17,
+        stb_small_ress              = :stb_small_ress,
+        stb_med_ress                = :stb_med_ress,
+        stb_big_ress                = :stb_big_ress,
+        stb_small_time              = :stb_small_time,
+        stb_med_time                = :stb_med_time,
+        stb_big_time                = :stb_big_time,
+        stb_enabled                 = :stb_enabled
+
 		WHERE id = :userID;";
         $db->update($sql, [
-            ':theme'            => $theme,
-            ':timezone'         => $timezone,
-            ':planetSort'       => $planetSort,
-            ':planetOrder'      => $planetOrder,
-            ':spyCount'         => $spycount,
-            ':fleetActions'     => $fleetactions,
-            ':galaxySpy'        => $galaxySpy,
-            ':galaxyMessage'    => $galaxyMessage,
-            ':galaxyBuddyList'  => $galaxyBuddyList,
-            ':galaxyMissle'     => $galaxyMissle,
-            ':blockPM'          => $blockPM,
-            ':adminProtection'  => $adminprotection,
-            ':language'         => $language,
-            ':queueMessages'    => $queueMessages,
-            ':spyMessagesMode'  => $spyMessagesMode,
-            ':userID'           => $USER['id'],
+            ':theme'                        => $theme,
+            ':timezone'                     => $timezone,
+            ':planetSort'                   => $planetSort,
+            ':planetOrder'                  => $planetOrder,
+            ':spyCount'                     => $spycount,
+            ':fleetActions'                 => $fleetactions,
+            ':galaxySpy'                    => $galaxySpy,
+            ':galaxyMessage'                => $galaxyMessage,
+            ':galaxyBuddyList'              => $galaxyBuddyList,
+            ':galaxyMissle'                 => $galaxyMissle,
+            ':blockPM'                      => $blockPM,
+            ':adminProtection'              => $adminprotection,
+            ':language'                     => $language,
+            ':queueMessages'                => $queueMessages,
+            ':spyMessagesMode'              => $spyMessagesMode,
+            ':userID'                       => $USER['id'],
+            ':colorMission2friend'          => $colorMission2friend,
+            ':colorMission1Own'             => $colorMission1Own,
+            ':colorMission2Own'             => $colorMission2Own,
+            ':colorMission3Own'             => $colorMission3Own,
+            ':colorMission4Own'             => $colorMission4Own,
+            ':colorMission5Own'             => $colorMission5Own,
+            ':colorMission6Own'             => $colorMission6Own,
+            ':colorMission7Own'             => $colorMission7Own,
+            ':colorMission7OwnReturn'       => $colorMission7ReturnOwn,
+            ':colorMission8Own'             => $colorMission8Own,
+            ':colorMission9Own'             => $colorMission9Own,
+            ':colorMission10Own'            => $colorMission10Own,
+            ':colorMission15Own'            => $colorMission15Own,
+            ':colorMission16Own'            => $colorMission16Own,
+            ':colorMission17Own'            => $colorMission17Own,
+            ':colorMissionReturnOwn'        => $colorMissionReturnOwn,
+            ':colorMission1Foreign'         => $colorMission1Foreign,
+            ':colorMission2Foreign'         => $colorMission2Foreign,
+            ':colorMission3Foreign'         => $colorMission3Foreign,
+            ':colorMission4Foreign'         => $colorMission4Foreign,
+            ':colorMission5Foreign'         => $colorMission5Foreign,
+            ':colorMission6Foreign'         => $colorMission6Foreign,
+            ':colorMission7Foreign'         => $colorMission7Foreign,
+            ':colorMission8Foreign'         => $colorMission8Foreign,
+            ':colorMission9Foreign'         => $colorMission9Foreign,
+            ':colorMission10Foreign'        => $colorMission10Foreign,
+            ':colorMission15Foreign'        => $colorMission15Foreign,
+            ':colorMission16Foreign'        => $colorMission16Foreign,
+            ':colorMission17Foreign'        => $colorMission17Foreign,
+            ':colorMissionReturnForeign'    => $colorMissionReturnForeign,
+            ':colorStaticTimer'             => $colorStaticTimer,
+            ':colorPositive'                => $colorPositive,
+            ':colorNegative'                => $colorNegative,
+            ':colorNeutral'                 => $colorNeutral,
+            ':prioMission1'                 => $prio1,
+            ':prioMission2'                 => $prio2,
+            ':prioMission3'                 => $prio3,
+            ':prioMission4'                 => $prio4,
+            ':prioMission5'                 => $prio5,
+            ':prioMission6'                 => $prio6,
+            ':prioMission7'                 => $prio7,
+            ':prioMission8'                 => $prio8,
+            ':prioMission9'                 => $prio9,
+            ':prioMission17'                => $prio17,
+            ':stb_small_ress'               => $stb_small_ress,
+            ':stb_med_ress'                 => $stb_med_ress,
+            ':stb_big_ress'                 => $stb_big_ress,
+            ':stb_small_time'               => $stb_small_time,
+            ':stb_med_time'                 => $stb_med_time,
+            ':stb_big_time'                 => $stb_big_time,
+            ':stb_enabled'                  => $stb_enabled
+            
+
         ]);
-        
+
         $db->commit();
 
-        
+
         if ($vacation == 1) {
             $this->printMessage($LNG['op_options_changed_vacation'], [
                 [

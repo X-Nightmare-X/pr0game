@@ -20,15 +20,15 @@
 // pelo Ministério da Educação de Portugal - convertido pelo Lince.
 
 // 2Moons - Copyright (C) 2012  Jan Kröpke
-
+$LNG['type_planet_short_3'] = 'L';
 $LNG['Messages'] = 'Mensagens';
 $LNG['write_message'] = 'Escrever mensagem';
-
+$LNG["delete_confirm_gala"] = 'Apagar dados do universo local?';
 $LNG['PM'] = '[MP]';
 $LNG['ready'] = 'Pronto';
-
+$LNG["whenbuildable"] = 'Possível em';
 $LNG['loading'] = 'A carregar ...';
-
+$LNG['fleetPrio'] = 'Prioridade de ordem da frota';
 $LNG['invalid_action'] = 'Ação Invalida!!';
 
 $LNG['type_mission_1'] = 'Atacar';
@@ -42,6 +42,50 @@ $LNG['type_mission_8'] = 'Reciclar';
 $LNG['type_mission_9'] = 'Destruir';
 $LNG['type_mission_10'] = 'Ataque de Misseis';
 $LNG['type_mission_15'] = 'Expedição';
+$LNG['type_mission_16'] = 'Comércio';
+$LNG['type_mission_17'] = 'Transferência';
+
+$LNG['type_mission_1_own'] = 'Ataque_próprio';
+$LNG['type_mission_2_own'] = 'Frota de ataque da própria federação';
+$LNG['type_mission_3_own'] = 'Transporte próprio';
+$LNG['type_mission_4_own'] = 'Estacionamento próprio';
+$LNG['type_mission_5_own'] = 'Detenção própria';
+$LNG['type_mission_6_own'] = 'Espionagem própria';
+$LNG['type_mission_7_own'] = 'Exploração_própria';
+$LNG['type_mission_7_own_return'] = 'Colonização própria';
+$LNG['type_mission_8_own'] = 'Reciclagem própria';
+$LNG['type_mission_9_own'] = 'Destruição_própria';
+$LNG['type_mission_10_own'] = 'Ataque_próprio de míssil';
+$LNG['type_mission_15_own'] = 'Expedição própria';
+$LNG['type_mission_16_own'] = 'Frota própria do mercado';
+$LNG['type_mission_17_own'] = 'Transferência própria';
+$LNG['type_mission_return_own'] = 'Devolução_própria';
+
+$LNG['type_mission_2_friend'] = 'Frota de ataque da federação amigável';
+
+$LNG['type_mission_1_foreign'] = 'Ataque estrangeiro';
+$LNG['type_mission_2_foreign'] = 'Frota de ataque de federação estrangeira';
+$LNG['type_mission_3_foreign'] = 'Transporte estrangeiro';
+$LNG['type_mission_4_foreign'] = 'Estacionamento no estrangeiro';
+$LNG['type_mission_5_foreign'] = 'Foreign holding';
+$LNG['type_mission_6_foreign'] = 'Espionagem estrangeira';
+$LNG['type_mission_7_foreign'] = 'Colonização estrangeira';
+$LNG['type_mission_8_foreign'] = 'Reciclagem estrangeira';
+$LNG['type_mission_9_foreign'] = 'Destruição por estrangeiros';
+$LNG['type_mission_10_foreign'] = 'Ataque a mísseis estrangeiros';
+$LNG['type_mission_15_foreign'] = 'Expedição estrangeira';
+$LNG['type_mission_16_foreign'] = 'Foreign marketplace fleet';
+$LNG['type_mission_17_foreign'] = 'Transferência para o estrangeiro';
+$LNG['type_mission_return_foreign'] = 'Retorno ao estrangeiro';
+
+$LNG['positivo'] = 'Positivo';
+$LNG['negativo'] = 'Negativo';
+$LNG['neutro'] = 'Neutro';
+$LNG['StaticTimer'] = 'Hora de chegada';
+
+$LNG['cores_próprias'] = 'Cores próprias';
+$LNG['Foreign_colors'] = 'Cores_estrangeiras';
+$LNG['general_colors'] = 'Cores gerais';
 
 $LNG['type_planet_1'] = 'Planeta';
 $LNG['type_planet_2'] = 'Campo de Destroços';
@@ -89,6 +133,7 @@ $LNG['lm_statistics'] = 'Estatisticas';
 $LNG['lm_search'] = 'Procurar';
 $LNG['lm_options'] = 'Opções';
 $LNG['lm_banned'] = 'Banidos';
+$LNG['donate'] = 'Doar';
 $LNG['lm_forums'] = 'Forum';
 $LNG['lm_logout'] = 'Logout';
 $LNG['lm_administration'] = 'Administração';
@@ -324,6 +369,7 @@ $LNG['fl_not_ally_deposit'] = 'Não tens Depósito de Alianca';
 $LNG['fl_deploy_only_your_planets'] = 'Sie können nur Flotten auf Ihren eigenen Planeten stationieren!';
 $LNG['fl_fleet_sended'] = 'Frota enviada';
 $LNG['fl_from'] = 'De';
+$LNG['fl_selected_resources'] = 'recursos seleccionados';
 $LNG['fl_arrival_time'] = 'Tempo de Destino';
 $LNG['fl_return_time'] = 'Tempo de Regresso';
 $LNG['fl_fleet'] = 'Frota';
@@ -409,8 +455,8 @@ $LNG['bd_maxlevel'] = 'Nível máximo atingido';
 $LNG['bd_on'] = 'ligado';
 $LNG['bd_max_builds'] = 'Só poderás ter max. %d de filas de construção!';
 $LNG['bd_next_level'] = 'Nível Seguinte:';
-$LNG['bd_need_engine'] = 'Precisas de mais <font color="#FF0000">%s</font> de %s';
-$LNG['bd_more_engine'] = 'Produzidos <font color="#00FF00">%s</font> %s mais';
+$LNG['bd_need_engine'] = 'Precisas de mais <font class="colorNegative">%s</font> de %s';
+$LNG['bd_more_engine'] = 'Produzidos <font class="colorPositive">%s</font> %s mais';
 $LNG['bd_jump_gate_action'] = 'Saltar';
 $LNG['bd_cancel_warning'] = 'ATENÇÃO! <br> Se cancelares só receberás 60% dos teus recursos investidos.';
 $LNG['bd_cancel_send'] = 'Cancelar Construção';
@@ -964,7 +1010,8 @@ $LNG['bn_writemail'] = 'Enviar e-mail %s';
 
 // Manutenção & Banido
 $LNG['css_account_banned_message'] = 'A tua conta foi banida!';
-$LNG['css_account_banned_expire'] = 'A tua conta já se encontra desbanida %s!';
+$LNG['css_account_banned_expire'] = 'You are banned until %s!<br>In case of questions, please open a ticket on our <a style="color: -webkit-link;" href="https://discord.gg/jhYYN3yuat">Discord server (link)</a>';
+$LNG['css_account_banned_reason'] = 'Reason: %s';
 $LNG['css_goto_homeside'] = '<a href="./index.php">Ir para a página inicial</a>';
 $LNG['css_server_maintrace'] = 'Manutenção do Servidor<br><br>O jogo está fechado.<br><br>Até: %s';
 
@@ -1205,6 +1252,30 @@ $LNG['lo_notify'] = 'Serás redirecionado em <span id="seconds">5</span> segundo
 $LNG['lo_continue'] = 'Clica aqui para não esperar';
 
 //----------------------------------------------------------------------------//
-
+$LNG['fleet_table_custom_empty_name'] = 'Insira um nome de frota, por favor!';
+$LNG['custom_fleet'] = 'Frotas personalizadas';
+$LNG['custom_fleet_confirm'] = 'Remover modelo de frota %s?';
 
 // Translated into Portuguese by QwataKayean . All rights reversed (C) 2012
+
+//----------------------------------------------------------------------------//
+//Scavengers Toolbox
+$LNG['stb_activ'] = 'Scavengers Toolbox habilitado';
+
+$LNG['stb_low_ress_tooltip'] = 'Se houver menos recursos do que os inscritos no planeta, o relatório de espionagem está marcado como vermelho brilhante (mau).';
+$LNG['stb_low_ress'] = 'Recursos baixos presentes no planeta-alvo';
+
+$LNG['stb_mid_ress_tooltip'] = 'Se houver menos recursos do que os introduzidos no planeta, o relatório de espionagem é marcado como laranja claro (médio).';
+$LNG ['stb_mid_ress'] = 'Recursos médios presentes no planeta-alvo';
+
+$LNG ['stb_big_ress_tooltip'] = 'Se houver menos recursos do que os inscritos no planeta, o relatório de espionagem é marcado como verde claro (bom). Os relatórios de espionagem com recursos acima deste valor são apresentados em azul claro (ideal).';
+$LNG ['stb_big_ress'] = 'Muitos recursos presentes no planeta-alvo';
+
+$LNG['stb_small_time_tooltip'] = 'Descreve o melhor rendimento possível de recursos por segundo, arredondado para duas casas decimais. Um rácio inferior ao valor registado é interpretado como mau (vermelho-claro).';
+$LNG['stb_small_time'] = 'Baixos recursos por segundo rácio';
+
+$LNG['stb_med_time_tooltip'] = 'Descreve o melhor rendimento possível de recursos por segundo, arredondado para duas casas decimais. Uma relação inferior ao valor registado é interpretada como média (laranja claro).';
+$LNG['stb_med_time'] = 'Recursos médios por segundo rácio';
+
+$LNG['stb_big_time_tooltip'] = 'Descreve o melhor rendimento possível de recursos por segundo, arredondado para duas casas decimais. Uma relação inferior ao valor introduzido é interpretada como boa (verde claro), um valor acima como ótimo (azul claro).';
+$LNG['stb_big_time'] = 'Bons recursos por segundo';

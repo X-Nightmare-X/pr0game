@@ -219,8 +219,8 @@ $LNG['bo_permanent'] = 'Permanente Sperre';
 $LNG['bo_bbb_title_1'] = 'Suspension system';
 $LNG['bo_bbb_title_2'] = 'Wann soll die Sperre aufgehoben werden';
 $LNG['bo_bbb_title_3'] = 'Suspension System &bull; <font color=red>Dieser Spieler ist bereits gesperrt';
-$LNG['bo_bbb_title_4'] = 'Um die Dauer der Sperre zu verkürzen, füge ein Minus vor der Minutenzahl hinzu,'
-    . 'Beispiel: -5 ';
+$LNG['bo_bbb_title_4'] = 'Um die Dauer der Sperre zu verkürzen, füge ein Minus vor den Zeiten hinzu, '
+    . 'Beispiel: -5<br>Bei vorheriger Perma-Sperre wird die Sperre auf die eingegebene positive Zeit veringert';
 $LNG['bo_bbb_title_5'] = 'gesperrt bis';
 $LNG['bo_bbb_title_6'] = 'Datum ändern';
 $LNG['bo_characters_1'] = 'verfügbare Buchstaben ';
@@ -231,6 +231,7 @@ $LNG['bo_order_banned'] = '[nach Sperre sortieren]';
 $LNG['bo_total_users'] = 'Spieler insgesamt: ';
 $LNG['bo_total_banneds'] = 'gesperrte Spieler: ';
 $LNG['bo_ban'] = 'Sperren';
+$LNG['bo_ban_change'] = 'Ändern';
 $LNG['bo_unban'] = 'Entsperren';
 //###########################################################//
 
@@ -329,7 +330,9 @@ $LNG['se_server_parameters'] = 'Server Einstellungen';
 $LNG['se_game_name'] = 'Name (Game)';
 $LNG['se_uni_name'] = 'Name (Universum)';
 $LNG['se_lang'] = 'Sprache';
-$LNG['se_general_speed'] = 'Gamespeed';
+$LNG['se_building_speed'] = 'Bauspeed';
+$LNG['se_shipyard_speed'] = 'Werftspeed';
+$LNG['se_research_speed'] = 'Forschungsspeed';
 $LNG['se_normal_speed'] = 'Normaler Gamespeed: 1 <br> Maximal empfohlene Einstellungen: 20';
 $LNG['se_normal_speed_resoruces'] = 'Normaler Rohstoffspeed: 1 <br> Maximal empfohlene Einstellungen: 20';
 $LNG['se_normal_speed_fleet'] = 'Normaler Flottenspeed: 1 <br> Maximal empfohlene Einstellungen: 20';
@@ -340,7 +343,11 @@ $LNG['se_storage_producion_speed'] = 'Speicher Factor';
 $LNG['se_halt_speed'] = 'Expedition-Factor';
 $LNG['se_energy_speed'] = 'Energie-Factor';
 $LNG['se_forum_link'] = 'Forum link';
-$LNG['se_server_op_close'] = 'Spiel offen?';
+$LNG['se_uni_status'] = 'Uni-Status';
+$LNG['se_uni_status_regopen_gameopen'] = 'Registrierung und Anmeldung offen';
+$LNG['se_uni_status_regclosed_gameclosed'] = 'Registrierung und Anmeldung geschlossen (z.B. Wartung)';
+$LNG['se_uni_status_regopen_gameclosed'] = 'Registrierung offen, Anmeldung geschlossen (z.B. neue Unis)';
+$LNG['se_uni_status_regclosed_gameopen'] = 'Registrierung geschlossen, Anmeldung offen (z.B. alte Unis)';
 $LNG['se_server_status_message'] = 'Schließ-Grund';
 $LNG['se_server_planet_parameters'] = 'Planeteneinstellungen';
 $LNG['se_initial_fields'] = 'Felder HP:';
@@ -401,7 +408,6 @@ $LNG['se_noob_protect2'] = 'Noobschutz bis x Punkte';
 $LNG['se_noob_protect3'] = 'Noobschutzfaktor';
 $LNG['se_noob_protect_e2'] = 'Bis zu dieser Punktzahl ist der Noobschutz für den Spieler aktiv';
 $LNG['se_noob_protect_e3'] = 'Klicke hier um mehr Information zu sehen';
-$LNG['se_reg_closed'] = 'Registrierung schlie&szlig;en';
 $LNG['se_min_build_time'] = 'Mindest Bauzeit';
 $LNG['se_min_build_time_info'] = 'Hier stellst du die Mindestbauzeit für Gebäude, Forschungen sowie Flotten und'
     . ' Verteidigung ein. Standardmäßig ist dies auf 1 Sekunde gesetzt.<br>Wenn hier eine 0 eingetragen wird, wird dies'
@@ -800,10 +806,10 @@ $LNG['ac_suspended_time'] = 'Gesperrt';
 $LNG['ac_suspended_longer'] = 'Bis';
 $LNG['ac_suspended_reason'] = 'Grund';
 $LNG['ac_suspended_autor'] = 'Gesperrt für';
-$LNG['ac_note_k'] = '<table><tr><th width=10%><font color=lime>T+</font></th><th>Billiarde</th></tr><tr><th width=10%>'
-    . '<font color=lime>T</font></th><th>Billion</th></tr><tr><th width=10%><font color=lime>B</font></th><th>Milliarde'
-    . '</th></tr><tr><th width=10%><font color=lime>M</font></th><th>Million</th></tr><tr><th width=10%>'
-    . '<font color=lime>K</font></th><th>Tausend</th></tr></table>';
+$LNG['ac_note_k'] = '<table><tr><th width=10%><font class="colorPositive">T+</font></th><th>Billiarde</th></tr><tr><th width=10%>'
+    . '<font class="colorPositive">T</font></th><th>Billion</th></tr><tr><th width=10%><font class="colorPositive">B</font></th><th>Milliarde'
+    . '</th></tr><tr><th width=10%><font class="colorPositive">M</font></th><th>Million</th></tr><tr><th width=10%>'
+    . '<font class="colorPositive">K</font></th><th>Tausend</th></tr></table>';
 $LNG['ac_leyend'] = '[ Legende ]';
 $LNG['ac_no_rank_level'] = 'Sie haben nicht die erforderliche Berechtigung um die Spielerinformationen sehen zu'
     . ' dürfen!';

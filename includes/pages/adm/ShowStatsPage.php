@@ -19,8 +19,7 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowStatsPage() 
 {
-	global $LNG;
-
+	global $LNG, $USER;
 	$config = Config::get(Universe::getEmulated());
 
 	if ($_POST)
@@ -68,6 +67,7 @@ function ShowStatsPage()
 		'cs_resources'						=> $LNG['cs_resources'],
 		'cs_save_changes'					=> $LNG['cs_save_changes'],
 		'Selector'							=> array(1 => $LNG['cs_yes'], 2 => $LNG['cs_no_view'], 0 => $LNG['cs_no']),
+		'signalColors'						=> $USER['signalColors'],
 	));
 		
 	$template->show('StatsPage.tpl');

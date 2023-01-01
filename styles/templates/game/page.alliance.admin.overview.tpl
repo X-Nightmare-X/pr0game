@@ -30,12 +30,12 @@
 	</tr>
 	<tr>
 		<td colspan="3">
-			<textarea name="text" id="text" cols="70" rows="15" class="tinymce">{$text}</textarea>
+			<textarea name="text" id="text" cols="70" rows="15" {if $textMode == 'apply'}maxlength="1000"{/if}>{$text}</textarea>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="3">
-			<input type="reset" value="{$LNG.al_circular_reset}"> 
+			<input type="reset" value="{$LNG.al_circular_reset}">
 			<input type="submit" value="{$LNG.al_save}">
 		</td>
 	</tr>
@@ -102,7 +102,7 @@
 	</tr>
 	<tr>
 		<td><form action="game.php?page=alliance&amp;mode=admin&amp;action=close" method="post"><input type="submit" value="{$LNG.al_continue}" onclick="return confirm('{$LNG.al_close_ally}');"></form></td>
-	</tr>  
+	</tr>
 </table>
 <table>
 	<tr>
@@ -110,43 +110,7 @@
 	</tr>
 	<tr>
 		<td><form action="game.php?page=alliance&amp;mode=admin&amp;action=transfer" method="post"><input type="submit" value="{$LNG.al_continue}"></form></td>
-	</tr>  
+	</tr>
 </table>
 {/if}
-{/block}
-{block name="script" append}
-<script type="text/javascript" src="scripts/base/tinymce/tiny_mce_gzip.js"></script>
-<script type="text/javascript">
-$(function() {
-	tinyMCE_GZ.init({
-		plugins : 'bbcode,fullscreen',
-		themes : 'advanced',
-		languages : '{$lang}',
-		disk_cache : true,
-		debug : false
-	}, function() {
-		tinyMCE.init({
-			language : '{$lang}',
-			script_url : 'scripts/base/tinymce/tiny_mce.js',
-			theme : "advanced",
-			mode : "textareas",
-			plugins : "bbcode,fullscreen",
-			theme_advanced_buttons1 : "bold,italic,underline,undo,redo,link,unlink,image,forecolor,styleselect,removeformat,cleanup,code,fullscreen",
-			theme_advanced_buttons2 : "",
-			theme_advanced_buttons3 : "",
-			theme_advanced_toolbar_location : "bottom",
-			theme_advanced_toolbar_align : "center",
-			theme_advanced_styles : "Code=codeStyle;Quote=quoteStyle",
-			content_css : "{$dpath}formate.css",
-			entity_encoding : "raw",
-			add_unload_trigger : false,
-			remove_linebreaks : false,
-			fullscreen_new_window : false,
-			fullscreen_settings : {
-				theme_advanced_path_location : "top"
-			}
-		});
-	});
-});
-</script>
 {/block}

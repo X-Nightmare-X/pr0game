@@ -17,14 +17,14 @@
 
 $LNG['Messages'] = 'Wiadomości';
 $LNG['write_message'] = 'Napisz wiadomość';
-
+$LNG['type_planet_short_3'] = 'M';
 $LNG['PM'] = '[PW]';
 $LNG['ready'] = 'Gotowe';
-
+$LNG["delete_confirm_gala"] = 'Usunąć dane lokalnego uniwersum?';
 $LNG['loading'] = 'Ładuję';
-
+$LNG['fleetPrio'] = 'Priorytet kolejności floty';
 $LNG['invalid_action'] = 'Niedozwolona akcja';
-
+$LNG["whenbuildable"] = 'Możliwe w';
 $LNG['type_mission_1'] = 'Atak';
 $LNG['type_mission_2'] = 'ACS Atak';
 $LNG['type_mission_3'] = 'Transport';
@@ -36,6 +36,50 @@ $LNG['type_mission_8'] = 'Recykling';
 $LNG['type_mission_9'] = 'Zniszcz';
 $LNG['type_mission_10'] = 'Atak Rakietowy';
 $LNG['type_mission_15'] = 'Ekspedycja';
+$LNG['type_mission_16'] = 'Handel';
+$LNG['type_mission_17'] = 'przenosić';
+
+$LNG['type_mission_1_own'] = 'Własny atak';
+$LNG['type_mission_2_own'] = 'Własna flota atakująca federacji';
+$LNG['type_mission_3_own'] = 'Własny transport';
+$LNG['type_mission_4_own'] = 'Własne stacjonowanie';
+$LNG['type_mission_5_own'] = 'Własne trzymanie';
+$LNG['type_mission_6_own'] = 'Własne szpiegowanie';
+$LNG['type_mission_7_own'] = 'Własna kolonizacja';
+$LNG['type_mission_7_own_return'] = 'Zwrot własnej kolonizacji';
+$LNG['type_mission_8_own'] = 'Własny recykling';
+$LNG['type_mission_9_own'] = 'Własne niszczenie';
+$LNG['type_mission_10_own'] = 'Własny atak rakietowy';
+$LNG['type_mission_15_own'] = 'Własna wyprawa';
+$LNG['type_mission_16_own'] = 'Własna flota targowa';
+$LNG['type_mission_17_own'] = 'Własny transfer';
+$LNG['type_mission_return_own'] = 'Własny powrót';
+
+$LNG['type_mission_2_friend'] = 'Przyjazna flota atakująca federacji';
+
+$LNG['type_mission_1_foreign'] = 'Atak obcej floty';
+$LNG['type_mission_2_foreign'] = 'Flota atakująca obcą federację';
+$LNG['type_mission_3_foreign'] = 'Obcy transport';;
+$LNG['type_mission_4_foreign'] = 'Obce stacjonowanie';;
+$LNG['type_mission_5_foreign'] = 'Foreign holding';;
+$LNG['type_mission_6_foreign'] = 'Obce szpiegostwo';
+$LNG['type_mission_7_foreign'] = 'Obca kolonizacja';
+$LNG['type_mission_8_foreign'] = 'Obcy recykling';;
+$LNG['type_mission_9_foreign'] = 'Zagraniczne niszczenie';
+$LNG['type_mission_10_foreign'] = 'Obcy atak rakietowy';
+$LNG['type_mission_15_foreign'] = 'Zagraniczna ekspedycja';
+$LNG['type_mission_16_foreign'] = 'Obca flota targowa';
+$LNG['type_mission_17_foreign'] = 'Zagraniczny transfer';
+$LNG['type_mission_return_foreign'] = 'Zwrot zagraniczny';
+
+$LNG['positive'] = 'Pozytywny';
+$LNG['negative'] = 'Negative';
+$LNG['neutral'] = 'Neutralny';
+$LNG['StaticTimer'] = 'Czas przybycia';
+
+$LNG['own_colors'] = 'Własne kolory';
+$LNG['foreign_colors'] = 'Kolory obce';
+$LNG['general_colors'] = 'Kolory ogólne';
 
 $LNG['type_planet_1'] = 'Planeta';
 $LNG['type_planet_2'] = 'Pole zniszczeń';
@@ -83,6 +127,7 @@ $LNG['lm_notes'] = 'Notatki';
 $LNG['lm_statistics'] = 'Statystyki';
 $LNG['lm_search'] = 'Szukaj';
 $LNG['lm_options'] = 'Opcje';
+$LNG['donate'] = 'Darowizna';
 $LNG['lm_banned'] = 'Zbanowani';
 
 $LNG['lm_forums'] = 'Forum';
@@ -324,6 +369,7 @@ $LNG['fl_no_slots'] = 'Sloty niedostępne!';
 $LNG['fl_planet_populed'] = 'Ta planeta jest zajęta!';
 $LNG['fl_no_same_alliance'] = 'Gracz musi być w twoim sojuszu lub na liście znajomych!';
 $LNG['fl_not_ally_deposit'] = 'Brak depozytu sojuszniczego';
+$LNG['fl_selected_resources'] = 'wybrane zasoby';
 $LNG['fl_deploy_only_your_planets'] = 'Możesz stacjonować tylko na swoich planetach!';
 $LNG['fl_fleet_sended'] = 'Flota wysłana';
 $LNG['fl_from'] = 'Od';
@@ -411,8 +457,8 @@ $LNG['bd_maxlevel'] = 'Maksymalny poziom';
 $LNG['bd_on'] = 'na';
 $LNG['bd_max_builds'] = 'Długość kolejki budowy [%d]';
 $LNG['bd_next_level'] = 'Następny poziom:';
-$LNG['bd_need_engine'] = 'Wymaga  <font color="#FF0000">%s</font> %s więcej';
-$LNG['bd_more_engine'] = 'Produkuje <font color="#00FF00">%s</font> %s więcej';
+$LNG['bd_need_engine'] = 'Wymaga  <font class="colorNegative">%s</font> %s więcej';
+$LNG['bd_more_engine'] = 'Produkuje <font class="colorPositive">%s</font> %s więcej';
 $LNG['bd_jump_gate_action'] = 'Skocz do';
 $LNG['bd_cancel_warning'] = 'Przerwanie produkcji zwróci ci tylko 60% kosztów budowy!';
 $LNG['bd_cancel_send'] = 'Usuń zaznaczone';
@@ -961,7 +1007,8 @@ $LNG['bn_writemail'] = 'Mail do %s';
 //class.CheckSession.php
 
 $LNG['css_account_banned_message'] = 'Twoje konto zostało zbanowane! ';
-$LNG['css_account_banned_expire'] = 'Jesteś zbanowwany do %s <br><a href="./index.php?page=pranger">Banlist</a>';
+$LNG['css_account_banned_expire'] = 'You are banned until %s!<br>In case of questions, please open a ticket on our <a style="color: -webkit-link;" href="https://discord.gg/jhYYN3yuat">Discord server (link)</a>';
+$LNG['css_account_banned_reason'] = 'Reason: %s';
 $LNG['css_goto_homeside'] = '<a href="./index.php">Strona startowa</a>';
 $LNG['css_server_maintrace'] = 'Konserwacja serwera<br><br>Play unanimously at present. <br><br>Powód: %s';
 
@@ -1200,6 +1247,31 @@ $LNG['lo_notify'] = 'Zostaniesz przeniesiony za <span id="seconds"> 5 </span> s'
 $LNG['lo_continue'] = 'Kliknij tutaj, jeśli nie chcesz zostać przeniesiony';
 //----------------------------------------------------------------------------//
 
-
+$LNG['fleet_table_custom_empty_name'] = 'Proszę wstawić nazwę floty!';
+$LNG['custom_fleet'] = 'Floty niestandardowe';
+$LNG['custom_fleet_confirm'] = 'Usunąć szablon floty %s?';
 // Translated into Polish by Sirgomo . All rights reversed (C) 2012
 // Edited by TheRavikin. All rights resteemed (C) 2018
+
+//----------------------------------------------------------------------------//
+//Scavengers Toolbox
+$LNG['stb_activ'] = 'Scavengers Toolbox włączony';
+
+$LNG['stb_low_ress_tooltip'] = "Jeśli na planecie jest mniej zasobów niż wprowadzono, raport szpiegowski jest oznaczony na czerwono (zły).";
+$LNG['stb_low_ress'] = 'niskie zasoby obecne na docelowej planecie';
+
+$LNG['stb_mid_ress_tooltip'] = "Jeśli na planecie jest mniej zasobów niż wprowadzono, raport szpiegowski jest oznaczony jasnopomarańczowym (średnim).";
+$LNG['stb_mid_ress'] = 'średnie zasoby obecne na docelowej planecie';
+
+$LNG['stb_big_ress_tooltip'] = "Jeśli na planecie jest mniej zasobów niż wprowadzono, raport szpiegowski jest oznaczony jasnozielonym (dobrym). Raporty szpiegowskie z zasobami powyżej tej wartości są wyświetlane w kolorze jasnoniebieskim (optymalnym).";
+$LNG['stb_big_ress'] = 'Wiele zasobów obecnych na docelowej planecie';
+
+
+$LNG['stb_small_time_tooltip'] = 'Opisuje najlepszy możliwy zysk zasobów na sekundę, zaokrąglony do dwóch miejsc po przecinku. Stosunek mniejszy niż zarejestrowana wartość jest interpretowany jako zły (jasnoczerwony).';
+$LNG['stb_small_time'] = 'Niski stosunek zasobów na sekundę';
+
+$LNG['stb_med_time_tooltip'] = 'Opisuje najlepszy możliwy zysk z zasobów na sekundę, zaokrąglony do dwóch miejsc po przecinku. Stosunek mniejszy niż zarejestrowana wartość interpretuje się jako średni (jasnopomarańczowy).';
+$LNG['stb_med_time'] = 'stosunek średnich zasobów na sekundę';
+
+$LNG['stb_big_time_tooltip'] = 'Opisuje najlepszy możliwy zysk zasobów na sekundę, zaokrąglony do dwóch miejsc po przecinku. Stosunek mniejszy niż wprowadzona wartość jest interpretowany jako dobry (jasnozielony), a wartość powyżej jako optymalna (jasnoniebieski).';
+$LNG['stb_big_time'] = 'Stosunek dobrych zasobów na sekundę';

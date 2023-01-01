@@ -106,7 +106,7 @@ class ShowSearchPage extends AbstractGamePage
 			case "allytag":
 				$sql = "SELECT a.id, a.ally_name, a.ally_tag, a.ally_members,
 				c.total_points FROM %%ALLIANCE%% as a
-				LEFT JOIN %%STATPOINTS%% as c ON c.stat_type = 1 AND c.id_owner = a.id
+				LEFT JOIN %%STATPOINTS%% as c ON c.stat_type = 2 AND c.id_owner = a.id
 				WHERE a.ally_universe = :universe AND a.ally_tag LIKE :searchTextLike
 				ORDER BY (
 				  IF(a.ally_tag = :searchText, 1, 0)
@@ -134,7 +134,7 @@ class ShowSearchPage extends AbstractGamePage
 			case "allyname":
 				$sql = "SELECT a.id, a.ally_name, a.ally_tag, a.ally_members,
 				b.total_points FROM %%ALLIANCE%% as a
-				LEFT JOIN %%STATPOINTS%% as b ON b.stat_type = 1 AND b.id_owner = a.id
+				LEFT JOIN %%STATPOINTS%% as b ON b.stat_type = 2 AND b.id_owner = a.id
 				WHERE a.ally_universe = :universe AND a.ally_name LIKE :searchTextLike
 				ORDER BY (
 				  IF(a.ally_name = :searchText, 1, 0)

@@ -224,8 +224,8 @@ $LNG['bo_permanent'] = 'Ban permanent';
 $LNG['bo_bbb_title_1'] = 'Suspension System';
 $LNG['bo_bbb_title_2'] = 'When it should be unlocked';
 $LNG['bo_bbb_title_3'] = 'Suspension system • <font color="red">This player is locked</font>';
-$LNG['bo_bbb_title_4'] = 'In order to reduce the time duration, it is necessary to add a "-" before the number desired'
-    . ' introduced, that is in the number of minutes that you want to reduce, such as: -5';
+$LNG['bo_bbb_title_4'] = 'In order to reduce the time duration, it is necessary to add a "-" before the numbers'
+    . ', such as: -5<br>With previous perma-lock, the lock is reduced to the entered positive time';
 $LNG['bo_bbb_title_5'] = 'Locked';
 $LNG['bo_bbb_title_6'] = 'Date modified';
 $LNG['bo_characters_1'] = 'Available Chars';
@@ -236,6 +236,7 @@ $LNG['bo_order_banned'] = '[Sort by suspended]';
 $LNG['bo_total_users'] = 'Total players:';
 $LNG['bo_total_banneds'] = 'Suspended Players:';
 $LNG['bo_ban'] = 'Block';
+$LNG['bo_ban_change'] = 'Change';
 $LNG['bo_unban'] = 'Unlock';
 //###########################################################//
 
@@ -334,7 +335,9 @@ $LNG['se_server_parameters'] = 'Settings of the universe';
 $LNG['se_game_name'] = 'Set name';
 $LNG['se_uni_name'] = 'Name of the Universe';
 $LNG['se_lang'] = 'Language';
-$LNG['se_general_speed'] = 'Game speed';
+$LNG['se_building_speed'] = 'Building speed';
+$LNG['se_shipyard_speed'] = 'Shipyard speed';
+$LNG['se_research_speed'] = 'Research speed';
 $LNG['se_energy_speed'] = 'Energy Factor';
 $LNG['se_normal_speed'] = 'Normal speed: 1';
 $LNG['se_normal_speed_resoruces'] = 'Normal speed: 1';
@@ -345,7 +348,11 @@ $LNG['se_resources_producion_speed'] = 'Speed of production of resources';
 $LNG['se_storage_producion_speed'] = 'Resource storage multiplicator';
 $LNG['se_halt_speed'] = 'Expedition speed';
 $LNG['se_forum_link'] = 'Forum Link';
-$LNG['se_server_op_close'] = 'Server Online?';
+$LNG['se_uni_status'] = 'Uni status';
+$LNG['se_uni_status_regopen_gameopen'] = 'Registration and login open';
+$LNG['se_uni_status_regclosed_gameclosed'] = 'Registration and login closed (e.g. maintenance)';
+$LNG['se_uni_status_regopen_gameclosed'] = 'Registration open, login closed (e.g. new unis)';
+$LNG['se_uni_status_regclosed_gameopen'] = 'Registration closed, login open (e.g. old unis)';
 $LNG['se_server_status_message'] = 'Closed server message';
 $LNG['se_server_planet_parameters'] = 'Settings of the planets';
 $LNG['se_initial_fields'] = 'Initial Fields:';
@@ -381,7 +388,7 @@ $LNG['se_planet_creation_info'] = 'New player planets can be iteratively placed 
     . 'The block placement randomly picks a system with one or 2 planets. If there is no system or there are less than 50 players, the placement is random.';
 $LNG['se_iter_planet_creation'] = 'Iterative (default)';
 $LNG['se_random_planet_creation'] = 'Random';
-$LNG['se_bulk_planet_creation'] = 'Block';
+$LNG['se_block_planet_creation'] = 'Block';
 $LNG['se_expedition_parameters'] = 'Expedition Parameters';
 $LNG['se_ress_chance'] = 'Ressource-Chances';
 $LNG['se_several_parameters'] = 'Other Parameters';
@@ -407,7 +414,6 @@ $LNG['se_noob_protect_e3'] = 'You can only attack users where their points is be
     . ' example *18 , it means, if you have 1000 points, you can attack users with less than 18000 points, or, if you'
     . ' have 50000 points, you can be attacked from users where you enter in their range points, like if a enemy or a'
     . ' neutral user have 20000 points, * 18 will be 360000, so you are in their range and you can be attacked by him';
-$LNG['se_reg_closed'] = 'Closed Registration';
 $LNG['se_min_build_time'] = 'Min. Construction';
 $LNG['se_trader_head'] = 'The settings of Merchant Fleet';
 $LNG['se_trader_ships'] = 'Authorized ships:';
@@ -801,10 +807,10 @@ $LNG['ac_suspended_time'] = 'Suspended';
 $LNG['ac_suspended_longer'] = 'Until';
 $LNG['ac_suspended_reason'] = 'Reason';
 $LNG['ac_suspended_autor'] = 'Suspended by';
-$LNG['ac_note_k'] = '<table><tr><th width=10%><font color=lime>T+</font></th><th>More than Trillion</th></tr><tr>'
-    . '<th width=10%><font color=lime>T</font></th><th>More or same of Trillion</th></tr><tr><th width=10%>'
-    . '<font color=lime>B</font></th><th>More or same of Billion</th></tr><tr><th width=10%><font color=lime>M</font>'
-    . '</th><th>More or same of Million </th></tr><tr><th width=10%><font color=lime>K</font></th>'
+$LNG['ac_note_k'] = '<table><tr><th width=10%><font class="colorPositive">T+</font></th><th>More than Trillion</th></tr><tr>'
+    . '<th width=10%><font class="colorPositive">T</font></th><th>More or same of Trillion</th></tr><tr><th width=10%>'
+    . '<font class="colorPositive">B</font></th><th>More or same of Billion</th></tr><tr><th width=10%><font class="colorPositive">M</font>'
+    . '</th><th>More or same of Million </th></tr><tr><th width=10%><font class="colorPositive">K</font></th>'
     . '<th>More or same of Thousand</th></tr></table>';
 $LNG['ac_leyend'] = '[ Legend ]';
 $LNG['ac_no_rank_level'] = 'Dont have enough Permissions to see the informations of this user';

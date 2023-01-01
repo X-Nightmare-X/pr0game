@@ -23,7 +23,7 @@ require 'includes/classes/class.FlyingFleetsTable.php';
 
 function ShowFlyingFleetPage()
 {
-    global $LNG;
+    global $LNG, $USER;
 
     $id = HTTP::_GP('id', 0);
     $massunlock = HTTP::_GP('massunlock', 0);
@@ -118,6 +118,9 @@ function ShowFlyingFleetPage()
     $GLOBALS['DATABASE']->free_result($fleetResult);
 
     $template = new template();
-    $template->assign_vars(['FleetList' => $FleetList]);
+    $template->assign_vars([
+        'FleetList'     => $FleetList,
+        'signalColors'  => $USER['signalColors']
+    ]);
     $template->show('FlyingFleetPage.tpl');
 }

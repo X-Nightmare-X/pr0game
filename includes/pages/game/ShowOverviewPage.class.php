@@ -236,6 +236,7 @@ class ShowOverviewPage extends AbstractGamePage
             'RefLinks'                  => $RefLinks,
             'servertime'                => _date("M D d H:i:s", TIMESTAMP, $USER['timezone']),
             'path'                      => HTTP_PATH,
+            'colors'                    => $USER['colors'],
         ]);
 
         $this->display('page.overview.default.tpl');

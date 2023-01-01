@@ -21,7 +21,7 @@ if ($USER['id'] != ROOT_USER || $_GET['sid'] != session_id()) {
 
 function ShowResetPage()
 {
-    global $LNG, $reslist, $resource;
+    global $LNG, $reslist, $resource, $USER;
     $template = new template();
     $config = Config::get(Universe::getEmulated());
 
@@ -214,7 +214,9 @@ function ShowResetPage()
                 "DELETE FROM " . STATPOINTS . " WHERE `universe` = " . Universe::getEmulated() . ";"
             );
         }
-
+        $template->assign_vars([
+            'signalColors' => $USER['signalColors']
+        ]);
         $template->message($LNG['re_reset_excess'], '?page=reset&sid=' . session_id(), 3);
         exit;
     }
@@ -251,6 +253,7 @@ function ShowResetPage()
         're_reset_player'                   => $LNG['re_reset_player'],
         're_player_and_planets'             => $LNG['re_player_and_planets'],
         're_general'                        => $LNG['re_general'],
+        'signalColors'                      => $USER['signalColors'],
     ]);
 
     $template->show('ResetPage.tpl');

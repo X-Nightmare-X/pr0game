@@ -53,7 +53,7 @@ require 'includes/classes/Cache.class.php';
 require 'includes/classes/Database.class.php';
 require 'includes/classes/Config.class.php';
 require 'includes/classes/class.FleetFunctions.php';
-require 'includes/classes/HTTP.class.php';
+require_once 'includes/classes/HTTP.class.php';
 require 'includes/classes/Language.class.php';
 require 'includes/classes/PlayerUtil.class.php';
 require 'includes/classes/Session.class.php';
@@ -74,6 +74,24 @@ if (MODE === 'INSTALL') {
 
 if (!file_exists('includes/config.php') || filesize('includes/config.php') === 0) {
     HTTP::redirectTo('install/index.php');
+}
+
+$config = Config::get();
+date_default_timezone_set($config->timezone);
+
+$USER = [];
+$USER['lang'] = 'en';
+$USER['bana'] = 0;
+$USER['timezone'] = $config->timezone;
+$USER['urlaubs_modus'] = 0;
+$USER['authlevel'] = 0;
+$USER['id'] = 0;
+$USER['signalColors'] = PlayerUtil::player_signal_colors();
+$USER['colors'] = PlayerUtil::player_colors();
+$USER['stb_settings'] = PlayerUtil::player_stb_settings();
+
+if (MODE === 'UPGRADE') {
+    return;
 }
 
 try {
@@ -103,14 +121,12 @@ if (defined('DATABASE_VERSION') && DATABASE_VERSION === 'OLD') {
     }
 }
 
-$config = Config::get();
-date_default_timezone_set($config->timezone);
-
-
 if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     $session    = Session::load();
 
-    if (!(!$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME')) {
+    $raportWithoutSession = !$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME';
+
+    if (!$raportWithoutSession) {
         if (!$session->isValidSession()) {
             $session->delete();
             HTTP::redirectTo('index.php?code=3');
@@ -127,38 +143,22 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
 
     $db     = Database::get();
 
+    if (!$raportWithoutSession) {
+        $sql    = "SELECT
+    	user.*, s.total_points,
+    	COUNT(message.message_id) as messages
+    	FROM %%USERS%% as user
+        LEFT JOIN %%STATPOINTS%% s ON s.id_owner = user.id AND s.stat_type = :statTypeUser
+    	LEFT JOIN %%MESSAGES%% as message ON message.message_owner = user.id AND message.message_unread = :unread
+    	WHERE user.id = :userId
+    	GROUP BY message.message_owner;";
 
-    $sql    = "SELECT
-	user.*, s.total_points,
-	COUNT(message.message_id) as messages
-	FROM %%USERS%% as user
-    LEFT JOIN %%STATPOINTS%% s ON s.id_owner = user.id AND s.stat_type = :statTypeUser
-	LEFT JOIN %%MESSAGES%% as message ON message.message_owner = user.id AND message.message_unread = :unread
-	WHERE user.id = :userId
-	GROUP BY message.message_owner;";
+        $USER   = $db->selectSingle($sql, array(
+            ':statTypeUser'     => 1,
+            ':unread'           => 1,
+            ':userId'           => $session->userId
+        ));
 
-
-    $USER   = $db->selectSingle($sql, array(
-        ':statTypeUser'     => 1,
-        ':unread'           => 1,
-        ':userId'           => $session->userId
-    ));
-
-    if (!$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME') {
-        if (empty($USER)) {
-            $USER = [];
-        }
-
-        $USER['lang'] = 'en';
-        $USER['bana'] = 0;
-        $USER['timezone'] = "Europe/Berlin";
-        $USER['urlaubs_modus'] = 0;
-        $USER['authlevel'] = 0;
-        $USER['id'] = 0;
-    }
-
-
-    if (!(!$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME')) {
         if (empty($USER)) {
             HTTP::redirectTo('index.php?code=3');
         } else {
@@ -170,6 +170,9 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
                 $USER['bana'] = 0;
                 $USER['banaday'] = 0;
             }
+
+            $USER['signalColors'] = PlayerUtil::player_signal_colors($USER);
+            $USER['colors'] = PlayerUtil::player_colors($USER);
         }
     }
 
@@ -180,10 +183,18 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     }
 
     if ($USER['bana'] == 1) {
-        ShowErrorPage::printError("<font size=\"6px\">" . $LNG['css_account_banned_message'] . "</font><br><br>" . sprintf($LNG['css_account_banned_expire'], _date($LNG['php_tdformat'], $USER['banaday'], $USER['timezone'])) . "<br><br>" . $LNG['css_goto_homeside'], false);
+        $sql = 'SELECT theme FROM %%BANNED%% WHERE who = :username';
+        $reason = $db->selectSingle($sql, [
+            ':username' => $USER['username'],
+        ], 'theme');
+
+        ShowErrorPage::printError("<font size=\"6px\">" . $LNG['css_account_banned_message'] . "</font><br><br>" .
+        sprintf($LNG['css_account_banned_expire'], _date($LNG['php_tdformat'], $USER['banaday'], $USER['timezone']), $config->forum_url) . "<br><br>" .
+        sprintf($LNG['css_account_banned_reason'], $reason) . "<br><br>" .
+        $LNG['css_goto_homeside'], false);
     }
 
-    if (!(!$session->isValidSession() && isset($_GET['page']) && $_GET['page'] == "raport" && isset($_GET['raport']) && count($_GET) == 2 && MODE === 'INGAME')) {
+    if (!$raportWithoutSession) {
         if (MODE === 'INGAME') {
             $universeAmount = count(Universe::availableUniverses());
             if (Universe::current() != $USER['universe'] && $universeAmount > 1) {
@@ -220,11 +231,36 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     }
 
     if (
-        $config->game_disable == 0 && $USER['authlevel'] == AUTH_USR &&
+        ($config->uni_status == STATUS_CLOSED || $config->uni_status == STATUS_REG_ONLY) && $USER['authlevel'] == AUTH_USR &&
         (!isset($_GET['page']) || $_GET['page'] !== 'logout')
     ) {
         ShowErrorPage::printError($LNG['sys_closed_game'] . '<br><br>' . $config->close_reason, false);
     }
+    $privKey = $config->recaptchaPrivKey;
+    $rcaptcha = HTTP::_GP('rcaptcha', '');
+
+    if (isset($privKey) && isset($rcaptcha)) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('secret' => $privKey, 'response' => $rcaptcha)));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $arrResponse = json_decode($response, true);
+        $sql = "insert into %%RECAPTCHA%% (userId, success, time, score, url) VALUES (:userId, :success, :time, :score, :url);";
+
+        if (isset($arrResponse) && $arrResponse['success'] == true) {
+            $db->insert($sql, array(
+                ':userId'   => $USER['id'],
+                ':success'  => $arrResponse['success'],
+                ':time'     => TIMESTAMP,
+                ':score'    => $arrResponse['score'],
+                ':url'      => $_SERVER['REQUEST_URI'],
+            ));
+        }
+    }
+
 } elseif (MODE === 'LOGIN') {
     $LNG    = new Language();
     $LNG->getUserAgentLanguage();

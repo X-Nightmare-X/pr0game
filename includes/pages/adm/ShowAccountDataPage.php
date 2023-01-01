@@ -24,7 +24,9 @@ function ShowAccountDataPage()
     global $USER, $reslist, $resource, $LNG;
 
     $template = new template();
-
+    $template->assign_vars([
+        'signalColors'  => $USER['signalColors']
+    ]);
     $id_u = HTTP::_GP('id_u', 0);
     if (!empty($id_u)) {
         $OnlyQueryLogin = $GLOBALS['DATABASE']->getFirstRow(
@@ -215,36 +217,35 @@ function ShowAccountDataPage()
                     $ali_logo = $LNG['ac_no_img'];
                 }
 
+                $StatQueryAlly = $GLOBALS['DATABASE']->getFirstRow(
+                    "SELECT " . $SpecifyItemsS . " FROM " . STATPOINTS
+                    . " WHERE `id_owner` = '" . $ali_lider . "' AND `stat_type` = '2';"
+                );
 
                 $SearchLeader = $GLOBALS['DATABASE']->getFirstRow(
                     "SELECT `username` FROM " . USERS . " WHERE `id` = '" . $ali_lider . "';"
                 );
                 $ali_lider = $SearchLeader['username'];
 
+                if (!empty($StatQueryAlly)) {
+                    $count_tecno_ali = pretty_number($StatQueryAlly['tech_count']);
+                    $count_def_ali = pretty_number($StatQueryAlly['defs_count']);
+                    $count_fleet_ali = pretty_number($StatQueryAlly['fleet_count']);
+                    $count_builds_ali = pretty_number($StatQueryAlly['build_count']);
+
+                    $point_builds_ali = pretty_number($StatQueryAlly['build_points']);
+                    $point_tecno_ali = pretty_number($StatQueryAlly['tech_points']);
+                    $point_def_ali = pretty_number($StatQueryAlly['defs_points']);
+                    $point_fleet_ali = pretty_number($StatQueryAlly['fleet_points']);
 
 
-                $StatQueryAlly = $GLOBALS['DATABASE']->getFirstRow(
-                    "SELECT " . $SpecifyItemsS . " FROM " . STATPOINTS
-                    . " WHERE `id_owner` = '" . $ali_lider . "' AND `stat_type` = '2';"
-                );
+                    $ranking_tecno_ali = pretty_number($StatQueryAlly['tech_rank']);
+                    $ranking_builds_ali = pretty_number($StatQueryAlly['build_rank']);
+                    $ranking_def_ali = pretty_number($StatQueryAlly['defs_rank']);
+                    $ranking_fleet_ali = pretty_number($StatQueryAlly['fleet_rank']);
 
-                $count_tecno_ali = pretty_number($StatQueryAlly['tech_count']);
-                $count_def_ali = pretty_number($StatQueryAlly['defs_count']);
-                $count_fleet_ali = pretty_number($StatQueryAlly['fleet_count']);
-                $count_builds_ali = pretty_number($StatQueryAlly['build_count']);
-
-                $point_builds_ali = pretty_number($StatQueryAlly['build_points']);
-                $point_tecno_ali = pretty_number($StatQueryAlly['tech_points']);
-                $point_def_ali = pretty_number($StatQueryAlly['defs_points']);
-                $point_fleet_ali = pretty_number($StatQueryAlly['fleet_points']);
-
-
-                $ranking_tecno_ali = pretty_number($StatQueryAlly['tech_rank']);
-                $ranking_builds_ali = pretty_number($StatQueryAlly['build_rank']);
-                $ranking_def_ali = pretty_number($StatQueryAlly['defs_rank']);
-                $ranking_fleet_ali = pretty_number($StatQueryAlly['fleet_rank']);
-
-                $total_points_ali = pretty_number($StatQueryAlly['total_points']);
+                    $total_points_ali = pretty_number($StatQueryAlly['total_points']);
+                }
             }
             $SpecifyItemsPQ = '';
             foreach (array_merge($reslist['fleet'], $reslist['build'], $reslist['defense']) as $ID) {
@@ -317,7 +318,7 @@ function ShowAccountDataPage()
                     if ($SumOfEnergy < 0) {
                         $Color = "<font color=#FF6600>" . shortly_number($SumOfEnergy) . "</font>";
                     } elseif ($SumOfEnergy > 0) {
-                        $Color = "<font color=lime>" . shortly_number($SumOfEnergy) . "</font>";
+                        $Color = "<font class=\"colorPositive\">" . shortly_number($SumOfEnergy) . "</font>";
                     } else {
                         $Color = shortly_number($SumOfEnergy);
                     }

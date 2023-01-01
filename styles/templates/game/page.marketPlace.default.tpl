@@ -142,7 +142,8 @@
 			{if $FlyingFleetRow.possible_to_buy == true}
 			<form class="market_form" action="game.php?page=marketPlace&amp;action=buy" method="post">
 				<input name="fleetID" value="{$FlyingFleetRow.id}" type="hidden">
-				<input value="{$LNG.market_p_submit}" type="submit">
+				<input value="{$LNG.market_p_submit}" type="button" class="market_buy_button">
+        <input type="submit" style="display: none">
 			</form>
 			{else}
 				{$FlyingFleetRow.reason}
@@ -333,10 +334,11 @@ $('#shipT').on('change', function (e) {
 
 $('#shipT').trigger("change");
 
-$(".market_form").submit( function() {
+$(".market_buy_button").click( function() {
 	var c = confirm("{$LNG.market_confirm_are_you_sure}");
 	if (c) {
 		$(this).append('<input type="hidden" name="shipType" value="' + $("#shipT").val() + '">')
+      this.parentElement.submit()
 	}
 	return c;
 });

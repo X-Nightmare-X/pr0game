@@ -31,10 +31,10 @@ class ShowRecordsPage extends AbstractGamePage
 
         $db = Database::get();
 
-        $sql = "SELECT elementID, level, userID, username
-		FROM %%USERS%%
-		INNER JOIN %%RECORDS%% ON userID = id
-		WHERE universe = :universe;";
+        $sql = "SELECT r.elementID, r.level, r.userID, u.username
+		FROM %%USERS%% u
+		INNER JOIN %%RECORDS%% r ON r.userID = u.id
+		WHERE r.universe = :universe;";
 
         $recordResult = $db->select($sql, [':universe' => Universe::current()]);
 

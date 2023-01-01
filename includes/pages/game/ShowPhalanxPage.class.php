@@ -48,7 +48,7 @@ class ShowPhalanxPage extends AbstractGamePage
 	
 	function show()
 	{
-		global $PLANET, $LNG, $resource;
+		global $PLANET, $LNG, $resource, $USER;
 
 		$this->initTemplate();
 		$this->setWindow('popup');
@@ -107,13 +107,13 @@ class ShowPhalanxPage extends AbstractGamePage
 		$fleetTableObj->setUser($TargetInfo['id_owner']);
 		$fleetTableObj->setPlanet($TargetInfo['id']);
 		$fleetTable	=  $fleetTableObj->renderTable();
-		
 		$this->assign(array(
 			'galaxy'  		=> $Galaxy,
 			'system'  		=> $System,
 			'planet'   		=> $Planet,
 			'name'    		=> $TargetInfo['name'],
 			'fleetTable'	=> $fleetTable,
+			'colors'		=> $USER['colors'],
 		));
 		
 		$this->display('page.phalanx.default.tpl');			
