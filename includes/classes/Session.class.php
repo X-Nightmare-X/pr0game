@@ -46,7 +46,7 @@ class Session
         ini_set('session.save_path', CACHE_PATH . 'sessions');
         ini_set('upload_tmp_dir', CACHE_PATH . 'sessions');
 
-        $HTTP_ROOT = MODE === 'INSTALL' ? dirname(HTTP_ROOT) : HTTP_ROOT;
+        $HTTP_ROOT = (MODE === 'INSTALL' || MODE === 'UPGRADE') ? dirname(HTTP_ROOT) : HTTP_ROOT;
 
         session_set_cookie_params(SESSION_LIFETIME, $HTTP_ROOT, null, HTTPS, true);
         session_cache_limiter('nocache');

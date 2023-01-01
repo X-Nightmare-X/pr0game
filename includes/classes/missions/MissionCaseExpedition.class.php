@@ -175,7 +175,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
         $upperValue = 3;
 
         $remainingPoints = $foundPoints;
-        while ($findableShips != null && $upperValue > 0) {
+        while (($findableShips != null && $upperValue > 0) || empty($Found)) {
             $ID = $findableShips[rand(0, count($findableShips) - 1)];
             $shipCost = ($pricelist[$ID]['cost'][RESOURCE_METAL] + $pricelist[$ID]['cost'][RESOURCE_CRYSTAL]);
             $MaxFound = floor($remainingPoints / $shipCost);

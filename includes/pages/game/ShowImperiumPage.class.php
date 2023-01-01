@@ -67,6 +67,23 @@ class ShowImperiumPage extends AbstractGamePage
 
         $planetList = array();
         $config = Config::get($USER['universe']);
+
+        if (!empty($USER['b_tech_queue'])) {
+            $researchque=unserialize($USER['b_tech_queue']);
+
+            $researchid= $researchque[0][0];
+            $researchlvl= $researchque[0][1];
+            $planetid=$researchque[0][4];
+        } else {
+            $researchid= -1;
+            $researchlvl= -1;
+            $planetid= -1;
+        }
+        $this->assign(array(
+            'researchq_id'      => $researchid,
+            'researchq_lvl'     => $researchlvl,
+            'researchq_planet'  => $planetid,
+        ));
         foreach ($PLANETS as $Planet) {
             $planetList['name'][$Planet['id']] = $Planet['name'];
             $planetList['image'][$Planet['id']] = $Planet['image'];

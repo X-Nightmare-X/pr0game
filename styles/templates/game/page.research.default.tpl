@@ -13,7 +13,7 @@
 			{if isset($ResearchList[$List.element])}
 				{$CQueue = $ResearchList[$List.element]}
 			{/if}
-		
+
 			{$List@iteration}.:
 			{if isset($CQueue) && $CQueue.maxLevel != $CQueue.level && !$IsFullQueue && $CQueue.buyable}
 				<form action="game.php?page=research" method="post" class="build_form">
@@ -24,7 +24,7 @@
 			{else}
 				{$LNG.tech.{$ID}} {$List.level}{if !empty($List.planet)} @ {$List.planet}{/if}
 			{/if}
-		
+
 			{if $List@first}
 				<br><br><div id="progressbar" data-time="{$List.resttime}"></div></div>
 				<div class="bulida">
@@ -68,11 +68,11 @@
 			<a href="#" onclick="return Dialog.info({$ID})">
 				<img style="float: left;" src="{$dpath}gebaeude/{$ID}.gif" width="120" height="120">
 			</a>
-		{$LNG.bd_remaining}:<br>
+		{$LNG.bd_remaining}<br>
 						{foreach $Element.costOverflow as $ResType => $ResCount}
                         <a href='#' onclick='return Dialog.info({$ResType})' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$ResType}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$ResType}.{if $ResType >=600 && $ResType <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$ResType}</td></tr></table></tr></table>">{$LNG.tech.{$ResType}}</a>: <span style="font-weight:700">{number_format($ResCount, 0, ",", ".")}</span><br>
 						{/foreach}
-
+    {if $Element.timetobuild!= 0}<div>{$LNG['whenbuildable']}:<span style="font-weight: bold" class="buildcountdown" timestamp="{$Element.timetobuild}"></span></div>{/if}
 
 
 					</div>

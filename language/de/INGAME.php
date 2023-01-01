@@ -13,7 +13,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 $LNG["delete_confirm_gala"] = 'Lokale Universumsdaten löschen?';
-
+$LNG["whenbuildable"] = 'Möglich in';
 $LNG['type_planet_short_3'] = 'M';
 $LNG['Messages'] = 'Nachrichten';
 $LNG['write_message'] = 'Schreibe eine Nachricht';
@@ -1316,6 +1316,31 @@ $LNG['lo_continue'] = 'Klicken Sie hier, um nicht zu warten';
 $LNG['fleet_table_custom_empty_name'] = 'Bitte einen Flottennamen eingeben!';
 $LNG['custom_fleet'] = 'Benutzerdefinierte Flotten';
 $LNG['custom_fleet_confirm'] = 'Flottenvorlage %s entfernen?';
+
+
+//----------------------------------------------------------------------------//
+//Scavengers Toolbox
+$LNG['stb_activ'] = 'Erweiterter Spionagebericht (Scavengers Toolbox) aktivieren';
+
+$LNG['stb_low_ress_tooltip'] = 'Wenn weniger Ressoucen als eingegeben auf dem Planeten sind, wird der der Spionagebericht hellrot (schlecht) gekennzeichnet.';
+$LNG['stb_low_ress'] = 'Wenig Ressourcen am Ziel, kleiner als:';
+
+$LNG['stb_mid_ress_tooltip'] = 'Wenn weniger Ressoucen als eingegeben auf dem Planeten sind, wird der der Spionagebericht hellorange (mittel) gekennzeichnet.';
+$LNG['stb_mid_ress'] = 'Mittel Ressourcen am Ziel, kleiner als:';
+
+$LNG['stb_big_ress_tooltip'] = 'Wenn weniger Ressoucen als eingegeben auf dem Planeten sind, wird der der Spionagebericht hellgrün (gut) gekennzeichnet. Spionageberichte mit Ressourcen oberhalb dieses Wertes werden hellblau (optimal) angezeigt.';
+$LNG['stb_big_ress'] = 'Viele Ressourcen am Ziel, kleiner als:';
+
+
+
+$LNG['stb_small_time_tooltip'] = 'Beschreibt die bestmögliche Ressourchenausbeute pro Sekunde, gerundet auf zwei Stellen hinter dem Komma. Eine Verhältniss kleiner als der eingetragene Wert wird als schlecht (hellrot) interpretiert.';
+$LNG['stb_small_time'] = 'Niedriges Ressourcen pro Zeit Verhältniss';
+
+$LNG['stb_med_time_tooltip'] = 'Beschreibt die bestmögliche Ressourchenausbeute pro Sekunde, gerundet auf zwei Stellen hinter dem Komma. Eine Verhältniss kleiner als der eingetragene Wert wird als mittel (hellorange) interpretiert.';
+$LNG['stb_med_time'] = 'Mittleres Ressourcen pro Zeit Verhältniss';
+
+$LNG['stb_big_time_tooltip'] = 'Beschreibt die bestmögliche Ressourchenausbeute pro Sekunde, gerundet auf zwei Stellen hinter dem Komma. Eine Verhältniss kleiner als der eingetragene Wert wird als gut (hellgrün) interpretiert, ein Wert obehalb als optimal (hellblau).';
+$LNG['stb_big_time'] = 'Gutes Ressourcen pro Zeit Verhältniss';
 
 
 // Translated into German by Jan . All rights reversed (C) 2011

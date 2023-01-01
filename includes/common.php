@@ -53,7 +53,7 @@ require 'includes/classes/Cache.class.php';
 require 'includes/classes/Database.class.php';
 require 'includes/classes/Config.class.php';
 require 'includes/classes/class.FleetFunctions.php';
-require 'includes/classes/HTTP.class.php';
+require_once 'includes/classes/HTTP.class.php';
 require 'includes/classes/Language.class.php';
 require 'includes/classes/PlayerUtil.class.php';
 require 'includes/classes/Session.class.php';
@@ -68,6 +68,9 @@ define('AJAX_REQUEST', HTTP::_GP('ajax', 0));
 
 $THEME      = new Theme();
 
+if (MODE === 'INSTALL') {
+    return;
+}
 
 if (!file_exists('includes/config.php') || filesize('includes/config.php') === 0) {
     HTTP::redirectTo('install/index.php');
@@ -85,8 +88,9 @@ $USER['authlevel'] = 0;
 $USER['id'] = 0;
 $USER['signalColors'] = PlayerUtil::player_signal_colors();
 $USER['colors'] = PlayerUtil::player_colors();
+$USER['stb_settings'] = PlayerUtil::player_stb_settings();
 
-if (MODE === 'INSTALL') {
+if (MODE === 'UPGRADE') {
     return;
 }
 

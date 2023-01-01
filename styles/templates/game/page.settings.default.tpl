@@ -364,8 +364,73 @@
     <tr><th colspan="2">{$LNG.fleetPrio}</th></tr>
 
     {foreach $missionPrios as $ID => $score}
-      <tr><td>{$LNG[$ID]}</td><td><input min="0" max="99" type="number" name="{$ID}" value="{$score}"></td></tr>
+		<tr>
+	  		<td>{$LNG[$ID]}</td>
+	  		<td><input min="0" max="99" type="number" name="{$ID}" value="{$score}"></td>
+		</tr>
     {/foreach}
+
+		<tr>
+			<th colspan="2">Scavengers Toolbox <a href="https://codeberg.org/pr0game/userscripts#user-content-scavengers-toolbox" target="_blank">❓ FAQ ❓</a></th>
+		</tr>
+		<tr>
+			<td>{$LNG.stb_activ}</td>
+			<td>
+				<input name="stb_enabled" type="checkbox" value="1" {if $stb_enabled == 1}checked="checked"{/if}>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a title="{$LNG.stb_low_ress_tooltip}">{$LNG.stb_low_ress}</a>
+			</td>
+			<td>
+				<input name="stb_small_ress" size="{$stb_small_ress|count_characters + 3}" value="{$stb_small_ress}" type="int">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a title="{$LNG.stb_mid_ress_tooltip}">{$LNG.stb_mid_ress}</a>
+			</td>
+			<td>
+				<input name="stb_med_ress" size="{$stb_med_ress|count_characters + 3}" value="{$stb_med_ress}" type="int">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a title="{$LNG.stb_big_ress_tooltip}">{$LNG.stb_big_ress}</a>
+			</td>
+			<td>
+				<input name="stb_big_ress" size="{$stb_big_ress|count_characters + 3}" value="{$stb_big_ress}" type="int">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a title="{$LNG.stb_small_time_tooltip}">{$LNG.stb_small_time}</a>
+			</td>
+			<td>
+				<input name="stb_small_time" size="{$stb_small_time|count_characters + 3}" value="{$stb_small_time}" type="int">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a title="{$LNG.stb_med_time_tooltip}">{$LNG.stb_med_time}</a>
+			</td>
+			<td>
+				<input name="stb_med_time" size="{$stb_med_time|count_characters + 3}" value="{$stb_med_time}" type="int">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a title="{$LNG.stb_big_time_tooltip}">{$LNG.stb_big_time}</a>
+			</td>
+			<td>
+				<input name="stb_big_time" size="{$stb_big_time|count_characters + 3}" value="{$stb_big_time}" type="int">
+			</td>
+		</tr>
+
+
+
+
 		<tr>
 			<th colspan="2">{$LNG.op_vacation_delete_mode}</th>
 		</tr>
