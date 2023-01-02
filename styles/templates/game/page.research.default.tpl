@@ -72,7 +72,7 @@
 						{foreach $Element.costOverflow as $ResType => $ResCount}
                         <a href='#' onclick='return Dialog.info({$ResType})' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$ResType}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$ResType}.{if $ResType >=600 && $ResType <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$ResType}</td></tr></table></tr></table>">{$LNG.tech.{$ResType}}</a>: <span style="font-weight:700">{number_format($ResCount, 0, ",", ".")}</span><br>
 						{/foreach}
-    {if $Element.timetobuild!= 0}<div>{$LNG['whenbuildable']}:<span style="font-weight: bold" class="buildcountdown" timestamp="{$Element.timetobuild}"></span></div>{/if}
+    {if $Element.timetobuild!= 0}<div>{$LNG['whenbuildable']}: <span style="font-weight: bold" class="buildcountdown" timestamp="{$Element.timetobuild}"></span></div>{/if}
 
 
 					</div>
