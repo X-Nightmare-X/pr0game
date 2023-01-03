@@ -25,7 +25,7 @@
                     {/if}
                 {/foreach}
                 {if $test == 0}
-                    <a href='#' onclick=''>-</a>
+                    -
                     <br><br><br>
                 {elseif $test == 1}
                     <br><br><br>
@@ -35,16 +35,16 @@
             </td>
             <td>{number_format($elementRow[0].level, 0, ",", ".")}</td>
             {elseif !empty($elementRow) && count($elementRow) < 10}
-            <td>3+<br><br><br></td>
+            <td>>3<br><br><br></td>
             <td>{number_format($elementRow[0].level, 0, ",", ".")}</td>
             {elseif !empty($elementRow) && count($elementRow) < 50}
-            <td>10+<br><br><br></td>
+            <td>>10<br><br><br></td>
             <td>{number_format($elementRow[0].level, 0, ",", ".")}</td>
             {elseif !empty($elementRow) && count($elementRow) < 100}
-            <td>50+<br><br><br></td>
+            <td>>50<br><br><br></td>
             <td>{number_format($elementRow[0].level, 0, ",", ".")}</td>
             {elseif !empty($elementRow) && count($elementRow) >= 100}
-            <td>100+<br><br><br></td>
+            <td>>100<br><br><br></td>
             <td>{number_format($elementRow[0].level, 0, ",", ".")}</td>
             {else}
             <td>-</td>
