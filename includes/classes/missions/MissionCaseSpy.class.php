@@ -478,8 +478,6 @@ class MissionCaseSpy extends MissionFunctions implements Mission
     public function bestplanet($owner, $targetCoordinates)
     {
 
-        // TODO TRY CATCH -> Catch -> open Ticket 
-
         $db = Database::get();
         $universe = Universe::current();
 
