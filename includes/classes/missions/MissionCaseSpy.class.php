@@ -477,6 +477,9 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
     public function bestplanet($owner, $targetCoordinates)
     {
+
+        // TODO TRY CATCH -> Catch -> open Ticket 
+
         $db = Database::get();
         $universe = Universe::current();
 
@@ -526,11 +529,11 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
     public function bestRessPerTime($distance, $senderUser, $ressourcesByMarketValue)
     {
-        $fleetArray = [SHIP_RIP => 1];
+        $fleetArray = [SHIP_SMALL_CARGO => 1];
         $MaxFleetSpeed = FleetFunctions::getFleetMaxSpeed($fleetArray, $senderUser);
         $GameSpeed = Config::get()->fleet_speed / 2500;
         $flytime = FleetFunctions::getMissionDuration(100, $MaxFleetSpeed, $distance, $GameSpeed, $senderUser);
-
+             
         $ressPerTime = $ressourcesByMarketValue / ($flytime * 2);
 
         return round($ressPerTime, 2);
