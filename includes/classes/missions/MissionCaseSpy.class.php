@@ -195,6 +195,19 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             $THEME->setUserTheme($senderUser['dpath']);
         }
 
+        // Usernamen in Spyreports
+        // keep in mind if you manipulate the sprintf you have to add the element in the $LNG['sys_mess_head'] language\*\FLEET.php
+        $spyTime = _date($LNG['php_tdformat'], $this->_fleet['fleet_end_stay'], $senderUser['timezone'], $LNG);
+        $title = sprintf(
+            $LNG['sys_mess_head'],
+            $targetPlanet['name'],
+            $targetUser['username'],
+            $targetPlanet['galaxy'],
+            $targetPlanet['system'],
+            $targetPlanet['planet'],
+            $spyTime,
+        );
+
         // Scavengers Tool Box
 
         $stbSettings = PlayerUtil::player_stb_settings($senderUser);
@@ -285,14 +298,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             'totalShipDefCount'                 => $totalShipDefCount,
             'dpath'                             => $THEME->getTheme(),
             'isBattleSim'                       => ENABLE_SIMULATOR_LINK == true && isModuleAvailable(MODULE_SIMULATOR),
-            'title'                 => sprintf(
-                $LNG['sys_mess_head'],
-                $targetPlanet['name'],
-                $targetPlanet['galaxy'],
-                $targetPlanet['system'],
-                $targetPlanet['planet'],
-                _date($LNG['php_tdformat'], $this->_fleet['fleet_end_time'], $senderUser['timezone'], $LNG)
-            ),
+            'title'                             => $title,        
         ]);
 
         $template->assign_vars([
