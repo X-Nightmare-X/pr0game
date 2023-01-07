@@ -381,8 +381,9 @@ class MissionCaseSpy extends MissionFunctions implements Mission
      */
     public function getRessoucesByDsuValue($metal, $crystal, $deuterium)
     {
+        
         require_once 'includes/classes/class.MarketManager.php';
-        $pMarket = new MarketManager();
+        $pMarket = new MarketManager($this->_fleet['fleet_universe']);
         $refrates = $pMarket->getReferenceRatios();
         $refratesMetal = $refrates["metal"];
         $refratesCrystal = $refrates["crystal"];
