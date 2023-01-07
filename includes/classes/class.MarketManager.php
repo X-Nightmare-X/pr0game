@@ -6,8 +6,9 @@
  * (c) 2022 havoc
  * 
  */
-
-class MarketManager {
+require_once "includes\classes\Universe.class.php";
+class MarketManager
+{
 
 	private $_restype_metal = 1;
 	private $_restype_crystal = 2;
@@ -16,10 +17,17 @@ class MarketManager {
 	private $_mkVolume = [];
 	private $_mdVolume = [];
 	private $_cdVolume = [];
+	private $_universe = Universe::current();
+
 
 	private $_pushTolerance = 0.3; // accepted market volatility percentage, not triggering push check
 
-    // return useful default values for when there are no trades
+	public function __construct($universe = Universe::current())
+	{
+		$this->_universe =  $universe;
+	}
+
+	// return useful default values for when there are no trades
 	private function getDefaultRatio($expectedrestype)
 	{
 		if ($expectedrestype == $this->_restype_metal) return 3;
@@ -50,11 +58,11 @@ class MarketManager {
 
 		$trades = $db->select($sql, [
 			':exprestype' => $expectedrestype,
-			':universe' => Universe::current(),
+			':universe' => $this->_universe,
 		]);
 
 		if (empty($trades)) {
-			$trades []= [
+			$trades[] = [
 				'amount' => $this->getDefaultRatio($expectedrestype),
 				'metal' => $this->getDefaultRatio($this->_restype_metal),
 			];
@@ -83,11 +91,11 @@ class MarketManager {
 
 		$trades = $db->select($sql, [
 			':exprestype' => $expectedrestype,
-			':universe' => Universe::current(),
+			':universe' => $this->_universe,
 		]);
 
 		if (empty($trades)) {
-			$trades []= [
+			$trades[] = [
 				'amount' => $this->getDefaultRatio($expectedrestype),
 				'crystal' => $this->getDefaultRatio($this->_restype_crystal),
 			];
@@ -116,11 +124,11 @@ class MarketManager {
 
 		$trades = $db->select($sql, [
 			':exprestype' => $expectedrestype,
-			':universe' => Universe::current(),
+			':universe' => $this->_universe,
 		]);
 
 		if (empty($trades)) {
-			$trades []= [
+			$trades[] = [
 				'amount' => $this->getDefaultRatio($expectedrestype),
 				'deuterium' => $this->getDefaultRatio($this->_restype_deuterium),
 			];
@@ -136,22 +144,20 @@ class MarketManager {
 		if ($this->_mkVolume != []) return $this->_mkVolume;
 
 		$allTrades = [
-				'metal' => 0,
-				'crystal' => 0,
+			'metal' => 0,
+			'crystal' => 0,
 		];
 
 		$kristrades = $this->getMetSales($this->_restype_crystal);
 
-		foreach ($kristrades as $trade)
-		{
+		foreach ($kristrades as $trade) {
 			$allTrades['metal'] += $trade['metal'];
 			$allTrades['crystal'] += $trade['amount'];
 		}
 
 		$mettrades = $this->getCrysSales($this->_restype_metal);
 
-		foreach ($mettrades as $trade)
-		{
+		foreach ($mettrades as $trade) {
 			$allTrades['metal'] += $trade['amount'];
 			$allTrades['crystal'] += $trade['crystal'];
 		}
@@ -170,16 +176,14 @@ class MarketManager {
 
 		$deutrades = $this->getMetSales($this->_restype_deuterium);
 
-		foreach ($deutrades as $trade)
-		{
+		foreach ($deutrades as $trade) {
 			$allTrades['metal'] += $trade['metal'];
 			$allTrades['deuterium'] += $trade['amount'];
 		}
 
 		$mettrades = $this->getDeutSales($this->_restype_metal);
 
-		foreach ($mettrades as $trade)
-		{
+		foreach ($mettrades as $trade) {
 			$allTrades['metal'] += $trade['amount'];
 			$allTrades['deuterium'] += $trade['deuterium'];
 		}
@@ -198,16 +202,14 @@ class MarketManager {
 
 		$deutrades = $this->getCrysSales($this->_restype_deuterium);
 
-		foreach ($deutrades as $trade)
-		{
+		foreach ($deutrades as $trade) {
 			$allTrades['crystal'] += $trade['crystal'];
 			$allTrades['deuterium'] += $trade['amount'];
 		}
 
 		$crystrades = $this->getDeutSales($this->_restype_crystal);
 
-		foreach ($crystrades as $trade)
-		{
+		foreach ($crystrades as $trade) {
 			$allTrades['crystal'] += $trade['amount'];
 			$allTrades['deuterium'] += $trade['deuterium'];
 		}
@@ -271,9 +273,9 @@ class MarketManager {
 		if (!array_key_exists('crystal', $input)) $input['crystal'] = 0;
 		if (!array_key_exists('deuterium', $input)) $input['deuterium'] = 0;
 
-		return (int) round($input['metal'] 
-			+ ($input['crystal'] * $this->getMetCrysRatio()) 
-			+ ($input['deuterium'] * $this->getMetDeutRatio())); 
+		return (int) round($input['metal']
+			+ ($input['crystal'] * $this->getMetCrysRatio())
+			+ ($input['deuterium'] * $this->getMetDeutRatio()));
 	}
 
 	/** @param aray [901, 902, 903] mkd **/
@@ -293,8 +295,7 @@ class MarketManager {
 	{
 		$result = [];
 
-		switch ($expResType)
-		{
+		switch ($expResType) {
 			case 1:
 				$result['metal'] = $expResAmount;
 				break;
@@ -324,20 +325,21 @@ class MarketManager {
 		global $pricelist;
 
 		$totalCostArray = [
-				901 => 0,
-				902 => 0,
-				903 => 0,
+			901 => 0,
+			902 => 0,
+			903 => 0,
 		];
 
-		foreach ($fleetArray as $ship => $count)
-		{
+		foreach ($fleetArray as $ship => $count) {
 			$totalCostArray[901] += $pricelist[$ship]['cost'][901] * $count;
 			$totalCostArray[902] += $pricelist[$ship]['cost'][902] * $count;
 			$totalCostArray[903] += $pricelist[$ship]['cost'][903] * $count;
 		}
 
 		if ($useScore) // return value in points, not metal
-		{ return ($totalCostArray[901] + $totalCostArray[902]) / Config::get()->stat_settings; }
+		{
+			return ($totalCostArray[901] + $totalCostArray[902]) / Config::get()->stat_settings;
+		}
 
 		$overallCost = $this->convertToMetalNumeric($totalCostArray);
 		return $overallCost;
@@ -354,14 +356,14 @@ class MarketManager {
 				LEFT JOIN %%STATPOINTS%% s ON s.id_owner = u.id AND s.stat_type = 1
 				WHERE u.id = :playerID AND u.universe = :universe;";
 		$query = $db->selectSingle($sql, array(
-				':universe'	=> Universe::current(),
-				':playerID'	=> $playerid,
+			':universe'	=> $this->_universe,
+			':playerID'	=> $playerid,
 		));
-		
-		if(!$query) {
+
+		if (!$query) {
 			throw new Exception('the requested player does not exist');
 		}
-		
+
 		return $query['total_points'] ?: 0;
 	}
 
@@ -377,17 +379,19 @@ class MarketManager {
 
 		// special case: buyer is weaker, but becomes stronger when receiving fleet
 		$specialFleetPush = ($fleetScore != 0
-				&& ($sellerScore > $buyerScore) 
-				&& ($sellerScore - $fleetScore < $buyerScore + $fleetScore));
+			&& ($sellerScore > $buyerScore)
+			&& ($sellerScore - $fleetScore < $buyerScore + $fleetScore));
 
 		$highestValue = ($offer > $ask) ? $offer : $ask;
 		$margin = $highestValue * (1 - $this->_pushTolerance);
 
 		// seller <= buyer - too cheap?
-		if ($sellerScore <= $buyerScore || $specialFleetPush)
-		{ return ($ask < $margin); }
-		else // too expensive?
-		{ return ($offer < $margin); }
+		if ($sellerScore <= $buyerScore || $specialFleetPush) {
+			return ($ask < $margin);
+		} else // too expensive?
+		{
+			return ($offer < $margin);
+		}
 	}
 
 	public function isFleetPush($fleetArray, int $ask, int $sellerId, int $buyerId)
