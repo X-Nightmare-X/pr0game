@@ -98,7 +98,7 @@
 					</a>
 				</div>
 				<div class="spyRaportContainerCell {$dangerClass}" style="width: 50% !important; text-align:center;">
-					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[203]={$nessesarryLargeTransporter}"target="_blank">
+					<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1&#35;ship_input[203]={$nessesarryLargeTransporter}" target="_blank">
 						<button type="button" style="text-align: center;">
 							⚔️  {$nessesarryLargeTransporter} {$LNG.spy_large_transporter} ⚔️
 						</button>
