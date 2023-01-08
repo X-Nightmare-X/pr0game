@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -19,22 +19,48 @@
 class ShowPhalanxPage extends AbstractGamePage
 {
 	public static $requireModule = MODULE_PHALANX;
-	
+
 	static function allowPhalanx($toGalaxy, $toSystem, $targetUser)
 	{
 		global $PLANET, $resource, $USER;
-		
+
 		$checknoob = CheckNoobProtec($USER, $targetUser, $targetUser);
-		
+
 		if ($PLANET['galaxy'] != $toGalaxy || $PLANET[$resource[42]] == 0 || !isModuleAvailable(MODULE_PHALANX) || $PLANET[$resource[903]] < PHALANX_DEUTERIUM || $USER['urlaubs_modus'] == 1 || $checknoob['NoobPlayer'] || $checknoob['StrongPlayer']) {
 			return false;
 		}
-		
+
 		$PhRange	= self::GetPhalanxRange($PLANET[$resource[42]]);
-		$systemMin  = max(1, $PLANET['system'] - $PhRange);
-		$systemMax  = $PLANET['system'] + $PhRange;
-		
-		return $toSystem >= $systemMin && $toSystem <= $systemMax;
+        // if (Config::get()->galaxy_type == 2) {
+        // TODO or else
+        // } else if
+        if (Config::get()->galaxy_type == 1) {
+            $max = Config::get()->max_system;
+            $thisSystem = $PLANET['system'];
+
+            if ($thisSystem + $PhRange > $max) {
+                $systemMax = $thisSystem + $PhRange - $max;
+            } else {
+                $systemMax = $thisSystem + $PhRange;
+            }
+
+            if ($thisSystem - $PhRange < 1) {
+                $systemMin = $max + ($thisSystem - $PhRange);
+            } else {
+                $systemMin = $thisSystem - $PhRange;
+            }
+
+            if ($systemMin <= $systemMax) {
+                return $toSystem >= $systemMin && $toSystem <= $systemMax;
+            } else {
+                return ($toSystem >= $systemMin && $toSystem <= $max) || ($toSystem >= 1 && $toSystem <= $systemMax);
+            }
+        } else {
+            $systemMin  = max(1, $PLANET['system'] - $PhRange);
+            $systemMax  = $PLANET['system'] + $PhRange;
+
+            return $toSystem >= $systemMin && $toSystem <= $systemMax;
+        }
 	}
 
 	static function GetPhalanxRange($PhalanxLevel)
@@ -45,7 +71,7 @@ class ShowPhalanxPage extends AbstractGamePage
 	function __construct() {
 
 	}
-	
+
 	function show()
 	{
 		global $PLANET, $LNG, $resource, $USER;
@@ -53,11 +79,11 @@ class ShowPhalanxPage extends AbstractGamePage
 		$this->initTemplate();
 		$this->setWindow('popup');
 		$this->tplObj->loadscript('phalanx.js');
-		
+
 		$Galaxy 			= HTTP::_GP('galaxy', 0);
 		$System 			= HTTP::_GP('system', 0);
 		$Planet 			= HTTP::_GP('planet', 0);
-		
+
 		if ($PLANET[$resource[903]] < PHALANX_DEUTERIUM)
 		{
 			$this->printMessage($LNG['px_no_deuterium']);
@@ -72,7 +98,7 @@ class ShowPhalanxPage extends AbstractGamePage
 
 		$sql = "SELECT id, name, id_owner FROM %%PLANETS%% WHERE universe = :universe
 		AND galaxy = :galaxy AND system = :system AND planet = :planet AND :type;";
-		
+
 		$TargetInfo = $db->selectSingle($sql, array(
 			':universe'	=> Universe::current(),
 			':galaxy'	=> $Galaxy,
@@ -84,13 +110,13 @@ class ShowPhalanxPage extends AbstractGamePage
 		$sql = "SELECT u.id, s.total_points, u.onlinetime, u.banaday FROM %%USERS%% u ".
 		"LEFT JOIN %%STATPOINTS%% s ON s.id_owner = u.id AND s.stat_type = :statTypeUser ".
 		"WHERE u.universe = :universe AND id = :id_owner;";
-		
+
 		$TargetUser = $db->selectSingle($sql, array(
 			':statTypeUser'     => 1,
 			':universe'			=> Universe::current(),
 			':id_owner'			=> $TargetInfo['id_owner'],
 		));
-		
+
 		if(!$this->allowPhalanx($Galaxy, $System, $TargetUser))
 		{
 			$this->printMessage($LNG['px_out_of_range']);
@@ -99,7 +125,7 @@ class ShowPhalanxPage extends AbstractGamePage
 		{
 			$this->printMessage($LNG['px_out_of_range']);
 		}
-		
+
 		require 'includes/classes/class.FlyingFleetsTable.php';
 
 		$fleetTableObj = new FlyingFleetsTable;
@@ -115,7 +141,7 @@ class ShowPhalanxPage extends AbstractGamePage
 			'fleetTable'	=> $fleetTable,
 			'colors'		=> $USER['colors'],
 		));
-		
-		$this->display('page.phalanx.default.tpl');			
+
+		$this->display('page.phalanx.default.tpl');
 	}
 }

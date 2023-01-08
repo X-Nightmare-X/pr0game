@@ -66,7 +66,7 @@ $LNG['sys_spy_fleet'] = 'Frota';
 $LNG['sys_spy_defenses'] = 'Defesas';
 $LNG['sys_mess_qg'] = 'Central de Operações';
 $LNG['sys_mess_spy_report_moon'] = '(Lua)';
-$LNG['sys_mess_head'] = 'Relatório de Espionagem %s [%d:%d:%d] am %s';
+$LNG['sys_mess_head'] = 'Relatório de Espionagem %s ( %s ) [%d:%d:%d] am %s';
 $LNG['sys_mess_spy_report'] = 'Relatório de espionagem';
 $LNG['sys_mess_spy_lostproba'] = 'A probabilidade das tuas sondas serem detetadas é de: %d %% ';
 

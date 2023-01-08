@@ -930,6 +930,7 @@ CREATE TABLE `%PREFIX%users` (
   `stb_med_time` tinyint(2) NOT NULL DEFAULT 2,
   `stb_big_time` tinyint(2) NOT NULL DEFAULT 3,
   `stb_enabled` tinyint(1) NOT NULL DEFAULT 0,
+  `records_optIn` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `authlevel` (`authlevel`),
   KEY `ref_bonus` (`ref_bonus`),
