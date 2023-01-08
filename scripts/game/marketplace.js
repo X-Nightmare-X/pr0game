@@ -1,6 +1,6 @@
 var start = new Date().getTime() / 1000;
 
-function Refrash() {
+function Refrash() { // au huur.
 	var now = new Date().getTime() / 1000;
 	$("[data-time]").each( function () {
 		var d = $(this).attr('data-time');
@@ -8,7 +8,54 @@ function Refrash() {
 	});
 }
 
+function convertToMetal(crystal, deuterium) {
+	var crystalValue = crystal * $('input[name=ratio-mc').val();
+	var deutValue = deuterium * $('input[name=ratio-md').val();
+	return crystalValue + deutValue;
+}
 
+function convertToCrystal(metal, deuterium) {
+	var metalValue = metal / $('input[name=ratio-mc').val();
+	var deutValue = deuterium * $('input[name=ratio-cd').val();
+	return metalValue + deutValue;
+}
+
+function convertToDeut(metal, crystal) {
+	var metalValue = metal / $('input[name=ratio-md]')
+	var crystalValue = crystal / $('input[name=ratio-cd]').val();
+	return metalValue + crystalValue;
+}
+
+function getCostType(tradeOffer) {
+	if (tradeOffer.find('.wanted-resource-1').length > 0) return 'metal';
+	if (tradeOffer.find('.wanted-resource-2').length > 0) return 'crystal';
+	if (tradeOffer.find('.wanted-resource-3').length > 0) return 'deut';
+}
+
+/* TODO:
+ *
+ * with this new logic, calculateRatios doesn't work anymore.
+ * replace calculateRatios with some version of this
+ */
+function getTradeRatio(tradeOffer) {
+	var metal = parseInt(tradeOffer.find('.resource_metal').html().replace(/\./g,''));
+	var crystal = parseInt(tradeOffer.find('.resource_crystal').html().replace(/\./g,''));
+	var deut = parseInt(tradeOffer.find('.resource_deuterium').html().replace(/\./g,''));
+
+	var offerValue = 0;
+	var costType = getCostType(tradeOffer);
+	var costValue = parseInt(tradeOffer.find('.wanted-resource-amount').html().replace(/\./g,''));
+	switch (costType) {
+		case 'metal':
+			offerValue = metal + convertToMetal(crystal,deut);
+			break;
+		case 'crystal':
+			offerValue = crystal + convertToCrystal(crystal,deut);
+			break;
+		case 'deut':
+			offerValue = deut + convertToDeut(metal,crystal);
+	}
+}
 //-------------------
 function calculateRatios(){
 	/*
