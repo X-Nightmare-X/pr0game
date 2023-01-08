@@ -82,6 +82,10 @@
 			<td><input name="blockPM" type="checkbox" value="1" {if $blockPM == 1}checked="checked"{/if}></td>
 		</tr>
 		<tr>
+			<td>{$LNG.recordsOptIn}</td>
+			<td><input name="recordsOptIn" type="checkbox" value="1" {if $recordsOptIn == 1}checked="checked"{/if}></td>
+		</tr>
+		<tr>
 			<th colspan="2">{$LNG.op_galaxy_settings}</th>
 		</tr>
 		<tr>

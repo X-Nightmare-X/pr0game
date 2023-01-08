@@ -84,6 +84,9 @@ $LNG['own_colors'] = 'Kendi renkleri';
 $LNG['foreign_colors'] = 'Yabancı renkler';
 $LNG['general_colors'] = 'Genel renkler';
 
+$LNG['kendi'] = 'Kendi';
+$LNG['recordsOptIn'] = 'Kayıtlarınızı tüm oyunculara gösterin';
+
 $LNG['type_planet_1'] = 'Gezegen';
 $LNG['type_planet_2'] = 'Harabe alani';
 $LNG['type_planet_3'] = 'Ay';

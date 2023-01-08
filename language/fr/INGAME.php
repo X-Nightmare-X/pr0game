@@ -72,6 +72,9 @@ $LNG['own_colors'] = 'Couleurs propres' ;
 $LNG['foreign_colors'] = 'Couleurs étrangères' ;
 $LNG['general_colors'] = 'Couleurs générales' ;
 
+$LNG['own'] = 'Propre' ;
+$LNG['recordsOptIn'] = 'Afficher vos records à tous les joueurs' ;
+
 $LNG['type_planet_1'] = 'Planète';
 $LNG['type_planet_2'] = 'Champ de débris';
 $LNG['type_planet_3'] = 'Lune';
