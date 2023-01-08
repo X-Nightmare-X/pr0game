@@ -45,8 +45,9 @@ $template->assign(array(
 ));
 
 $enableInstallToolFile = 'includes/ENABLE_INSTALL_TOOL';
-// If is install mode, automatically create include/ENABLE_INSTALL_TOOL
-if (MODE === 'INSTALL') {
+$quickStartFile        = 'includes/FIRST_INSTALL';
+// If include/FIRST_INSTALL is present and can be deleted, automatically create include/ENABLE_INSTALL_TOOL
+if (is_file($quickStartFile) && is_writeable($quickStartFile) && unlink($quickStartFile)) {
     @touch($enableInstallToolFile);
 }
 // Only allow Install Tool access if the file "include/ENABLE_INSTALL_TOOL" is found
