@@ -48,9 +48,16 @@
 
 <table style="width:50%">
 	<tr class="ratio">
+		<td> Resource pair:</td> <!-- todo language variables -->
+		<td>{$LNG['tech'][901]} / {$LNG['tech'][902]}</td>
+		<td>{$LNG['tech'][901]} / {$LNG['tech'][903]}</td>
+		<td>{$LNG['tech'][902]} / {$LNG['tech'][903]}</td>
+	</tr>
+	<tr class="ratio">
 		<td>Reference ratio:</td>
-		<td>
-			<input type="number" name="ratio-metal" value="{$ratio_metal}" style="width: 30%"/>:<input type="number" name="ratio-cristal" value="{$ratio_crystal}" style="width: 30%"/>:<input type="number"name="ratio-deuterium" value="{$ratio_deuterium}" style="width: 30%"/>
+		<td><input type="number" name="ratio-metal" value="{$ratio_metal_crystal}" style="width: 50%"/></td>
+		<td><input type="number" name="ratio-cristal" value="{$ratio_metal_deut}" style="width: 50%"/></td>
+		<td><input type="number"name="ratio-deuterium" value="{$ratio_crystal_deut}" style="width: 50%"/></td>
 		</td>
 	</tr>
 </table>

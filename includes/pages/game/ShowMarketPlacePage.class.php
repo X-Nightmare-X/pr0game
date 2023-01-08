@@ -639,9 +639,9 @@ class ShowMarketPlacePage extends AbstractGamePage
             'FlyingFleetList'       => $FlyingFleetList,
             'resourceHistory' => $this->getResourceTradeHistory(),
 			'fleetHistory' => $this->getFleetTradeHistory(),
-			'ratio_metal'					=> $refrates['mc'],
-			'ratio_crystal'					=> $refrates['md'],
-			'ratio_deuterium'				=> $refrates['cd'],
+			'ratio_metal_crystal' => $refrates['mc'],
+			'ratio_metal_deut' => $refrates['md'],
+			'ratio_crystal_deut' => $refrates['cd'],
         ]);
         $this->tplObj->loadscript('marketplace.js');
         $this->display('page.marketPlace.default.tpl');
