@@ -935,9 +935,8 @@ class PlayerUtil
 
         $db = Database::get();
 
-        $sql = "SELECT urlaubs_start FROM %%USERS%% WHERE universe = :universe AND id = :userID;";
+        $sql = "SELECT urlaubs_start FROM %%USERS%% WHERE id = :userID;";
         $umode_start = $db->selectSingle($sql, [
-            ':universe' => Universe::current(),
             ':userID'   => $USER['id'],
         ], 'urlaubs_start');
         $umode_delta = TIMESTAMP - $umode_start;
@@ -1018,9 +1017,8 @@ class PlayerUtil
             $USER['urlaubs_until'] = 0;
             $USER['urlaubs_start'] = 0;
 
-            $sql = "SELECT * FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :id;";
+            $sql = "SELECT * FROM %%PLANETS%% WHERE id_owner = :id;";
             $PlanetsRAW = $db->select($sql, [
-                ':universe' => Universe::current(),
                 ':id' => $USER['id'],
             ]);
 
