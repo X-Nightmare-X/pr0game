@@ -659,6 +659,7 @@ HTML;
             $normalBackTime = $this->_fleet['fleet_end_time'] - $this->_fleet['fleet_end_stay'];
             $stayTime = $this->_fleet['fleet_end_stay'] - $this->_fleet['fleet_start_time'];
             $factor = $Wrapper[mt_rand(0, 9)];
+            $this->eventvalue = '{"factor":' . $factor . "}";
             $this->eventtype = "Speed";
             if ($chance < 75) {
                 // More return time
@@ -683,7 +684,7 @@ HTML;
             $Message .= '<br><br>' . $this->logbook;
 
         }
-        $Message .= '<div hidden name="expoinfo" spy="' . $this->eventspy . '" expevent="' . $this->eventtype . '" expsize="' . $this->eventsize . '" expvalue="' . $this->eventvalue . '"</div>';
+        $Message .= '<div hidden name="expoinfo" spy="' . $this->eventspy . '" expevent="' . $this->eventtype . '" expsize="' . $this->eventsize . '" expvalue=' . "'" . $this->eventvalue . "' </div>";
 
         PlayerUtil::sendMessage(
             $this->_fleet['fleet_owner'],
