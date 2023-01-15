@@ -338,7 +338,6 @@ function add_static_times(){
   }
 }
 
-getRestTimeFormat
 
 function countdown_buildable(){
   const mh = document.getElementsByClassName("buildcountdown")
