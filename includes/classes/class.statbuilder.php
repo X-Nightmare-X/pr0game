@@ -503,7 +503,7 @@ class statbuilder
         $result = array();
         foreach($reslist[$type] as $kind) {
             $kindName = $resource[$kind];
-            $sql = "SELECT id_owner as id, " . $kindName . " as level FROM %%PLANETS%% where " . $kindName . " = (select max(" . $kindName . ") from %%PLANETS%% where universe = :universe) and universe = :universe;";
+            $sql = "SELECT DISTINCT(id_owner) as id, " . $kindName . " as level FROM %%PLANETS%% where " . $kindName . " = (select max(" . $kindName . ") from %%PLANETS%% where universe = :universe) and universe = :universe;";
             $data = $db->select($sql,[
                 ':universe' => $uni
             ]);
