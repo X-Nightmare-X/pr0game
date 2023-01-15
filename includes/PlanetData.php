@@ -29,6 +29,6 @@ $planetData	= array(
 	11	=> array('temp' => mt_rand(0, 40), 'avgTemp' => 20,		'fields' => mt_rand(136, 210), 'avgFields' => 173,	'image' => array('normaltemp' => mt_rand(1, 7), 'wasser' => mt_rand(1, 9))),
 	12	=> array('temp' => mt_rand(-10, 30), 'avgTemp' => 10,	'fields' => mt_rand(125, 186), 'avgFields' => 156,	'image' => array('normaltemp' => mt_rand(1, 7), 'wasser' => mt_rand(1, 9))),
 	13	=> array('temp' => mt_rand(-50, -10), 'avgTemp' => -30,	'fields' => mt_rand(114, 172), 'avgFields' => 143,	'image' => array('eis' => mt_rand(1, 10))),
-	14	=> array('temp' => mt_rand(-90, -50), 'avgTemp' => -70,	'fields' => mt_rand(100, 168), 'avgFields' => 134,	'image' => array('eis' => mt_rand(1, 10))),
-	15	=> array('temp' => mt_rand(-130, -90), 'avgTemp' => -110,	'fields' => mt_rand(90, 164), 'avgFields' => 127,	'image' => array('eis' => mt_rand(1, 10)))
+	14	=> array('temp' => mt_rand(-90, -50), 'avgTemp' => -70,	'fields' => mt_rand(100, 168), 'avgFields' => 134,	'image' => array('eis' => mt_rand(1, 10), 'gas' => mt_rand(1, 8))),
+	15	=> array('temp' => mt_rand(-130, -90), 'avgTemp' => -110,	'fields' => mt_rand(90, 164), 'avgFields' => 127,	'image' => array('eis' => mt_rand(1, 10), 'gas' => mt_rand(1, 8)))
 );
