@@ -13,7 +13,7 @@
 		{if $CategoryRow@last || ($CategoryRow@iteration % 6) === 0}</tr>{/if}
 		{/foreach}
 </table>
-<form action="game.php?page=messages" method="post">
+
 <input type="hidden" name="mode" value="action">
 <input type="hidden" name="ajax" value="1">
 <input type="hidden" name="messcat" value="{$MessID}">
@@ -25,16 +25,25 @@
 	{if $MessID != 999}
 	<tr>
 		<td>
-			<select name="actionTop">
-				<option value="readmarked">{$LNG.mg_read_marked}</option>
-				<option value="readtypeall">{$LNG.mg_read_type_all}</option>
-				<option value="readall">{$LNG.mg_read_all}</option>
-				<option value="deletemarked">{$LNG.mg_delete_marked}</option>
-				<option value="deleteunmarked">{$LNG.mg_delete_unmarked}</option>
-				<option value="deletetypeall">{$LNG.mg_delete_type_all}</option>
-				<option value="deleteall">{$LNG.mg_delete_all}</option>
-			</select>
-			<input value="{$LNG.mg_confirm}" type="submit" name="submitTop">
+      <form action="game.php?page=messages" method="post">
+        <input type="hidden" name="mode" value="action">
+        <input type="hidden" name="ajax" value="1">
+        <input type="hidden" name="messcat" value="{$MessID}">
+        <input type="hidden" name="side" value="{$page}">
+          {foreach $MessageList as $Message}
+          {if $MessID != 999}<input name="messageID[{$Message.id}]" value="1" type="checkbox" hidden>{/if}
+          {/foreach}
+        <select name="action">
+          <option value="readmarked">{$LNG.mg_read_marked}</option>
+          <option value="readtypeall">{$LNG.mg_read_type_all}</option>
+          <option value="readall">{$LNG.mg_read_all}</option>
+          <option value="deletemarked">{$LNG.mg_delete_marked}</option>
+          <option value="deleteunmarked">{$LNG.mg_delete_unmarked}</option>
+          <option value="deletetypeall">{$LNG.mg_delete_type_all}</option>
+          <option value="deleteall">{$LNG.mg_delete_all}</option>
+        </select>
+        <input value="{$LNG.mg_confirm}" type="submit">
+      </form>
 		</td>
 	</tr>
 	{/if}
@@ -75,19 +84,27 @@
 	{if $MessID != 999}
 	<tr>
 		<td colspan="4">
-			<select name="actionBottom">
-				<option value="readmarked">{$LNG.mg_read_marked}</option>
-				<option value="readtypeall">{$LNG.mg_read_type_all}</option>
-				<option value="readall">{$LNG.mg_read_all}</option>
-				<option value="deletemarked">{$LNG.mg_delete_marked}</option>
-				<option value="deleteunmarked">{$LNG.mg_delete_unmarked}</option>
-				<option value="deletetypeall">{$LNG.mg_delete_type_all}</option>
-				<option value="deleteall">{$LNG.mg_delete_all}</option>
-			</select>
-			<input value="{$LNG.mg_confirm}" type="submit" name="submitBottom">
+      <form action="game.php?page=messages" method="post">
+        <input type="hidden" name="mode" value="action">
+        <input type="hidden" name="ajax" value="1">
+        <input type="hidden" name="messcat" value="{$MessID}">
+        <input type="hidden" name="side" value="{$page}">
+          {foreach $MessageList as $Message}
+              {if $MessID != 999}<input name="messageID[{$Message.id}]" value="1" type="checkbox" hidden>{/if}
+          {/foreach}
+        <select name="action">
+          <option value="readmarked">{$LNG.mg_read_marked}</option>
+          <option value="readtypeall">{$LNG.mg_read_type_all}</option>
+          <option value="readall">{$LNG.mg_read_all}</option>
+          <option value="deletemarked">{$LNG.mg_delete_marked}</option>
+          <option value="deleteunmarked">{$LNG.mg_delete_unmarked}</option>
+          <option value="deletetypeall">{$LNG.mg_delete_type_all}</option>
+          <option value="deleteall">{$LNG.mg_delete_all}</option>
+        </select>
+        <input value="{$LNG.mg_confirm}" type="submit">
+      </form>
 		</td>
 	</tr>
 	{/if}
 </table>
-</form>
 {/block}

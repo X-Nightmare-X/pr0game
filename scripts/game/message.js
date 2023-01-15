@@ -16,12 +16,12 @@ Message	= {
 		} else {
 			var count = parseInt($('#unread_'+Message.MessID).text());
 			var lmnew = parseInt($('#newmesnum').text());
-				
+
 			$('#unread_'+Message.MessID).text(Math.max(0, $('#unread_100').text() - 10));
 			if(Message.MessID != 999) {
 				$('#unread_100').text($('#unread_100').text() - count);
 			}
-			
+
 			if(lmnew - count <= 0)
 				$('#newmes').text('');
 			else
@@ -35,9 +35,9 @@ Message	= {
 		}
 		Message.MessID	= MessID;
 		Message.MessageCount(MessID);
-		
+
 		$('#loading').show();
-		
+
 		$.get('game.php?page=messages&mode=view&messcat='+MessID+'&site='+page+'&ajax=1', function(data) {
 			$('#loading').hide();
 			$('#messagestable').remove();
@@ -45,8 +45,8 @@ Message	= {
 		});
 	},
 
-	stripHTML: function (string) { 
-		return string.replace(/<(.|\n)*?>/g, ''); 
+	stripHTML: function (string) {
+		return string.replace(/<(.|\n)*?>/g, '');
 	},
 
 	CreateAnswer: function (Answer) {
@@ -60,30 +60,41 @@ Message	= {
 			return 'Re:'+Answer
 		}
 	},
-	
+
 	getMessagesIDs: function(Infos) {
 		var IDs = [];
 		$.each(Infos, function(index, mess) {
 			if(mess.value == 'on')
 				IDs.push(mess.name.replace(/delmes\[(\d+)\]/, '$1'));
-		});	
+		});
 		return IDs;
 	},
-	
+
 	delMessage: function(ID) {
-		
+
 		$('#loading').show();
-		
+
 		$.getJSON('game.php?page=messages&mode=deleteMessage&delMessID='+ID+'&ajax=1', function(data) {
 			$('#loading').hide();
-			
+
 			$('.message_'+ID).remove();
-			
+
 			if(data.code > 0)
 				NotifyBox(data.mess);
 			else
 				NotifyBox(data.mess);
 		});
-		
+
 	}
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  let inpts=document.querySelectorAll('input[name*="messageID"]');
+  for(let checkbox of inpts){
+    checkbox.addEventListener('change', function() {
+      for(let inp of document.querySelectorAll('input[name="'+this.name+'"]')){
+        inp.checked=this.checked
+      }
+    });
+  }
+});
