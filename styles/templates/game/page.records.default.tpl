@@ -67,7 +67,7 @@
         {foreach $researchList as $elementID => $elementRow}
         <tr>
             <td><a href='#' onclick='return Dialog.info({$elementID})' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$elementID}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$elementID}.{if $elementID >=600 && $elementID <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$elementID}</td></tr></table></tr></table>">{$LNG.tech.{$elementID}}</a></td>
-            {if !empty($elementRow)}
+            {if !empty($elementRow) && count($elementRow) <= 3}
             <td>
                 {$test = 0}
                 {foreach $elementRow as $user}
