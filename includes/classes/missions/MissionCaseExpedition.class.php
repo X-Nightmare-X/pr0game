@@ -279,10 +279,10 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
         $LNG = $this->LNG;
         $targetFleetData = [];
         $pirates = (mt_rand(1, 100) <= 69);
-        if($pirates){
-            $this->eventtype= "Pirates";
-        }else{
-            $this->eventtype= "Aliens";
+        if ($pirates) {
+            $this->eventtype = "Pirates";
+        } else {
+            $this->eventtype = "Aliens";
         }
         switch ($this->determineEventSize()) {
             case 0:
