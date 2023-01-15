@@ -19,7 +19,9 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 {
     private $LNG;
     private $logbook = '';
-
+    private $eventtype="";
+    private $eventsize="";
+    private $eventspy="";
     public function __construct($fleet)
     {
         $this->_fleet = $fleet;
@@ -66,10 +68,13 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 
         if (10 < $eventSize) {
             $eventCategory = 0; // 89%
+            $this->eventsize="Small"; // TODO LNG
         } elseif (0 < $eventSize) {
             $eventCategory = 1; // 10%
+            $this->eventsize="Medium"; // TODO LNG
         } else {
             $eventCategory = 2; // 1%
+            $this->eventsize="Big"; // TODO LNG
         }
 
         return $eventCategory;
@@ -274,7 +279,11 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
         $LNG = $this->LNG;
         $targetFleetData = [];
         $pirates = (mt_rand(1, 100) <= 69);
-
+        if($pirates){
+            $this->eventtype="Pirates"; //TODO LNG
+        }else{
+            $this->eventtype="Aliens"; //TODO LNG
+        }
         switch ($this->determineEventSize()) {
             case 0:
                 $Message = $pirates
@@ -572,15 +581,19 @@ HTML;
         // Depletion check
         if ($expeditionsCount <= 10) {
             $chanceDepleted = 0;
+            $this->eventspy="<10"; // TODO LNG
             $this->logbook = $LNG['sys_expe_depleted_not_' . mt_rand(1, 2)];
         } elseif ($expeditionsCount <= 25) {
             $chanceDepleted = 25;
+            $this->eventspy="<25"; // TODO LNG
             $this->logbook = $LNG['sys_expe_depleted_min_' . mt_rand(1, 3)];
         } elseif ($expeditionsCount <= 50) {
             $chanceDepleted = 50;
+            $this->eventspy="<50"; // TODO LNG
             $this->logbook = $LNG['sys_expe_depleted_med_' . mt_rand(1, 3)];
         } else {
             $chanceDepleted = 75;
+            $this->eventspy=">50"; // TODO LNG
             $this->logbook = $LNG['sys_expe_depleted_max_' . mt_rand(1, 3)];
         }
 
@@ -606,6 +619,7 @@ HTML;
             $planetName,
             GetStartAddressLink($this->_fleet, '')
         );
+
         // Get a seed into the number generator (to make the results unpredictable).
         mt_srand(floor(microtime(true) * 10000));
         usleep(50);
@@ -616,9 +630,13 @@ HTML;
         if ($GetEvent < 370) {
             // Find resources: 37%. Values from http://owiki.de/Expedition + 4.5% compensation for dark matter
             $Message .= $this->handleEventFoundRes();
+            $this->eventtype="Res"; //TODO LNG
+
+
         } elseif ($GetEvent < 635) {
             // Find abandoned ships: 26.5%. Values from http://owiki.de/Expedition + 4.5% for dark matter
             $Message .= $this->handleEventFoundShips();
+            $this->eventtype="Ships"; //TODO LNG
         } elseif ($GetEvent < 719) {
             // Find pirates or aliens: 8,4% - 69% (total 5.8%) pirates , 31% (2.6%) aliens.
             $Message .= $this->handleEventCombat();
@@ -627,6 +645,7 @@ HTML;
             MissionFunctions::updateLostAdvancedStats($this->_fleet['fleet_owner'], $fleetArray);
             $this->KillFleet();
             $Message .= $LNG['sys_expe_lost_fleet_' . mt_rand(1, 4)];
+            $this->eventtype="Lost"; //TODO LNG
         } elseif ($GetEvent < 812) {
             // The fleet delays or return earlier: 9%
             # http://owiki.de/Expedition#Ver.C3.A4nderte_Flugzeit
@@ -636,25 +655,31 @@ HTML;
             $normalBackTime = $this->_fleet['fleet_end_time'] - $this->_fleet['fleet_end_stay'];
             $stayTime = $this->_fleet['fleet_end_stay'] - $this->_fleet['fleet_start_time'];
             $factor = $Wrapper[mt_rand(0, 9)];
-
+            $this->eventtype="Speed"; //TODO LNG
             if ($chance < 75) {
                 // More return time
                 $endTime = $this->_fleet['fleet_end_stay'] + $normalBackTime + $stayTime * $factor;
                 $this->UpdateFleet('fleet_end_time', $endTime);
                 $Message .= $LNG['sys_expe_time_slow_' . mt_rand(1, 6)];
+                $this->eventsize="Slow"; //TODO LNG
+
             } else {
                 // Less return time
                 $endTime = $this->_fleet['fleet_end_stay'] + max(1, $normalBackTime - $stayTime / 3 * $factor);
                 $this->UpdateFleet('fleet_end_time', $endTime);
                 $Message .= $LNG['sys_expe_time_fast_' . mt_rand(1, 3)];
+                $this->eventsize="Fast"; //TODO LNG
             }
         } else {
+            $this->eventtype="Nothing"; //TODO LNG
             $Message .= $LNG['sys_expe_nothing_' . mt_rand(1, 8)]; // default
         }
 
         if (isset($fleetArray[SHIP_PROBE])) {
             $Message .= '<br><br>' . $this->logbook;
+            $Message .= '<br>Expos:' . $this->eventspy; // TODO LNG
         }
+        $Message .= '<br>' . $this->eventtype . " " . $this->eventsize;
 
         PlayerUtil::sendMessage(
             $this->_fleet['fleet_owner'],
