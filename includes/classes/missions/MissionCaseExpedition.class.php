@@ -22,6 +22,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
     private $eventtype = "";
     private $eventsize = "";
     private $eventspy = "";
+    private $eventvalue = "{}";
 
     public function __construct($fleet)
     {
@@ -136,7 +137,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
                     $LNG['tech'][$resourceId]
                 );
         }
-
+        $this->eventvalue = '{"' . $resourceId . '":' . $foundResources . "}";
         $fleetColName = 'fleet_resource_' . $resource[$resourceId];
         $this->UpdateFleet($fleetColName, $this->_fleet[$fleetColName] + $foundResources);
         $logColName = 'fleet_gained_' . $resource[$resourceId];
@@ -203,7 +204,11 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
                 break;
             }
         }
-
+        $this->eventvalue = "{";
+        foreach ($Found as $shipId => $shipAmount) {
+            $this->eventvalue .= '"' . $shipId . '":' . $shipAmount . ",";
+        }
+        $this->eventvalue = rtrim($this->eventvalue, ",") . "}";
         return $Found;
     }
 
@@ -678,7 +683,7 @@ HTML;
             $Message .= '<br><br>' . $this->logbook;
 
         }
-        $Message .= '<div hidden name="expoinfo" spy="' . $this->eventspy . '" expevent="' . $this->eventtype . '" expsize="' . $this->eventsize . '"</div>';
+        $Message .= '<div hidden name="expoinfo" spy="' . $this->eventspy . '" expevent="' . $this->eventtype . '" expsize="' . $this->eventsize . '" expvalue="' . $this->eventvalue . '"</div>';
 
         PlayerUtil::sendMessage(
             $this->_fleet['fleet_owner'],
