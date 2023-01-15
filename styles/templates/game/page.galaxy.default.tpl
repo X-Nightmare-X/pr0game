@@ -74,7 +74,7 @@
 		<th style="white-space: nowrap">{$LNG.gl_actions}</th>
 	</tr>
     {for $planet=1 to $max_planets}
-	<tr>
+	<tr data-info="p_{$planet}">
     {if !isset($GalaxyRows[$planet])}
 		<td>
 			<a href="?page=fleetTable&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}&amp;planettype=1&amp;target_mission=7">{$planet}</a>
@@ -187,7 +187,7 @@
 		<td colspan="3"><span id="missiles">{number_format($currentmip, 0, ",", ".")}</span> {$LNG.gl_avaible_missiles}</td>
 		<td colspan="5"><span id="slots">{$maxfleetcount}</span>/{$fleetmax} {$LNG.gl_fleets}</td>
 	</tr>
-	<tr>
+	<tr data-info="spy_recs">
 		<td colspan="4">
 			<span id="elementID210">{number_format($spyprobes, 0, ",", ".")}</span> {$LNG.gl_avaible_spyprobes}
 		</td>
@@ -195,7 +195,7 @@
 			<span id="elementID209">{number_format($recyclers, 0, ",", ".")}</span> {$LNG.gl_avaible_recyclers}
 		</td>
 	</tr>
-    <tr>
+    <tr data-info="galatool">
       <td colspan="2"><button id="gala_exportjson">Export JSON</button></td>
       <td colspan="2"><button id="gala_exportcsv">Export CSV</button></td>
       <td colspan="2">Import JSON: <input id="gala_upload" type="file" accept=".json"></td>
