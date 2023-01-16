@@ -682,9 +682,10 @@ HTML;
 
         if (isset($fleetArray[SHIP_PROBE])) {
             $Message .= '<br><br>' . $this->logbook;
-
+            $Message .= '<div hidden name="expoinfo" spy="' . $this->eventspy . '" expevent="' . $this->eventtype . '" expsize="' . $this->eventsize . '" expvalue=' . "'" . $this->eventvalue . "' </div>";
+        }else{
+            $Message .= '<div hidden name="expoinfo" spy="" expevent="' . $this->eventtype . '" expsize="' . $this->eventsize . '" expvalue=' . "'" . $this->eventvalue . "' </div>";
         }
-        $Message .= '<div hidden name="expoinfo" spy="' . $this->eventspy . '" expevent="' . $this->eventtype . '" expsize="' . $this->eventsize . '" expvalue=' . "'" . $this->eventvalue . "' </div>";
 
         PlayerUtil::sendMessage(
             $this->_fleet['fleet_owner'],
