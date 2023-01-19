@@ -196,9 +196,9 @@ function scavengers() {
 		"214": 2700000, //RIP
 		"215": 21000, //SXer
 	};
-  
-	var metalValueFromMarketplace = 3;
-	var krisValueFromMarketplace = 2;
+
+	var metalValueFromMarketplace = 4;
+	var krisValueFromMarketplace = 0.8;
 	var deutValueFromMarketplace = 1;
 	var impulseEngineTech = 10;
 	var combustionEngineTech = 8;
@@ -470,94 +470,113 @@ function scavengers() {
 
 
 		let reportContents = [
+			// 0
 			{
 				"title": "Gesamte Ressourcen",
 				"content": spyReport.conclusions.summedUpResources.toLocaleString('de-DE')
 			},
-			{
-				"title": "Notwendige Kleine Transporter",
-				"content": spyReport.conclusions.transportersNeeded.toLocaleString('de-DE')
-			},
+			// 1
 			{
 				"title": "Gefahrenpotenzial",
 				"content": spyReport.conclusions.dangerValue.toLocaleString('de-DE'),
 				"additionalClasses": spyReport.conclusions.dangerValue > 0 ? "dangervalue" : ""
 			},
+			// 2
 			{
 				"title": "Potenziell zu erbeutende Ressourcen (ohne Recycling)",
 				"content": Math.floor(spyReport.conclusions.summedUpResources / 2).toLocaleString('de-DE')
 			},
+			// 3
 			{
 				"title": "Recyclepotenzial",
 				"content": spyReport.conclusions.recycleValue.toLocaleString('de-DE')
 			},
+			// 4
+			{
+				"title": "Notwendige Kleine Transporter",
+				"content": spyReport.conclusions.transportersNeeded.toLocaleString('de-DE')
+			},
+			// 5
 			{
 				"title": "Notwendige Recycler",
 				"content": spyReport.conclusions.recyclersNeeded.toLocaleString('de-DE')
 			},
+			// 6
 			{
-				//"title": `Marktwert der Ressourcen (${marketRatios[901]} : ${marketRatios[902]} : ${marketRatios[903]})`,
-				//"content":  spyReport.conclusions.marketValue.toLocaleString('de-DE'),
-
-				"title": spyReport.conclusions.marketValue == "MARKTPLATZ" ? "Bitte Marktplatz öffnen" : `Marktwert der Ressourcen (${marketRatios[901]} : ${marketRatios[902]} : ${marketRatios[903]})`,
+				"title": spyReport.conclusions.marketValue == "MARKTPLATZ" ? "Bitte Marktplatz öffnen" : `Marktwert (${marketRatios[901]}:${marketRatios[902]}:${marketRatios[903]})`,
 				"content": spyReport.conclusions.marketValue == "MARKTPLATZ" ? "Bitte Marktplatz öffnen" : spyReport.conclusions.marketValue.toLocaleString('de-DE'),
-				"additionalClasses": spyReport.conclusions.marketValue == "MARKTPLATZ" ? "dangervalue" : spyReport.conclusions.marketValue < 30000 ? "lowRess" : spyReport.conclusions.marketValue < 60000 ? "midRess" : spyReport.conclusions.marketValue < 90000 ? "highRess" : "realHighRess"
+				"additionalClasses": spyReport.conclusions.marketValue == "MARKTPLATZ" ? "dangervalue" : spyReport.conclusions.marketValue < 30000 ? "lowRess" : spyReport.conclusions.marketValue < 90000 ? "midRess" : spyReport.conclusions.marketValue < 150000 ? "highRess" : "realHighRess"
 			},
+			// 7
 			{
 				"title": spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond == "FORSCHUNG" ? "Bitte FORSCHUNG öffnen" : `Ressourcen pro Sekunde Flugzeit, bigger = better`,
 				"content": spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond == "FORSCHUNG" ? "Bitte FORSCHUNG öffnen" : spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond.toLocaleString('de-DE').replace(/\./g, ','),
-				"additionalClasses": spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond == "FORSCHUNG" ? "dangervalue" : spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond < 4 ? "lowRess" : spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond < 8 ? "midRess" : spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond < 12 ? "highRess" : "realHighRess"
+				"additionalClasses": spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond == "FORSCHUNG" ? "dangervalue" : spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond < 5 ? "lowRess" : spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond < 10 ? "midRess" : spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond < 20 ? "highRess" : "realHighRess"
 			},
+			// 8
 			{
 				"title": spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond == "FORSCHUNG" ? "Bitte FORSCHUNG öffnen" : `Best Ress / Sek`,
 				"content": spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond == "FORSCHUNG" ? "Bitte FORSCHUNG öffnen" : spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet.toLocaleString('de-DE').replace(/\./g, ','),
-				"additionalClasses": spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond == "FORSCHUNG" ? "dangervalue" : spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet < 4 ? "lowRess" : spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet < 8 ? "midRess" : spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet < 12 ? "highRess" : "realHighRess"
+				"additionalClasses": spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond == "FORSCHUNG" ? "dangervalue" : spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet < 5 ? "lowRess" : spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet < 10 ? "midRess" : spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet < 20 ? "highRess" : "realHighRess"
 			},
+			// 9
 			{
 				"title": spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond == "FORSCHUNG" ? "Bitte FORSCHUNG öffnen" : `Best Planet`,
 				"content": spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond == "FORSCHUNG" ? "Bitte FORSCHUNG öffnen" : spyReport.conclusions.MarketValuePerSecond.galaJump == 1 ? spyReport.conclusions.MarketValuePerSecond.galaJumpPlanet : spyReport.conclusions.MarketValuePerSecond.bestPlanet[0] + ":" + spyReport.conclusions.MarketValuePerSecond.bestPlanet[1] + ":" + spyReport.conclusions.MarketValuePerSecond.bestPlanet[2],
 				"additionalClasses": spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecond == "FORSCHUNG" ? "dangervalue" : ""
+			},
+			// 10
+			{
+				"title": "Energie",
+				"content": spyReport.conclusions.energy.toLocaleString('de-DE'),
+				"additionalClasses": spyReport.conclusions.energy > 300000 ? "lowRess" : spyReport.conclusions.energy > 100000 ? "midRess" : ""
 			},
 		];
 
 		let rows = [];
 
 		rows[0] = generateContainerRow([
-			generateContainerCell(reportContents[0].title, reportContents[1].additionalClasses),
-			generateContainerCell(reportContents[0].content, reportContents[1].additionalClasses),
-			generateContainerCell(reportContents[2].title, reportContents[2].additionalClasses),
-			generateContainerCell(reportContents[2].content, reportContents[2].additionalClasses),
+			//generateContainerCell(reportContents[0].title, reportContents[1].additionalClasses),          // Gesammte Ressourcen
+			//generateContainerCell(reportContents[0].content, reportContents[1].additionalClasses),        // Gesammte Ressourcen
+			//generateContainerCell(reportContents[2].title, reportContents[2].additionalClasses),          // Gefahrenpotenzial
+			//generateContainerCell(reportContents[2].content, reportContents[2].additionalClasses),        // Gefahrenpotenzial
+			generateContainerCell(reportContents[0].title, reportContents[0].additionalClasses),            // Gesammte Ressourcen
+			generateContainerCell(reportContents[0].content, reportContents[0].additionalClasses),          // Gesammte Ressourcen
+			generateContainerCell(reportContents[1].title, reportContents[1].additionalClasses),            // Gefahrenpotenzial
+			generateContainerCell(reportContents[1].content, reportContents[1].additionalClasses),          // Gefahrenpotenzial
 		]);
 
 		rows[1] = generateContainerRow([
-			generateContainerCell(reportContents[1].title, reportContents[1].additionalClasses),
-			generateContainerCell(reportContents[1].content, reportContents[1].additionalClasses),
-			generateContainerCell(reportContents[4].title, reportContents[4].additionalClasses),
-			generateContainerCell(reportContents[4].content, reportContents[4].additionalClasses),
+			generateContainerCell(reportContents[2].title, reportContents[2].additionalClasses),            // Potenzielle Ressourcen
+			generateContainerCell(reportContents[2].content, reportContents[2].additionalClasses),          // Potenzielle Ressourcen
+			generateContainerCell(reportContents[3].title, reportContents[3].additionalClasses),            // Recyclepotenzial
+			generateContainerCell(reportContents[3].content, reportContents[3].additionalClasses),          // Recyclepotenzial
 		]);
 
 		rows[2] = generateContainerRow([
-			generateContainerCell(reportContents[3].title, reportContents[3].additionalClasses),
-			generateContainerCell(reportContents[3].content, reportContents[3].additionalClasses),
-			generateContainerCell(reportContents[5].title, reportContents[5].additionalClasses),
-			generateContainerCell(reportContents[5].content, reportContents[5].additionalClasses),
+			generateContainerCell(reportContents[4].title, reportContents[4].additionalClasses),            // Transporter
+			generateContainerCell(reportContents[4].content, reportContents[4].additionalClasses),          // Transporter
+			generateContainerCell(reportContents[5].title, reportContents[5].additionalClasses),            // Recycler
+			generateContainerCell(reportContents[5].content, reportContents[5].additionalClasses),          // Recycler
 		]);
 
 		rows[3] = generateContainerRow([
-			generateContainerCell(reportContents[8].title, reportContents[8].additionalClasses),
-			generateContainerCell(reportContents[8].content, reportContents[8].additionalClasses),
-			generateContainerCell(reportContents[9].title, reportContents[9].additionalClasses),
-			generateContainerCell(reportContents[9].content, reportContents[9].additionalClasses),
+			generateContainerCell(reportContents[6].title, reportContents[6].additionalClasses),            // Marktwert
+			generateContainerCell(reportContents[6].content, reportContents[6].additionalClasses),          // Marktwert
+			generateContainerCell(reportContents[10].title, reportContents[10].additionalClasses),          // Energie
+			generateContainerCell(reportContents[10].content, reportContents[10].additionalClasses),        // Energie
 		]);
 
 		rows[4] = generateContainerRow([
-			generateContainerCell(reportContents[6].title, reportContents[6].additionalClasses),
-			generateContainerCell(reportContents[6].content, reportContents[6].additionalClasses),
+			generateContainerCell(reportContents[8].title, reportContents[8].additionalClasses),            // Best Ress / Sek
+			generateContainerCell(reportContents[8].content, reportContents[8].additionalClasses),          // Best Ress / Sek
+			generateContainerCell(reportContents[9].title, reportContents[9].additionalClasses),            // Best Planet
+			generateContainerCell(reportContents[9].content, reportContents[9].additionalClasses),          // Best Planet
 		]);
 
 		rows[5] = generateContainerRow([
-			generateContainerCell(reportContents[7].title, reportContents[7].additionalClasses),
-			generateContainerCell(reportContents[7].content, reportContents[7].additionalClasses),
+			generateContainerCell(reportContents[7].title, reportContents[7].additionalClasses),            // Ressourcen pro Sekunde Flugzeit
+			generateContainerCell(reportContents[7].content, reportContents[7].additionalClasses),          // Ressourcen pro Sekunde Flugzeit
 		]);
 
 		let conclusionReport = document.createElement('div');
@@ -607,6 +626,16 @@ function scavengers() {
 			spyReport.content[902].value,
 			spyReport.content[903].value
 		);
+
+		var energy;
+		// try catch fpr energy on moon
+		try {
+			energy = spyReport.content[911].value;
+		} catch (err) {
+			energy = "It's a Moon!";
+		}
+		spyReport.conclusions.energy = energy;
+
 		spyReport.conclusions.MarketValuePerSecond = raidTimeKT(spyReport.content[901].value, spyReport.content[902].value, spyReport.content[903].value, raidLocation);
 		console.log(spyReport);
 		attachConclusionsToReport(spyReportElement, spyReport);
@@ -681,9 +710,7 @@ function scavengers() {
 	// 	GM.setValue('crystalValue', (crystalValue == '') ? crystalDefaultValue : crystalValue);
 	// 	GM.setValue('deuteriumValue', (deuteriumValue == '') ? deuteriumDefaultValue : deuteriumValue);
 
-	// }
-
-}
+	}
   
 
 document.addEventListener("DOMContentLoaded", function() {
