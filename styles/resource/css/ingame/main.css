@@ -5,7 +5,7 @@
 }
 
 /* GRID */
-  
+
 .wrapper {
 	display: grid;
 	/* width: 100vw;
@@ -24,7 +24,7 @@ top .fixed {
 	width: 100%;
 	height: 100px;
 	background: rgba(13, 16, 20, 0.95);
-    border-bottom: 1px solid black;
+	border-bottom: 1px solid black;
 	z-index: 2;
 }
 
@@ -109,38 +109,41 @@ aside .fold {
 }
 
 footer {
-	grid-row: 3; 
+	grid-row: 3;
 }
 
 /* GLOBALS */
 
-html, body {
-	min-height:100%;
-	min-width:100%;
-    margin: 0;
-    padding: 0;
+html,
+body {
+	min-height: 100%;
+	min-width: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-	line-height:14px;
-	padding-bottom:21px;
+	line-height: 14px;
+	padding-bottom: 21px;
 }
 
 body.popup {
-	min-width:0;
+	min-width: 0;
 }
 
 :focus {
-	outline:none
+	outline: none
 }
 
 input.invalid {
-	background-color:red;
-	border:1px solid #FFF;
+	background-color: red;
+	border: 1px solid #FFF;
 }
 
-input[type="submit"],input[type="button"],button {
-	cursor:pointer;
+input[type="submit"],
+input[type="button"],
+button {
+	cursor: pointer;
 }
 
 table {
@@ -149,8 +152,8 @@ table {
 	overflow: auto;
 	border-collapse: separate;
 	border-spacing: 2px;
-	empty-cells:show;
-	margin:0 auto;
+	empty-cells: show;
+	margin: 0 auto;
 	align-self: center;
 }
 
@@ -163,9 +166,10 @@ table.hack {
 	table-layout: fixed;
 }
 
-table table,img {
-	
-    border-radius: 25%;
+table table,
+img {
+
+	border-radius: 25%;
 }
 
 td {
@@ -173,17 +177,18 @@ td {
 	vertical-align: middle;
 }
 
-input,button {
-	margin:2px;
+input,
+button {
+	margin: 2px;
 }
 
 th input {
-	margin:0
+	margin: 0
 }
 
 th {
 	height: 14px;
-	padding:4px 6px;
+	padding: 4px 6px;
 }
 
 /* CARD */
@@ -195,8 +200,8 @@ th {
 .card .title {
 	padding: 4px 6px;
 	margin-bottom: 2px;
-    overflow: hidden;
-    white-space: nowrap;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .card .content {
@@ -220,100 +225,102 @@ th {
 }
 
 textarea {
-	width:97%
+	width: 97%
 }
 
-textarea.tinymce{
-	width:100%
+textarea.tinymce {
+	width: 100%
 }
 
-.textForBlind 
-{
-	position:absolute;
-	left:-10000px;
-	top:auto;
-	width:1px;
-	height:1px;
-	overflow:hidden;
+.textForBlind {
+	position: absolute;
+	left: -10000px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
 }
 
-.centerContainer > .outer {
-    float: right;
-    right: 50%;
-    position: relative;
-}
-.centerContainer > .outer > .inner {
-    float: right;
-    right: -50%;
-    position: relative;
+.centerContainer>.outer {
+	float: right;
+	right: 50%;
+	position: relative;
 }
 
-.res_max,.res_current,.res_current_max {
-	min-width:90px
+.centerContainer>.outer>.inner {
+	float: right;
+	right: -50%;
+	position: relative;
+}
+
+.res_max,
+.res_current,
+.res_current_max {
+	min-width: 90px
 }
 
 .res_name {
-	float:none;
+	float: none;
 }
 
-.table519{
+.table519 {
 	/* min-width:519px !important; */
 	/* width:519px !important */
 	max-width: 519px !important;
 }
 
-.table569{
+.table569 {
 	/* min-width:569px !important; */
 	/* width:569px !important */
 	max-width: 569px !important;
 }
 
 .build_submit {
-    max-width: 100px;
-	padding:0;
-    word-wrap: break-word;
+	max-width: 100px;
+	padding: 0;
+	word-wrap: break-word;
 	white-space: normal;
 }
 
 .build_submit:hover {
-	text-decoration:underline;
-font-weight:bold;
+	text-decoration: underline;
+	font-weight: bold;
 }
 
 .build_form {
-	display:inline;
+	display: inline;
 }
 
 .onlist {
-    max-width: 100%;
-	margin:0;
-	padding:0;
+	max-width: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 .onlist:hover {
-	text-decoration:underline;
+	text-decoration: underline;
 }
 
 .shortcut-edit {
-	display:none;
+	display: none;
 }
 
 .clear {
-	clear:both;
+	clear: both;
 }
 
 /** HEADER **/
 #header {
-	padding:5px 10px;
-	margin-left:10px;
-	margin-right:10px;
-	height:90px;
-	min-width:915px;
+	padding: 5px 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	height: 90px;
+	min-width: 915px;
 	overflow: hidden;
 }
 
 #headerTable {
-	width:100%;
+	width: 100%;
 }
 
 #planetSelectorWrapper {
@@ -326,25 +333,28 @@ font-weight:bold;
 	width: 150px;
 }
 
-.planetImage{
+.planetImage {
 	text-align: center;
 	flex-grow: 1;
 }
 
-.planetImage > img{
-	width:50px;
-	height:50px;
-	border-radius:50%;
-	background-color:#DDD;
+.planetImage>img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: #DDD;
 }
 
-#resources_mobile { /* new */
+#resources_mobile {
+	/* new */
 	display: flex;
 	justify-content: space-evenly;
 	flex-grow: 10;
 }
 
-#resource, #resource_mobile { /* new */
+#resource,
+#resource_mobile {
+	/* new */
 	text-align: center;
 	align-items: center;
 }
@@ -353,38 +363,40 @@ font-weight:bold;
 	font-weight: bold;
 }
 
-.planetSelectorWrapper { /* new */
+.planetSelectorWrapper {
+	/* new */
 	/* height: 48px; */
 	/* width: 48px; */
 	/* margin: 0px 6px; */
 	width: 150px;
 }
 
-.planetSelectorName { /* new */
+.planetSelectorName {
+	/* new */
 	text-align: center;
 }
 
-#resourceWrapper{
-	height:90px;
-	text-align:center;
-	margin:0;
+#resourceWrapper {
+	height: 90px;
+	text-align: center;
+	margin: 0;
 }
 
-#resourceTable{
-	height:80px;
+#resourceTable {
+	height: 80px;
 	padding-right: 215px;
 }
 
-#resourceTable td{
-	margin:0 5px;
-	min-width:130px;
+#resourceTable td {
+	margin: 0 5px;
+	min-width: 130px;
 }
 
 #resourceTable img {
-    display: block;
-    height: 22px;
-    margin: 0 auto;
-    width: 42px;
+	display: block;
+	height: 22px;
+	margin: 0 auto;
+	width: 42px;
 }
 
 /** MENU **/
@@ -395,15 +407,15 @@ font-weight:bold;
 } */
 
 #menu {
-	list-style:none;
-	margin:0;
-	padding:0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
 #menu a {
-	display:block;
-	margin:0;
-	padding:4px 24px;
+	display: block;
+	margin: 0;
+	padding: 4px 24px;
 }
 
 div#disclamer {
@@ -418,18 +430,20 @@ div#disclamer {
 }
 
 #options select {
-	max-width:170px;
+	max-width: 170px;
 }
+
 /* CONTENT */
 
 #page {
-	margin-left:200px;
-	padding:0;
+	margin-left: 200px;
+	padding: 0;
 }
 
-#content, .infobox {
-	margin:10px 10px 0 ;
-	padding:10px 10px 5px 10px;
+#content,
+.infobox {
+	margin: 10px 10px 0;
+	padding: 10px 10px 5px 10px;
 }
 
 /* unused? */
@@ -438,43 +452,44 @@ div#disclamer {
 	width:80%;
 } */
 
-.left{
-	text-align:left
+.left {
+	text-align: left
 }
 
-.right{
-	text-align:right
+.right {
+	text-align: right
 }
 
-.center{
-	text-align:center
+.center {
+	text-align: center
 }
 
-.top{
-	vertical-align:top
+.top {
+	vertical-align: top
 }
 
 
-.tooltip, .tooltip_sticky {
+.tooltip,
+.tooltip_sticky {
 	cursor: pointer;
 }
 
 .hoverinfo {
-    min-width: 150px;
-    max-width: 250px;
-    min-height: 20px;
-    max-height: 40px;
+	min-width: 150px;
+	max-width: 250px;
+	min-height: 20px;
+	max-height: 40px;
 }
 
 .hoverinfo img {
-    width: 84px;
-    height: 84px;
+	width: 84px;
+	height: 84px;
 }
 
 .trader_col {
-	margin:0 5px;
-	float:left;
-	width:100px;
+	margin: 0 5px;
+	float: left;
+	width: 100px;
 }
 
 .globalWarning {
@@ -485,34 +500,34 @@ div#disclamer {
 	color: #000000;
 	margin: 3px;
 	padding: 5px;
-	text-align: center;	
+	text-align: center;
 }
 
 .globalWarning a:hover {
-	text-decoration:underline;
+	text-decoration: underline;
 }
 
-.globalWarning a{
-	cursor:pointer;
-	color:#D20000;
+.globalWarning a {
+	cursor: pointer;
+	color: #D20000;
 }
 
-.trader_col label:hover{
-	cursor:pointer;
+.trader_col label:hover {
+	cursor: pointer;
 }
 
 .tip {
-	display:none;
-	padding:7px;
-	position:absolute;
-	z-index:1000;
+	display: none;
+	padding: 7px;
+	position: absolute;
+	z-index: 1000;
 	max-width: 500px;
 }
 
 .tip.notify {
-	position:fixed;
-	top:200px;
-	padding:20px;
+	position: fixed;
+	top: 200px;
+	padding: 20px;
 }
 
 .ui-progressbar {
@@ -520,64 +535,65 @@ div#disclamer {
 }
 
 .ui-progressbar-value {
-	margin:0;
+	margin: 0;
 }
 
 #traderContainer {
-	margin-top:5px;
+	margin-top: 5px;
 }
 
 .infobox {
-    border: 2px solid red;
-    padding: 2px 5px;
-    text-align: center;
+	border: 2px solid red;
+	padding: 2px 5px;
+	text-align: center;
 }
 
-.shortcut-colum{
-	position:relative;
+.shortcut-colum {
+	position: relative;
 }
 
 .shortcut-delete {
-	position:absolute;
-	z-index:1;
-	top:3px;
-	display:none;
-	right:3px;
-	width:16px;
-	height:16px;
-	cursor:pointer;
-	background:url(../images/false.png) scroll no-repeat 0 0 transparent;
+	position: absolute;
+	z-index: 1;
+	top: 3px;
+	display: none;
+	right: 3px;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	background: url(../images/false.png) scroll no-repeat 0 0 transparent;
 }
 
-.shortcut-colum:hover .shortcut-delete{
-	display:block;
+.shortcut-colum:hover .shortcut-delete {
+	display: block;
 }
 
 .spyRaportFooter,
 .spyRaportContainer {
-	clear:both;
+	clear: both;
 }
 
 .spyRaportContainerRow.first {
-	clear:both;
+	clear: both;
 }
 
 .spyRaportContainerHead {
-	font-weight:700;
-	padding-top:8px;
-}
-.spyRaportContainerCell {
-	float:left;
-	width:25%;
+	font-weight: 700;
+	padding-top: 8px;
 }
 
-.spyRaportFooter{
-	text-align:center;
-	padding-top:8px;
+.spyRaportContainerCell {
+	float: left;
+	width: 25%;
+}
+
+.spyRaportFooter {
+	text-align: center;
+	padding-top: 8px;
 }
 
 table.tablesorter thead {
-	position:relative;
+	position: relative;
 }
 
 table.tablesorter thead tr .header {
@@ -585,18 +601,18 @@ table.tablesorter thead tr .header {
 }
 
 table.tablesorter thead tr .headerSortUp {
-	color:lime;
+	color: lime;
 }
 
 table.tablesorter thead tr .headerSortDown {
-	color:red;
-} 
+	color: red;
+}
 
 .defaultSkin table.mceLayout {
 	border-spacing: 0;
-	width:100% !important;
+	width: 100% !important;
 }
-	
+
 .ui-autocomplete-category {
 	font-weight: bold;
 	padding: .2em .4em;
@@ -604,24 +620,24 @@ table.tablesorter thead tr .headerSortDown {
 }
 
 .ui-autocomplete-item {
-	cursor:pointer;
+	cursor: pointer;
 }
 
-.alliance-image{
+.alliance-image {
 	max-width: 1024px;
 }
 
 #overview #planetList td {
-    vertical-align: top;
-    white-space: nowrap;
+	vertical-align: top;
+	white-space: nowrap;
 }
 
 @media screen and (max-width: 1165px) {
 	body {
 		min-width: 0;
 	}
-	
-	#resourceTable td{
+
+	#resourceTable td {
 		min-width: 100px;
 	}
 }
@@ -629,7 +645,7 @@ table.tablesorter thead tr .headerSortDown {
 
 /* HELPERS */
 
-.mobile{
+.mobile {
 	display: none;
 }
 
@@ -641,17 +657,18 @@ table.tablesorter thead tr .headerSortDown {
 }
 
 /*Hide checkbox*/
-#toggle-menu input[type=checkbox]{
+#toggle-menu input[type=checkbox] {
 	display: none;
 }
 
 /* MEDIA */
 
 @media screen and (min-width: 700px) and (max-width: 969px) {
-	.planetImage{
+	.planetImage {
 		display: none;
 	}
-	#planetSelector{
+
+	#planetSelector {
 		top: 99px;
 	}
 
@@ -662,76 +679,91 @@ table.tablesorter thead tr .headerSortDown {
 		grid-template-columns: 200px 1fr;
 		grid-template-rows: 67px 1fr auto;
 	}
+
 	top {
 		display: none
 	}
+
 	logo {
 		display: none;
 	}
+
 	header {
 		grid-column: 1/2;
 	}
+
 	header .fixed {
 		height: 45px;
 		width: 100vw;
 		padding: 0;
 	}
-	content{
+
+	content {
 		grid-column: 1 / 2;
 		grid-row: 2;
 		width: 100vw;
 		padding: 0;
 	}
-	.mobile{
+
+	.mobile {
 		display: initial;
 	}
+
 	aside {
 		display: none;
 	}
+
 	#planetSelector {
 		top: 44px;
 	}
+
 	menu {
 		grid-column: 1;
 		grid-row: 2;
 	}
+
 	menu .fixed {
 		position: unset;
 		width: 200px;
 	}
+
 	menu li {
 		margin: initial;
 		border-right: 1px solid black;
 	}
+
 	#menu a {
 		padding: 16px;
 	}
-	.planetSelectorWrapper{
+
+	.planetSelectorWrapper {
 		width: initial;
 	}
-	.planetSelectorWrapper > img{
+
+	.planetSelectorWrapper>img {
 		width: 42px;
 		height: 42px;
 	}
-	.no-mobile{
+
+	.no-mobile {
 		display: none;
 	}
 
 	/*Show menu when invisible checkbox is checked*/
-	input[type=checkbox]:not(:checked) ~ menu{
+	input[type=checkbox]:not(:checked)~menu {
 		display: none;
 	}
-	.hamburger{
+
+	.hamburger {
 		display: unset;
 	}
-	 .buildl img{
-		display: none;
-	 }
 
-	.alliance-image{
+	.buildl img {
+		display: none;
+	}
+
+	.alliance-image {
 		max-width: 100vw;
 	}
-	
+
 }
-
-
