@@ -589,19 +589,14 @@ function scavengers() {
 		spyReportElement.querySelector('div.spyRaportHead').after(conclusionReport);
 
 		let attackBox = document.createElement('div');
-		attackBox.setAttribute('style', 'margin-top: 10px;margin-bottom: 10px;margin-left: auto; margin-right: auto; text-align: center;');
 
+		let attackHrefTable = document.createElement("div");
+		attackHrefTable.classList.add('spyRaportContainerRow', 'clearfix');
 
-		let attackHref = document.createElement('a');
-		attackHref.setAttribute('href', `/game.php?page=fleetTable&galaxy=${spyReport.head.galaxy}&system=${spyReport.head.system}&planet=${spyReport.head.planet}&planettype=${spyReport.conclusions.planetType}&target_mission=1#ship_input[202]=${spyReport.conclusions.transportersNeeded}`);
-		attackHref.setAttribute('target', '_new');
-		attackHref.innerText = `Ressourcen mit ${spyReport.conclusions.transportersNeeded} KTs abholen`;
-		if (spyReport.conclusions.dangerValue > 0) {
-			attackHref.setAttribute('class', 'dangervalue');
-		}
+		attackHrefTable.innerHTML = '<div class="spyRaportContainerCell nonedanger" style="width: 50% !important; text-align:center;"> <a href="game.php?page=fleetTable&amp;galaxy=1&amp;system=247&amp;planet=8&amp;planettype=1&amp;target_mission=1#ship_input[202]=8" target:"_blank"> <button type="button" style="text-align: center;">⚔️ 8 Kleine Transporter ⚔️</button> </a>'
+		attackHrefTable.innerHTML += '<div class="spyRaportContainerCell nonedanger" style="width: 50% !important; text-align:center;"> <a href="game.php?page=fleetTable&amp;galaxy=1&amp;system=247&amp;planet=8&amp;planettype=1&amp;target_mission=1#ship_input[203]=2" target:"_blank"> <button type="button" style="text-align: center;">⚔️ 2 Große Transporter ⚔️</button> </a>'
 
-
-		attackBox.append(attackHref);
+		attackBox.appendChild(attackHrefTable);
 		conclusionReport.after(attackBox);
 	}
 
