@@ -191,6 +191,12 @@ th {
 	padding: 4px 6px;
 }
 
+/* SPYTHINGS */
+
+.spyRaportContainerRow.doubleSizeCells .spyRaportContainerCell {
+	width: 50% !important;
+}
+
 /* CARD */
 
 .card {
