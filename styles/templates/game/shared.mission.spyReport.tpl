@@ -1,5 +1,4 @@
 <div class="spyRaport">
-
 	<div class="spyRaportHead" coords="{$targetPlanet.galaxy}:{$targetPlanet.system}:{$targetPlanet.planet}">
 		<a href="game.php?page=galaxy&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}">{$title}</a>
 	</div>

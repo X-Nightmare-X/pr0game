@@ -1,8 +1,8 @@
-Message	= {
-	MessID : 0,
+Message = {
+	MessID: 0,
 
-	MessageCount: function() {
-		if(Message.MessID == 100) {
+	MessageCount: function () {
+		if (Message.MessID == 100) {
 			$('#unread_0').text('0');
 			$('#unread_1').text('0');
 			$('#unread_2').text('0');
@@ -14,15 +14,15 @@ Message	= {
 			$('#unread_100').text('0');
 			$('#newmes').text('');
 		} else {
-			var count = parseInt($('#unread_'+Message.MessID).text());
+			var count = parseInt($('#unread_' + Message.MessID).text());
 			var lmnew = parseInt($('#newmesnum').text());
 
-			$('#unread_'+Message.MessID).text(Math.max(0, $('#unread_100').text() - 10));
-			if(Message.MessID != 999) {
+			$('#unread_' + Message.MessID).text(Math.max(0, $('#unread_100').text() - 10));
+			if (Message.MessID != 999) {
 				$('#unread_100').text($('#unread_100').text() - count);
 			}
 
-			if(lmnew - count <= 0)
+			if (lmnew - count <= 0)
 				$('#newmes').text('');
 			else
 				$('#newmesnum').text(lmnew - count);
@@ -33,12 +33,12 @@ Message	= {
 		if (typeof page === "undefined") {
 			page = 1;
 		}
-		Message.MessID	= MessID;
+		Message.MessID = MessID;
 		Message.MessageCount(MessID);
 
 		$('#loading').show();
 
-		$.get('game.php?page=messages&mode=view&messcat='+MessID+'&site='+page+'&ajax=1', function(data) {
+		$.get('game.php?page=messages&mode=view&messcat=' + MessID + '&site=' + page + '&ajax=1', function (data) {
 			$('#loading').hide();
 			$('#messagestable').remove();
 			$('#content table:eq(0)').after(data);
@@ -50,36 +50,36 @@ Message	= {
 	},
 
 	CreateAnswer: function (Answer) {
-		var Answer	= Message.stripHTML(Answer);
-		if(Answer.substr(0, 3) == "Re:") {
-			return 'Re[2]:'+Answer.substr(3);
-		} else if(Answer.substr(0, 3) == "Re[") {
+		var Answer = Message.stripHTML(Answer);
+		if (Answer.substr(0, 3) == "Re:") {
+			return 'Re[2]:' + Answer.substr(3);
+		} else if (Answer.substr(0, 3) == "Re[") {
 			var re = Answer.replace(/Re\[(\d+)\]:.*/, '$1');
-			return 'Re['+(parseInt(re)+1)+']:'+Answer.substr(5+parseInt(re.length))
+			return 'Re[' + (parseInt(re) + 1) + ']:' + Answer.substr(5 + parseInt(re.length))
 		} else {
-			return 'Re:'+Answer
+			return 'Re:' + Answer
 		}
 	},
 
-	getMessagesIDs: function(Infos) {
+	getMessagesIDs: function (Infos) {
 		var IDs = [];
-		$.each(Infos, function(index, mess) {
-			if(mess.value == 'on')
+		$.each(Infos, function (index, mess) {
+			if (mess.value == 'on')
 				IDs.push(mess.name.replace(/delmes\[(\d+)\]/, '$1'));
 		});
 		return IDs;
 	},
 
-	delMessage: function(ID) {
+	delMessage: function (ID) {
 
 		$('#loading').show();
 
-		$.getJSON('game.php?page=messages&mode=deleteMessage&delMessID='+ID+'&ajax=1', function(data) {
+		$.getJSON('game.php?page=messages&mode=deleteMessage&delMessID=' + ID + '&ajax=1', function (data) {
 			$('#loading').hide();
 
-			$('.message_'+ID).remove();
+			$('.message_' + ID).remove();
 
-			if(data.code > 0)
+			if (data.code > 0)
 				NotifyBox(data.mess);
 			else
 				NotifyBox(data.mess);
@@ -110,45 +110,48 @@ function scavengers() {
 	};
 
 	// TODO market values & techs übergeben
-  const metalValueFromMarketplace = 4;
-  const krisValueFromMarketplace = 0.8;
-  const deutValueFromMarketplace = 1;
-  const impulseEngineTech = 10;
-	const combustionEngineTech = 8;
-  const tfperc=40;
+	const metalValueFromMarketplace = document.getElementById("refratesMetal").innerText;
+	const krisValueFromMarketplace = document.getElementById("refratesCrystal").innerText;
+	const deutValueFromMarketplace = document.getElementById("refratesDeuterium").innerText;
+	const impulseEngineTech = document.getElementById("impulse_motor_tech").innerText;
+	const combustionEngineTech = document.getElementById("combustion_tech").innerText;
+	const tfpercFleet = document.getElementById("fleetIntoDebris").innerText;
+	const tfpercDeff = document.getElementById("fleetIntoDebris").innerText;
 	const marketRatios = {
 		"901": metalValueFromMarketplace,
 		"902": krisValueFromMarketplace,
 		"903": deutValueFromMarketplace,
 	};
-  const fleetspeed = 1;
-  const stbSettings= {'stb_big_time':,
-    'stb_med_time':,
-    'stb_small_time':,
-    'stb_big_ress':,
-    'stb_med_ress':,
-    'stb_small_ress':
-  }
-
+	const fleetspeed = 1;
+	const stbSettings = {
+		'stb_big_time': document.getElementById("stb_big_time").innerText,
+		'stb_med_time': document.getElementById("stb_med_time").innerText,
+		'stb_small_time': document.getElementById("stb_small_time").innerText,
+		'stb_big_ress': document.getElementById("stb_big_ress").innerText,
+		'stb_med_ress': document.getElementById("stb_med_ress").innerText,
+		'stb_small_ress': document.getElementById("stb_small_ress").innerText,
+	}
 
 
 
 	function spyReportParser(spyReportElement) {
 		let spyReport = {};
 		var spyReportHead = spyReportElement.querySelector(".spyRaportHead");
+		console.log(spyReportHead.getAttribute('coords'));
 		let cords = spyReportHead.getAttribute('coords').split(':');
 		spyReport.head = {
-							galaxy : cords[0],
-							system : cords[1],
-							planet : cords[2],
-						};
-		spyReport.content ={}
-    for(let id of [901, 902, 903]){
-        spyReport.content[id] = 0;
-    }
-    for(let field of spyReportElement.parentElement.querySelectorAll('div[data-info]')){
-      spyReport.content[field.getAttribute("data-info").split('_')[1]]=parseInt(field.innerText.replaceAll('.', ''))
-    }
+			galaxy: cords[0],
+			system: cords[1],
+			planet: cords[2],
+		};
+
+		spyReport.content = {}
+		for (let id of [901, 902, 903]) {
+			spyReport.content[id] = 0;
+		}
+		for (let field of spyReportElement.parentElement.querySelectorAll('div[data-info]')) {
+			spyReport.content[field.getAttribute("data-info").split('_')[1]] = parseInt(field.innerText.replaceAll('.', ''))
+		}
 		return spyReport;
 	}
 
@@ -164,7 +167,7 @@ function scavengers() {
 		return Math.ceil(metal / marketRatios[901] + crystal / marketRatios[902] + deuterium / marketRatios[903])
 	}
 
-	function estimateTransporters(capacity,maxcap) {
+	function estimateTransporters(capacity, maxcap) {
 		return Math.ceil(capacity / maxcap) + 1;
 	}
 
@@ -316,10 +319,10 @@ function scavengers() {
 		Object.keys(recycleList).forEach(recycleKey => {
 			let singleRecycleValue = recycleList[recycleKey];
 			if (spyReport.content[recycleKey] !== undefined) {
-				summedUpRecycleValue += spyReport.content[recycleKey] * singleRecycleValue ;
+				summedUpRecycleValue += spyReport.content[recycleKey] * singleRecycleValue;
 			}
 		});
-		return summedUpRecycleValue* tfperc/100;
+		return summedUpRecycleValue * tfpercFleet / 100;
 	}
 
 
@@ -335,8 +338,8 @@ function scavengers() {
 			spyReport.content[902],
 			spyReport.content[903]
 		);
-		spyReport.conclusions.ktNeeded = estimateTransporters(spyReport.conclusions.neededCapacity,5000);
-    spyReport.conclusions.gtNeeded = estimateTransporters(spyReport.conclusions.neededCapacity,25000);
+		spyReport.conclusions.ktNeeded = estimateTransporters(spyReport.conclusions.neededCapacity, 5000);
+		spyReport.conclusions.gtNeeded = estimateTransporters(spyReport.conclusions.neededCapacity, 25000);
 		spyReport.conclusions.recycleValue = determineRecycleValue(spyReport);
 		spyReport.conclusions.recyclersNeeded = estimateRecyclers(spyReport.conclusions.recycleValue);
 		spyReport.conclusions.marketValue = calculateResourceMarketValue(
@@ -347,61 +350,61 @@ function scavengers() {
 
 
 		spyReport.conclusions.MarketValuePerSecond = raidTimeKT(spyReport.content[901], spyReport.content[902], spyReport.content[903], raidLocation);
-    let bestrespertime=spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet
-    let bestRessPerTimeClass = "lowRess";
-    if (bestrespertime > stbSettings['stb_big_time']) {
-      bestRessPerTimeClass = "realHighRess";
-    } else if (bestrespertime > stbSettings['stb_med_time']) {
-      bestRessPerTimeClass = "highRess";
-    } else if (bestrespertime > stbSettings['stb_small_time']) {
-      bestRessPerTimeClass = "midRess";
-    }
+		let bestrespertime = spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet
+		let bestRessPerTimeClass = "lowRess";
+		if (bestrespertime > stbSettings['stb_big_time']) {
+			bestRessPerTimeClass = "realHighRess";
+		} else if (bestrespertime > stbSettings['stb_med_time']) {
+			bestRessPerTimeClass = "highRess";
+		} else if (bestrespertime > stbSettings['stb_small_time']) {
+			bestRessPerTimeClass = "midRess";
+		}
 
 
-    let ressourcesByMarketValue =spyReport.conclusions.marketValue
-    let mkvaluetime="lowRess";
-    if (ressourcesByMarketValue > stbSettings['stb_big_ress']) {
-      mkvaluetime = "realHighRess";
-    } else if (ressourcesByMarketValue > stbSettings['stb_med_ress']) {
-      mkvaluetime = "highRess";
-    } else if (ressourcesByMarketValue > stbSettings['stb_small_ress']) {
-      mkvaluetime = "midRess";
-    }
-    for(let d of spyReportElement.parentElement.querySelectorAll('*[classadd="marketClass"]')){
-      d.classList.add(mkvaluetime);
-    }
+		let ressourcesByMarketValue = spyReport.conclusions.marketValue
+		let mkvaluetime = "lowRess";
+		if (ressourcesByMarketValue > stbSettings['stb_big_ress']) {
+			mkvaluetime = "realHighRess";
+		} else if (ressourcesByMarketValue > stbSettings['stb_med_ress']) {
+			mkvaluetime = "highRess";
+		} else if (ressourcesByMarketValue > stbSettings['stb_small_ress']) {
+			mkvaluetime = "midRess";
+		}
+		for (let d of spyReportElement.parentElement.querySelectorAll('*[classadd="marketClass"]')) {
+			d.classList.add(mkvaluetime);
+		}
 
-    for(let d of spyReportElement.parentElement.querySelectorAll('*[classadd="timePerResClass"]')){
-      d.classList.add(bestRessPerTimeClass);
-    }
+		for (let d of spyReportElement.parentElement.querySelectorAll('*[classadd="timePerResClass"]')) {
+			d.classList.add(bestRessPerTimeClass);
+		}
 
-     document.getElementsByName("totalRes")[0].innerText=spyReport.conclusions.summedUpResources.toLocaleString("de");
-    document.getElementsByName("resToRaid")[0].innerText=spyReport.conclusions.neededCapacity.toLocaleString("de");
-    document.getElementsByName("resToRec")[0].innerText=spyReport.conclusions.recycleValue.toLocaleString("de");
-    document.getElementsByName("ktNeeded")[0].innerText=spyReport.conclusions.ktNeeded.toLocaleString("de");
-    document.getElementsByName("gtNeeded")[0].innerText=spyReport.conclusions.gtNeeded.toLocaleString("de");
-    document.getElementsByName("ktNeeded")[1].innerText=spyReport.conclusions.ktNeeded.toLocaleString("de");
-    document.getElementsByName("gtNeeded")[1].innerText=spyReport.conclusions.gtNeeded.toLocaleString("de");
-    document.getElementsByName("recNeeded")[0].innerText=spyReport.conclusions.recyclersNeeded.toLocaleString("de");
-    document.getElementsByName("marketValue")[0].innerText=spyReport.conclusions.marketValue.toLocaleString("de");
-    document.getElementsByName("resPerSec")[0].innerText=spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet.toLocaleString("de");
-    document.getElementsByName("bestPlanet")[0].innerText= "[" + spyReport.conclusions.MarketValuePerSecond.bestPlanet.join(":") + "]";
-    document.getElementsByName("totalRes")[0].innerText=spyReport.conclusions.summedUpResources.toLocaleString("de");
-    document.getElementsByName("ktNeeded")[1].parentElement.parentElement.href +=  spyReport.conclusions.ktNeeded
-    document.getElementsByName("gtNeeded")[1].parentElement.parentElement.href +=  spyReport.conclusions.gtNeeded
+		document.getElementsByName("totalRes")[0].innerText = spyReport.conclusions.summedUpResources.toLocaleString("de");
+		document.getElementsByName("resToRaid")[0].innerText = spyReport.conclusions.neededCapacity.toLocaleString("de");
+		document.getElementsByName("resToRec")[0].innerText = spyReport.conclusions.recycleValue.toLocaleString("de");
+		document.getElementsByName("ktNeeded")[0].innerText = spyReport.conclusions.ktNeeded.toLocaleString("de");
+		document.getElementsByName("gtNeeded")[0].innerText = spyReport.conclusions.gtNeeded.toLocaleString("de");
+		document.getElementsByName("ktNeeded")[1].innerText = spyReport.conclusions.ktNeeded.toLocaleString("de");
+		document.getElementsByName("gtNeeded")[1].innerText = spyReport.conclusions.gtNeeded.toLocaleString("de");
+		document.getElementsByName("recNeeded")[0].innerText = spyReport.conclusions.recyclersNeeded.toLocaleString("de");
+		document.getElementsByName("marketValue")[0].innerText = spyReport.conclusions.marketValue.toLocaleString("de");
+		document.getElementsByName("resPerSec")[0].innerText = spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet.toLocaleString("de");
+		document.getElementsByName("bestPlanet")[0].innerText = "[" + spyReport.conclusions.MarketValuePerSecond.bestPlanet.join(":") + "]";
+		document.getElementsByName("totalRes")[0].innerText = spyReport.conclusions.summedUpResources.toLocaleString("de");
+		document.getElementsByName("ktNeeded")[1].parentElement.parentElement.href += spyReport.conclusions.ktNeeded
+		document.getElementsByName("gtNeeded")[1].parentElement.parentElement.href += spyReport.conclusions.gtNeeded
 	});
 
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+	let inpts = document.querySelectorAll('input[name*="messageID"]');
+	for (let checkbox of inpts) {
+		checkbox.addEventListener('change', function () {
+			for (let inp of document.querySelectorAll('input[name="' + this.name + '"]')) {
+				inp.checked = this.checked
+			}
+		});
 	}
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  let inpts=document.querySelectorAll('input[name*="messageID"]');
-  for(let checkbox of inpts){
-    checkbox.addEventListener('change', function() {
-      for(let inp of document.querySelectorAll('input[name="'+this.name+'"]')){
-        inp.checked=this.checked
-      }
-    });
-  }
-  scavengers();
+	scavengers();
 });

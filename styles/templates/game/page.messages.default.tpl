@@ -14,6 +14,23 @@
 		{/foreach}
 </table>
 
+<span id='stb_big_time' style="display: none">{$stb_big_time}</span>
+<span id='stb_med_time' style="display: none">{$stb_med_time}</span>
+<span id='stb_small_time' style="display: none">{$stb_small_time}</span>
+<span id='stb_big_ress' style="display: none">{$stb_big_ress}</span>
+<span id='stb_med_ress' style="display: none">{$stb_med_ress}</span>
+<span id='stb_small_ress' style="display: none">{$stb_small_ress}</span>
+
+<span id='refratesMetal' style="display: none">{$refratesMetal}</span>
+<span id='refratesCrystal' style="display: none">{$refratesCrystal}</span>
+<span id='refratesDeuterium' style="display: none">{$refratesDeuterium}</span>
+
+<span id='impulse_motor_tech' style="display: none">{$impulse_motor_tech}</span>
+<span id='combustion_tech' style="display: none">{$combustion_tech}</span>
+
+<span id='fleetIntoDebris' style="display: none">{$fleetIntoDebris}</span>
+<span id='defIntoDebris' style="display: none">{$defIntoDebris}</span>
+
 <input type="hidden" name="mode" value="action">
 <input type="hidden" name="ajax" value="1">
 <input type="hidden" name="messcat" value="{$MessID}">

@@ -230,15 +230,10 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $template->compile_id = $senderUser['lang'];
         $template->loadFilter('output', 'trimwhitespace');
 
-
-        require_once 'includes/classes/class.MarketManager.php';
-        $pMarket = new MarketManager();
-        $refrates = $pMarket->getReferenceRatios();
         list($tplDir) = $template->getTemplateDir();
         $template->setTemplateDir($tplDir . 'game/');
         $template->assign_vars([
             'stbEnabled'                        => $stbSettings['stb_enabled'],
-            'marketrate'                        => $refrates,
             'danger'                            => $danger,
             'dangerClass'                       => $dangerClass,
             'energy'                            => $energy,
