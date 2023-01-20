@@ -773,3 +773,10 @@ table.tablesorter thead tr .headerSortDown {
 	}
 
 }
+
+.danger {background-color: red; font-weight: bold;}
+.lowRess { background-color: indianred;}
+.midRess { background-color: chocolate;}
+.highRess { background-color: seagreen;}
+.realHighRess { background-color: royalblue;}
+/* .nonedanger {background-color: green;} */
