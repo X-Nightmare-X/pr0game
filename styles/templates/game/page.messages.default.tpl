@@ -13,6 +13,45 @@
 		{if $CategoryRow@last || ($CategoryRow@iteration % 6) === 0}</tr>{/if}
 		{/foreach}
 </table>
+<div id="stuff" jsthings='
+{
+"impulseEngineTech":{$impulse_motor_tech},
+"combustionEngineTech":{$combustion_tech},
+"tfpercFleet":{$fleetIntoDebris},
+"tfpercDeff":{$defIntoDebris},
+  "marketRatios":{
+"901":{$refratesMetal},
+"902":{$refratesCrystal},
+"903":{$refratesDeuterium}
+  },
+  "fleetspeed":1,
+  "stbSettings":{
+		"stb_big_time": {$stb_big_time},
+  "stb_med_time": {$stb_med_time},
+  "stb_small_time": {$stb_small_time},
+  "stb_big_ress": {$stb_big_ress},
+  "stb_med_ress": {$stb_med_ress},
+  "stb_small_ress": {$stb_small_ress}
+  }
+
+}
+'></div>
+<span id='stb_big_time' style="display: none"></span>
+<span id='stb_med_time' style="display: none"></span>
+<span id='stb_small_time' style="display: none"></span>
+<span id='stb_big_ress' style="display: none"></span>
+<span id='stb_med_ress' style="display: none"></span>
+<span id='stb_small_ress' style="display: none"></span>
+
+<span id='refratesMetal' style="display: none">{$refratesMetal}</span>
+<span id='refratesCrystal' style="display: none">{$refratesCrystal}</span>
+<span id='refratesDeuterium' style="display: none">{$refratesDeuterium}</span>
+
+<span id='impulse_motor_tech' style="display: none">{$impulse_motor_tech}</span>
+<span id='combustion_tech' style="display: none">{$combustion_tech}</span>
+
+<span id='fleetIntoDebris' style="display: none">{$fleetIntoDebris}</span>
+<span id='defIntoDebris' style="display: none">{$defIntoDebris}</span>
 
 <input type="hidden" name="mode" value="action">
 <input type="hidden" name="ajax" value="1">

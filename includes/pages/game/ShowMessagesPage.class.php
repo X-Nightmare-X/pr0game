@@ -394,6 +394,14 @@ class ShowMessagesPage extends AbstractGamePage
 
         $db = Database::get();
 
+        require_once 'includes/classes/Config.class.php';
+        $fleetIntoDebris = Config::get()->Fleet_Cdr;
+        $defIntoDebris = Config::get()->Defs_Cdr;
+
+        $stbSettings2 = PlayerUtil::player_stb_settings();
+        $combustion_tech = $USER["combustion_tech"];
+        $impulse_motor_tech = $USER["impulse_motor_tech"];
+
         $MessageList	= array();
         $MessagesID		= array();
 
@@ -532,14 +540,35 @@ class ShowMessagesPage extends AbstractGamePage
 
 		////
 
+        // require_once 'includes/classes/PlayerUtil.class.php';
+        // $foo = $USER['id'];
+        // $stbSettings2 = PlayerUtil::player_stb_settings();
+        // die(var_dump($stbSettings2));
+        
+        require_once 'includes/classes/class.MarketManager.php';
+        $pMarket = new MarketManager();
+        $refrates = $pMarket->getReferenceRatios();
         $this->tplObj->loadscript('message.js');
         $this->assign(array(
-			'MessID'		=> $MessCategory,
-			'MessageCount'	=> $MessageCount,
-            'MessageList'	=> $MessageList,
-            'CategoryList'	=> $CategoryList,
-            'page'			=> $page,
-            'maxPage'		=> $maxPage,
+			'MessID'		            => $MessCategory,
+			'MessageCount'	            => $MessageCount,
+            'MessageList'	            => $MessageList,
+            'CategoryList'	            => $CategoryList,
+            'page'			            => $page,
+            'maxPage'		            => $maxPage,
+            'stb_big_time'              => $stbSettings2['stb_big_time'],
+            'stb_med_time'              => $stbSettings2['stb_med_time'],
+            'stb_small_time'            => $stbSettings2['stb_small_time'],
+            'stb_big_ress'              => $stbSettings2['stb_big_ress'],
+            'stb_med_ress'              => $stbSettings2['stb_med_ress'],
+            'stb_small_ress'            => $stbSettings2['stb_small_ress'],
+            'refratesMetal'             => $refrates['metal'],
+            'refratesCrystal'           => $refrates['crystal'],
+            'refratesDeuterium'         => $refrates['deuterium'],
+            'impulse_motor_tech'        => $impulse_motor_tech,
+            'combustion_tech'           => $combustion_tech,
+            'fleetIntoDebris'           => $fleetIntoDebris,
+            'defIntoDebris'             => $defIntoDebris,
         ));
 
         $this->display('page.messages.default.tpl');
