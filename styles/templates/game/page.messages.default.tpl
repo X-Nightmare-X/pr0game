@@ -13,13 +13,35 @@
 		{if $CategoryRow@last || ($CategoryRow@iteration % 6) === 0}</tr>{/if}
 		{/foreach}
 </table>
+<div id="stuff" jsthings='
+{
+"impulseEngineTech":{$impulse_motor_tech},
+"combustionEngineTech":{$combustion_tech},
+"tfpercFleet":{$fleetIntoDebris},
+"tfpercDeff":{$defIntoDebris},
+  "marketRatios":{
+"901":{$refratesMetal},
+"902":{$refratesCrystal},
+"903":{$refratesDeuterium}
+  },
+  "fleetspeed":1,
+  "stbSettings":{
+		"stb_big_time": {$stb_big_time},
+  "stb_med_time": {$stb_med_time},
+  "stb_small_time": {$stb_small_time},
+  "stb_big_ress": {$stb_big_ress},
+  "stb_med_ress": {$stb_med_ress},
+  "stb_small_ress": {$stb_small_ress}
+  }
 
-<span id='stb_big_time' style="display: none">{$stb_big_time}</span>
-<span id='stb_med_time' style="display: none">{$stb_med_time}</span>
-<span id='stb_small_time' style="display: none">{$stb_small_time}</span>
-<span id='stb_big_ress' style="display: none">{$stb_big_ress}</span>
-<span id='stb_med_ress' style="display: none">{$stb_med_ress}</span>
-<span id='stb_small_ress' style="display: none">{$stb_small_ress}</span>
+}
+'></div>
+<span id='stb_big_time' style="display: none"></span>
+<span id='stb_med_time' style="display: none"></span>
+<span id='stb_small_time' style="display: none"></span>
+<span id='stb_big_ress' style="display: none"></span>
+<span id='stb_med_ress' style="display: none"></span>
+<span id='stb_small_ress' style="display: none"></span>
 
 <span id='refratesMetal' style="display: none">{$refratesMetal}</span>
 <span id='refratesCrystal' style="display: none">{$refratesCrystal}</span>

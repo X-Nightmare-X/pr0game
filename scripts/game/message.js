@@ -110,34 +110,17 @@ function scavengers() {
 	};
 
 	// TODO market values & techs übergeben
-	const metalValueFromMarketplace = document.getElementById("refratesMetal").innerText;
-	const krisValueFromMarketplace = document.getElementById("refratesCrystal").innerText;
-	const deutValueFromMarketplace = document.getElementById("refratesDeuterium").innerText;
-	const impulseEngineTech = document.getElementById("impulse_motor_tech").innerText;
-	const combustionEngineTech = document.getElementById("combustion_tech").innerText;
-	const tfpercFleet = document.getElementById("fleetIntoDebris").innerText;
-	const tfpercDeff = document.getElementById("fleetIntoDebris").innerText;
-	const marketRatios = {
-		"901": metalValueFromMarketplace,
-		"902": krisValueFromMarketplace,
-		"903": deutValueFromMarketplace,
-	};
-	const fleetspeed = 1;
-	const stbSettings = {
-		'stb_big_time': document.getElementById("stb_big_time").innerText,
-		'stb_med_time': document.getElementById("stb_med_time").innerText,
-		'stb_small_time': document.getElementById("stb_small_time").innerText,
-		'stb_big_ress': document.getElementById("stb_big_ress").innerText,
-		'stb_med_ress': document.getElementById("stb_med_ress").innerText,
-		'stb_small_ress': document.getElementById("stb_small_ress").innerText,
-	}
-
-
-
+  let frombody=JSON.parse(document.getElementById("stuff").getAttribute("jsthings"))
+	const impulseEngineTech =frombody.impulseEngineTech
+	const combustionEngineTech = frombody.combustionEngineTech
+	const tfpercFleet = frombody.tfpercFleet
+	const tfpercDeff = frombody.tfpercDeff
+	const marketRatios = frombody.marketRatios
+	const fleetspeed = frombody.fleetspeed
+	const stbSettings = frombody.stbSettings
 	function spyReportParser(spyReportElement) {
 		let spyReport = {};
 		var spyReportHead = spyReportElement.querySelector(".spyRaportHead");
-		console.log(spyReportHead.getAttribute('coords'));
 		let cords = spyReportHead.getAttribute('coords').split(':');
 		spyReport.head = {
 			galaxy: cords[0],
@@ -398,6 +381,7 @@ function scavengers() {
 
 
 document.addEventListener("DOMContentLoaded", function () {
+  scavengers();
 	let inpts = document.querySelectorAll('input[name*="messageID"]');
 	for (let checkbox of inpts) {
 		checkbox.addEventListener('change', function () {
@@ -406,5 +390,5 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		});
 	}
-	scavengers();
+
 });
