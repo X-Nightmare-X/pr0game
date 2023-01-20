@@ -10,7 +10,7 @@
 	/* .nonedanger {background-color: green;} */
 </style>
 {/literal}
-	<div class="spyRaportHead">
+	<div class="spyRaportHead" data-info="{$targetPlanet.galaxy}:{$targetPlanet.system}:{$targetPlanet.planet}">
 		<a href="game.php?page=galaxy&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}">{$title}</a>
 	</div>
 	<div class="spyRaportContainer">
@@ -23,13 +23,13 @@
 					{$LNG.spy_total_resources}
 				</div>
 				<div class="spyRaportContainerCell 15">
-          {number_format($ressources, 0, ",", ".")}
+          			{number_format($ressources, 0, ",", ".")}
 				</div>
 				<div class="spyRaportContainerCell {$dangerClass}">
 					{$LNG.spy_hazard_potential}
 				</div>
-				<div class="spyRaportContainerCell {$dangerClass}">
-          {number_format($danger, 0, ",", ".")}
+				<div class="spyRaportContainerCell {$dangerClass}" name="dangerValue">
+          			{number_format($danger, 0, ",", ".")}
 				</div>
 			</div>
 			<div class="spyRaportContainerRow clearfix">
@@ -113,10 +113,17 @@
 	<div class="spyRaportContainer">
 	<div class="spyRaportContainerHead spyRaportContainerHeadClass{$Class}">{$LNG.tech.$Class}</div>
 	{foreach $elementIDs as $elementID => $amount}
-	{if ($amount@iteration % 2) === 1}<div class="spyRaportContainerRow clearfix">{/if}
-		<div class="spyRaportContainerCell"><a href='#' onclick='return Dialog.info({$elementID})' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$elementID}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$elementID}.{if $elementID >=600 && $elementID <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$elementID}</td></tr></table></tr></table>">{$LNG.tech.$elementID}</a></div>
-		<div class="spyRaportContainerCell">{number_format($amount, 0, ",", ".")}</div>
-	{if ($amount@iteration % 2) === 0}</div>{/if}
+		{if ($amount@iteration % 2) === 1}
+			<div class="spyRaportContainerRow clearfix">
+		{/if}
+			<div class="spyRaportContainerCell">
+				<a href='#' onclick='return Dialog.info({$elementID})' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$elementID}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$elementID}.
+				{if $elementID >=600 && $elementID <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$elementID}</td></tr></table></tr></table>">{$LNG.tech.$elementID}</a>
+			</div>
+			<div class="spyRaportContainerCell" data-info="{$Class}_{$elementID}">
+				{number_format($amount, 0, ",", ".")}
+			</div>
+		{if ($amount@iteration % 2) === 0}</div>{/if}
 	{/foreach}
 	</div>
 	{/foreach}

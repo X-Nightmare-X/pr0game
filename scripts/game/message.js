@@ -90,6 +90,7 @@ Message	= {
 
 function scavengers() {
 
+
 	const resourceIdList = {
 		"1": "Metallmine",
 		"2": "Kristallmine",
@@ -159,6 +160,7 @@ function scavengers() {
 		"911": "Energie",
 	};
 
+	// TODO attack values übergeben
 	const dangersList = {
 		"202": 5,
 		"203": 5,
@@ -180,6 +182,7 @@ function scavengers() {
 		"406": 3000,
 	};
 
+	// TODO debris values übergeben
 	const recycleList = {
 		"202": 1200, //KT
 		"203": 3600, //GT
@@ -197,6 +200,7 @@ function scavengers() {
 		"215": 21000, //SXer
 	};
 
+	// TODO market values & techs übergeben
 	var metalValueFromMarketplace = 4;
 	var krisValueFromMarketplace = 0.8;
 	var deutValueFromMarketplace = 1;
@@ -212,23 +216,30 @@ function scavengers() {
 	function containerParser(containerElements) {
 		var spyReportContent = {};
 		containerElements.forEach(containerElement => {
-			var containerCells = containerElement.querySelectorAll('.spyRaportContainerCell');
-			for (var i = 0; i < containerCells.length; i = i + 2) {
-				var identifierMatch = containerCells[i].innerHTML.match(/return Dialog\.info\(([0-9]+)\)/);
-				spyReportContent[identifierMatch[1]] = {
-					"title": resourceIdList[identifierMatch[1]],
-					"value": parseInt(containerCells[i + 1].innerText.replaceAll('.', '')),
+			var containerCells = containerElement.querySelectorAll('div[data-info]');
+			for (var i = 0; i < containerCells.length; i++ ) {
+				// console.log(containerCells[i])
+				let id = containerCells[i].getAttribute('data-info').split('_')[1];
+				// var identifierMatch = containerCells[i].innerHTML.match(/return Dialog\.info\(([0-9]+)\)/);
+				spyReportContent[id] = {
+					"title": resourceIdList[id],
+					"value": parseInt(containerCells[i].innerText.replaceAll('.', '')),
 				}
 			}
 		});
+		// console.log(spyReportContent);
 		return spyReportContent;
 	}
 
 	function spyReportParser(spyReportElement) {
 		let spyReport = {};
 		var spyReportHead = spyReportElement.querySelector(".spyRaportHead");
-		let spyReportHeadMatches = spyReportHead.innerText.match(/^Spionagebericht von (.+?) \[(?<galaxy>[1-9]):(?<system>[0-9]{1,3}):(?<planet>[0-9]{1,2})\] am (?<reportdate>[a-zA-Z0-9. ]+), (?<reporttime>[0-9:]+)$/);
-		spyReport.head = spyReportHeadMatches.groups;
+		let cords = spyReportHead.getAttribute('data-info').split(':');
+		spyReport.head = {
+							galaxy : cords[0],
+							system : cords[1],
+							planet : cords[2],
+						};
 		spyReport.content = containerParser(spyReportElement.querySelectorAll(".spyRaportContainer"));
 		// Make sure all main resources are initialized
 		[901, 902, 903].forEach((id) => {
@@ -291,14 +302,6 @@ function scavengers() {
 			calculateResourceMarketValuePerSecondBestPlanet,
 			galaJump,
 			galaJumpPlanet;
-
-		if (isNaN(flightSpeedKT)) {
-			return {
-				'calculateResourceMarketValuePerSecond': "FORSCHUNG",
-				'calculateResourceMarketValuePerSecondBestPlanet': "FORSCHUNG",
-				'bestPlanet': "FORSCHUNG"
-			}
-		}
 
 		var bestLocationForRaid = bestLocation(raidLocation);
 		bestPlanet = bestLocationForRaid.bestPlanet;
@@ -392,6 +395,7 @@ function scavengers() {
 				activPlanetdistance = tempDistance;
 			}
 
+			// TODO LNG
 			if (bestPlanetGalaJump == 1) {
 				galaJumpPlanet = "Beliebiger Planet in Gala " + bestPlanet[0]
 			} else {
@@ -413,6 +417,8 @@ function scavengers() {
 	function flightSpeed(shiptype) {
 		var speed;
 
+		// TODO fleetspeed = 1 ersetzen
+		const fleetspeed = 1;
 		if (shiptype === "202") {
 			if (impulseEngineTech < 5) {
 				speed = 5000 * (1 + (0.1 * combustionEngineTech));
@@ -422,7 +428,7 @@ function scavengers() {
 			}
 		}
 
-		return speed;
+		return fleetspeed * speed;
 
 	}
 
@@ -469,6 +475,9 @@ function scavengers() {
 		conclusionReportHead.innerHTML = 'Zusammenfassung';
 
 
+		// spyReportElement.getElementsByName("dangervalue")[0].innerText = spyReport.conclusions.dangerValue;
+		// console.log(spyReport.conclusions.dangerValue);
+		// console.log("foo");
 		let reportContents = [
 			// 0
 			{
@@ -593,8 +602,8 @@ function scavengers() {
 		let attackHrefTable = document.createElement("div");
 		attackHrefTable.classList.add('spyRaportContainerRow', 'clearfix');
 
-		attackHrefTable.innerHTML = '<div class="spyRaportContainerCell nonedanger" style="width: 50% !important; text-align:center;"> <a href="game.php?page=fleetTable&amp;galaxy=1&amp;system=247&amp;planet=8&amp;planettype=1&amp;target_mission=1#ship_input[202]=8" target:"_blank"> <button type="button" style="text-align: center;">⚔️ 8 Kleine Transporter ⚔️</button> </a>'
-		attackHrefTable.innerHTML += '<div class="spyRaportContainerCell nonedanger" style="width: 50% !important; text-align:center;"> <a href="game.php?page=fleetTable&amp;galaxy=1&amp;system=247&amp;planet=8&amp;planettype=1&amp;target_mission=1#ship_input[203]=2" target:"_blank"> <button type="button" style="text-align: center;">⚔️ 2 Große Transporter ⚔️</button> </a>'
+		// attackHrefTable.innerHTML = '<div class="spyRaportContainerCell nonedanger" style="width: 50% !important; text-align:center;"> <a href="game.php?page=fleetTable&amp;galaxy=1&amp;system=247&amp;planet=8&amp;planettype=1&amp;target_mission=1#ship_input[202]=8" target:"_blank"> <button type="button" style="text-align: center;">⚔️ 8 Kleine Transporter ⚔️</button> </a>'
+		// attackHrefTable.innerHTML += '<div class="spyRaportContainerCell nonedanger" style="width: 50% !important; text-align:center;"> <a href="game.php?page=fleetTable&amp;galaxy=1&amp;system=247&amp;planet=8&amp;planettype=1&amp;target_mission=1#ship_input[203]=2" target:"_blank"> <button type="button" style="text-align: center;">⚔️ 2 Große Transporter ⚔️</button> </a>'
 
 		attackBox.appendChild(attackHrefTable);
 		conclusionReport.after(attackBox);
@@ -632,78 +641,10 @@ function scavengers() {
 		spyReport.conclusions.energy = energy;
 
 		spyReport.conclusions.MarketValuePerSecond = raidTimeKT(spyReport.content[901].value, spyReport.content[902].value, spyReport.content[903].value, raidLocation);
-		console.log(spyReport);
+		// console.log(spyReport);
 		attachConclusionsToReport(spyReportElement, spyReport);
 
 	});
-
-	// if (document.location.href.match(/page=fleetTable.+?ship_input/)) {
-	// 	let ships = [...document.location.hash.matchAll(/ship_input\[(?<shiptype>[0-9]+)\]=(?<shipamount>[0-9]+)/g)];
-	// 	ships.forEach(ship => {
-	// 		let input = document.querySelector(`input#ship${ship.groups.shiptype}_input`);
-	// 		if (input !== null) {
-	// 			input.value = ship.groups.shipamount;
-	// 		}
-	// 	});
-	// }
-
-	// if (document.URL.indexOf("research") >= 0) {
-
-	// 	var r = /(\d){1,2}/g;
-
-	// 	var impulseText = document.getElementById("t117").innerText;
-	// 	var impulseStage = impulseText.match(r);
-	// 	GM.setValue('impulse', impulseStage[0]);
-
-	// 	var combustionText = document.getElementById("t115").innerText;
-	// 	var combustionStage = combustionText.match(r);
-	// 	GM.setValue('combustion', combustionStage[0]);
-
-	// }
-
-	// if (document.URL.indexOf("marketPlace") >= 0) {
-
-	// 	// Get current rate of ressources or set own
-
-	// 	var metalValue = document.querySelectorAll('tr.ratio input')[0].value,
-	// 		metalDefaultValue = document.querySelectorAll('tr.ratio input')[0].defaultValue,
-	// 		crystalValue = document.querySelectorAll('tr.ratio input')[1].value,
-	// 		crystalDefaultValue = document.querySelectorAll('tr.ratio input')[1].defaultValue,
-	// 		deuteriumValue = document.querySelectorAll('tr.ratio input')[2].value,
-	// 		deuteriumDefaultValue = document.querySelectorAll('tr.ratio input')[2].defaultValue;
-
-	// 	if (typeof metalValue === 'undefined' || metalValue === '') {
-	// 		document.querySelectorAll('tr.ratio input')[0].value = metalDefaultValue;
-	// 	}
-	// 	if (typeof crystalValue === 'undefined' || crystalValue === '') {
-	// 		document.querySelectorAll('tr.ratio input')[1].value = crystalDefaultValue;
-	// 	}
-	// 	if (typeof metalValue === 'undefined' || deuteriumValue === '') {
-	// 		document.querySelectorAll('tr.ratio input')[2].value = deuteriumDefaultValue;
-	// 	}
-
-	// 	document.querySelectorAll('tr.ratio input')[0].onchange = function () {
-	// 		if (document.querySelectorAll('tr.ratio input')[0].value === '') {
-	// 			document.querySelectorAll('tr.ratio input')[0].value = metalDefaultValue;
-	// 		}
-	// 		GM.setValue('metalValue', document.querySelectorAll('tr.ratio input')[0].value);
-	// 	};
-	// 	document.querySelectorAll('tr.ratio input')[1].onchange = function () {
-	// 		if (document.querySelectorAll('tr.ratio input')[1].value === '') {
-	// 			document.querySelectorAll('tr.ratio input')[1].value = crystalDefaultValue;
-	// 		}
-	// 		GM.setValue('crystalValue', document.querySelectorAll('tr.ratio input')[1].value);
-	// 	};
-	// 	document.querySelectorAll('tr.ratio input')[2].onchange = function () {
-	// 		if (document.querySelectorAll('tr.ratio input')[2].value === '') {
-	// 			document.querySelectorAll('tr.ratio input')[2].value = deuteriumDefaultValue;
-	// 		}
-	// 		GM.setValue('deuteriumValue', document.querySelectorAll('tr.ratio input')[2].value);
-	// 	};
-
-	// 	GM.setValue('metalValue', (metalValue == '') ? metalDefaultValue : metalValue);
-	// 	GM.setValue('crystalValue', (crystalValue == '') ? crystalDefaultValue : crystalValue);
-	// 	GM.setValue('deuteriumValue', (deuteriumValue == '') ? deuteriumDefaultValue : deuteriumValue);
 
 	}
   
