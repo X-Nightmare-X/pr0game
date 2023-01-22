@@ -109,7 +109,6 @@ function scavengers() {
 		"215": 70000, //SXer
 	};
 
-	// TODO market values & techs übergeben
   let frombody=JSON.parse(document.getElementById("stuff").getAttribute("jsthings"))
 	const impulseEngineTech =frombody.impulseEngineTech
 	const combustionEngineTech = frombody.combustionEngineTech
@@ -174,8 +173,6 @@ function scavengers() {
 		galaJump = bestLocationForRaid.galaJump;
 		galaJumpPlanet = bestLocationForRaid.galaJumpPlanet;
 
-
-		//TODO: Prüfen, original aus flotten.js evntl sind hier anpassungen nötig ~ 10er Potenz stimmt noch nicht ganz genau ~~ 5 mins diff
 		flytime = Math.max(Math.round((3500 / (100 * 0.1) * Math.pow(bestLocationForRaid.activPlanetdistance * 10 / flightSpeedKT, 0.5) + 10) / 1 * Math.max(0, 1 + 100) * 1, 5));
 		flytime = flytime / 10;
 
@@ -261,9 +258,8 @@ function scavengers() {
 				activPlanetdistance = tempDistance;
 			}
 
-			// TODO LNG
 			if (bestPlanetGalaJump == 1) {
-				galaJumpPlanet = "Beliebiger Planet in Gala " + bestPlanet[0]
+				galaJumpPlanet = "Galajump " + bestPlanet[0]
 			} else {
 				galaJump = 0;
 			}
