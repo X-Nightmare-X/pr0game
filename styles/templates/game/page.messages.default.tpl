@@ -13,11 +13,30 @@
 		{if $CategoryRow@last || ($CategoryRow@iteration % 6) === 0}</tr>{/if}
 		{/foreach}
 </table>
+<div id="stuff" jsthings='
+{
+"impulseEngineTech":{$impulse_motor_tech},
+"combustionEngineTech":{$combustion_tech},
+"tfpercFleet":{$fleetIntoDebris},
+"tfpercDeff":{$defIntoDebris},
+  "marketRatios":{
+"901":{$refratesMetal},
+"902":{$refratesCrystal},
+"903":{$refratesDeuterium}
+  },
+  "fleetspeed":1,
+  "stbSettings":{
+		"stb_big_time": {$stb_big_time},
+  "stb_med_time": {$stb_med_time},
+  "stb_small_time": {$stb_small_time},
+  "stb_big_ress": {$stb_big_ress},
+  "stb_med_ress": {$stb_med_ress},
+  "stb_small_ress": {$stb_small_ress}
+  }
 
-<input type="hidden" name="mode" value="action">
-<input type="hidden" name="ajax" value="1">
-<input type="hidden" name="messcat" value="{$MessID}">
-<input type="hidden" name="side" value="{$page}">
+}
+'></div>
+
 <table id="messagestable" style="table-layout:fixed;">
 	<tr>
 		<th>{$LNG.mg_message_title}</th>
