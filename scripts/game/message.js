@@ -356,21 +356,20 @@ function scavengers() {
 		for (let d of spyReportElement.parentElement.querySelectorAll('*[classadd="timePerResClass"]')) {
 			d.classList.add(bestRessPerTimeClass);
 		}
-
-		document.getElementsByName("totalRes")[0].innerText = spyReport.conclusions.summedUpResources.toLocaleString("de");
-		document.getElementsByName("resToRaid")[0].innerText = spyReport.conclusions.neededCapacity.toLocaleString("de");
-		document.getElementsByName("resToRec")[0].innerText = spyReport.conclusions.recycleValue.toLocaleString("de");
-		document.getElementsByName("ktNeeded")[0].innerText = spyReport.conclusions.ktNeeded.toLocaleString("de");
-		document.getElementsByName("gtNeeded")[0].innerText = spyReport.conclusions.gtNeeded.toLocaleString("de");
-		document.getElementsByName("ktNeeded")[1].innerText = spyReport.conclusions.ktNeeded.toLocaleString("de");
-		document.getElementsByName("gtNeeded")[1].innerText = spyReport.conclusions.gtNeeded.toLocaleString("de");
-		document.getElementsByName("recNeeded")[0].innerText = spyReport.conclusions.recyclersNeeded.toLocaleString("de");
-		document.getElementsByName("marketValue")[0].innerText = spyReport.conclusions.marketValue.toLocaleString("de");
-		document.getElementsByName("resPerSec")[0].innerText = spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet.toLocaleString("de");
-		document.getElementsByName("bestPlanet")[0].innerText = "[" + spyReport.conclusions.MarketValuePerSecond.bestPlanet.join(":") + "]";
-		document.getElementsByName("totalRes")[0].innerText = spyReport.conclusions.summedUpResources.toLocaleString("de");
-		document.getElementsByName("ktNeeded")[1].parentElement.parentElement.href += spyReport.conclusions.ktNeeded
-		document.getElementsByName("gtNeeded")[1].parentElement.parentElement.href += spyReport.conclusions.gtNeeded
+    let mainobject=spyReportElement.parentElement.parentElement
+    mainobject.querySelector('*[name="totalRes"]').innerText = spyReport.conclusions.summedUpResources.toLocaleString("de");
+    mainobject.querySelector('*[name="resToRaid"]').innerText = spyReport.conclusions.neededCapacity.toLocaleString("de");
+    mainobject.querySelector('*[name="resToRec"]').innerText = spyReport.conclusions.recycleValue.toLocaleString("de");
+    mainobject.querySelector('*[name="ktNeeded"]').innerText = spyReport.conclusions.ktNeeded.toLocaleString("de");
+    mainobject.querySelector('*[name="gtNeeded"]').innerText = spyReport.conclusions.gtNeeded.toLocaleString("de");
+    mainobject.querySelectorAll('*[name="ktNeeded"]')[1].innerText = spyReport.conclusions.ktNeeded.toLocaleString("de");
+    mainobject.querySelectorAll('*[name="gtNeeded"]')[1].innerText = spyReport.conclusions.gtNeeded.toLocaleString("de");
+    mainobject.querySelector('*[name="recNeeded"]').innerText = spyReport.conclusions.recyclersNeeded.toLocaleString("de");
+    mainobject.querySelector('*[name="marketValue"]').innerText = spyReport.conclusions.marketValue.toLocaleString("de");
+    mainobject.querySelector('*[name="resPerSec"]').innerText = spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet.toLocaleString("de");
+    mainobject.querySelector('*[name="bestPlanet"]').innerText = "[" + spyReport.conclusions.MarketValuePerSecond.bestPlanet.join(":") + "]";
+    mainobject.querySelector('*[name="ktNeeded"]').parentElement.parentElement.href += spyReport.conclusions.ktNeeded
+    mainobject.querySelector('*[name="gtNeeded"]').parentElement.parentElement.href += spyReport.conclusions.gtNeeded
 	});
 
 }
