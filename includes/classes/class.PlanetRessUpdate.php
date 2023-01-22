@@ -32,12 +32,25 @@ class ResourceUpdate
     private $USER = array();
     private $Builded = array();
 
+	private $_deltaMetal = 0;
+	private $_deltaCrystal = 0;
+	private $_deltaDeut = 0;
+
     public function __construct($Build = true, $Tech = true)
     {
         $this->Build = $Build;
         $this->Tech = $Tech;
     }
 
+	public function payMetal($amount)
+	{ $this->_deltaMetal -= $amount; }
+	
+	public function payCrystal($amount)
+	{ $this->_deltaCrystal -= $amount; }
+	
+	public function payDeut($amount)
+	{ $this->_deltaDeut -= $amount; }
+	
     public function setData($USER, $PLANET)
     {
         $this->USER = $USER;
@@ -86,6 +99,9 @@ class ResourceUpdate
         return md5(implode("::", $Hash));
     }
 
+	/**
+	 * was genau macht $HASH?
+	 */
     public function CalcResource($USER = null, $PLANET = null, $SAVE = false, $TIME = null, $HASH = true)
     {
         $this->isGlobalMode = !isset($USER, $PLANET) ? true : false;
@@ -144,7 +160,7 @@ class ResourceUpdate
         }
 
         $MaxMetalStorage = $this->PLANET['metal_max']     * $this->config->max_overflow;
-        $MaxCristalStorage = $this->PLANET['crystal_max']   * $this->config->max_overflow;
+        $maxCrystalStorage = $this->PLANET['crystal_max']   * $this->config->max_overflow;
         $MaxDeuteriumStorage = $this->PLANET['deuterium_max'] * $this->config->max_overflow;
 
         $MetalTheoretical = $this->ProductionTime * (
@@ -152,21 +168,20 @@ class ResourceUpdate
                                     + $this->PLANET['metal_perhour']
                                     ) / 3600;
 
-        if ($MetalTheoretical < 0) {
-            $this->PLANET['metal'] = max($this->PLANET['metal'] + $MetalTheoretical, 0);
-        } elseif ($this->PLANET['metal'] <= $MaxMetalStorage) {
-            $this->PLANET['metal'] = min($this->PLANET['metal'] + $MetalTheoretical, $MaxMetalStorage);
+		$freeSpaceMetal = max(0, $MaxMetalStorage - $this->PLANET['metal']);
+		if ($freeSpaceMetal > 0) 
+		{
+			$this->_deltaMetal = min($MetalTheoretical, $freeSpaceMetal);
         }
 
-        $CristalTheoretical = $this->ProductionTime * (
+        $CrystalTheoretical = $this->ProductionTime * (
                                 ($this->config->crystal_basic_income * $this->config->resource_multiplier)
                                 + $this->PLANET['crystal_perhour']
                                 ) / 3600;
 
-        if ($CristalTheoretical < 0) {
-            $this->PLANET['crystal'] = max($this->PLANET['crystal'] + $CristalTheoretical, 0);
-        } elseif ($this->PLANET['crystal'] <= $MaxCristalStorage) {
-            $this->PLANET['crystal'] = min($this->PLANET['crystal'] + $CristalTheoretical, $MaxCristalStorage);
+		$freeSpaceCrystal = max(0, $maxCrystalStorage - $this->PLANET['crystal']);
+        if ($freeSpaceCrystal > 0) {
+			$this->_deltaCrystal = min($CrystalTheoretical, $freeSpaceCrystal);
         }
 
         $DeuteriumTheoretical = $this->ProductionTime * (
@@ -174,10 +189,9 @@ class ResourceUpdate
                                     + $this->PLANET['deuterium_perhour']
                                     ) / 3600;
 
-        if ($DeuteriumTheoretical < 0) {
-            $this->PLANET['deuterium'] = max($this->PLANET['deuterium'] + $DeuteriumTheoretical, 0);
-        } elseif ($this->PLANET['deuterium'] <= $MaxDeuteriumStorage) {
-            $this->PLANET['deuterium'] = min($this->PLANET['deuterium'] + $DeuteriumTheoretical, $MaxDeuteriumStorage);
+		$freeSpaceDeut = max(0, $MaxDeuteriumStorage - $this->PLANET['deuterium']);
+        if ($freeSpaceDeut > 0) {
+			$this->_deltaDeut = min($DeuteriumTheoretical, $freeSpaceDeut);
         }
 
         $this->PLANET['metal'] = max($this->PLANET['metal'], 0);
@@ -185,6 +199,7 @@ class ResourceUpdate
         $this->PLANET['deuterium'] = max($this->PLANET['deuterium'], 0);
     }
 
+	// just for display?
     public static function getProd($Calculation, $Element = false)
     {
         global $resource, $reslist, $USER, $PLANET;
@@ -481,16 +496,23 @@ class ResourceUpdate
                 $HaveResources = false;
                 $HaveNoMoreLevel = true;
             }
-
+			var_dump($costResources);die();
             if ($HaveResources === true) {
+				var_dump($costResources[901]);die();
                 if (isset($costResources[901])) {
                     $this->PLANET[$resource[901]] -= $costResources[901];
+					$this->_deltaMetal -= $costResources[901];
+					var_dump($this->_deltaMetal);
+					var_dump($costResources[901]);
+					die();
                 }
                 if (isset($costResources[902])) {
                     $this->PLANET[$resource[902]] -= $costResources[902];
+					$this->_deltaCrystal -= $costResources[902];
                 }
                 if (isset($costResources[903])) {
                     $this->PLANET[$resource[903]] -= $costResources[903];
+					$this->_deltaDeut -= $costResources[903];
                 }
                 $NewQueue = serialize($CurrentQueue);
                 $Loop = false;
@@ -790,9 +812,9 @@ class ResourceUpdate
         $params = array(
             ':userId'               => $USER['id'],
             ':planetId'             => $PLANET['id'],
-            ':metal'                => $PLANET['metal'],
-            ':crystal'              => $PLANET['crystal'],
-            ':deuterium'            => $PLANET['deuterium'],
+            ':deltametal'           => $this->_deltaMetal,
+            ':deltacrystal'         => $this->_deltaCrystal,
+			':deltadeuterium'       => $this->_deltaDeut,
             ':ecoHash'              => $PLANET['eco_hash'],
             ':lastUpdateTime'       => $PLANET['last_update'],
             ':b_building'           => $PLANET['b_building'],
@@ -850,9 +872,9 @@ class ResourceUpdate
         }
 
         $sql = 'UPDATE %%PLANETS%% as p, %%USERS%% as u, %%ADVANCED_STATS%% as s SET
-		p.metal = :metal,
-		p.crystal = :crystal,
-		p.deuterium = :deuterium,
+		p.metal = p.metal + :deltametal,
+		p.crystal = p.crystal + :deltacrystal,
+		p.deuterium = p.deuterium + :deltadeuterium,
 		p.eco_hash = :ecoHash,
 		p.last_update = :lastUpdateTime,
 		p.b_building = :b_building,
