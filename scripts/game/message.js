@@ -363,18 +363,18 @@ function scavengers() {
     }
     let mainobject = spyReportElement.parentElement.parentElement
     mainobject.querySelector('*[name="totalRes"]').innerText = spyReport.conclusions.summedUpResources.toLocaleString("de");
-    mainobject.querySelector('*[name="resToRaid"]').innerText = spyReport.conclusions.neededCapacity.toLocaleString("de");
+    mainobject.querySelector('*[name="resToRaid"]').innerText = Math.floor(spyReport.conclusions.neededCapacity).toLocaleString("de");
     mainobject.querySelector('*[name="resToRec"]').innerText = spyReport.conclusions.recycleValue.toLocaleString("de");
     mainobject.querySelector('*[name="ktNeeded"]').innerText = spyReport.conclusions.ktNeeded.toLocaleString("de");
     mainobject.querySelector('*[name="gtNeeded"]').innerText = spyReport.conclusions.gtNeeded.toLocaleString("de");
     mainobject.querySelectorAll('*[name="ktNeeded"]')[1].innerText = spyReport.conclusions.ktNeeded.toLocaleString("de");
     mainobject.querySelectorAll('*[name="gtNeeded"]')[1].innerText = spyReport.conclusions.gtNeeded.toLocaleString("de");
     mainobject.querySelector('*[name="recNeeded"]').innerText = spyReport.conclusions.recyclersNeeded.toLocaleString("de");
-    mainobject.querySelector('*[name="marketValue"]').innerText = spyReport.conclusions.marketValue.toLocaleString("de");
-    mainobject.querySelector('*[name="resPerSec"]').innerText = spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet.toLocaleString("de");
+    mainobject.querySelector('*[name="marketValue"]').innerText = Math.floor(spyReport.conclusions.marketValue).toLocaleString("de");
+    mainobject.querySelector('*[name="resPerSec"]').innerText = Math.floor(spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet).toLocaleString("de");
     mainobject.querySelector('*[name="bestPlanet"]').innerText = "[" + spyReport.conclusions.MarketValuePerSecond.bestPlanet.join(":") + "]";
-    mainobject.querySelector('*[name="ktNeeded"]').parentElement.parentElement.href += spyReport.conclusions.ktNeeded
-    mainobject.querySelector('*[name="gtNeeded"]').parentElement.parentElement.href += spyReport.conclusions.gtNeeded
+    mainobject.querySelectorAll('*[name="ktNeeded"]')[1].parentElement.parentElement.setAttribute("href",mainobject.querySelectorAll('*[name="ktNeeded"]')[1].parentElement.parentElement.href + spyReport.conclusions.ktNeeded)
+    mainobject.querySelectorAll('*[name="gtNeeded"]')[1].parentElement.parentElement.setAttribute("href",mainobject.querySelectorAll('*[name="gtNeeded"]')[1].parentElement.parentElement.href + spyReport.conclusions.gtNeeded)
   });
 
 }
