@@ -33,11 +33,6 @@ function getCostType(tradeOffer) {
 	if (tradeOffer.find('.wanted-resource-3').length > 0) return 'deut';
 }
 
-/* TODO:
- *
- * with this new logic, calculateRatios doesn't work anymore.
- * replace calculateRatios with some version of this
- */
 function getOfferValue(tradeOffer) {
 	var metal = parseInt(tradeOffer.find('.resource_metal').html().replace(/\./g,''));
 	var crystal = parseInt(tradeOffer.find('.resource_crystal').html().replace(/\./g,''));
@@ -59,7 +54,7 @@ function getOfferValue(tradeOffer) {
 	
 	return offerValue;
 }
-//-------------------
+
 function calculateRatios(){
 	/*
 	 * Thanks to zb0oj for idea and a part of source code!
