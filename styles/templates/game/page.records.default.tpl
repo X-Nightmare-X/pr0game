@@ -88,16 +88,16 @@
             </td>
             <td>{number_format($elementRow[0].level, 0, ",", ".")}</td>
             {elseif !empty($elementRow) && count($elementRow) < 10}
-            <td>3+</td>
+            <td>>3<br><br><br></td>
             <td>{number_format($elementRow[0].level, 0, ",", ".")}</td>
             {elseif !empty($elementRow) && count($elementRow) < 50}
-            <td>10+</td>
+            <td>>10<br><br><br></td>
             <td>{number_format($elementRow[0].level, 0, ",", ".")}</td>
             {elseif !empty($elementRow) && count($elementRow) < 100}
-            <td>50+</td>
+            <td>>50<br><br><br></td>
             <td>{number_format($elementRow[0].level, 0, ",", ".")}</td>
             {elseif !empty($elementRow) && count($elementRow) >= 100}
-            <td>100+</td>
+            <td>>100<br><br><br></td>
             <td>{number_format($elementRow[0].level, 0, ",", ".")}</td>
             {else}
             <td>-</td>
@@ -106,7 +106,7 @@
             {if !empty($elementRow)}
                 <td>{$userTech[$elementRow[0]["name"]]}</td>
             {else}
-                <td>-</td>
+                <td>-<br><br><br></td>
             {/if}
         </tr>
         {/foreach}
