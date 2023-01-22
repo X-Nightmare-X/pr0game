@@ -21,8 +21,9 @@ function convertToCrystal(metal, deuterium) {
 }
 
 function convertToDeut(metal, crystal) {
-	var metalValue = metal / $('input[name=ratio-md]')
+	var metalValue = metal / $('input[name=ratio-md]').val();
 	var crystalValue = crystal / $('input[name=ratio-cd]').val();
+	console.log(metalValue);
 	return metalValue + crystalValue;
 }
 
@@ -37,7 +38,7 @@ function getCostType(tradeOffer) {
  * with this new logic, calculateRatios doesn't work anymore.
  * replace calculateRatios with some version of this
  */
-function getTradeRatio(tradeOffer) {
+function getOfferValue(tradeOffer) {
 	var metal = parseInt(tradeOffer.find('.resource_metal').html().replace(/\./g,''));
 	var crystal = parseInt(tradeOffer.find('.resource_crystal').html().replace(/\./g,''));
 	var deut = parseInt(tradeOffer.find('.resource_deuterium').html().replace(/\./g,''));
@@ -50,11 +51,13 @@ function getTradeRatio(tradeOffer) {
 			offerValue = metal + convertToMetal(crystal,deut);
 			break;
 		case 'crystal':
-			offerValue = crystal + convertToCrystal(crystal,deut);
+			offerValue = crystal + convertToCrystal(metal,deut);
 			break;
 		case 'deut':
 			offerValue = deut + convertToDeut(metal,crystal);
 	}
+	
+	return offerValue;
 }
 //-------------------
 function calculateRatios(){
@@ -88,8 +91,11 @@ function calculateRatios(){
 					if(this.isDeuterium) return this.wantedAmount / referenceRatios.deuterium;
 				}
 			};
-			var ratio =  offer.getReference() / cost.getReference();
-			tradeOffer.find('.total_value').text(offer.getReference().toFixed(0));
+
+			var offerValue = getOfferValue(tradeOffer);
+			var ratio = offerValue / cost.wantedAmount;
+			
+			tradeOffer.find('.total_value').text(offerValue.toFixed(0));
 			var n = tradeOffer.find('.ratio').text(ratio.toFixed(2));
 			if(ratio < 1) {
 				n.css({'color': '#F00'});
@@ -98,7 +104,6 @@ function calculateRatios(){
 			}
 		});
 }
-
 
 $(document).ready(function() {
 	interval	= window.setInterval(Refrash, 1000);

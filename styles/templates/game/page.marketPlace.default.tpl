@@ -55,9 +55,9 @@
 	</tr>
 	<tr class="ratio">
 		<td>Reference ratio:</td>
-		<td><input type="number" name="ratio-metal" value="{$ratio_metal_crystal}" style="width: 50%"/></td>
-		<td><input type="number" name="ratio-cristal" value="{$ratio_metal_deut}" style="width: 50%"/></td>
-		<td><input type="number"name="ratio-deuterium" value="{$ratio_crystal_deut}" style="width: 50%"/></td>
+		<td><input type="number" name="ratio-mc" value="{$ratio_metal_crystal}" style="width: 50%"/></td>
+		<td><input type="number" name="ratio-md" value="{$ratio_metal_deut}" style="width: 50%"/></td>
+		<td><input type="number"name="ratio-cd" value="{$ratio_crystal_deut}" style="width: 50%"/></td>
 		</td>
 	</tr>
 </table>
