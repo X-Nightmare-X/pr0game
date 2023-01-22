@@ -1054,6 +1054,10 @@ $LNG['sys_back'] = 'Retour';
 $LNG['sys_forward'] = 'Suivant';
 
 //----------------------------------------------------------------------------//
+// Marketplace
+$LNG['market_p_respair'] = 'paire de ressources' ;
+$LNG['market_p_refrate'] = 'rapport de référence' ;
+//----------------------------------------------------------------------------//
 // CombatReport.php
 $LNG['cr_lost_contact'] = 'Le contact a été perdu avec la flotte. ';
 $LNG['cr_first_round'] = '(La flotte a été détruite au 1er tour.) ';

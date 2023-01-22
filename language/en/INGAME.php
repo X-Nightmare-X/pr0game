@@ -1093,7 +1093,8 @@ $LNG['spec_mail_inactive_title'] = '%s - Reminder';
 $LNG['sys_back'] = 'Back';
 $LNG['sys_forward'] = 'Next';
 
-
+$LNG['market_p_respair'] = 'resource pair';
+$LNG['market_p_refrate'] = 'reference ratio';
 $LNG['market_p_total'] = 'Total';
 $LNG['market_p_ratio'] = 'Ratio';
 $LNG['market_p_cost_type'] = 'Cost type';

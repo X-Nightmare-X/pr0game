@@ -1062,6 +1062,10 @@ $LNG['sys_closed_game'] = 'El universo no está disponible actualmente:';
 $LNG['spec_mail_inactive_title'] = '%s - Memoria';
 
 //----------------------------------------------------------------------------//
+// Marketplace
+$LNG['market_p_respair'] = 'par de recursos';
+$GNL['market_p_refrate'] = 'ratio de referencia';
+//----------------------------------------------------------------------------//
 // CombatReport.php
 $LNG['cr_lost_contact'] = 'Se perdió el contacto con esta flota.';
 $LNG['cr_first_round'] = '(La flota fue destruida en la primera ronda)';

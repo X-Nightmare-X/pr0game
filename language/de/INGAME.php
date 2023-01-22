@@ -1121,6 +1121,8 @@ $LNG['fa_sending'] = 'Gesendet';
 
 //----------------------------------------------------------------------------//
 // MARKETPLACE
+$LNG['market_p_respair'] = 'Ressourcenpaar';
+$LNG['market_p_refrate'] = 'Referenzrate';
 $LNG['market_p_total'] = 'Gesamt';
 $LNG['market_p_cost_type'] = 'Art der Kosten';
 $LNG['market_p_cost_amount'] = 'Menge';

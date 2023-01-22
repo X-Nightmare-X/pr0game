@@ -1076,6 +1076,10 @@ $LNG['sys_refferal_text'] = 'Oyuncu %s sizin tarafinizdan evrene kazandirildi ve
 $LNG['sys_closed_game'] = 'Oyun su an aktif degil:';
 $LNG['spec_mail_inactive_title'] = '%s - Hatirlatma Mesaji';
 //----------------------------------------------------------------------------//
+// Marketplace
+$LNG['market_p_respair'] = 'kaynak çifti';
+$LNG['market_p_refrate'] = 'referans oranı';
+//----------------------------------------------------------------------------//
 // Savas Raporu
 $LNG['cr_lost_contact'] = 'Filonuz ile irtibat kesildi.';
 $LNG['cr_first_round'] = '(Filo ilk ateste vuruldu)';

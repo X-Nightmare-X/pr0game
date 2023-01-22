@@ -1059,6 +1059,11 @@ $LNG['sys_refferal_text'] = 'Gracz %s zrekrutowany przez ciebie osiągnął %s p
 $LNG['sys_closed_game'] = 'Gra chwilowo niedostępna:';
 $LNG['spec_mail_inactive_title'] = '%s - przypomnienie';
 
+
+//----------------------------------------------------------------------------//
+// Marketplace
+$LNG['market_p_respair'] = 'para zasobów';
+$LNG['market_p_refrate'] = 'wskaźnik referencyjny';
 //----------------------------------------------------------------------------//
 // CombatReport.php
 $LNG['cr_lost_contact'] = 'Kontakt z flotą został utracony. ';

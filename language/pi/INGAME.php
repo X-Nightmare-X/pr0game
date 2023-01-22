@@ -1114,7 +1114,9 @@ $LNG['fa_vacation_mode_current'] = 'Fehler, Sie befinden sich im Urlaubsmodus';
 $LNG['fa_sending'] = 'Gesendet';
 
 //----------------------------------------------------------------------------//
-// MARKETPLACE
+// MARRKETPLACE
+$LNG['market_p_respair'] = 'Ressourcenparr';
+$LNG['market_p_refrate'] = 'Refarrenzrate';
 $LNG['market_p_total'] = 'Gesamt';
 $LNG['market_p_cost_type'] = 'Art der Kosten';
 $LNG['market_p_cost_amount'] = 'Menge';

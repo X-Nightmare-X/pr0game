@@ -1061,7 +1061,10 @@ $LNG['sys_refferal_text'] = 'O jogador %s recrutado por ti atingiu %s pontos.';
 $LNG['sys_closed_game'] = 'O jogo atualmente não está disponível:';
 $LNG['spec_mail_inactive_title'] = '%s - Relembrar';
 
-
+//----------------------------------------------------------------------------//
+// Marketplace
+$LNG['market_p_respair'] = 'par de recursos';
+$LNG['market_p_refrate'] = 'taxa de referência';
 //----------------------------------------------------------------------------//
 // Relatório de Combate
 $LNG['cr_lost_contact'] = 'Perdeu-se o contacto com a tua frota.';
