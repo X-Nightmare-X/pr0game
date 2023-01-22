@@ -417,13 +417,13 @@ class FlyingFleetsTable
             }
         }if($Status == FLEET_OUTWARD) {
             if ($MissionType == MISSION_ACS) {
-                $sql = "SELECT count(uta.acsID) FROM %%USERS_TO_ACS%% AS uta 
+                $sql = "SELECT count(uta.acsID) as count FROM %%USERS_TO_ACS%% AS uta 
                     INNER JOIN %%FLEETS%% AS f ON uta.acsID = f.fleet_group 
                     WHERE uta.userID = :userId AND f.fleet_id = :fleetId;";
                 $friend = $db->selectSingle($sql, array(
                     ':userId'   => $USER['id'],
                     ':fleetId'  => $fleetRow['fleet_id']
-                ));
+                ), 'count');
                 if ( $Owner == true) {
                     $FleetClass = 'colorMission2Own';
                 } else if ($friend > 0 ) {
