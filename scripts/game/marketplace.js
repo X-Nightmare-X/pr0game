@@ -1,6 +1,6 @@
 var start = new Date().getTime() / 1000;
 
-function Refrash() { // au huur.
+function Refresh() {
 	var now = new Date().getTime() / 1000;
 	$("[data-time]").each( function () {
 		var d = $(this).attr('data-time');
@@ -75,9 +75,6 @@ function calculateRatios(){
 				'metal': parseInt(tradeOffer.find('.resource_metal').html().replace(/\./g,'')),
 				'cristal': parseInt(tradeOffer.find('.resource_crystal').html().replace(/\./g,'')),
 				'deuterium': parseInt(tradeOffer.find('.resource_deuterium').html().replace(/\./g,'')),
-				'getReference': function() {
-					return this.metal / referenceRatios.metal + this.cristal / referenceRatios.cristal + this.deuterium / referenceRatios.deuterium;
-				}
 			};
 
 			var cost = {
@@ -85,11 +82,6 @@ function calculateRatios(){
 				'isCristal': (tradeOffer.find('.wanted-resource-2').length > 0),
 				'isDeuterium': (tradeOffer.find('.wanted-resource-3').length > 0),
 				'wantedAmount': parseInt(tradeOffer.find('.wanted-resource-amount').html().replace(/\./g,'')),
-				'getReference': function() {
-					if(this.isMetal) return this.wantedAmount / referenceRatios.metal;
-					if(this.isCristal) return this.wantedAmount / referenceRatios.cristal;
-					if(this.isDeuterium) return this.wantedAmount / referenceRatios.deuterium;
-				}
 			};
 
 			var offerValue = getOfferValue(tradeOffer);
@@ -106,8 +98,8 @@ function calculateRatios(){
 }
 
 $(document).ready(function() {
-	interval	= window.setInterval(Refrash, 1000);
-	Refrash();
+	interval	= window.setInterval(Refresh, 1000);
+	Refresh();
 
 	$('input[name=ratio-metal], input[name=ratio-cristal], input[name=ratio-deuterium]').change(function(e){
 		calculateRatios();
