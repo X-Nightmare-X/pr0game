@@ -245,9 +245,23 @@ class MarketManager
     public function getAllTradeRatios()
     {
         $result = [
-            'mc' => round($this->getMetCrysRatio(),1),
-            'md' => round($this->getMetdeutRatio(),1),
-            'cd' => round($this->getCrysDeutRatio(),1),
+            'mc' => round($this->getMetCrysRatio(), 2),
+            'md' => round($this->getMetdeutRatio(), 2),
+            'cd' => round($this->getCrysDeutRatio(), 2),
+        ];
+
+        return $result;
+    }
+
+    /** DEPRECATED - still in use by scav toolbox **/
+    public function getReferenceRatios()
+    {
+        $ratios = $this->getAllTradeRatios();
+
+        $result = [
+            'metal' => round($ratios['md'], 2),
+            'crystal' => round($ratios['cd'], 2),
+            'deuterium' => 1,
         ];
 
 		return $result;
