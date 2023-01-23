@@ -378,7 +378,8 @@ class PlayerUtil
 
         $db->insert($sql, $params);
 
-        $userId = $db->lastInsertId();
+        $userId = $db->selectSingle('SELECT `id` FROM %%USERS%% WHERE `username` = :username;', [':username' => $userName], 'id');
+
         $planetId = self::createPlanet(
             $pos['galaxy'],
             $pos['system'],
@@ -544,7 +545,23 @@ class PlayerUtil
 
         $db->insert($sql, $params);
 
-        return $db->lastInsertId();
+        $sql = 'SELECT `id` FROM %%PLANETS%% WHERE
+        `universe` = :universe AND
+        `id_owner` = :userId AND
+        `galaxy` = :galaxy AND
+        `system` = :system AND
+        `planet` = :position AND
+        `type` = 3;';
+
+        $planetId = $db->selectSingle($sql, [
+            ':universe' => $universe,
+            ':userId' => $userId,
+            ':galaxy' => $galaxy,
+            ':system' => $system,
+            ':position' => $position,
+        ], 'id');
+
+        return $planetId;
     }
 
     public static function createMoon(
@@ -635,7 +652,21 @@ class PlayerUtil
             ':deuPerHour'       => 0,
         ]);
 
-        $moonId = $db->lastInsertId();
+        $sql = 'SELECT `id` FROM %%PLANETS%% WHERE
+        `universe` = :universe AND
+        `id_owner` = :userId AND
+        `galaxy` = :galaxy AND
+        `system` = :system AND
+        `planet` = :position AND
+        `type` = 3;';
+
+        $moonId = $db->selectSingle($sql, [
+            ':universe' => $universe,
+            ':userId' => $userId,
+            ':galaxy' => $galaxy,
+            ':system' => $system,
+            ':position' => $position,
+        ], 'id');
 
         $sql = "UPDATE %%PLANETS%% SET id_luna = :moonId WHERE id = :planetId;";
 
@@ -859,7 +890,7 @@ class PlayerUtil
     public static function allowPlanetPosition($position, $USER = null, $universe = ROOT_UNI)
     {
         // http://owiki.de/index.php/Astrophysik#.C3.9Cbersicht
-        
+
         if (isset($USER)) {
             $config = Config::get($USER['universe']);
             $astroTech = PlayerUtil::getAstroTech($USER);
@@ -1056,9 +1087,9 @@ class PlayerUtil
             ':userID'   => $USER['id'],
         ]);
 
-        $sql = "SELECT fleet_id, fleet_owner FROM %%FLEETS%% 
-            WHERE fleet_universe = :universe 
-            AND fleet_mission = :fleet_mision 
+        $sql = "SELECT fleet_id, fleet_owner FROM %%FLEETS%%
+            WHERE fleet_universe = :universe
+            AND fleet_mission = :fleet_mision
             AND fleet_target_owner = :id;";
         $FleetsRAW = $db->select($sql, [
             ':universe'     => Universe::current(),
@@ -1120,9 +1151,9 @@ class PlayerUtil
                 'colorMission15Foreign' => '#39d0a0',
                 'colorMission16Foreign' => '#39d0a0',
                 'colorMission17Foreign' => '#39d0a0',
-    
+
                 'colorMissionReturnForeign' => '#6e8eea',
-    
+
                 'colorStaticTimer' => '#ffff00',
             ];
         }
@@ -1209,8 +1240,8 @@ class PlayerUtil
         ];
     }
 }
-/* 
-	Enable to debug 
+/*
+	Enable to debug
 */
 // try {
 //     define('MODE', 'INSTALL');

@@ -41,7 +41,11 @@ class ShowFleetTablePage extends AbstractGamePage
             ':target' => $fleetData['fleet_end_id'],
         ]);
 
-        $acsID = $db->lastInsertId();
+        $sql = "SELECT `id` FROM %%AKS%% WHERE `name` = :acsName AND `target` = :target";
+        $acsID = $db->selectSingle($sql, [
+            ':acsName' => $acsName,
+            ':target' => $fleetData['fleet_end_id'],
+        ], 'id');
 
         $sql = "INSERT INTO %%USERS_ACS%% SET acsID = :acsID, userID = :userID;";
         $db->insert($sql, [
