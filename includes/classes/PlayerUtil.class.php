@@ -551,7 +551,7 @@ class PlayerUtil
         `galaxy` = :galaxy AND
         `system` = :system AND
         `planet` = :position AND
-        `type` = 3;';
+        `type` = 1;';
 
         $planetId = $db->selectSingle($sql, [
             ':universe' => $universe,
