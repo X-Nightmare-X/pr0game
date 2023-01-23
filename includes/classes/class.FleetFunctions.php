@@ -784,7 +784,6 @@ class FleetFunctions
 		`fleet_start_time` = :fleetStartTime AND
 		`fleet_end_stay` = :fleetStayTime AND
 		`fleet_end_time` = :fleetEndTime AND
-        `start_time` = :timestamp AND
 		`fleet_universe` = :universe;";
         $fleetId = $db->selectSingle($sql, [
             ':fleetStartOwner' => $fleetStartOwner,
@@ -793,7 +792,6 @@ class FleetFunctions
             ':fleetStartTime' => $fleetStartTime,
             ':fleetStayTime' => $fleetStayTime,
             ':fleetEndTime' => $fleetEndTime,
-            ':timestamp' => TIMESTAMP,
             ':universe' => Universe::current(),
         ], 'fleet_id');
 
