@@ -73,11 +73,11 @@ class SupportTickets
 		));
 
         $sql = "SELECT `answerID` FROM %%TICKETS%% WHERE
-        `ticketID` = :ticketId,
-		`ownerID` = :ownerId,
-		`ownerName` = :ownerName,
-		`subject` = :subject,
-		`message` = :message,
+        `ticketID` = :ticketId AND
+		`ownerID` = :ownerId AND
+		`ownerName` = :ownerName AND
+		`subject` = :subject AND
+		`message` = :message AND
 		`time` = :time;";
         $answerId = $db->selectSingle($sql, [
 			':ticketId' => $ticketID,
