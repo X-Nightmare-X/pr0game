@@ -777,21 +777,7 @@ class FleetFunctions
             ':universe' => Universe::current(),
         ]);
 
-        $sql = "SELECT `fleet_id` FROM %%FLEETS%% WHERE
-        `fleet_owner` = :fleetStartOwner AND
-		`fleet_target_owner` = :fleetTargetOwner AND
-		`fleet_mission` = :fleetMission AND
-		`fleet_start_time` = :fleetStartTime AND
-		`fleet_end_stay` = :fleetStayTime AND
-		`fleet_end_time` = :fleetEndTime;";
-        $fleetId = $db->selectSingle($sql, [
-            ':fleetStartOwner' => $fleetStartOwner,
-            ':fleetTargetOwner' => $fleetTargetOwner,
-            ':fleetMission' => $fleetMission,
-            ':fleetStartTime' => $fleetStartTime,
-            ':fleetStayTime' => $fleetStayTime,
-            ':fleetEndTime' => $fleetEndTime,
-        ], 'fleet_id');
+        $fleetId = $db->lastInsertId();
 
         $sql = 'INSERT INTO %%FLEETS_EVENT%% SET fleetID	= :fleetId, `time` = :endTime;';
         $db->insert($sql, [
