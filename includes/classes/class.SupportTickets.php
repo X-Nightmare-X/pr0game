@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -14,11 +14,12 @@
  * @version 1.8.0
  * @link https://github.com/jkroepke/2Moons
  */
- 
+
 class SupportTickets
 {
 	public function createTicket($ownerID, $categoryID, $subject)
 	{
+        $db = Database::get();
 		$sql 	= 'INSERT INTO %%TICKETS%% SET
 		ownerID		= :ownerId,
 		universe	= :universe,
@@ -26,19 +27,34 @@ class SupportTickets
 		subject		= :subject,
 		time		= :time;';
 
-		Database::get()->insert($sql, array(
+        $db->insert($sql, array(
 			':ownerId'		=> $ownerID,
 			':universe'		=> Universe::current(),
 			':categoryId'	=> $categoryID,
 			':subject'		=> $subject,
 			':time'			=> TIMESTAMP
 		));
-		
-		return Database::get()->lastInsertId();
+
+        $sql = "SELECT `ticketID` FROM %%TICKETS%% WHERE
+        `ownerID` = :ownerId AND
+		`universe` = :universe AND
+		`categoryID` = :categoryId AND
+		`subject` = :subject AND
+		`time` = :time;";
+        $id = $db->selectSingle($sql, [
+			':ownerId' => $ownerID,
+			':universe' => Universe::current(),
+			':categoryId' => $categoryID,
+			':subject' => $subject,
+			':time' => TIMESTAMP,
+        ], 'ticketID');
+
+		return $id;
 	}
 
 	public function createAnswer($ticketID, $ownerID, $ownerName, $subject, $message, $status)
 	{
+        $db = Database::get();
 		$sql = 'INSERT INTO %%TICKETS_ANSWER%% SET
 		ticketID	= :ticketId,
 		ownerID		= :ownerId,
@@ -47,7 +63,7 @@ class SupportTickets
 		message		= :message,
 		time		= :time;';
 
-		Database::get()->insert($sql, array(
+        $db->insert($sql, array(
 			':ticketId'		=> $ticketID,
 			':ownerId'		=> $ownerID,
 			':ownerName'	=> $ownerName,
@@ -56,15 +72,29 @@ class SupportTickets
 			':time'			=> TIMESTAMP
 		));
 
-		$answerId = Database::get()->lastInsertId();
+        $sql = "SELECT `answerID` FROM %%TICKETS_ANSWER%% WHERE
+        `ticketID` = :ticketId AND
+		`ownerID` = :ownerId AND
+		`ownerName` = :ownerName AND
+		`subject` = :subject AND
+		`message` = :message AND
+		`time` = :time;";
+        $answerId = $db->selectSingle($sql, [
+			':ticketId' => $ticketID,
+			':ownerId' => $ownerID,
+			':ownerName' => $ownerName,
+			':subject' => $subject,
+			':message' => $message,
+			':time' => TIMESTAMP,
+        ], 'answerID');
 
 		$sql	= 'UPDATE %%TICKETS%% SET status = :status WHERE ticketID = :ticketId;';
 
-		Database::get()->update($sql, array(
+		$db->update($sql, array(
 			':status'	=> $status,
 			':ticketId'	=> $ticketID
 		));
-		
+
 		return $answerId;
 	}
 
@@ -79,7 +109,7 @@ class SupportTickets
 		{
 			$categoryList[$categoryRow['categoryID']]	= $categoryRow['name'];
 		}
-		
+
 		return $categoryList;
 	}
 }
