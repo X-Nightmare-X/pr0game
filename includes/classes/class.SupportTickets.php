@@ -72,7 +72,7 @@ class SupportTickets
 			':time'			=> TIMESTAMP
 		));
 
-        $sql = "SELECT `answerID` FROM %%TICKETS%% WHERE
+        $sql = "SELECT `answerID` FROM %%TICKETS_ANSWER%% WHERE
         `ticketID` = :ticketId AND
 		`ownerID` = :ownerId AND
 		`ownerName` = :ownerName AND
