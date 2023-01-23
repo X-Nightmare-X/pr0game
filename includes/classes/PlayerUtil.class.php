@@ -41,7 +41,7 @@ class PlayerUtil
             ':type'     => $type,
         ], 'record');
 
-        return $count == 0;
+        return $count == 0 && $position > 0 && $system > 0 && $galaxy > 0;
     }
 
     public static function isNameValid($name)
@@ -899,8 +899,10 @@ class PlayerUtil
             $astroTech = 1;
         }
 
-
         switch ($position) {
+            case 0:
+                return false;
+            break;
             case 1:
             case ($config->max_planets):
                 return $astroTech >= 8;
@@ -914,7 +916,7 @@ class PlayerUtil
                 return $astroTech >= 4;
             break;
             default:
-                return $astroTech >= 1;
+                return $astroTech >= 1 && $config->max_planets >= $position;
             break;
         }
     }
