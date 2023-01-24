@@ -159,7 +159,7 @@ class ShowBuildingsPage extends AbstractGamePage
                 return;
             }
 
-            $costResources      = BuildFunctions::getElementPrice($USER, $PLANET, $Element, !$AddMode, $BuildLevel);
+            $costResources = BuildFunctions::getElementPrice($USER, $PLANET, $Element, !$AddMode, $BuildLevel);
 
             if (!BuildFunctions::isElementBuyable($USER, $PLANET, $Element, $costResources)) {
                 return;
@@ -209,7 +209,7 @@ class ShowBuildingsPage extends AbstractGamePage
             $BuildEndTime = $CurrentQueue[$ActualCount - 1][3] + $elementTime;
             $CurrentQueue[] = [$Element, $BuildLevel, $elementTime, $BuildEndTime, $BuildMode];
             $PLANET['b_building_id'] = serialize($CurrentQueue);
-		    $pPlanetUpdater->CalcResource();
+		    $pPlanetUpdater->CalcResource(null, null, true);
         }
     }
 

@@ -124,19 +124,22 @@ class ShowShipyardPage extends AbstractGamePage
             }
 
             $costResources = BuildFunctions::getElementPrice($USER, $PLANET, $Element, false, $Count);
+			$pPlanetUpdater = new ResourceUpdate();
 
             if (isset($costResources[901])) {
-                $PLANET[$resource[901]] -= $costResources[901];
+				$pPlanetUpdater->payMetal($costResources[901]);
             }
             if (isset($costResources[902])) {
-                $PLANET[$resource[902]] -= $costResources[902];
+				$pPlanetUpdater->payCrystal($costResources[902]);
             }
             if (isset($costResources[903])) {
-                $PLANET[$resource[903]] -= $costResources[903];
+				$pPlanetUpdater->payDeut($costResources[903]);
             }
 
             $BuildArray[] = [$Element, $Count];
             $PLANET['b_hangar_id'] = serialize($BuildArray);
+			
+		    $pPlanetUpdater->CalcResource(null, null, true);
         }
     }
 

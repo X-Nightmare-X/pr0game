@@ -76,15 +76,18 @@ class ShowResearchPage extends AbstractGamePage
         );
 
         if ($PLANET['id'] == $USER['b_tech_planet']) {
+			$pPlanetUpdate = new ResourceUpdate();
             if (isset($costResources[901])) {
-                $PLANET[$resource[901]]    += $costResources[901];
+				$pPlanetUpdate->payMetal(-1*$costResources[901]);
             }
             if (isset($costResources[902])) {
-                $PLANET[$resource[902]]    += $costResources[902];
+				$pPlanetUpdate->payCrystal(-1*$costResources[902]);
             }
             if (isset($costResources[903])) {
-                $PLANET[$resource[903]]    += $costResources[903];
+				$pPlanetUpdate->payDeut(-1*$costResources[903]);
             }
+			
+			$pPlanetUpdate->CalcResource(null, null, true);
         } else {
             $params = ['techPlanet' => $USER['b_tech_planet']];
             $sql = "UPDATE %%PLANETS%% SET ";
@@ -261,16 +264,20 @@ class ShowResearchPage extends AbstractGamePage
             if (!BuildFunctions::isElementBuyable($USER, $PLANET, $elementId, $costResources)) {
                 return false;
             }
+			
+			$pPlanetUpdate = new ResourceUpdate();
 
             if (isset($costResources[901])) {
-                $PLANET[$resource[901]]    -= $costResources[901];
+				$pPlanetUpdate->payMetal($costResources[901]);
             }
             if (isset($costResources[902])) {
-                $PLANET[$resource[902]]    -= $costResources[902];
+				$pPlanetUpdate->payCrystal($costResources[902]);
             }
             if (isset($costResources[903])) {
-                $PLANET[$resource[903]]    -= $costResources[903];
+				$pPlanetUpdate->payDeut($costResources[903]);
             }
+			
+			$pPlanetUpdate->CalcResource(null, null, true);
 
             $elementTime                = BuildFunctions::getBuildingTime($USER, $PLANET, $elementId, $costResources);
             $BuildEndTime               = TIMESTAMP + $elementTime;
