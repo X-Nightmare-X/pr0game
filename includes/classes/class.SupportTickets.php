@@ -35,19 +35,21 @@ class SupportTickets
 			':time'			=> TIMESTAMP
 		));
 
-        $sql = "SELECT `ticketID` FROM %%TICKETS%% WHERE
-        `ownerID` = :ownerId AND
-		`universe` = :universe AND
-		`categoryID` = :categoryId AND
-		`subject` = :subject AND
-		`time` = :time;";
-        $id = $db->selectSingle($sql, [
-			':ownerId' => $ownerID,
-			':universe' => Universe::current(),
-			':categoryId' => $categoryID,
-			':subject' => $subject,
-			':time' => TIMESTAMP,
-        ], 'ticketID');
+        // $sql = "SELECT `ticketID` FROM %%TICKETS%% WHERE
+        // `ownerID` = :ownerId AND
+		// `universe` = :universe AND
+		// `categoryID` = :categoryId AND
+		// `subject` = :subject AND
+		// `time` = :time;";
+        // $id = $db->selectSingle($sql, [
+		// 	':ownerId' => $ownerID,
+		// 	':universe' => Universe::current(),
+		// 	':categoryId' => $categoryID,
+		// 	':subject' => $subject,
+		// 	':time' => TIMESTAMP,
+        // ], 'ticketID');
+
+        $id = $db->lastInsertId();
 
 		return $id;
 	}
@@ -72,21 +74,23 @@ class SupportTickets
 			':time'			=> TIMESTAMP
 		));
 
-        $sql = "SELECT `answerID` FROM %%TICKETS_ANSWER%% WHERE
-        `ticketID` = :ticketId AND
-		`ownerID` = :ownerId AND
-		`ownerName` = :ownerName AND
-		`subject` = :subject AND
-		`message` = :message AND
-		`time` = :time;";
-        $answerId = $db->selectSingle($sql, [
-			':ticketId' => $ticketID,
-			':ownerId' => $ownerID,
-			':ownerName' => $ownerName,
-			':subject' => $subject,
-			':message' => $message,
-			':time' => TIMESTAMP,
-        ], 'answerID');
+        // $sql = "SELECT `answerID` FROM %%TICKETS_ANSWER%% WHERE
+        // `ticketID` = :ticketId AND
+		// `ownerID` = :ownerId AND
+		// `ownerName` = :ownerName AND
+		// `subject` = :subject AND
+		// `message` = :message AND
+		// `time` = :time;";
+        // $answerId = $db->selectSingle($sql, [
+		// 	':ticketId' => $ticketID,
+		// 	':ownerId' => $ownerID,
+		// 	':ownerName' => $ownerName,
+		// 	':subject' => $subject,
+		// 	':message' => $message,
+		// 	':time' => TIMESTAMP,
+        // ], 'answerID');
+
+        $answerId = $db->lastInsertId();
 
 		$sql	= 'UPDATE %%TICKETS%% SET status = :status WHERE ticketID = :ticketId;';
 
