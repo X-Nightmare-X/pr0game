@@ -103,12 +103,14 @@ class ShowBuddyListPage extends AbstractGamePage
             ':universe' => Universe::current()
         ));
 
-        $sql = "SELECT `id` FROM %%BUDDY%% WHERE `sender` = :userID AND `owner` = :friendID AND `universe` = :universe;";
-        $buddyID = $db->selectSingle($sql, [
-            ':userID'	=> $USER['id'],
-            ':friendID'  => $id,
-            ':universe' => Universe::current(),
-        ], 'id');
+        // $sql = "SELECT `id` FROM %%BUDDY%% WHERE `sender` = :userID AND `owner` = :friendID AND `universe` = :universe;";
+        // $buddyID = $db->selectSingle($sql, [
+        //     ':userID'	=> $USER['id'],
+        //     ':friendID'  => $id,
+        //     ':universe' => Universe::current(),
+        // ], 'id');
+
+        $buddyID = $db->lastInsertId();
 
 		$sql = "INSERT INTO %%BUDDY_REQUEST%% SET id = :buddyID, text = :text;";
         $db->insert($sql, array(

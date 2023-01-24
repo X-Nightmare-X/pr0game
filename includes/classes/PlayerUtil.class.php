@@ -378,7 +378,9 @@ class PlayerUtil
 
         $db->insert($sql, $params);
 
-        $userId = $db->selectSingle('SELECT `id` FROM %%USERS%% WHERE `username` = :username;', [':username' => $userName], 'id');
+        // $userId = $db->selectSingle('SELECT `id` FROM %%USERS%% WHERE `username` = :username;', [':username' => $userName], 'id');
+
+        $userId = $db->lastInsertId();
 
         $planetId = self::createPlanet(
             $pos['galaxy'],
@@ -545,21 +547,23 @@ class PlayerUtil
 
         $db->insert($sql, $params);
 
-        $sql = 'SELECT `id` FROM %%PLANETS%% WHERE
-        `universe` = :universe AND
-        `id_owner` = :userId AND
-        `galaxy` = :galaxy AND
-        `system` = :system AND
-        `planet` = :position AND
-        `planet_type` = 1;';
+        // $sql = 'SELECT `id` FROM %%PLANETS%% WHERE
+        // `universe` = :universe AND
+        // `id_owner` = :userId AND
+        // `galaxy` = :galaxy AND
+        // `system` = :system AND
+        // `planet` = :position AND
+        // `planet_type` = 1;';
 
-        $planetId = $db->selectSingle($sql, [
-            ':universe' => $universe,
-            ':userId' => $userId,
-            ':galaxy' => $galaxy,
-            ':system' => $system,
-            ':position' => $position,
-        ], 'id');
+        // $planetId = $db->selectSingle($sql, [
+        //     ':universe' => $universe,
+        //     ':userId' => $userId,
+        //     ':galaxy' => $galaxy,
+        //     ':system' => $system,
+        //     ':position' => $position,
+        // ], 'id');
+
+        $planetId = $db->lastInsertId();
 
         return $planetId;
     }
@@ -652,21 +656,23 @@ class PlayerUtil
             ':deuPerHour'       => 0,
         ]);
 
-        $sql = 'SELECT `id` FROM %%PLANETS%% WHERE
-        `universe` = :universe AND
-        `id_owner` = :userId AND
-        `galaxy` = :galaxy AND
-        `system` = :system AND
-        `planet` = :position AND
-        `planet_type` = 3;';
+        // $sql = 'SELECT `id` FROM %%PLANETS%% WHERE
+        // `universe` = :universe AND
+        // `id_owner` = :userId AND
+        // `galaxy` = :galaxy AND
+        // `system` = :system AND
+        // `planet` = :position AND
+        // `planet_type` = 3;';
 
-        $moonId = $db->selectSingle($sql, [
-            ':universe' => $universe,
-            ':userId' => $userId,
-            ':galaxy' => $galaxy,
-            ':system' => $system,
-            ':position' => $position,
-        ], 'id');
+        // $moonId = $db->selectSingle($sql, [
+        //     ':universe' => $universe,
+        //     ':userId' => $userId,
+        //     ':galaxy' => $galaxy,
+        //     ':system' => $system,
+        //     ':position' => $position,
+        // ], 'id');
+
+        $moonId = $db->lastInsertId();
 
         $sql = "UPDATE %%PLANETS%% SET id_luna = :moonId WHERE id = :planetId;";
 

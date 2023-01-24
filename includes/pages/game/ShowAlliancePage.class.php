@@ -507,13 +507,15 @@ class ShowAlliancePage extends AbstractGamePage
             ':universe' => Universe::current(),
         ]);
 
-        $sql = "SELECT `id` FROM %%ALLIANCE%% WHERE ally_name = :allianceName AND ally_tag = :allianceTag AND ally_owner = :userId AND ally_universe = :universe";
-        $allianceId = $db->selectSingle($sql, [
-            ':allianceName' => $allianceName,
-            ':allianceTag' => $allianceTag,
-            ':userId' => $USER['id'],
-            ':universe' => Universe::current(),
-        ], 'id');
+        // $sql = "SELECT `id` FROM %%ALLIANCE%% WHERE ally_name = :allianceName AND ally_tag = :allianceTag AND ally_owner = :userId AND ally_universe = :universe";
+        // $allianceId = $db->selectSingle($sql, [
+        //     ':allianceName' => $allianceName,
+        //     ':allianceTag' => $allianceTag,
+        //     ':userId' => $USER['id'],
+        //     ':universe' => Universe::current(),
+        // ], 'id');
+
+        $allianceId = $db->lastInsertId();
 
         $sql = "UPDATE %%USERS%% SET ally_id	= :allianceId, ally_rank_id	= 0, ally_register_time = :time"
             . " WHERE id = :userId;";
