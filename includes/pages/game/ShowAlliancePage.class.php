@@ -216,8 +216,8 @@ class ShowAlliancePage extends AbstractGamePage
         global $USER, $LNG;
 
         $db = Database::get();
-        $sql = "SELECT a.id, a.ally_name, a.ally_tag 
-            FROM %%ALLIANCE_REQUEST%% r 
+        $sql = "SELECT a.id, a.ally_name, a.ally_tag
+            FROM %%ALLIANCE_REQUEST%% r
             INNER JOIN %%ALLIANCE%% a ON a.id = r.allianceId
             WHERE r.userId = :userId;";
         $allianceResult = $db->selectSingle($sql, [
@@ -344,7 +344,7 @@ class ShowAlliancePage extends AbstractGamePage
                     $USER['username'],
                     $USER['username']
                 );
-        
+
                 PlayerUtil::sendMessage(
                     $receiver['id'],
                     0,
@@ -507,6 +507,14 @@ class ShowAlliancePage extends AbstractGamePage
             ':universe' => Universe::current(),
         ]);
 
+        // $sql = "SELECT `id` FROM %%ALLIANCE%% WHERE ally_name = :allianceName AND ally_tag = :allianceTag AND ally_owner = :userId AND ally_universe = :universe";
+        // $allianceId = $db->selectSingle($sql, [
+        //     ':allianceName' => $allianceName,
+        //     ':allianceTag' => $allianceTag,
+        //     ':userId' => $USER['id'],
+        //     ':universe' => Universe::current(),
+        // ], 'id');
+
         $allianceId = $db->lastInsertId();
 
         $sql = "UPDATE %%USERS%% SET ally_id	= :allianceId, ally_rank_id	= 0, ally_register_time = :time"
@@ -631,7 +639,7 @@ class ShowAlliancePage extends AbstractGamePage
         } else {
             $allytext = '';
         }
-        
+
         $this->assign([
             'DiploInfo' => $this->getDiplomatic(),
             'ally_web' => $this->allianceData['ally_web'],
@@ -927,7 +935,7 @@ class ShowAlliancePage extends AbstractGamePage
                 $USER['username'],
                 $USER['username']
             );
-    
+
             PlayerUtil::sendMessage(
                 $receiver['id'],
                 0,
@@ -1859,11 +1867,11 @@ class ShowAlliancePage extends AbstractGamePage
         }
 
         $db = Database::get();
-        
+
         $id = HTTP::_GP('id', 0);
 
         $targetAlliance = $this->getTargetAlliance($id);
-            
+
         $receivers = $this->getMessageReceivers($targetAlliance['id']);
 
         foreach ($receivers as $receiver) {
@@ -1903,11 +1911,11 @@ class ShowAlliancePage extends AbstractGamePage
         }
 
         $db = Database::get();
-        
+
         $id = HTTP::_GP('id', 0);
 
         $targetAlliance = $this->getTargetAlliance($id);
-        
+
         $receivers = $this->getMessageReceivers($targetAlliance['id'], true);
 
         foreach ($receivers as $receiver) {
@@ -1945,7 +1953,7 @@ class ShowAlliancePage extends AbstractGamePage
         }
 
         $db = Database::get();
-        
+
         $id = HTTP::_GP('id', 0);
 
         $targetAlliance = $this->getTargetAlliance($id);
@@ -2081,7 +2089,7 @@ class ShowAlliancePage extends AbstractGamePage
 
         if ($level == 5) {
             $receivers = $this->getMessageReceivers($targetAlliance['id']);
-    
+
             foreach ($receivers as $receiver) {
                 $lang = getLanguage($receiver['lang']);
 
@@ -2103,7 +2111,7 @@ class ShowAlliancePage extends AbstractGamePage
             }
         } else {
             $receivers = $this->getMessageReceivers($targetAlliance['id'], true);
-    
+
             foreach ($receivers as $receiver) {
                 $lang = getLanguage($receiver['lang']);
 
@@ -2148,7 +2156,7 @@ class ShowAlliancePage extends AbstractGamePage
         $db = Database::get();
 
         if ($ally_id) {
-            $sql = "SELECT a.id, a.ally_name, a.ally_owner, a.ally_tag, d.level as diplo, d.accept 
+            $sql = "SELECT a.id, a.ally_name, a.ally_owner, a.ally_tag, d.level as diplo, d.accept
                 FROM %%ALLIANCE%% a
                 LEFT JOIN %%DIPLO%% d ON (d.owner_1 = :id AND d.owner_2 = :allianceId) OR (d.owner_2 = :id AND d.owner_1 = :allianceId)
                 WHERE a.ally_universe = :universe AND a.id = :id;";
@@ -2160,7 +2168,7 @@ class ShowAlliancePage extends AbstractGamePage
             ]);
         }
         else {
-            $sql = "SELECT a.id, a.ally_name, a.ally_owner, a.ally_tag, d.level as diplo, d.accept 
+            $sql = "SELECT a.id, a.ally_name, a.ally_owner, a.ally_tag, d.level as diplo, d.accept
                 FROM %%DIPLO%% d
                 JOIN %%ALLIANCE%% a ON a.id = d.owner_1 OR a.id = d.owner_2
                 WHERE a.ally_universe = :universe AND d.id = :id AND a.id != :allianceId;";
@@ -2196,7 +2204,7 @@ class ShowAlliancePage extends AbstractGamePage
         }
         else {
             $sql = $sql . " WHERE u.ally_id = :allianceId AND (r.MANAGEAPPLY = 1 OR u.id = a.ally_owner);";
-            
+
             $receivers = $db->select($sql, [
                 ':allianceId' => $targetAllyID,
             ]);

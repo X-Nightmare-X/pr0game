@@ -41,7 +41,7 @@ class PlayerUtil
             ':type'     => $type,
         ], 'record');
 
-        return $count == 0;
+        return $count == 0 && $position > 0 && $system > 0 && $galaxy > 0;
     }
 
     public static function isNameValid($name)
@@ -378,7 +378,10 @@ class PlayerUtil
 
         $db->insert($sql, $params);
 
+        // $userId = $db->selectSingle('SELECT `id` FROM %%USERS%% WHERE `username` = :username;', [':username' => $userName], 'id');
+
         $userId = $db->lastInsertId();
+
         $planetId = self::createPlanet(
             $pos['galaxy'],
             $pos['system'],
@@ -544,7 +547,25 @@ class PlayerUtil
 
         $db->insert($sql, $params);
 
-        return $db->lastInsertId();
+        // $sql = 'SELECT `id` FROM %%PLANETS%% WHERE
+        // `universe` = :universe AND
+        // `id_owner` = :userId AND
+        // `galaxy` = :galaxy AND
+        // `system` = :system AND
+        // `planet` = :position AND
+        // `planet_type` = 1;';
+
+        // $planetId = $db->selectSingle($sql, [
+        //     ':universe' => $universe,
+        //     ':userId' => $userId,
+        //     ':galaxy' => $galaxy,
+        //     ':system' => $system,
+        //     ':position' => $position,
+        // ], 'id');
+
+        $planetId = $db->lastInsertId();
+
+        return $planetId;
     }
 
     public static function createMoon(
@@ -634,6 +655,22 @@ class PlayerUtil
             ':deuterium'        => 0,
             ':deuPerHour'       => 0,
         ]);
+
+        // $sql = 'SELECT `id` FROM %%PLANETS%% WHERE
+        // `universe` = :universe AND
+        // `id_owner` = :userId AND
+        // `galaxy` = :galaxy AND
+        // `system` = :system AND
+        // `planet` = :position AND
+        // `planet_type` = 3;';
+
+        // $moonId = $db->selectSingle($sql, [
+        //     ':universe' => $universe,
+        //     ':userId' => $userId,
+        //     ':galaxy' => $galaxy,
+        //     ':system' => $system,
+        //     ':position' => $position,
+        // ], 'id');
 
         $moonId = $db->lastInsertId();
 
@@ -859,7 +896,7 @@ class PlayerUtil
     public static function allowPlanetPosition($position, $USER = null, $universe = ROOT_UNI)
     {
         // http://owiki.de/index.php/Astrophysik#.C3.9Cbersicht
-        
+
         if (isset($USER)) {
             $config = Config::get($USER['universe']);
             $astroTech = PlayerUtil::getAstroTech($USER);
@@ -868,8 +905,10 @@ class PlayerUtil
             $astroTech = 1;
         }
 
-
         switch ($position) {
+            case 0:
+                return false;
+            break;
             case 1:
             case ($config->max_planets):
                 return $astroTech >= 8;
@@ -883,7 +922,7 @@ class PlayerUtil
                 return $astroTech >= 4;
             break;
             default:
-                return $astroTech >= 1;
+                return $astroTech >= 1 && $config->max_planets >= $position;
             break;
         }
     }
@@ -1056,9 +1095,9 @@ class PlayerUtil
             ':userID'   => $USER['id'],
         ]);
 
-        $sql = "SELECT fleet_id, fleet_owner FROM %%FLEETS%% 
-            WHERE fleet_universe = :universe 
-            AND fleet_mission = :fleet_mision 
+        $sql = "SELECT fleet_id, fleet_owner FROM %%FLEETS%%
+            WHERE fleet_universe = :universe
+            AND fleet_mission = :fleet_mision
             AND fleet_target_owner = :id;";
         $FleetsRAW = $db->select($sql, [
             ':universe'     => Universe::current(),
@@ -1120,9 +1159,9 @@ class PlayerUtil
                 'colorMission15Foreign' => '#39d0a0',
                 'colorMission16Foreign' => '#39d0a0',
                 'colorMission17Foreign' => '#39d0a0',
-    
+
                 'colorMissionReturnForeign' => '#6e8eea',
-    
+
                 'colorStaticTimer' => '#ffff00',
             ];
         }
@@ -1209,8 +1248,8 @@ class PlayerUtil
         ];
     }
 }
-/* 
-	Enable to debug 
+/*
+	Enable to debug
 */
 // try {
 //     define('MODE', 'INSTALL');

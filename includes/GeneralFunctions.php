@@ -270,7 +270,11 @@ function BuildPlanetAddressLink($CurrentPlanet)
 
 function pretty_number($n, $dec = 0)
 {
-    return number_format(floatToString($n, $dec), $dec, ',', '.');
+    if (is_numeric($n)) {
+        return number_format($n, $dec, ',', '.');
+    } else {
+        return $n;
+    }
 }
 
 function GetUserByID($userId, $GetInfo = "*")

@@ -398,7 +398,8 @@ class ShowMessagesPage extends AbstractGamePage
         $fleetIntoDebris = Config::get()->Fleet_Cdr;
         $defIntoDebris = Config::get()->Defs_Cdr;
 
-        $stbSettings2 = PlayerUtil::player_stb_settings();
+        $stbSettings2 = PlayerUtil::player_stb_settings($USER);
+
         $combustion_tech = $USER["combustion_tech"];
         $impulse_motor_tech = $USER["impulse_motor_tech"];
 
@@ -537,13 +538,6 @@ class ShowMessagesPage extends AbstractGamePage
                 ':userID'       => $USER['id'],
             ));
         }
-
-		////
-
-        // require_once 'includes/classes/PlayerUtil.class.php';
-        // $foo = $USER['id'];
-        // $stbSettings2 = PlayerUtil::player_stb_settings();
-        // die(var_dump($stbSettings2));
         
         require_once 'includes/classes/class.MarketManager.php';
         $pMarket = new MarketManager();
