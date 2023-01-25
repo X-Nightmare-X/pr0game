@@ -270,6 +270,7 @@ class ShowBuildingsPage extends AbstractGamePage
                     break;
             }
 
+            $this->save();
             $this->redirectTo('game.php?page=buildings');
         }
 

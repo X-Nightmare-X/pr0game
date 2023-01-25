@@ -377,6 +377,7 @@ class ShowResearchPage extends AbstractGamePage
                     break;
             }
 
+            $this->save();
             $this->redirectTo('game.php?page=research');
         }
 

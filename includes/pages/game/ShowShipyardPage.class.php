@@ -178,10 +178,12 @@ class ShowShipyardPage extends AbstractGamePage
                 }
 
                 $this->buildAuftr($buildTodo);
+                $this->save();
             }
 
             if ($action == "delete") {
                 $this->cancelAuftr();
+                $this->save();
             }
         }
 

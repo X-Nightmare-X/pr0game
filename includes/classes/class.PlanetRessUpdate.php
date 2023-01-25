@@ -28,6 +28,9 @@ class ResourceUpdate
     private $HASH = null;
     private $ProductionTime = null;
 
+    private $Build = true;
+    private $Tech = true;
+
     private $PLANET = array();
     private $USER = array();
     private $Builded = array();
