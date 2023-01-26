@@ -40,9 +40,14 @@ class ShowFleetDealerPage extends AbstractGamePage
             && $PLANET[$resource[$shipID]] >= $Count
         ) {
             $tradeCharge = 1 - (Config::get()->trade_charge / 100);
-            $PLANET[$resource[901]] += $Count * $pricelist[$shipID]['cost'][901] * $tradeCharge;
-            $PLANET[$resource[902]] += $Count * $pricelist[$shipID]['cost'][902] * $tradeCharge;
-            $PLANET[$resource[903]] += $Count * $pricelist[$shipID]['cost'][903] * $tradeCharge;
+
+            $resources = [
+                RESOURCE_METAL => $Count * $pricelist[$shipID]['cost'][RESOURCE_METAL] * $tradeCharge,
+                RESOURCE_CRYSTAL => $Count * $pricelist[$shipID]['cost'][RESOURCE_CRYSTAL] * $tradeCharge,
+                RESOURCE_DEUT => $Count * $pricelist[$shipID]['cost'][RESOURCE_DEUT] * $tradeCharge,
+            ];
+
+            $this->ecoObj->addResources($PLANET['id'], $resources, $PLANET);
 
             $PLANET[$resource[$shipID]] -= $Count;
 
@@ -52,8 +57,6 @@ class ShowFleetDealerPage extends AbstractGamePage
                 ':count'    => $Count,
                 ':planetID' => $PLANET['id']
             ]);
-
-            $this->save();
 
             $this->printMessage($LNG['tr_exchange_done'], [
                 [

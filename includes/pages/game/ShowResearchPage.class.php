@@ -76,35 +76,9 @@ class ShowResearchPage extends AbstractGamePage
         );
 
         if ($PLANET['id'] == $USER['b_tech_planet']) {
-            if (isset($costResources[901])) {
-                $PLANET[$resource[901]]    += $costResources[901];
-            }
-            if (isset($costResources[902])) {
-                $PLANET[$resource[902]]    += $costResources[902];
-            }
-            if (isset($costResources[903])) {
-                $PLANET[$resource[903]]    += $costResources[903];
-            }
+            $this->ecoObj->addResources($USER['b_tech_planet'], $costResources, $PLANET);
         } else {
-            $params = ['techPlanet' => $USER['b_tech_planet']];
-            $sql = "UPDATE %%PLANETS%% SET ";
-            if (isset($costResources[901])) {
-                $sql    .= $resource[901] . " = " . $resource[901] . " + :" . $resource[901] . ", ";
-                $params[':' . $resource[901]] = $costResources[901];
-            }
-            if (isset($costResources[902])) {
-                $sql    .= $resource[902] . " = " . $resource[902] . " + :" . $resource[902] . ", ";
-                $params[':' . $resource[902]] = $costResources[902];
-            }
-            if (isset($costResources[903])) {
-                $sql    .= $resource[903] . " = " . $resource[903] . " + :" . $resource[903] . ", ";
-                $params[':' . $resource[903]] = $costResources[903];
-            }
-
-            $sql = substr($sql, 0, -2);
-            $sql .= " WHERE id = :techPlanet;";
-
-            $db->update($sql, $params);
+            $this->ecoObj->addResources($USER['b_tech_planet'], $costResources);
         }
 
         $USER['b_tech_id']          = 0;
@@ -262,15 +236,7 @@ class ShowResearchPage extends AbstractGamePage
                 return false;
             }
 
-            if (isset($costResources[901])) {
-                $PLANET[$resource[901]]    -= $costResources[901];
-            }
-            if (isset($costResources[902])) {
-                $PLANET[$resource[902]]    -= $costResources[902];
-            }
-            if (isset($costResources[903])) {
-                $PLANET[$resource[903]]    -= $costResources[903];
-            }
+            $this->ecoObj->removeResources($PLANET['id'], $costResources, $PLANET);
 
             $elementTime                = BuildFunctions::getBuildingTime($USER, $PLANET, $elementId, $costResources);
             $BuildEndTime               = TIMESTAMP + $elementTime;
@@ -301,6 +267,7 @@ class ShowResearchPage extends AbstractGamePage
             $CurrentQueue[] = [$elementId, $BuildLevel, $elementTime, $BuildEndTime, $PLANET['id']];
             $USER['b_tech_queue'] = serialize($CurrentQueue);
         }
+
         return true;
     }
 
@@ -377,7 +344,7 @@ class ShowResearchPage extends AbstractGamePage
                     break;
             }
 
-            $this->save();
+            $this->ecoObj->saveTechQueue($USER);
             $this->redirectTo('game.php?page=research');
         }
 

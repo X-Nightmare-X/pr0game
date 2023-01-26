@@ -290,13 +290,6 @@ abstract class AbstractGamePage
         $this->display('error.default.tpl');
     }
 
-    protected function save()
-    {
-        if (isset($this->ecoObj)) {
-            $this->ecoObj->SavePlanetToDB();
-        }
-    }
-
     protected function updatePlanetTime()
     {
         global $PLANET;

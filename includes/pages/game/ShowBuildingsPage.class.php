@@ -46,15 +46,8 @@ class ShowBuildingsPage extends AbstractGamePage
             $BuildLevel
         );
 
-        if (isset($costResources[901])) {
-            $PLANET[$resource[901]]    += $costResources[901];
-        }
-        if (isset($costResources[902])) {
-            $PLANET[$resource[902]]    += $costResources[902];
-        }
-        if (isset($costResources[903])) {
-            $PLANET[$resource[903]]    += $costResources[903];
-        }
+        $this->ecoObj->addResources($PLANET['id'], $costResources, $PLANET);
+
         array_shift($CurrentQueue);
         if (count($CurrentQueue) == 0) {
             $PLANET['b_building']       = 0;
@@ -165,15 +158,7 @@ class ShowBuildingsPage extends AbstractGamePage
                 return;
             }
 
-            if (isset($costResources[901])) {
-                $PLANET[$resource[901]]    -= $costResources[901];
-            }
-            if (isset($costResources[902])) {
-                $PLANET[$resource[902]]    -= $costResources[902];
-            }
-            if (isset($costResources[903])) {
-                $PLANET[$resource[903]]    -= $costResources[903];
-            }
+            $this->ecoObj->removeResources($PLANET['id'], $costResources, $PLANET);
 
             $elementTime                = BuildFunctions::getBuildingTime($USER, $PLANET, $Element, $costResources);
             $BuildEndTime               = TIMESTAMP + $elementTime;
@@ -270,7 +255,7 @@ class ShowBuildingsPage extends AbstractGamePage
                     break;
             }
 
-            $this->save();
+            $this->ecoObj->saveBuilingQueue($PLANET);
             $this->redirectTo('game.php?page=buildings');
         }
 

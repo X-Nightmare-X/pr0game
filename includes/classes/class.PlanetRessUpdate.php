@@ -769,7 +769,7 @@ class ResourceUpdate
         return true;
     }
 
-    public function SavePlanetToDB($USER = null, $PLANET = null)
+    private function SavePlanetToDB($USER = null, $PLANET = null)
     {
         global $resource, $reslist;
 
@@ -883,5 +883,92 @@ class ResourceUpdate
         $this->Builded = array();
 
         return array($USER, $PLANET);
+    }
+
+    public function removeResources(int $planetId, array $resources, array &$planet = null)
+    {
+        global $resource;
+        $params = [':planetId' => $planetId];
+        foreach ($resources as $resourceId => $amount) {
+            $planetQuery[] = $resource[$resourceId] . " = " . $resource[$resourceId] . " - :" . $resource[$resourceId];
+            $params[':' . $resource[$resourceId]] = $amount;
+
+            if (isset($planet, $planet[$resource[$resourceId]])) {
+                $planet[$resource[$resourceId]] -= $amount;
+            }
+        }
+
+        $sql = 'UPDATE %%PLANETS%% SET ' .
+        implode(', ', $planetQuery) .
+        ' WHERE id = :planetId;';
+        Database::get()->update($sql, $params);
+    }
+
+    public function addResources(int $planetId, array $resources, array &$planet = null, int $factor = 1)
+    {
+        global $resource;
+        $params = [':planetId' => $planetId];
+        foreach ($resources as $resourceId => $amount) {
+            $planetQuery[] = $resource[$resourceId] . " = " . $resource[$resourceId] . " + :" . $resource[$resourceId];
+            $params[':' . $resource[$resourceId]] = $amount * $factor;
+
+            if (isset($planet, $planet[$resource[$resourceId]])) {
+                $planet[$resource[$resourceId]] += $amount * $factor;
+            }
+        }
+
+        $sql = 'UPDATE %%PLANETS%% SET ' .
+        implode(', ', $planetQuery) .
+        ' WHERE id = :planetId;';
+        Database::get()->update($sql, $params);
+    }
+
+    public function saveTechQueue(array $USER)
+    {
+        $params = [
+            ':userId'        => $USER['id'],
+            ':b_tech'        => $USER['b_tech'],
+            ':b_tech_id'     => $USER['b_tech_id'],
+            ':b_tech_planet' => $USER['b_tech_planet'],
+            ':b_tech_queue'  => $USER['b_tech_queue']
+        ];
+        $sql = 'UPDATE %%USERS%% SET
+		b_tech = :b_tech,
+		b_tech_id = :b_tech_id,
+		b_tech_planet = :b_tech_planet,
+		b_tech_queue = :b_tech_queue
+		WHERE id = :userId;';
+
+        Database::get()->update($sql, $params);
+    }
+
+    public function saveBuilingQueue(array $PLANET)
+    {
+        $params = [
+            ':planetId'             => $PLANET['id'],
+            ':b_building'           => $PLANET['b_building'],
+            ':b_building_id'        => $PLANET['b_building_id'],
+        ];
+        $sql = 'UPDATE %%PLANETS%% SET
+        b_building = :b_building,
+		b_building_id = :b_building_id
+		WHERE id = :planetId;';
+
+        Database::get()->update($sql, $params);
+    }
+
+    public function saveShipyardQueue(array $PLANET)
+    {
+        $params = [
+            ':planetId'             => $PLANET['id'],
+            ':b_hangar_id'          => $PLANET['b_hangar_id'],
+            ':b_hangar'             => $PLANET['b_hangar'],
+        ];
+        $sql = 'UPDATE %%PLANETS%% SET
+        b_hangar_id = :b_hangar_id,
+		b_hangar = :b_hangar
+		WHERE id = :planetId;';
+
+        Database::get()->update($sql, $params);
     }
 }
