@@ -77,6 +77,7 @@ class ShowGalaxyPage extends AbstractGamePage
 				)));
 			} else {
 				$PLANET['deuterium']	-= $config->deuterium_cost_galaxy;
+                $this->save();
             }
 		}
 

@@ -53,6 +53,8 @@ class ShowFleetDealerPage extends AbstractGamePage
                 ':planetID' => $PLANET['id']
             ]);
 
+            $this->save();
+
             $this->printMessage($LNG['tr_exchange_done'], [
                 [
                     'label' => $LNG['sys_forward'],
