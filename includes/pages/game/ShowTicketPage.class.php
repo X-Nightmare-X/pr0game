@@ -119,8 +119,6 @@ class ShowTicketPage extends AbstractGamePage
 	{
 		global $USER, $LNG;
 		
-		require 'includes/classes/BBCode.class.php';
-
 		$db = Database::get();
 
 		$ticketID			= HTTP::_GP('id', 0);
@@ -144,7 +142,6 @@ class ShowTicketPage extends AbstractGamePage
 
 		foreach($answerResult as $answerRow) {
 			$answerRow['time']		= _date($LNG['php_tdformat'], $answerRow['time'], $USER['timezone']);
-			$answerRow['message']	= BBCode::parse($answerRow['message']);
 			$answerList[$answerRow['answerID']]	= $answerRow;
 			if (empty($ticket_status))
 			{

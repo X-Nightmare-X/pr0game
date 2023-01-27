@@ -117,8 +117,6 @@ class ShowAlliancePage extends AbstractGamePage
             $this->printMessage($LNG['al_not_exists']);
         }
 
-        require 'includes/classes/BBCode.class.php';
-
         if ($this->allianceData['ally_diplo'] == 1) {
             $diplomaticmaticData = $this->getDiplomatic();
 
@@ -158,7 +156,7 @@ class ShowAlliancePage extends AbstractGamePage
             ':statType' => 1
         ], 'total_points');
         if(ISSET($this->allianceData['ally_description'])) {
-            $allydesc = BBCode::parse($this->allianceData['ally_description']);
+            $allydesc = $this->allianceData['ally_description'];
         } else {
             $allydesc = '';
         }
@@ -586,8 +584,6 @@ class ShowAlliancePage extends AbstractGamePage
     {
         global $USER, $LNG;
 
-        require 'includes/classes/BBCode.class.php';
-
         $db = Database::get();
 
         if ($this->allianceData['ally_owner'] == $USER['id']) {
@@ -630,12 +626,12 @@ class ShowAlliancePage extends AbstractGamePage
             ':AllianceID' => $this->allianceData['id']
         ], 'count');
         if(ISSET($this->allianceData['ally_description'])) {
-            $allydesc = BBCode::parse($this->allianceData['ally_description']);
+            $allydesc = $this->allianceData['ally_description'];
         } else {
             $allydesc = '';
         }
         if(ISSET($this->allianceData['ally_text'])) {
-            $allytext = BBCode::parse($this->allianceData['ally_text']);
+            $allytext = $this->allianceData['ally_text'];
         } else {
             $allytext = '';
         }
@@ -1407,9 +1403,6 @@ class ShowAlliancePage extends AbstractGamePage
             ]]);
         }
 
-        require 'includes/classes/BBCode.class.php';
-
-        $applyDetail['text'] = BBCode::parse($applyDetail['text']);
         $applyDetail['kbmetal'] = pretty_number($applyDetail['kbmetal']);
         $applyDetail['kbcrystal'] = pretty_number($applyDetail['kbcrystal']);
         $applyDetail['lostunits'] = pretty_number($applyDetail['lostunits']);
