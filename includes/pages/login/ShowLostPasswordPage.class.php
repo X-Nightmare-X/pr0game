@@ -38,7 +38,7 @@ class ShowLostPasswordPage extends AbstractLoginPage
 	
 	function newPassword() 
 	{
-		global $LNG;
+		$LNG =& Singleton()->LNG;
 		$userID			= HTTP::_GP('u', 0);
 		$validationKey	= HTTP::_GP('k', '');
 
@@ -112,7 +112,7 @@ class ShowLostPasswordPage extends AbstractLoginPage
 	
 	function send()
 	{
-		global $LNG;
+		$LNG =& Singleton()->LNG;
 		$username	= HTTP::_GP('username', '', UTF8_SUPPORT);
 		$mail		= HTTP::_GP('mail', '', true);
 		

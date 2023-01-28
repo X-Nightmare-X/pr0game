@@ -26,7 +26,9 @@ class ShowResourcesPage extends AbstractGamePage
 
     public function send()
     {
-        global $resource, $USER, $PLANET;
+        $resource =& Singleton()->resource;
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
         if ($USER['urlaubs_modus'] == 0) {
             $updateSQL = [];
             if (!isset($_POST['prod'])) {
@@ -66,8 +68,12 @@ class ShowResourcesPage extends AbstractGamePage
 
     public function show()
     {
-        global $LNG, $ProdGrid, $resource, $reslist, $USER, $PLANET;
-
+        $LNG =& Singleton()->LNG;
+        $ProdGrid =& Singleton()->ProdGrid;
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
         $config = Config::get();
 
         if ($USER['urlaubs_modus'] == 1 || $PLANET['planet_type'] != 1) {

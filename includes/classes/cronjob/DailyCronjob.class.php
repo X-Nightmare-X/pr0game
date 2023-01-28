@@ -32,12 +32,12 @@ class DailyCronJob implements CronjobTask
 	{
 		ClearCache();
 	}
-	
+
 	function reCalculateCronjobs()
 	{
 		Cronjob::reCalculateCronjobs();
 	}
-	
+
 	function clearEcoCache()
 	{
 		$sql	= "UPDATE %%PLANETS%% SET eco_hash = '';";

@@ -26,8 +26,10 @@ class ShowFleetStep2Page extends AbstractGamePage
 
     public function show()
     {
-        global $USER, $PLANET, $LNG, $resource;
-
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
+        $LNG =& Singleton()->LNG;
+        $resource =& Singleton()->resource;
         $this->tplObj->loadscript('flotten.js');
 
         $targetGalaxy = HTTP::_GP('galaxy', 0);

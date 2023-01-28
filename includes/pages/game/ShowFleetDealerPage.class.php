@@ -27,8 +27,11 @@ class ShowFleetDealerPage extends AbstractGamePage
 
     public function send()
     {
-        global $USER, $PLANET, $LNG, $pricelist, $resource;
-
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
+        $LNG =& Singleton()->LNG;
+        $pricelist =& Singleton()->pricelist;
+        $resource =& Singleton()->resource;
         $shipID = HTTP::_GP('shipID', 0);
         $Count = max(0, round(HTTP::_GP('count', 0.0)));
         $allowedShipIDs = explode(',', Config::get()->trade_allowed_ships);
@@ -76,8 +79,11 @@ class ShowFleetDealerPage extends AbstractGamePage
 
     public function show()
     {
-        global $PLANET, $LNG, $pricelist, $resource, $reslist;
-
+        $PLANET =& Singleton()->PLANET;
+        $LNG =& Singleton()->LNG;
+        $pricelist =& Singleton()->pricelist;
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
         $Cost = [];
 
         $allowedShipIDs = explode(',', Config::get()->trade_allowed_ships);

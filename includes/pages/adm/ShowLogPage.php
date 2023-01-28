@@ -20,8 +20,8 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 }
 function ShowLog()
 {
-    global $LNG, $resources;
-
+    $LNG =& Singleton()->LNG;
+    $resources =& Singleton()->resources;
     $table = HTTP::_GP('type', '');
 
     # Modes:
@@ -62,7 +62,7 @@ function ShowLog()
 
 function ShowLogOverview()
 {
-    global $USER;
+    $USER =& Singleton()->USER;
     $template   = new template();
     $template->assign_vars([
         'signalColors' => $USER['signalColors']
@@ -72,7 +72,8 @@ function ShowLogOverview()
 
 function ShowLogDetail()
 {
-    global $LNG, $USER;
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
     $logid = HTTP::_GP('id', 0);
     $result     = $GLOBALS['DATABASE']->getFirstRow("SELECT l.*, u_a.username as admin_username FROM " . LOG
         . " as l LEFT JOIN " . USERS . " as u_a ON  u_a.id = l.admin  WHERE l.id = " . $logid . "");
@@ -158,7 +159,8 @@ function ShowLogDetail()
 
 function ShowLogSettingsList()
 {
-    global $LNG, $USER;
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
     $result = $GLOBALS['DATABASE']->query("SELECT l.id, l.admin, l.time, l.universe, l.target,u_a.username as"
         . " admin_username FROM " . LOG . " as l LEFT JOIN " . USERS . " as u_a ON  u_a.id = l.admin WHERE mode = 3"
         . " ORDER BY id DESC");
@@ -208,7 +210,8 @@ function ShowLogSettingsList()
 
 function ShowLogPlanetsList()
 {
-    global $LNG, $USER;
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
     $result    = $GLOBALS['DATABASE']->query("SELECT DISTINCT l.id, l.admin, l.target, l.time, l.universe,u_t.username"
         . " as target_username, p.galaxy as target_galaxy, p.system as target_system, p.planet as target_planet,"
         . "u_a.username as admin_username FROM " . LOG . " as l LEFT JOIN " . USERS . " as u_a ON  u_a.id = l.admin"
@@ -254,7 +257,8 @@ function ShowLogPlanetsList()
 
 function ShowLogPlayersList()
 {
-    global $LNG, $USER;
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
     $result    = $GLOBALS['DATABASE']->query("SELECT DISTINCT l.id, l.admin, l.target, l.time, l.universe,u_t.username"
         . " as target_username,u_a.username as admin_username FROM " . LOG . " as l LEFT JOIN " . USERS
         . " as u_a ON  u_a.id = l.admin LEFT JOIN " . USERS . " as u_t ON u_t.id = l.target WHERE mode = 1 ORDER BY"
@@ -296,7 +300,8 @@ function ShowLogPlayersList()
 
 function ShowLogPresent()
 {
-    global $LNG, $USER;
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
     $result    = $GLOBALS['DATABASE']->query("SELECT DISTINCT l.id, l.admin, l.target, l.time, l.universe, u_a.username"
         . " as admin_username FROM " . LOG . " as l LEFT JOIN " . USERS . " as u_a ON u_a.id = l.admin WHERE mode = 4"
         . " ORDER BY l.id DESC;");

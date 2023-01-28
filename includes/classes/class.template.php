@@ -66,9 +66,9 @@ class template extends Smarty
 
 	private function adm_main()
 	{
-		global $LNG, $USER;
-
-		$dateTimeServer		= new DateTime("now");
+		$LNG =& Singleton()->LNG;
+  $USER =& Singleton()->USER;
+  $dateTimeServer		= new DateTime("now");
 		if(isset($USER['timezone'])) {
 			try {
 				$dateTimeUser	= new DateTime("now", new DateTimeZone($USER['timezone']));
@@ -97,9 +97,9 @@ class template extends Smarty
 
 	public function show($file)
 	{
-		global $LNG, $THEME;
-
-		if($THEME->isCustomTPL($file))
+		$LNG =& Singleton()->LNG;
+  $THEME =& Singleton()->THEME;
+  if($THEME->isCustomTPL($file))
 		{
 			$this->setTemplateDir($THEME->getTemplatePath());
 		}
@@ -129,7 +129,7 @@ class template extends Smarty
 
 	public function display($file = NULL, $cache_id = NULL, $compile_id = NULL, $parent = NULL)
 	{
-		global $LNG;
+		$LNG =& Singleton()->LNG;
 		$this->compile_id	= $LNG->getLanguage();
 		parent::display($file);
 	}
@@ -144,9 +144,10 @@ class template extends Smarty
 
 	public function message($mes, $dest = false, $time = 3, $Fatal = false)
 	{
-		global $LNG, $THEME, $USER;
-
-		$this->assign_vars(array(
+		$LNG =& Singleton()->LNG;
+  $THEME =& Singleton()->THEME;
+  $USER =& Singleton()->USER;
+  $this->assign_vars(array(
 			'mes'			=> $mes,
 			'fcm_info'		=> $LNG['fcm_info'],
 			'Fatal'			=> $Fatal,

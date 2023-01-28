@@ -92,7 +92,7 @@ function ShowCronjob()
 
 function ShowCronjobEdit($post_id)
 {
-    global $LNG;
+    $LNG =& Singleton()->LNG;
 
     $post_name      =   HTTP::_GP('name', '');
     $post_min       =   checkPostData('min', 59);
@@ -175,7 +175,8 @@ function ShowCronjobEnable($cronjobId)
 
 function ShowCronjobOverview()
 {
-    global $LNG, $USER;
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
     $data    = $GLOBALS['DATABASE']->query("SELECT * FROM " . CRONJOBS . ";");
 
     $template   = new template();
@@ -216,7 +217,7 @@ function ShowCronjobOverview()
 
 function ShowCronjobDetail($detail, $error_msg = null)
 {
-    global $USER;
+    $USER =& Singleton()->USER;
     $template   = new template();
 
 

@@ -35,8 +35,8 @@ abstract class AbstractGamePage
         if (!AJAX_REQUEST) {
             $this->setWindow('full');
             if (!$this->disableEcoSystem) {
-                global $USER, $PLANET;
-
+                $USER =& Singleton()->USER;
+                $PLANET =& Singleton()->PLANET;
                 if (!empty($USER) && !empty($PLANET)) {
                     $db = Database::get();
                     $db->startTransaction();
@@ -115,8 +115,12 @@ abstract class AbstractGamePage
 
     protected function getNavigationData()
     {
-        global $PLANET, $LNG, $USER, $THEME, $resource, $reslist;
-
+        $PLANET =& Singleton()->PLANET;
+        $LNG =& Singleton()->LNG;
+        $USER =& Singleton()->USER;
+        $THEME =& Singleton()->THEME;
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
         $config = Config::get();
 
         $PlanetSelect = [];
@@ -232,8 +236,8 @@ abstract class AbstractGamePage
 
     protected function getPageData()
     {
-        global $USER, $THEME;
-
+        $USER =& Singleton()->USER;
+        $THEME =& Singleton()->THEME;
         if ($this->getWindow() === 'full') {
             $this->getNavigationData();
             $this->getCronjobsTodo();
@@ -308,8 +312,9 @@ abstract class AbstractGamePage
 
     protected function display($file)
     {
-        global $THEME, $LNG, $USER;
-
+        $THEME =& Singleton()->THEME;
+        $LNG =& Singleton()->LNG;
+        $USER =& Singleton()->USER;
         $this->updatePlanetTime();
 
         if ($this->getWindow() !== 'ajax') {

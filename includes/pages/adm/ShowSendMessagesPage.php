@@ -19,8 +19,9 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 
 function ShowSendMessagesPage() {
-	global $USER, $LNG;
-	$ACTION	= HTTP::_GP('action', '');
+	$USER =& Singleton()->USER;
+ $LNG =& Singleton()->LNG;
+ $ACTION	= HTTP::_GP('action', '');
 	if ($ACTION == 'send')
 	{
 		switch($USER['authlevel'])

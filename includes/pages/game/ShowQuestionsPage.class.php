@@ -26,7 +26,7 @@ class ShowQuestionsPage extends AbstractGamePage
 	
 	function show()
 	{
-		global $LNG;
+		$LNG =& Singleton()->LNG;
 		
 		$LNG->includeData(array('FAQ'));
 		
@@ -35,7 +35,7 @@ class ShowQuestionsPage extends AbstractGamePage
 	
 	function single()
 	{
-		global $LNG;
+		$LNG =& Singleton()->LNG;
 		
 		$LNG->includeData(array('FAQ'));
 		

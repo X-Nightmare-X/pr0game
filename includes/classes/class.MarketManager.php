@@ -321,7 +321,7 @@ class MarketManager {
 	 */
 	public function getFleetValue($fleetArray, $useScore = false)
 	{
-		global $pricelist;
+		$pricelist =& Singleton()->pricelist;
 
 		$totalCostArray = [
 				901 => 0,

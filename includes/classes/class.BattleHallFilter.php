@@ -89,7 +89,7 @@ class BattleHallFilter
 
 	private function assembleDiplomacyFilter($diplomacy)
 	{
-		global $USER;
+		$USER =& Singleton()->USER;
 
 		switch ($diplomacy)
 		{

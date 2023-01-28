@@ -24,8 +24,8 @@ class MissionCaseAttack extends MissionFunctions implements Mission
 
     public function TargetEvent()
     {
-        global $resource, $reslist;
-
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
         $db = Database::get();
         $config = Config::get($this->_fleet['fleet_universe']);
 

@@ -26,7 +26,9 @@ class ShowBuildingsPage extends AbstractGamePage
 
     private function cancelBuildingFromQueue()
     {
-        global $PLANET, $USER, $resource;
+        $PLANET =& Singleton()->PLANET;
+        $USER =& Singleton()->USER;
+        $resource =& Singleton()->resource;
         $CurrentQueue  = !empty($PLANET['b_building_id']) ? unserialize($PLANET['b_building_id']) : [];
         if (empty($CurrentQueue)) {
             $PLANET['b_building_id']    = '';
@@ -64,7 +66,8 @@ class ShowBuildingsPage extends AbstractGamePage
 
     private function removeBuildingFromQueue($QueueID)
     {
-        global $USER, $PLANET;
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
         if ($QueueID <= 1 || empty($PLANET['b_building_id'])) {
             return false;
         }
@@ -104,8 +107,11 @@ class ShowBuildingsPage extends AbstractGamePage
 
     private function addBuildingToQueue($Element, $AddMode = true)
     {
-        global $PLANET, $USER, $resource, $reslist, $pricelist;
-
+        $PLANET =& Singleton()->PLANET;
+        $USER =& Singleton()->USER;
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
+        $pricelist =& Singleton()->pricelist;
         if (
             !in_array($Element, $reslist['allow'][$PLANET['planet_type']])
             || !BuildFunctions::isTechnologieAccessible($USER, $PLANET, $Element)
@@ -198,8 +204,9 @@ class ShowBuildingsPage extends AbstractGamePage
 
     private function getQueueData()
     {
-        global $LNG, $PLANET, $USER;
-
+        $LNG =& Singleton()->LNG;
+        $PLANET =& Singleton()->PLANET;
+        $USER =& Singleton()->USER;
         $scriptData = [];
         $quickinfo = [];
 
@@ -232,8 +239,13 @@ class ShowBuildingsPage extends AbstractGamePage
 
     public function show()
     {
-        global $ProdGrid, $LNG, $resource, $reslist, $PLANET, $USER, $pricelist;
-
+        $ProdGrid =& Singleton()->ProdGrid;
+        $LNG =& Singleton()->LNG;
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
+        $PLANET =& Singleton()->PLANET;
+        $USER =& Singleton()->USER;
+        $pricelist =& Singleton()->pricelist;
         $TheCommand     = HTTP::_GP('cmd', '');
 
         // wellformed buildURLs

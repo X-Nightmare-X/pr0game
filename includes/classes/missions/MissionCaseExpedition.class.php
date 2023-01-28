@@ -39,8 +39,8 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 
     private function calculatePointsAndCapacity()
     {
-        global $pricelist, $reslist;
-
+        $pricelist =& Singleton()->pricelist;
+        $reslist =& Singleton()->reslist;
         $expeditionPoints = [];
 
         foreach ($reslist['fleet'] as $shipId) {
@@ -84,7 +84,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 
     private function handleEventFoundRes()
     {
-        global $resource;
+        $resource =& Singleton()->resource;
 
         $LNG = $this->LNG;
         $config = Config::get($this->_fleet['fleet_universe']);
@@ -177,7 +177,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 
     private function determineFoundShips($foundPoints, $findableShips)
     {
-        global $pricelist;
+        $pricelist =& Singleton()->pricelist;
         $Found = [];
         $upperValue = 3;
 
@@ -214,7 +214,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
 
     private function handleEventFoundShips()
     {
-        global $reslist;
+        $reslist =& Singleton()->reslist;
 
         $LNG = $this->LNG;
         $Size = 0;
@@ -706,7 +706,8 @@ HTML;
 
     public function ReturnEvent()
     {
-        global $pricelist, $reslist;
+        $pricelist =& Singleton()->pricelist;
+        $reslist =& Singleton()->reslist;
         $LNG = $this->LNG;
         $sql = 'SELECT name FROM %%PLANETS%% WHERE id = :planetId;';
         $planetName = Database::get()->selectSingle($sql, [

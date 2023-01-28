@@ -21,8 +21,10 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 
 function ShowAccountDataPage()
 {
-    global $USER, $reslist, $resource, $LNG;
-
+    $USER =& Singleton()->USER;
+    $reslist =& Singleton()->reslist;
+    $resource =& Singleton()->resource;
+    $LNG =& Singleton()->LNG;
     $template = new template();
     $template->assign_vars([
         'signalColors'  => $USER['signalColors']

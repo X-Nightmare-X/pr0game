@@ -117,7 +117,7 @@ function locale_date_format($format, $time, $LNG = null)
     // Workaround for locale Names.
 
     if (!isset($LNG)) {
-        global $LNG;
+        $LNG =& Singleton()->LNG;
     }
 
     $weekDay = date('w', $time);
@@ -174,14 +174,14 @@ function message($mes, $dest = "", $time = "3", $topnav = false)
 
 function CalculateMaxPlanetFields($planet)
 {
-    global $resource;
+    $resource =& Singleton()->resource;
     return $planet['field_max'] + ($planet[$resource[33]] * FIELDS_BY_TERRAFORMER) + ($planet[$resource[41]]
         * FIELDS_BY_MOONBASIS_LEVEL);
 }
 
 function pretty_time($seconds)
 {
-    global $LNG;
+    $LNG =& Singleton()->LNG;
     $day = $seconds / 86400;
     $day = floor($day);
     $hour = $seconds / 3600;
@@ -378,7 +378,7 @@ function getNumber($from, $default = 0)
 
 function isModuleAvailable($ID)
 {
-    global $USER;
+    $USER =& Singleton()->USER;
     $modules = explode(';', Config::get()->moduls);
     if (!isset($modules[$ID])) {
         $modules[$ID] = 1;
@@ -446,7 +446,7 @@ function ClearCache()
 
 function allowedTo($side)
 {
-    global $USER;
+    $USER =& Singleton()->USER;
     return ($USER['authlevel'] == AUTH_ADM || (isset($USER['rights']) && $USER['rights'][$side] == 1));
 }
 
@@ -637,7 +637,7 @@ Debug Backtrace:
     }
 
     /* Debug via Support Ticket */
-    global $USER;
+    $USER =& Singleton()->USER;
     if (isset($USER) && is_array($USER) && !empty($USER['id']) && !empty($USER['username'])) {
         $ErrSource = $USER['id'];
         $ErrName = $USER['username'];

@@ -19,8 +19,9 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowConfigBasicPage()
 {
-	global $LNG, $USER;
-	$config = Config::get(Universe::getEmulated());
+	$LNG =& Singleton()->LNG;
+ $USER =& Singleton()->USER;
+ $config = Config::get(Universe::getEmulated());
 	if (!empty($_POST))
 	{
 		$config_before = array(

@@ -59,7 +59,8 @@ function destroy(&$attackers)
 function shoot($attacker, $unit, &$defenders, &$ad, $sim)
 {
     // SHOOT
-    global $CombatCaps, $pricelist;
+    $CombatCaps =& Singleton()->CombatCaps;
+    $pricelist =& Singleton()->pricelist;
     $count = 0;
     foreach ($defenders as $fID => &$defender) {
         $count += count($defender['units']);
@@ -132,7 +133,8 @@ function shoot($attacker, $unit, &$defenders, &$ad, $sim)
 function initCombatValues(&$fleets, $firstInit = false)
 {
     // INIT COMBAT VALUES
-    global $CombatCaps, $pricelist;
+    $CombatCaps =& Singleton()->CombatCaps;
+    $pricelist =& Singleton()->pricelist;
     $attackAmount = ['total' => 0];
     $attArray = [];
     foreach ($fleets as $fleetID => $attacker) {
@@ -186,7 +188,7 @@ function initCombatValues(&$fleets, $firstInit = false)
 
 function restoreShields(&$fleets)
 {
-    global $CombatCaps;
+    $CombatCaps =& Singleton()->CombatCaps;
     foreach ($fleets as $fleetID => $attacker) {
         $shieldTech = (1 + (0.1 * $attacker['player']['shield_tech']));
         foreach ($attacker['units'] as $element => $unit) {
@@ -197,8 +199,9 @@ function restoreShields(&$fleets)
 
 function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = false)
 {
-    global $pricelist, $CombatCaps, $resource;
-
+    $pricelist =& Singleton()->pricelist;
+    $CombatCaps =& Singleton()->CombatCaps;
+    $resource =& Singleton()->resource;
     $TRES = ['attacker' => 0, 'defender' => 0];
     $ARES = $DRES = ['metal' => 0, 'crystal' => 0];
     $ROUND = [];

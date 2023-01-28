@@ -137,7 +137,7 @@ class MissionFunctions
 
     protected function RestoreFleet($onStart = true)
     {
-        global $resource;
+        $resource =& Singleton()->resource;
 
         $fleetData = FleetFunctions::unserialize($this->_fleet['fleet_array']);
 
@@ -221,7 +221,7 @@ class MissionFunctions
     }
 
     function sendAttackReturnMessage() {
-        global $reslist;
+        $reslist =& Singleton()->reslist;
 
         $LNG = $this->getLanguage(NULL, $this->_fleet['fleet_owner']);
 
@@ -282,7 +282,7 @@ class MissionFunctions
     static function updateDestroyedAdvancedStats($attacker, $defender, $Element, $amount = 1)
     {
         if ($attacker > 0) {
-            global $resource;
+            $resource =& Singleton()->resource;
             require_once 'includes/classes/Database.class.php';
             $db = Database::get();
         
@@ -305,7 +305,7 @@ class MissionFunctions
             return;
         }
 
-        global $resource;
+        $resource =& Singleton()->resource;
         require_once 'includes/classes/Database.class.php';
         $db = Database::get();
 
@@ -338,7 +338,7 @@ class MissionFunctions
 
     function updateFoundShipsAdvancedStats($user, $fleetArray)
     {
-        global $resource;
+        $resource =& Singleton()->resource;
         require_once 'includes/classes/Database.class.php';
         $db = Database::get();
 

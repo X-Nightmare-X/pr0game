@@ -28,9 +28,13 @@ class ShowGalaxyPage extends AbstractGamePage
 
 	public function show()
 	{
-		global $USER, $PLANET, $resource, $LNG, $reslist, $pricelist;
-
-		$config			= Config::get();
+		$USER =& Singleton()->USER;
+  $PLANET =& Singleton()->PLANET;
+  $resource =& Singleton()->resource;
+  $LNG =& Singleton()->LNG;
+  $reslist =& Singleton()->reslist;
+  $pricelist =& Singleton()->pricelist;
+  $config			= Config::get();
 
 		$action 		= HTTP::_GP('action', '');
 		$galaxyLeft		= HTTP::_GP('galaxyLeft', '');

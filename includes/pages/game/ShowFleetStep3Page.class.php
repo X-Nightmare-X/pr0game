@@ -36,8 +36,10 @@ class ShowFleetStep3Page extends AbstractGamePage
 
     public function show()
     {
-        global $USER, $PLANET, $resource, $LNG;
-
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
+        $resource =& Singleton()->resource;
+        $LNG =& Singleton()->LNG;
         if (IsVacationMode($USER)) {
             FleetFunctions::gotoFleetPage(0);
         }

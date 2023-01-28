@@ -17,8 +17,8 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 
 function ShowStatUpdatePage()
 {
-    global $LNG, $USER;
-
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
     try {
         require_once('includes/classes/class.statbuilder.php');
         require_once('includes/models/StatPoints.php');
