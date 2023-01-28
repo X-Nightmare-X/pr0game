@@ -270,6 +270,10 @@ define('PLASMA_CANNON', 406);
 define('SMALL_SHIELD_DOME', 407);
 define('LARGE_SHIELD_DOME', 408);
 
+// Rokets
+define('INTERCEPTOR_MISSILE', 502);
+define('INTERPLANETARY_MISSILE', 503);
+
 // Missions
 define('MISSION_ATTACK', 1);
 define('MISSION_ACS', 2);
