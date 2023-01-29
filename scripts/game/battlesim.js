@@ -20,8 +20,8 @@ function check(){
 		}
 	});
 	
-	setTimeout(function(){$("#submit:hidden").removeAttr('style').hide().fadeIn();}, 10000);
-	setTimeout(function(){$("#wait:visible").removeAttr('style').hide().fadeOut();}, 10000);
+	// setTimeout(function(){$("#submit:hidden").removeAttr('style').hide().fadeIn();}, 10000);
+	// setTimeout(function(){$("#wait:visible").removeAttr('style').hide().fadeOut();}, 10000);
 	return true;
 }
 

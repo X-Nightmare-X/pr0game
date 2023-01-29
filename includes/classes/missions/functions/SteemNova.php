@@ -196,153 +196,176 @@ function restoreShields(&$fleets)
     }
 }
 
-function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = false)
+function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = false, $counter)
 {
-    global $pricelist, $CombatCaps, $resource;
 
-    $TRES = ['attacker' => 0, 'defender' => 0];
-    $ARES = $DRES = ['metal' => 0, 'crystal' => 0];
-    $ROUND = [];
-    $RF = [];
 
-    $attackAmount = [];
-    $defenseAmount = [];
 
-    // $STARTDEF - snapshot of defense amount. Needed for 70% restore
-    $STARTDEF = [];
+    if (isset($counter)) {
 
-    // calculate attackers fleet metal+crystal value
-    foreach ($attackers as $fleetID => $attacker) {
-        foreach ($attacker['unit'] as $element => $amount) {
-            $ARES['metal'] += $pricelist[$element]['cost'][901] * $amount;
-            $ARES['crystal'] += $pricelist[$element]['cost'][902] * $amount;
-        }
-    }
-    $TRES['attacker'] = $ARES['metal'] + $ARES['crystal'];
+        for ($i = 0; $i < $counter; $i++) {
 
-    //calculate defenders fleet metal+crystal value
-    foreach ($defenders as $fleetID => $defender) {
-        foreach ($defender['unit'] as $element => $amount) {
-            if ($element < 300) {
-                // ships
-                $DRES['metal'] += $pricelist[$element]['cost'][901] * $amount;
-                $DRES['crystal'] += $pricelist[$element]['cost'][902] * $amount;
+            global $pricelist, $CombatCaps, $resource;
+
+            $TRES = ['attacker' => 0, 'defender' => 0];
+            $ARES = $DRES = ['metal' => 0, 'crystal' => 0];
+            $ROUND = [];
+            $RF = [];
+
+            $attackAmount = [];
+            $defenseAmount = [];
+
+            // $STARTDEF - snapshot of defense amount. Needed for 70% restore
+            $STARTDEF = [];
+
+            // calculate attackers fleet metal+crystal value
+            foreach ($attackers as $fleetID => $attacker) {
+                foreach ($attacker['unit'] as $element => $amount) {
+                    $ARES['metal'] += $pricelist[$element]['cost'][901] * $amount;
+                    $ARES['crystal'] += $pricelist[$element]['cost'][902] * $amount;
+                }
+            }
+            $TRES['attacker'] = $ARES['metal'] + $ARES['crystal'];
+
+            //calculate defenders fleet metal+crystal value
+            foreach ($defenders as $fleetID => $defender) {
+                foreach ($defender['unit'] as $element => $amount) {
+                    if ($element < 300) {
+                        // ships
+                        $DRES['metal'] += $pricelist[$element]['cost'][901] * $amount;
+                        $DRES['crystal'] += $pricelist[$element]['cost'][902] * $amount;
+                    } else {
+                        // defense
+                        if (!isset($STARTDEF[$element])) {
+                            $STARTDEF[$element] = 0;
+                        }
+
+                        $STARTDEF[$element] += $amount;
+                    }
+                    $TRES['defender'] += $pricelist[$element]['cost'][901] * $amount;
+                    $TRES['defender'] += $pricelist[$element]['cost'][902] * $amount;
+                }
+            }
+
+            for ($ROUNDC = 0; $ROUNDC <= MAX_ATTACK_ROUNDS; $ROUNDC++) {
+                $attArray = [];
+                $defArray = [];
+
+                $att = initCombatValues($attackers, $ROUNDC == 0);
+                $def = initCombatValues($defenders, $ROUNDC == 0);
+
+                $ROUND[$ROUNDC] = [
+                    'attackers' => $attackers,
+                    'defenders' => $defenders,
+                    'attackA' => $att['attackAmount'],
+                    'defenseA' => $def['attackAmount'],
+                    'infoA' => $att['attArray'],
+                    'infoD' => $def['attArray'],
+                ];
+
+                if ($att['attackAmount']['total'] > 0 && $def['attackAmount']['total'] > 0 && $ROUNDC < MAX_ATTACK_ROUNDS) {
+                    // FIGHT
+                    $fightResults = fight($attackers, $defenders, $sim);
+
+                    destroy($attackers);
+                    destroy($defenders);
+
+                    restoreShields($attackers);
+                    restoreShields($defenders);
+
+                    $ROUND[$ROUNDC]['attack'] = $fightResults['attack'];
+                    $ROUND[$ROUNDC]['defense'] = $fightResults['defense'];
+                    $ROUND[$ROUNDC]['attackShield'] = $fightResults['attackShield'];
+                    $ROUND[$ROUNDC]['defShield'] = $fightResults['defShield'];
+                } else {
+                    break;
+                }
+            }
+
+            if ($att['attackAmount']['total'] <= 0 && $def['attackAmount']['total'] > 0) {
+                $won = "r"; // defender
+            } elseif ($att['attackAmount']['total'] > 0 && $def['attackAmount']['total'] <= 0) {
+                $won = "a"; // attacker
             } else {
-                // defense
-                if (!isset($STARTDEF[$element])) {
-                    $STARTDEF[$element] = 0;
-                }
-
-                $STARTDEF[$element] += $amount;
+                $won = "w"; // draw
             }
-            $TRES['defender'] += $pricelist[$element]['cost'][901] * $amount;
-            $TRES['defender'] += $pricelist[$element]['cost'][902] * $amount;
-        }
-    }
 
-    for ($ROUNDC = 0; $ROUNDC <= MAX_ATTACK_ROUNDS; $ROUNDC++) {
-        $attArray = [];
-        $defArray = [];
+            // CDR
+            foreach ($attackers as $fleetID => $attacker) {                    // flotte attaquant en CDR
+                foreach ($attacker['unit'] as $element => $amount) {
+                    $TRES['attacker'] -= $pricelist[$element]['cost'][901] * $amount;
+                    $TRES['attacker'] -= $pricelist[$element]['cost'][902] * $amount;
 
-        $att = initCombatValues($attackers, $ROUNDC == 0);
-        $def = initCombatValues($defenders, $ROUNDC == 0);
+                    $ARES['metal'] -= $pricelist[$element]['cost'][901] * $amount;
+                    $ARES['crystal'] -= $pricelist[$element]['cost'][902] * $amount;
+                }
+            }
 
-        $ROUND[$ROUNDC] = [
-            'attackers' => $attackers,
-            'defenders' => $defenders,
-            'attackA' => $att['attackAmount'],
-            'defenseA' => $def['attackAmount'],
-            'infoA' => $att['attArray'],
-            'infoD' => $def['attArray'],
-        ];
+            $DRESDefs = ['metal' => 0, 'crystal' => 0];
 
-        if ($att['attackAmount']['total'] > 0 && $def['attackAmount']['total'] > 0 && $ROUNDC < MAX_ATTACK_ROUNDS) {
-            // FIGHT
-            $fightResults = fight($attackers, $defenders, $sim);
+            // restore defense (70% +/- 20%)
+            $repairedDef = [];
+            foreach ($defenders as $fleetID => $defender) {
+                foreach ($defender['unit'] as $element => $amount) {
+                    if ($element < 300) {                           // flotte defenseur en CDR
+                        $DRES['metal'] -= $pricelist[$element]['cost'][901] * $amount;
+                        $DRES['crystal'] -= $pricelist[$element]['cost'][902] * $amount;
 
-            destroy($attackers);
-            destroy($defenders);
+                        $TRES['defender'] -= $pricelist[$element]['cost'][901] * $amount;
+                        $TRES['defender'] -= $pricelist[$element]['cost'][902] * $amount;
+                    } else {                                    // defs defenseur en CDR + reconstruction
+                        $TRES['defender'] -= $pricelist[$element]['cost'][901] * $amount;
+                        $TRES['defender'] -= $pricelist[$element]['cost'][902] * $amount;
 
-            restoreShields($attackers);
-            restoreShields($defenders);
-
-            $ROUND[$ROUNDC]['attack'] = $fightResults['attack'];
-            $ROUND[$ROUNDC]['defense'] = $fightResults['defense'];
-            $ROUND[$ROUNDC]['attackShield'] = $fightResults['attackShield'];
-            $ROUND[$ROUNDC]['defShield'] = $fightResults['defShield'];
-        } else {
-            break;
-        }
-    }
-
-    if ($att['attackAmount']['total'] <= 0 && $def['attackAmount']['total'] > 0) {
-        $won = "r"; // defender
-    } elseif ($att['attackAmount']['total'] > 0 && $def['attackAmount']['total'] <= 0) {
-        $won = "a"; // attacker
-    } else {
-        $won = "w"; // draw
-    }
-
-    // CDR
-    foreach ($attackers as $fleetID => $attacker) {                    // flotte attaquant en CDR
-        foreach ($attacker['unit'] as $element => $amount) {
-            $TRES['attacker'] -= $pricelist[$element]['cost'][901] * $amount;
-            $TRES['attacker'] -= $pricelist[$element]['cost'][902] * $amount;
-
-            $ARES['metal'] -= $pricelist[$element]['cost'][901] * $amount;
-            $ARES['crystal'] -= $pricelist[$element]['cost'][902] * $amount;
-        }
-    }
-
-    $DRESDefs = ['metal' => 0, 'crystal' => 0];
-
-    // restore defense (70% +/- 20%)
-    $repairedDef = [];
-    foreach ($defenders as $fleetID => $defender) {
-        foreach ($defender['unit'] as $element => $amount) {
-            if ($element < 300) {                           // flotte defenseur en CDR
-                $DRES['metal'] -= $pricelist[$element]['cost'][901] * $amount;
-                $DRES['crystal'] -= $pricelist[$element]['cost'][902] * $amount;
-
-                $TRES['defender'] -= $pricelist[$element]['cost'][901] * $amount;
-                $TRES['defender'] -= $pricelist[$element]['cost'][902] * $amount;
-            } else {                                    // defs defenseur en CDR + reconstruction
-                $TRES['defender'] -= $pricelist[$element]['cost'][901] * $amount;
-                $TRES['defender'] -= $pricelist[$element]['cost'][902] * $amount;
-
-                $lost = $STARTDEF[$element] - $amount;
-                $giveback = 0;
-                for ($i = 0; $i < $lost; $i++) {
-                    if (rand(1, 100) <= 70) {
-                        $giveback += 1;
+                        $lost = $STARTDEF[$element] - $amount;
+                        $giveback = 0;
+                        for ($i = 0; $i < $lost; $i++) {
+                            if (rand(1, 100) <= 70) {
+                                $giveback += 1;
+                            }
+                        }
+                        $defenders[$fleetID]['unit'][$element] += $giveback;
+                        if ($lost > 0) {
+                            $repairedDef[$element]['units'] = $giveback;
+                            $repairedDef[$element]['percent'] = $giveback / $lost * 100;
+                            if (!$sim) {
+                                MissionFunctions::updateRepairedDefAdvancedStats($defender['player']['id'], $element, $giveback);
+                            }
+                        }
+                        $DRESDefs['metal'] += $pricelist[$element]['cost'][901] * ($lost - $giveback);
+                        $DRESDefs['crystal'] += $pricelist[$element]['cost'][902] * ($lost - $giveback);
                     }
                 }
-                $defenders[$fleetID]['unit'][$element] += $giveback;
-                if ($lost > 0) {
-                    $repairedDef[$element]['units'] = $giveback;
-                    $repairedDef[$element]['percent'] = $giveback / $lost * 100;
-                    if (!$sim) {
-                        MissionFunctions::updateRepairedDefAdvancedStats($defender['player']['id'], $element, $giveback);
-                    }
-                }
-                $DRESDefs['metal'] += $pricelist[$element]['cost'][901] * ($lost - $giveback);
-                $DRESDefs['crystal'] += $pricelist[$element]['cost'][902] * ($lost - $giveback);
             }
+
+            $ARES['metal'] = max($ARES['metal'], 0);
+            $ARES['crystal'] = max($ARES['crystal'], 0);
+            $DRES['metal'] = max($DRES['metal'], 0);
+            $DRES['crystal'] = max($DRES['crystal'], 0);
+            $TRES['attacker'] = max($TRES['attacker'], 0);
+            $TRES['defender'] = max($TRES['defender'], 0);
+
+            $totalLost = ['attacker' => $TRES['attacker'], 'defender' => $TRES['defender']];
+            $debAttMet = ($ARES['metal'] * ($FleetTF / 100));
+            $debAttCry = ($ARES['crystal'] * ($FleetTF / 100));
+            $debDefMet = ($DRES['metal'] * ($FleetTF / 100)) + ($DRESDefs['metal'] * ($DefTF / 100));
+            $debDefCry = ($DRES['crystal'] * ($FleetTF / 100)) + ($DRESDefs['crystal'] * ($DefTF / 100));
+
+
+            $summARES['metal'] += $ARES['metal'];
+            $summARES['metal'] += $ARES['metal'];
+
+
+
         }
+
+
+        
+        $TRES['attacker']
+        $TRES['defender']
+
+
     }
-
-    $ARES['metal'] = max($ARES['metal'], 0);
-    $ARES['crystal'] = max($ARES['crystal'], 0);
-    $DRES['metal'] = max($DRES['metal'], 0);
-    $DRES['crystal'] = max($DRES['crystal'], 0);
-    $TRES['attacker'] = max($TRES['attacker'], 0);
-    $TRES['defender'] = max($TRES['defender'], 0);
-
-    $totalLost = ['attacker' => $TRES['attacker'], 'defender' => $TRES['defender']];
-    $debAttMet = ($ARES['metal'] * ($FleetTF / 100));
-    $debAttCry = ($ARES['crystal'] * ($FleetTF / 100));
-    $debDefMet = ($DRES['metal'] * ($FleetTF / 100)) + ($DRESDefs['metal'] * ($DefTF / 100));
-    $debDefCry = ($DRES['crystal'] * ($FleetTF / 100)) + ($DRESDefs['crystal'] * ($DefTF / 100));
 
     return [
         'won' => $won,

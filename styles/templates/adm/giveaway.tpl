@@ -29,10 +29,10 @@
 			<th colspan="2">{$LNG.tech.900}</th>
 	</tr>
 	{foreach item=Element from=$reslist.resstype.1}
-	<tr><td width="50%">{$LNG.tech.{$Element}}:</td><td width="50%"><input type="text" name="element_{$Element}" value="0" pattern="[0-9]*"></td></tr>
+	<tr><td width="50%">{$LNG.tech.{$Element}}:</td><td width="50%"><input type="text" name="element_{$Element}" value="0" ></td></tr>
 	{/foreach}
 	{foreach item=Element from=$reslist.resstype.3}
-	<tr><td width="50%">{$LNG.tech.{$Element}}:</td><td width="50%"><input type="text" name="element_{$Element}" value="0" pattern="[0-9]*"></td></tr>
+	<tr><td width="50%">{$LNG.tech.{$Element}}:</td><td width="50%"><input type="text" name="element_{$Element}" value="0" ></td></tr>
 	{/foreach}
 
 	<!-- Gebäude -->
@@ -40,7 +40,7 @@
 			<th colspan="2">{$LNG.tech.0}</th>
 	</tr>
 	{foreach item=Element from=$reslist.build}
-	<tr><td width="50%">{$LNG.tech.{$Element}}:</td><td width="50%"><input type="text" name="element_{$Element}" value="0" pattern="[0-9]*"></td></tr>
+	<tr><td width="50%">{$LNG.tech.{$Element}}:</td><td width="50%"><input type="text" name="element_{$Element}" value="0" ></td></tr>
 	{/foreach}
 
 	<!-- Technologie -->
@@ -48,7 +48,7 @@
 			<th colspan="2">{$LNG.tech.100}</th>
 	</tr>
 	{foreach item=Element from=$reslist.tech}
-	<tr><td width="50%">{$LNG.tech.{$Element}}:</td><td width="50%"><input type="text" name="element_{$Element}" value="0" pattern="[0-9]*"></td></tr>
+	<tr><td width="50%">{$LNG.tech.{$Element}}:</td><td width="50%"><input type="text" name="element_{$Element}" value="0" ></td></tr>
 	{/foreach}
 
 	<!-- Schiffe -->
@@ -56,7 +56,7 @@
 			<th colspan="2">{$LNG.tech.200}</th>
 	</tr>
 	{foreach item=Element from=$reslist.fleet}
-	<tr><td width="50%">{$LNG.tech.{$Element}}:</td><td width="50%"><input type="text" name="element_{$Element}" value="0" pattern="[0-9]*"></td></tr>
+	<tr><td width="50%">{$LNG.tech.{$Element}}:</td><td width="50%"><input type="text" name="element_{$Element}" value="0" ></td></tr>
 	{/foreach}
 
 	<!-- Verteidigung -->
@@ -64,7 +64,7 @@
 			<th colspan="2">{$LNG.tech.400}</th>
 	</tr>
 	{foreach item=Element from=$reslist.defense}
-	<tr><td width="50%">{$LNG.tech.{$Element}}:</td><td width="50%"><input type="text" name="element_{$Element}" value="0" pattern="[0-9]*"></td></tr>
+	<tr><td width="50%">{$LNG.tech.{$Element}}:</td><td width="50%"><input type="text" name="element_{$Element}" value="0" ></td></tr>
 	{/foreach}
 
 	<tr>

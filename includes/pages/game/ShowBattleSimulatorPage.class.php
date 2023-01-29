@@ -114,7 +114,7 @@ class ShowBattleSimulatorPage extends AbstractGamePage
         require_once 'includes/classes/missions/functions/calculateSteal.php';
         require_once 'includes/classes/missions/functions/GenerateReport.php';
 
-        $combatResult = calculateAttack($fleetAttack, $fleetDefend, Config::get()->Fleet_Cdr, Config::get()->Defs_Cdr, true);
+        $combatResult = calculateAttack($fleetAttack, $fleetDefend, Config::get()->Fleet_Cdr, Config::get()->Defs_Cdr, true, 50);
 
         if ($combatResult['won'] == "a") {
             $stealResource = calculateSteal($fleetAttack, [
@@ -186,6 +186,9 @@ class ShowBattleSimulatorPage extends AbstractGamePage
             'fleetDestroySuccess'   => null,
             'additionalInfo'        => $stealResourceInformation,
         ];
+
+      
+        // print($combatResult . " - " . $reportInfo);
 
         $reportData = GenerateReport($combatResult, $reportInfo);
         unset($reportData['repaired']);
