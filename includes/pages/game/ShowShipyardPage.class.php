@@ -50,15 +50,7 @@ class ShowShipyardPage extends AbstractGamePage
 
             $costResources = BuildFunctions::getElementPrice($USER, $PLANET, $Element, false, $Count);
 
-            if (isset($costResources[901])) {
-                $PLANET[$resource[901]] += $costResources[901] * FACTOR_CANCEL_SHIPYARD;
-            }
-            if (isset($costResources[902])) {
-                $PLANET[$resource[902]] += $costResources[902] * FACTOR_CANCEL_SHIPYARD;
-            }
-            if (isset($costResources[903])) {
-                $PLANET[$resource[903]] += $costResources[903] * FACTOR_CANCEL_SHIPYARD;
-            }
+            $this->ecoObj->addResources($PLANET['id'], $costResources, $PLANET, FACTOR_CANCEL_SHIPYARD);
 
             unset($ElementQueue[$Auftr]);
         }
@@ -68,6 +60,8 @@ class ShowShipyardPage extends AbstractGamePage
         } else {
             $PLANET['b_hangar_id'] = serialize(array_values($ElementQueue));
         }
+
+        $this->ecoObj->saveShipyardQueue($PLANET);
 
         return true;
     }
@@ -81,6 +75,11 @@ class ShowShipyardPage extends AbstractGamePage
             503 => $PLANET[$resource[503]],
         ];
 
+        $totalCostResources = [
+            RESOURCE_METAL => 0,
+            RESOURCE_CRYSTAL => 0,
+            RESOURCE_DEUT => 0,
+        ];
         foreach ($fmenge as $Element => $Count) {
             if (
                 empty($Count)
@@ -125,19 +124,16 @@ class ShowShipyardPage extends AbstractGamePage
 
             $costResources = BuildFunctions::getElementPrice($USER, $PLANET, $Element, false, $Count);
 
-            if (isset($costResources[901])) {
-                $PLANET[$resource[901]] -= $costResources[901];
-            }
-            if (isset($costResources[902])) {
-                $PLANET[$resource[902]] -= $costResources[902];
-            }
-            if (isset($costResources[903])) {
-                $PLANET[$resource[903]] -= $costResources[903];
+            foreach ($costResources as $resourceId => $amount) {
+                $totalCostResources[$resourceId] += $amount;
             }
 
             $BuildArray[] = [$Element, $Count];
             $PLANET['b_hangar_id'] = serialize($BuildArray);
+
         }
+        $this->ecoObj->removeResources($PLANET['id'], $totalCostResources, $PLANET);
+        $this->ecoObj->saveShipyardQueue($PLANET);
     }
 
     public function show()

@@ -290,11 +290,15 @@ abstract class AbstractGamePage
         $this->display('error.default.tpl');
     }
 
-    protected function save()
+    protected function updatePlanetTime()
     {
-        if (isset($this->ecoObj)) {
-            $this->ecoObj->SavePlanetToDB();
-        }
+        global $PLANET;
+        $db = Database::get();
+        $sql = "UPDATE %%PLANETS%% SET last_update = :lastUpdateTime WHERE id = :planetId";
+        $db->update($sql, [
+            ':lastUpdateTime' => TIMESTAMP,
+            ':planetId' => $PLANET['id'],
+        ]);
     }
 
     protected function assign($array, $nocache = true)
@@ -306,7 +310,7 @@ abstract class AbstractGamePage
     {
         global $THEME, $LNG, $USER;
 
-        $this->save();
+        $this->updatePlanetTime();
 
         if ($this->getWindow() !== 'ajax') {
             $this->getPageData();
@@ -333,14 +337,14 @@ abstract class AbstractGamePage
 
     protected function sendJSON($data)
     {
-        $this->save();
+        $this->updatePlanetTime();
         echo json_encode($data);
         exit;
     }
 
     protected function redirectTo($url)
     {
-        $this->save();
+        $this->updatePlanetTime();
         HTTP::redirectTo($url);
         exit;
     }

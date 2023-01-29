@@ -33,8 +33,12 @@ class ShowResourcesPage extends AbstractGamePage
                 $_POST['prod'] = [];
             }
 
+            $db = Database::get();
+            $db->startTransaction();
 
             $param = [':planetId' => $PLANET['id']];
+            $sql = "SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;";
+            $PLANET = $db->selectSingle($sql, $param);
 
             foreach ($_POST['prod'] as $resourceId => $Value) {
                 $FieldName = $resource[$resourceId] . '_porcent';
@@ -49,17 +53,14 @@ class ShowResourcesPage extends AbstractGamePage
 
             if (!empty($updateSQL)) {
                 $sql = 'UPDATE %%PLANETS%% SET ' . implode(', ', $updateSQL) . ' WHERE id = :planetId;';
+                $db->update($sql, $param);
 
-                Database::get()->update($sql, $param);
-
-                $this->ecoObj->setData($USER, $PLANET);
-                $this->ecoObj->ReBuildCache();
-                list($USER, $PLANET) = $this->ecoObj->getData();
-                $PLANET['eco_hash'] = $this->ecoObj->CreateHash();
+                list($USER, $PLANET) = $this->ecoObj->CalcResource($USER, $PLANET, true);
             }
+
+            $db->commit();
         }
 
-        $this->save();
         $this->redirectTo('game.php?page=resources');
     }
 

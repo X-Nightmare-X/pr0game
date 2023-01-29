@@ -25,7 +25,7 @@ class ShowFleetStep3Page extends AbstractGamePage
     }
 
     private function getActivePlanet($db, $planetId)
-    {    	
+    {
     	$sql    = "SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;";
     	$planet = $db->selectSingle($sql, array(
     			':planetId' => $planetId,
@@ -33,7 +33,7 @@ class ShowFleetStep3Page extends AbstractGamePage
 
     	return $planet;
     }
-    
+
     public function show()
     {
         global $USER, $PLANET, $resource, $LNG;
@@ -41,7 +41,7 @@ class ShowFleetStep3Page extends AbstractGamePage
         if (IsVacationMode($USER)) {
             FleetFunctions::gotoFleetPage(0);
         }
-		
+
         $db = Database::get();
         $db->startTransaction();
         // reloading global $PLANET for database lock support.
@@ -165,8 +165,8 @@ class ShowFleetStep3Page extends AbstractGamePage
         $ACSTime = 0;
 
         if (!empty($fleetGroup)) {
-            $sql = "SELECT ankunft 
-            FROM %%USERS_ACS%% 
+            $sql = "SELECT ankunft
+            FROM %%USERS_ACS%%
             INNER JOIN %%AKS%% ON id = acsID
 			WHERE acsID = :acsID AND :maxFleets > (SELECT COUNT(*) FROM %%FLEETS%% WHERE fleet_group = :acsID);";
             $ACSTime = $db->selectSingle($sql, [
@@ -175,11 +175,11 @@ class ShowFleetStep3Page extends AbstractGamePage
             ], 'ankunft');
 
             if (!empty($ACSTime)) {
-                $sql = "SELECT ankunft 
-                FROM %%USERS_ACS%% 
+                $sql = "SELECT ankunft
+                FROM %%USERS_ACS%%
                 INNER JOIN %%AKS%% ON id = acsID
-                WHERE acsID = :acsID 
-                AND ( :maxParticipants > (SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% WHERE fleet_group = :acsID) 
+                WHERE acsID = :acsID
+                AND ( :maxParticipants > (SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% WHERE fleet_group = :acsID)
                 OR 1 = (SELECT COUNT(DISTINCT fleet_owner) FROM %%FLEETS%% WHERE fleet_group = :acsID AND fleet_owner = :userID) );";
                 $ACSTime = $db->selectSingle($sql, [
                     ':acsID'        => $fleetGroup,
@@ -387,15 +387,15 @@ class ShowFleetStep3Page extends AbstractGamePage
 
         if ($targetMission == MISSION_HOLD) {
             $sql = "SELECT COUNT(fleet_id) AS anz
-            FROM %%FLEETS%% 
+            FROM %%FLEETS%%
 			WHERE fleet_end_id = :planetID AND fleet_mission = :hold AND fleet_mess in (0, 2);";
             $fleetCount = $db->selectSingle($sql, [
                 ':planetID' => $targetPlanetData['id'],
                 ':hold'     => MISSION_HOLD,
             ], "anz");
 
-            $sql = "SELECT COUNT(DISTINCT fleet_owner) AS anz FROM %%FLEETS%% 
-            WHERE fleet_end_id = :planetID AND fleet_mission = :hold AND fleet_mess in (0, 2) 
+            $sql = "SELECT COUNT(DISTINCT fleet_owner) AS anz FROM %%FLEETS%%
+            WHERE fleet_end_id = :planetID AND fleet_mission = :hold AND fleet_mess in (0, 2)
             AND fleet_owner != :userID;";
             $playerCount = $db->selectSingle($sql, [
                 ':planetID' => $targetPlanetData['id'],
@@ -421,7 +421,7 @@ class ShowFleetStep3Page extends AbstractGamePage
         $SpeedFactor = FleetFunctions::getGameSpeedFactor();
         $duration = FleetFunctions::getMissionDuration($fleetSpeed, $fleetMaxSpeed, $distance, $SpeedFactor, $USER);
         $consumption = FleetFunctions::getFleetConsumption($fleetArray, $duration, $distance, $USER, $SpeedFactor);
-        
+
         if ($PLANET[$resource[903]] < $consumption) {
             $this->printMessage($LNG['fl_not_enough_deuterium'], [[
                 'label' => $LNG['sys_back'],
@@ -515,7 +515,9 @@ class ShowFleetStep3Page extends AbstractGamePage
             $fleetStayTime,
             $fleetEndTime,
             $fleetGroup,
-            0 // missileTarget
+            0, // missileTarget
+            0, // noReturn
+            $consumption
         );
 
         if ($targetMission == MISSION_TRADE) {
@@ -536,7 +538,7 @@ class ShowFleetStep3Page extends AbstractGamePage
                     ':visibility'               => $visibility
                 ]);
         }
-     	
+
         $db->commit();
 
         foreach ($fleetArray as $Ship => $Count) {
