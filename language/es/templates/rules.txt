@@ -32,7 +32,7 @@
 	</li>
 	<li>
 		<h1>7. Threats/insults</h1>
-		<p>RL blackmail and threats will result in exclusion from one or all game areas. Real-life blackmail and threats are in-game messages, forum posts, IRC dialogues in public channels and ICQ dialogues that clearly signal intentions to locate and harm a person or a close third party.</p>
+		<p>RL blackmail and threats will result in exclusion from one or all game areas. Real-life blackmail and threats are any kind of communication that clearly signal intentions to locate and harm a person or a close third party.</p>
 	</li>
 	<li>
 		<h1>8. Spam and erotica</h1>

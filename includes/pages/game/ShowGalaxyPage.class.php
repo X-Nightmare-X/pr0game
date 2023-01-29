@@ -76,7 +76,8 @@ class ShowGalaxyPage extends AbstractGamePage
 					'url'	=> 'game.php?page=galaxy'
 				)));
 			} else {
-				$PLANET['deuterium']	-= $config->deuterium_cost_galaxy;
+                $resources = [RESOURCE_DEUT => $config->deuterium_cost_galaxy];
+                $this->ecoObj->removeResources($PLANET['id'], $resources, $PLANET);
             }
 		}
 

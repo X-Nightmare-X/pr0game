@@ -708,11 +708,13 @@ class FleetFunctions
             $params[':' . $resource[$ShipID]] = floatToString($ShipCount);
         }
 
-        if ($consumption > 0) {
-            $planetQuery[] = $resource[903] . " = " . $resource[903] . " - :" . $resource[903];
-            $params[':' . $resource[903]] = $consumption;
+        foreach ($fleetResource as $resourceId => $amount) {
+            $planetQuery[] = $resource[$resourceId] . " = " . $resource[$resourceId] . " - :" . $resource[$resourceId];
+            if ($resourceId == RESOURCE_DEUT && $consumption > 0) {
+                $amount += $consumption;
+            }
+            $params[':' . $resource[$resourceId]] = $amount;
         }
-
 
         $sql = 'UPDATE %%PLANETS%% SET ' . implode(', ', $planetQuery) . ' WHERE id = :planetId;';
 

@@ -327,7 +327,8 @@ class ShowMarketPlacePage extends AbstractGamePage
             $fleetEndTime,
             0,
             0,
-            1
+            1,
+            $consumption
         );
 
 

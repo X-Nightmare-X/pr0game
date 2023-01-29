@@ -32,7 +32,7 @@
 	</li>
 	<li>
 		<h1>7. Bedrohungen/Beleidigungen</h1>
-		<p>RL Erpressungen und -Bedrohungen führen zum Ausschluß aus einem oder allen Spiel Bereichen. Als Real-Life-Erpressungen und -bedrohungen werden Ingamenachrichten, Forenbeiträge, IRC-Dialoge in öffentlichen Channels und ICQ-Dialoge gewertet, die eindeutige Absichten signalisieren eine Person ausfindig zu machen und ihr oder einer nahestehenden dritten Person Schaden zuzufügen.</p>
+		<p>RL Erpressungen und -Bedrohungen führen zum Ausschluß aus einem oder allen Spiel Bereichen. Als Real-Life-Erpressungen und -bedrohungen werden alle Komunikationen gewertet, die eindeutige Absichten signalisieren eine Person ausfindig zu machen und ihr oder einer nahestehenden dritten Person Schaden zuzufügen.</p>
 	</li>
 	<li>
 		<h1>8. Spam und Erotik</h1>

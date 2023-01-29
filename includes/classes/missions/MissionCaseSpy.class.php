@@ -351,7 +351,12 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         // defence
         if (isset($spyData[400])) {
             foreach ($spyData[400] as $elementID => $amount) {
-                $dangerValue += $CombatCaps[$elementID]['attack'] * $amount;
+                if (
+                    !($elementID == INTERCEPTOR_MISSILE) and
+                    !($elementID == INTERPLANETARY_MISSILE) 
+                    ){
+                    $dangerValue += $CombatCaps[$elementID]['attack'] * $amount;
+                }
             }
         }
 
