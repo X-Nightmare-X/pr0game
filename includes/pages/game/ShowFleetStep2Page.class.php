@@ -83,17 +83,17 @@ class ShowFleetStep2Page extends AbstractGamePage
             ]]);
         }
 
-        if($targetMission==-1){
-            $sql = "SELECT prioMission1 as '1',prioMission2 as '2',prioMission3 as '3',prioMission4 as '4',prioMission5 as '5',prioMission6 as '6',
-                    prioMission7 as '7',prioMission8 as '8',prioMission9 as '9',prioMission17 as '17'
+        if ($targetMission == -1) {
+            $sql = "SELECT prioMission1 as '1', prioMission2 as '2', prioMission3 as '3', prioMission4 as '4', prioMission5 as '5', prioMission6 as '6',
+                    prioMission7 as '7', prioMission8 as '8', prioMission9 as '9', prioMission17 as '17'
                     FROM %%USERS%% WHERE universe = :universe AND id = :userID ;";
             $missionprios =$db->selectSingle($sql, [
                 ':universe' => Universe::current(),
                 ':userID'   => $USER['id'],
             ]);
             $bestmission=999;
-            foreach ($MissionOutput['MissionSelector']  as $mission1 => $mission) {
-                    if(array_key_exists($mission,$missionprios)) {
+            foreach ($MissionOutput['MissionSelector'] as $mission) {
+                    if (array_key_exists($mission, $missionprios)) {
                         $score = $missionprios[$mission];
                         if ($score < $bestmission) {
                             $targetMission = $mission;
@@ -133,20 +133,16 @@ class ShowFleetStep2Page extends AbstractGamePage
         $_SESSION['fleet'][$token]['fleetSpeed']    = $fleetSpeed;
         $_SESSION['fleet'][$token]['ownPlanet']     = $PLANET['id'];
 
-        if (!empty($fleetGroup)) {
-            $targetMission  = MISSION_ACS;
-        }
-
         if ($targetMission == 0) {
             if (count($MissionOutput['MissionSelector']) == 1) {
                 $targetMission = $MissionOutput['MissionSelector'][0];
-            } else if ($targetPlanetData['id_owner'] == $USER['id']) {
+            } else if (!empty($targetPlanetData) && $targetPlanetData['id_owner'] == $USER['id']) {
                 $targetMission = MISSION_TRANSPORT;
             }
             else {
                 if (count($fleetArray) == 1 && isset($fleetArray[SHIP_PROBE])) {
                     $targetMission = MISSION_SPY;
-                } else {
+                } else if (!empty($targetPlanetData)) {
                     $sql = "SELECT a.id, a.ally_tag, a.ally_name, d.level, d.owner_2
                         FROM %%USERS%% u
                         JOIN %%ALLIANCE%% a ON a.id = u.ally_id
@@ -171,11 +167,18 @@ class ShowFleetStep2Page extends AbstractGamePage
                         $targetMission = MISSION_ATTACK;
                     }
                 }
+                else {
+                    $targetMission = MISSION_ATTACK;
+                }
             }
         }
 
+        if (!empty($fleetGroup) && $targetMission == MISSION_ATTACK) {
+            $targetMission  = MISSION_ACS;
+        }
+
         $question = '';
-        if ($targetMission == MISSION_ACS || $targetMission == MISSION_ATTACK) {
+        if (($targetMission == MISSION_ACS || $targetMission == MISSION_ATTACK) && !empty($targetPlanetData)) {
             $sql = "SELECT a.id, a.ally_tag, a.ally_name, d.level, d.owner_2
                 FROM %%USERS%% u
                 JOIN %%ALLIANCE%% a ON a.id = u.ally_id
