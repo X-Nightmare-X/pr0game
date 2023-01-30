@@ -293,6 +293,9 @@ abstract class AbstractGamePage
     protected function updatePlanetTime()
     {
         global $PLANET;
+        if(!isset($PLANET['id'])){
+            return;
+        }
         $db = Database::get();
         $sql = "UPDATE %%PLANETS%% SET last_update = :lastUpdateTime WHERE id = :planetId";
         $db->update($sql, [
