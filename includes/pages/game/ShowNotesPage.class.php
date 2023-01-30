@@ -29,8 +29,8 @@ class ShowNotesPage extends AbstractGamePage
 	
 	function show()
 	{
-		global $LNG, $USER;
-
+		$LNG =& Singleton()->LNG;
+        $USER =& Singleton()->USER;
         $db = Database::get();
 
         $sql = "SELECT * FROM %%NOTES%% WHERE owner = :userID ORDER BY priority DESC, time DESC;";
@@ -59,9 +59,9 @@ class ShowNotesPage extends AbstractGamePage
 	
 	function detail()
 	{
-		global $LNG, $USER;
-
-		$noteID		= HTTP::_GP('id', 0);
+		$LNG =& Singleton()->LNG;
+  $USER =& Singleton()->USER;
+  $noteID		= HTTP::_GP('id', 0);
 		
 		if(!empty($noteID)) {
             $db = Database::get();
@@ -91,8 +91,9 @@ class ShowNotesPage extends AbstractGamePage
 	
 	public function insert()
 	{
-		global $LNG, $USER;
-		$priority 	= HTTP::_GP('priority', 1);
+		$LNG =& Singleton()->LNG;
+  $USER =& Singleton()->USER;
+  $priority 	= HTTP::_GP('priority', 1);
 		$title 		= HTTP::_GP('title', '', true);
 		$text 		= HTTP::_GP('text', '', true);
 		$id			= HTTP::_GP('id', 0);	
@@ -127,7 +128,7 @@ class ShowNotesPage extends AbstractGamePage
 	
 	function delete()
 	{
-		global $USER;
+		$USER =& Singleton()->USER;
 
 		$deleteIds	= HTTP::_GP('delmes', array());
 		$deleteIds	= array_keys($deleteIds);

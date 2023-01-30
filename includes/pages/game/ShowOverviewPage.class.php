@@ -26,7 +26,8 @@ class ShowOverviewPage extends AbstractGamePage
 
     private function getFleets()
     {
-        global $USER, $PLANET;
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
         require 'includes/classes/class.FlyingFleetsTable.php';
         $fleetTableObj = new FlyingFleetsTable();
         $fleetTableObj->setUser($USER['id']);
@@ -36,8 +37,9 @@ class ShowOverviewPage extends AbstractGamePage
 
     public function show()
     {
-        global $LNG, $PLANET, $USER;
-
+        $LNG =& Singleton()->LNG;
+        $PLANET =& Singleton()->PLANET;
+        $USER =& Singleton()->USER;
         $AdminsOnline = [];
         $AllPlanets = [];
         $Moon = [];
@@ -244,8 +246,8 @@ class ShowOverviewPage extends AbstractGamePage
 
     public function actions()
     {
-        global $LNG, $PLANET;
-
+        $LNG =& Singleton()->LNG;
+        $PLANET =& Singleton()->PLANET;
         $this->initTemplate();
         $this->setWindow('popup');
 
@@ -258,8 +260,8 @@ class ShowOverviewPage extends AbstractGamePage
 
     public function rename()
     {
-        global $LNG, $PLANET;
-
+        $LNG =& Singleton()->LNG;
+        $PLANET =& Singleton()->PLANET;
         $newname        = HTTP::_GP('name', '', UTF8_SUPPORT);
         if (!empty($newname)) {
             if (!PlayerUtil::isNameValid($newname)) {
@@ -279,7 +281,9 @@ class ShowOverviewPage extends AbstractGamePage
 
     public function delete()
     {
-        global $LNG, $PLANET, $USER;
+        $LNG =& Singleton()->LNG;
+        $PLANET =& Singleton()->PLANET;
+        $USER =& Singleton()->USER;
         $password   = HTTP::_GP('password', '', true);
 
         if (!empty($password)) {

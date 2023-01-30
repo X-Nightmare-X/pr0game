@@ -26,9 +26,12 @@ class ShowFleetMissilePage extends AbstractGamePage
 
 	public function show()
 	{
-		global $USER, $PLANET, $LNG, $reslist, $resource;
-
-		$missileCount 		= $PLANET['interplanetary_misil'];
+		$USER =& Singleton()->USER;
+  $PLANET =& Singleton()->PLANET;
+  $LNG =& Singleton()->LNG;
+  $reslist =& Singleton()->reslist;
+  $resource =& Singleton()->resource;
+  $missileCount 		= $PLANET['interplanetary_misil'];
 		$targetGalaxy 		= HTTP::_GP('galaxy', 0);
 		$targetSystem 		= HTTP::_GP('system', 0);
 		$targetPlanet 		= HTTP::_GP('planet', 0);

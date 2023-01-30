@@ -21,7 +21,8 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 
 function ShowRightsPage()
 {
-    global $LNG, $USER;
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
     $mode   = HTTP::_GP('mode', '');
     switch ($mode) {
         case 'rights':

@@ -206,8 +206,8 @@ class FlyingFleetsTable
 
     public function getEventData($fleetRow, $Status)
     {
-        global $LNG, $USER;
-
+        $LNG =& Singleton()->LNG;
+        $USER =& Singleton()->USER;
         $db = Database::get();
         $Owner          = $fleetRow['fleet_owner'] == $this->userId;
         $friendly = !$Owner && $fleetRow['fleet_target_owner'] != $this->userId;
@@ -482,14 +482,14 @@ class FlyingFleetsTable
 
     private function buildHostileFleetPlayerLink($fleetRow)
     {
-        global $LNG;
+        $LNG =& Singleton()->LNG;
         return $fleetRow['own_username']
             . ' <a href="#" onclick="return Dialog.PM(' . $fleetRow['fleet_owner'] . ')">' . $LNG['PM'] . '</a>';
     }
 
     private function createFleetPopupedMissionLink($fleetRow, $Texte, $FleetType)
     {
-        global $LNG;
+        $LNG =& Singleton()->LNG;
         $FleetTotalC  = $fleetRow['fleet_resource_metal'] + $fleetRow['fleet_resource_crystal']
             + $fleetRow['fleet_resource_deuterium'];
         if ($FleetTotalC != 0 && !$this->IsPhalanx) {
@@ -521,7 +521,9 @@ class FlyingFleetsTable
 
     private function createFleetPopupedFleetLink($fleetRow, $Text, $FleetType)
     {
-        global $LNG, $USER, $resource;
+        $LNG =& Singleton()->LNG;
+        $USER =& Singleton()->USER;
+        $resource =& Singleton()->resource;
         $SpyTech        = $USER[$resource[106]];
         $Owner          = $fleetRow['fleet_owner'] == $this->userId;
         $FleetRec       = explode(';', $fleetRow['fleet_array']);

@@ -27,8 +27,12 @@ class ShowTechtreePage extends AbstractGamePage
 
     function show()
     {
-        global $resource, $requeriments, $reslist, $USER, $PLANET, $LNG;
-
+        $resource =& Singleton()->resource;
+        $requeriments =& Singleton()->requeriments;
+        $reslist =& Singleton()->reslist;
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
+        $LNG =& Singleton()->LNG;
         $elementIDs		= array_merge(
             array(0),
             $reslist['build'],

@@ -44,7 +44,7 @@ class GalaxyRows
 
     public function getGalaxyData()
     {
-        global $USER;
+        $USER =& Singleton()->USER;
 
         $sql = 'SELECT SQL_BIG_RESULT DISTINCT'
             . ' p.galaxy, p.system, p.planet, p.id, p.id_owner, p.name, p.image, p.last_update, p.diameter, p.temp_min,'
@@ -113,7 +113,7 @@ class GalaxyRows
 
     protected function setLastActivity()
     {
-        global $LNG;
+        $LNG =& Singleton()->LNG;
 
         $lastActivity = floor(
             (TIMESTAMP - max($this->galaxyRow['last_update'], $this->galaxyRow['m_last_update'])) / 60
@@ -133,15 +133,15 @@ class GalaxyRows
 
     protected function isOwnPlanet()
     {
-        global $USER;
+        $USER =& Singleton()->USER;
 
         $this->galaxyData[$this->galaxyRow['planet']]['ownPlanet']  = $this->galaxyRow['id_owner'] == $USER['id'];
     }
 
     protected function getAllowedMissions()
     {
-        global $PLANET, $resource;
-
+        $PLANET =& Singleton()->PLANET;
+        $resource =& Singleton()->resource;
         $this->galaxyData[$this->galaxyRow['planet']]['missions'] = [
             1 => !$this->galaxyData[$this->galaxyRow['planet']]['ownPlanet']
                 && isModuleAvailable(MODULE_MISSION_ATTACK),
@@ -166,8 +166,9 @@ class GalaxyRows
 
     protected function inMissileRange()
     {
-        global $USER, $PLANET, $resource;
-
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
+        $resource =& Singleton()->resource;
         if ($this->galaxyRow['galaxy'] != $PLANET['galaxy']) {
             return false;
         }
@@ -208,7 +209,7 @@ class GalaxyRows
 
     protected function getActionButtons()
     {
-        global $USER;
+        $USER =& Singleton()->USER;
         if ($this->galaxyData[$this->galaxyRow['planet']]['ownPlanet']) {
             $this->galaxyData[$this->galaxyRow['planet']]['action'] = false;
         } else {
@@ -227,7 +228,8 @@ class GalaxyRows
 
     protected function getPlayerData()
     {
-        global $USER, $LNG;
+        $USER =& Singleton()->USER;
+        $LNG =& Singleton()->LNG;
         $IsNoobProtec = CheckNoobProtec($USER, $this->galaxyRow, $this->galaxyRow);
         $Class = userStatus($this->galaxyRow, $IsNoobProtec);
 
@@ -251,7 +253,8 @@ class GalaxyRows
 
     protected function getAllianceData()
     {
-        global $USER, $LNG;
+        $USER =& Singleton()->USER;
+        $LNG =& Singleton()->LNG;
         if (empty($this->galaxyRow['allyid'])) {
             $this->galaxyData[$this->galaxyRow['planet']]['alliance']   = false;
         } else {

@@ -21,7 +21,8 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 
 function ShowModulePage()
 {
-    global $LNG, $USER;
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
     $config = Config::get(Universe::getEmulated());
     $module = explode(';', $config->moduls);
 

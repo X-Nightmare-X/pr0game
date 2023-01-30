@@ -26,9 +26,9 @@ class ShowBuddyListPage extends AbstractGamePage
 
 	function request()
 	{
-		global $USER, $LNG;
-
-		$this->initTemplate();
+		$USER =& Singleton()->USER;
+  $LNG =& Singleton()->LNG;
+  $this->initTemplate();
 		$this->setWindow('popup');
 
 		$id	= HTTP::_GP('id', 0);
@@ -69,9 +69,9 @@ class ShowBuddyListPage extends AbstractGamePage
 
 	function send()
 	{
-		global $USER, $LNG;
-
-		$this->initTemplate();
+		$USER =& Singleton()->USER;
+  $LNG =& Singleton()->LNG;
+  $this->initTemplate();
 		$this->setWindow('popup');
 		$this->tplObj->execscript('window.setTimeout(parent.$.fancybox.close, 2000);');
 
@@ -137,9 +137,9 @@ class ShowBuddyListPage extends AbstractGamePage
 
 	function delete()
 	{
-		global $USER, $LNG;
-
-		$id	= HTTP::_GP('id', 0);
+		$USER =& Singleton()->USER;
+  $LNG =& Singleton()->LNG;
+  $id	= HTTP::_GP('id', 0);
 		$db = Database::get();
 
         $sql = "SELECT COUNT(*) as count FROM %%BUDDY%% WHERE id = :id AND (sender = :userID OR owner = :userID);";
@@ -183,9 +183,9 @@ class ShowBuddyListPage extends AbstractGamePage
 
 	function accept()
 	{
-		global $USER, $LNG;
-
-		$id	= HTTP::_GP('id', 0);
+		$USER =& Singleton()->USER;
+  $LNG =& Singleton()->LNG;
+  $id	= HTTP::_GP('id', 0);
 		$db = Database::get();
 
         $sql = "DELETE FROM %%BUDDY_REQUEST%% WHERE id = :id;";
@@ -212,7 +212,7 @@ class ShowBuddyListPage extends AbstractGamePage
 
 	function show()
 	{
-		global $USER;
+		$USER =& Singleton()->USER;
 
 		$db = Database::get();
         $sql = "SELECT a.sender, a.id as buddyid, b.id, b.username, b.onlinetime, b.galaxy, b.system, b.planet, b.ally_id, c.ally_name, d.text

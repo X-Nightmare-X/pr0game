@@ -22,7 +22,7 @@ class ShowRegisterPage extends AbstractLoginPage
 
     function show()
     {
-        global $LNG;
+        $LNG =& Singleton()->LNG;
         $universeSelect = [];
         $universeSelected = Universe::current();
         $referralData = ['id' => 0, 'name' => ''];
@@ -75,7 +75,7 @@ class ShowRegisterPage extends AbstractLoginPage
 
     function send()
     {
-        global $LNG;
+        $LNG =& Singleton()->LNG;
         $config = Config::get();
 
         if ($config->uni_status == STATUS_CLOSED || $config->uni_status == STATUS_LOGIN_ONLY) {

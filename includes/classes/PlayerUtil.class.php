@@ -457,7 +457,7 @@ class PlayerUtil
         $isHome = false,
         $authlevel = 0
     ) {
-        global $LNG;
+        $LNG =& Singleton()->LNG;
 
         if (self::checkPosition($universe, $galaxy, $system, $position) === false) {
             throw new Exception(
@@ -578,7 +578,7 @@ class PlayerUtil
         $diameter = null,
         $moonName = null
     ) {
-        global $LNG;
+        $LNG =& Singleton()->LNG;
 
         $db = Database::get();
 
@@ -853,7 +853,7 @@ class PlayerUtil
     private static function getAstroTech($USER)
     {
 
-        global $resource;
+        $resource =& Singleton()->resource;
 
         $astroTech = $USER[$resource[124]];
 
@@ -871,7 +871,7 @@ class PlayerUtil
 
     public static function maxPlanetCount($USER)
     {
-        global $resource;
+        $resource =& Singleton()->resource;
         $config = Config::get($USER['universe']);
 
         $planetPerTech = $config->planets_tech;

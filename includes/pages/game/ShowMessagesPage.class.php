@@ -154,8 +154,9 @@ class ShowMessagesPage extends AbstractGamePage
 
     function deleteMessage()
     {
-	global $LNG, $USER;
-	$db = Database::get();
+	$LNG =& Singleton()->LNG;
+ $USER =& Singleton()->USER;
+ $db = Database::get();
 
         $this->initTemplate();
         $this->setWindow('ajax');
@@ -180,7 +181,7 @@ class ShowMessagesPage extends AbstractGamePage
 
     function action()
     {
-        global $USER;
+        $USER =& Singleton()->USER;
 
         $db = Database::get();
 
@@ -325,7 +326,8 @@ class ShowMessagesPage extends AbstractGamePage
 
     function send()
     {
-        global $USER, $LNG;
+        $USER =& Singleton()->USER;
+        $LNG =& Singleton()->LNG;
         $receiverID	= HTTP::_GP('id', 0);
         $subject 	= HTTP::_GP('subject', $LNG['mg_no_subject'], true);
 		$text		= HTTP::_GP('text', '', true);
@@ -348,7 +350,8 @@ class ShowMessagesPage extends AbstractGamePage
 
     function write()
     {
-        global $LNG, $USER;
+        $LNG =& Singleton()->LNG;
+        $USER =& Singleton()->USER;
         $this->setWindow('popup');
         $this->initTemplate();
 
@@ -387,8 +390,8 @@ class ShowMessagesPage extends AbstractGamePage
 
     function show()
     {
-        global $LNG, $USER;
-
+        $LNG =& Singleton()->LNG;
+        $USER =& Singleton()->USER;
         $MessCategory      	= HTTP::_GP('category', -1);
         $page			= HTTP::_GP('side', 1);
 

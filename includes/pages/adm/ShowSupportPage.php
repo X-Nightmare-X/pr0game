@@ -37,8 +37,9 @@ class ShowSupportPage
 	
 	public function show()
 	{
-		global $USER, $LNG;
-		$ticketResult	= $GLOBALS['DATABASE']->query("SELECT t.*, u.username, COUNT(a.ticketID) as answer FROM ".TICKETS." t INNER JOIN ".TICKETS_ANSWER." a USING (ticketID) INNER JOIN ".USERS." u ON u.id = t.ownerID WHERE t.universe = ".Universe::getEmulated()." GROUP BY a.ticketID ORDER BY t.ticketID DESC;");
+		$USER =& Singleton()->USER;
+  $LNG =& Singleton()->LNG;
+  $ticketResult	= $GLOBALS['DATABASE']->query("SELECT t.*, u.username, COUNT(a.ticketID) as answer FROM ".TICKETS." t INNER JOIN ".TICKETS_ANSWER." a USING (ticketID) INNER JOIN ".USERS." u ON u.id = t.ownerID WHERE t.universe = ".Universe::getEmulated()." GROUP BY a.ticketID ORDER BY t.ticketID DESC;");
 		$ticketList		= array();
 		
 		while($ticketRow = $GLOBALS['DATABASE']->fetch_array($ticketResult)) {
@@ -59,9 +60,9 @@ class ShowSupportPage
 	
 	function send() 
 	{
-		global $USER, $LNG;
-				
-		$ticketID	= HTTP::_GP('id', 0);
+		$USER =& Singleton()->USER;
+  $LNG =& Singleton()->LNG;
+  $ticketID	= HTTP::_GP('id', 0);
 		$message	= HTTP::_GP('message', '', true);
 		$change		= HTTP::_GP('change_status', 0);
 		
@@ -102,8 +103,9 @@ class ShowSupportPage
 	
 	function view() 
 	{
-		global $USER, $LNG;
-		$ticketID			= HTTP::_GP('id', 0);
+		$USER =& Singleton()->USER;
+  $LNG =& Singleton()->LNG;
+  $ticketID			= HTTP::_GP('id', 0);
 		$answerResult		= $GLOBALS['DATABASE']->query("SELECT a.*, t.categoryID, t.status FROM ".TICKETS_ANSWER." a INNER JOIN ".TICKETS." t USING(ticketID) WHERE a.ticketID = ".$ticketID." ORDER BY a.answerID;");
 		$answerList			= array();
 

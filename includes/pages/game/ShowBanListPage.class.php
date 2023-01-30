@@ -26,9 +26,9 @@ class ShowBanListPage extends AbstractGamePage
 
 	function show()
 	{
-		global $USER, $LNG;
-
-		$page  	= HTTP::_GP('side', 1);
+		$USER =& Singleton()->USER;
+  $LNG =& Singleton()->LNG;
+  $page  	= HTTP::_GP('side', 1);
 		$db 	= Database::get();
 
 		$sql = "SELECT COUNT(*) as count FROM %%BANNED%% WHERE universe = :universe ORDER BY time DESC;";

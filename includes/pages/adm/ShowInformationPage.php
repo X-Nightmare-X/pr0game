@@ -19,8 +19,9 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowInformationPage()
 {
-	global $LNG, $USER;
-	$config = Config::get();
+	$LNG =& Singleton()->LNG;
+ $USER =& Singleton()->USER;
+ $config = Config::get();
 
 	// @ for open_basedir
 	if(@file_exists(ini_get('error_log')))

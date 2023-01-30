@@ -37,7 +37,7 @@ class statbuilder
      */
     final public function generateStats(): array
     {
-        global $resource;
+        $resource =& Singleton()->resource;
 
         $allianceScores = [];
         $userStats = $this->getUserInfosFromDB();
@@ -165,7 +165,8 @@ class statbuilder
 
     private function getUserInfosFromDB(): array
     {
-        global $resource, $reslist;
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
         $select_defenses = '';
         $select_buildings = '';
         $selected_tech = '';
@@ -220,7 +221,9 @@ class statbuilder
 
     private function getResearchScoreByUser($USER): array
     {
-        global $resource, $reslist, $pricelist;
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
+        $pricelist =& Singleton()->pricelist;
         $TechCounts = 0;
         $TechPoints = 0;
 
@@ -239,7 +242,9 @@ class statbuilder
 
     private function getBuildingScoreByPlanet($PLANET): array
     {
-        global $resource, $reslist, $pricelist;
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
+        $pricelist =& Singleton()->pricelist;
         $BuildCounts = 0;
         $BuildPoints = 0;
 
@@ -257,7 +262,9 @@ class statbuilder
 
     private function getDefenseScoreByUser($USER): array
     {
-        global $resource, $reslist, $pricelist;
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
+        $pricelist =& Singleton()->pricelist;
         $DefenseCounts = 0;
         $DefensePoints = 0;
 
@@ -274,7 +281,9 @@ class statbuilder
 
     private function getFleetScoreByUser($USER): array
     {
-        global $resource, $reslist, $pricelist;
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
+        $pricelist =& Singleton()->pricelist;
         $FleetCounts = 0;
         $FleetPoints = 0;
 
@@ -459,31 +468,32 @@ class statbuilder
 
             $name = Config::get($uni)->uni_name;
             $name = str_replace(' ', '_', $name);
-    
+
             $fh = fopen(ROOT_PATH . 'stats/stats_' . $name . '_' . date('Y-m-d_H') . '.json', 'w+');
             fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
             fclose($fh);
-    
+
             $fh = fopen(ROOT_PATH . 'stats_' . $name . '.json', 'w+');
             fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
             fclose($fh);
         }
     }
-    
+
     private function getHighestUser($type, $uni) 
     {
-        GLOBAL $reslist, $resource;
+        $reslist =& Singleton()->reslist;
+        $resource =& Singleton()->resource;
         $db = Database::get();
         $result = array();
         foreach($reslist['tech'] as $Techno) 
 		{
 			$techName = $resource[$Techno];
-			
+
             $sql = "SELECT id, " . $techName . " as level FROM %%USERS%% where " . $techName . " = (SELECT max(" . $techName . ") from %%USERS%% where universe = :universe) and universe = :universe;";
             $data = $db->select($sql, [
                 ':universe' => $uni
             ]);
-            
+
             if($data[0]['level'] > 0) {
                 $dataFinal = array();
                 foreach($data as $row) {
@@ -498,7 +508,8 @@ class statbuilder
 
     private function getHighestPlanet($type, $uni) 
     {
-        GLOBAL $reslist, $resource;
+        $reslist =& Singleton()->reslist;
+        $resource =& Singleton()->resource;
         $db = Database::get();
         $result = array();
         foreach($reslist[$type] as $kind) {
@@ -532,7 +543,7 @@ class statbuilder
                 ]);                
             }
         }
-        
+
     }
 
     public function buildRecords() {

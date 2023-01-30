@@ -21,7 +21,8 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 
 function ShowSearchPage()
 {
-    global $LNG, $USER;
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
     if (!isset($_GET['delete'])) {
         $_GET['delete'] = '';
     }
@@ -328,8 +329,8 @@ function MyCrazyLittleSearch(
     $SName,
     $SearchFile
 ) {
-    global $USER, $LNG;
-
+    $USER =& Singleton()->USER;
+    $LNG =& Singleton()->LNG;
     $parse  = $LNG;
 
     if (!$Page) {

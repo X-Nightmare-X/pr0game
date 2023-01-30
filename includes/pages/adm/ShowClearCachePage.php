@@ -19,8 +19,9 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowClearCachePage()
 {
-	global $LNG, $USER;
-	ClearCache();
+	$LNG =& Singleton()->LNG;
+ $USER =& Singleton()->USER;
+ ClearCache();
 	$template = new template();
 	$template->assign_vars(array(
 		'signalColors'	=> $USER['signalColors']

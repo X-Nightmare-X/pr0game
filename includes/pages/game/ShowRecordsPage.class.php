@@ -27,8 +27,9 @@ class ShowRecordsPage extends AbstractGamePage
 
     public function show()
     {
-        global $USER, $LNG, $reslist;
-
+        $USER =& Singleton()->USER;
+        $LNG =& Singleton()->LNG;
+        $reslist =& Singleton()->reslist;
         $db = Database::get();
 
         $sql = "SELECT r.elementID, r.level, r.userID, u.username, u.records_optIn, v.name

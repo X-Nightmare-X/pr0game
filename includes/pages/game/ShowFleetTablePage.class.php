@@ -27,7 +27,7 @@ class ShowFleetTablePage extends AbstractGamePage
 
     public function createACS($fleetID, $fleetData)
     {
-        global $USER;
+        $USER =& Singleton()->USER;
 
         $rand = mt_rand(100000, 999999999);
         $acsName = 'AG' . $rand;
@@ -75,7 +75,7 @@ class ShowFleetTablePage extends AbstractGamePage
 
     public function loadACS($fleetData)
     {
-        global $USER;
+        $USER =& Singleton()->USER;
 
         $db = Database::get();
         $sql = "SELECT id, name FROM %%USERS_ACS%% INNER JOIN %%AKS%% ON acsID = id"
@@ -90,8 +90,8 @@ class ShowFleetTablePage extends AbstractGamePage
 
     public function getACSPageData($fleetID)
     {
-        global $USER, $LNG;
-
+        $USER =& Singleton()->USER;
+        $LNG =& Singleton()->LNG;
         $db = Database::get();
 
         $sql = "SELECT fleet_start_time, fleet_end_id, fleet_group, fleet_mess FROM %%FLEETS%%"
@@ -190,8 +190,12 @@ class ShowFleetTablePage extends AbstractGamePage
 
     public function show()
     {
-        global $USER, $PLANET, $reslist, $resource, $LNG, $pricelist;
-
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
+        $reslist =& Singleton()->reslist;
+        $resource =& Singleton()->resource;
+        $LNG =& Singleton()->LNG;
+        $pricelist =& Singleton()->pricelist;
         $acsData = [];
         $FleetID = HTTP::_GP('fleetID', 0);
         $GetAction = HTTP::_GP('action', "");

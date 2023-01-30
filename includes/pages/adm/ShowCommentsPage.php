@@ -4,7 +4,8 @@ if (!allowedTo('ShowMultiIPPage')) throw new Exception("Permission error!");
 
 function ShowCommentsPage()
 {
-    global $LNG, $USER;
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
     $db = Database::get();
 
     $sql = 'SELECT uc.id, u.username, a.ally_name, uc.comment, uc.created_at 

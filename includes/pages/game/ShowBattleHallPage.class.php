@@ -26,7 +26,7 @@ class ShowBattleHallPage extends AbstractGamePage
 
 	private function assembleSelectors()
 	{
-		global $LNG;
+		$LNG =& Singleton()->LNG;
 
 		$Selectors = [];
 		$Selectors['memorial'] = [
@@ -64,8 +64,9 @@ class ShowBattleHallPage extends AbstractGamePage
 
 	function show()
 	{
-		global $USER, $LNG;
-    	require_once 'includes/classes/class.BattleHallFilter.php';
+		$USER =& Singleton()->USER;
+     $LNG =& Singleton()->LNG;
+     require_once 'includes/classes/class.BattleHallFilter.php';
 
 		$memorial = HTTP::_GP('memorial', 1);
 		$timeframe = HTTP::_GP('timeframe', 0);

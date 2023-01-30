@@ -24,8 +24,12 @@ class ShowFleetStep1Page extends AbstractGamePage
 
     public function show():void
     {
-        global $USER, $PLANET, $pricelist, $reslist, $LNG, $resource;
-
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
+        $pricelist =& Singleton()->pricelist;
+        $reslist =& Singleton()->reslist;
+        $LNG =& Singleton()->LNG;
+        $resource =& Singleton()->resource;
         $targetGalaxy = HTTP::_GP('galaxy', (int) $PLANET['galaxy']);
         $targetSystem = HTTP::_GP('system', (int) $PLANET['system']);
         $targetPlanet = HTTP::_GP('planet', (int) $PLANET['planet']);
@@ -132,8 +136,8 @@ class ShowFleetStep1Page extends AbstractGamePage
 
     public function saveShortcuts():void
     {
-        global $USER, $LNG;
-
+        $USER =& Singleton()->USER;
+        $LNG =& Singleton()->LNG;
         if (!isset($_REQUEST['shortcut'])) {
             $this->sendJSON($LNG['fl_shortcut_saved']);
         }
@@ -191,8 +195,8 @@ class ShowFleetStep1Page extends AbstractGamePage
 
     private function GetColonyList()
     {
-        global $PLANET, $USER;
-
+        $PLANET =& Singleton()->PLANET;
+        $USER =& Singleton()->USER;
         $ColonyList = [];
 
         foreach ($USER['PLANETS'] as $CurPlanetID => $CurPlanet) {
@@ -214,7 +218,7 @@ class ShowFleetStep1Page extends AbstractGamePage
 
     private function GetUserShotcut()
     {
-        global $USER;
+        $USER =& Singleton()->USER;
 
         if (!isModuleAvailable(MODULE_SHORTCUTS)) {
             return [];
@@ -236,7 +240,7 @@ class ShowFleetStep1Page extends AbstractGamePage
 
     private function GetAvalibleACS()
     {
-        global $USER;
+        $USER =& Singleton()->USER;
 
         $db = Database::get();
 
@@ -276,8 +280,10 @@ class ShowFleetStep1Page extends AbstractGamePage
 
     public function checkTarget():void
     {
-        global $PLANET, $LNG, $USER, $resource;
-
+        $PLANET =& Singleton()->PLANET;
+        $LNG =& Singleton()->LNG;
+        $USER =& Singleton()->USER;
+        $resource =& Singleton()->resource;
         $targetGalaxy = HTTP::_GP('galaxy', 0);
         $targetSystem = HTTP::_GP('system', 0);
         $targetPlanet = HTTP::_GP('planet', 0);

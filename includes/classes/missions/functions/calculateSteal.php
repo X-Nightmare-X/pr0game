@@ -18,8 +18,8 @@
 function calculateSteal($attackFleets, $defenderPlanet, $simulate = false)
 {
     // See: http://www.owiki.de/Beute
-    global $pricelist, $resource;
-
+    $pricelist =& Singleton()->pricelist;
+    $resource =& Singleton()->resource;
     $firstResource = 901;
     $secondResource = 902;
     $thirdResource = 903;

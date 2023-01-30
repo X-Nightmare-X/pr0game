@@ -26,7 +26,7 @@ class ShowVertifyPage extends AbstractLoginPage
 
 	private function _activeUser()
 	{
-		global $LNG;
+		$LNG =& Singleton()->LNG;
 
 		$validationID	= HTTP::_GP('i', 0);
 		$validationKey	= HTTP::_GP('k', '');
@@ -123,7 +123,7 @@ class ShowVertifyPage extends AbstractLoginPage
 
 	function json()
 	{
-		global $LNG;
+		$LNG =& Singleton()->LNG;
 		$userData	= $this->_activeUser();
 		$this->sendJSON(sprintf($LNG['vertifyAdminMessage'], $userData['userName']));
 	}

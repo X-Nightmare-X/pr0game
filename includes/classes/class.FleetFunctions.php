@@ -32,7 +32,7 @@ class FleetFunctions
 
     private static function getShipConsumption($Ship, $Player)
     {
-        global $pricelist;
+        $pricelist =& Singleton()->pricelist;
 
         return (
             ($Player['impulse_motor_tech'] >= 5 && $Ship == 202)
@@ -47,7 +47,7 @@ class FleetFunctions
 
     private static function getShipSpeed($Ship, $Player)
     {
-        global $pricelist;
+        $pricelist =& Singleton()->pricelist;
 
         $techSpeed = $pricelist[$Ship]['tech'];
 
@@ -197,13 +197,14 @@ class FleetFunctions
 
     public static function getMaxFleetSlots($USER)
     {
-        global $resource;
+        $resource =& Singleton()->resource;
         return 1 + $USER[$resource[108]];
     }
 
     public static function getFleetRoom($Fleet)
     {
-        global $pricelist, $USER;
+        $pricelist =& Singleton()->pricelist;
+        $USER =& Singleton()->USER;
         $FleetRoom = 0;
         foreach ($Fleet as $ShipID => $amount) {
             $FleetRoom += $pricelist[$ShipID]['capacity'] * $amount;
@@ -244,7 +245,7 @@ class FleetFunctions
 
     public static function getFleetMissions($USER, $MisInfo, $Planet)
     {
-        global $resource;
+        $resource =& Singleton()->resource;
         $Missions = self::getAvailableMissions($USER, $MisInfo, $Planet);
         $stayBlock = [];
         $exchange = false;
@@ -484,7 +485,7 @@ class FleetFunctions
 
     public static function gotoFleetPage($Code = 0)
     {
-        global $LNG;
+        $LNG =& Singleton()->LNG;
         if (Config::get()->debug == 1) {
             $temp = debug_backtrace();
             echo sprintf(
@@ -584,7 +585,7 @@ class FleetFunctions
 
     public static function checkBash($Target)
     {
-        global $USER;
+        $USER =& Singleton()->USER;
 
         if (!BASH_ON) {
             return false;
@@ -692,7 +693,7 @@ class FleetFunctions
         $consumption = 0
     )
     {
-        global $resource;
+        $resource =& Singleton()->resource;
         $fleetShipCount = array_sum($fleetArray);
         $fleetData = [];
 

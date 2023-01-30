@@ -24,7 +24,7 @@ class ShowBoardPage extends AbstractLoginPage
 
 	function show()
 	{
-		global $LNG;
+		$LNG =& Singleton()->LNG;
 		$boardUrl	= Config::get()->forum_url;
 		if(filter_var($boardUrl, FILTER_VALIDATE_URL))
 		{

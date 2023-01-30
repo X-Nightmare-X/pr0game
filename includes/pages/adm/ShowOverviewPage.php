@@ -17,9 +17,9 @@
 
 function ShowOverviewPage()
 {
-	global $LNG, $USER;
-	
-	$Message	= array();
+	$LNG =& Singleton()->LNG;
+ $USER =& Singleton()->USER;
+ $Message	= array();
 	if ($USER['authlevel'] >= AUTH_ADM)
 	{
 		if(file_exists(ROOT_PATH.'update.php'))

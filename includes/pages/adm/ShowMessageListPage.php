@@ -19,8 +19,9 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowMessageListPage()
 {
-	global $LNG, $USER;
-	$page		= HTTP::_GP('side', 1);
+	$LNG =& Singleton()->LNG;
+ $USER =& Singleton()->USER;
+ $page		= HTTP::_GP('side', 1);
 	$type		= HTTP::_GP('type', 100);
 	$sender		= HTTP::_GP('sender', '', UTF8_SUPPORT);
 	$receiver	= HTTP::_GP('receiver', '', UTF8_SUPPORT);
