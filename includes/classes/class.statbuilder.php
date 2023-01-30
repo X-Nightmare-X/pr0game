@@ -557,9 +557,6 @@ class statbuilder
 */
 // define('MODE', 'INSTALL');
 // define('ROOT_PATH', 'G:/xampp/htdocs/pr0game/');
-// set_include_path(
-//     ROOT_PATH . 'includes/libs/BBCodeParser2/' . PATH_SEPARATOR . ROOT_PATH . PATH_SEPARATOR . get_include_path()
-// );
 
 // require 'includes/pages/game/AbstractGamePage.class.php';
 // require 'includes/pages/game/ShowErrorPage.class.php';
