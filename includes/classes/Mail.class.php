@@ -1,5 +1,7 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+
 /**
  *  2Moons 
  *   by Jan-Otto Kröpke 2009-2016
@@ -47,8 +49,6 @@ class Mail
 
 	static private function getMailObject()
 	{
-        require_once 'includes/libs/phpmailer/class.phpmailer.php';
-
         $mail               = new PHPMailer(true);
 		$mail->PluginDir	= 'includes/libs/phpmailer/';
 

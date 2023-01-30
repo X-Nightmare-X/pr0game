@@ -15,8 +15,6 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-require('includes/libs/Smarty/Smarty.class.php');
-
 class template extends Smarty
 {
 	protected $window	= 'full';
