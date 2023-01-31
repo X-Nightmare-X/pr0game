@@ -39,12 +39,14 @@ class ShowFleetStep2Page extends AbstractGamePage
         $fleetGroup = HTTP::_GP('fleet_group', 0);
         $token = HTTP::_GP('token', '');
 
-        if (!isset($_SESSION['fleet'][$token])) {
+        $session = Session::load();
+        $fleet = $session->fleet;
+        if (!isset($fleet[$token])) {
             FleetFunctions::gotoFleetPage();
         }
 
 
-        $fleetArray = $_SESSION['fleet'][$token]['fleet'];
+        $fleetArray = $fleet[$token]['fleet'];
 
         $db = Database::get();
         $sql = "SELECT id, id_owner, der_metal, der_crystal, tf_active
@@ -123,15 +125,17 @@ class ShowFleetStep2Page extends AbstractGamePage
             FleetFunctions::gotoFleetPage(0);
         }
 
-        $_SESSION['fleet'][$token]['speed']         = $MaxFleetSpeed;
-        $_SESSION['fleet'][$token]['distance']      = $distance;
-        $_SESSION['fleet'][$token]['targetGalaxy']  = $targetGalaxy;
-        $_SESSION['fleet'][$token]['targetSystem']  = $targetSystem;
-        $_SESSION['fleet'][$token]['targetPlanet']  = $targetPlanet;
-        $_SESSION['fleet'][$token]['targetType']    = $targetType;
-        $_SESSION['fleet'][$token]['fleetGroup']    = $fleetGroup;
-        $_SESSION['fleet'][$token]['fleetSpeed']    = $fleetSpeed;
-        $_SESSION['fleet'][$token]['ownPlanet']     = $PLANET['id'];
+        $fleet[$token]['speed'] = $MaxFleetSpeed;
+        $fleet[$token]['distance'] = $distance;
+        $fleet[$token]['targetGalaxy'] = $targetGalaxy;
+        $fleet[$token]['targetSystem'] = $targetSystem;
+        $fleet[$token]['targetPlanet'] = $targetPlanet;
+        $fleet[$token]['targetType'] = $targetType;
+        $fleet[$token]['fleetGroup'] = $fleetGroup;
+        $fleet[$token]['fleetSpeed'] = $fleetSpeed;
+        $fleet[$token]['ownPlanet'] = $PLANET['id'];
+        $session->fleet = $fleet;
+        $session->save();
 
         if ($targetMission == 0) {
             if (count($MissionOutput['MissionSelector']) == 1) {
@@ -218,7 +222,7 @@ class ShowFleetStep2Page extends AbstractGamePage
         }
 
         $fleetData  = [
-            'fleetroom'     => floatToString($_SESSION['fleet'][$token]['fleetRoom']),
+            'fleetroom'     => floatToString($fleet[$token]['fleetRoom']),
             'consumption'   => floatToString($consumption),
         ];
 
@@ -238,7 +242,7 @@ class ShowFleetStep2Page extends AbstractGamePage
             'fl_continue'       => $LNG['fl_continue'],
             'token'             => $token,
             'duration'          => $duration,
-            'predefinedRes'     => $_SESSION['fleet'][$token]['predefinedResources']
+            'predefinedRes'     => $fleet[$token]['predefinedResources']
         ]);
 
         foreach ($fleetArray as $Ship => $Count) {

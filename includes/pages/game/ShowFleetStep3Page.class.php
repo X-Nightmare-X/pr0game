@@ -62,17 +62,24 @@ class ShowFleetStep3Page extends AbstractGamePage
 
         $config = Config::get();
 
-        if (!isset($_SESSION['fleet'][$token])) {
+        $session = Session::load();
+        $fleet = $session->fleet;
+
+        if (!isset($fleet[$token])) {
             FleetFunctions::gotoFleetPage(1);
         }
 
-        if ($_SESSION['fleet'][$token]['time'] < TIMESTAMP - 600) {
-            unset($_SESSION['fleet'][$token]);
+        if ($fleet[$token]['time'] < TIMESTAMP - 600) {
+            unset($fleet[$token]);
+            $session->save();
             FleetFunctions::gotoFleetPage(0);
         }
 
-        $formData = $_SESSION['fleet'][$token];
-        unset($_SESSION['fleet'][$token]);
+        $session = Session::load();
+        $fleet = $session->fleet;
+        $formData = $fleet[$token];
+        unset($fleet[$token]);
+        $session->save();
 
         $distance = $formData['distance'];
         $targetGalaxy = $formData['targetGalaxy'];
