@@ -66,8 +66,9 @@ class ShowFleetStep1Page extends AbstractGamePage
         ];
 
         $token = getRandomString();
-
-        $_SESSION['fleet'][$token] = [
+        $session = Session::load();
+        $fleet = $session->fleet;
+        $fleet[$token] = [
             'time'      => TIMESTAMP,
             'fleet'     => $Fleet,
             'fleetRoom' => $FleetRoom,
@@ -77,6 +78,8 @@ class ShowFleetStep1Page extends AbstractGamePage
                 'deut'=>  HTTP::_GP('deut_storage', "")
             ]
         ];
+        $session->fleet = $fleet;
+        $session->save();
 
         $shortcutList = $this->GetUserShotcut();
         $colonyList = $this->GetColonyList();
