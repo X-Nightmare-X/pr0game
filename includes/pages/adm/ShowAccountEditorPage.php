@@ -23,7 +23,10 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 
 function ShowAccountEditorPage()
 {
-    global $LNG, $reslist, $resource, $USER;
+    $LNG =& Singleton()->LNG;
+    $reslist =& Singleton()->reslist;
+    $resource =& Singleton()->resource;
+    $USER =& Singleton()->USER;
     $template = new template();
     if(!isset($_GET['edit'])) { $_GET['edit'] = ''; }
     switch ($_GET['edit']) {

@@ -45,7 +45,7 @@ class BuildFunctions
 
     public static function getRestPrice($USER, $PLANET, $Element, $elementPrice = null)
     {
-        global $resource;
+        $resource =& Singleton()->resource;
 
         if (!isset($elementPrice)) {
             $elementPrice = self::getElementPrice($USER, $PLANET, $Element);
@@ -64,8 +64,9 @@ class BuildFunctions
 
     public static function getElementPrice($USER, $PLANET, $Element, $forDestroy = false, $forLevel = null)
     {
-        global $pricelist, $resource, $reslist;
-
+        $pricelist =& Singleton()->pricelist;
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
         if (
             in_array($Element, $reslist['fleet']) || in_array($Element, $reslist['defense'])
             || in_array($Element, $reslist['missile'])
@@ -118,8 +119,8 @@ class BuildFunctions
 
     public static function isTechnologieAccessible($USER, $PLANET, $Element)
     {
-        global $requeriments, $resource;
-
+        $requeriments =& Singleton()->requeriments;
+        $resource =& Singleton()->resource;
         if (!isset($requeriments[$Element])) {
             return true;
         }
@@ -144,8 +145,9 @@ class BuildFunctions
         $forLevel = null,
         $maxQueueIndex = 0
     ) {
-        global $resource, $reslist, $requeriments;
-
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
+        $requeriments =& Singleton()->requeriments;
         $config = Config::get($USER['universe']);
 
         $time = 0;
@@ -239,8 +241,8 @@ class BuildFunctions
 
     public static function getMaxConstructibleElements($USER, $PLANET, $Element, $elementPrice = null)
     {
-        global $resource, $reslist;
-
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
         if (!isset($elementPrice)) {
             $elementPrice = self::getElementPrice($USER, $PLANET, $Element);
         }
@@ -266,8 +268,8 @@ class BuildFunctions
 
     public static function getMaxConstructibleRockets($USER, $PLANET, $Missiles = null)
     {
-        global $resource, $reslist;
-
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
         if (!isset($Missiles)) {
             $Missiles = [];
 
@@ -296,7 +298,7 @@ class BuildFunctions
 
     public static function getAvalibleBonus($Element)
     {
-        global $pricelist;
+        $pricelist =& Singleton()->pricelist;
 
         $elementBonus = [];
 

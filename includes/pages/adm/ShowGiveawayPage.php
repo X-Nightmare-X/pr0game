@@ -20,7 +20,10 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 }
 function ShowGiveaway()
 {
-    global $LNG, $resource, $reslist, $USER;
+    $LNG =& Singleton()->LNG;
+    $resource =& Singleton()->resource;
+    $reslist =& Singleton()->reslist;
+    $USER =& Singleton()->USER;
     $template = new template();
     $action = HTTP::_GP('action', '');
     if ($action == 'send') {

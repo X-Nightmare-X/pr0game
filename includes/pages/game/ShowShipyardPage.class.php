@@ -27,7 +27,9 @@ class ShowShipyardPage extends AbstractGamePage
 
     private function cancelAuftr()
     {
-        global $USER, $PLANET, $resource;
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
+        $resource =& Singleton()->resource;
         $ElementQueue = !empty($PLANET['b_hangar_id']) ? unserialize($PLANET['b_hangar_id']) : [];
 
         $CancelArray = HTTP::_GP('auftr', []);
@@ -68,8 +70,10 @@ class ShowShipyardPage extends AbstractGamePage
 
     private function buildAuftr($fmenge)
     {
-        global $USER, $PLANET, $reslist, $resource;
-
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
+        $reslist =& Singleton()->reslist;
+        $resource =& Singleton()->resource;
         $Missiles = [
             502 => $PLANET[$resource[502]],
             503 => $PLANET[$resource[503]],
@@ -138,8 +142,11 @@ class ShowShipyardPage extends AbstractGamePage
 
     public function show()
     {
-        global $USER, $PLANET, $LNG, $resource, $reslist;
-
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
+        $LNG =& Singleton()->LNG;
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
         if ($PLANET[$resource[21]] == 0) {
             $this->printMessage($LNG['bd_shipyard_required']);
         }

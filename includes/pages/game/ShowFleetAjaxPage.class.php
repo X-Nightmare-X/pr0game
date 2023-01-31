@@ -36,8 +36,11 @@ class ShowFleetAjaxPage extends AbstractGamePage
 
     public function show()
     {
-        global $USER, $PLANET, $resource, $LNG, $pricelist;
-
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
+        $resource =& Singleton()->resource;
+        $LNG =& Singleton()->LNG;
+        $pricelist =& Singleton()->pricelist;
         $UserDeuterium = $PLANET['deuterium'];
 
         $planetID = HTTP::_GP('planetID', 0);

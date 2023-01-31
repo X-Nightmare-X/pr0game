@@ -21,7 +21,10 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 
 function ShowQuickEditorPage()
 {
-    global $USER, $LNG, $reslist, $resource;
+    $USER =& Singleton()->USER;
+    $LNG =& Singleton()->LNG;
+    $reslist =& Singleton()->reslist;
+    $resource =& Singleton()->resource;
     $action = HTTP::_GP('action', '');
     $edit = HTTP::_GP('edit', '');
     $id = HTTP::_GP('id', 0);

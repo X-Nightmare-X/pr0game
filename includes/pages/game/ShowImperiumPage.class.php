@@ -27,8 +27,9 @@ class ShowImperiumPage extends AbstractGamePage
 
     function show()
     {
-        global $USER, $resource, $reslist;
-
+        $USER =& Singleton()->USER;
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
         $db = Database::get();
         $db->startTransaction();
         $order = $USER['planet_sort_order'] == 1 ? 'DESC' : 'ASC';

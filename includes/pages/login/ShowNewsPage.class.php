@@ -26,7 +26,7 @@ class ShowNewsPage extends AbstractLoginPage
 	
 	function show() 
 	{
-		global $LNG;
+		$LNG =& Singleton()->LNG;
 
 		$sql = "SELECT date, title, text, user FROM %%NEWS%% ORDER BY id DESC;";
 		$newsResult = Database::get()->select($sql);

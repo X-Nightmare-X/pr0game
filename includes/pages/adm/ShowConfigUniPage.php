@@ -21,8 +21,8 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 
 function ShowConfigUniPage()
 {
-    global $LNG, $USER;
-
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
     $config = Config::get(Universe::getEmulated());
     if (!empty($_POST)) {
         $config_before = [

@@ -19,7 +19,7 @@ class ShowMarketPlacePage extends AbstractGamePage
 
     private function checkSlots($USER)
     {
-        global $LNG;
+        $LNG =& Singleton()->LNG;
         $ActualFleets = FleetFunctions::getCurrentFleets($USER['id']);
         if (FleetFunctions::getMaxFleetSlots($USER) <= $ActualFleets) {
             return ['result' => -1, 'message' => $LNG['fl_no_slots']];
@@ -29,8 +29,9 @@ class ShowMarketPlacePage extends AbstractGamePage
 
     private function checkTechs($SELLER)
     {
-        global $USER, $resource, $LNG;
-
+        $USER =& Singleton()->USER;
+        $resource =& Singleton()->resource;
+        $LNG =& Singleton()->LNG;
         $attack = $USER[$resource[109]] * 10;
         $shield = $USER[$resource[110]] * 10;
         $defensive = $USER[$resource[111]] * 10;
@@ -53,7 +54,8 @@ class ShowMarketPlacePage extends AbstractGamePage
     }
     private function checkVmode()
     {
-        global $USER, $LNG;
+        $USER =& Singleton()->USER;
+        $LNG =& Singleton()->LNG;
         if ($USER['urlaubs_modus'] == 1) {
             return [
                 'buyable' => false,
@@ -67,7 +69,7 @@ class ShowMarketPlacePage extends AbstractGamePage
     }
     private function checkDiplo($visibility, $level, $seller_ally, $ally)
     {
-        global $LNG;
+        $LNG =& Singleton()->LNG;
         if ($visibility == 2 && $level == 5) {
             return [
                 'buyable' => false,
@@ -110,7 +112,7 @@ class ShowMarketPlacePage extends AbstractGamePage
 
     private function getFleetTradeHistory()
     {
-        global $LNG;
+        $LNG =& Singleton()->LNG;
         $db = Database::get();
         $sql = 'SELECT
 			seller.fleet_array as fleet,
@@ -138,7 +140,10 @@ class ShowMarketPlacePage extends AbstractGamePage
 
 	private function calculateFleetSize($fleetResult, $shipType)
 	{
-		global $pricelist, $PLANET, $resource; // sorry world.
+		$pricelist =& Singleton()->pricelist;
+        $PLANET =& Singleton()->PLANET;
+        $resource =& Singleton()->resource;
+        // sorry world.
         $amount = $fleetResult['ex_resource_amount'];
 
         $F1capacity = 0;
@@ -184,7 +189,10 @@ class ShowMarketPlacePage extends AbstractGamePage
 
     private function doBuy()
     {
-        global $USER, $PLANET, $resource, $LNG;
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
+        $resource =& Singleton()->resource;
+        $LNG =& Singleton()->LNG;
         $FleetID = HTTP::_GP('fleetID', 0);
         $shipType = HTTP::_GP('shipType', "");
         $db = Database::get();
@@ -483,8 +491,10 @@ class ShowMarketPlacePage extends AbstractGamePage
 
     public function show()
     {
-    	global $USER, $PLANET, $LNG;
-    	require_once 'includes/classes/class.MarketManager.php';
+    	$USER =& Singleton()->USER;
+     $PLANET =& Singleton()->PLANET;
+     $LNG =& Singleton()->LNG;
+     require_once 'includes/classes/class.MarketManager.php';
 
         $GetAction = HTTP::_GP('action', "");
 

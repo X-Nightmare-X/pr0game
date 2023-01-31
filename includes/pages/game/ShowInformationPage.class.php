@@ -34,8 +34,11 @@ class ShowInformationPage extends AbstractGamePage
 
     public function sendFleet()
     {
-        global $PLANET, $USER, $resource, $LNG, $reslist;
-
+        $PLANET =& Singleton()->PLANET;
+        $USER =& Singleton()->USER;
+        $resource =& Singleton()->resource;
+        $LNG =& Singleton()->LNG;
+        $reslist =& Singleton()->reslist;
         $db = Database::get();
 
         $NextJumpTime = self::getNextJumpWaitTime($PLANET['last_jump_time']);
@@ -120,8 +123,9 @@ class ShowInformationPage extends AbstractGamePage
 
     private function getAvailableFleets()
     {
-        global $reslist, $resource, $PLANET;
-
+        $reslist =& Singleton()->reslist;
+        $resource =& Singleton()->resource;
+        $PLANET =& Singleton()->PLANET;
         $fleetList  = [];
 
         foreach ($reslist['fleet'] as $Ship) {
@@ -137,8 +141,8 @@ class ShowInformationPage extends AbstractGamePage
 
     public function destroyMissiles()
     {
-        global $resource, $PLANET;
-
+        $resource =& Singleton()->resource;
+        $PLANET =& Singleton()->PLANET;
         $db = Database::get();
 
         $Missle = HTTP::_GP('missile', []);
@@ -158,8 +162,9 @@ class ShowInformationPage extends AbstractGamePage
 
     private function getTargetGates()
     {
-        global $resource, $USER, $PLANET;
-
+        $resource =& Singleton()->resource;
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
         $db = Database::get();
 
         $order = $USER['planet_sort_order'] == 1 ? "DESC" : "ASC" ;
@@ -201,8 +206,14 @@ class ShowInformationPage extends AbstractGamePage
 
     public function show()
     {
-        global $USER, $PLANET, $LNG, $resource, $pricelist, $reslist, $CombatCaps, $ProdGrid;
-
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
+        $LNG =& Singleton()->LNG;
+        $resource =& Singleton()->resource;
+        $pricelist =& Singleton()->pricelist;
+        $reslist =& Singleton()->reslist;
+        $CombatCaps =& Singleton()->CombatCaps;
+        $ProdGrid =& Singleton()->ProdGrid;
         $elementID  = HTTP::_GP('id', 0);
 
         $this->setWindow('popup');

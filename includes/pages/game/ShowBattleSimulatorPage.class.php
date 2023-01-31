@@ -26,8 +26,9 @@ class ShowBattleSimulatorPage extends AbstractGamePage
 
     public function send()
     {
-        global $reslist, $pricelist, $LNG;
-
+        $reslist =& Singleton()->reslist;
+        $pricelist =& Singleton()->pricelist;
+        $LNG =& Singleton()->LNG;
         if (!isset($_REQUEST['battleinput'])) {
             $this->sendJSON(0);
         }
@@ -205,8 +206,10 @@ class ShowBattleSimulatorPage extends AbstractGamePage
 
     public function show()
     {
-        global $USER, $PLANET, $reslist, $resource;
-
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
+        $reslist =& Singleton()->reslist;
+        $resource =& Singleton()->resource;
         $Slots = HTTP::_GP('slots', 1);
 
 

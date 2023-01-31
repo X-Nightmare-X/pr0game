@@ -12,7 +12,7 @@ class ShowReportPage extends AbstractGamePage
 
     public function show()
     {
-        global $USER;
+        $USER =& Singleton()->USER;
 
         $humanInteraction = HTTP::_GP('hi', 0);
         $uri = HTTP::_GP('u', '');

@@ -10,7 +10,7 @@ class ShowCommentAjaxPage extends AbstractGamePage
 
     public function show()
 	{
-        global $USER;
+        $USER =& Singleton()->USER;
 
 		$comment = HTTP::_GP('comment', 0);
 

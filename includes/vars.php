@@ -19,7 +19,10 @@
 
 $cache  = Cache::get();
 $cache->add('vars', 'VarsBuildCache');
-extract($cache->getData('vars'));
+foreach ($cache->getData('vars') as $k => $v) {
+    Singleton()->$k = $v;
+    $$k =& Singleton()->$k;
+}
 
 $resource[901] = 'metal';
 $resource[902] = 'crystal';

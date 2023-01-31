@@ -65,7 +65,8 @@ class ResourceUpdate
 
     public function CreateHash()
     {
-        global $reslist, $resource;
+        $reslist =& Singleton()->reslist;
+        $resource =& Singleton()->resource;
         $Hash = array();
         foreach ($reslist['prod'] as $ID) {
             $Hash[] = $this->PLANET[$resource[$ID]];
@@ -190,8 +191,10 @@ class ResourceUpdate
 
     public static function getProd($Calculation, $Element = false)
     {
-        global $resource, $reslist, $USER, $PLANET;
-
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
         if ($Element) {
             $BuildEnergy = $USER[$resource[113]];
             $BuildTemp = $PLANET['temp_max'];
@@ -213,7 +216,7 @@ class ResourceUpdate
 
     public static function getNetworkLevel($USER, $PLANET)
     {
-        global $resource;
+        $resource =& Singleton()->resource;
 
         $researchLevelList = array($PLANET[$resource[31]]);
         if ($USER[$resource[123]] > 0) {
@@ -237,8 +240,9 @@ class ResourceUpdate
 
     public function ReBuildCache()
     {
-        global $ProdGrid, $resource, $reslist;
-
+        $ProdGrid =& Singleton()->ProdGrid;
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
         if ($this->PLANET['planet_type'] == 3) {
             $this->config->metal_basic_income = 0;
             $this->config->crystal_basic_income = 0;
@@ -335,7 +339,7 @@ class ResourceUpdate
 
     private function ShipyardQueue()
     {
-        global $resource;
+        $resource =& Singleton()->resource;
 
         $BuildQueue = !empty($this->PLANET['b_hangar_id']) ? unserialize($this->PLANET['b_hangar_id']) : [];
         if (!$BuildQueue) {
@@ -409,8 +413,8 @@ class ResourceUpdate
 
     private function CheckPlanetBuildingQueue()
     {
-        global $resource, $reslist;
-
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
         if (empty($this->PLANET['b_building_id']) || empty($this->PLANET['b_building_id']) || $this->PLANET['b_building'] > $this->TIME) {
             return false;
         }
@@ -453,8 +457,8 @@ class ResourceUpdate
 
     public function SetNextQueueElementOnTop()
     {
-        global $resource, $LNG;
-
+        $resource =& Singleton()->resource;
+        $LNG =& Singleton()->LNG;
         if (empty($this->PLANET['b_building_id'])) {
             $this->PLANET['b_building'] = 0;
             $this->PLANET['b_building_id'] = '';
@@ -512,7 +516,7 @@ class ResourceUpdate
                             $costResources[903] = 0;
                         }
 
-                        global $LNG;
+                        $LNG =& Singleton()->LNG;
 
                         if (empty($LNG)) {
                         // Fallback language
@@ -596,7 +600,7 @@ class ResourceUpdate
 
     private function CheckUserTechQueue()
     {
-        global $resource;
+        $resource =& Singleton()->resource;
 
         if (empty($this->USER['b_tech_id']) || $this->USER['b_tech'] > $this->TIME) {
             return false;
@@ -630,8 +634,8 @@ class ResourceUpdate
 
     public function SetNextQueueTechOnTop()
     {
-        global $resource, $LNG;
-
+        $resource =& Singleton()->resource;
+        $LNG =& Singleton()->LNG;
         if (empty($this->USER['b_tech_queue'])) {
             $this->USER['b_tech'] = 0;
             $this->USER['b_tech_id'] = 0;
@@ -695,7 +699,7 @@ class ResourceUpdate
                         $costResources[903] = 0;
                     }
 
-                    global $LNG;
+                    $LNG =& Singleton()->LNG;
 
                     if (empty($LNG)) {
                     // Fallback language
@@ -771,14 +775,14 @@ class ResourceUpdate
 
     private function SavePlanetToDB($USER = null, $PLANET = null)
     {
-        global $resource, $reslist;
-
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
         if (is_null($USER)) {
-            global $USER;
+            $USER =& Singleton()->USER;
         }
 
         if (is_null($PLANET)) {
-            global $PLANET;
+            $PLANET =& Singleton()->PLANET;
         }
 
         $buildQueries = array();

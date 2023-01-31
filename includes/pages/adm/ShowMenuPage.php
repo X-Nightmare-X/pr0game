@@ -17,7 +17,7 @@
 
 function ShowMenuPage()
 {
-	global $USER;
+	$USER =& Singleton()->USER;
 	$template	= new template();
 	$template->assign_vars(array(	
 		'supportticks'	=> $GLOBALS['DATABASE']->getFirstCell("SELECT COUNT(*) FROM ".TICKETS." WHERE universe = ".Universe::getEmulated()." AND status = 0;"),

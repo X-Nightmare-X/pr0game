@@ -21,7 +21,7 @@ class InactiveMailCronjob
 {
 	function run()
 	{
-		global $LNG;
+		$LNG =& Singleton()->LNG;
 
 		$config	= Config::get(ROOT_UNI);
 		

@@ -22,7 +22,7 @@ if ($USER['authlevel'] == AUTH_USR)
 
 function ShowLoginPage()
 {
-	global $USER;
+	$USER =& Singleton()->USER;
 	$session	= Session::create();
 	if($session->adminAccess == 1)
 	{

@@ -85,7 +85,7 @@ abstract class AbstractLoginPage
 	
 	protected function getPageData() 
     {		
-		global $LNG;
+		$LNG =& Singleton()->LNG;
 
 		$config	= Config::get();
 
@@ -130,7 +130,7 @@ abstract class AbstractLoginPage
 	}
 	
 	protected function display($file) {
-		global $LNG;
+		$LNG =& Singleton()->LNG;
 		
 		$this->save();
 		

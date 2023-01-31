@@ -23,7 +23,7 @@ class ShowIndexPage extends AbstractLoginPage
 
     function show()
     {
-        global $LNG;
+        $LNG =& Singleton()->LNG;
 
         $referralID = HTTP::_GP('ref', 0);
         if (!empty($referralID)) {

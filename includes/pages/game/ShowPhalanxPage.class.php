@@ -22,9 +22,10 @@ class ShowPhalanxPage extends AbstractGamePage
 
 	static function allowPhalanx($toGalaxy, $toSystem, $targetUser)
 	{
-		global $PLANET, $resource, $USER;
-
-		$checknoob = CheckNoobProtec($USER, $targetUser, $targetUser);
+		$PLANET =& Singleton()->PLANET;
+  $resource =& Singleton()->resource;
+  $USER =& Singleton()->USER;
+  $checknoob = CheckNoobProtec($USER, $targetUser, $targetUser);
 
 		if ($PLANET['galaxy'] != $toGalaxy || $PLANET[$resource[42]] == 0 || !isModuleAvailable(MODULE_PHALANX) || $PLANET[$resource[903]] < PHALANX_DEUTERIUM || $USER['urlaubs_modus'] == 1 || $checknoob['NoobPlayer'] || $checknoob['StrongPlayer']) {
 			return false;
@@ -74,9 +75,11 @@ class ShowPhalanxPage extends AbstractGamePage
 
 	function show()
 	{
-		global $PLANET, $LNG, $resource, $USER;
-
-		$this->initTemplate();
+		$PLANET =& Singleton()->PLANET;
+  $LNG =& Singleton()->LNG;
+  $resource =& Singleton()->resource;
+  $USER =& Singleton()->USER;
+  $this->initTemplate();
 		$this->setWindow('popup');
 		$this->tplObj->loadscript('phalanx.js');
 

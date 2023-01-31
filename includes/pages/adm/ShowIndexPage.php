@@ -17,8 +17,9 @@
 
 function ShowIndexPage()
 {
-	global $LNG, $USER;
-	$template	= new template();
+	$LNG =& Singleton()->LNG;
+ $USER =& Singleton()->USER;
+ $template	= new template();
 	$template->assign_vars(array(	
 		'game_name'		=> Config::get()->game_name,
 		'adm_cp_title'	=> $LNG['adm_cp_title'],

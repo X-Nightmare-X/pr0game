@@ -24,8 +24,8 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
 
     public function TargetEvent()
     {
-        global $pricelist, $resource;
-
+        $pricelist =& Singleton()->pricelist;
+        $resource =& Singleton()->resource;
         $resourceIDs = [901, 902, 903];
         $debrisIDs = [901, 902];
         $resQuery = [];

@@ -26,7 +26,7 @@ class ShowBanListPage extends AbstractLoginPage
 
 	function show()
 	{		
-		global $LNG;
+		$LNG =& Singleton()->LNG;
 
 		$db = Database::get();
 

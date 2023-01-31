@@ -32,8 +32,8 @@ class MissionCaseSpy extends MissionFunctions implements Mission
      */
     private function getPlanetFleet($targetPlanet)
     {
-        global $reslist, $resource;
-
+        $reslist =& Singleton()->reslist;
+        $resource =& Singleton()->resource;
         $planetfleet = [];
         $resourceIDs = $reslist['fleet'];
 
@@ -46,8 +46,8 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
     private function getPlanetDefense($targetPlanet)
     {
-        global $reslist, $resource;
-
+        $reslist =& Singleton()->reslist;
+        $resource =& Singleton()->resource;
         $planetdef = [];
         $resourceIDs = $reslist['defense'];
 
@@ -60,8 +60,9 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
     public function TargetEvent()
     {
-        global $pricelist, $reslist, $resource;
-
+        $pricelist =& Singleton()->pricelist;
+        $reslist =& Singleton()->reslist;
+        $resource =& Singleton()->resource;
         $db = Database::get();
 
         $sql = 'SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;';
@@ -338,7 +339,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
      */
     public function getDangerValue($spyData)
     {
-        global $CombatCaps;
+        $CombatCaps =& Singleton()->CombatCaps;
         $dangerValue = 0;
 
         // ships
@@ -368,7 +369,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
      */
     public function getRecyleValue($spyData)
     {
-        global $pricelist;
+        $pricelist =& Singleton()->pricelist;
 
         $config = Config::get($this->_fleet['fleet_universe']);
         $fleetIntoDebris = $config->Fleet_Cdr;
@@ -397,7 +398,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
     public function estimateRecyclers($recycleValue)
     {
-        global $pricelist;
+        $pricelist =& Singleton()->pricelist;
         return ceil($recycleValue / $pricelist[SHIP_RECYCLER]["capacity"]) + 1;
     }
 
