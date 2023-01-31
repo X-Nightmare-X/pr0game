@@ -904,7 +904,7 @@ class ResourceUpdate
         Database::get()->update($sql, $params);
     }
 
-    public function addResources(int $planetId, array $resources, array &$planet = null, int $factor = 1)
+    public function addResources(int $planetId, array $resources, array &$planet = null, float $factor = 1)
     {
         global $resource;
         $params = [':planetId' => $planetId];
