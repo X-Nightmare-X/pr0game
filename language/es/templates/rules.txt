@@ -27,8 +27,9 @@
 	</li>
 	<li>
 		<h1>6.1 Tools and Applications</h1>
-		<p>The use of external tools and user scripts that perform automated actions and/or requests in the game is not permitted. Any application in this context may only be used locally and exporting data and processing data for export is also not permitted. Scripts and tools should not provide a game advantage that players without them do not have. If there is any doubt about the compliance of a tool, a moderator/administrator should be contacted. If a tool does not comply with these rules, it can still be released after a check. For this release procedure, the tool must be made available to a specified reviewer and approved. If a tool is released through the review process, the features of it (not the tool itself) are published by the reviewing body. To initiate the release procedure, one of the moderators/administrators must be contacted.</p>
-		<p>Note: The publication and provision of self developed tools is strongly encouraged, but not obligatory.</p>
+		<p>The use of external tools and user scripts that have not been fully released is prohibited.</p>
+		<p>Scripts and tools should not provide a gameplay advantage that players without them do not have. A moderator/administrator must be contacted to clear up any ambiguity regarding rule compliance of a tool.  For this approval process, the tool must be provided and approved for a specified reviewer. If a tool is approved through the review process, the features of it (not the tool itself) are published by the reviewer.</p>
+		<p>Note: Publishing and making available tools developed in-house is strongly encouraged, but not mandatory.</p>
 	</li>
 	<li>
 		<h1>7. Threats/insults</h1>
