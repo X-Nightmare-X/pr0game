@@ -672,15 +672,7 @@ class ResourceUpdate
             $CurrentQueue[0] = array($Element, $Level, $BuildTime, $BuildEndTime, $PLANET['id']);
 
             if ($HaveResources == true) {
-                if (isset($costResources[901])) {
-                    $PLANET[$resource[901]]        -= $costResources[901];
-                }
-                if (isset($costResources[902])) {
-                    $PLANET[$resource[902]]        -= $costResources[902];
-                }
-                if (isset($costResources[903])) {
-                    $PLANET[$resource[903]]        -= $costResources[903];
-                }
+                $this->removeResources($PLANET['id'], $costResources, $PLANET);
                 $this->USER['b_tech_id'] = $Element;
                 $this->USER['b_tech'] = $BuildEndTime;
                 $this->USER['b_tech_planet'] = $PLANET['id'];
