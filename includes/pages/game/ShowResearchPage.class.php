@@ -97,6 +97,7 @@ class ShowResearchPage extends AbstractGamePage
         } else {
             $BuildEndTime       = TIMESTAMP;
             $NewCurrentQueue    = [];
+            $saveRessources = false; //Ressourcen speichern, falls eine der neuen techs auf dem aktuellen Planete ist
             foreach ($CurrentQueue as $ListIDArray) {
                 if ($elementId == $ListIDArray[0] || empty($ListIDArray[0])) {
                     continue;
@@ -109,6 +110,7 @@ class ShowResearchPage extends AbstractGamePage
                     ]);
                 } else {
                     $CPLANET = $PLANET;
+                    $saveRessources = true;
                 }
 
                 $CPLANET[$resource[31] . '_inter']    = $this->ecoObj->getNetworkLevel($USER, $CPLANET);
@@ -130,6 +132,9 @@ class ShowResearchPage extends AbstractGamePage
                 $this->ecoObj->setData($USER, $PLANET);
                 $this->ecoObj->SetNextQueueTechOnTop();
                 list($USER, $PLANET)        = $this->ecoObj->getData();
+                if ($saveRessources) {
+                    $this->ecoObj->saveResources($PLANET);
+                }
             } else {
                 $USER['b_tech']             = 0;
                 $USER['b_tech_queue']       = '';

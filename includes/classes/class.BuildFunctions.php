@@ -231,11 +231,9 @@ class BuildFunctions
         $USER,
         $PLANET,
         $Element,
-        $elementPrice = null,
-        $forDestroy = false,
-        $forLevel = null
+        $elementPrice = null
     ) {
-        $rest = self::getRestPrice($USER, $PLANET, $Element, $elementPrice, $forDestroy, $forLevel);
+        $rest = self::getRestPrice($USER, $PLANET, $Element, $elementPrice);
         return count(array_filter($rest)) === 0;
     }
 
