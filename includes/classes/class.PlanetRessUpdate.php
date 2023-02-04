@@ -672,7 +672,15 @@ class ResourceUpdate
             $CurrentQueue[0] = array($Element, $Level, $BuildTime, $BuildEndTime, $PLANET['id']);
 
             if ($HaveResources == true) {
-                $this->removeResources($PLANET['id'], $costResources, $PLANET);
+                if (isset($costResources[901])) {
+                    $PLANET[$resource[901]] -= $costResources[901];
+                }
+                if (isset($costResources[902])) {
+                    $PLANET[$resource[902]] -= $costResources[902];
+                }
+                if (isset($costResources[903])) {
+                    $PLANET[$resource[903]] -= $costResources[903];
+                }
                 $this->USER['b_tech_id'] = $Element;
                 $this->USER['b_tech'] = $BuildEndTime;
                 $this->USER['b_tech_planet'] = $PLANET['id'];
@@ -916,6 +924,23 @@ class ResourceUpdate
         $sql = 'UPDATE %%PLANETS%% SET ' .
         implode(', ', $planetQuery) .
         ' WHERE id = :planetId;';
+        Database::get()->update($sql, $params);
+    }
+
+    public function saveResources(array $PLANET)
+    {
+        $params = [
+            ':planetId'             => $PLANET['id'],
+            ':metal'                => $PLANET['metal'],
+            ':crystal'              => $PLANET['crystal'],
+            ':deuterium'            => $PLANET['deuterium'],
+        ];
+        $sql = 'UPDATE %%PLANETS%% SET
+		metal = :metal,
+		crystal = :crystal,
+		deuterium = :deuterium
+		WHERE id = :planetId;';
+
         Database::get()->update($sql, $params);
     }
 
