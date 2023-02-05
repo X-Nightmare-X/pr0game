@@ -1156,6 +1156,7 @@ $LNG['pl_fightdraw'] = 'Matchs Nuls';
 $LNG['pl_fightlose'] = 'Perdus';
 $LNG['pl_totalfight'] = 'Tous les combats';
 $LNG['pl_destroy'] = '%s a été impliqué dans les destructions suivantes';
+$LNG['pl_destroy_real'] = '%s a en fait détruit lui-même les éléments suivants';
 $LNG['pl_unitsshot'] = 'Unités détruites';
 $LNG['pl_unitslose'] = 'Unités perdues';
 $LNG['pl_dermetal'] = 'Total champs de débris en métal';
