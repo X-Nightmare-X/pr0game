@@ -157,7 +157,7 @@ class ShowResourcesPage extends AbstractGamePage
                 } else {
                     $Production *= $prodLevel * $config->resource_multiplier;
                 }
-
+                $temp[911]['bonus'] = 0;
                 if ($ProdID == 12 && $ID == RESOURCE_ENERGY) {
                     $BuildEnergy = 0;
                     $bonus = eval(ResourceUpdate::getProd($ProdGrid[$ProdID]['production'][$ID], $ProdID));
