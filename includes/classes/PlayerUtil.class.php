@@ -1166,6 +1166,10 @@ class PlayerUtil
             ];
         }
 
+        if (isset($USER['colors'])) {
+            return $USER['colors'];
+        }
+
         return [
             'colorMission2friend' => $USER['colorMission2friend'],
 
@@ -1220,6 +1224,10 @@ class PlayerUtil
             ];
         }
 
+        if (isset($USER['stb_settings'])) {
+            return $USER['stb_settings'];
+        }
+
         return [
             'stb_small_ress'    => $USER['stb_small_ress'],
             'stb_med_ress'      => $USER['stb_med_ress'],
@@ -1239,6 +1247,10 @@ class PlayerUtil
                 'colorNegative' => '#ff0000',
                 'colorNeutral' => '#ffd600',
             ];
+        }
+
+        if (isset($USER['signalColors'])) {
+            return $USER['signalColors'];
         }
 
         return [
