@@ -30,9 +30,9 @@ class ShowTicketPage extends AbstractGamePage
 	
 	public function show()
 	{
-		global $USER, $LNG;
-
-		$db = Database::get();
+		$USER =& Singleton()->USER;
+  $LNG =& Singleton()->LNG;
+  $db = Database::get();
 
 		$sql = "SELECT t.*, COUNT(a.ticketID) as answer
 		FROM %%TICKETS%% t
@@ -71,9 +71,9 @@ class ShowTicketPage extends AbstractGamePage
 	
 	function send() 
 	{
-		global $USER, $LNG;
-				
-		$ticketID	= HTTP::_GP('id', 0);
+		$USER =& Singleton()->USER;
+  $LNG =& Singleton()->LNG;
+  $ticketID	= HTTP::_GP('id', 0);
 		$categoryID	= HTTP::_GP('category', 0);
 		$message	= HTTP::_GP('message', '', true);
 		$subject	= HTTP::_GP('subject', '', true);
@@ -117,9 +117,8 @@ class ShowTicketPage extends AbstractGamePage
 	
 	function view() 
 	{
-		global $USER, $LNG;
-		
-		require 'includes/classes/BBCode.class.php';
+		$USER =& Singleton()->USER;
+        $LNG =& Singleton()->LNG;
 
 		$db = Database::get();
 
@@ -144,7 +143,6 @@ class ShowTicketPage extends AbstractGamePage
 
 		foreach($answerResult as $answerRow) {
 			$answerRow['time']		= _date($LNG['php_tdformat'], $answerRow['time'], $USER['timezone']);
-			$answerRow['message']	= BBCode::parse($answerRow['message']);
 			$answerList[$answerRow['answerID']]	= $answerRow;
 			if (empty($ticket_status))
 			{

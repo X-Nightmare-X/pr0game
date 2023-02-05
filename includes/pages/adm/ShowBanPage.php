@@ -20,7 +20,8 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 function ShowBanPage() 
 {
 	$db = Database::get();
-	global $LNG, $USER;
+ $LNG =& Singleton()->LNG;
+ $USER =& Singleton()->USER;
 	if(!isset($_GET['order'])) { $_GET['order'] = ''; }
 	$ORDER = $_GET['order'] == 'id' ? "id" : "username";
 	$WHEREBANA = "";

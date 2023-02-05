@@ -24,8 +24,8 @@ class MissionCaseDestruction extends MissionFunctions implements Mission
 
     public function TargetEvent()
     {
-        global $resource, $reslist;
-
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
         $db = Database::get();
 
         $fleetAttack = [];

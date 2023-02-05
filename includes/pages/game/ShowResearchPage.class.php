@@ -28,7 +28,7 @@ class ShowResearchPage extends AbstractGamePage
 
     private function checkLabSettingsInQueue()
     {
-        global $USER;
+        $USER =& Singleton()->USER;
         $db = Database::get();
         $sql    = "SELECT * FROM %%PLANETS%% WHERE id_owner = :owner AND destruyed = 0 FOR UPDATE;";
         $planets    = $db->select($sql, [
@@ -53,7 +53,9 @@ class ShowResearchPage extends AbstractGamePage
 
     private function cancelBuildingFromQueue()
     {
-        global $PLANET, $USER, $resource;
+        $PLANET =& Singleton()->PLANET;
+        $USER =& Singleton()->USER;
+        $resource =& Singleton()->resource;
         $CurrentQueue  = !empty($USER['b_tech_queue']) ? unserialize($USER['b_tech_queue']) : [];
         if (empty($CurrentQueue) || empty($USER['b_tech'])) {
             $USER['b_tech_queue']   = '';
@@ -95,6 +97,7 @@ class ShowResearchPage extends AbstractGamePage
         } else {
             $BuildEndTime       = TIMESTAMP;
             $NewCurrentQueue    = [];
+            $saveRessources = false; //Ressourcen speichern, falls eine der neuen techs auf dem aktuellen Planete ist
             foreach ($CurrentQueue as $ListIDArray) {
                 if ($elementId == $ListIDArray[0] || empty($ListIDArray[0])) {
                     continue;
@@ -107,6 +110,7 @@ class ShowResearchPage extends AbstractGamePage
                     ]);
                 } else {
                     $CPLANET = $PLANET;
+                    $saveRessources = true;
                 }
 
                 $CPLANET[$resource[31] . '_inter']    = $this->ecoObj->getNetworkLevel($USER, $CPLANET);
@@ -128,6 +132,9 @@ class ShowResearchPage extends AbstractGamePage
                 $this->ecoObj->setData($USER, $PLANET);
                 $this->ecoObj->SetNextQueueTechOnTop();
                 list($USER, $PLANET)        = $this->ecoObj->getData();
+                if ($saveRessources) {
+                    $this->ecoObj->saveResources($PLANET);
+                }
             } else {
                 $USER['b_tech']             = 0;
                 $USER['b_tech_queue']       = '';
@@ -139,8 +146,9 @@ class ShowResearchPage extends AbstractGamePage
 
     private function removeBuildingFromQueue($QueueID)
     {
-        global $USER, $PLANET, $resource;
-
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
+        $resource =& Singleton()->resource;
         $CurrentQueue  = !empty($USER['b_tech_queue']) ? unserialize($USER['b_tech_queue']) : [];
         if ($QueueID <= 1 || empty($CurrentQueue)) {
             return false;
@@ -197,8 +205,11 @@ class ShowResearchPage extends AbstractGamePage
 
     private function addBuildingToQueue($elementId, $AddMode = true)
     {
-        global $PLANET, $USER, $resource, $reslist, $pricelist;
-
+        $PLANET =& Singleton()->PLANET;
+        $USER =& Singleton()->USER;
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
+        $pricelist =& Singleton()->pricelist;
         if (
             !in_array($elementId, $reslist['tech'])
             || !BuildFunctions::isTechnologieAccessible($USER, $PLANET, $elementId)
@@ -269,8 +280,9 @@ class ShowResearchPage extends AbstractGamePage
 
     private function getQueueData()
     {
-        global $LNG, $PLANET, $USER;
-
+        $LNG =& Singleton()->LNG;
+        $PLANET =& Singleton()->PLANET;
+        $USER =& Singleton()->USER;
         $scriptData     = [];
         $quickinfo      = [];
 
@@ -310,8 +322,12 @@ class ShowResearchPage extends AbstractGamePage
 
     public function show()
     {
-        global $PLANET, $USER, $LNG, $resource, $reslist, $pricelist;
-
+        $PLANET =& Singleton()->PLANET;
+        $USER =& Singleton()->USER;
+        $LNG =& Singleton()->LNG;
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
+        $pricelist =& Singleton()->pricelist;
         if ($PLANET[$resource[31]] == 0) {
             $this->printMessage($LNG['bd_lab_required']);
         }

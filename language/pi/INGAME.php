@@ -1215,6 +1215,7 @@ $LNG['pl_fightdraw'] = 'Unentschieden';
 $LNG['pl_fightlose'] = 'Verloren';
 $LNG['pl_totalfight'] = 'Gesamtkämpfe';
 $LNG['pl_destroy'] = '%s war an folgenden Zerstörungen beteiligt';
+$LNG['pl_destroy_real'] = '%s hat real folgendes selbst Zerstört';
 $LNG['pl_unitsshot'] = 'Geschossene Units';
 $LNG['pl_unitslose'] = 'Verlorene Units';
 $LNG['pl_dermetal'] = 'Gesamt Wrackfeld Holz';

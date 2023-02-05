@@ -29,25 +29,39 @@ class ShowPlayerCardPage extends AbstractGamePage
 
 	function show()
 	{
-		global $USER, $LNG;
-
-		$this->setWindow('popup');
+		$USER =& Singleton()->USER;
+        $LNG =& Singleton()->LNG;
+        $pricelist =& Singleton()->pricelist;
+        $reslist =& Singleton()->reslist;
+        $this->setWindow('popup');
 		$this->initTemplate();
 
 		$db = Database::get();
 
 		$PlayerID 	= HTTP::_GP('id', 0);
 
+        $advanced_stats = [];
+        foreach ($reslist['fleet'] as $element) {
+            $advanced_stats[] = 'ad.destroyed_' . $element;
+            $advanced_stats[] = 'ad.lost_' . $element;
+        }
+        foreach ($reslist['defense'] as $element) {
+            $advanced_stats[] = 'ad.destroyed_' . $element;
+            $advanced_stats[] = 'ad.lost_' . $element;
+        }
+
 		$sql = "SELECT
 				u.username, u.galaxy, u.system, u.planet, u.wons, u.loos, u.draws, u.kbmetal, u.kbcrystal, u.lostunits, u.desunits, u.ally_id,
 				p.name,
 				s.tech_rank, s.tech_points, s.build_rank, s.build_points, s.defs_rank, s.defs_points, s.fleet_rank, s.fleet_points, s.total_rank, s.total_points,
-				a.ally_name, (s.tech_points / s.total_points * 100) as tech_percent, (s.build_points / s.total_points * 100) as build_percent, 
-				(s.defs_points / s.total_points * 100) as defs_percent, (s.fleet_points / s.total_points * 100) as fleet_percent
-				FROM %%USERS%% u
+                a.ally_name, (s.tech_points / s.total_points * 100) as tech_percent, (s.build_points / s.total_points * 100) as build_percent,
+				(s.defs_points / s.total_points * 100) as defs_percent, (s.fleet_points / s.total_points * 100) as fleet_percent, "
+                . implode(', ', $advanced_stats) .
+				" FROM %%USERS%% u
 				INNER JOIN %%PLANETS%% p ON p.id = u.id_planet
 				LEFT JOIN %%STATPOINTS%% s ON s.id_owner = u.id AND s.stat_type = 1
 				LEFT JOIN %%ALLIANCE%% a ON a.id = u.ally_id
+                LEFT JOIN %%ADVANCED_STATS%% ad ON ad.userId = u.id
 				WHERE u.id = :playerID AND u.universe = :universe;";
 		$query = $db->selectSingle($sql, array(
 			':universe'	=> Universe::current(),
@@ -70,6 +84,41 @@ class ShowPlayerCardPage extends AbstractGamePage
 			$drawsprozent               = 100 / $totalfights * $query['draws'];
 		}
 
+        $config = Config::get();
+        $fleetIntoDebris = $config->Fleet_Cdr;
+        $defIntoDebris = $config->Defs_Cdr;
+
+        $units_real_destroyed = 0;
+        $units_real_lost = 0;
+        $debris_real_metal = 0;
+        $debris_real_crystal = 0;
+        foreach ($reslist['fleet'] as $element) {
+            $amount = $query['destroyed_' . $element];
+            $units_real_destroyed += $pricelist[$element]['cost'][RESOURCE_METAL] * $amount;
+            $debris_real_metal += ($pricelist[$element]['cost'][RESOURCE_METAL] * $amount * ($fleetIntoDebris / 100));
+            $units_real_destroyed += $pricelist[$element]['cost'][RESOURCE_CRYSTAL] * $amount;
+            $debris_real_crystal += ($pricelist[$element]['cost'][RESOURCE_CRYSTAL] * $amount * ($fleetIntoDebris / 100));
+
+            $amount = $query['lost_' . $element];
+            $units_real_lost += $pricelist[$element]['cost'][RESOURCE_METAL] * $amount;
+            $debris_real_metal += ($pricelist[$element]['cost'][RESOURCE_METAL] * $amount * ($fleetIntoDebris / 100));
+            $units_real_lost += $pricelist[$element]['cost'][RESOURCE_CRYSTAL] * $amount;
+            $debris_real_crystal += ($pricelist[$element]['cost'][RESOURCE_CRYSTAL] * $amount * ($fleetIntoDebris / 100));
+        }
+        foreach ($reslist['defense'] as $element) {
+            $amount = $query['destroyed_' . $element];
+            $units_real_destroyed += $pricelist[$element]['cost'][RESOURCE_METAL] * $amount;
+            $debris_real_metal += ($pricelist[$element]['cost'][RESOURCE_METAL] * $amount * ($defIntoDebris / 100));
+            $units_real_destroyed += $pricelist[$element]['cost'][RESOURCE_CRYSTAL] * $amount;
+            $debris_real_crystal += ($pricelist[$element]['cost'][RESOURCE_CRYSTAL] * $amount * ($defIntoDebris / 100));
+
+            $amount = $query['lost_' . $element];
+            $units_real_lost += $pricelist[$element]['cost'][RESOURCE_METAL] * $amount;
+            $debris_real_metal += ($pricelist[$element]['cost'][RESOURCE_METAL] * $amount * ($defIntoDebris / 100));
+            $units_real_lost += $pricelist[$element]['cost'][RESOURCE_CRYSTAL] * $amount;
+            $debris_real_crystal += ($pricelist[$element]['cost'][RESOURCE_CRYSTAL] * $amount * ($defIntoDebris / 100));
+        }
+
 		$this->assign(array(
 			'id'			=> $PlayerID,
 			'yourid'		=> $USER['id'],
@@ -91,6 +140,7 @@ class ShowPlayerCardPage extends AbstractGamePage
 			'total_points'  => pretty_number($query['total_points']),
 			'allyname'		=> $query['ally_name'],
 			'playerdestory' => sprintf($LNG['pl_destroy'], $query['username']),
+			'realdestory'   => sprintf($LNG['pl_destroy_real'], $query['username']),
 			'wons'          => pretty_number($query['wons']),
 			'loos'          => pretty_number($query['loos']),
 			'draws'         => pretty_number($query['draws']),
@@ -98,6 +148,10 @@ class ShowPlayerCardPage extends AbstractGamePage
 			'kbcrystal'     => pretty_number($query['kbcrystal']),
 			'lostunits'     => pretty_number($query['lostunits']),
 			'desunits'      => pretty_number($query['desunits']),
+			'realdesunits'  => pretty_number($units_real_destroyed),
+			'reallostunits' => pretty_number($units_real_lost),
+			'realmetal'     => pretty_number($debris_real_metal),
+			'realcrystal'   => pretty_number($debris_real_crystal),
 			'totalfights'   => pretty_number($totalfights),
 			'siegprozent'   => round($siegprozent, 2),
 			'loosprozent'   => round($loosprozent, 2),

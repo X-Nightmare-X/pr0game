@@ -21,7 +21,10 @@ if ($USER['id'] != ROOT_USER || $_GET['sid'] != session_id()) {
 
 function ShowResetPage()
 {
-    global $LNG, $reslist, $resource, $USER;
+    $LNG =& Singleton()->LNG;
+    $reslist =& Singleton()->reslist;
+    $resource =& Singleton()->resource;
+    $USER =& Singleton()->USER;
     $template = new template();
     $config = Config::get(Universe::getEmulated());
 

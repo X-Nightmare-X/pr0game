@@ -19,8 +19,9 @@ if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FI
 
 function ShowPassEncripterPage()
 {
-	global $LNG, $USER;
-	$Password	= HTTP::_GP('md5q', '', true);
+	$LNG =& Singleton()->LNG;
+ $USER =& Singleton()->USER;
+ $Password	= HTTP::_GP('md5q', '', true);
 	
 	$template	= new template();
 

@@ -17,8 +17,9 @@
 
 function ShowTopnavPage()
 {
-	global $LNG, $USER;
-	$template	= new template();
+	$LNG =& Singleton()->LNG;
+ $USER =& Singleton()->USER;
+ $template	= new template();
 
 	$universeSelect	= array();
 	foreach(Universe::availableUniverses() as $uniId)

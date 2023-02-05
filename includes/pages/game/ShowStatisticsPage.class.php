@@ -27,8 +27,8 @@ class ShowStatisticsPage extends AbstractGamePage
 
     public function show()
     {
-        global $USER, $LNG;
-
+        $USER =& Singleton()->USER;
+        $LNG =& Singleton()->LNG;
         $who = HTTP::_GP('who', 1);
         $type = HTTP::_GP('type', 1);
         $range = HTTP::_GP('range', 1);

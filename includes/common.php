@@ -19,18 +19,13 @@ if (isset($_POST['GLOBALS']) || isset($_GET['GLOBALS'])) {
     exit('You cannot set the GLOBALS-array from outside the script.');
 }
 
-$composerAutoloader = __DIR__ . '/../vendor/autoload.php';
-
-if (file_exists($composerAutoloader)) {
-    require $composerAutoloader;
-}
-
 if (function_exists('mb_internal_encoding')) {
     mb_internal_encoding("UTF-8");
 }
 
 ignore_user_abort(true);
 error_reporting(E_ALL & ~E_STRICT);
+
 
 // If date.timezone is invalid
 date_default_timezone_set(@date_default_timezone_get());
@@ -40,6 +35,7 @@ header('Content-Type: text/html; charset=UTF-8');
 define('TIMESTAMP', time());
 
 require 'includes/constants.php';
+require 'includes/classes/class.Singleton.php';
 
 ini_set('log_errors', 'On');
 ini_set('error_log', 'includes/error.log');
@@ -67,6 +63,8 @@ HTTP::sendHeader('P3P', 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HI
 define('AJAX_REQUEST', HTTP::_GP('ajax', 0));
 
 $THEME      = new Theme();
+Singleton()->THEME = $THEME;
+$THEME =& Singleton()->THEME;
 
 if (MODE === 'INSTALL') {
     return;
@@ -89,6 +87,8 @@ $USER['id'] = 0;
 $USER['signalColors'] = PlayerUtil::player_signal_colors();
 $USER['colors'] = PlayerUtil::player_colors();
 $USER['stb_settings'] = PlayerUtil::player_stb_settings();
+Singleton()->USER = $USER;
+$USER =& Singleton()->USER;
 
 if (MODE === 'UPGRADE') {
     return;
@@ -158,6 +158,8 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
             ':unread'           => 1,
             ':userId'           => $session->userId
         ));
+        Singleton()->USER = $USER;
+        $USER =& Singleton()->USER;
 
         if (empty($USER)) {
             HTTP::redirectTo('index.php?code=3');
@@ -177,6 +179,8 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     }
 
     $LNG    = new Language($USER['lang']);
+    Singleton()->LNG = $LNG;
+    $LNG =& Singleton()->LNG;
     $LNG->includeData(array('L18N', 'INGAME', 'TECH', 'CUSTOM'));
     if (!empty($USER['dpath'])) {
         $THEME->setUserTheme($USER['dpath']);
@@ -207,12 +211,16 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
             $PLANET = $db->selectSingle($sql, array(
             ':planetId' => $session->planetId,
             ));
+            Singleton()->PLANET = $PLANET;
+            $PLANET =& Singleton()->PLANET;
 
             if (empty($PLANET)) {
                 $sql    = "SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;";
                 $PLANET = $db->selectSingle($sql, array(
                     ':planetId' => $USER['id_planet'],
                 ));
+                Singleton()->PLANET = $PLANET;
+                $PLANET =& Singleton()->PLANET;
 
                 if (empty($PLANET)) {
                         throw new Exception("Main Planet does not exist!");
@@ -263,6 +271,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
 
 } elseif (MODE === 'LOGIN') {
     $LNG    = new Language();
+    Singleton()->LNG = $LNG;
     $LNG->getUserAgentLanguage();
     $LNG->includeData(array('L18N', 'INGAME', 'PUBLIC', 'CUSTOM'));
 }

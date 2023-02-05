@@ -27,9 +27,9 @@ class MissionCaseMIP extends MissionFunctions implements Mission
 
 	function TargetEvent()
 	{
-		global $resource, $reslist;
-
-		$db	= Database::get();
+		$resource =& Singleton()->resource;
+  $reslist =& Singleton()->reslist;
+  $db	= Database::get();
 
 		$sqlFields	= array();
 		$elementIDs	= array_merge($reslist['defense'], $reslist['missile']);

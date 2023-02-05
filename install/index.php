@@ -15,6 +15,8 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
+require_once dirname(__DIR__).'/vendor/autoload.php';
+
 define('ROOT_PATH', str_replace('\\', '/', dirname(dirname(__FILE__))) . '/');
 set_include_path(ROOT_PATH);
 chdir(ROOT_PATH);
@@ -31,6 +33,7 @@ if ($mode === 'upgrade') {
 require 'includes/common.php';
 $THEME->setUserTheme('gow');
 $LNG = new Language();
+Singleton()->LNG = $LNG;
 $LNG->getUserAgentLanguage();
 $LNG->includeData(['L18N', 'INGAME', 'INSTALL', 'CUSTOM']);
 

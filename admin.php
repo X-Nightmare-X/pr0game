@@ -15,12 +15,12 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
+require_once __DIR__.'/vendor/autoload.php';
+
 define('MODE', 'ADMIN');
 define('DATABASE_VERSION', 'OLD');
 
 define('ROOT_PATH', str_replace('\\', '/',dirname(__FILE__)).'/');
-set_include_path(ROOT_PATH.'includes/libs/BBCodeParser2/' . PATH_SEPARATOR . ROOT_PATH . PATH_SEPARATOR . get_include_path());
-require_once('HTML/BBCodeParser2.php');
 
 require 'includes/pages/game/AbstractGamePage.class.php';
 require 'includes/pages/game/ShowErrorPage.class.php';

@@ -17,9 +17,9 @@
 
 function calculateMIPAttack($TargetDefTech, $OwnerAttTech, $missiles, $targetDefensive, $firstTarget, $defenseMissles)
 {
-	global $pricelist, $CombatCaps;
-	
-	$destroyShips		= array();
+	$pricelist =& Singleton()->pricelist;
+ $CombatCaps =& Singleton()->CombatCaps;
+ $destroyShips		= array();
 	$countMissles 		= $missiles - $defenseMissles;
 	
 	if($countMissles == 0)

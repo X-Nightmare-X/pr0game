@@ -18,8 +18,9 @@
 if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FILE__))) throw new Exception("Permission error!");
 
 function ShowNewsPage(){
-	global $LNG, $USER;
-	if(!isset($_GET['action'])) { $_GET['action'] = ''; }
+	$LNG =& Singleton()->LNG;
+ $USER =& Singleton()->USER;
+ if(!isset($_GET['action'])) { $_GET['action'] = ''; }
 	if($_GET['action'] == 'send') {
 		$edit_id 	= HTTP::_GP('id', 0);
 		$title 		= $GLOBALS['DATABASE']->sql_escape(HTTP::_GP('title', '', true));

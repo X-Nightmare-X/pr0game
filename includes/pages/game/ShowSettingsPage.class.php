@@ -26,7 +26,8 @@ class ShowSettingsPage extends AbstractGamePage
 
     public function show()
     {
-        global $USER, $LNG;
+        $USER =& Singleton()->USER;
+        $LNG =& Singleton()->LNG;
         if ($USER['urlaubs_modus'] == 1) {
             $this->assign([
                 'vacationUntil'         => _date($LNG['php_tdformat'], $USER['urlaubs_until'], $USER['timezone']),
@@ -108,7 +109,8 @@ class ShowSettingsPage extends AbstractGamePage
 
     private function checkVMode()
     {
-        global $USER, $PLANET;
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
         /*
         if (!empty($USER['b_tech']) || !empty($PLANET['b_building']) || !empty($PLANET['b_hangar'])) {
             return false;
@@ -147,7 +149,7 @@ class ShowSettingsPage extends AbstractGamePage
 
     public function send()
     {
-        global $USER;
+        $USER =& Singleton()->USER;
         if ($USER['urlaubs_modus'] == 1) {
             $this->sendVacation();
         } else {
@@ -157,8 +159,9 @@ class ShowSettingsPage extends AbstractGamePage
 
     private function sendVacation()
     {
-        global $USER, $LNG, $PLANET;
-
+        $USER =& Singleton()->USER;
+        $LNG =& Singleton()->LNG;
+        $PLANET =& Singleton()->PLANET;
         $delete     = HTTP::_GP('delete', 0);
         $vacation   = HTTP::_GP('vacation', 0);
 
@@ -205,8 +208,10 @@ class ShowSettingsPage extends AbstractGamePage
 
     private function sendDefault()
     {
-        global $USER, $LNG, $THEME, $PLANET;
-
+        $USER =& Singleton()->USER;
+        $LNG =& Singleton()->LNG;
+        $THEME =& Singleton()->THEME;
+        $PLANET =& Singleton()->PLANET;
         $adminprotection    = HTTP::_GP('adminprotection', 0);
 
         $username           = HTTP::_GP('username', $USER['username'], UTF8_SUPPORT);

@@ -21,7 +21,8 @@ if ($USER['authlevel'] != AUTH_ADM || $_GET['sid'] != session_id()) {
 
 function ShowUniversePage()
 {
-    global $LNG, $USER;
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
     $template   = new template();
 
     $action     = HTTP::_GP('action', '');

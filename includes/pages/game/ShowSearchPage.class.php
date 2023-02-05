@@ -166,7 +166,7 @@ class ShowSearchPage extends AbstractGamePage
 	
 	function autocomplete()
 	{
-		global $LNG;
+		$LNG =& Singleton()->LNG;
 		
 		$this->setWindow('ajax');
 		
@@ -207,7 +207,7 @@ class ShowSearchPage extends AbstractGamePage
 	
 	function result()
 	{
-		global $THEME;
+		$THEME =& Singleton()->THEME;
 		
 		$this->initTemplate();
 		$this->setWindow('ajax');
@@ -234,9 +234,9 @@ class ShowSearchPage extends AbstractGamePage
 	
 	function show()
 	{
-		global $LNG, $THEME;
-		
-		$seachMode 		= HTTP::_GP('type', 'playername');
+		$LNG =& Singleton()->LNG;
+  $THEME =& Singleton()->THEME;
+  $seachMode 		= HTTP::_GP('type', 'playername');
 		
 		$modeSelector	= array('playername' => $LNG['sh_player_name'], 'planetname' => $LNG['sh_planet_name'], 'allytag' => $LNG['sh_alliance_tag'], 'allyname' => $LNG['sh_alliance_name']);
 		$this->tplObj->loadscript('search.js');

@@ -23,8 +23,8 @@ require 'includes/classes/class.FlyingFleetsTable.php';
 
 function ShowFlyingFleetPage()
 {
-    global $LNG, $USER;
-
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
     $id = HTTP::_GP('id', 0);
     $massunlock = HTTP::_GP('massunlock', 0);
     if (!empty($id)) {
@@ -73,7 +73,7 @@ function ShowFlyingFleetPage()
             $shipList[$shipDetail[0]] = $shipDetail[1];
         }
 
-        global $USER;
+        $USER =& Singleton()->USER;
         $FleetList[] = [
             'fleetID'               => $fleetRow['fleet_id'],
             'lock'                  => !empty($fleetRow['lock']),

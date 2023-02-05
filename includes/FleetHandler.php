@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -19,9 +19,12 @@ $token	= getRandomString();
 $db		= Database::get();
 $db->startTransaction();
 
-$fleetResult = $db->select("SELECT fleetID FROM %%FLEETS_EVENT%% WHERE `lock` IS NULL AND `time` <= :time FOR UPDATE;", array(
-	':time'		=> TIMESTAMP,
-));
+$sql = "SELECT `fleetID` FROM %%FLEETS_EVENT%% fe JOIN %%FLEETS%% f ON `f.fleetID` = `fe.fleetID`
+    WHERE `fe.lock` IS NULL AND `fe.time` <= :time AND `f.universe` = :universe FOR UPDATE;";
+$fleetResult = $db->select($sql, [
+    ':time'		=> TIMESTAMP,
+    ':universe' => Universe::current(),
+]);
 
 if (!empty($fleetResult) && is_array($fleetResult)) {
 	$updateResult = true;
@@ -34,7 +37,7 @@ if (!empty($fleetResult) && is_array($fleetResult)) {
 
 	if ($updateResult) {
 		require 'includes/classes/class.FlyingFleetHandler.php';
-		
+
 		$fleetObj	= new FlyingFleetHandler();
 		$fleetObj->setToken($token);
 		$fleetObj->run();

@@ -5,7 +5,7 @@ class LangImplementation implements Lang
     private $lang;
     public function __construct()
     {
-        global $LNG;
+        $LNG =& Singleton()->LNG;
 
         if(empty($LNG)) {
             // Fallback language

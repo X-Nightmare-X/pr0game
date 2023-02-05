@@ -100,9 +100,6 @@ class Cronjob
 
     static function getLastExecutionTime($cronjobName)
     {
-        require_once 'includes/libs/tdcron/class.tdcron.php';
-        require_once 'includes/libs/tdcron/class.tdcron.entry.php';
-
         $sql = 'SELECT MAX(executionTime) as executionTime FROM %%CRONJOBS_LOG%% INNER JOIN %%CRONJOBS%% USING(cronjobId) WHERE name = :cronjobName;';
         $lastTime = Database::get()->selectSingle($sql, [
             ':cronjobName' => $cronjobName
@@ -117,9 +114,6 @@ class Cronjob
 
     static function reCalculateCronjobs($cronjobID = null)
     {
-        require_once 'includes/libs/tdcron/class.tdcron.php';
-        require_once 'includes/libs/tdcron/class.tdcron.entry.php';
-
         $db = Database::get();
 
         if (!empty($cronjobID)) {
@@ -136,7 +130,9 @@ class Cronjob
 
         foreach ($cronjobResult as $cronjobRow) {
             $cronTabString = implode(' ', [$cronjobRow['min'], $cronjobRow['hours'], $cronjobRow['dom'], $cronjobRow['month'], $cronjobRow['dow']]);
-            $nextTime = tdCron::getNextOccurrence($cronTabString, TIMESTAMP + 60);
+
+            $cron = new Cron\CronExpression($cronTabString);
+            $nextTime= $cron->getNextRunDate(new DateTime('@' . TIMESTAMP + 60))->getTimestamp();
 
             $db->update($sql, [
                 ':nextTime' => $nextTime,

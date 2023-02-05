@@ -53,7 +53,7 @@ $(document).ready(function () {
 		tip.addClass('tooltip_sticky_div');
 		tip.css({
 			top : e.pageY - tip.outerHeight() / 2,
-			left : e.pageX - tip.outerWidth() / 2
+			left : e.pageX - tip.outerWidth() / 5
 		});
 		tip.show();
 	});

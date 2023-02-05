@@ -26,7 +26,9 @@ class ShowResourcesPage extends AbstractGamePage
 
     public function send()
     {
-        global $resource, $USER, $PLANET;
+        $resource =& Singleton()->resource;
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
         if ($USER['urlaubs_modus'] == 0) {
             $updateSQL = [];
             if (!isset($_POST['prod'])) {
@@ -66,8 +68,12 @@ class ShowResourcesPage extends AbstractGamePage
 
     public function show()
     {
-        global $LNG, $ProdGrid, $resource, $reslist, $USER, $PLANET;
-
+        $LNG =& Singleton()->LNG;
+        $ProdGrid =& Singleton()->ProdGrid;
+        $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
+        $USER =& Singleton()->USER;
+        $PLANET =& Singleton()->PLANET;
         $config = Config::get();
 
         if ($USER['urlaubs_modus'] == 1 || $PLANET['planet_type'] != 1) {
@@ -152,6 +158,13 @@ class ShowResourcesPage extends AbstractGamePage
                     $Production *= $prodLevel * $config->resource_multiplier;
                 }
 
+                if ($ProdID == 12 && $ID == RESOURCE_ENERGY) {
+                    $BuildEnergy = 0;
+                    $bonus = eval(ResourceUpdate::getProd($ProdGrid[$ProdID]['production'][$ID], $ProdID));
+                    $temp[911]['bonus'] = $Production - $bonus;
+                    $$BuildEnergy = $USER[$resource[113]];
+                }
+
                 $productionList[$ProdID]['production'][$ID] = $Production;
 
                 if ($Production > 0) {
@@ -190,7 +203,7 @@ class ShowResourcesPage extends AbstractGamePage
             901 => $temp[901]['plus'] * (0.02 * $USER[$resource[131]]),
             902 => $temp[902]['plus'] * (0.02 * $USER[$resource[132]]),
             903 => $temp[903]['plus'] * (0.02 * $USER[$resource[133]]),
-            911 => $temp[911]['plus'],
+            911 => $temp[911]['bonus'],
         ];
 
         $dailyProduction = [

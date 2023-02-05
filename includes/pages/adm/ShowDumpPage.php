@@ -22,8 +22,9 @@ if ($USER['authlevel'] == AUTH_USR)
 
 function ShowDumpPage()
 {
-	global $LNG, $USER;
-	if(!isset($_POST['action'])) { $_POST['action'] = ''; }
+	$LNG =& Singleton()->LNG;
+ $USER =& Singleton()->USER;
+ if(!isset($_POST['action'])) { $_POST['action'] = ''; }
 	switch($_POST['action'])
 	{
 		case 'dump':
