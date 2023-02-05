@@ -19,12 +19,6 @@ if (isset($_POST['GLOBALS']) || isset($_GET['GLOBALS'])) {
     exit('You cannot set the GLOBALS-array from outside the script.');
 }
 
-$composerAutoloader = __DIR__ . '/../vendor/autoload.php';
-
-if (file_exists($composerAutoloader)) {
-    require $composerAutoloader;
-}
-
 if (function_exists('mb_internal_encoding')) {
     mb_internal_encoding("UTF-8");
 }

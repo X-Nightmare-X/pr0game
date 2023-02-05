@@ -130,7 +130,9 @@ class Cronjob
 
         foreach ($cronjobResult as $cronjobRow) {
             $cronTabString = implode(' ', [$cronjobRow['min'], $cronjobRow['hours'], $cronjobRow['dom'], $cronjobRow['month'], $cronjobRow['dow']]);
-            $nextTime = tdCron::getNextOccurrence($cronTabString, TIMESTAMP + 60);
+
+            $cron = new Cron\CronExpression($cronTabString);
+            $nextTime= $cron->getNextRunDate(new DateTime('@' . TIMESTAMP + 60))->getTimestamp();
 
             $db->update($sql, [
                 ':nextTime' => $nextTime,
