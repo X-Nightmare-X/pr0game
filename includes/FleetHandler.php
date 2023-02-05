@@ -19,8 +19,8 @@ $token	= getRandomString();
 $db		= Database::get();
 $db->startTransaction();
 
-$sql = "SELECT `fleetID` FROM %%FLEETS_EVENT%% fe JOIN %%FLEETS%% f ON `f.fleetID` = `fe.fleetID`
-    WHERE `fe.lock` IS NULL AND `fe.time` <= :time AND `f.universe` = :universe FOR UPDATE;";
+$sql = "SELECT `fleetID` FROM %%FLEETS_EVENT%% fe JOIN %%FLEETS%% f ON f.fleet_id = fe.fleetID
+    WHERE fe.lock IS NULL AND fe.time <= :time AND f.fleet_universe = :universe FOR UPDATE;";
 $fleetResult = $db->select($sql, [
     ':time'		=> TIMESTAMP,
     ':universe' => Universe::current(),
