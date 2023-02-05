@@ -100,7 +100,7 @@ CREATE TABLE `%PREFIX%advanced_stats` (
   `repaired_409` bigint(20) unsigned NOT NULL DEFAULT '0',
   `repaired_410` bigint(20) unsigned NOT NULL DEFAULT '0',
   `repaired_411` bigint(20) unsigned NOT NULL DEFAULT '0',
-  
+
   `destroyed_202` int(10) unsigned NOT NULL DEFAULT '0',
   `destroyed_203` int(10) unsigned NOT NULL DEFAULT '0',
   `destroyed_204` int(10) unsigned NOT NULL DEFAULT '0',
@@ -151,7 +151,7 @@ CREATE TABLE `%PREFIX%advanced_stats` (
   `found_217` int(10) unsigned NOT NULL DEFAULT '0',
   `found_218` int(10) unsigned NOT NULL DEFAULT '0',
   `found_219` int(10) unsigned NOT NULL DEFAULT '0',
-  
+
   `found_901` int(10) unsigned NOT NULL DEFAULT '0',
   `found_902` int(10) unsigned NOT NULL DEFAULT '0',
   `found_903` int(10) unsigned NOT NULL DEFAULT '0',
@@ -1088,7 +1088,7 @@ INSERT INTO `%PREFIX%vars` (`elementID`, `name`, `class`, `onPlanetType`, `onePe
 (3, 'deuterium_sintetizer', 0, '1', 0, 1.50, 255, 225, 75, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '(floor(10 * $BuildLevel * pow((1.1), $BuildLevel) * (1.44 -0.004 * $BuildTemp)) * (0.1 * $BuildLevelFactor))', '- (20 * $BuildLevel * pow((1.1), $BuildLevel)) * (0.1 * $BuildLevelFactor)', NULL, NULL, NULL),
 (4, 'solar_plant', 0, '1', 0, 1.50, 255, 75, 30, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, '(20 * $BuildLevel * pow((1.1), $BuildLevel)) * (0.1 * $BuildLevelFactor)', NULL, NULL, NULL),
 (6, 'university', 0, '1', 0, 2.00, 255, 100000000, 50000000, 25000000, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12, 'fusion_plant', 0, '1', 0, 1.80, 255, 900, 360, 180, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '- (10 * $BuildLevel * pow(1.1,$BuildLevel) * (0.1 * $BuildLevelFactor))', '30 * $BuildLevel * pow(1.05 + ($this->USER[$resource[113]] * 0.01), $BuildLevel) * (0.1 * $BuildLevelFactor)', NULL, NULL, NULL),
+(12, 'fusion_plant', 0, '1', 0, 1.80, 255, 900, 360, 180, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, '- (10 * $BuildLevel * pow(1.1,$BuildLevel) * (0.1 * $BuildLevelFactor))', '30 * $BuildLevel * pow(1.05 + ($BuildEnergy * 0.01), $BuildLevel) * (0.1 * $BuildLevelFactor)', NULL, NULL, NULL),
 (14, 'robot_factory', 0, '1,3', 0, 2.00, 255, 400, 120, 200, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (15, 'nano_factory', 0, '1', 0, 2.00, 255, 1000000, 500000, 100000, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (21, 'hangar', 0, '1,3', 0, 2.00, 255, 400, 200, 100, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
