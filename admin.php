@@ -15,6 +15,8 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
+require_once __DIR__.'/vendor/autoload.php';
+
 define('MODE', 'ADMIN');
 define('DATABASE_VERSION', 'OLD');
 

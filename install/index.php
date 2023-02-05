@@ -15,6 +15,8 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
+require_once dirname(__DIR__).'/vendor/autoload.php';
+
 define('ROOT_PATH', str_replace('\\', '/', dirname(dirname(__FILE__))) . '/');
 set_include_path(ROOT_PATH);
 chdir(ROOT_PATH);
