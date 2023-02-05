@@ -84,6 +84,7 @@ class ResourceUpdate
         $Hash[] = $this->PLANET[$resource[22]];
         $Hash[] = $this->PLANET[$resource[23]];
         $Hash[] = $this->PLANET[$resource[24]];
+        $Hash[] = $this->USER[$resource[113]];
         $Hash[] = $this->USER[$resource[131]];
         $Hash[] = $this->USER[$resource[132]];
         $Hash[] = $this->USER[$resource[133]];
@@ -104,11 +105,19 @@ class ResourceUpdate
 
         if ($this->Build) {
             $this->ShipyardQueue();
-            if ($this->Tech == true && $this->USER['b_tech'] != 0 && $this->USER['b_tech'] < $this->TIME) {
-                $this->ResearchQueue();
-            }
-            if ($this->PLANET['b_building'] != 0) {
-                $this->BuildingQueue();
+
+            while (($this->Tech && $this->USER['b_tech'] != 0 && $this->USER['b_tech'] < $this->TIME) ||
+                    ($this->PLANET['b_building'] != 0 && $this->PLANET['b_building'] < $this->TIME)) {
+                if ($this->PLANET['b_building'] != 0 && (!$this->Tech || $this->USER['b_tech'] == 0 || $this->PLANET['b_building'] <= $this->USER['b_tech'])) {
+                    if ($this->CheckPlanetBuildingQueue()) {
+                        $this->SetNextQueueElementOnTop();
+                    }
+                }
+                elseif ($this->Tech && $this->USER['b_tech'] != null) {
+                    if ($this->CheckUserTechQueue()) {
+                        $this->SetNextQueueTechOnTop();
+                    }
+                }
             }
         }
 
@@ -404,13 +413,6 @@ class ResourceUpdate
         return true;
     }
 
-    private function BuildingQueue()
-    {
-        while ($this->CheckPlanetBuildingQueue()) {
-            $this->SetNextQueueElementOnTop();
-        }
-    }
-
     private function CheckPlanetBuildingQueue()
     {
         $resource =& Singleton()->resource;
@@ -430,6 +432,9 @@ class ResourceUpdate
             $this->Builded[$Element] = 0;
         }
 
+        $OnHash = in_array($Element, $reslist['prod']);
+        $this->UpdateResource($BuildEndTime, !$OnHash);
+
         if ($BuildMode == 'build') {
             $this->PLANET['field_current']      += 1;
             $this->PLANET[$resource[$Element]]  = $BuildLevel;
@@ -441,8 +446,6 @@ class ResourceUpdate
         }
 
         array_shift($CurrentQueue);
-        $OnHash = in_array($Element, $reslist['prod']);
-        $this->UpdateResource($BuildEndTime, !$OnHash);
 
         if (count($CurrentQueue) == 0) {
             $this->PLANET['b_building'] = 0;
@@ -591,13 +594,6 @@ class ResourceUpdate
         return true;
     }
 
-    private function ResearchQueue()
-    {
-        while ($this->CheckUserTechQueue()) {
-            $this->SetNextQueueTechOnTop();
-        }
-    }
-
     private function CheckUserTechQueue()
     {
         $resource =& Singleton()->resource;
@@ -612,14 +608,29 @@ class ResourceUpdate
 
         $CurrentQueue = !empty($this->USER['b_tech_queue']) ? unserialize($this->USER['b_tech_queue']) : [];
 
+        $Element = $this->USER['b_tech_id'];
         $BuildLevel = $CurrentQueue[0][1];
+        $BuildEndTime = $this->USER['b_tech'];
 
-        $this->Builded[$this->USER['b_tech_id']] = $BuildLevel;
-        $this->USER[$resource[$this->USER['b_tech_id']]] = $BuildLevel;
+        $hashTechs = [113, 131, 132, 133];
+        if (in_array($Element, $hashTechs)) {
+            $sql = 'SELECT * FROM %%PLANETS%% WHERE id_owner = :userId AND id <> :planetId FOR UPDATE;';
+            $PLANETS = Database::get()->select($sql, array(
+                ':userId' => $this->USER['id'],
+                ':planetId' => $this->PLANET['id'],
+            ));
+            foreach ($PLANETS as $planetId => $cplanet) {
+                $ressUpdate = new ResourceUpdate(true, false);
+                $ressUpdate->CalcResource($this->USER, $cplanet, true, $BuildEndTime, false);
+            }
+            $this->UpdateResource($BuildEndTime, false);
+        }
+
+        $this->Builded[$Element] = $BuildLevel;
+        $this->USER[$resource[$Element]] = $BuildLevel;
 
         array_shift($CurrentQueue);
 
-        $this->USER['b_tech_id'] = 0;
         if (count($CurrentQueue) == 0) {
             $this->USER['b_tech'] = 0;
             $this->USER['b_tech_id'] = 0;
@@ -627,6 +638,7 @@ class ResourceUpdate
             $this->USER['b_tech_queue'] = '';
             return false;
         } else {
+            $this->USER['b_tech_id'] = 0;
             $this->USER['b_tech_queue'] = serialize(array_values($CurrentQueue));
             return true;
         }
