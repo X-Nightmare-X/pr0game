@@ -4,46 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9733a7a014ba2f51663086697a0d5174",
+    "content-hash": "524a0c142362ce105ab1c073e89f94d1",
     "packages": [
-        {
-            "name": "boldgrid/tdcron",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/BoldGrid/tdcron.git",
-                "reference": "400378d5e9de6ec81dd9d42af12679f0cd8f163f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/BoldGrid/tdcron/zipball/400378d5e9de6ec81dd9d42af12679f0cd8f163f",
-                "reference": "400378d5e9de6ec81dd9d42af12679f0cd8f163f",
-                "shasum": ""
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Joe Cartonia",
-                    "email": "joec@boldgrid.com",
-                    "homepage": "https://twitter.com/joemotocss",
-                    "role": "Developer"
-                },
-                {
-                    "name": "bwmarkle",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A simple utility to manipulate cron jobs.",
-            "support": {
-                "issues": "https://github.com/BoldGrid/tdcron/issues",
-                "source": "https://github.com/BoldGrid/tdcron/tree/1.0.0"
-            },
-            "time": "2022-11-02T14:18:33+00:00"
-        },
         {
             "name": "dragonmantank/cron-expression",
             "version": "v3.3.2",
@@ -536,7 +498,6 @@
         "ext-filter": "*",
         "ext-gd": "*",
         "ext-hash": "*",
-        "ext-imap": "*",
         "ext-intl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
@@ -546,7 +507,6 @@
         "ext-pdo": "*",
         "ext-session": "*",
         "ext-spl": "*",
-        "ext-zend-opcache": "*",
         "ext-zlib": "*"
     },
     "platform-dev": [],
