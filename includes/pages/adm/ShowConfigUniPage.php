@@ -94,6 +94,7 @@ function ShowConfigUniPage()
             'expo_ress_met_chance'     => $config->expo_ress_met_chance,
             'expo_ress_crys_chance'    => $config->expo_ress_crys_chance,
             'expo_ress_deut_chance'    => $config->expo_ress_deut_chance,
+            'del_user_automatic'	   => $config->del_user_automatic,
         ];
 
         $noobprotection         = isset($_POST['noobprotection']) && $_POST['noobprotection'] == 'on' ? 1 : 0;
@@ -164,6 +165,7 @@ function ShowConfigUniPage()
         $expo_ress_met_chance = HTTP::_GP('expo_ress_met_chance', 0);
         $expo_ress_crys_chance = HTTP::_GP('expo_ress_crys_chance', 0);
         $expo_ress_deut_chance = HTTP::_GP('expo_ress_deut_chance', 0);
+        $del_user_automatic		= HTTP::_GP('del_user_automatic', 0);
 
         $config_after = [
             'noobprotectiontime'    => $noobprotectiontime,
@@ -233,6 +235,7 @@ function ShowConfigUniPage()
             'expo_ress_met_chance'  => $expo_ress_met_chance,
             'expo_ress_crys_chance' => $expo_ress_crys_chance,
             'expo_ress_deut_chance'  => $expo_ress_deut_chance,
+            'del_user_automatic'	   => $del_user_automatic,
         ];
 
         // If login is opened, update all planet timestamps to avoid resource produciton during closed login times.
@@ -311,6 +314,7 @@ function ShowConfigUniPage()
         'min_build_time'                => $config->min_build_time,
         'trade_allowed_ships'           => $config->trade_allowed_ships,
         'trade_charge'                  => $config->trade_charge,
+        'del_user_automatic'			=> $config->del_user_automatic,
         'Selector'                      => [
             'langs' => $LNG->getAllowedLangs(false),
             'uni_status' => [
