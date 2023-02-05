@@ -13,6 +13,9 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
+require_once ROOT_PATH . 'vendor/boldgrid/tdcron/class.tdcron.php';
+require_once ROOT_PATH . 'vendor/boldgrid/tdcron/class.tdcron.entry.php';
+
 class Cronjob
 {
     function __construct()
