@@ -280,6 +280,7 @@ class ResourceUpdate
             )
         );
 
+        /* Data for eval */
         $BuildTemp = $this->PLANET['temp_max'];
         $BuildEnergy = $this->USER[$resource[113]];
 
@@ -289,6 +290,7 @@ class ResourceUpdate
                     continue;
                 }
 
+                /* Data for eval */
                 $BuildLevel = $this->PLANET[$resource[$ProdID]];
                 $temp[$ID]['max']   += round(eval(self::getProd($ProdGrid[$ProdID]['storage'][$ID])));
             }
@@ -297,6 +299,7 @@ class ResourceUpdate
         $ressIDs = array_merge(array(), $reslist['resstype'][1], $reslist['resstype'][2]);
 
         foreach ($reslist['prod'] as $ProdID) {
+            /* Data for eval */
             $BuildLevelFactor = $this->PLANET[$resource[$ProdID] . '_porcent'];
             $BuildLevel = $this->PLANET[$resource[$ProdID]];
 

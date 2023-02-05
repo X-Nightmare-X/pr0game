@@ -242,6 +242,7 @@ define('ELEMENT_RESOURCE_ON_STEAL', 16777216);
 define('RESOURCE_METAL', 901);
 define('RESOURCE_CRYSTAL', 902);
 define('RESOURCE_DEUT', 903);
+define('RESOURCE_ENERGY', 911);
 
 // ships
 

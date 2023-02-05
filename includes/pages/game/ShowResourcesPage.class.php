@@ -158,6 +158,13 @@ class ShowResourcesPage extends AbstractGamePage
                     $Production *= $prodLevel * $config->resource_multiplier;
                 }
 
+                if ($ProdID == 12 && $ID == RESOURCE_ENERGY) {
+                    $BuildEnergy = 0;
+                    $bonus = eval(ResourceUpdate::getProd($ProdGrid[$ProdID]['production'][$ID], $ProdID));
+                    $temp[911]['bonus'] = $Production - $bonus;
+                    $$BuildEnergy = $USER[$resource[113]];
+                }
+
                 $productionList[$ProdID]['production'][$ID] = $Production;
 
                 if ($Production > 0) {
@@ -196,7 +203,7 @@ class ShowResourcesPage extends AbstractGamePage
             901 => $temp[901]['plus'] * (0.02 * $USER[$resource[131]]),
             902 => $temp[902]['plus'] * (0.02 * $USER[$resource[132]]),
             903 => $temp[903]['plus'] * (0.02 * $USER[$resource[133]]),
-            911 => $temp[911]['plus'],
+            911 => $temp[911]['bonus'],
         ];
 
         $dailyProduction = [
