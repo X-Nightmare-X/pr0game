@@ -31,6 +31,7 @@ if ($mode === 'upgrade') {
 require 'includes/common.php';
 $THEME->setUserTheme('gow');
 $LNG = new Language();
+Singleton()->LNG = $LNG;
 $LNG->getUserAgentLanguage();
 $LNG->includeData(['L18N', 'INGAME', 'INSTALL', 'CUSTOM']);
 
