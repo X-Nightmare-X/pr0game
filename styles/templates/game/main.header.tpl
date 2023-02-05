@@ -366,7 +366,7 @@
       lastScroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 
       // menu
-      if (document.getElementsByTagName("menu").length === 0) {
+      if (document.getElementsByTagName("menu").length > 0) {
         elementHeight = document.getElementsByTagName("menu")[0].getElementsByClassName("fixed")[0].clientHeight;
         element = document.getElementsByTagName("menu")[0].getElementsByClassName("fixed")[0];
         if (elementHeight > windowHeight - 100) {
