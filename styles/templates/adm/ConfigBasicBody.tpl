@@ -34,10 +34,6 @@
 	<td><input name="del_user_manually" maxlength="3" size="2" value="{$del_user_manually}" type="text"> {$LNG.se_days}</td>
 	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_del_user_manually_info}"></td>
 </tr><tr>
-	<td>{$LNG.se_del_user_automatic}</td>
-	<td><input name="del_user_automatic" maxlength="3" size="2" value="{$del_user_automatic}" type="text"> {$LNG.se_days}</td>
-	<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_del_user_automatic_info}"></td>
-</tr><tr>
 	<td>{$LNG.se_sendmail_inactive}<br></td>
     <td><input name="sendmail_inactive"{if $sendmail_inactive} checked="checked"{/if}  type="checkbox"></td>
 	<td>&nbsp;</td>
