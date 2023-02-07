@@ -23,7 +23,7 @@ ddev is a local development environment system based on Docker and docker-compos
 To run the project for development purposes, you just need one command:
 
 ```
-ddev start
+Ddev composer install
 ```
 
 The project will be available at: https://pr0game.ddev.site
