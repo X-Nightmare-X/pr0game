@@ -20,7 +20,13 @@ ddev is a local development environment system based on Docker and docker-compos
 
 #### Usage
 
-To run the project for development purposes, you just need one command:
+To start the project for development purposes, you just need one command:
+
+```
+ddev start
+```
+
+To install the project for development purposes, you just need one command:
 
 ```
 Ddev composer install
