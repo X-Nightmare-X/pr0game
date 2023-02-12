@@ -317,6 +317,7 @@ function scavengers() {
     spyReport.conclusions = {};
 
     spyReport.conclusions.summedUpResources = sumUpResources(spyReport);
+    spyReport.conclusions.potentialResources = sumUpResources(spyReport) / 2;
     spyReport.conclusions.neededCapacity = calculateNeededCapacity(
       spyReport.content[901],
       spyReport.content[902],
@@ -363,7 +364,7 @@ function scavengers() {
     }
     let mainobject = spyReportElement.parentElement.parentElement
     mainobject.querySelector('*[name="totalRes"]').innerText = spyReport.conclusions.summedUpResources.toLocaleString("de");
-    mainobject.querySelector('*[name="resToRaid"]').innerText = Math.floor(spyReport.conclusions.neededCapacity).toLocaleString("de");
+    mainobject.querySelector('*[name="resToRaid"]').innerText = Math.floor(spyReport.conclusions.potentialResources).toLocaleString("de");
     mainobject.querySelector('*[name="resToRec"]').innerText = spyReport.conclusions.recycleValue.toLocaleString("de");
     mainobject.querySelector('*[name="ktNeeded"]').innerText = spyReport.conclusions.ktNeeded.toLocaleString("de");
     mainobject.querySelector('*[name="gtNeeded"]').innerText = spyReport.conclusions.gtNeeded.toLocaleString("de");
@@ -371,7 +372,7 @@ function scavengers() {
     mainobject.querySelectorAll('*[name="gtNeeded"]')[1].innerText = spyReport.conclusions.gtNeeded.toLocaleString("de");
     mainobject.querySelector('*[name="recNeeded"]').innerText = spyReport.conclusions.recyclersNeeded.toLocaleString("de");
     mainobject.querySelector('*[name="marketValue"]').innerText = Math.floor(spyReport.conclusions.marketValue).toLocaleString("de");
-    mainobject.querySelector('*[name="resPerSec"]').innerText = Math.floor(spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet).toLocaleString("de");
+    mainobject.querySelector('*[name="resPerSec"]').innerText = Number(spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet).toFixed(2);
     mainobject.querySelector('*[name="bestPlanet"]').innerText = "[" + spyReport.conclusions.MarketValuePerSecond.bestPlanet.join(":") + "]";
     mainobject.querySelectorAll('*[name="ktNeeded"]')[1].parentElement.parentElement.setAttribute("href",mainobject.querySelectorAll('*[name="ktNeeded"]')[1].parentElement.parentElement.href + spyReport.conclusions.ktNeeded)
     mainobject.querySelectorAll('*[name="gtNeeded"]')[1].parentElement.parentElement.setAttribute("href",mainobject.querySelectorAll('*[name="gtNeeded"]')[1].parentElement.parentElement.href + spyReport.conclusions.gtNeeded)

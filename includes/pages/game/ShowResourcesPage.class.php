@@ -87,7 +87,7 @@ class ShowResourcesPage extends AbstractGamePage
             $basicIncome[903] = $config->{$resource[903] . '_basic_income'};
             $basicIncome[911] = $config->{$resource[911] . '_basic_income'};
         }
-
+        
         $temp = [
             901 => [
                 'plus'  => 0,
@@ -104,9 +104,9 @@ class ShowResourcesPage extends AbstractGamePage
             911 => [
                 'plus'  => 0,
                 'minus' => 0,
+                'bonus' => 0,
             ],
         ];
-
         $ressIDs = array_merge([], $reslist['resstype'][1], $reslist['resstype'][2]);
 
         $productionList = [];
@@ -157,6 +157,13 @@ class ShowResourcesPage extends AbstractGamePage
                 } else {
                     $Production *= $prodLevel * $config->resource_multiplier;
                 }
+                
+                if ($ProdID == 12 && $ID == RESOURCE_ENERGY) {
+                    $BuildEnergy = 0;
+                    $bonus = eval(ResourceUpdate::getProd($ProdGrid[$ProdID]['production'][$ID], $ProdID));
+                    $temp[911]['bonus'] = $Production - $bonus;
+                    $$BuildEnergy = $USER[$resource[113]];
+                }
 
                 $productionList[$ProdID]['production'][$ID] = $Production;
 
@@ -196,7 +203,7 @@ class ShowResourcesPage extends AbstractGamePage
             901 => $temp[901]['plus'] * (0.02 * $USER[$resource[131]]),
             902 => $temp[902]['plus'] * (0.02 * $USER[$resource[132]]),
             903 => $temp[903]['plus'] * (0.02 * $USER[$resource[133]]),
-            911 => $temp[911]['plus'],
+            911 => $temp[911]['bonus'],
         ];
 
         $dailyProduction = [

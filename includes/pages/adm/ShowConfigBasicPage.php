@@ -41,7 +41,6 @@ function ShowConfigBasicPage()
 			'ga_key'				=> $config->ga_key,
 			'del_oldstuff'			=> $config->del_oldstuff,
 			'del_user_manually'		=> $config->del_user_manually,
-			'del_user_automatic'	=> $config->del_user_automatic,
 			'del_user_sendmail'		=> $config->del_user_sendmail,
 			'sendmail_inactive'		=> $config->sendmail_inactive,
 			'timezone'				=> $config->timezone,
@@ -70,7 +69,6 @@ function ShowConfigBasicPage()
 		$smtp_ssl				= HTTP::_GP('smtp_ssl', '');
 		$del_oldstuff			= HTTP::_GP('del_oldstuff', 0);
 		$del_user_manually		= HTTP::_GP('del_user_manually', 0);
-		$del_user_automatic		= HTTP::_GP('del_user_automatic', 0);
 		$del_user_sendmail		= HTTP::_GP('del_user_sendmail', 0);
 		$timezone				= HTTP::_GP('timezone', '');
 		$dst					= HTTP::_GP('dst', 0);
@@ -94,7 +92,6 @@ function ShowConfigBasicPage()
 			'ga_key'				=> $ga_key,
 			'del_oldstuff'			=> $del_oldstuff,
 			'del_user_manually'		=> $del_user_manually,
-			'del_user_automatic'	=> $del_user_automatic,
 			'del_user_sendmail'		=> $del_user_sendmail,
 			'sendmail_inactive'		=> $sendmail_inactive,
 			'timezone'				=> $timezone,
@@ -124,7 +121,6 @@ function ShowConfigBasicPage()
 	$template->assign_vars(array(
 		'del_oldstuff'					=> $config->del_oldstuff,
 		'del_user_manually'				=> $config->del_user_manually,
-		'del_user_automatic'			=> $config->del_user_automatic,
 		'del_user_sendmail'				=> $config->del_user_sendmail,
 		'sendmail_inactive'				=> $config->sendmail_inactive,
 		'git_issues_link'				=> $config->git_issues_link,
