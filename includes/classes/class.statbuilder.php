@@ -440,6 +440,12 @@ class statbuilder
 
     private function generateJson()
     {
+        $pricelist =& Singleton()->pricelist;
+        $reslist =& Singleton()->reslist;
+        $config = Config::get();
+        $fleetIntoDebris = $config->Fleet_Cdr;
+        $defIntoDebris = $config->Defs_Cdr;
+
         $columns = [
             '%%STATPOINTS%%.id_owner AS playerId',
             '%%USERS%%.username AS playerName',
@@ -464,17 +470,33 @@ class statbuilder
             '%%USERS%%.kbcrystal AS debrisCrystal',
             '%%USERS%%.desunits AS unitsDestroyed',
             '%%USERS%%.lostunits AS unitsLost',
-            '(ad.destroyed_202 * 4000 + ad.destroyed_203 * 12000 + ad.destroyed_204 * 4000 + ad.destroyed_205 * 10000 + ad.destroyed_206 * 27000
-            + ad.destroyed_207 * 60000 + ad.destroyed_208 * 30000 + ad.destroyed_209 * 16000 + ad.destroyed_210 * 1000 + ad.destroyed_211 * 75000
-            + ad.destroyed_212 * 2000 + ad.destroyed_213 * 110000 + ad.destroyed_214 * 9000000 + ad.destroyed_215 * 70000
-            + ad.destroyed_401 * 2000 + ad.destroyed_402 * 2000 + ad.destroyed_403 * 8000 + ad.destroyed_404 * 35000 + ad.destroyed_405 * 8000
-            + ad.destroyed_406 * 100000 + ad.destroyed_407 * 20000 + ad.destroyed_408 * 100000) as realUnitsDestroyed',
-            '(ad.lost_202 * 4000 + ad.lost_203 * 12000 + ad.lost_204 * 4000 + ad.lost_205 * 10000 + ad.lost_206 * 27000
-            + ad.lost_207 * 60000 + ad.lost_208 * 30000 + ad.lost_209 * 16000 + ad.lost_210 * 1000 + ad.lost_211 * 75000
-            + ad.lost_212 * 2000 + ad.lost_213 * 110000 + ad.lost_214 * 9000000 + ad.lost_215 * 70000
-            + ad.lost_401 * 2000 + ad.lost_402 * 2000 + ad.lost_403 * 8000 + ad.lost_404 * 35000 + ad.lost_405 * 8000
-            + ad.lost_406 * 100000 + ad.lost_407 * 20000 + ad.lost_408 * 100000) as realUnitsLost',
         ];
+
+        $advanced_stats_dest = [];
+        $advanced_stats_lost = [];
+        $advanced_stats_met = [];
+        $advanced_stats_cris = [];
+        foreach ($reslist['fleet'] as $element) {
+            $advanced_stats_dest[] = 'ad.destroyed_' . $element . ' * ' . ($pricelist[$element]['cost'][RESOURCE_METAL] + $pricelist[$element]['cost'][RESOURCE_CRYSTAL]);
+            $advanced_stats_lost[] = 'ad.lost_' . $element . ' * ' . ($pricelist[$element]['cost'][RESOURCE_METAL] + $pricelist[$element]['cost'][RESOURCE_CRYSTAL]);
+            $advanced_stats_met[] = 'ad.destroyed_' . $element . ' * ' . $pricelist[$element]['cost'][RESOURCE_METAL] . ' * ' . ($fleetIntoDebris / 100);
+            $advanced_stats_met[] = 'ad.lost_' . $element . ' * ' . $pricelist[$element]['cost'][RESOURCE_METAL] . ' * ' . ($fleetIntoDebris / 100);
+            $advanced_stats_cris[] = 'ad.destroyed_' . $element . ' * ' . $pricelist[$element]['cost'][RESOURCE_CRYSTAL] . ' * ' . ($fleetIntoDebris / 100);
+            $advanced_stats_cris[] = 'ad.lost_' . $element . ' * ' . $pricelist[$element]['cost'][RESOURCE_CRYSTAL] . ' * ' . ($fleetIntoDebris / 100);
+        }
+        foreach ($reslist['defense'] as $element) {
+            $advanced_stats_dest[] = 'ad.destroyed_' . $element . ' * ' . ($pricelist[$element]['cost'][RESOURCE_METAL] + $pricelist[$element]['cost'][RESOURCE_CRYSTAL]);
+            $advanced_stats_lost[] = 'ad.lost_' . $element . ' * ' . ($pricelist[$element]['cost'][RESOURCE_METAL] + $pricelist[$element]['cost'][RESOURCE_CRYSTAL]);
+            $advanced_stats_met[] = 'ad.destroyed_' . $element . ' * ' . $pricelist[$element]['cost'][RESOURCE_METAL] . ' * ' . ($defIntoDebris / 100);
+            $advanced_stats_met[] = 'ad.lost_' . $element . ' * ' . $pricelist[$element]['cost'][RESOURCE_METAL] . ' * ' . ($defIntoDebris / 100);
+            $advanced_stats_cris[] = 'ad.destroyed_' . $element . ' * ' . $pricelist[$element]['cost'][RESOURCE_CRYSTAL] . ' * ' . ($defIntoDebris / 100);
+            $advanced_stats_cris[] = 'ad.lost_' . $element . ' * ' . $pricelist[$element]['cost'][RESOURCE_CRYSTAL] . ' * ' . ($defIntoDebris / 100);
+        }
+
+        $columns[] = '(' . implode(' + ', $advanced_stats_met) . (') as realDebrisMetal');
+        $columns[] = '(' . implode(' + ', $advanced_stats_cris) . (') as realDebrisCrystal');
+        $columns[] = '(' . implode(' + ', $advanced_stats_dest) . (') as realUnitsDestroyed');
+        $columns[] = '(' . implode(' + ', $advanced_stats_lost) . (') as realUnitsDestroyed');
 
         $database = Database::get();
         $sql = trim("SELECT SQL_BIG_RESULT
