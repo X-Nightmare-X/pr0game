@@ -156,7 +156,7 @@ class ShowAlliancePage extends AbstractGamePage
             ':statType' => 1
         ], 'total_points');
         if(ISSET($this->allianceData['ally_description'])) {
-            $allydesc = $this->allianceData['ally_description'];
+            $allydesc = nl2br($this->allianceData['ally_description']);
         } else {
             $allydesc = '';
         }
@@ -627,12 +627,12 @@ class ShowAlliancePage extends AbstractGamePage
             ':AllianceID' => $this->allianceData['id']
         ], 'count');
         if(ISSET($this->allianceData['ally_description'])) {
-            $allydesc = $this->allianceData['ally_description'];
+            $allydesc = nl2br($this->allianceData['ally_description']);
         } else {
             $allydesc = '';
         }
         if(ISSET($this->allianceData['ally_text'])) {
-            $allytext = $this->allianceData['ally_text'];
+            $allytext = nl2br($this->allianceData['ally_text']);
         } else {
             $allytext = '';
         }
@@ -1409,6 +1409,7 @@ class ShowAlliancePage extends AbstractGamePage
             ]]);
         }
 
+        $applyDetail['text'] = nl2br($applyDetail['text']);
         $applyDetail['kbmetal'] = pretty_number($applyDetail['kbmetal']);
         $applyDetail['kbcrystal'] = pretty_number($applyDetail['kbcrystal']);
         $applyDetail['lostunits'] = pretty_number($applyDetail['lostunits']);
