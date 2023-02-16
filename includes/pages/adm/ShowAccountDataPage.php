@@ -187,7 +187,7 @@ function ShowAccountDataPage()
                 }
 
                 if ($AllianceQuery['ally_description'] != null) {
-                    $ali_ext2 = $AllianceQuery['ally_description'];
+                    $ali_ext2 = nl2br($AllianceQuery['ally_description']);
                     $ali_ext = "<a href=\"#\" rel=\"toggle[externo]\">" . $LNG['ac_view_text_ext'] . "</a>";
                 } else {
                     $ali_ext = $LNG['ac_no_text_ext'];
@@ -195,7 +195,7 @@ function ShowAccountDataPage()
 
 
                 if ($AllianceQuery['ally_text'] != null) {
-                    $ali_int2 = $AllianceQuery['ally_text'];
+                    $ali_int2 = nl2br($AllianceQuery['ally_text']);
                     $ali_int = "<a href=\"#\" rel=\"toggle[interno]\">" . $LNG['ac_view_text_int'] . "</a>";
                 } else {
                     $ali_int = $LNG['ac_no_text_int'];
@@ -203,7 +203,7 @@ function ShowAccountDataPage()
 
 
                 if ($AllianceQuery['ally_request'] != null) {
-                    $ali_sol2 = $AllianceQuery['ally_request'];
+                    $ali_sol2 = nl2br($AllianceQuery['ally_request']);
                     $ali_sol = "<a href=\"#\" rel=\"toggle[solicitud]\">" . $LNG['ac_view_text_sol'] . "</a>";
                 } else {
                     $ali_sol = $LNG['ac_no_text_sol'];
