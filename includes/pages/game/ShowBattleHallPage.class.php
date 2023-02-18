@@ -17,97 +17,95 @@
 
 class ShowBattleHallPage extends AbstractGamePage
 {
-	public static $requireModule = MODULE_BATTLEHALL;
+    public static $requireModule = MODULE_BATTLEHALL;
 
-	function __construct()
+    public function __construct()
     {
-		parent::__construct();
-	}
+        parent::__construct();
+    }
 
-	private function assembleSelectors()
-	{
-		$LNG =& Singleton()->LNG;
+    private function assembleSelectors()
+    {
+        $LNG =& Singleton()->LNG;
 
-		$Selectors = [];
-		$Selectors['memorial'] = [
-			MEMORIAL_ALL => $LNG['tkb_all'],
-			MEMORIAL_EXCLUDE => $LNG['tkb_exclude'],
-			MEMORIAL_ONLY => $LNG['tkb_only'],
-		];
+        $Selectors = [];
+        $Selectors['memorial'] = [
+            MEMORIAL_ALL => $LNG['tkb_all'],
+            MEMORIAL_EXCLUDE => $LNG['tkb_exclude'],
+            MEMORIAL_ONLY => $LNG['tkb_only'],
+        ];
 
-		$Selectors['timeframe'] = [
-			TIMEFRAME_ALL => $LNG['tkb_all'],
-			TIMEFRAME_24H => $LNG['tkb_day'],
-			TIMEFRAME_1WK => $LNG['tkb_week'],
-			TIMEFRAME_1MTH => $LNG['tkb_month'],
-		];
+        $Selectors['timeframe'] = [
+            TIMEFRAME_ALL => $LNG['tkb_all'],
+            TIMEFRAME_24H => $LNG['tkb_day'],
+            TIMEFRAME_1WK => $LNG['tkb_week'],
+            TIMEFRAME_1MTH => $LNG['tkb_month'],
+        ];
 
-		$Selectors['diplomacy'] = [
-			DIPLOMACY_ALL => $LNG['tkb_all'],
-			DIPLOMACY_ALLIANCE => $LNG['pl_ally'],
-			DIPLOMACY_SELF => $LNG['tkb_self'],
-		];
+        $Selectors['diplomacy'] = [
+            DIPLOMACY_ALL => $LNG['tkb_all'],
+            DIPLOMACY_ALLIANCE => $LNG['pl_ally'],
+            DIPLOMACY_SELF => $LNG['tkb_self'],
+        ];
 
-		$maxgala = Config::get()->max_galaxy;
+        $maxgala = Config::get()->max_galaxy;
 
-		$Selectors['galaxy'] = [
-			0 => $LNG['tkb_all'],
-		];
+        $Selectors['galaxy'] = [
+            0 => $LNG['tkb_all'],
+        ];
 
-		for ($curgala = 1; $curgala <= $maxgala; $curgala++)
-		{
-			$Selectors['galaxy'][$curgala] = $curgala;
-		}
+        for ($curgala = 1; $curgala <= $maxgala; $curgala++) {
+            $Selectors['galaxy'][$curgala] = $curgala;
+        }
 
-		return $Selectors;
-	}
+        return $Selectors;
+    }
 
-	function show()
-	{
-		$USER =& Singleton()->USER;
-     $LNG =& Singleton()->LNG;
-     require_once 'includes/classes/class.BattleHallFilter.php';
+    public function show()
+    {
+        $USER =& Singleton()->USER;
+        $LNG =& Singleton()->LNG;
+        require_once 'includes/classes/class.BattleHallFilter.php';
 
-		$memorial = HTTP::_GP('memorial', 1);
-		$timeframe = HTTP::_GP('timeframe', 0);
-		$diplomacy = HTTP::_GP('diplomacy', 0);
-		$galaxy = HTTP::_GP('galaxy', 0);
+        $memorial = HTTP::_GP('memorial', 1);
+        $timeframe = HTTP::_GP('timeframe', 0);
+        $diplomacy = HTTP::_GP('diplomacy', 0);
+        $galaxy = HTTP::_GP('galaxy', 0);
 
-		$filters = [
-			'memorial' => $memorial,
-			'timeframe' => $timeframe,
-			'diplomacy' => $diplomacy,
-			'galaxy' => $galaxy,
-		];
+        $filters = [
+            'memorial' => $memorial,
+            'timeframe' => $timeframe,
+            'diplomacy' => $diplomacy,
+            'galaxy' => $galaxy,
+        ];
 
-		$pBHFilter = new BattleHallFilter($filters);
-		$top = $pBHFilter->getTopKBs();
+        $pBHFilter = new BattleHallFilter($filters);
+        $top = $pBHFilter->getTopKBs();
 
-		$TopKBList	= array();
-		foreach($top as $data)
-		{
-			$TopKBList[]	= array(
-				'result'	=> $data['result'],
-				'date'		=> _date($LNG['php_tdformat'], $data['time'], $USER['timezone']),
-				'time'		=> TIMESTAMP - $data['time'],
-				'units'		=> $data['units'],
-				'rid'		=> $data['rid'],
-				'attacker'	=> $data['attacker'],
-				'defender'	=> $data['defender'],
-			);
-		}
+        $TopKBList	= array();
+        foreach ($top as $data) {
+            $TopKBList[]	= array(
+                'result'	=> $data['result'],
+                'date'		=> _date($LNG['php_tdformat'], $data['time'], $USER['timezone']),
+                'time'		=> TIMESTAMP - $data['time'],
+                'units'		=> $data['units'],
+                'rid'		=> $data['rid'],
+                'attacker'	=> $data['attacker'],
+                'defender'	=> $data['defender'],
+            );
+        }
 
-		$Selectors = $this->assembleSelectors();
+        $Selectors = $this->assembleSelectors();
 
-		$this->assign(array(
-			'TopKBList'		=> $TopKBList,
-			'Selectors'		=> $Selectors,
-			'memorial'		=> $memorial,
-			'timeframe'		=> $timeframe,
-			'diplomacy'		=> $diplomacy,
-			'galaxy'		=> $galaxy,
-		));
+        $this->assign(array(
+            'TopKBList'		=> $TopKBList,
+            'Selectors'		=> $Selectors,
+            'memorial'		=> $memorial,
+            'timeframe'		=> $timeframe,
+            'diplomacy'		=> $diplomacy,
+            'galaxy'		=> $galaxy,
+        ));
 
-		$this->display('page.battleHall.default.tpl');
-	}
+        $this->display('page.battleHall.default.tpl');
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -15,16 +15,18 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FILE__))) throw new Exception("Permission error!");
+if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FILE__))) {
+    throw new Exception("Permission error!");
+}
 
 function ShowClearCachePage()
 {
-	$LNG =& Singleton()->LNG;
- $USER =& Singleton()->USER;
- ClearCache();
-	$template = new template();
-	$template->assign_vars(array(
-		'signalColors'	=> $USER['signalColors']
-	));
-	$template->message($LNG['cc_cache_clear'],);
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
+    ClearCache();
+    $template = new template();
+    $template->assign_vars(array(
+        'signalColors'	=> $USER['signalColors']
+    ));
+    $template->message($LNG['cc_cache_clear'], );
 }

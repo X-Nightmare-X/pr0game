@@ -415,7 +415,7 @@ class FlyingFleetsTable
                     );
                 }
             }
-        }if($Status == FLEET_OUTWARD) {
+        }if ($Status == FLEET_OUTWARD) {
             if ($MissionType == MISSION_ACS) {
                 $sql = "SELECT count(uta.acsID) as count FROM %%USERS_TO_ACS%% AS uta 
                     INNER JOIN %%FLEETS%% AS f ON uta.acsID = f.fleet_group 
@@ -424,46 +424,46 @@ class FlyingFleetsTable
                     ':userId'   => $USER['id'],
                     ':fleetId'  => $fleetRow['fleet_id']
                 ), 'count');
-                if ( $Owner == true) {
+                if ($Owner == true) {
                     $FleetClass = 'colorMission2Own';
-                } else if ($friend > 0 ) {
+                } elseif ($friend > 0) {
                     $FleetClass = 'colorMission2friend';
                 } else {
                     $FleetClass = 'colorMission2Foreign';
                 }
-            } else if ($MissionType == MISSION_ATTACK) {
+            } elseif ($MissionType == MISSION_ATTACK) {
                 $FleetClass = $Owner ? 'colorMission1Own' : 'colorMission1Foreign';
-            } else if ($MissionType == MISSION_TRANSPORT) {
+            } elseif ($MissionType == MISSION_TRANSPORT) {
                 $FleetClass = $Owner ? 'colorMission3Own' : 'colorMission3Foreign';
-            } else if ($MissionType == MISSION_STATION) {
+            } elseif ($MissionType == MISSION_STATION) {
                 $FleetClass = $Owner ? 'colorMission4Own' : 'colorMission4Foreign';
-            } else if ($MissionType == MISSION_HOLD) {
+            } elseif ($MissionType == MISSION_HOLD) {
                 $FleetClass = $Owner ? 'colorMission5Own' : 'colorMission5Foreign';
-            } else if ($MissionType == MISSION_SPY) {
+            } elseif ($MissionType == MISSION_SPY) {
                 $FleetClass = $Owner ? 'colorMission6Own' : 'colorMission6Foreign';
-            } else if ($MissionType == MISSION_COLONISATION) {
+            } elseif ($MissionType == MISSION_COLONISATION) {
                 $FleetClass = $Owner ? 'colorMission7Own' : 'colorMission7Foreign';
-            } else if ($MissionType == MISSION_RECYCLING) {
+            } elseif ($MissionType == MISSION_RECYCLING) {
                 $FleetClass = $Owner ? 'colorMission8Own' : 'colorMission8Foreign';
-            } else if ($MissionType == MISSION_DESTRUCTION) {
+            } elseif ($MissionType == MISSION_DESTRUCTION) {
                 $FleetClass = $Owner ? 'colorMission9Own' : 'colorMission9Foreign';
-            } else if ($MissionType == MISSION_MISSILE) {
+            } elseif ($MissionType == MISSION_MISSILE) {
                 $FleetClass = $Owner ? 'colorMission10Own' : 'colorMission10Foreign';
-            } else if ($MissionType == MISSION_EXPEDITION) {
+            } elseif ($MissionType == MISSION_EXPEDITION) {
                 $FleetClass = $Owner ? 'colorMission15Own' : 'colorMission15Foreign';
-            } else if ($MissionType == MISSION_TRADE) {
+            } elseif ($MissionType == MISSION_TRADE) {
                 $FleetClass = $Owner ? 'colorMission16Own' : 'colorMission16Foreign';
-            } else if ($MissionType == MISSION_TRANSFER) {
+            } elseif ($MissionType == MISSION_TRANSFER) {
                 $FleetClass = $Owner ? 'colorMission17Own' : 'colorMission17Foreign';
             }
         } else {
-            if($MissionType == MISSION_COLONISATION) {
+            if ($MissionType == MISSION_COLONISATION) {
                 $FleetClass = $Owner ? 'colorMission7OwnReturn' : 'colorMissionReturnForeign';
             } else {
                 $FleetClass = $Owner ? 'colorMissionReturnOwn' : 'colorMissionReturnForeign';
             }
         }
-        
+
         $EventString = '<span class="' . $FleetClass . '">' . $EventString . '</span>';
 
         if ($Status == FLEET_OUTWARD) {

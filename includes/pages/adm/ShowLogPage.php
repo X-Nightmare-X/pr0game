@@ -134,7 +134,7 @@ function ShowLogDetail()
     }
 
     $template   = new template();
-    if(!isset($LogArray)) {
+    if (!isset($LogArray)) {
         $LogArray = array();
     }
     $template->assign_vars([
@@ -192,7 +192,7 @@ function ShowLogSettingsList()
         ];
     }
     $GLOBALS['DATABASE']->free_result($result);
-    if(!isset($LogArray)) {
+    if (!isset($LogArray)) {
         $LogArray = array();
     }
     $template->assign_vars([
@@ -238,7 +238,7 @@ function ShowLogPlanetsList()
     }
     $GLOBALS['DATABASE']->free_result($result);
     $template   = new template();
-    if(!isset($LogArray)) {
+    if (!isset($LogArray)) {
         $LogArray = array();
     }
     $template->assign_vars([
@@ -282,7 +282,7 @@ function ShowLogPlayersList()
         ];
     }
     $GLOBALS['DATABASE']->free_result($result);
-    if(!isset($LogArray)) {
+    if (!isset($LogArray)) {
         $LogArray = array();
     }
     $template->assign_vars([
@@ -323,7 +323,7 @@ function ShowLogPresent()
             'time'      => _date($LNG['php_tdformat'], $LogRow['time'], $USER['timezone']),
         ];
     }
-    if(!isset($LogArray)) {
+    if (!isset($LogArray)) {
         $LogArray = array();
     }
     $GLOBALS['DATABASE']->free_result($result);

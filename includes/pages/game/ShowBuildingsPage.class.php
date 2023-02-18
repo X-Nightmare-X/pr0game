@@ -352,14 +352,14 @@ class ShowBuildingsPage extends AbstractGamePage
             );
             $costOverflow = BuildFunctions::getRestPrice($USER, $PLANET, $Element, $costResources);
             $timetobuild= 0;
-            if(array_key_exists(901, $costOverflow) && $costOverflow[901]!=0 && $metproduction >0){
-                $timetobuild=max($timetobuild,$costOverflow[901]/$metproduction);
+            if (array_key_exists(901, $costOverflow) && $costOverflow[901]!=0 && $metproduction >0) {
+                $timetobuild=max($timetobuild, $costOverflow[901]/$metproduction);
             }
-            if(array_key_exists(902, $costOverflow) && $costOverflow[902]!=0 && $kristproduction >0){
-                $timetobuild=max($timetobuild,$costOverflow[902]/$kristproduction);
+            if (array_key_exists(902, $costOverflow) && $costOverflow[902]!=0 && $kristproduction >0) {
+                $timetobuild=max($timetobuild, $costOverflow[902]/$kristproduction);
             }
-            if(array_key_exists(903, $costOverflow) && $costOverflow[903]!=0 && $deutproduction >0){
-                $timetobuild=max($timetobuild,$costOverflow[903]/$deutproduction);
+            if (array_key_exists(903, $costOverflow) && $costOverflow[903]!=0 && $deutproduction >0) {
+                $timetobuild=max($timetobuild, $costOverflow[903]/$deutproduction);
             }
             $timetobuild = floor($timetobuild*3600) ;
 

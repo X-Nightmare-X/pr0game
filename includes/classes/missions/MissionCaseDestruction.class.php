@@ -553,8 +553,7 @@ HTML;
 
         if ($reportInfo['moonDestroySuccess'] == 1) {
             PlayerUtil::deletePlanet($targetPlanet['id']);
-        }
-        else {
+        } else {
             $sql = 'UPDATE %%PLANETS%% SET
             metal		= metal - :metal,
             crystal		= crystal - :crystal,

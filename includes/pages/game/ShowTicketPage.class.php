@@ -21,11 +21,11 @@ class ShowTicketPage extends AbstractGamePage
 
     private $ticketObj;
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
         require('includes/classes/class.SupportTickets.php');
-        $this->ticketObj = new SupportTickets;
+        $this->ticketObj = new SupportTickets();
     }
 
     public function show()
@@ -58,7 +58,7 @@ class ShowTicketPage extends AbstractGamePage
         $this->display('page.ticket.default.tpl');
     }
 
-    function create()
+    public function create()
     {
         $categoryList = $this->ticketObj->getCategoryList();
 
@@ -69,7 +69,7 @@ class ShowTicketPage extends AbstractGamePage
         $this->display('page.ticket.create.tpl');
     }
 
-    function send()
+    public function send()
     {
         $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
@@ -86,10 +86,8 @@ class ShowTicketPage extends AbstractGamePage
             }
         }
 
-		if(empty($ticketID))
-		{
-			if(empty($subject))
-			{
+        if (empty($ticketID)) {
+            if (empty($subject)) {
                 $this->printMessage($LNG['ti_error_no_subject'], array(array(
                     'label' => $LNG['sys_back'],
                     'url' => 'javascript:window.history.back()'
@@ -105,8 +103,7 @@ class ShowTicketPage extends AbstractGamePage
                 ':ticketID' => $ticketID
             ), 'status');
 
-			if ($ticketStatus == 2)
-			{
+            if ($ticketStatus == 2) {
                 $this->printMessage($LNG['ti_error_closed']);
             }
         }
@@ -115,7 +112,7 @@ class ShowTicketPage extends AbstractGamePage
         $this->redirectTo('game.php?page=ticket&mode=view&id=' . $ticketID);
     }
 
-    function view()
+    public function view()
     {
         $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
@@ -145,8 +142,7 @@ class ShowTicketPage extends AbstractGamePage
             $answerRow['time'] = _date($LNG['php_tdformat'], $answerRow['time'], $USER['timezone']);
             $answerRow['message'] = nl2br($answerRow['message']);
             $answerList[$answerRow['answerID']] = $answerRow;
-			if (empty($ticket_status))
-			{
+            if (empty($ticket_status)) {
                 $ticket_status = $answerRow['status'];
             }
         }

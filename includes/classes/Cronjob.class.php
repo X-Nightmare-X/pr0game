@@ -15,12 +15,11 @@
 
 class Cronjob
 {
-    function __construct()
+    public function __construct()
     {
-
     }
 
-    static function execute($cronjobID)
+    public static function execute($cronjobID)
     {
         require_once 'includes/classes/class.Discord.php';
 
@@ -51,7 +50,7 @@ class Cronjob
             require_once($cronjobPath);
 
             /** @var $cronjobObj CronjobTask */
-            $cronjobObj = new $cronjobClassName;
+            $cronjobObj = new $cronjobClassName();
             $cronjobObj->run();
 
             self::reCalculateCronjobs($cronjobID);
@@ -78,7 +77,7 @@ class Cronjob
         }
     }
 
-    static function getNeedTodoExecutedJobs()
+    public static function getNeedTodoExecutedJobs()
     {
         $sql = 'SELECT cronjobID
 		FROM %%CRONJOBS%%
@@ -98,7 +97,7 @@ class Cronjob
         return $cronjobList;
     }
 
-    static function getLastExecutionTime($cronjobName)
+    public static function getLastExecutionTime($cronjobName)
     {
         $sql = 'SELECT MAX(executionTime) as executionTime FROM %%CRONJOBS_LOG%% INNER JOIN %%CRONJOBS%% USING(cronjobId) WHERE name = :cronjobName;';
         $lastTime = Database::get()->selectSingle($sql, [
@@ -112,7 +111,7 @@ class Cronjob
         return strtotime($lastTime);
     }
 
-    static function reCalculateCronjobs($cronjobID = null)
+    public static function reCalculateCronjobs($cronjobID = null)
     {
         $db = Database::get();
 

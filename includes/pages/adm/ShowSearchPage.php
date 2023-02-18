@@ -279,9 +279,15 @@ function ShowSearchPage()
             $SearchFile
         );
     }
-    if(!isset($OrderBYParse)) { $OrderBYParse = ''; }
-    if(!isset($RESULT['PAGES'])) { $RESULT['PAGES'] = ''; }
-    if(!isset($RESULT['LIST'])) { $RESULT['LIST'] = ''; }
+    if (!isset($OrderBYParse)) {
+        $OrderBYParse = '';
+    }
+    if (!isset($RESULT['PAGES'])) {
+        $RESULT['PAGES'] = '';
+    }
+    if (!isset($RESULT['LIST'])) {
+        $RESULT['LIST'] = '';
+    }
     $template->assign_vars([
         'Selector'              => $Selector,
         'limit'                 => $limit,

@@ -20,12 +20,12 @@ class ShowImperiumPage extends AbstractGamePage
 {
     public static $requireModule = MODULE_IMPERIUM;
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
     }
 
-    function show()
+    public function show()
     {
         $USER =& Singleton()->USER;
         $resource =& Singleton()->resource;
@@ -102,7 +102,8 @@ class ShowImperiumPage extends AbstractGamePage
             $planetList['resource'][901][$Planet['id']] = $Planet['metal'];
             $planetList['resource'][902][$Planet['id']] = $Planet['crystal'];
             $planetList['resource'][903][$Planet['id']] = $Planet['deuterium'];
-            $planetList['resource'][911][$Planet['id']] = $Planet['energy'] + $Planet['energy_used'];;
+            $planetList['resource'][911][$Planet['id']] = $Planet['energy'] + $Planet['energy_used'];
+            ;
 
             if ($Planet['planet_type'] == 1) {
                 $basic[901][$Planet['id']] = $config->metal_basic_income * $config->resource_multiplier;
@@ -115,7 +116,6 @@ class ShowImperiumPage extends AbstractGamePage
                 $basic[901][$Planet['id']] = 0;
                 $basic[902][$Planet['id']] = 0;
                 $basic[903][$Planet['id']] = 0;
-
             }
             if (!empty($Planet['b_building_id'])) {
                 $Queue = unserialize($Planet['b_building_id']);
@@ -141,7 +141,6 @@ class ShowImperiumPage extends AbstractGamePage
             foreach ($reslist['fleet'] as $elementID) {
                 $planetList['fleet'][$elementID][$Planet['id']] = $Planet[$resource[$elementID]];
                 $planetList['currentShipyard'][$elementID][$Planet['id']] = 0;
-
             }
 
 
@@ -155,7 +154,6 @@ class ShowImperiumPage extends AbstractGamePage
             if (!empty($Planet['b_hangar_id'])) {
                 foreach (unserialize($Planet['b_hangar_id']) as $que) {
                     $planetList['currentShipyard'][$que[0]][$Planet['id']] += $que[1];
-
                 }
             }
 

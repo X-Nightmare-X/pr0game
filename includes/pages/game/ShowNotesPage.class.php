@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -15,21 +15,21 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
- 
+
 class ShowNotesPage extends AbstractGamePage
 {
-	public static $requireModule = MODULE_NOTICE;
+    public static $requireModule = MODULE_NOTICE;
 
-	function __construct() 
-	{
-		parent::__construct();
-		$this->setWindow('popup');
-		$this->initTemplate();
-	}
-	
-	function show()
-	{
-		$LNG =& Singleton()->LNG;
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setWindow('popup');
+        $this->initTemplate();
+    }
+
+    public function show()
+    {
+        $LNG =& Singleton()->LNG;
         $USER =& Singleton()->USER;
         $db = Database::get();
 
@@ -39,31 +39,30 @@ class ShowNotesPage extends AbstractGamePage
         ));
 
         $notesList		= array();
-		
-		foreach($notesResult as $notesRow)
-		{
-			$notesList[$notesRow['id']]	= array(
-				'time'		=> _date($LNG['php_tdformat'], $notesRow['time'], $USER['timezone']),
-				'title'		=> $notesRow['title'],
-				'size'		=> strlen($notesRow['text']),
-				'priority'	=> $notesRow['priority'],
-			);
-		}
-		
-		$this->assign(array(
-			'notesList'	=> $notesList,
-		));
-		
-		$this->display('page.notes.default.tpl');
-	}
-	
-	function detail()
-	{
-		$LNG =& Singleton()->LNG;
-  $USER =& Singleton()->USER;
-  $noteID		= HTTP::_GP('id', 0);
-		
-		if(!empty($noteID)) {
+
+        foreach ($notesResult as $notesRow) {
+            $notesList[$notesRow['id']]	= array(
+                'time'		=> _date($LNG['php_tdformat'], $notesRow['time'], $USER['timezone']),
+                'title'		=> $notesRow['title'],
+                'size'		=> strlen($notesRow['text']),
+                'priority'	=> $notesRow['priority'],
+            );
+        }
+
+        $this->assign(array(
+            'notesList'	=> $notesList,
+        ));
+
+        $this->display('page.notes.default.tpl');
+    }
+
+    public function detail()
+    {
+        $LNG =& Singleton()->LNG;
+        $USER =& Singleton()->USER;
+        $noteID		= HTTP::_GP('id', 0);
+
+        if (!empty($noteID)) {
             $db = Database::get();
 
             $sql = "SELECT * FROM %%NOTES%% WHERE id = :noteID AND owner = :userID;";
@@ -71,39 +70,39 @@ class ShowNotesPage extends AbstractGamePage
                 ':userID'   => $USER['id'],
                 ':noteID'   => $noteID
             ));
-		} else {
-			$noteDetail	= array(
-				'id'		=> 0,
-				'priority'	=> 1,
-				'text'		=> '',
-				'title'		=> ''
-			);
-		}
-		
-		$this->tplObj->execscript("$('#cntChars').text($('#text').val().length);");
-		$this->assign(array(
-			'PriorityList'	=> array(2 => $LNG['nt_important'], 1 => $LNG['nt_normal'], 0 => $LNG['nt_unimportant']),
-			'noteDetail'	=> $noteDetail,
-		));
-		
-		$this->display('page.notes.detail.tpl');
-	}
-	
-	public function insert()
-	{
-		$LNG =& Singleton()->LNG;
-  $USER =& Singleton()->USER;
-  $priority 	= HTTP::_GP('priority', 1);
-		$title 		= HTTP::_GP('title', '', true);
-		$text 		= HTTP::_GP('text', '', true);
-		$id			= HTTP::_GP('id', 0);	
-		$title 		= !empty($title) ? $title : $LNG['nt_no_title'];
-		$text 		= !empty($text) ? $text : $LNG['nt_no_text'];
+        } else {
+            $noteDetail	= array(
+                'id'		=> 0,
+                'priority'	=> 1,
+                'text'		=> '',
+                'title'		=> ''
+            );
+        }
+
+        $this->tplObj->execscript("$('#cntChars').text($('#text').val().length);");
+        $this->assign(array(
+            'PriorityList'	=> array(2 => $LNG['nt_important'], 1 => $LNG['nt_normal'], 0 => $LNG['nt_unimportant']),
+            'noteDetail'	=> $noteDetail,
+        ));
+
+        $this->display('page.notes.detail.tpl');
+    }
+
+    public function insert()
+    {
+        $LNG =& Singleton()->LNG;
+        $USER =& Singleton()->USER;
+        $priority 	= HTTP::_GP('priority', 1);
+        $title 		= HTTP::_GP('title', '', true);
+        $text 		= HTTP::_GP('text', '', true);
+        $id			= HTTP::_GP('id', 0);
+        $title 		= !empty($title) ? $title : $LNG['nt_no_title'];
+        $text 		= !empty($text) ? $text : $LNG['nt_no_text'];
 
         $db = Database::get();
 
-		if($id == 0) {
-			$sql = "INSERT INTO %%NOTES%% SET owner = :userID, time = :time, priority = :priority, title = :title, text = :text, universe = :universe;";
+        if ($id == 0) {
+            $sql = "INSERT INTO %%NOTES%% SET owner = :userID, time = :time, priority = :priority, title = :title, text = :text, universe = :universe;";
             $db->insert($sql, array(
                 ':userID'   => $USER['id'],
                 ':time'     => TIMESTAMP,
@@ -113,7 +112,7 @@ class ShowNotesPage extends AbstractGamePage
                 ':universe' => Universe::current()
             ));
         } else {
-			$sql	= "UPDATE %%NOTES%% SET time = :time, priority = :priority, title = :title, text = :text WHERE id = :noteID;";
+            $sql	= "UPDATE %%NOTES%% SET time = :time, priority = :priority, title = :title, text = :text WHERE id = :noteID;";
             $db->update($sql, array(
                 ':noteID'   => $id,
                 ':time'     => TIMESTAMP,
@@ -122,26 +121,24 @@ class ShowNotesPage extends AbstractGamePage
                 ':text'     => $text,
             ));
         }
-		
-		$this->redirectTo('game.php?page=notes');
-	}
-	
-	function delete()
-	{
-		$USER =& Singleton()->USER;
 
-		$deleteIds	= HTTP::_GP('delmes', array());
-		$deleteIds	= array_keys($deleteIds);
-		$deleteIds	= array_filter($deleteIds, 'is_numeric');
+        $this->redirectTo('game.php?page=notes');
+    }
 
-		if(!empty($deleteIds))
-		{
+    public function delete()
+    {
+        $USER =& Singleton()->USER;
+
+        $deleteIds	= HTTP::_GP('delmes', array());
+        $deleteIds	= array_keys($deleteIds);
+        $deleteIds	= array_filter($deleteIds, 'is_numeric');
+
+        if (!empty($deleteIds)) {
             $sql = 'DELETE FROM %%NOTES%% WHERE id IN ('.implode(', ', $deleteIds).') AND owner = :userID;';
-			Database::get()->delete($sql, array(
+            Database::get()->delete($sql, array(
                 ':userID'   => $USER['id'],
             ));
-		}
-		$this->redirectTo('game.php?page=notes');
-	}
-
+        }
+        $this->redirectTo('game.php?page=notes');
+    }
 }

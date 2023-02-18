@@ -223,7 +223,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
                 $PLANET =& Singleton()->PLANET;
 
                 if (empty($PLANET)) {
-                        throw new Exception("Main Planet does not exist!");
+                    throw new Exception("Main Planet does not exist!");
                 } else {
                     $session->planetId = $USER['id_planet'];
                 }
@@ -249,7 +249,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
 
     if (isset($privKey) && isset($rcaptcha)) {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
+        curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('secret' => $privKey, 'response' => $rcaptcha)));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -268,7 +268,6 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
             ));
         }
     }
-
 } elseif (MODE === 'LOGIN') {
     $LNG    = new Language();
     Singleton()->LNG = $LNG;

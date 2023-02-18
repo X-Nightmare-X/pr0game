@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -19,106 +19,103 @@ require_once 'includes/classes/cronjob/CronjobTask.interface.php';
 
 class CleanerCronjob implements CronjobTask
 {
-	function run()
-	{
+    public function run()
+    {
         $config	= Config::get(ROOT_UNI);
 
-		$unis	= Universe::availableUniverses();
-	
-		//Delete old messages
-		$del_before 	= TIMESTAMP - ($config->del_oldstuff * 86400);
-		$del_inactive 	= TIMESTAMP - ($config->del_user_automatic * 86400);
-		$del_deleted 	= TIMESTAMP - ($config->del_user_manually * 86400);
-		$del_messages 	= TIMESTAMP - ($config->message_delete_days * 86400);
+        $unis	= Universe::availableUniverses();
 
-		if($del_inactive === TIMESTAMP)
-		{
-			$del_inactive = 2147483647;
-		}
+        //Delete old messages
+        $del_before 	= TIMESTAMP - ($config->del_oldstuff * 86400);
+        $del_inactive 	= TIMESTAMP - ($config->del_user_automatic * 86400);
+        $del_deleted 	= TIMESTAMP - ($config->del_user_manually * 86400);
+        $del_messages 	= TIMESTAMP - ($config->message_delete_days * 86400);
 
-		$sql	= 'DELETE FROM %%MESSAGES%% WHERE `message_time` < :time;';
-		Database::get()->delete($sql, array(
-			':time'	=> $del_before
-		));
+        if ($del_inactive === TIMESTAMP) {
+            $del_inactive = 2147483647;
+        }
 
-		$sql	= 'DELETE FROM %%ALLIANCE%% WHERE `ally_members` = 0;';
-		Database::get()->delete($sql);
+        $sql	= 'DELETE FROM %%MESSAGES%% WHERE `message_time` < :time;';
+        Database::get()->delete($sql, array(
+            ':time'	=> $del_before
+        ));
 
-		$sql	= 'DELETE FROM %%PLANETS%% WHERE `destruyed` < :time AND `destruyed` != 0;';
-		Database::get()->delete($sql, array(
-			':time'	=> TIMESTAMP
-		));
+        $sql	= 'DELETE FROM %%ALLIANCE%% WHERE `ally_members` = 0;';
+        Database::get()->delete($sql);
 
-		$sql	= 'DELETE FROM %%SESSION%% WHERE `lastonline` < :time;';
-		Database::get()->delete($sql, array(
-			':time'	=> TIMESTAMP - SESSION_LIFETIME
-		));
+        $sql	= 'DELETE FROM %%PLANETS%% WHERE `destruyed` < :time AND `destruyed` != 0;';
+        Database::get()->delete($sql, array(
+            ':time'	=> TIMESTAMP
+        ));
 
-		$sql	= 'DELETE FROM %%FLEETS_EVENT%% WHERE fleetID NOT IN (SELECT fleet_id FROM %%FLEETS%%);';
-		Database::get()->delete($sql);
+        $sql	= 'DELETE FROM %%SESSION%% WHERE `lastonline` < :time;';
+        Database::get()->delete($sql, array(
+            ':time'	=> TIMESTAMP - SESSION_LIFETIME
+        ));
 
-		$sql	= 'DELETE FROM %%LOG_FLEETS%% WHERE `start_time` < :time;';
-		Database::get()->delete($sql, array(
-			':time'	=> $del_before
-		));
+        $sql	= 'DELETE FROM %%FLEETS_EVENT%% WHERE fleetID NOT IN (SELECT fleet_id FROM %%FLEETS%%);';
+        Database::get()->delete($sql);
 
-		$sql	= 'UPDATE %%USERS%% SET `email_2` = `email` WHERE `setmail` < :time;';
-		Database::get()->update($sql, array(
-			':time'	=> TIMESTAMP
-		));
+        $sql	= 'DELETE FROM %%LOG_FLEETS%% WHERE `start_time` < :time;';
+        Database::get()->delete($sql, array(
+            ':time'	=> $del_before
+        ));
 
-		$sql	= 'UPDATE %%PLANETS%% SET `tf_active` = 0 WHERE `tf_active` = 1;';
-		Database::get()->update($sql);
+        $sql	= 'UPDATE %%USERS%% SET `email_2` = `email` WHERE `setmail` < :time;';
+        Database::get()->update($sql, array(
+            ':time'	=> TIMESTAMP
+        ));
 
-		$sql	= 'SELECT `id` FROM %%USERS%% WHERE `authlevel` = :authlevel
+        $sql	= 'UPDATE %%PLANETS%% SET `tf_active` = 0 WHERE `tf_active` = 1;';
+        Database::get()->update($sql);
+
+        $sql	= 'SELECT `id` FROM %%USERS%% WHERE `authlevel` = :authlevel
 		AND ((`db_deaktjava` != 0 AND `db_deaktjava` < :timeDeleted) OR `onlinetime` < :timeInactive);';
 
-		$deleteUserIds = Database::get()->select($sql, array(
-			':authlevel'	=> AUTH_USR,
-			':timeDeleted'	=> $del_deleted,
-			':timeInactive'	=> $del_inactive
-		));
+        $deleteUserIds = Database::get()->select($sql, array(
+            ':authlevel'	=> AUTH_USR,
+            ':timeDeleted'	=> $del_deleted,
+            ':timeInactive'	=> $del_inactive
+        ));
 
-		if(!empty($deleteUserIds))
-		{
-			foreach($deleteUserIds as $dataRow)
-			{
-				PlayerUtil::deletePlayer($dataRow['id']);
-			}	
-		}
-		
-		// do not delete hall of fame
-		// foreach($unis as $uni)
-		// {
-			// $sql	= 'SELECT units FROM %%TOPKB%% WHERE `universe` = :universe ORDER BY units DESC LIMIT 99,1;';
+        if (!empty($deleteUserIds)) {
+            foreach ($deleteUserIds as $dataRow) {
+                PlayerUtil::deletePlayer($dataRow['id']);
+            }
+        }
 
-			// $battleHallLowest	= Database::get()->selectSingle($sql, array(
-				// ':universe'	=> $uni
-			// ),'units');
+        // do not delete hall of fame
+        // foreach($unis as $uni)
+        // {
+        // $sql	= 'SELECT units FROM %%TOPKB%% WHERE `universe` = :universe ORDER BY units DESC LIMIT 99,1;';
 
-			// if(!is_null($battleHallLowest))
-			// {
-				// $sql	= 'DELETE %%TOPKB%%, %%TOPKB_USERS%%
-				// FROM %%TOPKB%%
-				// INNER JOIN %%TOPKB_USERS%% USING (rid)
-				// WHERE `universe` = :universe AND `units` < :battleHallLowest;';
+        // $battleHallLowest	= Database::get()->selectSingle($sql, array(
+        // ':universe'	=> $uni
+        // ),'units');
 
-				// Database::get()->delete($sql, array(
-					// ':universe'			=> $uni,
-					// ':battleHallLowest'	=> $battleHallLowest
-				// ));
-			// }
-		// }
+        // if(!is_null($battleHallLowest))
+        // {
+        // $sql	= 'DELETE %%TOPKB%%, %%TOPKB_USERS%%
+        // FROM %%TOPKB%%
+        // INNER JOIN %%TOPKB_USERS%% USING (rid)
+        // WHERE `universe` = :universe AND `units` < :battleHallLowest;';
 
-		// do not delete combat reports
-		// $sql	= 'DELETE FROM %%RW%% WHERE `time` < :time AND `rid` NOT IN (SELECT `rid` FROM %%TOPKB%%);';
-		// Database::get()->delete($sql, array(
-			// ':time'	=> $del_before
-		// ));
+        // Database::get()->delete($sql, array(
+        // ':universe'			=> $uni,
+        // ':battleHallLowest'	=> $battleHallLowest
+        // ));
+        // }
+        // }
 
-		$sql	= 'DELETE FROM %%MESSAGES%% WHERE `message_deleted` < :time;';
-		Database::get()->delete($sql, array(
-			':time'	=> $del_messages
-		));
-	}
+        // do not delete combat reports
+        // $sql	= 'DELETE FROM %%RW%% WHERE `time` < :time AND `rid` NOT IN (SELECT `rid` FROM %%TOPKB%%);';
+        // Database::get()->delete($sql, array(
+        // ':time'	=> $del_before
+        // ));
+
+        $sql	= 'DELETE FROM %%MESSAGES%% WHERE `message_deleted` < :time;';
+        Database::get()->delete($sql, array(
+            ':time'	=> $del_messages
+        ));
+    }
 }

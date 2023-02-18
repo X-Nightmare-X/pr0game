@@ -33,131 +33,131 @@ const TIMEFRAME_1MTH = 3;
 
 class BattleHallFilter
 {
-	private $_memorial = 0;
-	private $_diplomacy = 0;
-	private $_timeframe = 0;
-	private $_location = 0;
+    private $_memorial = 0;
+    private $_diplomacy = 0;
+    private $_timeframe = 0;
+    private $_location = 0;
 
-	public function __construct ($filterArray = null)
-	{
-		if ($filterArray != null)
-		{
-			$this->_memorial = $filterArray['memorial'] ?: 0;
-			$this->_diplomacy = $filterArray['diplomacy'] ?: 0;
-			$this->_timeframe = $filterArray['timeframe'] ?: 0;
-			$this->_location = $filterArray['galaxy'] ?: 0;
-		}
-	}
+    public function __construct($filterArray = null)
+    {
+        if ($filterArray != null) {
+            $this->_memorial = $filterArray['memorial'] ?: 0;
+            $this->_diplomacy = $filterArray['diplomacy'] ?: 0;
+            $this->_timeframe = $filterArray['timeframe'] ?: 0;
+            $this->_location = $filterArray['galaxy'] ?: 0;
+        }
+    }
 
-	private function filterMemorialKb($memorial)
-	{
-		switch ($memorial)
-		{
-			case MEMORIAL_EXCLUDE:
-				$result = " AND %%TOPKB%%.memorial = 0 ";
-				return $result;
-			case MEMORIAL_ONLY:
-				$result = " AND %%TOPKB%%.memorial = 1 ";
-				return $result;
-			default:
-				return '';
-		}
-	}
+    private function filterMemorialKb($memorial)
+    {
+        switch ($memorial) {
+            case MEMORIAL_EXCLUDE:
+                $result = " AND %%TOPKB%%.memorial = 0 ";
+                return $result;
+            case MEMORIAL_ONLY:
+                $result = " AND %%TOPKB%%.memorial = 1 ";
+                return $result;
+            default:
+                return '';
+        }
+    }
 
-	private function assembleTimeFilter($timeframe)
-	{
-		switch ($timeframe)
-		{
-			case TIMEFRAME_24H:
-				$time = TIME_24_HOURS;
-				break;
-			case TIMEFRAME_1WK:
-				$time = TIME_1_WEEK;
-				break;
-			case TIMEFRAME_1MTH:
-				$time = TIME_1_MONTH;
-				break;
-			default:
-				return '';
-		}
+    private function assembleTimeFilter($timeframe)
+    {
+        switch ($timeframe) {
+            case TIMEFRAME_24H:
+                $time = TIME_24_HOURS;
+                break;
+            case TIMEFRAME_1WK:
+                $time = TIME_1_WEEK;
+                break;
+            case TIMEFRAME_1MTH:
+                $time = TIME_1_MONTH;
+                break;
+            default:
+                return '';
+        }
 
-		$time += TIME_6_HOURS; // 6h battlehall delay
-		$result = " AND time > UNIX_TIMESTAMP() - $time ";
+        $time += TIME_6_HOURS; // 6h battlehall delay
+        $result = " AND time > UNIX_TIMESTAMP() - $time ";
 
-		return $result;
-	}
+        return $result;
+    }
 
-	private function assembleDiplomacyFilter($diplomacy)
-	{
-		$USER =& Singleton()->USER;
+    private function assembleDiplomacyFilter($diplomacy)
+    {
+        $USER =& Singleton()->USER;
 
-		switch ($diplomacy)
-		{
-			case DIPLOMACY_SELF:
-				$userid = $USER['id'];
-				$subquery = 'SELECT DISTINCT %%TOPKB%%.rid FROM %%TOPKB%%
+        switch ($diplomacy) {
+            case DIPLOMACY_SELF:
+                $userid = $USER['id'];
+                $subquery = 'SELECT DISTINCT %%TOPKB%%.rid FROM %%TOPKB%%
 						 	JOIN %%TOPKB_USERS%%
 						 	ON %%TOPKB%%.rid = %%TOPKB_USERS%%.rid
 						 	WHERE %%TOPKB_USERS%%.uid =' . $userid;
 
-				$result = ' AND %%TOPKB%%.rid IN'
-						. ' (' . $subquery . ')';
+                $result = ' AND %%TOPKB%%.rid IN'
+                        . ' (' . $subquery . ')';
 
-				return $result;
-			case DIPLOMACY_ALLIANCE:
-				$allyid = $USER['ally_id'];
-				if (empty($allyid) || $allyid == 0) return ''; // no alliance
+                return $result;
+            case DIPLOMACY_ALLIANCE:
+                $allyid = $USER['ally_id'];
+                if (empty($allyid) || $allyid == 0) {
+                    return '';
+                } // no alliance
 
-				$allyuserquery = 'SELECT `id` FROM %%USERS%% WHERE `ally_id` = '. $allyid;
+                $allyuserquery = 'SELECT `id` FROM %%USERS%% WHERE `ally_id` = '. $allyid;
 
-				$subquery = "SELECT DISTINCT %%TOPKB%%.rid FROM %%TOPKB%%
+                $subquery = "SELECT DISTINCT %%TOPKB%%.rid FROM %%TOPKB%%
 						 JOIN %%TOPKB_USERS%%
 						 ON %%TOPKB%%.rid = %%TOPKB_USERS%%.rid
 						 WHERE %%TOPKB_USERS%%.uid IN ($allyuserquery)";
 
-				$result = " AND %%TOPKB%%.rid IN
+                $result = " AND %%TOPKB%%.rid IN
 						 ($subquery)";
 
-				return $result;
-			default:
-				return '';
-		}
-	}
+                return $result;
+            default:
+                return '';
+        }
+    }
 
-	private function assembleLocationFilter($galaxy)
-	{
-		if ($galaxy == 0 || !is_numeric($galaxy)) return '';
-		$result = " AND %%TOPKB%%.galaxy = $galaxy";
-		return $result;
-	}
+    private function assembleLocationFilter($galaxy)
+    {
+        if ($galaxy == 0 || !is_numeric($galaxy)) {
+            return '';
+        }
+        $result = " AND %%TOPKB%%.galaxy = $galaxy";
+        return $result;
+    }
 
-	private function getMinSizeCondition()
-	{
-		$sql = "SELECT MAX(total_points) as total 
+    private function getMinSizeCondition()
+    {
+        $sql = "SELECT MAX(total_points) as total 
 			FROM %%STATPOINTS%%
 			WHERE `stat_type` = :type and universe = :universe";
 
         $topPoints = Database::get()->selectSingle($sql, [
                 ':type'     => 1, // 1 = player, 2 = alliance
-				':universe' => Universe::current()
+                ':universe' => Universe::current()
         ], 'total');
-		
-		$minSize = $topPoints;
-		$stmt = " AND `units` != 0 AND `units` >= $minSize ";
-		
-		return $stmt;
-	}
 
-	public function getTopKBs($limit = 100)
-	{
-		$memorialString  = $this->filterMemorialKb($this->_memorial);
-		$timeString = $this->assembleTimeFilter($this->_timeframe);
-		$locationString = $this->assembleLocationFilter($this->_location);
-		$diplomacyString = $this->assembleDiplomacyFilter($this->_diplomacy);
-		$minSizeString = $this->getMinSizeCondition();
+        $minSize = $topPoints;
+        $stmt = " AND `units` != 0 AND `units` >= $minSize ";
 
-		$db = Database::get();
-		$sql = "SELECT *, (
+        return $stmt;
+    }
+
+    public function getTopKBs($limit = 100)
+    {
+        $memorialString  = $this->filterMemorialKb($this->_memorial);
+        $timeString = $this->assembleTimeFilter($this->_timeframe);
+        $locationString = $this->assembleLocationFilter($this->_location);
+        $diplomacyString = $this->assembleDiplomacyFilter($this->_diplomacy);
+        $minSizeString = $this->getMinSizeCondition();
+
+        $db = Database::get();
+        $sql = "SELECT *, (
 			SELECT DISTINCT
 			IF(%%TOPKB_USERS%%.username = '', GROUP_CONCAT(%%USERS%%.username SEPARATOR ' & '), GROUP_CONCAT(%%TOPKB_USERS%%.username SEPARATOR ' & '))
 			FROM %%TOPKB_USERS%%
@@ -175,10 +175,10 @@ class BattleHallFilter
 			$memorialString $timeString $locationString $diplomacyString $minSizeString
 		 ORDER BY %%TOPKB%%.units DESC LIMIT $limit;";
 
-		$top = $db->select($sql, array(
-			':universe' => Universe::current()
-		));
+        $top = $db->select($sql, array(
+            ':universe' => Universe::current()
+        ));
 
-		return $top;
-	}
+        return $top;
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -16,7 +16,7 @@
 // Translated into English by QwataKayean . All rights reversed (C) 2012
 // 2Moons - Copyright (C) 2010-2012 Slaver
 $LNG['faq_overview']	= "FAQ";
- 
+
 $LNG['questions']					= array();
 $LNG['questions'][1]['category']	= 'Tips for beginners';
 $LNG['questions'][1][1]['title']	= 'Step 1';

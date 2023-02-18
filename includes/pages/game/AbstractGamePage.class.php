@@ -31,7 +31,6 @@ abstract class AbstractGamePage
 
     protected function __construct()
     {
-
         if (!AJAX_REQUEST) {
             $this->setWindow('full');
             if (!$this->disableEcoSystem) {
@@ -297,7 +296,7 @@ abstract class AbstractGamePage
     protected function updatePlanetTime()
     {
         global $PLANET;
-        if(!isset($PLANET['id'])){
+        if (!isset($PLANET['id'])) {
             return;
         }
         $db = Database::get();

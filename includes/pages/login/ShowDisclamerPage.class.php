@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -18,23 +18,23 @@
 
 class ShowDisclamerPage extends AbstractLoginPage
 {
-	public static $requireModule = 0;
+    public static $requireModule = 0;
 
-	function __construct() 
-	{
-		parent::__construct();
-	}
-	
-	function show() 
-	{
-		$config	= Config::get();
-		$this->assign(array(
-			'disclamerAddress'	=> makebr($config->disclamerAddress),
-			'disclamerPhone'	=> $config->disclamerPhone,
-			'disclamerMail'		=> $config->disclamerMail,
-			'disclamerNotice'	=> $config->disclamerNotice,
-		));
-		
-		$this->display('page.disclamer.default.tpl');
-	}
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function show()
+    {
+        $config	= Config::get();
+        $this->assign(array(
+            'disclamerAddress'	=> makebr($config->disclamerAddress),
+            'disclamerPhone'	=> $config->disclamerPhone,
+            'disclamerMail'		=> $config->disclamerMail,
+            'disclamerNotice'	=> $config->disclamerNotice,
+        ));
+
+        $this->display('page.disclamer.default.tpl');
+    }
 }

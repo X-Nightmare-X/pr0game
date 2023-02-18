@@ -1109,8 +1109,8 @@ $LNG['market_info_header'] = 'Marketplace';
 $LNG['market_info_no_return'] = 'a marketplace offer cannot be cancelled!';
 $LNG['market_info_description'] = 'Left side - sale offers | Right side - asking price<br><br>&bull; Bought offers cannot'
     . ' be canceled &bull;'
-	. '<br>&bull; Some trades cannot be accepted due to the push rule. &bull;'
-	. '<br>&bull; Fuel for bought fleet is on the buyer. &bull;';
+    . '<br>&bull; Some trades cannot be accepted due to the push rule. &bull;'
+    . '<br>&bull; Fuel for bought fleet is on the buyer. &bull;';
 $LNG['market_fleet'] = 'Fleet';
 
 $LNG['market_p_msg_not_found'] = 'Offer not found.';

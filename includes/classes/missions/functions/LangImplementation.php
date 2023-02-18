@@ -7,7 +7,7 @@ class LangImplementation implements Lang
     {
         $LNG =& Singleton()->LNG;
 
-        if(empty($LNG)) {
+        if (empty($LNG)) {
             // Fallback language
             $LNG = new Language('en');
             $LNG->includeData(array('L18N', 'INGAME', 'TECH', 'CUSTOM'));
@@ -75,5 +75,3 @@ class LangImplementation implements Lang
 }
 
 LangManager::getInstance()->setImplementation(new LangImplementation());
-
-?>

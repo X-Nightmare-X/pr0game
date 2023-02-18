@@ -27,25 +27,25 @@ $fleetResult = $db->select($sql, [
 ]);
 
 if (!empty($fleetResult) && is_array($fleetResult)) {
-	$updateResult = true;
-	foreach ($fleetResult as $key => $value) {
-		$updateResult	= $updateResult && $db->update("UPDATE %%FLEETS_EVENT%% SET `lock` = :token WHERE fleetID = :id;", array(
-			':token' => $token,
-			':id' => $value['fleetID'],
-		));
-	}
+    $updateResult = true;
+    foreach ($fleetResult as $key => $value) {
+        $updateResult	= $updateResult && $db->update("UPDATE %%FLEETS_EVENT%% SET `lock` = :token WHERE fleetID = :id;", array(
+            ':token' => $token,
+            ':id' => $value['fleetID'],
+        ));
+    }
 
-	if ($updateResult) {
-		require 'includes/classes/class.FlyingFleetHandler.php';
+    if ($updateResult) {
+        require 'includes/classes/class.FlyingFleetHandler.php';
 
-		$fleetObj	= new FlyingFleetHandler();
-		$fleetObj->setToken($token);
-		$fleetObj->run();
+        $fleetObj	= new FlyingFleetHandler();
+        $fleetObj->setToken($token);
+        $fleetObj->run();
 
-		$db->update("UPDATE %%FLEETS_EVENT%% SET `lock` = NULL WHERE `lock` = :token;", array(
-			':token' => $token
-		));
-	}
+        $db->update("UPDATE %%FLEETS_EVENT%% SET `lock` = NULL WHERE `lock` = :token;", array(
+            ':token' => $token
+        ));
+    }
 }
 
 $db->commit();

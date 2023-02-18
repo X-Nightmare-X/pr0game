@@ -17,10 +17,10 @@
 
 class SupportTickets
 {
-	public function createTicket($ownerID, $categoryID, $subject)
-	{
+    public function createTicket($ownerID, $categoryID, $subject)
+    {
         $db = Database::get();
-		$sql 	= 'INSERT INTO %%TICKETS%% SET
+        $sql 	= 'INSERT INTO %%TICKETS%% SET
 		ownerID		= :ownerId,
 		universe	= :universe,
 		categoryID	= :categoryId,
@@ -28,36 +28,36 @@ class SupportTickets
 		time		= :time;';
 
         $db->insert($sql, array(
-			':ownerId'		=> $ownerID,
-			':universe'		=> Universe::current(),
-			':categoryId'	=> $categoryID,
-			':subject'		=> $subject,
-			':time'			=> TIMESTAMP
-		));
+            ':ownerId'		=> $ownerID,
+            ':universe'		=> Universe::current(),
+            ':categoryId'	=> $categoryID,
+            ':subject'		=> $subject,
+            ':time'			=> TIMESTAMP
+        ));
 
         // $sql = "SELECT `ticketID` FROM %%TICKETS%% WHERE
         // `ownerID` = :ownerId AND
-		// `universe` = :universe AND
-		// `categoryID` = :categoryId AND
-		// `subject` = :subject AND
-		// `time` = :time;";
+        // `universe` = :universe AND
+        // `categoryID` = :categoryId AND
+        // `subject` = :subject AND
+        // `time` = :time;";
         // $id = $db->selectSingle($sql, [
-		// 	':ownerId' => $ownerID,
-		// 	':universe' => Universe::current(),
-		// 	':categoryId' => $categoryID,
-		// 	':subject' => $subject,
-		// 	':time' => TIMESTAMP,
+        // 	':ownerId' => $ownerID,
+        // 	':universe' => Universe::current(),
+        // 	':categoryId' => $categoryID,
+        // 	':subject' => $subject,
+        // 	':time' => TIMESTAMP,
         // ], 'ticketID');
 
         $id = $db->lastInsertId();
 
-		return $id;
-	}
+        return $id;
+    }
 
-	public function createAnswer($ticketID, $ownerID, $ownerName, $subject, $message, $status)
-	{
+    public function createAnswer($ticketID, $ownerID, $ownerName, $subject, $message, $status)
+    {
         $db = Database::get();
-		$sql = 'INSERT INTO %%TICKETS_ANSWER%% SET
+        $sql = 'INSERT INTO %%TICKETS_ANSWER%% SET
 		ticketID	= :ticketId,
 		ownerID		= :ownerId,
 		ownerName	= :ownerName,
@@ -66,54 +66,53 @@ class SupportTickets
 		time		= :time;';
 
         $db->insert($sql, array(
-			':ticketId'		=> $ticketID,
-			':ownerId'		=> $ownerID,
-			':ownerName'	=> $ownerName,
-			':subject'		=> $subject,
-			':message'		=> $message,
-			':time'			=> TIMESTAMP
-		));
+            ':ticketId'		=> $ticketID,
+            ':ownerId'		=> $ownerID,
+            ':ownerName'	=> $ownerName,
+            ':subject'		=> $subject,
+            ':message'		=> $message,
+            ':time'			=> TIMESTAMP
+        ));
 
         // $sql = "SELECT `answerID` FROM %%TICKETS_ANSWER%% WHERE
         // `ticketID` = :ticketId AND
-		// `ownerID` = :ownerId AND
-		// `ownerName` = :ownerName AND
-		// `subject` = :subject AND
-		// `message` = :message AND
-		// `time` = :time;";
+        // `ownerID` = :ownerId AND
+        // `ownerName` = :ownerName AND
+        // `subject` = :subject AND
+        // `message` = :message AND
+        // `time` = :time;";
         // $answerId = $db->selectSingle($sql, [
-		// 	':ticketId' => $ticketID,
-		// 	':ownerId' => $ownerID,
-		// 	':ownerName' => $ownerName,
-		// 	':subject' => $subject,
-		// 	':message' => $message,
-		// 	':time' => TIMESTAMP,
+        // 	':ticketId' => $ticketID,
+        // 	':ownerId' => $ownerID,
+        // 	':ownerName' => $ownerName,
+        // 	':subject' => $subject,
+        // 	':message' => $message,
+        // 	':time' => TIMESTAMP,
         // ], 'answerID');
 
         $answerId = $db->lastInsertId();
 
-		$sql	= 'UPDATE %%TICKETS%% SET status = :status WHERE ticketID = :ticketId;';
+        $sql	= 'UPDATE %%TICKETS%% SET status = :status WHERE ticketID = :ticketId;';
 
-		$db->update($sql, array(
-			':status'	=> $status,
-			':ticketId'	=> $ticketID
-		));
+        $db->update($sql, array(
+            ':status'	=> $status,
+            ':ticketId'	=> $ticketID
+        ));
 
-		return $answerId;
-	}
+        return $answerId;
+    }
 
-	public function getCategoryList()
-	{
-		$sql	= 'SELECT * FROM %%TICKETS_CATEGORY%%;';
+    public function getCategoryList()
+    {
+        $sql	= 'SELECT * FROM %%TICKETS_CATEGORY%%;';
 
-		$categoryResult		= Database::get()->select($sql);
-		$categoryList		= array();
+        $categoryResult		= Database::get()->select($sql);
+        $categoryList		= array();
 
-		foreach($categoryResult as $categoryRow)
-		{
-			$categoryList[$categoryRow['categoryID']]	= $categoryRow['name'];
-		}
+        foreach ($categoryResult as $categoryRow) {
+            $categoryList[$categoryRow['categoryID']]	= $categoryRow['name'];
+        }
 
-		return $categoryList;
-	}
+        return $categoryList;
+    }
 }

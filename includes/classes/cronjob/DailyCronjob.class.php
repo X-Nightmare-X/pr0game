@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -19,59 +19,61 @@ require_once 'includes/classes/cronjob/CronjobTask.interface.php';
 
 class DailyCronJob implements CronjobTask
 {
-	function run()
-	{
-		$this->clearCache();
-		$this->reCalculateCronjobs();
-		$this->clearEcoCache();
-		$this->cancelVacation();
-		$this->updateInactiveMines();
-	}
+    public function run()
+    {
+        $this->clearCache();
+        $this->reCalculateCronjobs();
+        $this->clearEcoCache();
+        $this->cancelVacation();
+        $this->updateInactiveMines();
+    }
 
-	function clearCache()
-	{
-		ClearCache();
-	}
+    public function clearCache()
+    {
+        ClearCache();
+    }
 
-	function reCalculateCronjobs()
-	{
-		Cronjob::reCalculateCronjobs();
-	}
+    public function reCalculateCronjobs()
+    {
+        Cronjob::reCalculateCronjobs();
+    }
 
-	function clearEcoCache()
-	{
-		$sql	= "UPDATE %%PLANETS%% SET eco_hash = '';";
-		Database::get()->update($sql);
-	}
+    public function clearEcoCache()
+    {
+        $sql	= "UPDATE %%PLANETS%% SET eco_hash = '';";
+        Database::get()->update($sql);
+    }
 
-	function cancelVacation() {
-		$sql = "SELECT id, b_tech_planet, b_tech, b_tech_id, b_tech_queue, urlaubs_until, universe FROM %%USERS%%
+    public function cancelVacation()
+    {
+        $sql = "SELECT id, b_tech_planet, b_tech, b_tech_id, b_tech_queue, urlaubs_until, universe FROM %%USERS%%
 				WHERE urlaubs_modus = 1 AND onlinetime < :inactive AND bana = 0;";
-		$players = Database::get()->select($sql, [
-			':inactive' => TIMESTAMP - INACTIVE_LONG,
-		]);
+        $players = Database::get()->select($sql, [
+            ':inactive' => TIMESTAMP - INACTIVE_LONG,
+        ]);
 
-		foreach ($players as $player) {
-			PlayerUtil::disable_vmode($player);
-		}
-	}
+        foreach ($players as $player) {
+            PlayerUtil::disable_vmode($player);
+        }
+    }
 
-	function updateInactiveMines() {
-		$sql = "UPDATE %%PLANETS%% set metal_mine_porcent = :full, crystal_mine_porcent = :full, deuterium_sintetizer_porcent = :full, solar_plant_porcent = :full, fusion_plant_porcent = :full, solar_satelit_porcent = :full
+    public function updateInactiveMines()
+    {
+        $sql = "UPDATE %%PLANETS%% set metal_mine_porcent = :full, crystal_mine_porcent = :full, deuterium_sintetizer_porcent = :full, solar_plant_porcent = :full, fusion_plant_porcent = :full, solar_satelit_porcent = :full
 				WHERE planet_type = :planet AND id_owner IN ( SELECT u.id FROM %%USERS%% AS u WHERE urlaubs_modus = 0 AND onlinetime < :inactive );";
 
-		Database::get()->update($sql, [
-			':full' 	=> 10, // 10 = 100%
-			':planet'	=> 1,
-			':inactive' => TIMESTAMP - INACTIVE,
-		]);
-	}
+        Database::get()->update($sql, [
+            ':full' 	=> 10, // 10 = 100%
+            ':planet'	=> 1,
+            ':inactive' => TIMESTAMP - INACTIVE,
+        ]);
+    }
 }
 
 
-/* 
-	Enable to debug 
-	includes/classes/Universe.class.php set var $currentUniverse to 1 instead of NULL
+/*
+    Enable to debug
+    includes/classes/Universe.class.php set var $currentUniverse to 1 instead of NULL
 */
 
 // define('MODE', 'INSTALL');

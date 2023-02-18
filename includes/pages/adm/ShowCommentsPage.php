@@ -1,6 +1,8 @@
 <?php
 
-if (!allowedTo('ShowMultiIPPage')) throw new Exception("Permission error!");
+if (!allowedTo('ShowMultiIPPage')) {
+    throw new Exception("Permission error!");
+}
 
 function ShowCommentsPage()
 {
@@ -23,9 +25,9 @@ function ShowCommentsPage()
     }
 
     $template	= new template();
-	$template->assign_vars(array(
-		'comments'	    => $comments,
+    $template->assign_vars(array(
+        'comments'	    => $comments,
         'signalColors'  => $USER['signalColors'],
-	));
-	$template->show('Comments.tpl');
+    ));
+    $template->show('Comments.tpl');
 }

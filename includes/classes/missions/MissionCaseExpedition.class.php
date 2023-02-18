@@ -125,17 +125,17 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
         if ($fleetCapacity < $foundResources) {
             $foundResources = $fleetCapacity;
             $Message .= '<br><br>' . sprintf(
-                    $LNG['sys_expe_found_goods'],
-                    pretty_number($foundResources),
-                    $LNG['tech'][$resourceId]
-                );
+                $LNG['sys_expe_found_goods'],
+                pretty_number($foundResources),
+                $LNG['tech'][$resourceId]
+            );
             $this->logbook = $LNG['sys_expe_found_ress_logbook_' . mt_rand(1, 4)] . '<br>' . $this->logbook;
         } else {
             $Message .= '<br><br>' . sprintf(
-                    $LNG['sys_expe_found_goods'],
-                    pretty_number($foundResources),
-                    $LNG['tech'][$resourceId]
-                );
+                $LNG['sys_expe_found_goods'],
+                pretty_number($foundResources),
+                $LNG['tech'][$resourceId]
+            );
         }
         $this->eventvalue = '{"' . $resourceId . '":' . $foundResources . "}";
         $fleetColName = 'fleet_resource_' . $resource[$resourceId];
@@ -667,7 +667,6 @@ HTML;
                 $this->UpdateFleet('fleet_end_time', $endTime);
                 $Message .= $LNG['sys_expe_time_slow_' . mt_rand(1, 6)];
                 $this->eventsize = "Slow";
-
             } else {
                 // Less return time
                 $endTime = $this->_fleet['fleet_end_stay'] + max(1, $normalBackTime - $stayTime / 3 * $factor);
@@ -683,7 +682,7 @@ HTML;
         if (isset($fleetArray[SHIP_PROBE])) {
             $Message .= '<br><br>' . $this->logbook;
             $Message .= '<div hidden name="expoinfo" spy="' . $this->eventspy . '" expevent="' . $this->eventtype . '" expsize="' . $this->eventsize . '" expvalue=' . "'" . $this->eventvalue . "' </div>";
-        }else{
+        } else {
             $Message .= '<div hidden name="expoinfo" spy="" expevent="' . $this->eventtype . '" expsize="' . $this->eventsize . '" expvalue=' . "'" . $this->eventvalue . "' </div>";
         }
 
@@ -725,14 +724,14 @@ HTML;
             || $this->_fleet['fleet_resource_deuterium'] > 0
         ) {
             $Message .= '<br><br>' . sprintf(
-                    $LNG['sys_expe_back_home_ress'],
-                    pretty_number($this->_fleet['fleet_resource_metal']),
-                    $LNG['tech'][901],
-                    pretty_number($this->_fleet['fleet_resource_crystal']),
-                    $LNG['tech'][902],
-                    pretty_number($this->_fleet['fleet_resource_deuterium']),
-                    $LNG['tech'][903]
-                );
+                $LNG['sys_expe_back_home_ress'],
+                pretty_number($this->_fleet['fleet_resource_metal']),
+                $LNG['tech'][901],
+                pretty_number($this->_fleet['fleet_resource_crystal']),
+                $LNG['tech'][902],
+                pretty_number($this->_fleet['fleet_resource_deuterium']),
+                $LNG['tech'][903]
+            );
         }
 
         $fleetArray = FleetFunctions::unserialize($this->_fleet['fleet_array']);
@@ -752,12 +751,12 @@ HTML;
             if ($fleetAmmountStart != $fleetAmmount) {
                 if ($fleetAmmountStart < $fleetAmmount) {
                     $Message .= '<br><br>' . sprintf(
-                            $LNG['sys_expe_back_home_ships_flound']
-                        );
+                        $LNG['sys_expe_back_home_ships_flound']
+                    );
                 } elseif ($fleetAmmountStart > $fleetAmmount) {
                     $Message .= '<br><br>' . sprintf(
-                            $LNG['sys_expe_back_home_ships_lost']
-                        );
+                        $LNG['sys_expe_back_home_ships_lost']
+                    );
                 }
                 foreach ($reslist['fleet'] as $shipId) {
                     if (isset($fleetArrayStart[$shipId]) && isset($fleetArray[$shipId])) {

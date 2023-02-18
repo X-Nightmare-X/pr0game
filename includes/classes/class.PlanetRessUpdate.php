@@ -112,8 +112,7 @@ class ResourceUpdate
                     if ($this->CheckPlanetBuildingQueue()) {
                         $this->SetNextQueueElementOnTop();
                     }
-                }
-                elseif ($this->Tech && $this->USER['b_tech'] != null) {
+                } elseif ($this->Tech && $this->USER['b_tech'] != null) {
                     if ($this->CheckUserTechQueue()) {
                         $this->SetNextQueueTechOnTop();
                     }
@@ -161,9 +160,9 @@ class ResourceUpdate
         $MaxDeuteriumStorage = $this->PLANET['deuterium_max'] * $this->config->max_overflow;
 
         $MetalTheoretical = $this->ProductionTime * (
-                                    ($this->config->metal_basic_income * $this->config->resource_multiplier)
-                                    + $this->PLANET['metal_perhour']
-                                    ) / 3600;
+            ($this->config->metal_basic_income * $this->config->resource_multiplier)
+            + $this->PLANET['metal_perhour']
+        ) / 3600;
 
         if ($MetalTheoretical < 0) {
             $this->PLANET['metal'] = max($this->PLANET['metal'] + $MetalTheoretical, 0);
@@ -172,9 +171,9 @@ class ResourceUpdate
         }
 
         $CristalTheoretical = $this->ProductionTime * (
-                                ($this->config->crystal_basic_income * $this->config->resource_multiplier)
-                                + $this->PLANET['crystal_perhour']
-                                ) / 3600;
+            ($this->config->crystal_basic_income * $this->config->resource_multiplier)
+            + $this->PLANET['crystal_perhour']
+        ) / 3600;
 
         if ($CristalTheoretical < 0) {
             $this->PLANET['crystal'] = max($this->PLANET['crystal'] + $CristalTheoretical, 0);
@@ -183,9 +182,9 @@ class ResourceUpdate
         }
 
         $DeuteriumTheoretical = $this->ProductionTime * (
-                                    ($this->config->deuterium_basic_income * $this->config->resource_multiplier)
-                                    + $this->PLANET['deuterium_perhour']
-                                    ) / 3600;
+            ($this->config->deuterium_basic_income * $this->config->resource_multiplier)
+            + $this->PLANET['deuterium_perhour']
+        ) / 3600;
 
         if ($DeuteriumTheoretical < 0) {
             $this->PLANET['deuterium'] = max($this->PLANET['deuterium'] + $DeuteriumTheoretical, 0);
@@ -314,7 +313,7 @@ class ResourceUpdate
                     $temp[$ID]['plus']  += $Production;
                 } else {
                     if (in_array($ID, $reslist['resstype'][1]) && $this->PLANET[$resource[$ID]] == 0) {
-                         continue;
+                        continue;
                     }
 
                     $temp[$ID]['minus'] += $Production;
@@ -336,16 +335,16 @@ class ResourceUpdate
             $prodLevel = min(1, $this->PLANET['energy'] / abs($this->PLANET['energy_used']));
 
             $this->PLANET['metal_perhour'] = (
-                    $temp[901]['plus'] * (1 + 0.02 * $this->USER[$resource[131]]) * $prodLevel + $temp[901]['minus']
-                ) * $this->config->resource_multiplier;
+                $temp[901]['plus'] * (1 + 0.02 * $this->USER[$resource[131]]) * $prodLevel + $temp[901]['minus']
+            ) * $this->config->resource_multiplier;
 
             $this->PLANET['crystal_perhour'] = (
-                    $temp[902]['plus'] * (1 + 0.02 * $this->USER[$resource[132]]) * $prodLevel + $temp[902]['minus']
-                ) * $this->config->resource_multiplier;
+                $temp[902]['plus'] * (1 + 0.02 * $this->USER[$resource[132]]) * $prodLevel + $temp[902]['minus']
+            ) * $this->config->resource_multiplier;
 
             $this->PLANET['deuterium_perhour'] = (
-                    $temp[903]['plus'] * (1 + 0.02 * $this->USER[$resource[133]]) * $prodLevel + $temp[903]['minus']
-                ) * $this->config->resource_multiplier;
+                $temp[903]['plus'] * (1 + 0.02 * $this->USER[$resource[133]]) * $prodLevel + $temp[903]['minus']
+            ) * $this->config->resource_multiplier;
         }
     }
 
@@ -525,7 +524,7 @@ class ResourceUpdate
                         $LNG =& Singleton()->LNG;
 
                         if (empty($LNG)) {
-                        // Fallback language
+                            // Fallback language
                             $LNG = new Language('en');
                             $LNG->includeData(array('L18N', 'INGAME', 'TECH', 'CUSTOM'));
                         }
@@ -717,7 +716,7 @@ class ResourceUpdate
                     $LNG =& Singleton()->LNG;
 
                     if (empty($LNG)) {
-                    // Fallback language
+                        // Fallback language
                         $LNG = new Language('en');
                         $LNG->includeData(array('L18N', 'INGAME', 'TECH', 'CUSTOM'));
                     }
@@ -852,8 +851,7 @@ class ResourceUpdate
                         $buildQueries[] = ', p.' . $resource[$Element] . ' = :'
                             . $resource[$Element];
                         $params[':' . $resource[$Element]] = floatToString($Count);
-                    }
-                    else {
+                    } else {
                         $buildQueries[] = ', p.' . $resource[$Element] . ' = p.' . $resource[$Element] . ' + :'
                             . $resource[$Element];
                         $params[':' . $resource[$Element]] = floatToString($Count);

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -18,20 +18,20 @@
 
 class ShowRulesPage extends AbstractLoginPage
 {
-	public static $requireModule = 0;
+    public static $requireModule = 0;
 
-	function __construct() 
-	{
-		parent::__construct();
-	}
-	
-	function show() 
-	{
-		$LNG =& Singleton()->LNG;
-		$this->assign(array(
-			'rules'		=> sprintf($LNG->getTemplate('rules'), Config::get() -> git_issues_link),
-		));
-		
-		$this->display('page.rules.default.tpl');
-	}
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function show()
+    {
+        $LNG =& Singleton()->LNG;
+        $this->assign(array(
+            'rules'		=> sprintf($LNG->getTemplate('rules'), Config::get() -> git_issues_link),
+        ));
+
+        $this->display('page.rules.default.tpl');
+    }
 }

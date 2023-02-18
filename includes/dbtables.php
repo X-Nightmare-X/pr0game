@@ -16,8 +16,8 @@
  */
 
 define('DB_VERSION_REQUIRED', 42);
-define('DB_NAME'			, $database['databasename']);
-define('DB_PREFIX'			, $database['tableprefix']);
+define('DB_NAME', $database['databasename']);
+define('DB_PREFIX', $database['tableprefix']);
 
 // Data Tabells
 $dbTableNames   = array(

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -17,7 +17,7 @@
 
 
 $LNG['faq_overview']	= "FAQ";
- 
+
 $LNG['questions']					= array();
 $LNG['questions'][1]['category']	= 'Wskazówki dla początkujących';
 $LNG['questions'][1][1]['title']	= 'Część 1';
@@ -162,5 +162,3 @@ $LNG['questions'][2][5]['body']		= <<<BODY
 <a href="https://ogame.fandom.com/wiki/Playing_Styles" target="_blank">Style gry (Górnik, Fleeter, Comber)(angielski)</a><br>
 <a href="https://ogame.fandom.com/wiki/Fleetsaving" target="_blank">Oszczędzanie(angielski)</a></p>
 BODY;
-
-

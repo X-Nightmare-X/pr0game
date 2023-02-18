@@ -26,12 +26,12 @@ class ShowFleetStep3Page extends AbstractGamePage
 
     private function getActivePlanet($db, $planetId)
     {
-    	$sql    = "SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;";
-    	$planet = $db->selectSingle($sql, array(
-    			':planetId' => $planetId,
-    	));
+        $sql    = "SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;";
+        $planet = $db->selectSingle($sql, array(
+                ':planetId' => $planetId,
+        ));
 
-    	return $planet;
+        return $planet;
     }
 
     public function show()
@@ -417,8 +417,7 @@ class ShowFleetStep3Page extends AbstractGamePage
                     'label' => $LNG['sys_back'],
                     'url'   => 'game.php?page=fleetTable',
                 ]]);
-            }
-            else if (($playerCount + 1) >= $config->max_participants_per_acs) {
+            } elseif (($playerCount + 1) >= $config->max_participants_per_acs) {
                 $this->printMessage($LNG['fl_hold_max_user'], [[
                     'label' => $LNG['sys_back'],
                     'url'   => 'game.php?page=fleetTable',
@@ -538,14 +537,14 @@ class ShowFleetStep3Page extends AbstractGamePage
 				ex_resource_type			= :resType,
 				ex_resource_amount		= :resAmount;';
 
-                $db->insert($sql, [
-                    ':transaction'          => $markettype,
-                    ':sellerFleet'          => $fleet_id,
-                    ':resType'                  => $WantedResourceType,
-                    ':resAmount'                => $WantedResourceAmount,
-                    ':flightTime'               => $maxFlightTime * 3600,
-                    ':visibility'               => $visibility
-                ]);
+            $db->insert($sql, [
+                ':transaction'          => $markettype,
+                ':sellerFleet'          => $fleet_id,
+                ':resType'                  => $WantedResourceType,
+                ':resAmount'                => $WantedResourceAmount,
+                ':flightTime'               => $maxFlightTime * 3600,
+                ':visibility'               => $visibility
+            ]);
         }
 
         $db->commit();

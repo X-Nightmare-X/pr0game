@@ -87,7 +87,7 @@ class ShowResourcesPage extends AbstractGamePage
             $basicIncome[903] = $config->{$resource[903] . '_basic_income'};
             $basicIncome[911] = $config->{$resource[911] . '_basic_income'};
         }
-        
+
         $temp = [
             901 => [
                 'plus'  => 0,
@@ -157,7 +157,7 @@ class ShowResourcesPage extends AbstractGamePage
                 } else {
                     $Production *= $prodLevel * $config->resource_multiplier;
                 }
-                
+
                 if ($ProdID == 12 && $ID == RESOURCE_ENERGY) {
                     $BuildEnergy = 0;
                     $bonus = eval(ResourceUpdate::getProd($ProdGrid[$ProdID]['production'][$ID], $ProdID));

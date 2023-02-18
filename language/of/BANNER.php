@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  * Übersetung Ogerfränkisch by Appendix / ASB8 2022
  * For the full copyright and license information, please view the LICENSE
@@ -14,7 +14,7 @@
  * @version 1.8.0
  * @link https://github.com/jkroepke/2Moons
  */
- 
+
 $LNG['ub_points']		= 'Bunktne';
 $LNG['ub_fleets']		= 'Flodde';
 $LNG['ub_researh']		= 'Forschunk';

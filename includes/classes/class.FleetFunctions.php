@@ -133,9 +133,9 @@ class FleetFunctions
         $targetPlanet = $target[2];
 
         if ($thisGalaxy != $targetGalaxy) {
-            if (Config::get()->uni_type == 2)
+            if (Config::get()->uni_type == 2) {
                 return 20000;
-            else if (Config::get()->uni_type == 1) {
+            } elseif (Config::get()->uni_type == 1) {
                 $max = Config::get()->max_galaxy;
                 $dist = 0;
 
@@ -145,12 +145,13 @@ class FleetFunctions
                     $dist = floor($max / 2) - (abs($thisGalaxy - $targetGalaxy) - ceil($max / 2));
                 }
                 return $dist * 20000;
-            } else
+            } else {
                 return abs($thisGalaxy - $targetGalaxy) * 20000;
-        } else if ($thisSystem != $targetSystem) {
-            if (Config::get()->galaxy_type == 2)
+            }
+        } elseif ($thisSystem != $targetSystem) {
+            if (Config::get()->galaxy_type == 2) {
                 return 95 + 2700;
-            else if (Config::get()->galaxy_type == 1) {
+            } elseif (Config::get()->galaxy_type == 1) {
                 $max = Config::get()->max_system;
                 $dist = 0;
 
@@ -160,9 +161,10 @@ class FleetFunctions
                     $dist = floor($max / 2) - (abs($thisSystem - $targetSystem) - ceil($max / 2));
                 }
                 return $dist * 95 + 2700;
-            } else
+            } else {
                 return abs($thisSystem - $targetSystem) * 95 + 2700;
-        } else if ($thisPlanet != $targetPlanet) {
+            }
+        } elseif ($thisPlanet != $targetPlanet) {
             return abs($thisPlanet - $targetPlanet) * 5 + 1000;
         }
         return 5;
@@ -691,8 +693,7 @@ class FleetFunctions
         $missileTarget = 0,
         $fleetNoMReturn = 0,
         $consumption = 0
-    )
-    {
+    ) {
         $resource =& Singleton()->resource;
         $fleetShipCount = array_sum($fleetArray);
         $fleetData = [];
@@ -782,13 +783,13 @@ class FleetFunctions
 
         // $sql = "SELECT `fleet_id` FROM %%FLEETS%% WHERE
         // `fleet_owner` = :fleetStartOwner AND
-		// `fleet_target_owner` = :fleetTargetOwner AND
-		// `fleet_mission` = :fleetMission AND
-		// `fleet_start_time` = :fleetStartTime AND
-		// `fleet_end_stay` = :fleetStayTime AND
-		// `fleet_end_time` = :fleetEndTime AND
+        // `fleet_target_owner` = :fleetTargetOwner AND
+        // `fleet_mission` = :fleetMission AND
+        // `fleet_start_time` = :fleetStartTime AND
+        // `fleet_end_stay` = :fleetStayTime AND
+        // `fleet_end_time` = :fleetEndTime AND
         // `start_time` = :timestamp AND
-		// `fleet_universe` = :universe;";
+        // `fleet_universe` = :universe;";
         // $fleetId = $db->selectSingle($sql, [
         //     ':fleetStartOwner' => $fleetStartOwner,
         //     ':fleetTargetOwner' => $fleetTargetOwner,
@@ -922,5 +923,4 @@ class FleetFunctions
         $maxFactor = FleetFunctions::calculateMaxFactor($universeId) * 2;
         return ($maxFactor != 2500 ? $maxFactor : 2400);
     }
-
 }

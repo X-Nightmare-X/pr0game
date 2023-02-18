@@ -19,7 +19,7 @@ class ShowMessagesPage extends AbstractGamePage
 {
     public static $requireModule = MODULE_MESSAGES;
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
     }
@@ -49,10 +49,10 @@ class ShowMessagesPage extends AbstractGamePage
             // $page		= max(1, min($page, $maxPage));
 
             // $sql = "SELECT message_id, message_time, CONCAT(username, ' [',galaxy, ':', system, ':', planet,']') as message_from, message_subject, message_sender, message_type, message_unread, message_text
-			// FROM %%MESSAGES%% INNER JOIN %%USERS%% ON id = message_owner
-			// WHERE message_sender = :userId AND message_type != 50 AND message_deleted IS NULL
-			// ORDER BY message_time DESC
-			// LIMIT :offset, :limit;";
+            // FROM %%MESSAGES%% INNER JOIN %%USERS%% ON id = message_owner
+            // WHERE message_sender = :userId AND message_type != 50 AND message_deleted IS NULL
+            // ORDER BY message_time DESC
+            // LIMIT :offset, :limit;";
 
             // $MessageResult = $db->select($sql, array(
                 // ':userId'   => $USER['id'],
@@ -60,10 +60,10 @@ class ShowMessagesPage extends AbstractGamePage
                 // ':limit'    => MESSAGES_PER_PAGE
             // ));
         // }
-		// else
-		// {
+        // else
+        // {
             // if ($MessCategory == 100)
-			// {
+            // {
                 // $sql = "SELECT COUNT(*) as state FROM %%MESSAGES%% WHERE message_owner = :userId AND message_deleted IS NULL;";
                 // $MessageCount = $db->selectSingle($sql, array(
                     // ':userId'   => $USER['id'],
@@ -84,8 +84,8 @@ class ShowMessagesPage extends AbstractGamePage
                     // ':limit'        => MESSAGES_PER_PAGE
                 // ));
             // }
-			// else
-			// {
+            // else
+            // {
                 // $sql = "SELECT COUNT(*) as state FROM %%MESSAGES%% WHERE message_owner = :userId AND message_type = :messCategory AND message_deleted IS NULL;";
 
                 // $MessageCount = $db->selectSingle($sql, array(
@@ -147,39 +147,38 @@ class ShowMessagesPage extends AbstractGamePage
 
     private function sendData($Code, $Message)
     {
-	$this->returnData['code']	= $Code;
-	$this->returnData['mess']	= $Message;
-	$this->sendJSON($this->returnData);
+        $this->returnData['code']	= $Code;
+        $this->returnData['mess']	= $Message;
+        $this->sendJSON($this->returnData);
     }
 
-    function deleteMessage()
+    public function deleteMessage()
     {
-	$LNG =& Singleton()->LNG;
- $USER =& Singleton()->USER;
- $db = Database::get();
+        $LNG =& Singleton()->LNG;
+        $USER =& Singleton()->USER;
+        $db = Database::get();
 
         $this->initTemplate();
         $this->setWindow('ajax');
 
-	$delMessID		= HTTP::_GP('delMessID', 0);
+        $delMessID		= HTTP::_GP('delMessID', 0);
 
-        if(empty($delMessID))
-        {
-	    $this->sendData(0, $LNG['error']);
+        if (empty($delMessID)) {
+            $this->sendData(0, $LNG['error']);
         }
 
 
         $sql = 'DELETE FROM %%MESSAGES%% WHERE message_id = :messID AND message_owner = :userId;';
 
-	$db->delete($sql, array(
-	    ':userId' => $USER['id'],
-	    ':messID' => $delMessID,
-	));
+        $db->delete($sql, array(
+            ':userId' => $USER['id'],
+            ':messID' => $delMessID,
+        ));
 
-	$this->sendData($delMessID, $LNG['mg_deleted']);
+        $this->sendData($delMessID, $LNG['mg_deleted']);
     }
 
-    function action()
+    public function action()
     {
         $USER =& Singleton()->USER;
 
@@ -191,45 +190,44 @@ class ShowMessagesPage extends AbstractGamePage
         $action	= HTTP::_GP('action', "");
         $redirectUrl	= 'game.php?page=messages&category='.$MessCategory.'&side='.$page;
 
-        if($action == "")
-        {
+        if ($action == "") {
             $this->redirectTo($redirectUrl);
         }
 
-        if($action == 'deleteunmarked' && empty($messageIDs))
+        if ($action == 'deleteunmarked' && empty($messageIDs)) {
             $action	= 'deletetypeall';
+        }
 
-        if($action == 'deletetypeall' && $MessCategory == 100)
+        if ($action == 'deletetypeall' && $MessCategory == 100) {
             $action	= 'deleteall';
+        }
 
-        if($action == 'readtypeall' && $MessCategory == 100)
+        if ($action == 'readtypeall' && $MessCategory == 100) {
             $action	= 'readall';
+        }
 
-        switch($action)
-        {
+        switch($action) {
             case 'readall':
                 $sql = "UPDATE %%MESSAGES%% SET message_unread = 0 WHERE message_owner = :userID;";
                 $db->update($sql, array(
                     ':userID'   => $USER['id']
                 ));
-			break;
+                break;
             case 'readtypeall':
                 $sql = "UPDATE %%MESSAGES%% SET message_unread = 0 WHERE message_owner = :userID AND message_type = :messCategory;";
                 $db->update($sql, array(
                     ':userID'       => $USER['id'],
                     ':messCategory' => $MessCategory
                 ));
-			break;
+                break;
             case 'readmarked':
-                if(empty($messageIDs))
-                {
+                if (empty($messageIDs)) {
                     $this->redirectTo($redirectUrl);
                 }
 
                 $messageIDs	= array_filter($messageIDs, 'is_numeric');
 
-                if(empty($messageIDs))
-                {
+                if (empty($messageIDs)) {
                     $this->redirectTo($redirectUrl);
                 }
 
@@ -237,9 +235,9 @@ class ShowMessagesPage extends AbstractGamePage
                 $db->update($sql, array(
                     ':userID'       => $USER['id'],
                 ));
-			break;
+                break;
             case 'deleteall':
-                if(Config::get()->message_delete_behavior == 1) {
+                if (Config::get()->message_delete_behavior == 1) {
                     $sql = "UPDATE %%MESSAGES%% SET message_deleted = :timestamp WHERE message_owner = :userID;";
                     $db->update($sql, array(
                         ':timestamp'    => TIMESTAMP,
@@ -251,9 +249,9 @@ class ShowMessagesPage extends AbstractGamePage
                         ':userID'       => $USER['id']
                     ));
                 }
-			break;
+                break;
             case 'deletetypeall':
-                if(Config::get()->message_delete_behavior == 1) {
+                if (Config::get()->message_delete_behavior == 1) {
                     $sql = "UPDATE %%MESSAGES%% SET message_deleted = :timestamp WHERE message_owner = :userID AND message_type = :messCategory;";
                     $db->update($sql, array(
                         ':timestamp' => TIMESTAMP,
@@ -267,21 +265,19 @@ class ShowMessagesPage extends AbstractGamePage
                         ':messCategory' => $MessCategory
                     ));
                 }
-			break;
+                break;
             case 'deletemarked':
-                if(empty($messageIDs))
-                {
+                if (empty($messageIDs)) {
                     $this->redirectTo($redirectUrl);
                 }
 
                 $messageIDs	= array_filter($messageIDs, 'is_numeric');
 
-                if(empty($messageIDs))
-                {
+                if (empty($messageIDs)) {
                     $this->redirectTo($redirectUrl);
                 }
 
-                if(Config::get()->message_delete_behavior == 1) {
+                if (Config::get()->message_delete_behavior == 1) {
                     $sql = 'UPDATE %%MESSAGES%% SET message_deleted = :timestamp WHERE message_id IN (' . implode(',', array_keys($messageIDs)) . ') AND message_owner = :userId;';
                     $db->update($sql, array(
                         ':timestamp' => TIMESTAMP,
@@ -293,21 +289,19 @@ class ShowMessagesPage extends AbstractGamePage
                         ':userId' => $USER['id'],
                     ));
                 }
-			break;
+                break;
             case 'deleteunmarked':
-                if(empty($messageIDs) || !is_array($messageIDs))
-                {
+                if (empty($messageIDs) || !is_array($messageIDs)) {
                     $this->redirectTo($redirectUrl);
                 }
 
                 $messageIDs	= array_filter($messageIDs, 'is_numeric');
 
-                if(empty($messageIDs))
-                {
+                if (empty($messageIDs)) {
                     $this->redirectTo($redirectUrl);
                 }
 
-                if(Config::get()->message_delete_behavior == 1) {
+                if (Config::get()->message_delete_behavior == 1) {
                     $sql = 'UPDATE %%MESSAGES%% SET message_deleted = :timestamp WHERE message_id NOT IN (' . implode(',', array_keys($messageIDs)) . ') AND message_owner = :userId;';
                     $db->update($sql, array(
                         ':timestamp' => TIMESTAMP,
@@ -319,36 +313,35 @@ class ShowMessagesPage extends AbstractGamePage
                         ':userId'       => $USER['id'],
                     ));
                 }
-			break;
+                break;
         }
         $this->redirectTo($redirectUrl);
     }
 
-    function send()
+    public function send()
     {
         $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
         $receiverID	= HTTP::_GP('id', 0);
         $subject 	= HTTP::_GP('subject', $LNG['mg_no_subject'], true);
-		$text		= HTTP::_GP('text', '', true);
-		$senderName	= $USER['username'].' ['.$USER['galaxy'].':'.$USER['system'].':'.$USER['planet'].']';
+        $text		= HTTP::_GP('text', '', true);
+        $senderName	= $USER['username'].' ['.$USER['galaxy'].':'.$USER['system'].':'.$USER['planet'].']';
 
-		$text		= makebr($text);
+        $text		= makebr($text);
 
-		$session	= Session::load();
+        $session	= Session::load();
 
-        if (empty($receiverID) || empty($text) || !isset($session->messageToken) || $session->messageToken != md5($USER['id'].'|'.$receiverID))
-        {
+        if (empty($receiverID) || empty($text) || !isset($session->messageToken) || $session->messageToken != md5($USER['id'].'|'.$receiverID)) {
             $this->sendJSON($LNG['mg_error']);
         }
 
-		$session->messageToken = NULL;
+        $session->messageToken = null;
 
-		PlayerUtil::sendMessage($receiverID, $USER['id'], $senderName, 1, $subject, $text, TIMESTAMP);
+        PlayerUtil::sendMessage($receiverID, $USER['id'], $senderName, 1, $subject, $text, TIMESTAMP);
         $this->sendJSON($LNG['mg_message_send']);
     }
 
-    function write()
+    public function write()
     {
         $LNG =& Singleton()->LNG;
         $USER =& Singleton()->USER;
@@ -367,13 +360,11 @@ class ShowMessagesPage extends AbstractGamePage
             ':receiverId'   => $receiverID
         ));
 
-        if (!$receiverRecord)
-        {
+        if (!$receiverRecord) {
             $this->printMessage($LNG['mg_error']);
         }
 
-        if ($receiverRecord['settings_blockPM'] == 1)
-        {
+        if ($receiverRecord['settings_blockPM'] == 1) {
             $this->printMessage($LNG['mg_receiver_block_pm']);
         }
 
@@ -388,7 +379,7 @@ class ShowMessagesPage extends AbstractGamePage
         $this->display('page.messages.write.tpl');
     }
 
-    function show()
+    public function show()
     {
         $LNG =& Singleton()->LNG;
         $USER =& Singleton()->USER;
@@ -409,7 +400,7 @@ class ShowMessagesPage extends AbstractGamePage
         $MessageList	= array();
         $MessagesID		= array();
 
-        $TitleColor    	= array ( 0 => '#FFFF00', 1 => '#FF6699', 2 => '#FF3300', 3 => '#FF9900', 4 => '#773399', 5 => '#009933', 15 => '#6495ed', 50 => '#666600', 99 => '#007070', 100 => '#ABABAB', 999 => '#CCCCCC');
+        $TitleColor    	= array( 0 => '#FFFF00', 1 => '#FF6699', 2 => '#FF3300', 3 => '#FF9900', 4 => '#773399', 5 => '#009933', 15 => '#6495ed', 50 => '#666600', 99 => '#007070', 100 => '#ABABAB', 999 => '#CCCCCC');
 
         $sql = "SELECT COUNT(*) as state FROM %%MESSAGES%% WHERE message_sender = :userID AND message_type != 50;";
         $MessOut = $db->selectSingle($sql, array(
@@ -424,8 +415,7 @@ class ShowMessagesPage extends AbstractGamePage
             ':userID'   => $USER['id']
         ));
 
-        foreach ($CategoryResult as $CategoryRow)
-        {
+        foreach ($CategoryResult as $CategoryRow) {
             $UnRead[$CategoryRow['message_type']]	= $CategoryRow['message_unread'];
             $Total[$CategoryRow['message_type']]	= $CategoryRow['count'];
         }
@@ -436,7 +426,7 @@ class ShowMessagesPage extends AbstractGamePage
 
         $CategoryList        = array();
 
-        foreach($TitleColor as $CategoryID => $CategoryColor) {
+        foreach ($TitleColor as $CategoryID => $CategoryColor) {
             $CategoryList[$CategoryID]	= array(
                 'color'		=> $CategoryColor,
                 'unread'	=> $UnRead[$CategoryID],
@@ -444,10 +434,9 @@ class ShowMessagesPage extends AbstractGamePage
             );
         }
 
-		//// view()
+        //// view()
 
-		if($MessCategory == 999)  {
-
+        if ($MessCategory == 999) {
             $sql = "SELECT COUNT(*) as state FROM %%MESSAGES%% WHERE message_sender = :userId AND message_type != 50 AND message_deleted IS NULL;";
             $MessageCount = $db->selectSingle($sql, array(
                 ':userId'   => $USER['id'],
@@ -467,11 +456,8 @@ class ShowMessagesPage extends AbstractGamePage
                 ':offset'   => (($page - 1) * MESSAGES_PER_PAGE),
                 ':limit'    => MESSAGES_PER_PAGE
             ));
-        }
-		else
-		{
-            if ($MessCategory == 100)
-			{
+        } else {
+            if ($MessCategory == 100) {
                 $sql = "SELECT COUNT(*) as state FROM %%MESSAGES%% WHERE message_owner = :userId AND message_deleted IS NULL;";
                 $MessageCount = $db->selectSingle($sql, array(
                     ':userId'   => $USER['id'],
@@ -491,9 +477,7 @@ class ShowMessagesPage extends AbstractGamePage
                     ':offset'       => (($page - 1) * MESSAGES_PER_PAGE),
                     ':limit'        => MESSAGES_PER_PAGE
                 ));
-            }
-			else
-			{
+            } else {
                 $sql = "SELECT COUNT(*) as state FROM %%MESSAGES%% WHERE message_owner = :userId AND message_type = :messCategory AND message_deleted IS NULL;";
 
                 $MessageCount = $db->selectSingle($sql, array(
@@ -519,8 +503,7 @@ class ShowMessagesPage extends AbstractGamePage
             }
         }
 
-        foreach ($MessageResult as $MessageRow)
-        {
+        foreach ($MessageResult as $MessageRow) {
             $MessagesID[]	= $MessageRow['message_id'];
 
             $MessageList[]	= array(
@@ -535,20 +518,20 @@ class ShowMessagesPage extends AbstractGamePage
             );
         }
 
-        if(!empty($MessagesID) && $MessCategory != 999) {
+        if (!empty($MessagesID) && $MessCategory != 999) {
             $sql = 'UPDATE %%MESSAGES%% SET message_unread = 0 WHERE message_id IN ('.implode(',', $MessagesID).') AND message_owner = :userID;';
             $db->update($sql, array(
                 ':userID'       => $USER['id'],
             ));
         }
-        
+
         require_once 'includes/classes/class.MarketManager.php';
         $pMarket = new MarketManager();
         $refrates = $pMarket->getReferenceRatios();
         $this->tplObj->loadscript('message.js');
         $this->assign(array(
-			'MessID'		            => $MessCategory,
-			'MessageCount'	            => $MessageCount,
+            'MessID'		            => $MessCategory,
+            'MessageCount'	            => $MessageCount,
             'MessageList'	            => $MessageList,
             'CategoryList'	            => $CategoryList,
             'page'			            => $page,

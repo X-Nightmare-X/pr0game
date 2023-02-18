@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -17,28 +17,27 @@
 
 class MissionCaseACS extends MissionFunctions implements Mission
 {
-		
-	function __construct($Fleet)
-	{
-		$this->_fleet	= $Fleet;
-	}
-	
-	function TargetEvent()
-	{
-		$this->setState(FLEET_RETURN);
-		$this->SaveFleet();
-		return;
-	}
-	
-	function EndStayEvent()
-	{
-		return;
-	}
-	
-	function ReturnEvent()
-	{
-		$this->sendAttackReturnMessage();
+    public function __construct($Fleet)
+    {
+        $this->_fleet	= $Fleet;
+    }
 
-		$this->RestoreFleet();
-	}
+    public function TargetEvent()
+    {
+        $this->setState(FLEET_RETURN);
+        $this->SaveFleet();
+        return;
+    }
+
+    public function EndStayEvent()
+    {
+        return;
+    }
+
+    public function ReturnEvent()
+    {
+        $this->sendAttackReturnMessage();
+
+        $this->RestoreFleet();
+    }
 }

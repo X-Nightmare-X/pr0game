@@ -17,7 +17,7 @@
 
 //SHORT NAMES FOR COMBAT REPORTS
 
-$LNG['shortNames'] = array (
+$LNG['shortNames'] = array(
     202 => 'Kl. Transporter',
     203 => 'Gr. Transporter',
     204 => 'L. Jäger',
