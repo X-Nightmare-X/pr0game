@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FILE__))) {
+if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__))) {
     throw new Exception("Permission error!");
 }
 
@@ -33,9 +33,9 @@ function ShowActivePage()
 
     $query = $GLOBALS['DATABASE']->query("SELECT * FROM ".USERS_VALID." WHERE `universe` = '".Universe::getEmulated()."' ORDER BY validationID ASC");
 
-    $Users	= array();
+    $Users	= [];
     while ($User = $GLOBALS['DATABASE']->fetch_array($query)) {
-        $Users[]	= array(
+        $Users[]	= [
             'id'			=> $User['validationID'],
             'name'			=> $User['userName'],
             'date'			=> _date($LNG['php_tdformat'], $User['date'], $USER['timezone']),
@@ -43,16 +43,16 @@ function ShowActivePage()
             'ip'			=> $User['ip'],
             'password'		=> $User['password'],
             'validationKey'	=> $User['validationKey'],
-        );
+        ];
     }
 
     $template	= new template();
 
-    $template->assign_vars(array(
+    $template->assign_vars([
         'Users'				=> $Users,
         'uni'				=> Universe::getEmulated(),
         'signalColors'      => $USER['signalColors'],
-    ));
+    ]);
 
     $template->show('ActivePage.tpl');
 }

@@ -25,8 +25,8 @@ setlocale(LC_NUMERIC, 'C');
 
 //SERVER GENERALS
 $LNG['dir']         	= 'ltr';
-$LNG['week_day']		= array('Pazar', 'Pazartesi', 'Sali', 'Carsamba', 'Persembe', 'Cuma', 'Cumartesi'); # Start with Sun!
-$LNG['months']			= array('Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran', 'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik');
+$LNG['week_day']		= ['Pazar', 'Pazartesi', 'Sali', 'Carsamba', 'Persembe', 'Cuma', 'Cumartesi']; # Start with Sun!
+$LNG['months']			= ['Ocak', 'Subat', 'Mart', 'Nisan', 'Mayis', 'Haziran', 'Temmuz', 'Agustos', 'Eylul', 'Ekim', 'Kasim', 'Aralik'];
 $LNG['js_tdformat']		= '[d] [M] [D] [H]:[i]:[s]';
 $LNG['php_timeformat']	= 'H:i:s';
 $LNG['php_dateformat']	= 'd. M Y';
@@ -38,7 +38,7 @@ $LNG['short_second']	= 's';
 
 //Note for the translators, use the phpBB Translation file (LANG/common.php) instead of your own translations
 
-$LNG['timezones']		= array(
+$LNG['timezones']		= [
     '-12'	=> '[UTC - 12] Baker Island Time',
     '-11'	=> '[UTC - 11] Niue Time, Samoa Standard Time',
     '-10'	=> '[UTC - 10] Hawaii-Aleutian Standard Time, Cook Island Time',
@@ -79,4 +79,4 @@ $LNG['timezones']		= array(
     '12.75'	=> '[UTC + 12:45] Chatham Islands Time',
     '13'	=> '[UTC + 13] Tonga Time, Phoenix Islands Time',
     '14'	=> '[UTC + 14] Line Island Time',
-);
+];

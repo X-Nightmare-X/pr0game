@@ -20,14 +20,14 @@ class ArrayUtil
     public static function combineArrayWithSingleElement($keys, $var)
     {
         if (empty($keys)) {
-            return array();
+            return [];
         }
         return array_combine($keys, array_fill(0, count($keys), $var));
     }
 
     public static function combineArrayWithKeyElements($keys, $var)
     {
-        $temp	= array();
+        $temp	= [];
         foreach ($keys as $key) {
             if (isset($var[$key])) {
                 $temp[$key]	= $var[$key];

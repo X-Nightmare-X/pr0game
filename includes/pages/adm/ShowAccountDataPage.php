@@ -598,7 +598,7 @@ function ShowAccountDataPage()
     }
 
     $template->loadscript('filterlist.js');
-    $template->assign_vars(array(
+    $template->assign_vars([
         'Userlist'          => $Userlist,
         'ac_enter_user_id'  => $LNG['ac_enter_user_id'],
         'bo_select_title'   => $LNG['bo_select_title'],
@@ -606,6 +606,6 @@ function ShowAccountDataPage()
         'button_deselect'   => $LNG['button_deselect'],
         'ac_select_id_num'  => $LNG['ac_select_id_num'],
         'button_submit'     => $LNG['button_submit'],
-    ));
+    ]);
     $template->show('AccountDataPageIntro.tpl');
 }

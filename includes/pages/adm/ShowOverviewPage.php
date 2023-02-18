@@ -19,7 +19,7 @@ function ShowOverviewPage()
 {
     $LNG =& Singleton()->LNG;
     $USER =& Singleton()->USER;
-    $Message	= array();
+    $Message	= [];
     if ($USER['authlevel'] >= AUTH_ADM) {
         if (file_exists(ROOT_PATH.'update.php')) {
             $Message[]	= sprintf($LNG['ow_file_detected'], 'update.php');
@@ -45,7 +45,7 @@ function ShowOverviewPage()
     $template	= new template();
 
 
-    $template->assign_vars(array(
+    $template->assign_vars([
         'ow_none'			=> $LNG['ow_none'],
         'ow_overview'		=> $LNG['ow_overview'],
         'ow_welcome_text'	=> $LNG['ow_welcome_text'],
@@ -60,7 +60,7 @@ function ShowOverviewPage()
         'Messages'			=> $Message,
         'date'				=> date('m\_Y', TIMESTAMP),
         'signalColors'		=> $USER['signalColors'],
-    ));
+    ]);
 
     $template->show('OverviewBody.tpl');
 }

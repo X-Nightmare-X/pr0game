@@ -31,19 +31,19 @@ class ShowNewsPage extends AbstractLoginPage
         $sql = "SELECT date, title, text, user FROM %%NEWS%% ORDER BY id DESC;";
         $newsResult = Database::get()->select($sql);
 
-        $newsList	= array();
+        $newsList	= [];
 
         foreach ($newsResult as $newsRow) {
-            $newsList[]	= array(
+            $newsList[]	= [
                 'title' => $newsRow['title'],
                 'from' 	=> sprintf($LNG['news_from'], _date($LNG['php_tdformat'], $newsRow['date']), $newsRow['user']),
                 'text' 	=> makebr($newsRow['text']),
-            );
+            ];
         }
 
-        $this->assign(array(
+        $this->assign([
             'newsList'	=> $newsList,
-        ));
+        ]);
 
         $this->display('page.news.default.tpl');
     }

@@ -10,7 +10,7 @@ class LangImplementation implements Lang
         if (empty($LNG)) {
             // Fallback language
             $LNG = new Language('en');
-            $LNG->includeData(array('L18N', 'INGAME', 'TECH', 'CUSTOM'));
+            $LNG->includeData(['L18N', 'INGAME', 'TECH', 'CUSTOM']);
         }
 
         $this->lang = $LNG;

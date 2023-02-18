@@ -63,10 +63,10 @@ class ShowPlayerCardPage extends AbstractGamePage
 				LEFT JOIN %%ALLIANCE%% a ON a.id = u.ally_id
                 LEFT JOIN %%ADVANCED_STATS%% ad ON ad.userId = u.id
 				WHERE u.id = :playerID AND u.universe = :universe;";
-        $query = $db->selectSingle($sql, array(
+        $query = $db->selectSingle($sql, [
             ':universe'	=> Universe::current(),
             ':playerID'	=> $PlayerID
-        ));
+        ]);
 
         if (!$query) {
             throw new Exception('the requested player does not exist');
@@ -119,7 +119,7 @@ class ShowPlayerCardPage extends AbstractGamePage
             $debris_real_crystal += ($pricelist[$element]['cost'][RESOURCE_CRYSTAL] * $amount * ($defIntoDebris / 100));
         }
 
-        $this->assign(array(
+        $this->assign([
             'id'			=> $PlayerID,
             'yourid'		=> $USER['id'],
             'name'			=> $query['username'],
@@ -160,7 +160,7 @@ class ShowPlayerCardPage extends AbstractGamePage
             'build_percent' => $query['build_percent'] == 0 ? '0,00' : round($query['build_percent'], 2),
             'defs_percent'  => $query['defs_percent'] == 0 ? '0,00' : round($query['defs_percent'], 2),
             'fleet_percent' => $query['fleet_percent'] == 0 ? '0,00' : round($query['fleet_percent'], 2),
-        ));
+        ]);
 
         $this->display('page.playerCard.default.tpl');
     }

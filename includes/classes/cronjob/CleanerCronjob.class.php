@@ -36,35 +36,35 @@ class CleanerCronjob implements CronjobTask
         }
 
         $sql	= 'DELETE FROM %%MESSAGES%% WHERE `message_time` < :time;';
-        Database::get()->delete($sql, array(
+        Database::get()->delete($sql, [
             ':time'	=> $del_before
-        ));
+        ]);
 
         $sql	= 'DELETE FROM %%ALLIANCE%% WHERE `ally_members` = 0;';
         Database::get()->delete($sql);
 
         $sql	= 'DELETE FROM %%PLANETS%% WHERE `destruyed` < :time AND `destruyed` != 0;';
-        Database::get()->delete($sql, array(
+        Database::get()->delete($sql, [
             ':time'	=> TIMESTAMP
-        ));
+        ]);
 
         $sql	= 'DELETE FROM %%SESSION%% WHERE `lastonline` < :time;';
-        Database::get()->delete($sql, array(
+        Database::get()->delete($sql, [
             ':time'	=> TIMESTAMP - SESSION_LIFETIME
-        ));
+        ]);
 
         $sql	= 'DELETE FROM %%FLEETS_EVENT%% WHERE fleetID NOT IN (SELECT fleet_id FROM %%FLEETS%%);';
         Database::get()->delete($sql);
 
         $sql	= 'DELETE FROM %%LOG_FLEETS%% WHERE `start_time` < :time;';
-        Database::get()->delete($sql, array(
+        Database::get()->delete($sql, [
             ':time'	=> $del_before
-        ));
+        ]);
 
         $sql	= 'UPDATE %%USERS%% SET `email_2` = `email` WHERE `setmail` < :time;';
-        Database::get()->update($sql, array(
+        Database::get()->update($sql, [
             ':time'	=> TIMESTAMP
-        ));
+        ]);
 
         $sql	= 'UPDATE %%PLANETS%% SET `tf_active` = 0 WHERE `tf_active` = 1;';
         Database::get()->update($sql);
@@ -72,11 +72,11 @@ class CleanerCronjob implements CronjobTask
         $sql	= 'SELECT `id` FROM %%USERS%% WHERE `authlevel` = :authlevel
 		AND ((`db_deaktjava` != 0 AND `db_deaktjava` < :timeDeleted) OR `onlinetime` < :timeInactive);';
 
-        $deleteUserIds = Database::get()->select($sql, array(
+        $deleteUserIds = Database::get()->select($sql, [
             ':authlevel'	=> AUTH_USR,
             ':timeDeleted'	=> $del_deleted,
             ':timeInactive'	=> $del_inactive
-        ));
+        ]);
 
         if (!empty($deleteUserIds)) {
             foreach ($deleteUserIds as $dataRow) {
@@ -114,8 +114,8 @@ class CleanerCronjob implements CronjobTask
         // ));
 
         $sql	= 'DELETE FROM %%MESSAGES%% WHERE `message_deleted` < :time;';
-        Database::get()->delete($sql, array(
+        Database::get()->delete($sql, [
             ':time'	=> $del_messages
-        ));
+        ]);
     }
 }

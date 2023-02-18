@@ -73,10 +73,10 @@ class ShowGalaxyPage extends AbstractGamePage
 
         if ($galaxy != $PLANET['galaxy'] || $system != $PLANET['system']) {
             if ($PLANET['deuterium'] < $config->deuterium_cost_galaxy) {
-                $this->printMessage($LNG['gl_no_deuterium_to_view_galaxy'], array(array(
+                $this->printMessage($LNG['gl_no_deuterium_to_view_galaxy'], [[
                     'label'	=> $LNG['sys_back'],
                     'url'	=> 'game.php?page=galaxy'
-                )));
+                ]]);
             } else {
                 $resources = [RESOURCE_DEUT => $config->deuterium_cost_galaxy];
                 $this->ecoObj->removeResources($PLANET['id'], $resources, $PLANET);
@@ -113,7 +113,7 @@ class ShowGalaxyPage extends AbstractGamePage
         $hiddenDebris = ($pricelist[SHIP_PROBE]['cost'][RESOURCE_METAL] + $pricelist[SHIP_PROBE]['cost'][RESOURCE_CRYSTAL]) * ($config->Fleet_Cdr / 100);
 
         $this->tplObj->loadscript('galaxy.js');
-        $this->assign(array(
+        $this->assign([
             'GalaxyRows'				=> $Result,
             'planetcount'				=> sprintf($LNG['gl_populed_planets'], count($Result)),
             'action'					=> $action,
@@ -128,7 +128,7 @@ class ShowGalaxyPage extends AbstractGamePage
             'recyclers'   				=> $PLANET[$resource[209]],
             'spyprobes'   				=> $PLANET[$resource[210]],
             'missile_count'				=> sprintf($LNG['gl_missil_to_launch'], $PLANET[$resource[503]]),
-            'spyShips'					=> array(210 => $USER['spio_anz']),
+            'spyShips'					=> [210 => $USER['spio_anz']],
             'settings_fleetactions'		=> $USER['settings_fleetactions'],
             'current_galaxy'			=> $PLANET['galaxy'],
             'current_system'			=> $PLANET['system'],
@@ -137,7 +137,7 @@ class ShowGalaxyPage extends AbstractGamePage
             'max_planets'               => $config->max_planets,
             'missileSelector'			=> $missileSelector,
             'hiddenDebris'					=> $hiddenDebris,
-            'ShortStatus'				=> array(
+            'ShortStatus'				=> [
                 'vacation'					=> $LNG['gl_short_vacation'],
                 'banned'					=> $LNG['gl_short_ban'],
                 'inactive'					=> $LNG['gl_short_inactive'],
@@ -147,8 +147,8 @@ class ShowGalaxyPage extends AbstractGamePage
                 'enemy'						=> $LNG['gl_short_enemy'],
                 'friend'					=> $LNG['gl_short_friend'],
                 'member'					=> $LNG['gl_short_member'],
-            ),
-        ));
+            ],
+        ]);
 
         $this->display('page.galaxy.default.tpl');
     }

@@ -28,7 +28,7 @@ class ShowQuestionsPage extends AbstractGamePage
     {
         $LNG =& Singleton()->LNG;
 
-        $LNG->includeData(array('FAQ'));
+        $LNG->includeData(['FAQ']);
 
         $this->display('page.questions.default.tpl');
     }
@@ -37,7 +37,7 @@ class ShowQuestionsPage extends AbstractGamePage
     {
         $LNG =& Singleton()->LNG;
 
-        $LNG->includeData(array('FAQ'));
+        $LNG->includeData(['FAQ']);
 
         $categoryID	= HTTP::_GP('categoryID', 0);
         $questionID	= HTTP::_GP('questionID', 0);
@@ -46,9 +46,9 @@ class ShowQuestionsPage extends AbstractGamePage
             HTTP::redirectTo('game.php?page=questions');
         }
 
-        $this->assign(array(
+        $this->assign([
             'questionRow'	=> $LNG['questions'][$categoryID][$questionID],
-        ));
+        ]);
         $this->display('page.questions.single.tpl');
     }
 }

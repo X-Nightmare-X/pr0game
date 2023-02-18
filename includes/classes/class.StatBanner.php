@@ -29,10 +29,10 @@ class StatBanner
 		WHERE user.id = :userId AND stat.stat_type = :statType AND stat.id_owner = :userId
 		AND planet.id = user.id_planet AND config.uni = user.universe;';
 
-        return Database::get()->selectSingle($sql, array(
+        return Database::get()->selectSingle($sql, [
             ':userId'	=> $id,
             ':statType'	=> 1
-        ));
+        ]);
     }
 
     public function CreateUTF8Banner($data)

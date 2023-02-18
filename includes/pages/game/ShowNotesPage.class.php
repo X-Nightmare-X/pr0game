@@ -34,24 +34,24 @@ class ShowNotesPage extends AbstractGamePage
         $db = Database::get();
 
         $sql = "SELECT * FROM %%NOTES%% WHERE owner = :userID ORDER BY priority DESC, time DESC;";
-        $notesResult = $db->select($sql, array(
+        $notesResult = $db->select($sql, [
             ':userID'   => $USER['id']
-        ));
+        ]);
 
-        $notesList		= array();
+        $notesList		= [];
 
         foreach ($notesResult as $notesRow) {
-            $notesList[$notesRow['id']]	= array(
+            $notesList[$notesRow['id']]	= [
                 'time'		=> _date($LNG['php_tdformat'], $notesRow['time'], $USER['timezone']),
                 'title'		=> $notesRow['title'],
                 'size'		=> strlen($notesRow['text']),
                 'priority'	=> $notesRow['priority'],
-            );
+            ];
         }
 
-        $this->assign(array(
+        $this->assign([
             'notesList'	=> $notesList,
-        ));
+        ]);
 
         $this->display('page.notes.default.tpl');
     }
@@ -66,24 +66,24 @@ class ShowNotesPage extends AbstractGamePage
             $db = Database::get();
 
             $sql = "SELECT * FROM %%NOTES%% WHERE id = :noteID AND owner = :userID;";
-            $noteDetail = $db->selectSingle($sql, array(
+            $noteDetail = $db->selectSingle($sql, [
                 ':userID'   => $USER['id'],
                 ':noteID'   => $noteID
-            ));
+            ]);
         } else {
-            $noteDetail	= array(
+            $noteDetail	= [
                 'id'		=> 0,
                 'priority'	=> 1,
                 'text'		=> '',
                 'title'		=> ''
-            );
+            ];
         }
 
         $this->tplObj->execscript("$('#cntChars').text($('#text').val().length);");
-        $this->assign(array(
-            'PriorityList'	=> array(2 => $LNG['nt_important'], 1 => $LNG['nt_normal'], 0 => $LNG['nt_unimportant']),
+        $this->assign([
+            'PriorityList'	=> [2 => $LNG['nt_important'], 1 => $LNG['nt_normal'], 0 => $LNG['nt_unimportant']],
             'noteDetail'	=> $noteDetail,
-        ));
+        ]);
 
         $this->display('page.notes.detail.tpl');
     }
@@ -103,23 +103,23 @@ class ShowNotesPage extends AbstractGamePage
 
         if ($id == 0) {
             $sql = "INSERT INTO %%NOTES%% SET owner = :userID, time = :time, priority = :priority, title = :title, text = :text, universe = :universe;";
-            $db->insert($sql, array(
+            $db->insert($sql, [
                 ':userID'   => $USER['id'],
                 ':time'     => TIMESTAMP,
                 ':priority' => $priority,
                 ':title'    => $title,
                 ':text'     => $text,
                 ':universe' => Universe::current()
-            ));
+            ]);
         } else {
             $sql	= "UPDATE %%NOTES%% SET time = :time, priority = :priority, title = :title, text = :text WHERE id = :noteID;";
-            $db->update($sql, array(
+            $db->update($sql, [
                 ':noteID'   => $id,
                 ':time'     => TIMESTAMP,
                 ':priority' => $priority,
                 ':title'    => $title,
                 ':text'     => $text,
-            ));
+            ]);
         }
 
         $this->redirectTo('game.php?page=notes');
@@ -129,15 +129,15 @@ class ShowNotesPage extends AbstractGamePage
     {
         $USER =& Singleton()->USER;
 
-        $deleteIds	= HTTP::_GP('delmes', array());
+        $deleteIds	= HTTP::_GP('delmes', []);
         $deleteIds	= array_keys($deleteIds);
         $deleteIds	= array_filter($deleteIds, 'is_numeric');
 
         if (!empty($deleteIds)) {
             $sql = 'DELETE FROM %%NOTES%% WHERE id IN ('.implode(', ', $deleteIds).') AND owner = :userID;';
-            Database::get()->delete($sql, array(
+            Database::get()->delete($sql, [
                 ':userID'   => $USER['id'],
-            ));
+            ]);
         }
         $this->redirectTo('game.php?page=notes');
     }

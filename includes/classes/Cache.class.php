@@ -21,8 +21,8 @@ require 'includes/classes/cache/resource/CacheFile.class.php';
 class Cache
 {
     private $cacheResource = null;
-    private $cacheBuilder = array();
-    private $cacheObj = array();
+    private $cacheBuilder = [];
+    private $cacheObj = [];
 
     private static $obj = null;
 
@@ -51,7 +51,7 @@ class Cache
             if ($rebuild) {
                 $this->buildCache($Key);
             } else {
-                return array();
+                return [];
             }
         }
         return $this->cacheObj[$Key];

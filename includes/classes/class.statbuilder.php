@@ -498,7 +498,7 @@ class statbuilder
         $reslist =& Singleton()->reslist;
         $resource =& Singleton()->resource;
         $db = Database::get();
-        $result = array();
+        $result = [];
         foreach ($reslist['tech'] as $Techno) {
             $techName = $resource[$Techno];
 
@@ -508,7 +508,7 @@ class statbuilder
             ]);
 
             if ($data[0]['level'] > 0) {
-                $dataFinal = array();
+                $dataFinal = [];
                 foreach ($data as $row) {
                     array_push($row, $Techno);
                     array_push($dataFinal, $row);
@@ -524,7 +524,7 @@ class statbuilder
         $reslist =& Singleton()->reslist;
         $resource =& Singleton()->resource;
         $db = Database::get();
-        $result = array();
+        $result = [];
         foreach ($reslist[$type] as $kind) {
             $kindName = $resource[$kind];
             $sql = "SELECT DISTINCT(id_owner) as id, " . $kindName . " as level FROM %%PLANETS%% where " . $kindName . " = (select max(" . $kindName . ") from %%PLANETS%% where universe = :universe) and universe = :universe;";
@@ -532,7 +532,7 @@ class statbuilder
                 ':universe' => $uni
             ]);
             if ($data[0]['level'] > 0) {
-                $dataFinal = array();
+                $dataFinal = [];
                 foreach ($data as $row) {
                     array_push($row, $kind);
                     array_push($dataFinal, $row);

@@ -18,9 +18,9 @@ require_once('includes/classes/Universe.class.php');
 
 class Config
 {
-    protected $configData = array();
-    protected $updateRecords = array();
-    protected static $instances = array();
+    protected $configData = [];
+    protected $updateRecords = [];
+    protected static $instances = [];
 
 
     /**
@@ -28,14 +28,14 @@ class Config
      *
      * These keys will be changed for every univers of this server!
      */
-    protected static $globalConfigKeys	= array('VERSION', 'game_name', 'stat', 'stat_level', 'stat_last_update',
+    protected static $globalConfigKeys	= ['VERSION', 'game_name', 'stat', 'stat_level', 'stat_last_update',
                                            'stat_settings', 'stat_update_time', 'stat_last_db_update', 'stats_fly_lock',
                                            'cron_lock', 'mail_active', 'mail_use', 'smtp_host',
                                            'smtp_port', 'smtp_user', 'smtp_pass', 'smtp_ssl', 'smtp_sendmail',
                                            'smail_path', 'ga_active', 'ga_key',
                                            'ttf_file', 'sendmail_inactive', 'del_user_sendmail',
                                            'del_oldstuff', 'del_user_manually', 'ref_max_referals',
-                                           'disclamerAddress','disclamerPhone','disclamerMail','disclamerNotice', 'git_issues_link', 'recaptchaPrivKey', 'recaptchaPubKey');
+                                           'disclamerAddress','disclamerPhone','disclamerMail','disclamerNotice', 'git_issues_link', 'recaptchaPrivKey', 'recaptchaPubKey'];
 
     /**
      * Global configkeys
@@ -122,15 +122,15 @@ class Config
         }
 
         if (is_null($options)) {
-            $options	= array();
+            $options	= [];
         }
 
-        $options	+= array(
+        $options	+= [
             'noGlobalSave' => false
-        );
+        ];
 
-        $updateData = array();
-        $params     = array();
+        $updateData = [];
+        $params     = [];
         foreach ($this->updateRecords as $columnName) {
             $updateData[]             = '`' . $columnName . '` = :' . $columnName;
             $params[':' . $columnName] = $this->configData[$columnName];
@@ -141,7 +141,7 @@ class Config
                     if ($universeId != $this->configData['uni']) {
                         $config = Config::get();
                         $config->$columnName = $this->configData[$columnName];
-                        $config->save(array('noGlobalSave' => true));
+                        $config->save(['noGlobalSave' => true]);
                     }
                 }
             }
@@ -152,7 +152,7 @@ class Config
         $db     = Database::get();
         $db->update($sql, $params);
 
-        $this->updateRecords = array();
+        $this->updateRecords = [];
         return true;
     }
 

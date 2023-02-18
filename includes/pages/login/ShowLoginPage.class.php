@@ -38,16 +38,16 @@ class ShowLoginPage extends AbstractLoginPage
         $universe = Universe::current();
 
         $sql = "SELECT id, password FROM %%USERS%% WHERE universe = :universe AND username = :username;";
-        $loginData = $db->selectSingle($sql, array(
+        $loginData = $db->selectSingle($sql, [
             ':universe'	=> $universe,
             ':username'	=> $username
-        ));
+        ]);
 
         $sql = "SELECT * FROM %%USERS_VALID%% WHERE universe = :universe AND userName = :username;";
-        $validationData = $db->selectSingle($sql, array(
+        $validationData = $db->selectSingle($sql, [
             ':universe'	=> $universe,
             ':username'	=> $username
-        ));
+        ]);
 
         if (!empty($loginData)) {
             if (!password_verify($password, $loginData['password'])) {

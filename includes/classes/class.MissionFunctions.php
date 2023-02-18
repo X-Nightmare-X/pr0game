@@ -226,14 +226,14 @@ class MissionFunctions
         $LNG = $this->getLanguage(null, $this->_fleet['fleet_owner']);
 
         $sql = 'SELECT name FROM %%PLANETS%% WHERE id = :planetId;';
-        $planetNameStart = Database::get()->selectSingle($sql, array(
+        $planetNameStart = Database::get()->selectSingle($sql, [
             ':planetId'	=> $this->_fleet['fleet_start_id'],
-        ), 'name');
+        ], 'name');
 
         $sql = 'SELECT name FROM %%PLANETS%% WHERE id = :planetId;';
-        $planetNameEnd	= Database::get()->selectSingle($sql, array(
+        $planetNameEnd	= Database::get()->selectSingle($sql, [
             ':planetId'	=> $this->_fleet['fleet_end_id'],
-        ), 'name');
+        ], 'name');
 
         $Message = sprintf(
             $LNG['sys_fleet_won'],

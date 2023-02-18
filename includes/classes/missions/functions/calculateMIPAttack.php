@@ -19,7 +19,7 @@ function calculateMIPAttack($TargetDefTech, $OwnerAttTech, $missiles, $targetDef
 {
     $pricelist =& Singleton()->pricelist;
     $CombatCaps =& Singleton()->CombatCaps;
-    $destroyShips		= array();
+    $destroyShips		= [];
     $countMissles 		= $missiles - $defenseMissles;
 
     if ($countMissles == 0) {
@@ -30,14 +30,14 @@ function calculateMIPAttack($TargetDefTech, $OwnerAttTech, $missiles, $targetDef
 
     // Select primary target, if exists
     if (isset($targetDefensive[$firstTarget])) {
-        $firstTargetData	= array($firstTarget => $targetDefensive[$firstTarget]);
+        $firstTargetData	= [$firstTarget => $targetDefensive[$firstTarget]];
         unset($targetDefensive[$firstTarget]);
         $targetDefensive	= $firstTargetData + $targetDefensive;
     }
 
     foreach ($targetDefensive as $element => $count) {
         if ($element == 0) {
-            throw new Exception("Unknown error. Please report this error on git.pr0game.com. Debuginforations:<br><br>".serialize(array($TargetDefTech, $OwnerAttTech, $missiles, $targetDefensive, $firstTarget, $defenseMissles)));
+            throw new Exception("Unknown error. Please report this error on git.pr0game.com. Debuginforations:<br><br>".serialize([$TargetDefTech, $OwnerAttTech, $missiles, $targetDefensive, $firstTarget, $defenseMissles]));
         }
         $elementStructurePoints = ($pricelist[$element]['cost'][901] + $pricelist[$element]['cost'][902]) * (1 + 0.1 * $TargetDefTech) / 10;
         $destroyCount           = floor($totalAttack / $elementStructurePoints);

@@ -27,9 +27,9 @@ class ShowFleetStep3Page extends AbstractGamePage
     private function getActivePlanet($db, $planetId)
     {
         $sql    = "SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;";
-        $planet = $db->selectSingle($sql, array(
+        $planet = $db->selectSingle($sql, [
                 ':planetId' => $planetId,
-        ));
+        ]);
 
         return $planet;
     }

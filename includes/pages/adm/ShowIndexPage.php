@@ -20,11 +20,11 @@ function ShowIndexPage()
     $LNG =& Singleton()->LNG;
     $USER =& Singleton()->USER;
     $template	= new template();
-    $template->assign_vars(array(
+    $template->assign_vars([
         'game_name'		=> Config::get()->game_name,
         'adm_cp_title'	=> $LNG['adm_cp_title'],
         'signalColors'  => $USER['signalColors']
-    ));
+    ]);
 
     $template->display('adm/ShowIndexPage.tpl');
 }

@@ -17,9 +17,9 @@
 
 class Language implements ArrayAccess
 {
-    private $container = array();
-    private $language = array();
-    private static $allLanguages = array();
+    private $container = [];
+    private $language = [];
+    private static $allLanguages = [];
 
     public static function getAllowedLangs($OnlyKey = true)
     {
@@ -118,7 +118,7 @@ class Language implements ArrayAccess
     {
         // Fixed BOM problems.
         ob_start();
-        $LNG	= array();
+        $LNG	= [];
 
         //FALLBACK
         $path	= 'language/en/';

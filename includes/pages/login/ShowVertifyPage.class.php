@@ -38,11 +38,11 @@ class ShowVertifyPage extends AbstractLoginPage
 		AND validationKey	= :validationKey
 		AND universe		= :universe;";
 
-        $userData = $db->selectSingle($sql, array(
+        $userData = $db->selectSingle($sql, [
             ':validationKey'	=> $validationKey,
             ':validationID'		=> $validationID,
             ':universe'			=> Universe::current()
-        ));
+        ]);
 
         if (empty($userData)) {
             $this->printMessage($LNG['vertifyNoUserFound']);
@@ -51,9 +51,9 @@ class ShowVertifyPage extends AbstractLoginPage
         $config	= Config::get();
 
         $sql = "DELETE FROM %%USERS_VALID%% WHERE validationID = :validationID;";
-        $db->delete($sql, array(
+        $db->delete($sql, [
             ':validationID'	=> $validationID
-        ));
+        ]);
 
         list($userID, $planetID) = PlayerUtil::createPlayer($userData['universe'], $userData['userName'], $userData['password'], $userData['email'], $userData['language']);
 
@@ -61,15 +61,15 @@ class ShowVertifyPage extends AbstractLoginPage
             require('includes/classes/Mail.class.php');
             $MailSubject	= sprintf($LNG['registerMailCompleteTitle'], $config->game_name, Universe::current());
             $MailRAW		= $LNG->getTemplate('email_reg_done');
-            $MailContent	= str_replace(array(
+            $MailContent	= str_replace([
                 '{USERNAME}',
                 '{GAMENAME}',
                 '{GAMEMAIL}',
-            ), array(
+            ], [
                 $userData['userName'],
                 $config->game_name.' - '.$config->uni_name,
                 $config->smtp_sendmail,
-            ), $MailRAW);
+            ], $MailRAW);
 
             try {
                 Mail::send($userData['email'], $userData['userName'], $MailSubject, $MailContent);
@@ -85,10 +85,10 @@ class ShowVertifyPage extends AbstractLoginPage
 			WHERE
 			`id`		= :userID;";
 
-            $db->update($sql, array(
+            $db->update($sql, [
                 ':referralId'	=> $userData['referralID'],
                 ':userID'		=> $userID
-            ));
+            ]);
         }
 
         $senderName = $LNG['registerWelcomePMSenderName'];
@@ -97,11 +97,11 @@ class ShowVertifyPage extends AbstractLoginPage
 
         PlayerUtil::sendMessage($userID, 1, $senderName, 1, $subject, $message, TIMESTAMP);
 
-        return array(
+        return [
             'userID'	=> $userID,
             'userName'	=> $userData['userName'],
             'planetID'	=> $planetID
-        );
+        ];
     }
 
     public function show()

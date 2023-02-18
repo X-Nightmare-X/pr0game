@@ -31,9 +31,9 @@ class ResourceUpdate
     private $Build = true;
     private $Tech = true;
 
-    private $PLANET = array();
-    private $USER = array();
-    private $Builded = array();
+    private $PLANET = [];
+    private $USER = [];
+    private $Builded = [];
 
     public function __construct($Build = true, $Tech = true)
     {
@@ -49,7 +49,7 @@ class ResourceUpdate
 
     public function getData()
     {
-        return array($this->USER, $this->PLANET);
+        return [$this->USER, $this->PLANET];
     }
 
     public function ReturnVars()
@@ -59,7 +59,7 @@ class ResourceUpdate
             $GLOBALS['PLANET'] = $this->PLANET;
             return true;
         } else {
-            return array($this->USER, $this->PLANET);
+            return [$this->USER, $this->PLANET];
         }
     }
 
@@ -67,13 +67,13 @@ class ResourceUpdate
     {
         $reslist =& Singleton()->reslist;
         $resource =& Singleton()->resource;
-        $Hash = array();
+        $Hash = [];
         foreach ($reslist['prod'] as $ID) {
             $Hash[] = $this->PLANET[$resource[$ID]];
             $Hash[] = $this->PLANET[$resource[$ID] . '_porcent'];
         }
 
-        $ressource = array_merge(array(), $reslist['resstype'][1], $reslist['resstype'][2]);
+        $ressource = array_merge([], $reslist['resstype'][1], $reslist['resstype'][2]);
         foreach ($ressource as $ID) {
             $Hash[] = $this->config->{$resource[$ID] . '_basic_income'};
         }
@@ -226,17 +226,17 @@ class ResourceUpdate
     {
         $resource =& Singleton()->resource;
 
-        $researchLevelList = array($PLANET[$resource[31]]);
+        $researchLevelList = [$PLANET[$resource[31]]];
         if ($USER[$resource[123]] > 0) {
             $sql = 'SELECT ' . $resource[31]
                     . ' FROM %%PLANETS%% WHERE id != :planetId AND id_owner = :userId AND destruyed = 0 ORDER BY '
                     . $resource[31] . ' DESC LIMIT :limit;';
 
-            $researchResult = Database::get()->select($sql, array(
+            $researchResult = Database::get()->select($sql, [
                 ':limit'    => (int) $USER[$resource[123]],
                 ':planetId' => $PLANET['id'],
                 ':userId'   => $USER['id']
-            ));
+            ]);
 
             foreach ($researchResult as $researchRow) {
                 $researchLevelList[] = $researchRow[$resource[31]];
@@ -257,27 +257,27 @@ class ResourceUpdate
             $this->config->deuterium_basic_income = 0;
         }
 
-        $temp = array(
-            901 => array(
+        $temp = [
+            901 => [
                 'max'   => 0,
                 'plus'  => 0,
                 'minus' => 0,
-            ),
-            902 => array(
+            ],
+            902 => [
                 'max'   => 0,
                 'plus'  => 0,
                 'minus' => 0,
-            ),
-            903 => array(
+            ],
+            903 => [
                 'max'   => 0,
                 'plus'  => 0,
                 'minus' => 0,
-            ),
-            911 => array(
+            ],
+            911 => [
                 'plus'  => 0,
                 'minus' => 0,
-            )
-        );
+            ]
+        ];
 
         /* Data for eval */
         $BuildTemp = $this->PLANET['temp_max'];
@@ -295,7 +295,7 @@ class ResourceUpdate
             }
         }
 
-        $ressIDs = array_merge(array(), $reslist['resstype'][1], $reslist['resstype'][2]);
+        $ressIDs = array_merge([], $reslist['resstype'][1], $reslist['resstype'][2]);
 
         foreach ($reslist['prod'] as $ProdID) {
             /* Data for eval */
@@ -360,13 +360,13 @@ class ResourceUpdate
         }
 
         $this->PLANET['b_hangar']   += ($this->TIME - $this->PLANET['last_update']);
-        $BuildArray = array();
+        $BuildArray = [];
         foreach ($BuildQueue as $Item) {
             $AcumTime = BuildFunctions::getBuildingTime($this->USER, $this->PLANET, $Item[0]);
-            $BuildArray[] = array($Item[0], $Item[1], $AcumTime);
+            $BuildArray[] = [$Item[0], $Item[1], $AcumTime];
         }
 
-        $NewQueue = array();
+        $NewQueue = [];
         $Done = false;
         foreach ($BuildArray as $Item) {
             $Element = $Item[0];
@@ -388,7 +388,7 @@ class ResourceUpdate
                 $Build = max(min(floor($this->PLANET['b_hangar'] / $BuildTime), $Count), 0);
 
                 if ($Build == 0) {
-                    $NewQueue[] = array($Element, $Count);
+                    $NewQueue[] = [$Element, $Count];
                     $Done = true;
                     continue;
                 }
@@ -408,7 +408,7 @@ class ResourceUpdate
                     $Done = true;
                 }
             }
-            $NewQueue[] = array($Element, $Count);
+            $NewQueue[] = [$Element, $Count];
         }
         $this->PLANET['b_hangar_id'] = !empty($NewQueue) ? serialize($NewQueue) : '';
 
@@ -486,7 +486,7 @@ class ResourceUpdate
             $BuildTime = BuildFunctions::getBuildingTime($this->USER, $this->PLANET, $Element, $costResources);
             $HaveResources = BuildFunctions::isElementBuyable($this->USER, $this->PLANET, $Element, $costResources);
             $BuildEndTime = $this->PLANET['b_building'] + $BuildTime;
-            $CurrentQueue[0] = array($Element, $Level, $BuildTime, $BuildEndTime, $BuildMode);
+            $CurrentQueue[0] = [$Element, $Level, $BuildTime, $BuildEndTime, $BuildMode];
             $HaveNoMoreLevel = false;
 
             if ($ForDestroy && $this->PLANET[$resource[$Element]] == 0) {
@@ -526,7 +526,7 @@ class ResourceUpdate
                         if (empty($LNG)) {
                             // Fallback language
                             $LNG = new Language('en');
-                            $LNG->includeData(array('L18N', 'INGAME', 'TECH', 'CUSTOM'));
+                            $LNG->includeData(['L18N', 'INGAME', 'TECH', 'CUSTOM']);
                         }
 
                         $Message = sprintf(
@@ -571,7 +571,7 @@ class ResourceUpdate
                     $Loop = false;
                 } else {
                     $BaseTime = $BuildEndTime - $BuildTime;
-                    $NewQueue = array();
+                    $NewQueue = [];
                     foreach ($CurrentQueue as $ID => $ListIDArray) {
                         $ListIDArray[2] = BuildFunctions::getBuildingTime(
                             $this->USER,
@@ -617,10 +617,10 @@ class ResourceUpdate
         $hashTechs = [113, 131, 132, 133];
         if (in_array($Element, $hashTechs)) {
             $sql = 'SELECT * FROM %%PLANETS%% WHERE id_owner = :userId AND id <> :planetId FOR UPDATE;';
-            $PLANETS = Database::get()->select($sql, array(
+            $PLANETS = Database::get()->select($sql, [
                 ':userId' => $this->USER['id'],
                 ':planetId' => $this->PLANET['id'],
-            ));
+            ]);
             foreach ($PLANETS as $planetId => $cplanet) {
                 $ressUpdate = new ResourceUpdate(true, false);
                 $ressUpdate->CalcResource($this->USER, $cplanet, true, $BuildEndTime, false);
@@ -665,9 +665,9 @@ class ResourceUpdate
             $isAnotherPlanet = $ListIDArray[4] != $this->PLANET['id'];
             if ($isAnotherPlanet) {
                 $sql = 'SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;';
-                $PLANET = Database::get()->selectSingle($sql, array(
+                $PLANET = Database::get()->selectSingle($sql, [
                     ':planetId' => $ListIDArray[4],
-                ));
+                ]);
 
                 $RPLANET = new ResourceUpdate(true, false);
                 list(, $PLANET) = $RPLANET->CalcResource($this->USER, $PLANET, false, $this->USER['b_tech']);
@@ -683,7 +683,7 @@ class ResourceUpdate
             $BuildTime = BuildFunctions::getBuildingTime($this->USER, $PLANET, $Element, $costResources);
             $HaveResources = BuildFunctions::isElementBuyable($this->USER, $PLANET, $Element, $costResources);
             $BuildEndTime = $this->USER['b_tech'] + $BuildTime;
-            $CurrentQueue[0] = array($Element, $Level, $BuildTime, $BuildEndTime, $PLANET['id']);
+            $CurrentQueue[0] = [$Element, $Level, $BuildTime, $BuildEndTime, $PLANET['id']];
 
             if ($HaveResources == true) {
                 if (isset($costResources[901])) {
@@ -718,7 +718,7 @@ class ResourceUpdate
                     if (empty($LNG)) {
                         // Fallback language
                         $LNG = new Language('en');
-                        $LNG->includeData(array('L18N', 'INGAME', 'TECH', 'CUSTOM'));
+                        $LNG->includeData(['L18N', 'INGAME', 'TECH', 'CUSTOM']);
                     }
 
                     $Message = sprintf(
@@ -764,7 +764,7 @@ class ResourceUpdate
                     $Loop = false;
                 } else {
                     $BaseTime = $BuildEndTime - $BuildTime;
-                    $NewQueue = array();
+                    $NewQueue = [];
                     foreach ($CurrentQueue as $ListIDArray) {
                         $ListIDArray[2] = BuildFunctions::getBuildingTime($this->USER, $PLANET, $ListIDArray[0]);
                         $BaseTime                   += $ListIDArray[2];
@@ -799,7 +799,7 @@ class ResourceUpdate
             $PLANET =& Singleton()->PLANET;
         }
 
-        $buildQueries = array();
+        $buildQueries = [];
 
         $currentBuildings = 0;
         foreach ($reslist['build'] as $Element) {
@@ -808,7 +808,7 @@ class ResourceUpdate
             }
         }
 
-        $params = array(
+        $params = [
             ':userId'               => $USER['id'],
             ':planetId'             => $PLANET['id'],
             ':metal'                => $PLANET['metal'],
@@ -833,7 +833,7 @@ class ResourceUpdate
             ':b_tech_id'            => $USER['b_tech_id'],
             ':b_tech_planet'        => $USER['b_tech_planet'],
             ':b_tech_queue'         => $USER['b_tech_queue']
-        );
+        ];
 
         if (!empty($this->Builded)) {
             foreach ($this->Builded as $Element => $Count) {
@@ -897,9 +897,9 @@ class ResourceUpdate
 
         Database::get()->update($sql, $params);
 
-        $this->Builded = array();
+        $this->Builded = [];
 
-        return array($USER, $PLANET);
+        return [$USER, $PLANET];
     }
 
     public function removeResources(int $planetId, array $resources, array &$planet = null)

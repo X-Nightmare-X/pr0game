@@ -22,7 +22,7 @@ class DumpCronjob implements CronjobTask
     public function run()
     {
         $prefixCounts	= strlen(DB_PREFIX);
-        $dbTables		= array();
+        $dbTables		= [];
         $tableNames		= Database::get()->nativeQuery('SHOW TABLE STATUS FROM '.DB_NAME.';');
 
         foreach ($tableNames as $table) {

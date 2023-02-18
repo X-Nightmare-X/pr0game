@@ -25,9 +25,9 @@ function ShowCommentsPage()
     }
 
     $template	= new template();
-    $template->assign_vars(array(
+    $template->assign_vars([
         'comments'	    => $comments,
         'signalColors'  => $USER['signalColors'],
-    ));
+    ]);
     $template->show('Comments.tpl');
 }

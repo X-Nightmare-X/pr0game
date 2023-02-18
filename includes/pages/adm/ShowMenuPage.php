@@ -19,10 +19,10 @@ function ShowMenuPage()
 {
     $USER =& Singleton()->USER;
     $template	= new template();
-    $template->assign_vars(array(
+    $template->assign_vars([
         'supportticks'	=> $GLOBALS['DATABASE']->getFirstCell("SELECT COUNT(*) FROM ".TICKETS." WHERE universe = ".Universe::getEmulated()." AND status = 0;"),
         'signalColors'	=> $USER['signalColors'],
-    ));
+    ]);
 
     $template->show('ShowMenuPage.tpl');
 }

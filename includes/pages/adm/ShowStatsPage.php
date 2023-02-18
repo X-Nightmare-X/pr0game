@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FILE__))) {
+if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__))) {
     throw new Exception("Permission error!");
 }
 
@@ -26,21 +26,21 @@ function ShowStatsPage()
     $config = Config::get(Universe::getEmulated());
 
     if ($_POST) {
-        $config_before = array(
+        $config_before = [
             'stat_settings' 	=> $config->stat_settings,
             'stat' 				=> $config->stat,
             'stat_level' 		=> $config->stat_level
-        );
+        ];
 
         $stat_settings				= HTTP::_GP('stat_settings', 0);
         $stat 						= HTTP::_GP('stat', 0);
         $stat_level					= HTTP::_GP('stat_level', 0);
 
-        $config_after = array(
+        $config_after = [
             'stat_settings'		=> $stat_settings,
             'stat'				=> $stat,
             'stat_level' 		=> $stat_level
-        );
+        ];
 
         foreach ($config_after as $key => $value) {
             $config->$key	= $value;
@@ -57,7 +57,7 @@ function ShowStatsPage()
     $template	= new template();
 
 
-    $template->assign_vars(array(
+    $template->assign_vars([
         'stat_level'						=> $config->stat_level,
         'stat'								=> $config->stat,
         'stat_settings'						=> $config->stat_settings,
@@ -67,9 +67,9 @@ function ShowStatsPage()
         'cs_title'							=> $LNG['cs_title'],
         'cs_resources'						=> $LNG['cs_resources'],
         'cs_save_changes'					=> $LNG['cs_save_changes'],
-        'Selector'							=> array(1 => $LNG['cs_yes'], 2 => $LNG['cs_no_view'], 0 => $LNG['cs_no']),
+        'Selector'							=> [1 => $LNG['cs_yes'], 2 => $LNG['cs_no_view'], 0 => $LNG['cs_no']],
         'signalColors'						=> $USER['signalColors'],
-    ));
+    ]);
 
     $template->show('StatsPage.tpl');
 }

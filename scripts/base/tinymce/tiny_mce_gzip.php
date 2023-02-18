@@ -12,7 +12,7 @@
 // Handle incoming request if it's a script call
 if (TinyMCE_Compressor::getParam("js")) {
     // Default settings
-    $tinyMCECompressor = new TinyMCE_Compressor(array(
+    $tinyMCECompressor = new TinyMCE_Compressor([
         "cache_dir" => realpath(dirname(__FILE__) . "/../../../cache"),
     /*
      * Add any site-specific defaults here that you may wish to implement. For example:
@@ -22,7 +22,7 @@ if (TinyMCE_Compressor::getParam("js")) {
      *  "files"     => "somescript,anotherscript",
      *  "expires"   => "1m",
      */
-    ));
+    ]);
 
     // Handle request, compress and stream to client
     $tinyMCECompressor->handleRequest();
@@ -48,7 +48,7 @@ class TinyMCE_Compressor
 {
     private $files;
     private $settings;
-    private static $defaultSettings = array(
+    private static $defaultSettings = [
         "plugins"    => "",
         "themes"     => "",
         "languages"  => "",
@@ -59,14 +59,14 @@ class TinyMCE_Compressor
         "suffix"     => "",
         "files"      => "",
         "source"     => false,
-    );
+    ];
 
     /**
      * Constructs a new compressor instance.
      *
      * @param Array $settings Name/value array with non-default settings for the compressor instance.
      */
-    public function __construct($settings = array())
+    public function __construct($settings = [])
     {
         $this->settings = array_merge(self::$defaultSettings, $settings);
 
@@ -92,7 +92,7 @@ class TinyMCE_Compressor
      */
     public function handleRequest()
     {
-        $files = array();
+        $files = [];
         $supportsGzip = false;
         $expiresOffset = $this->parseTime($this->settings["expires"]);
         $tinymceDir = dirname(__FILE__);

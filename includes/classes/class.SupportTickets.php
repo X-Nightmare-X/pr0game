@@ -27,13 +27,13 @@ class SupportTickets
 		subject		= :subject,
 		time		= :time;';
 
-        $db->insert($sql, array(
+        $db->insert($sql, [
             ':ownerId'		=> $ownerID,
             ':universe'		=> Universe::current(),
             ':categoryId'	=> $categoryID,
             ':subject'		=> $subject,
             ':time'			=> TIMESTAMP
-        ));
+        ]);
 
         // $sql = "SELECT `ticketID` FROM %%TICKETS%% WHERE
         // `ownerID` = :ownerId AND
@@ -65,14 +65,14 @@ class SupportTickets
 		message		= :message,
 		time		= :time;';
 
-        $db->insert($sql, array(
+        $db->insert($sql, [
             ':ticketId'		=> $ticketID,
             ':ownerId'		=> $ownerID,
             ':ownerName'	=> $ownerName,
             ':subject'		=> $subject,
             ':message'		=> $message,
             ':time'			=> TIMESTAMP
-        ));
+        ]);
 
         // $sql = "SELECT `answerID` FROM %%TICKETS_ANSWER%% WHERE
         // `ticketID` = :ticketId AND
@@ -94,10 +94,10 @@ class SupportTickets
 
         $sql	= 'UPDATE %%TICKETS%% SET status = :status WHERE ticketID = :ticketId;';
 
-        $db->update($sql, array(
+        $db->update($sql, [
             ':status'	=> $status,
             ':ticketId'	=> $ticketID
-        ));
+        ]);
 
         return $answerId;
     }
@@ -107,7 +107,7 @@ class SupportTickets
         $sql	= 'SELECT * FROM %%TICKETS_CATEGORY%%;';
 
         $categoryResult		= Database::get()->select($sql);
-        $categoryList		= array();
+        $categoryList		= [];
 
         foreach ($categoryResult as $categoryRow) {
             $categoryList[$categoryRow['categoryID']]	= $categoryRow['name'];

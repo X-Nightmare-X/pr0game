@@ -420,10 +420,10 @@ class FlyingFleetsTable
                 $sql = "SELECT count(uta.acsID) as count FROM %%USERS_TO_ACS%% AS uta 
                     INNER JOIN %%FLEETS%% AS f ON uta.acsID = f.fleet_group 
                     WHERE uta.userID = :userId AND f.fleet_id = :fleetId;";
-                $friend = $db->selectSingle($sql, array(
+                $friend = $db->selectSingle($sql, [
                     ':userId'   => $USER['id'],
                     ':fleetId'  => $fleetRow['fleet_id']
-                ), 'count');
+                ], 'count');
                 if ($Owner == true) {
                     $FleetClass = 'colorMission2Own';
                 } elseif ($friend > 0) {

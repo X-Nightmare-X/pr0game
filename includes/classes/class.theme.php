@@ -22,7 +22,7 @@ class Theme
 
     public function __construct()
     {
-        $this->skininfo = array();
+        $this->skininfo = [];
         $this->skin		= isset($_SESSION['dpath']) ? $_SESSION['dpath'] : DEFAULT_THEME;
         $this->setUserTheme($this->skin);
     }
@@ -30,7 +30,7 @@ class Theme
     public function isHome()
     {
         $this->template		= ROOT_PATH.'styles/home/';
-        $this->customtpls	= array();
+        $this->customtpls	= [];
     }
 
     public function setUserTheme($Theme)
@@ -81,13 +81,13 @@ class Theme
             require(ROOT_PATH.'styles/theme/'.$this->skin.'/settings.cfg');
         }
 
-        $this->THEMESETTINGS	= array_merge(array(
+        $this->THEMESETTINGS	= array_merge([
             'PLANET_ROWS_ON_OVERVIEW' => 2,
             'SHORTCUT_ROWS_ON_FLEET1' => 2,
             'COLONY_ROWS_ON_FLEET1' => 2,
             'ACS_ROWS_ON_FLEET1' => 1,
             'TOPNAV_SHORTLY_NUMBER' => 0,
-        ), $THEMESETTINGS);
+        ], $THEMESETTINGS);
     }
 
     public function getStyleSettings()
@@ -101,8 +101,8 @@ class Theme
             if (file_exists(ROOT_PATH.'cache/cache.themes.php')) {
                 self::$Themes	= unserialize(file_get_contents(ROOT_PATH.'cache/cache.themes.php'));
             } else {
-                $Skins	= array_diff(scandir(ROOT_PATH.'styles/theme/'), array('..', '.', '.svn', '.htaccess', 'index.htm'));
-                $Themes	= array();
+                $Skins	= array_diff(scandir(ROOT_PATH.'styles/theme/'), ['..', '.', '.svn', '.htaccess', 'index.htm']);
+                $Themes	= [];
                 foreach ($Skins as $Theme) {
                     if (!file_exists(ROOT_PATH.'styles/theme/'.$Theme.'/style.cfg')) {
                         continue;

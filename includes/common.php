@@ -97,7 +97,7 @@ if (MODE === 'UPGRADE') {
 try {
     $sql    = "SELECT dbVersion FROM %%SYSTEM%%;";
 
-    $dbVersion  = Database::get()->selectSingle($sql, array(), 'dbVersion');
+    $dbVersion  = Database::get()->selectSingle($sql, [], 'dbVersion');
 
     $dbNeedsUpgrade = $dbVersion < DB_VERSION_REQUIRED;
 } catch (Exception $e) {
@@ -153,11 +153,11 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     	WHERE user.id = :userId
     	GROUP BY message.message_owner;";
 
-        $USER   = $db->selectSingle($sql, array(
+        $USER   = $db->selectSingle($sql, [
             ':statTypeUser'     => 1,
             ':unread'           => 1,
             ':userId'           => $session->userId
-        ));
+        ]);
         Singleton()->USER = $USER;
         $USER =& Singleton()->USER;
 
@@ -181,7 +181,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     $LNG    = new Language($USER['lang']);
     Singleton()->LNG = $LNG;
     $LNG =& Singleton()->LNG;
-    $LNG->includeData(array('L18N', 'INGAME', 'TECH', 'CUSTOM'));
+    $LNG->includeData(['L18N', 'INGAME', 'TECH', 'CUSTOM']);
     if (!empty($USER['dpath'])) {
         $THEME->setUserTheme($USER['dpath']);
     }
@@ -208,17 +208,17 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
             $session->selectActivePlanet();
 
             $sql    = "SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;";
-            $PLANET = $db->selectSingle($sql, array(
+            $PLANET = $db->selectSingle($sql, [
             ':planetId' => $session->planetId,
-            ));
+            ]);
             Singleton()->PLANET = $PLANET;
             $PLANET =& Singleton()->PLANET;
 
             if (empty($PLANET)) {
                 $sql    = "SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;";
-                $PLANET = $db->selectSingle($sql, array(
+                $PLANET = $db->selectSingle($sql, [
                     ':planetId' => $USER['id_planet'],
-                ));
+                ]);
                 Singleton()->PLANET = $PLANET;
                 $PLANET =& Singleton()->PLANET;
 
@@ -234,7 +234,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
             error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
             $USER['rights']     = !empty($USER['rights']) ? unserialize($USER['rights']) : [];
-            $LNG->includeData(array('ADMIN', 'CUSTOM'));
+            $LNG->includeData(['ADMIN', 'CUSTOM']);
         }
     }
 
@@ -251,7 +251,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('secret' => $privKey, 'response' => $rcaptcha)));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(['secret' => $privKey, 'response' => $rcaptcha]));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
         curl_close($ch);
@@ -259,18 +259,18 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
         $sql = "insert into %%RECAPTCHA%% (userId, success, time, score, url) VALUES (:userId, :success, :time, :score, :url);";
 
         if (isset($arrResponse) && $arrResponse['success'] == true) {
-            $db->insert($sql, array(
+            $db->insert($sql, [
                 ':userId'   => $USER['id'],
                 ':success'  => $arrResponse['success'],
                 ':time'     => TIMESTAMP,
                 ':score'    => $arrResponse['score'],
                 ':url'      => $_SERVER['REQUEST_URI'],
-            ));
+            ]);
         }
     }
 } elseif (MODE === 'LOGIN') {
     $LNG    = new Language();
     Singleton()->LNG = $LNG;
     $LNG->getUserAgentLanguage();
-    $LNG->includeData(array('L18N', 'INGAME', 'PUBLIC', 'CUSTOM'));
+    $LNG->includeData(['L18N', 'INGAME', 'PUBLIC', 'CUSTOM']);
 }

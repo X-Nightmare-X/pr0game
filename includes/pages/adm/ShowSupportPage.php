@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FILE__))) {
+if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__))) {
     throw new Exception("Permission error!");
 }
 
@@ -30,7 +30,7 @@ class ShowSupportPage
         $this->tplObj		= new template();
         // 2Moons 1.7TO1.6 PageClass Wrapper
         $ACTION = HTTP::_GP('mode', 'show');
-        if (is_callable(array($this, $ACTION))) {
+        if (is_callable([$this, $ACTION])) {
             $this->{$ACTION}();
         } else {
             $this->show();
@@ -42,7 +42,7 @@ class ShowSupportPage
         $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
         $ticketResult	= $GLOBALS['DATABASE']->query("SELECT t.*, u.username, COUNT(a.ticketID) as answer FROM ".TICKETS." t INNER JOIN ".TICKETS_ANSWER." a USING (ticketID) INNER JOIN ".USERS." u ON u.id = t.ownerID WHERE t.universe = ".Universe::getEmulated()." GROUP BY a.ticketID ORDER BY t.ticketID DESC;");
-        $ticketList		= array();
+        $ticketList		= [];
 
         while ($ticketRow = $GLOBALS['DATABASE']->fetch_array($ticketResult)) {
             $ticketRow['time']	= _date($LNG['php_tdformat'], $ticketRow['time'], $USER['timezone']);
@@ -117,7 +117,7 @@ class ShowSupportPage
         $LNG =& Singleton()->LNG;
         $ticketID			= HTTP::_GP('id', 0);
         $answerResult		= $GLOBALS['DATABASE']->query("SELECT a.*, t.categoryID, t.status FROM ".TICKETS_ANSWER." a INNER JOIN ".TICKETS." t USING(ticketID) WHERE a.ticketID = ".$ticketID." ORDER BY a.answerID;");
-        $answerList			= array();
+        $answerList			= [];
 
         $ticket_status		= 0;
 

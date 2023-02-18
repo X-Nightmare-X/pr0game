@@ -19,7 +19,7 @@ class FlyingFleetHandler
 {
     protected $token;
 
-    public static $missionObjPattern    = array(
+    public static $missionObjPattern    = [
         MISSION_ATTACK          => 'MissionCaseAttack',
         MISSION_ACS             => 'MissionCaseACS',
         MISSION_TRANSPORT       => 'MissionCaseTransport',
@@ -33,7 +33,7 @@ class FlyingFleetHandler
         MISSION_EXPEDITION      => 'MissionCaseExpedition',
         MISSION_TRADE           => 'MissionCaseTrade',
         MISSION_TRANSFER        => 'MissionCaseTransfer',
-    );
+    ];
 
     public function setToken($token)
     {
@@ -52,17 +52,17 @@ class FlyingFleetHandler
 		INNER JOIN %%FLEETS%% ON fleetID = fleet_id
 		WHERE `lock` = :token FOR UPDATE;';
 
-        $fleetResult = $db->select($sql, array(
+        $fleetResult = $db->select($sql, [
             ':token'    => $this->token
-        ));
+        ]);
 
         foreach ($fleetResult as $fleetRow) {
             if (!isset(self::$missionObjPattern[$fleetRow['fleet_mission']])) {
                 $sql = 'DELETE FROM %%FLEETS%% WHERE fleet_id = :fleetId;';
 
-                $db->delete($sql, array(
+                $db->delete($sql, [
                     ':fleetId'  => $fleetRow['fleet_id']
-                ));
+                ]);
 
                 continue;
             }

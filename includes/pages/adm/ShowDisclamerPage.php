@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FILE__))) {
+if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__))) {
     throw new Exception("Permission error!");
 }
 
@@ -26,24 +26,24 @@ function ShowDisclamerPage()
     $config = Config::get(Universe::getEmulated());
 
     if (!empty($_POST)) {
-        $config_before = array(
+        $config_before = [
             'disclamerAddress'	=> $config->disclamerAddress,
             'disclamerPhone'	=> $config->disclamerPhone,
             'disclamerMail'	=> $config->disclamerMail,
             'disclamerNotice'	=> $config->disclamerNotice,
-        );
+        ];
 
         $disclaimerAddress	= HTTP::_GP('disclaimerAddress', '', true);
         $disclaimerPhone	= HTTP::_GP('disclaimerPhone', '', true);
         $disclaimerMail		= HTTP::_GP('disclaimerMail', '', true);
         $disclaimerNotice	= HTTP::_GP('disclaimerNotice', '', true);
 
-        $config_after = array(
+        $config_after = [
             'disclamerAddress'	=> $disclaimerAddress,
             'disclamerPhone'	=> $disclaimerPhone,
             'disclamerMail'		=> $disclaimerMail,
             'disclamerNotice'	=> $disclaimerNotice,
-        );
+        ];
 
         foreach ($config_after as $key => $value) {
             $config->$key	= $value;
@@ -61,7 +61,7 @@ function ShowDisclamerPage()
     $template->loadscript('../base/jquery.autosize-min.js');
     $template->execscript('$(\'textarea\').autosize();');
 
-    $template->assign_vars(array(
+    $template->assign_vars([
         'disclaimerAddress'		=> $config->disclamerAddress,
         'disclaimerPhone'		=> $config->disclamerPhone,
         'disclaimerMail'		=> $config->disclamerMail,
@@ -73,7 +73,7 @@ function ShowDisclamerPage()
         'se_disclaimerMail'		=> $LNG['se_disclaimerMail'],
         'se_disclaimerNotice'	=> $LNG['se_disclaimerNotice'],
         'signalColors'			=> $USER['signalColors'],
-    ));
+    ]);
 
     $template->show('DisclamerConfigBody.tpl');
 }

@@ -363,10 +363,10 @@ class MarketManager
 				FROM %%USERS%% u
 				LEFT JOIN %%STATPOINTS%% s ON s.id_owner = u.id AND s.stat_type = 1
 				WHERE u.id = :playerID AND u.universe = :universe;";
-        $query = $db->selectSingle($sql, array(
+        $query = $db->selectSingle($sql, [
                 ':universe'	=> Universe::current(),
                 ':playerID'	=> $playerid,
-        ));
+        ]);
 
         if (!$query) {
             throw new Exception('the requested player does not exist');

@@ -29,10 +29,10 @@ $fleetResult = $db->select($sql, [
 if (!empty($fleetResult) && is_array($fleetResult)) {
     $updateResult = true;
     foreach ($fleetResult as $key => $value) {
-        $updateResult	= $updateResult && $db->update("UPDATE %%FLEETS_EVENT%% SET `lock` = :token WHERE fleetID = :id;", array(
+        $updateResult	= $updateResult && $db->update("UPDATE %%FLEETS_EVENT%% SET `lock` = :token WHERE fleetID = :id;", [
             ':token' => $token,
             ':id' => $value['fleetID'],
-        ));
+        ]);
     }
 
     if ($updateResult) {
@@ -42,9 +42,9 @@ if (!empty($fleetResult) && is_array($fleetResult)) {
         $fleetObj->setToken($token);
         $fleetObj->run();
 
-        $db->update("UPDATE %%FLEETS_EVENT%% SET `lock` = NULL WHERE `lock` = :token;", array(
+        $db->update("UPDATE %%FLEETS_EVENT%% SET `lock` = NULL WHERE `lock` = :token;", [
             ':token' => $token
-        ));
+        ]);
     }
 }
 

@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FILE__))) {
+if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__))) {
     throw new Exception("Permission error!");
 }
 
@@ -27,7 +27,7 @@ function ShowPassEncripterPage()
 
     $template	= new template();
 
-    $template->assign_vars(array(
+    $template->assign_vars([
         'md5_md5' 			=> $Password,
         'md5_enc' 			=> PlayerUtil::cryptPassword($Password),
         'et_md5_encripter' 	=> $LNG['et_md5_encripter'],
@@ -35,7 +35,7 @@ function ShowPassEncripterPage()
         'et_result' 		=> $LNG['et_result'],
         'et_pass' 			=> $LNG['et_pass'],
         'signalColors'		=> $USER['signalColors']
-    ));
+    ]);
 
     $template->show('PassEncripterPage.tpl');
 }

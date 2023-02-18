@@ -30,7 +30,7 @@ class ShowSearchPage extends AbstractGamePage
 
         $limit		= $maxResult === -1 ? '' : 'LIMIT '.((int) $maxResult);
 
-        $searchList	= array();
+        $searchList	= [];
 
         switch($searchMode) {
             case 'playername':
@@ -45,14 +45,14 @@ class ShowSearchPage extends AbstractGamePage
 				  + IF(a.username LIKE :searchTextLike, 1, 0)
 				) DESC, a.username ASC
 				".$limit.";";
-                $searchResult = $db->select($sql, array(
+                $searchResult = $db->select($sql, [
                     ':universe'			=> Universe::current(),
                     ':searchText' 		=> $searchText,
                     ':searchTextLike'	=> '%'.$searchText.'%'
-                ));
+                ]);
 
                 foreach ($searchResult as $searchRow) {
-                    $searchList[]	= array(
+                    $searchList[]	= [
                         'planetname'	=> $searchRow['name'],
                         'username' 		=> $searchRow['username'],
                         'userid' 		=> $searchRow['id'],
@@ -62,7 +62,7 @@ class ShowSearchPage extends AbstractGamePage
                         'system'		=> $searchRow['system'],
                         'planet'		=> $searchRow['planet'],
                         'rank'			=> $searchRow['total_rank'],
-                    );
+                    ];
                 }
                 break;
             case 'planetname':
@@ -82,14 +82,14 @@ class ShowSearchPage extends AbstractGamePage
 				) DESC, a.name ASC
 				".$limit.";";
 
-                $searchResult = $db->select($sql, array(
+                $searchResult = $db->select($sql, [
                     ':universe'			=> Universe::current(),
                     ':searchText' 		=> $searchText,
                     ':searchTextLike'	=> '%'.$searchText.'%'
-                ));
+                ]);
 
                 foreach ($searchResult as $searchRow) {
-                    $searchList[]	= array(
+                    $searchList[]	= [
                         'planetname'	=> $searchRow['name'],
                         'username' 		=> $searchRow['username'],
                         'userid' 		=> $searchRow['id'],
@@ -99,7 +99,7 @@ class ShowSearchPage extends AbstractGamePage
                         'system'		=> $searchRow['system'],
                         'planet'		=> $searchRow['planet'],
                         'rank'			=> $searchRow['total_rank'],
-                    );
+                    ];
                 }
                 break;
             case "allytag":
@@ -113,20 +113,20 @@ class ShowSearchPage extends AbstractGamePage
 				) DESC, a.ally_tag ASC
 				".$limit.";";
 
-                $searchResult = $db->select($sql, array(
+                $searchResult = $db->select($sql, [
                     ':universe'			=> Universe::current(),
                     ':searchText' 		=> $searchText,
                     ':searchTextLike'	=> '%'.$searchText.'%'
-                ));
+                ]);
 
                 foreach ($searchResult as $searchRow) {
-                    $searchList[]	= array(
+                    $searchList[]	= [
                         'allypoints'	=> pretty_number($searchRow['total_points']),
                         'allytag'		=> $searchRow['ally_tag'],
                         'allymembers'	=> $searchRow['ally_members'],
                         'allyname'		=> $searchRow['ally_name'],
                         'allyid'		=> $searchRow['id'],
-                    );
+                    ];
                 }
                 break;
             case "allyname":
@@ -140,20 +140,20 @@ class ShowSearchPage extends AbstractGamePage
 				) DESC,a.ally_name ASC
 				".$limit.";";
 
-                $searchResult = $db->select($sql, array(
+                $searchResult = $db->select($sql, [
                     ':universe'			=> Universe::current(),
                     ':searchText' 		=> $searchText,
                     ':searchTextLike'	=> '%'.$searchText.'%'
-                ));
+                ]);
 
                 foreach ($searchResult as $searchRow) {
-                    $searchList[]	= array(
+                    $searchList[]	= [
                         'allypoints'	=> pretty_number($searchRow['total_points']),
                         'allytag'		=> $searchRow['ally_tag'],
                         'allymembers'	=> $searchRow['ally_members'],
                         'allyname'		=> $searchRow['ally_name'],
                         'allyid'		=> $searchRow['id'],
-                    );
+                    ];
                 }
                 break;
         }
@@ -170,12 +170,12 @@ class ShowSearchPage extends AbstractGamePage
         $seachMode 	= HTTP::_GP('type', 'playername');
         $searchText	= HTTP::_GP('term', '', UTF8_SUPPORT);
 
-        $searchList	= array();
+        $searchList	= [];
 
         $seachModes	= explode('|', $seachMode);
 
         if (empty($searchText)) {
-            $this->sendJSON(array());
+            $this->sendJSON([]);
         }
 
         foreach ($seachModes as $search) {
@@ -183,16 +183,16 @@ class ShowSearchPage extends AbstractGamePage
             foreach ($searchData as $data) {
                 switch($search) {
                     case 'playername':
-                        $searchList[]	= array('label' => str_replace($searchText, '<b>'.$searchText.'</b>', $data['username']), 'category' => $LNG['sh_player_name'], 'type' => 'playername');
+                        $searchList[]	= ['label' => str_replace($searchText, '<b>'.$searchText.'</b>', $data['username']), 'category' => $LNG['sh_player_name'], 'type' => 'playername'];
                         break;
                     case 'planetname':
-                        $searchList[]	= array('label' => str_replace($searchText, '<b>'.$searchText.'</b>', $data['username']), 'category' => $LNG['sh_planet_name'], 'type' => 'planetname');
+                        $searchList[]	= ['label' => str_replace($searchText, '<b>'.$searchText.'</b>', $data['username']), 'category' => $LNG['sh_planet_name'], 'type' => 'planetname'];
                         break;
                     case "allytag":
-                        $searchList[]	= array('label' => str_replace($searchText, '<b>'.$searchText.'</b>', $data['allytag']), 'category' => $LNG['sh_alliance_tag'], 'type' => 'allytag');
+                        $searchList[]	= ['label' => str_replace($searchText, '<b>'.$searchText.'</b>', $data['allytag']), 'category' => $LNG['sh_alliance_tag'], 'type' => 'allytag'];
                         break;
                     case "allyname":
-                        $searchList[]	= array('label' => str_replace($searchText, '<b>'.$searchText.'</b>', $data['allyname']), 'category' => $LNG['sh_alliance_name'], 'type' => 'allyname');
+                        $searchList[]	= ['label' => str_replace($searchText, '<b>'.$searchText.'</b>', $data['allyname']), 'category' => $LNG['sh_alliance_name'], 'type' => 'allyname'];
                         break;
                 }
             }
@@ -211,16 +211,16 @@ class ShowSearchPage extends AbstractGamePage
         $seachMode 	= HTTP::_GP('type', 'playername');
         $searchText	= HTTP::_GP('search', '', UTF8_SUPPORT);
 
-        $searchList	= array();
+        $searchList	= [];
 
         if (!empty($searchText)) {
             $searchList	= self::_getSearchList($seachMode, $searchText, SEARCH_LIMIT);
         }
 
-        $this->assign(array(
+        $this->assign([
             'searchList'	=> $searchList,
             'dpath'			=> $THEME->getTheme(),
-        ));
+        ]);
 
         $templateSuffix	= ($seachMode === "allyname" || $seachMode === "allytag") ? "ally" : "default";
 
@@ -233,12 +233,12 @@ class ShowSearchPage extends AbstractGamePage
         $THEME =& Singleton()->THEME;
         $seachMode 		= HTTP::_GP('type', 'playername');
 
-        $modeSelector	= array('playername' => $LNG['sh_player_name'], 'planetname' => $LNG['sh_planet_name'], 'allytag' => $LNG['sh_alliance_tag'], 'allyname' => $LNG['sh_alliance_name']);
+        $modeSelector	= ['playername' => $LNG['sh_player_name'], 'planetname' => $LNG['sh_planet_name'], 'allytag' => $LNG['sh_alliance_tag'], 'allyname' => $LNG['sh_alliance_name']];
         $this->tplObj->loadscript('search.js');
-        $this->assign(array(
+        $this->assign([
             'modeSelector'	=> $modeSelector,
             'seachMode'		=> $seachMode,
-        ));
+        ]);
 
         $this->display('page.search.default.tpl');
     }

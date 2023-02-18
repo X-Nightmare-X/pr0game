@@ -29,21 +29,21 @@ class ShowRaportPage extends AbstractGamePage
     private function BCWrapperPreRev2321($combatReport, $isDefender)
     {
         if (isset($combatReport['moon']['desfail'])) {
-            $combatReport['moon']	= array(
+            $combatReport['moon']	= [
                 'moonName'				=> $combatReport['moon']['name'],
                 'moonChance'			=> $combatReport['moon']['chance'],
                 'moonDestroySuccess'	=> !$combatReport['moon']['desfail'],
                 'fleetDestroyChance'	=> $combatReport['moon']['chance2'],
                 'fleetDestroySuccess'	=> !$combatReport['moon']['fleetfail']
-            );
+            ];
         } elseif (isset($combatReport['moon'][0])) {
-            $combatReport['moon']	= array(
+            $combatReport['moon']	= [
                 'moonName'				=> $combatReport['moon'][1],
                 'moonChance'			=> $combatReport['moon'][0],
                 'moonDestroySuccess'	=> !$combatReport['moon'][2],
                 'fleetDestroyChance'	=> $combatReport['moon'][3],
                 'fleetDestroySuccess'	=> !$combatReport['moon'][4]
-            );
+            ];
         }
 
         if (isset($combatReport['simu'])) {
@@ -51,18 +51,18 @@ class ShowRaportPage extends AbstractGamePage
         }
 
         if (isset($combatReport['debris'][0])) {
-            $combatReport['debris'] = array(
+            $combatReport['debris'] = [
                 901	=> $combatReport['debris'][0],
                 902	=> $combatReport['debris'][1]
-            );
+            ];
         }
 
         if (!empty($combatReport['steal']['metal'])) {
-            $combatReport['steal'] = array(
+            $combatReport['steal'] = [
                 901	=> $combatReport['steal']['metal'],
                 902	=> $combatReport['steal']['crystal'],
                 903	=> $combatReport['steal']['deuterium']
-            );
+            ];
         }
 
         if (!$isDefender) {
@@ -76,7 +76,7 @@ class ShowRaportPage extends AbstractGamePage
     {
         $LNG =& Singleton()->LNG;
         $USER =& Singleton()->USER;
-        $LNG->includeData(array('FLEET'));
+        $LNG->includeData(['FLEET']);
         $this->setWindow('popup');
 
         $db = Database::get();
@@ -84,9 +84,9 @@ class ShowRaportPage extends AbstractGamePage
         $RID		= HTTP::_GP('raport', '');
 
         $sql = "SELECT raport,attacker,defender FROM %%RW%% WHERE rid = :reportID;";
-        $reportData = $db->selectSingle($sql, array(
+        $reportData = $db->selectSingle($sql, [
             ':reportID'	=> $RID
-        ));
+        ]);
 
         if (empty($reportData)) {
             $this->printMessage($LNG['sys_raport_not_found']);
@@ -102,14 +102,14 @@ class ShowRaportPage extends AbstractGamePage
         }
         $showDetails = $isAttacker || $isDefender;
         $sql = "SELECT ally_id FROM %%USERS%% WHERE id = :pID;";
-        $allyID = $db->selectSingle($sql, array(
+        $allyID = $db->selectSingle($sql, [
             ':pID'	=> $USER['id']
-        ), 'ally_id');
+        ], 'ally_id');
         if (!$showDetails && $allyID > 0) {
             foreach ($attackers as $atterID) {
-                $aID = $db->selectSingle($sql, array(
+                $aID = $db->selectSingle($sql, [
                     ':pID'	=> $atterID
-                ), 'ally_id');
+                ], 'ally_id');
                 if ($allyID == $aID) {
                     $showDetails = true;
                     break;
@@ -117,9 +117,9 @@ class ShowRaportPage extends AbstractGamePage
             }
             if (!$showDetails) {
                 foreach ($defenders as $defferID) {
-                    $aID = $db->selectSingle($sql, array(
+                    $aID = $db->selectSingle($sql, [
                         ':pID'	=> $defferID
-                    ), 'ally_id');
+                    ], 'ally_id');
                     if ($allyID == $aID) {
                         $showDetails = true;
                         break;
@@ -146,11 +146,11 @@ class ShowRaportPage extends AbstractGamePage
 			) as defender
 			FROM %%RW%%
 			WHERE rid = :reportID;";
-            $reportData = $db->selectSingle($sql, array(
+            $reportData = $db->selectSingle($sql, [
                 ':reportID'	=> $RID
-            ));
+            ]);
 
-            $Info		= array($reportData["attacker"], $reportData["defender"]);
+            $Info		= [$reportData["attacker"], $reportData["defender"]];
         }
 
         if (empty($reportData)) {
@@ -165,11 +165,11 @@ class ShowRaportPage extends AbstractGamePage
         $combatReport['time']	= _date($LNG['php_tdformat'], $combatReport['time'], $USER['timezone']);
         $combatReport			= $this->BCWrapperPreRev2321($combatReport, $isDefender);
 
-        $this->assign(array(
+        $this->assign([
             'Raport'	=> $combatReport,
             'Info'		=> $Info,
             'pageTitle'	=> $LNG['sys_mess_attack_report']
-        ));
+        ]);
 
         $this->display('shared.mission.raport.tpl');
     }

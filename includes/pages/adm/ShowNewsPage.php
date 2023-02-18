@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FILE__))) {
+if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__))) {
     throw new Exception("Permission error!");
 }
 
@@ -40,13 +40,13 @@ function ShowNewsPage()
     $query = $GLOBALS['DATABASE']->query("SELECT * FROM ".NEWS." ORDER BY id ASC");
     $NewsList = [];
     while ($u = $GLOBALS['DATABASE']->fetch_array($query)) {
-        $NewsList[]	= array(
+        $NewsList[]	= [
             'id'		=> $u['id'],
             'title'		=> $u['title'],
             'date'		=> _date($LNG['php_tdformat'], $u['date'], $USER['timezone']),
             'user'		=> $u['user'],
             'confirm'	=> sprintf($LNG['nws_confirm'], $u['title']),
-        );
+        ];
     }
 
     $template	= new template();
@@ -54,24 +54,24 @@ function ShowNewsPage()
 
     if ($_GET['action'] == 'edit' && isset($_GET['id'])) {
         $News = $GLOBALS['DATABASE']->getFirstRow("SELECT id, title, text FROM ".NEWS." WHERE id = '".$GLOBALS['DATABASE']->sql_escape($_GET['id'])."';");
-        $template->assign_vars(array(
+        $template->assign_vars([
             'mode'			=> 1,
             'nws_head'		=> sprintf($LNG['nws_head_edit'], $News['title']),
             'news_id'		=> $News['id'],
             'news_title'	=> $News['title'],
             'news_text'		=> $News['text'],
-        ));
+        ]);
     } elseif ($_GET['action'] == 'create') {
-        $template->assign_vars(array(
+        $template->assign_vars([
             'mode'			=> 2,
             'nws_head'		=> $LNG['nws_head_create'],
             'news_id'		=> 0,
             'news_title'	=> '',
             'news_text'		=> '',
-        ));
+        ]);
     }
 
-    $template->assign_vars(array(
+    $template->assign_vars([
         'NewsList'		=> $NewsList,
         'button_submit'	=> $LNG['button_submit'],
         'nws_total'		=> sprintf($LNG['nws_total'], $NewsList && count($NewsList)),
@@ -84,7 +84,7 @@ function ShowNewsPage()
         'nws_create'	=> $LNG['nws_create'],
         'nws_content'	=> $LNG['nws_content'],
         'signalColors'	=> $USER['signalColors'],
-    ));
+    ]);
 
     $template->show('NewsPage.tpl');
 }

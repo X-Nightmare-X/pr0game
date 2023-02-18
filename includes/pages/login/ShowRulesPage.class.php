@@ -28,9 +28,9 @@ class ShowRulesPage extends AbstractLoginPage
     public function show()
     {
         $LNG =& Singleton()->LNG;
-        $this->assign(array(
+        $this->assign([
             'rules'		=> sprintf($LNG->getTemplate('rules'), Config::get() -> git_issues_link),
-        ));
+        ]);
 
         $this->display('page.rules.default.tpl');
     }

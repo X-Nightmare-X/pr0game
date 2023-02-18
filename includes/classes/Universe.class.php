@@ -19,7 +19,7 @@ class Universe
 {
     private static $currentUniverse = null;
     private static $emulatedUniverse = null;
-    private static $availableUniverses = array();
+    private static $availableUniverses = [];
 
     /**
      * Return the current universe id.

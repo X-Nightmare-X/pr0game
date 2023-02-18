@@ -82,9 +82,9 @@ class ShowBattleHallPage extends AbstractGamePage
         $pBHFilter = new BattleHallFilter($filters);
         $top = $pBHFilter->getTopKBs();
 
-        $TopKBList	= array();
+        $TopKBList	= [];
         foreach ($top as $data) {
-            $TopKBList[]	= array(
+            $TopKBList[]	= [
                 'result'	=> $data['result'],
                 'date'		=> _date($LNG['php_tdformat'], $data['time'], $USER['timezone']),
                 'time'		=> TIMESTAMP - $data['time'],
@@ -92,19 +92,19 @@ class ShowBattleHallPage extends AbstractGamePage
                 'rid'		=> $data['rid'],
                 'attacker'	=> $data['attacker'],
                 'defender'	=> $data['defender'],
-            );
+            ];
         }
 
         $Selectors = $this->assembleSelectors();
 
-        $this->assign(array(
+        $this->assign([
             'TopKBList'		=> $TopKBList,
             'Selectors'		=> $Selectors,
             'memorial'		=> $memorial,
             'timeframe'		=> $timeframe,
             'diplomacy'		=> $diplomacy,
             'galaxy'		=> $galaxy,
-        ));
+        ]);
 
         $this->display('page.battleHall.default.tpl');
     }

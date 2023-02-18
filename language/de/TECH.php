@@ -17,7 +17,7 @@
 
 //SHORT NAMES FOR COMBAT REPORTS
 
-$LNG['shortNames'] = array(
+$LNG['shortNames'] = [
     202 => 'Kl. Transporter',
     203 => 'Gr. Transporter',
     204 => 'L. Jäger',
@@ -48,9 +48,9 @@ $LNG['shortNames'] = array(
     409 => 'Gig. Schildkuppel',
     410 => 'Gravitonenkanone',
     411 => 'Orb. VerPla',
-);
+];
 
-$LNG['bonus'] = array(
+$LNG['bonus'] = [
     'Attack'            => 'Angriff',
     'Defensive'         => 'Verteidigung',
     'Shield'            => 'Schild',
@@ -69,9 +69,9 @@ $LNG['bonus'] = array(
     'Expedition'            => 'Expeditionen',
     'GateCoolTime'          => 'Sprungtoraufladungszeit',
     'MoreFound'         => 'Expeditionsfund',
-);
+];
 
-$LNG['tech'] = array(
+$LNG['tech'] = [
       0 => 'Gebäude',
       1 => 'Metallmine',
       2 => 'Kristallmine',
@@ -157,9 +157,9 @@ $LNG['tech'] = array(
     902 => 'Kristall',
     903 => 'Deuterium',
     911 => 'Energie',
-);
+];
 
-$LNG['shortDescription'] = array(
+$LNG['shortDescription'] = [
       1 => 'Hauptrohstofflieferanten für den Bau tragender Strukturen von Bauwerken und Schiffen.',
       2 => 'Hauptrohstofflieferanten für elektronische Bauteile und Legierungen.',
       3 => 'Entziehen dem Wasser eines Planeten den geringen Deuteriumanteil.',
@@ -278,9 +278,9 @@ $LNG['shortDescription'] = array(
     903 => 'Deuterium ist schwerer Wasserstoff. Für die Gewinnung von Deuterium großen Mengen Energie benötigt.'
         . ' Deuterium wird unter anderem als Treibstoff für Raumschiffe benötigt.',
     911 => 'Energie wird für das gewinnnen jeglicher Rohstoffe benötigt.',
-);
+];
 
-$LNG['longDescription'] = array(
+$LNG['longDescription'] = [
       1 => 'Hauptrohstofflieferanten für den Bau tragender Strukturen von Bauwerken und Schiffen. Metall ist der'
           . ' billigste Rohstoff, dafür wird er mehr benötigt als die anderen. Metall braucht zur Herstellung am'
           . ' wenigsten Energie. Je größer die Minen ausgebaut sind, desto tiefer sind sie. Bei den meisten Planeten'
@@ -613,4 +613,4 @@ $LNG['longDescription'] = array(
     911 => 'Energie wird für das gewinnnen jeglicher Rohstoffe benötigt. Man sagt, man könne mit unmengen an Energie,'
         . ' die Gravitation beeinflussen und dadurch zerstörerische Waffen bauen. Allerdings ist dies bis heute noch'
         . ' kaum jemanden gelungen.',
-);
+];

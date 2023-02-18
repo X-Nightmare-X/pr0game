@@ -20,7 +20,7 @@
 $LNG['Version']     = 'Версия';
 $LNG['Description'] = 'Описание';
 
-$LNG['changelog']   = array(
+$LNG['changelog']   = [
 'v1.7.2' => 'Jan 18.03.2013
 - 0000358: [Fleet missions] Recycler mit vollem Rohstoffspeicher inkl. viel Kristall, baut TF nicht ab und geht auf Lock (Jan) - resolved.
 - 0000360: [Fleet missions] Wenn bei "Mission: Halten" Rohstoffe mitgenommen wird, werden diese dort abgeliefert und die Flotte behält diese Rohstoffe (Jan) - resolved.
@@ -933,4 +933,4 @@ MOONHUNT-301 - При восстановлении пароля не появл�
 
 За основу взята XG Proyect 2.8 по состоянию на 11.10.2009
 ',
-);
+];

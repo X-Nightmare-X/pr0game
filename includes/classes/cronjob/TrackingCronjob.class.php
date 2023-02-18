@@ -25,23 +25,23 @@ class TrackingCronjob implements CronjobTask
 
         try {
             $sql	= 'SELECT register_time FROM %%USERS%% WHERE id = :userId';
-            $serverData['installSince']	= Database::get()->selectSingle($sql, array(
+            $serverData['installSince']	= Database::get()->selectSingle($sql, [
                 ':userId'	=> ROOT_USER
-            ), 'register_time');
+            ], 'register_time');
         } catch (Exception $e) {
             $serverData['installSince']	= null;
         }
 
         try {
             $sql	= 'SELECT COUNT(*) as state FROM %%USERS%%;';
-            $serverData['users']		= Database::get()->selectSingle($sql, array(), 'state');
+            $serverData['users']		= Database::get()->selectSingle($sql, [], 'state');
         } catch (Exception $e) {
             $serverData['users']		= null;
         }
 
         try {
             $sql	= 'SELECT COUNT(*) as state FROM %%CONFIG%%;';
-            $serverData['unis']			= Database::get()->selectSingle($sql, array(), 'state');
+            $serverData['unis']			= Database::get()->selectSingle($sql, [], 'state');
         } catch (Exception $e) {
             $serverData['unis']			= null;
         }

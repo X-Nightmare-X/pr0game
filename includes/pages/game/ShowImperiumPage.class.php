@@ -49,11 +49,11 @@ class ShowImperiumPage extends AbstractGamePage
         }
 
         $sql .= " FOR UPDATE";
-        $PlanetsRAW = $db->select($sql, array(
+        $PlanetsRAW = $db->select($sql, [
             ':userID' => $USER['id']
-        ));
+        ]);
 
-        $PLANETS = array();
+        $PLANETS = [];
 
         $PlanetRess = new ResourceUpdate();
 
@@ -66,7 +66,7 @@ class ShowImperiumPage extends AbstractGamePage
 
         $db->commit();
 
-        $planetList = array();
+        $planetList = [];
         $config = Config::get($USER['universe']);
 
         if (!empty($USER['b_tech_queue'])) {
@@ -80,11 +80,11 @@ class ShowImperiumPage extends AbstractGamePage
             $researchlvl= -1;
             $planetid= -1;
         }
-        $this->assign(array(
+        $this->assign([
             'researchq_id'      => $researchid,
             'researchq_lvl'     => $researchlvl,
             'researchq_planet'  => $planetid,
-        ));
+        ]);
         foreach ($PLANETS as $Planet) {
             $planetList['name'][$Planet['id']] = $Planet['name'];
             $planetList['image'][$Planet['id']] = $Planet['image'];
@@ -165,10 +165,10 @@ class ShowImperiumPage extends AbstractGamePage
             $planetList['tech'][$elementID] = $USER[$resource[$elementID]];
         }
 
-        $this->assign(array(
+        $this->assign([
             'colspan'       => count($PLANETS) + 2,
             'planetList'    => $planetList,
-        ));
+        ]);
 
         $this->display('page.empire.default.tpl');
     }

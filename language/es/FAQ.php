@@ -18,7 +18,7 @@
 
 $LNG['faq_overview']	= "FAQ";
 
-$LNG['questions']					= array();
+$LNG['questions']					= [];
 $LNG['questions'][1]['category']	= 'Consejos para principiantes';
 $LNG['questions'][1][1]['title']	= 'Paso 1';
 $LNG['questions'][1][1]['body']		= <<<BODY

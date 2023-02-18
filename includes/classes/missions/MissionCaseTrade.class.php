@@ -35,9 +35,9 @@ class MissionCaseTrade extends MissionFunctions implements Mission
     {
         $LNG		= $this->getLanguage(null, $this->_fleet['fleet_owner']);
         $sql		= 'SELECT name FROM %%PLANETS%% WHERE id = :planetId;';
-        $planetName	= Database::get()->selectSingle($sql, array(
+        $planetName	= Database::get()->selectSingle($sql, [
             ':planetId'	=> $this->_fleet['fleet_start_id'],
-        ), 'name');
+        ], 'name');
 
         $Message	= sprintf($LNG['sys_trade_mess_back'], $planetName, GetStartAddressLink($this->_fleet, ''));
 

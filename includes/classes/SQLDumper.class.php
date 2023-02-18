@@ -38,10 +38,10 @@ class SQLDumper
 
     private function nativeDumpToFile($dbTables, $filePath)
     {
-        $database	= array();
+        $database	= [];
         require 'includes/config.php';
 
-        $dbVersion	= Database::get()->selectSingle('SELECT @@version', array(), '@@version');
+        $dbVersion	= Database::get()->selectSingle('SELECT @@version', [], '@@version');
         if (version_compare($dbVersion, '5.5') >= 0) {
             putenv('MYSQL_PWD='.$database['userpw']);
             $passwordArgument = '';
@@ -62,9 +62,9 @@ class SQLDumper
         $this->setTimelimit();
 
         $db	= Database::get();
-        $database	= array();
+        $database	= [];
         require 'includes/config.php';
-        $integerTypes	= array('tinyint', 'smallint', 'mediumint', 'int', 'bigint', 'decimal', 'float', 'double', 'real');
+        $integerTypes	= ['tinyint', 'smallint', 'mediumint', 'int', 'bigint', 'decimal', 'float', 'double', 'real'];
         $gameVersion	= Config::get()->VERSION;
         $fp	= fopen($filePath, 'w');
         fwrite($fp, "-- MySQL dump | pr0game dumper v{$gameVersion}
@@ -86,7 +86,7 @@ class SQLDumper
 ");
 
         foreach ($dbTables as $dbTable) {
-            $numColumns	= array();
+            $numColumns	= [];
             $firstRow	= true;
 
             fwrite($fp, "--\n-- Table structure for table `{$dbTable}`\n--\n\nDROP TABLE IF EXISTS `{$dbTable}`;
@@ -128,7 +128,7 @@ LOCK TABLES `{$dbTable}` WRITE;
 
 ");
             $columnsData	= $db->nativeQuery("SHOW COLUMNS FROM `".$dbTable."`");
-            $columnNames	= array();
+            $columnNames	= [];
             foreach ($columnsData as $columnData) {
                 $columnNames[]	= $columnData['Field'];
                 foreach ($integerTypes as $type) {
@@ -145,7 +145,7 @@ LOCK TABLES `{$dbTable}` WRITE;
             $i = 0;
             $tableData	= $db->select("SELECT * FROM ".$dbTable);
             foreach ($tableData as $tableRow) {
-                $rowData = array();
+                $rowData = [];
                 $i++;
                 if (($i % 50) === 0) {
                     $firstRow	= true;
@@ -197,7 +197,7 @@ UNLOCK TABLES;
         $this->setTimelimit();
 
         if ($this->canNative('mysql')) {
-            $database	= array();
+            $database	= [];
             require 'includes/config.php';
             $sqlDump	= shell_exec("mysql --host='".escapeshellarg($database['host'])."' --port=".((int) $database['port'])." --user='".escapeshellarg($database['user'])."' --password='".escapeshellarg($database['userpw'])."' '".escapeshellarg($database['databasename'])."' < ".escapeshellarg($filePath)." 2>&1 1> /dev/null");
             if (strlen($sqlDump) !== 0) { #mysql error

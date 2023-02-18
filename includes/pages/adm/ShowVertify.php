@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FILE__))) {
+if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__))) {
     throw new Exception("Permission error!");
 }
 
@@ -41,7 +41,7 @@ function ShowVertify()
             curl_setopt($ch, CURLOPT_CRLF, true);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $FILE		= curl_exec($ch);
-            $SVNHASH	= crc32(preg_replace(array("/(\r\n)|(\r)/", '/(\\/\\*[\\d\\D]*?\\*\\/)/', '/\$I'.'d[^\$]+\$/'), array("\n", '', ''), $FILE));
+            $SVNHASH	= crc32(preg_replace(["/(\r\n)|(\r)/", '/(\\/\\*[\\d\\D]*?\\*\\/)/', '/\$I'.'d[^\$]+\$/'], ["\n", '', ''], $FILE));
 
             if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == 404) {
                 echo 4;
@@ -55,7 +55,7 @@ function ShowVertify()
 
             curl_close($ch);
             $FILE2	= file_get_contents(ROOT_PATH.$file);
-            $LOCALHASH	= crc32(preg_replace(array("/(\r\n)|(\r)/", '/(\\/\\*[\\d\\D]*?\\*\\/)/', '/\$I'.'d[^\$]+\$/'), array("\n", '', ''), $FILE2));
+            $LOCALHASH	= crc32(preg_replace(["/(\r\n)|(\r)/", '/(\\/\\*[\\d\\D]*?\\*\\/)/', '/\$I'.'d[^\$]+\$/'], ["\n", '', ''], $FILE2));
             if ($SVNHASH == $LOCALHASH) {
                 echo 1;
                 exit;
@@ -87,14 +87,14 @@ function ShowVertify()
 
 function dir_tree($dir, $EXT, $subDir = true)
 {
-    $path = array();
+    $path = [];
     $stack[] = $dir;
     while ($stack) {
         $thisdir = array_pop($stack);
         if ($dircont = scandir($thisdir)) {
             $i=0;
             while (isset($dircont[$i])) {
-                if (!in_array($dircont[$i], array('.', '..', '.svn', '.info'))) {
+                if (!in_array($dircont[$i], ['.', '..', '.svn', '.info'])) {
                     $current_file = $thisdir.$dircont[$i];
                     if (is_file($current_file)) {
                         foreach ($EXT as $FILEXT) {

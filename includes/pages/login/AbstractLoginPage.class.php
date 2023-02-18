@@ -37,7 +37,7 @@ abstract class AbstractLoginPage
 
     protected function getUniverseSelector()
     {
-        $universeSelect	= array();
+        $universeSelect	= [];
         foreach (Universe::availableUniverses() as $uniId) {
             $universeSelect[$uniId]	= Config::get($uniId)->uni_name;
         }
@@ -69,7 +69,7 @@ abstract class AbstractLoginPage
 
     protected function getQueryString()
     {
-        $queryString	= array();
+        $queryString	= [];
         $page			= HTTP::_GP('page', '');
 
         if (!empty($page)) {
@@ -90,7 +90,7 @@ abstract class AbstractLoginPage
 
         $config	= Config::get();
 
-        $this->tplObj->assign_vars(array(
+        $this->tplObj->assign_vars([
             'gameName' 				=> $config->game_name,
             'mailEnable'			=> $config->mail_active,
             'referralEnable'		=> $config->ref_active,
@@ -101,15 +101,15 @@ abstract class AbstractLoginPage
             'VERSION'				=> $config->VERSION,
             'REV'					=> substr($config->VERSION, -4),
             'languages'				=> Language::getAllowedLangs(false),
-        ));
+        ]);
     }
 
     protected function printMessage($message, $redirectButtons = null, $redirect = null, $fullSide = true)
     {
-        $this->assign(array(
+        $this->assign([
             'message'			=> $message,
             'redirectButtons'	=> $redirectButtons,
-        ));
+        ]);
 
         if (isset($redirect)) {
             $this->tplObj->gotoside($redirect[0], $redirect[1]);
@@ -152,17 +152,17 @@ abstract class AbstractLoginPage
             $basePath = PROTOCOL.HTTP_HOST.HTTP_BASE;
         }
 
-        $this->assign(array(
+        $this->assign([
             'lang'    			=> $LNG->getLanguage(),
             'bodyclass'			=> $this->getWindow(),
             'basepath'			=> $basePath,
             'isMultiUniverse'	=> count(Universe::availableUniverses()) > 1,
             'unisWildcast'		=> UNIS_WILDCAST,
-        ));
+        ]);
 
-        $this->assign(array(
+        $this->assign([
             'LNG'			=> $LNG,
-        ), false);
+        ], false);
 
         $this->tplObj->display('extends:layout.'.$this->getWindow().'.tpl|'.$file);
         exit;
@@ -185,10 +185,10 @@ abstract class AbstractLoginPage
     protected function redirectPost($url, $postFields)
     {
         $this->save();
-        $this->assign(array(
+        $this->assign([
             'url'    		=> $url,
             'postFields'	=> $postFields,
-        ));
+        ]);
 
         $this->display('info.redirectPost.tpl');
     }

@@ -21,13 +21,13 @@ function ShowTopnavPage()
     $USER =& Singleton()->USER;
     $template	= new template();
 
-    $universeSelect	= array();
+    $universeSelect	= [];
     foreach (Universe::availableUniverses() as $uniId) {
         $config = Config::get($uniId);
         $universeSelect[$uniId]	= sprintf('%s (ID: %d)', $config->uni_name, $uniId);
     }
     ksort($universeSelect);
-    $template->assign_vars(array(
+    $template->assign_vars([
         'ad_authlevel_title'	=> $LNG['ad_authlevel_title'],
         're_reset_universe'		=> $LNG['re_reset_universe'],
         'mu_universe'			=> $LNG['mu_universe'],
@@ -41,7 +41,7 @@ function ShowTopnavPage()
         'AvailableUnis'			=> $universeSelect,
         'UNI'					=> Universe::getEmulated(),
         'signalColors'      	=> $USER['signalColors']
-    ));
+    ]);
 
     $template->show('ShowTopnavPage.tpl');
 }

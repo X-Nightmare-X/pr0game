@@ -93,31 +93,31 @@ class ShowPhalanxPage extends AbstractGamePage
 
         $db = Database::get();
         $sql = "UPDATE %%PLANETS%% SET deuterium = deuterium - :phalanxDeuterium WHERE id = :planetID;";
-        $db->update($sql, array(
+        $db->update($sql, [
             ':phalanxDeuterium'	=> PHALANX_DEUTERIUM,
             ':planetID'			=> $PLANET['id']
-        ));
+        ]);
 
         $sql = "SELECT id, name, id_owner FROM %%PLANETS%% WHERE universe = :universe
 		AND galaxy = :galaxy AND system = :system AND planet = :planet AND :type;";
 
-        $TargetInfo = $db->selectSingle($sql, array(
+        $TargetInfo = $db->selectSingle($sql, [
             ':universe'	=> Universe::current(),
             ':galaxy'	=> $Galaxy,
             ':system'	=> $System,
             ':planet'	=> $Planet,
             ':type'		=> 1
-        ));
+        ]);
 
         $sql = "SELECT u.id, s.total_points, u.onlinetime, u.banaday FROM %%USERS%% u ".
         "LEFT JOIN %%STATPOINTS%% s ON s.id_owner = u.id AND s.stat_type = :statTypeUser ".
         "WHERE u.universe = :universe AND id = :id_owner;";
 
-        $TargetUser = $db->selectSingle($sql, array(
+        $TargetUser = $db->selectSingle($sql, [
             ':statTypeUser'     => 1,
             ':universe'			=> Universe::current(),
             ':id_owner'			=> $TargetInfo['id_owner'],
-        ));
+        ]);
 
         if (!$this->allowPhalanx($Galaxy, $System, $TargetUser)) {
             $this->printMessage($LNG['px_out_of_range']);
@@ -133,14 +133,14 @@ class ShowPhalanxPage extends AbstractGamePage
         $fleetTableObj->setUser($TargetInfo['id_owner']);
         $fleetTableObj->setPlanet($TargetInfo['id']);
         $fleetTable	=  $fleetTableObj->renderTable();
-        $this->assign(array(
+        $this->assign([
             'galaxy'  		=> $Galaxy,
             'system'  		=> $System,
             'planet'   		=> $Planet,
             'name'    		=> $TargetInfo['name'],
             'fleetTable'	=> $fleetTable,
             'colors'		=> $USER['colors'],
-        ));
+        ]);
 
         $this->display('page.phalanx.default.tpl');
     }

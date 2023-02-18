@@ -28,7 +28,7 @@ function ShowDumpPage()
     }
     switch($_POST['action']) {
         case 'dump':
-            $dbTables	= HTTP::_GP('dbtables', array());
+            $dbTables	= HTTP::_GP('dbtables', []);
             if (empty($dbTables)) {
                 $template	= new template();
                 $template->message($LNG['du_not_tables_selected']);
@@ -52,11 +52,11 @@ function ShowDumpPage()
         default:
             $dumpData['perRequest']		= 100;
 
-            $dumpData		= array();
+            $dumpData		= [];
 
             $prefixCounts	= strlen(DB_PREFIX);
 
-            $dumpData['sqlTables']	= array();
+            $dumpData['sqlTables']	= [];
             $sqlTableRaw			= $GLOBALS['DATABASE']->query("SHOW TABLE STATUS FROM `".DB_NAME."`;");
 
             while ($table = $GLOBALS['DATABASE']->fetchArray($sqlTableRaw)) {
@@ -67,10 +67,10 @@ function ShowDumpPage()
 
             $template	= new template();
 
-            $template->assign_vars(array(
+            $template->assign_vars([
                 'dumpData'		=> $dumpData,
                 'signalColors' 	=> $USER['signalColors']
-            ));
+            ]);
 
             $template->show('DumpPage.tpl');
             break;

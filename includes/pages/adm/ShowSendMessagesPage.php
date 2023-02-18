@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FILE__))) {
+if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__))) {
     throw new Exception("Permission error!");
 }
 
@@ -60,14 +60,14 @@ function ShowSendMessagesPage()
 
             if ($Mode == 1 || $Mode == 2) {
                 require 'includes/classes/Mail.class.php';
-                $userList	= array();
+                $userList	= [];
 
                 $USERS		= $GLOBALS['DATABASE']->query("SELECT `email`, `username` FROM ".USERS." WHERE `universe` = '".Universe::getEmulated()."'".(!empty($Lang) ? " AND `lang` = '".$GLOBALS['DATABASE']->sql_escape($Lang)."'" : "").";");
                 while ($UserData = $GLOBALS['DATABASE']->fetch_array($USERS)) {
-                    $userList[$UserData['email']]	= array(
+                    $userList[$UserData['email']]	= [
                         'username'	=> $UserData['username'],
                         'body'		=> nl2br(str_replace('{USERNAME}', $UserData['username'], $Message))
-                    );
+                    ];
                 }
 
                 Mail::multiSend($userList, strip_tags($Subject));
@@ -86,10 +86,10 @@ function ShowSendMessagesPage()
     }
 
     $template	= new template();
-    $template->assign_vars(array(
-        'langSelector' 	=> array_merge(array('' => $LNG['ma_all']), $LNG->getAllowedLangs(false)),
+    $template->assign_vars([
+        'langSelector' 	=> array_merge(['' => $LNG['ma_all']], $LNG->getAllowedLangs(false)),
         'modes' 		=> $sendModes,
         'signalColors' 	=> $USER['signalColors'],
-    ));
+    ]);
     $template->show('SendMessagesPage.tpl');
 }

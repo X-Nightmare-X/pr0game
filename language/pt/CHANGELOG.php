@@ -18,7 +18,7 @@
 $LNG['Version']     = 'Version';
 $LNG['Description'] = 'Beschreibung';
 
-$LNG['changelog']   = array(
+$LNG['changelog']   = [
 'v1.7.1' => 'Jan 18.01.2013
 - Fix possible SQL Injections.
 ',
@@ -967,4 +967,4 @@ TMOONS-346 - The doubling of the fleet',
 
 Based on XG Proyect 2.8 on 11.10.09
 ',
-);
+];

@@ -45,13 +45,13 @@ class ShowFleetMissilePage extends AbstractGamePage
         WHERE universe = :universe AND galaxy = :targetGalaxy
         AND system = :targetSystem AND planet = :targetPlanet AND planet_type = :targetType;";
 
-        $target = $db->selectSingle($sql, array(
+        $target = $db->selectSingle($sql, [
             ':universe' => Universe::current(),
             ':targetGalaxy' => $targetGalaxy,
             ':targetSystem' => $targetSystem,
             ':targetPlanet' => $targetPlanet,
             ':targetType'   => $targetType
-        ));
+        ]);
 
         $Range				= FleetFunctions::GetMissileRange($USER[$resource[117]]);
         $systemMin			= $PLANET['system'] - $Range;
@@ -79,9 +79,9 @@ class ShowFleetMissilePage extends AbstractGamePage
 
         if (empty($target)) {
             $target['id_owner'] = 0;
-            $targetUser = array('onlinetime' => 0, 'banaday' => 0, 'urlaubs_modus' => 0, 'authattack' => 0);
+            $targetUser = ['onlinetime' => 0, 'banaday' => 0, 'urlaubs_modus' => 0, 'authattack' => 0];
         } else {
-            $targetUser		= GetUserByID($target['id_owner'], array('onlinetime', 'banaday', 'urlaubs_modus', 'authattack'));
+            $targetUser		= GetUserByID($target['id_owner'], ['onlinetime', 'banaday', 'urlaubs_modus', 'authattack']);
         }
 
         if (Config::get()->adm_attack == 1 && $targetUser['authattack'] > $USER['authlevel']) {
@@ -91,9 +91,9 @@ class ShowFleetMissilePage extends AbstractGamePage
         }
 
         $sql = "SELECT total_points FROM %%STATPOINTS%% WHERE stat_type = '1' AND id_owner = :ownerId;";
-        $User2Points = $db->selectSingle($sql, array(
+        $User2Points = $db->selectSingle($sql, [
             ':ownerId'  => $target['id_owner']
-        ));
+        ]);
 
         $sql	= 'SELECT total_points
 		FROM %%STATPOINTS%%
@@ -123,17 +123,17 @@ class ShowFleetMissilePage extends AbstractGamePage
 
         $DefenseLabel 	= ($primaryTarget == 0) ? $LNG['ma_all'] : $LNG['tech'][$primaryTarget];
 
-        $fleetArray		= array(503 => $anz);
+        $fleetArray		= [503 => $anz];
 
         $fleetStartTime	= TIMESTAMP + $Duration;
         $fleetStayTime	= $fleetStartTime;
         $fleetEndTime	= $fleetStartTime;
 
-        $fleetResource	= array(
+        $fleetResource	= [
             901	=> 0,
             902	=> 0,
             903	=> 0,
-        );
+        ];
 
         FleetFunctions::sendFleet(
             $fleetArray,

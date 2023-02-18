@@ -69,7 +69,7 @@ class HTTP
 
     private static function _quoteArray($var, $multibyte, $onlyNumbers = false)
     {
-        $data	= array();
+        $data	= [];
         foreach ($var as $key => $value) {
             if (is_array($value)) {
                 $data[$key]	= self::_quoteArray($value, $multibyte);
@@ -85,7 +85,7 @@ class HTTP
 
     private static function _quote($var, $multibyte)
     {
-        $var	= str_replace(array("\r\n", "\r", "\0"), array("\n", "\n", ''), $var);
+        $var	= str_replace(["\r\n", "\r", "\0"], ["\n", "\n", ''], $var);
         $var	= htmlspecialchars($var, ENT_QUOTES, 'UTF-8');
         $var	= trim($var);
 

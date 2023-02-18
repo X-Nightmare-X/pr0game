@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FILE__))) {
+if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__))) {
     throw new Exception("Permission error!");
 }
 
@@ -38,7 +38,7 @@ function ShowBanPage()
 
     $UserList		= $GLOBALS['DATABASE']->query("SELECT `username`, `id`, `bana` FROM ".USERS." WHERE `id` != 1 AND `authlevel` <= '".$USER['authlevel']."' AND `universe` = '".Universe::getEmulated()."' ".$WHEREBANA." ORDER BY ".$ORDER." ASC;");
 
-    $UserSelect	= array('List' => '', 'ListBan' => '');
+    $UserSelect	= ['List' => '', 'ListBan' => ''];
 
     $Users	=	0;
     while ($a = $GLOBALS['DATABASE']->fetch_array($UserList)) {
@@ -99,7 +99,7 @@ function ShowBanPage()
         $vacation	= ($BANUSER['urlaubs_modus'] == 1) ? true : false;
         $perma = ($BANUSER['banaday'] == 2147483647) ? true : false;
 
-        $template->assign_vars(array(
+        $template->assign_vars([
             'name'				=> $Name,
             'bantitle'			=> $title,
             'changedate'		=> $changedate,
@@ -108,7 +108,7 @@ function ShowBanPage()
             'timesus'			=> $timesus,
             'perma'				=> $perma,
             'vacation'			=> $vacation,
-        ));
+        ]);
     } elseif (isset($_POST['bannow']) && $BANUSER['id'] != 1) {
         $Name              = HTTP::_GP('ban_name', '', true);
         $reas              = HTTP::_GP('why', '', true);
@@ -182,12 +182,12 @@ function ShowBanPage()
         exit;
     }
 
-    $template->assign_vars(array(
+    $template->assign_vars([
         'UserSelect'		=> $UserSelect,
         'usercount'			=> $Users,
         'bancount'			=> $Banneds,
         'bo_select_title'           => $LNG['bo_select_title'],
-    ));
+    ]);
 
     $template->show('BanPage.tpl');
 }

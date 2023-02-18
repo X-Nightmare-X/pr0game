@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FILE__))) {
+if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__))) {
     throw new Exception("Permission error!");
 }
 
@@ -37,10 +37,10 @@ function ShowMultiIPPage()
             break;
     }
     $Query	= $GLOBALS['DATABASE']->query("SELECT id, username, email, register_time, onlinetime, user_lastip, IFNULL(multiID, 0) as isKnown FROM ".USERS." LEFT JOIN ".MULTI." ON userID = id WHERE `universe` = '".Universe::getEmulated()."' AND user_lastip IN (SELECT user_lastip FROM ".USERS." WHERE `universe` = '".Universe::getEmulated()."' GROUP BY user_lastip HAVING COUNT(*)>1) ORDER BY register_time DESC, id ASC;");
-    $IPs	= array();
+    $IPs	= [];
     while ($Data = $GLOBALS['DATABASE']->fetch_array($Query)) {
         if (!isset($IPs[$Data['user_lastip']])) {
-            $IPs[$Data['user_lastip']]	= array();
+            $IPs[$Data['user_lastip']]	= [];
         }
 
         $Data['register_time']	= _date($LNG['php_tdformat'], $Data['register_time']);
@@ -50,9 +50,9 @@ function ShowMultiIPPage()
     }
 
     $template	= new template();
-    $template->assign_vars(array(
+    $template->assign_vars([
         'multiGroups'	=> $IPs,
         'signalColors'	=> $USER['signalColors'],
-    ));
+    ]);
     $template->show('MultiIPs.tpl');
 }

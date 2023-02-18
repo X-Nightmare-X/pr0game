@@ -25,9 +25,9 @@ class MissionCaseTransfer extends MissionFunctions implements Mission
 
         $sql = 'SELECT name FROM %%PLANETS%% WHERE `id` = :planetId;';
 
-        $startPlanetName	= $db->selectSingle($sql, array(
+        $startPlanetName	= $db->selectSingle($sql, [
             ':planetId'	=> $this->_fleet['fleet_start_id']
-        ), 'name');
+        ], 'name');
 
         $LNG			= $this->getLanguage(null, $this->_fleet['fleet_owner']);
 

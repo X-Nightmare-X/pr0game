@@ -308,9 +308,9 @@ class FleetFunctions
         }
 
         $sql = 'SELECT ankunft FROM %%AKS%% WHERE id = :acsId;';
-        $acsEndTime = Database::get()->selectSingle($sql, array(
+        $acsEndTime = Database::get()->selectSingle($sql, [
             ':acsId' => $acsId
-        ), 'ankunft');
+        ], 'ankunft');
 
         return empty($acsEndTime) ? $acsEndTime - TIMESTAMP : 0;
     }
@@ -324,10 +324,10 @@ class FleetFunctions
         $db = Database::get();
 
         $sql = 'UPDATE %%AKS%% SET ankunft = ankunft + :time WHERE id = :acsId;';
-        $db->update($sql, array(
+        $db->update($sql, [
             ':time' => $timeDifference,
             ':acsId' => $acsId,
-        ));
+        ]);
 
         $sql = 'UPDATE %%FLEETS%%, %%FLEETS_EVENT%% SET
 		fleet_start_time = fleet_start_time + :time,
@@ -336,10 +336,10 @@ class FleetFunctions
 		time             = time + :time
 		WHERE fleet_group = :acsId AND fleet_id = fleetID;';
 
-        $db->update($sql, array(
+        $db->update($sql, [
             ':time' => $timeDifference,
             ':acsId' => $acsId,
-        ));
+        ]);
 
         return true;
     }
@@ -358,10 +358,10 @@ class FleetFunctions
 			AND fleet_mission != :fleetMission;';
         }
 
-        $ActualFleets = Database::get()->selectSingle($sql, array(
+        $ActualFleets = Database::get()->selectSingle($sql, [
             ':userId' => $userId,
             ':fleetMission' => $fleetMission,
-        ));
+        ]);
         return $ActualFleets['state'];
     }
 
@@ -407,9 +407,9 @@ class FleetFunctions
 
         if ($fleetResult['fleet_mission'] == MISSION_ATTACK && $fleetResult['fleet_group'] != 0) {
             $sql = 'SELECT COUNT(*) as state FROM %%USERS_ACS%% WHERE acsID = :acsId;';
-            $isInGroup = $db->selectSingle($sql, array(
+            $isInGroup = $db->selectSingle($sql, [
                 ':acsId' => $fleetResult['fleet_group'],
-            ), 'state');
+            ], 'state');
 
             if ($isInGroup) {
                 $sql = 'DELETE %%AKS%%, %%USERS_ACS%%
@@ -417,9 +417,9 @@ class FleetFunctions
 				LEFT JOIN %%USERS_ACS%% ON acsID = %%AKS%%.id
 				WHERE %%AKS%%.id = :acsId;';
 
-                $db->delete($sql, array(
+                $db->delete($sql, [
                     ':acsId' => $fleetResult['fleet_group']
-                ));
+                ]);
 
                 $FleetID = $fleetResult['fleet_group'];
                 $sqlWhere = 'fleet_group';
@@ -444,14 +444,14 @@ class FleetFunctions
 		time				= :endTime
 		WHERE ' . $sqlWhere . ' = :id AND fleet_id = fleetID;';
 
-        $db->update($sql, array(
+        $db->update($sql, [
             ':id' => $FleetID,
             ':endStayTime' => TIMESTAMP,
             ':endTime' => $fleetEndTime,
             ':fleetGroup' => 0,
             ':hasCanceled' => 1,
             ':fleetState' => FLEET_RETURN
-        ));
+        ]);
 
         $sql = 'UPDATE %%LOG_FLEETS%% SET
 		fleet_end_stay	= :endStayTime,

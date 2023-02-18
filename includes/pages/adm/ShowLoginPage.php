@@ -36,10 +36,10 @@ function ShowLoginPage()
 
     $template	= new template();
 
-    $template->assign_vars(array(
+    $template->assign_vars([
         'bodyclass'		=> 'standalone',
         'username'		=> $USER['username'],
         'signalColors'  => $USER['signalColors']
-    ));
+    ]);
     $template->show('LoginPage.tpl');
 }

@@ -175,9 +175,9 @@ class BattleHallFilter
 			$memorialString $timeString $locationString $diplomacyString $minSizeString
 		 ORDER BY %%TOPKB%%.units DESC LIMIT $limit;";
 
-        $top = $db->select($sql, array(
+        $top = $db->select($sql, [
             ':universe' => Universe::current()
-        ));
+        ]);
 
         return $top;
     }

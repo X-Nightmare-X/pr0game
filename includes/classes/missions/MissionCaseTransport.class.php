@@ -39,9 +39,9 @@ class MissionCaseTransport extends MissionFunctions implements Mission
 
         $sql = 'SELECT name FROM %%PLANETS%% WHERE `id` = :planetId;';
 
-        $startPlanetName	= $db->selectSingle($sql, array(
+        $startPlanetName	= $db->selectSingle($sql, [
             ':planetId'	=> $this->_fleet['fleet_start_id']
-        ), 'name');
+        ], 'name');
 
         $targetPlanetName = $targetPlanet ? (string)$targetPlanet['name'] : null;
 
@@ -97,7 +97,7 @@ class MissionCaseTransport extends MissionFunctions implements Mission
                     $LNG['tech'][903]
                 );
 
-                $new = array();
+                $new = [];
 
                 $new['startPlanet'] 		= $this->_fleet['fleet_start_id'];
                 $new['startPlanetName']	 	= $startPlanetName;
@@ -139,9 +139,9 @@ class MissionCaseTransport extends MissionFunctions implements Mission
          * If is a player destroyed moon, redirect the fleet to the main planet.
          */
         if (!$startPlanetName) {
-            $originUser = Database::get()->selectSingle("SELECT id_planet, galaxy, system, planet FROM %%USERS%% WHERE id = :id", array(
+            $originUser = Database::get()->selectSingle("SELECT id_planet, galaxy, system, planet FROM %%USERS%% WHERE id = :id", [
                 ':id'	=> $this->_fleet['fleet_owner']
-            ));
+            ]);
 
             $this->UpdateFleet('fleet_start_id', $originUser['id_planet']);
             $this->UpdateFleet('fleet_start_galaxy', $originUser['galaxy']);
@@ -163,9 +163,9 @@ class MissionCaseTransport extends MissionFunctions implements Mission
     {
         $LNG		= $this->getLanguage(null, $this->_fleet['fleet_owner']);
         $sql		= 'SELECT name FROM %%PLANETS%% WHERE id = :planetId;';
-        $planetName	= Database::get()->selectSingle($sql, array(
+        $planetName	= Database::get()->selectSingle($sql, [
             ':planetId'	=> $this->_fleet['fleet_start_id'],
-        ), 'name');
+        ], 'name');
 
         $Message	= sprintf($LNG['sys_tran_mess_back'], $planetName, GetStartAddressLink($this->_fleet, ''));
 

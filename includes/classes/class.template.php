@@ -18,8 +18,8 @@
 class template extends Smarty
 {
     protected $window	= 'full';
-    public $jsscript	= array();
-    public $script		= array();
+    public $jsscript	= [];
+    public $script		= [];
 
     public function __construct()
     {
@@ -81,7 +81,7 @@ class template extends Smarty
 
         $config	= Config::get();
 
-        $this->assign_vars(array(
+        $this->assign_vars([
             'scripts'			=> $this->script,
             'title'				=> $config->game_name.' - '.$LNG['adm_cp_title'],
             'fcm_info'			=> $LNG['fcm_info'],
@@ -92,7 +92,7 @@ class template extends Smarty
             'VERSION'			=> $config->VERSION,
             'dpath'				=> 'styles/theme/gow/',
             'bodyclass'			=> 'full'
-        ));
+        ]);
     }
 
     public function show($file)
@@ -112,14 +112,14 @@ class template extends Smarty
             $this->adm_main();
         }
 
-        $this->assign_vars(array(
+        $this->assign_vars([
             'scripts'		=> $this->jsscript,
             'execscript'	=> implode("\n", $this->script),
-        ));
+        ]);
 
-        $this->assign_vars(array(
+        $this->assign_vars([
             'LNG'			=> $LNG,
-        ), false);
+        ], false);
 
         $this->compile_id	= $LNG->getLanguage();
 
@@ -135,10 +135,10 @@ class template extends Smarty
 
     public function gotoside($dest, $time = 3)
     {
-        $this->assign_vars(array(
+        $this->assign_vars([
             'gotoinsec'	=> $time,
             'goto'		=> $dest,
-        ));
+        ]);
     }
 
     public function message($mes, $dest = false, $time = 3, $Fatal = false)
@@ -146,13 +146,13 @@ class template extends Smarty
         $LNG =& Singleton()->LNG;
         $THEME =& Singleton()->THEME;
         $USER =& Singleton()->USER;
-        $this->assign_vars(array(
+        $this->assign_vars([
             'mes'			=> $mes,
             'fcm_info'		=> $LNG['fcm_info'],
             'Fatal'			=> $Fatal,
             'dpath'			=> $THEME->getTheme(),
             'signalColors'  => PlayerUtil::player_signal_colors($USER),
-        ));
+        ]);
 
         $this->gotoside($dest, $time);
         $this->show('error_message_body.tpl');
@@ -162,7 +162,7 @@ class template extends Smarty
     {
         $template	= new self();
         if (!isset($redirect)) {
-            $redirect	= array(false, 0);
+            $redirect	= [false, 0];
         }
 
         $template->message($Message, $redirect[0], $redirect[1], !$fullSide);
@@ -175,13 +175,13 @@ class template extends Smarty
 
     public function __get($name)
     {
-        $allowed = array(
+        $allowed = [
             'template_dir' => 'getTemplateDir',
             'config_dir' => 'getConfigDir',
             'plugins_dir' => 'getPluginsDir',
             'compile_dir' => 'getCompileDir',
             'cache_dir' => 'getCacheDir',
-        );
+        ];
 
         if (isset($allowed[$name])) {
             return $this->{$allowed[$name]}();
@@ -192,13 +192,13 @@ class template extends Smarty
 
     public function __set($name, $value)
     {
-        $allowed = array(
+        $allowed = [
             'template_dir' => 'setTemplateDir',
             'config_dir' => 'setConfigDir',
             'plugins_dir' => 'setPluginsDir',
             'compile_dir' => 'setCompileDir',
             'cache_dir' => 'setCacheDir',
-        );
+        ];
 
         if (isset($allowed[$name])) {
             $this->{$allowed[$name]}($value);

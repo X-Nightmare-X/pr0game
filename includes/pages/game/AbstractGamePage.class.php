@@ -40,13 +40,13 @@ abstract class AbstractGamePage
                     $db = Database::get();
                     $db->startTransaction();
                     $sql    = "SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;";
-                    $p = $db->selectSingle($sql, array(
+                    $p = $db->selectSingle($sql, [
                         ':planetId' => $PLANET['id'],
-                    ));
+                    ]);
                     $sql    = "SELECT * FROM %%USERS%% WHERE id = :userId FOR UPDATE;";
-                    $u   = $db->selectSingle($sql, array(
+                    $u   = $db->selectSingle($sql, [
                         ':userId'   => $USER['id'],
-                    ));
+                    ]);
 
                     $this->ecoObj = new ResourceUpdate();
                     list($USER, $PLANET) = $this->ecoObj->CalcResource($USER, $PLANET, true);

@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FILE__))) {
+if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__))) {
     throw new Exception("Permission error!");
 }
 
@@ -56,10 +56,10 @@ function ShowInformationPage()
 
     $sql	= "SELECT dbVersion FROM %%SYSTEM%%;";
 
-    $dbVersion	= Database::get()->selectSingle($sql, array(), 'dbVersion');
+    $dbVersion	= Database::get()->selectSingle($sql, [], 'dbVersion');
 
     $template	= new template();
-    $template->assign_vars(array(
+    $template->assign_vars([
         'info_information'	=> sprintf($LNG['info_information'], Config::get() -> git_issues_link),
         'info'				=> $_SERVER['SERVER_SOFTWARE'],
         'vPHP'				=> PHP_VERSION,
@@ -84,7 +84,7 @@ function ShowInformationPage()
         'conf_tz'			=> $dateTimeServer->getOffset() / 3600,
         'user_tz'			=> $dateTimeUser->getOffset() / 3600,
         'signalColors'		=> $USER['signalColors'],
-    ));
+    ]);
 
     $template->show('ShowInformationPage.tpl');
 }

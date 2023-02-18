@@ -17,7 +17,7 @@
 
 //SHORT NAMES FOR COMBAT REPORTS
 
-$LNG['shortNames'] = array(
+$LNG['shortNames'] = [
     202 => 'Gl. Dransporter',
     203 => 'Gr. Dransporter',
     204 => 'L. Jäscher',
@@ -48,9 +48,9 @@ $LNG['shortNames'] = array(
     409 => 'Gig. Schildguppel',
     410 => 'Gravitonenganone',
     411 => 'Orb. VerPla',
-);
+];
 
-$LNG['bonus'] = array(
+$LNG['bonus'] = [
     'Attack'            => 'Angriff',
     'Defensive'         => 'Werteidigung',
     'Shield'            => 'Schild',
@@ -69,9 +69,9 @@ $LNG['bonus'] = array(
     'Expedition'            => 'Exbeditionen',
     'GateCoolTime'          => 'Schbrungdoraufladungszeit',
     'MoreFound'         => 'Exbeditionsfund',
-);
+];
 
-$LNG['tech'] = array(
+$LNG['tech'] = [
       0 => 'Gebäudne',
       1 => 'Medallmine',
       2 => 'Gristallmine',
@@ -157,9 +157,9 @@ $LNG['tech'] = array(
     902 => 'Gristall',
     903 => 'Deuderium',
     911 => 'Enegie',
-);
+];
 
-$LNG['shortDescription'] = array(
+$LNG['shortDescription'] = [
       1 => 'Haubtrohstofflieferantne für den Bau dragender Schdrukturne vonääh Bauwergne und Schiffen alda.',
       2 => 'Haubtrohstofflieferantne für elegtronische Baudeile und Legierungen und alles.',
       3 => 'Endziehne dem Wasser eines Blanetne den geringne Deuderiumandeil - tadsächlich sogar.',
@@ -278,9 +278,9 @@ $LNG['shortDescription'] = array(
     903 => 'Deuderium isd schwerer Wasserschdoff. Für die Gewinnung von Deuderium großne Mengne Enegie benödigd alda.'
         . ' Deuderium wird under anderem als Dreibstoff für Raumschiffe benödigd. ',
     911 => 'Enegie wird für des gewinnnene jeglicher Rohschdoffe benödigd.',
-);
+];
 
-$LNG['longDescription'] = array(
+$LNG['longDescription'] = [
       1 => 'Haubtrohstofflieferantne für den Bau dragender Schdrukturne von Bauwergne und Schiffne. Pass auf, Medall is der '
           . ' billigschde Rohschdoff, dafür wird er mehr benödigd als die anderne. Pass auf, Medall brauchd zur Herschdellung amääh '
           . ' wenigschdne Enegie. Etzala Je größer die Minene ausgebaud sind, deschdo diefer sind sie. Bei den meischdne Blanetne '
@@ -613,4 +613,4 @@ $LNG['longDescription'] = array(
     911 => 'Enegie wird für des gewinnnene jeglicher Rohschdoffe benödigd des bascht scho. Man sagd, man gönne mid unmengne an Enegie'
         . ' die Gravidadion beeinflussne und dadurch zerschdörerische Waffne baune. Allerdings is dies bis heude noch'
         . ' gaum jemandne gelungne .',
-);
+];
