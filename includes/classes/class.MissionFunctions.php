@@ -58,7 +58,7 @@ class MissionFunctions
         if ($this->_fleet['fleet_mess'] != FLEET_RETURN && $targetMission != MISSION_COLONISATION && $targetMission != MISSION_EXPEDITION && $targetMission != MISSION_TRADE) {
             // set points of fleet and target owner during arival (SaveFleet is always called on TargetEvent)
             if ($this->_fleet['fleet_group'] != 0) {
-                $sql = 'UPDATE %%LOG_FLEETS%% SET 
+                $sql = 'UPDATE %%LOG_FLEETS%% SET
                     fleet_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_owner AND stat_type = 1),
                     fleet_target_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_target_owner AND stat_type = 1)
                     WHERE `fleet_id` IN (SELECT fleet_id FROM %%FLEETS%% WHERE fleet_group = :acsId);';
@@ -67,8 +67,9 @@ class MissionFunctions
                     ':fleet_target_owner'  => $this->_fleet['fleet_target_owner'],
                     ':acsId'  => $this->_fleet['fleet_group'],
                 ]);
-            } else {
-                $sql = 'UPDATE %%LOG_FLEETS%% SET 
+            }
+            else {
+                $sql = 'UPDATE %%LOG_FLEETS%% SET
                     fleet_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_owner AND stat_type = 1),
                     fleet_target_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_target_owner AND stat_type = 1)
                     WHERE `fleet_id` = :fleetId;';
@@ -142,9 +143,9 @@ class MissionFunctions
 
         $userId = $onStart == true ? $this->_fleet['fleet_owner'] : $this->_fleet['fleet_target_owner'];
         $planetId = $onStart == true ? $this->_fleet['fleet_start_id'] : $this->_fleet['fleet_end_id'];
-        // $time = $onStart == true ? $this->_fleet['fleet_end_time'] : $this->_fleet['fleet_start_time'];
+        $time = $onStart == true ? $this->_fleet['fleet_end_time'] : $this->_fleet['fleet_start_time'];
 
-        $this->UpdatePlanet($userId, $planetId);
+        $this->UpdatePlanet($userId, $planetId, $time);
 
         $updateQuery = [];
 
