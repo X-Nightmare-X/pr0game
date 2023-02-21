@@ -21,11 +21,11 @@ class ShowTicketPage extends AbstractGamePage
 
     private $ticketObj;
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
         require('includes/classes/class.SupportTickets.php');
-        $this->ticketObj = new SupportTickets;
+        $this->ticketObj = new SupportTickets();
     }
 
     public function show()
@@ -39,11 +39,11 @@ class ShowTicketPage extends AbstractGamePage
 		INNER JOIN %%TICKETS_ANSWER%% a USING (ticketID)
 		WHERE t.ownerID = :userID GROUP BY a.ticketID ORDER BY t.ticketID DESC;";
 
-        $ticketResult = $db->select($sql, array(
+        $ticketResult = $db->select($sql, [
             ':userID' => $USER['id']
-        ));
+        ]);
 
-        $ticketList = array();
+        $ticketList = [];
 
         foreach ($ticketResult as $ticketRow) {
             $ticketRow['time'] = _date($LNG['php_tdformat'], $ticketRow['time'], $USER['timezone']);
@@ -51,25 +51,25 @@ class ShowTicketPage extends AbstractGamePage
             $ticketList[$ticketRow['ticketID']] = $ticketRow;
         }
 
-        $this->assign(array(
+        $this->assign([
             'ticketList' => $ticketList
-        ));
+        ]);
 
         $this->display('page.ticket.default.tpl');
     }
 
-    function create()
+    public function create()
     {
         $categoryList = $this->ticketObj->getCategoryList();
 
-        $this->assign(array(
+        $this->assign([
             'categoryList' => $categoryList,
-        ));
+        ]);
 
         $this->display('page.ticket.create.tpl');
     }
 
-    function send()
+    public function send()
     {
         $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
@@ -86,14 +86,12 @@ class ShowTicketPage extends AbstractGamePage
             }
         }
 
-		if(empty($ticketID))
-		{
-			if(empty($subject))
-			{
-                $this->printMessage($LNG['ti_error_no_subject'], array(array(
+        if (empty($ticketID)) {
+            if (empty($subject)) {
+                $this->printMessage($LNG['ti_error_no_subject'], [[
                     'label' => $LNG['sys_back'],
                     'url' => 'javascript:window.history.back()'
-                )));
+                ]]);
             }
 
             $ticketID = $this->ticketObj->createTicket($USER['id'], $categoryID, $subject);
@@ -101,12 +99,11 @@ class ShowTicketPage extends AbstractGamePage
             $db = Database::get();
 
             $sql = "SELECT status FROM %%TICKETS%% WHERE ticketID = :ticketID;";
-            $ticketStatus = $db->selectSingle($sql, array(
+            $ticketStatus = $db->selectSingle($sql, [
                 ':ticketID' => $ticketID
-            ), 'status');
+            ], 'status');
 
-			if ($ticketStatus == 2)
-			{
+            if ($ticketStatus == 2) {
                 $this->printMessage($LNG['ti_error_closed']);
             }
         }
@@ -115,7 +112,7 @@ class ShowTicketPage extends AbstractGamePage
         $this->redirectTo('game.php?page=ticket&mode=view&id=' . $ticketID);
     }
 
-    function view()
+    public function view()
     {
         $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
@@ -125,18 +122,18 @@ class ShowTicketPage extends AbstractGamePage
         $ticketID = HTTP::_GP('id', 0);
 
         $sql = "SELECT a.*, t.categoryID, t.status FROM %%TICKETS_ANSWER%% a INNER JOIN %%TICKETS%% t USING(ticketID) WHERE a.ticketID = :ticketID AND t.ownerID = :ownerID ORDER BY a.answerID;";
-        $answerResult = $db->select($sql, array(
+        $answerResult = $db->select($sql, [
             ':ticketID' => $ticketID,
             ':ownerID' => $USER['id']
-        ));
+        ]);
 
-        $answerList = array();
+        $answerList = [];
 
         if (empty($answerResult)) {
-            $this->printMessage(sprintf($LNG['ti_not_exist'], $ticketID), array(array(
+            $this->printMessage(sprintf($LNG['ti_not_exist'], $ticketID), [[
                 'label' => $LNG['sys_back'],
                 'url' => 'game.php?page=ticket'
-            )));
+            ]]);
         }
 
         $ticket_status = 0;
@@ -145,20 +142,19 @@ class ShowTicketPage extends AbstractGamePage
             $answerRow['time'] = _date($LNG['php_tdformat'], $answerRow['time'], $USER['timezone']);
             $answerRow['message'] = nl2br($answerRow['message']);
             $answerList[$answerRow['answerID']] = $answerRow;
-			if (empty($ticket_status))
-			{
+            if (empty($ticket_status)) {
                 $ticket_status = $answerRow['status'];
             }
         }
 
         $categoryList = $this->ticketObj->getCategoryList();
 
-        $this->assign(array(
+        $this->assign([
             'ticketID' => $ticketID,
             'categoryList' => $categoryList,
             'answerList' => $answerList,
             'status' => $ticket_status,
-        ));
+        ]);
 
         $this->display('page.ticket.view.tpl');
     }

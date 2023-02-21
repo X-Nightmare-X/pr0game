@@ -1,4 +1,5 @@
 <?php
+
 // Traduction Française by BigTwoProduction (KickXAss4Ever & Apocalypto2202) - All rights reserved (C) 2016
 // Web : http://www.big-two.tk
 // Version 1.0 - Initial release
@@ -6,7 +7,7 @@
 
 $LNG['faq_overview']	= "Guide du Noob";
 
-$LNG['questions']					= array();
+$LNG['questions']					= [];
 $LNG['questions'][1]['category']	= 'Conseil pour les débutants';
 $LNG['questions'][1][1]['title']	= 'Etape 1 : Production';
 $LNG['questions'][1][1]['body']		= <<<BODY

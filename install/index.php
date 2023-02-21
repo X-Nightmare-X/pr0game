@@ -39,13 +39,13 @@ $LNG->includeData(['L18N', 'INGAME', 'INSTALL', 'CUSTOM']);
 
 $template = new template();
 $template->setCaching(false);
-$template->assign(array(
+$template->assign([
     'lang'       => $LNG->getLanguage(),
     'Selector'   => $LNG->getAllowedLangs(false),
     'title'      => $LNG['title_install'] . ' &bull; pr0game',
     'header'     => $LNG['menu_install'],
     'canUpgrade' => file_exists('includes/config.php') && filesize('includes/config.php') !== 0
-));
+]);
 
 $enableInstallToolFile = 'includes/ENABLE_INSTALL_TOOL';
 $quickStartFile        = 'includes/FIRST_INSTALL';
@@ -129,12 +129,12 @@ switch ($mode) {
             );
         }
 
-        $template->assign_vars(array(
+        $template->assign_vars([
             'file_revision' => min(DB_VERSION_REQUIRED, $fileRevision),
             'sql_revision'  => $dbVersion,
             'updates'       => $updates,
             'header'        => $LNG['menu_upgrade']
-        ));
+        ]);
 
         $template->show('ins_update.tpl');
         break;
@@ -180,11 +180,11 @@ switch ($mode) {
             if ($fileRevision > $revision && $fileRevision <= DB_VERSION_REQUIRED) {
                 $fileExtension = pathinfo($fileInfo->getFilename(), PATHINFO_EXTENSION);
                 $key           = $fileRevision . ((int)$fileExtension === 'php');
-                $fileList[$key] = array(
+                $fileList[$key] = [
                     'fileName'      => $fileInfo->getFilename(),
                     'fileRevision'  => $fileRevision,
                     'fileExtension' => $fileExtension
-                );
+                ];
             }
         }
         ksort($fileList);
@@ -241,11 +241,11 @@ switch ($mode) {
 
         ClearCache();
 
-        $template->assign_vars(array(
+        $template->assign_vars([
             'update'   => !empty($fileList),
             'revision' => $revision,
             'header'   => $LNG['menu_upgrade'],
-        ));
+        ]);
         $template->show('ins_doupdate.tpl');
         unlink($enableInstallToolFile);
         break;
@@ -257,9 +257,9 @@ switch ($mode) {
                     if (isset($_POST['accept'])) {
                         HTTP::redirectTo('index.php?mode=install&step=2');
                     } else {
-                        $template->assign(array(
+                        $template->assign([
                             'accept' => false
-                        ));
+                        ]);
                     }
                 }
                 $template->show('ins_license.tpl');
@@ -353,7 +353,7 @@ switch ($mode) {
                 } else {
                     $done = '';
                 }
-                $template->assign(array(
+                $template->assign([
                     'dir'    => $dirs,
                     'json'   => $json,
                     'done'   => $done,
@@ -362,11 +362,11 @@ switch ($mode) {
                     'PHP'    => $PHP,
                     'pdo'    => $pdo,
                     'iniset' => $iniset,
-                    'global' => $global));
+                    'global' => $global]);
                 $template->show('ins_req.tpl');
                 break;
             case 3:
-                $template->assign(array(
+                $template->assign([
                     'getRequest' => [
                         'host' => $_GET['host'] ?? '',
                         'port' => $_GET['port'] ?? '',
@@ -378,7 +378,7 @@ switch ($mode) {
                     'user'     => getenv('DB_USER'),
                     'password' => getenv('DB_PASSWORD'),
                     'dbname'   => getenv('DB_NAME'),
-                ));
+                ]);
                 $template->show('ins_form.tpl');
                 break;
             case 4:
@@ -388,52 +388,52 @@ switch ($mode) {
                 $userpw = HTTP::_GP('passwort', '', true);
                 $dbname = HTTP::_GP('dbname', '', true);
                 $prefix = HTTP::_GP('prefix', 'uni1_');
-                $template->assign(array(
+                $template->assign([
                     'host'   => $host,
                     'port'   => $port,
                     'user'   => $user,
                     'dbname' => $dbname,
-                    'prefix' => $prefix,));
+                    'prefix' => $prefix,]);
                 if (empty($dbname)) {
-                    $template->assign(array(
+                    $template->assign([
                         'class'   => 'fatalerror',
-                        'message' => $LNG['step2_db_no_dbname'],));
+                        'message' => $LNG['step2_db_no_dbname'],]);
                     $template->show('ins_step4.tpl');
                     exit;
                 }
                 if (strlen($prefix) > 36) {
-                    $template->assign(array(
+                    $template->assign([
                         'class'   => 'fatalerror',
-                        'message' => $LNG['step2_db_too_long'],));
+                        'message' => $LNG['step2_db_too_long'],]);
                     $template->show('ins_step4.tpl');
                     exit;
                 }
                 if (strspn($prefix, '-./\\') !== 0) {
-                    $template->assign(array(
+                    $template->assign([
                         'class'   => 'fatalerror',
-                        'message' => $LNG['step2_prefix_invalid'],));
+                        'message' => $LNG['step2_prefix_invalid'],]);
                     $template->show('ins_step4.tpl');
                     exit;
                 }
                 if (preg_match('!^[0-9]!', $prefix) !== 0) {
-                    $template->assign(array(
+                    $template->assign([
                         'class'   => 'fatalerror',
-                        'message' => $LNG['step2_prefix_invalid'],));
+                        'message' => $LNG['step2_prefix_invalid'],]);
                     $template->show('ins_step4.tpl');
                     exit;
                 }
                 if (is_file(ROOT_PATH . "includes/config.php") && filesize(ROOT_PATH . "includes/config.php") != 0) {
-                    $template->assign(array(
+                    $template->assign([
                         'class'   => 'fatalerror',
-                        'message' => $LNG['step2_config_exists'],));
+                        'message' => $LNG['step2_config_exists'],]);
                     $template->show('ins_step4.tpl');
                     exit;
                 }
                 @touch(ROOT_PATH . "includes/config.php");
                 if (!is_writable(ROOT_PATH . "includes/config.php")) {
-                    $template->assign(array(
+                    $template->assign([
                         'class'   => 'fatalerror',
-                        'message' => $LNG['step2_conf_op_fail'],));
+                        'message' => $LNG['step2_conf_op_fail'],]);
                     $template->show('ins_step4.tpl');
                     exit;
                 }
@@ -465,18 +465,18 @@ switch ($mode) {
                 try {
                     Database::get();
                 } catch (Exception $e) {
-                    $template->assign(array(
+                    $template->assign([
                         'class'   => 'fatalerror',
-                        'message' => $LNG['step2_db_con_fail'] . '</p><p>' . $e->getMessage(),));
+                        'message' => $LNG['step2_db_con_fail'] . '</p><p>' . $e->getMessage(),]);
                     $template->show('ins_step4.tpl');
 
                     unlink(ROOT_PATH . 'includes/config.php');
                     exit;
                 }
                 @touch(ROOT_PATH . "includes/error.log");
-                $template->assign(array(
+                $template->assign([
                     'class'   => 'noerror',
-                    'message' => $LNG['step2_db_done'],));
+                    'message' => $LNG['step2_db_done'],]);
                 $template->show('ins_step4.tpl');
                 exit;
                 break;
@@ -500,17 +500,17 @@ switch ($mode) {
 
                 $installVersion = implode('.', $installVersion);
                 try {
-                    $db->query(str_replace(array(
+                    $db->query(str_replace([
                         '%PREFIX%',
                         '%VERSION%',
                         '%REVISION%',
                         '%DB_VERSION%'
-                    ), array(
+                    ], [
                         DB_PREFIX,
                         $installVersion,
                         $installRevision,
                         DB_VERSION_REQUIRED
-                    ), $installSQL));
+                    ], $installSQL));
 
                     $config = Config::get(Universe::current());
                     $config->timezone           = @date_default_timezone_get();
@@ -529,7 +529,7 @@ switch ($mode) {
                     require 'includes/config.php';
                     @unlink('includes/config.php');
                     $error = $e->getMessage();
-                    $template->assign(array(
+                    $template->assign([
                         'host'    => $database['host'],
                         'port'    => $database['port'],
                         'user'    => $database['user'],
@@ -537,17 +537,17 @@ switch ($mode) {
                         'prefix'  => $database['tableprefix'],
                         'class'   => 'fatalerror',
                         'message' => $LNG['step3_db_error'] . '</p><p>' . $error,
-                    ));
+                    ]);
                     $template->show('ins_step4.tpl');
                     exit;
                 }
                 break;
             case 7:
-                $template->assign(array(
+                $template->assign([
                     'name'     => getenv('ADMIN_NAME'),
                     'password' => getenv('ADMIN_PASSWORD'),
                     'mail'     => getenv('ADMIN_MAIL'),
-                ));
+                ]);
                 $template->show('ins_acc.tpl');
                 break;
             case 8:
@@ -561,11 +561,11 @@ switch ($mode) {
                 $hashPassword = PlayerUtil::cryptPassword($password);
 
                 if (empty($username) || empty($password) || empty($mail)) {
-                    $template->assign(array(
+                    $template->assign([
                         'message'   => $LNG['step8_need_fields'],
                         'username'  => $username,
                         'mail'      => $mail,
-                    ));
+                    ]);
                     $template->show('ins_step8error.tpl');
                     exit;
                 }
@@ -593,10 +593,10 @@ switch ($mode) {
         }
         break;
     default:
-        $template->assign(array(
+        $template->assign([
             'intro_text'    => $LNG['intro_text'],
             'intro_welcome' => $LNG['intro_welcome'],
-            'intro_install' => $LNG['intro_install'],));
+            'intro_install' => $LNG['intro_install'],]);
         $template->show('ins_intro.tpl');
         break;
 }

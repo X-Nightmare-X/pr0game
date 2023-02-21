@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
- $LNG['and'] = 'und';
+$LNG['and'] = 'und';
 
 //----------------------------------------------------------------------------//
 //SYSTEM

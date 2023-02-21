@@ -55,7 +55,6 @@ class PlayerUtil
 
     public static function isMailValid($address)
     {
-
         if (function_exists('filter_var')) {
             return filter_var($address, FILTER_VALIDATE_EMAIL) !== false;
         } else {
@@ -100,11 +99,10 @@ class PlayerUtil
             for ($i = 1; $i <= $config->max_galaxy; $i++) {
                 $avgPlanetsPerGala[] = ['galaxy' => $i, 'AvgPlanetsPerSys' => 0];
             }
-        }
-        else {
+        } else {
             $i = 1;
-            foreach($result as $resultArray) {
-                while($i < $resultArray['galaxy']) {
+            foreach ($result as $resultArray) {
+                while ($i < $resultArray['galaxy']) {
                     $avgPlanetsPerGala[] = ['galaxy' => $i, 'AvgPlanetsPerSys' => 0];
                     $i ++;
                 }
@@ -145,11 +143,10 @@ class PlayerUtil
             for ($i = 1; $i <= $config->max_system; $i++) {
                 $systems[] = ['system' => $i, 'anz' => 0];
             }
-        }
-        else {
+        } else {
             $i = 1;
-            foreach($result as $resultArray) {
-                while($i < $resultArray['system']) {
+            foreach ($result as $resultArray) {
+                while ($i < $resultArray['system']) {
                     $systems[] = ['system' => $i, 'anz' => 0];
                     $i ++;
                 }
@@ -852,7 +849,6 @@ class PlayerUtil
 
     private static function getAstroTech($USER)
     {
-
         $resource =& Singleton()->resource;
 
         $astroTech = $USER[$resource[124]];
@@ -908,22 +904,22 @@ class PlayerUtil
         switch ($position) {
             case 0:
                 return false;
-            break;
+                break;
             case 1:
             case ($config->max_planets):
                 return $astroTech >= 8;
-            break;
+                break;
             case 2:
             case ($config->max_planets - 1):
                 return $astroTech >= 6;
-            break;
+                break;
             case 3:
             case ($config->max_planets - 2):
                 return $astroTech >= 4;
-            break;
+                break;
             default:
                 return $astroTech >= 1 && $config->max_planets >= $position;
-            break;
+                break;
         }
     }
 
@@ -971,7 +967,6 @@ class PlayerUtil
 
     public static function disable_vmode(&$USER, &$PLANET = null)
     {
-
         $db = Database::get();
 
         $sql = "SELECT urlaubs_start FROM %%USERS%% WHERE id = :userID;";
@@ -1261,7 +1256,7 @@ class PlayerUtil
     }
 }
 /*
-	Enable to debug
+    Enable to debug
 */
 // try {
 //     define('MODE', 'INSTALL');

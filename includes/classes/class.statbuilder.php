@@ -15,15 +15,15 @@
 
 class statbuilder
 {
-    const STAT_TYPE_USER = 1;
-    const STAT_TYPE_ALLIANCE = 2;
+    public const STAT_TYPE_USER = 1;
+    public const STAT_TYPE_ALLIANCE = 2;
 
     private float $startTime;
     private array $memory;
     private int $time;
     private array $universes;
 
-    function __construct()
+    public function __construct()
     {
         $this->startTime = microtime(true);
         $this->memory = [round(memory_get_usage() / 1024, 1), round(memory_get_usage(1) / 1024, 1)];
@@ -64,8 +64,9 @@ class statbuilder
             }
 
             if (isset($userStats['Fleets'][$userData['id']])) {
-                foreach ($userStats['Fleets'][$userData['id']] as $ID => $Amount)
+                foreach ($userStats['Fleets'][$userData['id']] as $ID => $Amount) {
                     $userData[$resource[$ID]] += $Amount;
+                }
             }
 
             $techPoints = $this->getResearchScoreByUser($userData);
@@ -198,16 +199,21 @@ class statbuilder
         foreach ($SQLFleets as $CurFleets) {
             $FleetRec = explode(";", $CurFleets['fleet_array']);
 
-            if (!is_array($FleetRec)) continue;
+            if (!is_array($FleetRec)) {
+                continue;
+            }
 
             foreach ($FleetRec as $Group) {
-                if (empty($Group)) continue;
+                if (empty($Group)) {
+                    continue;
+                }
 
                 $Ship = explode(",", $Group);
-                if (!isset($FlyingFleets[$CurFleets['fleet_owner']][$Ship[0]]))
+                if (!isset($FlyingFleets[$CurFleets['fleet_owner']][$Ship[0]])) {
                     $FlyingFleets[$CurFleets['fleet_owner']][$Ship[0]] = $Ship[1];
-                else
+                } else {
                     $FlyingFleets[$CurFleets['fleet_owner']][$Ship[0]] += $Ship[1];
+                }
             }
         }
 
@@ -228,7 +234,9 @@ class statbuilder
         $TechPoints = 0;
 
         foreach ($reslist['tech'] as $Techno) {
-            if ($USER[$resource[$Techno]] == 0) continue;
+            if ($USER[$resource[$Techno]] == 0) {
+                continue;
+            }
 
             // PointsPerCot == Config::get()->stat_settings
             for ($i = 1; $i <= $USER[$resource[$Techno]]; $i++) {
@@ -249,7 +257,9 @@ class statbuilder
         $BuildPoints = 0;
 
         foreach ($reslist['build'] as $Build) {
-            if ($PLANET[$resource[$Build]] == 0) continue;
+            if ($PLANET[$resource[$Build]] == 0) {
+                continue;
+            }
 
             // PointsPerCot == Config::get()->stat_settings
             for ($i = 1; $i <= $PLANET[$resource[$Build]]; $i++) {
@@ -269,7 +279,9 @@ class statbuilder
         $DefensePoints = 0;
 
         foreach (array_merge($reslist['defense'], $reslist['missile']) as $Defense) {
-            if ($USER[$resource[$Defense]] == 0) continue;
+            if ($USER[$resource[$Defense]] == 0) {
+                continue;
+            }
 
             $Units = $pricelist[$Defense]['cost'][901] + $pricelist[$Defense]['cost'][902] + $pricelist[$Defense]['cost'][903];
             $DefensePoints += $Units * $USER[$resource[$Defense]];
@@ -288,7 +300,9 @@ class statbuilder
         $FleetPoints = 0;
 
         foreach ($reslist['fleet'] as $Fleet) {
-            if ($USER[$resource[$Fleet]] == 0) continue;
+            if ($USER[$resource[$Fleet]] == 0) {
+                continue;
+            }
 
             $Units = $pricelist[$Fleet]['cost'][901] + $pricelist[$Fleet]['cost'][902] + $pricelist[$Fleet]['cost'][903];
             $FleetPoints += $Units * $USER[$resource[$Fleet]];
@@ -479,24 +493,23 @@ class statbuilder
         }
     }
 
-    private function getHighestUser($type, $uni) 
+    private function getHighestUser($type, $uni)
     {
         $reslist =& Singleton()->reslist;
         $resource =& Singleton()->resource;
         $db = Database::get();
-        $result = array();
-        foreach($reslist['tech'] as $Techno) 
-		{
-			$techName = $resource[$Techno];
+        $result = [];
+        foreach ($reslist['tech'] as $Techno) {
+            $techName = $resource[$Techno];
 
             $sql = "SELECT id, " . $techName . " as level FROM %%USERS%% where " . $techName . " = (SELECT max(" . $techName . ") from %%USERS%% where universe = :universe) and universe = :universe;";
             $data = $db->select($sql, [
                 ':universe' => $uni
             ]);
 
-            if($data[0]['level'] > 0) {
-                $dataFinal = array();
-                foreach($data as $row) {
+            if ($data[0]['level'] > 0) {
+                $dataFinal = [];
+                foreach ($data as $row) {
                     array_push($row, $Techno);
                     array_push($dataFinal, $row);
                 }
@@ -506,21 +519,21 @@ class statbuilder
         return $result;
     }
 
-    private function getHighestPlanet($type, $uni) 
+    private function getHighestPlanet($type, $uni)
     {
         $reslist =& Singleton()->reslist;
         $resource =& Singleton()->resource;
         $db = Database::get();
-        $result = array();
-        foreach($reslist[$type] as $kind) {
+        $result = [];
+        foreach ($reslist[$type] as $kind) {
             $kindName = $resource[$kind];
             $sql = "SELECT DISTINCT(id_owner) as id, " . $kindName . " as level FROM %%PLANETS%% where " . $kindName . " = (select max(" . $kindName . ") from %%PLANETS%% where universe = :universe) and universe = :universe;";
-            $data = $db->select($sql,[
+            $data = $db->select($sql, [
                 ':universe' => $uni
             ]);
-            if($data[0]['level'] > 0) {
-                $dataFinal = array();
-                foreach($data as $row) {
+            if ($data[0]['level'] > 0) {
+                $dataFinal = [];
+                foreach ($data as $row) {
                     array_push($row, $kind);
                     array_push($dataFinal, $row);
                 }
@@ -530,23 +543,24 @@ class statbuilder
         return $result;
     }
 
-    private function insertQueries($records, $uni) {
+    private function insertQueries($records, $uni)
+    {
         $db = Database::get();
-        foreach($records as $record) {
-            foreach($record as $row) {
+        foreach ($records as $record) {
+            foreach ($record as $row) {
                 $sql = "INSERT INTO %%RECORDS%% (userID, elementID, level, universe) VALUES (:userID, :elementID, :level, :universe);";
                 $db->insert($sql, [
                     ':userID' => $row['id'],
                     ':elementID' => $row['0'],
                     ':level' => $row['level'],
                     ':universe' => $uni
-                ]);                
+                ]);
             }
         }
-
     }
 
-    public function buildRecords() {
+    public function buildRecords()
+    {
         $db = Database::get();
         $sql = "DELETE FROM %%RECORDS%%;";
         $db->delete($sql);
@@ -560,11 +574,11 @@ class statbuilder
             $this->insertQueries($tech, $uni);
             $this->insertQueries($buildings, $uni);
         }
-	}
+    }
 }
 
-/* 
-	Enable to debug 
+/*
+    Enable to debug
 */
 // define('MODE', 'INSTALL');
 // define('ROOT_PATH', 'G:/xampp/htdocs/pr0game/');

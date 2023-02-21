@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -20,12 +20,12 @@ class ShowTechtreePage extends AbstractGamePage
 {
     public static $requireModule = MODULE_TECHTREE;
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
     }
 
-    function show()
+    public function show()
     {
         $resource =& Singleton()->resource;
         $requeriments =& Singleton()->requeriments;
@@ -34,38 +34,31 @@ class ShowTechtreePage extends AbstractGamePage
         $PLANET =& Singleton()->PLANET;
         $LNG =& Singleton()->LNG;
         $elementIDs		= array_merge(
-            array(0),
+            [0],
             $reslist['build'],
-            array(100),
+            [100],
             $reslist['tech'],
-            array(200),
+            [200],
             $reslist['fleet'],
-            array(400),
+            [400],
             $reslist['defense'],
-            array(500),
+            [500],
             $reslist['missile'],
-            
         );
 
-        $techTreeList = array();
+        $techTreeList = [];
         $Messages		= $USER['messages'];
-        foreach($elementIDs as $elementId)
-        {
-            if(!isset($resource[$elementId]))
-            {
+        foreach ($elementIDs as $elementId) {
+            if (!isset($resource[$elementId])) {
                 $techTreeList[$elementId]	= $elementId;
-            }
-            else
-            {
-                $requirementsList	= array();
-                if(isset($requeriments[$elementId]))
-                {
-                    foreach($requeriments[$elementId] as $requireID => $RedCount)
-                    {
-                        $requirementsList[$requireID]	= array(
+            } else {
+                $requirementsList	= [];
+                if (isset($requeriments[$elementId])) {
+                    foreach ($requeriments[$elementId] as $requireID => $RedCount) {
+                        $requirementsList[$requireID]	= [
                             'count' => $RedCount,
                             'own'   => isset($PLANET[$resource[$requireID]]) ? $PLANET[$resource[$requireID]] : $USER[$resource[$requireID]]
-                        );
+                        ];
                     }
                 }
 
@@ -73,10 +66,10 @@ class ShowTechtreePage extends AbstractGamePage
             }
         }
 
-        $this->assign(array(
+        $this->assign([
             'TechTreeList'		=> $techTreeList,
-            'messages'			=> ($Messages > 0) ? (($Messages == 1) ? $LNG['ov_have_new_message'] : sprintf($LNG['ov_have_new_messages'], pretty_number($Messages))): false,
-        ));
+            'messages'			=> ($Messages > 0) ? (($Messages == 1) ? $LNG['ov_have_new_message'] : sprintf($LNG['ov_have_new_messages'], pretty_number($Messages))) : false,
+        ]);
 
         $this->display('page.techTree.default.tpl');
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -24,7 +24,7 @@
 
 $LNG['faq_overview']	= "FAQ";
 
-$LNG['questions']					= array();
+$LNG['questions']					= [];
 $LNG['questions'][1]['category']	= 'Yeni Baslayanlar Icin Ipuclari';
 $LNG['questions'][1][1]['title']	= '1. Adim';
 $LNG['questions'][1][1]['body']		= <<<BODY

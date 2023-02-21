@@ -97,15 +97,14 @@ class ShowFleetStep2Page extends AbstractGamePage
             ]);
             $bestmission=999;
             foreach ($MissionOutput['MissionSelector'] as $mission) {
-                    if (array_key_exists($mission, $missionprios)) {
-                        $score = $missionprios[$mission];
-                        if ($score < $bestmission) {
-                            $targetMission = $mission;
-                            $bestmission = $score;
-                        }
+                if (array_key_exists($mission, $missionprios)) {
+                    $score = $missionprios[$mission];
+                    if ($score < $bestmission) {
+                        $targetMission = $mission;
+                        $bestmission = $score;
                     }
                 }
-
+            }
         }
         $GameSpeedFactor = FleetFunctions::getGameSpeedFactor();
         $MaxFleetSpeed = FleetFunctions::getFleetMaxSpeed($fleetArray, $USER);
@@ -142,13 +141,12 @@ class ShowFleetStep2Page extends AbstractGamePage
         if ($targetMission == 0) {
             if (count($MissionOutput['MissionSelector']) == 1) {
                 $targetMission = $MissionOutput['MissionSelector'][0];
-            } else if (!empty($targetPlanetData) && $targetPlanetData['id_owner'] == $USER['id']) {
+            } elseif (!empty($targetPlanetData) && $targetPlanetData['id_owner'] == $USER['id']) {
                 $targetMission = MISSION_TRANSPORT;
-            }
-            else {
+            } else {
                 if (count($fleetArray) == 1 && isset($fleetArray[SHIP_PROBE])) {
                     $targetMission = MISSION_SPY;
-                } else if (!empty($targetPlanetData)) {
+                } elseif (!empty($targetPlanetData)) {
                     $sql = "SELECT a.id, a.ally_tag, a.ally_name, d.level, d.owner_2
                         FROM %%USERS%% u
                         JOIN %%ALLIANCE%% a ON a.id = u.ally_id
@@ -168,12 +166,10 @@ class ShowFleetStep2Page extends AbstractGamePage
 
                     if ($targetAllianceData || $buddy['anz']> 0) {
                         $targetMission = MISSION_TRANSPORT;
-                    }
-                    else {
+                    } else {
                         $targetMission = MISSION_ATTACK;
                     }
-                }
-                else {
+                } else {
                     $targetMission = MISSION_ATTACK;
                 }
             }
@@ -209,16 +205,14 @@ class ShowFleetStep2Page extends AbstractGamePage
                         '['.$targetAllianceData['ally_tag'].'] '.$targetAllianceData['ally_name'],
                         (($targetAllianceData['owner_2'] == $targetAllianceData['id'] && $targetAllianceData['level'] == 1) ? $LNG['al_diplo_level'][0] : $LNG['al_diplo_level'][$targetAllianceData['level']])
                     );
-                }
-                else {
+                } else {
                     $question = sprintf(
                         $LNG['fl_attack_confirm_diplo'],
                         (($targetAllianceData['owner_2'] == $targetAllianceData['id'] && $targetAllianceData['level'] == 1) ? $LNG['al_diplo_level'][0] : $LNG['al_diplo_level'][$targetAllianceData['level']]),
                         '['.$targetAllianceData['ally_tag'].'] '.$targetAllianceData['ally_name']
                     );
                 }
-            }
-            elseif ($buddy['anz']> 0) {
+            } elseif ($buddy['anz']> 0) {
                 $question = $LNG['fl_attack_confirm_buddy'];
             }
         }

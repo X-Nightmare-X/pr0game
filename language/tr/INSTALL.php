@@ -1,6 +1,6 @@
 <?php
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -115,6 +115,3 @@ $LNG['sql_welcome']				= 'pr0game\'a hosgeldiniz';
 $LNG['reg_pdo_active']			= 'PDO Aktif';
 $LNG['reg_pdo_desc']			= 'PHP Veri Nesneleri (PDO) eklentisi, PHP\'deki veritabanlarina erismek için hafif ve tutarli bir arayuz tanimlar. PDO arayuzu tanimi bulunan her veritabani surucuusu, veritabanina ozgu ozellikleri siradan eklenti islevleri olarak ifade edebilir.';
 $LNG['step8_need_fields']		= 'Zorunlu alanlari doldurmadiniz. Lutfen geri giderek butnu alanlari doldurunuz!';
-
-
-

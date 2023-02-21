@@ -48,7 +48,7 @@ class ShowSettingsPage extends AbstractGamePage
                 ':universe' => Universe::current(),
                 ':userID'   => $USER['id'],
             ]);
-            
+
             $this->assign([
                 'Selectors'         => [
                     'timezones' => get_timezone_selector(),
@@ -125,7 +125,7 @@ class ShowSettingsPage extends AbstractGamePage
             return false;
         }
 
-		$db->startTransaction();
+        $db->startTransaction();
         $sql = "SELECT * FROM %%PLANETS%% WHERE id_owner = :userID AND id != :planetID AND destruyed = 0 FOR UPDATE;";
         $query = $db->select($sql, [
             ':userID'   => $USER['id'],
@@ -143,7 +143,7 @@ class ShowSettingsPage extends AbstractGamePage
             unset($CPLANET);
         }
 
-		$db->commit();
+        $db->commit();
         return true;
     }
 
@@ -283,14 +283,14 @@ class ShowSettingsPage extends AbstractGamePage
         $colorNegative = HTTP::_GP('colorNegative', '#ff0000');
         $colorNeutral = HTTP::_GP('colorNeutral', '#ffd600');
 
-        $stb_small_ress     = HTTP::_GP('stb_small_ress', 500 );
-        $stb_med_ress       = HTTP::_GP('stb_med_ress', 3000 );
-        $stb_big_ress       = HTTP::_GP('stb_big_ress', 7000 );
-        $stb_small_time     = HTTP::_GP('stb_small_time', 1 );
-        $stb_med_time       = HTTP::_GP('stb_med_time', 2 );
-        $stb_big_time       = HTTP::_GP('stb_big_time', 3 );
-        $stb_enabled        = HTTP::_GP('stb_enabled', 0 );
-        
+        $stb_small_ress     = HTTP::_GP('stb_small_ress', 500);
+        $stb_med_ress       = HTTP::_GP('stb_med_ress', 3000);
+        $stb_big_ress       = HTTP::_GP('stb_big_ress', 7000);
+        $stb_small_time     = HTTP::_GP('stb_small_time', 1);
+        $stb_med_time       = HTTP::_GP('stb_med_time', 2);
+        $stb_big_time       = HTTP::_GP('stb_big_time', 3);
+        $stb_enabled        = HTTP::_GP('stb_enabled', 0);
+
         $prio1 = HTTP::_GP('type_mission_1', 1);
         $prio2 = HTTP::_GP('type_mission_2', 2);
         $prio3 = HTTP::_GP('type_mission_3', 0);
@@ -607,8 +607,7 @@ class ShowSettingsPage extends AbstractGamePage
                     'url'   => 'game.php?page=settings',
                 ]
             ]);
-        }
-        else {
+        } else {
             $this->printMessage($LNG['op_options_changed'], [
                 [
                     'label' => $LNG['sys_forward'],

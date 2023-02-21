@@ -20,25 +20,25 @@ class ShowPlayerCardPage extends AbstractGamePage
 {
     public static $requireModule = MODULE_PLAYERCARD;
 
-	protected $disableEcoSystem = true;
+    protected $disableEcoSystem = true;
 
-	function __construct()
-	{
-		parent::__construct();
-	}
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-	function show()
-	{
-		$USER =& Singleton()->USER;
+    public function show()
+    {
+        $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
         $pricelist =& Singleton()->pricelist;
         $reslist =& Singleton()->reslist;
         $this->setWindow('popup');
-		$this->initTemplate();
+        $this->initTemplate();
 
-		$db = Database::get();
+        $db = Database::get();
 
-		$PlayerID 	= HTTP::_GP('id', 0);
+        $PlayerID 	= HTTP::_GP('id', 0);
 
         $advanced_stats = [];
         foreach ($reslist['fleet'] as $element) {
@@ -50,39 +50,39 @@ class ShowPlayerCardPage extends AbstractGamePage
             $advanced_stats[] = 'ad.lost_' . $element;
         }
 
-		$sql = "SELECT
+        $sql = "SELECT
 				u.username, u.galaxy, u.system, u.planet, u.wons, u.loos, u.draws, u.kbmetal, u.kbcrystal, u.lostunits, u.desunits, u.ally_id,
 				p.name,
 				s.tech_rank, s.tech_points, s.build_rank, s.build_points, s.defs_rank, s.defs_points, s.fleet_rank, s.fleet_points, s.total_rank, s.total_points,
                 a.ally_name, (s.tech_points / s.total_points * 100) as tech_percent, (s.build_points / s.total_points * 100) as build_percent,
 				(s.defs_points / s.total_points * 100) as defs_percent, (s.fleet_points / s.total_points * 100) as fleet_percent, "
                 . implode(', ', $advanced_stats) .
-				" FROM %%USERS%% u
+                " FROM %%USERS%% u
 				INNER JOIN %%PLANETS%% p ON p.id = u.id_planet
 				LEFT JOIN %%STATPOINTS%% s ON s.id_owner = u.id AND s.stat_type = 1
 				LEFT JOIN %%ALLIANCE%% a ON a.id = u.ally_id
                 LEFT JOIN %%ADVANCED_STATS%% ad ON ad.userId = u.id
 				WHERE u.id = :playerID AND u.universe = :universe;";
-		$query = $db->selectSingle($sql, array(
-			':universe'	=> Universe::current(),
-			':playerID'	=> $PlayerID
-		));
+        $query = $db->selectSingle($sql, [
+            ':universe'	=> Universe::current(),
+            ':playerID'	=> $PlayerID
+        ]);
 
-        if(!$query) {
+        if (!$query) {
             throw new Exception('the requested player does not exist');
         }
 
-		$totalfights = $query['wons'] + $query['loos'] + $query['draws'];
+        $totalfights = $query['wons'] + $query['loos'] + $query['draws'];
 
-		if ($totalfights == 0) {
-			$siegprozent                = 0;
-			$loosprozent                = 0;
-			$drawsprozent               = 0;
-		} else {
-			$siegprozent                = 100 / $totalfights * $query['wons'];
-			$loosprozent                = 100 / $totalfights * $query['loos'];
-			$drawsprozent               = 100 / $totalfights * $query['draws'];
-		}
+        if ($totalfights == 0) {
+            $siegprozent                = 0;
+            $loosprozent                = 0;
+            $drawsprozent               = 0;
+        } else {
+            $siegprozent                = 100 / $totalfights * $query['wons'];
+            $loosprozent                = 100 / $totalfights * $query['loos'];
+            $drawsprozent               = 100 / $totalfights * $query['draws'];
+        }
 
         $config = Config::get();
         $fleetIntoDebris = $config->Fleet_Cdr;
@@ -119,49 +119,49 @@ class ShowPlayerCardPage extends AbstractGamePage
             $debris_real_crystal += ($pricelist[$element]['cost'][RESOURCE_CRYSTAL] * $amount * ($defIntoDebris / 100));
         }
 
-		$this->assign(array(
-			'id'			=> $PlayerID,
-			'yourid'		=> $USER['id'],
-			'name'			=> $query['username'],
-			'homeplanet'	=> $query['name'],
-			'galaxy'		=> $query['galaxy'],
-			'system'		=> $query['system'],
-			'planet'		=> $query['planet'],
-			'allyid'		=> $query['ally_id'],
-			'tech_rank'     => pretty_number($query['tech_rank']),
-			'tech_points'   => pretty_number($query['tech_points']),
-			'build_rank'    => pretty_number($query['build_rank']),
-			'build_points'  => pretty_number($query['build_points']),
-			'defs_rank'     => pretty_number($query['defs_rank']),
-			'defs_points'   => pretty_number($query['defs_points']),
-			'fleet_rank'    => pretty_number($query['fleet_rank']),
-			'fleet_points'  => pretty_number($query['fleet_points']),
-			'total_rank'    => pretty_number($query['total_rank']),
-			'total_points'  => pretty_number($query['total_points']),
-			'allyname'		=> $query['ally_name'],
-			'playerdestory' => sprintf($LNG['pl_destroy'], $query['username']),
-			'realdestory'   => sprintf($LNG['pl_destroy_real'], $query['username']),
-			'wons'          => pretty_number($query['wons']),
-			'loos'          => pretty_number($query['loos']),
-			'draws'         => pretty_number($query['draws']),
-			'kbmetal'       => pretty_number($query['kbmetal']),
-			'kbcrystal'     => pretty_number($query['kbcrystal']),
-			'lostunits'     => pretty_number($query['lostunits']),
-			'desunits'      => pretty_number($query['desunits']),
-			'realdesunits'  => pretty_number($units_real_destroyed),
-			'reallostunits' => pretty_number($units_real_lost),
-			'realmetal'     => pretty_number($debris_real_metal),
-			'realcrystal'   => pretty_number($debris_real_crystal),
-			'totalfights'   => pretty_number($totalfights),
-			'siegprozent'   => round($siegprozent, 2),
-			'loosprozent'   => round($loosprozent, 2),
-			'drawsprozent'  => round($drawsprozent, 2),
-			'tech_percent'  => $query['tech_percent'] == 0 ? '0,00' : round($query['tech_percent'], 2),
-			'build_percent' => $query['build_percent'] == 0 ? '0,00' : round($query['build_percent'], 2),
-			'defs_percent'  => $query['defs_percent'] == 0 ? '0,00' : round($query['defs_percent'], 2),
-			'fleet_percent' => $query['fleet_percent'] == 0 ? '0,00' : round($query['fleet_percent'], 2),
-		));
+        $this->assign([
+            'id'			=> $PlayerID,
+            'yourid'		=> $USER['id'],
+            'name'			=> $query['username'],
+            'homeplanet'	=> $query['name'],
+            'galaxy'		=> $query['galaxy'],
+            'system'		=> $query['system'],
+            'planet'		=> $query['planet'],
+            'allyid'		=> $query['ally_id'],
+            'tech_rank'     => pretty_number($query['tech_rank']),
+            'tech_points'   => pretty_number($query['tech_points']),
+            'build_rank'    => pretty_number($query['build_rank']),
+            'build_points'  => pretty_number($query['build_points']),
+            'defs_rank'     => pretty_number($query['defs_rank']),
+            'defs_points'   => pretty_number($query['defs_points']),
+            'fleet_rank'    => pretty_number($query['fleet_rank']),
+            'fleet_points'  => pretty_number($query['fleet_points']),
+            'total_rank'    => pretty_number($query['total_rank']),
+            'total_points'  => pretty_number($query['total_points']),
+            'allyname'		=> $query['ally_name'],
+            'playerdestory' => sprintf($LNG['pl_destroy'], $query['username']),
+            'realdestory'   => sprintf($LNG['pl_destroy_real'], $query['username']),
+            'wons'          => pretty_number($query['wons']),
+            'loos'          => pretty_number($query['loos']),
+            'draws'         => pretty_number($query['draws']),
+            'kbmetal'       => pretty_number($query['kbmetal']),
+            'kbcrystal'     => pretty_number($query['kbcrystal']),
+            'lostunits'     => pretty_number($query['lostunits']),
+            'desunits'      => pretty_number($query['desunits']),
+            'realdesunits'  => pretty_number($units_real_destroyed),
+            'reallostunits' => pretty_number($units_real_lost),
+            'realmetal'     => pretty_number($debris_real_metal),
+            'realcrystal'   => pretty_number($debris_real_crystal),
+            'totalfights'   => pretty_number($totalfights),
+            'siegprozent'   => round($siegprozent, 2),
+            'loosprozent'   => round($loosprozent, 2),
+            'drawsprozent'  => round($drawsprozent, 2),
+            'tech_percent'  => $query['tech_percent'] == 0 ? '0,00' : round($query['tech_percent'], 2),
+            'build_percent' => $query['build_percent'] == 0 ? '0,00' : round($query['build_percent'], 2),
+            'defs_percent'  => $query['defs_percent'] == 0 ? '0,00' : round($query['defs_percent'], 2),
+            'fleet_percent' => $query['fleet_percent'] == 0 ? '0,00' : round($query['fleet_percent'], 2),
+        ]);
 
-		$this->display('page.playerCard.default.tpl');
-	}
+        $this->display('page.playerCard.default.tpl');
+    }
 }

@@ -81,7 +81,7 @@ class ShowOverviewPage extends AbstractGamePage
         if ($PLANET['id_luna'] != 0) {
             $sql = "SELECT id, name, image, planet_type, b_building_id, b_building FROM %%PLANETS%% WHERE id = :lunaID;";
             $Moon = $db->selectSingle($sql, [':lunaID'   => $PLANET['id_luna']]);
-        } else if ($PLANET['planet_type'] == 3) {
+        } elseif ($PLANET['planet_type'] == 3) {
             $sql = "SELECT id, name, image, planet_type, b_building_id, b_building FROM %%PLANETS%% WHERE id_luna = :id;";
             $Moon = $db->selectSingle($sql, [':id'   => $PLANET['id']]);
         }
@@ -128,7 +128,7 @@ class ShowOverviewPage extends AbstractGamePage
         } else {
             $buildInfo['fleet'] = false;
         }
-        
+
         if (!empty($USER['b_tech_id']) && !empty($USER['b_tech_queue'])) {
             $timeleft = $USER['urlaubs_modus'] ? ($USER['b_tech'] - $USER['urlaubs_start']) : ($USER['b_tech'] - TIMESTAMP);
             $Queue = unserialize($USER['b_tech_queue']);
@@ -315,7 +315,7 @@ class ShowOverviewPage extends AbstractGamePage
             } elseif ($USER['id_planet'] == $PLANET['id']) {
                 $this->sendJSON(['message' => $LNG['ov_principal_planet_cant_abanone']]);
             // } elseif (PlayerUtil::cryptPassword($password) != $USER['password']) {
-                // $this->sendJSON(['message' => $LNG['ov_wrong_pass']]);
+            // $this->sendJSON(['message' => $LNG['ov_wrong_pass']]);
             } elseif ($password != $PLANET['name']) {
                 $this->sendJSON(['message' => $LNG['ov_wrong_name']]);
             } else {

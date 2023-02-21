@@ -26,4 +26,3 @@ $discord['webhook_logs'] = '';
 $salt = '%s'; // 22 digits from the alphabet "./0-9A-Za-z"
 
 //### Do not change beyond here ###//
-?>

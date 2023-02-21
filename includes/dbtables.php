@@ -16,11 +16,11 @@
  */
 
 define('DB_VERSION_REQUIRED', 42);
-define('DB_NAME'			, $database['databasename']);
-define('DB_PREFIX'			, $database['tableprefix']);
+define('DB_NAME', $database['databasename']);
+define('DB_PREFIX', $database['tableprefix']);
 
 // Data Tabells
-$dbTableNames   = array(
+$dbTableNames   = [
     'ADVANCED_STATS'    => DB_PREFIX . 'advanced_stats',
     'AKS'               => DB_PREFIX . 'aks',
     'ALLIANCE'          => DB_PREFIX . 'alliance',
@@ -64,5 +64,5 @@ $dbTableNames   = array(
     'VARS'              => DB_PREFIX . 'vars',
     'VARS_RAPIDFIRE'    => DB_PREFIX . 'vars_rapidfire',
     'VARS_REQUIRE'      => DB_PREFIX . 'vars_requriements',
-);
+];
 // MOD-TABLES

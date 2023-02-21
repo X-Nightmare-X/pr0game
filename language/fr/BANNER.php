@@ -1,4 +1,5 @@
 <?php
+
 // Traduction Française by BigTwoProduction (KickXAss4Ever & Apocalypto2202) - All rights reserved (C) 2016
 // Web : http://www.big-two.tk
 // Version 1.0 - Initial release
@@ -13,4 +14,3 @@ $LNG['ub_defenses']							= 'Défense';
 $LNG['ub_fights']		= 'Batailles';
 $LNG['ub_quote']		= 'Citer';
 $LNG['ub_rank']			= 'Position';
-?>

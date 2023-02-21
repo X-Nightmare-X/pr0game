@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -18,41 +18,38 @@
 
 class ShowScreensPage extends AbstractLoginPage
 {
-	public static $requireModule = 0;
+    public static $requireModule = 0;
 
-	function __construct() 
-	{
-		parent::__construct();
-	}
-	
-	function show() 
-	{
-		$screenshots	= array();
-		$directoryIterator = new DirectoryIterator('styles/resource/images/login/screens/');
-        foreach ($directoryIterator as $fileInfo)
-		{
-			/** @var $fileInfo DirectoryIterator */
-			if (!$fileInfo->isFile())
-			{
-				continue;
-            }			
-			
-			$thumbnail = 'styles/resource/images/login/screens/'.$fileInfo->getFilename();
-			if(file_exists('styles/resource/images/login/screens/thumbnails/'.$fileInfo->getFilename()))
-			{
-				$thumbnail = 'styles/resource/images/login/screens/thumbnails/'.$fileInfo->getFilename();
-			}
-			
-			$screenshots[]	= array(
-				'path' 		=> 'styles/resource/images/login/screens/'.$fileInfo->getFilename(),
-				'thumbnail' => $thumbnail,
-			);
-		}
-		
-		$this->assign(array(
-			'screenshots' => $screenshots
-		));
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-		$this->display('page.screens.default.tpl');
-	}
+    public function show()
+    {
+        $screenshots	= [];
+        $directoryIterator = new DirectoryIterator('styles/resource/images/login/screens/');
+        foreach ($directoryIterator as $fileInfo) {
+            /** @var $fileInfo DirectoryIterator */
+            if (!$fileInfo->isFile()) {
+                continue;
+            }
+
+            $thumbnail = 'styles/resource/images/login/screens/'.$fileInfo->getFilename();
+            if (file_exists('styles/resource/images/login/screens/thumbnails/'.$fileInfo->getFilename())) {
+                $thumbnail = 'styles/resource/images/login/screens/thumbnails/'.$fileInfo->getFilename();
+            }
+
+            $screenshots[]	= [
+                'path' 		=> 'styles/resource/images/login/screens/'.$fileInfo->getFilename(),
+                'thumbnail' => $thumbnail,
+            ];
+        }
+
+        $this->assign([
+            'screenshots' => $screenshots
+        ]);
+
+        $this->display('page.screens.default.tpl');
+    }
 }

@@ -17,7 +17,7 @@
 
 //SHORT NAMES FOR COMBAT REPORTS
 
-$LNG['shortNames'] = array (
+$LNG['shortNames'] = [
     202 => 'Gl. Dransporter',
     203 => 'Gr. Dransporter',
     204 => 'L. Jäscher',
@@ -48,9 +48,9 @@ $LNG['shortNames'] = array (
     409 => 'Gig. Schildguppel',
     410 => 'Gravitonenganone',
     411 => 'Orb. VerPla',
-);
+];
 
-$LNG['bonus'] = array(
+$LNG['bonus'] = [
     'Attack'            => 'Angriff',
     'Defensive'         => 'Werteidigung',
     'Shield'            => 'Schild',
@@ -69,9 +69,9 @@ $LNG['bonus'] = array(
     'Expedition'            => 'Exbeditionen',
     'GateCoolTime'          => 'Schbrungdoraufladungszeit',
     'MoreFound'         => 'Exbeditionsfund',
-);
+];
 
-$LNG['tech'] = array(
+$LNG['tech'] = [
       0 => 'Gebäudne',
       1 => 'Medallmine',
       2 => 'Gristallmine',
@@ -157,9 +157,9 @@ $LNG['tech'] = array(
     902 => 'Gristall',
     903 => 'Deuderium',
     911 => 'Enegie',
-);
+];
 
-$LNG['shortDescription'] = array(
+$LNG['shortDescription'] = [
       1 => 'Haubtrohstofflieferantne für den Bau dragender Schdrukturne vonääh Bauwergne und Schiffen alda.',
       2 => 'Haubtrohstofflieferantne für elegtronische Baudeile und Legierungen und alles.',
       3 => 'Endziehne dem Wasser eines Blanetne den geringne Deuderiumandeil - tadsächlich sogar.',
@@ -278,9 +278,9 @@ $LNG['shortDescription'] = array(
     903 => 'Deuderium isd schwerer Wasserschdoff. Für die Gewinnung von Deuderium großne Mengne Enegie benödigd alda.'
         . ' Deuderium wird under anderem als Dreibstoff für Raumschiffe benödigd. ',
     911 => 'Enegie wird für des gewinnnene jeglicher Rohschdoffe benödigd.',
-);
+];
 
-$LNG['longDescription'] = array(
+$LNG['longDescription'] = [
       1 => 'Haubtrohstofflieferantne für den Bau dragender Schdrukturne von Bauwergne und Schiffne. Pass auf, Medall is der '
           . ' billigschde Rohschdoff, dafür wird er mehr benödigd als die anderne. Pass auf, Medall brauchd zur Herschdellung amääh '
           . ' wenigschdne Enegie. Etzala Je größer die Minene ausgebaud sind, deschdo diefer sind sie. Bei den meischdne Blanetne '
@@ -355,7 +355,7 @@ $LNG['longDescription'] = array(
          . ' zehn Abfangragetne einlagern. Eine Interplanetarragete benödigd ßo wiel Blatz wie zwei Abfangragetne alde. '
          . ' Underschiedliche Ragetentypne gönnene beliebig gombiniert werdne.',
 
-    106 => 'Die Schbionagetechnik befasschd sich in erschder Linie mid der Erforschung neuer und effizienderer Sensoren alda.'  
+    106 => 'Die Schbionagetechnik befasschd sich in erschder Linie mid der Erforschung neuer und effizienderer Sensoren alda.'
            . ' Je höher diese Dechnik entwiggelt isd, um ßo mehr Informadionene schdehne dem Nudzer über Worgänge in seiner'
            . ' Umgebung zur Werfügung. Für Sondne isd die Differenz des eigenene und des gegnerischne Schbionagelevels'
            . ' endscheidend. Je weider die eigene Schbionagetechnik erforschd is, deschdo mehr Informadionene endhäld der'
@@ -388,11 +388,11 @@ $LNG['longDescription'] = array(
     111 => 'Schbezielle Legierungne machne die Banzerung der Raumschiffe immer besser. Pass auf, Ischd amal ne sehr'
         . ' widerschdandsfähige Legierung gefundne, wird durch sbezielle Schdrahlungne die molegulare Schdruktur des'
         . ' Raumschiffes veränderd und uff den Schdand der beschdne erforschdne Legierung gebrachd. Die Wirgsamgeit der'
-        . ' Banzerung kann ßo bro Schdufe um 10% des Grundwerdes geschdeigert werden hätt ich gsachd.', 
+        . ' Banzerung kann ßo bro Schdufe um 10% des Grundwerdes geschdeigert werden hätt ich gsachd.',
     113 => 'Die Enegietechnig beschäfdigd sich mid der Weiterentwigglung der Enegieleitsyschdeme und Enegiesbeicher'
         . ' welche für wiele neue Dechnologien benödigd wird Etzala.',
     114 => 'Durch die Einbindung der 4 hätt ich gsachd. und 5. Dimension is es nun möglich nene neuardigne Andrieb zu erforschen'
-        . ' welcher sbarsamer und leischdungsfähiger ischd hätt ich gsachd.', 
+        . ' welcher sbarsamer und leischdungsfähiger ischd hätt ich gsachd.',
     115 => 'Werbrennungstriebwerke basierne uff dem uraldne Brinzip des Rüggstoßes alda. Hocherhidzde Maderie wird'
         . ' weggeschleuderd und dreibd das Schiff in die endgegengesedzde Richdung tadsächlich sogar. Der Wirgungsgrad dieser Driebwerke'
         . ' isd eher gering, aber sie sind billich und zuwerlässig und benödigne gaum Wardung tadsächlich sogar. Außerdem werbrauchne sie'
@@ -404,7 +404,7 @@ $LNG['longDescription'] = array(
         . ' der zur Enegiegewinnung verwendedne Gernfusion entschdeht. Pass auf, Zusädzlich kann weidere Masse eingesbritzt'
         . ' werdne. Pass auf, Die Weiterentwigglung dieser Driebwerke machd folgende Schiffe um 20% des Grundwerdes bro Schdufe'
         . ' schneller: Bombah, Greuzer, Schwere Jäger und Golonieschiffe alda. Interplanetarragetne gönnene bro Schdufe weider'
-        . ' fliegen.', 
+        . ' fliegen.',
     118 => 'Durch ne Raumzeitvergrümmung wird in unmiddelbarer Umgebung eines Schiffes der Raum gomprimiert, womid'
         . ' sich weide Schdreckne sehr schnell zurügglegne lassne. Etzala Je höher der Hüberraumantrieb entwiggelt isd, deschdo'
         . ' höher wird die Gompression des Raumes, wodurch sich bro Schdufe die Geschwindiggeit der Schiffe die damid'
@@ -414,7 +414,7 @@ $LNG['longDescription'] = array(
         . ' Schdrahl von gohärentem Lichd alde. Diese Geräde findne in allne möglichne Bereichne ihre Bewerbung, von obtischen'
         . ' Combutern bis hin zu schwerne Laserwaffne, die mühelos durch Raumschiffbanzerungne schneidne des bascht scho. Die'
         . ' Lasertechnig bilded nene wichdigne Grundschdein für die Erforschung weiderer Waffendechnologien'
-        . ' Woraussetzungne: Forschungslabor Schdufe( 1) Enegietechnig Schdufe( 2).', 
+        . ' Woraussetzungne: Forschungslabor Schdufe( 1) Enegietechnig Schdufe( 2).',
     121 => 'Wahrhafd dödlicher Richtschdrahl aus beschleunigdne Ionene tadsächlich sogar. Die beschleunigdne Ionene richdne beim Aufdreffen'
         . ' uff a Objegt nene riesigne Schadne an.',
     122 => 'Eine Weiterentwigglung der Ionentechnig, die ned Ionene beschleunigd, sondern hochenergedisches Blasma'
@@ -430,7 +430,7 @@ $LNG['longDescription'] = array(
         . ' kann ßo ein weiderer Blanet nudzbar nausgrendert werdne und alles. ',
     131 => 'Erhöhd die Broduktion der Medallmine um 2%.',
     132 => 'Erhöhd die Broduktion der Gristallmine um 2%.',
-    133 => 'Erhöhd die Broduktion der Deuderiumsyndhedisierer um 2%.', 
+    133 => 'Erhöhd die Broduktion der Deuderiumsyndhedisierer um 2%.',
     199 => 'Ein Gravidon is a Bartikel, des geine Masse und geine Ladung besidzd, welche die Gravitationsgraft'
         . ' beschdimmt hätt ich gsach. Etzala Durch Abschuss einer gonzentriertne Ladung vonääh Gravidonene kann a günstliches Gravidadionsfeld'
         . ' errichded werdne alda, welches ähnlich einem schwarzne Loch, Masse in sich hineinziehd, wodurch Schiffe oder'
@@ -447,7 +447,7 @@ $LNG['longDescription'] = array(
         . ' Überfällne feindlicher Blanetne, um möglichschd wiele Ressourcne zu erobern, der große Dransporter verfügd'
         . ' über ne Ladegapazität von 25000. Pass auf, Ressourceneinheiden',
     204 => 'Der leichde Jäger is a wendiges Schiff, das uff faschd jedem Blanetne worgefundne wird des bascht scho. Die Gostne sind'
-        . ' ned höchste Wesne hoch, Schildstärge und Ladegapazität sind allerdings sehr gering.', 
+        . ' ned höchste Wesne hoch, Schildstärge und Ladegapazität sind allerdings sehr gering.',
     205 => 'Bei der Weiterentwigglung des leichdne Jägers gamne die Forscher zu einem Bunkt, bei welchem der'
         . ' gonventionelle Andrieb ned mehr ausreichend Leischdungne erbrachde. Um das neue Schiff obtimal fordbewegen'
         . ' zu gönnene wurde zum erschdne Mal der Imbulsantrieb genudzd. Dieses erhöhde zwar die Gostne, eröffnede aber'
@@ -456,7 +456,7 @@ $LNG['longDescription'] = array(
         . ' Dies führde zu einer verbesserdne strugturellne Indegridäd und einer höherne Feuergraft, was ihn im Gampf'
         . ' zu einer immens größerne Bedrohung machd als sein leichdes Bendant hätt ich gsachd. Durch diese Änderungne schdellt der'
         . ' schwere Jäger ne neue Ära der Schiffschdechnologie dar, welche die Grundlage für die Greuzertechnologie'
-        . ' ischd.', 
+        . ' ischd.',
     206 => 'Mid der Entwigglung der schwerne Laser und der Ionenganonene gamne die Jäger immer mehr in Bedrängnis des bascht scho. Drotz'
         . ' wieler Modifigationene gonnte die Waffenstärge und die Banzerung ned ßo weid geschdeigert werdne, um diesen'
         . ' Werteidigungsgeschützne wirgsam begegnene zu gönnene. Pass auf, Deshalb endschied man sich, ne neue Schiffsglasse zu'
@@ -471,7 +471,7 @@ $LNG['longDescription'] = array(
         . ' unerlässlich isd. Das Schiff wird uff der neune Golonie als Rohschdofflieferant genudzd, in dem es wieder'
         . ' auseinander gebaud wird und alles wiederverwerdbare Maderial für die Erschliessung der neune Weld genudzd'
         . ' wird. Etzala Die Anzahl der golonisierbarne Blanetne je Imberium isd diregt abhängig von der Asdrofüsig-Forschung'
-        . ' Die Erschde, sowie jede weidere zweide Schdufe ermöglichne ne weidere Besiedelung und alles.', 
+        . ' Die Erschde, sowie jede weidere zweide Schdufe ermöglichne ne weidere Besiedelung und alles.',
     209 => 'Die Weldraumgefechde nahmne immer größere Ausmaße an. Dausende Schiffe wurdne zermeddld, aber die dadurch'
         . ' entschdehendne Drümmerfelder schienene für immer werlorne und alles. Normale Dransporter gonntne sich ned nahe genug'
         . ' an diese Felder heran bewegne, ohne durch gleinere Drümmer riesigne Schadne zu nehmne hätt ich gsachd. Mid einer neuen'
@@ -507,14 +507,14 @@ $LNG['longDescription'] = array(
     215 => 'Dieses filigrane Schiff eigned sich herworragend zum erschdörne feindlicher Floddenverbände. Mid seinen'
         . ' hochentwiggeltne Lasergeschüdzne isd es in der Lage, ne große Zahl angreifender Schiffe gleichzeidig zu'
         . ' begämpfne. Durch seine schlange Bauform und die stargne Bewaffnung isd die Ladegapazität begrenzd alda. Dies'
-        . ' wird jedoch durch den werbrauchsarmne Hüberraumantrieb widda ausgeglichen', 
+        . ' wird jedoch durch den werbrauchsarmne Hüberraumantrieb widda ausgeglichen',
     216 => 'Dieses monschdröse Schiff is ne Weiterentwigglung des Dodessternes, die an Geschwindiggeit zugenommne had'
         . ' doch an Schdärke werloren tadsächlich sogar. 	',
     217 => 'Dieser Dransporter isd zwar langsamer aber dafür kann er jetzad mehr aufladne tadsächlich sogar. Doch wne man die richdige'
         . ' Forschung had is er faschd ßo schnell wie der große Dransporter',
     218 => 'Dieses Schiff is ne Werbesserung mehrerer Schiffe gleichzeidig und der Gaiser der Gampfsterne. ',
     219 => 'Dieses Schiff is ne wahrhafd gigandische Recycelanlage im Weldraum mid Ademberaubender Geschwindiggeit'
-        . ' und riesigem Lagerraum hätt ich gsachd! Geschaffne für große Imberien alda.', 
+        . ' und riesigem Lagerraum hätt ich gsachd! Geschaffne für große Imberien alda.',
 
     401 => 'Der Ragetenwerfer is ne einfache aber gostengünstige Werteidigungsmöglichkeit und alles. Da er nur eine'
         . ' Weiterentwigglung gewöhnlicher ballischdischer Feuerwaffne is, benödigd er geine weidere Forschung tadsächlich sogar. Seine'
@@ -563,7 +563,7 @@ $LNG['longDescription'] = array(
         . ' eingesedzd, jedoch uff geinem anderne Schiffstyb, da der Enegiewerbrauch der Ionengeschüdze enorm is und'
         . ' es in einem Gefechd häufig darauf angommt, des Ziel zu zermeddln und ned nur zu baralysieren'
         . ' Werteidigungsanlagne deagtivierne sich, sobald sie zu starg beschädigd sind des bascht scho. Nach einer Schlachd bedrägd'
-        . ' die Chance bis zu 70% das sich ausgefallene Werteidigungsanlagne scho widder Inschdand sedzne lassen hätt ich gsachd.', 
+        . ' die Chance bis zu 70% das sich ausgefallene Werteidigungsanlagne scho widder Inschdand sedzne lassen hätt ich gsachd.',
     406 => 'Die Lasertechnig war middlerweile nahezu perfegtioniert, die Ionentechnig hadde a Endschdadium erreichd und'
         . ' es gald middlerweile als pragtisch unmöglich, auch aus nur einem Waffensyschdem qualidadiv gesehne noch mehr'
         . ' Effegtivität herauszubegommne. Doch all dies sollde sich ändern, als man uff die Idee gam, beide Syschdeme'
@@ -613,4 +613,4 @@ $LNG['longDescription'] = array(
     911 => 'Enegie wird für des gewinnnene jeglicher Rohschdoffe benödigd des bascht scho. Man sagd, man gönne mid unmengne an Enegie'
         . ' die Gravidadion beeinflussne und dadurch zerschdörerische Waffne baune. Allerdings is dies bis heude noch'
         . ' gaum jemandne gelungne .',
-);
+];

@@ -28,7 +28,9 @@ function ShowAccountEditorPage()
     $resource =& Singleton()->resource;
     $USER =& Singleton()->USER;
     $template = new template();
-    if(!isset($_GET['edit'])) { $_GET['edit'] = ''; }
+    if (!isset($_GET['edit'])) {
+        $_GET['edit'] = '';
+    }
     switch ($_GET['edit']) {
         case 'resources':
             $id = HTTP::_GP('id', 0);
@@ -240,7 +242,7 @@ function ShowAccountEditorPage()
 
             $template->show('AccountEditorPageDefenses.tpl');
             break;
-        break;
+            break;
 
         case 'buildings':
             if ($_POST) {

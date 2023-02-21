@@ -1,4 +1,5 @@
 <?php
+
 // Traduction Française by BigTwoProduction (KickXAss4Ever & Apocalypto2202) - All rights reserved (C) 2016
 // Web : http://www.big-two.tk
 // Version 1.0 - Initial release
@@ -14,7 +15,7 @@ $LNG['siteTitleBattleHall']			= 'Hall of Fame';
 $LNG['siteTitleRules']				= 'Règles';
 $LNG['siteTitleNews']				= 'News';
 $LNG['siteTitleDisclamer']			= 'Contacter un administrateur';
-$LNG['siteTitleLostPassword']		= 'Mot de passe perdu ?';	 
+$LNG['siteTitleLostPassword']		= 'Mot de passe perdu ?';
 /* ------------------------------------------------------------------------------------------ */
 // Menu
 $LNG['forum']						= 'Forum';
@@ -143,4 +144,3 @@ $LNG['disclamerLabelMail']			= 'Email support:';
 $LNG['disclamerLabelNotice']		= 'Plus d\'informations';
 
 $LNG['disclamerRecaptcha']          = 'Ce site utilise reCAPTCHA et les <a href="https://policies.google.com/privacy">Conditions de confidentialité</a> et <a href="https://policies.google.com/terms">Conditions d\'utilisation</a> de Google s\'appliquent.';
-?>

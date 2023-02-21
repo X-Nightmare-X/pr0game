@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -18,17 +18,17 @@
 
 class ShowLogoutPage extends AbstractGamePage
 {
-	public static $requireModule = 0;
+    public static $requireModule = 0;
 
-	function __construct() 
-	{
-		parent::__construct();
-		$this->setWindow('popup');
-	}
-	
-	function show() 
-	{
-		Session::load()->delete();
-		$this->display('page.logout.default.tpl');
-	}
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setWindow('popup');
+    }
+
+    public function show()
+    {
+        Session::load()->delete();
+        $this->display('page.logout.default.tpl');
+    }
 }

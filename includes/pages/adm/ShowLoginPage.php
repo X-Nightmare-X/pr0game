@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -15,36 +15,31 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-if ($USER['authlevel'] == AUTH_USR)
-{
-	throw new PagePermissionException("Permission error!");
+if ($USER['authlevel'] == AUTH_USR) {
+    throw new PagePermissionException("Permission error!");
 }
 
 function ShowLoginPage()
 {
-	$USER =& Singleton()->USER;
-	$session	= Session::create();
-	if($session->adminAccess == 1)
-	{
-		HTTP::redirectTo('admin.php');
-	}
+    $USER =& Singleton()->USER;
+    $session	= Session::create();
+    if ($session->adminAccess == 1) {
+        HTTP::redirectTo('admin.php');
+    }
 
-	if(isset($_REQUEST['admin_pw']))
-	{
+    if (isset($_REQUEST['admin_pw'])) {
+        if (password_verify($_REQUEST['admin_pw'], $USER['password'])) {
+            $session->adminAccess	= 1;
+            HTTP::redirectTo('admin.php');
+        }
+    }
 
-		if(password_verify($_REQUEST['admin_pw'], $USER['password'])) {
-			$session->adminAccess	= 1;
-			HTTP::redirectTo('admin.php');
-		}
+    $template	= new template();
 
-	}
-
-	$template	= new template();
-
-	$template->assign_vars(array(
-		'bodyclass'		=> 'standalone',
-		'username'		=> $USER['username'],
-		'signalColors'  => $USER['signalColors']
-	));
-	$template->show('LoginPage.tpl');
+    $template->assign_vars([
+        'bodyclass'		=> 'standalone',
+        'username'		=> $USER['username'],
+        'signalColors'  => $USER['signalColors']
+    ]);
+    $template->show('LoginPage.tpl');
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -22,7 +22,7 @@
 $LNG['Version']     = 'Version';
 $LNG['Description'] = 'Aciklama';
 
-$LNG['changelog']   = array(
+$LNG['changelog']   = [
 'v1.7.3' => 'Jan 19.05.2013
 - 0000461: [User errors] Inexplicable errors (Jan) - resolved.
 - 0000459: [Admin Panal] Undefined variable: CONFIG (Jan) - resolved.
@@ -999,4 +999,4 @@ TMOONS-346 - The doubling of the fleet',
 
 Based on XG Proyect 2.8 on 11.10.09
 ',
-);
+];

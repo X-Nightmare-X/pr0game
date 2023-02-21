@@ -17,14 +17,14 @@ require_once 'includes/classes/cronjob/CronjobTask.interface.php';
 
 class StatisticCronjob implements CronjobTask
 {
-    function run()
+    public function run()
     {
         try {
             require_once('includes/classes/class.statbuilder.php');
             require_once('includes/models/StatPoints.php');
             $stat = new Statbuilder();
             $stat->generateStats();
-		    $stat -> buildRecords();
+            $stat -> buildRecords();
         } catch (Exception $exception) {
             echo $exception->getMessage();
         }

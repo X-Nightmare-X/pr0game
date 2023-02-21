@@ -244,8 +244,7 @@ function ShowConfigUniPage()
                 ':newTime' => time(),
                 ':universe' => Universe::getEmulated(),
             ]);
-        }
-        elseif (($uni_status == STATUS_CLOSED || $uni_status == STATUS_REG_ONLY) && ($config->uni_status == STATUS_OPEN || $config->uni_status == STATUS_LOGIN_ONLY)) {
+        } elseif (($uni_status == STATUS_CLOSED || $uni_status == STATUS_REG_ONLY) && ($config->uni_status == STATUS_OPEN || $config->uni_status == STATUS_LOGIN_ONLY)) {
             // Open: calc ress for all planets when uni login gets closed? Otherwise ress will be lost when reopened.
             // $ecoObj = new ResourceUpdate();
         }

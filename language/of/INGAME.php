@@ -1131,8 +1131,8 @@ $LNG['market_buyable_no_enemies'] = 'geine Haider';
 $LNG['market_info_no_return'] = 'Erschdellte Margtplatzangebote gönnene ned schdorniert werden!';
 $LNG['market_info_description'] = 'Linke Seite - Martblatzangebot | Rechte Seite - Gaufbetrag<br> <br>&bull; Angenommene'
     . ' Margtplatzangebote gönnene ned schdorniert werdne. &bull;'
-	. '<br>&bull; Manche Angebode gönnene wegne der BushRegel- ned angenommne werdne. &bull;'
-	. '<br>&bull; Deud für gegaufte Flodde wird wom Gäufer bezahlt.&bull;';
+    . '<br>&bull; Manche Angebode gönnene wegne der BushRegel- ned angenommne werdne. &bull;'
+    . '<br>&bull; Deud für gegaufte Flodde wird wom Gäufer bezahlt.&bull;';
 $LNG['market_p_msg_not_found'] = 'Angebod ned gefunden.';
 $LNG['market_p_msg_more_ships_is_needed'] = 'Es werdne weidere Schiffe benötigt.';
 $LNG['market_p_msg_resources_error'] = 'ned genug Ressourcne  vorhanden.';

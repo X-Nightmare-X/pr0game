@@ -15,13 +15,13 @@
 
 class ShowIndexPage extends AbstractLoginPage
 {
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
         $this->setWindow('light');
     }
 
-    function show()
+    public function show()
     {
         $LNG =& Singleton()->LNG;
 
@@ -37,15 +37,12 @@ class ShowIndexPage extends AbstractLoginPage
             $config = Config::get($uniId);
             if ($config->uni_status == STATUS_CLOSED) {
                 $universeSelect[$uniId] = $config->uni_name . $LNG['uni_closed'];
-            }
-            elseif ($config->uni_status == STATUS_REG_ONLY) {
+            } elseif ($config->uni_status == STATUS_REG_ONLY) {
                 $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_open'];
-            }
-            elseif ($config->uni_status == STATUS_LOGIN_ONLY) {
+            } elseif ($config->uni_status == STATUS_LOGIN_ONLY) {
                 $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_closed'];
                 $universeSelected = $uniId;
-            }
-            else {
+            } else {
                 $universeSelect[$uniId] = $config->uni_name;
                 $universeSelected = $uniId;
             }
@@ -57,9 +54,9 @@ class ShowIndexPage extends AbstractLoginPage
             $loginCode = $LNG['login_error_' . $Code];
         }
 
-		if (isset($_COOKIE['uni']) && !empty($_COOKIE['uni'])) {
-			$universeSelected = (int) $_COOKIE['uni'];
-		}
+        if (isset($_COOKIE['uni']) && !empty($_COOKIE['uni'])) {
+            $universeSelected = (int) $_COOKIE['uni'];
+        }
         $db = Database::get();
         $sql = "SELECT count(*) as count FROM %%CONFIG%% WHERE recaptchaPubKey != ''";
         $countcaptchakey = $db->selectSingle($sql, [], 'count');

@@ -1137,8 +1137,8 @@ $LNG['market_buyable_no_enemies'] = 'Keine Feinde';
 $LNG['market_info_no_return'] = 'Erstellte Marktplatzangebote können nicht storniert werden!';
 $LNG['market_info_description'] = 'Linke Seite - Martplatzangebot | Rechte Seite - Kaufbetrag<br><br>&bull; Angenommene'
     . ' Marktplatzangebote können nicht storniert werden. &bull;'
-	. '<br>&bull; Manche Angebote können wegen der Push-Regel nicht angenommen werden. &bull;'
-	. '<br>&bull; Deut für gekaufte Flotte wird vom Käufer bezahlt.&bull;';
+    . '<br>&bull; Manche Angebote können wegen der Push-Regel nicht angenommen werden. &bull;'
+    . '<br>&bull; Deut für gekaufte Flotte wird vom Käufer bezahlt.&bull;';
 $LNG['market_p_msg_not_found'] = 'Angebot nicht gefunden.';
 $LNG['market_p_msg_more_ships_is_needed'] = 'Es werden weitere Schiffe benötigt.';
 $LNG['market_p_msg_resources_error'] = 'Nicht genug Ressourcen vorhanden.';

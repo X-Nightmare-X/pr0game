@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -19,7 +19,7 @@
 
 $LNG['faq_overview']             = 'Туториал';
 
-$LNG['questions']                = array();
+$LNG['questions']                = [];
 $LNG['questions'][1]['category'] = 'Советы для начинающих';
 $LNG['questions'][1][1]['title'] = 'Шаг 1';
 $LNG['questions'][1][1]['body']  = <<<BODY

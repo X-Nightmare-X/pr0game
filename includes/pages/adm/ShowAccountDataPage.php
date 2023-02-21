@@ -52,7 +52,7 @@ function ShowAccountDataPage()
                 "SELECT " . $SpecifyItemsU . " FROM " . USERS . " as u LEFT JOIN " . ALLIANCE . " a ON a.id = u.ally_id"
                 . " WHERE u.`id` = '" . $id_u . "';"
             );
-            if(!isset($UserQuery['user_ua'])) {
+            if (!isset($UserQuery['user_ua'])) {
                 $UserQuery['user_ua'] = '';
             }
 
@@ -388,13 +388,13 @@ function ShowAccountDataPage()
 
             // TODO: It was previously undefined, but assigned, remove it maybe?
             $input_id = null;
-            if(!isset($destroyed)) {
+            if (!isset($destroyed)) {
                 $destroyed = 0;
             }
-            if(!isset($ali_lider)) {
+            if (!isset($ali_lider)) {
                 $ali_lider = 0;
             }
-            if(!isset($point_tecno_ali)) {
+            if (!isset($point_tecno_ali)) {
                 $point_tecno_ali = 0;
                 $count_tecno_ali = 0;
                 $ranking_tecno_ali = 0;
@@ -598,7 +598,7 @@ function ShowAccountDataPage()
     }
 
     $template->loadscript('filterlist.js');
-    $template->assign_vars(array(
+    $template->assign_vars([
         'Userlist'          => $Userlist,
         'ac_enter_user_id'  => $LNG['ac_enter_user_id'],
         'bo_select_title'   => $LNG['bo_select_title'],
@@ -606,6 +606,6 @@ function ShowAccountDataPage()
         'button_deselect'   => $LNG['button_deselect'],
         'ac_select_id_num'  => $LNG['ac_select_id_num'],
         'button_submit'     => $LNG['button_submit'],
-    ));
+    ]);
     $template->show('AccountDataPageIntro.tpl');
 }

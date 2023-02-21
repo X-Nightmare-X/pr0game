@@ -155,7 +155,7 @@ class ShowAlliancePage extends AbstractGamePage
             ':userId' => $USER['id'],
             ':statType' => 1
         ], 'total_points');
-        if(ISSET($this->allianceData['ally_description'])) {
+        if (isset($this->allianceData['ally_description'])) {
             $allydesc = nl2br($this->allianceData['ally_description']);
         } else {
             $allydesc = '';
@@ -242,7 +242,6 @@ class ShowAlliancePage extends AbstractGamePage
 
     public function search()
     {
-
         if ($this->hasApply) {
             $this->redirectToHome();
         }
@@ -626,12 +625,12 @@ class ShowAlliancePage extends AbstractGamePage
         $DiploCountOut = $db->selectSingle($sql, [
             ':AllianceID' => $this->allianceData['id']
         ], 'count');
-        if(ISSET($this->allianceData['ally_description'])) {
+        if (isset($this->allianceData['ally_description'])) {
             $allydesc = nl2br($this->allianceData['ally_description']);
         } else {
             $allydesc = '';
         }
-        if(ISSET($this->allianceData['ally_text'])) {
+        if (isset($this->allianceData['ally_text'])) {
             $allytext = nl2br($this->allianceData['ally_text']);
         } else {
             $allytext = '';
@@ -758,7 +757,8 @@ class ShowAlliancePage extends AbstractGamePage
         $this->display('page.alliance.memberList.tpl');
     }
 
-    private function getMainMember() {
+    private function getMainMember()
+    {
         $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
         $db = Database::get();
@@ -773,7 +773,7 @@ class ShowAlliancePage extends AbstractGamePage
         $mainList = [];
 
         if ($mainData) {
-            foreach ($mainData AS $main) {
+            foreach ($mainData as $main) {
                 $sql = "SELECT rankID, rankName FROM %%ALLIANCE_RANK%% WHERE allianceId = :AllianceID";
                 $rankResult = $db->select($sql, [
                     ':AllianceID' => $main['id']
@@ -837,7 +837,8 @@ class ShowAlliancePage extends AbstractGamePage
         return $mainList;
     }
 
-    private function getWingMember() {
+    private function getWingMember()
+    {
         $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
         $db = Database::get();
@@ -852,7 +853,7 @@ class ShowAlliancePage extends AbstractGamePage
         $wingList = [];
 
         if ($wingData) {
-            foreach ($wingData AS $wing) {
+            foreach ($wingData as $wing) {
                 $sql = "SELECT rankID, rankName FROM %%ALLIANCE_RANK%% WHERE allianceId = :AllianceID";
                 $rankResult = $db->select($sql, [
                     ':AllianceID' => $wing['id']
@@ -925,8 +926,9 @@ class ShowAlliancePage extends AbstractGamePage
         $receivers = $this->getMessageReceivers($this->allianceData['id'], false, true);
 
         foreach ($receivers as $receiver) {
-            if ($receiver['id'] == $USER['id'])
+            if ($receiver['id'] == $USER['id']) {
                 continue;
+            }
             $lang = getLanguage($receiver['lang']);
 
             $applyMessage = sprintf(
@@ -2154,7 +2156,8 @@ class ShowAlliancePage extends AbstractGamePage
         ]);
     }
 
-    private function getTargetAlliance(int $id, bool $ally_id = false) {
+    private function getTargetAlliance(int $id, bool $ally_id = false)
+    {
         $USER =& Singleton()->USER;
         $db = Database::get();
 
@@ -2169,8 +2172,7 @@ class ShowAlliancePage extends AbstractGamePage
                 ':id' => $id,
                 ':universe' => Universe::current()
             ]);
-        }
-        else {
+        } else {
             $sql = "SELECT a.id, a.ally_name, a.ally_owner, a.ally_tag, d.level as diplo, d.accept
                 FROM %%DIPLO%% d
                 JOIN %%ALLIANCE%% a ON a.id = d.owner_1 OR a.id = d.owner_2
@@ -2186,7 +2188,8 @@ class ShowAlliancePage extends AbstractGamePage
         return $targetAlliance;
     }
 
-    private function getMessageReceivers(int $targetAllyID, bool $diplomats = false, bool $managers = false) {
+    private function getMessageReceivers(int $targetAllyID, bool $diplomats = false, bool $managers = false)
+    {
         $USER =& Singleton()->USER;
         $db = Database::get();
 
@@ -2197,15 +2200,16 @@ class ShowAlliancePage extends AbstractGamePage
         }
         if (!$managers) {
             $sql = $sql . " WHERE (u.ally_id = :allianceId OR u.ally_id = :id)";
-            if ($diplomats) $sql = $sql . " AND (r.DIPLOMATIC = 1 OR u.id = a.ally_owner)";
+            if ($diplomats) {
+                $sql = $sql . " AND (r.DIPLOMATIC = 1 OR u.id = a.ally_owner)";
+            }
             $sql = $sql . ";";
 
             $receivers = $db->select($sql, [
                 ':allianceId' => $USER['ally_id'],
                 ':id' => $targetAllyID,
             ]);
-        }
-        else {
+        } else {
             $sql = $sql . " WHERE u.ally_id = :allianceId AND (r.MANAGEAPPLY = 1 OR u.id = a.ally_owner);";
 
             $receivers = $db->select($sql, [

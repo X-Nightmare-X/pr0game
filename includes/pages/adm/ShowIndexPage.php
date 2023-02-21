@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -17,14 +17,14 @@
 
 function ShowIndexPage()
 {
-	$LNG =& Singleton()->LNG;
- $USER =& Singleton()->USER;
- $template	= new template();
-	$template->assign_vars(array(	
-		'game_name'		=> Config::get()->game_name,
-		'adm_cp_title'	=> $LNG['adm_cp_title'],
-		'signalColors'  => $USER['signalColors']
-	));
-	
-	$template->display('adm/ShowIndexPage.tpl');
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
+    $template	= new template();
+    $template->assign_vars([
+        'game_name'		=> Config::get()->game_name,
+        'adm_cp_title'	=> $LNG['adm_cp_title'],
+        'signalColors'  => $USER['signalColors']
+    ]);
+
+    $template->display('adm/ShowIndexPage.tpl');
 }

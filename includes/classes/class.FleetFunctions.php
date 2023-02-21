@@ -133,9 +133,9 @@ class FleetFunctions
         $targetPlanet = $target[2];
 
         if ($thisGalaxy != $targetGalaxy) {
-            if (Config::get()->uni_type == 2)
+            if (Config::get()->uni_type == 2) {
                 return 20000;
-            else if (Config::get()->uni_type == 1) {
+            } elseif (Config::get()->uni_type == 1) {
                 $max = Config::get()->max_galaxy;
                 $dist = 0;
 
@@ -145,12 +145,13 @@ class FleetFunctions
                     $dist = floor($max / 2) - (abs($thisGalaxy - $targetGalaxy) - ceil($max / 2));
                 }
                 return $dist * 20000;
-            } else
+            } else {
                 return abs($thisGalaxy - $targetGalaxy) * 20000;
-        } else if ($thisSystem != $targetSystem) {
-            if (Config::get()->galaxy_type == 2)
+            }
+        } elseif ($thisSystem != $targetSystem) {
+            if (Config::get()->galaxy_type == 2) {
                 return 95 + 2700;
-            else if (Config::get()->galaxy_type == 1) {
+            } elseif (Config::get()->galaxy_type == 1) {
                 $max = Config::get()->max_system;
                 $dist = 0;
 
@@ -160,9 +161,10 @@ class FleetFunctions
                     $dist = floor($max / 2) - (abs($thisSystem - $targetSystem) - ceil($max / 2));
                 }
                 return $dist * 95 + 2700;
-            } else
+            } else {
                 return abs($thisSystem - $targetSystem) * 95 + 2700;
-        } else if ($thisPlanet != $targetPlanet) {
+            }
+        } elseif ($thisPlanet != $targetPlanet) {
             return abs($thisPlanet - $targetPlanet) * 5 + 1000;
         }
         return 5;
@@ -306,9 +308,9 @@ class FleetFunctions
         }
 
         $sql = 'SELECT ankunft FROM %%AKS%% WHERE id = :acsId;';
-        $acsEndTime = Database::get()->selectSingle($sql, array(
+        $acsEndTime = Database::get()->selectSingle($sql, [
             ':acsId' => $acsId
-        ), 'ankunft');
+        ], 'ankunft');
 
         return empty($acsEndTime) ? $acsEndTime - TIMESTAMP : 0;
     }
@@ -322,10 +324,10 @@ class FleetFunctions
         $db = Database::get();
 
         $sql = 'UPDATE %%AKS%% SET ankunft = ankunft + :time WHERE id = :acsId;';
-        $db->update($sql, array(
+        $db->update($sql, [
             ':time' => $timeDifference,
             ':acsId' => $acsId,
-        ));
+        ]);
 
         $sql = 'UPDATE %%FLEETS%%, %%FLEETS_EVENT%% SET
 		fleet_start_time = fleet_start_time + :time,
@@ -334,10 +336,10 @@ class FleetFunctions
 		time             = time + :time
 		WHERE fleet_group = :acsId AND fleet_id = fleetID;';
 
-        $db->update($sql, array(
+        $db->update($sql, [
             ':time' => $timeDifference,
             ':acsId' => $acsId,
-        ));
+        ]);
 
         return true;
     }
@@ -356,10 +358,10 @@ class FleetFunctions
 			AND fleet_mission != :fleetMission;';
         }
 
-        $ActualFleets = Database::get()->selectSingle($sql, array(
+        $ActualFleets = Database::get()->selectSingle($sql, [
             ':userId' => $userId,
             ':fleetMission' => $fleetMission,
-        ));
+        ]);
         return $ActualFleets['state'];
     }
 
@@ -405,9 +407,9 @@ class FleetFunctions
 
         if ($fleetResult['fleet_mission'] == MISSION_ATTACK && $fleetResult['fleet_group'] != 0) {
             $sql = 'SELECT COUNT(*) as state FROM %%USERS_ACS%% WHERE acsID = :acsId;';
-            $isInGroup = $db->selectSingle($sql, array(
+            $isInGroup = $db->selectSingle($sql, [
                 ':acsId' => $fleetResult['fleet_group'],
-            ), 'state');
+            ], 'state');
 
             if ($isInGroup) {
                 $sql = 'DELETE %%AKS%%, %%USERS_ACS%%
@@ -415,9 +417,9 @@ class FleetFunctions
 				LEFT JOIN %%USERS_ACS%% ON acsID = %%AKS%%.id
 				WHERE %%AKS%%.id = :acsId;';
 
-                $db->delete($sql, array(
+                $db->delete($sql, [
                     ':acsId' => $fleetResult['fleet_group']
-                ));
+                ]);
 
                 $FleetID = $fleetResult['fleet_group'];
                 $sqlWhere = 'fleet_group';
@@ -442,14 +444,14 @@ class FleetFunctions
 		time				= :endTime
 		WHERE ' . $sqlWhere . ' = :id AND fleet_id = fleetID;';
 
-        $db->update($sql, array(
+        $db->update($sql, [
             ':id' => $FleetID,
             ':endStayTime' => TIMESTAMP,
             ':endTime' => $fleetEndTime,
             ':fleetGroup' => 0,
             ':hasCanceled' => 1,
             ':fleetState' => FLEET_RETURN
-        ));
+        ]);
 
         $sql = 'UPDATE %%LOG_FLEETS%% SET
 		fleet_end_stay	= :endStayTime,
@@ -691,8 +693,7 @@ class FleetFunctions
         $missileTarget = 0,
         $fleetNoMReturn = 0,
         $consumption = 0
-    )
-    {
+    ) {
         $resource =& Singleton()->resource;
         $fleetShipCount = array_sum($fleetArray);
         $fleetData = [];
@@ -782,13 +783,13 @@ class FleetFunctions
 
         // $sql = "SELECT `fleet_id` FROM %%FLEETS%% WHERE
         // `fleet_owner` = :fleetStartOwner AND
-		// `fleet_target_owner` = :fleetTargetOwner AND
-		// `fleet_mission` = :fleetMission AND
-		// `fleet_start_time` = :fleetStartTime AND
-		// `fleet_end_stay` = :fleetStayTime AND
-		// `fleet_end_time` = :fleetEndTime AND
+        // `fleet_target_owner` = :fleetTargetOwner AND
+        // `fleet_mission` = :fleetMission AND
+        // `fleet_start_time` = :fleetStartTime AND
+        // `fleet_end_stay` = :fleetStayTime AND
+        // `fleet_end_time` = :fleetEndTime AND
         // `start_time` = :timestamp AND
-		// `fleet_universe` = :universe;";
+        // `fleet_universe` = :universe;";
         // $fleetId = $db->selectSingle($sql, [
         //     ':fleetStartOwner' => $fleetStartOwner,
         //     ':fleetTargetOwner' => $fleetTargetOwner,
@@ -922,5 +923,4 @@ class FleetFunctions
         $maxFactor = FleetFunctions::calculateMaxFactor($universeId) * 2;
         return ($maxFactor != 2500 ? $maxFactor : 2400);
     }
-
 }
