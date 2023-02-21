@@ -440,6 +440,12 @@ class statbuilder
 
     private function generateJson()
     {
+        $pricelist =& Singleton()->pricelist;
+        $reslist =& Singleton()->reslist;
+        $config = Config::get();
+        $fleetIntoDebris = $config->Fleet_Cdr;
+        $defIntoDebris = $config->Defs_Cdr;
+
         $columns = [
             '%%STATPOINTS%%.id_owner AS playerId',
             '%%USERS%%.username AS playerName',
@@ -466,12 +472,38 @@ class statbuilder
             '%%USERS%%.lostunits AS unitsLost',
         ];
 
+        $advanced_stats_dest = [];
+        $advanced_stats_lost = [];
+        $advanced_stats_met = [];
+        $advanced_stats_cris = [];
+        foreach ($reslist['fleet'] as $element) {
+            $advanced_stats_dest[] = 'ad.destroyed_' . $element . ' * ' . ($pricelist[$element]['cost'][RESOURCE_METAL] + $pricelist[$element]['cost'][RESOURCE_CRYSTAL]);
+            $advanced_stats_lost[] = 'ad.lost_' . $element . ' * ' . ($pricelist[$element]['cost'][RESOURCE_METAL] + $pricelist[$element]['cost'][RESOURCE_CRYSTAL]);
+            $advanced_stats_met[] = 'ad.destroyed_' . $element . ' * ' . $pricelist[$element]['cost'][RESOURCE_METAL] . ' * ' . ($fleetIntoDebris / 100);
+            $advanced_stats_met[] = 'ad.lost_' . $element . ' * ' . $pricelist[$element]['cost'][RESOURCE_METAL] . ' * ' . ($fleetIntoDebris / 100);
+            $advanced_stats_cris[] = 'ad.destroyed_' . $element . ' * ' . $pricelist[$element]['cost'][RESOURCE_CRYSTAL] . ' * ' . ($fleetIntoDebris / 100);
+            $advanced_stats_cris[] = 'ad.lost_' . $element . ' * ' . $pricelist[$element]['cost'][RESOURCE_CRYSTAL] . ' * ' . ($fleetIntoDebris / 100);
+        }
+        foreach ($reslist['defense'] as $element) {
+            $advanced_stats_dest[] = 'ad.destroyed_' . $element . ' * ' . ($pricelist[$element]['cost'][RESOURCE_METAL] + $pricelist[$element]['cost'][RESOURCE_CRYSTAL]);
+            $advanced_stats_lost[] = 'ad.lost_' . $element . ' * ' . ($pricelist[$element]['cost'][RESOURCE_METAL] + $pricelist[$element]['cost'][RESOURCE_CRYSTAL]);
+            $advanced_stats_met[] = 'ad.destroyed_' . $element . ' * ' . $pricelist[$element]['cost'][RESOURCE_METAL] . ' * ' . ($defIntoDebris / 100);
+            $advanced_stats_met[] = 'ad.lost_' . $element . ' * ' . $pricelist[$element]['cost'][RESOURCE_METAL] . ' * ' . ($defIntoDebris / 100);
+            $advanced_stats_cris[] = 'ad.destroyed_' . $element . ' * ' . $pricelist[$element]['cost'][RESOURCE_CRYSTAL] . ' * ' . ($defIntoDebris / 100);
+            $advanced_stats_cris[] = 'ad.lost_' . $element . ' * ' . $pricelist[$element]['cost'][RESOURCE_CRYSTAL] . ' * ' . ($defIntoDebris / 100);
+        }
+
+        $columns[] = '(' . implode(' + ', $advanced_stats_met) . (') as realDebrisMetal');
+        $columns[] = '(' . implode(' + ', $advanced_stats_cris) . (') as realDebrisCrystal');
+        $columns[] = '(' . implode(' + ', $advanced_stats_dest) . (') as realUnitsDestroyed');
+        $columns[] = '(' . implode(' + ', $advanced_stats_lost) . (') as realUnitsDestroyed');
+
         $database = Database::get();
         $sql = trim("SELECT SQL_BIG_RESULT
             " . implode(',', $columns) . "
             FROM %%STATPOINTS%%
-            INNER JOIN %%USERS%%
-            ON %%USERS%%.`id` = %%STATPOINTS%%.`id_owner`
+            INNER JOIN %%USERS%% ON %%USERS%%.`id` = %%STATPOINTS%%.`id_owner`
+            LEFT JOIN %%ADVANCED_STATS%% ad on ad.userId = %%USERS%%.id
             WHERE %%STATPOINTS%%.`stat_type` = 1 AND %%USERS%%.universe = :universe
             ORDER BY %%STATPOINTS%%.`total_rank`");
 
