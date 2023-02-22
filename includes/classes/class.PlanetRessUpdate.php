@@ -880,7 +880,7 @@ class ResourceUpdate
                             . $resource[$Element];
                         $params[':' . $resource[$Element]] = floatToString($Count);
                     }
-                    if ($Element >= 200) { // Update Builded stats for ships, def and rockets
+                    if ($Element >= 200 && $Element < 900) { // Update Builded stats for ships, def and rockets
                         $buildQueries[] = ', s.build_' . $Element . ' = s.build_' . $Element . ' + :'
                             . $resource[$Element];
                         $params[':' . $resource[$Element]] = floatToString($Count);
