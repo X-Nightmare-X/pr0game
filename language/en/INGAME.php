@@ -1164,6 +1164,7 @@ $LNG['ma_silo_level'] = 'Silo Level 4 Required! ';
 $LNG['ma_impulse_drive_required'] = 'Impulse drive required';
 $LNG['ma_not_send_other_galaxy'] = 'You cannot send rockets into another galaxy. ';
 $LNG['ma_planet_doesnt_exists'] = 'Planet does not exist. ';
+$LNG['ma_no_range'] = 'The target is not within range of your missiles.';
 $LNG['ma_wrong_target'] = 'Wrong Target';
 $LNG['ma_no_missiles'] = 'No Missles';
 $LNG['ma_add_missile_number'] = 'Add missile amount! ';

@@ -41,9 +41,9 @@ class ShowFleetMissilePage extends AbstractGamePage
 
         $db					= Database::get();
 
-        $sql				= "SELECT id, id_owner FROM %%PLANETS%%
+        $sql				= "SELECT id, id_owner, galaxy, `system`, planet FROM %%PLANETS%%
         WHERE universe = :universe AND galaxy = :targetGalaxy
-        AND system = :targetSystem AND planet = :targetPlanet AND planet_type = :targetType;";
+        AND `system` = :targetSystem AND planet = :targetPlanet AND planet_type = :targetType;";
 
         $target = $db->selectSingle($sql, [
             ':universe' => Universe::current(),
@@ -53,10 +53,6 @@ class ShowFleetMissilePage extends AbstractGamePage
             ':targetType'   => $targetType
         ]);
 
-        $Range				= FleetFunctions::GetMissileRange($USER[$resource[117]]);
-        $systemMin			= $PLANET['system'] - $Range;
-        $systemMax			= $PLANET['system'] + $Range;
-
         $error				= "";
 
         if (IsVacationMode($USER)) {
@@ -65,10 +61,12 @@ class ShowFleetMissilePage extends AbstractGamePage
             $error = $LNG['ma_silo_level'];
         } elseif ($USER['impulse_motor_tech'] == 0) {
             $error = $LNG['ma_impulse_drive_required'];
-        } elseif ($targetGalaxy != $PLANET['galaxy'] || $targetSystem < $systemMin || $targetSystem > $systemMax) {
+        } elseif ($targetGalaxy != $PLANET['galaxy']) {
             $error = $LNG['ma_not_send_other_galaxy'];
         } elseif (!$target) {
             $error = $LNG['ma_planet_doesnt_exists'];
+        } elseif (!FleetFunctions::inMissileRange($PLANET, $target, $USER[$resource[117]])) {
+            $error = $LNG['ma_no_range'];
         } elseif (!in_array($primaryTarget, $reslist['defense']) && $primaryTarget != 0) {
             $error = $LNG['ma_wrong_target'];
         } elseif ($missileCount == 0) {
@@ -78,7 +76,7 @@ class ShowFleetMissilePage extends AbstractGamePage
         }
 
         if (empty($target)) {
-            $target['id_owner'] = 0;
+            $target = ['id_owner' => 0];
             $targetUser = ['onlinetime' => 0, 'banaday' => 0, 'urlaubs_modus' => 0, 'authattack' => 0];
         } else {
             $targetUser		= GetUserByID($target['id_owner'], ['onlinetime', 'banaday', 'urlaubs_modus', 'authattack']);
@@ -105,6 +103,7 @@ class ShowFleetMissilePage extends AbstractGamePage
                 ':statType' => 1
             ]) ?: ['total_points' => 0];
         } catch (Exception $exception) {
+            $USER += ['total_points' => 0];
         }
 
         $IsNoobProtec	= CheckNoobProtec($USER, $User2Points, $targetUser);

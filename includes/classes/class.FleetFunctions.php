@@ -106,9 +106,44 @@ class FleetFunctions
         return floor(sqrt($USER[$GLOBALS['resource'][124]]));
     }
 
-    public static function getMissileRange($Level)
+    public static function inMissileRange(array $planet, array $target, int $levelIonEngine) : bool
     {
-        return max(($Level * 5) - 1, 0);
+        if ($target['galaxy'] != $planet['galaxy']) {
+            return false;
+        }
+
+        $Range = max(($levelIonEngine * 5) - 1, 0);
+
+        if (Config::get()->galaxy_type == 2) {
+            return $Range > 1;
+        } else if (Config::get()->galaxy_type == 1) {
+            $max = Config::get()->max_system;
+            $thisSystem = $planet['system'];
+            $toSystem = $target['system'];
+
+            if ($thisSystem + $Range > $max) {
+                $systemMax = $thisSystem + $Range - $max;
+            } else {
+                $systemMax = $thisSystem + $Range;
+            }
+
+            if ($thisSystem - $Range < 1) {
+                $systemMin = $max + ($thisSystem - $Range);
+            } else {
+                $systemMin = $thisSystem - $Range;
+            }
+
+            if ($systemMin <= $systemMax) {
+                return $toSystem >= $systemMin && $toSystem <= $systemMax;
+            } else {
+                return ($toSystem >= $systemMin && $toSystem <= $max) || ($toSystem >= 1 && $toSystem <= $systemMax);
+            }
+        } else {
+            $systemMin = $planet['system'] - $Range;
+            $systemMax = $planet['system'] + $Range;
+
+            return $target['system'] >= $systemMin && $target['system'] <= $systemMax;
+        }
     }
 
     public static function checkUserSpeed($speed)

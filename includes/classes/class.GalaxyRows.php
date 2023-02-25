@@ -140,6 +140,7 @@ class GalaxyRows
 
     protected function getAllowedMissions()
     {
+        $USER =& Singleton()->USER;
         $PLANET =& Singleton()->PLANET;
         $resource =& Singleton()->resource;
         $this->galaxyData[$this->galaxyRow['planet']]['missions'] = [
@@ -160,51 +161,8 @@ class GalaxyRows
                 && $PLANET[$resource[503]] > 0
                 && isModuleAvailable(MODULE_MISSION_ATTACK)
                 && isModuleAvailable(MODULE_MISSILEATTACK)
-                && $this->inMissileRange(),
+                && FleetFunctions::inMissileRange($PLANET, $this->galaxyRow, $USER[$resource[117]]),
         ];
-    }
-
-    protected function inMissileRange()
-    {
-        $USER =& Singleton()->USER;
-        $PLANET =& Singleton()->PLANET;
-        $resource =& Singleton()->resource;
-        if ($this->galaxyRow['galaxy'] != $PLANET['galaxy']) {
-            return false;
-        }
-
-        $Range = FleetFunctions::GetMissileRange($USER[$resource[117]]);
-        // if (Config::get()->galaxy_type == 2) {
-        // TODO or else
-        // } else if
-        if (Config::get()->galaxy_type == 1) {
-            $max = Config::get()->max_system;
-            $thisSystem = $PLANET['system'];
-            $toSystem = $this->galaxyRow['system'];
-
-            if ($thisSystem + $Range > $max) {
-                $systemMax = $thisSystem + $Range - $max;
-            } else {
-                $systemMax = $thisSystem + $Range;
-            }
-
-            if ($thisSystem - $Range < 1) {
-                $systemMin = $max + ($thisSystem - $Range);
-            } else {
-                $systemMin = $thisSystem - $Range;
-            }
-
-            if ($systemMin <= $systemMax) {
-                return $toSystem >= $systemMin && $toSystem <= $systemMax;
-            } else {
-                return ($toSystem >= $systemMin && $toSystem <= $max) || ($toSystem >= 1 && $toSystem <= $systemMax);
-            }
-        } else {
-            $systemMin = $PLANET['system'] - $Range;
-            $systemMax = $PLANET['system'] + $Range;
-
-            return $this->galaxyRow['system'] >= $systemMin && $this->galaxyRow['system'] <= $systemMax;
-        }
     }
 
     protected function getActionButtons()

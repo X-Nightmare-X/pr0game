@@ -1113,6 +1113,7 @@ $LNG['ma_silo_level'] = 'Roket Silosu Kademe 4 gerekli! ';
 $LNG['ma_impulse_drive_required'] = 'Impuls (Icten Yanmali) Motor Takimi gerekli';
 $LNG['ma_not_send_other_galaxy'] = 'Diger galaksiye roket gonderemezsiniz. ';
 $LNG['ma_planet_doesnt_exists'] = 'Gezegen mevcut degil. ';
+$LNG['ma_no_range'] = 'Hedef füzelerinizin menzilinde değil.';
 $LNG['ma_wrong_target'] = 'Yanlis Hedef';
 $LNG['ma_no_missiles'] = 'Mevcut roket yok';
 $LNG['ma_add_missile_number'] = '<br>Gonderilecek Roket Sayisini Girmediniz</br>! ';
