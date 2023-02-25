@@ -773,7 +773,7 @@ class PlayerUtil
         ]);
 
         $sql = "DELETE FROM %%ADVANCED_STATS%% WHERE userId = :userId;";
-        $db->insert($sql, [
+        $db->delete($sql, [
             ':userId'    => $userId,
         ]);
 
