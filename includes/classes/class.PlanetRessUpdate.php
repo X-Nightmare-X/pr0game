@@ -159,8 +159,8 @@ class ResourceUpdate
             return;
         }
 
-        $MaxMetalStorage = $this->PLANET['metal_max']     * $this->config->max_overflow;
-        $MaxCristalStorage = $this->PLANET['crystal_max']   * $this->config->max_overflow;
+        $MaxMetalStorage = $this->PLANET['metal_max'] * $this->config->max_overflow;
+        $MaxCristalStorage = $this->PLANET['crystal_max'] * $this->config->max_overflow;
         $MaxDeuteriumStorage = $this->PLANET['deuterium_max'] * $this->config->max_overflow;
 
         $MetalTheoretical = $this->ProductionTime * (
@@ -191,13 +191,16 @@ class ResourceUpdate
 
         if ($produced < 0) {
             if ($this->PLANET[$resource[$resource_type]] < $produced) {
-                $produced = $produced - (($this->PLANET[$resource[$resource_type]]) + $produced);
+                $produced = $this->PLANET[$resource[$resource_type]] * -1;
             }
         }
         elseif ($this->PLANET[$resource[$resource_type]] <= $storage) {
             if ($this->PLANET[$resource[$resource_type]] + $produced > $storage) {
-                $produced = $produced - ($this->PLANET[$resource[$resource_type]] + $produced - $storage);
+                $produced = $storage - $this->PLANET[$resource[$resource_type]];
             }
+        }
+        else {
+            $produced = 0;
         }
 
         $this->Builded[$resource_type] += $produced;
