@@ -1098,6 +1098,7 @@ $LNG['ma_silo_level'] = 'Wymagany Silos na poziomie 4! ';
 $LNG['ma_impulse_drive_required'] = 'Napęd impulsowy wymagany';
 $LNG['ma_not_send_other_galaxy'] = 'Nie możesz wysłać rakiet do innej galaktyki.';
 $LNG['ma_planet_doesnt_exists'] = 'Planeta nie istnieje.';
+$LNG['ma_no_range'] = 'Cel nie jest w zasięgu twoich pocisków.';
 $LNG['ma_wrong_target'] = 'Zły cel';
 $LNG['ma_no_missiles'] = 'Brak rakiety';
 $LNG['ma_add_missile_number'] = 'Dodaj rakiety ';

@@ -1100,6 +1100,7 @@ $LNG['ma_silo_level'] = 'Tens de ter o silo de mísseis pelo menos a nível 4';
 $LNG['ma_impulse_drive_required'] = 'Tens de desenvolver o motor de impulsão.';
 $LNG['ma_not_send_other_galaxy'] = 'Tu não podes mandar mísseis para outra galáxia.';
 $LNG['ma_planet_doesnt_exists'] = 'esse planeta não existe.';
+$LNG['ma_no_range'] = 'O alvo não se encontra ao alcance dos seus mísseis.';
 $LNG['ma_wrong_target'] = 'Alvo errado';
 $LNG['ma_no_missiles'] = 'Não tens mísseis interplanetários disponíveis';
 $LNG['ma_add_missile_number'] = 'Número de mísseis a enviar';

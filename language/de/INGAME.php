@@ -1156,6 +1156,7 @@ $LNG['ma_silo_level'] = 'Du benötigst Raketensilo Stufe 4!';
 $LNG['ma_impulse_drive_required'] = 'Du musst zuerst das Impulstriebwerk erforschen';
 $LNG['ma_not_send_other_galaxy'] = 'Du kannst keine Raketen in eine andere Galaxie schicken.';
 $LNG['ma_planet_doesnt_exists'] = 'Planet existiert nicht.';
+$LNG['ma_no_range'] = 'Das Ziel ist nicht in Reichweite deiner Raketen.';
 $LNG['ma_wrong_target'] = 'Kein Ziel';
 $LNG['ma_no_missiles'] = 'Du hast keine Interplanetarraketen';
 $LNG['ma_add_missile_number'] = 'Sie müssen eine Zahl eingeben!';

@@ -1150,6 +1150,7 @@ $LNG['ma_silo_level'] = 'Du benötigschd Ragedensilo Schdufe 4!';
 $LNG['ma_impulse_drive_required'] = 'Du musschd zuerschd des Impulstriebwerg erforschen';
 $LNG['ma_not_send_other_galaxy'] = 'Du gannst geine Ragedne in ne andere Galaggsie schiggen.';
 $LNG['ma_planet_doesnt_exists'] = 'Blanet exischdiert nichd.';
+$LNG['ma_no_range'] = 'Das Ziel ist nicht in Reichweite deiner Raketen.';
 $LNG['ma_wrong_target'] = 'gein Ziel';
 $LNG['ma_no_missiles'] = 'Du haschd geine Interplanetarrageten';
 $LNG['ma_add_missile_number'] = 'Sie müssne ne Zahl eingebene!';
