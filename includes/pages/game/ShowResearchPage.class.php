@@ -130,11 +130,8 @@ class ShowResearchPage extends AbstractGamePage
                 $USER['b_tech']             = TIMESTAMP;
                 $USER['b_tech_queue']       = serialize($NewCurrentQueue);
                 $this->ecoObj->setData($USER, $PLANET);
-                $this->ecoObj->SetNextQueueTechOnTop();
+                $this->ecoObj->SetNextQueueTechOnTop($saveRessources);
                 list($USER, $PLANET)        = $this->ecoObj->getData();
-                if ($saveRessources) {
-                    $this->ecoObj->saveResources($PLANET);
-                }
             } else {
                 $USER['b_tech']             = 0;
                 $USER['b_tech_queue']       = '';
