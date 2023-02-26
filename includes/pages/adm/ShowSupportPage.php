@@ -127,8 +127,9 @@ class ShowSupportPage
             }
 
             $answerRow['time']	= _date($LNG['php_tdformat'], $answerRow['time'], $USER['timezone']);
+            $answerRow['message'] = nl2br($answerRow['message']);
 
-            $answerList[$answerRow['answerID']]	= nl2br($answerRow);
+            $answerList[$answerRow['answerID']]	= $answerRow;
         }
 
         $GLOBALS['DATABASE']->free_result($answerResult);
