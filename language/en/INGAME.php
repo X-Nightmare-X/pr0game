@@ -1109,8 +1109,8 @@ $LNG['market_info_header'] = 'Marketplace';
 $LNG['market_info_no_return'] = 'a marketplace offer cannot be cancelled!';
 $LNG['market_info_description'] = 'Left side - sale offers | Right side - asking price<br><br>&bull; Bought offers cannot'
     . ' be canceled &bull;'
-	. '<br>&bull; Some trades cannot be accepted due to the push rule. &bull;'
-	. '<br>&bull; Fuel for bought fleet is on the buyer. &bull;';
+    . '<br>&bull; Some trades cannot be accepted due to the push rule. &bull;'
+    . '<br>&bull; Fuel for bought fleet is on the buyer. &bull;';
 $LNG['market_fleet'] = 'Fleet';
 
 $LNG['market_p_msg_not_found'] = 'Offer not found.';
@@ -1164,6 +1164,7 @@ $LNG['ma_silo_level'] = 'Silo Level 4 Required! ';
 $LNG['ma_impulse_drive_required'] = 'Impulse drive required';
 $LNG['ma_not_send_other_galaxy'] = 'You cannot send rockets into another galaxy. ';
 $LNG['ma_planet_doesnt_exists'] = 'Planet does not exist. ';
+$LNG['ma_no_range'] = 'The target is not within range of your missiles.';
 $LNG['ma_wrong_target'] = 'Wrong Target';
 $LNG['ma_no_missiles'] = 'No Missles';
 $LNG['ma_add_missile_number'] = 'Add missile amount! ';

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -17,22 +17,19 @@
 
 class ShowBoardPage extends AbstractLoginPage
 {
-	function __construct() 
-	{
-		parent::__construct();
-	}
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-	function show()
-	{
-		$LNG =& Singleton()->LNG;
-		$boardUrl	= Config::get()->forum_url;
-		if(filter_var($boardUrl, FILTER_VALIDATE_URL))
-		{
-			HTTP::sendHeader('Location', $boardUrl);
-		}
-		else
-		{
-			$this->printMessage($LNG['bad_forum_url']);
-		}
-	}
+    public function show()
+    {
+        $LNG =& Singleton()->LNG;
+        $boardUrl	= Config::get()->forum_url;
+        if (filter_var($boardUrl, FILTER_VALIDATE_URL)) {
+            HTTP::sendHeader('Location', $boardUrl);
+        } else {
+            $this->printMessage($LNG['bad_forum_url']);
+        }
+    }
 }

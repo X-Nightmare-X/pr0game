@@ -328,14 +328,16 @@ function CheckNoobProtec($OwnerPlayer, $TargetPlayer, $Player)
             */
             // Addional Comment: Letzteres ist eigentlich sinnfrei, bitte testen.a
             ($TargetPlayer['total_points'] <= $config->noobprotectiontime) && // Default: 25.000
-            ($OwnerPlayer['total_points'] > $TargetPlayer['total_points'] * $config->noobprotectionmulti)),
+            ($OwnerPlayer['total_points'] > $TargetPlayer['total_points'] * $config->noobprotectionmulti)
+        ),
         'StrongPlayer' => (
             /* WAHR:
                 Wenn Spieler weniger als 5000 Punkte hat UND
                 Mehr als das funfache der eigende Punkte hat
             */
             ($OwnerPlayer['total_points'] < $config->noobprotectiontime) && // Default: 5.000
-            ($OwnerPlayer['total_points'] * $config->noobprotectionmulti < $TargetPlayer['total_points'])),
+            ($OwnerPlayer['total_points'] * $config->noobprotectionmulti < $TargetPlayer['total_points'])
+        ),
     ];
 }
 

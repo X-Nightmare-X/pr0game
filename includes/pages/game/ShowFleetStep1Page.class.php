@@ -22,7 +22,7 @@ class ShowFleetStep1Page extends AbstractGamePage
         parent::__construct();
     }
 
-    public function show():void
+    public function show(): void
     {
         $USER =& Singleton()->USER;
         $PLANET =& Singleton()->PLANET;
@@ -137,7 +137,7 @@ class ShowFleetStep1Page extends AbstractGamePage
         $this->display('page.fleetStep1.default.tpl');
     }
 
-    public function saveShortcuts():void
+    public function saveShortcuts(): void
     {
         $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
@@ -281,7 +281,7 @@ class ShowFleetStep1Page extends AbstractGamePage
         return $ACSList;
     }
 
-    public function checkTarget():void
+    public function checkTarget(): void
     {
         $PLANET =& Singleton()->PLANET;
         $LNG =& Singleton()->LNG;

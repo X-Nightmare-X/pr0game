@@ -134,7 +134,6 @@ class ShowShipyardPage extends AbstractGamePage
 
             $BuildArray[] = [$Element, $Count];
             $PLANET['b_hangar_id'] = serialize($BuildArray);
-
         }
         $this->ecoObj->removeResources($PLANET['id'], $totalCostResources, $PLANET);
         $this->ecoObj->saveShipyardQueue($PLANET);

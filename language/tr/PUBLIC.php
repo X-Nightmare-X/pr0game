@@ -1,6 +1,6 @@
 <?php
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -158,7 +158,7 @@ $LNG['disclamerLabelMail']			= 'Destek Email:';
 $LNG['disclamerLabelNotice']		= 'Ayrintili bilgi';
 
 
- //Giris Sayfasi
- $LNG['Browser']				= 'Onerilen browser.';
+//Giris Sayfasi
+$LNG['Browser']				= 'Onerilen browser.';
 
- $LNG['disclamerRecaptcha'] = 'Bu sayfa reCAPTCHA kullanır ve Google <a href="https://policies.google.com/privacy">gizlilik bildirimi</a> ve <a href="https://policies.google.com/terms">kullanım şartları</a> geçerlidir.';
+$LNG['disclamerRecaptcha'] = 'Bu sayfa reCAPTCHA kullanır ve Google <a href="https://policies.google.com/privacy">gizlilik bildirimi</a> ve <a href="https://policies.google.com/terms">kullanım şartları</a> geçerlidir.';

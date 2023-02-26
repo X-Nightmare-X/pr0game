@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -18,21 +18,21 @@
 
 class ShowChangelogPage extends AbstractGamePage
 {
-	public static $requireModule = 0;
+    public static $requireModule = 0;
 
-	function __construct() 
-	{
-		parent::__construct();
-	}
-	
-	function show() 
-	{
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function show()
+    {
         $parsedown = new Parsedown();
 
-		$this->assign(array(
-			'ChangelogList'	=> $parsedown->text(file_get_contents(ROOT_PATH.'CHANGES.md')),
-		));
-		
-		$this->display('page.changelog.default.tpl');
-	}
+        $this->assign([
+            'ChangelogList'	=> $parsedown->text(file_get_contents(ROOT_PATH.'CHANGES.md')),
+        ]);
+
+        $this->display('page.changelog.default.tpl');
+    }
 }

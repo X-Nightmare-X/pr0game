@@ -15,12 +15,12 @@
 
 class ShowRegisterPage extends AbstractLoginPage
 {
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
     }
 
-    function show()
+    public function show()
     {
         $LNG =& Singleton()->LNG;
         $universeSelect = [];
@@ -32,15 +32,12 @@ class ShowRegisterPage extends AbstractLoginPage
             $config = Config::get($uniId);
             if ($config->uni_status == STATUS_CLOSED) {
                 $universeSelect[$uniId] = $config->uni_name . $LNG['uni_closed'];
-            }
-            elseif ($config->uni_status == STATUS_REG_ONLY) {
+            } elseif ($config->uni_status == STATUS_REG_ONLY) {
                 $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_open'];
                 $universeSelected = $uniId;
-            }
-            elseif ($config->uni_status == STATUS_LOGIN_ONLY) {
+            } elseif ($config->uni_status == STATUS_LOGIN_ONLY) {
                 $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_closed'];
-            }
-            else {
+            } else {
                 $universeSelect[$uniId] = $config->uni_name;
                 $universeSelected = $uniId;
             }
@@ -73,7 +70,7 @@ class ShowRegisterPage extends AbstractLoginPage
         $this->display('page.register.default.tpl');
     }
 
-    function send()
+    public function send()
     {
         $LNG =& Singleton()->LNG;
         $config = Config::get();

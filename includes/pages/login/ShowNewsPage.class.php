@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -17,35 +17,34 @@
 
 class ShowNewsPage extends AbstractLoginPage
 {
-	public static $requireModule = 0;
+    public static $requireModule = 0;
 
-	function __construct() 
-	{
-		parent::__construct();
-	}
-	
-	function show() 
-	{
-		$LNG =& Singleton()->LNG;
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-		$sql = "SELECT date, title, text, user FROM %%NEWS%% ORDER BY id DESC;";
-		$newsResult = Database::get()->select($sql);
+    public function show()
+    {
+        $LNG =& Singleton()->LNG;
 
-		$newsList	= array();
-		
-		foreach ($newsResult as $newsRow)
-		{
-			$newsList[]	= array(
-				'title' => $newsRow['title'],
-				'from' 	=> sprintf($LNG['news_from'], _date($LNG['php_tdformat'], $newsRow['date']), $newsRow['user']),
-				'text' 	=> makebr($newsRow['text']),
-			);
-		}
-		
-		$this->assign(array(
-			'newsList'	=> $newsList,
-		));
-		
-		$this->display('page.news.default.tpl');
-	}
+        $sql = "SELECT date, title, text, user FROM %%NEWS%% ORDER BY id DESC;";
+        $newsResult = Database::get()->select($sql);
+
+        $newsList	= [];
+
+        foreach ($newsResult as $newsRow) {
+            $newsList[]	= [
+                'title' => $newsRow['title'],
+                'from' 	=> sprintf($LNG['news_from'], _date($LNG['php_tdformat'], $newsRow['date']), $newsRow['user']),
+                'text' 	=> makebr($newsRow['text']),
+            ];
+        }
+
+        $this->assign([
+            'newsList'	=> $newsList,
+        ]);
+
+        $this->display('page.news.default.tpl');
+    }
 }

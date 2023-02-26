@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -18,24 +18,23 @@
 
 class ShowErrorPage extends AbstractGamePage
 {
-	public static $requireModule = 0;
-	
-	protected $disableEcoSystem = true;
+    public static $requireModule = 0;
 
-	function __construct() 
-	{
-		parent::__construct();
-		$this->initTemplate();
-	}
-	
-	static function printError($Message, $fullSide = true, $redirect = NULL)
-	{
-		$pageObj	= new self;
-		$pageObj->printMessage($Message, null, $redirect, $fullSide);
-	}
-	
-	function show() 
-	{
-		
-	}
+    protected $disableEcoSystem = true;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->initTemplate();
+    }
+
+    public static function printError($Message, $fullSide = true, $redirect = null)
+    {
+        $pageObj	= new self();
+        $pageObj->printMessage($Message, null, $redirect, $fullSide);
+    }
+
+    public function show()
+    {
+    }
 }

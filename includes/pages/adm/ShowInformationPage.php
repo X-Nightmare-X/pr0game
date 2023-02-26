@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -15,73 +15,76 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-if (!allowedTo(str_replace(array(dirname(__FILE__), '\\', '/', '.php'), '', __FILE__))) throw new Exception("Permission error!");
+if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__))) {
+    throw new Exception("Permission error!");
+}
 
 function ShowInformationPage()
 {
-	$LNG =& Singleton()->LNG;
- $USER =& Singleton()->USER;
- $config = Config::get();
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
+    $config = Config::get();
 
-	// @ for open_basedir
-	if(@file_exists(ini_get('error_log')))
-		$Lines	= count(file(ini_get('error_log')));
-	else
-		$Lines	= 0;
-	
-	try {
-		$dateTimeZoneServer = new DateTimeZone($config->timezone);
-	} catch (Exception $e) {
-		$dateTimeZoneServer	= new DateTimeZone(date_default_timezone_get());
-	}
-	
-	try {
-		$dateTimeZoneUser	= new DateTimeZone($USER['timezone']);
-	} catch (Exception $e) {
-		$dateTimeZoneUser	= new DateTimeZone(date_default_timezone_get());
-	}
-	
-	try {
-		$dateTimeZonePHP	= new DateTimeZone(ini_get('date.timezone'));
-	} catch (Exception $e) {
-		$dateTimeZonePHP	= new DateTimeZone(date_default_timezone_get());
-	}
-	
-	$dateTimeServer		= new DateTime("now", $dateTimeZoneServer);
-	$dateTimeUser		= new DateTime("now", $dateTimeZoneUser);
-	$dateTimePHP		= new DateTime("now", $dateTimeZonePHP);
+    // @ for open_basedir
+    if (@file_exists(ini_get('error_log'))) {
+        $Lines	= count(file(ini_get('error_log')));
+    } else {
+        $Lines	= 0;
+    }
+
+    try {
+        $dateTimeZoneServer = new DateTimeZone($config->timezone);
+    } catch (Exception $e) {
+        $dateTimeZoneServer	= new DateTimeZone(date_default_timezone_get());
+    }
+
+    try {
+        $dateTimeZoneUser	= new DateTimeZone($USER['timezone']);
+    } catch (Exception $e) {
+        $dateTimeZoneUser	= new DateTimeZone(date_default_timezone_get());
+    }
+
+    try {
+        $dateTimeZonePHP	= new DateTimeZone(ini_get('date.timezone'));
+    } catch (Exception $e) {
+        $dateTimeZonePHP	= new DateTimeZone(date_default_timezone_get());
+    }
+
+    $dateTimeServer		= new DateTime("now", $dateTimeZoneServer);
+    $dateTimeUser		= new DateTime("now", $dateTimeZoneUser);
+    $dateTimePHP		= new DateTime("now", $dateTimeZonePHP);
 
     $sql	= "SELECT dbVersion FROM %%SYSTEM%%;";
 
-    $dbVersion	= Database::get()->selectSingle($sql, array(), 'dbVersion');
+    $dbVersion	= Database::get()->selectSingle($sql, [], 'dbVersion');
 
-	$template	= new template();
-	$template->assign_vars(array(
-		'info_information'	=> sprintf($LNG['info_information'], Config::get() -> git_issues_link),
-		'info'				=> $_SERVER['SERVER_SOFTWARE'],
-		'vPHP'				=> PHP_VERSION,
-		'vAPI'				=> PHP_SAPI,
-		'vGame'				=> $config->VERSION.(file_exists(ROOT_PATH.'/.git/ORIG_HEAD') ? ' ('.trim(file_get_contents(ROOT_PATH.'/.git/ORIG_HEAD')).')': ''),
-		'vMySQLc'			=> $GLOBALS['DATABASE']->getVersion(),
-		'vMySQLs'			=> $GLOBALS['DATABASE']->getServerVersion(),
-		'root'				=> $_SERVER['SERVER_NAME'],
-		'gameroot'			=> $_SERVER['SERVER_NAME'].str_replace('/admin.php', '', $_SERVER['PHP_SELF']),
-		'json'				=> function_exists('json_encode') ? 'Ja' : 'Nein',
-		'bcmath'			=> extension_loaded('bcmath') ? 'Ja' : 'Nein',
-		'curl'				=> extension_loaded('curl') ? 'Ja' : 'Nein',
-		'browser'			=> $_SERVER['HTTP_USER_AGENT'],
-		'safemode'			=> 'Nein',
-		'memory'			=> ini_get('memory_limit'),
-		'suhosin'			=> ini_get('suhosin.request.max_value_length') ? 'Ja' : 'Nein',
-		'log_errors'		=> ini_get('log_errors') ? 'Aktiv' : 'Inaktiv',
-		'errorlog'			=> ini_get('error_log'),
-		'errorloglines'		=> $Lines,
+    $template	= new template();
+    $template->assign_vars([
+        'info_information'	=> sprintf($LNG['info_information'], Config::get() -> git_issues_link),
+        'info'				=> $_SERVER['SERVER_SOFTWARE'],
+        'vPHP'				=> PHP_VERSION,
+        'vAPI'				=> PHP_SAPI,
+        'vGame'				=> $config->VERSION.(file_exists(ROOT_PATH.'/.git/ORIG_HEAD') ? ' ('.trim(file_get_contents(ROOT_PATH.'/.git/ORIG_HEAD')).')' : ''),
+        'vMySQLc'			=> $GLOBALS['DATABASE']->getVersion(),
+        'vMySQLs'			=> $GLOBALS['DATABASE']->getServerVersion(),
+        'root'				=> $_SERVER['SERVER_NAME'],
+        'gameroot'			=> $_SERVER['SERVER_NAME'].str_replace('/admin.php', '', $_SERVER['PHP_SELF']),
+        'json'				=> function_exists('json_encode') ? 'Ja' : 'Nein',
+        'bcmath'			=> extension_loaded('bcmath') ? 'Ja' : 'Nein',
+        'curl'				=> extension_loaded('curl') ? 'Ja' : 'Nein',
+        'browser'			=> $_SERVER['HTTP_USER_AGENT'],
+        'safemode'			=> 'Nein',
+        'memory'			=> ini_get('memory_limit'),
+        'suhosin'			=> ini_get('suhosin.request.max_value_length') ? 'Ja' : 'Nein',
+        'log_errors'		=> ini_get('log_errors') ? 'Aktiv' : 'Inaktiv',
+        'errorlog'			=> ini_get('error_log'),
+        'errorloglines'		=> $Lines,
         'dbVersion'         => $dbVersion,
-		'php_tz'			=> $dateTimePHP->getOffset() / 3600,
-		'conf_tz'			=> $dateTimeServer->getOffset() / 3600,
-		'user_tz'			=> $dateTimeUser->getOffset() / 3600,
-		'signalColors'		=> $USER['signalColors'],
-	));
+        'php_tz'			=> $dateTimePHP->getOffset() / 3600,
+        'conf_tz'			=> $dateTimeServer->getOffset() / 3600,
+        'user_tz'			=> $dateTimeUser->getOffset() / 3600,
+        'signalColors'		=> $USER['signalColors'],
+    ]);
 
-	$template->show('ShowInformationPage.tpl');
+    $template->show('ShowInformationPage.tpl');
 }

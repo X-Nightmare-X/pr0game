@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
@@ -15,14 +15,12 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-if ($USER['authlevel'] == AUTH_USR)
-{
+if ($USER['authlevel'] == AUTH_USR) {
     throw new PagePermissionException("Permission error!");
 }
 
 function ShowLogoutPage()
 {
-	$session	= Session::create();
-	$session->adminAccess	= 0;
+    $session	= Session::create();
+    $session->adminAccess	= 0;
 }
-

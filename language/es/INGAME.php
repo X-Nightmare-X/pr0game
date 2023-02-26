@@ -1099,6 +1099,7 @@ $LNG['ma_silo_level'] = 'Debes tener al menos el silo al nivel 4';
 $LNG['ma_impulse_drive_required'] = 'Debes investigar el Motor de Impulso.';
 $LNG['ma_not_send_other_galaxy'] = 'No puedes enviar misiles a otra galaxia.';
 $LNG['ma_planet_doesnt_exists'] = 'El planeta objetivo no existe.';
+$LNG['ma_no_range'] = 'El objetivo no está al alcance de sus misiles.';
 $LNG['ma_wrong_target'] = 'Objetivo Incorrecto';
 $LNG['ma_no_missiles'] = 'No hay misiles interplanetarios disponibles.';
 $LNG['ma_add_missile_number'] = 'Ingresar el número de misiles que deseas enviar';

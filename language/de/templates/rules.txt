@@ -27,7 +27,8 @@
 	</li>
 	<li>
 		<h1>6.1 Tools und Anwendungen</h1>
-		<p>Das Verwenden von externen Tools und Userskripten, die automatisiert Aktionen und/oder Requests im Spiel durchführen ist nicht gestattet. Jede Anwendung in diesem Kontext darf nur lokal verwendet werden und ein Export der Daten, sowie das aufarbeiten von Daten für den Export sind ebenfalls nicht erlaubt. Skripts und Tools sollten keinen spielerischen Vorteil bieten, den Spieler ohne diese nicht haben. Falls Unklarheiten bezüglich Regelkonformität eines Tools bestehen, ist ein Moderator/Administrator zu kontaktieren. Sollte ein Tool nicht diesen Regeln entsprechen, kann dieses nach einer Prüfung dennoch freigegeben werden. Für dieses Freigabeverfahren muss das Tool für einen vorgegebenen Prüfer bereitgestellt und genehmigt werden. Sollte ein Tool durch das Prüfverfahren freigegeben werden, so werden die Features davon (nicht das Tool selbst) von der Prüfinstanz veröffentlicht. Um das Freigabeverfahren einzuleiten muss sich an einen der Moderatoren/Administratoren gewendet werden.</p>
+		<p>Das Verwenden von externen Tools und Userskripten, die nicht vollumfänglich Freigeben wurden ist verboten.</p>
+		<p>Skripts und Tools sollten keinen spielerischen Vorteil bieten, den Spieler ohne diese nicht haben. Um Unklarheiten bezüglich Regelkonformität eines Tools auszuräumen, ist ein Moderator/Administrator zu kontaktieren.  Für dieses Freigabeverfahren muss das Tool für einen vorgegebenen Prüfer bereitgestellt und genehmigt werden. Sollte ein Tool durch das Prüfverfahren freigegeben werden, so werden die Features davon (nicht das Tool selbst) von der Prüfinstanz veröffentlicht.</p>
 		<p>Hinweis: Das Publizieren und Bereitstellen der eigens entwickelten Tools ist stark erwünscht, jedoch nicht verpflichtend.</p>
 	</li>
 	<li>

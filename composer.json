@@ -1,57 +1,60 @@
 {
-    "name": "pr0game/pr0game",
-    "description": "An open source space strategy game",
-    "type": "project",
-    "homepage": "https://codeberg.org/pr0game/pr0game/issues",
-    "readme": "README.md",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Jan-Otto Kröpke",
-            "email": "kroepke@outlook.com"
-        },
-        {
-            "name": "pr0game Community"
-        }
-    ],
-    "support": {
-        "issues": "https://codeberg.org/pr0game/pr0game/issues/issues",
-        "chat": "https://discord.gg/jhYYN3yuat"
+  "name": "pr0game/pr0game",
+  "description": "An open source space strategy game",
+  "type": "project",
+  "homepage": "https://codeberg.org/pr0game/pr0game/issues",
+  "readme": "README.md",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jan-Otto Kröpke",
+      "email": "kroepke@outlook.com"
     },
-    "funding": [
-        {
-            "type": "buymeacoffee",
-            "url": "https://www.buymeacoffee.com/pr0game"
-        }
-    ],
-    "require": {
-        "php": "^8.1",
-        "ext-ctype": "*",
-        "ext-curl": "*",
-        "ext-date": "*",
-        "ext-filter": "*",
-        "ext-gd": "*",
-        "ext-hash": "*",
-        "ext-intl": "*",
-        "ext-json": "*",
-        "ext-mbstring": "*",
-        "ext-mysqli": "*",
-        "ext-openssl": "*",
-        "ext-pcre": "*",
-        "ext-pdo": "*",
-        "ext-session": "*",
-        "ext-spl": "*",
-        "ext-zlib": "*",
-        "dragonmantank/cron-expression": "^3.3",
-        "erusev/parsedown": "1.6.0",
-        "phpmailer/phpmailer": "v6.5.3",
-        "smarty/smarty": "v4.2.1",
-        "symfony/var-dumper": "v6.2.3"
-    },
-    "minimum-stability": "stable",
-    "prefer-stable": true,
-    "config": {
-        "vendor-dir": "vendor",
-        "sort-packages": true
+    {
+      "name": "pr0game Community"
     }
+  ],
+  "support": {
+    "issues": "https://codeberg.org/pr0game/pr0game/issues/issues",
+    "chat": "https://discord.gg/jhYYN3yuat"
+  },
+  "funding": [
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/pr0game"
+    }
+  ],
+  "require": {
+    "php": "^8.1",
+    "ext-ctype": "*",
+    "ext-curl": "*",
+    "ext-date": "*",
+    "ext-filter": "*",
+    "ext-gd": "*",
+    "ext-hash": "*",
+    "ext-intl": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "ext-mysqli": "*",
+    "ext-openssl": "*",
+    "ext-pcre": "*",
+    "ext-pdo": "*",
+    "ext-session": "*",
+    "ext-spl": "*",
+    "ext-zlib": "*",
+    "dragonmantank/cron-expression": "^3.3",
+        "erusev/parsedown": "1.6.0",
+    "phpmailer/phpmailer": "v6.5.3",
+    "smarty/smarty": "v4.2.1",
+    "symfony/var-dumper": "v6.2.3"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.14"
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "config": {
+    "vendor-dir": "vendor",
+    "sort-packages": true
+  }
 }

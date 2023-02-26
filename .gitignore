@@ -16,3 +16,4 @@ stats.json
 .user.ini
 
 composer.phar
+.php-cs-fixer.cache

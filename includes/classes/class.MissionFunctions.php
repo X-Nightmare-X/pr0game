@@ -58,7 +58,7 @@ class MissionFunctions
         if ($this->_fleet['fleet_mess'] != FLEET_RETURN && $targetMission != MISSION_COLONISATION && $targetMission != MISSION_EXPEDITION && $targetMission != MISSION_TRADE) {
             // set points of fleet and target owner during arival (SaveFleet is always called on TargetEvent)
             if ($this->_fleet['fleet_group'] != 0) {
-                $sql = 'UPDATE %%LOG_FLEETS%% SET 
+                $sql = 'UPDATE %%LOG_FLEETS%% SET
                     fleet_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_owner AND stat_type = 1),
                     fleet_target_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_target_owner AND stat_type = 1)
                     WHERE `fleet_id` IN (SELECT fleet_id FROM %%FLEETS%% WHERE fleet_group = :acsId);';
@@ -69,7 +69,7 @@ class MissionFunctions
                 ]);
             }
             else {
-                $sql = 'UPDATE %%LOG_FLEETS%% SET 
+                $sql = 'UPDATE %%LOG_FLEETS%% SET
                     fleet_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_owner AND stat_type = 1),
                     fleet_target_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_target_owner AND stat_type = 1)
                     WHERE `fleet_id` = :fleetId;';
@@ -143,9 +143,9 @@ class MissionFunctions
 
         $userId = $onStart == true ? $this->_fleet['fleet_owner'] : $this->_fleet['fleet_target_owner'];
         $planetId = $onStart == true ? $this->_fleet['fleet_start_id'] : $this->_fleet['fleet_end_id'];
-        // $time = $onStart == true ? $this->_fleet['fleet_end_time'] : $this->_fleet['fleet_start_time'];
+        $time = $onStart == true ? $this->_fleet['fleet_end_time'] : $this->_fleet['fleet_start_time'];
 
-        $this->UpdatePlanet($userId, $planetId);
+        $this->UpdatePlanet($userId, $planetId, $time);
 
         $updateQuery = [];
 
@@ -220,20 +220,21 @@ class MissionFunctions
         return $LNG;
     }
 
-    function sendAttackReturnMessage() {
+    public function sendAttackReturnMessage()
+    {
         $reslist =& Singleton()->reslist;
 
-        $LNG = $this->getLanguage(NULL, $this->_fleet['fleet_owner']);
+        $LNG = $this->getLanguage(null, $this->_fleet['fleet_owner']);
 
         $sql = 'SELECT name FROM %%PLANETS%% WHERE id = :planetId;';
-        $planetNameStart = Database::get()->selectSingle($sql, array(
+        $planetNameStart = Database::get()->selectSingle($sql, [
             ':planetId'	=> $this->_fleet['fleet_start_id'],
-        ), 'name');
+        ], 'name');
 
         $sql = 'SELECT name FROM %%PLANETS%% WHERE id = :planetId;';
-        $planetNameEnd	= Database::get()->selectSingle($sql, array(
+        $planetNameEnd	= Database::get()->selectSingle($sql, [
             ':planetId'	=> $this->_fleet['fleet_end_id'],
-        ), 'name');
+        ], 'name');
 
         $Message = sprintf(
             $LNG['sys_fleet_won'],
@@ -258,8 +259,8 @@ class MissionFunctions
             if ($fleetAmmountStart != $fleetAmmount) {
                 if ($fleetAmmountStart > $fleetAmmount) {
                     $Message .= '<br><br>' . sprintf(
-                            $LNG['sys_expe_back_home_ships_lost']
-                        );
+                        $LNG['sys_expe_back_home_ships_lost']
+                    );
                 }
                 foreach ($reslist['fleet'] as $shipId) {
                     if (isset($fleetArrayStart[$shipId]) && isset($fleetArray[$shipId])) {
@@ -275,23 +276,33 @@ class MissionFunctions
             }
         }
 
-        PlayerUtil::sendMessage($this->_fleet['fleet_owner'], 0, $LNG['sys_mess_tower'], 4, $LNG['sys_mess_fleetback'],
-            $Message, $this->_fleet['fleet_end_time'], NULL, 1, $this->_fleet['fleet_universe']);
+        PlayerUtil::sendMessage(
+            $this->_fleet['fleet_owner'],
+            0,
+            $LNG['sys_mess_tower'],
+            4,
+            $LNG['sys_mess_fleetback'],
+            $Message,
+            $this->_fleet['fleet_end_time'],
+            null,
+            1,
+            $this->_fleet['fleet_universe']
+        );
     }
 
-    static function updateDestroyedAdvancedStats($attacker, $defender, $Element, $amount = 1)
+    public static function updateDestroyedAdvancedStats($attacker, $defender, $Element, $amount = 1)
     {
         if ($attacker > 0) {
             $resource =& Singleton()->resource;
             require_once 'includes/classes/Database.class.php';
             $db = Database::get();
-        
+
             $sql = "UPDATE %%ADVANCED_STATS%% SET destroyed_" . $Element . " = destroyed_" . $Element . " + :" . $resource[$Element] . " WHERE userId = :userId";
             $db->update($sql, [
                 ':' . $resource[$Element] => $amount,
                 ':userId' => $attacker,
             ]);
-        } 
+        }
 
         if ($defender > 0) {
             $fleetArray = [$Element => $amount];
@@ -299,7 +310,7 @@ class MissionFunctions
         }
     }
 
-    static function updateLostAdvancedStats($user, $fleetArray)
+    public static function updateLostAdvancedStats($user, $fleetArray)
     {
         if ($user <= 0) {
             return;
@@ -324,11 +335,11 @@ class MissionFunctions
         $db->update($sql, $params);
     }
 
-    function updateFoundRessAdvancedStats($user, $Element, $amount = 1)
+    public function updateFoundRessAdvancedStats($user, $Element, $amount = 1)
     {
         require_once 'includes/classes/Database.class.php';
         $db = Database::get();
-    
+
         $sql = "UPDATE %%ADVANCED_STATS%% SET found_" . $Element . " = found_" . $Element . " + :" . $Element . " WHERE userId = :userId";
         $db->update($sql, [
             ':' . $Element => $amount,
@@ -336,7 +347,7 @@ class MissionFunctions
         ]);
     }
 
-    function updateFoundShipsAdvancedStats($user, $fleetArray)
+    public function updateFoundShipsAdvancedStats($user, $fleetArray)
     {
         $resource =& Singleton()->resource;
         require_once 'includes/classes/Database.class.php';
@@ -357,11 +368,11 @@ class MissionFunctions
         $db->update($sql, $params);
     }
 
-    static function updateRepairedDefAdvancedStats($user, $Element, $amount = 1)
+    public static function updateRepairedDefAdvancedStats($user, $Element, $amount = 1)
     {
         require_once 'includes/classes/Database.class.php';
         $db = Database::get();
-    
+
         $sql = "UPDATE %%ADVANCED_STATS%% SET repaired_" . $Element . " = repaired_" . $Element . " + :" . $Element . " WHERE userId = :userId";
         $db->update($sql, [
             ':' . $Element => $amount,

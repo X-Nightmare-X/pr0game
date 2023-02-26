@@ -4,7 +4,7 @@ class ShowReportPage extends AbstractGamePage
 {
     public static $requireModule = 0;
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
         $this->setWindow('ajax');

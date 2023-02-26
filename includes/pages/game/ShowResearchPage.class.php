@@ -130,11 +130,8 @@ class ShowResearchPage extends AbstractGamePage
                 $USER['b_tech']             = TIMESTAMP;
                 $USER['b_tech_queue']       = serialize($NewCurrentQueue);
                 $this->ecoObj->setData($USER, $PLANET);
-                $this->ecoObj->SetNextQueueTechOnTop();
+                $this->ecoObj->SetNextQueueTechOnTop($saveRessources);
                 list($USER, $PLANET)        = $this->ecoObj->getData();
-                if ($saveRessources) {
-                    $this->ecoObj->saveResources($PLANET);
-                }
             } else {
                 $USER['b_tech']             = 0;
                 $USER['b_tech_queue']       = '';
@@ -384,14 +381,14 @@ class ShowResearchPage extends AbstractGamePage
             $costResources = BuildFunctions::getElementPrice($USER, $PLANET, $elementId, false, $levelToBuild + 1);
             $costOverflow = BuildFunctions::getRestPrice($USER, $PLANET, $elementId, $costResources);
             $timetobuild= 0;
-            if(array_key_exists(901, $costOverflow) && $costOverflow[901]!=0){
-                $timetobuild=max($timetobuild,$costOverflow[901]/$metproduction);
+            if (array_key_exists(901, $costOverflow) && $costOverflow[901]!=0) {
+                $timetobuild=max($timetobuild, $costOverflow[901]/$metproduction);
             }
-            if(array_key_exists(902, $costOverflow) && $costOverflow[902]!=0){
-                $timetobuild=max($timetobuild,$costOverflow[902]/$kristproduction);
+            if (array_key_exists(902, $costOverflow) && $costOverflow[902]!=0) {
+                $timetobuild=max($timetobuild, $costOverflow[902]/$kristproduction);
             }
-            if(array_key_exists(903, $costOverflow) && $costOverflow[903]!=0 && $deutproduction >0){
-                $timetobuild=max($timetobuild,$costOverflow[903]/$deutproduction);
+            if (array_key_exists(903, $costOverflow) && $costOverflow[903]!=0 && $deutproduction >0) {
+                $timetobuild=max($timetobuild, $costOverflow[903]/$deutproduction);
             }
             $timetobuild = floor($timetobuild*3600) ;
             $elementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $elementId, $costResources);

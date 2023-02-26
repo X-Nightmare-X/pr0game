@@ -1,4 +1,5 @@
 <?php
+
 // Traduction Française by BigTwoProduction (KickXAss4Ever & Apocalypto2202) - All rights reserved (C) 2016
 // Web : http://www.big-two.tk
 // Version 1.0 - Initial release
@@ -59,4 +60,3 @@ $LNG['step4_need_fields']	= "Vous devez remplir tous les champs!";
 $LNG['sql_universe']		= 'Univers';
 $LNG['sql_close_reason']	= 'Le jeu est actuellement fermé';
 $LNG['sql_welcome']			= 'Bienvenue sur ';
-?>

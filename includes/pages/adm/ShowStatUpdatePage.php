@@ -13,7 +13,9 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__))) throw new Exception("Permission error!");
+if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__))) {
+    throw new Exception("Permission error!");
+}
 
 function ShowStatUpdatePage()
 {
@@ -47,6 +49,5 @@ function ShowStatUpdatePage()
 
         require_once 'includes/classes/class.Discord.php';
         Discord::sendLog('Statistik (manual) FAILED', null, $exception);
-
     }
 }

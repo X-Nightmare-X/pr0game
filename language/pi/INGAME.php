@@ -1131,8 +1131,8 @@ $LNG['market_buyable_no_enemies'] = 'Keine Feinde';
 $LNG['market_info_no_return'] = 'Erstellte Marktplatzangebote können nicht storniert werden!';
 $LNG['market_info_description'] = 'Linke Seite - Martplatzangebot | Rechte Seite - Kaufbetrag<br><br>&bull; Angenommene'
     . ' Marktplatzangebote können nicht storniert werden. &bull;'
-	. '<br>&bull; Manche Angebote können wegen der Push-Regel nicht angenommen werden. &bull;'
-	. '<br>&bull; Deut für gekaufte Flotte wird vom Käufer bezahlt.&bull;';
+    . '<br>&bull; Manche Angebote können wegen der Push-Regel nicht angenommen werden. &bull;'
+    . '<br>&bull; Deut für gekaufte Flotte wird vom Käufer bezahlt.&bull;';
 $LNG['market_p_msg_not_found'] = 'Angebot nicht gefunden.';
 $LNG['market_p_msg_more_ships_is_needed'] = 'Es werden weitere Schiffe benötigt.';
 $LNG['market_p_msg_resources_error'] = 'Nicht genug Ressourcen vorhanden.';
@@ -1150,6 +1150,7 @@ $LNG['ma_silo_level'] = 'Du benötigst Bombenstation Stufe 4!';
 $LNG['ma_impulse_drive_required'] = 'Du musst zuerst Segelkunde erforschen';
 $LNG['ma_not_send_other_galaxy'] = 'Du kannst keine Bomben in eine andere Galaxie schicken.';
 $LNG['ma_planet_doesnt_exists'] = 'Hafen existiert nicht.';
+$LNG['ma_no_range'] = 'Das Ziel ist nicht in Reichweite deiner Raketen.';
 $LNG['ma_wrong_target'] = 'Kein Ziel';
 $LNG['ma_no_missiles'] = 'Du hast keine Bomben';
 $LNG['ma_add_missile_number'] = 'Sie müssen eine Zahl eingeben!';

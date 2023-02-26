@@ -1131,8 +1131,8 @@ $LNG['market_buyable_no_enemies'] = 'geine Haider';
 $LNG['market_info_no_return'] = 'Erschdellte Margtplatzangebote gönnene ned schdorniert werden!';
 $LNG['market_info_description'] = 'Linke Seite - Martblatzangebot | Rechte Seite - Gaufbetrag<br> <br>&bull; Angenommene'
     . ' Margtplatzangebote gönnene ned schdorniert werdne. &bull;'
-	. '<br>&bull; Manche Angebode gönnene wegne der BushRegel- ned angenommne werdne. &bull;'
-	. '<br>&bull; Deud für gegaufte Flodde wird wom Gäufer bezahlt.&bull;';
+    . '<br>&bull; Manche Angebode gönnene wegne der BushRegel- ned angenommne werdne. &bull;'
+    . '<br>&bull; Deud für gegaufte Flodde wird wom Gäufer bezahlt.&bull;';
 $LNG['market_p_msg_not_found'] = 'Angebod ned gefunden.';
 $LNG['market_p_msg_more_ships_is_needed'] = 'Es werdne weidere Schiffe benötigt.';
 $LNG['market_p_msg_resources_error'] = 'ned genug Ressourcne  vorhanden.';
@@ -1150,6 +1150,7 @@ $LNG['ma_silo_level'] = 'Du benötigschd Ragedensilo Schdufe 4!';
 $LNG['ma_impulse_drive_required'] = 'Du musschd zuerschd des Impulstriebwerg erforschen';
 $LNG['ma_not_send_other_galaxy'] = 'Du gannst geine Ragedne in ne andere Galaggsie schiggen.';
 $LNG['ma_planet_doesnt_exists'] = 'Blanet exischdiert nichd.';
+$LNG['ma_no_range'] = 'Das Ziel ist nicht in Reichweite deiner Raketen.';
 $LNG['ma_wrong_target'] = 'gein Ziel';
 $LNG['ma_no_missiles'] = 'Du haschd geine Interplanetarrageten';
 $LNG['ma_add_missile_number'] = 'Sie müssne ne Zahl eingebene!';
