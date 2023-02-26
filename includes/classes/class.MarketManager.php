@@ -59,7 +59,7 @@ class MarketManager
         ]);
 
         if (empty($trades)) {
-            $trades []= [
+            $trades[] = [
                 'amount' => $this->getDefaultRatio($expectedrestype),
                 'metal' => $this->getDefaultRatio($this->_restype_metal),
             ];
@@ -92,7 +92,7 @@ class MarketManager
         ]);
 
         if (empty($trades)) {
-            $trades []= [
+            $trades[] = [
                 'amount' => $this->getDefaultRatio($expectedrestype),
                 'crystal' => $this->getDefaultRatio($this->_restype_crystal),
             ];
@@ -125,7 +125,7 @@ class MarketManager
         ]);
 
         if (empty($trades)) {
-            $trades []= [
+            $trades[] = [
                 'amount' => $this->getDefaultRatio($expectedrestype),
                 'deuterium' => $this->getDefaultRatio($this->_restype_deuterium),
             ];
@@ -143,8 +143,8 @@ class MarketManager
         }
 
         $allTrades = [
-                'metal' => 0,
-                'crystal' => 0,
+            'metal' => 0,
+            'crystal' => 0,
         ];
 
         $kristrades = $this->getMetSales($this->_restype_crystal);
@@ -264,8 +264,8 @@ class MarketManager
             'deuterium' => 1,
         ];
 
-		return $result;
-	}
+        return $result;
+    }
 
     /**
      * @param array ['metal' => x, 'crystal' => y, 'deuterium' => z]
@@ -332,12 +332,12 @@ class MarketManager
      */
     public function getFleetValue($fleetArray, $useScore = false)
     {
-        $pricelist =& Singleton()->pricelist;
+        $pricelist = &Singleton()->pricelist;
 
         $totalCostArray = [
-                901 => 0,
-                902 => 0,
-                903 => 0,
+            901 => 0,
+            902 => 0,
+            903 => 0,
         ];
 
         foreach ($fleetArray as $ship => $count) {
@@ -365,8 +365,8 @@ class MarketManager
 				LEFT JOIN %%STATPOINTS%% s ON s.id_owner = u.id AND s.stat_type = 1
 				WHERE u.id = :playerID AND u.universe = :universe;";
         $query = $db->selectSingle($sql, [
-                ':universe'	=> Universe::current(),
-                ':playerID'	=> $playerid,
+            ':universe'    => Universe::current(),
+            ':playerID'    => $playerid,
         ]);
 
         if (!$query) {
@@ -388,8 +388,8 @@ class MarketManager
 
         // special case: buyer is weaker, but becomes stronger when receiving fleet
         $specialFleetPush = ($fleetScore != 0
-                && ($sellerScore > $buyerScore)
-                && ($sellerScore - $fleetScore < $buyerScore + $fleetScore));
+            && ($sellerScore > $buyerScore)
+            && ($sellerScore - $fleetScore < $buyerScore + $fleetScore));
 
         $highestValue = ($offer > $ask) ? $offer : $ask;
         $margin = $highestValue * (1 - $this->_pushTolerance);
