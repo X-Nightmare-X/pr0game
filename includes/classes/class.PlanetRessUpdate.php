@@ -918,7 +918,11 @@ class ResourceUpdate
 
         Database::get()->update($sql, $params);
 
-        $this->Builded = [];
+        $this->Builded = [
+            RESOURCE_METAL => 0,
+            RESOURCE_CRYSTAL => 0,
+            RESOURCE_DEUT => 0,
+        ];
 
         return [$USER, $PLANET];
     }
