@@ -935,6 +935,9 @@ class ResourceUpdate
         global $resource;
         $params = [':planetId' => $planetId];
         foreach ($resources as $resourceId => $amount) {
+            if ($resourceId == RESOURCE_ENERGY) {
+                continue;
+            }
             $planetQuery[] = $resource[$resourceId] . " = " . $resource[$resourceId] . " - :" . $resource[$resourceId];
             $params[':' . $resource[$resourceId]] = $amount;
 
@@ -954,6 +957,9 @@ class ResourceUpdate
         global $resource;
         $params = [':planetId' => $planetId];
         foreach ($resources as $resourceId => $amount) {
+            if ($resourceId == RESOURCE_ENERGY) {
+                continue;
+            }
             $planetQuery[] = $resource[$resourceId] . " = " . $resource[$resourceId] . " + :" . $resource[$resourceId];
             $params[':' . $resource[$resourceId]] = $amount * $factor;
 
