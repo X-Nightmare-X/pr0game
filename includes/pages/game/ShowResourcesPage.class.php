@@ -50,7 +50,7 @@ class ShowResourcesPage extends AbstractGamePage
 
                 $updateSQL[] = $FieldName . " = :" . $FieldName;
                 $param[':' . $FieldName] = (int) $Value;
-                $PLANET[$FieldName] = $Value;
+                $PLANET[$FieldName] = (int) $Value;
             }
 
             if (!empty($updateSQL)) {
