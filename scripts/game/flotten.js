@@ -259,7 +259,22 @@ function CheckTarget()
 	kolo	= (typeof data.ships[208] == "object") ? 1 : 0;
 
 	$.getJSON('game.php?page=fleetStep1&mode=checkTarget&galaxy='+document.getElementsByName("galaxy")[0].value+'&system='+document.getElementsByName("system")[0].value+'&planet='+document.getElementsByName("planet")[0].value+'&planet_type='+document.getElementsByName("type")[0].value+'&lang='+Lang+'&kolo='+kolo, function(data) {
-		if(data == "OK") {
+		if (data == "OK") {
+			document.getElementById('form').submit();
+		} else {
+			NotifyBox(data);
+		}
+	});
+	return false;
+}
+
+function CheckResources()
+{
+  e = document.getElementsByName("resEx")[0];
+  resEx = e != null ? e.value : 0;
+
+  $.getJSON('game.php?page=fleetStep2&mode=checkResources&metal='+document.getElementsByName("metal")[0].value+'&crystal='+document.getElementsByName("crystal")[0].value+'&deuterium='+document.getElementsByName("deuterium")[0].value+'&mission='+document.querySelector('input[name="mission"]:checked').value+'&resEx='+resEx+'&token='+document.getElementsByName("token")[0].value, function(data) {
+		if (data == "OK") {
 			document.getElementById('form').submit();
 		} else {
 			NotifyBox(data);

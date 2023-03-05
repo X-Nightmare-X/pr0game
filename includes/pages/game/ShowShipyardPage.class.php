@@ -179,11 +179,19 @@ class ShowShipyardPage extends AbstractGamePage
                     $this->printMessage(sprintf($LNG['bd_max_builds'], $maxBuildQueue));
                 }
 
+                $db = Database::get();
+                $db->startTransaction();
+                $PLANET = $db->selectSingle("SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;", [':planetId' => $PLANET['id']]);
                 $this->buildAuftr($buildTodo);
+                $db->commit();
             }
 
             if ($action == "delete") {
+                $db = Database::get();
+                $db->startTransaction();
+                $PLANET = $db->selectSingle("SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;", [':planetId' => $PLANET['id']]);
                 $this->cancelAuftr();
+                $db->commit();
             }
         }
 

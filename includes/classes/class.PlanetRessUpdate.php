@@ -23,7 +23,6 @@ class ResourceUpdate
      */
     private $config = null;
 
-    private $isGlobalMode = null;
     private $TIME = null;
     private $HASH = null;
     private $ProductionTime = null;
@@ -58,13 +57,7 @@ class ResourceUpdate
 
     public function ReturnVars()
     {
-        if ($this->isGlobalMode) {
-            $GLOBALS['USER'] = $this->USER;
-            $GLOBALS['PLANET'] = $this->PLANET;
-            return true;
-        } else {
-            return [$this->USER, $this->PLANET];
-        }
+        return [$this->USER, $this->PLANET];
     }
 
     public function CreateHash()
@@ -95,11 +88,10 @@ class ResourceUpdate
         return md5(implode("::", $Hash));
     }
 
-    public function CalcResource($USER = null, $PLANET = null, $SAVE = false, $TIME = null, $HASH = true)
+    public function CalcResource($USER, $PLANET, $SAVE = false, $TIME = null, $HASH = true)
     {
-        $this->isGlobalMode = !isset($USER, $PLANET) ? true : false;
-        $this->USER = $this->isGlobalMode ? $GLOBALS['USER'] : $USER;
-        $this->PLANET = $this->isGlobalMode ? $GLOBALS['PLANET'] : $PLANET;
+        $this->USER = $USER;
+        $this->PLANET = $PLANET;
         $this->TIME = is_null($TIME) ? TIMESTAMP : $TIME;
         $this->config = Config::get($this->USER['universe']);
 
@@ -190,7 +182,7 @@ class ResourceUpdate
         $resource =& Singleton()->resource;
 
         if ($produced < 0) {
-            if ($this->PLANET[$resource[$resource_type]] < $produced) {
+            if ($this->PLANET[$resource[$resource_type]] + $produced < 0) {
                 $produced = $this->PLANET[$resource[$resource_type]] * -1;
             }
         }
@@ -817,17 +809,10 @@ class ResourceUpdate
         return true;
     }
 
-    private function SavePlanetToDB($USER = null, $PLANET = null)
+    private function SavePlanetToDB($USER, $PLANET)
     {
         $resource =& Singleton()->resource;
         $reslist =& Singleton()->reslist;
-        if (is_null($USER)) {
-            $USER =& Singleton()->USER;
-        }
-
-        if (is_null($PLANET)) {
-            $PLANET =& Singleton()->PLANET;
-        }
 
         $buildQueries = [];
 
@@ -935,6 +920,9 @@ class ResourceUpdate
         global $resource;
         $params = [':planetId' => $planetId];
         foreach ($resources as $resourceId => $amount) {
+            if ($resourceId == RESOURCE_ENERGY) {
+                continue;
+            }
             $planetQuery[] = $resource[$resourceId] . " = " . $resource[$resourceId] . " - :" . $resource[$resourceId];
             $params[':' . $resource[$resourceId]] = $amount;
 
@@ -954,6 +942,9 @@ class ResourceUpdate
         global $resource;
         $params = [':planetId' => $planetId];
         foreach ($resources as $resourceId => $amount) {
+            if ($resourceId == RESOURCE_ENERGY) {
+                continue;
+            }
             $planetQuery[] = $resource[$resourceId] . " = " . $resource[$resourceId] . " + :" . $resource[$resourceId];
             $params[':' . $resource[$resourceId]] = $amount * $factor;
 

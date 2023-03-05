@@ -221,7 +221,19 @@ class FleetFunctions
 
     public static function getMIPDuration($startSystem, $targetSystem)
     {
-        $Distance = abs($startSystem - $targetSystem);
+        if (Config::get()->galaxy_type == 2) {
+            $Distance = 2;
+        } elseif (Config::get()->galaxy_type == 1) {
+            $max = Config::get()->max_system;
+            if (abs($startSystem - $targetSystem) < ceil($max / 2)) {
+                $Distance = abs($startSystem - $targetSystem);
+            } else {
+                $Distance = floor($max / 2) - (abs($startSystem - $targetSystem) - ceil($max / 2));
+            }
+        } else {
+            $Distance = abs($startSystem - $targetSystem);
+        }
+
         $Duration = max(round((30 + 60 * $Distance) / self::getGameSpeedFactor()), MIN_FLEET_TIME);
 
         return $Duration;
