@@ -254,4 +254,69 @@ class ShowFleetStep2Page extends AbstractGamePage
 
         $this->display('page.fleetStep2.default.tpl');
     }
+
+    public function checkResources(): void
+    {
+        $PLANET =& Singleton()->PLANET;
+        $LNG =& Singleton()->LNG;
+        $USER =& Singleton()->USER;
+
+        $targetMission = HTTP::_GP('mission', MISSION_TRANSPORT);
+        $TransportMetal = max(0, round(HTTP::_GP('metal', 0.0)));
+        $TransportCrystal = max(0, round(HTTP::_GP('crystal', 0.0)));
+        $TransportDeuterium = max(0, round(HTTP::_GP('deuterium', 0.0)));
+        $WantedResourceType = HTTP::_GP('resEx', 0);
+
+        if ($PLANET['metal'] < $TransportMetal) {
+            $this->sendJSON(sprintf($LNG['fl_not_enough'], $LNG['tech'][RESOURCE_METAL]));
+        }
+        if ($PLANET['crystal'] < $TransportCrystal) {
+            $this->sendJSON(sprintf($LNG['fl_not_enough'], $LNG['tech'][RESOURCE_CRYSTAL]));
+        }
+
+        $token = HTTP::_GP('token', '');
+        $session = Session::load();
+        $fleet = $session->fleet;
+        $formData = $fleet[$token];
+        $fleetArray = $formData['fleet'];
+        $distance = $formData['distance'];
+        $fleetSpeed = $formData['fleetSpeed'];
+        $fleetStorage = $formData['fleetRoom'];
+
+        $GameSpeedFactor = FleetFunctions::getGameSpeedFactor();
+        $MaxFleetSpeed = FleetFunctions::getFleetMaxSpeed($fleetArray, $USER);
+        $duration = FleetFunctions::getMissionDuration($fleetSpeed, $MaxFleetSpeed, $distance, $GameSpeedFactor, $USER);
+        $consumption = FleetFunctions::getFleetConsumption($fleetArray, $duration, $distance, $USER, $GameSpeedFactor);
+
+        if ($PLANET['deuterium'] < $TransportDeuterium + $consumption) {
+            $this->sendJSON(sprintf($LNG['fl_not_enough'], $LNG['tech'][RESOURCE_DEUT]));
+        }
+
+        if ($fleetStorage < $TransportMetal + $TransportCrystal + $TransportDeuterium + $consumption) {
+            $this->sendJSON($LNG['fl_not_enough_space']);
+        }
+
+        if ($targetMission == MISSION_TRADE) {
+            $anz = 0;
+            $anz += $TransportMetal > 0 ? 1 : 0;
+            $anz += $TransportCrystal > 0 ? 1 : 0;
+            $anz += $TransportDeuterium > 0 ? 1 : 0;
+
+            if ($anz == 0) {
+                $this->sendJSON($LNG['fl_trade_no_resource_loaded']);
+            } elseif ($anz > 1) {
+                $this->sendJSON($LNG['fl_trade_to_many_resources_loaded']);
+            }
+
+            if ($TransportMetal > 0 && $WantedResourceType == 1) {
+                $this->sendJSON(sprintf($LNG['fl_trade_same_resource'], $LNG['tech'][RESOURCE_METAL], $LNG['tech'][RESOURCE_METAL]));
+            } elseif ($TransportCrystal > 0 && $WantedResourceType == 2) {
+                $this->sendJSON(sprintf($LNG['fl_trade_same_resource'], $LNG['tech'][RESOURCE_CRYSTAL], $LNG['tech'][RESOURCE_CRYSTAL]));
+            } elseif ($TransportDeuterium > 0 && $WantedResourceType == 3) {
+                $this->sendJSON(sprintf($LNG['fl_trade_same_resource'], $LNG['tech'][RESOURCE_DEUT], $LNG['tech'][RESOURCE_DEUT]));
+            }
+        }
+
+        $this->sendJSON('OK');
+    }
 }
