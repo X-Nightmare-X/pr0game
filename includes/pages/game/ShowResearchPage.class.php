@@ -343,6 +343,7 @@ class ShowResearchPage extends AbstractGamePage
             $USER = $db->selectSingle("SELECT * FROM %%USERS%% WHERE id = :userID FOR UPDATE;", [':userID' => $USER['id']]);
             $PLANET = $db->selectSingle("SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;", [':planetId' => $PLANET['id']]);
             $db->select("SELECT * FROM %%PLANETS%% WHERE id_owner = :userID FOR UPDATE;", [':userID' => $USER['id']]);
+            $PLANET[$resource[31] . '_inter'] = ResourceUpdate::getNetworkLevel($USER, $PLANET);
             switch ($TheCommand) {
                 case 'cancel':
                     $this->cancelResearchFromQueue();
