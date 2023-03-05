@@ -252,6 +252,9 @@ class ShowBuildingsPage extends AbstractGamePage
         if (!empty($TheCommand) && $_SERVER['REQUEST_METHOD'] === 'POST' && $USER['urlaubs_modus'] == 0) {
             $Element        = HTTP::_GP('building', 0);
             $ListID         = HTTP::_GP('listid', 0);
+            $db = Database::get();
+            $db->startTransaction();
+            $PLANET = $db->selectSingle("SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;", [':planetId' => $PLANET['id']]);
             switch ($TheCommand) {
                 case 'cancel':
                     $this->cancelBuildingFromQueue();
@@ -268,6 +271,7 @@ class ShowBuildingsPage extends AbstractGamePage
             }
 
             $this->ecoObj->saveBuilingQueue($PLANET);
+            $db->commit();
             $this->redirectTo('game.php?page=buildings');
         }
 

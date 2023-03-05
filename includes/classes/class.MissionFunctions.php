@@ -122,7 +122,7 @@ class MissionFunctions
 
     protected function UpdatePlanet($userId, $planetId, $time = null)
     {
-        $sql = 'SELECT * FROM %%USERS%% WHERE id = :userId;';
+        $sql = 'SELECT * FROM %%USERS%% WHERE id = :userId FOR UPDATE;';
         $targetUser = Database::get()->selectSingle($sql, [
             ':userId'   => $userId
         ]);

@@ -51,7 +51,7 @@ class ShowResearchPage extends AbstractGamePage
         return true;
     }
 
-    private function cancelBuildingFromQueue()
+    private function cancelResearchFromQueue()
     {
         $PLANET =& Singleton()->PLANET;
         $USER =& Singleton()->USER;
@@ -141,7 +141,7 @@ class ShowResearchPage extends AbstractGamePage
         return true;
     }
 
-    private function removeBuildingFromQueue($QueueID)
+    private function removeResearchFromQueue($QueueID)
     {
         $USER =& Singleton()->USER;
         $PLANET =& Singleton()->PLANET;
@@ -153,7 +153,7 @@ class ShowResearchPage extends AbstractGamePage
 
         $ActualCount   = count($CurrentQueue);
         if ($ActualCount <= 1) {
-            return $this->cancelBuildingFromQueue();
+            return $this->cancelResearchFromQueue();
         }
 
         if (!isset($CurrentQueue[$QueueID - 2])) {
@@ -200,7 +200,7 @@ class ShowResearchPage extends AbstractGamePage
         return true;
     }
 
-    private function addBuildingToQueue($elementId, $AddMode = true)
+    private function addResearchToQueue($elementId, $AddMode = true)
     {
         $PLANET =& Singleton()->PLANET;
         $USER =& Singleton()->USER;
@@ -338,22 +338,28 @@ class ShowResearchPage extends AbstractGamePage
         $PLANET[$resource[31] . '_inter'] = ResourceUpdate::getNetworkLevel($USER, $PLANET);
 
         if (!empty($TheCommand) && $_SERVER['REQUEST_METHOD'] === 'POST' && $USER['urlaubs_modus'] == 0) {
+            $db = Database::get();
+            $db->startTransaction();
+            $USER = $db->selectSingle("SELECT * FROM %%USERS%% WHERE id = :userID FOR UPDATE;", [':userID' => $USER['id']]);
+            $PLANET = $db->selectSingle("SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;", [':planetId' => $PLANET['id']]);
+            $db->select("SELECT * FROM %%PLANETS%% WHERE id_owner = :userID FOR UPDATE;", [':userID' => $USER['id']]);
             switch ($TheCommand) {
                 case 'cancel':
-                    $this->cancelBuildingFromQueue();
+                    $this->cancelResearchFromQueue();
                     break;
                 case 'remove':
-                    $this->removeBuildingFromQueue($ListID);
+                    $this->removeResearchFromQueue($ListID);
                     break;
                 case 'insert':
-                    $this->addBuildingToQueue($elementId, true);
+                    $this->addResearchToQueue($elementId, true);
                     break;
                 case 'destroy':
-                    $this->addBuildingToQueue($elementId, false);
+                    $this->addResearchToQueue($elementId, false);
                     break;
             }
 
             $this->ecoObj->saveTechQueue($USER);
+            $db->commit();
             $this->redirectTo('game.php?page=research');
         }
 
