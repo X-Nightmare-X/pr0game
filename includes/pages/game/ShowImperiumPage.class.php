@@ -32,7 +32,7 @@ class ShowImperiumPage extends AbstractGamePage
         $reslist =& Singleton()->reslist;
         $db = Database::get();
         $db->startTransaction();
-        $USER = $db->selectSingle("SELECT * FROM %%USERS%% WHERE id = :userID FOR UPDATE;", [':userID' => $USER['id']]);
+        $db->selectSingle("SELECT * FROM %%USERS%% WHERE id = :userID FOR UPDATE;", [':userID' => $USER['id']]);
         $order = $USER['planet_sort_order'] == 1 ? 'DESC' : 'ASC';
 
         $sql = "SELECT * FROM %%PLANETS%% WHERE id_owner = :userID AND destruyed = '0' ORDER BY ";
