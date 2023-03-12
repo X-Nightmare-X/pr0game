@@ -919,6 +919,7 @@ class ResourceUpdate
     {
         global $resource;
         $params = [':planetId' => $planetId];
+        $planetQuery = [];
         foreach ($resources as $resourceId => $amount) {
             if ($resourceId == RESOURCE_ENERGY) {
                 continue;
@@ -931,10 +932,12 @@ class ResourceUpdate
             }
         }
 
-        $sql = 'UPDATE %%PLANETS%% SET ' .
-        implode(', ', $planetQuery) .
-        ' WHERE id = :planetId;';
-        Database::get()->update($sql, $params);
+        if (!empty($planetQuery)) {
+            $sql = 'UPDATE %%PLANETS%% SET ' .
+            implode(', ', $planetQuery) .
+            ' WHERE id = :planetId;';
+            Database::get()->update($sql, $params);
+        }
     }
 
     public function addResources(int $planetId, array $resources, array &$planet = null, float $factor = 1)
