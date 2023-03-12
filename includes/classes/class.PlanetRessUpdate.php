@@ -183,7 +183,7 @@ class ResourceUpdate
 
         if ($produced < 0) {
             if ($this->PLANET[$resource[$resource_type]] + $produced < 0) {
-                $produced = $this->PLANET[$resource[$resource_type]] * -1;
+                $produced = floor($this->PLANET[$resource[$resource_type]]) * -1;
             }
         }
         elseif ($this->PLANET[$resource[$resource_type]] <= $storage) {
