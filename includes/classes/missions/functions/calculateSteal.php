@@ -82,6 +82,10 @@ function calculateSteal($attackFleets, $defenderPlanet, $simulate = false)
         $defenderPlanet[$resource[$secondResource]] / 2 - $stealResource[$secondResource]
     );
 
+    $stealResource[$firstResource] = floor(max(0, $stealResource[$firstResource]));
+    $stealResource[$secondResource] = floor(max(0, $stealResource[$secondResource]));
+    $stealResource[$thirdResource] = floor(max(0, $stealResource[$thirdResource]));
+
     if ($simulate) {
         return $stealResource;
     }
