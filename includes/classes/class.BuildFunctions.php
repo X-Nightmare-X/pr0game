@@ -158,12 +158,12 @@ class BuildFunctions
 
         $elementCost = 0;
 
-        if (isset($elementPrice[901])) {
-            $elementCost += $elementPrice[901];
+        if (isset($elementPrice[RESOURCE_METAL])) {
+            $elementCost += $elementPrice[RESOURCE_METAL];
         }
 
-        if (isset($elementPrice[902])) {
-            $elementCost += $elementPrice[902];
+        if (isset($elementPrice[RESOURCE_CRYSTAL])) {
+            $elementCost += $elementPrice[RESOURCE_CRYSTAL];
         }
 
         if (in_array($Element, $reslist['build'])) {
@@ -176,13 +176,13 @@ class BuildFunctions
                     if ($index >= $maxQueueIndex) {
                         break;
                     }
-                    if ($QueueSubArray[0] == 14) {
+                    if ($QueueSubArray[0] == ROBOT_FACTORY) {
                         if ($QueueSubArray[4] == 'build') {
                             $robo++;
                         } else {
                             $robo--;
                         }
-                    } elseif ($QueueSubArray[0] == 15) {
+                    } elseif ($QueueSubArray[0] == NANITE_FACTORY) {
                         if ($QueueSubArray[4] == 'build') {
                             $nani++;
                         } else {
@@ -194,21 +194,21 @@ class BuildFunctions
             $time = $elementCost / ($config->building_speed * (1 + $robo))
                 * pow(0.5, $nani);
         } elseif (in_array($Element, $reslist['fleet'])) {
-            $time = $elementCost / ($config->shipyard_speed * (1 + $PLANET[$resource[21]]))
-                * pow(0.5, $PLANET[$resource[15]]);
+            $time = $elementCost / ($config->shipyard_speed * (1 + $PLANET[$resource[SHIPYARD]]))
+                * pow(0.5, $PLANET[$resource[NANITE_FACTORY]]);
         } elseif (in_array($Element, $reslist['defense'])) {
-            $time = $elementCost / ($config->shipyard_speed * (1 + $PLANET[$resource[21]]))
-                * pow(0.5, $PLANET[$resource[15]]);
+            $time = $elementCost / ($config->shipyard_speed * (1 + $PLANET[$resource[SHIPYARD]]))
+                * pow(0.5, $PLANET[$resource[NANITE_FACTORY]]);
         } elseif (in_array($Element, $reslist['missile'])) {
-            $time = $elementCost / ($config->shipyard_speed * (1 + $PLANET[$resource[21]]))
-                * pow(0.5, $PLANET[$resource[15]]);
+            $time = $elementCost / ($config->shipyard_speed * (1 + $PLANET[$resource[SHIPYARD]]))
+                * pow(0.5, $PLANET[$resource[NANITE_FACTORY]]);
         } elseif (in_array($Element, $reslist['tech'])) {
-            if (is_numeric($PLANET[$resource[31] . '_inter'])) {
-                $Level = $PLANET[$resource[31]];
+            if (is_numeric($PLANET[$resource[RESEARCH_LABORATORY] . '_inter'])) {
+                $Level = $PLANET[$resource[RESEARCH_LABORATORY]];
             } else {
                 $Level = 0;
-                foreach ($PLANET[$resource[31] . '_inter'] as $Levels) {
-                    if (!isset($requeriments[$Element][31]) || $Levels >= $requeriments[$Element][31]) {
+                foreach ($PLANET[$resource[RESEARCH_LABORATORY] . '_inter'] as $Levels) {
+                    if (!isset($requeriments[$Element][RESEARCH_LABORATORY]) || $Levels >= $requeriments[$Element][RESEARCH_LABORATORY]) {
                         $Level += $Levels;
                     }
                 }
@@ -277,7 +277,7 @@ class BuildFunctions
         }
 
         $BuildArray = !empty($PLANET['b_hangar_id']) ? unserialize($PLANET['b_hangar_id']) : [];
-        $MaxMissiles = $PLANET[$resource[44]] * 10 * max(Config::get()->silo_factor, 1);
+        $MaxMissiles = $PLANET[$resource[SILO]] * 10 * max(Config::get()->silo_factor, 1);
 
         foreach ($BuildArray as $ElementArray) {
             if (isset($Missiles[$ElementArray[0]])) {
@@ -285,12 +285,12 @@ class BuildFunctions
             }
         }
 
-        $ActuMissiles = $Missiles[502] + (2 * $Missiles[503]);
+        $ActuMissiles = $Missiles[INTERCEPTOR_MISSILE] + (2 * $Missiles[INTERPLANETARY_MISSILE]);
         $MissilesSpace = max(0, $MaxMissiles - $ActuMissiles);
 
         return [
-            502 => $MissilesSpace,
-            503 => floor($MissilesSpace / 2),
+            INTERCEPTOR_MISSILE => $MissilesSpace,
+            INTERPLANETARY_MISSILE => floor($MissilesSpace / 2),
         ];
     }
 
