@@ -1319,7 +1319,7 @@ class ShowAlliancePage extends AbstractGamePage
 
         $db = Database::get();
 
-        $sql = "SELECT applyID, userID, u.username, r.time FROM %%ALLIANCE_REQUEST%% r INNER JOIN %%USERS%% u"
+        $sql = "SELECT applyID, u.username, r.time FROM %%ALLIANCE_REQUEST%% r INNER JOIN %%USERS%% u"
             . " ON r.userId = u.id WHERE r.allianceId = :allianceId;";
         $applyResult = $db->select($sql, [
             ':allianceId' => $this->allianceData['id']
@@ -1331,7 +1331,6 @@ class ShowAlliancePage extends AbstractGamePage
             $applyList[] = [
                 'username' => $applyRow['username'],
                 'id' => $applyRow['applyID'],
-                'userID' => $applyRow['userID'],
                 'time' => _date($LNG['php_tdformat'], $applyRow['time'], $USER['timezone']),
             ];
         }
