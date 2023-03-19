@@ -191,7 +191,7 @@
               {$LNG.fgf_time}:<span class="statictime" timestamp="{$Element.elementTime}"></span>
               {if $Element.level > 0}
                 {if $ID == 43}<a href="#" onclick="return Dialog.info({$ID})">{$LNG.bd_jump_gate_action}</a>{/if}
-                {if ($ID == 44 && !$HaveMissiles) ||  $ID != 44}<br><a class="tooltip_sticky" data-tooltip-content="
+                {if $Element.destroyable}<br><a class="tooltip_sticky" data-tooltip-content="
 								{* Start Destruction Popup *}
 								<table style='width:300px'>
 									<tr>
