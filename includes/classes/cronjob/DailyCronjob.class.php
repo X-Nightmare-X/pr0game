@@ -54,6 +54,7 @@ class DailyCronJob implements CronjobTask
 
         foreach ($players as $player) {
             PlayerUtil::disable_vmode($player);
+            PlayerUtil::clearPlanets($player);
         }
     }
 
