@@ -195,7 +195,7 @@ function selectedResources() {
     document.getElementsByName("crystal")[0].value =0
   }
   if(!isNaN(parseInt(amt[2]))){
-    document.getElementsByName("deuterium")[0].value = Math.min(parseInt(amt[2]),parseInt(document.getElementById('current_deuterium').getAttribute('data-real'))-parseInt(data.consumption))
+    document.getElementsByName("deuterium")[0].value = Math.min(parseInt(amt[2]),parseInt(document.getElementById('current_deuterium').getAttribute('data-real'))-parseInt(amt[3]))
   }else{
     document.getElementsByName("deuterium")[0].value =0
   }
