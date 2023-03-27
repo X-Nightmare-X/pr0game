@@ -109,6 +109,7 @@ input[type="radio"] {
 }
 
 #menu {
+  font-size: 1.4em;
   position: fixed;
   overflow-y: auto;
   height: 90vh;
@@ -523,6 +524,7 @@ a {
   text-align: center;
   border: none;
   padding: 5px;
+  font-variant-caps: small-caps;
 }
 
 .infos,
@@ -547,6 +549,33 @@ a {
 .build_submit:hover {
   text-decoration: none;
   font-weight: normal;
+}
+
+#buildlist button.build_submit {
+  background: var(--tv-bg-secondary);
+}
+
+#buildlist .bulida .build_form button.build_submit {
+  background-color: var(--tv-danger);
+}
+
+#buildlist .buildb button.build_submit {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+#buildlist::before {
+  content: "In Progress";
+  font-variant-caps: small-caps;
+  text-align: center;
+  display: block;
+  background: var(--tv-bg-tertiary);
+  padding: 8px;
+}
+
+#buildlist {
+  margin-bottom: 1em;
 }
 
 .infos1 {
@@ -652,8 +681,6 @@ a {
   width: 35%;
   line-height: 1.4;
   padding: 8px;
-  height: 69px;
-  border-bottom: solid 1px #00d2be;
 }
 
 .buildb {
@@ -661,8 +688,6 @@ a {
   width: 65%;
   line-height: 1.4;
   padding: 12px;
-  height: 69px;
-  border-bottom: solid 1px #00d2be;
 }
 
 .buildc {
@@ -670,8 +695,6 @@ a {
   width: 100%;
   line-height: 1.4;
   padding: 12px;
-  height: 69px;
-  border-bottom: solid 1px #00d2be;
 }
 
 .hidden-div {
@@ -789,8 +812,11 @@ img {
 
 .ui-state-hover,
 .ui-progressbar {
-  border: 1px #000 !important;
-  background: #55386b !important;
+  background: var(--tv-color-primary) !important;
+}
+
+.ui-progressbar .ui-progressbar-value {
+  margin: 0;
 }
 
 .ui-tabs-nav {
