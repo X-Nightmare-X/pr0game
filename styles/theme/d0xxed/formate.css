@@ -1,6 +1,6 @@
 :root {
-  --tv-danger: #ae660e;
-  --tv-highlight: #00f4aa;
+  --tv-danger: #c67716;
+  --tv-highlight: #30efa6;
   --tv-error: #d72f00;
   --tv-bg-primary: #1e2b39;
   --tv-bg-secondary: #39495e;
@@ -10,8 +10,8 @@
   --tv-color-primary: #ffffff;
   --tv-color-secondary: #dadada;
   --tv-blue: #00a7f5;
-  --tv-green: #00d293;
-  --tv-orange: #ae660e;
+  --tv-green: #30efa6;
+  --tv-orange: #c67716;
   --tv-yellow: #d7d700;
   --tv-red: #d72f00;
   --tv-gray: #666;
@@ -39,7 +39,7 @@ body {
   font-weight: 300;
   font-family: Yantramanav, Helvetica, sans-serif;
   color: #fff;
-  font-size: 1em;
+  font-size: 0.85em;
 }
 
 body,
@@ -109,7 +109,7 @@ input[type="radio"] {
 }
 
 #menu {
-  font-size: 1.4em;
+  font-size: 1.2em;
   position: fixed;
   overflow-y: auto;
   height: 90vh;
@@ -142,17 +142,6 @@ table,
 td,
 th {
   font-weight: 400
-}
-
-table table,
-img {
-  border: 0
-}
-
-select,
-textarea,
-#userpic {
-  border: 1px solid #ffeec0;
 }
 
 table {
@@ -226,50 +215,50 @@ th a:hover,
   font-weight: bold;
 }
 
-textarea {
-  background: transparent;
+
+/* Message colors */
+
+body#messages content tbody tr td a {
+  color: var(--tv-color-primary) !important;
 }
 
-select {
-  border: 1px solid #212121
+body#messages tr.message_head td {
+  background: var(--tv-bg-secondary);
 }
 
-/*Global Messgae */
-
-.admin {
-  color: red;
+body#messages td {
+  padding: 5px;
 }
 
-.mod {
-  color: yellow;
+body#messages tr.messages_body td {
+  padding: 7px;
 }
 
-.ops {
-  color: skyblue;
+
+body#imperium content td {
+  padding: 3px;
 }
 
-.messages_body .admin {
-  font-weight: 700;
-  color: red;
+/* fake some icons as buttons */
+body#galaxy table td a img,
+#messagestable .message_head a img {
+  background: var(--tv-bg-tertiary);
+  padding: 3px;
+  box-shadow: 1px 1px 3px var(--tv-black);
 }
 
-.messages_body .mod {
-  font-weight: 700;
-  color: yellow;
+body#galaxy table td a img:hover,
+#messagestable .message_head a img:hover,
+button:hover {
+  filter: brightness(1.3);
 }
 
-.messages_body .ops {
-  font-weight: 700;
-  color: skyblue;
+body#galaxy table td a.tooltip_sticky img {
+  padding: 0;
 }
 
-.res_name {
-  color: red;
-  font-weight: 700
-}
-
-.galaxy-alliance-member {
-  color: #99FF66;
+galaxy-alliance-member {
+  color: var(--tv-green);
 }
 
 .colorPositive {
@@ -286,44 +275,44 @@ select {
 
 .galaxy-alliance-friend,
 .galaxy-friend {
-  color: #99FFFF;
+  color: var(--tv-green);
 }
 
 .galaxy-alliance-traid {
-  color: #28fab0;
+  color: var(--tv-green);
 }
 
 .galaxy-alliance-enemy {
-  color: #FF0000;
+  color: var(--tv-danger);
 }
 
 .galaxy-alliance-secret {
-  color: #ff66ff;
+  color: var(--tv-green);
 }
 
 .galaxy-short-noob,
 .galaxy-username-noob {
-  color: #a0ffa0
+  color: var(--tv-yellow);
 }
 
 .galaxy-short-strong,
 .galaxy-username-strong {
-  color: #ffa0a0
+  color: var(--tv-orange);
 }
 
 .galaxy-short-vacation,
 .galaxy-username-vacation {
-  color: #659ec7
+  color: var(--tv-yellow);
 }
 
 .galaxy-short-inactive,
 .galaxy-username-inactive {
-  color: #ccc
+  color: var(--tv-gray);
 }
 
 .galaxy-short-longinactive,
 .galaxy-username-longinactive {
-  color: #999
+  color: var(--tv-gray);
 }
 
 .galaxy-short-banned {
@@ -368,6 +357,14 @@ header .fixed {
 
 #resourcesdiv {
   text-align: center;
+}
+
+#resource_mobile a {
+  line-height: 1.1;
+}
+
+#resource_mobile a div.colorNegative {
+  color: var(--tv-color-secondary) !important;
 }
 
 /** MENU **/
@@ -456,12 +453,6 @@ a {
   color: var(--tv-danger);
 }
 
-.ui-progressbar-value {
-  background-image: url(img/processbar.gif);
-  background-position: top left;
-  border-color: #000;
-}
-
 .spyRaportContainerHead {
   background: #212428;
   color: white;
@@ -482,13 +473,13 @@ a {
 .message {
   margin: 0 0 0 744px;
   position: fixed;
-  background-color: #208c81c4;
+  background-color: var(--tv-orange);
   padding: 8px;
   text-align: center;
   top: 100px;
-  border-radius: 15px 0px 15px 15px;
   height: fit-content;
-  max-width: 175px;
+  max-width: 225px;
+  font-size: 1.1em;
 }
 
 @media screen and (min-width: 700px) and (max-width: 1600px) {
@@ -503,7 +494,6 @@ a {
     bottom: 0;
     width: 100%;
     max-width: unset;
-    border-radius: 15px 15px 0 0;
     top: unset;
     margin: 0;
   }
@@ -714,12 +704,12 @@ a {
 }
 
 img {
-  border-radius: 3px;
+  border-radius: 2px;
+  border: none;
 }
 
 .techb {
-  background: #1b4c6e;
-  border-radius: 15px;
+  background: var(--tv-bg-primary);
   padding: 5px;
   overflow: hidden;
   text-align: left;
@@ -733,7 +723,7 @@ img {
   float: left;
   width: 32.5%;
   padding: 3px;
-  background: #478f7e8c;
+  background: var(--tv-bg-secondary);
 }
 
 .ship {
@@ -826,6 +816,25 @@ img {
 .ui-tabs {
   border: 1px solid #000;
   background: transparent;
+}
+
+#fancybox-close {
+  content: "X";
+  background: var(--tv-orange);
+  border-radius: 1px;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  top: -20px;
+  right: -60px;
+}
+
+#fancybox-close::after {
+  content: "X";
+  font-size: 1.7em;
+  font-weight: bolder;
+  color: #fff;
+  vertical-align: -18px;
 }
 
 @media screen and (max-width: 520px) {
