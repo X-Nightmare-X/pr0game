@@ -127,15 +127,12 @@ input[type="radio"] {
 }
 
 .card .title {
-  background-image: url("img/bkd_title.png");
-  border: 1px solid #000;
   color: #FFF;
   font-weight: bold;
 }
 
 .card .content {
-  background: rgba(13, 16, 20, 0.95);
-  border: 1px solid #000;
+  background: var(--tv-black);
 }
 
 table,
@@ -205,7 +202,7 @@ th,
 th a:hover,
 .ui-widget-header a:hover,
 .article a:hover {
-  color: #FFF;
+  color: var(--tv-color-primary);
   font-weight: bold;
 }
 
@@ -338,10 +335,6 @@ galaxy-alliance-member {
 
 /** LOGO **/
 
-logo .fixed {
-  background: url("img/logo.png") no-repeat center/cover;
-}
-
 logo .fixed img {
   display: none;
 }
@@ -367,10 +360,18 @@ header .fixed {
   color: var(--tv-color-secondary) !important;
 }
 
+#resource_mobile img {
+  width: 50px;
+  height: 25px;
+  border: 1px solid var(--tv-black);
+  margin: 6px;
+  box-shadow: 0 0 1px 2px var(--tv-bg-tertiary);
+  border-radius: 1px;
+}
+
 /** MENU **/
 
 .menu-separator {
-  background-image: url(img/bkd_title.png);
   /* color: #FFF; */
   /* border: 1px solid black; */
 }
