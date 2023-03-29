@@ -263,21 +263,18 @@ body#messages tr.messages_body td {
 /**** Galaxy ****/
 /****************/
 /* fake some icons as buttons */
-body#galaxy table td a img,
+body#galaxy table td a:not(.tooltip_sticky) img,
 #messagestable .message_head a img {
   background: var(--tv-bg-tertiary);
   padding: 3px;
   box-shadow: 1px 1px 3px var(--tv-black);
+  width: 22px;
 }
 
 body#galaxy table td a img:hover,
 #messagestable .message_head a img:hover,
 button:hover {
   filter: brightness(1.3);
-}
-
-body#galaxy table td a.tooltip_sticky img {
-  padding: 0;
 }
 
 .onlist {
@@ -394,6 +391,12 @@ header td,
   border: none;
   padding: 5px;
   font-variant-caps: small-caps;
+}
+
+/* center missions on overview */
+.infos ul#hidden-div2 {
+  padding: 0.4em;
+  text-align: left;
 }
 
 .infos,
