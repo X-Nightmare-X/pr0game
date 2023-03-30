@@ -100,9 +100,28 @@ textarea {
   padding: 2px;
 }
 
-input[type="radio"] {
-  background: transparent;
-  border: 0 none;
+input[type='radio'] {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: var(--tv-bg-input);
+  outline: 2px solid var(--tv-bg-primary);
+  border: 3px solid var(--tv-color-primary);
+  width: 16px !important;
+  height: 16px !important;
+  position: relative;
+  top: 4px;
+  margin-right: 8px;
+  margin-left: 4px;
+}
+
+input[type='radio']:checked {
+  background: #333;
 }
 
 img {
@@ -293,6 +312,10 @@ button:hover {
 
 .table519 {
   margin: 1em auto;
+}
+
+#fleetTable table tr:nth-of-type(2) td {
+  font-weight: bold;
 }
 
 body#imperium content td {
@@ -715,6 +738,15 @@ body#buddyList table a img[src="styles/resource/images/true.png"] {
 body#search a img {
   width: 16px;
   height: 16px;
+}
+
+font[color="lime"],
+td[style="color:lime"] {
+  color: var(--tv-green) !important;
+}
+
+font[color="red"] {
+  color: var(--tv-danger) !important;
 }
 
 /*****************************/
