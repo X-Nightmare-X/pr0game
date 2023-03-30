@@ -740,6 +740,12 @@ body#search a img {
   height: 16px;
 }
 
+a.tooltip_sticky img[src="./styles/theme/d0xxed/planeten/debris.jpg"] {
+  width: 42px !important;
+  height: 20px !important;
+  filter: brightness(110%);
+}
+
 font[color="lime"],
 td[style="color:lime"] {
   color: var(--tv-green) !important;
