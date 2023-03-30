@@ -692,6 +692,30 @@ select#auftr option {
   color: var(--tv-color-secondary);
 }
 
+body#buddyList table a img[src="styles/resource/images/false.png"] {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  padding-left: 16px;
+  background-image: url("./img/deletemsg.png");
+  background-size: cover;
+  margin: 4px;
+}
+
+body#buddyList table a img[src="styles/resource/images/true.png"] {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  padding-left: 16px;
+  background-image: url("./img/check.png");
+  background-size: cover;
+  margin: 4px;
+}
+
+body#search a img {
+  width: 16px;
+  height: 16px;
+}
 
 /*****************************/
 /******* GALAXY COLORS *******/
