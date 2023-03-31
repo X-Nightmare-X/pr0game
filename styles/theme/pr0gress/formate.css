@@ -86,12 +86,10 @@ button:hover {
 
 /* INPUT FIELDS */
 body.mceContentBody,
-input[type="number"],
-input[type="text"],
+input,
 select,
 option,
 textarea {
-  /*.ui-widget-content*/
   background-color: var(--tv-bg-input);
   color: var(--tv-color-input);
   border: 0;
@@ -227,7 +225,6 @@ th,
 }
 
 th a:hover,
-.ui-widget-header a:hover,
 .article a:hover {
   color: var(--tv-color-primary);
   font-weight: bold;
@@ -647,6 +644,9 @@ select#auftr option {
   min-height: 40px;
 }
 
+
+/* UI TABS */
+/* e.g. rename planet */
 .ui-autocomplete,
 .ui-state-hover,
 .ui-state-default,
@@ -656,7 +656,47 @@ select#auftr option {
 .ui-progressbar-value {
   -webkit-border-radius: 0;
   -khtml-border-radius: 0;
-  border-radius: 5px;
+  border-radius: 0;
+  background: none;
+  border: none;
+}
+
+.ui-tabs-panel {
+  background: var(--tv-bg-primary) !important;
+}
+
+#tabs.ui-tabs .ui-tabs-nav {
+  padding: 0;
+  border: 0;
+}
+
+#tabs.ui-tabs {
+  border: 0;
+  background: none;
+}
+
+#tabs.ui-tabs .ui-widget-content {
+  font-size: 1em;
+}
+
+#tabs.ui-tabs .ui-tabs-nav ul {
+  padding: 0;
+}
+
+#tabs.ui-tabs .ui-tabs-nav li {
+  border-radius: 0;
+  background: var(--tv-bg-primary) !important;
+  margin-right: 8px;
+  border: 0 !important;
+}
+
+#tabs.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+  background: var(--tv-bg-secondary) !important;
+}
+
+#tabs.ui-tabs .ui-tabs-nav li a:hover {
+  background: var(--tv-bg-secondary) !important;
+  font-weight: normal;
 }
 
 .ui-state-default {
@@ -677,13 +717,9 @@ select#auftr option {
   margin: 0;
 }
 
-.ui-tabs-nav {
-  padding: 0;
-}
-
-.ui-tabs {
-  border: 1px solid #000;
-  background: transparent;
+.ui-corner-bottom,
+.ui-corner-all {
+  border-radius: 0;
 }
 
 #fancybox-close {
