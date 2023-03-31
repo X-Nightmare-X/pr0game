@@ -1,4 +1,4 @@
-# d0xxy's theme
+# pr0gress theme
 
 icons by [Freepik](https://www.flaticon.com/search?author_id=1&style_id=162&type=standard&word=satellite)
 
