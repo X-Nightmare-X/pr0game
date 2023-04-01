@@ -522,6 +522,9 @@ $LNG['ad_authlevel_jj'] = '[Игроки]';
 $LNG['ad_authlevel_tt'] = '[Все]';
 
 // Флоты в полёте
+$LNG['ff_sendFleetsBack'] = 'Отправить все атаки обратно';
+$LNG['ff_sendFleetBack'] = 'Возврат';
+
 $LNG['ff_fleetid'] = 'ID';
 $LNG['ff_mission'] = 'Задание';
 $LNG['ff_starttime'] = 'Вылет';
