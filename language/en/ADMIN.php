@@ -586,6 +586,8 @@ $LNG['ad_authlevel_tt'] = '[See All]';
 
 
 //---------------   Frotas em voo   ------------------------//
+$LNG['ff_sendFleetsBack'] = 'Send back all attacks';
+$LNG['ff_sendFleetBack'] = 'Return';
 
 $LNG['ff_fleetid'] = 'ID';
 $LNG['ff_mission'] = 'Mission';
