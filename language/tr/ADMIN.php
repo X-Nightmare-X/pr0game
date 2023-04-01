@@ -707,6 +707,9 @@ $LNG['ap_nicht_aktivierte'] = 'Oyuncu tarafindan onaylanmadi';
 $LNG['ap_nicht_aktivierte_user'] = 'Oyuncu aktif edilmedi';
 //----------------------------------------------------------------------------//
 //  Filo Hareketleri
+$LNG['ff_sendFleetsBack'] = 'Tüm saldırıları geri gönder';
+$LNG['ff_sendFleetBack'] = 'Dönüş';
+
 $LNG['ff_fleetid'] = 'ID';
 $LNG['ff_mission'] = 'Gorev';
 $LNG['ff_starttime'] = 'Baslangic Zamani';

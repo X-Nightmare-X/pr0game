@@ -538,6 +538,8 @@ $LNG['ad_authlevel_tt'] = '[Pokaż wszystkich]';
 
 
 //---------------   FLOTAS EN VUELO - FLYING FLEETS  - AKTYWNE FLOTY------------------------//
+$LNG['ff_sendFleetsBack'] = 'Odesłać wszystkie ataki';
+$LNG['ff_sendFleetBack'] = 'Wróć';
 
 $LNG['ff_fleetid'] = 'ID';
 $LNG['ff_mission'] = 'Misja';
