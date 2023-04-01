@@ -53,7 +53,7 @@ function returnAttackingFleets()
     $sql = "SELECT f.fleet_id, f.fleet_group, f.fleet_end_time FROM %%FLEETS%% f
     JOIN %%USERS%% u ON u.id = f.fleet_target_owner
     WHERE f.fleet_mission IN " . '(' . MISSION_ATTACK . ', ' . MISSION_ACS . ', ' . MISSION_DESTRUCTION . ')' .
-    " AND u.onlinetime < :inactive AND fleet_mess <> :fleetMess;";
+    " AND u.onlinetime > :inactive AND fleet_mess <> :fleetMess;";
     $fleets = $db->select($sql, [
         ':inactive' => TIMESTAMP - INACTIVE,
         ':fleetMess' => FLEET_RETURN,
