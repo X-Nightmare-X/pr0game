@@ -1,0 +1,895 @@
+/***************************/
+/****** BASE ELEMENTS ******/
+/***************************/
+:root {
+  --tv-danger: #c67716;
+  --tv-highlight: #30efa6;
+  --tv-error: #d72f00;
+  --tv-bg-primary: #1e2b39;
+  --tv-bg-secondary: #39495e;
+  --tv-bg-tertiary: #506784;
+  --tv-bg-input: #fafafa;
+  --tv-color-input: #111111;
+  --tv-color-primary: #ffffff;
+  --tv-color-secondary: #dadada;
+  --tv-blue: #00a7f5;
+  --tv-green: #30efa6;
+  --tv-orange: #c67716;
+  --tv-yellow: #d7d700;
+  --tv-red: #d72f00;
+  --tv-gray: #666;
+  --tv-white: #fafafa;
+  --tv-black: #111;
+}
+
+html {
+  background: var(--tv-black);
+}
+
+::selection,
+::-moz-selection,
+select option:checked,
+select option:hover {
+  box-shadow: 0 0 10px 100px var(--tv-bg-tertiary) inset;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+body {
+  font-weight: 300;
+  font-family: Yantramanav, Helvetica, sans-serif;
+  font-size: 0.85em;
+}
+
+body,
+input,
+select,
+textarea,
+td,
+th,
+tr,
+table,
+a,
+a:visited,
+a:hover {
+  color: var(--tv-color-primary);
+}
+
+a {
+  text-decoration: none
+}
+
+/* BUTTONS */
+input[type="submit"],
+input[type="button"],
+input[type=file]::-webkit-file-upload-button,
+input[type=file]::file-selector-button,
+button {
+  background-color: var(--tv-bg-secondary);
+  color: var(--tv-color-primary);
+  border: none;
+  border-radius: 2px;
+  padding: 4px 6px;
+  font-size: 1em;
+  box-shadow: 2px 2px 2px var(--tv-black);
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover,
+button:hover {
+  filter: brightness(1.3);
+}
+
+/* INPUT FIELDS */
+body.mceContentBody,
+input,
+select,
+option,
+textarea {
+  background-color: var(--tv-bg-input);
+  color: var(--tv-color-input);
+  border: 0;
+  border-radius: 1px;
+  text-align: center;
+  padding: 2px;
+}
+
+input[type='radio'] {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: var(--tv-bg-input);
+  outline: 2px solid var(--tv-bg-primary);
+  border: 3px solid var(--tv-color-primary);
+  width: 16px !important;
+  height: 16px !important;
+  position: relative;
+  top: 4px;
+  margin-right: 8px;
+  margin-left: 4px;
+}
+
+input[type='radio']:checked {
+  background: #333;
+}
+
+img {
+  border-radius: 2px;
+  border: none;
+}
+
+/*****************/
+/*** SIDE MENU ***/
+/*****************/
+#menu {
+  font-size: 1.2em;
+  position: fixed;
+  overflow-y: auto;
+  height: 90vh;
+  max-width: 180px;
+  background: var(--tv-bg-primary);
+}
+
+#menu li {
+  border: none;
+}
+
+#menu a {
+  margin: 2px 0;
+  padding: 5px 2px;
+}
+
+menu a {
+  text-align: center;
+  background: var(--tv-bg-primary);
+}
+
+menu a:hover {
+  background: var(--tv-bg-tertiary);
+}
+
+#planet_menu_link {
+  font-weight: 700;
+}
+
+#planet_menu_header {
+  text-align: right;
+}
+
+#planet_menu_content li {
+  text-align: center;
+}
+
+/*****************/
+/***** TABLES ****/
+/*****************/
+
+table,
+td,
+th {
+  font-weight: 400
+}
+
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+}
+
+td,
+th input,
+.tip {
+  border: 1px dotted var(--tv-bg-secondary);
+}
+
+td,
+.tip {
+  text-align: center;
+  background: var(--tv-bg-primary);
+}
+
+th,
+.ui-widget-header {
+  background: var(--tv-bg-secondary);
+  color: var(--tv-color-primary);
+  font-weight: bold;
+  font-variant-caps: small-caps;
+}
+
+.no-background,
+.no-background>th,
+.no-background>td {
+  background-image: none;
+  background: transparent;
+}
+
+.center,
+.center>th,
+.center>td {
+  text-align: center;
+}
+
+
+.no-border,
+.no-border>th,
+.no-border>td {
+  border: 0px;
+}
+
+th a:hover,
+.article a:hover {
+  color: var(--tv-color-primary);
+  font-weight: bold;
+}
+
+th a:hover,
+.ui-widget-header a:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/******************/
+/**** Messages ****/
+/******************/
+body#messages content tbody tr td a {
+  color: var(--tv-color-primary) !important;
+}
+
+body#messages tr.message_head td {
+  background: var(--tv-bg-secondary);
+}
+
+body#messages td {
+  padding: 5px;
+}
+
+body#messages tr.messages_body td {
+  padding: 7px;
+}
+
+.mes_unread.message_head td {
+  font-weight: 700;
+}
+
+.spyRaportContainerHead {
+  background: var(--tv-bg-secondary);
+  margin: 3px 0;
+  padding: 3px;
+}
+
+.spyRaportContainerRow {
+  border-top: 0.5px solid var(--tv-color-secondary);
+  padding: 4px 4px 3px 4px;
+  font-size: 90%;
+}
+
+.spyRaportContainerHead+.spyRaportContainerRow {
+  border-top: none;
+}
+
+/****************/
+/**** Galaxy ****/
+/****************/
+/* fake some icons as buttons */
+body#galaxy table td a:not(.tooltip_sticky) img,
+#messagestable .message_head a img {
+  background: var(--tv-bg-tertiary);
+  padding: 3px;
+  box-shadow: 1px 1px 3px var(--tv-black);
+  width: 22px;
+}
+
+body#galaxy table td a img:hover,
+#messagestable .message_head a img:hover,
+button:hover {
+  filter: brightness(1.3);
+}
+
+.onlist {
+  color: var(--tv-color-secondary);
+  border: 0px;
+  background: none;
+  min-width: 0px;
+  min-height: 0px;
+}
+
+#fleetstatustable td {
+  background: transparent;
+  background-image: none;
+  border: 0 none
+}
+
+.table519 {
+  margin: 1em auto;
+}
+
+#fleetTable table tr:nth-of-type(2) td {
+  font-weight: bold;
+}
+
+body#imperium content td {
+  padding: 3px;
+}
+
+/****************/
+/**** Header ****/
+/****************/
+logo .fixed img {
+  display: none;
+}
+
+header .fixed {
+  background: #0D1014;
+  background: rgba(13, 16, 20, 0.95);
+  border-bottom: 1px solid black;
+}
+
+#resourcesdiv {
+  text-align: center;
+}
+
+#resource_mobile a {
+  line-height: 1.1;
+}
+
+#resource_mobile a div.colorNegative {
+  color: var(--tv-color-secondary) !important;
+}
+
+#resource_mobile img {
+  width: 50px;
+  height: 25px;
+  border: 1px solid var(--tv-black);
+  margin: 6px;
+  box-shadow: 0 0 1px 2px var(--tv-bg-tertiary);
+  border-radius: 1px;
+}
+
+/******************/
+/**** Tool Tip ****/
+/******************/
+
+.tip th {
+  text-align: center
+}
+
+.transparent,
+header td,
+.tip td,
+.tip th,
+.raportMessage td {
+  background: transparent;
+  border: none;
+  filter: none !important;
+}
+
+.message {
+  margin: 0 0 0 744px;
+  position: fixed;
+  background-color: var(--tv-orange);
+  box-shadow: 1px 1px 2px 1px var(--tv-bg-primary);
+  padding: 8px;
+  text-align: center;
+  top: 100px;
+  height: fit-content;
+  max-width: 225px;
+  font-size: 1.1em;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1600px) {
+  .message {
+    right: 10.5%;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .message {
+    bottom: 0;
+    width: 100%;
+    max-width: unset;
+    top: unset;
+    margin: 0;
+  }
+}
+
+/*****************************/
+/**** Main content blocks ****/
+/*****************************/
+.planeto,
+.buildn {
+  background: var(--tv-bg-tertiary);
+  text-align: center;
+  border: none;
+  padding: 5px;
+  font-variant-caps: small-caps;
+}
+
+/* center missions on overview */
+.infos ul#hidden-div2 {
+  padding: 0.4em;
+  text-align: left;
+}
+
+.infos,
+.infoso {
+  text-align: center;
+  background: var(--tv-bg-primary);
+  margin-top: 10px;
+  overflow: auto;
+}
+
+.infos .buildl span.colorNeutral,
+.infoso .buildl span.colorNeutral {
+  color: var(--tv-danger);
+}
+
+.build_form .build_submit {
+  padding: 6px;
+  min-width: 150px;
+  text-transform: capitalize;
+}
+
+.build_submit:hover {
+  text-decoration: none;
+  font-weight: normal;
+}
+
+#buildlist button.build_submit {
+  background: var(--tv-bg-secondary);
+}
+
+#buildlist .bulida .build_form button.build_submit {
+  background-color: var(--tv-danger);
+}
+
+#buildlist .buildb button.build_submit {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+#buildlist::before {
+  content: "In Progress";
+  font-variant-caps: small-caps;
+  text-align: center;
+  display: block;
+  background: var(--tv-bg-tertiary);
+  padding: 8px;
+}
+
+#buildlist {
+  margin-bottom: 1em;
+}
+
+.infos1 {
+  text-align: center;
+  background: var(--tv-bg-primary);
+  overflow: auto;
+  margin: 0 10px 0 10px;
+}
+
+.servertime {
+  margin-bottom: 0.4em;
+  display: inline-block;
+}
+
+.moon {
+  float: left;
+  width: 30%;
+  padding: 10px;
+
+}
+
+.planetl {
+  float: left;
+  padding-left: 8px;
+  min-height: 176px;
+}
+
+.planeth {
+  line-height: 1.2;
+}
+
+.planetb {
+  min-width: 296px;
+  float: left;
+  background: var(--tv-bg-primary);
+  padding: 5px;
+  width: 33%;
+  height: 135px;
+}
+
+.planetb1 {
+  min-width: 296px;
+  float: left;
+  background: var(--tv-bg-primary);
+  padding: 5px;
+  width: 33%;
+  height: 133px;
+}
+
+.planeth img {
+  margin: 8px;
+}
+
+.infos .planeto {
+  margin-bottom: 10px;
+}
+
+.galaxy {
+  float: left;
+  margin: 5px auto;
+  width: 50%;
+  font-variant-caps: petite-caps;
+}
+
+.bulida {
+  float: left;
+  width: 35%;
+  line-height: 1.4;
+  padding: 8px;
+}
+
+.buildb {
+  float: left;
+  width: 65%;
+  line-height: 1.4;
+  padding: 12px;
+}
+
+.buildc {
+  float: middle;
+  width: 100%;
+  line-height: 1.4;
+  padding: 12px;
+}
+
+.hidden-div {
+  border: 2px solid var(--tv-danger);
+  margin: 3px;
+  padding: 10px 30px;
+  text-align: left;
+}
+
+.buildl {
+  float: left;
+  width: 50%;
+  line-height: 1.4;
+  padding: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: 520px) {
+  div .buildc {
+    border: none;
+  }
+
+  div .buildb {
+    border: none;
+  }
+
+  div .bulida {
+    border: none;
+  }
+}
+
+
+.techb {
+  background: var(--tv-bg-primary);
+  padding: 5px;
+  overflow: hidden;
+  text-align: left;
+  width: 100%;
+}
+
+.techi {
+  margin: 5px 0 0 5px;
+  min-height: 240px;
+  min-width: 172px;
+  float: left;
+  width: 32.5%;
+  padding: 3px;
+  background: var(--tv-bg-secondary);
+}
+
+.ship,
+.shipumode {
+  margin: 0 auto;
+  max-width: 400px;
+  background: var(--tv-bg-primary);
+}
+
+.shipl {
+  margin-top: 10px;
+  padding: 10px;
+  overflow: auto;
+  border: none;
+}
+
+.z,
+.zumode {
+  margin: 5px auto;
+  padding: 10px;
+  max-width: 300px;
+  background: var(--tv-bg-tertiary);
+  font-variant-caps: petite-caps;
+}
+
+select#auftr {
+  background: var(--tv-bg-primary);
+}
+
+select#auftr option {
+  background: none;
+  color: var(--tv-color-primary);
+}
+
+.b {
+  background-color: #3A3A3A;
+  border: 3px solid;
+  border-color: #8A8A8A #666666 #666666 #8A8A8A;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  padding: 3px;
+  min-height: 40px;
+}
+
+
+/* UI TABS */
+/* e.g. rename planet */
+.ui-autocomplete,
+.ui-state-hover,
+.ui-state-default,
+.ui-tabs-nav,
+.ui-tabs,
+.ui-progressbar,
+.ui-progressbar-value {
+  -webkit-border-radius: 0;
+  -khtml-border-radius: 0;
+  border-radius: 0;
+  background: none;
+  border: none;
+}
+
+.ui-tabs-panel {
+  background: var(--tv-bg-primary) !important;
+}
+
+#tabs.ui-tabs .ui-tabs-nav {
+  padding: 0;
+  border: 0;
+}
+
+#tabs.ui-tabs {
+  border: 0;
+  background: none;
+}
+
+#tabs.ui-tabs .ui-widget-content {
+  font-size: 1em;
+}
+
+#tabs.ui-tabs .ui-tabs-nav ul {
+  padding: 0;
+}
+
+#tabs.ui-tabs .ui-tabs-nav li {
+  border-radius: 0;
+  background: var(--tv-bg-primary) !important;
+  margin-right: 8px;
+  border: 0 !important;
+}
+
+#tabs.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+  background: var(--tv-bg-secondary) !important;
+}
+
+#tabs.ui-tabs .ui-tabs-nav li a:hover {
+  background: var(--tv-bg-secondary) !important;
+  font-weight: normal;
+}
+
+.ui-state-default {
+  border: 1px solid #000 !important;
+  background: #0D1014 !important;
+}
+
+.ui-state-default>a {
+  cursor: pointer !important;
+}
+
+.ui-state-hover,
+.ui-progressbar {
+  background: var(--tv-color-primary) !important;
+}
+
+.ui-progressbar .ui-progressbar-value {
+  margin: 0;
+}
+
+.ui-corner-bottom,
+.ui-corner-all {
+  border-radius: 0;
+}
+
+#fancybox-close {
+  content: "X";
+  background: var(--tv-orange);
+  border-radius: 1px;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  top: -20px;
+  right: -60px;
+}
+
+#fancybox-close::after {
+  content: "X";
+  font-size: 1.7em;
+  font-weight: bolder;
+  color: #fff;
+  vertical-align: -18px;
+}
+
+.globalWarning {
+  background: var(--tv-danger);
+  border: 1px solid var(--tv-color-primary);
+  color: var(--tv-color-primary);
+}
+
+.globalWarning a {
+  color: var(--tv-color-secondary);
+}
+
+body#buddyList table a img[src="styles/resource/images/false.png"] {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  padding-left: 16px;
+  background-image: url("./img/deletemsg.png");
+  background-size: cover;
+  margin: 4px;
+}
+
+body#buddyList table a img[src="styles/resource/images/true.png"] {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  padding-left: 16px;
+  background-image: url("./img/check.png");
+  background-size: cover;
+  margin: 4px;
+}
+
+body#search a img {
+  width: 16px;
+  height: 16px;
+}
+
+a.tooltip_sticky img[src="./styles/theme/d0xxed/planeten/debris.jpg"] {
+  width: 42px !important;
+  height: 20px !important;
+  filter: brightness(110%);
+}
+
+font[color="lime"],
+td[style="color:lime"] {
+  color: var(--tv-green) !important;
+}
+
+font[color="red"] {
+  color: var(--tv-danger) !important;
+}
+
+/*****************************/
+/******* GALAXY COLORS *******/
+/*****************************/
+.colorPositive {
+  color: var(--tv-green);
+}
+
+.colorNegative {
+  color: var(--tv-orange) !important;
+}
+
+.colorNeutral {
+  color: var(--tv-yellow);
+}
+
+.galaxy-alliance-member {
+  color: var(--tv-green);
+}
+
+.galaxy-alliance-friend,
+.galaxy-friend {
+  color: var(--tv-green);
+}
+
+.galaxy-alliance-traid {
+  color: var(--tv-green);
+}
+
+.galaxy-alliance-enemy {
+  color: var(--tv-danger);
+}
+
+.galaxy-alliance-secret {
+  color: var(--tv-green);
+}
+
+.galaxy-short-noob,
+.galaxy-username-noob {
+  color: var(--tv-yellow);
+}
+
+.galaxy-short-strong,
+.galaxy-username-strong {
+  color: var(--tv-orange);
+}
+
+.galaxy-short-vacation,
+.galaxy-username-vacation {
+  color: var(--tv-yellow);
+}
+
+.galaxy-short-inactive,
+.galaxy-username-inactive {
+  color: var(--tv-gray);
+}
+
+.galaxy-short-longinactive,
+.galaxy-username-longinactive {
+  color: var(--tv-gray);
+}
+
+.galaxy-short-banned {
+  text-decoration: line-through
+}
+
+.allymember,
+.colony,
+.deploy,
+.harvest,
+.transport,
+.success {
+  color: var(--tv-green);
+}
+
+.trade-disallowed>td {
+  background: var(--tv-gray);
+}
+
+.trade-enemy>.table_username {
+  color: var(--tv-danger);
+}
+
+.trade-ally>.table_username {
+  color: var(--tv-green);
+}
+
+.attack,
+.error {
+  color: var(--tv-danger);
+}
+
+.federation {
+  color: var(--tv-green);
+}
+
+.raportWin {
+  color: var(--tv-green);
+}
+
+.raportLose {
+  color: var(--tv-danger);
+}
