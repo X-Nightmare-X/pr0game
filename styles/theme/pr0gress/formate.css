@@ -317,10 +317,6 @@ button:hover {
   margin: 1em auto;
 }
 
-#fleetTable table tr:nth-of-type(2) td {
-  font-weight: bold;
-}
-
 body#imperium content td {
   padding: 3px;
 }
@@ -884,12 +880,12 @@ font[color="red"] {
 
 .galaxy-short-inactive,
 .galaxy-username-inactive {
-  color: var(--tv-gray);
+  color: var(--tv-color-secondary);
 }
 
 .galaxy-short-longinactive,
 .galaxy-username-longinactive {
-  color: var(--tv-gray);
+  color: var(--tv-color-secondary);
 }
 
 .galaxy-short-banned {
