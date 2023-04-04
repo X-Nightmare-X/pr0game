@@ -243,20 +243,26 @@ body#messages content tbody tr td a {
   color: var(--tv-color-primary) !important;
 }
 
+body#messages tr.message_head td[rowspan="2"] {
+  background: var(--tv-bg-primary);
+}
+
 body#messages tr.message_head td {
   background: var(--tv-bg-secondary);
 }
 
 body#messages td {
   padding: 5px;
+  border: none;
 }
 
 body#messages tr.messages_body td {
   padding: 7px;
 }
 
-.mes_unread.message_head td {
+body#messages tr.mes_unread.message_head td {
   font-weight: 700;
+  background: var(--tv-bg-tertiary);
 }
 
 .spyRaportContainerHead {
