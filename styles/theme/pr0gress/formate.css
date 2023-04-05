@@ -372,7 +372,7 @@ header .fixed {
   line-height: 1.1;
 }
 
-#resource_mobile a div.colorNegative {
+#resource_mobile a div.colorNegative:not(.res_current_max) {
   color: var(--tv-color-secondary) !important;
 }
 
