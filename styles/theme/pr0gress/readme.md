@@ -12,7 +12,7 @@ css style by d0xxy
 
 ```sh
 # execute in directory containing pngs
-mogrify -resize '200x200^' -gravity Center -extent 200x200 -format jpg -quality 99 *.png
+mogrify -resize '200x200^' -gravity Center -extent 200x200 -format gif -quality 99 *.png
 ```
 
 ## unit mapping
