@@ -433,6 +433,11 @@ header td,
   }
 }
 
+.hoverinfo img {
+  width: 84px;
+  height: auto;
+}
+
 /*****************************/
 /**** Main content blocks ****/
 /*****************************/
@@ -465,6 +470,14 @@ content {
 .infos .buildl span.colorNeutral,
 .infoso .buildl span.colorNeutral {
   color: var(--tv-danger);
+}
+
+#statistics content a img {
+  height: 20px;
+}
+
+#marketPlace content img {
+  height: 30px;
 }
 
 .build_form .build_submit {
