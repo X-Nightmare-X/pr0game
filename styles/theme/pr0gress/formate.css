@@ -317,10 +317,6 @@ button:hover {
   margin: 1em auto;
 }
 
-#fleetTable table tr:nth-of-type(2) td {
-  font-weight: bold;
-}
-
 body#imperium content td {
   padding: 3px;
 }
@@ -376,7 +372,7 @@ header .fixed {
   line-height: 1.1;
 }
 
-#resource_mobile a div.colorNegative {
+#resource_mobile a div.colorNegative:not(.res_current_max) {
   color: var(--tv-color-secondary) !important;
 }
 
@@ -437,6 +433,11 @@ header td,
   }
 }
 
+.hoverinfo img {
+  width: 84px;
+  height: auto;
+}
+
 /*****************************/
 /**** Main content blocks ****/
 /*****************************/
@@ -469,6 +470,14 @@ content {
 .infos .buildl span.colorNeutral,
 .infoso .buildl span.colorNeutral {
   color: var(--tv-danger);
+}
+
+#statistics content a img {
+  height: 20px;
+}
+
+#marketPlace content img {
+  height: 30px;
 }
 
 .build_form .build_submit {
@@ -884,12 +893,12 @@ font[color="red"] {
 
 .galaxy-short-inactive,
 .galaxy-username-inactive {
-  color: var(--tv-gray);
+  color: var(--tv-color-secondary);
 }
 
 .galaxy-short-longinactive,
 .galaxy-username-longinactive {
-  color: var(--tv-gray);
+  color: var(--tv-color-secondary);
 }
 
 .galaxy-short-banned {
