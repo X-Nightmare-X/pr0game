@@ -402,7 +402,11 @@ $(function() {
 });
 
 function update_arrival() {
-  const nd = new Date(new Date(serverTime).getTime() +parseInt(document.getElementById("arr_time").getAttribute("duration")) * 1000)
+	const now = new Date(Date.now())
+	const deT = new Date(now.toLocaleString('en-us', { timeZone: 'Europe/Berlin'})).getTime() 
+	const localT = new Date(now.toLocaleString('en-us', { timeZone: localtimezonestring})).getTime()
+	const timeOffset = localT - deT
+  const nd = new Date(new Date(serverTime).getTime() + timeOffset + parseInt(document.getElementById("arr_time").getAttribute("duration")) * 1000)
   let ddiv=Math.floor((nd-serverTime) / (1000 * 60 * 60 * 24));
   let tamt=""
   if(ddiv>0){
