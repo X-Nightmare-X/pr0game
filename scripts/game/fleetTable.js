@@ -12,7 +12,11 @@ $(function () {
 
 
     for (let fleet of abortfleet) {
-      let cdate = new Date(serverTime)
+      const now = new Date(Date.now())
+      const deT = new Date(now.toLocaleString('en-us', { timeZone: 'Europe/Berlin'})).getTime() 
+      const localT = new Date(now.toLocaleString('en-us', { timeZone: localtimezonestring})).getTime()
+      const timeOffset = localT - deT
+      let cdate = new Date(serverTime.getTime() + timeOffset) 
       let startdate = new Date(new Date(1000 * parseInt(fleet.getAttribute("starttime"))).toLocaleString('en-US', {timeZone: localtimezonestring}))
       let difftonow = cdate - startdate
       cdate.setMilliseconds(cdate.getMilliseconds() + difftonow)
@@ -315,5 +319,3 @@ document.addEventListener("DOMContentLoaded", function () {
   customfleet_show();
   fillShipps()
 });
-
-
