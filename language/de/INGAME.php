@@ -244,6 +244,7 @@ $LNG['gl_avaible_grecyclers'] = 'Gigarecycler';
 $LNG['gl_avaible_recyclers'] = 'Recycler';
 $LNG['gl_avaible_spyprobes'] = 'Spionagesonden';
 $LNG['gl_missil_launch'] = 'Raketenangriff';
+$LNG['gl_missil_flytime'] = 'Flugzeit';
 $LNG['gl_missil_to_launch'] = 'Anzahl an Raketen (<b>%d</b> übrig):';
 $LNG['gl_all_defenses'] = 'Alle';
 $LNG['gl_objective'] = 'Primäres Ziel';

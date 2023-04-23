@@ -214,6 +214,7 @@ $LNG['gl_avaible_grecyclers'] = 'Recycleurs ultimes';
 $LNG['gl_avaible_recyclers'] = 'Recycleurs';
 $LNG['gl_avaible_spyprobes'] = 'Sondes d\'espionnage';
 $LNG['gl_missil_launch'] = 'Attaque de missiles';
+$LNG['gl_missil_flytime'] = 'Temps de vol';
 $LNG['gl_missil_to_launch'] = 'Nombre de missiles (<b>%d</b> disp.):';
 $LNG['gl_all_defenses'] = 'Tous';
 $LNG['gl_objective'] = 'Objectif';

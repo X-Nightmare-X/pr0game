@@ -238,6 +238,7 @@ $LNG['gl_avaible_grecyclers'] = 'Gigarecycler';
 $LNG['gl_avaible_recyclers'] = 'Wracktaucher';
 $LNG['gl_avaible_spyprobes'] = 'Spähpapagei';
 $LNG['gl_missil_launch'] = 'Bombenangriff';
+$LNG['gl_missil_flytime'] = 'Flugzeit';
 $LNG['gl_missil_to_launch'] = 'Anzahl an Bomben (<b>%d</b> übrig):';
 $LNG['gl_all_defenses'] = 'Alle';
 $LNG['gl_objective'] = 'Primäres Ziel';
