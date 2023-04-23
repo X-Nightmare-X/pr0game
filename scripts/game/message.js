@@ -262,7 +262,7 @@ function scavengers() {
           galaJump = 1;
         } else {
           if (raidLocation[1] - tempPlananet[1] != 0) {
-            const max = maxGalaxy;
+            const max = 400;
             let dist = 0;
             if (Math.abs(tempPlananet[1] - raidLocation[1]) < Math.ceil(max / 2)) {
               dist = Math.abs(tempPlananet[1] - raidLocation[1]);
