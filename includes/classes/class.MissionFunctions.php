@@ -60,7 +60,7 @@ class MissionFunctions
             if ($this->_fleet['fleet_group'] != 0) {
                 $sql = 'UPDATE %%LOG_FLEETS%% SET
                     fleet_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_owner AND stat_type = 1),
-                    fleet_target_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_target_owner AND stat_type = 1)
+                    fleet_target_owner_points = COALESCE((SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_target_owner AND stat_type = 1), 0)
                     WHERE `fleet_id` IN (SELECT fleet_id FROM %%FLEETS%% WHERE fleet_group = :acsId);';
                 Database::get()->update($sql, [
                     ':fleet_owner'  => $this->_fleet['fleet_owner'],
@@ -71,7 +71,7 @@ class MissionFunctions
             else {
                 $sql = 'UPDATE %%LOG_FLEETS%% SET
                     fleet_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_owner AND stat_type = 1),
-                    fleet_target_owner_points = (SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_target_owner AND stat_type = 1)
+                    fleet_target_owner_points = COALESCE((SELECT total_points FROM %%STATPOINTS%% WHERE id_owner = :fleet_target_owner AND stat_type = 1), 0)
                     WHERE `fleet_id` = :fleetId;';
                 Database::get()->update($sql, [
                     ':fleet_owner'  => $this->_fleet['fleet_owner'],
