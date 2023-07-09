@@ -69,18 +69,25 @@ class CleanerCronjob implements CronjobTask
         $sql	= 'UPDATE %%PLANETS%% SET `tf_active` = 0 WHERE `tf_active` = 1;';
         Database::get()->update($sql);
 
-        $sql	= 'SELECT `id` FROM %%USERS%% WHERE `authlevel` = :authlevel
-		AND ((`db_deaktjava` != 0 AND `db_deaktjava` < :timeDeleted) OR `onlinetime` < :timeInactive);';
+        foreach($unis as $uni)
+        {
+            $config	= Config::get($uni);
+            $del_inactive 	= TIMESTAMP - ($config->del_user_automatic * 86400);
+            $del_deleted 	= TIMESTAMP - ($config->del_user_manually * 86400);
+            $sql	= 'SELECT `id` FROM %%USERS%% WHERE `authlevel` = :authlevel AND universe = :uni
+		    AND ((`db_deaktjava` != 0 AND `db_deaktjava` < :timeDeleted) OR `onlinetime` < :timeInactive);';
+            
+            $deleteUserIds = Database::get()->select($sql, [
+                ':authlevel'	=> AUTH_USR,
+                ':timeDeleted'	=> $del_deleted,
+                ':timeInactive'	=> $del_inactive,
+                ':uni'			=> $uni
+            ]);
 
-        $deleteUserIds = Database::get()->select($sql, [
-            ':authlevel'	=> AUTH_USR,
-            ':timeDeleted'	=> $del_deleted,
-            ':timeInactive'	=> $del_inactive
-        ]);
-
-        if (!empty($deleteUserIds)) {
-            foreach ($deleteUserIds as $dataRow) {
-                PlayerUtil::deletePlayer($dataRow['id']);
+            if (!empty($deleteUserIds)) {
+                foreach ($deleteUserIds as $dataRow) {
+                    PlayerUtil::deletePlayer($dataRow['id']);
+                }
             }
         }
 

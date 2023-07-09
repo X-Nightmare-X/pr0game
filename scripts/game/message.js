@@ -117,6 +117,8 @@ function scavengers() {
   const marketRatios = frombody.marketRatios
   const fleetspeed = frombody.fleetspeed
   const stbSettings = frombody.stbSettings
+  const uniType = frombody.uniType
+  const maxGalaxy = frombody.maxGalaxy
 
   function spyReportParser(spyReportElement) {
     let spyReport = {};
@@ -225,19 +227,56 @@ function scavengers() {
         isActive = 1
       }
 
-      if (raidLocation[0] - tempPlananet[0] != 0) {
-        tempDiff = Math.abs(raidLocation[0] - tempPlananet[0]);
-        tempDistance = tempDiff * 20000;
-        galaJump = 1;
-      } else {
-        if (raidLocation[1] - tempPlananet[1] != 0) {
-          tempDiff = Math.abs(raidLocation[1] - tempPlananet[1]);
-          tempDistance = tempDiff * 95 + 2700;
-          galaJump = 0;
+      // 0 = Lineares
+      // 1 = Ring
+      // 2 = Kreis
+      if (uniType == 0){
+        if (raidLocation[0] - tempPlananet[0] != 0) {
+          tempDiff = Math.abs(raidLocation[0] - tempPlananet[0]);
+          tempDistance = tempDiff * 20000;
+          galaJump = 1;
         } else {
-          tempDiff = Math.abs(raidLocation[2] - tempPlananet[2]);
-          tempDistance = tempDiff * 5 + 1000;
-          galaJump = 0;
+          if (raidLocation[1] - tempPlananet[1] != 0) {
+            tempDiff = Math.abs(raidLocation[1] - tempPlananet[1]);
+            tempDistance = tempDiff * 95 + 2700;
+            galaJump = 0;
+          } else {
+            tempDiff = Math.abs(raidLocation[2] - tempPlananet[2]);
+            tempDistance = tempDiff * 5 + 1000;
+            galaJump = 0;
+          }
+        }
+      } else if (uniType == 1){
+        // alert("RING SYSTEM")
+        if (raidLocation[0] - tempPlananet[0] != 0) {
+          const max = maxGalaxy;
+          let dist = 0;
+
+          if (Math.abs(tempPlananet[0] - raidLocation[0]) < Math.ceil(max / 2)) {
+            dist = Math.abs(tempPlananet[0] - raidLocation[0]);
+          } else {
+            dist = Math.floor(max / 2) - (Math.abs(tempPlananet[0] - raidLocation[0]) - Math.ceil(max / 2));
+          }
+          dist = Math.abs(dist);
+          tempDistance = dist * 20000;
+          galaJump = 1;
+        } else {
+          if (raidLocation[1] - tempPlananet[1] != 0) {
+            const max = 400;
+            let dist = 0;
+            if (Math.abs(tempPlananet[1] - raidLocation[1]) < Math.ceil(max / 2)) {
+              dist = Math.abs(tempPlananet[1] - raidLocation[1]);
+            } else {
+              dist = Math.floor(max / 2) - (Math.abs(tempPlananet[1] - raidLocation[1]) - Math.ceil(max / 2));          
+            }
+            dist = Math.abs(dist);
+            tempDistance = dist * 95 + 2700;
+            galaJump = 0;
+          } else {
+            tempDiff = Math.abs(raidLocation[2] - tempPlananet[2]);
+            tempDistance = tempDiff * 5 + 1000;
+            galaJump = 0;
+          }
         }
       }
 
