@@ -346,6 +346,17 @@ function countdown_buildable(){
   }
 }
 
+function iraktime(){
+  var spanElement = document.getElementById("irakFlyTime");
+  if (!spanElement) {
+    return null; // Span-Element nicht gefunden, Funktion beenden
+  }
+  var flyTimeContent = spanElement.innerText;
+  var flyTimeInt = parseInt(flyTimeContent);
+  var flyTimeFormatet = getFormatedTime(flyTimeInt);
+  spanElement.innerText = flyTimeFormatet.toString()
+}
+
 document.addEventListener("DOMContentLoaded", function() {
   showtimes();
   observe(document.querySelectorAll('*'));
@@ -356,6 +367,7 @@ document.addEventListener("DOMContentLoaded", function() {
   add_static_times();
   countdown_buildable();
   setInterval(countdown_buildable,1000);
+  iraktime()
 });
 
 

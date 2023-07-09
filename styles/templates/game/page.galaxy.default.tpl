@@ -49,7 +49,7 @@
 
 	<table class="table569">
 		<tr>
-			<th colspan="2">{$LNG.gl_missil_launch} [{$galaxy}:{$system}:{$planet}] {$LNG.gl_missil_flytime}: {$duration}</th>
+			<th colspan="2">{$LNG.gl_missil_launch} [{$galaxy}:{$system}:{$planet}] {$LNG.gl_missil_flytime}: <span id="irakFlyTime">{$duration}<span></th>
 		</tr>
 		<tr>
 			<td>{$missile_count} <input type="number" name="SendMI" size="2" maxlength="7"></td>
