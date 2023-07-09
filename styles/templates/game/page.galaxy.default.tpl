@@ -45,8 +45,6 @@
 	<input type="hidden" name="type" value="{$type}">
 	<input type="hidden" name="duration" value="{$duration}">
 
-	<script src="scripts/game/base.js"></script>
-
 	<table class="table569">
 		<tr>
 			<th colspan="2">{$LNG.gl_missil_launch} [{$galaxy}:{$system}:{$planet}] {$LNG.gl_missil_flytime}: <span id="irakFlyTime">{$duration}<span></th>
