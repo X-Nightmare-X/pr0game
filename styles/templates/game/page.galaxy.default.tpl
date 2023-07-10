@@ -43,9 +43,11 @@
 	<input type="hidden" name="system" value="{$system}">
 	<input type="hidden" name="planet" value="{$planet}">
 	<input type="hidden" name="type" value="{$type}">
+	<input type="hidden" name="duration" value="{$duration}">
+
 	<table class="table569">
 		<tr>
-			<th colspan="2">{$LNG.gl_missil_launch} [{$galaxy}:{$system}:{$planet}]</th>
+			<th colspan="2">{$LNG.gl_missil_launch} [{$galaxy}:{$system}:{$planet}] {$LNG.gl_missil_flytime}: <span id="irakFlyTime">{$duration}<span></th>
 		</tr>
 		<tr>
 			<td>{$missile_count} <input type="number" name="SendMI" size="2" maxlength="7"></td>
@@ -160,7 +162,7 @@
                 <a href="#" onclick="return Dialog.Buddy({$currentPlanet.user.id})">
 					<img src="{$dpath}img/b.gif" title="{$LNG.gl_buddy_request}" alt="">
 				</a>{/if}
-				{if $currentPlanet.action.missle}<a href="?page=galaxy&amp;action=sendMissle&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}&amp;type=1">
+				{if $currentPlanet.action.missle}<a href="?page=galaxy&amp;action=sendMissle&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}&amp;type=1&amp;duration={$duration}">
 					<img src="{$dpath}img/r.gif" title="{$LNG.gl_missile_attack}" alt="">
 				</a>{/if}
 			{else}-{/if}

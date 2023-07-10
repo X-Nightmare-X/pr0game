@@ -229,6 +229,7 @@ $LNG['gl_avaible_grecyclers'] = 'Hiper Geri Donusumcu';
 $LNG['gl_avaible_recyclers'] = 'Geri Donusumcu';
 $LNG['gl_avaible_spyprobes'] = 'Casus Sondasi';
 $LNG['gl_missil_launch'] = 'Roket Saldirisi';
+$LNG['gl_missil_flytime'] = 'Uçuş süresi';
 $LNG['gl_missil_to_launch'] = 'Roket miktari (<b>%d</b> kalan):';
 $LNG['gl_all_defenses'] = 'Hepsi';
 $LNG['gl_objective'] = 'Hedef';

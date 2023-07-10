@@ -229,6 +229,7 @@ $LNG['gl_avaible_grecyclers'] = 'Gigarecyklery';
 $LNG['gl_avaible_recyclers'] = 'Recyklery';
 $LNG['gl_avaible_spyprobes'] = 'Sondy szpiegowskie';
 $LNG['gl_missil_launch'] = 'Atak rakietami';
+$LNG['gl_missil_flytime'] = 'Czas lotu';
 $LNG['gl_missil_to_launch'] = 'Ilość rakiet (<b>%d</b> dostępnych):';
 $LNG['gl_all_defenses'] = 'Wszystkie';
 $LNG['gl_objective'] = 'Główny cel';

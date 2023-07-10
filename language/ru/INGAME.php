@@ -217,6 +217,7 @@ $LNG['gl_avaible_grecyclers'] = 'Мега переработчики';
 $LNG['gl_avaible_recyclers'] = 'Переработчики';
 $LNG['gl_avaible_spyprobes'] = 'Шпионские зонды';
 $LNG['gl_missil_launch'] = 'Запуск ракет на';
+$LNG['gl_missil_flytime'] = 'Время полета';
 $LNG['gl_missil_to_launch'] = 'Количество ракет для запуска (<b>%d</b> в наличии):';
 $LNG['gl_all_defenses'] = 'Всё';
 $LNG['gl_objective'] = 'Цель';

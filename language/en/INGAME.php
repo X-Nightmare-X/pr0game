@@ -246,6 +246,7 @@ $LNG['gl_avaible_grecyclers'] = 'Giga Recycler';
 $LNG['gl_avaible_recyclers'] = 'Recycler';
 $LNG['gl_avaible_spyprobes'] = 'Spy Probes';
 $LNG['gl_missil_launch'] = 'Launch Missiles';
+$LNG['gl_missil_flytime'] = 'Flytime';
 $LNG['gl_missil_to_launch'] = 'Number of Missiles (<b>%d</b> disp.):';
 $LNG['gl_all_defenses'] = 'All defenses';
 $LNG['gl_objective'] = 'Main Objective';
