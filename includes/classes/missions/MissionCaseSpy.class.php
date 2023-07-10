@@ -184,6 +184,27 @@ class MissionCaseSpy extends MissionFunctions implements Mission
                 $spyData[$classID] = array_filter($spyData[$classID]);
             }
         }
+
+        require_once 'includes/classes/missions/functions/calculateSteal.php';
+        $sumPlanetRessources = 2 * ($targetPlanet[$resource[RESOURCE_METAL]] + $targetPlanet[$resource[RESOURCE_CRYSTAL]] + $targetPlanet[$resource[RESOURCE_DEUT]]);
+        $simulated = [];
+        $simulated['fleetDetail']['fleet_resource_metal'] = 0;
+        $simulated['fleetDetail']['fleet_resource_crystal'] = 0;
+        $simulated['fleetDetail']['fleet_resource_deuterium'] = 0;
+        $simulated['unit'] = [
+            '203' => ceil($sumPlanetRessources / $pricelist[SHIP_LARGE_CARGO]['capacity']),
+        ];
+        $fleetSimulate[] = $simulated;
+
+        $stealResource = calculateSteal($fleetSimulate, [
+            'metal' => getNumber($targetPlanet[$resource[RESOURCE_METAL]]),
+            'crystal' => getNumber($targetPlanet[$resource[RESOURCE_CRYSTAL]]),
+            'deuterium' => getNumber($targetPlanet[$resource[RESOURCE_DEUT]]),
+            ], true);
+        $sumSteal = array_sum($stealResource);
+        $smallCargoNeeded = ceil($sumSteal / $pricelist[SHIP_SMALL_CARGO]['capacity']);
+        $largeCargoNeeded = ceil($sumSteal / $pricelist[SHIP_LARGE_CARGO]['capacity']);
+
         // I'm use template class here, because i want to exclude HTML in PHP.
 
         require_once 'includes/classes/class.template.php';
@@ -237,6 +258,8 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             'stbEnabled'                        => $stbSettings['stb_enabled'],
             'danger'                            => $danger,
             'dangerClass'                       => $dangerClass,
+            'smallCargoNeeded'                  => $smallCargoNeeded,
+            'largeCargoNeeded'                  => $largeCargoNeeded,
             'energy'                            => $energy,
             'energyClass'                       => $energyClass,
             'spyData'                           => $spyData,
