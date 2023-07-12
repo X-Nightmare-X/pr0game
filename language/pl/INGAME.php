@@ -511,7 +511,7 @@ $LNG['tt_lvl'] = 'Poziom ';
 
 //----------------------------------------------------------------------------//
 //INFOS
-$LNG['in_jump_gate_done'] = 'Teleporter został użyty, następny skok możliwy za: ';
+$LNG['in_jump_gate_done'] = 'Teleporter został użyty, następny skok możliwy za: %s';
 $LNG['in_jump_gate_error_data'] = 'Błąd, koordynaty do skoku nieprawidłowe!';
 $LNG['in_jump_gate_not_ready_target'] = 'Teleporter na księżycu docelowym jeszcze niegotowy, skok będzie możliwy za ';
 $LNG['in_jump_gate_doesnt_have_one'] = 'Brak teleportera na księżycu!';

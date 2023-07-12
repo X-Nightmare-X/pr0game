@@ -27,21 +27,50 @@ class ShowInformationPage extends AbstractGamePage
         parent::__construct();
     }
 
-    protected static function getNextJumpWaitTime($lastTime)
+    protected static function getNextJumpWaitTime($lastTime, $jumpLevel)
     {
-        return $lastTime + Config::get()->gate_wait_time;
+        $DefaultWaitTimeLevel1  = 60; //60 min
+        $DefaultWaitTimeLevel2  = 53; //53 min
+        $DefaultWaitTimeLevel3  = 47; //47 min
+        $DefaultWaitTimeLevel4  = 41; //41 min 
+        $DefaultWaitTimeLevel5  = 36; //36 min
+        $DefaultWaitTimeLevel10 = 17; //17 min
+        $DefaultWaitTimeLevel15 = 10; //10 min
+        $cooldown = 60;
+        if ($jumpLevel == 1) {
+            $cooldown = $DefaultWaitTimeLevel1;
+        } elseif ($jumpLevel == 2) {
+            $cooldown = $DefaultWaitTimeLevel2;
+        } elseif ($jumpLevel == 3) {
+            $cooldown = $DefaultWaitTimeLevel3;
+        } elseif ($jumpLevel == 4) {
+            $cooldown = $DefaultWaitTimeLevel4;
+        } elseif ($jumpLevel == 5) {
+            $cooldown = $DefaultWaitTimeLevel5;
+        } elseif ($jumpLevel >= 10 && $jumpLevel < 15) {
+            $cooldown = $DefaultWaitTimeLevel10;
+        } elseif ($jumpLevel >= 15) {
+            $cooldown = $DefaultWaitTimeLevel15;
+        }
+        require_once 'includes/classes/class.Discord.php';
+        //Discord::sendLog($jump, null, null);
+        $calculatedCooldown = ($cooldown * 60)/(Config::get()->fleet_speed/2500);
+        
+        return $lastTime + ceil($calculatedCooldown);
     }
 
     public function sendFleet()
-    {
+    {      
         $PLANET =& Singleton()->PLANET;
         $USER =& Singleton()->USER;
         $resource =& Singleton()->resource;
         $LNG =& Singleton()->LNG;
         $reslist =& Singleton()->reslist;
         $db = Database::get();
-
-        $NextJumpTime = self::getNextJumpWaitTime($PLANET['last_jump_time']);
+        require_once 'includes/classes/class.Discord.php';
+        //Discord::sendLog($jumpLevel .":". $cooldown, null, null);
+        Discord::sendLog($PLANET["sprungtor"], null, null);
+        $NextJumpTime = self::getNextJumpWaitTime($PLANET['last_jump_time'], $PLANET['sprungtor']);
 
         if (TIMESTAMP < $NextJumpTime) {
             $this->sendJSON([
@@ -52,7 +81,7 @@ class ShowInformationPage extends AbstractGamePage
 
         $TargetPlanet = HTTP::_GP('jmpto', (int) $PLANET['id']);
 
-        $sql = "SELECT id, last_jump_time FROM %%PLANETS%% WHERE id = :targetID AND id_owner = :userID AND"
+        $sql = "SELECT id, last_jump_time, sprungtor FROM %%PLANETS%% WHERE id = :targetID AND id_owner = :userID AND"
             . " sprungtor > 0;";
         $TargetGate = $db->selectSingle($sql, [
             ':targetID' => $TargetPlanet,
@@ -66,7 +95,7 @@ class ShowInformationPage extends AbstractGamePage
             ]);
         }
 
-        $NextJumpTime   = self::getNextJumpWaitTime($TargetGate['last_jump_time']);
+        $NextJumpTime   = self::getNextJumpWaitTime($TargetGate['last_jump_time'], $TargetGate['sprungtor']);
 
         if (TIMESTAMP < $NextJumpTime) {
             $this->sendJSON([
@@ -74,7 +103,7 @@ class ShowInformationPage extends AbstractGamePage
                 'error' => true,
             ]);
         }
-
+        
         $ShipArray      = [];
         $SubQueryOri    = "";
         $SubQueryDes    = "";
@@ -114,7 +143,7 @@ class ShowInformationPage extends AbstractGamePage
         ]);
 
         $PLANET['last_jump_time']   = TIMESTAMP;
-        $NextJumpTime   = self::getNextJumpWaitTime($PLANET['last_jump_time']);
+        $NextJumpTime   = self::getNextJumpWaitTime($PLANET['last_jump_time'], $PLANET['sprungtor']);
         $this->sendJSON([
             'message' => sprintf($LNG['in_jump_gate_done'], pretty_time($NextJumpTime - TIMESTAMP)),
             'error' => false,
@@ -170,7 +199,7 @@ class ShowInformationPage extends AbstractGamePage
         $order = $USER['planet_sort_order'] == 1 ? "DESC" : "ASC" ;
         $sort  = $USER['planet_sort'];
 
-        $sql = "SELECT id, name, galaxy, system, planet, last_jump_time, " . $resource[43]
+        $sql = "SELECT id, name, galaxy, system, planet, last_jump_time, sprungtor, " . $resource[43]
             . " FROM %%PLANETS%% WHERE id != :planetID AND id_owner = :userID AND planet_type = '3' AND "
             . $resource[43] . " > 0 ORDER BY ";
 
@@ -195,7 +224,7 @@ class ShowInformationPage extends AbstractGamePage
         $moonList   = [];
 
         foreach ($moonResult as $moonRow) {
-            $NextJumpTime               = self::getNextJumpWaitTime($moonRow['last_jump_time']);
+            $NextJumpTime               = self::getNextJumpWaitTime($moonRow['last_jump_time'], $moonRow['sprungtor']);
             $moonList[$moonRow['id']]   = '[' . $moonRow['galaxy'] . ':' . $moonRow['system'] . ':' . $moonRow['planet']
                 . '] ' . $moonRow['name']
                 . (TIMESTAMP < $NextJumpTime ? ' (' . pretty_time($NextJumpTime - TIMESTAMP) . ')' : '');
@@ -331,7 +360,7 @@ class ShowInformationPage extends AbstractGamePage
 
         if ($elementID == 43 && $PLANET[$resource[43]] > 0) {
             $this->tplObj->loadscript('gate.js');
-            $nextTime   = self::getNextJumpWaitTime($PLANET['last_jump_time']);
+            $nextTime   = self::getNextJumpWaitTime($PLANET['last_jump_time'], $PLANET['sprungtor']);
             $gateData   = [
                 'nextTime'  => _date($LNG['php_tdformat'], $nextTime, $USER['timezone']),
                 'restTime'  => max(0, $nextTime - TIMESTAMP),
