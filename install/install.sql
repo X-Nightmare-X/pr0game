@@ -333,7 +333,7 @@ CREATE TABLE `%PREFIX%config` (
   `max_participants_per_acs` tinyint(3) unsigned NOT NULL DEFAULT '5',
   `debris_moon` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `vmode_min_time` int(11) NOT NULL DEFAULT '259200',
-  `gate_wait_time` int(11) NOT NULL DEFAULT '3600',
+  `jumpgate_factor` int(11) NOT NULL DEFAULT '1',
   `metal_start` int(11) unsigned NOT NULL DEFAULT '500',
   `crystal_start` int(11) unsigned NOT NULL DEFAULT '500',
   `deuterium_start` int(11) unsigned NOT NULL DEFAULT '0',

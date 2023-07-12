@@ -502,8 +502,8 @@ $LNG['se_max_participants_per_acs_info'] = 'Maximum number of participants in AC
 $LNG['se_vmode_min_time'] = 'Durée minimale du mode vacances';
 $LNG['se_vmode_min_time_info'] = 'Spécifie combien de temps un utilisateur doit être au moins en mode vacances.'
     . ' (en secondes)';
-$LNG['se_gate_wait_time'] = 'Aller charge de grille';
-$LNG['se_gate_wait_time_info'] = 'Indique combien de fois les portes de saut peut être utiliser (en secondes)';
+$LNG['se_jumpgate_factor'] = 'Aller charge de grille';
+$LNG['se_jumpgate_factor_info'] = 'Facteur par lequel le temps d\'attente sera divisé';
 $LNG['se_metal_start'] = 'Démarrer en métal';
 $LNG['se_metal_start_info'] = 'Indique combien de métal est présent sur la nouvelle planète.';
 $LNG['se_crystal_start'] = 'Démarrer en Cristal';
