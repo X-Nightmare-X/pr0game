@@ -112,6 +112,8 @@ class ShowGalaxyPage extends AbstractGamePage
 
         $hiddenDebris = ($pricelist[SHIP_PROBE]['cost'][RESOURCE_METAL] + $pricelist[SHIP_PROBE]['cost'][RESOURCE_CRYSTAL]) * ($config->Fleet_Cdr / 100);
 
+        $Duration		= FleetFunctions::getMIPDuration($PLANET['system'], $system);
+
         $this->tplObj->loadscript('galaxy.js');
         $this->assign([
             'GalaxyRows'				=> $Result,
@@ -148,6 +150,7 @@ class ShowGalaxyPage extends AbstractGamePage
                 'friend'					=> $LNG['gl_short_friend'],
                 'member'					=> $LNG['gl_short_member'],
             ],
+            'duration'                  => $Duration,
         ]);
 
         $this->display('page.galaxy.default.tpl');

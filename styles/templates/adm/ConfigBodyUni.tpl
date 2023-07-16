@@ -333,9 +333,9 @@
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_vmode_min_time_info}"></td>
 		</tr>
 		<tr>
-			<td>{$LNG.se_gate_wait_time}</td>
-			<td><input name="gate_wait_time" maxlength="11" size="11" value="{$gate_wait_time}" type="text"></td>
-			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_gate_wait_time_info}"></td>
+			<td>{$LNG.se_jumpgate_factor}</td>
+			<td><input name="jumpgate_factor" maxlength="11" size="11" value="{$jumpgate_factor}" type="text"></td>
+			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_jumpgate_factor_info}"></td>
 		</tr>
 		<tr>
 			<td>{$LNG.se_noob_protect}</td>

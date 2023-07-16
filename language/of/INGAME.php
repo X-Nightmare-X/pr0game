@@ -238,6 +238,7 @@ $LNG['gl_avaible_grecyclers'] = 'Gigarecycler';
 $LNG['gl_avaible_recyclers'] = 'Recycler';
 $LNG['gl_avaible_spyprobes'] = 'Schbionagesonden';
 $LNG['gl_missil_launch'] = 'Ragetenangriff';
+$LNG['gl_missil_flytime'] = 'Flugzeit';
 $LNG['gl_missil_to_launch'] = 'Anzahl an Ragetne  (<b>%d</b> übrig):';
 $LNG['gl_all_defenses'] = 'Alle';
 $LNG['gl_objective'] = 'Brimäres Ziel';

@@ -227,6 +227,7 @@ $LNG['gl_avaible_grecyclers'] = 'Reciclador de Batalha';
 $LNG['gl_avaible_recyclers'] = 'Reciclador';
 $LNG['gl_avaible_spyprobes'] = 'Sondas de Espionagem';
 $LNG['gl_missil_launch'] = 'Lanças Misseis';
+$LNG['gl_missil_flytime'] = 'Tempo de voo';
 $LNG['gl_missil_to_launch'] = 'Número de Misseis (<b>%d</b> disp.):';
 $LNG['gl_all_defenses'] = 'Todas as defesas';
 $LNG['gl_objective'] = 'Objetivo Principal';
@@ -508,7 +509,7 @@ $LNG['tt_lvl'] = 'Nivel ';
 //----------------------------------------------------------------------------//
 // Infos
 $LNG['in_jump_gate_no_target'] = 'Sem alvo disponivel';
-$LNG['in_jump_gate_done'] = 'O portal de salto foi usado, poderás voltar a usá-lo em:';
+$LNG['in_jump_gate_done'] = 'O portal de salto foi usado, poderás voltar a usá-lo em: %s';
 $LNG['in_jump_gate_error_data'] = 'Erro, coordenadas para salto não estão corretas!';
 $LNG['in_jump_gate_not_ready_target'] = 'O portal não está pronto na lua de destino, Estará pronto em ';
 $LNG['in_jump_gate_doesnt_have_one'] = 'Não tens outro portal para efetuar o salto!';

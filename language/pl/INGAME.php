@@ -229,6 +229,7 @@ $LNG['gl_avaible_grecyclers'] = 'Gigarecyklery';
 $LNG['gl_avaible_recyclers'] = 'Recyklery';
 $LNG['gl_avaible_spyprobes'] = 'Sondy szpiegowskie';
 $LNG['gl_missil_launch'] = 'Atak rakietami';
+$LNG['gl_missil_flytime'] = 'Czas lotu';
 $LNG['gl_missil_to_launch'] = 'Ilość rakiet (<b>%d</b> dostępnych):';
 $LNG['gl_all_defenses'] = 'Wszystkie';
 $LNG['gl_objective'] = 'Główny cel';
@@ -510,7 +511,7 @@ $LNG['tt_lvl'] = 'Poziom ';
 
 //----------------------------------------------------------------------------//
 //INFOS
-$LNG['in_jump_gate_done'] = 'Teleporter został użyty, następny skok możliwy za: ';
+$LNG['in_jump_gate_done'] = 'Teleporter został użyty, następny skok możliwy za: %s';
 $LNG['in_jump_gate_error_data'] = 'Błąd, koordynaty do skoku nieprawidłowe!';
 $LNG['in_jump_gate_not_ready_target'] = 'Teleporter na księżycu docelowym jeszcze niegotowy, skok będzie możliwy za ';
 $LNG['in_jump_gate_doesnt_have_one'] = 'Brak teleportera na księżycu!';

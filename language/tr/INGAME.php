@@ -229,6 +229,7 @@ $LNG['gl_avaible_grecyclers'] = 'Hiper Geri Donusumcu';
 $LNG['gl_avaible_recyclers'] = 'Geri Donusumcu';
 $LNG['gl_avaible_spyprobes'] = 'Casus Sondasi';
 $LNG['gl_missil_launch'] = 'Roket Saldirisi';
+$LNG['gl_missil_flytime'] = 'Uçuş süresi';
 $LNG['gl_missil_to_launch'] = 'Roket miktari (<b>%d</b> kalan):';
 $LNG['gl_all_defenses'] = 'Hepsi';
 $LNG['gl_objective'] = 'Hedef';
@@ -507,7 +508,7 @@ $LNG['tt_lvl'] = 'Kademe ';
 //----------------------------------------------------------------------------//
 // Bilgilendirme Ekranlari
 $LNG['in_jump_gate_no_target'] = 'Sicrama yapilacak hedef yok.';
-$LNG['in_jump_gate_done'] = 'Sicrama basari ile gerceklesti : Sonraki sicrama:';
+$LNG['in_jump_gate_done'] = 'Sicrama basari ile gerceklesti : Sonraki sicrama: %s';
 $LNG['in_jump_gate_error_data'] = 'Hata, sicrama icin girilen koordinatlar yanlis!';
 $LNG['in_jump_gate_not_ready_target'] = 'Sicramaya calisilan gecit henuz hazir degil Gereken Sure:';
 $LNG['in_jump_gate_doesnt_have_one'] = 'Sicrama Gecidi Mevcut Degil!';
