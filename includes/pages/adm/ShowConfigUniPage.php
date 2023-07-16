@@ -78,7 +78,7 @@ function ShowConfigUniPage()
             'max_fleets_per_acs'    => $config->max_fleets_per_acs,
             'max_participants_per_acs' => $config->max_participants_per_acs,
             'vmode_min_time'        => $config->vmode_min_time,
-            'gate_wait_time'        => $config->gate_wait_time,
+            'jumpgate_factor'        => $config->jumpgate_factor,
             'metal_start'           => $config->metal_start,
             'crystal_start'         => $config->crystal_start,
             'deuterium_start'       => $config->deuterium_start,
@@ -151,7 +151,7 @@ function ShowConfigUniPage()
         $max_fleets_per_acs     = HTTP::_GP('max_fleets_per_acs', 0);
         $max_participants_per_acs = HTTP::_GP('max_participants_per_acs', 0);
         $vmode_min_time         = HTTP::_GP('vmode_min_time', 0);
-        $gate_wait_time         = HTTP::_GP('gate_wait_time', 0);
+        $jumpgate_factor         = HTTP::_GP('jumpgate_factor', 0);
         $metal_start            = HTTP::_GP('metal_start', 0);
         $crystal_start          = HTTP::_GP('crystal_start', 0);
         $deuterium_start        = HTTP::_GP('deuterium_start', 0);
@@ -219,7 +219,7 @@ function ShowConfigUniPage()
             'max_fleets_per_acs'    => $max_fleets_per_acs,
             'max_participants_per_acs' => $max_participants_per_acs,
             'vmode_min_time'        => $vmode_min_time,
-            'gate_wait_time'        => $gate_wait_time,
+            'jumpgate_factor'        => $jumpgate_factor,
             'metal_start'           => $metal_start,
             'crystal_start'         => $crystal_start,
             'deuterium_start'       => $deuterium_start,
@@ -370,7 +370,7 @@ function ShowConfigUniPage()
         'max_fleets_per_acs'            => $config->max_fleets_per_acs,
         'max_participants_per_acs'      => $config->max_participants_per_acs,
         'vmode_min_time'                => $config->vmode_min_time,
-        'gate_wait_time'                => $config->gate_wait_time,
+        'jumpgate_factor'               => $config->jumpgate_factor,
         'metal_start'                   => $config->metal_start,
         'crystal_start'                 => $config->crystal_start,
         'deuterium_start'               => $config->deuterium_start,

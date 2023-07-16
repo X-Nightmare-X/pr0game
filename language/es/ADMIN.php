@@ -454,8 +454,8 @@ $LNG['se_max_participants_per_acs_info'] = 'Maximum number of participants in AC
 $LNG['se_vmode_min_time'] = 'Mín. Período Modo Vacaciones';
 $LNG['se_vmode_min_time_info'] = 'Especifica la duración minima que un usuario debe estar en modo vacaciones.'
     . ' (En Segundos)';
-$LNG['se_gate_wait_time'] = 'Recarga Salto Cuántico';
-$LNG['se_gate_wait_time_info'] = 'Indica el tiempo para el reuso del Salto Cuántico (en segundos)';
+$LNG['se_jumpgate_factor'] = 'Recarga Salto Cuántico';
+$LNG['se_jumpgate_factor_info'] = 'Factor por el que se dividirá el tiempo de espera';
 $LNG['se_metal_start'] = 'Metal Inicial';
 $LNG['se_metal_start_info'] = 'Especifíca la cantidad de Metal presente en un nuevo Planeta.';
 $LNG['se_crystal_start'] = 'Cristal Inicial';

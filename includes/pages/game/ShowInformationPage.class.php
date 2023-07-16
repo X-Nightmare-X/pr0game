@@ -52,9 +52,7 @@ class ShowInformationPage extends AbstractGamePage
         } elseif ($jumpLevel >= 15) {
             $cooldown = $DefaultWaitTimeLevel15;
         }
-        require_once 'includes/classes/class.Discord.php';
-        //Discord::sendLog($jump, null, null);
-        $calculatedCooldown = ($cooldown * 60)/(Config::get()->fleet_speed/2500);
+        $calculatedCooldown = ($cooldown * 60)/(Config::get()->jumpgate_factor);
         
         return $lastTime + ceil($calculatedCooldown);
     }
@@ -67,9 +65,7 @@ class ShowInformationPage extends AbstractGamePage
         $LNG =& Singleton()->LNG;
         $reslist =& Singleton()->reslist;
         $db = Database::get();
-        require_once 'includes/classes/class.Discord.php';
-        //Discord::sendLog($jumpLevel .":". $cooldown, null, null);
-        Discord::sendLog($PLANET["sprungtor"], null, null);
+
         $NextJumpTime = self::getNextJumpWaitTime($PLANET['last_jump_time'], $PLANET['sprungtor']);
 
         if (TIMESTAMP < $NextJumpTime) {
