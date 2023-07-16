@@ -46,7 +46,7 @@ $LNG['uni_reg_closed']				= ' (Registration closed)';
 $LNG['uni_reg_open']				= ' (Registration only)';
 
 // Button
-$LNG['buttonRegister']				= 'Regist Now!';
+$LNG['buttonRegister']				= 'Sign up now!';
 $LNG['buttonScreenshot']			= 'Screenshots';
 $LNG['buttonLostPassword']			= 'Lost Password?';
 

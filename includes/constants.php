@@ -244,8 +244,16 @@ define('RESOURCE_CRYSTAL', 902);
 define('RESOURCE_DEUT', 903);
 define('RESOURCE_ENERGY', 911);
 
-// ships
+// buildings
+define('ROBOT_FACTORY', 14);
+define('NANITE_FACTORY', 15);
+define('SHIPYARD', 21);
+define('RESEARCH_LABORATORY', 31);
+define('TERRAFORMER', 33);
+define('MOONBASE', 41);
+define('SILO', 44);
 
+// ships
 define('SHIP_SMALL_CARGO', 202);
 define('SHIP_LARGE_CARGO', 203);
 define('SHIP_LIGHT_FIGHTER', 204);

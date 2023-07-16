@@ -195,7 +195,7 @@ function selectedResources() {
     document.getElementsByName("crystal")[0].value =0
   }
   if(!isNaN(parseInt(amt[2]))){
-    document.getElementsByName("deuterium")[0].value =parseInt(amt[2])
+    document.getElementsByName("deuterium")[0].value = Math.min(parseInt(amt[2]),parseInt(document.getElementById('current_deuterium').getAttribute('data-real'))-parseInt(amt[3]))
   }else{
     document.getElementsByName("deuterium")[0].value =0
   }
@@ -259,7 +259,22 @@ function CheckTarget()
 	kolo	= (typeof data.ships[208] == "object") ? 1 : 0;
 
 	$.getJSON('game.php?page=fleetStep1&mode=checkTarget&galaxy='+document.getElementsByName("galaxy")[0].value+'&system='+document.getElementsByName("system")[0].value+'&planet='+document.getElementsByName("planet")[0].value+'&planet_type='+document.getElementsByName("type")[0].value+'&lang='+Lang+'&kolo='+kolo, function(data) {
-		if(data == "OK") {
+		if (data == "OK") {
+			document.getElementById('form').submit();
+		} else {
+			NotifyBox(data);
+		}
+	});
+	return false;
+}
+
+function CheckResources()
+{
+  e = document.getElementsByName("resEx")[0];
+  resEx = e != null ? e.value : 0;
+
+  $.getJSON('game.php?page=fleetStep2&mode=checkResources&metal='+document.getElementsByName("metal")[0].value+'&crystal='+document.getElementsByName("crystal")[0].value+'&deuterium='+document.getElementsByName("deuterium")[0].value+'&mission='+document.querySelector('input[name="mission"]:checked').value+'&resEx='+resEx+'&token='+document.getElementsByName("token")[0].value, function(data) {
+		if (data == "OK") {
 			document.getElementById('form').submit();
 		} else {
 			NotifyBox(data);
@@ -387,7 +402,11 @@ $(function() {
 });
 
 function update_arrival() {
-  const nd = new Date(new Date(serverTime).getTime() +parseInt(document.getElementById("arr_time").getAttribute("duration")) * 1000)
+	const now = new Date(Date.now())
+	const deT = new Date(now.toLocaleString('en-us', { timeZone: 'Europe/Berlin'})).getTime() 
+	const localT = new Date(now.toLocaleString('en-us', { timeZone: localtimezonestring})).getTime()
+	const timeOffset = localT - deT
+  const nd = new Date(new Date(serverTime).getTime() + timeOffset + parseInt(document.getElementById("arr_time").getAttribute("duration")) * 1000)
   let ddiv=Math.floor((nd-serverTime) / (1000 * 60 * 60 * 24));
   let tamt=""
   if(ddiv>0){

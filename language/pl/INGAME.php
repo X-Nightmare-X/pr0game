@@ -229,6 +229,7 @@ $LNG['gl_avaible_grecyclers'] = 'Gigarecyklery';
 $LNG['gl_avaible_recyclers'] = 'Recyklery';
 $LNG['gl_avaible_spyprobes'] = 'Sondy szpiegowskie';
 $LNG['gl_missil_launch'] = 'Atak rakietami';
+$LNG['gl_missil_flytime'] = 'Czas lotu';
 $LNG['gl_missil_to_launch'] = 'Ilość rakiet (<b>%d</b> dostępnych):';
 $LNG['gl_all_defenses'] = 'Wszystkie';
 $LNG['gl_objective'] = 'Główny cel';
@@ -420,6 +421,10 @@ $LNG['fl_only_planets_colonizable'] = 'Możesz kolonizować tylko planety!';
 $LNG['fl_player_is_noob'] = 'Gracz znajduje się pod ochroną!';
 $LNG['fl_player_is_strong'] = 'Gracz za mocny!';
 $LNG['fl_no_hold_depot'] = 'Na planecie docelowej nie ma depozytu sojuszniczego.';
+$LNG['fl_trade_no_resource_loaded'] = 'Nie załadowałeś żadnego zasobu.';
+$LNG['fl_trade_to_many_resources_loaded'] = 'Możesz sprzedać tylko jeden zasób.';
+$LNG['fl_trade_same_resource'] = 'Nie można sprzedać %s za %s.';
+$LNG['fl_not_enough'] = 'Brak wystarczającej ilości dostępnych %s.';
 $LNG['fl_not_enough_deuterium'] = 'Nie masz wystarczającej ilości deuteru.';
 $LNG['fl_not_enough_space'] = 'Nie masz tyle miejsca w ładowniach.';
 $LNG['fl_hold_time_not_exists'] = 'Niepoprawny czas postoju.';
@@ -506,7 +511,7 @@ $LNG['tt_lvl'] = 'Poziom ';
 
 //----------------------------------------------------------------------------//
 //INFOS
-$LNG['in_jump_gate_done'] = 'Teleporter został użyty, następny skok możliwy za: ';
+$LNG['in_jump_gate_done'] = 'Teleporter został użyty, następny skok możliwy za: %s';
 $LNG['in_jump_gate_error_data'] = 'Błąd, koordynaty do skoku nieprawidłowe!';
 $LNG['in_jump_gate_not_ready_target'] = 'Teleporter na księżycu docelowym jeszcze niegotowy, skok będzie możliwy za ';
 $LNG['in_jump_gate_doesnt_have_one'] = 'Brak teleportera na księżycu!';

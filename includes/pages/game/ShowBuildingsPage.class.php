@@ -26,9 +26,9 @@ class ShowBuildingsPage extends AbstractGamePage
 
     private function cancelBuildingFromQueue()
     {
-        $PLANET =& Singleton()->PLANET;
-        $USER =& Singleton()->USER;
-        $resource =& Singleton()->resource;
+        $PLANET = &Singleton()->PLANET;
+        $USER = &Singleton()->USER;
+        $resource = &Singleton()->resource;
         $CurrentQueue  = !empty($PLANET['b_building_id']) ? unserialize($PLANET['b_building_id']) : [];
         if (empty($CurrentQueue)) {
             $PLANET['b_building_id']    = '';
@@ -66,8 +66,8 @@ class ShowBuildingsPage extends AbstractGamePage
 
     private function removeBuildingFromQueue($QueueID)
     {
-        $USER =& Singleton()->USER;
-        $PLANET =& Singleton()->PLANET;
+        $USER = &Singleton()->USER;
+        $PLANET = &Singleton()->PLANET;
         if ($QueueID <= 1 || empty($PLANET['b_building_id'])) {
             return false;
         }
@@ -107,16 +107,17 @@ class ShowBuildingsPage extends AbstractGamePage
 
     private function addBuildingToQueue($Element, $AddMode = true)
     {
-        $PLANET =& Singleton()->PLANET;
-        $USER =& Singleton()->USER;
-        $resource =& Singleton()->resource;
-        $reslist =& Singleton()->reslist;
-        $pricelist =& Singleton()->pricelist;
+        $PLANET = &Singleton()->PLANET;
+        $USER = &Singleton()->USER;
+        $resource = &Singleton()->resource;
+        $reslist = &Singleton()->reslist;
+        $pricelist = &Singleton()->pricelist;
         if (
             !in_array($Element, $reslist['allow'][$PLANET['planet_type']])
             || !BuildFunctions::isTechnologieAccessible($USER, $PLANET, $Element)
-            || ($Element == 31 && $USER["b_tech_planet"] != 0)
-            || (($Element == 15 || $Element == 21) && !empty($PLANET['b_hangar_id']))
+            || ($Element == RESEARCH_LABORATORY && $USER["b_tech_planet"] != 0)
+            || (($Element == NANITE_FACTORY || $Element == SHIPYARD) && !empty($PLANET['b_hangar_id']))
+            || (!$AddMode && (($Element == SILO && ($PLANET[$resource[INTERCEPTOR_MISSILE]] + $PLANET[$resource[INTERPLANETARY_MISSILE]]) > 0) || $Element == TERRAFORMER || $Element == MOONBASE))
             || (!$AddMode && $PLANET[$resource[$Element]] == 0)
         ) {
             return;
@@ -166,7 +167,7 @@ class ShowBuildingsPage extends AbstractGamePage
 
             $this->ecoObj->removeResources($PLANET['id'], $costResources, $PLANET);
 
-            $elementTime                = BuildFunctions::getBuildingTime($USER, $PLANET, $Element, $costResources);
+            $elementTime                = BuildFunctions::getBuildingTime($USER, $PLANET, $Element, $costResources, !$AddMode);
             $BuildEndTime               = TIMESTAMP + $elementTime;
 
             $PLANET['b_building_id']    = serialize([[$Element, $BuildLevel, $elementTime, $BuildEndTime, $BuildMode]]);
@@ -204,9 +205,9 @@ class ShowBuildingsPage extends AbstractGamePage
 
     private function getQueueData()
     {
-        $LNG =& Singleton()->LNG;
-        $PLANET =& Singleton()->PLANET;
-        $USER =& Singleton()->USER;
+        $LNG = &Singleton()->LNG;
+        $PLANET = &Singleton()->PLANET;
+        $USER = &Singleton()->USER;
         $scriptData = [];
         $quickinfo = [];
 
@@ -239,19 +240,22 @@ class ShowBuildingsPage extends AbstractGamePage
 
     public function show()
     {
-        $ProdGrid =& Singleton()->ProdGrid;
-        $LNG =& Singleton()->LNG;
-        $resource =& Singleton()->resource;
-        $reslist =& Singleton()->reslist;
-        $PLANET =& Singleton()->PLANET;
-        $USER =& Singleton()->USER;
-        $pricelist =& Singleton()->pricelist;
+        $ProdGrid = &Singleton()->ProdGrid;
+        $LNG = &Singleton()->LNG;
+        $resource = &Singleton()->resource;
+        $reslist = &Singleton()->reslist;
+        $PLANET = &Singleton()->PLANET;
+        $USER = &Singleton()->USER;
+        $pricelist = &Singleton()->pricelist;
         $TheCommand     = HTTP::_GP('cmd', '');
 
         // wellformed buildURLs
         if (!empty($TheCommand) && $_SERVER['REQUEST_METHOD'] === 'POST' && $USER['urlaubs_modus'] == 0) {
             $Element        = HTTP::_GP('building', 0);
             $ListID         = HTTP::_GP('listid', 0);
+            $db = Database::get();
+            $db->startTransaction();
+            $PLANET = $db->selectSingle("SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;", [':planetId' => $PLANET['id']]);
             switch ($TheCommand) {
                 case 'cancel':
                     $this->cancelBuildingFromQueue();
@@ -268,6 +272,7 @@ class ShowBuildingsPage extends AbstractGamePage
             }
 
             $this->ecoObj->saveBuilingQueue($PLANET);
+            $db->commit();
             $this->redirectTo('game.php?page=buildings');
         }
 
@@ -277,12 +282,13 @@ class ShowBuildingsPage extends AbstractGamePage
         $Queue              = $queueData['queue'];
         $QueueCount         = count($Queue);
 
-        $QueueDestroy = $QueueCount;
+        $QueueFields = 0;
         foreach ($Queue as $QueueInfo) {
             if ($QueueInfo['destroy']) {
-                $QueueDestroy = $QueueDestroy - 2;
+                $QueueFields--;
+            } else {
+                $QueueFields++;
             }
-            $QueueDestroy = max(0, $QueueDestroy);
         }
 
         $CanBuildElement = isVacationMode($USER)
@@ -290,7 +296,7 @@ class ShowBuildingsPage extends AbstractGamePage
             || $QueueCount < $config->max_elements_build;
         $CurrentMaxFields = CalculateMaxPlanetFields($PLANET);
 
-        $RoomIsOk           = $PLANET['field_current'] < ($CurrentMaxFields - $QueueDestroy);
+        $RoomIsOk = $PLANET['field_current'] + $QueueFields < $CurrentMaxFields;
 
         /* Data for eval */
         $BuildEnergy        = $USER[$resource[113]];
@@ -320,10 +326,10 @@ class ShowBuildingsPage extends AbstractGamePage
 
             if (in_array($Element, $reslist['prod'])) {
                 $BuildLevel = $PLANET[$resource[$Element]];
-                $Need       = eval(ResourceUpdate::getProd($ProdGrid[$Element]['production'][911], $Element));
+                $Need       = eval(ResourceUpdate::getProd($ProdGrid[$Element]['production'][RESOURCE_ENERGY], $Element));
 
                 $BuildLevel = $levelToBuild + 1;
-                $Prod       = eval(ResourceUpdate::getProd($ProdGrid[$Element]['production'][911], $Element));
+                $Prod       = eval(ResourceUpdate::getProd($ProdGrid[$Element]['production'][RESOURCE_ENERGY], $Element));
 
                 $requireEnergy  = $Prod - $Need;
                 $requireEnergy  = round($requireEnergy * $config->energySpeed);
@@ -332,13 +338,13 @@ class ShowBuildingsPage extends AbstractGamePage
                     $infoEnergy = sprintf(
                         $LNG['bd_need_engine'],
                         pretty_number(abs($requireEnergy)),
-                        $LNG['tech'][911]
+                        $LNG['tech'][RESOURCE_ENERGY]
                     );
                 } else {
                     $infoEnergy = sprintf(
                         $LNG['bd_more_engine'],
                         pretty_number(abs($requireEnergy)),
-                        $LNG['tech'][911]
+                        $LNG['tech'][RESOURCE_ENERGY]
                     );
                 }
             }
@@ -351,23 +357,24 @@ class ShowBuildingsPage extends AbstractGamePage
                 $levelToBuild + 1
             );
             $costOverflow = BuildFunctions::getRestPrice($USER, $PLANET, $Element, $costResources);
-            $timetobuild= 0;
-            if (array_key_exists(901, $costOverflow) && $costOverflow[901]!=0 && $metproduction >0) {
-                $timetobuild=max($timetobuild, $costOverflow[901]/$metproduction);
+            $timetobuild = 0;
+            if (array_key_exists(RESOURCE_METAL, $costOverflow) && $costOverflow[RESOURCE_METAL] != 0 && $metproduction > 0) {
+                $timetobuild = max($timetobuild, $costOverflow[RESOURCE_METAL] / $metproduction);
             }
-            if (array_key_exists(902, $costOverflow) && $costOverflow[902]!=0 && $kristproduction >0) {
-                $timetobuild=max($timetobuild, $costOverflow[902]/$kristproduction);
+            if (array_key_exists(RESOURCE_CRYSTAL, $costOverflow) && $costOverflow[RESOURCE_CRYSTAL] != 0 && $kristproduction > 0) {
+                $timetobuild = max($timetobuild, $costOverflow[RESOURCE_CRYSTAL] / $kristproduction);
             }
-            if (array_key_exists(903, $costOverflow) && $costOverflow[903]!=0 && $deutproduction >0) {
-                $timetobuild=max($timetobuild, $costOverflow[903]/$deutproduction);
+            if (array_key_exists(RESOURCE_DEUT, $costOverflow) && $costOverflow[RESOURCE_DEUT] != 0 && $deutproduction > 0) {
+                $timetobuild = max($timetobuild, $costOverflow[RESOURCE_DEUT] / $deutproduction);
             }
-            $timetobuild = floor($timetobuild*3600) ;
+            $timetobuild = floor($timetobuild * 3600);
 
             $elementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $Element, $costResources);
             $destroyResources = BuildFunctions::getElementPrice($USER, $PLANET, $Element, true);
             $destroyTime = BuildFunctions::getBuildingTime($USER, $PLANET, $Element, $destroyResources);
             $destroyOverflow = BuildFunctions::getRestPrice($USER, $PLANET, $Element, $destroyResources);
             $buyable = $QueueCount != 0 || BuildFunctions::isElementBuyable($USER, $PLANET, $Element, $costResources);
+            $destroyable = ($Element != SILO || ($PLANET[$resource[INTERCEPTOR_MISSILE]] + $PLANET[$resource[INTERPLANETARY_MISSILE]]) == 0) && $Element != TERRAFORMER && $Element != MOONBASE;
 
             $BuildInfoList[$Element]    = [
                 'level'             => $PLANET[$resource[$Element]],
@@ -380,6 +387,7 @@ class ShowBuildingsPage extends AbstractGamePage
                 'destroyTime'       => $destroyTime,
                 'destroyOverflow'   => $destroyOverflow,
                 'buyable'           => $buyable,
+                'destroyable'       => $destroyable,
                 'levelToBuild'      => $levelToBuild,
                 'timetobuild'       => $timetobuild
             ];
@@ -400,7 +408,6 @@ class ShowBuildingsPage extends AbstractGamePage
                 'shipyard' => !empty($PLANET['b_hangar_id']),
                 'research' => $USER['b_tech_planet'] != 0,
             ],
-            'HaveMissiles'      => (bool) $PLANET[$resource[503]] + $PLANET[$resource[502]],
             'messages'          => ($Messages > 0) ?
                 (($Messages == 1) ? $LNG['ov_have_new_message']
                     : sprintf($LNG['ov_have_new_messages'], pretty_number($Messages))) : false,

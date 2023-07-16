@@ -441,8 +441,8 @@ $LNG['se_max_participants_per_acs'] = 'Max. participants/ACS (attack on cooperat
 $LNG['se_max_participants_per_acs_info'] = 'Maximum number of participants in ACS (Default-5)';
 $LNG['se_vmode_min_time'] = 'Режим отпуска';
 $LNG['se_vmode_min_time_info'] = 'Минимальная длительность режима отпуска (в секундах).';
-$LNG['se_gate_wait_time'] = 'Перезарядка телепорта';
-$LNG['se_gate_wait_time_info'] = 'Длительность перезарядки телепорта (в секундах).';
+$LNG['se_jumpgate_factor'] = 'Перезарядка телепорта';
+$LNG['se_jumpgate_factor_info'] = 'Коэффициент, на который будет делиться время ожидания';
 $LNG['se_metal_start'] = 'Металл';
 $LNG['se_metal_start_info'] = 'Изначальное количество металла на планетах.';
 $LNG['se_crystal_start'] = 'Кристалл';
@@ -522,6 +522,9 @@ $LNG['ad_authlevel_jj'] = '[Игроки]';
 $LNG['ad_authlevel_tt'] = '[Все]';
 
 // Флоты в полёте
+$LNG['ff_sendFleetsBack'] = 'Отправить все атаки обратно';
+$LNG['ff_sendFleetBack'] = 'Возврат';
+
 $LNG['ff_fleetid'] = 'ID';
 $LNG['ff_mission'] = 'Задание';
 $LNG['ff_starttime'] = 'Вылет';

@@ -496,7 +496,7 @@ class statbuilder
         $columns[] = '(' . implode(' + ', $advanced_stats_met) . (') as realDebrisMetal');
         $columns[] = '(' . implode(' + ', $advanced_stats_cris) . (') as realDebrisCrystal');
         $columns[] = '(' . implode(' + ', $advanced_stats_dest) . (') as realUnitsDestroyed');
-        $columns[] = '(' . implode(' + ', $advanced_stats_lost) . (') as realUnitsDestroyed');
+        $columns[] = '(' . implode(' + ', $advanced_stats_lost) . (') as realUnitsLost');
 
         $database = Database::get();
         $sql = trim("SELECT SQL_BIG_RESULT

@@ -1,6 +1,6 @@
 {block name="title" prepend}{$LNG.lm_fleet}{/block}
 {block name="content"}
-<form action="game.php?page=fleetStep3" method="post">
+<form action="game.php?page=fleetStep3" method="post" onsubmit="return CheckResources()" id="form">
 <input type="hidden" name="token" value="{$token}">
    	<table class="table519">
         <tr>
@@ -12,8 +12,8 @@
         </tr>
 		<tr>
 			<td class="left top" style="width:50%;margin:0;padding:0;"{if !empty($StaySelector)} rowspan="5"{/if}>
-        		<table border="0" cellpadding="0" cellspacing="0" style="margin:0;padding:0;">
-        			{foreach $MissionSelector as $MissionID}
+        <table border="0" cellpadding="0" cellspacing="0" style="margin:0;padding:0;">
+          {foreach $MissionSelector as $MissionID}
 					<tr style="height:20px;">
 						<td class="transparent left">
 						<input id="radio_{$MissionID}" type="radio" name="mission" value="{$MissionID}" {if $mission == $MissionID || $MissionID@total == 1}checked="checked"{/if} onchange="checkHold({$MissionID})" style="width:60px;"><label for="radio_{$MissionID}">{$LNG["type_mission_{$MissionID}"]}</label><br>
@@ -29,38 +29,38 @@
 						</td>
 					</tr>
 					{/if}
-        		</table>
-        	</td>
-        	<td class="top">
+        </table>
+      </td>
+      <td class="top">
 				<table border="0" cellpadding="0" cellspacing="0">
-                    <tr style="height:20px;">
-        				<td class="transparent">{$LNG.tech.901}</td>
-        				<td class="transparent"><a href="javascript:maxResource('metal');">{$LNG.fl_max}</a></th>
-        				<td class="transparent"><input name="metal" size="10" onchange="calculateTransportCapacity();" type="number" style="max-width: 10em;"></td>
-        			</tr>
-                    <tr style="height:20px;">
-        				<td class="transparent">{$LNG.tech.902}</td>
-        				<td class="transparent"><a href="javascript:maxResource('crystal');">{$LNG.fl_max}</a></th>
-        				<td class="transparent"><input name="crystal" size="10" onchange="calculateTransportCapacity();" type="number" style="max-width: 10em;"></td>
-        			</tr>
-                    <tr style="height:20px;">
-        				<td class="transparent">{$LNG.tech.903}</td>
-        				<td class="transparent"><a href="javascript:maxResource('deuterium');">{$LNG.fl_max}</a></td>
-        				<td class="transparent"><input name="deuterium" size="10" onchange="calculateTransportCapacity();" type="number" style="max-width: 10em;"></td>
-        			</tr>
-                    <tr style="height:20px;">
-        				<td class="transparent">{$LNG.fl_resources_left}</td>
-        				<td class="transparent" colspan="2" id="remainingresources">-</td>
-        			</tr>
-                    <tr style="height:20px;">
-        				<td class="transparent" colspan="3"><a href="javascript:maxResources()">{$LNG.fl_all_resources}</a></td>
-        			</tr>
           <tr style="height:20px;">
-            <td class="transparent" colspan="3"><a  id="selectedres" href="javascript:selectedResources(this)" data="{$predefinedRes['met']},{$predefinedRes['krist']},{$predefinedRes['deut']}">{$LNG.fl_selected_resources}</a></td>
+            <td class="transparent">{$LNG.tech.901}</td>
+            <td class="transparent"><a href="javascript:maxResource('metal');">{$LNG.fl_max}</a></th>
+            <td class="transparent"><input name="metal" size="10" onchange="calculateTransportCapacity();" type="number" style="max-width: 10em;"></td>
           </tr>
-                    <tr style="height:20px;">
-        				<td class="transparent" colspan="3">{$LNG.fl_fuel_consumption}: <span id="consumption" class="consumption">{$consumption}</span></td>
-        			</tr>
+          <tr style="height:20px;">
+            <td class="transparent">{$LNG.tech.902}</td>
+            <td class="transparent"><a href="javascript:maxResource('crystal');">{$LNG.fl_max}</a></th>
+            <td class="transparent"><input name="crystal" size="10" onchange="calculateTransportCapacity();" type="number" style="max-width: 10em;"></td>
+          </tr>
+          <tr style="height:20px;">
+            <td class="transparent">{$LNG.tech.903}</td>
+            <td class="transparent"><a href="javascript:maxResource('deuterium');">{$LNG.fl_max}</a></td>
+            <td class="transparent"><input name="deuterium" size="10" onchange="calculateTransportCapacity();" type="number" style="max-width: 10em;"></td>
+          </tr>
+          <tr style="height:20px;">
+            <td class="transparent">{$LNG.fl_resources_left}</td>
+            <td class="transparent" colspan="2" id="remainingresources">-</td>
+          </tr>
+          <tr style="height:20px;">
+            <td class="transparent" colspan="3"><a href="javascript:maxResources()">{$LNG.fl_all_resources}</a></td>
+          </tr>
+          <tr style="height:20px;">
+            <td class="transparent" colspan="3"><a  id="selectedres" href="javascript:selectedResources(this)" data="{$predefinedRes['met']},{$predefinedRes['krist']},{$predefinedRes['deut']},{$consumption}">{$LNG.fl_selected_resources}</a></td>
+          </tr>
+          <tr style="height:20px;">
+            <td class="transparent" colspan="3">{$LNG.fl_fuel_consumption}: <span id="consumption" class="consumption">{$consumption}</span></td>
+          </tr>
           <tr style="height:20px;">
             <td class="transparent" colspan="3">{$LNG.fl_flying_arrival}: <span id="arr_time" duration="{$duration}"></span></td>
           </tr>

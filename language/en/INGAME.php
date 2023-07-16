@@ -246,6 +246,7 @@ $LNG['gl_avaible_grecyclers'] = 'Giga Recycler';
 $LNG['gl_avaible_recyclers'] = 'Recycler';
 $LNG['gl_avaible_spyprobes'] = 'Spy Probes';
 $LNG['gl_missil_launch'] = 'Launch Missiles';
+$LNG['gl_missil_flytime'] = 'Flytime';
 $LNG['gl_missil_to_launch'] = 'Number of Missiles (<b>%d</b> disp.):';
 $LNG['gl_all_defenses'] = 'All defenses';
 $LNG['gl_objective'] = 'Main Objective';
@@ -437,6 +438,10 @@ $LNG['fl_only_planets_colonizable'] = 'Only planets can be colonized.';
 $LNG['fl_player_is_noob'] = 'Player is in the Noob Protection!';
 $LNG['fl_player_is_strong'] = 'Player is too strong!';
 $LNG['fl_no_hold_depot'] = 'No Alliance Depot is located on the target.';
+$LNG['fl_trade_no_resource_loaded'] = 'You have not loaded any resource.';
+$LNG['fl_trade_to_many_resources_loaded'] = 'You can only sell one resource.';
+$LNG['fl_trade_same_resource'] = 'You cannot sell %s for %s.';
+$LNG['fl_not_enough'] = 'Not enough %s available.';
 $LNG['fl_not_enough_deuterium'] = 'Not enough deuterium available.';
 $LNG['fl_not_enough_space'] = 'You do not have enough cargo space available.';
 $LNG['fl_hold_time_not_exists'] = 'Invalid retention time.';
@@ -535,7 +540,7 @@ $LNG['tt_lvl'] = 'Level ';
 //----------------------------------------------------------------------------//
 // Infos
 $LNG['in_jump_gate_no_target'] = 'No target jump available.';
-$LNG['in_jump_gate_done'] = 'The jump portal was used, you can use it in:';
+$LNG['in_jump_gate_done'] = 'The jump portal was used, you can use it in: %s';
 $LNG['in_jump_gate_error_data'] = 'Error, coordinates to jump are not correct!';
 $LNG['in_jump_gate_not_ready_target'] = 'The portal is not ready in destination Moon, will be ready in ';
 $LNG['in_jump_gate_doesnt_have_one'] = 'Dont you have another portal to make the jump!';

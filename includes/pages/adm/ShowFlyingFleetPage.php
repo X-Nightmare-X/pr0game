@@ -21,12 +21,100 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 
 require 'includes/classes/class.FlyingFleetsTable.php';
 
+/**
+ * Sends one fleet back. Uses the same function as for the user
+ *
+ * @param integer $fleetID
+ * @return void
+ */
+function returnFleet(int $fleetID)
+{
+    $db = Database::get();
+
+    $sql = "SELECT u.id FROM %%USERS%% u
+    JOIN %%FLEETS%% f ON f.fleet_owner = u.id
+    WHERE fleet_id = :id;";
+    $USER = $db->selectSingle($sql, [
+        ':id' => $fleetID,
+    ]);
+
+    FleetFunctions::sendFleetBack($USER, $fleetID);
+}
+
+/**
+ * Returns all flying fleets with mission Attack, ACS and Destroy on active players to its owner using the original return time.
+ *
+ * @return void
+ */
+function returnAttackingFleets()
+{
+    $db = Database::get();
+
+    $sql = "SELECT f.fleet_id, f.fleet_group, f.fleet_end_time FROM %%FLEETS%% f
+    JOIN %%USERS%% u ON u.id = f.fleet_target_owner
+    WHERE f.fleet_mission IN " . '(' . MISSION_ATTACK . ', ' . MISSION_ACS . ', ' . MISSION_DESTRUCTION . ')' .
+    " AND u.onlinetime > :inactive AND fleet_mess <> :fleetMess;";
+    $fleets = $db->select($sql, [
+        ':inactive' => TIMESTAMP - INACTIVE,
+        ':fleetMess' => FLEET_RETURN,
+    ]);
+
+    foreach ($fleets as $fleet) {
+        if ($fleet['fleet_group'] > 0) {
+            $sql = "DELETE %%AKS%%, %%USERS_ACS%%
+            FROM %%AKS%%
+            LEFT JOIN %%USERS_ACS%% ON acsID = %%AKS%%.id
+            WHERE %%AKS%%.id = :acsId;";
+
+            $db->delete($sql, [
+                ':acsId' => $fleet['fleet_group'],
+            ]);
+        }
+
+        $sql = "UPDATE %%FLEETS%% SET
+        hasCanceled = :hasCanceled,
+        fleet_mess = :fleetMess,
+        fleet_group	= :fleetGroup
+        WHERE fleet_id = :id;";
+        $db->update($sql, [
+            ':id' => $fleet['fleet_id'],
+            ':hasCanceled' => 1,
+            ':fleetMess' => FLEET_RETURN,
+            ':fleetGroup' => 0,
+        ]);
+
+        $sql = "UPDATE %%LOG_FLEETS%% SET
+        hasCanceled = :hasCanceled,
+        fleet_mess = :fleetMess,
+        fleet_state = :fleetState
+        WHERE fleet_id = :id;";
+
+        $db->update($sql, [
+            ':id' => $fleet['fleet_id'],
+            ':hasCanceled' => 1,
+            ':fleetMess' => FLEET_RETURN,
+            ':fleetState' => 2,
+        ]);
+
+        $sql = "UPDATE %%FLEETS_EVENT%% SET
+        time = :endTime
+        WHERE fleetID = :id;";
+        $db->update($sql, [
+            ':id' => $fleet['fleet_id'],
+            ':endTime' => $fleet['fleet_end_time'],
+        ]);
+    }
+}
+
 function ShowFlyingFleetPage()
 {
-    $LNG =& Singleton()->LNG;
-    $USER =& Singleton()->USER;
+    $LNG = &Singleton()->LNG;
+    $USER = &Singleton()->USER;
     $id = HTTP::_GP('id', 0);
     $massunlock = HTTP::_GP('massunlock', 0);
+    $sendFleetsBack = HTTP::_GP('sendfleetsback', 0);
+    $sendFleetBack = HTTP::_GP('sendfleetback', 0);
+
     if (!empty($id)) {
         $lock   = HTTP::_GP('lock', 0);
         $SQL    = ($lock == 0) ? "NULL" : "'ADM_LOCK'";
@@ -39,6 +127,10 @@ function ShowFlyingFleetPage()
         $GLOBALS['DATABASE']->query("UPDATE " . FLEETS . " SET `fleet_busy` = '0' WHERE `fleet_universe` = '"
             . Universe::getEmulated() . "';");
         $GLOBALS['DATABASE']->query("UPDATE " . FLEETS_EVENT . " SET `lock` = NULL;");
+    } elseif (!empty($sendFleetsBack)) {
+        returnAttackingFleets();
+    } elseif (!empty($sendFleetBack)) {
+        returnFleet($sendFleetBack);
     }
 
     $orderBy        = "fleet_id";
@@ -73,7 +165,7 @@ function ShowFlyingFleetPage()
             $shipList[$shipDetail[0]] = $shipDetail[1];
         }
 
-        $USER =& Singleton()->USER;
+        $USER = &Singleton()->USER;
         $FleetList[] = [
             'fleetID'               => $fleetRow['fleet_id'],
             'lock'                  => !empty($fleetRow['lock']),

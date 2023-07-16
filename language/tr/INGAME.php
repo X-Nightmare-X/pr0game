@@ -229,6 +229,7 @@ $LNG['gl_avaible_grecyclers'] = 'Hiper Geri Donusumcu';
 $LNG['gl_avaible_recyclers'] = 'Geri Donusumcu';
 $LNG['gl_avaible_spyprobes'] = 'Casus Sondasi';
 $LNG['gl_missil_launch'] = 'Roket Saldirisi';
+$LNG['gl_missil_flytime'] = 'Uçuş süresi';
 $LNG['gl_missil_to_launch'] = 'Roket miktari (<b>%d</b> kalan):';
 $LNG['gl_all_defenses'] = 'Hepsi';
 $LNG['gl_objective'] = 'Hedef';
@@ -416,6 +417,10 @@ $LNG['fl_only_planets_colonizable'] = 'Sadece gezegenler kolonilestirilebilir.';
 $LNG['fl_player_is_noob'] = 'Oyuncu zayif korumasinda!';
 $LNG['fl_player_is_strong'] = 'Oyuncu cok guclu!';
 $LNG['fl_no_hold_depot'] = 'Girilen koordinatlarda ittifak deposu yok.';
+$LNG['fl_trade_no_resource_loaded'] = 'Herhangi bir kaynak yüklemediniz.';
+$LNG['fl_trade_to_many_resources_loaded'] = 'Yalnızca bir kaynak satabilirsiniz.';
+$LNG['fl_trade_same_resource'] = '%s\'yi %s karşılığında satamazsınız.';
+$LNG['fl_not_enough'] = 'Yeterli %s mevcut değil.';
 $LNG['fl_not_enough_deuterium'] = 'Yeterli yakitiniz yok.';
 $LNG['fl_not_enough_space'] = 'Gereken yakiti alacak depo kapasiten yok.';
 $LNG['fl_hold_time_not_exists'] = 'Yanlis durma zamani.';
@@ -503,7 +508,7 @@ $LNG['tt_lvl'] = 'Kademe ';
 //----------------------------------------------------------------------------//
 // Bilgilendirme Ekranlari
 $LNG['in_jump_gate_no_target'] = 'Sicrama yapilacak hedef yok.';
-$LNG['in_jump_gate_done'] = 'Sicrama basari ile gerceklesti : Sonraki sicrama:';
+$LNG['in_jump_gate_done'] = 'Sicrama basari ile gerceklesti : Sonraki sicrama: %s';
 $LNG['in_jump_gate_error_data'] = 'Hata, sicrama icin girilen koordinatlar yanlis!';
 $LNG['in_jump_gate_not_ready_target'] = 'Sicramaya calisilan gecit henuz hazir degil Gereken Sure:';
 $LNG['in_jump_gate_doesnt_have_one'] = 'Sicrama Gecidi Mevcut Degil!';

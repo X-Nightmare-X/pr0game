@@ -227,6 +227,7 @@ $LNG['gl_avaible_grecyclers'] = 'Reciclador de Batalha';
 $LNG['gl_avaible_recyclers'] = 'Reciclador';
 $LNG['gl_avaible_spyprobes'] = 'Sondas de Espionagem';
 $LNG['gl_missil_launch'] = 'Lanças Misseis';
+$LNG['gl_missil_flytime'] = 'Tempo de voo';
 $LNG['gl_missil_to_launch'] = 'Número de Misseis (<b>%d</b> disp.):';
 $LNG['gl_all_defenses'] = 'Todas as defesas';
 $LNG['gl_objective'] = 'Objetivo Principal';
@@ -413,6 +414,10 @@ $LNG['fl_only_planets_colonizable'] = 'Apenas planetas podem ser colonizados.';
 $LNG['fl_player_is_noob'] = 'Jogador está na proteção Noob!';
 $LNG['fl_player_is_strong'] = 'Jogador é muito forte!';
 $LNG['fl_no_hold_depot'] = 'Nenhum depósito Aliança situa-se no alvo.';
+$LNG['fl_trade_no_resource_loaded'] = 'Não carregou nenhum recurso.';
+$LNG['fl_trade_to_many_resources_loaded'] = 'Só se pode vender um recurso.';
+$LNG['fl_trade_same_resource'] = 'Não se pode vender %s por %s.';
+$LNG['fl_not_enough'] = 'Não há %s suficientes disponíveis.';
 $LNG['fl_not_enough_deuterium'] = 'Sem deutério disponível.';
 $LNG['fl_not_enough_space'] = 'Não tens carga suficiente';
 $LNG['fl_hold_time_not_exists'] = 'Tempo de retenção inválido.';
@@ -504,7 +509,7 @@ $LNG['tt_lvl'] = 'Nivel ';
 //----------------------------------------------------------------------------//
 // Infos
 $LNG['in_jump_gate_no_target'] = 'Sem alvo disponivel';
-$LNG['in_jump_gate_done'] = 'O portal de salto foi usado, poderás voltar a usá-lo em:';
+$LNG['in_jump_gate_done'] = 'O portal de salto foi usado, poderás voltar a usá-lo em: %s';
 $LNG['in_jump_gate_error_data'] = 'Erro, coordenadas para salto não estão corretas!';
 $LNG['in_jump_gate_not_ready_target'] = 'O portal não está pronto na lua de destino, Estará pronto em ';
 $LNG['in_jump_gate_doesnt_have_one'] = 'Não tens outro portal para efetuar o salto!';

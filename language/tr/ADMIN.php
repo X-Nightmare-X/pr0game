@@ -327,8 +327,8 @@ $LNG['se_max_participants_per_acs'] = 'Max. participants/ACS (attack on cooperat
 $LNG['se_max_participants_per_acs_info'] = 'Maximum number of participants in ACS (Default-5)';
 $LNG['se_vmode_min_time'] = 'Tatil Modu';
 $LNG['se_vmode_min_time_info'] = 'Oyuncunun tatil suresinde kalabilecegi min. zaman (saniye)';
-$LNG['se_gate_wait_time'] = 'Sicrama Gecidi';
-$LNG['se_gate_wait_time_info'] = 'iki sicrama arasinda beklenecek min. zaman(saniye -varsayilan: 3600)';
+$LNG['se_jumpgate_factor'] = 'Sicrama Gecidi';
+$LNG['se_jumpgate_factor_info'] = 'Bekleme süresinin bölüneceği faktör';
 $LNG['se_metal_start'] = 'Metal Baslangic';
 $LNG['se_metal_start_info'] = 'Oyuncunun oyuna basladigindaki metal miktari';
 $LNG['se_crystal_start'] = 'Kristal Baslangic';
@@ -707,6 +707,9 @@ $LNG['ap_nicht_aktivierte'] = 'Oyuncu tarafindan onaylanmadi';
 $LNG['ap_nicht_aktivierte_user'] = 'Oyuncu aktif edilmedi';
 //----------------------------------------------------------------------------//
 //  Filo Hareketleri
+$LNG['ff_sendFleetsBack'] = 'Tüm saldırıları geri gönder';
+$LNG['ff_sendFleetBack'] = 'Dönüş';
+
 $LNG['ff_fleetid'] = 'ID';
 $LNG['ff_mission'] = 'Gorev';
 $LNG['ff_starttime'] = 'Baslangic Zamani';

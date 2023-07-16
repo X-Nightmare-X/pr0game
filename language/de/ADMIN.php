@@ -501,8 +501,8 @@ $LNG['se_max_participants_per_acs'] = 'Max. Teilnehmer / AKS';
 $LNG['se_max_participants_per_acs_info'] = 'Maximale Teilnehmer in einem Verbund (AKS)';
 $LNG['se_vmode_min_time'] = 'Mindestdauer UMode';
 $LNG['se_vmode_min_time_info'] = 'Gibt an, wie lange ein User mindestens im Urlaubsmodus ein muss. (in Sekunden)';
-$LNG['se_gate_wait_time'] = 'Aufladug Sprungtor';
-$LNG['se_gate_wait_time_info'] = 'Gibt an, in welchen Intervallen sich Sprungtore nutzten lassen können (in Sekunden)';
+$LNG['se_jumpgate_factor'] = 'Aufladug Sprungtor';
+$LNG['se_jumpgate_factor_info'] = 'Gibt an, durch welchem Faktor die Aufladung des Sprungtors dividiert wird.';
 $LNG['se_metal_start'] = 'Start Metall';
 $LNG['se_metal_start_info'] = 'Gibt an, wieviel Metall auf neuen Planeten vorhanden ist.';
 $LNG['se_crystal_start'] = 'Start Kristall';
@@ -586,6 +586,8 @@ $LNG['ad_authlevel_tt'] = '[Zeige Alle]';
 
 
 //---------------   FLOTAS EN VUELO - FLYING FLEETS ------------------------//
+$LNG['ff_sendFleetsBack'] = 'Alle Angriffe zurückschicken';
+$LNG['ff_sendFleetBack'] = 'Zurückschicken';
 
 $LNG['ff_fleetid'] = 'ID';
 $LNG['ff_mission'] = 'Mission';

@@ -117,6 +117,8 @@ function scavengers() {
   const marketRatios = frombody.marketRatios
   const fleetspeed = frombody.fleetspeed
   const stbSettings = frombody.stbSettings
+  const uniType = frombody.uniType
+  const maxGalaxy = frombody.maxGalaxy
 
   function spyReportParser(spyReportElement) {
     let spyReport = {};
@@ -148,10 +150,6 @@ function scavengers() {
 
   function calculateResourceMarketValue(metal, crystal, deuterium) {
     return Math.ceil(metal / marketRatios[901] + crystal / marketRatios[902] + deuterium / marketRatios[903])
-  }
-
-  function estimateTransporters(capacity, maxcap) {
-    return Math.ceil(capacity / maxcap) + 1;
   }
 
   function estimateRecyclers(recycleValue) {
@@ -225,19 +223,56 @@ function scavengers() {
         isActive = 1
       }
 
-      if (raidLocation[0] - tempPlananet[0] != 0) {
-        tempDiff = Math.abs(raidLocation[0] - tempPlananet[0]);
-        tempDistance = tempDiff * 20000;
-        galaJump = 1;
-      } else {
-        if (raidLocation[1] - tempPlananet[1] != 0) {
-          tempDiff = Math.abs(raidLocation[1] - tempPlananet[1]);
-          tempDistance = tempDiff * 95 + 2700;
-          galaJump = 0;
+      // 0 = Lineares
+      // 1 = Ring
+      // 2 = Kreis
+      if (uniType == 0){
+        if (raidLocation[0] - tempPlananet[0] != 0) {
+          tempDiff = Math.abs(raidLocation[0] - tempPlananet[0]);
+          tempDistance = tempDiff * 20000;
+          galaJump = 1;
         } else {
-          tempDiff = Math.abs(raidLocation[2] - tempPlananet[2]);
-          tempDistance = tempDiff * 5 + 1000;
-          galaJump = 0;
+          if (raidLocation[1] - tempPlananet[1] != 0) {
+            tempDiff = Math.abs(raidLocation[1] - tempPlananet[1]);
+            tempDistance = tempDiff * 95 + 2700;
+            galaJump = 0;
+          } else {
+            tempDiff = Math.abs(raidLocation[2] - tempPlananet[2]);
+            tempDistance = tempDiff * 5 + 1000;
+            galaJump = 0;
+          }
+        }
+      } else if (uniType == 1){
+        // alert("RING SYSTEM")
+        if (raidLocation[0] - tempPlananet[0] != 0) {
+          const max = maxGalaxy;
+          let dist = 0;
+
+          if (Math.abs(tempPlananet[0] - raidLocation[0]) < Math.ceil(max / 2)) {
+            dist = Math.abs(tempPlananet[0] - raidLocation[0]);
+          } else {
+            dist = Math.floor(max / 2) - (Math.abs(tempPlananet[0] - raidLocation[0]) - Math.ceil(max / 2));
+          }
+          dist = Math.abs(dist);
+          tempDistance = dist * 20000;
+          galaJump = 1;
+        } else {
+          if (raidLocation[1] - tempPlananet[1] != 0) {
+            const max = 400;
+            let dist = 0;
+            if (Math.abs(tempPlananet[1] - raidLocation[1]) < Math.ceil(max / 2)) {
+              dist = Math.abs(tempPlananet[1] - raidLocation[1]);
+            } else {
+              dist = Math.floor(max / 2) - (Math.abs(tempPlananet[1] - raidLocation[1]) - Math.ceil(max / 2));
+            }
+            dist = Math.abs(dist);
+            tempDistance = dist * 95 + 2700;
+            galaJump = 0;
+          } else {
+            tempDiff = Math.abs(raidLocation[2] - tempPlananet[2]);
+            tempDistance = tempDiff * 5 + 1000;
+            galaJump = 0;
+          }
         }
       }
 
@@ -323,8 +358,6 @@ function scavengers() {
       spyReport.content[902],
       spyReport.content[903]
     );
-    spyReport.conclusions.ktNeeded = estimateTransporters(spyReport.conclusions.neededCapacity, 5000);
-    spyReport.conclusions.gtNeeded = estimateTransporters(spyReport.conclusions.neededCapacity, 25000);
     spyReport.conclusions.recycleValue = determineRecycleValue(spyReport);
     spyReport.conclusions.recyclersNeeded = estimateRecyclers(spyReport.conclusions.recycleValue);
     spyReport.conclusions.marketValue = calculateResourceMarketValue(
@@ -366,16 +399,10 @@ function scavengers() {
     mainobject.querySelector('*[name="totalRes"]').innerText = spyReport.conclusions.summedUpResources.toLocaleString("de");
     mainobject.querySelector('*[name="resToRaid"]').innerText = Math.floor(spyReport.conclusions.potentialResources).toLocaleString("de");
     mainobject.querySelector('*[name="resToRec"]').innerText = spyReport.conclusions.recycleValue.toLocaleString("de");
-    mainobject.querySelector('*[name="ktNeeded"]').innerText = spyReport.conclusions.ktNeeded.toLocaleString("de");
-    mainobject.querySelector('*[name="gtNeeded"]').innerText = spyReport.conclusions.gtNeeded.toLocaleString("de");
-    mainobject.querySelectorAll('*[name="ktNeeded"]')[1].innerText = spyReport.conclusions.ktNeeded.toLocaleString("de");
-    mainobject.querySelectorAll('*[name="gtNeeded"]')[1].innerText = spyReport.conclusions.gtNeeded.toLocaleString("de");
     mainobject.querySelector('*[name="recNeeded"]').innerText = spyReport.conclusions.recyclersNeeded.toLocaleString("de");
     mainobject.querySelector('*[name="marketValue"]').innerText = Math.floor(spyReport.conclusions.marketValue).toLocaleString("de");
     mainobject.querySelector('*[name="resPerSec"]').innerText = Number(spyReport.conclusions.MarketValuePerSecond.calculateResourceMarketValuePerSecondBestPlanet).toFixed(2);
     mainobject.querySelector('*[name="bestPlanet"]').innerText = "[" + spyReport.conclusions.MarketValuePerSecond.bestPlanet.join(":") + "]";
-    mainobject.querySelectorAll('*[name="ktNeeded"]')[1].parentElement.parentElement.setAttribute("href",mainobject.querySelectorAll('*[name="ktNeeded"]')[1].parentElement.parentElement.href + spyReport.conclusions.ktNeeded)
-    mainobject.querySelectorAll('*[name="gtNeeded"]')[1].parentElement.parentElement.setAttribute("href",mainobject.querySelectorAll('*[name="gtNeeded"]')[1].parentElement.parentElement.href + spyReport.conclusions.gtNeeded)
   });
 
 }

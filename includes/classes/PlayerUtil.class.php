@@ -965,6 +965,30 @@ class PlayerUtil
         ]);
     }
 
+    public static function clearPlanets($USER)
+    {
+        $reslist =& Singleton()->reslist;
+        $resource =& Singleton()->resource;
+
+        $db = Database::get();
+
+        $params = [];
+        $params[] = $resource[RESOURCE_METAL] . ' = 0';
+        $params[] = $resource[RESOURCE_CRYSTAL] . ' = 0';
+        $params[] = $resource[RESOURCE_DEUT] . ' = 0';
+
+        foreach ($reslist['fleet'] as $element) {
+            $params[] = $resource[$element] . ' = 0';
+        }
+
+        foreach ($reslist['defense'] as $element) {
+            $params[] = $resource[$element] . ' = 0';
+        }
+
+        $sql = "UPDATE %%PLANETS%% SET b_hangar = 0, b_hangar_id = '', " . implode(", ", $params) . " WHERE id_owner = :owner;";
+        $db->update($sql, [':owner' => $USER['id']]);
+    }
+
     public static function disable_vmode(&$USER, &$PLANET = null)
     {
         $db = Database::get();

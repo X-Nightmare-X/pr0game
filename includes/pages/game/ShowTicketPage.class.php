@@ -47,6 +47,7 @@ class ShowTicketPage extends AbstractGamePage
 
         foreach ($ticketResult as $ticketRow) {
             $ticketRow['time'] = _date($LNG['php_tdformat'], $ticketRow['time'], $USER['timezone']);
+            $ticketRow['message'] = nl2br($ticketRow['message']);
 
             $ticketList[$ticketRow['ticketID']] = $ticketRow;
         }
