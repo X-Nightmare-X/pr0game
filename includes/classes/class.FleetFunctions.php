@@ -502,7 +502,9 @@ class FleetFunctions
 
         $sql = 'UPDATE %%LOG_FLEETS%% SET
 		fleet_end_stay	= :endStayTime,
+		fleet_end_stay_formated		= :fleetStayTimeFormated,
 		fleet_end_time	= :endTime,
+		fleet_end_time_formated		= :fleetEndTimeFormated,
 		fleet_mess		= :fleetState,
 		fleet_state		= 2,
 		hasCanceled		= :hasCanceled
@@ -512,6 +514,8 @@ class FleetFunctions
             ':id' => $FleetID,
             ':endStayTime' => TIMESTAMP,
             ':endTime' => $fleetEndTime,
+            ':fleetStayTimeFormated' => Database::formatDate(TIMESTAMP),
+            ':fleetEndTimeFormated' => Database::formatDate($fleetEndTime),
             ':fleetState' => FLEET_RETURN,
             ':hasCanceled' => 1
         ]);
