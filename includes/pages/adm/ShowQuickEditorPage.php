@@ -199,7 +199,7 @@ function ShowQuickEditorPage()
                 $old['multi'] = $GLOBALS['DATABASE']->getFirstCell(
                     "SELECT COUNT(*) FROM " . MULTI . " WHERE userID = " . $id . ";"
                 );
-                $new['authattack'] = $multi;
+                $new['multi'] = $multi;
 
                 if ($old['multi'] != $multi) {
                     if ($multi == 0) {

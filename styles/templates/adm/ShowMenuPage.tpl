@@ -18,15 +18,15 @@
 		{if allowedTo('ShowBanPage')}<li><a href="?page=bans" target="Hauptframe">{$LNG.mu_ban_options}</a></li>{/if}
 		{if allowedTo('ShowGiveawayPage')}<li><a href="?page=giveaway" target="Hauptframe">{$LNG.mu_giveaway}</a></li>{/if}
 		<li><a href="javascript:void(0);"><span class="colorPositive">{$LNG.mu_observation}</span></a></li>
-		{if allowedTo('ShowSearchPage')}<li><a href="?page=search&amp;search=online&amp;minimize=on" target="Hauptframe">{$LNG.mu_connected}</a></li>{/if}
+		{if allowedTo('ShowSearchPage')}<li><a href="?page=search&amp;search=online" target="Hauptframe">{$LNG.mu_connected}</a></li>{/if}
 		{if allowedTo('ShowSupportPage')}<li><a href="?page=support" target="Hauptframe">{$LNG.mu_support}{if $supportticks != 0} ({$supportticks}){/if}</a></li>{/if}
 		{if allowedTo('ShowActivePage')}<li><a href="?page=active" target="Hauptframe">{$LNG.mu_vaild_users}</a></li>{/if}
-		{if allowedTo('ShowSearchPage')}<li><a href="?page=search&amp;search=p_connect&amp;minimize=on" target="Hauptframe">{$LNG.mu_active_planets}</a></li>{/if}
+		{if allowedTo('ShowSearchPage')}<li><a href="?page=search&amp;search=p_connect" target="Hauptframe">{$LNG.mu_active_planets}</a></li>{/if}
 		{if allowedTo('ShowFlyingFleetPage')}<li><a href="?page=fleets" target="Hauptframe">{$LNG.mu_flying_fleets}</a></li>{/if}
 		{if allowedTo('ShowNewsPage')}<li><a href="?page=news" target="Hauptframe">{$LNG.mu_news}</a></li>{/if}
-		{if allowedTo('ShowSearchPage')}<li><a href="?page=search&amp;search=users&amp;minimize=on" target="Hauptframe">{$LNG.mu_user_list}</a></li>{/if}
-		{if allowedTo('ShowSearchPage')}<li><a href="?page=search&amp;search=planet&amp;minimize=on" target="Hauptframe">{$LNG.mu_planet_list}</a></li>{/if}
-		{if allowedTo('ShowSearchPage')}<li><a href="?page=search&amp;search=moon&amp;minimize=on" target="Hauptframe">{$LNG.mu_moon_list}</a></li>{/if}
+		{if allowedTo('ShowSearchPage')}<li><a href="?page=search&amp;search=users" target="Hauptframe">{$LNG.mu_user_list}</a></li>{/if}
+		{if allowedTo('ShowSearchPage')}<li><a href="?page=search&amp;search=planet" target="Hauptframe">{$LNG.mu_planet_list}</a></li>{/if}
+		{if allowedTo('ShowSearchPage')}<li><a href="?page=search&amp;search=moon" target="Hauptframe">{$LNG.mu_moon_list}</a></li>{/if}
 		{if allowedTo('ShowMessageListPage')}<li><a href="?page=messagelist" target="Hauptframe">{$LNG.mu_mess_list}</a></li>{/if}
 		{if allowedTo('ShowAccountDataPage')}<li><a href="?page=accountdata" target="Hauptframe">{$LNG.mu_info_account_page}</a></li>{/if}
 		{if allowedTo('ShowSearchPage')}<li><a href="?page=search" target="Hauptframe">{$LNG.mu_search_page}</a></li>{/if}

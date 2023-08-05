@@ -65,8 +65,8 @@ $LNG['info_information'] = 'Buglari foruma  <a href="%s" target="tracker">pr0gam
 $LNG['one_is_yes_1'] = 'Evet';
 $LNG['one_is_yes_0'] = 'Hayir';
 
-$LNG['one_is_no_1'] = 'Evet';
-$LNG['one_is_no_0'] = 'Hayir';
+$LNG['one_is_no_1'] = 'Hayir';
+$LNG['one_is_no_0'] = 'Evet';
 //###########################################################//
 
 

@@ -263,6 +263,7 @@ function ShowAccountDataPage()
             );
             $planets_moons = '';
             $resources = '';
+            $destroyed = "";
             $MoonZ = 0;
             while ($PlanetsWhile = $GLOBALS['DATABASE']->fetch_array($PlanetsQuery)) {
                 if ($PlanetsWhile['planet_type'] == 3) {
