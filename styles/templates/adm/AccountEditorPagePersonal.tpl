@@ -25,13 +25,13 @@
 	<td>{$LNG.ad_personal_vacat}</td>
 	<td>{html_options name=vacation options=$Selector}</td>
 </tr><tr>
-	<td>{$LNG.time_days}</td><td><input name="d" type="text" size="5" maxlength="5"></td>
+	<td>{$LNG.time_days}</td><td><input name="d" type="number" size="5" maxlength="5"></td>
 </tr><tr>
-	<td>{$LNG.time_hours}</td><td><input name="h" type="text" size="5" maxlength="10"></td>
+	<td>{$LNG.time_hours}</td><td><input name="h" type="number" size="5" maxlength="10"></td>
 </tr><tr>
-	<td>{$LNG.time_minutes}</td><td><input name="m" type="text" size="5" maxlength="10"></td>
+	<td>{$LNG.time_minutes}</td><td><input name="m" type="number" size="5" maxlength="10"></td>
 </tr><tr>
-	<td>{$LNG.time_seconds}</td><td><input name="s" type="text" size="5" maxlength="10"></td>
+	<td>{$LNG.time_seconds}</td><td><input name="s" type="number" size="5" maxlength="10"></td>
 </tr><tr>
 	<td colspan="3"><input type="submit" value="{$LNG.button_submit}"></td>
 </tr>

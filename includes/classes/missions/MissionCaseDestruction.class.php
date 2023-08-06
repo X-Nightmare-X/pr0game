@@ -523,7 +523,7 @@ HTML;
 
                 $db->insert($sql, [
                     ':reportId' => $reportID,
-                    ':userRole' => 1,
+                    ':userRole' => $i + 1,
                     ':username' => $userName,
                     ':userId'   => $userID,
                 ]);

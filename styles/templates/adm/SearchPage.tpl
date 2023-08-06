@@ -3,12 +3,13 @@
 <table width="90%">
 <tr>
 <td class="transparent left">
-<input type="checkbox" {$minimize} name="minimize"><input type="submit" value="{$se_contrac}" class="button">
-<img src="./styles/resource/images/admin/GO.png" onClick="javascript:$('#seeker').slideToggle();" style="cursor:pointer;padding-right:60px;" class="tooltip" data-tooltip-content="{$ac_minimize_maximize}">
+<div onClick="javascript:$('#seeker').slideToggle();" style="cursor:pointer;">
+<img src="./styles/resource/images/admin/GO.png" >{$ac_minimize_maximize}
+</div>
 </td>
 </tr>
 </table>
-<div id="seeker"{$diisplaay}>
+<div id="seeker">
 <table width="90%">
 	<tr>
 		<th colspan="8">

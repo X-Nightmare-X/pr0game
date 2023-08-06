@@ -248,7 +248,7 @@ function ShowCreatorPage()
 
                 $SQL  = "UPDATE " . PLANETS . " SET ";
 
-                if ($_POST['diameter_check'] != 'on' || $field_max > 0) {
+                if ($field_max > 0) {
                     $SQL .= "field_max = '" . $field_max . "' ";
                 }
 

@@ -45,7 +45,7 @@ function ShowAccountEditorPage()
                         . PLANETS . " WHERE `id` = '" . $id . "';"
                     );
                 }
-                if ($_POST['add']) {
+                if (isset($_POST['add'])) {
                     if (!empty($id)) {
                         $SQL = "UPDATE " . PLANETS . " SET ";
                         $SQL .= "`metal` = `metal` + '" . $metal . "', ";
@@ -60,7 +60,7 @@ function ShowAccountEditorPage()
                             'deuterium' => ($before['deuterium'] + $deut),
                         ];
                     }
-                } elseif ($_POST['delete']) {
+                } elseif (isset($_POST['delete'])) {
                     if (!empty($id)) {
                         $SQL = "UPDATE " . PLANETS . " SET ";
                         $SQL .= "`metal` = `metal` - '" . $metal . "', ";
@@ -88,9 +88,9 @@ function ShowAccountEditorPage()
                 $template->assign_vars([
                     'signalColors'      => $USER['signalColors'],
                 ]);
-                if ($_POST['add']) {
+                if (isset($_POST['add'])) {
                     $template->message($LNG['ad_add_res_sucess'], '?page=accounteditor&edit=resources');
-                } elseif ($_POST['delete']) {
+                } elseif (isset($_POST['delete'])) {
                     $template->message($LNG['ad_delete_res_sucess'], '?page=accounteditor&edit=resources');
                 }
                 exit;
@@ -111,7 +111,7 @@ function ShowAccountEditorPage()
                 foreach ($reslist['fleet'] as $ID) {
                     $before[$ID] = $before1[$resource[$ID]];
                 }
-                if ($_POST['add']) {
+                if (isset($_POST['add'])) {
                     $SQL = "UPDATE " . PLANETS . " SET ";
                     $SQL .= "`eco_hash` = '', ";
                     foreach ($reslist['fleet'] as $ID) {
@@ -124,7 +124,7 @@ function ShowAccountEditorPage()
                     $SQL .= "`id` = '" . HTTP::_GP('id', 0) . "' AND `universe` = '"
                         . Universe::getEmulated() . "';";
                     $GLOBALS['DATABASE']->query($SQL);
-                } elseif ($_POST['delete']) {
+                } elseif (isset($_POST['delete'])) {
                     $SQL = "UPDATE " . PLANETS . " SET ";
                     $SQL .= "`eco_hash` = '', ";
                     foreach ($reslist['fleet'] as $ID) {
@@ -151,9 +151,9 @@ function ShowAccountEditorPage()
                 $template->assign_vars([
                     'signalColors'      => $USER['signalColors'],
                 ]);
-                if ($_POST['add']) {
+                if (isset($_POST['add'])) {
                     $template->message($LNG['ad_add_ships_sucess'], '?page=accounteditor&edit=ships');
-                } elseif ($_POST['delete']) {
+                } elseif (isset($_POST['delete'])) {
                     $template->message($LNG['ad_delete_ships_sucess'], '?page=accounteditor&edit=ships');
                 }
                 exit;
@@ -184,7 +184,7 @@ function ShowAccountEditorPage()
                 foreach ($reslist['defense'] as $ID) {
                     $before[$ID] = $before1[$resource[$ID]];
                 }
-                if ($_POST['add']) {
+                if (isset($_POST['add'])) {
                     $SQL = "UPDATE " . PLANETS . " SET ";
                     foreach ($reslist['defense'] as $ID) {
                         $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + '"
@@ -196,7 +196,7 @@ function ShowAccountEditorPage()
                     $SQL .= "`id` = '" . HTTP::_GP('id', 0) . "' AND `universe` = '"
                         . Universe::getEmulated() . "';";
                     $GLOBALS['DATABASE']->query($SQL);
-                } elseif ($_POST['delete']) {
+                } elseif (isset($_POST['delete'])) {
                     $SQL = "UPDATE " . PLANETS . " SET ";
                     foreach ($reslist['defense'] as $ID) {
                         $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - '"
@@ -223,9 +223,9 @@ function ShowAccountEditorPage()
                 $template->assign_vars([
                     'signalColors'      => $USER['signalColors'],
                 ]);
-                if ($_POST['add']) {
+                if (isset($_POST['add'])) {
                     $template->message($LNG['ad_add_defenses_success'], '?page=accounteditor&edit=defenses');
-                } elseif ($_POST['delete']) {
+                } elseif (isset($_POST['delete'])) {
                     $template->message($LNG['ad_delete_defenses_success'], '?page=accounteditor&edit=defenses');
                 }
                 exit;
@@ -256,7 +256,7 @@ function ShowAccountEditorPage()
                 foreach ($reslist['allow'][$PlanetData['planet_type']] as $ID) {
                     $before[$ID] = $PlanetData[$resource[$ID]];
                 }
-                if ($_POST['add']) {
+                if (isset($_POST['add'])) {
                     $Fields = 0;
                     $SQL = "UPDATE " . PLANETS . " SET ";
                     $SQL .= "`eco_hash` = '', ";
@@ -272,7 +272,7 @@ function ShowAccountEditorPage()
                     $SQL .= "`id` = '" . HTTP::_GP('id', 0) . "' AND `universe` = '"
                         . Universe::getEmulated() . "';";
                     $GLOBALS['DATABASE']->query($SQL);
-                } elseif ($_POST['delete']) {
+                } elseif (isset($_POST['delete'])) {
                     $Fields = 0;
                     $QryUpdate = [];
 
@@ -301,9 +301,9 @@ function ShowAccountEditorPage()
                 $template->assign_vars([
                     'signalColors'      => $USER['signalColors'],
                 ]);
-                if ($_POST['add']) {
+                if (isset($_POST['add'])) {
                     $template->message($LNG['ad_add_build_success'], '?page=accounteditor&edit=buildings');
-                } elseif ($_POST['delete']) {
+                } elseif (isset($_POST['delete'])) {
                     $template->message($LNG['ad_delete_build_success'], '?page=accounteditor&edit=buildings');
                 }
                 exit;
@@ -331,7 +331,7 @@ function ShowAccountEditorPage()
                 foreach ($reslist['tech'] as $ID) {
                     $before[$ID] = $before1[$resource[$ID]];
                 }
-                if ($_POST['add']) {
+                if (isset($_POST['add'])) {
                     $SQL = "UPDATE " . USERS . " SET ";
                     foreach ($reslist['tech'] as $ID) {
                         $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + '"
@@ -343,7 +343,7 @@ function ShowAccountEditorPage()
                     $SQL .= "`id` = '" . HTTP::_GP('id', 0) . "' AND `universe` = '"
                         . Universe::getEmulated() . "';";
                     $GLOBALS['DATABASE']->query($SQL);
-                } elseif ($_POST['delete']) {
+                } elseif (isset($_POST['delete'])) {
                     $SQL = "UPDATE " . USERS . " SET ";
                     foreach ($reslist['tech'] as $ID) {
                         $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - '"
@@ -369,9 +369,9 @@ function ShowAccountEditorPage()
                 $template->assign_vars([
                     'signalColors'      => $USER['signalColors'],
                 ]);
-                if ($_POST['add']) {
+                if (isset($_POST['add'])) {
                     $template->message($LNG['ad_add_tech_success'], '?page=accounteditor&edit=researchs');
-                } elseif ($_POST['delete']) {
+                } elseif (isset($_POST['delete'])) {
                     $template->message($LNG['ad_delete_tech_success'], '?page=accounteditor&edit=researchs');
                 }
                 exit;
@@ -398,7 +398,7 @@ function ShowAccountEditorPage()
                 $vacation = HTTP::_GP('vacation', '');
 
                 $before = $GLOBALS['DATABASE']->getFirstRow(
-                    "SELECT `username`,`email`,`email_2`,`password`,`urlaubs_modus`,`urlaubs_until` FROM " . USERS
+                    "SELECT `username`,`email`,`email_2`,`password`,`urlaubs_modus`,`urlaubs_until`,`universe` FROM " . USERS
                     . " WHERE `id` = '" . HTTP::_GP('id', 0) . "';"
                 );
                 $after = [];
@@ -433,7 +433,11 @@ function ShowAccountEditorPage()
                 if ($vacation == 'yes') {
                     $Answer = 1;
                     $after['urlaubs_modus'] = 1;
-                    $TimeAns = TIMESTAMP + $_POST['d'] * 86400 + $_POST['h'] * 3600 + $_POST['m'] * 60 + $_POST['s'];
+                    $d = HTTP::_GP('d', 0);
+                    $h = HTTP::_GP('h', 0);
+                    $m = HTTP::_GP('m', 0);
+                    $s = HTTP::_GP('s', 0);
+                    $TimeAns = TIMESTAMP + $d * 86400 + $h * 3600 + $m * 60 + $s;
                     $after['urlaubs_until'] = $TimeAns;
                 }
 
@@ -455,7 +459,7 @@ function ShowAccountEditorPage()
             }
 
             $template->assign_vars([
-                'Selector'      => ['' => $LNG['select_option'], 'yes' => $LNG['one_is_no_1'], 'no' => $LNG['one_is_no_0']],
+                'Selector'      => ['' => $LNG['select_option'], 'yes' => $LNG['one_is_yes_1'], 'no' => $LNG['one_is_yes_0']],
                 'signalColors'  => $USER['signalColors']
             ]);
 

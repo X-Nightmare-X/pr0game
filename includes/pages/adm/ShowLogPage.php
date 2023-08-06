@@ -122,13 +122,28 @@ function ShowLogDetail()
                 $Element = $key;
             }
 
+            if ($Element == 'urlaubs_until') {
+                $oldVaue = _date($LNG['php_tdformat'], $val);
+            } elseif (is_numeric($val)) {
+                $oldVaue = pretty_number($val);
+            } else {
+                $oldVaue = $val;
+            }
+
+            if (!isset($conf_after[$key])) {
+                $newVaue = 'Not found in Log';
+            } elseif ($Element == 'urlaubs_until') {
+                $newVaue = _date($LNG['php_tdformat'], $conf_after[$key]);
+            } elseif (is_numeric($conf_after[$key])) {
+                $newVaue = pretty_number($conf_after[$key]);
+            } else {
+                $newVaue = $conf_after[$key];
+            }
+
             $LogArray[] = [
                 'Element'   => $Element,
-                'old'       => ($Element == 'urlaubs_until'
-                    ? _date($LNG['php_tdformat'], $val) : (is_numeric($val) ? pretty_number($val) : $val)),
-                'new'       => ($Element == 'urlaubs_until'
-                    ? _date($LNG['php_tdformat'], $conf_after[$key]) : (is_numeric($conf_after[$key])
-                        ? pretty_number($conf_after[$key]) : $conf_after[$key])),
+                'old'       => $oldVaue,
+                'new'       => $newVaue,
             ];
         }
     }
