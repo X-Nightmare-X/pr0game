@@ -61,8 +61,8 @@ $LNG['sys_mess_spy_lostproba'] = 'Die Wahrscheinlichgeit der Zerschdörung der S
 $LNG['sys_mess_spy_control'] = 'Raumüberwachung alda';
 $LNG['sys_mess_spy_activity'] = 'Schbionage Aktivität';
 $LNG['sys_mess_spy_link'] = '<a href="game.php?page=galaxy&amp;galaxy=%3$s&amp;system=%4$s">%1$s (%2$s) [%3$s:%4$s:%5$s]</a>';
-$LNG['sys_mess_spy_ennemyfleet_1'] = 'Feindliche Schbionagesondne fom Blanedne s% wurde in der Nähe fonääh s% gesichded.';
-$LNG['sys_mess_spy_ennemyfleet_3'] = 'Feindliche Schbionagesondne fom Mond s% wurde in der Nähe fonääh s% gesichded.';
+$LNG['sys_mess_spy_ennemyfleet_1'] = 'Feindliche Schbionagesondne fom Blanedne %s wurde in der Nähe fonääh %s gesichded.';
+$LNG['sys_mess_spy_ennemyfleet_3'] = 'Feindliche Schbionagesondne fom Mond %ss wurde in der Nähe fonääh %s gesichded.';
 $LNG['sys_mess_spy_destroyed'] = '<font color="red">Deine Schbionagesondne wurdne zermeddld tazächlich sogar! </font>';
 $LNG['sys_adress_planet'] = '[%s:%s:%s]';
 
