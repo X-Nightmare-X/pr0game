@@ -25,33 +25,35 @@ function ShowAccountDataPage()
     $reslist =& Singleton()->reslist;
     $resource =& Singleton()->resource;
     $LNG =& Singleton()->LNG;
+    $db = Database::get();
     $template = new template();
     $template->assign_vars([
         'signalColors'  => $USER['signalColors']
     ]);
     $id_u = HTTP::_GP('id_u', 0);
     if (!empty($id_u)) {
-        $OnlyQueryLogin = $GLOBALS['DATABASE']->getFirstRow(
-            "SELECT `id`, `authlevel` FROM " . USERS . " WHERE `id` = '" . $id_u . "' AND"
-            . " `universe` = '" . Universe::getEmulated() . "';"
-        );
-        $SpecifyItemsUQ = "";
+        $sql = "SELECT `id`, `authlevel` FROM %%USERS%% WHERE `id` = :userID;";
+        $OnlyQueryLogin = $db->selectSingle($sql, [
+            ':userID' => $id_u,
+        ]);
         if (!isset($OnlyQueryLogin)) {
             $template->message($LNG['ac_username_doesnt'], '?page=accoutdata');
         } else {
+            // User data
+            $sql = "SELECT u.`id`, u.`username`, u.`email`, u.`email_2`, u.`authlevel`, u.`id_planet`, u.`galaxy`,
+                u.`system`, u.`planet`, u.`user_lastip`, u.`ip_at_reg`, u.`register_time`, u.`onlinetime`,
+                u.`urlaubs_modus`, u.`urlaubs_until`, u.`ally_id`, a.`ally_name`, u.`ally_register_time`,
+                u.`ally_rank_id`, u.`bana`, u.`banaday`, ";
             foreach ($reslist['tech'] as $ID) {
-                $SpecifyItemsUQ .= "u.`" . $resource[$ID] . "`,";
+                $sql .= " u.`" . $resource[$ID] . "`, ";
             }
+            $sql = rtrim($sql, ', ') . " FROM %%USERS%% as u
+                LEFT JOIN %%ALLIANCE%% a ON a.`id` = u.`ally_id`
+                WHERE u.`id` = :userID;";
+            $UserQuery = $db->selectSingle($sql, [
+                ':userID' => $id_u,
+            ]);
 
-            // COMIENZA SAQUEO DE DATOS DE LA TABLA DE USUARIOS
-            $SpecifyItemsU = "u.id,u.username,u.email,u.email_2,u.authlevel,u.id_planet,u.galaxy,u.system,u.planet,"
-                . "u.user_lastip,u.ip_at_reg,u.register_time,u.onlinetime,u.urlaubs_modus,u.urlaubs_until,"
-                . "u.ally_id,a.ally_name," . $SpecifyItemsUQ . "u.ally_register_time,u.ally_rank_id,u.bana,u.banaday";
-
-            $UserQuery = $GLOBALS['DATABASE']->getFirstRow(
-                "SELECT " . $SpecifyItemsU . " FROM " . USERS . " as u LEFT JOIN " . ALLIANCE . " a ON a.id = u.ally_id"
-                . " WHERE u.`id` = '" . $id_u . "';"
-            );
             if (!isset($UserQuery['user_ua'])) {
                 $UserQuery['user_ua'] = '';
             }
@@ -93,11 +95,11 @@ function ShowAccountDataPage()
             if ($UserQuery['bana'] != 0) {
                 $mas = '<a ref="#" onclick="$(\'#banned\').slideToggle();return false"> ' . $LNG['ac_more'] . '</a>';
 
-                $BannedQuery = $GLOBALS['DATABASE']->getFirstRow(
-                    "SELECT theme,time,longer,author FROM " . BANNED
-                    . " WHERE `who` = '" . $UserQuery['username'] . "';"
-                );
-
+                $sql = "SELECT `theme`, `time`, `longer`, `author` FROM %%BANNED%%
+                    WHERE `who` = :username;";
+                $BannedQuery = $db->selectSingle($sql, [
+                    ':username' => $nombre,
+                ]);
 
                 $sus_longer = _date($LNG['php_tdformat'], $BannedQuery['longer'], $USER['timezone']);
                 $sus_time = _date($LNG['php_tdformat'], $BannedQuery['time'], $USER['timezone']);
@@ -105,15 +107,14 @@ function ShowAccountDataPage()
                 $sus_author = $BannedQuery['author'];
             }
 
-
-            // COMIENZA EL SAQUEO DE DATOS DE LA TABLA DE PUNTAJE
-            $SpecifyItemsS = "tech_count,defs_count,fleet_count,build_count,build_points,tech_points,defs_points,"
-                . "fleet_points,tech_rank,build_rank,defs_rank,fleet_rank,total_points,stat_type";
-
-            $StatQuery = $GLOBALS['DATABASE']->getFirstRow(
-                "SELECT " . $SpecifyItemsS . " FROM " . STATPOINTS
-                . " WHERE `id_owner` = '" . $id_u . "' AND `stat_type` = '1';"
-            );
+            // Stats data
+            $sql = "SELECT `tech_count`, `defs_count`, `fleet_count`, `build_count`, `build_points`, `tech_points`,
+                `defs_points`, `fleet_points`, `tech_rank`, `build_rank`, `defs_rank`, `fleet_rank`, `total_points`,
+                `stat_type`
+                FROM %%STATPOINTS%% WHERE `id_owner` = :userID AND `stat_type` = 1";
+            $StatQuery = $db->selectSingle($sql, [
+                ':userID' => $id_u,
+            ]);
 
             $count_tecno = pretty_number($StatQuery['tech_count']);
             $count_def = pretty_number($StatQuery['defs_count']);
@@ -133,13 +134,9 @@ function ShowAccountDataPage()
 
             $total_points = pretty_number($StatQuery['total_points']);
 
-
-
-            // COMIENZA EL SAQUEO DE DATOS DE LA ALIANZA
-            $AliID = $UserQuery['ally_id'];
-
-
-            if ($alianza == 0 && $AliID == 0) {
+            // Alliance data
+            $allyID = $UserQuery['ally_id'];
+            if ($alianza == 0 && $allyID == 0) {
                 $alianza = $LNG['ac_no_ally'];
                 $AllianceHave = sprintf(
                     "<span class=\"no_moon\"><img src=\"./styles/resource/images/admin/arrowright.png\""
@@ -147,25 +144,21 @@ function ShowAccountDataPage()
                     $LNG['ac_alliance'],
                     $LNG['ac_no_alliance']
                 );
-            } elseif ($alianza != null && $AliID != 0) {
+            } elseif ($alianza != null && $allyID != 0) {
                 $AllianceHave = sprintf(
                     '<a href="#" onclick="$(\'#alianza\').slideToggle();return false" class="link"><img'
                     . ' src="./styles/resource/images/admin/arrowright.png" width="16" height="10">&nbsp;%s</a>',
                     $LNG['ac_alliance']
                 );
 
+                $sql = "SELECT `ally_owner`, `id`, `ally_tag`, `ally_name`, `ally_web`, `ally_description`, `ally_text`,
+                    `ally_request`, `ally_image`, `ally_members`, `ally_register_time`
+                    FROM %%ALLIANCE%% WHERE `id` = :allyID;";
+                $AllianceQuery = $db->selectSingle($sql, [
+                    ':allyID' => $allyID,
+                ]);
 
-
-                $SpecifyItemsA = "ally_owner,id,ally_tag,ally_name,ally_web,ally_description,ally_text,ally_request,"
-                    . "ally_image,ally_members,ally_register_time";
-
-                $AllianceQuery = $GLOBALS['DATABASE']->getFirstRow(
-                    "SELECT " . $SpecifyItemsA . " FROM " . ALLIANCE . " WHERE `ally_name` = '" . $alianza . "';"
-                );
-
-
-                $alianza = $alianza;
-                $id_ali = " (" . $LNG['ac_ali_idid'] . "&nbsp;" . $AliID . ")";
+                $id_ali = " (" . $LNG['ac_ali_idid'] . "&nbsp;" . $allyID . ")";
                 $id_aliz = $AllianceQuery['id'];
                 $tag = $AllianceQuery['ally_tag'];
                 $ali_nom = $AllianceQuery['ally_name'];
@@ -175,7 +168,6 @@ function ShowAccountDataPage()
                     $AllianceQuery['ally_register_time'],
                     $USER['timezone']
                 );
-                $ali_lider = $AllianceQuery['ally_owner'];
                 if ($AllianceQuery['ally_web'] != null) {
                     $ali_web = sprintf(
                         "<a href=\"%s\" target=_blank>%s</a>",
@@ -217,15 +209,19 @@ function ShowAccountDataPage()
                     $ali_logo = $LNG['ac_no_img'];
                 }
 
-                $StatQueryAlly = $GLOBALS['DATABASE']->getFirstRow(
-                    "SELECT " . $SpecifyItemsS . " FROM " . STATPOINTS
-                    . " WHERE `id_owner` = '" . $ali_lider . "' AND `stat_type` = '2';"
-                );
+                $sql = "SELECT `tech_count`, `defs_count`, `fleet_count`, `build_count`, `build_points`, `tech_points`,
+                    `defs_points`, `fleet_points`, `tech_rank`, `build_rank`, `defs_rank`, `fleet_rank`, `total_points`,
+                    `stat_type`
+                    FROM %%STATPOINTS%% WHERE `id_owner` = :allyID AND `stat_type` = 2";
+                $StatQueryAlly = $db->selectSingle($sql, [
+                    ':allyID' => $id_aliz,
+                ]);
 
-                $SearchLeader = $GLOBALS['DATABASE']->getFirstRow(
-                    "SELECT `username` FROM " . USERS . " WHERE `id` = '" . $ali_lider . "';"
-                );
-                $ali_lider = $SearchLeader['username'];
+                $sql = "SELECT `username` FROM %%USERS%%
+                    WHERE `id` = :leaderID;";
+                $ali_lider = $db->selectSingle($sql, [
+                    ':leaderID' => $AllianceQuery['ally_owner'],
+                ], 'username');
 
                 if (!empty($StatQueryAlly)) {
                     $count_tecno_ali = pretty_number($StatQueryAlly['tech_count']);
@@ -247,25 +243,25 @@ function ShowAccountDataPage()
                     $total_points_ali = pretty_number($StatQueryAlly['total_points']);
                 }
             }
-            $SpecifyItemsPQ = '';
-            foreach (array_merge($reslist['fleet'], $reslist['build'], $reslist['defense']) as $ID) {
-                $SpecifyItemsPQ .= $resource[$ID] . ",";
-                $RES[$resource[$ID]] = "<tr><td width=\"150\">" . $LNG['tech'][$ID] . "</td>";
-            }
             $names = "<tr><th class=\"center\" width=\"150\">&nbsp;</th>";
 
-            // COMIENZA EL SAQUEO DE DATOS DE LOS PLANETAS
-            $SpecifyItemsP = "planet_type,id,name,galaxy,`system`,planet,destruyed,diameter,field_current,field_max,"
-                . "temp_min,temp_max,metal,crystal,deuterium,energy," . $SpecifyItemsPQ . "energy_used";
+            // Planet data
+            $sql = "SELECT `planet_type`, `id`, `name`, `galaxy`, `system`, `planet`, `destruyed`, `diameter`, `field_current`, `field_max`,
+                `temp_min`, `temp_max`, `metal`, `crystal`, `deuterium`, `energy`, `energy_used`, ";
+            foreach (array_merge($reslist['fleet'], $reslist['build'], $reslist['defense']) as $ID) {
+                $sql .= "`" . $resource[$ID] . "`, ";
+                $RES[$resource[$ID]] = "<tr><td width=\"150\">" . $LNG['tech'][$ID] . "</td>";
+            }
+            $sql = rtrim($sql, ', ') . "FROM %%PLANETS%% WHERE `id_owner` = :userID;";
+            $PlanetsQuery = $db->select($sql, [
+                ':userID' => $id_u,
+            ]);
 
-            $PlanetsQuery = $GLOBALS['DATABASE']->query(
-                "SELECT " . $SpecifyItemsP . " FROM " . PLANETS . " WHERE `id_owner` = '" . $id_u . "';"
-            );
             $planets_moons = '';
             $resources = '';
             $destroyed = "";
             $MoonZ = 0;
-            while ($PlanetsWhile = $GLOBALS['DATABASE']->fetch_array($PlanetsQuery)) {
+            foreach ($PlanetsQuery as $PlanetsWhile) {
                 if ($PlanetsWhile['planet_type'] == 3) {
                     $Planettt = sprintf(
                         "%s&nbsp;(%s)<br><font color=\"aqua\">[%d:%d:%d]</font>",
@@ -584,17 +580,21 @@ function ShowAccountDataPage()
         }
         exit;
     }
+    $sql = "SELECT `id`, `username`, `authlevel` FROM %%USERS%%
+        WHERE `authlevel` <= :userLevel AND `universe` = :universe
+        ORDER BY `username` ASC;";
+    $UserQuerry = $db->select($sql, [
+        ':userLevel' => $USER['authlevel'],
+        ':universe' => Universe::getEmulated(),
+    ]);
+
     $Userlist = "";
-    $UserWhileLogin = $GLOBALS['DATABASE']->query(
-        "SELECT `id`, `username`, `authlevel` FROM " . USERS . " WHERE `authlevel` <= '" . $USER['authlevel']
-        . "' AND `universe` = '" . Universe::getEmulated() . "' ORDER BY `username` ASC;"
-    );
-    while ($UserList = $GLOBALS['DATABASE']->fetch_array($UserWhileLogin)) {
+    foreach ($UserQuerry as $User) {
         $Userlist .= sprintf(
             "<option value=\"%d\">%s&nbsp;&nbsp;(%s)</option>",
-            $UserList['id'],
-            $UserList['username'],
-            $LNG['rank_' . $UserList['authlevel']]
+            $User['id'],
+            $User['username'],
+            $LNG['rank_' . $User['authlevel']]
         );
     }
 
