@@ -55,8 +55,8 @@ $LNG['info_information'] = 'Para información y reporte de errores ir a <a href=
 $LNG['one_is_yes_1'] = 'Sí';
 $LNG['one_is_yes_0'] = 'No';
 
-$LNG['one_is_no_1'] = 'Sí';
-$LNG['one_is_no_0'] = 'No';
+$LNG['one_is_no_1'] = 'No';
+$LNG['one_is_no_0'] = 'Sí';
 //###########################################################//
 
 //---------------   BOTONES - BUTTONS - BUTTONS ------------------------//

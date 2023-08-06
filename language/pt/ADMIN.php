@@ -72,8 +72,8 @@ $LNG['log_disclamersettings'] = 'Contatos';
 $LNG['one_is_yes_1'] = 'Sim';
 $LNG['one_is_yes_0'] = 'Não';
 
-$LNG['one_is_no_1'] = 'Sim';
-$LNG['one_is_no_0'] = 'Não';
+$LNG['one_is_no_1'] = 'Não';
+$LNG['one_is_no_0'] = 'Sim';
 //###########################################################//
 
 

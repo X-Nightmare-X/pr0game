@@ -85,17 +85,6 @@ function ShowSearchPage()
     ];
     $template   = new template();
 
-
-
-
-    if (HTTP::_GP('minimize', '') == 'on') {
-        $Minimize           = "&amp;minimize=on";
-        $template->assign_vars([
-            'minimize'  => 'checked = "checked"',
-            'diisplaay' => 'style="display:none;"',
-        ]);
-    }
-
     $SpecialSpecify = "";
 
     switch ($SearchMethod) {
@@ -274,7 +263,6 @@ function ShowSearchPage()
             $Page,
             $NameLang,
             $ArrayOSec,
-            $Minimize,
             $SName,
             $SearchFile
         );
@@ -311,8 +299,6 @@ function ShowSearchPage()
         'ac_minimize_maximize'  => $LNG['ac_minimize_maximize'],
         'LIST'                  => $RESULT['LIST'],
         'PAGES'                 => $RESULT['PAGES'],
-        'minimize'              => 'checked = "checked"',
-        'diisplaay'             => 'style="display:none;"',
         'signalColors'          => $USER['signalColors'],
     ]);
 
@@ -331,7 +317,6 @@ function MyCrazyLittleSearch(
     $Page,
     $NameLang,
     $ArrayOSec,
-    $Minimize,
     $SName,
     $SearchFile
 ) {
@@ -403,11 +388,11 @@ function MyCrazyLittleSearch(
 
             for ($i = 1; $i <= $NumberOfPages; $i++) {
                 $PAGEE .= $Page == $i ? "&nbsp;" . $Page . "&nbsp;" : " <a href='" . $UrlForPage . "&amp;side=" . $i
-                    . $Minimize . "'>" . $i . "</a> ";
+                    . "'>" . $i . "</a> ";
             }
 
             if (($Page - 1) > 0) {
-                $BEFORE = "<a href='" . $UrlForPage . "&amp;side=" . $BeforePage . $Minimize
+                $BEFORE = "<a href='" . $UrlForPage . "&amp;side=" . $BeforePage
                     . "'><img src=\"./styles/resource/images/admin/arrowleft.png\" title=" . $LNG['se__before']
                     . " height=10 width=14></a> ";
             } else {
@@ -415,7 +400,7 @@ function MyCrazyLittleSearch(
             }
 
             if (($Page + 1) <= $NumberOfPages) {
-                $NEXT   = "<a href='" . $UrlForPage . "&amp;side=" . $NextPage . $Minimize
+                $NEXT   = "<a href='" . $UrlForPage . "&amp;side=" . $NextPage
                     . "'><img src=\"./styles/resource/images/admin/arrowright.png\" title=" . $LNG['se__next']
                     . " height=10 width=14></a>";
             } else {
@@ -471,14 +456,14 @@ function MyCrazyLittleSearch(
 
                 $WhileResult[6] = $LNG['rank_' . $WhileResult[6]];
                 if ($WhileResult[7] == '1') {
-                    $WhileResult[7] = "<font class=\"colorPositive\">" . $LNG['one_is_no_1'] . "</font>";
+                    $WhileResult[7] = "<font class=\"colorPositive\">" . $LNG['one_is_yes_1'] . "</font>";
                 } else {
-                    $WhileResult[7] = $LNG['one_is_no_0'];
+                    $WhileResult[7] = $LNG['one_is_yes_0'];
                 }
                 if ($WhileResult[8] == '1') {
-                    $WhileResult[8] = "<font class=\"colorPositive\">" . $LNG['one_is_no_1'] . "</font>";
+                    $WhileResult[8] = "<font class=\"colorPositive\">" . $LNG['one_is_yes_1'] . "</font>";
                 } else {
-                    $WhileResult[8] = $LNG['one_is_no_0'];
+                    $WhileResult[8] = $LNG['one_is_yes_0'];
                 }
             }
 
@@ -494,9 +479,9 @@ function MyCrazyLittleSearch(
             if ($Table == "planets p") {
                 $WhileResult[3] = pretty_time(TIMESTAMP - $WhileResult[3]);
                 if ($WhileResult[7] > 0) {
-                    $WhileResult[7] = "<font class=\"colorPositive\">" . $LNG['one_is_no_1'] . "</font>";
+                    $WhileResult[7] = "<font class=\"colorPositive\">" . $LNG['one_is_yes_1'] . "</font>";
                 } else {
-                    $WhileResult[7] = $LNG['one_is_no_0'];
+                    $WhileResult[7] = $LNG['one_is_yes_0'];
                 }
             }
 

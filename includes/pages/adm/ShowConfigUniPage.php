@@ -130,6 +130,7 @@ function ShowConfigUniPage()
         $noobprotectionmulti    = HTTP::_GP('noobprotectionmulti', 0);
         $min_build_time         = HTTP::_GP('min_build_time', 0);
         $trade_allowed_ships    = HTTP::_GP('trade_allowed_ships', '');
+        $game_name              = HTTP::_GP('game_name', '');
         $trade_charge           = HTTP::_GP('trade_charge', 0.0);
         $max_galaxy             = HTTP::_GP('max_galaxy', 0);
         $max_system             = HTTP::_GP('max_system', 0);
@@ -199,6 +200,7 @@ function ShowConfigUniPage()
             'user_valid'            => $user_valid,
             'trade_charge'          => $trade_charge,
             'trade_allowed_ships'   => $trade_allowed_ships,
+            'game_name'             => $game_name,
             'max_galaxy'            => $max_galaxy,
             'max_system'            => $max_system,
             'max_planets'           => $max_planets,
