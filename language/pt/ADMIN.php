@@ -189,9 +189,9 @@ $LNG['ad_ally_delete'] = 'Excluir aliança';
 $LNG['ad_ally_delete_u'] = 'Excluir membro';
 $LNG['ad_ally_user_id'] = '(Inserir ID de Usário)';
 $LNG['ad_ally_succes'] = 'Sucesso';
-$LNG['ad_ally_not_exist3'] = 'O usário não existe ou não corresponde a lista de membros da Aliança!';
 $LNG['ad_ally_not_exist'] = 'A Aliança não existe!';
 $LNG['ad_ally_not_exist2'] = 'O membro não existe!';
+$LNG['ad_ally_not_exist3'] = 'O usário não existe ou não corresponde a lista de membros da Aliança!';
 
 //  Luas e Planetas
 $LNG['ad_pla_title'] = 'Luas e Planetas';

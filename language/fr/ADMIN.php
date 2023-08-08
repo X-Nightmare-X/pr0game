@@ -156,9 +156,9 @@ $LNG['ad_ally_delete'] = 'Supprimer Alliance';
 $LNG['ad_ally_delete_u'] = 'Supprimer joueur';
 $LNG['ad_ally_user_id'] = '(Entrer ID joueur)';
 $LNG['ad_ally_succes'] = 'Opération effectuée avec succès !';
-$LNG['ad_ally_not_exist3'] = 'Le joueur n\'existe pas ou n\'est pas membre de l\'Alliance!';
 $LNG['ad_ally_not_exist'] = 'L\'Alliance n\'existe pas !';
 $LNG['ad_ally_not_exist2'] = 'Le joueur n\'existe pas !';
+$LNG['ad_ally_not_exist3'] = 'Le joueur n\'existe pas ou n\'est pas membre de l\'Alliance!';
 
 // PLANETS AND MOONS
 $LNG['ad_pla_title'] = 'Editer Planètes et/ou Lunes';

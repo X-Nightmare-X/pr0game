@@ -170,9 +170,9 @@ $LNG['ad_ally_delete'] = 'Delete Alliance';
 $LNG['ad_ally_delete_u'] = 'Delete Member';
 $LNG['ad_ally_user_id'] = '(Insert User ID)';
 $LNG['ad_ally_succes'] = 'Success';
-$LNG['ad_ally_not_exist3'] = 'The user does not exist in the alliance';
 $LNG['ad_ally_not_exist'] = 'The Alliance doesnt exist!';
 $LNG['ad_ally_not_exist2'] = 'The Member doesnt exist!';
+$LNG['ad_ally_not_exist3'] = 'The user does not exist in the alliance';
 
 //  Luas e Planetas
 $LNG['ad_pla_title'] = 'Moons and Planets';

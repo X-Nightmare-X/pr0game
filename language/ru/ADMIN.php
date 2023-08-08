@@ -161,9 +161,9 @@ $LNG['ad_ally_delete'] = 'Удалить альянс';
 $LNG['ad_ally_delete_u'] = 'Удалить игрока';
 $LNG['ad_ally_user_id'] = '[ID игрока]';
 $LNG['ad_ally_succes'] = 'Информация об альянсе изменена.';
-$LNG['ad_ally_not_exist3'] = 'Игрок не существует или не состоит в альянсе.';
 $LNG['ad_ally_not_exist'] = 'Альянс не существует.';
 $LNG['ad_ally_not_exist2'] = 'Игрок не существует.';
+$LNG['ad_ally_not_exist3'] = 'Игрок не существует или не состоит в альянсе.';
 
 // Планеты и луны
 $LNG['ad_pla_title'] = 'Редактор планет и лун';

@@ -167,9 +167,9 @@ $LNG['ad_ally_delete'] = 'Usuń sojusz';
 $LNG['ad_ally_delete_u'] = 'Usuń użytkownika';
 $LNG['ad_ally_user_id'] = 'Podaj ID użytkownika';
 $LNG['ad_ally_succes'] = 'Sojusz utworzono';
-$LNG['ad_ally_not_exist3'] = 'Taki użytkownik nie istnieje lub nie ma go w sojuszu';
 $LNG['ad_ally_not_exist'] = 'Taki sojusz nie istnieje';
 $LNG['ad_ally_not_exist2'] = 'Taki użytkownik nie istnieje';
+$LNG['ad_ally_not_exist3'] = 'Taki użytkownik nie istnieje lub nie ma go w sojuszu';
 
 //  PLANETAS Y LUNAS - PLANETS AND MOONS - PLANETEN UND MONDE - PLANETY I KSIĘŻYCE
 $LNG['ad_pla_title'] = 'Dodaj planetę / księżyc';

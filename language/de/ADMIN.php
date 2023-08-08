@@ -166,9 +166,9 @@ $LNG['ad_ally_delete'] = 'Allianz Löschen';
 $LNG['ad_ally_delete_u'] = 'User Löschen';
 $LNG['ad_ally_user_id'] = '(UserID Eingeben)';
 $LNG['ad_ally_succes'] = 'erfolgreich ausgeführt';
-$LNG['ad_ally_not_exist3'] = 'Der User existiert nicht oder ist kein Mitglied der Allianz';
 $LNG['ad_ally_not_exist'] = 'Die Allianz existiert nicht';
 $LNG['ad_ally_not_exist2'] = 'Der User existiert nicht';
+$LNG['ad_ally_not_exist3'] = 'Der User existiert nicht oder ist kein Mitglied der Allianz';
 
 //  PLANETAS Y LUNAS - PLANETS AND MOONS - PLANETEN UND MONDE
 $LNG['ad_pla_title'] = 'Planeten und/oder Monde bearbeiten';

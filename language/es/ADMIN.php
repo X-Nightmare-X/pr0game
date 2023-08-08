@@ -160,9 +160,9 @@ $LNG['ad_ally_delete'] = 'Eliminar Alianza';
 $LNG['ad_ally_delete_u'] = 'Eliminar Usuario';
 $LNG['ad_ally_user_id'] = '(Ingresar ID de Usuario)';
 $LNG['ad_ally_succes'] = 'Operación realizada con éxito';
-$LNG['ad_ally_not_exist3'] = 'El usuario no existe o no es un miembro de la Alianza';
 $LNG['ad_ally_not_exist'] = '¡La alianza no existe!';
 $LNG['ad_ally_not_exist2'] = '¡El usuario no existe!';
+$LNG['ad_ally_not_exist3'] = 'El usuario no existe o no es un miembro de la Alianza';
 
 //  PLANETAS Y LUNAS - PLANETS AND MOONS - PLANETEN UND MONDE
 $LNG['ad_pla_title'] = 'Editar Planetas y/o Lunas';

@@ -606,9 +606,9 @@ $LNG['ad_ally_delete'] = 'Ittifagi Sil';
 $LNG['ad_ally_delete_u'] = 'Uye Sil';
 $LNG['ad_ally_user_id'] = '(ID Giriniz)';
 $LNG['ad_ally_succes'] = 'Basariyla Tamamlandi';
-$LNG['ad_ally_not_exist3'] = 'Bu kullanici bu ittifakta degil';
 $LNG['ad_ally_not_exist'] = 'Boyle bir ittifak yok!';
 $LNG['ad_ally_not_exist2'] = 'Boyle bir uye yok!';
+$LNG['ad_ally_not_exist3'] = 'Bu kullanici bu ittifakta degil';
 
 //  Gezegen & AY
 $LNG['ad_pla_title'] = 'Gezegen ve Aylar';
