@@ -113,7 +113,7 @@ function GenerateReport($combatResult, $reportInfo, $isReal = false, $isSimul = 
     require_once 'includes/classes/Achievement.class.php';
     if ($isReal) {
 		$db = Database::get();
-		if ($reportInfo['stealResource'][901] = 1 && $reportInfo['stealResource'][902] = 1 && $reportInfo['stealResource'][903] = 1) {
+		if ($reportInfo['stealResource'][901] == 1 && $reportInfo['stealResource'][902] == 1 && $reportInfo['stealResource'][903] == 1) {
 			foreach ($combatResult['rw'][0]['attackers'] as $player)
 			{
 				if (!Achievement::checkAchievement($player['player']['id'], 6)) {
