@@ -101,6 +101,7 @@ class ShowSettingsPage extends AbstractGamePage
                 'stb_enabled'           => $USER['stb_enabled'],
                 'missionPrios'          => $missionprios,
                 'recordsOptIn'          => $USER['records_optIn'],
+                'publish_achievement'   => $USER['publish_achievement'],
             ]);
 
             $this->display('page.settings.default.tpl');
@@ -303,6 +304,7 @@ class ShowSettingsPage extends AbstractGamePage
         $prio17 =HTTP::_GP('type_mission_17', 9);
         $recordsOptIn = HTTP::_GP('recordsOptIn', 0);
 
+        $publish_achievement = HTTP::_GP('publish_achievement', 0);
 
         // Vertify
 
@@ -524,7 +526,8 @@ class ShowSettingsPage extends AbstractGamePage
         stb_small_time              = :stb_small_time,
         stb_med_time                = :stb_med_time,
         stb_big_time                = :stb_big_time,
-        stb_enabled                 = :stb_enabled
+        stb_enabled                 = :stb_enabled,
+        publish_achievement         = :publish_achievement
 		WHERE id = :userID;";
         $db->update($sql, [
             ':theme'                        => $theme,
@@ -594,11 +597,15 @@ class ShowSettingsPage extends AbstractGamePage
             ':stb_small_time'               => $stb_small_time,
             ':stb_med_time'                 => $stb_med_time,
             ':stb_big_time'                 => $stb_big_time,
-            ':stb_enabled'                  => $stb_enabled
+            ':stb_enabled'                  => $stb_enabled,
+            ':publish_achievement'          => $publish_achievement
         ]);
 
         $db->commit();
 
+        if (!Achievement::checkAchievement($USER['id'], 25) && $recordsOptIn == 1) {
+            Achievement::setAchievement($USER['id'], 25);
+        }
 
         if ($vacation == 1) {
             $this->printMessage($LNG['op_options_changed_vacation'], [

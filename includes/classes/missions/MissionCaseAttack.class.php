@@ -374,7 +374,7 @@ HTML;
         }
 
         require_once 'includes/classes/missions/functions/GenerateReport.php';
-        $reportData = GenerateReport($combatResult, $reportInfo);
+        $reportData = GenerateReport($combatResult, $reportInfo, true, false, false);
 
         switch ($combatResult['won']) {
             case "a":

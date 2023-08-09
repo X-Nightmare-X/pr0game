@@ -188,7 +188,7 @@ class ShowBattleSimulatorPage extends AbstractGamePage
             'additionalInfo'        => $stealResourceInformation,
         ];
 
-        $reportData = GenerateReport($combatResult, $reportInfo);
+        $reportData = GenerateReport($combatResult, $reportInfo, false, true, false);
         unset($reportData['repaired']);
         $reportID = md5(uniqid('', true) . TIMESTAMP);
 

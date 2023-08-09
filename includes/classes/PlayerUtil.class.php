@@ -490,6 +490,36 @@ class PlayerUtil
             $maxFields = (int) floor($planetData[$dataIndex]['fields'] * $config->planet_factor);
             $maxTemperature = $planetData[$dataIndex]['temp'];
         }
+
+        require_once 'includes/classes/Achievement.class.php';
+        $sql = 'SELECT galaxy FROM %%USERS%% WHERE id = :userId;';
+        $hpGala = $db->selectSingle($sql, [
+            ':userId' => $userId,
+        ], 'galaxy');
+        if (!$isHome && !Achievement::checkAchievement($userId, 40) && $hpGala != $galaxy) {
+            $max_gala_distance = floor($config->max_galaxy/2);
+            $uniType = $config->uni_type;
+            if ($uniType == UNIVERSE_LINEAR) {
+                if (($hpGala > $galaxy && $hpGala - $galaxy > $max_gala_distance) || ($hpGala < $galaxy && $galaxy - $hpGala > $max_gala_distance)) {
+                    Achievement::setAchievement($userId, 40);
+                }
+            } elseif ($uniType == UNIVERSE_CIRCULAR) {
+                $max_distance = FleetFunctions::getTargetDistance(
+                    [1,1,1],
+                    [1+$max_gala_distance,1,1]
+                );
+                $distance = FleetFunctions::getTargetDistance(
+                    [$hpGala,1,1],
+                    [$galaxy,1,1]
+                );
+                if ($max_distance <= $distance) {
+                    Achievement::setAchievement($userId, 40);
+                }
+            } elseif ($uniType == UNIVERSE_BALL) {
+                Achievement::setAchievement($userId, 40);
+            }
+        }
+
         $minTemperature = $maxTemperature - 40;
 
         $diameter = (int) floor(1000 * sqrt($maxFields));
@@ -842,6 +872,26 @@ class PlayerUtil
             $db->delete($sql, [
                 ':lunaID' => $planetData['id_luna']
             ]);
+            require_once 'includes/classes/Achievement.class.php';
+            require_once 'includes/classes/class.statbuilder.php';
+            if (!Achievement::checkAchievement($planetData['id_owner'], 26)) {
+                $statbuidler = new Statbuilder();
+                $sql = "SELECT * FROM %%PLANETS%% WHERE id_owner = :userId;";
+                $planets = $db->select($sql, [
+                    ':userId'   => $planetData['id_owner']
+                ]);
+                $biggestPlanet = 0;
+                $biggestPlanetPoints = 0;
+                foreach ($planets as $planet) {
+                    $points = $statbuidler->getBuildingScoreByPlanet($planet);
+                    if ($points > $biggestPlanetPoints) {
+                        $biggestPlanet = $planet['id'];
+                    }
+                }
+                if($biggestPlanet == $planetId) {
+                    Achievement::setAchievement($planetData['id_owner'], 26);
+                }
+            }
         }
 
         return true;
@@ -963,6 +1013,21 @@ class PlayerUtil
             ':unread'   => $unread,
             ':universe' => $universe,
         ]);
+        require_once 'includes/classes/Achievement.class.php';
+        if (!Achievement::checkAchievement($userId, 36)) {
+            $targets = ['hurensohn', 'gleichstarke ziele','gegen schwächere', 'ehrenlos'];
+            $find = false;
+            foreach($targets as $t)
+            {
+                if (str_contains(strtolower($text),$t) !== false) {
+                    $find = true;
+                    break;
+                }
+            }
+            if($find){
+                Achievement::setAchievement($userId, 36);
+            }
+        }
     }
 
     public static function clearPlanets($USER)
@@ -1085,6 +1150,10 @@ class PlayerUtil
                 $PLANET['last_update'] = TIMESTAMP;
                 $PLANET['eco_hash'] = '';
                 list($USER, $PLANET) = $PlanetRess->CalcResource($USER, $PLANET, true);
+                require_once 'includes/classes/Achievement.class.php';
+                if (!Achievement::checkAchievement($USER['id'], 33)) {
+                    Achievement::setAchievement($USER['id'], 33);
+                }
             }
 
             foreach ($PlanetsRAW as $CPLANET) {
@@ -1139,6 +1208,8 @@ class PlayerUtil
             $PLANET['metal_perhour'] = '0';
             $PLANET['crystal_perhour'] = '0';
             $PLANET['deuterium_perhour'] = '0';
+            require_once 'includes/classes/Achievement.class.php';
+            Achievement::vacationAchievement($USER['id']);
         }
     }
 

@@ -57,10 +57,12 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
 
             $recyclerStorage = 0;
             $otherFleetStorage = 0;
+            $recCount = 0;
 
             foreach ($fleetData as $shipId => $shipAmount) {
                 if ($shipId == 209 ||  $shipId == 219) {
                     $recyclerStorage += $pricelist[$shipId]['capacity'] * $shipAmount;
+                    $recCount += $shipAmount;
                 } else {
                     $otherFleetStorage += $pricelist[$shipId]['capacity'] * $shipAmount;
                 }
@@ -96,6 +98,19 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
             $sql = 'UPDATE %%PLANETS%% SET ' . implode(',', $collectQuery) . ' WHERE id = :planetId;';
 
             Database::get()->update($sql, $param);
+            
+        } else {
+            $fleetData = FleetFunctions::unserialize($this->_fleet['fleet_array']);
+            $recCount = 0;
+            foreach ($fleetData as $shipId => $shipAmount) {
+                if ($shipId == 209 ||  $shipId == 219) {
+                    $recCount += $shipAmount;
+                }
+            }
+            require_once 'includes/classes/Achievement.class.php';
+            if (!Achievement::checkAchievement($this->_fleet['fleet_owner'], 16) && $collectedGoods[901] == 0 && $collectedGoods[902] == 0 && $recCount >= 250) {
+                Achievement::setAchievement($this->_fleet['fleet_owner'], 16);
+            }
         }
 
         $LNG = $this->getLanguage(null, $this->_fleet['fleet_owner']);
@@ -110,7 +125,7 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
             $LNG['tech'][901],
             $LNG['tech'][902],
         );
-
+        
         PlayerUtil::sendMessage(
             $this->_fleet['fleet_owner'],
             0,

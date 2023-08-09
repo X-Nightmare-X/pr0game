@@ -444,7 +444,7 @@ HTML;
         }
 
         require_once 'includes/classes/missions/functions/GenerateReport.php';
-        $reportData = GenerateReport($combatResult, $reportInfo);
+        $reportData = GenerateReport($combatResult, $reportInfo, true, false, false);
 
         $reportID = md5(uniqid('', true) . TIMESTAMP);
 

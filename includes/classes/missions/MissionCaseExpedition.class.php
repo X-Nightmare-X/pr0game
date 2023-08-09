@@ -430,7 +430,7 @@ HTML;
             'fleetDestroySuccess' => null,
         ];
 
-        $reportData = GenerateReport($combatResult, $reportInfo);
+        $reportData = GenerateReport($combatResult, $reportInfo, false, false, true);
         $reportID = md5(uniqid('', true) . TIMESTAMP);
 
         $sql = "INSERT INTO %%RW%% SET

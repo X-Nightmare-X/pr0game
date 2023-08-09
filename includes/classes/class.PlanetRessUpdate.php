@@ -846,7 +846,7 @@ class ResourceUpdate
             ':b_tech_planet'        => $USER['b_tech_planet'],
             ':b_tech_queue'         => $USER['b_tech_queue']
         ];
-
+        require_once 'includes/classes/Achievement.class.php';
         if (!empty($this->Builded)) {
             foreach ($this->Builded as $Element => $Count) {
                 $Element = (int) $Element;
@@ -877,6 +877,74 @@ class ResourceUpdate
                     $buildQueries[] = ', u.' . $resource[$Element] . ' = :'
                         . $resource[$Element];
                     $params[':' . $resource[$Element]] = floatToString($Count);
+                }
+            }
+            foreach ($this->Builded as $Element => $Count) {
+                $Element = (int) $Element;
+
+                if (empty($resource[$Element])) {
+                    continue;
+                }
+
+                if (in_array($Element, $reslist['one'])) {
+                    $buildQueries[] = ', p.' . $resource[$Element] . ' = :' . $resource[$Element];
+                    $params[':' . $resource[$Element]] = '1';
+                } elseif (isset($PLANET[$resource[$Element]])) {
+                    if ($Element < 100) { // Set building level directly
+                        if ($PLANET['planet_type'] == 3 && !Achievement::checkAchievement($USER['id'], 28) && 
+                            ($Element == 22 || $Element == 23 || $Element == 24) && $Count == 3) {
+                                $PLANET[$resource[$Element]] = $Count;
+                                if ($PLANET[$resource[22]] >= 3 && $PLANET[$resource[23]] >= 3 && $PLANET[$resource[24]] >= 3) {
+                                    Achievement::setAchievement($USER['id'], 28);
+                                }
+                        }
+                    }
+                    else { //ships, def and rockets
+                        if ($Element == SHIP_RIP && !Achievement::checkAchievement($USER['id'], 9)) {
+                            Achievement::setAchievement($USER['id'], 9);
+                        }
+                        if ($Element == SHIP_RIP && !Achievement::checkAchievement($USER['id'], 52)) {
+                            $sql = "SELECT COUNT(*) as count FROM %%ADVANCED_STATS%% 
+                            WHERE build_204 = 0 AND build_205 = 0 AND build_206 = 0 AND build_207 = 0 AND build_211 = 0 
+                            AND build_213 = 0 AND build_214 = 0 AND build_215 = 0 AND build_216 = 0 AND build_217 = 0 
+                            AND build_218 = 0 AND build_219 = 0 AND userId = :userId;";
+                            $countFightShip = database::get()->selectSingle($sql, array(
+                                ':userId'   => $USER['id']
+                            ));
+
+                            if ($countFightShip['count'] == 1) {
+                                Achievement::setAchievement($USER['id'], 52);
+                            }
+                        }
+                    }
+                } elseif (isset($USER[$resource[$Element]])) { // Set research level directly
+                    if ($Element == 123 && $Count == 1) {
+                        Achievement::setAchievement($USER['id'], 27);
+                    } else if ($Element == 111) {
+                        switch ($Count) {
+                            case 3:
+                                Achievement::setAchievement($USER['id'], 19);
+                                break;
+                            case 6:
+                                Achievement::setAchievement($USER['id'], 20);
+                                break;
+                            case 9:
+                                Achievement::setAchievement($USER['id'], 21);
+                                break;
+                            case 12:
+                                Achievement::setAchievement($USER['id'], 22);
+                                break;
+                            case 15:
+                                Achievement::setAchievement($USER['id'], 23);
+                                break;
+                        }
+                    } else if ($Element == 199 && $Count == 2) {
+                        Achievement::setAchievement($USER['id'], 5);
+                    } else if ($Element == 120 && $Count == 12) {
+                        Achievement::setAchievement($USER['id'], 24);
+                    } else if ($Element == 121 && $Count == 10) {
+                        Achievement::setAchievement($USER['id'], 4);
+                    }
                 }
             }
         }

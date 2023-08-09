@@ -22,6 +22,13 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+CREATE TABLE IF NOT EXISTS `%PREFIX%achievements` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
 CREATE TABLE `%PREFIX%advanced_stats` (
   `userId` int(10) unsigned NOT NULL,
 
@@ -931,12 +938,21 @@ CREATE TABLE `%PREFIX%users` (
   `stb_big_time` tinyint(2) NOT NULL DEFAULT 3,
   `stb_enabled` tinyint(1) NOT NULL DEFAULT 0,
   `records_optIn` tinyint(1) NOT NULL DEFAULT 0,
+  `publish_achievement` tinyint(0) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `authlevel` (`authlevel`),
   KEY `ref_bonus` (`ref_bonus`),
   KEY `universe` (`universe`,`username`,`password`,`onlinetime`,`authlevel`),
   KEY `ally_id` (`ally_id`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `%PREFIX%users_to_achievements` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userID` int(11) NOT NULL,
+  `achievementID` int(11) NOT NULL,
+  `date` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 CREATE TABLE `%PREFIX%users_to_acs` (
   `userID` int(10) unsigned NOT NULL,
@@ -1063,6 +1079,63 @@ CREATE TABLE `%PREFIX%recaptcha` (
     `url`       varchar(255) DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+INSERT INTO `%PREFIX%achievements` (`id`, `name`, `image`) VALUES
+(1, 'Sleepless and in a bad mood', 'achievement_1'),
+(2, 'Absolute basics', 'achievement_2'),
+(3, 'Deserved', 'achievement_3'),
+(4, 'What does this do?', 'achievement_4'),
+(5, 'Because I can', 'achievement_5'),
+(6, 'Low performer', 'achievement_6'),
+(7, 'French revolution', 'achievement_7'),
+(8, 'Save drunk', 'achievement_8'),
+(9, 'Thats no moon', 'achievement_9'),
+(10, 'Marble game', 'achievement_10'),
+(11, 'TheLegend27', 'achievement_11'),
+(12, "Slippy's blessing", 'achievement_12'),
+(13, 'That was close', 'achievement_13'),
+(14, "Slippy's curse", 'achievement_14'),
+(15, 'Do we still have LF?', 'achievement_15'),
+(16, "Dude, Where's My Debris?", 'achievement_16'),
+(17, 'Overlord Defense!', 'achievement_17'),
+(18, 'Frankfurt trainstation', 'achievement_18'),
+(19, 'Thick skin 1', 'achievement_19'),
+(20, 'Thick skin 2', 'achievement_20'),
+(21, 'Thick skin 3', 'achievement_21'),
+(22, 'Thick skin 4', 'achievement_22'),
+(23, 'Thick skin 5', 'achievement_23'),
+(24, "Imma firin' mah laz0r", 'achievement_24'),
+(25, 'GDPR breach', 'achievement_25'),
+(26, 'Everything for the achievements', 'achievement_26'),
+(27, 'Big Brain Time', 'achievement_27'),
+(28, 'Alternate gameplay', 'achievement_28'),
+(29, 'Communist Manifesto', 'achievement_29'),
+(30, 'This is Sparta', 'achievement_30'),
+(31, 'Off on vacation', 'achievement_31'),
+(32, 'Privateer!', 'achievement_32'),
+(33, 'I can stop whenever I want', 'achievement_33'),
+(34, 'Noble farm', 'achievement_34'),
+(35, "That's not nice!", 'achievement_35'),
+(36, 'Miesernachtsmann', 'achievement_36'),
+(37, 'I am not one of those', 'achievement_37'),
+(38, 'Cornag and Offz', 'achievement_38'),
+(39, 'The meaning of life', 'achievement_39'),
+(40, 'Columbus', 'achievement_40'),
+(41, 'Fleetslot patron', 'achievement_41'),
+(42, 'Atleast Battlehall', 'achievement_42'),
+(43, 'With my Eyes closed', 'achievement_43'),
+(44, 'Happens to everyone accidentally', 'achievement_44'),
+(45, 'Locksmith', 'achievement_45'),
+(46, 'Pure hatred!', 'achievement_46'),
+(47, 'Jack the Ripper', 'achievement_47'),
+(48, 'TRip the Jacker', 'achievement_48'),
+(49, "We're blasting off again!", 'achievement_49'),
+(50, 'Oopsie', 'achievement_50'),
+(51, "No clue, it's jsut there", 'achievement_51'),
+(52, 'Megalomania', 'achievement_52'),
+(53, 'Einstein', 'achievement_53'),
+(54, 'Happy New Year!', 'achievement_54'),
+(55, 'Living Legend', 'achievement_55');
 
 INSERT INTO `%PREFIX%config` (`uni`, `VERSION`, `uni_name`, `game_name`, `close_reason`, `OverviewNewsText`, `moduls`, `disclamerAddress`, `disclamerPhone`, `disclamerMail`, `disclamerNotice`) VALUES
 (1, '%VERSION%', '', 'SteemNova', '', '', '', '', '', '', '');

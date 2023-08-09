@@ -1300,3 +1300,144 @@ $LNG['stb_med_time'] = 'Saniye başına ortalama kaynak oranı';
 
 $LNG['stb_big_time_tooltip'] = 'İki ondalık basamağa yuvarlanmış, saniyede mümkün olan en iyi kaynak verimini açıklar. Girilen değerden daha düşük bir oran iyi (açık yeşil), yukarıdaki bir değer optimal (açık mavi) olarak yorumlanır.';
 $LNG['stb_big_time'] = 'Saniye başına iyi kaynak oranı';
+
+//----------------------------------------------------------------------------//
+//Achievements
+$LNG['Achievements'] = 'Başarılar';
+$LNG['Achievement_names'] = [
+    1 => 'Uykusuz ve kötü bir ruh hali içinde',
+    2 => 'Mutlak Temeller',
+    3 => 'Hak etti',
+    4 => 'Şimdi ne anlamı var?',
+    5 => 'Çünkü ben',
+
+    6 => 'Düşük gelirliler',
+    7 => 'Fransız Devrimi',
+    8 => 'Saven\'de Sarhoş',
+    9 => 'Bu ay değil.',
+    10 => 'Misket oyunu',
+
+    11 => 'TheLegend27',
+    12 => 'Slippy\'nin kutsaması',
+    13 => 'Çok yakındı.',
+    14 => 'Slippy\'nin Laneti',
+    15 => 'Hala Hafif Avci var mı?',
+
+    16 => 'Hey adamım, enkaz alanım nerede?!',
+    17 => 'Overlord Savunma!',
+    18 => 'Frankfurt Merkez İstasyonu',
+    19 => 'Kalın deri 1',
+    20 => 'Kalın deri 2',
+
+    21 => 'Kalın deri 3',
+    22 => 'Kalın deri 4',
+    23 => 'Kalın deri 5',
+    24 => 'Laz0r\'ımı kovuyorum.',
+    25 => 'DSGVO ihlali',
+
+    26 => 'Her şey Başarılar için',
+    27 => 'Büyük Beyin Zamanı',
+    28 => 'Alternatifler Oynanış',
+    29 => 'Komünist Manifesto',
+    30 => 'Burası Sparta',
+
+    31 => 'Tatile çıkıyoruz',
+    32 => 'Buccaneer!',
+    33 => 'İstersem durabilirim!',
+    34 => 'noble çiftlik',
+    35 => 'Bu hiç hoş değil!',
+
+    36 => 'Miesernachtsmann',
+    37 => 'Ben öyle biri değilim.',
+    38 => 'Cornag ve Offz',
+    39 => 'Hayatın anlamı',
+    40 => 'Kolumbus',
+
+    41 => 'Filo yuvası patronu',
+    42 => 'Önemli olan Battlehall',
+    43 => 'Gözlerim kapalıyken',
+    44 => 'Yanlışlıkla herkesin başına gelir',
+    45 => 'Anahtar hizmet',
+
+    46 => 'Saf nefret!',
+    47 => 'Jack the Ripper',
+    48 => 'Rip the Jacker',
+    49 => 'Bu da fırında başka bir atıştı.',
+    50 => 'Oopsie',
+
+    51 => 'Bunun doğal olarak geldiğini bilmiyorum.',
+    52 => 'Büyüklük sanrıları',
+    53 => 'Einstein',
+    54 => 'Mutlu yıllar!',
+    55 => 'Yaşayan efsane',
+];
+
+$LNG['Achievement_text'] = [
+    1 => 'Kendine ait bir gecen vardı ve tek bir atış bile yapamadın.',
+    2 => 'Son 90 gün içinde kalıcı filo hareketleriniz oldu.',
+    3 => 'Dil ayarlarınız "Fransızca" olarak ayarlıyken filonuzu kaybettiniz.',
+    4 => 'İyon Teknolojisini Keşfedin 10.',
+    5 => 'Graviton Araştırmalarını Keşfedin 2.',
+
+    6 => 'Saldırılarınızdan biri 1 metal, 1 kristal, 1 döteryum ile geri döndü.',
+    7 => 'Toplamda en az 10.000 gemiden oluşan bir korsan veya uzaylı gemi filosunu yenin.',
+    8 => 'Sıkılaştırma masasına katılın (Salı günleri saat 8\'den itibaren Discord\'da).',
+    9 => 'İlk Ölüm Yıldızı\'nı inşa et.',
+    10 => 'Bir oyuncunun ayını yok et.',
+
+    11 => '14 gün boyunca sadece cep telefonundan oynayın.',
+    12 => 'Filonuz ilk seferinizde yok edildi.',
+    13 => 'Gelen bir saldırının bitmesine 5 saniyeden az kalmışken filonuzu uzağa gönderin.',
+    14 => 'Kara delikler yüzünden 10 filo kaybettiniz.',
+    15 => 'Bir gezegende ay almadan 10 ay denemesi yapın',
+
+    16 => '250\'den fazla geri dönüşümcünüz kargosuz geri döndü',
+    17 => 'En az 5000 roketatarı bir siparişle üretime sokun.',
+    18 => 'Bir gezegende 24 saat içinde yakıt maliyeti olarak 5 milyon döteryum tüketin.',
+    19 => 'Uzay Gemisi Zırhını Keşfedin 3.',
+    20 => 'Uzay Gemisi Zırhını Keşfedin 6.',
+
+    21 => 'Uzay Gemisi Zırhını Keşfedin 9.',
+    22 => 'Uzay Gemisi Zırhını Keşfedin 12.',
+    23 => 'Uzay Gemisi Zırhını Keşfedin 15.',
+    24 => 'Lazer teknolojisini keşfedin 12.',
+    25 => 'Kayıtlara katılmayı kabul ettiniz',
+
+    26 => 'Size en çok puanı veren gezegeni silin. (En az 100.000 puan)',
+    27 => 'Galaksilerarası Araştırma Ağını Keşfedin 1.',
+    28 => 'Bir aydaki üç kaynak deposunu da en az 3. seviyeye yükseltin.',
+    29 => 'Daha yüksek skorlu bir oyuncunun filosunu 5 kişilik bir AKS ile toplayın',
+    30 => '5 kişilik bir AKS\'yi tek başına püskürtmek',
+
+    31 => 'Saldırınızla bir oyuncuyu tatil moduna terfi ettirdiniz.',
+    32 => '"SetSail" teması etkinleştirildiğinde 1000 gezegene baskın yapın.',
+    33 => 'U-Mode\'dan dönüyorum.',
+    34 => 'Bir kez saldırıya uğrayın.',
+    35 => 'Puanlarınızın 1/10\'undan daha azına sahip aktif bir oyuncuya saldırın',
+
+    36 => 'Aşağıdaki yapı taşlarından birini içeren bir mesaj alın: 
+                        "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
+    37 => 'Filonuz 5 katılımcısı olan bir AKS tarafından yok edildi.',
+    38 => 'Kendi ittifak üyelerinize saldırın.',
+    39 => 'Tam 42 gemiyle birine saldırın.',
+    40 => 'En az yarım evren ötedeki bir gezegeni kolonileştirin.',
+
+    41 => 'Kötü bir pazar yeri teklifi ile bir filo slotunu bir haftalığına bloke edin.',
+    42 => 'Battlehall\'da 4 kez kaybeden olarak görünür.',
+    43 => 'Hesabınız Aktif Değil olarak işaretlenmişken bir savaş kazanın, 
+            daha önce 7 günden fazla uçuş süresi olan bir filonun geldiği gezegenlerinizden birinde.',
+    44 => 'Bir gezegende 7 günden fazla süreyle %100\'den daha az enerji kullanarak bir kaynak üretin.',
+    45 => 'Savunmada ilk 10\'da yer alan bir oyuncuya saldırı kazanın.',
+
+    46 => 'Gezegenler arası füzeler ateşleyerek çarpma korumasını tetikleyin.',
+    47 => '5 ay yok et.',
+    48 => 'Ayları yok etmeye çalışırken 5 Ölüm Yıldızı kaybet.',
+    49 => 'Kolo oluştuktan kısa bir süre sonra koparın.',
+    50 => 'Gravi\'yi araştırmak için yeterli enerjiye sahip bir gezegendeki tüm güneş uydularınızı kaybedin. 
+            Gravi\'yi araştırmadan Gravi\'yi araştırmak için enerji.',
+    51 => 'Tüm döteryumunuzu gala manzarasında kullanın.',
+    52 => 'Önce diğer savaş gemilerini inşa etmeden bir Ölüm Yıldızı inşa edin.',
+    53 => 'Aynı anda 5 araştırmada en yüksek seviyeye sahibim.',
+    54 => 'Aktif bir oyuncuya yapılan bir saldırıyı 01.01. 00:00:00 olarak zamanlayın',
+    55 => 'Özel Başarı',
+];

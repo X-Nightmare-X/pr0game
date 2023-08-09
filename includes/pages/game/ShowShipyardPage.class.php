@@ -131,7 +131,9 @@ class ShowShipyardPage extends AbstractGamePage
             foreach ($costResources as $resourceId => $amount) {
                 $totalCostResources[$resourceId] += $amount;
             }
-
+            if(!Achievement::checkAchievement($USER['id'], 17) && $Count >= 5000 && $Element == MISSILE_LAUNCHER) {
+                Achievement::setAchievement($USER['id'], 17);
+            }
             $BuildArray[] = [$Element, $Count];
             $PLANET['b_hangar_id'] = serialize($BuildArray);
         }

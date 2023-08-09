@@ -309,3 +309,13 @@ define('STATUS_OPEN', 0);
 define('STATUS_CLOSED', 1);
 define('STATUS_REG_ONLY', 2);
 define('STATUS_LOGIN_ONLY', 3);
+
+// universe type
+define('UNIVERSE_LINEAR', 0);
+define('UNIVERSE_CIRCULAR', 1);
+define('UNIVERSE_BALL', 2);
+
+// galaxy type
+define('GALAXY_LINEAR', 0);
+define('GALAXY_CIRCULAR', 1);
+define('GALAXY_BALL', 2);

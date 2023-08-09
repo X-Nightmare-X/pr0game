@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-function GenerateReport($combatResult, $reportInfo)
+function GenerateReport($combatResult, $reportInfo, $isReal = false, $isSimul = false, $isExpo = false)
 {
     $Destroy	= ['att' => 0, 'def' => 0];
     $DATA		= [];
@@ -110,5 +110,180 @@ function GenerateReport($combatResult, $reportInfo)
             $DATA['rounds'][$Round]['info']	= [null, null, null, null];
         }
     }
+    require_once 'includes/classes/Achievement.class.php';
+    if ($isReal) {
+		$db = Database::get();
+		if ($reportInfo['stealResource'][901] = 1 && $reportInfo['stealResource'][902] = 1 && $reportInfo['stealResource'][903] = 1) {
+			foreach ($combatResult['rw'][0]['attackers'] as $player)
+			{
+				if (!Achievement::checkAchievement($player['player']['id'], 6)) {
+					Achievement::setAchievement($player['player']['id'], 6);
+				}
+			}
+		}
+		$mainAttacker = $reportInfo['thisFleet']['fleet_owner'];
+		if ($reportInfo['thisFleet']['fleet_amount'] == 42 && !Achievement::checkAchievement($mainAttacker, 39) 
+			&& count($combatResult['rw'][0]['attackers']) == 1) {
+			Achievement::setAchievement($mainAttacker, 39);
+		}
+		if ($reportInfo['moonDestroySuccess'] && !Achievement::checkAchievement($mainAttacker, 10)) {
+			Achievement::setAchievement($mainAttacker, 10);
+		}
+		$planetdefender = $combatResult['rw'][0]['defenders'][count($combatResult['rw'][0]['defenders'])-1]['player']['id'];
+		if (!Achievement::checkAchievement($planetdefender, 34)) {
+			Achievement::setAchievement($planetdefender, 34);
+		}
+		if (!Achievement::checkAchievement($planetdefender, 37) && $combatResult['won'] == "a") {
+			$countAttacker = 0;
+			$attackers = [];
+			foreach ($combatResult['rw'][0]['attackers'] as $player)
+			{
+				if (!in_array($player['player']['id'], $attackers)) {
+					$countAttacker++;
+					array_push($attackers, $player['player']['id']);
+				}
+			}
+            //max aks participants var?
+			if ($countAttacker == 5) {
+				Achievement::setAchievement($planetdefender, 37);
+			}
+		}
+		if (!Achievement::checkAchievement($mainAttacker, 35) && $combatResult['won'] == "a" && count($combatResult['rw'][0]['attackers']) == 1) {
+			$sql = "SELECT total_points FROM %%STATPOINTS%% a WHERE id_owner = :attacker AND stat_type = 1;";
+			$attackerPoints = $db->selectSingle($sql, array(
+				':attacker' => $mainAttacker,
+			), 'total_points');
+
+			$sql = "SELECT total_points FROM %%STATPOINTS%% a WHERE id_owner = :defender AND stat_type = 1;";
+			$defenderPoints = $db->selectSingle($sql, array(
+				':defender' => $planetdefender,
+			), 'total_points');
+			if ($attackerPoints/10 > $defenderPoints) {
+				Achievement::setAchievement($mainAttacker, 35);
+			}
+		}
+		if(!Achievement::checkAchievement($mainAttacker, 38) && count($combatResult['rw'][0]['attackers']) == 1) {
+			$sql = "SELECT ally_id FROM %%USERS%% WHERE id = :attacker;";
+			$attackerAlly = $db->selectSingle($sql, array(
+				':attacker' => $mainAttacker,
+			), 'ally_id');
+			$sql = "SELECT ally_id FROM %%USERS%% WHERE id = :defender;";
+			$defenderAlly = $db->selectSingle($sql, array(
+				':defender' => $planetdefender,
+			), 'ally_id');
+			if ($attackerAlly != 0 && $attackerAlly == $defenderAlly) {
+				Achievement::setAchievement($mainAttacker, 38);
+			}
+		}
+//		if (($combatResult['won'] == "a" && !Achievement::checkAchievement($planetdefender, 3))) {
+//			if ($combatResult['won'] == "a") {
+//				//check for loose condition mindestens 1k fleet punkte und mindestens 50%der flotte
+//				$sql = "SELECT fleet_points FROM uni1_statpoints WHERE id_owner = :id AND stat_type = 1;";
+//				$fleet_points = $db->selectSingle($sql, array(
+//					':id' => $planetdefender,
+//				), 'fleet_points');
+//				global $resource, $reslist, $pricelist;
+//				$FleetCounts = 0;
+//				$lostFleetPoints = 0;
+//
+//				foreach ($reslist['fleet'] as $Fleet) {
+//					if ($combatResult['rw'][0]['defenders'][count($combatResult['rw'][0]['defenders'])-1]['Fleet'][$Fleet] == 0) continue;
+//
+//					$Units = $pricelist[$Fleet]['cost'][901] + $pricelist[$Fleet]['cost'][902] + $pricelist[$Fleet]['cost'][903];
+//					$lostFleetPoints += $Units * $USER[$resource[$Fleet]];
+//					$FleetCounts += $USER[$resource[$Fleet]];
+//				}
+//				$sql = "SELECT lang FROM uni1_users WHERE id = :id;";
+//				$lang = $db->selectSingle($sql, array(
+//					':id' => $planetdefender,
+//				), 'lang');
+//				if ($lostFleetPoints > 1000 && $lostFleetPoints > $fleet_points/2 && $lang == "fr") {
+//					Achievement::setAchievement($planetdefender, 3);
+//				}
+//			}
+//			//should be attacker?
+//		} else if ($combatResult['won'] == "r" && !Achievement::checkAchievement($planetdefender, 3)) {
+//			
+//			$attackers = [];
+//			foreach ($combatResult['rw'][0]['attackers'] as $player)
+//			{
+//				if (!in_array($player['player']['id'], $attackers)) {
+//					array_push($attackers, $player['player']['id']);
+//                    $sql = "SELECT fleet_points FROM uni1_statpoints WHERE id_owner = :id AND stat_type = 1;";
+//                    $fleet_points = $db->selectSingle($sql, array(
+//                        ':id' => $player['player']['id'],
+//                    ), 'fleet_points');
+//                    global $resource, $reslist, $pricelist;
+//                    $FleetCounts = 0;
+//                    $lostFleetPoints = 0;
+//
+//                    foreach ($reslist['fleet'] as $Fleet) {
+//                        if ($combatResult['rw'][0]['attackers'][count($combatResult['rw'][0]['attackers'])-1]['Fleet'][$Fleet] == 0) continue;
+//
+//                        $Units = $pricelist[$Fleet]['cost'][901] + $pricelist[$Fleet]['cost'][902] + $pricelist[$Fleet]['cost'][903];
+//                        $lostFleetPoints += $Units * $USER[$resource[$Fleet]];
+//                        $FleetCounts += $USER[$resource[$Fleet]];
+//                    }
+//                    $sql = "SELECT lang FROM uni1_users WHERE id = :id;";
+//                    $lang = $db->selectSingle($sql, array(
+//                        ':id' => $planetdefender,
+//                    ), 'lang');
+//                    if ($lostFleetPoints > 1000 && $lostFleetPoints > $fleet_points/2 && $lang == "fr") {
+//                        Achievement::setAchievement($planetdefender, 3);
+//                    }
+//				}
+//			}
+//			//check for loose condition
+//            foreach($attackers as $attacker) {
+//                
+//            }
+//		}
+//		if(!Achievement::checkAchievement($mainAttacker, 6) && $combatResult['won'] == "r" ) {
+//			$sql = "SELECT ally_id FROM %%USERS%% WHERE id = :attacker;";
+//			$attackerAlly = $db->selectSingle($sql, array(
+//				':attacker' => $mainAttacker,
+//			), 'ally_id');
+//			$sql = "SELECT ally_id FROM %%USERS%% WHERE id = :defender;";
+//			$defenderAlly = $db->selectSingle($sql, array(
+//				':defender' => $planetdefender,
+//			), 'ally_id');
+//			if ($attackerAlly != 0 && $attackerAlly == $defenderAlly) {
+//				Achievement::setAchievement($mainAttacker, 6);
+//			}
+//		}
+		$sql = "SELECT defs_rank FROM uni1_statpoints WHERE id_owner = :id AND stat_type = 1;";
+		$defs_rank = $db->selectSingle($sql, array(
+			':id' => $planetdefender,
+		), 'defs_rank');
+		if($defs_rank <= 5 && $combatResult['won'] == "a") {
+			$countAttacker = 0;
+			$attackers = [];
+			foreach ($combatResult['rw'][0]['attackers'] as $player)
+			{
+				if (!in_array($player['player']['id'], $attackers)&& !Achievement::checkAchievement($mainAttacker, 45)) {
+					$countAttacker++;
+					array_push($attackers, $player['player']['id']);
+				}
+			}
+			foreach ($attackers as $attacker) {
+				Achievement::setAchievement($attacker, 45);
+			}
+		}
+		if($combatResult['won'] == "r")
+		{
+			$sql = "SELECT onlinetime FROM %%USERS%% WHERE id = :defender;";
+			$onlinetime = $db->selectSingle($sql, array(
+				':defender' => $planetdefender,
+			), 'onlinetime');
+			//if($onlinetime < TIMESTAMP - INACTIVE)
+		}
+	}
+	if ($isExpo) {
+		$mainAttacker = $reportInfo['thisFleet']['fleet_owner'];
+		if ($reportInfo['thisFleet']['fleet_amount'] >= 10000 && !Achievement::checkAchievement($mainAttacker, 7) 
+			&& $combatResult['won'] == "a") {
+			Achievement::setAchievement($mainAttacker, 7);
+		}
+	}
     return $DATA;
 }
