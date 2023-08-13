@@ -1276,3 +1276,146 @@ $LNG['stb_med_time'] = 'Ratio moyen des ressources par seconde';
 
 $LNG['stb_big_time_tooltip'] = 'Décrit le meilleur rendement possible en ressources par seconde, arrondi à deux décimales. Un rapport inférieur à la valeur saisie est interprété comme bon (vert clair), une valeur supérieure à optimal (bleu clair).';
 $LNG['stb_big_time'] = 'Bon ratio ressources par seconde';
+
+
+//----------------------------------------------------------------------------//
+//Achievements
+$LNG['Achievements'] = 'Réalisations';
+$LNG['Achievement_names'] = [
+    1 => 'Insomnie et mauvaise humeur',
+    2 => 'Les bases absolues',
+    3 => 'Mérite',
+    4 => 'Quel est l\'intérêt maintenant?',
+    5 => 'Parce que je peux',
+
+    6 => 'Personnes à faible revenu',
+    7 => 'La Révolution française',
+    8 => 'Ivre au saven',
+    9 => 'Ce n\'est pas une lune',
+    10 => 'Jeu de billes',
+
+    11 => 'TheLegend27',
+    12 => 'La bénédiction de Slippy',
+    13 => 'Il s\'en est fallu de peu',
+    14 => 'La malédiction de Slippy',
+    15 => 'Avons-nous encore des chasseurs légers?',
+
+    16 => 'Hé mec, où est mon champ de débris?!',
+    17 => 'Overlord Défense!',
+    18 => 'La gare centrale de Francfort',
+    19 => 'Peau épaisse 1',
+    20 => 'Peau épaisse 2',
+
+    21 => 'Peau épaisse 3',
+    22 => 'Peau épaisse 4',
+    23 => 'Peau épaisse 5',
+    24 => 'Je tire mon laser',
+    25 => 'Violation du RGPD',
+
+    26 => 'Tout pour les Réalisations',
+    27 => 'Le temps des grands cerveaux',
+    28 => 'Gameplay alternatif',
+    29 => 'Manifeste communiste',
+    30 => 'C\'est Sparte',
+
+    31 => 'Partir en vacances',
+    32 => 'Corsaire!',
+    33 => 'Je peux arrêter si je veux!',
+    34 => 'Ferme noble',
+    35 => 'Ce n\'est pas gentil!',
+
+    36 => 'Miesernachtsmann',
+    37 => 'Je ne suis pas une',
+    38 => 'Cornag et Offz',
+    39 => 'Le sens de la vie',
+    40 => 'Colomb',
+
+    41 => 'Bénéficiaire de la place de la flotte',
+    42 => 'Le principal, c\'est Hall of Fame',
+    43 => 'Les yeux fermés',
+    44 => 'Ça arrive à tout le monde par accident',
+    45 => 'Service de clés',
+
+    46 => 'La haine à l\'état pur!',
+    47 => 'Jack the Ripper',
+    48 => 'Rip the Jacker',
+    49 => 'C\'était encore une fois un coup dans le four',
+    50 => 'Oopsie',
+
+    51 => 'Je ne sais pas, ça vient tout seul',
+    52 => 'La folie des grandeurs',
+    53 => 'Einstein',
+    54 => 'Bonne année!',
+    55 => 'Légende vivante',
+];
+
+$LNG['Achievement_text'] = [
+    1 => 'Tu as passé une nuit blanche sans te faire tirer dessus.',
+    2 => 'Tu as eu des mouvements de flotte permanents pendant les 90 derniers jours.',
+    3 => 'Tu as perdu ta flotte alors que tes paramètres linguistiques étaient réglés sur "français".',
+    4 => 'Explorer la technologie des ions 10.',
+    5 => 'Explorer les gravitons 2.',
+
+    6 => 'Une de tes attaques est revenue avec 1 métal, 1 cristal, 1 deutérium.',
+    7 => 'Vaincre une flotte de vaisseaux pirates ou extraterrestres avec un total d\'au moins 10 000 vaisseaux.',
+    8 => 'Participe à la table de gymnastique (le mardi à partir de 20h sur Discord).',
+    9 => 'Construis ta première étoile de la mort.',
+    10 => 'Détruire la lune d\'un joueur.',
+
+    11 => 'Joue 14 jours exclusivement sur téléphone portable.',
+    12 => 'Ta flotte a été détruite lors de ta première expédition.',
+    13 => 'Envoyez votre flotte alors qu\'il reste moins de 5 secondes à une attaque entrante.',
+    14 => 'Tu as perdu 10 flottes à cause des trous noirs.',
+    15 => 'Dépensez 10 essais lunaires sur une planète sans obtenir une lune',
+
+    16 => 'Plus de 250 de tes recycleurs sont rentrés sans chargement',
+    17 => 'Produisez au moins 5000 Lanceur de missiles avec un contrat de construction.',
+    18 => 'Consommez 5 millions de deutérium en 24h sur une planète sous forme de coût de carburant.',
+    19 => 'Explorer le blindage des vaisseaux spatiaux 3.',
+    20 => 'Explorer le blindage des vaisseaux spatiaux 6.',
+
+    21 => 'Explorer le blindage des vaisseaux spatiaux 9.',
+    22 => 'Explorer le blindage des vaisseaux spatiaux 12.',
+    23 => 'Explorer le blindage des vaisseaux spatiaux 15.',
+    24 => 'Explorer la technologie laser 12.',
+    25 => 'Tu as accepté l\'opt-in dans les records',
+
+    26 => 'Efface la planète qui te rapporte le plus de points. (Au moins 100 000 points)',
+    27 => 'Explorer le réseau de recherche intergalactique 1.',
+    28 => 'Développez les trois camps de ressources sur une lune jusqu\'au niveau 3 ou plus.',
+    29 => 'Collectiver la flotte d\'un joueur plus fort en points avec un ACS de 5 hommes',
+    30 => 'Repousse seul un ACS de 5 hommes',
+
+    31 => 'Tu as mis un joueur en mode vacances grâce à ton attaque.',
+    32 => 'Raide 1000 planètes pendant que le thème "SetSail" est activé.',
+    33 => 'Je reviens de la mode U.',
+    34 => 'Se faire attaquer une fois.',
+    35 => 'Attaquer un joueur actif qui a moins de 1/10 de tes points',
+
+    36 => 'Recevoir un message contenant l\'un des éléments suivants: 
+                        "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
+    37 => 'Votre flotte a été détruite par un ACS avec 5 participants.',
+    38 => 'Attaque tes propres membres de l\'alliance.',
+    39 => 'Attaquer quelqu\'un avec exactement 42 vaisseaux.',
+    40 => 'Coloniser une planète située au moins à la moitié de l\'univers.',
+
+    41 => 'Bloquer un slot de flotte pendant une semaine avec une mauvaise offre de marché.',
+    42 => 'Se produit 4 fois dans le Hall of Fame en tant que perdant',
+    43 => 'Gagner un combat pendant lequel ton compte est marqué comme inactif, 
+            sur une de tes planètes sur laquelle une flotte est arrivée avec un temps de vol de plus de 7 jours.',
+    44 => 'Produire sur une planète pendant plus de 7 jours une ressource dont le rendement énergétique est inférieur à 100%.',
+    45 => 'Gagne une attaque sur un joueur classé dans le top 10 de la défense.',
+
+    46 => 'Déclenche la protection Bash en tirant des missiles interplanétaires.',
+    47 => 'Détruire 5 lunes.',
+    48 => 'Perdre 5 Étoiles de la mort en essayant de détruire des lunes.',
+    49 => 'Démolissez une colonie peu après sa création.',
+    50 => 'Perds tous tes satellites solaires sur une planète ayant suffisamment de 
+            énergie pour faire de la recherche sur le graviton, sans avoir fait de recherche sur le graviton.',
+
+    51 => 'Consomme tout ton deutérium dans la vue Galaxie.',
+    52 => 'Construire une étoile de la mort sans avoir préalablement construit d\'autres vaisseaux de combat.',
+    53 => 'Avoir le niveau le plus élevé dans 5 recherches en même temps.',
+    54 => 'Time une attaque sur un joueur actif au 01.01. 00:00:00',
+    55 => 'Award spécial',
+];

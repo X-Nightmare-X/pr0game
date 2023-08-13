@@ -1480,7 +1480,7 @@ $LNG['Achievement_text'] = [
     46 => 'Triggere den Bash-Schutz durch Verschießen von Interplanetarraketen.',
     47 => 'Zerstöre 5 Monde.',
     48 => 'Verliere 5 Todessterne beim Versuch Monde zu zerstören.',
-    49 => 'Reiße eine Kolo kurz nach der entstehung ab.',
+    49 => 'Reiße eine Kolo kurz nach der Entstehung ab.',
     50 => 'Verliere alle deine Solarsatteliten auf einem Planeten mit ausreichend 
                         Energie um Gravi zu forschen, ohne dass du Gravi geforscht hast.',
 

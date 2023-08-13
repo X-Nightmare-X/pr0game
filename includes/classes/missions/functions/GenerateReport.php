@@ -36,7 +36,6 @@ function GenerateReport($combatResult, $reportInfo, $isReal = false, $isSimul = 
         'fleetDestroySuccess'	=> (int) $reportInfo['fleetDestroySuccess']
     ];
     $DATA['repaired'] = $combatResult['repaired'];
-
     if (isset($reportInfo['additionalInfo'])) {
         $DATA['additionalInfo'] = $reportInfo['additionalInfo'];
     } else {
@@ -175,33 +174,34 @@ function GenerateReport($combatResult, $reportInfo, $isReal = false, $isSimul = 
 				Achievement::setAchievement($mainAttacker, 38);
 			}
 		}
-//		if (($combatResult['won'] == "a" && !Achievement::checkAchievement($planetdefender, 3))) {
-//			if ($combatResult['won'] == "a") {
-//				//check for loose condition mindestens 1k fleet punkte und mindestens 50%der flotte
-//				$sql = "SELECT fleet_points FROM uni1_statpoints WHERE id_owner = :id AND stat_type = 1;";
-//				$fleet_points = $db->selectSingle($sql, array(
-//					':id' => $planetdefender,
-//				), 'fleet_points');
-//				global $resource, $reslist, $pricelist;
-//				$FleetCounts = 0;
-//				$lostFleetPoints = 0;
-//
-//				foreach ($reslist['fleet'] as $Fleet) {
-//					if ($combatResult['rw'][0]['defenders'][count($combatResult['rw'][0]['defenders'])-1]['Fleet'][$Fleet] == 0) continue;
-//
-//					$Units = $pricelist[$Fleet]['cost'][901] + $pricelist[$Fleet]['cost'][902] + $pricelist[$Fleet]['cost'][903];
-//					$lostFleetPoints += $Units * $USER[$resource[$Fleet]];
-//					$FleetCounts += $USER[$resource[$Fleet]];
-//				}
-//				$sql = "SELECT lang FROM uni1_users WHERE id = :id;";
-//				$lang = $db->selectSingle($sql, array(
-//					':id' => $planetdefender,
-//				), 'lang');
-//				if ($lostFleetPoints > 1000 && $lostFleetPoints > $fleet_points/2 && $lang == "fr") {
-//					Achievement::setAchievement($planetdefender, 3);
-//				}
-//			}
-//			//should be attacker?
+		if (($combatResult['won'] == "a" && !Achievement::checkAchievement($planetdefender, 3))) {
+			if ($combatResult['won'] == "a") {
+				//check for loose condition mindestens 1k fleet punkte und mindestens 50%der flotte
+				$sql = "SELECT fleet_points FROM uni1_statpoints WHERE id_owner = :id AND stat_type = 1;";
+				$fleet_points = $db->selectSingle($sql, array(
+					':id' => $planetdefender,
+				), 'fleet_points');
+				global $resource, $reslist, $pricelist;
+				$FleetCounts = 0;
+				$lostFleetPoints = 0;
+
+				foreach ($reslist['fleet'] as $Fleet) {
+					
+					if ($combatResult['rw'][0]['defenders'][count($combatResult['rw'][0]['defenders'])-1]['unit'] == 0) continue;
+
+					$Units = $pricelist[$Fleet]['cost'][901] + $pricelist[$Fleet]['cost'][902];
+
+					$lostFleetPoints += $Units / 1000 ;
+				}
+				$sql = "SELECT lang FROM uni1_users WHERE id = :id;";
+				$lang = $db->selectSingle($sql, array(
+					':id' => $planetdefender,
+				), 'lang');
+				if ($lostFleetPoints > 1000 && $lostFleetPoints > $fleet_points/2 && $lang == "fr") {
+					Achievement::setAchievement($planetdefender, 3);
+				}
+			}
+		//should be attacker?
 //		} else if ($combatResult['won'] == "r" && !Achievement::checkAchievement($planetdefender, 3)) {
 //			
 //			$attackers = [];
@@ -237,20 +237,7 @@ function GenerateReport($combatResult, $reportInfo, $isReal = false, $isSimul = 
 //            foreach($attackers as $attacker) {
 //                
 //            }
-//		}
-//		if(!Achievement::checkAchievement($mainAttacker, 6) && $combatResult['won'] == "r" ) {
-//			$sql = "SELECT ally_id FROM %%USERS%% WHERE id = :attacker;";
-//			$attackerAlly = $db->selectSingle($sql, array(
-//				':attacker' => $mainAttacker,
-//			), 'ally_id');
-//			$sql = "SELECT ally_id FROM %%USERS%% WHERE id = :defender;";
-//			$defenderAlly = $db->selectSingle($sql, array(
-//				':defender' => $planetdefender,
-//			), 'ally_id');
-//			if ($attackerAlly != 0 && $attackerAlly == $defenderAlly) {
-//				Achievement::setAchievement($mainAttacker, 6);
-//			}
-//		}
+		}
 		$sql = "SELECT defs_rank FROM uni1_statpoints WHERE id_owner = :id AND stat_type = 1;";
 		$defs_rank = $db->selectSingle($sql, array(
 			':id' => $planetdefender,
@@ -275,7 +262,23 @@ function GenerateReport($combatResult, $reportInfo, $isReal = false, $isSimul = 
 			$onlinetime = $db->selectSingle($sql, array(
 				':defender' => $planetdefender,
 			), 'onlinetime');
-			//if($onlinetime < TIMESTAMP - INACTIVE)
+			if($onlinetime < TIMESTAMP - INACTIVE){
+				$sql = "SELECT count(*) as count FROM %%LOG_FLEETS%% WHERE fleet_owner = :defender AND fleet_end_time - start_time >= :inactive AND fleet_end_time < :timestamp AND 
+					fleet_start_galaxy = :start_galaxy AND fleet_start_system = :start_system AND fleet_start_planet = :start_planet AND fleet_start_type = :start_type;";
+				$count = $db->selectSingle($sql, array(
+					':defender' => $planetdefender,
+					':inactive' => INACTIVE,
+					':timestamp' => TIMESTAMP,
+					':start_galaxy' => $DATA['koords'][0],
+					':start_system' => $DATA['koords'][1],
+					':start_planet' => $DATA['koords'][2],
+					':start_type' => $DATA['koords'][3],
+				), 'count');
+
+				if ($count > 0 && !Achievement::checkAchievement($planetdefender, 43)) {
+					Achievement::setAchievement($planetdefender, 43);
+				}
+			}
 		}
 	}
 	if ($isExpo) {
