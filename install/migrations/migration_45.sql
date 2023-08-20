@@ -65,7 +65,7 @@ INSERT INTO `%PREFIX%achievements` (`id`, `name`, `image`) VALUES
 (45, 'Locksmith', 'achievement_45'),
 (46, 'Pure hatred!', 'achievement_46'),
 (47, 'Jack the Ripper', 'achievement_47'),
-(48, 'TRip the Jacker', 'achievement_48'),
+(48, 'Rip the Jacker', 'achievement_48'),
 (49, "We're blasting off again!", 'achievement_49'),
 (50, 'Oopsie', 'achievement_50'),
 (51, "No clue, it's jsut there", 'achievement_51'),

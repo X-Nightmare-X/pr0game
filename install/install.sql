@@ -162,6 +162,29 @@ CREATE TABLE `%PREFIX%advanced_stats` (
   `found_901` int(10) unsigned NOT NULL DEFAULT '0',
   `found_902` int(10) unsigned NOT NULL DEFAULT '0',
   `found_903` int(10) unsigned NOT NULL DEFAULT '0',
+
+  `expo_count`              bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_black_hole`         bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_pirates_small`      bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_pirates_medium`     bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_pirates_large`      bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_aliens_small`       bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_aliens_medium`      bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_aliens_large`       bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_res_small`          bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_res_medium`         bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_res_large`          bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_ships_small`        bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_ships_medium`       bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_ships_large`        bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_slow`               bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_fast`               bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_nothing`            bigint(20) unsigned NOT NULL DEFAULT '0',
+
+  `moons_created`           bigint(20) unsigned NOT NULL DEFAULT '0',
+  `moons_destroyed`         bigint(20) unsigned NOT NULL DEFAULT '0',
+  `destroy_moon_rips_lost`  bigint(20) unsigned NOT NULL DEFAULT '0',
+  `set_sail_wins`           bigint(20) unsigned NOT NULL DEFAULT '0';
   PRIMARY KEY (`userID`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -689,6 +712,7 @@ CREATE TABLE `%PREFIX%planets` (
   `der_crystal` double(50,0) unsigned NOT NULL DEFAULT '0',
   `tf_active` tinyint(1) NOT NULL DEFAULT '0',
   `id_luna` int(11) NOT NULL DEFAULT '0',
+  `creation_time` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `id_luna` (`id_luna`),
   KEY `id_owner` (`id_owner`),
@@ -1128,7 +1152,7 @@ INSERT INTO `%PREFIX%achievements` (`id`, `name`, `image`) VALUES
 (45, 'Locksmith', 'achievement_45'),
 (46, 'Pure hatred!', 'achievement_46'),
 (47, 'Jack the Ripper', 'achievement_47'),
-(48, 'TRip the Jacker', 'achievement_48'),
+(48, 'Rip the Jacker', 'achievement_48'),
 (49, "We're blasting off again!", 'achievement_49'),
 (50, 'Oopsie', 'achievement_50'),
 (51, "No clue, it's jsut there", 'achievement_51'),

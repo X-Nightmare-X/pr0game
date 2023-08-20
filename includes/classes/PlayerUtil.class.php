@@ -551,7 +551,8 @@ class PlayerUtil
             ':maxTemperature'   => $maxTemperature,
             ':metal_start'      => $config->metal_start,
             ':crystal_start'    => $config->crystal_start,
-            ':deuterium_start'  => $config->deuterium_start
+            ':deuterium_start'  => $config->deuterium_start,
+            ':creation_time'    => TIMESTAMP
         ];
 
         $sql = 'INSERT INTO %%PLANETS%% SET
@@ -570,7 +571,8 @@ class PlayerUtil
 		temp_max 	= :maxTemperature,
 		metal		= :metal_start,
 		crystal		= :crystal_start,
-		deuterium   = :deuterium_start;';
+		deuterium   = :deuterium_start,
+        creation_time   = :creation_time;';
 
         $db->insert($sql, $params);
 
@@ -890,6 +892,16 @@ class PlayerUtil
                 }
                 if($biggestPlanet == $planetId) {
                     Achievement::setAchievement($planetData['id_owner'], 26);
+                }
+            }
+            
+            if(!Achievement::checkAchievement($planetData['id_owner'], 49)){
+                $sql = "SELECT creation_time FROM %%PLANETS%% WHERE id = :planetID;";
+                $planet_creation_time = $db->selectSingle($sql, [
+                    ':planetID'   => $planetId
+                ], 'creation_time');
+                if(TIMESTAMP - $planet_creation_time <= 60){
+                    Achievement::setAchievement($planetData['id_owner'], 49);
                 }
             }
         }

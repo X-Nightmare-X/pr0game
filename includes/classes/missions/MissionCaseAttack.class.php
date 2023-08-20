@@ -365,7 +365,8 @@ HTML;
                 $targetUser['id'],
                 $chanceCreateMoon,
             );
-
+            $sql = 'UPDATE %%ADVANCED_STATS%% SET moons_created = moons_created + 1 WHERE userId IN (' . implode(',', array_keys($userAttack)) . ');';
+			$db->update($sql);
             if (Config::get($this->_fleet['fleet_universe'])->debris_moon == 1) {
                 foreach ($debrisResource as $elementID) {
                     $planetDebris[$elementID] = 0;

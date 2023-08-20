@@ -121,6 +121,7 @@ function GenerateReport($combatResult, $reportInfo, $isReal = false, $isSimul = 
 			}
 		}
 		$mainAttacker = $reportInfo['thisFleet']['fleet_owner'];
+		$planetdefender = $combatResult['rw'][0]['defenders'][count($combatResult['rw'][0]['defenders'])-1]['player']['id'];
 		if ($reportInfo['thisFleet']['fleet_amount'] == 42 && !Achievement::checkAchievement($mainAttacker, 39) 
 			&& count($combatResult['rw'][0]['attackers']) == 1) {
 			Achievement::setAchievement($mainAttacker, 39);
@@ -128,9 +129,53 @@ function GenerateReport($combatResult, $reportInfo, $isReal = false, $isSimul = 
 		if ($reportInfo['moonDestroySuccess'] && !Achievement::checkAchievement($mainAttacker, 10)) {
 			Achievement::setAchievement($mainAttacker, 10);
 		}
-		$planetdefender = $combatResult['rw'][0]['defenders'][count($combatResult['rw'][0]['defenders'])-1]['player']['id'];
 		if (!Achievement::checkAchievement($planetdefender, 34)) {
 			Achievement::setAchievement($planetdefender, 34);
+		}
+		if ($DATA['moon']['moonDestroySuccess'] == 1) {
+			$sql = "UPDATE %%ADVANCED_STATS%% SET moons_destroyed = moons_destroyed + 1 WHERE userId = :userId";
+			$db->update($sql, [
+				':userId' => $mainAttacker,
+			]);
+			$sql = "SELECT moons_destroyed FROM %%ADVANCED_STATS%% WHERE userId = :id;";
+			$count = $db->selectSingle($sql, array(
+				':id' => $mainAttacker,
+			), 'moons_destroyed');
+			if (!Achievement::checkAchievement($mainAttacker, 47) && $count >= 5) {
+				Achievement::setAchievement($mainAttacker, 47);
+			}
+		}
+		if ($DATA['moon']['fleetDestroySuccess'] == 1) {
+			$shiptypes = explode (";", $reportInfo['thisFleet']["fleet_array"]);
+			foreach ($shiptypes as $shiptype) {
+				$ship = explode (",", $shiptype);
+				if ($ship[0] == 214) {
+					$sql = "UPDATE %%ADVANCED_STATS%% SET destroy_moon_rips_lost = destroy_moon_rips_lost + :lost WHERE userId = :userId";
+					$db->update($sql, [
+						':lost' => $ship[1],
+						':userId' => $mainAttacker,
+					]);
+					$sql = "SELECT destroy_moon_rips_lost FROM %%ADVANCED_STATS%% WHERE userId = :id;";
+					$count = $db->selectSingle($sql, array(
+						':id' => $mainAttacker,
+					), 'destroy_moon_rips_lost');
+					
+					if (!Achievement::checkAchievement($mainAttacker, 48) && $count >= 5) {
+						Achievement::setAchievement($mainAttacker, 48);
+					}
+				}
+			}
+			$sql = "UPDATE %%ADVANCED_STATS%% SET moons_destroyed = moons_destroyed + 1 WHERE userId = :userId";
+			$db->update($sql, [
+				':userId' => $mainAttacker,
+			]);
+			$sql = "SELECT moons_destroyed FROM %%ADVANCED_STATS%% WHERE userId = :id;";
+			$count = $db->selectSingle($sql, array(
+				':id' => $mainAttacker,
+			), 'moons_destroyed');
+			if (!Achievement::checkAchievement($mainAttacker, 47) && $count >= 5) {
+				Achievement::setAchievement($mainAttacker, 47);
+			}
 		}
 		if (!Achievement::checkAchievement($planetdefender, 37) && $combatResult['won'] == "a") {
 			$countAttacker = 0;
@@ -172,6 +217,23 @@ function GenerateReport($combatResult, $reportInfo, $isReal = false, $isSimul = 
 			), 'ally_id');
 			if ($attackerAlly != 0 && $attackerAlly == $defenderAlly) {
 				Achievement::setAchievement($mainAttacker, 38);
+			}
+		}
+		$sql = "SELECT dpath FROM %%USERS%% WHERE id = :id;";
+		$theme = $db->selectSingle($sql, array(
+			':id' => $mainAttacker,
+		), 'dpath');
+		if (($combatResult['won'] == "a" && $theme == "SetSail")) {
+			$sql = "UPDATE %%ADVANCED_STATS%% SET set_sail_wins = set_sail_wins + 1 WHERE userId = :userId";
+			$db->update($sql, [
+				':userId' => $mainAttacker,
+			]);
+			$sql = "SELECT set_sail_wins FROM %%ADVANCED_STATS%% WHERE userId = :id;";
+			$count = $db->selectSingle($sql, array(
+				':id' => $mainAttacker,
+			), 'set_sail_wins');
+			if (!Achievement::checkAchievement($mainAttacker, 32) && $count >= 1000) {
+				Achievement::setAchievement($mainAttacker, 32);
 			}
 		}
 		if (($combatResult['won'] == "a" && !Achievement::checkAchievement($planetdefender, 3))) {

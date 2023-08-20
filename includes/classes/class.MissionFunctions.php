@@ -347,6 +347,17 @@ class MissionFunctions
         ]);
     }
 
+    public function updateExpoStatAdvancedStats($user, $Element)
+    {
+        require_once 'includes/classes/Database.class.php';
+        $db = Database::get();
+
+        $sql = "UPDATE %%ADVANCED_STATS%% SET expo_" . $Element . " = expo_" . $Element . " + 1 WHERE userId = :userId";
+        $db->update($sql, [
+            ':userId' => $user,
+        ]);
+    }
+
     public function updateFoundShipsAdvancedStats($user, $fleetArray)
     {
         $resource =& Singleton()->resource;
