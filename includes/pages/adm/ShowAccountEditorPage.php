@@ -122,39 +122,49 @@ function ShowAccountEditorPage()
                     $sql = "UPDATE %%PLANETS%% SET `eco_hash` = '', ";
                     foreach ($reslist['fleet'] as $ID) {
                         $count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
-                        $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + :" . $resource[$ID];
-                        $params[':' . $resource[$ID]] = $count;
-                        $afterShips[$ID] = $beforeShips[$ID] + $count;
+                        if ($count > 0) {
+                            $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + :" . $resource[$ID];
+                            $params[':' . $resource[$ID]] = $count;
+                            $afterShips[$ID] = $beforeShips[$ID] + $count;
+                        }
                     }
-                    $sql .= implode(", ", $QryUpdate);
-                    $sql .= "WHERE `id` = :id AND `universe` = :universe;";
-                    $db->update($sql, array_merge($params, [
-                        ':id' => $id,
-                        ':universe' => Universe::getEmulated(),
-                    ]));
+                    if (!empty($QryUpdate)) {
+                        $sql .= implode(", ", $QryUpdate);
+                        $sql .= " WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, array_merge($params, [
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]));
+                    }
                 } elseif (isset($_POST['delete'])) {
                     $QryUpdate = [];
                     $sql = "UPDATE %%PLANETS%% SET `eco_hash` = '', ";
                     foreach ($reslist['fleet'] as $ID) {
                         $count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
-                        $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - :" . $resource[$ID];
-                        $params[':' . $resource[$ID]] = $count;
-                        $afterShips[$ID] = max(0, $beforeShips[$ID] -$count);
+                        if ($count > 0) {
+                            $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - :" . $resource[$ID];
+                            $params[':' . $resource[$ID]] = $count;
+                            $afterShips[$ID] = max(0, $beforeShips[$ID] - $count);
+                        }
                     }
-                    $sql .= implode(", ", $QryUpdate);
-                    $sql .= "WHERE `id` = :id AND `universe` = :universe;";
-                    $db->update($sql, array_merge($params, [
-                        ':id' => $id,
-                        ':universe' => Universe::getEmulated(),
-                    ]));
+                    if (!empty($QryUpdate)) {
+                        $sql .= implode(", ", $QryUpdate);
+                        $sql .= " WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, array_merge($params, [
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]));
+                    }
                 }
 
-                $LOG = new Log(2);
-                $LOG->target = $id;
-                $LOG->universe = Universe::getEmulated();
-                $LOG->old = $beforeShips;
-                $LOG->new = $afterShips;
-                $LOG->save();
+                if (!empty($QryUpdate)) {
+                    $LOG = new Log(2);
+                    $LOG->target = $id;
+                    $LOG->universe = Universe::getEmulated();
+                    $LOG->old = $beforeShips;
+                    $LOG->new = $afterShips;
+                    $LOG->save();
+                }
                 if (isset($_POST['add'])) {
                     $template->message($LNG['ad_add_ships_sucess'], '?page=accounteditor&edit=ships');
                 } elseif (isset($_POST['delete'])) {
@@ -193,39 +203,49 @@ function ShowAccountEditorPage()
                     $sql = "UPDATE %%PLANETS%% SET ";
                     foreach ($reslist['defense'] as $ID) {
                         $count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
-                        $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + :" . $resource[$ID];
-                        $params[':' . $resource[$ID]] = $count;
-                        $afterDef[$ID] = $beforeDef[$ID] + $count;
+                        if ($count > 0) {
+                            $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + :" . $resource[$ID];
+                            $params[':' . $resource[$ID]] = $count;
+                            $afterDef[$ID] = $beforeDef[$ID] + $count;
+                        }
                     }
-                    $sql .= implode(", ", $QryUpdate);
-                    $sql .= "WHERE `id` = :id AND `universe` = :universe;";
-                    $db->update($sql, array_merge($params, [
-                        ':id' => $id,
-                        ':universe' => Universe::getEmulated(),
-                    ]));
+                    if (!empty($QryUpdate)) {
+                        $sql .= implode(", ", $QryUpdate);
+                        $sql .= " WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, array_merge($params, [
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]));
+                    }
                 } elseif (isset($_POST['delete'])) {
                     $QryUpdate = [];
                     $sql = "UPDATE %%PLANETS%% SET ";
                     foreach ($reslist['defense'] as $ID) {
                         $count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
-                        $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - :" . $resource[$ID];
-                        $params[':' . $resource[$ID]] = $count;
-                        $afterDef[$ID] = max(0, $beforeDef[$ID] - $count);
+                        if ($count > 0) {
+                            $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - :" . $resource[$ID];
+                            $params[':' . $resource[$ID]] = $count;
+                            $afterDef[$ID] = max(0, $beforeDef[$ID] - $count);
+                        }
                     }
-                    $sql .= implode(", ", $QryUpdate);
-                    $sql .= "WHERE `id` = :id AND `universe` = :universe;";
-                    $db->update($sql, array_merge($params, [
-                        ':id' => $id,
-                        ':universe' => Universe::getEmulated(),
-                    ]));
+                    if (!empty($QryUpdate)) {
+                        $sql .= implode(", ", $QryUpdate);
+                        $sql .= " WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, array_merge($params, [
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]));
+                    }
                 }
 
-                $LOG = new Log(2);
-                $LOG->target = $id;
-                $LOG->universe = Universe::getEmulated();
-                $LOG->old = $beforeDef;
-                $LOG->new = $afterDef;
-                $LOG->save();
+                if (!empty($QryUpdate)) {
+                    $LOG = new Log(2);
+                    $LOG->target = $id;
+                    $LOG->universe = Universe::getEmulated();
+                    $LOG->old = $beforeDef;
+                    $LOG->new = $afterDef;
+                    $LOG->save();
+                }
                 if (isset($_POST['add'])) {
                     $template->message($LNG['ad_add_defenses_success'], '?page=accounteditor&edit=defenses');
                 } elseif (isset($_POST['delete'])) {
@@ -267,44 +287,55 @@ function ShowAccountEditorPage()
                     $sql = "UPDATE %%PLANETS%% SET `eco_hash` = '', ";
                     foreach ($reslist['allow'][$PlanetData['planet_type']] as $ID) {
                         $count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
-                        $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + :" . $resource[$ID];
-                        $params[':' . $resource[$ID]] = $count;
-                        $afterBuildings[$ID] = $beforeBuildings[$ID] + $count;
-                        $fields += $count;
+                        if ($count > 0) {
+                            $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + :" . $resource[$ID];
+                            $params[':' . $resource[$ID]] = $count;
+                            $afterBuildings[$ID] = $beforeBuildings[$ID] + $count;
+                            $fields += $count;
+                        }
                     }
-                    $sql .= implode(", ", $QryUpdate);
-                    $sql .= ", `field_current` = `field_current` + :fields WHERE `id` = :id AND `universe` = :universe;";
-                    $db->update($sql, array_merge($params, [
-                        ':fields' => $fields,
-                        ':id' => $id,
-                        ':universe' => Universe::getEmulated(),
-                    ]));
+                    if (!empty($QryUpdate)) {
+                        $sql .= implode(", ", $QryUpdate);
+                        $sql .= ", `field_current` = `field_current` + :fields WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, array_merge($params, [
+                            ':fields' => $fields,
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]));
+                    }
                 } elseif (isset($_POST['delete'])) {
                     $QryUpdate = [];
                     $fields = 0;
                     $sql = "UPDATE %%PLANETS%% SET `eco_hash` = '', ";
                     foreach ($reslist['allow'][$PlanetData['planet_type']] as $ID) {
                         $count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
-                        $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - :" . $resource[$ID];
-                        $params[':' . $resource[$ID]] = $count;
-                        $afterBuildings[$ID] = max($beforeBuildings[$ID] - $count, 0);
-                        $fields += $count;
+                        if ($count > 0) {
+                            $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - :" . $resource[$ID];
+                            $params[':' . $resource[$ID]] = $count;
+                            $afterBuildings[$ID] = max($beforeBuildings[$ID] - $count, 0);
+                            $fields += $count;
+                        }
                     }
-                    $sql .= implode(", ", $QryUpdate);
-                    $sql .= ", `field_current` = `field_current` - :fields WHERE `id` = :id AND `universe` = :universe;";
-                    $db->update($sql, array_merge($params, [
-                        ':fields' => $fields,
-                        ':id' => $id,
-                        ':universe' => Universe::getEmulated(),
-                    ]));
+                    if (!empty($QryUpdate)) {
+                        $sql .= implode(", ", $QryUpdate);
+                        $sql .= ", `field_current` = `field_current` - :fields WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, array_merge($params, [
+                            ':fields' => $fields,
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]));
+                    }
                 }
 
-                $LOG = new Log(2);
-                $LOG->target = $id;
-                $LOG->universe = Universe::getEmulated();
-                $LOG->old = $beforeBuildings;
-                $LOG->new = $afterBuildings;
-                $LOG->save();
+                if (!empty($QryUpdate)) {
+                    $LOG = new Log(2);
+                    $LOG->target = $id;
+                    $LOG->universe = Universe::getEmulated();
+                    $LOG->old = $beforeBuildings;
+                    $LOG->new = $afterBuildings;
+                    $LOG->save();
+                }
+
                 if (isset($_POST['add'])) {
                     $template->message($LNG['ad_add_build_success'], '?page=accounteditor&edit=buildings');
                 } elseif (isset($_POST['delete'])) {
@@ -340,39 +371,49 @@ function ShowAccountEditorPage()
                     $sql = "UPDATE %%USERS%% SET ";
                     foreach ($reslist['tech'] as $ID) {
                         $count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
-                        $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + :" . $resource[$ID];
-                        $params[':' . $resource[$ID]] = $count;
-                        $afterResearch[$ID] = $beforeResearch[$ID] + $count;
+                        if ($count > 0) {
+                            $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + :" . $resource[$ID];
+                            $params[':' . $resource[$ID]] = $count;
+                            $afterResearch[$ID] = $beforeResearch[$ID] + $count;
+                        }
                     }
-                    $sql .= implode(", ", $QryUpdate);
-                    $sql .= "WHERE `id` = :id AND `universe` = :universe;";
-                    $db->update($sql, array_merge($params, [
-                        ':id' => $id,
-                        ':universe' => Universe::getEmulated(),
-                    ]));
+                    if (!empty($QryUpdate)) {
+                        $sql .= implode(", ", $QryUpdate);
+                        $sql .= " WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, array_merge($params, [
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]));
+                    }
                 } elseif (isset($_POST['delete'])) {
                     $QryUpdate = [];
                     $sql = "UPDATE %%USERS%% SET ";
                     foreach ($reslist['tech'] as $ID) {
                         $count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
-                        $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - :" . $resource[$ID];
-                        $params[':' . $resource[$ID]] = $count;
-                        $afterResearch[$ID] = max(0, $beforeResearch[$ID] - $count);
+                        if ($count > 0) {
+                            $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - :" . $resource[$ID];
+                            $params[':' . $resource[$ID]] = $count;
+                            $afterResearch[$ID] = max(0, $beforeResearch[$ID] - $count);
+                        }
                     }
-                    $sql .= implode(", ", $QryUpdate);
-                    $sql .= "WHERE `id` = :id AND `universe` = :universe;";
-                    $db->update($sql, array_merge($params, [
-                        ':id' => $id,
-                        ':universe' => Universe::getEmulated(),
-                    ]));
+                    if (!empty($QryUpdate)) {
+                        $sql .= implode(", ", $QryUpdate);
+                        $sql .= " WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, array_merge($params, [
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]));
+                    }
                 }
 
-                $LOG = new Log(1);
-                $LOG->target = $id;
-                $LOG->universe = Universe::getEmulated();
-                $LOG->old = $beforeResearch;
-                $LOG->new = $afterResearch;
-                $LOG->save();
+                if (!empty($QryUpdate)) {
+                    $LOG = new Log(1);
+                    $LOG->target = $id;
+                    $LOG->universe = Universe::getEmulated();
+                    $LOG->old = $beforeResearch;
+                    $LOG->new = $afterResearch;
+                    $LOG->save();
+                }
                 if (isset($_POST['add'])) {
                     $template->message($LNG['ad_add_tech_success'], '?page=accounteditor&edit=researchs');
                 } elseif (isset($_POST['delete'])) {
@@ -452,7 +493,7 @@ function ShowAccountEditorPage()
 
                 $sql = "UPDATE %%USERS%% SET ";
                 $sql .= implode(", ", $QryUpdate);
-                $sql .= "WHERE `id` = :id AND `universe` = :universe;";
+                $sql .= " WHERE `id` = :id AND `universe` = :universe;";
                 $db->update($sql, array_merge($params, [
                     ':id' => $id,
                     ':universe' => Universe::getEmulated(),
@@ -680,7 +721,7 @@ function ShowAccountEditorPage()
 
                 $sql = "UPDATE %%PLANETS%% SET ";
                 $sql .= implode(", ", $QryUpdate);
-                $sql .= "WHERE `id` = :id AND `universe` = :universe;";
+                $sql .= " WHERE `id` = :id AND `universe` = :universe;";
                 $db->update($sql, array_merge($params, [
                     ':id' => $id,
                     ':universe' => Universe::getEmulated(),
@@ -695,7 +736,7 @@ function ShowAccountEditorPage()
                 if (isset($beforePlanet2)) {
                     $sql = "UPDATE %%PLANETS%% SET ";
                     $sql .= implode(", ", $QryUpdate2);
-                    $sql .= "WHERE `id` = :id AND `universe` = :universe;";
+                    $sql .= " WHERE `id` = :id AND `universe` = :universe;";
                     $db->update($sql, array_merge($params2, [
                         ':universe' => Universe::getEmulated(),
                     ]));
@@ -710,7 +751,7 @@ function ShowAccountEditorPage()
                 if (isset($beforePlanet3)) {
                     $sql = "UPDATE %%PLANETS%% SET ";
                     $sql .= implode(", ", $QryUpdate3);
-                    $sql .= "WHERE `id` = :id AND `universe` = :universe;";
+                    $sql .= " WHERE `id` = :id AND `universe` = :universe;";
                     $db->update($sql, array_merge($params3, [
                         ':universe' => Universe::getEmulated(),
                     ]));
@@ -772,13 +813,8 @@ function ShowAccountEditorPage()
                         $afterMember['ally_id'] = 0;
                         $afterMember['ally_rank_id'] = 0;
                         $afterMember['ally_register_time'] = 0;
-
-                        $LOG = new Log(2);
-                        $LOG->target = $member['id'];
-                        $LOG->universe = Universe::getEmulated();
-                        $LOG->old = $member;
-                        $LOG->new = $afterMember;
-                        $LOG->save();
+                        $beforeAlliance['USERS'][$member['id']] = $member;
+                        $afterAlliance['USERS'][$member['id']] = $afterMember;
                     }
 
                     $sql = "SELECT `id_owner`, `id_ally`, `stat_type` FROM %%STATPOINTS%% WHERE `id_ally` = :AllianceID;";
@@ -788,13 +824,8 @@ function ShowAccountEditorPage()
                     foreach ($beforeStats as $stats) {
                         $afterStats = $beforeStats;
                         $afterStats['id_ally'] = 0;
-
-                        $LOG = new Log(2);
-                        $LOG->target = $id;
-                        $LOG->universe = Universe::getEmulated();
-                        $LOG->old = $stats;
-                        $LOG->new = $afterStats;
-                        $LOG->save();
+                        $beforeAlliance['STATPOINTS'][1][] = $stats;
+                        $afterAlliance['STATPOINTS'][1][] = $afterStats;
                     }
                     $sql = "UPDATE %%STATPOINTS%% SET id_ally = '0' WHERE id_ally = :AllianceID;";
                     $db->update($sql, [
@@ -809,23 +840,13 @@ function ShowAccountEditorPage()
                     $db->delete($sql, [
                         ':AllianceID' => $id,
                     ]);
-                    $LOG = new Log(2);
-                    $LOG->target = $id;
-                    $LOG->universe = Universe::getEmulated();
-                    $LOG->old = $beforeStats;
-                    $LOG->new = [];
-                    $LOG->save();
+                    $beforeAlliance['STATPOINTS'][2] = $beforeStats;
+                    $afterAlliance['STATPOINTS'][2] = [];
 
                     $sql = "DELETE FROM %%ALLIANCE%% WHERE `id` = :AllianceID;";
                     $db->delete($sql, [
                         ':AllianceID' => $id,
                     ]);
-                    $LOG = new Log(2);
-                    $LOG->target = $id;
-                    $LOG->universe = Universe::getEmulated();
-                    $LOG->old = $beforeAlliance;
-                    $LOG->new = [];
-                    $LOG->save();
 
                     $sql = "SELECT * FROM %%ALLIANCE_REQUEST%% WHERE `allianceId` = :AllianceID;";
                     $beforeRequest = $db->selectSingle($sql, [
@@ -835,26 +856,25 @@ function ShowAccountEditorPage()
                     $db->delete($sql, [
                         ':AllianceID' => $id,
                     ]);
-                    $LOG = new Log(2);
-                    $LOG->target = $id;
-                    $LOG->universe = Universe::getEmulated();
-                    $LOG->old = $beforeRequest;
-                    $LOG->new = [];
-                    $LOG->save();
+                    $beforeAlliance['ALLIANCE_REQUEST'] = $beforeRequest;
+                    $afterAlliance['ALLIANCE_REQUEST'] = [];
 
                     $sql = "SELECT * FROM %%DIPLO%% WHERE `owner_1` = :AllianceID OR `owner_2` = :AllianceID;";
-                    $beforeDiplo = $db->selectSingle($sql, [
+                    $beforeDiplos = $db->select($sql, [
                         ':AllianceID' => $id,
                     ]);
                     $sql = "DELETE FROM %%DIPLO%% WHERE `owner_1` = :AllianceID OR `owner_2` = :AllianceID;";
                     $db->delete($sql, [
                         ':AllianceID' => $id,
                     ]);
-                    $LOG = new Log(2);
+                    $beforeAlliance['DIPLO'] = $beforeDiplos;
+                    $afterAlliance['DIPLO'] = [];
+
+                    $LOG = new Log(6);
                     $LOG->target = $id;
                     $LOG->universe = Universe::getEmulated();
-                    $LOG->old = $beforeDiplo;
-                    $LOG->new = [];
+                    $LOG->old = $beforeAlliance;
+                    $LOG->new = $afterAlliance;
                     $LOG->save();
 
                     $template->message($LNG['ad_ally_succes'], '?page=accounteditor&edit=alliances');
@@ -862,6 +882,32 @@ function ShowAccountEditorPage()
                 }
 
                 $afterAlliance = $beforeAlliance;
+
+                if ($changeleader > 0) {
+                    $sql = "SELECT `id`, `username`, `ally_rank_id` FROM %%USERS%% WHERE `id` = :newLeaderId AND `universe` = :universe;";
+                    $beforeNewLeader = $db->selectSingle($sql, [
+                        ':newLeaderId' => $changeleader,
+                        ':universe' => Universe::getEmulated(),
+                    ]);
+                    $afterNewLeader = $beforeNewLeader;
+
+                    if (!isset($beforeNewLeader)) {
+                        $template->message($LNG['ad_ally_not_exist2'], '?page=accounteditor&edit=alliances');
+                        exit;
+                    }
+
+                    $sql = "UPDATE %%USERS%% SET `ally_rank_id` = 0 WHERE `id` = :newLeaderId;";
+                    $db->update($sql, [
+                        ':newLeaderId' => $changeleader,
+                    ]);
+                    $afterNewLeader['ally_rank_id'] = 0;
+
+                    $QryUpdate[] = "`ally_owner` = :newLeader";
+                    $params[':newLeader'] = $changeleader;
+                    $afterAlliance['ally_owner'] = $changeleader;
+                    $beforeAlliance['USERS'][$changeleader] = $beforeNewLeader;
+                    $afterAlliance['USERS'][$changeleader] = $afterNewLeader;
+                }
 
                 if (!empty($delete_u)) {
                     $sql = "SELECT `id`, `username`, `ally_id`, `ally_register_time`, `ally_rank_id`
@@ -889,46 +935,10 @@ function ShowAccountEditorPage()
                     $afterMember['ally_rank_id'] = 0;
                     $afterMember['ally_register_time'] = 0;
 
-                    $LOG = new Log(2);
-                    $LOG->target = $delete_u;
-                    $LOG->universe = Universe::getEmulated();
-                    $LOG->old = $beforeMember;
-                    $LOG->new = $afterMember;
-                    $LOG->save();
-
                     $QryUpdate[] = "`ally_members` = ally_members - 1";
                     $afterAlliance['ally_members'] -= 1;
-                }
-
-                if ($changeleader > 0) {
-                    $sql = "SELECT `ally_rank_id` FROM %%USERS%% WHERE `id` = :newLeaderId AND `universe` = :universe;";
-                    $beforeNewLeader = $db->selectSingle($sql, [
-                        ':newLeaderId' => $changeleader,
-                        ':universe' => Universe::getEmulated(),
-                    ]);
-                    $afterNewLeader = $beforeNewLeader;
-
-                    if (!isset($beforeNewLeader)) {
-                        $template->message($LNG['ad_ally_not_exist2'], '?page=accounteditor&edit=alliances');
-                        exit;
-                    }
-
-                    $sql = "UPDATE %%USERS%% SET `ally_rank_id` = 0 WHERE `id` = :newLeaderId;";
-                    $db->update($sql, [
-                        ':newLeaderID' => $changeleader,
-                    ]);
-                    $afterNewLeader['ally_rank_id'] = 0;
-
-                    $LOG = new Log(2);
-                    $LOG->target = $changeleader;
-                    $LOG->universe = Universe::getEmulated();
-                    $LOG->old = $beforeNewLeader;
-                    $LOG->new = $afterNewLeader;
-                    $LOG->save();
-
-                    $QryUpdate[] = "`ally_owner` = :newLeader";
-                    $params[':newLeader'] = $changeleader;
-                    $afterAlliance['ally_owner'] = $changeleader;
+                    $beforeAlliance['USERS'][$delete_u] = $beforeMember;
+                    $afterAlliance['USERS'][$delete_u] = $afterMember;
                 }
 
                 if (!empty($name)) {
@@ -963,11 +973,18 @@ function ShowAccountEditorPage()
 
                 $sql = "UPDATE %%ALLIANCE%% SET ";
                 $sql .= implode(", ", $QryUpdate);
-                $sql .= "WHERE `id` = :id AND `ally_universe` = :universe;";
+                $sql .= " WHERE `id` = :id AND `ally_universe` = :universe;";
                 $db->update($sql, array_merge($params, [
                     ':id' => $id,
                     ':universe' => Universe::getEmulated(),
                 ]));
+
+                $LOG = new Log(6);
+                $LOG->target = $id;
+                $LOG->universe = Universe::getEmulated();
+                $LOG->old = $beforeAlliance;
+                $LOG->new = $afterAlliance;
+                $LOG->save();
 
                 $template->message($LNG['ad_ally_succes'], '?page=accounteditor&edit=alliances');
                 exit;

@@ -35,6 +35,9 @@ function ShowLog()
     #   target 2 => Stat-Settings
     #   target 5 => Impressum-Settings
     # 4 => Presents
+    # 5 => Transport Missions
+    # 6 => Alliance Changes
+    #   target => Alliance-ID
     #
     # TODO: LOG Search
 
@@ -50,6 +53,9 @@ function ShowLog()
             break;
         case 'present':
             ShowLogPresent();
+            break;
+        case 'alliance':
+            ShowLogAlliance();
             break;
         case 'detail':
             ShowLogDetail();
@@ -70,17 +76,83 @@ function ShowLogOverview()
     $template->show("LogOverview.tpl");
 }
 
+function loopLogArray(&$LogArray, $Wrapper, $dbTableNames, $conf_after, $array) {
+    foreach ($array as $key => $val) {
+        if ($key != 'universe') {
+            if (is_array($val)) {
+                if (array_key_exists($key, $dbTableNames)) {
+                    $LogArray[] = [
+                        'Table' => $key,
+                        'key' => $key2,
+                    ];
+                }
+                loopLogArray($LogArray, $Wrapper, $dbTableNames, $conf_after, $val);
+            } else {
+                addToLogArray($LogArray, $Wrapper, $conf_after, $key, $val);
+            }
+        }
+    }
+}
+
+function addToLogArray(&$LogArray, $Wrapper, $conf_after, $key, $val) {
+    $LNG =& Singleton()->LNG;
+
+    if (isset($LNG['tech'][$key])) {
+        $Element = $LNG['tech'][$key];
+    } elseif (isset($LNG['se_' . $key])) {
+        $Element = $LNG['se_' . $key];
+    } elseif (isset($LNG[$key])) {
+        $Element = $LNG[$key];
+    } elseif (isset($Wrapper[$key])) {
+        $Element = $Wrapper[$key];
+    } else {
+        $Element = $key;
+    }
+
+    if ($Element == 'urlaubs_until') {
+        $oldVaue = _date($LNG['php_tdformat'], $val);
+    } elseif (is_numeric($val)) {
+        $oldVaue = pretty_number($val);
+    } else {
+        $oldVaue = $val;
+    }
+
+    if (!isset($conf_after[$key])) {
+        $newVaue = 'Not found in Log';
+    } elseif ($Element == 'urlaubs_until') {
+        $newVaue = _date($LNG['php_tdformat'], $conf_after[$key]);
+    } elseif (is_numeric($conf_after[$key])) {
+        $newVaue = pretty_number($conf_after[$key]);
+    } else {
+        $newVaue = $conf_after[$key];
+    }
+
+    $LogArray[] = [
+        'Element'   => $Element,
+        'old'       => $oldVaue,
+        'new'       => $newVaue,
+    ];
+}
+
 function ShowLogDetail()
 {
     $LNG =& Singleton()->LNG;
     $USER =& Singleton()->USER;
     $logid = HTTP::_GP('id', 0);
-    $result     = $GLOBALS['DATABASE']->getFirstRow("SELECT l.*, u_a.username as admin_username FROM " . LOG
-        . " as l LEFT JOIN " . USERS . " as u_a ON  u_a.id = l.admin  WHERE l.id = " . $logid . "");
+    $sql = "SELECT l.*, u_a.`username` as admin_username FROM %%LOG%% AS l
+        LEFT JOIN %%USERS%% AS u_a ON u_a.`id` = l.`admin`
+        WHERE l.`id` = :logid;";
+    $result = Database::get()->selectSingle($sql, [
+        ':logid' => $logid,
+    ]);
 
     $data = unserialize($result['data']);
+    var_dump($data[0]);
+    var_dump($data[1]); die();
     $conf_before = [];
+    $tables_before = [];
     $conf_after = [];
+    $tables_after = [];
     foreach ($data[0] as $key => $i) {
         $conf_before[$key] = $i;
     }
@@ -108,43 +180,38 @@ function ShowLogDetail()
         'field_max'     => $LNG['qe_fields'],
     ];
 
+    $LogArray = [];
+
+    $dbTableNames = [];
+    require_once 'includes/dbtables.php';
+    loopLogArray($LogArray, $Wrapper, $dbTableNames, $conf_after, $conf_before);
+
     foreach ($conf_before as $key => $val) {
         if ($key != 'universe') {
-            if (isset($LNG['tech'][$key])) {
-                $Element = $LNG['tech'][$key];
-            } elseif (isset($LNG['se_' . $key])) {
-                $Element = $LNG['se_' . $key];
-            } elseif (isset($LNG[$key])) {
-                $Element = $LNG[$key];
-            } elseif (isset($Wrapper[$key])) {
-                $Element = $Wrapper[$key];
-            } else {
-                $Element = $key;
-            }
 
-            if ($Element == 'urlaubs_until') {
-                $oldVaue = _date($LNG['php_tdformat'], $val);
-            } elseif (is_numeric($val)) {
-                $oldVaue = pretty_number($val);
+            if (is_array($val)) {
+                foreach ($val as $key2 => $val2) {
+                    $LogArray[] = [
+                        'Table' => $key,
+                        'key' => $key2,
+                    ];
+                    if (is_array($val2)) {
+                        foreach ($val2 as $key3 => $val3) {
+                            if (is_array($val3)) {
+                                foreach ($val3 as $key4 => $val4) {
+                                    addToLogArray($LogArray, $Wrapper, $conf_after, $key4, $val4);
+                                }
+                            } else {
+                                addToLogArray($LogArray, $Wrapper, $conf_after, $key3, $val3);
+                            }
+                        }
+                    } else {
+                        addToLogArray($LogArray, $Wrapper, $conf_after, $key2, $val2);
+                    }
+                }
             } else {
-                $oldVaue = $val;
+                addToLogArray($LogArray, $Wrapper, $conf_after, $key, $val);
             }
-
-            if (!isset($conf_after[$key])) {
-                $newVaue = 'Not found in Log';
-            } elseif ($Element == 'urlaubs_until') {
-                $newVaue = _date($LNG['php_tdformat'], $conf_after[$key]);
-            } elseif (is_numeric($conf_after[$key])) {
-                $newVaue = pretty_number($conf_after[$key]);
-            } else {
-                $newVaue = $conf_after[$key];
-            }
-
-            $LogArray[] = [
-                'Element'   => $Element,
-                'old'       => $oldVaue,
-                'new'       => $newVaue,
-            ];
         }
     }
 
@@ -184,8 +251,9 @@ function ShowLogSettingsList()
     $template->assign_vars([
         'signalColors' => $USER['signalColors']
     ]);
-    if (!$result) {
-        $template->message($LNG['log_no_data']);
+    if (empty($result)) {
+        $template->message($LNG['log_no_data'], '?page=log');
+        exit;
     }
 
     $targetkey = [
@@ -237,8 +305,9 @@ function ShowLogPlanetsList()
     $template->assign_vars([
         'signalColors' => $USER['signalColors']
     ]);
-    if (!$result) {
-        $template->message($LNG['log_no_data']);
+    if (empty($result)) {
+        $template->message($LNG['log_no_data'], '?page=log');
+        exit;
     }
 
     while ($LogRow = $GLOBALS['DATABASE']->fetch_array($result)) {
@@ -283,8 +352,9 @@ function ShowLogPlayersList()
     $template->assign_vars([
         'signalColors' => $USER['signalColors']
     ]);
-    if (!$result) {
-        $template->message($LNG['log_no_data']);
+    if (empty($result)) {
+        $template->message($LNG['log_no_data'], '?page=log');
+        exit;
     }
 
     while ($LogRow = $GLOBALS['DATABASE']->fetch_array($result)) {
@@ -325,8 +395,9 @@ function ShowLogPresent()
     $template->assign_vars([
         'signalColors' => $USER['signalColors']
     ]);
-    if (!$result) {
-        $template->message($LNG['log_no_data']);
+    if (empty($result)) {
+        $template->message($LNG['log_no_data'], '?page=log');
+        exit;
     }
 
     while ($LogRow = $GLOBALS['DATABASE']->fetch_array($result)) {
@@ -349,6 +420,53 @@ function ShowLogPresent()
         'log_time'      => $LNG['log_time'],
         'log_uni'       => $LNG['log_uni_short'],
         'log_target'    => $LNG['log_target_user'],
+        'log_id'        => $LNG['log_id'],
+        'log_view'      => $LNG['log_view'],
+    ]);
+    $template->show("LogList.tpl");
+}
+
+function ShowLogAlliance()
+{
+    $LNG =& Singleton()->LNG;
+    $USER =& Singleton()->USER;
+    $sql = "SELECT DISTINCT l.`id`, u_a.`username` AS admin_username, l.`universe`, l.`time`,
+        CONCAT(a.`id`, ' - ', a.`ally_name`, ' [', a.`ally_tag`, ']') AS alliance
+        FROM %%LOG%% AS l
+        LEFT JOIN %%USERS%% AS u_a ON u_a.`id` = l.`admin`
+        LEFT JOIN %%ALLIANCE%% AS a ON a.`id` = l.`target`
+        WHERE mode = 6
+        ORDER BY l.`id` DESC;";
+    $result = Database::get()->select($sql);
+
+    $template   = new template();
+    $template->assign_vars([
+        'signalColors' => $USER['signalColors']
+    ]);
+    if (empty($result)) {
+        $template->message($LNG['log_no_data'], '?page=log');
+        exit;
+    }
+
+    foreach ($result as $LogRow) {
+        $LogArray[] = [
+            'id'        => $LogRow['id'],
+            'admin'     => $LogRow['admin_username'],
+            'target_uni' => $LogRow['universe'],
+            'target'    => $LogRow['alliance'],
+            'time'      => _date($LNG['php_tdformat'], $LogRow['time'], $USER['timezone']),
+        ];
+    }
+    if (!isset($LogArray)) {
+        $LogArray = [];
+    }
+    $template->assign_vars([
+        'LogArray'      => $LogArray,
+        'log_log'       => $LNG['log_log'],
+        'log_admin'     => $LNG['log_admin'],
+        'log_time'      => $LNG['log_time'],
+        'log_uni'       => $LNG['log_uni_short'],
+        'log_target'    => $LNG['log_target_alliance'],
         'log_id'        => $LNG['log_id'],
         'log_view'      => $LNG['log_view'],
     ]);
