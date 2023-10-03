@@ -1293,6 +1293,7 @@ $LNG['stb_big_time'] = 'Buena relación recursos por segundo';
 
 //----------------------------------------------------------------------------//
 //Achievements
+$LNG['Description'] = 'Descripción';
 $LNG['Achievements'] = 'Logros';
 $LNG['Achievement_names'] = [
     1 => 'Sin dormir y de mal humor',

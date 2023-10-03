@@ -1346,6 +1346,7 @@ $LNG['stb_big_time'] = 'Good resources per second ratio';
 
 //----------------------------------------------------------------------------//
 //Achievements
+$LNG['Description'] = 'Beschreibung';
 $LNG['Achievements'] = 'Achievements';
 $LNG['Achievement_names'] = [
     1 => 'Schlaflos und mies gelaunt',

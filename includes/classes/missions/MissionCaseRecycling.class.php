@@ -107,10 +107,8 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
                     $recCount += $shipAmount;
                 }
             }
-            require_once 'includes/classes/Achievement.class.php';
-            if (!Achievement::checkAchievement($this->_fleet['fleet_owner'], 16) && $collectedGoods[901] == 0 && $collectedGoods[902] == 0 && $recCount >= 250) {
-                Achievement::setAchievement($this->_fleet['fleet_owner'], 16);
-            }
+            require_once 'includes/classes/achievements/MiscAchievement.class.php';
+            MiscAchievement::checkRecAchievements($this->_fleet['fleet_owner'], $collectedGoods, $recCount);
         }
 
         $LNG = $this->getLanguage(null, $this->_fleet['fleet_owner']);

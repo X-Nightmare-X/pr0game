@@ -1292,6 +1292,7 @@ $LNG['stb_big_time'] = 'Stosunek dobrych zasobów na sekundę';
 
 //----------------------------------------------------------------------------//
 //Achievements
+$LNG['Description'] = 'Opis';
 $LNG['Achievements'] = 'Osiągnięcia';
 $LNG['Achievement_names'] = [
     1 => 'Bezsenność i zły nastrój',

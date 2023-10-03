@@ -641,7 +641,6 @@ HTML;
 
 
         $GetEvent = $this->chooseEvent();
-        require_once 'includes/classes/Achievement.class.php';
         if ($GetEvent < 370) {
             // Find resources: 37%. Values from http://owiki.de/Expedition + 4.5% compensation for dark matter
             $Message .= $this->handleEventFoundRes();
@@ -660,15 +659,9 @@ HTML;
             $Message .= $LNG['sys_expe_lost_fleet_' . mt_rand(1, 4)];
             $this->eventtype = "Lost";
             $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], "black_hole");
-            $sql = 'SELECT expo_count, expo_black_hole FROM %%ADVANCED_STATS%% WHERE userId = :userId;';
-            $expoStats = Database::get()->selectSingle($sql, [
-                ':userId' => $this->_fleet['fleet_owner'],
-            ],);
-            if ($expoStats['expo_count'] == 0 && !Achievement::checkAchievement($this->_fleet['fleet_owner'], 12)) {
-				Achievement::setAchievement($this->_fleet['fleet_owner'], 12);
-			} else if ($expoStats['expo_black_hole'] == 10 && !Achievement::checkAchievement($this->_fleet['fleet_owner'], 14)) {
-                Achievement::setAchievement($this->_fleet['fleet_owner'], 14);
-            }
+            require_once 'includes/classes/achievements/MiscAchievement.class.php';
+            MiscAchievement::checkExpoAchievements($this->_fleet['fleet_owner']);
+            
         } elseif ($GetEvent < 812) {
             // The fleet delays or return earlier: 9%
             # http://owiki.de/Expedition#Ver.C3.A4nderte_Flugzeit

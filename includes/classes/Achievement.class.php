@@ -47,49 +47,4 @@ class Achievement
 		));
 		return $achievementList;
 	}
-	static public function vacationAchievement($userID)
-	{
-		$db = Database::get();
-		$sql = "SELECT raport FROM %%RW%% 
-			WHERE (defender LIKE '%,:user' OR defender = :user) 
-			AND 'time' > :sixHours;";
-		$attacks = $db->select($sql, array(
-			':user'			=> $userID,
-			':sixHours'		=> TIMESTAMP - TIME_6_HOURS
-		));
-		if ($attacks) {
-			foreach ($attacks as $attack) {
-				$combatReport = unserialize($attack['raport']);
-				
-				if ($combatReport['result'] != 'a') {
-					continue;
-				}
-				foreach ($combatReport['rounds'][0]['attacker'] as $attacker) {
-					if (!Achievement::checkAchievement($attacker['userID'], 31)) {
-						Achievement::setAchievement($attacker['userID'], 31);
-					}
-				}
-			}
-		}
-		$sql = "SELECT raport FROM %%RW%% 
-			WHERE (attacker LIKE ':user,%' OR attacker LIKE '%,:user,%' OR attacker LIKE '%,:user' or attacker = :user) 
-			AND 'time' > :sixHours;";
-		$attacks = $db->select($sql, array(
-			':user'			=> $userID,
-			':sixHours'		=> TIMESTAMP - TIME_6_HOURS
-		));
-		if ($attacks) {
-			foreach ($attacks as $attack) {
-				$combatReport = unserialize($attack['raport']);
-				if ($combatReport['result'] != 'r') {
-					continue;
-				}
-				foreach ($combatReport['rounds'][0]['defender'] as $defender) {
-					if (!Achievement::checkAchievement($defender['userID'], 31)) {
-						Achievement::setAchievement($defender['userID'], 31);
-					}
-				}
-			}
-		}
-	}
 }

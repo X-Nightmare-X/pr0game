@@ -603,10 +603,8 @@ class ShowSettingsPage extends AbstractGamePage
 
         $db->commit();
 
-        if (!Achievement::checkAchievement($USER['id'], 25) && $recordsOptIn == 1) {
-            Achievement::setAchievement($USER['id'], 25);
-        }
-
+        require_once 'includes/classes/achievements/MiscAchievement.class.php';
+        MiscAchievement::checkSettingsAchievements($USER['id'], $recordsOptIn);
         if ($vacation == 1) {
             $this->printMessage($LNG['op_options_changed_vacation'], [
                 [

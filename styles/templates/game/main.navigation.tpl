@@ -77,6 +77,7 @@
   {if isModuleAvailable($smarty.const.MODULE_RECORDS)}
     <li><a href="game.php?page=records">{$LNG.lm_records}</a></li>
   {/if}
+  <li><a href="game.php?page=achievements">{$LNG.Achievements}</a></li>
 
   <li class="menu-separator"></li>
   {if isModuleAvailable($smarty.const.MODULE_NOTICE)}

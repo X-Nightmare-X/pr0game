@@ -1351,6 +1351,7 @@ $LNG['stb_big_time'] = 'Gutes Ressourcen pro Zeit Verhältniss';
 
 //----------------------------------------------------------------------------//
 //Achievements
+$LNG['Description'] = 'Beschreibung';
 $LNG['Achievements'] = 'Achievements';
 $LNG['Achievement_names'] = [
     1 => 'Schlaflos und mies gelaunt',
@@ -1490,4 +1491,6 @@ $LNG['Achievement_text'] = [
     54 => 'Time einen Angriff auf einen aktiven Spieler auf den 01.01. 00:00:00',
     55 => 'Sonderachievement',
 ];
+
+
 // Translated into German by Jan . All rights reversed (C) 2011

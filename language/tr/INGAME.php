@@ -1303,6 +1303,7 @@ $LNG['stb_big_time'] = 'Saniye başına iyi kaynak oranı';
 
 //----------------------------------------------------------------------------//
 //Achievements
+$LNG['Description'] = 'Açıklama';
 $LNG['Achievements'] = 'Başarılar';
 $LNG['Achievement_names'] = [
     1 => 'Uykusuz ve kötü bir ruh hali içinde',
