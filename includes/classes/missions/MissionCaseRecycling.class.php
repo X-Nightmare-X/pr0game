@@ -103,7 +103,7 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
             $fleetData = FleetFunctions::unserialize($this->_fleet['fleet_array']);
             $recCount = 0;
             foreach ($fleetData as $shipId => $shipAmount) {
-                if ($shipId == 209 ||  $shipId == 219) {
+                if ($shipId == SHIP_RECYCLER ||  $shipId == GIGA_RECYKLER) {
                     $recCount += $shipAmount;
                 }
             }
@@ -116,8 +116,8 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
         $Message = sprintf(
             $LNG['sys_recy_gotten'],
             GetTargetAddressLink($this->_fleet, ''),
-            pretty_number($collectedGoods[901]),
-            pretty_number($collectedGoods[902]),
+            pretty_number($collectedGoods[RESOURCE_METAL]),
+            pretty_number($collectedGoods[RESOURCE_CRYSTAL]),
             pretty_number($targetData[$resQuery[0]]),
             pretty_number($targetData[$resQuery[1]]),
             $LNG['tech'][901],

@@ -245,12 +245,23 @@ define('RESOURCE_DEUT', 903);
 define('RESOURCE_ENERGY', 911);
 
 // buildings
+define('metal_mine', 1);
+define('crystal_mine', 2);
+define('deuterium_sintetizer', 3);
+define('solar_plant', 4);
+define('university', 6);
+define('fusion_plant', 12);
 define('ROBOT_FACTORY', 14);
 define('NANITE_FACTORY', 15);
 define('SHIPYARD', 21);
+define('METAL_STORE', 22);
+define('CRYSTAL_STORE', 23);
+define('DEUTERIUM_STORE', 24);
 define('RESEARCH_LABORATORY', 31);
 define('TERRAFORMER', 33);
 define('MOONBASE', 41);
+define('PHALANX', 42);
+define('SPRUNGTOR', 43);
 define('SILO', 44);
 
 // ships
@@ -268,6 +279,10 @@ define('SHIP_SOLSAT', 212);
 define('SHIP_DESTROYER', 213);
 define('SHIP_RIP', 214);
 define('SHIP_BATTLECRUISER', 215);
+define('LUNE_NOIR', 216);
+define('EV_TRANSPORTER', 217);
+define('STAR_CRASHER', 218);
+define('GIGA_RECYKLER', 219);
 
 // Defense
 define('MISSILE_LAUNCHER', 401);
@@ -319,3 +334,49 @@ define('UNIVERSE_BALL', 2);
 define('GALAXY_LINEAR', 0);
 define('GALAXY_CIRCULAR', 1);
 define('GALAXY_BALL', 2);
+
+// technologies
+define('SPY_TECH', 106);
+define('COMPUTER_TECH', 108);
+define('MILITARY_TECH', 109);
+define('SHIELD_TECH', 110);
+define('DEFENCE_TECH', 111);
+define('ENERGY_TECH', 113);
+define('HYPERSPACE_TECH', 114);
+define('COMBUSTION_TECH', 115);
+define('IMPULSE_MOTOR_TECH', 117);
+define('HYPERSPACE_MOTOR_TECH', 118);
+define('LASER_TECH', 120);
+define('IONIC_TECH', 121);
+define('BUSTER_TECH', 122);
+define('INTERGALACTIC_TECH', 123);
+define('EXPEDITION_TECH', 124);
+define('METAL_PROC_TECH', 131);
+define('CRYSTAL_PROC_TECH', 132);
+define('DEUTERIUM_PROC_TECH', 133);
+define('GRAVITON_TECH', 199);
+
+//achievements
+define('NOT_IMPLEMENTED_ACHIEVEMENTS', [
+    1,
+    2,
+    11,
+    13,
+    15,
+    18,
+    29,
+    30,
+    41,
+    42,
+    44,
+    46,
+    50,
+    51,
+    53,
+    54
+ ]);
+
+ //battle
+ define('REAL_FIGHT', 1);
+ define('SIM_FIGHT', 2);
+ define('EXPO_FIGHT', 3);

@@ -98,6 +98,25 @@
 		<td>{$LNG.pl_dercrystal}</td>
 		<td colspan="3">{$kbcrystal}</td>
 	</tr>
+	<tr>
+		<th colspan="4">{$realdestory}:</th>
+	</tr>
+	<tr>
+		<td>{$LNG.pl_unitsshot}</td>
+		<td colspan="3">{$realdesunits}</td>
+	</tr>
+	<tr>
+		<td>{$LNG.pl_unitslose}</td>
+		<td colspan="3">{$reallostunits}</td>
+	</tr>
+	<tr>
+		<td>{$LNG.pl_dermetal}</td>
+		<td colspan="3">{$realmetal}</td>
+	</tr>
+	<tr>
+		<td>{$LNG.pl_dercrystal}</td>
+		<td colspan="3">{$realcrystal}</td>
+	</tr>
 {if $id != $yourid}
 	<tr>
 		<th colspan="4">{$LNG.pl_etc}</th>
@@ -122,5 +141,6 @@
 				{/foreach}
 			{/if}
 		</td>
+	</tr>
 </table>
 {/block}

@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-function GenerateReport($combatResult, $reportInfo, $isReal = false, $isSimul = false, $isExpo = false)
+function GenerateReport($combatResult, $reportInfo, $battleType)
 {
     $Destroy	= ['att' => 0, 'def' => 0];
     $DATA		= [];
@@ -110,7 +110,7 @@ function GenerateReport($combatResult, $reportInfo, $isReal = false, $isSimul = 
         }
     }
     
-    if ($isReal) {
+    if ($battleType == REAL_FIGHT) {
         require_once 'includes/classes/achievements/BattleAchievement.class.php';
 		$db = Database::get();
 		$mainAttacker = $reportInfo['thisFleet']['fleet_owner'];
@@ -124,7 +124,7 @@ function GenerateReport($combatResult, $reportInfo, $isReal = false, $isSimul = 
 			$shiptypes = explode (";", $reportInfo['thisFleet']["fleet_array"]);
 			foreach ($shiptypes as $shiptype) {
 				$ship = explode (",", $shiptype);
-				if ($ship[0] == 214) {
+				if ($ship[0] == SHIP_RIP) {
 					$sql = "UPDATE %%ADVANCED_STATS%% SET destroy_moon_rips_lost = destroy_moon_rips_lost + :lost WHERE userId = :userId";
 					$db->update($sql, [
 						':lost' => $ship[1],
@@ -145,7 +145,7 @@ function GenerateReport($combatResult, $reportInfo, $isReal = false, $isSimul = 
 		}
 		BattleAchievement::checkBattleAchievements($reportInfo, $combatResult, $DATA);
 	}
-	if ($isExpo) {
+	if ($battleType == EXPO_FIGHT) {
         require_once 'includes/classes/achievements/BattleAchievement.class.php';
 		BattleAchievement::checkExpoBattleAchievements($reportInfo, $combatResult);
 	}

@@ -4,9 +4,7 @@
 {block name="content"}
 	
 <style>
-    
-    .minus {
-        display:none;	}
+    .minus { display:none;	}
 </style>
 {if $messages}
 	<div class="message"><a href="?page=messages">{$messages}</a></div>

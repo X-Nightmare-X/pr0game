@@ -439,7 +439,7 @@ HTML;
             'fleetDestroySuccess' => null,
         ];
 
-        $reportData = GenerateReport($combatResult, $reportInfo, false, false, true);
+        $reportData = GenerateReport($combatResult, $reportInfo, EXPO_FIGHT);
         $reportID = md5(uniqid('', true) . TIMESTAMP);
 
         $sql = "INSERT INTO %%RW%% SET
@@ -638,7 +638,6 @@ HTML;
         // Get a seed into the number generator (to make the results unpredictable).
         mt_srand(floor(microtime(true) * 10000));
         usleep(50);
-
 
         $GetEvent = $this->chooseEvent();
         if ($GetEvent < 370) {

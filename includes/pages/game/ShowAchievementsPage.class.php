@@ -34,11 +34,10 @@ class ShowAchievementsPage extends AbstractGamePage
         $Messages		    = $USER['messages'];
         $allAchievements    = Achievement::getAchievementList();
         $userAchievements   = Achievement::getUserAchievements($USER['id']);
-        $notImplemented        = array(1,2,11,13,15,18,29,30,41,42,44,46,50,51,53,54);
         $this->assign([
             'allAchievements'		=> $allAchievements,
             'userAchievements'		=> $userAchievements,
-            'notImplemented'		=> $notImplemented,
+            'notImplemented'		=> NOT_IMPLEMENTED_ACHIEVEMENTS,
             'messages'			    => ($Messages > 0) ? (($Messages == 1) ? $LNG['ov_have_new_message'] : sprintf($LNG['ov_have_new_messages'], pretty_number($Messages))) : false,
         ]);
 

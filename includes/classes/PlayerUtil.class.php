@@ -529,26 +529,26 @@ class PlayerUtil
             ':metal_start'      => $config->metal_start,
             ':crystal_start'    => $config->crystal_start,
             ':deuterium_start'  => $config->deuterium_start,
-            ':creation_time'    => TIMESTAMP
+            ':creation_time'    => TIMESTAMP,
         ];
 
         $sql = 'INSERT INTO %%PLANETS%% SET
-		name		= :name,
-		universe    = :universe,
-		id_owner    = :userId,
-		galaxy		= :galaxy,
-		system		= :system,
-		planet		= :position,
-		last_update = :updateTimestamp,
-		planet_type = :type,
-		image		= :imageName,
-		diameter    = :diameter,
-		field_max   = :maxFields,
-		temp_min 	= :minTemperature,
-		temp_max 	= :maxTemperature,
-		metal		= :metal_start,
-		crystal		= :crystal_start,
-		deuterium   = :deuterium_start,
+		name		    = :name,
+		universe        = :universe,
+		id_owner        = :userId,
+		galaxy		    = :galaxy,
+		system		    = :system,
+		planet		    = :position,
+		last_update     = :updateTimestamp,
+		planet_type     = :type,
+		image		    = :imageName,
+		diameter        = :diameter,
+		field_max       = :maxFields,
+		temp_min 	    = :minTemperature,
+		temp_max 	    = :maxTemperature,
+		metal		    = :metal_start,
+		crystal		    = :crystal_start,
+		deuterium       = :deuterium_start,
         creation_time   = :creation_time;';
 
         $db->insert($sql, $params);
@@ -842,6 +842,8 @@ class PlayerUtil
                 ':planetId' => $planetId
             ]);
         } else {
+            require_once 'includes/classes/achievements/PlayerUtilAchievement.class.php';
+            PlayerUtilAchievement::checkPlayerUtilAchievementsDeletion($planetData, $planetId);
             $sql = "UPDATE %%PLANETS%% SET destruyed = :time WHERE id = :planetID;";
             $db->update($sql, [
                 ':time'   => TIMESTAMP + 86400,
@@ -851,8 +853,6 @@ class PlayerUtil
             $db->delete($sql, [
                 ':lunaID' => $planetData['id_luna']
             ]);
-            require_once 'includes/classes/achievements/PlayerUtilAchievement.class.php';
-            PlayerUtilAchievement::checkPlayerUtilAchievementsDeletion($planetData, $planetId);
         }
 
         return true;

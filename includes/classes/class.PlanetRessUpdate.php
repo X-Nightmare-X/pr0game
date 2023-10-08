@@ -885,7 +885,7 @@ class ResourceUpdate
                 if (empty($resource[$Element])) {
                     continue;
                 }
-                require_once 'includes/classes/achievements/PlanetResAchievement.class.php';
+                require_once 'includes/classes/achievements/PlanetRessAchievement.class.php';
                 if (in_array($Element, $reslist['one'])) {
                     $buildQueries[] = ', p.' . $resource[$Element] . ' = :' . $resource[$Element];
                     $params[':' . $resource[$Element]] = '1';
@@ -893,14 +893,14 @@ class ResourceUpdate
                     if ($Element < 100) { // Set building level directly
                         if ($PLANET['planet_type'] == 3 && ($Element == 22 || $Element == 23 || $Element == 24) && $Count == 3) {
                                 $PLANET[$resource[$Element]] = $Count;
-                                PlanetResAchievement::checkPlanetResAchievements28($PLANET, $resource, $USER['id']);
+                                PlanetRessAchievement::checkPlanetRessAchievements28($PLANET, $resource, $USER['id']);
                         }
                     }
                     else { //ships, def and rockets
-                        PlanetResAchievement::checkPlanetResAchievementsShips($Element, $USER['id']);
+                        PlanetRessAchievement::checkPlanetRessAchievementsShips($Element, $USER['id']);
                     }
                 } elseif (isset($USER[$resource[$Element]])) { // Set research level directly
-                    PlanetResAchievement::checkPlanetResAchievementsResearch($Element, $USER['id'], $Count);
+                    PlanetRessAchievement::checkPlanetRessAchievementsResearch($Element, $USER['id'], $Count);
                 }
             }
         }

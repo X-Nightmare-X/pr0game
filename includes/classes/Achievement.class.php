@@ -8,6 +8,13 @@
 
 class Achievement
 {
+	/**
+	 * Return all Achievements unlocked by a player.
+	 *
+	 * @param int     	$userID       		The id of the User
+	 * 
+	 * @return array
+	 */
 	static public function getUserAchievements($userID)
 	{
 		$db = Database::get();
@@ -17,7 +24,11 @@ class Achievement
 		));
 		return $achievementList;
 	}
-
+	/**
+	 * Return all Achievements.
+	 *
+	 * @return array
+	 */
 	static public function getAchievementList()
 	{
 		$db = Database::get();
@@ -25,7 +36,13 @@ class Achievement
 		$achievementList = $db->select($sql);
 		return $achievementList;
 	}
-
+	/**
+	 * Unlock a specific axhievement for a User.
+	 *
+	 * @param int     		$userID       		The id of the User
+	 * @param int      		$achievementID     	The id of the Achievement
+	 * 
+	 */
 	static public function setAchievement($userID, $achievementID)
 	{
 		$db = Database::get();
@@ -36,7 +53,14 @@ class Achievement
 			':date'			=> TIMESTAMP
 		));
 	}
-
+	/**
+	 * Check if a User has a specific Achievement unlocked.
+	 *
+	 * @param int     	$userID       		The id of the User
+	 * @param int      	$achievementID     	The id of the Achievement
+	 *
+	 * @return array
+	 */
 	static public function checkAchievement($userID, $achievementID)
 	{
 		$db = Database::get();
