@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-function GenerateReport($combatResult, $reportInfo)
+function GenerateReport($combatResult, $reportInfo, $battleType)
 {
     $Destroy	= ['att' => 0, 'def' => 0];
     $DATA		= [];
@@ -36,7 +36,6 @@ function GenerateReport($combatResult, $reportInfo)
         'fleetDestroySuccess'	=> (int) $reportInfo['fleetDestroySuccess']
     ];
     $DATA['repaired'] = $combatResult['repaired'];
-
     if (isset($reportInfo['additionalInfo'])) {
         $DATA['additionalInfo'] = $reportInfo['additionalInfo'];
     } else {
@@ -110,5 +109,45 @@ function GenerateReport($combatResult, $reportInfo)
             $DATA['rounds'][$Round]['info']	= [null, null, null, null];
         }
     }
+    
+    if ($battleType == REAL_FIGHT) {
+        require_once 'includes/classes/achievements/BattleAchievement.class.php';
+		$db = Database::get();
+		$mainAttacker = $reportInfo['thisFleet']['fleet_owner'];
+		if ($DATA['moon']['moonDestroySuccess'] == 1) {
+			$sql = "UPDATE %%ADVANCED_STATS%% SET moons_destroyed = moons_destroyed + 1 WHERE userId = :userId";
+			$db->update($sql, [
+				':userId' => $mainAttacker,
+			]);
+		}
+		if ($DATA['moon']['fleetDestroySuccess'] == 1) {
+			$shiptypes = explode (";", $reportInfo['thisFleet']["fleet_array"]);
+			foreach ($shiptypes as $shiptype) {
+				$ship = explode (",", $shiptype);
+				if ($ship[0] == SHIP_RIP) {
+					$sql = "UPDATE %%ADVANCED_STATS%% SET destroy_moon_rips_lost = destroy_moon_rips_lost + :lost WHERE userId = :userId";
+					$db->update($sql, [
+						':lost' => $ship[1],
+						':userId' => $mainAttacker,
+					]);
+				}
+			}
+		}
+		$sql = "SELECT dpath FROM %%USERS%% WHERE id = :id;";
+		$theme = $db->selectSingle($sql, array(
+			':id' => $mainAttacker,
+		), 'dpath');
+		if (($combatResult['won'] == "a" && $theme == "SetSail")) {
+			$sql = "UPDATE %%ADVANCED_STATS%% SET set_sail_wins = set_sail_wins + 1 WHERE userId = :userId";
+			$db->update($sql, [
+				':userId' => $mainAttacker,
+			]);
+		}
+		BattleAchievement::checkBattleAchievements($reportInfo, $combatResult, $DATA);
+	}
+	if ($battleType == EXPO_FIGHT) {
+        require_once 'includes/classes/achievements/BattleAchievement.class.php';
+		BattleAchievement::checkExpoBattleAchievements($reportInfo, $combatResult);
+	}
     return $DATA;
 }

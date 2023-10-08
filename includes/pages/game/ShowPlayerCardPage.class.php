@@ -160,8 +160,20 @@ class ShowPlayerCardPage extends AbstractGamePage
             'build_percent' => $query['build_percent'] == 0 ? '0,00' : round($query['build_percent'], 2),
             'defs_percent'  => $query['defs_percent'] == 0 ? '0,00' : round($query['defs_percent'], 2),
             'fleet_percent' => $query['fleet_percent'] == 0 ? '0,00' : round($query['fleet_percent'], 2),
+            'achievements'	=> $this->get_achievements($PlayerID),
         ]);
 
         $this->display('page.playerCard.default.tpl');
     }
+    function get_achievements($userid)
+	{
+		$db = Database::get();
+		$sql = "SELECT a.id, a.name, a.image FROM %%ACHIEVEMENTS%% a 
+				INNER JOIN %%USERS_TO_ACHIEVEMENTS%% ua ON ua.achievementID = a.id
+				WHERE ua.userID = :userID;";
+		$achievementResult = $db->select($sql, array(
+			':userID'	=> $userid
+		));
+		return $achievementResult;
+	}
 }

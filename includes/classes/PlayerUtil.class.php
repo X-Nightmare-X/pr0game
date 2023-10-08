@@ -490,6 +490,13 @@ class PlayerUtil
             $maxFields = (int) floor($planetData[$dataIndex]['fields'] * $config->planet_factor);
             $maxTemperature = $planetData[$dataIndex]['temp'];
         }
+
+        require_once 'includes/classes/achievements/PlayerUtilAchievement.class.php';
+        $sql = 'SELECT galaxy FROM %%USERS%% WHERE id = :userId;';
+        $hpGala = $db->selectSingle($sql, [
+            ':userId' => $userId,
+        ], 'galaxy');
+        PlayerUtilAchievement::checkPlayerUtilAchievements40($isHome, $hpGala, $userId, $galaxy, $config);
         $minTemperature = $maxTemperature - 40;
 
         $diameter = (int) floor(1000 * sqrt($maxFields));
@@ -521,26 +528,28 @@ class PlayerUtil
             ':maxTemperature'   => $maxTemperature,
             ':metal_start'      => $config->metal_start,
             ':crystal_start'    => $config->crystal_start,
-            ':deuterium_start'  => $config->deuterium_start
+            ':deuterium_start'  => $config->deuterium_start,
+            ':creation_time'    => TIMESTAMP,
         ];
 
         $sql = 'INSERT INTO %%PLANETS%% SET
-		name		= :name,
-		universe    = :universe,
-		id_owner    = :userId,
-		galaxy		= :galaxy,
-		system		= :system,
-		planet		= :position,
-		last_update = :updateTimestamp,
-		planet_type = :type,
-		image		= :imageName,
-		diameter    = :diameter,
-		field_max   = :maxFields,
-		temp_min 	= :minTemperature,
-		temp_max 	= :maxTemperature,
-		metal		= :metal_start,
-		crystal		= :crystal_start,
-		deuterium   = :deuterium_start;';
+		name		    = :name,
+		universe        = :universe,
+		id_owner        = :userId,
+		galaxy		    = :galaxy,
+		system		    = :system,
+		planet		    = :position,
+		last_update     = :updateTimestamp,
+		planet_type     = :type,
+		image		    = :imageName,
+		diameter        = :diameter,
+		field_max       = :maxFields,
+		temp_min 	    = :minTemperature,
+		temp_max 	    = :maxTemperature,
+		metal		    = :metal_start,
+		crystal		    = :crystal_start,
+		deuterium       = :deuterium_start,
+        creation_time   = :creation_time;';
 
         $db->insert($sql, $params);
 
@@ -833,6 +842,8 @@ class PlayerUtil
                 ':planetId' => $planetId
             ]);
         } else {
+            require_once 'includes/classes/achievements/PlayerUtilAchievement.class.php';
+            PlayerUtilAchievement::checkPlayerUtilAchievementsDeletion($planetData, $planetId);
             $sql = "UPDATE %%PLANETS%% SET destruyed = :time WHERE id = :planetID;";
             $db->update($sql, [
                 ':time'   => TIMESTAMP + 86400,
@@ -963,6 +974,8 @@ class PlayerUtil
             ':unread'   => $unread,
             ':universe' => $universe,
         ]);
+        require_once 'includes/classes/achievements/PlayerUtilAchievement.class.php';
+        PlayerUtilAchievement::checkPlayerUtilAchievements36($userId, $text);
     }
 
     public static function clearPlanets($USER)
@@ -1085,6 +1098,8 @@ class PlayerUtil
                 $PLANET['last_update'] = TIMESTAMP;
                 $PLANET['eco_hash'] = '';
                 list($USER, $PLANET) = $PlanetRess->CalcResource($USER, $PLANET, true);
+                require_once 'includes/classes/achievements/PlayerUtilAchievement.class.php';
+                PlayerUtilAchievement::checkPlayerUtilAchievements33($USER['id']);
             }
 
             foreach ($PlanetsRAW as $CPLANET) {
@@ -1139,6 +1154,8 @@ class PlayerUtil
             $PLANET['metal_perhour'] = '0';
             $PLANET['crystal_perhour'] = '0';
             $PLANET['deuterium_perhour'] = '0';
+            require_once 'includes/classes/achievements/PlayerUtilAchievement.class.php';
+            PlayerUtilAchievement::checkPlayerUtilAchievements31($USER['id']);
         }
     }
 

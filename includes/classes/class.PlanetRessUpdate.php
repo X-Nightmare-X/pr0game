@@ -846,7 +846,7 @@ class ResourceUpdate
             ':b_tech_planet'        => $USER['b_tech_planet'],
             ':b_tech_queue'         => $USER['b_tech_queue']
         ];
-
+        require_once 'includes/classes/Achievement.class.php';
         if (!empty($this->Builded)) {
             foreach ($this->Builded as $Element => $Count) {
                 $Element = (int) $Element;
@@ -877,6 +877,30 @@ class ResourceUpdate
                     $buildQueries[] = ', u.' . $resource[$Element] . ' = :'
                         . $resource[$Element];
                     $params[':' . $resource[$Element]] = floatToString($Count);
+                }
+            }
+            foreach ($this->Builded as $Element => $Count) {
+                $Element = (int) $Element;
+
+                if (empty($resource[$Element])) {
+                    continue;
+                }
+                require_once 'includes/classes/achievements/PlanetRessAchievement.class.php';
+                if (in_array($Element, $reslist['one'])) {
+                    $buildQueries[] = ', p.' . $resource[$Element] . ' = :' . $resource[$Element];
+                    $params[':' . $resource[$Element]] = '1';
+                } elseif (isset($PLANET[$resource[$Element]])) {
+                    if ($Element < 100) { // Set building level directly
+                        if ($PLANET['planet_type'] == 3 && ($Element == 22 || $Element == 23 || $Element == 24) && $Count == 3) {
+                                $PLANET[$resource[$Element]] = $Count;
+                                PlanetRessAchievement::checkPlanetRessAchievements28($PLANET, $resource, $USER['id']);
+                        }
+                    }
+                    else { //ships, def and rockets
+                        PlanetRessAchievement::checkPlanetRessAchievementsShips($Element, $USER['id']);
+                    }
+                } elseif (isset($USER[$resource[$Element]])) { // Set research level directly
+                    PlanetRessAchievement::checkPlanetRessAchievementsResearch($Element, $USER['id'], $Count);
                 }
             }
         }

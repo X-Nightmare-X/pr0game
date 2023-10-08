@@ -1289,3 +1289,146 @@ $LNG['stb_med_time'] = 'stosunek średnich zasobów na sekundę';
 
 $LNG['stb_big_time_tooltip'] = 'Opisuje najlepszy możliwy zysk zasobów na sekundę, zaokrąglony do dwóch miejsc po przecinku. Stosunek mniejszy niż wprowadzona wartość jest interpretowany jako dobry (jasnozielony), a wartość powyżej jako optymalna (jasnoniebieski).';
 $LNG['stb_big_time'] = 'Stosunek dobrych zasobów na sekundę';
+
+//----------------------------------------------------------------------------//
+//Achievements
+$LNG['Description'] = 'Opis';
+$LNG['Achievements'] = 'Osiągnięcia';
+$LNG['Achievement_names'] = [
+    1 => 'Bezsenność i zły nastrój',
+    2 => 'Absolutne podstawy',
+    3 => 'Zasłużony',
+    4 => 'O co teraz chodzi?',
+    5 => 'Ponieważ mogę',
+
+    6 => 'Osoby o niskich dochodach',
+    7 => 'Rewolucja francuska',
+    8 => 'Pijany w Saven',
+    9 => 'To nie jest księżyc',
+    10 => 'Gra w kulki',
+
+    11 => 'TheLegend27',
+    12 => 'Błogosławieństwo Slippy\'ego',
+    13 => 'Było blisko',
+    14 => 'Klątwa Slippy\'ego',
+    15 => 'Czy nadal mamy łowców światła??',
+
+    16 => 'Hej stary, gdzie jest moje pole odłamków?!',
+    17 => 'Obrona Overlord!',
+    18 => 'Dworzec główny we Frankfurcie',
+    19 => 'Gruba skóra 1',
+    20 => 'Gruba skóra 2',
+
+    21 => 'Gruba skóra 3',
+    22 => 'Gruba skóra 4',
+    23 => 'Gruba skóra 5',
+    24 => 'Odpalam mój laser',
+    25 => 'Naruszenie DSGVO',
+
+    26 => 'Wszystko dla osiągnięć',
+    27 => 'Czas wielkiego mózgu',
+    28 => 'Alternatywna rozgrywka',
+    29 => 'Manifest komunistyczny',
+    30 => 'To jest Sparta',
+
+    31 => 'Wyjazd na wakacje',
+    32 => 'Bukanier!',
+    33 => 'Mogę przestać, jeśli chcę!',
+    34 => 'Edelfarm',
+    35 => 'To nie jest miłe!',
+
+    36 => 'Miesernachtsmann',
+    37 => 'Nie jestem taki',
+    38 => 'Cornag oraz Offz',
+    39 => 'Sens życia',
+    40 => 'Columbus',
+
+    41 => 'Patron slotu flotowego',
+    42 => 'Najważniejszą rzeczą jest Battlehall',
+    43 => 'Z zamkniętymi oczami',
+    44 => 'Każdemu zdarza się to przez pomyłkę',
+    45 => 'Kluczowa usługa',
+
+    46 => 'Czysta nienawiść!',
+    47 => 'Jack the Ripper',
+    48 => 'Rip the Jacker',
+    49 => 'To był kolejny strzał w piec',
+    50 => 'Oopsie',
+
+    51 => 'Nie wiem, czy to przychodzi naturalnie',
+    52 => 'Urojenia wielkości',
+    53 => 'Einstein',
+    54 => 'Szczęśliwego nowego roku!',
+    55 => 'Żywa legenda',
+];
+
+$LNG['Achievement_text'] = [
+    1 => 'Nie spałeś całą noc i nie oddałeś strzału.',
+    2 => 'W ciągu ostatnich 90 dni miałeś stały ruch floty.',
+    3 => 'Utracono flotę, gdy ustawienia języka były ustawione na "francuski".',
+    4 => 'Poznaj technologię jonową 10.',
+    5 => 'Poznaj badania nad grawitonami 2.',
+
+    6 => 'Jeden z twoich ataków przyniósł 1 metal, 1 kryształ i 1 deuter.',
+    7 => 'Pokonaj flotę statków pirackich lub obcych liczącą co najmniej 10 000 statków.',
+    8 => 'Weź udział w tabeli zaostrzeń (wtorki od 20:00 na Discordzie).',
+    9 => 'Zbuduj swoją pierwszą Gwiazdę Śmierci.',
+    10 => 'Zniszcz księżyc gracza.',
+
+    11 => 'Graj przez 14 dni wyłącznie na telefonie komórkowym.',
+    12 => 'Twoja flota została zniszczona podczas pierwszej ekspedycji.',
+    13 => 'Wyślij swoją flotę, gdy do nadchodzącego ataku pozostało mniej niż 5 sekund.',
+    14 => 'Straciłeś 10 flot przez czarne dziury.',
+    15 => 'Spędź 10 prób zdobycia księżyca na planecie bez zdobycia księżyca.',
+
+    16 => 'Ponad 250 recyklerów powróciło bez ładunku',
+    17 => 'Wprowadzić do produkcji co najmniej 5000 wyrzutni rakiet z zamówieniem na budowę.',
+    18 => 'Zużycie 5 milionów deuteru na planecie w ciągu 24 godzin w postaci kosztów paliwa.',
+    19 => 'Poznaj pancerz statku kosmicznego 3.',
+    20 => 'Poznaj pancerz statku kosmicznego 6.',
+
+    21 => 'Poznaj pancerz statku kosmicznego 9.',
+    22 => 'Poznaj pancerz statku kosmicznego 12.',
+    23 => 'Poznaj pancerz statku kosmicznego 15.',
+    24 => 'Poznaj technologię laserową 12.',
+    25 => 'Użytkownik wyraził zgodę na otrzymywanie danych',
+
+    26 => 'Usuń planetę, która daje ci najwięcej punktów. (Co najmniej 100 000 punktów)',
+    27 => 'Poznaj Międzygalaktyczną Sieć Badawczą 1.',
+    28 => 'Ulepsz wszystkie trzy magazyny zasobów na księżycu do co najmniej poziomu 3.',
+    29 => 'Zbierz flotę gracza z wyższą liczbą punktów za pomocą 5-osobowego ACS.',
+    30 => 'Samodzielne odparcie 5-osobowego ACS',
+
+    31 => 'Awansowałeś gracza do trybu wakacyjnego dzięki swojemu atakowi.',
+    32 => 'Podnieś 1000 planet, gdy aktywowany jest motyw "SetSail".',
+    33 => 'Powrót z trybu U.',
+    34 => 'Zostać zaatakowanym raz.',
+    35 => 'Zaatakuj aktywnego gracza, który ma mniej niż 1/10 twoich punktów.',
+
+    36 => 'Otrzymanie wiadomości zawierającej jeden z następujących bloków: 
+                        "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
+    37 => 'Twoja flota została zniszczona przez AKS z 5 uczestnikami.',
+    38 => 'Atakuj członków własnego sojuszu.',
+    39 => 'Zaatakuj kogoś, kto ma dokładnie 42 statki.',
+    40 => 'Skolonizować planetę oddaloną o co najmniej pół wszechświata.',
+
+    41 => 'Blockiere einen Flottenslot für eine Woche mit einem schlechten Marktplatzangebot.',
+    42 => 'Pojawia się 4 razy w Battlehall jako przegrany.',
+    43 => 'Wygrasz bitwę, gdy twoje konto jest oznaczone jako nieaktywne, 
+            na jednej z planet, na którą wcześniej przybyła flota o czasie lotu dłuższym niż 7 dni.',
+    44 => 'Produkowanie zasobów przy zużyciu energii mniejszym niż 100% na planecie przez ponad 7 dni.',
+    45 => 'Wygraj atak na zawodnika, który znajduje się w pierwszej dziesiątce obrony.',
+
+    46 => 'Uruchamiaj ochronę przed uderzeniami, wystrzeliwując pociski międzyplanetarne.',
+    47 => 'Zniszcz 5 księżyców.',
+    48 => 'Strać 5 Gwiazd Śmierci podczas próby zniszczenia księżyców.',
+    49 => 'Oderwij colo wkrótce po jego uformowaniu.',
+    50 => 'Utrata wszystkich satelitów słonecznych na planecie z wystarczającą ilością energii do zbadania Graviego. 
+            energii do zbadania Graviego bez zbadania Graviego.',
+
+    51 => 'Zużyj cały deuter w widoku gali.',
+    52 => 'Zbuduj Gwiazdę Śmierci bez wcześniejszego zbudowania innych pancerników.',
+    53 => 'Najwyższy poziom w 5 badaniach jednocześnie.',
+    54 => 'Czas ataku na aktywnego gracza do 01.01. 00:00:00',
+    55 => 'Osiągnięcie specjalne',
+];

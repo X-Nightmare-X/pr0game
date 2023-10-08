@@ -57,10 +57,12 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
 
             $recyclerStorage = 0;
             $otherFleetStorage = 0;
+            $recCount = 0;
 
             foreach ($fleetData as $shipId => $shipAmount) {
                 if ($shipId == 209 ||  $shipId == 219) {
                     $recyclerStorage += $pricelist[$shipId]['capacity'] * $shipAmount;
+                    $recCount += $shipAmount;
                 } else {
                     $otherFleetStorage += $pricelist[$shipId]['capacity'] * $shipAmount;
                 }
@@ -96,6 +98,17 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
             $sql = 'UPDATE %%PLANETS%% SET ' . implode(',', $collectQuery) . ' WHERE id = :planetId;';
 
             Database::get()->update($sql, $param);
+            
+        } else {
+            $fleetData = FleetFunctions::unserialize($this->_fleet['fleet_array']);
+            $recCount = 0;
+            foreach ($fleetData as $shipId => $shipAmount) {
+                if ($shipId == SHIP_RECYCLER ||  $shipId == GIGA_RECYKLER) {
+                    $recCount += $shipAmount;
+                }
+            }
+            require_once 'includes/classes/achievements/MiscAchievement.class.php';
+            MiscAchievement::checkRecAchievements($this->_fleet['fleet_owner'], $collectedGoods, $recCount);
         }
 
         $LNG = $this->getLanguage(null, $this->_fleet['fleet_owner']);
@@ -103,14 +116,14 @@ class MissionCaseRecycling extends MissionFunctions implements Mission
         $Message = sprintf(
             $LNG['sys_recy_gotten'],
             GetTargetAddressLink($this->_fleet, ''),
-            pretty_number($collectedGoods[901]),
-            pretty_number($collectedGoods[902]),
+            pretty_number($collectedGoods[RESOURCE_METAL]),
+            pretty_number($collectedGoods[RESOURCE_CRYSTAL]),
             pretty_number($targetData[$resQuery[0]]),
             pretty_number($targetData[$resQuery[1]]),
             $LNG['tech'][901],
             $LNG['tech'][902],
         );
-
+        
         PlayerUtil::sendMessage(
             $this->_fleet['fleet_owner'],
             0,

@@ -1342,3 +1342,147 @@ $LNG['stb_med_time'] = 'Average resources per second ratio';
 
 $LNG['stb_big_time_tooltip'] = 'Describes the best possible resource yield per second, rounded to two decimal places. A ratio less than the entered value is interpreted as good (light green), a value above as optimal (light blue).';
 $LNG['stb_big_time'] = 'Good resources per second ratio';
+
+
+//----------------------------------------------------------------------------//
+//Achievements
+$LNG['Description'] = 'Beschreibung';
+$LNG['Achievements'] = 'Achiefemends';
+$LNG['Achievement_names'] = [
+    1 => 'Schlaflos und mies gelaund',
+    2 => 'Absolude Basics',
+    3 => 'Ferdiend',
+    4 => 'Was bringd des eddsad?',
+    5 => 'Weil ichs gann',
+
+    6 => 'Geringferdiener',
+    7 => 'Frandsösische Refoludion',
+    8 => 'Bedrungne amääh Safne',
+    9 => 'Dhads no moon',
+    10 => 'Murmelsbiel',
+
+    11 => 'TheLegend27',
+    12 => 'Slippys Segne',
+    13 => 'Das war gnabb',
+    14 => 'Slippys Fluch',
+    15 => 'Habne wir noch LJ?',
+
+    16 => 'Hey man, wo is\' mein Df?!',
+    17 => 'Overlord Ferdeidigung!',
+    18 => 'Frangfurder Haubdbahnhof',
+    19 => 'Digge Gein organ 1',
+    20 => 'Digge Gein organ 2',
+
+    21 => 'Digge Gein organ 3',
+    22 => 'Digge Gein organ 4',
+    23 => 'Digge Gein organ 5',
+    24 => 'Ich feuer meinene laser',
+    25 => 'Dsgfofersdoß',
+
+    26 => 'Alles für die Achiefemends',
+    27 => 'groß hörn dseid',
+    28 => 'Aldernadifes Gameblay',
+    29 => 'Gommunisdisches Manifesd',
+    30 => 'Das is\' Schbarda',
+
+    31 => 'Ab in den Urlaubne',
+    32 => 'Freibeuder!',
+    33 => 'Ich gann aufhörne, wen ich will!',
+    34 => 'Edelfarm',
+    35 => 'Das is\' ned nedd!',
+
+    36 => 'Miesernachtsmann',
+    37 => 'Ich bin ned so \'ne',
+    38 => 'Cornag und Offz',
+    39 => 'Der Sinn des Lebens',
+    40 => 'Golumbus',
+
+    41 => 'Floddenslodgönner',
+    42 => 'Haubdsache Baddle Hall',
+    43 => 'mid geschlossenene augne',
+    44 => 'Bassierd jedem ausfersehne',
+    45 => 'Schlüsseldiensd',
+
+    46 => 'Burer Hass!',
+    47 => 'Jack the Ripper',
+    48 => 'Rip the Jacker',
+    49 => 'Das war amal widda a Schuss in den Ofne',
+    50 => 'Oopsie',
+
+    51 => 'Ich weiß des ned des gommd fon alleine',
+    52 => 'Größenwahn',
+    53 => 'Einsdein',
+    54 => 'Frohes neues!',
+    55 => 'Lebende Legende',
+];
+
+$LNG['Achievement_text'] = [
+    1 => 'Du hasd dir \'ne Nachd, um die Ohrne geschlagne und geinene Schuss gelanded des bascht scho.',
+    2 => 'Du haddesd die leddsdne 90 Dage bermanend laufende Floddenbewegungne.',
+    3 => 'Du hasd deine Flodde ferlorne, während deine Schbracheinsdellungne uff *fersdelld sdimme:* "äh, frandsösisch" eingesdelld warne tadsächlich sogar.',
+    4 => 'Erforsche Ionendechnig 10.',
+    5 => 'Erforsche Grafidonforschung 2.',
+
+    6 => 'Einer deiner Angriffe gam mid 1 Medall, 1 Grisdall, 1 Deuderium dsurügg etzala.',
+    7 => 'Besiege \'ne Flodde Biradne- oder Alienschiffe mid einer Gesamdmenge fon mindesdens 10.000 Schiffne des bascht scho.',
+    8 => 'Nehme amääh Schdrammdisch deil Diensdags( ab 20 Uhr uff Lord gorea)',
+    9 => 'Baue deinene ersdne Dodessdern tadsächlich sogar.',
+    10 => 'Dsersdöre den Mond eines Schbielers.',
+
+    11 => 'Schbiele 14 Dage ausschließlich am Handy alda.',
+    12 => 'Deine Flodde wurde in deiner ersdne Eggsbedidion dsermeddld hätt i gsachd.',
+    13 => 'Sende deine Flodde weg, während a einfliegender Angriff wenicher als 5 Segundne Resddseid had des bascht scho.',
+    14 => 'Du hasd 10 Floddne an schwardse Löcher ferlorne alde.',
+    15 => 'Ferbrade 10 Mfs uff \'nen Blanedne ohne \'nen Mond dsu begommne',
+
+    16 => 'Mehr als 250 deiner Rescheikler sind ohne Ladung dsurügggegehrd',
+    17 => 'Gebe mid einem Bauaufdrag mindesdens 5000 Ragedenwerfer in Brodugdion.',
+    18 => 'Fer(b)rauche innerhalb fonääh 24h 5 Millionene Deuderium uff einem Blanedne in Form fon Dreibsdoffgosdne.',
+    19 => 'Erforsche Raumschiffbandserung 3.',
+    20 => 'Erforsche Raumschiffbandserung 6.',
+
+    21 => 'Erforsche Raumschiffbandserung 9.',
+    22 => 'Erforsche Raumschiffbandserung 12.',
+    23 => 'Erforsche Raumschiffbandserung 15.',
+    24 => 'Erforsche Laserdechnig 12.',
+    25 => 'Du hasd dem Obdin in die Regorde dsugesdimmd',
+
+    26 => 'Lösche den Blanedne, der dir amääh meisdne Bungde bringd des bascht scho. Mindesdens(100.000 Bungde)',
+    27 => 'Erforsche Indergalagdisches Forschungsneddswerg 1.',
+    28 => 'Baue alle drei Ressourcenlager uff einem Mond uff mindesdens Schdufe 3 aus.',
+    29 => 'Gollegdifiere die Flodde eines bungsdärgerne Schbielers mid einem 5mann AKS',
+    30 => 'Wehre \'nen 5 Mann AKS alleine ab',
+
+    31 => 'Du hasd \'nen Schbieler durch deinene Angriff in den Urlaubsmodus beförderd.',
+    32 => 'Raide 1000 Blanedne während dem des Dheme *fersdelld sdimme:* äh,"SetSail" agdifierd is\'.',
+    33 => 'Gomme aus dem Umode dsurügg.',
+    34 => 'Werde amal angegriffne.',
+    35 => 'Greife \'nen agdifne Schbieler an, der wenicher als 1/10 deiner Bungde had',
+
+    36 => 'Erhalde \'ne Nachrichd die \'ne der folgendne Bausdeine endhäld: 
+                        "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
+    37 => 'Deine Flodde wurde fon einem AKS mid 5 Bedeiligdne dsermeddld.',
+    38 => 'Greife deine eigenene Alliandsmidglieder an.',
+    39 => 'Greife jemandne mid genau 42 Schiffne an.',
+    40 => 'Golonisiere \'nen Blanedne, der mindesdens ein halbes Unifersum endfernd is\'.',
+
+    41 => 'Bloggiere \'nen Floddenslod für \'ne Woche mid einem schlechdne Margdbladdsangebod.',
+    42 => 'Dridd 4 Mal in der Baddlehall als Ferlierer uff.',
+    43 => 'Gewinne \'nen Gambf während dem dein Accound als Inagdif geflagged is\', 
+    uff einem deiner Blanedne an dem forher \'ne Floddne angegommne, isd die \'ne Flugdseid fonääh mehr als 7 Dagne hadde.',
+    44 => 'Brodudsiere uff einem Blanedne für mehr als 7 Dage \'ne Ressource mid wenicher als 100% Energienuddsne.',
+    45 => 'Gewinne \'nen Angriff uff \'nen Schbieler, der in den Dob 10 der Ferdeidigung schdehd.',
+
+    46 => 'Driggere den Bashschudds durch Ferschießne fonääh Inderblanedarragedne.',
+    47 => 'Dsersdöre 5 Monde.',
+    48 => 'Ferliere 5 Dodessderne beim Fersuch Monde dsu dsermeddln.',
+    49 => 'Reiße \'ne Golo gurds nach der Endsdehung ab.',
+    50 => 'Ferliere alle deine Solarsaddelidne uff einem Blanedne mid ausreichend  
+            Energie um Grafi dsu forschne, ohne das du Grafi geforschd hasd.',
+
+    51 => 'Ferbrauche all dein Deuderium in der Galaansichd.',
+    52 => 'Baue \'nen Dodessdern ohne forher andere Gambfschiffe gebaud dsu habne.',
+    53 => 'Habe in 5 Forschungne gleichdseidig die höchsde Schdufe.',
+    54 => 'Dime \'nen Angriff uff \'nen agdifne Schbieler uff den 01.01. 00:00:00',
+    55 => 'Sonderachiefemend',
+];
