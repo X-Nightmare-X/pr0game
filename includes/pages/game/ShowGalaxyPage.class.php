@@ -73,6 +73,8 @@ class ShowGalaxyPage extends AbstractGamePage
 
         if ($galaxy != $PLANET['galaxy'] || $system != $PLANET['system']) {
             if ($PLANET['deuterium'] < $config->deuterium_cost_galaxy) {
+                require_once 'includes/classes/achievements/MiscAchievement.class.php';
+                MiscAchievement::checkGalaxyAchievements($USER['id']);
                 $this->printMessage($LNG['gl_no_deuterium_to_view_galaxy'], [[
                     'label'	=> $LNG['sys_back'],
                     'url'	=> 'game.php?page=galaxy'

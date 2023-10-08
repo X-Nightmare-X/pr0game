@@ -1342,3 +1342,147 @@ $LNG['stb_med_time'] = 'Average resources per second ratio';
 
 $LNG['stb_big_time_tooltip'] = 'Describes the best possible resource yield per second, rounded to two decimal places. A ratio less than the entered value is interpreted as good (light green), a value above as optimal (light blue).';
 $LNG['stb_big_time'] = 'Good resources per second ratio';
+
+
+//----------------------------------------------------------------------------//
+//Achievements
+$LNG['Description'] = 'Beschreibung';
+$LNG['Achievements'] = 'Achievements';
+$LNG['Achievement_names'] = [
+    1 => 'Schlaflos und mies gelaunt',
+    2 => 'Absolute Basics',
+    3 => 'Verdient',
+    4 => 'Was bringt das jetzt?',
+    5 => 'Because I can',
+
+    6 => 'Geringverdiener',
+    7 => 'Französische Revolution',
+    8 => 'Betrunken am Saven',
+    9 => 'Thats no moon',
+    10 => 'Murmelspiel',
+
+    11 => 'TheLegend27',
+    12 => 'Slippys Segen',
+    13 => 'Das war knapp',
+    14 => 'Slippys Fluch',
+    15 => 'Haben wir noch L. Brigs?',
+
+    16 => 'Hey man, wo ist mein Wrackfeld?!',
+    17 => 'Overlord Defense!',
+    18 => 'Frankfurter Hauptbahnhof',
+    19 => 'Dicke Haut 1',
+    20 => 'Dicke Haut 2',
+
+    21 => 'Dicke Haut 3',
+    22 => 'Dicke Haut 4',
+    23 => 'Dicke Haut 5',
+    24 => 'Imma firin\' mah laz0r',
+    25 => 'DSGVO-Verstoß',
+
+    26 => 'Alles für die Achievements',
+    27 => 'Big Brain Time',
+    28 => 'Alternatives Gameplay',
+    29 => 'Kommunistisches Manifest',
+    30 => 'Das ist Sparta',
+
+    31 => 'Ab in den Urlaub',
+    32 => 'Freibeuter!',
+    33 => 'Ich kann aufhören, wenn ich will!',
+    34 => 'Edelfarm',
+    35 => 'Das ist nicht nett!',
+
+    36 => 'Miesernachtsmann',
+    37 => 'Ich bin nicht so eine',
+    38 => 'Cornag und Offz',
+    39 => 'Der Sinn des Lebens',
+    40 => 'Kolumbus',
+
+    41 => 'Flottenslotgönner',
+    42 => 'Hauptsache Battlehall',
+    43 => 'With my Eyes closed',
+    44 => 'Passiert jedem ausversehen',
+    45 => 'Schlüsseldienst',
+
+    46 => 'Purer Hass!',
+    47 => 'Jack the Ripper',
+    48 => 'Rip the Jacker',
+    49 => 'Das war mal wieder ein Schuss in den Ofen',
+    50 => 'Oopsie',
+
+    51 => 'Ich weiß das nicht das kommt von alleine',
+    52 => 'Größenwahn',
+    53 => 'Einstein',
+    54 => 'Frohes neues!',
+    55 => 'Lebende Legende',
+];
+
+$LNG['Achievement_text'] = [
+    1 => 'Du hast dir eine Nacht, um die Ohren geschlagen und keinen Schuss gelandet.',
+    2 => 'Du hattest die letzten 90 Tage permanent laufende Flottenbewegungen.',
+    3 => 'Du hast deine Flotte verloren, während deine Spracheinstellungen auf "Französisch" eingestellt waren.',
+    4 => 'Erforsche Schießpulvertechnik 10.',
+    5 => 'Erforsche Festungsforschung 2.',
+
+    6 => 'Einer deiner Angriffe kam mit 1 Holz, 1 Gold, 1 Rum zurück.',
+    7 => 'Besiege eine Flotte Piraten- oder Alienschiffe mit einer Gesamtmenge von mindestens 10.000 Schiffen.',
+    8 => 'Nehme am Strammtisch teil (Dienstags ab 20 Uhr auf Discord).',
+    9 => 'Baue deine erste Schwimmende Festung.',
+    10 => 'Zerstöre die Insel eines Spielers.',
+
+    11 => 'Spiele 14 Tage ausschließlich am Handy.',
+    12 => 'Deine Flotte wurde in deiner ersten Expedition zerstört.',
+    13 => 'Sende deine Flotte weg, während ein einfliegender Angriff weniger als 5 Sekunden Restzeit hat.',
+    14 => 'Du hast 10 Flotten an schwarze Löcher verloren.',
+    15 => 'Verbrate 10 MVs in einem Hafen ohne eine Insel zu bekommen',
+
+    16 => 'Mehr als 250 deiner Wracktaucher sind ohne Ladung zurückgekehrt',
+    17 => 'Gebe mit einem Bauauftrag mindestens 5000 12-Pfünder in Produktion.',
+    18 => 'Ver(b)rauche innerhalb von 24h 5 Millionen Rum in einem Hafen in Form von Treibstoffkosten.',
+    19 => 'Erforsche Schiffsbauwesen 3.',
+    20 => 'Erforsche Schiffsbauwesen 6.',
+
+    21 => 'Erforsche Schiffsbauwesen 9.',
+    22 => 'Erforsche Schiffsbauwesen 12.',
+    23 => 'Erforsche Schiffsbauwesen 15.',
+    24 => 'Erforsche Brandmunition 12.',
+    25 => 'Du hast dem Opt-In in die Rekorde zugestimmt',
+
+    26 => 'Lösche den Hafen, der dir am meisten Punkte bringt. (Mindestens 100.000 Punkte)',
+    27 => 'Erforsche Inselübergreifendes Wissenschaftsnetzwerk 1.',
+    28 => 'Baue alle drei Ressourcenlager auf einer Insel auf mindestens Stufe 3 aus.',
+    29 => 'Kollektiviere die Flotte eines punkstärkeren Spielers mit einem 5-Mann AKS',
+    30 => 'Wehre einen 5 Mann AKS alleine ab',
+
+    31 => 'Du hast einen Spieler durch deinen Angriff in den Urlaubsmodus befördert.',
+    32 => 'Raide 1000 Häfen während dem das Theme "SetSail" aktiviert ist.',
+    33 => 'Komme aus dem U-Mode zurück.',
+    34 => 'Werde einmal angegriffen.',
+    35 => 'Greife einen aktiven Spieler an, der weniger als 1/10 deiner Punkte hat',
+
+    36 => 'Erhalte eine Nachricht die eine der folgenden Bausteine enthält: 
+                        "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
+    37 => 'Deine Flotte wurde von einem AKS mit 5 Beteiligten zerstört.',
+    38 => 'Greife deine eigenen Allianzmitglieder an.',
+    39 => 'Greife jemanden mit genau 42 Schiffen an.',
+    40 => 'Kolonisiere einen Hafen, der mindestens ein halbes Universum entfernt ist.',
+
+    41 => 'Blockiere einen Flottenslot für eine Woche mit einem schlechten Marktplatzangebot.',
+    42 => 'Tritt 4 Mal in der Battlehall als Verlierer auf.',
+    43 => 'Gewinne einen Kampf während dem dein Account als Inaktiv geflagged ist, 
+                        in einem deiner Häfen an dem vorher eine Flotten angekommen, ist die eine Flugzeit von mehr als 7 Tagen hatte.',
+    44 => 'Produziere in einem Hafen für mehr als 7 Tage eine Ressource mit weniger als 100% Energienutzen.',
+    45 => 'Gewinne einen Angriff auf einen Spieler, der in den Top 10 der Verteidigung steht.',
+
+    46 => 'Triggere den Bash-Schutz durch Verschießen von Brandbomben.',
+    47 => 'Zerstöre 5 Inseln.',
+    48 => 'Verliere 5 Schwimmende Festungen beim Versuch Inseln zu zerstören.',
+    49 => 'Reiße einen Hafen kurz nach der Entstehung ab.',
+    50 => 'Verliere alle deine Fischerboote in einem Hafen mit ausreichend 
+                        Energie um Festungsforschung zu forschen, ohne dass du Festungsforschung geforscht hast.',
+
+    51 => 'Verbrauche all deinen Rum in der Galaansicht.',
+    52 => 'Baue eine Schwimmende Festung ohne vorher andere Kampfschiffe gebaut zu haben.',
+    53 => 'Habe in 5 Forschungen gleichzeitig die höchste Stufe.',
+    54 => 'Time einen Angriff auf einen aktiven Spieler auf den 01.01. 00:00:00',
+    55 => 'Sonderachievement',
+];

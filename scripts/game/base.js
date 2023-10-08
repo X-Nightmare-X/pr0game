@@ -193,6 +193,10 @@ var Dialog = {
     return Dialog.open('game.php?page=overview&mode=actions', 400, 210);
   },
 
+  ach:function(ID){
+    return Dialog.open('game.php?page=achievementsInfo&id=' + ID);
+  },
+
   open: function (url, width, height) {
     $.fancybox({
       width: width,

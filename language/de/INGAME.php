@@ -1349,5 +1349,148 @@ $LNG['stb_med_time'] = 'Mittleres Ressourcen pro Zeit Verhältniss';
 $LNG['stb_big_time_tooltip'] = 'Beschreibt die bestmögliche Ressourchenausbeute pro Sekunde, gerundet auf zwei Stellen hinter dem Komma. Eine Verhältniss kleiner als der eingetragene Wert wird als gut (hellgrün) interpretiert, ein Wert obehalb als optimal (hellblau).';
 $LNG['stb_big_time'] = 'Gutes Ressourcen pro Zeit Verhältniss';
 
+//----------------------------------------------------------------------------//
+//Achievements
+$LNG['Description'] = 'Beschreibung';
+$LNG['Achievements'] = 'Achievements';
+$LNG['Achievement_names'] = [
+    1 => 'Schlaflos und mies gelaunt',
+    2 => 'Absolute Basics',
+    3 => 'Verdient',
+    4 => 'Was bringt das jetzt?',
+    5 => 'Because I can',
+
+    6 => 'Geringverdiener',
+    7 => 'Französische Revolution',
+    8 => 'Betrunken am Saven',
+    9 => 'Thats no moon',
+    10 => 'Murmelspiel',
+
+    11 => 'TheLegend27',
+    12 => 'Slippys Segen',
+    13 => 'Das war knapp',
+    14 => 'Slippys Fluch',
+    15 => 'Haben wir noch LJ?',
+
+    16 => 'Hey man, wo ist mein TF?!',
+    17 => 'Overlord Defense!',
+    18 => 'Frankfurter Hauptbahnhof',
+    19 => 'Dicke Haut 1',
+    20 => 'Dicke Haut 2',
+
+    21 => 'Dicke Haut 3',
+    22 => 'Dicke Haut 4',
+    23 => 'Dicke Haut 5',
+    24 => 'Imma firin\' mah laz0r',
+    25 => 'DSGVO-Verstoß',
+
+    26 => 'Alles für die Achievements',
+    27 => 'Big Brain Time',
+    28 => 'Alternatives Gameplay',
+    29 => 'Kommunistisches Manifest',
+    30 => 'Das ist Sparta',
+
+    31 => 'Ab in den Urlaub',
+    32 => 'Freibeuter!',
+    33 => 'Ich kann aufhören, wenn ich will!',
+    34 => 'Edelfarm',
+    35 => 'Das ist nicht nett!',
+
+    36 => 'Miesernachtsmann',
+    37 => 'Ich bin nicht so eine',
+    38 => 'Cornag und Offz',
+    39 => 'Der Sinn des Lebens',
+    40 => 'Kolumbus',
+
+    41 => 'Flottenslotgönner',
+    42 => 'Hauptsache Battlehall',
+    43 => 'With my Eyes closed',
+    44 => 'Passiert jedem ausversehen',
+    45 => 'Schlüsseldienst',
+
+    46 => 'Purer Hass!',
+    47 => 'Jack the Ripper',
+    48 => 'Rip the Jacker',
+    49 => 'Das war mal wieder ein Schuss in den Ofen',
+    50 => 'Oopsie',
+
+    51 => 'Ich weiß das nicht das kommt von alleine',
+    52 => 'Größenwahn',
+    53 => 'Einstein',
+    54 => 'Frohes neues!',
+    55 => 'Lebende Legende',
+];
+
+$LNG['Achievement_text'] = [
+    1 => 'Du hast dir eine Nacht, um die Ohren geschlagen und keinen Schuss gelandet.',
+    2 => 'Du hattest die letzten 90 Tage permanent laufende Flottenbewegungen.',
+    3 => 'Du hast deine Flotte verloren, während deine Spracheinstellungen auf "Französisch" eingestellt waren.',
+    4 => 'Erforsche Ionentechnik 10.',
+    5 => 'Erforsche Gravitonforschung 2.',
+
+    6 => 'Einer deiner Angriffe kam mit 1 Metall, 1 Kristall, 1 Deuterium zurück.',
+    7 => 'Besiege eine Flotte Piraten- oder Alienschiffe mit einer Gesamtmenge von mindestens 10.000 Schiffen.',
+    8 => 'Nehme am Strammtisch teil (Dienstags ab 20 Uhr auf Discord).',
+    9 => 'Baue deinen ersten Todesstern.',
+    10 => 'Zerstöre den Mond eines Spielers.',
+
+    11 => 'Spiele 14 Tage ausschließlich am Handy.',
+    12 => 'Deine Flotte wurde in deiner ersten Expedition zerstört.',
+    13 => 'Sende deine Flotte weg, während ein einfliegender Angriff weniger als 5 Sekunden Restzeit hat.',
+    14 => 'Du hast 10 Flotten an schwarze Löcher verloren.',
+    15 => 'Verbrate 10 MVs auf einen Planeten ohne einen Mond zu bekommen',
+
+    16 => 'Mehr als 250 deiner Recycler sind ohne Ladung zurückgekehrt',
+    17 => 'Gebe mit einem Bauauftrag mindestens 5000 Raketenwerfer in Produktion.',
+    18 => 'Ver(b)rauche innerhalb von 24h 5 Millionen Deuterium auf einem Planeten in Form von Treibstoffkosten.',
+    19 => 'Erforsche Raumschiffpanzerung 3.',
+    20 => 'Erforsche Raumschiffpanzerung 6.',
+
+    21 => 'Erforsche Raumschiffpanzerung 9.',
+    22 => 'Erforsche Raumschiffpanzerung 12.',
+    23 => 'Erforsche Raumschiffpanzerung 15.',
+    24 => 'Erforsche Lasertechnik 12.',
+    25 => 'Du hast dem Opt-In in die Rekorde zugestimmt',
+
+    26 => 'Lösche den Planeten, der dir am meisten Punkte bringt. (Mindestens 100.000 Punkte)',
+    27 => 'Erforsche Intergalaktisches Forschungsnetzwerk 1.',
+    28 => 'Baue alle drei Ressourcenlager auf einem Mond auf mindestens Stufe 3 aus.',
+    29 => 'Kollektiviere die Flotte eines punkstärkeren Spielers mit einem 5-Mann AKS',
+    30 => 'Wehre einen 5 Mann AKS alleine ab',
+
+    31 => 'Du hast einen Spieler durch deinen Angriff in den Urlaubsmodus befördert.',
+    32 => 'Raide 1000 Planeten während dem das Theme "SetSail" aktiviert ist.',
+    33 => 'Komme aus dem U-Mode zurück.',
+    34 => 'Werde einmal angegriffen.',
+    35 => 'Greife einen aktiven Spieler an, der weniger als 1/10 deiner Punkte hat',
+
+    36 => 'Erhalte eine Nachricht die eine der folgenden Bausteine enthält: 
+                        "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
+    37 => 'Deine Flotte wurde von einem AKS mit 5 Beteiligten zerstört.',
+    38 => 'Greife deine eigenen Allianzmitglieder an.',
+    39 => 'Greife jemanden mit genau 42 Schiffen an.',
+    40 => 'Kolonisiere einen Planeten, der mindestens ein halbes Universum entfernt ist.',
+
+    41 => 'Blockiere einen Flottenslot für eine Woche mit einem schlechten Marktplatzangebot.',
+    42 => 'Tritt 4 Mal in der Battlehall als Verlierer auf.',
+    43 => 'Gewinne einen Kampf während dem dein Account als Inaktiv geflagged ist, 
+                        auf einem deiner Planeten an dem vorher eine Flotten angekommen, ist die eine Flugzeit von mehr als 7 Tagen hatte.',
+    44 => 'Produziere auf einem Planeten für mehr als 7 Tage eine Ressource mit weniger als 100% Energienutzen.',
+    45 => 'Gewinne einen Angriff auf einen Spieler, der in den Top 10 der Verteidigung steht.',
+
+    46 => 'Triggere den Bash-Schutz durch Verschießen von Interplanetarraketen.',
+    47 => 'Zerstöre 5 Monde.',
+    48 => 'Verliere 5 Todessterne beim Versuch Monde zu zerstören.',
+    49 => 'Reiße eine Kolo kurz nach der Entstehung ab.',
+    50 => 'Verliere alle deine Solarsatteliten auf einem Planeten mit ausreichend 
+                        Energie um Gravi zu forschen, ohne dass du Gravi geforscht hast.',
+
+    51 => 'Verbrauche all dein Deuterium in der Galaansicht.',
+    52 => 'Baue einen Todesstern ohne vorher andere Kampfschiffe gebaut zu haben.',
+    53 => 'Habe in 5 Forschungen gleichzeitig die höchste Stufe.',
+    54 => 'Time einen Angriff auf einen aktiven Spieler auf den 01.01. 00:00:00',
+    55 => 'Sonderachievement',
+];
+
 
 // Translated into German by Jan . All rights reversed (C) 2011

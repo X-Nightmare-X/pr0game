@@ -98,7 +98,7 @@
 		<td>{$LNG.pl_dercrystal}</td>
 		<td colspan="3">{$kbcrystal}</td>
 	</tr>
-  <tr>
+	<tr>
 		<th colspan="4">{$realdestory}:</th>
 	</tr>
 	<tr>
@@ -125,5 +125,22 @@
 		<td><a href="#" onclick="return Dialog.Buddy({$id})">{$LNG.pl_buddy}</a></td><td colspan="3"><a href="#" onclick="return Dialog.PM({$id});" title="{$LNG.pl_message}">{$LNG.pl_message}</a></td>
 	</tr>
 {/if}
+	<tr>
+		<th colspan="4">{$LNG.Achievements}:</th>
+	</tr>
+	<tr>
+		<td colspan="4">
+			{if $achievements}
+				{$i = 0}
+				{foreach from=$achievements item=achievement}
+					{*if $i % 5 == 0}
+						</td></tr><tr><td colspan="4">
+					{/if*}
+					<img src="{$dpath}achievements/{$achievement.image}.jpg" title="{$LNG.Achievement_names.{$achievement.id}}" alt="{$achievement.name}" style="width: 32px; height: 32px; margin: 2px;" />
+					{$i = $i + 1}
+				{/foreach}
+			{/if}
+		</td>
+	</tr>
 </table>
 {/block}

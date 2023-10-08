@@ -248,7 +248,7 @@ class statbuilder
         return ['count' => $TechCounts, 'points' => ($TechPoints / Config::get()->stat_settings)];
     }
 
-    private function getBuildingScoreByPlanet($PLANET): array
+    public function getBuildingScoreByPlanet($PLANET): array
     {
         $resource =& Singleton()->resource;
         $reslist =& Singleton()->reslist;

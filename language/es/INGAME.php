@@ -1290,3 +1290,146 @@ $LNG['stb_med_time'] = 'Ratio medio de recursos por segundo';
 
 $LNG['stb_big_time_tooltip'] = 'Describe el mejor rendimiento posible de recursos por segundo, redondeado a dos decimales. Una relación inferior al valor introducido se interpreta como buena (verde claro), un valor superior como óptimo (azul claro).';
 $LNG['stb_big_time'] = 'Buena relación recursos por segundo';
+
+//----------------------------------------------------------------------------//
+//Achievements
+$LNG['Description'] = 'Descripción';
+$LNG['Achievements'] = 'Logros';
+$LNG['Achievement_names'] = [
+    1 => 'Sin dormir y de mal humor',
+    2 => 'Conceptos básicos absolutos',
+    3 => 'Merecido',
+    4 => '¿Qué sentido tiene ahora?',
+    5 => 'Porque puedo',
+
+    6 => 'Rentas bajas',
+    7 => 'Revolución Francesa',
+    8 => 'Borracho en el Saven',
+    9 => 'Eso no es luna',
+    10 => 'Juego de canicas',
+
+    11 => 'TheLegend27',
+    12 => 'La bendición de Slippy',
+    13 => 'Estuvo cerca.',
+    14 => 'La maldición de Slippy',
+    15 => '¿Todavía tenemos Light Raiders?',
+
+    16 => 'Eh tío, ¿dónde está mi TF?',
+    17 => 'Defensa del Overlord!',
+    18 => 'Estación Central de Fráncfort',
+    19 => 'Piel gruesa 1',
+    20 => 'Piel gruesa 2',
+
+    21 => 'Piel gruesa 3',
+    22 => 'Piel gruesa 4',
+    23 => 'Piel gruesa 5',
+    24 => 'Estoy disparando mi láser',
+    25 => 'Incumplimiento de la DSGVO',
+
+    26 => 'Todo por los logros',
+    27 => 'La hora de los grandes cerebros',
+    28 => 'Juego alternativo',
+    29 => 'Manifiesto Comunista',
+    30 => 'Esto es Esparta',
+
+    31 => 'De vacaciones',
+    32 => 'Bucanero!',
+    33 => 'Puedo parar si quiero!',
+    34 => 'Granja Edele',
+    35 => 'Eso no está bien!',
+
+    36 => 'Miesernachtsmann',
+    37 => 'No soy tan',
+    38 => 'Cornag y Offz',
+    39 => 'El sentido de la vida',
+    40 => 'Columbus',
+
+    41 => 'Flottenslotgönner',
+    42 => 'Lo principal es Salón de la Fama',
+    43 => 'Con los ojos cerrados',
+    44 => 'Le pasa a todo el mundo por error',
+    45 => 'Servicio clave',
+
+    46 => 'Puro odio!',
+    47 => 'Jack the Ripper',
+    48 => 'Rip the Jacker',
+    49 => 'Ese fue otro tiro en el horno',
+    50 => 'Oopsie',
+
+    51 => 'No sé que viene naturalmente',
+    52 => 'Delirios de grandeza',
+    53 => 'Einstein',
+    54 => 'Feliz Año Nuevo!',
+    55 => 'Leyenda viva',
+];
+
+$LNG['Achievement_text'] = [
+    1 => 'Has estado despierto toda la noche y no has tenido oportunidad.',
+    2 => 'Ha tenido movimientos de flota permanentes durante los últimos 90 días.',
+    3 => 'Has perdido tu flota mientras tu configuración de idioma estaba en "francés".',
+    4 => 'Explore la tecnología de iones 10.',
+    5 => 'Investigación sobre gravitones 2.',
+
+    6 => 'Uno de tus ataques volvió con 1 metal, 1 cristal, 1 deuterio.',
+    7 => 'Derrota a una flota de naves piratas o alienígenas con un total de al menos 10.000 naves.',
+    8 => 'Participa en la mesa de apriete (martes a partir de las 20:00 en Discord).',
+    9 => 'Construye tu primera Estrella de la Muerte.',
+    10 => 'Destruye la luna de un jugador.',
+
+    11 => 'Juega 14 días exclusivamente en el móvil.',
+    12 => 'Su flota fue destruida en su primera expedición.',
+    13 => 'Envía tu flota lejos mientras a un ataque entrante le queden menos de 5 segundos.',
+    14 => 'Has perdido 10 flotas por agujeros negros.',
+    15 => 'Pasa 10 intentos de luna en un planeta sin conseguir una luna',
+
+    16 => 'Más de 250 de sus recicladores han regresado sin carga',
+    17 => 'Pon en producción al menos 5000 lanzacohetes con orden de fabricación.',
+    18 => 'Consumir 5 millones de deuterio en un planeta en 24h en forma de gastos de combustible.',
+    19 => 'Explorar la armadura de la nave espacial 3.',
+    20 => 'Explorar la armadura de la nave espacial 6.',
+
+    21 => 'Explorar la armadura de la nave espacial 9.',
+    22 => 'Explorar la armadura de la nave espacial 12.',
+    23 => 'Explorar la armadura de la nave espacial 15.',
+    24 => 'Explore la tecnología láser 12.',
+    25 => 'Ha accedido a inscribirse en los registros',
+
+    26 => 'Elimina el planeta que te dé más puntos. (Al menos 100.000 puntos)',
+    27 => 'Explorar la Red de Investigación Intergaláctica 1.',
+    28 => 'Mejora los tres depósitos de recursos de una luna al menos hasta el nivel 3.',
+    29 => 'Colectivizar la flota de un jugador con mayor puntuación con un ACS de 5 hombres',
+    30 => 'Repele un ACS de 5 hombres solo',
+
+    31 => 'Has ascendido a un jugador al modo de vacaciones gracias a tu ataque.',
+    32 => 'Raide 1000 planetas mientras el tema "SetSail" está activado.',
+    33 => 'Volviendo del modo U.',
+    34 => 'Ser atacado una vez.',
+    35 => 'Ataca a un jugador activo que tenga menos de 1/10 de tus puntos',
+
+    36 => 'Recibir un mensaje que contenga uno de los siguientes bloque: 
+                        "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
+    37 => 'Su flota fue destruida por un ACS con 5 participantes.',
+    38 => 'Ataca a los miembros de tu propia alianza.',
+    39 => 'Ataca a alguien con exactamente 42 naves.',
+    40 => 'Colonizar un planeta al menos a medio universo de distancia.',
+
+    41 => 'Bloquea una plaza de flota durante una semana con una mala oferta de mercado.',
+    42 => 'Aparece 4 veces en el Salón de la Fama como perdedor.',
+    43 => 'Gana una batalla mientras tu cuenta está marcada como Inactiva, 
+            en uno de tus planetas al que haya llegado previamente una flota con un tiempo de vuelo superior a 7 días.',
+    44 => 'Producir un recurso con menos del 100% de uso de energía en un planeta durante más de 7 días.',
+    45 => 'Gana un ataque a un jugador que esté en el top 10 de la defensa.',
+
+    46 => 'Activa la protección contra golpes disparando misiles interplanetarios.',
+    47 => 'Destruye 5 lunas.',
+    48 => 'Pierde 5 Estrellas de la Muerte mientras intentas destruir lunas. Emergencia de.',
+    49 => 'Arranca un colo poco después de crearlo.',
+    50 => 'Pierde todos tus satélites solares en un planeta con energía suficiente para investigar Gravi. 
+            Energía para investigar Gravitón sin haber investigado Gravitón.',
+
+    51 => 'Utiliza todo tu deuterio en la vista de galaxia.',
+    52 => 'Construye una Estrella de la Muerte sin haber construido antes otros acorazados.',
+    53 => 'Tengo el nivel más alto en 5 investigaciones al mismo tiempo.',
+    54 => 'Cronometra un ataque a un jugador activo a 01.01. 00:00:00',
+    55 => 'Logro especial',
+];

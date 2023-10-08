@@ -1289,3 +1289,146 @@ $LNG['stb_med_time'] = 'Recursos médios por segundo rácio';
 
 $LNG['stb_big_time_tooltip'] = 'Descreve o melhor rendimento possível de recursos por segundo, arredondado para duas casas decimais. Uma relação inferior ao valor introduzido é interpretada como boa (verde claro), um valor acima como ótimo (azul claro).';
 $LNG['stb_big_time'] = 'Bons recursos por segundo';
+
+//----------------------------------------------------------------------------//
+//Achievements
+$LNG['Description'] = 'Descrição';
+$LNG['Achievements'] = 'Realizações';
+$LNG['Achievement_names'] = [
+    1 => 'Sem dormir e de mau humor',
+    2 => 'Fundamentos absolutos',
+    3 => 'Merecido',
+    4 => 'Qual é o objetivo agora?',
+    5 => 'Porque eu posso',
+
+    6 => 'Pessoas com baixos rendimentos',
+    7 => 'Revolução Francesa',
+    8 => 'Bêbado no Saven',
+    9 => 'Não é lua',
+    10 => 'Murmelspiel',
+
+    11 => 'TheLegend27',
+    12 => 'A bênção de Slippy',
+    13 => 'Foi por pouco',
+    14 => 'A maldição de Slippy',
+    15 => 'Ainda temos Caçadores de Luz?',
+
+    16 => 'Ei meu, onde é que está o meu campo de destroços?!',
+    17 => 'Defesa de Overlord!',
+    18 => 'Estação Central de Frankfurt',
+    19 => 'Pele espessa',
+    20 => 'Pele espessa 2',
+
+    21 => 'Pele espessa 3',
+    22 => 'Pele espessa 4',
+    23 => 'Pele espessa 5',
+    24 => 'Estou a disparar o meu laser',
+    25 => 'Violação do DSGVO',
+
+    26 => 'Tudo para as conquistas',
+    27 => 'Tempo do cérebro grande',
+    28 => 'Jogabilidade das alternativas',
+    29 => 'Manifesto Comunista',
+    30 => 'Isto é Esparta',
+
+    31 => 'De férias',
+    32 => 'Bucaneiro!',
+    33 => 'Posso parar se quiser!',
+    34 => 'Edelfarm',
+    35 => 'Isso não é bonito!',
+
+    36 => 'Miesernachtsmann',
+    37 => 'Não sou assim tão',
+    38 => 'Cornag e Offz',
+    39 => 'O sentido da vida',
+    40 => 'Columbus',
+
+    41 => 'Patrono da slots de frota',
+    42 => 'O mais importante é o Battlehall',
+    43 => 'Com os meus olhos fechados',
+    44 => 'Acontece a toda a gente por engano',
+    45 => 'Serviço-chave',
+
+    46 => 'Ódio puro!',
+    47 => 'Jack the Ripper',
+    48 => 'Rip the Jacker',
+    49 => 'Foi mais um tiro no forno',
+    50 => 'Oopsie',
+
+    51 => 'Não sei se isso é natural',
+    52 => 'Delírios de grandeza',
+    53 => 'Einstein',
+    54 => 'Feliz ano novo!',
+    55 => 'Lenda viva',
+];
+
+$LNG['Achievement_text'] = [
+    1 => 'Tiveste uma noite só para ti e não conseguiste disparar.',
+    2 => 'Teve movimentos permanentes da frota nos últimos 90 dias.',
+    3 => 'Perdeu a sua frota quando as suas definições de idioma estavam definidas para "Francês".',
+    4 => 'Explorar a tecnologia de iões 10.',
+    5 => 'Explorar a Pesquisa de Gravitões 2.',
+
+    6 => 'Um dos vossos ataques voltou com 1 metal, 1 cristal, 1 deutério.',
+    7 => 'Derrotar uma frota de naves piratas ou alienígenas com um total de pelo menos 10.000 naves.',
+    8 => 'Participar na mesa de aperto (terças-feiras a partir das 20h00 no Discord).',
+    9 => 'Constrói a tua primeira Estrela da Morte.',
+    10 => 'Destruir a lua de um jogador.',
+
+    11 => 'Jogar 14 dias exclusivamente no telemóvel.',
+    12 => 'A vossa frota foi destruída na vossa primeira expedição.',
+    13 => 'Envia a tua frota para longe quando um ataque tem menos de 5 segundos.',
+    14 => 'Perdeu 10 frotas para buracos negros.',
+    15 => 'Passar 10 tentativas de lua num planeta sem obter uma lua',
+
+    16 => 'Mais de 250 dos vossos recicladores regressaram sem carga',
+    17 => 'Colocar pelo menos 5000 lançadores de foguetes em produção com uma ordem de fabrico.',
+    18 => 'Consumir 5 milhões de deutério num planeta em 24 horas sob a forma de custos de combustível.',
+    19 => 'Explorar a armadura da nave espacial 3.',
+    20 => 'Explorar a armadura da nave espacial 6.',
+
+    21 => 'Explorar a armadura da nave espacial 9.',
+    22 => 'Explorar a armadura da nave espacial 12.',
+    23 => 'Explorar a armadura da nave espacial 15.',
+    24 => 'Explorar a tecnologia laser 12.',
+    25 => 'Concordou em aderir aos registos',
+
+    26 => 'Elimina o planeta que te dá mais pontos. (Pelo menos 100.000 pontos)',
+    27 => 'Explorar a Rede de Investigação Intergaláctica 1.',
+    28 => 'Melhora os três depósitos de recursos numa lua para, pelo menos, o nível 3.',
+    29 => 'Coletivizar a frota de um jogador com maior pontuação com um AKS de 5 homens',
+    30 => 'Repelir um ACS de 5 homens sozinho',
+
+    31 => 'Com o seu ataque, promoveu um jogador ao modo de férias.',
+    32 => 'Explorar 1000 planetas enquanto o tema "SetSail" estiver ativado.',
+    33 => 'A regressar do modo U.',
+    34 => 'Ser atacado uma vez.',
+    35 => 'Atacar um jogador ativo que tenha menos de 1/10 dos seus pontos',
+
+    36 => 'Receber uma mensagem que contenha um dos seguintes blocos: 
+                        "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
+    37 => 'A sua frota foi destruída por um ACS com 5 participantes.',
+    38 => 'Atacar os membros da sua própria aliança.',
+    39 => 'Atacar alguém com exatamente 42 navios.',
+    40 => 'Colonizar um planeta a pelo menos meio universo de distância.',
+
+    41 => 'Bloquear uma ranhura de frota durante uma semana com uma má oferta do mercado.',
+    42 => 'Aparece 4 vezes no Battlehall como um perdedor.',
+    43 => 'Ganhar uma batalha enquanto a sua conta está marcada como Inativa, 
+            num dos teus planetas onde já tenha chegado uma frota com um tempo de voo superior a 7 dias.',
+    44 => 'Produzir um recurso com menos de 100% de utilização de energia num planeta durante mais de 7 dias.',
+    45 => 'Ganhar um ataque a um jogador que esteja no top 10 da defesa.',
+
+    46 => 'Ativar a proteção contra impactos ao disparar mísseis interplanetários.',
+    47 => 'Destruir 5 luas.',
+    48 => 'Perder 5 Estrelas da Morte a tentar destruir luas.',
+    49 => 'Arrancar um colo pouco depois de este se ter formad.',
+    50 => 'Perde todas as tuas selas solares num planeta com energia suficiente para pesquisar 
+            energia para pesquisar Gravi sem ter pesquisado Gravi.',
+
+    51 => 'Usa todo o teu deutério na Vista de Gala.',
+    52 => 'Construir uma Estrela da Morte sem ter construído primeiro outras naves de guerra..',
+    53 => 'Ter o nível mais alto em 5 pesquisas ao mesmo tempo.',
+    54 => 'Temporizar um ataque a um jogador ativo para 01.01. 00:00:0',
+    55 => 'Realização especial',
+];
