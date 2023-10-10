@@ -29,6 +29,8 @@ class ShowBattleHallPage extends AbstractLoginPage
         $LNG =& Singleton()->LNG;
         $db = Database::get();
 
+        $universe = HTTP::_GP('universe', Universe::current());
+
         $sql = "SELECT *, (
 			SELECT DISTINCT
 			IF(%%TOPKB_USERS%%.username = '', GROUP_CONCAT(%%USERS%%.username SEPARATOR ' & '), GROUP_CONCAT(%%TOPKB_USERS%%.username SEPARATOR ' & '))
@@ -45,7 +47,7 @@ class ShowBattleHallPage extends AbstractLoginPage
 		FROM %%TOPKB%% WHERE `universe` = :universe AND time < UNIX_TIMESTAMP() - 21600 ORDER BY units DESC LIMIT 100;";
 
         $hallRaw = $db->select($sql, [
-            ':universe'	=> Universe::current(),
+            ':universe'	=> $universe,
         ]);
 
         $hallList	= [];
@@ -65,6 +67,7 @@ class ShowBattleHallPage extends AbstractLoginPage
         $this->assign([
             'universeSelect'	=> $universeSelect,
             'hallList'			=> $hallList,
+            'universe'          => $universe,
         ]);
         $this->display('page.battleHall.default.tpl');
     }
