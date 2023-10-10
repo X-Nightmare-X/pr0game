@@ -21,7 +21,7 @@ class BattleAchievement
 		require_once 'includes/classes/Database.class.php';
 		$db = Database::get();
 		$mainAttacker = $reportInfo['thisFleet']['fleet_owner'];
-		$planetDefender = $combatResult['rw'][0]['defenders'][count($combatResult['rw'][0]['defenders'])-1]['player']['id'];
+		$planetDefender = $combatResult['rw'][0]['defenders'][0]['player']['id'];
 		BattleAchievement::checkBattleAchievement6($reportInfo, $combatResult);
 		BattleAchievement::checkBattleAchievement39($reportInfo, $combatResult, $mainAttacker);
 		BattleAchievement::checkBattleAchievement10($reportInfo, $mainAttacker);
@@ -78,7 +78,7 @@ class BattleAchievement
 	 */
 	static public function checkBattleAchievement39($reportInfo, $combatResult, $mainAttacker){
 		require_once 'includes/classes/Achievement.class.php';
-		if ($reportInfo['thisFleet']['fleet_amount'] == 42 && !Achievement::checkAchievement($mainAttacker, 39) 
+		if ($reportInfo['thisFleet']['fleet_amount'] == 42 && !Achievement::checkAchievement($mainAttacker, 39)
 			&& count($combatResult['rw'][0]['attackers']) == 1) {
 			Achievement::setAchievement($mainAttacker, 39);
 		}
@@ -152,7 +152,7 @@ class BattleAchievement
 					$count = $db->selectSingle($sql, array(
 						':id' => $mainAttacker,
 					), 'destroy_moon_rips_lost');
-					
+
 					if (!Achievement::checkAchievement($mainAttacker, 48) && $count >= 5) {
 						Achievement::setAchievement($mainAttacker, 48);
 					}
@@ -287,8 +287,8 @@ class BattleAchievement
 				$lostFleetPoints = 0;
 
 				foreach ($reslist['fleet'] as $Fleet) {
-					
-					if ($combatResult['rw'][0]['defenders'][count($combatResult['rw'][0]['defenders'])-1]['unit'] == 0) continue;
+
+					if ($combatResult['rw'][0]['defenders'][0]['unit'] == 0) continue;
 
 					$Units = $pricelist[$Fleet]['cost'][901] + $pricelist[$Fleet]['cost'][902];
 
@@ -354,7 +354,7 @@ class BattleAchievement
 				':defender' => $planetDefender,
 			), 'onlinetime');
 			if($onlinetime < TIMESTAMP - INACTIVE){
-				$sql = "SELECT count(*) as count FROM %%LOG_FLEETS%% WHERE fleet_owner = :defender AND fleet_end_time - start_time >= :inactive AND fleet_end_time < :timestamp AND 
+				$sql = "SELECT count(*) as count FROM %%LOG_FLEETS%% WHERE fleet_owner = :defender AND fleet_end_time - start_time >= :inactive AND fleet_end_time < :timestamp AND
 					fleet_start_galaxy = :start_galaxy AND fleet_start_system = :start_system AND fleet_start_planet = :start_planet AND fleet_start_type = :start_type;";
 				$count = $db->selectSingle($sql, array(
 					':defender' => $planetDefender,
@@ -383,7 +383,7 @@ class BattleAchievement
 	 */
 	static public function checkBattleAchievement7($reportInfo, $combatResult, $mainAttacker){
 		require_once 'includes/classes/Achievement.class.php';
-		if ($reportInfo['thisFleet']['fleet_amount'] >= 10000 && !Achievement::checkAchievement($mainAttacker, 7) 
+		if ($reportInfo['thisFleet']['fleet_amount'] >= 10000 && !Achievement::checkAchievement($mainAttacker, 7)
 			&& $combatResult['won'] == "a") {
 			Achievement::setAchievement($mainAttacker, 7);
 		}
