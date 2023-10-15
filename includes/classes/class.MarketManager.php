@@ -22,11 +22,20 @@ class MarketManager
     // return useful default values for when there are no trades
     private function getDefaultRatio($expectedrestype)
     {
+        $db = Database::get();
+        $sql = 'SELECT
+			metCrysRatio, metDeutRatio, crysDeutRatio
+			FROM %%MARKETPLACE%%
+			WHERE universeId = :universe;';
+
+        $ratios = $db->selectSingle($sql, [
+            ':universe' => Universe::current(),
+        ]);
         if ($expectedrestype == $this->_restype_metal) {
-            return 3;
+            return $ratios['metDeutRatio'];
         }
         if ($expectedrestype == $this->_restype_crystal) {
-            return 2;
+            return $ratios['crysDeutRatio'];
         } else {
             return 1;
         }
@@ -227,18 +236,36 @@ class MarketManager
     private function getMetCrysRatio()
     {
         $trades = $this->getTotalMetCrysVolume();
+        $db = Database::get();
+        $sql = "UPDATE %%MARKETPLACE%% SET metCrysRatio = :ratio WHERE universeId = :universe";
+        $db->update($sql, [
+            ':universe'   => Universe::current(),
+            ':ratio'      => ($trades['metal'] / $trades['crystal']),
+        ]);
         return ($trades['metal'] / $trades['crystal']);
     }
 
     private function getMetDeutRatio()
     {
         $trades = $this->getTotalMetDeutVolume();
+        $db = Database::get();
+        $sql = "UPDATE %%MARKETPLACE%% SET metDeutRatio = :ratio WHERE universeId = :universe";
+        $db->update($sql, [
+            ':universe'   => Universe::current(),
+            ':ratio'      => ($trades['metal'] / $trades['deuterium']),
+        ]);
         return ($trades['metal'] / $trades['deuterium']);
     }
 
     private function getCrysDeutRatio()
     {
         $trades = $this->getTotalCrysDeutVolume();
+        $db = Database::get();
+        $sql = "UPDATE %%MARKETPLACE%% SET crysDeutRatio = :ratio WHERE universeId = :universe";
+        $db->update($sql, [
+            ':universe'   => Universe::current(),
+            ':ratio'      => ($trades['crystal'] / $trades['deuterium']),
+        ]);
         return ($trades['crystal'] / $trades['deuterium']);
     }
 
@@ -270,7 +297,7 @@ class MarketManager
      * @param array ['metal' => x, 'crystal' => y, 'deuterium' => z]
      * round AND int-cast because only int-cast just cuts off decimals
      */
-    public function convertToMetal($input)
+    public function convertToDeut($input)
     {
         if (!array_key_exists('metal', $input)) {
             $input['metal'] = 0;
@@ -281,14 +308,13 @@ class MarketManager
         if (!array_key_exists('deuterium', $input)) {
             $input['deuterium'] = 0;
         }
-
-        return (int) round($input['metal']
-            + ($input['crystal'] * $this->getMetCrysRatio())
-            + ($input['deuterium'] * $this->getMetDeutRatio()));
+        return (int) ceil(($input['metal'] / $this->getMetDeutRatio())
+            + ($input['crystal'] / $this->getCrysDeutRatio())
+            + ($input['deuterium']));
     }
 
     /** @param aray [901, 902, 903] mkd **/
-    public function convertToMetalNumeric($input)
+    public function convertToDeutNumeric($input)
     {
         $output = [
             'metal' => $input[901],
@@ -296,11 +322,11 @@ class MarketManager
             'deuterium' => $input[903],
         ];
 
-        return $this->convertToMetal($output);
+        return $this->convertToDeut($output);
     }
 
     /** @param array [1, 2, 3] mkd - matching exp_res_type **/
-    public function convertExpResTypeToMetal($expResType, $expResAmount)
+    public function convertExpResTypeToDeut($expResType, $expResAmount)
     {
         $result = [];
 
@@ -317,8 +343,7 @@ class MarketManager
             default:
                 throw new Exception('unexpected resource');
         }
-
-        return $this->convertToMetal($result);
+        return $this->convertToDeut($result);
     }
 
     /**
@@ -349,7 +374,7 @@ class MarketManager
             return ($totalCostArray[901] + $totalCostArray[902]) / Config::get()->stat_settings;
         }
 
-        $overallCost = $this->convertToMetalNumeric($totalCostArray);
+        $overallCost = $this->convertToDeutNumeric($totalCostArray);
         return $overallCost;
     }
 

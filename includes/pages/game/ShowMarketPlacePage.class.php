@@ -480,7 +480,7 @@ class ShowMarketPlacePage extends AbstractGamePage
         $pMarket = new MarketManager();
         $offer = 0;
         $fleetMarket = $fleetsRow['transaction_type'] == 1;
-        $ask = $pMarket->convertExpResTypeToMetal($fleetsRow['ex_resource_type'], $fleetsRow['ex_resource_amount']);
+        $ask = $pMarket->convertExpResTypeToDeut($fleetsRow['ex_resource_type'], $fleetsRow['ex_resource_amount']);
 
         if ($fleetMarket) {
             $fleet = FleetFunctions::unserialize($fleetsRow['fleet_array']);
@@ -492,7 +492,7 @@ class ShowMarketPlacePage extends AbstractGamePage
                 'deuterium' => $fleetsRow['fleet_resource_deuterium'],
             ];
 
-            $offer = $pMarket->convertToMetal($offerArray);
+            $offer = $pMarket->convertToDeut($offerArray);
             return $pMarket->isPush($offer, $ask, $seller, $buyer);
         }
     }
@@ -612,8 +612,7 @@ class ShowMarketPlacePage extends AbstractGamePage
 
             $pMarket = new MarketManager();
             $fleetValue = $pMarket->getFleetValue($FROM_fleet);
-            $ask = $pMarket->convertExpResTypeToMetal($fleetsRow['ex_resource_type'], $fleetsRow['ex_resource_amount']);
-
+            $ask = $pMarket->convertExpResTypeToDeut($fleetsRow['ex_resource_type'], $fleetsRow['ex_resource_amount']);
             $fleetRatio = round(($fleetValue / $ask), 2);
 
             $FlyingFleetList[] = [

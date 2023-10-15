@@ -1104,6 +1104,14 @@ CREATE TABLE `%PREFIX%recaptcha` (
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS `%PREFIX%marketplace` (
+  `universeId` int(11) NOT NULL AUTO_INCREMENT,
+  `metCrysRatio` float(23) NOT NULL DEFAULT 2,
+  `metDeutRatio` float(23) NOT NULL DEFAULT 2,
+  `crysDeutRatio` float(23) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`universeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
 INSERT INTO `%PREFIX%achievements` (`id`, `name`, `image`) VALUES
 (1, 'Sleepless and in a bad mood', 'achievement_1'),
 (2, 'Absolute basics', 'achievement_2'),
