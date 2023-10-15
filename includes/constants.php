@@ -371,7 +371,6 @@ define('NOT_IMPLEMENTED_ACHIEVEMENTS', [
     44,
     46,
     50,
-    51,
     53,
     54
  ]);
