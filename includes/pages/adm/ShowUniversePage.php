@@ -150,7 +150,12 @@ function ShowUniversePage()
             $newUniverse    = $GLOBALS['DATABASE']->GetInsertID();
 
             Config::reload();
-
+            require_once('includes/classes/Database.class.php');
+            $db = Database::get();
+            $sql = "INSERT INTO `%PREFIX%marketplace` (`universeId`) VALUES (:universe);";
+            $db->insert($sql, [
+                ':universe' => $newUniverse,
+            ]);
             list($userID, $planetID) = PlayerUtil::createPlayer(
                 $newUniverse,
                 $USER['username'],
