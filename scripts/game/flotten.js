@@ -278,8 +278,12 @@ function CheckResources()
   $.getJSON('game.php?page=fleetStep2&mode=checkResources&metal='+document.getElementsByName("metal")[0].value+'&crystal='+document.getElementsByName("crystal")[0].value+'&deuterium='+document.getElementsByName("deuterium")[0].value+'&mission='+document.querySelector('input[name="mission"]:checked').value+'&resEx='+resEx+'&token='+document.getElementsByName("token")[0].value, function(data) {
 		if (data == "OK") {
 			document.getElementById('form').submit();
-		} else {
-			NotifyBox(data);
+		} else if (typeof data.error !== 'undefined' && data.error) {
+      Dialog.alert(data.message, function () {
+        document.location.href = 'game.php?page=fleetTable';
+      });
+    } else {
+      NotifyBox(data);
 		}
 	});
 	return false;

@@ -421,6 +421,7 @@ $LNG['fl_hold_max_fleets'] = 'Ya hay demasiadas flotas dirigiéndose a estas coo
 $LNG['fl_hold_max_user'] = 'Ya se ha alcanzado el número máximo de imperios defensores. La flota no pudo ser enviada.';
 $LNG['fl_attack_confirm_diplo'] = 'Se ha hecho un pacto (%s) con la alianza %s y tu alianza. ¿Realmente quieres llevar a cabo el ataque?';
 $LNG['fl_attack_confirm_buddy'] = 'El objetivo está en tu lista de amigos. ¿Realmente quieres llevar a cabo el ataque?';
+$LNG['fl_error'] = 'Algo ha ido mal. Vuelve a intentarlo.';
 
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES
@@ -1406,7 +1407,7 @@ $LNG['Achievement_text'] = [
     34 => 'Ser atacado una vez.',
     35 => 'Ataca a un jugador activo que tenga menos de 1/10 de tus puntos',
 
-    36 => 'Recibir un mensaje que contenga uno de los siguientes bloque: 
+    36 => 'Recibir un mensaje que contenga uno de los siguientes bloque:
                         "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
     37 => 'Su flota fue destruida por un ACS con 5 participantes.',
     38 => 'Ataca a los miembros de tu propia alianza.',
@@ -1415,7 +1416,7 @@ $LNG['Achievement_text'] = [
 
     41 => 'Bloquea una plaza de flota durante una semana con una mala oferta de mercado.',
     42 => 'Aparece 4 veces en el Salón de la Fama como perdedor.',
-    43 => 'Gana una batalla mientras tu cuenta está marcada como Inactiva, 
+    43 => 'Gana una batalla mientras tu cuenta está marcada como Inactiva,
             en uno de tus planetas al que haya llegado previamente una flota con un tiempo de vuelo superior a 7 días.',
     44 => 'Producir un recurso con menos del 100% de uso de energía en un planeta durante más de 7 días.',
     45 => 'Gana un ataque a un jugador que esté en el top 10 de la defensa.',
@@ -1424,7 +1425,7 @@ $LNG['Achievement_text'] = [
     47 => 'Destruye 5 lunas.',
     48 => 'Pierde 5 Estrellas de la Muerte mientras intentas destruir lunas. Emergencia de.',
     49 => 'Arranca un colo poco después de crearlo.',
-    50 => 'Pierde todos tus satélites solares en un planeta con energía suficiente para investigar Gravi. 
+    50 => 'Pierde todos tus satélites solares en un planeta con energía suficiente para investigar Gravi.
             Energía para investigar Gravitón sin haber investigado Gravitón.',
 
     51 => 'Utiliza todo tu deuterio en la vista de galaxia.',
