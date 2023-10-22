@@ -426,6 +426,7 @@ $LNG['fl_hold_max_fleets'] = 'Já existem demasiadas frotas que se dirigem para 
 $LNG['fl_hold_max_user'] = 'O número máximo de impérios em defesa já foi atingido. A frota não pôde ser enviada.';
 $LNG['fl_attack_confirm_diplo'] = 'Foi feito um pacto (%s) com a aliança %s e a sua aliança. Quer realmente levar a cabo o ataque?';
 $LNG['fl_attack_confirm_buddy'] = 'O alvo está na sua lista de amigos. Deseja realmente levar a cabo o ataque?';
+$LNG['fl_error'] = 'Algo correu mal. Tente novamente.';
 
 //----------------------------------------------------------------------------//
 // Edificios
@@ -1405,7 +1406,7 @@ $LNG['Achievement_text'] = [
     34 => 'Ser atacado uma vez.',
     35 => 'Atacar um jogador ativo que tenha menos de 1/10 dos seus pontos',
 
-    36 => 'Receber uma mensagem que contenha um dos seguintes blocos: 
+    36 => 'Receber uma mensagem que contenha um dos seguintes blocos:
                         "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
     37 => 'A sua frota foi destruída por um ACS com 5 participantes.',
     38 => 'Atacar os membros da sua própria aliança.',
@@ -1414,7 +1415,7 @@ $LNG['Achievement_text'] = [
 
     41 => 'Bloquear uma ranhura de frota durante uma semana com uma má oferta do mercado.',
     42 => 'Aparece 4 vezes no Battlehall como um perdedor.',
-    43 => 'Ganhar uma batalha enquanto a sua conta está marcada como Inativa, 
+    43 => 'Ganhar uma batalha enquanto a sua conta está marcada como Inativa,
             num dos teus planetas onde já tenha chegado uma frota com um tempo de voo superior a 7 dias.',
     44 => 'Produzir um recurso com menos de 100% de utilização de energia num planeta durante mais de 7 dias.',
     45 => 'Ganhar um ataque a um jogador que esteja no top 10 da defesa.',
@@ -1423,7 +1424,7 @@ $LNG['Achievement_text'] = [
     47 => 'Destruir 5 luas.',
     48 => 'Perder 5 Estrelas da Morte a tentar destruir luas.',
     49 => 'Arrancar um colo pouco depois de este se ter formad.',
-    50 => 'Perde todas as tuas selas solares num planeta com energia suficiente para pesquisar 
+    50 => 'Perde todas as tuas selas solares num planeta com energia suficiente para pesquisar
             energia para pesquisar Gravi sem ter pesquisado Gravi.',
 
     51 => 'Usa todo o teu deutério na Vista de Gala.',

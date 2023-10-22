@@ -433,6 +433,7 @@ $LNG['fl_hold_max_fleets'] = 'Już teraz zbyt wiele flot zmierza do tych współ
 $LNG['fl_hold_max_user'] = 'Maksymalna liczba broniących się imperiów została już osiągnięta. Flota nie mogła zostać wysłana.';
 $LNG['fl_attack_confirm_diplo'] = 'Pakt (%s) został zawarty z sojuszem %s i twoim sojuszem. Czy naprawdę chcesz przeprowadzić atak?';
 $LNG['fl_attack_confirm_buddy'] = 'Cel jest na twojej liście znajomych. Czy naprawdę chcesz przeprowadzić atak?';
+$LNG['fl_error'] = 'Coś poszło nie tak. Spróbuj ponownie.';
 
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES
@@ -1405,7 +1406,7 @@ $LNG['Achievement_text'] = [
     34 => 'Zostać zaatakowanym raz.',
     35 => 'Zaatakuj aktywnego gracza, który ma mniej niż 1/10 twoich punktów.',
 
-    36 => 'Otrzymanie wiadomości zawierającej jeden z następujących bloków: 
+    36 => 'Otrzymanie wiadomości zawierającej jeden z następujących bloków:
                         "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
     37 => 'Twoja flota została zniszczona przez AKS z 5 uczestnikami.',
     38 => 'Atakuj członków własnego sojuszu.',
@@ -1414,7 +1415,7 @@ $LNG['Achievement_text'] = [
 
     41 => 'Blockiere einen Flottenslot für eine Woche mit einem schlechten Marktplatzangebot.',
     42 => 'Pojawia się 4 razy w Battlehall jako przegrany.',
-    43 => 'Wygrasz bitwę, gdy twoje konto jest oznaczone jako nieaktywne, 
+    43 => 'Wygrasz bitwę, gdy twoje konto jest oznaczone jako nieaktywne,
             na jednej z planet, na którą wcześniej przybyła flota o czasie lotu dłuższym niż 7 dni.',
     44 => 'Produkowanie zasobów przy zużyciu energii mniejszym niż 100% na planecie przez ponad 7 dni.',
     45 => 'Wygraj atak na zawodnika, który znajduje się w pierwszej dziesiątce obrony.',
@@ -1423,7 +1424,7 @@ $LNG['Achievement_text'] = [
     47 => 'Zniszcz 5 księżyców.',
     48 => 'Strać 5 Gwiazd Śmierci podczas próby zniszczenia księżyców.',
     49 => 'Oderwij colo wkrótce po jego uformowaniu.',
-    50 => 'Utrata wszystkich satelitów słonecznych na planecie z wystarczającą ilością energii do zbadania Graviego. 
+    50 => 'Utrata wszystkich satelitów słonecznych na planecie z wystarczającą ilością energii do zbadania Graviego.
             energii do zbadania Graviego bez zbadania Graviego.',
 
     51 => 'Zużyj cały deuter w widoku gali.',
