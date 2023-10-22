@@ -452,6 +452,7 @@ $LNG['fl_hold_max_fleets'] = 'Es sind bereits zu viele Flotten zu diesen Koordin
 $LNG['fl_hold_max_user'] = 'Die maximale Anzahl verteidigender Imperien ist bereits erreicht. Die Flotte konnte nicht gesendet werden.';
 $LNG['fl_attack_confirm_diplo'] = 'Es wurde ein Pakt (%s) mit der Allianz %s und Deiner Allianz geschlossen. Möchtst Du den Angriff wirklich durchführen?';
 $LNG['fl_attack_confirm_buddy'] = 'Das Ziel ist auf Deiner Buddy-Liste. Möchtst Du den Angriff wirklich durchführen?';
+$LNG['fl_error'] = 'Etwas ging schief. Versuchen Sie es erneut.';
 
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES
@@ -1464,7 +1465,7 @@ $LNG['Achievement_text'] = [
     34 => 'Werde einmal angegriffen.',
     35 => 'Greife einen aktiven Spieler an, der weniger als 1/10 deiner Punkte hat',
 
-    36 => 'Erhalte eine Nachricht die eine der folgenden Bausteine enthält: 
+    36 => 'Erhalte eine Nachricht die eine der folgenden Bausteine enthält:
                         "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
     37 => 'Deine Flotte wurde von einem AKS mit 5 Beteiligten zerstört.',
     38 => 'Greife deine eigenen Allianzmitglieder an.',
@@ -1473,7 +1474,7 @@ $LNG['Achievement_text'] = [
 
     41 => 'Blockiere einen Flottenslot für eine Woche mit einem schlechten Marktplatzangebot.',
     42 => 'Tritt 4 Mal in der Battlehall als Verlierer auf.',
-    43 => 'Gewinne einen Kampf während dem dein Account als Inaktiv geflagged ist, 
+    43 => 'Gewinne einen Kampf während dem dein Account als Inaktiv geflagged ist,
                         auf einem deiner Planeten an dem vorher eine Flotten angekommen, ist die eine Flugzeit von mehr als 7 Tagen hatte.',
     44 => 'Produziere auf einem Planeten für mehr als 7 Tage eine Ressource mit weniger als 100% Energienutzen.',
     45 => 'Gewinne einen Angriff auf einen Spieler, der in den Top 10 der Verteidigung steht.',
@@ -1482,7 +1483,7 @@ $LNG['Achievement_text'] = [
     47 => 'Zerstöre 5 Monde.',
     48 => 'Verliere 5 Todessterne beim Versuch Monde zu zerstören.',
     49 => 'Reiße eine Kolo kurz nach der Entstehung ab.',
-    50 => 'Verliere alle deine Solarsatteliten auf einem Planeten mit ausreichend 
+    50 => 'Verliere alle deine Solarsatteliten auf einem Planeten mit ausreichend
                         Energie um Gravi zu forschen, ohne dass du Gravi geforscht hast.',
 
     51 => 'Verbrauche all dein Deuterium in der Galaansicht.',

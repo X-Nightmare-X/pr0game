@@ -446,6 +446,7 @@ $LNG['fl_hold_max_fleets'] = 'Es sind bereids zu wiele Floddne zu diesne Goordin
 $LNG['fl_hold_max_user'] = 'Die maggsimale Anzahl verdeidigender Imberien isd bereids erreichd des pascht scho. Die Flodde gonnte ned gesended werden.';
 $LNG['fl_attack_confirm_diplo'] = 'Es wurde ein Bakt (%s) mid der Allianz %s und Deiner Allianz geschlossne und alles. Möchtschd Du den Angriff wirglich durchführen?';
 $LNG['fl_attack_confirm_buddy'] = 'Das Ziel isd uff Deiner BuddyLischde - Möchtschd Du wirglich die Brügel rausschmeißne?';
+$LNG['fl_error'] = 'Edwas ging schief tadsächlich sogar. Fersuchne Sie es erneud.';
 
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES
@@ -1459,7 +1460,7 @@ $LNG['Achievement_text'] = [
     34 => 'Werde amal angegriffne.',
     35 => 'Greife \'nen agdifne Schbieler an, der wenicher als 1/10 deiner Bungde had',
 
-    36 => 'Erhalde \'ne Nachrichd die \'ne der folgendne Bausdeine endhäld: 
+    36 => 'Erhalde \'ne Nachrichd die \'ne der folgendne Bausdeine endhäld:
                         "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
     37 => 'Deine Flodde wurde fon einem AKS mid 5 Bedeiligdne dsermeddld.',
     38 => 'Greife deine eigenene Alliandsmidglieder an.',
@@ -1468,7 +1469,7 @@ $LNG['Achievement_text'] = [
 
     41 => 'Bloggiere \'nen Floddenslod für \'ne Woche mid einem schlechdne Margdbladdsangebod.',
     42 => 'Dridd 4 Mal in der Baddlehall als Ferlierer uff.',
-    43 => 'Gewinne \'nen Gambf während dem dein Accound als Inagdif geflagged is\', 
+    43 => 'Gewinne \'nen Gambf während dem dein Accound als Inagdif geflagged is\',
     uff einem deiner Blanedne an dem forher \'ne Floddne angegommne, isd die \'ne Flugdseid fonääh mehr als 7 Dagne hadde.',
     44 => 'Brodudsiere uff einem Blanedne für mehr als 7 Dage \'ne Ressource mid wenicher als 100% Energienuddsne.',
     45 => 'Gewinne \'nen Angriff uff \'nen Schbieler, der in den Dob 10 der Ferdeidigung schdehd.',
@@ -1477,7 +1478,7 @@ $LNG['Achievement_text'] = [
     47 => 'Dsersdöre 5 Monde.',
     48 => 'Ferliere 5 Dodessderne beim Fersuch Monde dsu dsermeddln.',
     49 => 'Reiße \'ne Golo gurds nach der Endsdehung ab.',
-    50 => 'Ferliere alle deine Solarsaddelidne uff einem Blanedne mid ausreichend  
+    50 => 'Ferliere alle deine Solarsaddelidne uff einem Blanedne mid ausreichend
             Energie um Grafi dsu forschne, ohne das du Grafi geforschd hasd.',
 
     51 => 'Ferbrauche all dein Deuderium in der Galaansichd.',
