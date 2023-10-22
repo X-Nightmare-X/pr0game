@@ -196,11 +196,11 @@ class Session
             )
         ) {
             $sql    = 'REPLACE INTO %%SESSION%% SET
-		sessionID	= :sessionId,
-		userID		= :userId,
-		lastonline	= :lastActivity,
-		created		= :created,
-		userIP		= :userAddress;';
+                sessionID	= :sessionId,
+                userID		= :userId,
+                lastonline	= :lastActivity,
+                created		= :created,
+                userIP		= :userAddress;';
 
             $db     = Database::get();
 
@@ -224,16 +224,63 @@ class Session
             ]);
 
             $sql = 'UPDATE %%USERS%% SET
-		onlinetime	= :lastActivity,
-		user_lastip = :userAddress
-		WHERE
-		id = :userId;';
+                onlinetime	= :lastActivity,
+                user_lastip = :userAddress
+                WHERE id = :userId;';
 
             $db->update($sql, [
                ':userAddress'   => $userIpAddress,
                ':lastActivity'  => TIMESTAMP,
                ':userId'        => $this->data['userId'],
             ]);
+
+            // Check fpr MultiIP
+            $sql = "SELECT `id` FROM %%USERS%%
+                WHERE `onlinetime` > :lastActivity
+                AND `user_lastip` = :userAddress
+                AND `id` != :userId
+                AND `universe` = :universe;";
+            $multis = $db->select($sql, [
+                ':userAddress'  => $userIpAddress,
+                ':lastActivity' => TIMESTAMP - TIME_24_HOURS,
+                ':userId'       => $this->data['userId'],
+                ':universe'     => Universe::current(),
+            ]);
+            foreach ($multis as $multi) {
+                $sql = "SELECT * FROM %%MULTI%%
+                    WHERE (`userID_1` = :user1 AND `userID_2` = :user2)
+                    OR (`userID_1` = :user2 AND `userID_2` = :user1);";
+                $multiEntry = $db->selectSingle($sql, [
+                    ':user1' => $this->data['userId'],
+                    ':user2' => $multi['id'],
+                ]);
+
+                if (empty($multiEntry)) {
+                    $sql = "INSERT INTO %%MULTI%% SET
+                        `multi_ip` = :userAddress,
+                        `userID_1` = :user1,
+                        `userID_2` = :user2,
+                        `lastActivity` = :lastActivity,
+                        `allowed` = 0;";
+                    $db->insert($sql, [
+                        ':userAddress' => $userIpAddress,
+                        ':user1' => $this->data['userId'],
+                        ':user2' => $multi['id'],
+                        ':lastActivity' => TIMESTAMP,
+                    ]);
+                } else {
+                    $sql = "UPDATE %%MULTI%% SET
+                        `multi_ip` = :userAddress,
+                        `lastActivity` = :lastActivity
+                        WHERE `userID_1` = :user1 AND `userID_2` = :user2;";
+                    $db->update($sql, [
+                        ':userAddress' => $userIpAddress,
+                        ':user1' => $multiEntry['userID_1'],
+                        ':user2' => $multiEntry['userID_2'],
+                        ':lastActivity' => TIMESTAMP,
+                    ]);
+                }
+            }
 
             // Remove multisessions
             if (PREVENT_MULTISESSIONS == true) {
