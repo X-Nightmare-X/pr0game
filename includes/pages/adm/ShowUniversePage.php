@@ -65,11 +65,10 @@ function ShowUniversePage()
                 $sql = "DELETE FROM %%DIPLO%% WHERE `universe` = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
 
-                $sql = "DELETE FROM %%FLEETS%%, %%FLEETS_EVENT%%, %%AKS%%, %%LOG_FLEETS%%, %%TRADES%%
+                $sql = "DELETE FROM %%FLEETS%%, %%FLEETS_EVENT%%, %%AKS%%, %%TRADES%%
                     USING %%FLEETS%%
                     LEFT JOIN %%FLEETS_EVENT%% ON %%FLEETS%%.`fleet_id` = %%FLEETS_EVENT%%.`fleetID`
-                    LEFT JOIN %%AKS%% ON %%FLEETS%%.`fleet_id` = %%AKS%%.`id`
-                    LEFT JOIN %%LOG_FLEETS%% ON %%FLEETS%%.`fleet_id` = %%LOG_FLEETS%%.`fleet_id`
+                    LEFT JOIN %%AKS%% ON %%FLEETS%%.`fleet_group` = %%AKS%%.`id`
                     LEFT JOIN %%TRADES%% ON %%FLEETS%%.`fleet_id` = %%TRADES%%.`seller_fleet_id`
                     WHERE %%FLEETS%%.`fleet_universe` = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
@@ -98,7 +97,8 @@ function ShowUniversePage()
                 $sql = "DELETE FROM %%TOPKB%% WHERE universe = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
 
-                $sql = "DELETE FROM %%USERS%%, %%USERS_ACS%%, %%TOPKB_USERS%%, %%SESSION%%, %%SHORTCUTS%%, %%RECORDS%%, %%USERS_TO_ACHIEVEMENTS%%, %%USERS_COMMENTS%%, %%RECAPTCHA%%, %%ADVANCED_STATS%%
+                $sql = "DELETE FROM %%USERS%%, %%USERS_ACS%%, %%TOPKB_USERS%%, %%SESSION%%, %%SHORTCUTS%%, %%RECORDS%%, %%LOSTPASSWORD%%,
+                    %%USERS_TO_ACHIEVEMENTS%%, %%USERS_COMMENTS%%, %%RECAPTCHA%%, %%ADVANCED_STATS%%
                     USING %%USERS%%
                     LEFT JOIN %%USERS_ACS%% ON %%USERS%%.`id` = %%USERS_ACS%%.`userID`
                     LEFT JOIN %%TOPKB_USERS%% ON %%USERS%%.`id` = %%TOPKB_USERS%%.`uid`
@@ -235,7 +235,7 @@ function ShowUniversePage()
 	    LEFT JOIN %%USERS%% as inac ON `uni` = inac.`universe` AND inac.`onlinetime` < :inactive
 	    LEFT JOIN %%PLANETS%% as planet ON `uni` = planet.`universe`
 	    GROUP BY conf.`uni`, inac.`universe`, planet.`universe`
-	    ORDER BY uni ASC;";
+	    ORDER BY `uni` ASC;";
     $uniResult = $db->select($sql, [':inactive' => TIMESTAMP - INACTIVE]);
 
     foreach ($uniResult as $uniRow) {
