@@ -45,6 +45,7 @@ $dbTableNames   = [
     'MARKETPLACE'           => DB_PREFIX . 'marketplace',
     'MESSAGES'              => DB_PREFIX . 'messages',
     'MULTI'                 => DB_PREFIX . 'multi',
+    'MULTI_TO_USERS'        => DB_PREFIX . 'multi_to_users',
     'PLANETS'               => DB_PREFIX . 'planets',
     'RW'                    => DB_PREFIX . 'raports',
     'RECORDS'               => DB_PREFIX . 'records',

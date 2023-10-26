@@ -28,14 +28,30 @@ function ShowMultiIPPage()
         $id = (int) $_GET['id'];
         $allowed = $_GET['action'] === 'known' ? 1 : 0;
 
-        $sql = "SELECT * FROM %%MULTI%% WHERE `multiID` = :multiID;";
-        $old = $db->selectSingle($sql, [':multiID' => $id]);
+        if (!isset($_GET['userID'])) {
+            $sql = "SELECT * FROM %%MULTI%% WHERE `multiID` = :multiID;";
+            $old = $db->selectSingle($sql, [':multiID' => $id]);
 
-        $sql = "UPDATE %%MULTI%% SET `allowed` = :allowed WHERE `multiID` = :multiID;";
-        $db->update($sql, [
-            ':multiID' => $id,
-            ':allowed' => $allowed,
-        ]);
+            $sql = "UPDATE %%MULTI%% SET `allowed` = :allowed WHERE `multiID` = :multiID;";
+            $db->update($sql, [
+                ':multiID' => $id,
+                ':allowed' => $allowed,
+            ]);
+        } else {
+            $userID = (int) $_GET['userID'];
+            $sql = "SELECT * FROM %%MULTI_TO_USERS%% WHERE `multiID` = :multiID AND userID = :userID;";
+            $old = $db->selectSingle($sql, [
+                ':multiID' => $id,
+                ':userID' => $userID,
+            ]);
+
+            $sql = "UPDATE %%MULTI_TO_USERS%% SET `allowed` = :allowed WHERE `multiID` = :multiID AND userID = :userID;";
+            $db->update($sql, [
+                ':multiID' => $id,
+                ':userID' => $userID,
+                ':allowed' => $allowed,
+            ]);
+        }
 
         $new = $old;
         $new['allowed'] = $allowed;
@@ -49,30 +65,36 @@ function ShowMultiIPPage()
         HTTP::redirectTo("admin.php?page=multiips");
     }
 
-    $sql = "SELECT * FROM %%MULTI%% ORDER BY `multi_ip`, `lastActivity`";
-    $multis = $db->select($sql);
+    $sql = "SELECT * FROM %%MULTI%% WHERE universe = :universe ORDER BY `lastActivity`";
+    $multis = $db->select($sql, [':universe' => Universe::getEmulated()]);
     $IPs	= [];
     foreach ($multis as $multiEntry) {
-        $sql = "SELECT `id`, `username`, `email`, `register_time`, `onlinetime`, `user_lastip`
-            FROM %%USERS%%
-            WHERE `id` = :user1 OR `id` = :user2";
+        $sql = "SELECT u.`id`, u.`username`, u.`email`, u.`register_time`, u.`onlinetime`, u.`user_lastip`, mu.`lastActivity`, mu.`allowed` AS isKnown
+            FROM %%USERS%% AS u
+            JOIN %%MULTI_TO_USERS%% AS mu ON mu.userID = u.id
+            WHERE mu.`multiID` = :multiID;";
         $multiUsers = $db->select($sql, [
-            ':user1' => $multiEntry['userID_1'],
-            ':user2' => $multiEntry['userID_2'],
+            ':multiID' => $multiEntry['multiID'],
         ]);
 
-        if (!isset($IPs[$multiEntry['multiID']])) {
-            $IPs[$multiEntry['multiID']] = [];
+        $hide = $multiEntry['allowed'] == 1;
+        foreach ($multiUsers as $multiUser) {
+            $hide = $hide && $multiUser['allowed'] == 1;
+        }
+        if ($hide) {
+            continue;
         }
 
+        $IPs[$multiEntry['multiID']] = [];
         $IPs[$multiEntry['multiID']]['multi_ip'] = $multiEntry['multi_ip'];
         $IPs[$multiEntry['multiID']]['lastActivity'] = _date($LNG['php_tdformat'], $multiEntry['lastActivity']);
         $IPs[$multiEntry['multiID']]['isKnown'] = $multiEntry['allowed'];
+        $IPs[$multiEntry['multiID']]['users'] = [];
 
         foreach ($multiUsers as $multiUser) {
-
             $multiUser['register_time']	= _date($LNG['php_tdformat'], $multiUser['register_time']);
             $multiUser['onlinetime'] = _date($LNG['php_tdformat'], $multiUser['onlinetime']);
+            $multiUser['lastActivity'] = _date($LNG['php_tdformat'], $multiUser['lastActivity']);
 
             $IPs[$multiEntry['multiID']]['users'][$multiUser['id']]	= $multiUser;
         }
