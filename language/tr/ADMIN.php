@@ -393,6 +393,7 @@ $LNG['modul_26'] = 'Ara';
 $LNG['modul_27'] = 'Destek/Ticket';
 $LNG['modul_28'] = 'Teknoloji';
 $LNG['modul_47'] = 'Casus Teknolojisine Bağlı İstatistikler';
+$LNG['modul_48'] = 'Onarım rıhtımı';
 
 $LNG['mod_module'] = 'Moduller';
 $LNG['mod_info'] = 'Oyundaki Moduller';

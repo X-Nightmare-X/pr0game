@@ -1051,6 +1051,7 @@ $LNG['modul_26'] = 'Procura';
 $LNG['modul_27'] = 'Sistema de Suporte';
 $LNG['modul_28'] = 'Tecnologias';
 $LNG['modul_47'] = 'Detalhes do estado dependente da tecnologia de espionagem';
+$LNG['modul_48'] = 'Doca de reparação';
 
 $LNG['mod_module'] = 'Modulos';
 $LNG['mod_info'] = 'Modulos no Jogo';
