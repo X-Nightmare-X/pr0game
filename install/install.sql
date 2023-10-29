@@ -184,7 +184,7 @@ CREATE TABLE `%PREFIX%advanced_stats` (
   `moons_created`           bigint(20) unsigned NOT NULL DEFAULT '0',
   `moons_destroyed`         bigint(20) unsigned NOT NULL DEFAULT '0',
   `destroy_moon_rips_lost`  bigint(20) unsigned NOT NULL DEFAULT '0',
-  `set_sail_wins`           bigint(20) unsigned NOT NULL DEFAULT '0';
+  `set_sail_wins`           bigint(20) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`userID`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
