@@ -196,12 +196,12 @@ class PlayerUtil
         $config = Config::get($universe);
         $db = Database::get();
 
-        //if less than 50 players, place randomly
-        $sql = 'SELECT Count(id) as usercount from %%USERS%% WHERE universe = :universe';
-        $usercount = $db->selectSingle($sql, [
+        //if less than 50 planets, place randomly
+        $sql = 'SELECT Count(id) as planetcount from %%PLANETS%% WHERE universe = :universe';
+        $planetcount = $db->selectSingle($sql, [
             ':universe' => $universe,
-        ], 'usercount');
-        if ($usercount < 50) {
+        ], 'planetcount');
+        if ($planetcount < 50) {
             $pos = self::randomHP($universe);
             return $pos;
         }
@@ -251,42 +251,8 @@ class PlayerUtil
         return $pos;
     }
 
-    public static function createPlayer(
-        $universe,
-        $userName,
-        $userPassword,
-        $userMail,
-        $userLanguage = null,
-        $galaxy = null,
-        $system = null,
-        $position = null,
-        $name = null,
-        $authlevel = 0,
-        $userIpAddress = null
-    ) {
-        $config = Config::get($universe);
-        $db = Database::get();
-
-        if (isset($universe, $galaxy, $system, $position)) {
-            $pos = [
-                'galaxy'   => $galaxy,
-                'system'   => $system,
-                'position' => $position,
-            ];
-        } elseif ($config->planet_creation == 1) {
-            $pos = PlayerUtil::randomHP($universe);
-        } elseif ($config->planet_creation == 2) {
-            $rand_vs_block = rand(0, 1);
-            switch ($rand_vs_block) {
-                case 0:
-                    $pos = PlayerUtil::randomHP($universe);
-                    break;
-                case 1:
-                    $pos = PlayerUtil::blockHP($universe);
-                    break;
-            }
-        } else {
-            $galaxy = $config->LastSettedGalaxyPos;
+    public static function linearHP($universe, $config){
+        $galaxy = $config->LastSettedGalaxyPos;
             $system = $config->LastSettedSystemPos;
             $position = $config->LastSettedPlanetPos;
 
@@ -326,6 +292,45 @@ class PlayerUtil
                 'system'   => $system,
                 'position' => $position,
             ];
+            return $pos;
+    }
+
+    public static function createPlayer(
+        $universe,
+        $userName,
+        $userPassword,
+        $userMail,
+        $userLanguage = null,
+        $galaxy = null,
+        $system = null,
+        $position = null,
+        $name = null,
+        $authlevel = 0,
+        $userIpAddress = null
+    ) {
+        $config = Config::get($universe);
+        $db = Database::get();
+
+        if (isset($universe, $galaxy, $system, $position)) {
+            $pos = [
+                'galaxy'   => $galaxy,
+                'system'   => $system,
+                'position' => $position,
+            ];
+        } elseif ($config->planet_creation == 1) {
+            $pos = PlayerUtil::randomHP($universe);
+        } elseif ($config->planet_creation == 2) {
+            $rand_vs_block = rand(0, 1);
+            switch ($rand_vs_block) {
+                case 0:
+                    $pos = PlayerUtil::randomHP($universe);
+                    break;
+                case 1:
+                    $pos = PlayerUtil::blockHP($universe);
+                    break;
+            }
+        } else {
+            $pos = PlayerUtil::linearHP($universe, $config);
         }
 
         if (isset($universe, $galaxy, $system, $position)) {
@@ -806,6 +811,115 @@ class PlayerUtil
         return true;
     }
 
+    /**
+	 * Delete all Planets of players and recreate them according to the algorithm, currently selected.
+	 *
+	 * @param int	 		$universe       The id of the Universe
+	 */
+    public static function reshuffleAllPlanets(
+        $universe
+    ){
+        $USER =& Singleton()->USER;
+        $db = Database::get();
+        $config = Config::get($universe);
+        $sql = 'select MAX(count) as max from(select count(*) as count, id_owner from %%PLANETS%% where universe = :uni group by id_owner) as plani;';
+        $maxPlanetAmount = $db->selectSingle($sql, [
+            ':uni' => $universe
+        ], 'max');
+        $sql = 'select uni_status from %%CONFIG%% where uni = :uni;';
+        $uniStatus = $db->selectSingle($sql, [
+            ':uni' => $universe
+        ], 'uni_status');
+        
+        if ($maxPlanetAmount > 1 || $uniStatus != STATUS_CLOSED || $USER['authlevel'] != AUTH_ADM) {
+            $result = "";
+            $LNG =& Singleton()->LNG;
+            if ($maxPlanetAmount > 1) {
+                $result = $LNG['rp_planet_error'];
+            } elseif ($uniStatus != STATUS_CLOSED) {
+                $result = $LNG['rp_universe_error'];
+            } elseif ($USER['authlevel'] != AUTH_ADM) {
+                $result = $LNG['rp_rights_error'];
+            }
+            return $result;
+        }
+        $sql = 'select id from %%USERS%% where authlevel = :auth and universe = :universe order by id;';
+        $userIds = $db->select($sql, [
+            ':auth'      => AUTH_USR,
+            ':universe' => $universe
+        ], 'id');
+        foreach ($userIds as $userId) {
+            $sql = 'delete from %%PLANETS%% where id_owner = :userId;';
+            $db->delete($sql, [
+                ':userId'   => $userId['id'],
+            ]);
+        }
+        $config->LastSettedGalaxyPos = 1;
+        $config->LastSettedSystemPos = 1;
+        foreach ($userIds as $userId) {
+            if ($config->planet_creation == 1) {
+                $pos = PlayerUtil::randomHP($universe);
+            } elseif ($config->planet_creation == 2) {
+                $rand_vs_block = rand(0, 1);
+                switch ($rand_vs_block) {
+                    case 0:
+                        $pos = PlayerUtil::randomHP($universe);
+                        break;
+                    case 1:
+                        $pos = PlayerUtil::blockHP($universe);
+                        break;
+                }
+            } else {
+                $pos = PlayerUtil::linearHP($universe, $config);
+            }
+            if (isset($universe, $pos['galaxy'], $pos['system'], $pos['position'])) {
+                if (self::checkPosition($universe, $pos['galaxy'], $pos['system'], $pos['position']) === false) {
+                    throw new Exception(
+                        sprintf("Try to create a planet at position: %s:%s:%s!", $pos['galaxy'], $pos['system'], $pos['position'])
+                    );
+                }
+    
+                if (self::isPositionFree($universe, $pos['galaxy'], $pos['system'], $pos['position']) === false) {
+                    throw new Exception(
+                        sprintf("Position is not empty: %s:%s:%s!", $pos['galaxy'], $pos['system'], $pos['position'])
+                    );
+                }
+            }
+            $sql = 'select lang from %%USERS%% where id = :userId;';
+            $lang = $db->selectSingle($sql, [
+                ':userId' => $userId['id'],
+            ], 'lang');
+            $LNG    = new Language($lang);
+            Singleton()->LNG = $LNG;
+            $LNG =& Singleton()->LNG;
+            $LNG->includeData(['L18N', 'INGAME', 'TECH', 'CUSTOM']);
+            $name = $LNG['fcm_mainplanet'];
+            $planetId = self::createPlanet(
+                $pos['galaxy'],
+                $pos['system'],
+                $pos['position'],
+                $universe,
+                $userId['id'],
+                $name,
+                true
+            );
+            $sql = "UPDATE %%USERS%% SET
+            galaxy = :galaxy,
+            system = :system,
+            planet = :position,
+            id_planet = :planetId
+            WHERE id = :userId;";
+    
+            $db->update($sql, [
+                ':galaxy'   => $pos['galaxy'],
+                ':system'   => $pos['system'],
+                ':position' => $pos['position'],
+                ':planetId' => $planetId,
+                ':userId'   => $userId['id'],
+            ]);
+        }
+        return true;
+    }
     public static function deletePlanet($planetId)
     {
         $db = Database::get();
