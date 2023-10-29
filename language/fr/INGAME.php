@@ -414,6 +414,7 @@ $LNG['fl_hold_max_fleets'] = 'Il y a déjà trop de flottes en route vers ces co
 $LNG['fl_hold_max_user'] = 'Le nombre maximum d\'empires à défendre a déjà été atteint. La flotte n\'a pas pu être envoyée.';
 $LNG['fl_attack_confirm_diplo'] = 'Un pacte (%s) a été conclu avec l\'alliance %s et votre alliance. Vous voulez vraiment lancer l\'attaque ?';
 $LNG['fl_attack_confirm_buddy'] = 'La cible est sur ta liste d\'amis. Vous voulez vraiment faire l\'attaque ?';
+$LNG['fl_error'] = 'Quelque chose a mal tourné. Réessayez.';
 
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES
@@ -1393,7 +1394,7 @@ $LNG['Achievement_text'] = [
     34 => 'Se faire attaquer une fois.',
     35 => 'Attaquer un joueur actif qui a moins de 1/10 de tes points',
 
-    36 => 'Recevoir un message contenant l\'un des éléments suivants: 
+    36 => 'Recevoir un message contenant l\'un des éléments suivants:
                         "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
     37 => 'Votre flotte a été détruite par un ACS avec 5 participants.',
     38 => 'Attaque tes propres membres de l\'alliance.',
@@ -1402,7 +1403,7 @@ $LNG['Achievement_text'] = [
 
     41 => 'Bloquer un slot de flotte pendant une semaine avec une mauvaise offre de marché.',
     42 => 'Se produit 4 fois dans le Hall of Fame en tant que perdant',
-    43 => 'Gagner un combat pendant lequel ton compte est marqué comme inactif, 
+    43 => 'Gagner un combat pendant lequel ton compte est marqué comme inactif,
             sur une de tes planètes sur laquelle une flotte est arrivée avec un temps de vol de plus de 7 jours.',
     44 => 'Produire sur une planète pendant plus de 7 jours une ressource dont le rendement énergétique est inférieur à 100%.',
     45 => 'Gagne une attaque sur un joueur classé dans le top 10 de la défense.',
@@ -1411,7 +1412,7 @@ $LNG['Achievement_text'] = [
     47 => 'Détruire 5 lunes.',
     48 => 'Perdre 5 Étoiles de la mort en essayant de détruire des lunes.',
     49 => 'Démolissez une colonie peu après sa création.',
-    50 => 'Perds tous tes satellites solaires sur une planète ayant suffisamment de 
+    50 => 'Perds tous tes satellites solaires sur une planète ayant suffisamment de
             énergie pour faire de la recherche sur le graviton, sans avoir fait de recherche sur le graviton.',
 
     51 => 'Consomme tout ton deutérium dans la vue Galaxie.',

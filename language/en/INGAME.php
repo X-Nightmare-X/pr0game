@@ -461,6 +461,7 @@ $LNG['fl_hold_max_fleets'] = 'There are already too many fleets heading to these
 $LNG['fl_hold_max_user'] = 'The maximum number of defending empires has already been reached. The fleet could not be sent.';
 $LNG['fl_attack_confirm_diplo'] = 'A pact (%s) has been made with the %s alliance and your alliance. Do you really want to carry out the attack?';
 $LNG['fl_attack_confirm_buddy'] = 'The target is on your buddy list. Do you really want to carry out the attack?';
+$LNG['fl_error'] = 'Something went wrong. Try again.';
 //----------------------------------------------------------------------------//
 // Buildings
 $LNG['bd_dismantle'] = 'Demolish';
@@ -1469,7 +1470,7 @@ $LNG['Achievement_text'] = [
     34 => 'Get attacked once.',
     35 => 'Attack an active player who has less than 1/10 of your points',
 
-    36 => 'Receive a message that contains one of the following blocks: 
+    36 => 'Receive a message that contains one of the following blocks:
                         "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
     37 => 'Your fleet was destroyed by an ACS with 5 participants.',
     38 => 'Attack your own alliance members.',
@@ -1478,7 +1479,7 @@ $LNG['Achievement_text'] = [
 
     41 => 'Block a fleet slot for a week with a bad marketplace offer.',
     42 => 'Join the Battlehall 4 times on the losing side.',
-    43 => 'Win a battle while your account is flagged as Inactive, 
+    43 => 'Win a battle while your account is flagged as Inactive,
             on one of your planets where a fleet has previously arrived that had a flight time of more than 7 days.',
     44 => 'Produce on a planet for more than 7 days a resource with less than 100% energy use.',
     45 => 'Win an attack on a player who is in the top 10 defense.',
@@ -1487,7 +1488,7 @@ $LNG['Achievement_text'] = [
     47 => 'Destroy 5 moons.',
     48 => 'Lose 5 death stars trying to destroy moons.',
     49 => 'Tear off a colony shortly after the creation.',
-    50 => 'Lose all of your solar satellites on a planet with enough 
+    50 => 'Lose all of your solar satellites on a planet with enough
             energy to research Graviton technology without you having researched Graviton technology.',
 
     51 => 'Use up all your deuterium in galaxy view.',

@@ -185,19 +185,21 @@ function maxResources() {
 function selectedResources() {
   let amt=document.getElementById("selectedres").getAttribute("data").split(",")
   if(!isNaN(parseInt(amt[0]))){
-    document.getElementsByName("metal")[0].value =parseInt(amt[0])
+    document.getElementsByName("metal")[0].value = Math.min(parseInt(amt[0]), parseInt(document.getElementById('current_metal').getAttribute('data-real')))
   }else{
-    document.getElementsByName("metal")[0].value =0
+    document.getElementsByName("metal")[0].value = 0
   }
   if(!isNaN(parseInt(amt[1]))){
-    document.getElementsByName("crystal")[0].value =parseInt(amt[1])
+    document.getElementsByName("crystal")[0].value = Math.min(parseInt(amt[1]), parseInt(document.getElementById('current_crystal').getAttribute('data-real')))
   }else{
-    document.getElementsByName("crystal")[0].value =0
+    document.getElementsByName("crystal")[0].value = 0
   }
   if(!isNaN(parseInt(amt[2]))){
-    document.getElementsByName("deuterium")[0].value = Math.min(parseInt(amt[2]),parseInt(document.getElementById('current_deuterium').getAttribute('data-real'))-parseInt(amt[3]))
+    document.getElementsByName("deuterium")[0].value = Math.min(parseInt(amt[2]),
+      parseInt(document.getElementById('current_deuterium').getAttribute('data-real')),
+      parseInt(document.getElementById('current_deuterium').getAttribute('data-real')) - parseInt(amt[3]))
   }else{
-    document.getElementsByName("deuterium")[0].value =0
+    document.getElementsByName("deuterium")[0].value = 0
   }
   calculateTransportCapacity();
 }
@@ -276,8 +278,12 @@ function CheckResources()
   $.getJSON('game.php?page=fleetStep2&mode=checkResources&metal='+document.getElementsByName("metal")[0].value+'&crystal='+document.getElementsByName("crystal")[0].value+'&deuterium='+document.getElementsByName("deuterium")[0].value+'&mission='+document.querySelector('input[name="mission"]:checked').value+'&resEx='+resEx+'&token='+document.getElementsByName("token")[0].value, function(data) {
 		if (data == "OK") {
 			document.getElementById('form').submit();
-		} else {
-			NotifyBox(data);
+		} else if (typeof data.error !== 'undefined' && data.error) {
+      Dialog.alert(data.message, function () {
+        document.location.href = 'game.php?page=fleetTable';
+      });
+    } else {
+      NotifyBox(data);
 		}
 	});
 	return false;
@@ -403,7 +409,7 @@ $(function() {
 
 function update_arrival() {
 	const now = new Date(Date.now())
-	const deT = new Date(now.toLocaleString('en-us', { timeZone: 'Europe/Berlin'})).getTime() 
+	const deT = new Date(now.toLocaleString('en-us', { timeZone: 'Europe/Berlin'})).getTime()
 	const localT = new Date(now.toLocaleString('en-us', { timeZone: localtimezonestring})).getTime()
 	const timeOffset = localT - deT
   const nd = new Date(new Date(serverTime).getTime() + timeOffset + parseInt(document.getElementById("arr_time").getAttribute("duration")) * 1000)

@@ -970,6 +970,13 @@ CREATE TABLE `%PREFIX%users` (
   KEY `ally_id` (`ally_id`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+CREATE TABLE `%PREFIX%users_comments` (
+    `id` int(11) unsigned NOT NULL,
+    `comment` varchar(255) NOT NULL DEFAULT '',
+    `created_at` int(11) NOT NULL,
+    KEY `comment` (`id`,`comment`,`created_at`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 CREATE TABLE IF NOT EXISTS `%PREFIX%users_to_achievements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userID` int(11) NOT NULL,

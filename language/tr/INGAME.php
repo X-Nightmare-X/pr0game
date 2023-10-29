@@ -429,6 +429,7 @@ $LNG['fl_hold_max_fleets'] = 'Zaten bu koordinatlara yönelen çok fazla filo va
 $LNG['fl_hold_max_user'] = 'Savunan imparatorlukların maksimum sayısına çoktan ulaşıldı. Filo gönderilemedi.';
 $LNG['fl_attack_confirm_diplo'] = 'İttifakınız ve %s ittifakı ile bir anlaşma (%s) yapıldı. Saldırıyı gerçekten gerçekleştirmek istiyor musunuz?';
 $LNG['fl_attack_confirm_buddy'] = 'Hedef arkadaş listende. Saldırıyı gerçekten gerçekleştirmek istiyor musun?';
+$LNG['fl_error'] = 'Bir şeyler ters gitti. Tekrar dene.';
 
 //----------------------------------------------------------------------------//
 // Binalar
@@ -1416,7 +1417,7 @@ $LNG['Achievement_text'] = [
     34 => 'Bir kez saldırıya uğrayın.',
     35 => 'Puanlarınızın 1/10\'undan daha azına sahip aktif bir oyuncuya saldırın',
 
-    36 => 'Aşağıdaki yapı taşlarından birini içeren bir mesaj alın: 
+    36 => 'Aşağıdaki yapı taşlarından birini içeren bir mesaj alın:
                         "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
     37 => 'Filonuz 5 katılımcısı olan bir AKS tarafından yok edildi.',
     38 => 'Kendi ittifak üyelerinize saldırın.',
@@ -1425,7 +1426,7 @@ $LNG['Achievement_text'] = [
 
     41 => 'Kötü bir pazar yeri teklifi ile bir filo slotunu bir haftalığına bloke edin.',
     42 => 'Battlehall\'da 4 kez kaybeden olarak görünür.',
-    43 => 'Hesabınız Aktif Değil olarak işaretlenmişken bir savaş kazanın, 
+    43 => 'Hesabınız Aktif Değil olarak işaretlenmişken bir savaş kazanın,
             daha önce 7 günden fazla uçuş süresi olan bir filonun geldiği gezegenlerinizden birinde.',
     44 => 'Bir gezegende 7 günden fazla süreyle %100\'den daha az enerji kullanarak bir kaynak üretin.',
     45 => 'Savunmada ilk 10\'da yer alan bir oyuncuya saldırı kazanın.',
@@ -1434,7 +1435,7 @@ $LNG['Achievement_text'] = [
     47 => '5 ay yok et.',
     48 => 'Ayları yok etmeye çalışırken 5 Ölüm Yıldızı kaybet.',
     49 => 'Kolo oluştuktan kısa bir süre sonra koparın.',
-    50 => 'Gravi\'yi araştırmak için yeterli enerjiye sahip bir gezegendeki tüm güneş uydularınızı kaybedin. 
+    50 => 'Gravi\'yi araştırmak için yeterli enerjiye sahip bir gezegendeki tüm güneş uydularınızı kaybedin.
             Gravi\'yi araştırmadan Gravi\'yi araştırmak için enerji.',
     51 => 'Tüm döteryumunuzu gala manzarasında kullanın.',
     52 => 'Önce diğer savaş gemilerini inşa etmeden bir Ölüm Yıldızı inşa edin.',

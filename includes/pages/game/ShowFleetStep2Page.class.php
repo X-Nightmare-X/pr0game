@@ -277,6 +277,10 @@ class ShowFleetStep2Page extends AbstractGamePage
         $token = HTTP::_GP('token', '');
         $session = Session::load();
         $fleet = $session->fleet;
+        if (!isset($fleet[$token]) || !isset($fleet[$token]['fleet']) || !isset($fleet[$token]['distance']) ||
+            !isset($fleet[$token]['fleetSpeed']) || !isset($fleet[$token]['fleetRoom'])) {
+            $this->sendJSON(['message' => $LNG['fl_error'], 'error' => true]);
+        }
         $formData = $fleet[$token];
         $fleetArray = $formData['fleet'];
         $distance = $formData['distance'];
