@@ -1082,6 +1082,7 @@ $LNG['modul_37'] = 'Statistics Banner';
 $LNG['modul_26'] = 'Search';
 $LNG['modul_27'] = 'Support Tickets';
 $LNG['modul_28'] = 'Techtree';
+$LNG['modul_47'] = 'Spy Technology dependent Stat Details';
 
 $LNG['mod_module'] = 'Modules';
 $LNG['mod_info'] = 'Modules in the Game';

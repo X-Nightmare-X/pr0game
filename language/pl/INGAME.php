@@ -1433,3 +1433,9 @@ $LNG['Achievement_text'] = [
     54 => 'Czas ataku na aktywnego gracza do 01.01. 00:00:00',
     55 => 'Osiągnięcie specjalne',
 ];
+
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Wyświetlane z poziomu Technologia Szpiegowska 2!',
+    'level4'  => 'Wyświetlane z poziomu Technologia Szpiegowska 4!',
+    'level6'  => 'Wyświetlane z poziomu Technologia Szpiegowska 6!',
+];

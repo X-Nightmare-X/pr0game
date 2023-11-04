@@ -1024,6 +1024,7 @@ $LNG['modul_37'] = 'Estadísticas Banner';
 $LNG['modul_26'] = 'Buscar';
 $LNG['modul_27'] = 'Tickets de Soporte';
 $LNG['modul_28'] = 'Tecnología';
+$LNG['modul_47'] = 'Tecnología espía dependiente Stat Detalles';
 
 $LNG['mod_module'] = 'Modulos';
 $LNG['mod_info'] = 'Módulos en el Juego<br><font color="red">¡Los administradores pueden entrar en las zonas!</font>';

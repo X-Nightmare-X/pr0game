@@ -1487,3 +1487,9 @@ $LNG['Achievement_text'] = [
     54 => 'Dime \'nen Angriff uff \'nen agdifne Schbieler uff den 01.01. 00:00:00',
     55 => 'Sonderachiefemend',
 ];
+
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Sichdbar ab Schbionagetechnik 2!',
+    'level4'  => 'Sichdbar ab Schbionagetechnik 4!',
+    'level6'  => 'Sichdbar ab Schbionagetechnik 6!',
+];
