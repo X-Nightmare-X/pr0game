@@ -184,7 +184,7 @@ CREATE TABLE `%PREFIX%advanced_stats` (
   `moons_created`           bigint(20) unsigned NOT NULL DEFAULT '0',
   `moons_destroyed`         bigint(20) unsigned NOT NULL DEFAULT '0',
   `destroy_moon_rips_lost`  bigint(20) unsigned NOT NULL DEFAULT '0',
-  `set_sail_wins`           bigint(20) unsigned NOT NULL DEFAULT '0';
+  `set_sail_wins`           bigint(20) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`userID`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -590,9 +590,19 @@ CREATE TABLE `%PREFIX%messages` (
 
 CREATE TABLE `%PREFIX%multi` (
   `multiID` int(11) NOT NULL AUTO_INCREMENT,
+  `multi_ip` varchar(40) NOT NULL DEFAULT '',
+  `universe` tinyint(3) unsigned NOT NULL,
+  `lastActivity` int(11) NOT NULL DEFAULT '0',
+  `allowed` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`multiID`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE `%PREFIX%multi_to_users` (
+  `multiID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  PRIMARY KEY (`multiID`),
-  KEY `userID` (`userID`)
+  `lastActivity` int(11) NOT NULL DEFAULT '0',
+  `allowed` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`multiID`, `userID`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%news` (

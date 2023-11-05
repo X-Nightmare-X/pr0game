@@ -1317,3 +1317,11 @@ $LNG['du_select_all_tables'] = 'Toutes les tables';
 $LNG['du_choose_tables'] = 'Sélectionner les tables';
 $LNG['du_success'] = 'Backup creer avec succes! Fichier: %s';
 $LNG['du_not_tables_selected'] = 'Vous n\'avez pas séléctioner de tables pour le backup!';
+
+//Reshuffle Planets
+$LNG['rp_header'] = 'Remaniement des planètes';
+$LNG['rp_explain'] = 'Après avoir cliqué sur Envoyer, veuillez patienter jusqu\'à ce que la fenêtre contextuelle apparaisse. Le repositionnement peut prendre plusieurs secondes!';
+$LNG['rp_done'] = 'Les planètes ont été remaniées avec succès';
+$LNG['rp_planet_error'] = 'Il y a plus d\'une planète par joueur!';
+$LNG['rp_universe_error'] = 'L\'univers n\'est pas complètement fermé!';
+$LNG['rp_rights_error'] = 'Pas de droits d\'administrateur!';

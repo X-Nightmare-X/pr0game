@@ -44,12 +44,12 @@ class Log
         $uni = (empty($this->data['universe']) ? $this->data['uni'] : $this->data['universe']);
 
         $sql = "INSERT INTO %%LOG%% SET
-	target		= :id,
-	mode		= :mode,
-	admin		= :admin,
-	time		= :time,
-	data		= :data,
-	universe 	= :universe;";
+            target		= :id,
+            mode		= :mode,
+            admin		= :admin,
+            time		= :time,
+            data		= :data,
+            universe 	= :universe;";
 
         $db->insert($sql, [
             ':id'		=> $this->data['target'],
@@ -63,9 +63,24 @@ class Log
 
     public function save()
     {
-        $data = serialize([$this->data['old'], $this->data['new']]);
+        $db = Database::get();
         $uni = (empty($this->data['universe']) ? $this->data['uni'] : $this->data['universe']);
-        $GLOBALS['DATABASE']->query("INSERT INTO ".LOG." (`id`,`mode`,`admin`,`target`,`time`,`data`,`universe`) VALUES 
-		(NULL , ".$GLOBALS['DATABASE']->sql_escape($this->data['mode']).", ".$GLOBALS['DATABASE']->sql_escape($this->data['admin']).", '".$GLOBALS['DATABASE']->sql_escape($this->data['target'])."', ".TIMESTAMP." , '".$GLOBALS['DATABASE']->sql_escape($data)."', '".$uni."');");
+
+        $sql = "INSERT INTO %%LOG%% SET
+            target		= :id,
+            mode		= :mode,
+            admin		= :admin,
+            time		= :time,
+            data		= :data,
+            universe 	= :universe;";
+
+        $db->insert($sql, [
+            ':id'		=> $this->data['target'],
+            ':mode'		=> $this->data['mode'],
+            ':admin'	=> $this->data['admin'],
+            ':time'		=> TIMESTAMP,
+            ':data'		=> serialize([$this->data['old'], $this->data['new']]),
+            ':universe'	=> $uni,
+        ]);
     }
 }

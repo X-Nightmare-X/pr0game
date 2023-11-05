@@ -190,6 +190,10 @@ switch($page) {
         include_once('includes/pages/adm/ShowDumpPage.php');
         ShowDumpPage();
         break;
+    case 'reshufflePlayers':
+        include_once('includes/pages/adm/ShowReshufflePage.php');
+        ShowReshufflePage();
+        break;
     default:
         include_once('includes/pages/adm/ShowIndexPage.php');
         ShowIndexPage();

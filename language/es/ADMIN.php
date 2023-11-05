@@ -1252,3 +1252,11 @@ $LNG['du_select_all_tables'] = 'Todas las Tablas';
 $LNG['du_choose_tables'] = 'Elegir Tablas';
 $LNG['du_success'] = 'Copia de seguridad creada con éxito! Archivo: %s';
 $LNG['du_not_tables_selected'] = 'No Ha seleccionado tablas para hacer las copias de Seguridad!';
+
+//Reshuffle Planets
+$LNG['rp_header'] = 'Remodelar planetas';
+$LNG['rp_explain'] = 'Después de hacer clic en Enviar, espere a que aparezca la ventana emergente. El reposicionamiento puede tardar varios segundos.';
+$LNG['rp_done'] = 'Los planetas se reorganizan con éxito';
+$LNG['rp_planet_error'] = '¡Hay más de un planeta por jugador!';
+$LNG['rp_universe_error'] = 'El universo no está completamente cerrado.';
+$LNG['rp_rights_error'] = 'Sin derechos de administrador.';

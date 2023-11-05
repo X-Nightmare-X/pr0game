@@ -29,6 +29,8 @@ function ShowQuickEditorPage()
     $edit = HTTP::_GP('edit', '');
     $id = HTTP::_GP('id', 0);
 
+    $db = Database::get();
+
     switch ($edit) {
         case 'planet':
             $DataIDs = array_merge($reslist['fleet'], $reslist['build'], $reslist['defense']);
@@ -37,14 +39,15 @@ function ShowQuickEditorPage()
             foreach ($DataIDs as $ID) {
                 $SpecifyItemsPQ .= "`" . $resource[$ID] . "`,";
             }
-            $PlanetData = $GLOBALS['DATABASE']->getFirstRow(
-                "SELECT " . $SpecifyItemsPQ . " `name`, `id_owner`, `planet_type`, `galaxy`, `system`, `planet`,"
-                . " `destruyed`, `diameter`, `field_current`, `field_max`, `temp_min`, `temp_max`, `metal`, `crystal`,"
-                . " `deuterium` FROM " . PLANETS . " WHERE `id` = '" . $id . "';"
-            );
+            $sql = "SELECT " . $SpecifyItemsPQ . " `name`, `id_owner`, `planet_type`, `galaxy`, `system`, `planet`, `destruyed`,
+                `diameter`, `field_current`, `field_max`, `temp_min`, `temp_max`, `metal`, `crystal`, `deuterium`
+                FROM %%PLANETS%% WHERE `id` = :planetID;";
+            $PlanetData = $db->selectSingle($sql, [
+                ':planetID' => $id,
+            ]);
 
             if ($action == 'send') {
-                $SQL = "UPDATE " . PLANETS . " SET ";
+                $sql = "UPDATE %%PLANETS%% SET ";
                 $Fields = $PlanetData['field_current'];
                 foreach ($DataIDs as $ID) {
                     $level = min(
@@ -56,19 +59,28 @@ function ShowQuickEditorPage()
                         $Fields += $level - $PlanetData[$resource[$ID]];
                     }
 
-                    $SQL .= "`" . $resource[$ID] . "` = " . $level . ", ";
+                    $sql .= "`" . $resource[$ID] . "` = " . $level . ", ";
                 }
 
-                $SQL .= "`metal` = " . max(0, round(HTTP::_GP('metal', 0.0))) . ", ";
-                $SQL .= "`crystal` = " . max(0, round(HTTP::_GP('crystal', 0.0))) . ", ";
-                $SQL .= "`deuterium` = " . max(0, round(HTTP::_GP('deuterium', 0.0))) . ", ";
-                $SQL .= "`field_current` = '" . $Fields . "', ";
-                $SQL .= "`field_max` = '" . HTTP::_GP('field_max', 0) . "', ";
-                $SQL .= "`name` = '" . $GLOBALS['DATABASE']->sql_escape(HTTP::_GP('name', '', UTF8_SUPPORT)) . "', ";
-                $SQL .= "`eco_hash` = '' ";
-                $SQL .= "WHERE `id` = '" . $id . "' AND `universe` = '" . Universe::getEmulated() . "';";
+                $sql .= "`metal` = :metal, ";
+                $sql .= "`crystal` = :crystal, ";
+                $sql .= "`deuterium` = :deuterium, ";
+                $sql .= "`field_current` = :fields, ";
+                $sql .= "`field_max` = :field_max, ";
+                $sql .= "`name` = :name, ";
+                $sql .= "`eco_hash` = '' ";
+                $sql .= "WHERE `id` = :planetID AND `universe` = :universe;";
 
-                $GLOBALS['DATABASE']->query($SQL);
+                $db->update($sql, [
+                    ':metal' => max(0, round(HTTP::_GP('metal', 0.0))),
+                    ':crystal' => max(0, round(HTTP::_GP('crystal', 0.0))),
+                    ':deuterium' => max(0, round(HTTP::_GP('deuterium', 0.0))),
+                    ':fields' => $Fields,
+                    ':field_max' => HTTP::_GP('field_max', 0),
+                    ':name' => HTTP::_GP('name', '', UTF8_SUPPORT),
+                    ':planetID' => $id,
+                    ':universe' => Universe::getEmulated(),
+                ]);
 
                 $old = [];
                 $new = [];
@@ -94,10 +106,13 @@ function ShowQuickEditorPage()
                     )
                 );
             }
-            $UserInfo = $GLOBALS['DATABASE']->getFirstRow(
-                "SELECT `username` FROM " . USERS . " WHERE `id` = '" . $PlanetData['id_owner'] . "' AND `universe` = '"
-                . Universe::getEmulated() . "';"
-            );
+
+            $sql = "SELECT `username` FROM %%USERS%%
+                WHERE `id` = :userID AND universe = :universe;";
+            $UserInfo = $db->selectSingle($sql, [
+                ':userID' => $PlanetData['id_owner'],
+                ':universe' => Universe::getEmulated(),
+            ]);
 
             $build = $defense = $fleet = [];
 
@@ -161,53 +176,42 @@ function ShowQuickEditorPage()
             foreach ($DataIDs as $ID) {
                 $SpecifyItemsPQ .= "`" . $resource[$ID] . "`,";
             }
-            $UserData = $GLOBALS['DATABASE']->getFirstRow(
-                "SELECT " . $SpecifyItemsPQ . " `username`, `authlevel`, `galaxy`, `system`, `planet`, `id_planet`,"
-                . " `authattack`, `authlevel` FROM " . USERS . " WHERE `id` = '" . $id . "';"
-            );
+            $sql = "SELECT " . $SpecifyItemsPQ . " `username`, `authlevel`, `galaxy`, `system`, `planet`, `id_planet`, `authattack`, `authlevel`
+                FROM %%USERS%%
+                WHERE `id` = :userID;";
+            $UserData = $db->selectSingle($sql, [':userID' => $id]);
             $ChangePW = $USER['id'] == ROOT_USER || ($id != ROOT_USER && $USER['authlevel'] > $UserData['authlevel']);
 
             if ($action == 'send') {
-                $SQL = "UPDATE " . USERS . " SET ";
+                $sql = "UPDATE %%USERS%% SET ";
                 foreach ($DataIDs as $ID) {
-                    $SQL .= "`" . $resource[$ID] . "` = " . min(abs(HTTP::_GP($resource[$ID], 0)), 255) . ", ";
+                    $sql .= "`" . $resource[$ID] . "` = " . min(abs(HTTP::_GP($resource[$ID], 0)), 255) . ", ";
                 }
                 if (!empty($_POST['password']) && $ChangePW) {
-                    $SQL .= "`password` = '" . PlayerUtil::cryptPassword(HTTP::_GP('password', '', true)) . "', ";
+                    $sql .= "`password` = '" . PlayerUtil::cryptPassword(HTTP::_GP('password', '', true)) . "', ";
                 }
 
-                $SQL .= "`username` = '" . $GLOBALS['DATABASE']->sql_escape(HTTP::_GP('name', '', UTF8_SUPPORT))
-                    . "', ";
-                $SQL .= "`authattack` = '"
-                    . ($UserData['authlevel'] != AUTH_USR
-                    && HTTP::_GP('authattack', '') == 'on' ? $UserData['authlevel'] : 0) . "' ";
-                $SQL .= "WHERE `id` = '" . $id . "' AND `universe` = '" . Universe::getEmulated() . "';";
-                $GLOBALS['DATABASE']->query($SQL);
+                $sql .= "`username` = :username, ";
+                $sql .= "`authattack` = :authattack ";
+                $sql .= "WHERE `id` = :userID AND `universe` = :universe;";
+                $db->update($sql, [
+                    ':username' => HTTP::_GP('name', '', UTF8_SUPPORT),
+                    ':authattack' => ($UserData['authlevel'] != AUTH_USR && HTTP::_GP('authattack', '') == 'on' ? $UserData['authlevel'] : 0),
+                    ':userID' => $id,
+                    ':universe' => Universe::getEmulated(),
+                ]);
 
                 $old = [];
                 $new = [];
-                $multi =  HTTP::_GP('multi', 0);
                 foreach ($DataIDs as $IDs) {
                     $old[$IDs] = $UserData[$resource[$IDs]];
                     $new[$IDs] = abs(HTTP::_GP($resource[$IDs], 0));
                 }
                 $old['username'] = $UserData['username'];
-                $new['username'] = $GLOBALS['DATABASE']->sql_escape(HTTP::_GP('name', '', UTF8_SUPPORT));
+                $new['username'] = HTTP::_GP('name', '', UTF8_SUPPORT);
                 $old['authattack'] = $UserData['authattack'];
                 $new['authattack'] = ($UserData['authlevel'] != AUTH_USR
                     && HTTP::_GP('authattack', '') == 'on' ? $UserData['authlevel'] : 0);
-                $old['multi'] = $GLOBALS['DATABASE']->getFirstCell(
-                    "SELECT COUNT(*) FROM " . MULTI . " WHERE userID = " . $id . ";"
-                );
-                $new['multi'] = $multi;
-
-                if ($old['multi'] != $multi) {
-                    if ($multi == 0) {
-                        $GLOBALS['DATABASE']->query("DELETE FROM " . MULTI . " WHERE userID = " . ((int) $id) . ";");
-                    } elseif ($multi == 1) {
-                        $GLOBALS['DATABASE']->query("INSERT INTO " . MULTI . " SET userID = " . ((int) $id) . ";");
-                    }
-                }
 
                 $LOG = new Log(1);
                 $LOG->target = $id;
@@ -217,10 +221,11 @@ function ShowQuickEditorPage()
 
                 exit(sprintf($LNG['qe_edit_player_sucess'], $UserData['username'], $id));
             }
-            $PlanetInfo = $GLOBALS['DATABASE']->getFirstRow(
-                "SELECT `name` FROM " . PLANETS . " WHERE `id` = '" . $UserData['id_planet'] . "' AND `universe` = '"
-                . Universe::getEmulated() . "';"
-            );
+            $sql = "SELECT `name` FROM %%PLANETS%% WHERE `id` = :planetID AND `universe` = :universe;";
+            $PlanetInfo = $db->selectSingle($sql, [
+                ':planetID' => $UserData['id_planet'],
+                ':universe' => Universe::getEmulated(),
+            ]);
 
             $tech = [];
 
@@ -246,9 +251,6 @@ function ShowQuickEditorPage()
                 'authlevel'     => $UserData['authlevel'],
                 'qe_change'     => '',
                 'authattack'    => $UserData['authattack'],
-                'multi'         => $GLOBALS['DATABASE']->getFirstCell(
-                    "SELECT COUNT(*) FROM " . MULTI . " WHERE userID = " . $id . ";"
-                ),
                 'ChangePW'      => $ChangePW,
                 'yesorno'       => [1 => $LNG['one_is_yes_1'], 0 => $LNG['one_is_yes_0']],
                 'signalColors'  => $USER['signalColors']
