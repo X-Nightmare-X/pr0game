@@ -1233,3 +1233,11 @@ $LNG['up_chmod_error'] = 'Dosyayi degistirme yetkisi yok : \n\n';
 $LNG['up_need_curl'] = 'Hata: CURL girilmemis.<br> Augame guncellemeleri icin cURL girmelisiniz';
 $LNG['up_no_xml_ext'] = 'Hata: XML Parser girilmemis.<br>Augame server otomatik bakim icin XML Parser girmelisiniz.';
 $LNG['up_offline'] = 'Sunucuyla baglanti kurulamadi';
+
+//Reshuffle Planets
+$LNG['rp_header'] = 'Gezegenleri yeniden karıştırın';
+$LNG['rp_explain'] = 'Gönder\'e tıkladıktan sonra, lütfen açılır pencere görünene kadar bekleyin. Yeniden konumlandırma birkaç saniye sürebilir!';
+$LNG['rp_done'] = 'Gezegenler başarıyla yeniden karıştırıldı';
+$LNG['rp_planet_error'] = 'Oyuncu başına birden fazla gezegen var!';
+$LNG['rp_universe_error'] = 'Evren tamamen kapalı değildir!';
+$LNG['rp_rights_error'] = 'Yönetici hakları yok!';

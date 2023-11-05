@@ -38,6 +38,7 @@
 		{if allowedTo('ShowPassEncripterPage')}<li><a href="?page=password" target="Hauptframe">{$LNG.mu_md5_encripter}</a></li>{/if}
 		{if allowedTo('ShowStatUpdatePage')}<li><a href="?page=statsupdate" target="Hauptframe" onClick=" return confirm('{$LNG.mu_mpu_confirmation}');">{$LNG.mu_manual_points_update}</a></li>{/if}
 		{if allowedTo('ShowClearCachePage')}<li><a href="?page=clearcache" target="Hauptframe">{$LNG.mu_clear_cache}</a></li>{/if}
+		{if allowedTo('ShowReshufflePage')}<li><a href="?page=reshufflePlayers" target="Hauptframe">{$LNG.rp_header}</a></li>{/if}
 		<li style="background-image: url('./styles/theme/gow/img/menu-foot.png');height:30px;"></li>
 	</ul>
 </div>

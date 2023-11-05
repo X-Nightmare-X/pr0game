@@ -196,11 +196,11 @@ class Session
             )
         ) {
             $sql    = 'REPLACE INTO %%SESSION%% SET
-		sessionID	= :sessionId,
-		userID		= :userId,
-		lastonline	= :lastActivity,
-		created		= :created,
-		userIP		= :userAddress;';
+                sessionID	= :sessionId,
+                userID		= :userId,
+                lastonline	= :lastActivity,
+                created		= :created,
+                userIP		= :userAddress;';
 
             $db     = Database::get();
 
@@ -224,10 +224,9 @@ class Session
             ]);
 
             $sql = 'UPDATE %%USERS%% SET
-		onlinetime	= :lastActivity,
-		user_lastip = :userAddress
-		WHERE
-		id = :userId;';
+                onlinetime	= :lastActivity,
+                user_lastip = :userAddress
+                WHERE id = :userId;';
 
             $db->update($sql, [
                ':userAddress'   => $userIpAddress,
@@ -253,6 +252,8 @@ class Session
                     ':sessionId'    => session_id(),
                 ]);
             }
+
+            $this->checkMultiIP();
 
             $this->data['lastActivity']  = TIMESTAMP;
             $this->data['sessionId']     = session_id();
@@ -368,5 +369,126 @@ class Session
         }
 
         return $ip;
+    }
+
+    private function checkMultiIP() {
+
+        $db     = Database::get();
+        $userIpAddress = self::getClientIp();
+
+        // Check fpr MultiIP
+        $sql = "SELECT `id` FROM %%USERS%%
+            WHERE `onlinetime` > :lastActivity
+            AND `user_lastip` = :userAddress
+            AND `id` != :userId
+            AND `universe` = :universe;";
+        $multis = $db->select($sql, [
+            ':userAddress'  => $userIpAddress,
+            ':lastActivity' => TIMESTAMP - TIME_24_HOURS,
+            ':userId'       => $this->data['userId'],
+            ':universe'     => Universe::current(),
+        ]);
+
+        if (!empty($multis)) {
+            $multis[] = ['id' => $this->data['userId']];
+
+            $sql = "SELECT * FROM %%MULTI%%
+                WHERE `multi_ip` = :userAddress
+                AND `universe` = :universe;";
+            $multiEntry = $db->selectSingle($sql, [
+                ':userAddress'  => $userIpAddress,
+                ':universe'     => Universe::current(),
+            ]);
+
+            if (empty($multiEntry)) {
+                $sql = "SELECT mu.`multiID`, count(DISTINCT muc.`userID`) AS anz
+                    FROM `uni1_multi_to_users` AS mu
+                    JOIN `uni1_multi_to_users` AS muc ON muc.`multiID` = mu.`multiID`
+                    WHERE mu.`userID` IN ( ". implode(', ', array_column($multis, 'id')) ." )
+                    GROUP BY mu.`multiID`
+                    HAVING count(DISTINCT mu.`userID`) >= :usersSize
+                    ORDER BY anz ASC;";
+                $multiID = $db->selectSingle($sql, [
+                    ':usersSize' => count($multis),
+                ], 'multiID');
+
+                $sql = "SELECT * FROM %%MULTI%%
+                    WHERE `multiID` = :multiID;";
+                $multiEntry = $db->selectSingle($sql, [
+                    ':multiID'  => $multiID,
+                ]);
+            }
+
+            if (empty($multiEntry)) {
+                $sql = "INSERT INTO %%MULTI%% SET
+                    `multi_ip` = :userAddress,
+                    `lastActivity` = :lastActivity,
+                    `universe` = :universe,
+                    `allowed` = 0;";
+                $db->insert($sql, [
+                    ':userAddress' => $userIpAddress,
+                    ':lastActivity' => TIMESTAMP,
+                    ':universe' => Universe::current(),
+                ]);
+                $multiID = $db->lastInsertId();
+
+                $sql = "INSERT INTO %%MULTI_TO_USERS%% SET
+                    `multiID` = :multiID,
+                    `userID` = :userID,
+                    `lastActivity` = :lastActivity,
+                    `allowed` = 0;";
+
+                foreach ($multis as $multi) {
+                    $db->insert($sql, [
+                        ':multiID' => $multiID,
+                        ':userID' => $multi['id'],
+                        ':lastActivity' => TIMESTAMP,
+                    ]);
+                }
+            } else {
+                $multiID = $multiEntry['multiID'];
+                $sql = "UPDATE %%MULTI%% SET
+                    `multi_ip` = :userAddress,
+                    `lastActivity` = :lastActivity
+                    WHERE `multiID` = :multiID;";
+                $db->update($sql, [
+                    ':userAddress'  => $userIpAddress,
+                    ':lastActivity' => TIMESTAMP,
+                    ':multiID' => $multiID,
+                ]);
+
+                $sqlSelect = "SELECT * FROM %%MULTI_TO_USERS%%
+                    WHERE `multiID` = :multiID AND `userID` = :userID;";
+                $sqlInsert = "INSERT INTO %%MULTI_TO_USERS%% SET
+                    `multiID` = :multiID,
+                    `userID` = :userID,
+                    `lastActivity` = :lastActivity,
+                    `allowed` = 0;";
+                $sqlUpdate = "UPDATE %%MULTI_TO_USERS%% SET
+                    `lastActivity` = :lastActivity
+                    WHERE `multiID` = :multiID AND `userID` = :userID;";
+
+                foreach ($multis as $multi) {
+                    $result = $db->selectSingle($sqlSelect, [
+                        ':multiID' => $multiID,
+                        ':userID' => $multi['id'],
+                    ]);
+
+                    if (empty($result)) {
+                        $db->insert($sqlInsert, [
+                            ':multiID' => $multiID,
+                            ':userID' => $multi['id'],
+                            ':lastActivity' => TIMESTAMP,
+                        ]);
+                    } else if ($multi['id'] == $this->data['userId']) {
+                        $db->update($sqlUpdate, [
+                            ':lastActivity' => TIMESTAMP,
+                            ':multiID' => $multiID,
+                            ':userID' => $multi['id'],
+                        ]);
+                    }
+                }
+            }
+        }
     }
 }
