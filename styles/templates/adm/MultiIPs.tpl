@@ -17,7 +17,7 @@
       <td rowspan="{count($multiEntry.users)}" valign="center" style="vertical-align: center;">{$multiEntry.multi_ip}</td>
       <td rowspan="{count($multiEntry.users)}" valign="center" style="vertical-align: center;">{$multiEntry.lastActivity}</td>
       <td rowspan="{count($multiEntry.users)}" valign="center" style="vertical-align: center;">
-        {if ($multiEntry.isKnown != 0)}
+        {if ($multiEntry.allowed != 0)}
           <a href="admin.php?page=multiips&amp;action=unknown&amp;id={$multiID}"><img src="styles/resource/images/true.png"></a>
         {else}
           <a href="admin.php?page=multiips&amp;action=known&amp;id={$multiID}"><img src="styles/resource/images/false.png"></a>
@@ -25,7 +25,7 @@
       </td>
       {foreach $multiEntry.users as $ID => $User}
         <td style="padding:3px;">
-          {if ($User.isKnown != 0)}
+          {if ($User.allowed != 0)}
             <a href="admin.php?page=multiips&amp;action=unknown&amp;id={$multiID}&amp;userID={$ID}"><img src="styles/resource/images/true.png"></a>
           {else}
             <a href="admin.php?page=multiips&amp;action=known&amp;id={$multiID}&amp;userID={$ID}"><img src="styles/resource/images/false.png"></a>
