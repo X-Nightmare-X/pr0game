@@ -82,7 +82,7 @@ function ShowMultiIPPage()
             $hide = $hide && $multiUser['allowed'] == 1;
         }
         if ($hide) {
-            continue;
+            // continue; TODO: Add hide to IPs[] to filter in tpl.
         }
 
         $IPs[$multiEntry['multiID']] = [];
