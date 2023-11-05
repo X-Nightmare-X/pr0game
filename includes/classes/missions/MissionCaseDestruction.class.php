@@ -84,6 +84,20 @@ HTML;
             ':planetId' => $this->_fleet['fleet_end_id'],
         ]);
 
+        // select wreckfield to lock it, can be empty
+        if ($targetPlanet['planet_type'] == 3) {
+            $sql = "SELECT * FROM %%PLANETS%% WHERE luna_id = :planetId;";
+            $targetPlanetID = $db->selectSingle($sql, [
+                ':planetId' => $this->_fleet['fleet_end_id']
+            ], 'id');
+        } else {
+            $targetPlanetID = $targetPlanet['id'];
+        }
+        $sql = "SELECT * FROM %%PLANET_WRECKFIELD%% WHERE planetId = :planetId FOR UPDATE;";
+        $db->selectSingle($sql, [
+            ':planetId' => $targetPlanetID
+        ]);
+
         // return fleet if target planet deleted
         if ($targetPlanet == false) {
             $this->setState(FLEET_RETURN);

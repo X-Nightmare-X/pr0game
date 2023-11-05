@@ -92,6 +92,20 @@ HTML;
             return;
         }
 
+        // select wreckfield to lock it, can be empty
+        if ($targetPlanet['planet_type'] == 3) {
+            $sql = "SELECT * FROM %%PLANETS%% WHERE luna_id = :planetId;";
+            $targetPlanetID = $db->selectSingle($sql, [
+                ':planetId' => $this->_fleet['fleet_end_id']
+            ], 'id');
+        } else {
+            $targetPlanetID = $targetPlanet['id'];
+        }
+        $sql = "SELECT * FROM %%PLANET_WRECKFIELD%% WHERE planetId = :planetId FOR UPDATE;";
+        $db->selectSingle($sql, [
+            ':planetId' => $targetPlanetID
+        ]);
+
         $sql = "SELECT * FROM %%USERS%% WHERE id = :userId;";
         $targetUser = $db->selectSingle($sql, [
             ':userId'   => $targetPlanet['id_owner']
@@ -516,6 +530,9 @@ HTML;
             ':deuterium'    => $stealResource[903],
             ':planetId'     => $this->_fleet['fleet_end_id'],
         ]);
+
+        require_once('includes/classes/missions/functions/GenerateWreckField.php');
+        GenerateWreckField($this->_fleet['fleet_end_id'], $combatResult);
 
         $sql = 'INSERT INTO %%TOPKB%% SET
 		units 		= :units,

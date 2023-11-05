@@ -47,6 +47,7 @@ $dbTableNames   = [
     'MULTI'                 => DB_PREFIX . 'multi',
     'MULTI_TO_USERS'        => DB_PREFIX . 'multi_to_users',
     'PLANETS'               => DB_PREFIX . 'planets',
+    'PLANET_WRECKFIELD'     => DB_PREFIX . 'planet_wreckfield',
     'RW'                    => DB_PREFIX . 'raports',
     'RECORDS'               => DB_PREFIX . 'records',
     'RECAPTCHA'             => DB_PREFIX . 'recaptcha',

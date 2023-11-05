@@ -259,9 +259,6 @@ define('SHIPYARD', 21);
 define('METAL_STORE', 22);
 define('CRYSTAL_STORE', 23);
 define('DEUTERIUM_STORE', 24);
-define('METAL_STASH', 25);
-define('CRYSTAL_STASH', 26);
-define('DEUTERIUM_STASH', 27);
 define('RESEARCH_LABORATORY', 31);
 define('TERRAFORMER', 33);
 define('REPAIR_DOCK', 35);
@@ -321,6 +318,7 @@ define('MISSION_TRANSFER', 17);
 
 // general time constants
 define('TIME_6_HOURS', 21600);
+define('TIME_12_HOURS', 43200);
 define('TIME_24_HOURS', 86400);
 define('TIME_1_WEEK', 604800);
 define('TIME_1_MONTH', 2592000);

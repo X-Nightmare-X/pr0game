@@ -628,31 +628,14 @@ CREATE TABLE `%PREFIX%notes` (
   KEY `owner` (`owner`,`time`,`priority`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE `%PREFIX%wreckfield` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `%PREFIX%planet_wreckfield` (
   `planetID` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `created` int(11) NOT NULL DEFAULT '0',
+  `ships` text,
+  `repair_order` text,
   `repair_order_start` int(11) NOT NULL DEFAULT '0',
   `repair_order_end` int(11) NOT NULL DEFAULT '0',
-  `small_ship_cargo` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `big_ship_cargo` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `light_hunter` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `heavy_hunter` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `crusher` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `battle_ship` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `colonizer` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `recycler` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `spy_sonde` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `bomber_ship` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `solar_satelit` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `destructor` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `dearth_star` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `battleship` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `lune_noir` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `ev_transporter` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `star_crasher` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `giga_recykler` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `orbital_station` bigint(20) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`planetID`),
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%planets` (
@@ -1249,9 +1232,6 @@ INSERT INTO `%PREFIX%vars` (`elementID`, `name`, `class`, `onPlanetType`, `onePe
 (22, 'metal_store', 0, '1,3', 0, 2.00, 255, 2000, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 'floor(2.5 * pow(1.8331954764, $BuildLevel)) * 5000', NULL, NULL),
 (23, 'crystal_store', 0, '1,3', 0, 2.00, 255, 2000, 1000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 'floor(2.5 * pow(1.8331954764, $BuildLevel)) * 5000', NULL),
 (24, 'deuterium_store', 0, '1,3', 0, 2.00, 255, 2000, 2000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'floor(2.5 * pow(1.8331954764, $BuildLevel)) * 5000'),
-(25, 'metal_stash', 0, '1,3', 0, 2.30, 255, 2645, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(26, 'crystal_stash', 0, '1,3', 0, 2.30, 255, 2645, 1322, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(27, 'deuterium_stash', 0, '1,3', 0, 2.30, 255, 2645, 2645, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (31, 'laboratory', 0, '1', 0, 2.00, 255, 200, 400, 200, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (33, 'terraformer', 0, '1', 0, 2.00, 255, 0, 50000, 100000, 1000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (34, 'ally_deposit', 0, '1', 0, 2.00, 255, 20000, 40000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),

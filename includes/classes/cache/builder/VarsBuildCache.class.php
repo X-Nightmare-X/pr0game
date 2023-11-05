@@ -172,10 +172,6 @@ class VarsBuildCache implements BuildCache
         switch ($elementID) {
             case REPAIR_DOCK:
                 return isModuleAvailable(MODULE_REPAIR_DOCK);
-            case METAL_STASH:
-            case CRYSTAL_STASH:
-            case DEUTERIUM_STASH:
-                return isModuleAvailable(MODULE_REPAIR_DOCK);
             default:
                 return true;
         }

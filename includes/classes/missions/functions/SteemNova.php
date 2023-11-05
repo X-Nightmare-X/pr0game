@@ -234,14 +234,16 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
                 // ships
                 $DRES['metal'] += $pricelist[$element]['cost'][901] * $amount;
                 $DRES['crystal'] += $pricelist[$element]['cost'][902] * $amount;
-            } else {
-                // defense
+            }
+
+            if ($fleetID == 0) {
                 if (!isset($STARTDEF[$element])) {
                     $STARTDEF[$element] = 0;
                 }
 
                 $STARTDEF[$element] += $amount;
             }
+
             $TRES['defender'] += $pricelist[$element]['cost'][901] * $amount;
             $TRES['defender'] += $pricelist[$element]['cost'][902] * $amount;
         }
@@ -319,6 +321,13 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
 
     // restore defense (70% +/- 20%)
     $repairedDef = [];
+    // wreckfield ships
+    $wreckfield = [];
+    // wreckfield requirements
+    $defendingPlayer = [
+        'total' => 0,
+        'lost' => 0,
+    ];
     foreach ($defenders as $fleetID => $defender) {
         foreach ($defender['unit'] as $element => $amount) {
             if ($element < 300) {                           // flotte defenseur en CDR
@@ -327,6 +336,14 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
 
                 $TRES['defender'] -= $pricelist[$element]['cost'][901] * $amount;
                 $TRES['defender'] -= $pricelist[$element]['cost'][902] * $amount;
+
+                if ($fleetID == 0 && isModuleAvailable(MODULE_REPAIR_DOCK) && $STARTDEF[$element] > $amount) {
+                    $wreckfield[$element] = floor(($STARTDEF[$element] - $amount) * (1-($FleetTF / 100)));
+                    $defendingPlayer['total'] += $pricelist[$element]['cost'][901] * $STARTDEF[$element];
+                    $defendingPlayer['total'] += $pricelist[$element]['cost'][902] * $STARTDEF[$element];
+                    $defendingPlayer['lost'] += $pricelist[$element]['cost'][901] * $amount;
+                    $defendingPlayer['lost'] += $pricelist[$element]['cost'][902] * $amount;
+                }
             } else {                                    // defs defenseur en CDR + reconstruction
                 $TRES['defender'] -= $pricelist[$element]['cost'][901] * $amount;
                 $TRES['defender'] -= $pricelist[$element]['cost'][902] * $amount;
@@ -365,6 +382,11 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
     $debDefMet = ($DRES['metal'] * ($FleetTF / 100)) + ($DRESDefs['metal'] * ($DefTF / 100));
     $debDefCry = ($DRES['crystal'] * ($FleetTF / 100)) + ($DRESDefs['crystal'] * ($DefTF / 100));
 
+    //Repairable wreckfield only with min 150.000 lost units and min 5% lost fleet
+    if ($defendingPlayer['lost'] < 150000 || $defendingPlayer['lost']/$defendingPlayer['total'] < 0.05) {
+        $wreckfield = [];
+    }
+
     return [
         'won' => $won,
         'debris' => [
@@ -380,5 +402,6 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
         'rw' => $ROUND,
         'unitLost' => $totalLost,
         'repaired' => $repairedDef,
+        'wreckfield' => $wreckfield,
     ];
 }
