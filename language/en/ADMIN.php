@@ -1311,3 +1311,11 @@ $LNG['du_select_all_tables'] = 'All Tables';
 $LNG['du_choose_tables'] = 'Select tables';
 $LNG['du_success'] = 'Backup created successfully! File: %s';
 $LNG['du_not_tables_selected'] = 'You have no tables selected to backup!';
+
+//Reshuffle Planets
+$LNG['rp_header'] = 'Reshuffle planets';
+$LNG['rp_explain'] = 'After clicking on Send, please wait until the pop-up appears. The repositioning may take several seconds!';
+$LNG['rp_done'] = 'Planets successfully reshuffled';
+$LNG['rp_planet_error'] = 'There is more than one planet per player!';
+$LNG['rp_universe_error'] = 'The universe is not completely closed!';
+$LNG['rp_rights_error'] = 'No administrator rights!';
