@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-define('DB_VERSION_REQUIRED', 47);
+define('DB_VERSION_REQUIRED', 48);
 define('DB_NAME'			, $database['databasename']);
 define('DB_PREFIX'			, $database['tableprefix']);
 
@@ -45,6 +45,7 @@ $dbTableNames   = [
     'MARKETPLACE'           => DB_PREFIX . 'marketplace',
     'MESSAGES'              => DB_PREFIX . 'messages',
     'MULTI'                 => DB_PREFIX . 'multi',
+    'MULTI_TO_USERS'        => DB_PREFIX . 'multi_to_users',
     'PLANETS'               => DB_PREFIX . 'planets',
     'RW'                    => DB_PREFIX . 'raports',
     'RECORDS'               => DB_PREFIX . 'records',
