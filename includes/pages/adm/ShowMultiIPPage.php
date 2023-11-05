@@ -69,7 +69,7 @@ function ShowMultiIPPage()
     $multis = $db->select($sql, [':universe' => Universe::getEmulated()]);
     $IPs	= [];
     foreach ($multis as $multiEntry) {
-        $sql = "SELECT u.`id`, u.`username`, u.`email`, u.`register_time`, u.`onlinetime`, u.`user_lastip`, mu.`lastActivity`, mu.`allowed` AS isKnown
+        $sql = "SELECT u.`id`, u.`username`, u.`email`, u.`register_time`, u.`onlinetime`, u.`user_lastip`, mu.`lastActivity`, mu.`allowed`
             FROM %%USERS%% AS u
             JOIN %%MULTI_TO_USERS%% AS mu ON mu.userID = u.id
             WHERE mu.`multiID` = :multiID;";
@@ -88,7 +88,7 @@ function ShowMultiIPPage()
         $IPs[$multiEntry['multiID']] = [];
         $IPs[$multiEntry['multiID']]['multi_ip'] = $multiEntry['multi_ip'];
         $IPs[$multiEntry['multiID']]['lastActivity'] = _date($LNG['php_tdformat'], $multiEntry['lastActivity']);
-        $IPs[$multiEntry['multiID']]['isKnown'] = $multiEntry['allowed'];
+        $IPs[$multiEntry['multiID']]['allowed'] = $multiEntry['allowed'];
         $IPs[$multiEntry['multiID']]['users'] = [];
 
         foreach ($multiUsers as $multiUser) {
