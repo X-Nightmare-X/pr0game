@@ -386,7 +386,7 @@ class Session
             ':userAddress'  => $userIpAddress,
             ':lastActivity' => TIMESTAMP - TIME_24_HOURS,
             ':userId'       => $this->data['userId'],
-            ':universe'     => Universe::current(),
+            ':universe'     => $this->data['universe'],
         ]);
 
         if (!empty($multis)) {
@@ -397,7 +397,7 @@ class Session
                 AND `universe` = :universe;";
             $multiEntry = $db->selectSingle($sql, [
                 ':userAddress'  => $userIpAddress,
-                ':universe'     => Universe::current(),
+                ':universe'     => $this->data['universe'],
             ]);
 
             if (empty($multiEntry)) {
@@ -428,7 +428,7 @@ class Session
                 $db->insert($sql, [
                     ':userAddress' => $userIpAddress,
                     ':lastActivity' => TIMESTAMP,
-                    ':universe' => Universe::current(),
+                    ':universe' => $this->data['universe'],
                 ]);
                 $multiID = $db->lastInsertId();
 
