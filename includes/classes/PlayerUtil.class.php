@@ -630,8 +630,14 @@ class PlayerUtil
             return false;
         }
 
+        $sql = "SELECT moonSizeFactor FROM %%CONFIG%% WHERE uni = :universe;";
+
+        $moonSizeFactor = $db->selectSingle($sql, [
+            ':universe' => $universe,
+        ], 'moonSizeFactor' );
+
         if (is_null($diameter)) {
-            $diameter = floor(pow(mt_rand(10, 20) + 3 * $chance, 0.5) * 1000); # New Calculation - 23.04.2011
+            $diameter = floor(pow(mt_rand(10, 20) + 3 * $chance, 0.5) * 1000 * $moonSizeFactor);
         }
 
         $maxTemperature = $parentPlanet['temp_max'] - mt_rand(10, 45);

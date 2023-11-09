@@ -466,6 +466,8 @@ $LNG['se_deuterium_start'] = 'Start Deuterium';
 $LNG['se_deuterium_start_info'] = 'Określ ilość deuterium, z którą zaczyna nowa planeta.';
 $LNG['se_debris_moon'] = 'Usuń pole zniszczań po powstaniu księżyca';
 $LNG['se_debris_moon_info'] = 'Ustaw, czy po powstaniu księżyca pole zniszczeń ma zostać usunięte.';
+$LNG['se_moonSizeFactor'] = 'Współczynnik rozmiaru księżyca';
+$LNG['se_moonSizeFactor_info'] = 'Czynnik wpływający na rozmiar księżyca, 1 = domyślny';
 $LNG['se_deuterium_cost_galaxy'] = 'Galaktyczny podatek';
 $LNG['se_deuterium_cost_galaxy_info'] = 'Koszt deuterium za przeglądanie galaktyki';
 $LNG['se_buildlist'] = 'Kolejka budowy';

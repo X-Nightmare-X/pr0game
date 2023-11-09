@@ -464,6 +464,8 @@ $LNG['se_deuterium_start'] = 'Deuterio Inicial';
 $LNG['se_deuterium_start_info'] = 'Especifíca la cantidad de Deuterio presente en un nuevo Planeta.';
 $LNG['se_debris_moon'] = 'Eliminar Campo de Escombros';
 $LNG['se_debris_moon_info'] = 'Elimina los Escombros una vez que se creo la Luna.';
+$LNG['se_moonSizeFactor'] = 'Factor de tamaño de la luna';
+$LNG['se_moonSizeFactor_info'] = 'Factor que influye en el tamaño de la luna, 1 = por defecto';
 $LNG['se_deuterium_cost_galaxy'] = 'Costo de Visión galaxia';
 $LNG['se_deuterium_cost_galaxy_info'] = 'Costo en Deuterio / Vista de Galaxia';
 $LNG['se_buildlist'] = 'Ajustes de Edificios';

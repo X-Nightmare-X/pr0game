@@ -509,6 +509,8 @@ $LNG['se_crystal_start'] = 'Start Kristall';
 $LNG['se_crystal_start_info'] = 'Gibt an, wieviel Kristall auf neuen Planeten vorhanden ist.';
 $LNG['se_deuterium_start'] = 'Start Deuterium';
 $LNG['se_deuterium_start_info'] = 'Gibt an, wieviel Deuterium auf neuen Planeten vorhanden ist.';
+$LNG['se_moonSizeFactor'] = 'Mondgrößenfaktor';
+$LNG['se_moonSizeFactor_info'] = 'Faktor um die Mondgröße zu beeinflussen, 1 = default';
 $LNG['se_debris_moon'] = 'Lösche TF nach Mond';
 $LNG['se_debris_moon_info'] = 'Löscht das TF, nachdem ein Mond entstanden ist.';
 $LNG['se_deuterium_cost_galaxy'] = 'Galaxiegebühren';

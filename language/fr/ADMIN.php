@@ -512,6 +512,8 @@ $LNG['se_deuterium_start'] = 'Démarrer en deuterium';
 $LNG['se_deuterium_start_info'] = 'Indique combien de deuterium est présent sur la nouvelle planète.';
 $LNG['se_debris_moon'] = 'Supprimer TF par la lune';
 $LNG['se_debris_moon_info'] = 'Efface le TF, après qu\'une lune était originaire.';
+$LNG['se_moonSizeFactor'] = 'Facteur de taille de la lune';
+$LNG['se_moonSizeFactor_info'] = 'Facteur pour influencer la taille de la lune, 1 = par défaut';
 $LNG['se_buildlist'] = 'Liste des paramètres de construction';
 $LNG['se_timzone'] = 'Fuseau Horaire';
 $LNG['se_alliance_create_min_points'] = 'Nombre minimum de points pour rejoindre une alliance.';
