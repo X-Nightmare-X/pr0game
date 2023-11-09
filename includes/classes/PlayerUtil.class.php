@@ -206,19 +206,36 @@ class PlayerUtil
             return $pos;
         }
 
+        $minPos = round($config->max_planets * 0.2);
+        $maxPos = round($config->max_planets * 0.8);
+        $maxPlanets = $maxPos - $minPos;
+
         //Search for systems with one planet, if none, search for 2 planets
         for ($planetamount = 1; $planetamount < 3; $planetamount++) {
-            $sql = 'SELECT tab.galaxy, tab.system FROM (
-                SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz
-                FROM %%PLANETS%% p
-                JOIN %%USERS%% u on u.id = p.id_owner
-                WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive ) AND p.universe = :universe
-                GROUP BY p.galaxy, p.`system`
-            ) as tab where tab.anz = :planetamount ORDER BY tab.galaxy ASC';
+            $sql = "SELECT p.`galaxy`, p.`system` FROM
+                %%PLANETS%% p
+                JOIN (
+                        SELECT `galaxy`, `system`
+                        FROM %%PLANETS%%
+                        WHERE `planet_type` = 1
+                        AND `universe` = :universe
+                        AND `galaxy` <= :maxGala
+                        AND `planet` >= :minPos
+                        AND `planet` <= :maxPos
+                        GROUP BY `galaxy`, `system`
+                        HAVING COUNT(`planet`) < :maxPlanets
+                    ) as tab ON tab.`galaxy` = p.`galaxy` AND tab.`system` = p.`system`
+                JOIN %%USERS%% u on u.`id` = p.id_owner
+                WHERE p.`planet_type` = 1 AND u.`onlinetime` >= ( :ts - :inactive ) AND p.`universe` = :universe
+                GROUP BY p.`galaxy`, p.`system`
+                HAVING COUNT(p.`planet`) < :planetamount;";
             $systems = $db->select($sql, [
                 ':universe' => $universe,
-                ':planetamount' => $planetamount,
                 ':maxGala' => $config->max_galaxy,
+                ':minPos' => $minPos,
+                ':maxPos' => $maxPos,
+                ':maxPlanets' => $maxPlanets,
+                ':planetamount' => $planetamount,
                 ':ts' => TIMESTAMP,
                 ':inactive' => INACTIVE,
             ]);
@@ -235,7 +252,7 @@ class PlayerUtil
                 $galaxy = $galasys['galaxy'];
                 $system = $galasys['system'];
                 do {
-                    $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
+                    $position = mt_rand($minPos, $maxPos);
                 } while (!PlayerUtil::allowPlanetPosition($position, null, $universe));
             } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
             $pos = [
@@ -843,6 +860,11 @@ class PlayerUtil
             }
             return $result;
         }
+        $sql = "update %%USERS%% set onlinetime = :onlinetime where universe = :universe;";
+        $db->update($sql, [
+            ':onlinetime' => TIMESTAMP,
+            ':universe' => $universe
+        ]);
         $sql = 'select id from %%USERS%% where authlevel = :auth and universe = :universe order by id;';
         $userIds = $db->select($sql, [
             ':auth'      => AUTH_USR,
