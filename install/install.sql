@@ -396,6 +396,7 @@ CREATE TABLE `%PREFIX%config` (
   `initial_temp` int(3) unsigned NOT NULL DEFAULT '50',
   `recaptchaPrivKey` varchar(255) DEFAULT '',
   `recaptchaPubKey` varchar(255) DEFAULT '',
+  `moonSizeFactor` float(4,3) unsigned NOT NULL DEFAULT '1.000',
   PRIMARY KEY (`uni`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
