@@ -252,7 +252,7 @@ class PlayerUtil
                 $galaxy = $galasys['galaxy'];
                 $system = $galasys['system'];
                 do {
-                    $position = mt_rand(round($config->max_planets * 0.2), round($config->max_planets * 0.8));
+                    $position = mt_rand($minPos, $maxPos);
                 } while (!PlayerUtil::allowPlanetPosition($position, null, $universe));
             } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
             $pos = [
