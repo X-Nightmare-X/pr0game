@@ -39,6 +39,9 @@ class template extends Smarty
         $this->setCompileDir(is_writable(CACHE_PATH) ? CACHE_PATH : $this->getTempPath());
         $this->setCacheDir($this->getCompileDir().'templates');
         $this->setTemplateDir('styles/templates/');
+
+        // Fixes php-function as modifier is depreached by adding the function as custom plugin
+        $this->registerPlugin("modifier", "json_encode", "json_encode");
     }
 
     private function getTempPath()
