@@ -15,13 +15,10 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-function fight(&$attackers, &$defenders, $sim)
+function fight(&$attackers, &$defenders, $sim, &$advancedStats)
 {
     $attack = ['attack' => 0, 'shield' => 0];
     $defense = ['attack' => 0, 'shield' => 0];
-
-    //will also be filled during simulation to have a comparable ram usage. If sim crashes, the real fight will not work.
-    $advancedStats = [];
 
     // attackers shoot
     foreach ($attackers as $fleetID => $attacker) {
@@ -33,17 +30,6 @@ function fight(&$attackers, &$defenders, $sim)
     foreach ($defenders as $fleetID => $defender) {
         foreach ($defender['units'] as $element => $unit) {
             shoot($defender['player']['id'], $unit, $attackers, $defense, $sim, $advancedStats);
-        }
-    }
-
-    if (!$sim) {
-        require_once 'includes/classes/class.MissionFunctions.php';
-        foreach ($advancedStats as $attacker => $victims) {
-            foreach ($victims as $victim => $ships) {
-                foreach ($ships as $element => $amount) {
-                    MissionFunctions::updateDestroyedAdvancedStats($attacker, $victim, $element, $amount);
-                }
-            }
         }
     }
 
@@ -260,6 +246,9 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
         }
     }
 
+    //will also be filled during simulation to have a comparable ram usage. If sim crashes, the real fight will not work.
+    $advancedStats = [];
+
     for ($ROUNDC = 0; $ROUNDC <= MAX_ATTACK_ROUNDS; $ROUNDC++) {
         $attArray = [];
         $defArray = [];
@@ -278,7 +267,7 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
 
         if ($att['attackAmount']['total'] > 0 && $def['attackAmount']['total'] > 0 && $ROUNDC < MAX_ATTACK_ROUNDS) {
             // FIGHT
-            $fightResults = fight($attackers, $defenders, $sim);
+            $fightResults = fight($attackers, $defenders, $sim, $advancedStats);
 
             destroy($attackers);
             destroy($defenders);
@@ -292,6 +281,17 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
             $ROUND[$ROUNDC]['defShield'] = $fightResults['defShield'];
         } else {
             break;
+        }
+    }
+
+    if (!$sim) {
+        require_once 'includes/classes/class.MissionFunctions.php';
+        foreach ($advancedStats as $attacker => $victims) {
+            foreach ($victims as $victim => $ships) {
+                foreach ($ships as $element => $amount) {
+                    MissionFunctions::updateDestroyedAdvancedStats($attacker, $victim, $element, $amount);
+                }
+            }
         }
     }
 
