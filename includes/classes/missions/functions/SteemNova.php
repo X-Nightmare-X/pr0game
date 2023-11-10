@@ -19,18 +19,34 @@ function fight(&$attackers, &$defenders, $sim)
 {
     $attack = new Ds\Map(['attack' => 0, 'shield' => 0]);
     $defense = new Ds\Map(['attack' => 0, 'shield' => 0]);
+
+    //will also be filled during simulation to have a comparable ram usage. If sim crashes, the real fight will not work.
+    $advancedStats = [];
+
     // attackers shoot
     foreach ($attackers as $fleetID => $attacker) {
         foreach ($attacker['units'] as $element => $unit) {
-            shoot($attacker['player']['id'], $unit, $defenders, $attack, $sim);
+            shoot($attacker['player']['id'], $unit, $defenders, $attack, $sim, $advancedStats);
         }
     }
     // defenders shoot
     foreach ($defenders as $fleetID => $defender) {
         foreach ($defender['units'] as $element => $unit) {
-            shoot($defender['player']['id'], $unit, $attackers, $defense, $sim);
+            shoot($defender['player']['id'], $unit, $attackers, $defense, $sim, $advancedStats);
         }
     }
+
+    if (!$sim) {
+        require_once 'includes/classes/class.MissionFunctions.php';
+        foreach ($advancedStats as $attacker => $victims) {
+            foreach ($victims as $victim => $ships) {
+                foreach ($ships as $element => $amount) {
+                    MissionFunctions::updateDestroyedAdvancedStats($attacker, $victim, $element, $amount);
+                }
+            }
+        }
+    }
+
     return new Ds\Map([
         'attack' => $attack['attack'],
         'defense' => $defense['attack'],
@@ -55,7 +71,7 @@ function destroy(&$attackers)
     }
 }
 
-function shoot($attacker, $unit, &$defenders, &$ad, $sim)
+function shoot($attacker, $unit, &$defenders, &$ad, $sim, &$advancedStats)
 {
     // SHOOT
     $CombatCaps =& Singleton()->CombatCaps;
@@ -101,17 +117,19 @@ function shoot($attacker, $unit, &$defenders, &$ad, $sim)
                 $ran = rand(0, (int) $initialArmor);
                 if ($ran > $victimShip['armor']) {
                     $victimShip['explode'] = true;
-                    if (!$sim) {
-                        require_once 'includes/classes/class.MissionFunctions.php';
-                        MissionFunctions::updateDestroyedAdvancedStats($attacker, $victim, $victimShip['unit']);
+                    if (!isset($advancedStats[$attacker][$victim][$victimShip['unit']])) {
+                        $advancedStats[$attacker][$victim][$victimShip['unit']] = 0;
                     }
+                    $advancedStats[$attacker][$victim][$victimShip['unit']] += 1;
                 }
             }
         }
-        if (!$sim && $victimShip['armor'] <= 0 && !$victimShip['explode']) {
+        if ($victimShip['armor'] <= 0 && !$victimShip['explode']) {
             $victimShip['explode'] = true;
-            require_once 'includes/classes/class.MissionFunctions.php';
-            MissionFunctions::updateDestroyedAdvancedStats($attacker, $victim, $victimShip['unit']);
+            if (!isset($advancedStats[$attacker][$victim][$victimShip['unit']])) {
+                $advancedStats[$attacker][$victim][$victimShip['unit']] = 0;
+            }
+            $advancedStats[$attacker][$victim][$victimShip['unit']] += 1;
         }
     }
     // else bounced hit (Weaponry of the shooting unit is less than 1% of the Shielding of the target unit)
@@ -122,7 +140,7 @@ function shoot($attacker, $unit, &$defenders, &$ad, $sim)
             if ($victimShip['unit'] == $sdId) {
                 $ran = rand(0, $count);
                 if ($ran < $count) {
-                    shoot($attacker, $unit, $defenders, $ad, $sim);
+                    shoot($attacker, $unit, $defenders, $ad, $sim, $advancedStats);
                 }
             }
         }
