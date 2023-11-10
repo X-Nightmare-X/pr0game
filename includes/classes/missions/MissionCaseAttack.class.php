@@ -391,6 +391,9 @@ HTML;
         require_once 'includes/classes/missions/functions/GenerateReport.php';
         $reportData = GenerateReport($combatResult, $reportInfo, REAL_FIGHT);
 
+        require_once('includes/classes/missions/functions/GenerateWreckField.php');
+        GenerateWreckField($this->_fleet['fleet_end_id'], $combatResult);
+
         switch ($combatResult['won']) {
             case "a":
                 // Win
@@ -530,9 +533,6 @@ HTML;
             ':deuterium'    => $stealResource[903],
             ':planetId'     => $this->_fleet['fleet_end_id'],
         ]);
-
-        require_once('includes/classes/missions/functions/GenerateWreckField.php');
-        GenerateWreckField($this->_fleet['fleet_end_id'], $combatResult);
 
         $sql = 'INSERT INTO %%TOPKB%% SET
 		units 		= :units,

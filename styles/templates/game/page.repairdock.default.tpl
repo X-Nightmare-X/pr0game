@@ -27,12 +27,12 @@
         {else}
           -
         {/if}
-        <br><span class="colorPositive" data-time="{$List.endtime}" data-umode="{$umode}" class="timer">{if $umode == 0}{$List.pretty_end_time}{else}{$LNG.bd_paused}{/if}</span>
+        <br><span class="colorPositive" data-time="{$BuildList.endtime}" data-umode="{$umode}" class="timer">{if $umode == 0}{$BuildList.pretty_end_time}{else}{$LNG.bd_paused}{/if}</span>
       </div>
       <div id="buildlist" class="infos1">
-        {$ctime = $List.resttime+ $ctime}
+        {$ctime = $BuildList.resttime+ $ctime}
         <br><br>
-        <div id="progressbar" data-time="{$List.resttime}"></div>
+        <div id="progressbar" data-time="{$BuildList.resttime}"></div>
       </div>
     </div>
   {/if}

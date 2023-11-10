@@ -338,11 +338,13 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
                 $TRES['defender'] -= $pricelist[$element]['cost'][902] * $amount;
 
                 if ($fleetID == 0 && isModuleAvailable(MODULE_REPAIR_DOCK) && $STARTDEF[$element] > $amount) {
-                    $wreckfield[$element] = floor(($STARTDEF[$element] - $amount) * (1-($FleetTF / 100)));
+                    $lost = $STARTDEF[$element] - $amount;
+
+                    $wreckfield[$element] = floor($lost * (1-($FleetTF / 100)));
                     $defendingPlayer['total'] += $pricelist[$element]['cost'][901] * $STARTDEF[$element];
                     $defendingPlayer['total'] += $pricelist[$element]['cost'][902] * $STARTDEF[$element];
-                    $defendingPlayer['lost'] += $pricelist[$element]['cost'][901] * $amount;
-                    $defendingPlayer['lost'] += $pricelist[$element]['cost'][902] * $amount;
+                    $defendingPlayer['lost'] += $pricelist[$element]['cost'][901] * $lost;
+                    $defendingPlayer['lost'] += $pricelist[$element]['cost'][902] * $lost;
                 }
             } else {                                    // defs defenseur en CDR + reconstruction
                 $TRES['defender'] -= $pricelist[$element]['cost'][901] * $amount;

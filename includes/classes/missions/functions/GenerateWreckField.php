@@ -19,7 +19,7 @@ function GenerateWreckField($planetID, $combatResult) {
                 $combatResult['wreckfield'][$elementID] += $amount;
             }
         }
-        $shipArray = [];
+        $shipArray = '';
         foreach ($combatResult['wreckfield'] as $elementID => $amount) {
             $shipArray .= $elementID . ',' . floatToString($amount) . ';';
         }
@@ -29,11 +29,11 @@ function GenerateWreckField($planetID, $combatResult) {
         $db->update($sql, [
             ':planetID' => $planetID,
             ':created' => TIMESTAMP,
-            ':shipArray' => $shipArray,
+            ':shipArray' => substr($shipArray, 0, -1),
         ]);
     }
     else {
-        $shipArray = [];
+        $shipArray = '';
         foreach ($combatResult['wreckfield'] as $elementID => $amount) {
             $shipArray .= $elementID . ',' . floatToString($amount) . ';';
         }
@@ -42,7 +42,7 @@ function GenerateWreckField($planetID, $combatResult) {
         $db->insert($sql, [
             ':planetID' => $planetID,
             ':created' => TIMESTAMP,
-            ':shipArray' => $shipArray,
+            ':shipArray' => substr($shipArray, 0, -1),
         ]);
     }
 

@@ -88,6 +88,7 @@ $LNG['tech'] = [
      31 => 'Forschungslabor',
      33 => 'Terraformer',
      34 => 'Allianzdepot',
+     35 => 'Reparaturdock',
      40 => 'Mondgebäude',
      41 => 'Basisstützpunkt',
      42 => 'Sensorenphalanx',
