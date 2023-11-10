@@ -110,6 +110,7 @@ class ShowVertifyPage extends AbstractLoginPage
 
         $session	= Session::create();
         $session->userId		= (int) $userData['userID'];
+        $session->universe      = $userData['universe'];
         $session->adminAccess	= 0;
         $session->save();
 
