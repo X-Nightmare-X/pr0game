@@ -32,6 +32,7 @@ if ($USER['authlevel'] == AUTH_USR) {
 }
 
 $session	= Session::create();
+$session->universe      = ROOT_UNI;
 if ($session->adminAccess != 1) {
     include_once('includes/pages/adm/ShowLoginPage.php');
     ShowLoginPage();
