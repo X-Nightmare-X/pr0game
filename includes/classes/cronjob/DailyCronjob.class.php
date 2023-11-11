@@ -26,6 +26,7 @@ class DailyCronJob implements CronjobTask
         $this->clearEcoCache();
         $this->cancelVacation();
         $this->updateInactiveMines();
+        $this->eraseIPAdresses();
     }
 
     public function clearCache()
@@ -42,6 +43,12 @@ class DailyCronJob implements CronjobTask
     {
         $sql	= "UPDATE %%PLANETS%% SET eco_hash = '';";
         Database::get()->update($sql);
+    }
+
+    public function eraseIPAdresses()
+    {
+        $sql = "UPDATE %%MULTI%% SET multi_ip = 'cleared' WHERE lastActivity < :oneMonth;";
+        Database::get()->update($sql, [':oneMonth' => TIMESTAMP - TIME_1_MONTH]);
     }
 
     public function cancelVacation()

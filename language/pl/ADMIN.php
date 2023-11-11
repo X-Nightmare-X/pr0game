@@ -1269,3 +1269,11 @@ $LNG['du_success'] = 'Utworzono kopię pomyślnie! Dane: %s';
 $LNG['du_not_tables_selected'] = 'Nie wybrałeś tabel!';
 // Translated into Polish by Sirgomo . All rights reversed (C) 2012
 // Edited by TheRavikin. All rights resteemed (C) 2018
+
+//Reshuffle Planets
+$LNG['rp_header'] = 'Przetasowanie planet';
+$LNG['rp_explain'] = 'Po kliknięciu przycisku Wyślij poczekaj, aż pojawi się wyskakujące okienko. Zmiana pozycji może potrwać kilka sekund!';
+$LNG['rp_done'] = 'Planety pomyślnie przetasowane';
+$LNG['rp_planet_error'] = 'Na jednego gracza przypada więcej niż jedna planeta!';
+$LNG['rp_universe_error'] = 'Wszechświat nie jest całkowicie zamknięty!';
+$LNG['rp_rights_error'] = 'Brak uprawnień administratora!';
