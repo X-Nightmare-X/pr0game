@@ -100,7 +100,8 @@ class ShowVertifyPage extends AbstractLoginPage
         return [
             'userID'	=> $userID,
             'userName'	=> $userData['userName'],
-            'planetID'	=> $planetID
+            'universe'  => $userData['universe'],
+            'planetID'	=> $planetID,
         ];
     }
 
