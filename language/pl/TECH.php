@@ -440,3 +440,6 @@ $LNG['longDescription'] = [
 
 // Translated into Polish by Sirgomo . All rights reversed (C) 2012
 // Edited by TheRavikin. All rights resteemed (C) 2018
+
+$LNG['spytechStatsDescription']='Na poziomach 0 i 1 widoczna jest tylko suma punktów innych graczy. Od poziomu 2 widoczne są również punkty budynków innych graczy. '
+    . 'Od poziomu 4 wyświetlane są również punkty badań. Od poziomu 6 wyświetlane są statki i punkty obrony, a także statystyki bitewne.';

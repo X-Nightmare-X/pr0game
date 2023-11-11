@@ -651,3 +651,6 @@ $LNG['longDescription'] = [
     911 => 'Energy is needed for the production of every resource.',
     //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 ];
+
+$LNG['spytechStatsDescription']='Seviye 0 ve 1\'de sadece diğer oyuncuların toplam puanları görünür. Seviye 2\'den itibaren diğer oyuncuların bina puanları da görülebilir. '
+    . 'Seviye 4\'ten itibaren araştırma puanları da görüntülenir. Seviye 6\'dan itibaren, gemiler ve savunma puanlarının yanı sıra savaş istatistikleri de görüntülenir.';

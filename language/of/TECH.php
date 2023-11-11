@@ -614,3 +614,6 @@ $LNG['longDescription'] = [
         . ' die Gravidadion beeinflussne und dadurch zerschdörerische Waffne baune. Allerdings is dies bis heude noch'
         . ' gaum jemandne gelungne .',
 ];
+
+$LNG['spytechStatsDescription']='Mid Lefel 0 und 1 sind nur die Gesamdbungde anderer Schbieler sichdbar. Ab Lefel 2 werdne dsusäddslich auch die Gebäudebungde anderer Schbieler sichdbar. '
+    . 'Ab Lefel 4 werdne dann auch die Forschungsbungde angedseigd hätt i gsachd. Ab Lefel 6 werdne die Schiffe und Ferdeidigungsbungde angedseigd sowie dsusäddslich die Gambfsdadisdigne.';

@@ -578,3 +578,6 @@ $LNG['longDescription'] = [
 911 => 'Energy is needed for the production of every resource.',
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 ];
+
+$LNG['spytechStatsDescription']='En los niveles 0 y 1, sólo son visibles los puntos totales de otros jugadores. A partir del nivel 2, también son visibles los puntos de construcción de otros jugadores. '
+    . 'A partir del nivel 4, también se muestran los puntos de investigación. A partir del nivel 6, se muestran las naves y los puntos de defensa, así como las estadísticas de batalla.';

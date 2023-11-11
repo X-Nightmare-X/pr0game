@@ -372,12 +372,13 @@ class ShowInformationPage extends AbstractGamePage
         }
 
         $this->assign([
-            'elementID'         => $elementID,
-            'productionTable'   => $productionTable,
-            'CurrentLevel'      => $CurrentLevel,
-            'MissileList'       => $MissileList,
-            'FleetInfo'         => $FleetInfo,
-            'gateData'          => $gateData,
+            'elementID'             => $elementID,
+            'productionTable'       => $productionTable,
+            'CurrentLevel'          => $CurrentLevel,
+            'MissileList'           => $MissileList,
+            'FleetInfo'             => $FleetInfo,
+            'gateData'              => $gateData,
+            'spytechStatsEnabled'   => isModuleAvailable(MODULE_SPYTECH_DEPENDENT_STATS),
         ]);
 
         if ($elementID <= 900 || $elementID >= 930) {
