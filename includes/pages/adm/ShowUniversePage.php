@@ -50,6 +50,9 @@ function ShowUniversePage()
                     WHERE `ally_universe` = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
 
+                $sql = "DELETE FROM %%LOG%% WHERE `universe` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
                 $sql = "DELETE FROM %%BANNED%% WHERE `universe` = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
 
@@ -57,9 +60,6 @@ function ShowUniversePage()
                     USING %%BUDDY%%
                     LEFT JOIN %%BUDDY_REQUEST%% ON %%BUDDY%%.`id` = %%BUDDY_REQUEST%%.`id`
                     WHERE %%BUDDY%%.`universe` = :universe;";
-                $db->delete($sql, [':universe' => $universe]);
-
-                $sql = "DELETE FROM %%CONFIG%% WHERE `uni` = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
 
                 $sql = "DELETE FROM %%DIPLO%% WHERE `universe` = :universe;";
@@ -88,13 +88,22 @@ function ShowUniversePage()
                 $sql = "DELETE FROM %%STATPOINTS%% WHERE `universe` = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
 
+                $sql = "DELETE FROM %%MULTI%%, %%MULTI_TO_USERS%%
+                    USING %%MULTI%%
+                    LEFT JOIN %%MULTI_TO_USERS%% ON %%MULTI%%.`multiID` = %%MULTI_TO_USERS%%.`multiID`
+                    WHERE `universe` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
                 $sql = "DELETE FROM %%TICKETS%%, %%TICKETS_ANSWER%%
                     USING %%TICKETS%%
                     LEFT JOIN %%TICKETS_ANSWER%% ON %%TICKETS%%.`ticketID` = %%TICKETS_ANSWER%%.`ticketID`
                     WHERE `universe` = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
 
-                $sql = "DELETE FROM %%TOPKB%% WHERE universe = :universe;";
+                $sql = "DELETE FROM %%TOPKB%%, %%RW%%
+                    USING %%TOPKB%%
+                    LEFT JOIN %%RW%% ON %%TOPKB%%.`rid` = %%RW%%.`rid`
+                    WHERE universe = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
 
                 $sql = "DELETE FROM %%USERS%%, %%USERS_ACS%%, %%TOPKB_USERS%%, %%SESSION%%, %%SHORTCUTS%%, %%RECORDS%%, %%LOSTPASSWORD%%,
@@ -117,6 +126,9 @@ function ShowUniversePage()
                 $db->delete($sql, [':universe' => $universe]);
 
                 $sql = "DELETE FROM %%MARKETPLACE%% WHERE `universeId` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%CONFIG%% WHERE `uni` = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
 
                 if (Universe::getEmulated() == $universe) {
