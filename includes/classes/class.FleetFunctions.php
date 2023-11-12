@@ -360,7 +360,9 @@ class FleetFunctions
         }
 
         foreach ($fleet as $elementID => $amount) {
-            $serialized .= $elementID . ',' . floatToString($amount) . ';';
+            if ($amount > 0) {
+                $serialized .= $elementID . ',' . floatToString($amount) . ';';
+            }
         }
 
         return empty($fleet) ? $serialized : substr($serialized, 0, -1);

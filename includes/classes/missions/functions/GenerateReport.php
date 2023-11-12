@@ -36,6 +36,7 @@ function GenerateReport($combatResult, $reportInfo, $battleType)
         'fleetDestroySuccess'	=> (int) $reportInfo['fleetDestroySuccess']
     ];
     $DATA['repaired'] = $combatResult['repaired'];
+    $DATA['wreckfield'] = $combatResult['wreckfield'];
     if (isset($reportInfo['additionalInfo'])) {
         $DATA['additionalInfo'] = $reportInfo['additionalInfo'];
     } else {
@@ -109,7 +110,7 @@ function GenerateReport($combatResult, $reportInfo, $battleType)
             $DATA['rounds'][$Round]['info']	= [null, null, null, null];
         }
     }
-    
+
     if ($battleType == REAL_FIGHT) {
         require_once 'includes/classes/achievements/BattleAchievement.class.php';
 		$db = Database::get();

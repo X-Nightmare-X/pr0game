@@ -40,7 +40,7 @@ class ShowRepairdockPage extends AbstractGamePage
         $sql = "SELECT * FROM %%PLANET_WRECKFIELD%% WHERE `planetID` = :planetID;";
         $wreckfield = $db->selectSingle($sql, [':planetID' => $PLANET['id']]);
 
-        if (empty($wreckfield) || $wreckfield['created'] > TIMESTAMP - 1800) {
+        if (empty($wreckfield)) {
             $this->printMessage($LNG['bd_repairdock_empty']);
         }
 
@@ -64,15 +64,22 @@ class ShowRepairdockPage extends AbstractGamePage
             foreach ($ElementQueue as $elementID => $amount) {
                 $repaired[] = '`' . $resource[$elementID] . '` = ' . $resource[$elementID] . ' + :' . $resource[$elementID];
                 $params[':' . $resource[$elementID]] = $amount;
+                $ships[$elementID] -= floor($amount * (1 - $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])));
+                if ($ships[$elementID] <= 0) {
+                    unset($ships[$elementID]);
+                }
             }
 
             if (!empty($repaired)) {
                 $sql = "UPDATE %%PLANETS%% SET " . implode(', ', $repaired) . " WHERE id = :planetID;";
                 $db->update($sql, $params);
 
-                $sql = "UPDATE %%PLANET_WRECKFIELD%% SET `repair_order` = '', `repair_order_start` = 0, `repair_order_end` = 0
+                $sql = "UPDATE %%PLANET_WRECKFIELD%% SET `ships` = :ships, `repair_order` = '', `repair_order_start` = 0, `repair_order_end` = 0
                     WHERE `planetID` = :planetID;";
-                $db->update($sql, [':planetID' => $PLANET['id']]);
+                $db->update($sql, [
+                    ':ships' => FleetFunctions::serialize($ships),
+                    ':planetID' => $PLANET['id'],
+                ]);
             }
             $db->commit();
             $this->printMessage($LNG['bd_repairdock_deploy'], [[
@@ -89,21 +96,21 @@ class ShowRepairdockPage extends AbstractGamePage
             $QueueTime = 0;
             foreach ($buildTodo as $element => $amount) {
                 if (isset($ships[$element])) {
-                    $ElementQueue[$element] = max(0, min($amount, $ships[$element]));
+                    $ElementQueue[$element] = max(0, min($amount, $ships[$element] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])));
                     $ElementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $element);
                     $QueueTime += $ElementTime * $ElementQueue[$element];
                     $ships[$element] -= $ElementQueue[$element];
+                    $ships[$element] -= floor($ElementQueue[$element] * (1 - $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])));
                     if ($ships[$element] <= 0) {
                         unset($ships[$element]);
                     }
                 }
             }
-            $QueueTime = min($QueueTime, TIME_12_HOURS);
+            $QueueTime = max(1800, min($QueueTime, TIME_12_HOURS)); //Repair duration: min 30m, max 12h
 
-            $sql = "UPDATE %%PLANET_WRECKFIELD%% SET `ships` = :ships, `repair_order` = :repair_order, `repair_order_start` = :start_time, `repair_order_end` = :end_time
+            $sql = "UPDATE %%PLANET_WRECKFIELD%% SET `repair_order` = :repair_order, `repair_order_start` = :start_time, `repair_order_end` = :end_time
                 WHERE `planetID` = :planetID;";
             $db->update($sql, [
-                ':ships' => FleetFunctions::serialize($ships),
                 ':repair_order' => serialize($ElementQueue),
                 ':start_time' => TIMESTAMP,
                 ':end_time' => TIMESTAMP + $QueueTime,
@@ -128,6 +135,15 @@ class ShowRepairdockPage extends AbstractGamePage
                 'endtime'   => _date('U', $wreckfield['repair_order_end'], $USER['timezone']),
                 'pretty_end_time' => _date($LNG['php_tdformat'], $wreckfield['repair_order_end'], $USER['timezone']),
             ];
+
+            foreach ($ElementQueue as $element => $amount) {
+                if (isset($ships[$element])) {
+                    $ships[$element] -= floor($amount * (1 - $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])));
+                    if ($ships[$element] <= 0) {
+                        unset($ships[$element]);
+                    }
+                }
+            }
         }
 
         $elementList = [];

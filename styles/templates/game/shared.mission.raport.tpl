@@ -10,7 +10,7 @@
 </table>
 {/if}
 <div style="width:100%;text-align:center">
-{if $Raport.mode == 1}{$LNG.sys_destruc_title}{else}{$LNG.sys_attack_title}{/if} 
+{if $Raport.mode == 1}{$LNG.sys_destruc_title}{else}{$LNG.sys_attack_title}{/if}
 {$Raport.time}:<br><br>
 {foreach $Raport.rounds as $Round => $RoundInfo}
 {if isset($Info) && $Round > 0 && !$RoundInfo@last}
@@ -176,14 +176,14 @@
 			{$LNG.sys_destruc_reussi}
 		{elseif $Raport.moon.moonDestroySuccess == 0}
 			{* Destroy failed *}
-			{$LNG.sys_destruc_null}			
+			{$LNG.sys_destruc_null}
 		{/if}
 		<br>
 		{sprintf($LNG.sys_destruc_rip, "{$Raport.moon.fleetDestroyChance}")}
 		{if $Raport.moon.fleetDestroySuccess == 1}
 			{* Fleet destroyed *}
 			<br>{$LNG.sys_destruc_echec}
-		{/if}			
+		{/if}
 	{/if}
 {else}
 	{* Normal Attack *}
@@ -195,6 +195,12 @@
 
 {$Raport.additionalInfo}
 
+{if $Raport.wreckfield_created}
+	<br>
+  {$LNG.sys_wreckfield}
+	<br>
+{/if}
+
 {if !empty($Raport.repaired)}
 	<br>
 	{$lastRound = count($Raport.rounds)-1}
@@ -204,13 +210,13 @@
 		<td>
 			<table>
 				<tr>
-					<td colspan="4" class="transparent">{$LNG.sys_def_rebuild}</td>
+					<th colspan="4" class="transparent">{$LNG.sys_def_rebuild}</th>
 				</tr>
 				<tr>
-					<td class="transparent">{$LNG.sys_ship_type}</td>
-					<td class="transparent">{$LNG.sys_ship_repaired}</td>
-					<td class="transparent">%</td>
-					<td class="transparent">{$LNG.sys_destroyed}</td>
+					<th class="transparent">{$LNG.sys_ship_type}</th>
+					<th class="transparent">{$LNG.sys_ship_repaired}</th>
+					<th class="transparent">%</th>
+					<th class="transparent">{$LNG.sys_destroyed}</th>
 				</tr>
 				{foreach $Raport.repaired as $ShipID => $ShipData}
 					<tr>
@@ -243,5 +249,26 @@
 	</tr>
 	</table>
 {/if}
+
+{if !empty($Raport.wreckfield)}
+  <br>
+  <table class="auto">
+	<tr>
+		<td>
+			<table>
+				<tr>
+					<th colspan="2" class="transparent">{$LNG.sys_wreckfield_added}</th>
+				</tr>
+				{foreach $Raport.wreckfield as $ShipID => $amount}
+					<tr>
+						<td class="transparent">{$LNG.shortNames.{$ShipID}}</td>
+						<td class="transparent">{$amount}</td>
+					</tr>
+				{/foreach}
+			</table>
+		</td>
+	</tr>
+	</table>
+{/if}
 </div>
-{/block} 
+{/block}

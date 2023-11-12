@@ -12,11 +12,13 @@ function GenerateWreckField($planetID, $combatResult) {
 
     if (!empty($wreckfield)) {
         $fleetArray = FleetFunctions::unserialize($wreckfield['ships']);
-        foreach ($fleetArray as $elementID => $amount) {
-            if (!isset($combatResult['wreckfield'][$elementID])) {
-                $combatResult['wreckfield'][$elementID] = $amount;
-            } else {
-                $combatResult['wreckfield'][$elementID] += $amount;
+        foreach ($combatResult['wreckfield'] as $elementID => $amount) {
+            if ($amount > 0) {
+                if (!isset($fleetArray[$elementID])) {
+                    $fleetArray[$elementID] = $amount;
+                } else {
+                    $fleetArray[$elementID] += $amount;
+                }
             }
         }
         $sql = "UPDATE %%PLANET_WRECKFIELD%%
@@ -25,20 +27,16 @@ function GenerateWreckField($planetID, $combatResult) {
         $db->update($sql, [
             ':planetID' => $planetID,
             ':created' => TIMESTAMP,
-            ':shipArray' => FleetFunctions::serialize($combatResult['wreckfield']),
+            ':shipArray' => FleetFunctions::serialize($fleetArray),
         ]);
     }
     else {
-        $shipArray = '';
-        foreach ($combatResult['wreckfield'] as $elementID => $amount) {
-            $shipArray .= $elementID . ',' . floatToString($amount) . ';';
-        }
         $sql = "INSERT INTO %%PLANET_WRECKFIELD%%
             SET `planetID` = :planetID, `created` = :created, `ships` = :shipArray;";
         $db->insert($sql, [
             ':planetID' => $planetID,
             ':created' => TIMESTAMP,
-            ':shipArray' => substr($shipArray, 0, -1),
+            ':shipArray' => FleetFunctions::serialize($combatResult['wreckfield']),
         ]);
     }
 

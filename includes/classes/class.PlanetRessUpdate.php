@@ -95,13 +95,15 @@ class ResourceUpdate
         $this->TIME = is_null($TIME) ? TIMESTAMP : $TIME;
         $this->config = Config::get($this->USER['universe']);
 
+        $this->WreckfieldCheck(); // Option: Delete in Umode
         if ($this->USER['urlaubs_modus'] == 1 || $this->config->uni_status == STATUS_CLOSED || $this->config->uni_status == STATUS_REG_ONLY) {
             return $this->ReturnVars();
         }
 
         if ($this->Build) {
             $this->ShipyardQueue();
-            $this->WreckfieldRepairJob();
+            $this->RepairJob();
+            $this->WreckfieldCheck(); // Option: Delete not in Umode
 
             while (($this->Tech && $this->USER['b_tech'] != 0 && $this->USER['b_tech'] < $this->TIME) ||
                     ($this->PLANET['b_building'] != 0 && $this->PLANET['b_building'] < $this->TIME)) {
@@ -351,8 +353,33 @@ class ResourceUpdate
         }
     }
 
-    private function WreckfieldRepairJob()
+    public function WreckfieldCheck()
     {
+        if (!isModuleAvailable(MODULE_REPAIR_DOCK)) {
+            return;
+        }
+        $db = Database::get();
+
+        $sql = "SELECT * FROM %%PLANET_WRECKFIELD%% WHERE `planetID` = :planetID FOR UPDATE;";
+        $wreckfield = $db->selectSingle($sql, [':planetID' => $this->PLANET['id']]);
+
+        if (!empty($wreckfield) && $wreckfield['created'] <= $this->TIME - TIME_72_HOURS) {
+            if (empty($wreckfield['repair_order'])) {
+                $sql = "DELETE FROM %%PLANET_WRECKFIELD%% WHERE `planetID` = :planetID;";
+                $db->delete($sql, [':planetID' => $this->PLANET['id']]);
+            } else {
+                $sql = "UPDATE %%PLANET_WRECKFIELD%% SET `ships` = ''
+                    WHERE `planetID` = :planetID;";
+                $db->update($sql, [':planetID' => $this->PLANET['id']]);
+            }
+        }
+    }
+
+    private function RepairJob()
+    {
+        if (!isModuleAvailable(MODULE_REPAIR_DOCK)) {
+            return;
+        }
         $resource =& Singleton()->resource;
         $db = Database::get();
 
@@ -374,21 +401,6 @@ class ResourceUpdate
             $sql = "UPDATE %%PLANET_WRECKFIELD%% SET `repair_order` = '', `repair_order_start` = 0, `repair_order_end` = 0
                 WHERE `planetID` = :planetID;";
             $db->update($sql, [':planetID' => $this->PLANET['id']]);
-
-            $wreckfield['repair_order'] = '';
-            $wreckfield['repair_order_start'] = 0;
-            $wreckfield['repair_order_end'] = 0;
-        }
-
-        if (!empty($wreckfield) && $wreckfield['created'] <= $this->TIME - TIME_72_HOURS) {
-            if (empty($wreckfield['repair_order'])) {
-                $sql = "DELETE FROM %%PLANET_WRECKFIELD%% WHERE `planetID` = :planetID;";
-                $db->delete($sql, [':planetID' => $this->PLANET['id']]);
-            } else {
-                $sql = "UPDATE %%PLANET_WRECKFIELD%% SET `ships` = ''
-                    WHERE `planetID` = :planetID;";
-                $db->update($sql, [':planetID' => $this->PLANET['id']]);
-            }
         }
     }
 
