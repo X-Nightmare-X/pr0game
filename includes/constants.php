@@ -320,6 +320,7 @@ define('MISSION_TRANSFER', 17);
 define('TIME_6_HOURS', 21600);
 define('TIME_12_HOURS', 43200);
 define('TIME_24_HOURS', 86400);
+define('TIME_72_HOURS', 259200);
 define('TIME_1_WEEK', 604800);
 define('TIME_1_MONTH', 2592000);
 

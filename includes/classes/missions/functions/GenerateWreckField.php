@@ -7,7 +7,7 @@ function GenerateWreckField($planetID, $combatResult) {
 
     $db = Database::get();
 
-    $sql = "SELECT * FROM %%PLANET_WRECKFIELD%% WHERE `planetID` = :planetID;";
+    $sql = "SELECT * FROM %%PLANET_WRECKFIELD%% WHERE `planetID` = :planetID FOR UPDATE;";
     $wreckfield = $db->selectSingle($sql, [':planetID' => $planetID]);
 
     if (!empty($wreckfield)) {
@@ -19,17 +19,13 @@ function GenerateWreckField($planetID, $combatResult) {
                 $combatResult['wreckfield'][$elementID] += $amount;
             }
         }
-        $shipArray = '';
-        foreach ($combatResult['wreckfield'] as $elementID => $amount) {
-            $shipArray .= $elementID . ',' . floatToString($amount) . ';';
-        }
         $sql = "UPDATE %%PLANET_WRECKFIELD%%
             SET `created` = :created, `ships` = :shipArray
             WHERE `planetID` = :planetID;";
         $db->update($sql, [
             ':planetID' => $planetID,
             ':created' => TIMESTAMP,
-            ':shipArray' => substr($shipArray, 0, -1),
+            ':shipArray' => FleetFunctions::serialize($combatResult['wreckfield']),
         ]);
     }
     else {

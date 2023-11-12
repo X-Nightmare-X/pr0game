@@ -101,6 +101,7 @@ class ResourceUpdate
 
         if ($this->Build) {
             $this->ShipyardQueue();
+            $this->WreckfieldRepairJob();
 
             while (($this->Tech && $this->USER['b_tech'] != 0 && $this->USER['b_tech'] < $this->TIME) ||
                     ($this->PLANET['b_building'] != 0 && $this->PLANET['b_building'] < $this->TIME)) {
@@ -347,6 +348,47 @@ class ResourceUpdate
             $this->PLANET['deuterium_perhour'] = (
                 $temp[903]['plus'] * (1 + 0.02 * $this->USER[$resource[133]]) * $prodLevel + $temp[903]['minus']
             ) * $this->config->resource_multiplier;
+        }
+    }
+
+    private function WreckfieldRepairJob()
+    {
+        $resource =& Singleton()->resource;
+        $db = Database::get();
+
+        $sql = "SELECT * FROM %%PLANET_WRECKFIELD%% WHERE `planetID` = :planetID FOR UPDATE;";
+        $wreckfield = $db->selectSingle($sql, [':planetID' => $this->PLANET['id']]);
+
+        if (!empty($wreckfield['repair_order']) && $wreckfield['repair_order_end'] <= $this->TIME - TIME_72_HOURS) {
+            $ElementQueue = unserialize($wreckfield['repair_order']);
+
+            foreach ($ElementQueue as $elementID => $amount) {
+                if (!isset($this->Builded[$elementID])) {
+                    $this->Builded[$elementID] = 0;
+                }
+
+                $this->Builded[$elementID]            += $amount;
+                $this->PLANET[$resource[$elementID]]  += $amount;
+            }
+
+            $sql = "UPDATE %%PLANET_WRECKFIELD%% SET `repair_order` = '', `repair_order_start` = 0, `repair_order_end` = 0
+                WHERE `planetID` = :planetID;";
+            $db->update($sql, [':planetID' => $this->PLANET['id']]);
+
+            $wreckfield['repair_order'] = '';
+            $wreckfield['repair_order_start'] = 0;
+            $wreckfield['repair_order_end'] = 0;
+        }
+
+        if (!empty($wreckfield) && $wreckfield['created'] <= $this->TIME - TIME_72_HOURS) {
+            if (empty($wreckfield['repair_order'])) {
+                $sql = "DELETE FROM %%PLANET_WRECKFIELD%% WHERE `planetID` = :planetID;";
+                $db->delete($sql, [':planetID' => $this->PLANET['id']]);
+            } else {
+                $sql = "UPDATE %%PLANET_WRECKFIELD%% SET `ships` = ''
+                    WHERE `planetID` = :planetID;";
+                $db->update($sql, [':planetID' => $this->PLANET['id']]);
+            }
         }
     }
 

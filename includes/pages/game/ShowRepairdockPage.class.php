@@ -50,23 +50,60 @@ class ShowRepairdockPage extends AbstractGamePage
 
         $ElementQueue = !empty($wreckfield['repair_order']) ? unserialize($wreckfield['repair_order']) : [];
         $buildList = [];
-        if (!empty($action) && $action == 'deploy') {
+        if (!empty($action) && $action == 'deploy' && $wreckfield['repair_order_end'] <= TIMESTAMP) {
+            $db->startTransaction();
+            $sql = "SELECT * FROM %%PLANETS%%
+                JOIN %%PLANET_WRECKFIELD%% ON `planetID` = `id`
+                WHERE `id` = :planetID FOR UPDATE;";
+            $db->selectSingle($sql, [':planetID' => $PLANET['id']]);
 
+            $repaired = [];
+            $params = [
+                ':planetID' => $PLANET['id'],
+            ];
+            foreach ($ElementQueue as $elementID => $amount) {
+                $repaired[] = '`' . $resource[$elementID] . '` = ' . $resource[$elementID] . ' + :' . $resource[$elementID];
+                $params[':' . $resource[$elementID]] = $amount;
+            }
+
+            if (!empty($repaired)) {
+                $sql = "UPDATE %%PLANETS%% SET " . implode(', ', $repaired) . " WHERE id = :planetID;";
+                $db->update($sql, $params);
+
+                $sql = "UPDATE %%PLANET_WRECKFIELD%% SET `repair_order` = '', `repair_order_start` = 0, `repair_order_end` = 0
+                    WHERE `planetID` = :planetID;";
+                $db->update($sql, [':planetID' => $PLANET['id']]);
+            }
+            $db->commit();
+            $this->printMessage($LNG['bd_repairdock_deploy'], [[
+                'label' => $LNG['bd_continue'],
+                'url'   => 'game.php?page=repairdock'
+            ]]);
         }
         elseif (empty($ElementQueue) && !empty($buildTodo) && $USER['urlaubs_modus'] == 0) {
+            $db->startTransaction();
+            $sql = "SELECT * FROM %%PLANET_WRECKFIELD%%
+                WHERE `planetID` = :planetID FOR UPDATE;";
+            $db->selectSingle($sql, [':planetID' => $PLANET['id']]);
+
             $QueueTime = 0;
             foreach ($buildTodo as $element => $amount) {
                 if (isset($ships[$element])) {
-                    $ElementQueue[$element] = min($amount, $ships[$element]);
+                    $ElementQueue[$element] = max(0, min($amount, $ships[$element]));
                     $ElementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $element);
                     $QueueTime += $ElementTime * $ElementQueue[$element];
+                    $ships[$element] -= $ElementQueue[$element];
+                    if ($ships[$element] <= 0) {
+                        unset($ships[$element]);
+                    }
                 }
             }
             $QueueTime = min($QueueTime, TIME_12_HOURS);
 
-            $sql = "UPDATE %%PLANET_WRECKFIELD%% SET `repair_order` = :repair_order, `repair_order_start` = :start_time, `repair_order_end` = :end_time
+            $sql = "UPDATE %%PLANET_WRECKFIELD%% SET `ships` = :ships, `repair_order` = :repair_order, `repair_order_start` = :start_time, `repair_order_end` = :end_time
                 WHERE `planetID` = :planetID;";
             $db->update($sql, [
+                ':ships' => FleetFunctions::serialize($ships),
                 ':repair_order' => serialize($ElementQueue),
                 ':start_time' => TIMESTAMP,
                 ':end_time' => TIMESTAMP + $QueueTime,
@@ -80,17 +117,20 @@ class ShowRepairdockPage extends AbstractGamePage
                 'end_time' => TIMESTAMP + $QueueTime,
                 'pretty_end_time' => pretty_time($QueueTime),
             ];
+
+            $db->commit();
         }
         elseif (!empty($ElementQueue)) {
             $buildList = [
                 'ships' => $ElementQueue,
-                'time' => $wreckfield['repair_order_start'] - TIMESTAMP,
+                'time' => TIMESTAMP - $wreckfield['repair_order_start'],
                 'resttime'  => $USER['urlaubs_modus'] ? ($wreckfield['repair_order_end'] - $USER['urlaubs_start']) : ($wreckfield['repair_order_end'] - TIMESTAMP),
                 'endtime'   => _date('U', $wreckfield['repair_order_end'], $USER['timezone']),
-                'pretty_end_time' => pretty_time($wreckfield['repair_order_end']),
+                'pretty_end_time' => _date($LNG['php_tdformat'], $wreckfield['repair_order_end'], $USER['timezone']),
             ];
         }
 
+        $elementList = [];
         foreach ($ships as $Element => $amount) {
             if (!isset($ships[$Element])) {
                 continue;
@@ -108,11 +148,17 @@ class ShowRepairdockPage extends AbstractGamePage
         }
         $SolarEnergy = round((($PLANET['temp_max'] + 160) / 6) * Config::get()->energySpeed, 1);
 
+        $buisy = !empty($wreckfield['repair_order']);
+
+        if ($buisy) {
+            $this->tplObj->loadscript('repairdock.js');
+        }
+
         $this->assign([
-            'umode'       => $USER['urlaubs_modus'],
-            'buisy' => !empty($wreckfield['repair_order']),
+            'umode' => $USER['urlaubs_modus'],
+            'buisy' => $buisy,
             'elementList' => $elementList,
-            'BuildList' => $buildList,
+            'List' => $buildList,
             'messages' => ($Messages > 0) ? (($Messages == 1) ? $LNG['ov_have_new_message']
                 : sprintf($LNG['ov_have_new_messages'], pretty_number($Messages))) : false,
             'SolarEnergy' => $SolarEnergy,

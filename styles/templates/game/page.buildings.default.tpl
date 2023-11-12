@@ -47,7 +47,7 @@
                 -
               {/if}
             {/if}
-            <br><span class="colorPositive" data-time="{$List.endtime}" data-umode="{$umode}" class="timer">{if $umode == 0}{$List.display}{else}{$LNG.bd_paused}{/if}</span>
+            <br><span class="colorPositive timer" data-time="{$List.endtime}" data-umode="{$umode}">{if $umode == 0}{$List.display}{else}{$LNG.bd_paused}{/if}</span>
           </div>
         {/foreach}
       </div>

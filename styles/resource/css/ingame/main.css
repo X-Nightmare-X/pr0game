@@ -638,6 +638,24 @@ table.tablesorter thead tr .headerSortDown {
 	white-space: nowrap;
 }
 
+#repairlist {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.repaira {
+  float: left;
+  width: 35%;
+  line-height: 1.4;
+  padding: 8px;
+}
+.repairb {
+  float: left;
+  width: 65%;
+  line-height: 1.4;
+  padding: 8px;
+}
+
 @media screen and (max-width: 1165px) {
 	body {
 		min-width: 0;

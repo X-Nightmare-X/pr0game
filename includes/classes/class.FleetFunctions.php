@@ -327,6 +327,10 @@ class FleetFunctions
 
     public static function unserialize($fleetAmount)
     {
+        if (empty($fleetAmount)) {
+            return [];
+        }
+
         $fleetTyps = explode(';', $fleetAmount);
 
         $fleetAmount = [];
@@ -346,6 +350,20 @@ class FleetFunctions
         }
 
         return $fleetAmount;
+    }
+
+    public static function serialize($fleet)
+    {
+        $serialized = '';
+        if (empty($fleet)) {
+            return $serialized;
+        }
+
+        foreach ($fleet as $elementID => $amount) {
+            $serialized .= $elementID . ',' . floatToString($amount) . ';';
+        }
+
+        return empty($fleet) ? $serialized : substr($serialized, 0, -1);
     }
 
     public static function getACSDuration($acsId)

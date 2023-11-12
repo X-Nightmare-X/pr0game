@@ -10,31 +10,32 @@
       </tr>
     </table><br><br>
   {/if}
-  {if !empty($BuildList)}
-    <div id="buildlist" class="infos1">
+  {if !empty($List)}
+    <div id="repairlist" class="infos1">
       {$ctime=0}
-      <div class="buildb">
-      {foreach $BuildList.ships as $shipID => $amount}
-        {$LNG.tech.{$shipID}} {$amount}<br>
-      {/foreach}
-      <div class="bulida">
-        <div id="time" data-time="{$BuildList.time}"><br></div>
+      <div class="repairb">
+        {foreach $List.ships as $shipID => $amount}
+          {$LNG.tech.{$shipID}} {$amount}<br>
+        {/foreach}
+        {$ctime = $List.resttime+ $ctime}
+        <span id="progress">
+          <br>
+          <div id="progressbar" data-time="{$List.resttime}"></div>
+        </span>
+      </div>
+      <div class="repaira">
+        <div id="time" data-time="{$List.time}"><br></div>
         {if $umode == 0}
           <form action="game.php?page=repairdock" method="post" class="build_form">
             <input type="hidden" name="cmd" value="deploy">
-            <button type="submit" class="build_submit onlist">{$LNG.bd_deploy}</button>
+            <button type="submit" class="build_submit onlist" id="deployRepaired" style="display:none">{$LNG.bd_deploy}</button>
           </form>
         {else}
           -
         {/if}
-        <br><span class="colorPositive" data-time="{$BuildList.endtime}" data-umode="{$umode}" class="timer">{if $umode == 0}{$BuildList.pretty_end_time}{else}{$LNG.bd_paused}{/if}</span>
+        <br><span class="colorPositive timer" data-time="{$List.endtime}" data-umode="{$umode}">{if $umode == 0}{$List.pretty_end_time}{else}{$LNG.bd_paused}{/if}</span>
       </div>
-      <div id="buildlist" class="infos1">
-        {$ctime = $BuildList.resttime+ $ctime}
-        <br><br>
-        <div id="progressbar" data-time="{$BuildList.resttime}"></div>
-      </div>
-    </div>
+    </div><br>
   {/if}
 
   <div>
@@ -53,7 +54,7 @@
               <img style="float: left;" src="{$dpath}gebaeude/{$ID}.gif" alt="{$LNG.tech.{$ID}}" width="120" height="120">
             </a>
             {$LNG.bd_remaining}<br>
-            <p>{$LNG.bd_max_ships_long}:<span style="font-weight:700"><br>{number_format($Element.maxBuildable, 0, ",", ".")}</p>
+            <p>{$LNG.bd_max_ships_repair}:<span style="font-weight:700"><br>{number_format($Element.maxBuildable, 0, ",", ".")}</p>
           </div>
           <div class="buildl">
             {if $ID==212} +{$SolarEnergy} {$LNG.tech.911}<br>{/if}
@@ -68,29 +69,11 @@
           </div>
         </div>
       {/foreach}
-      <div class="planeto">
-        {if !$buisy}
+      {if !$buisy}
+        <div class="planeto">
           <input class="b colorPositive" type="submit" value="{$LNG.bd_build_ships}">
-        {/if}
-      </div>
+        </div>
+      {/if}
     </form>
-    {if $buisy}<div class="planeto"></div>{/if}
   </div>
-{/block}
-{block name="script" append}
-  <script type="text/javascript">
-    data			= {$BuildList|json_encode};
-    bd_operating	= '{$LNG.bd_operating}';
-    bd_available	= '{$LNG.bd_available}';
-  </script>
-
-  {if !empty($BuildList)}
-    <script src="scripts/base/bcmath.js"></script>
-    <script src="scripts/game/shipyard.js"></script>
-    <script type="text/javascript">
-      $(function() {
-        ShipyardInit();
-      });
-    </script>
-  {/if}
 {/block}
