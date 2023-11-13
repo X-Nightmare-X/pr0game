@@ -405,3 +405,6 @@ $LNG['longDescription'] = [
     . ' faut creuser les fonds marins pour l\'obtenir, ce qui en fait également la ressource la plus coûteuse.',
 911 => 'De l\'énergie est nécessaire à la production de chacune des ressources.',
 ];
+
+$LNG['spytechStatsDescription']='Aux niveaux 0 et 1, seuls les points totaux des autres joueurs sont visibles. À partir du niveau 2, les points de construction des autres joueurs sont également visibles. '
+    . 'À partir du niveau 4, les points de recherche sont également affichés. A partir du niveau 6, les navires et les points de défense sont affichés ainsi que les statistiques de la bataille.';

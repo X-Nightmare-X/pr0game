@@ -1443,3 +1443,9 @@ $LNG['Achievement_text'] = [
     54 => 'Aktif bir oyuncuya yapılan bir saldırıyı 01.01. 00:00:00 olarak zamanlayın',
     55 => 'Özel Başarı',
 ];
+
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Casusluk Teknigi 2\'den görüntülenebilir!',
+    'level4'  => 'Casusluk Teknigi 4\'den görüntülenebilir!',
+    'level6'  => 'Casusluk Teknigi 6\'den görüntülenebilir!',
+];

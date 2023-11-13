@@ -9,8 +9,7 @@
 		<td>
 			<table>
 				<tr>
-					
-					<td class="transparent left"><p>{$LNG.longDescription.$elementID}</p>
+					<td class="transparent left"><p>{$LNG.longDescription.$elementID} {if $elementID == 106 && $spytechStatsEnabled == true}<br>{$LNG.spytechStatsDescription}{/if}</p>
 					{if !empty($Bonus)}<p>
 					<b>{$LNG.in_bonus}</b><br>
 					{foreach $Bonus as $BonusName => $elementBouns}{if $elementBouns[0] < 0}-{else}+{/if}{if $elementBouns[1] == 0}{abs($elementBouns[0] * 100)}%{else}{floatval($elementBouns[0])}{/if} {$LNG.bonus.$BonusName}<br>{/foreach}

@@ -1434,3 +1434,9 @@ $LNG['Achievement_text'] = [
     54 => 'Cronometra un ataque a un jugador activo a 01.01. 00:00:00',
     55 => 'Logro especial',
 ];
+
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Visible desde Tecnolog&iacute;a de espionaje 2!',
+    'level4'  => 'Visible desde Tecnolog&iacute;a de espionaje 4!',
+    'level6'  => 'Visible desde Tecnolog&iacute;a de espionaje 6!',
+];

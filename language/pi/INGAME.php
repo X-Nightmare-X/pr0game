@@ -1487,3 +1487,9 @@ $LNG['Achievement_text'] = [
     54 => 'Time einen Angriff auf einen aktiven Spieler auf den 01.01. 00:00:00',
     55 => 'Sonderachievement',
 ];
+
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Sichtbar ab Papageiendressur 2!',
+    'level4'  => 'Sichtbar ab Papageiendressur 4!',
+    'level6'  => 'Sichtbar ab Papageiendressur 6!',
+];

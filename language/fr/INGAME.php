@@ -1421,3 +1421,9 @@ $LNG['Achievement_text'] = [
     54 => 'Time une attaque sur un joueur actif au 01.01. 00:00:00',
     55 => 'Award spécial',
 ];
+
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Visible à partir de la Technologie d\'Espionnage 2!',
+    'level4'  => 'Visible à partir de la Technologie d\'Espionnage 4!',
+    'level6'  => 'Visible à partir de la Technologie d\'Espionnage 6!',
+];

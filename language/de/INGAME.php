@@ -1493,5 +1493,9 @@ $LNG['Achievement_text'] = [
     55 => 'Sonderachievement',
 ];
 
-
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Sichtbar ab Spionagetechnik 2!',
+    'level4'  => 'Sichtbar ab Spionagetechnik 4!',
+    'level6'  => 'Sichtbar ab Spionagetechnik 6!',
+];
 // Translated into German by Jan . All rights reversed (C) 2011

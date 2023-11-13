@@ -410,3 +410,6 @@ $LNG['longDescription'] = [
     911 => 'Energy is needed for the production of every resource.',
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 ];
+
+$LNG['spytechStatsDescription']='На уровнях 0 и 1 видны только общие очки других игроков. Начиная с уровня 2, отображаются также очки строительства других игроков. '
+    . 'Начиная с уровня 4, отображаются очки исследований. Начиная с 6-го уровня отображаются очки кораблей и обороны, а также статистика сражений.';

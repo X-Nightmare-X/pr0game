@@ -125,26 +125,40 @@ class ShowAlliancePage extends AbstractGamePage
                 WHERE r.DIPLOMATIC = 1 AND u.ally_id = :ally_id;";
             $diplomats = Database::get()->select($sql, [':ally_id' => $this->allianceData['id']]);
         }
-
+        $show = true;
         if ($this->allianceData['ally_stats'] == 1) {
-            $sql = 'SELECT SUM(wons) as wons, SUM(loos) as loos, SUM(draws) as draws, SUM(kbmetal) as kbmetal,
-            SUM(kbcrystal) as kbcrystal, SUM(lostunits) as lostunits, SUM(desunits) as desunits
-            FROM %%USERS%% WHERE ally_id = :allyID;';
+            if (!isModuleAvailable(MODULE_SPYTECH_DEPENDENT_STATS) || $USER['spy_tech'] >= 6 || $USER['authlevel'] > 0) {
+                $sql = 'SELECT SUM(wons) as wons, SUM(loos) as loos, SUM(draws) as draws, SUM(kbmetal) as kbmetal,
+                SUM(kbcrystal) as kbcrystal, SUM(lostunits) as lostunits, SUM(desunits) as desunits
+                FROM %%USERS%% WHERE ally_id = :allyID;';
 
-            $statisticResult = Database::get()->selectSingle($sql, [
-                ':allyID' => $this->allianceData['id']
-            ]);
+                $statisticResult = Database::get()->selectSingle($sql, [
+                    ':allyID' => $this->allianceData['id']
+                ]);
 
-            $statisticData = [
-                'totalfight' => $statisticResult['wons'] + $statisticResult['loos'] + $statisticResult['draws'],
-                'fightwon' => $statisticResult['wons'],
-                'fightlose' => $statisticResult['loos'],
-                'fightdraw' => $statisticResult['draws'],
-                'unitsshot' => pretty_number($statisticResult['desunits']),
-                'unitslose' => pretty_number($statisticResult['lostunits']),
-                'dermetal' => pretty_number($statisticResult['kbmetal']),
-                'dercrystal' => pretty_number($statisticResult['kbcrystal']),
-            ];
+                $statisticData = [
+                    'totalfight' => $statisticResult['wons'] + $statisticResult['loos'] + $statisticResult['draws'],
+                    'fightwon' => $statisticResult['wons'],
+                    'fightlose' => $statisticResult['loos'],
+                    'fightdraw' => $statisticResult['draws'],
+                    'unitsshot' => pretty_number($statisticResult['desunits']),
+                    'unitslose' => pretty_number($statisticResult['lostunits']),
+                    'dermetal' => pretty_number($statisticResult['kbmetal']),
+                    'dercrystal' => pretty_number($statisticResult['kbcrystal']),
+                ];
+            } else {
+                $statisticData = [
+                    'totalfight' => 0,
+                    'fightwon' => 0,
+                    'fightlose' => 0,
+                    'fightdraw' => 0,
+                    'unitsshot' => 0,
+                    'unitslose' => 0,
+                    'dermetal' => 0,
+                    'dercrystal' => 0,
+                ];
+                $show = false;
+            }
         }
 
         $sql = 'SELECT total_points
@@ -182,7 +196,8 @@ class ShowAlliancePage extends AbstractGamePage
             'ally_request_min_points_info' => sprintf(
                 $LNG['al_requests_min_points'],
                 pretty_number($this->allianceData['ally_request_min_points'])
-            )
+            ),
+            'show' => $show
         ]);
 
         $this->display('page.alliance.info.tpl');
@@ -635,7 +650,31 @@ class ShowAlliancePage extends AbstractGamePage
         } else {
             $allytext = '';
         }
-
+        $show = true;
+        if (!isModuleAvailable(MODULE_SPYTECH_DEPENDENT_STATS) || $USER['spy_tech'] >= 6 || $USER['authlevel'] > 0) {
+            $fightdata = [
+                'totalfight' => $statisticResult['wons'] + $statisticResult['loos'] + $statisticResult['draws'],
+                'wons' => $statisticResult['wons'],
+                'loos' => $statisticResult['loos'],
+                'draws' => $statisticResult['draws'],
+                'kbmetal' => $statisticResult['kbmetal'],
+                'kbcrystal' => $statisticResult['kbcrystal'],
+                'lostunits' => $statisticResult['lostunits'],
+                'desunits' => $statisticResult['desunits'],
+            ];
+        } else {
+            $fightdata = [
+                'totalfight' => 0,
+                'wons' => 0,
+                'loos' => 0,
+                'draws' => 0,
+                'kbmetal' => 0,
+                'kbcrystal' => 0,
+                'lostunits' => 0,
+                'desunits' => 0,
+            ];
+            $show = false;
+        }
         $this->assign([
             'DiploInfo' => $this->getDiplomatic(),
             'ally_web' => $this->allianceData['ally_web'],
@@ -654,15 +693,16 @@ class ShowAlliancePage extends AbstractGamePage
             'diploRequestsOut' => $LNG['al_diplo_accept_send'] . ' - ' . $DiploCountOut,
             'diploCountIn' => $DiploCountIn,
             'diploCountOut' => $DiploCountOut,
-            'totalfight' => $statisticResult['wons'] + $statisticResult['loos'] + $statisticResult['draws'],
-            'fightwon' => $statisticResult['wons'],
-            'fightlose' => $statisticResult['loos'],
-            'fightdraw' => $statisticResult['draws'],
-            'unitsshot' => pretty_number($statisticResult['desunits']),
-            'unitslose' => pretty_number($statisticResult['lostunits']),
-            'dermetal' => pretty_number($statisticResult['kbmetal']),
-            'dercrystal' => pretty_number($statisticResult['kbcrystal']),
-            'isOwner' => $this->allianceData['ally_owner'] == $USER['id']
+            'totalfight' => $fightdata['totalfight'],
+            'fightwon' => $fightdata['wons'],
+            'fightlose' => $fightdata['loos'],
+            'fightdraw' => $fightdata['draws'],
+            'unitsshot' => pretty_number($fightdata['desunits']),
+            'unitslose' => pretty_number($fightdata['lostunits']),
+            'dermetal' => pretty_number($fightdata['kbmetal']),
+            'dercrystal' => pretty_number($fightdata['kbcrystal']),
+            'isOwner' => $this->allianceData['ally_owner'] == $USER['id'],
+            'show' => $show
         ]);
 
         $this->display('page.alliance.home.tpl');

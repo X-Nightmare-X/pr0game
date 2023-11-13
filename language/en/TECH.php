@@ -417,3 +417,6 @@ $LNG['longDescription'] = [
     . ' get to the ground of the sea in order to get Deuterium, it is the most expensive resource.',
 911 => 'Energy is needed for the production of every resource.',
 ];
+
+$LNG['spytechStatsDescription']='At level 0 and 1, only the total points of other players are visible. From level 2, the building points of other players are also visible. '
+    . 'From level 4, the research points are also displayed. From level 6, the ships and defence points are displayed as well as the battle statistics.';

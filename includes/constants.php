@@ -165,7 +165,7 @@ define('AUTH_MOD', 1);
 define('AUTH_USR', 0);
 
 // Modules
-define('MODULE_AMOUNT', 47); //+1 to largest index
+define('MODULE_AMOUNT', 48); //+1 to largest index
 define('MODULE_ALLIANCE', 0);
 define('MODULE_BANLIST', 21);
 define('MODULE_BANNER', 37);
@@ -208,6 +208,7 @@ define('MODULE_SUPPORT', 27);
 define('MODULE_TECHTREE', 28);
 define('MODULE_MARKET_TRADE', 45);
 define('MODULE_MARKET_TRANSFER', 46);
+define('MODULE_SPYTECH_DEPENDENT_STATS', 47);
 
 // FLEET STATE
 define('FLEET_OUTWARD', 0);
