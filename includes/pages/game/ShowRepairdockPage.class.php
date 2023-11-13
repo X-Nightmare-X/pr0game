@@ -96,22 +96,28 @@ class ShowRepairdockPage extends AbstractGamePage
             $QueueTime = 0;
             foreach ($buildTodo as $element => $amount) {
                 if (isset($ships[$element])) {
-                    $ElementQueue[$element] = max(0, min($amount, $ships[$element] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])));
-                    $ElementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $element);
-                    $QueueTime += $ElementTime * $ElementQueue[$element];
-                    $ships[$element] -= $ElementQueue[$element];
-                    $ships[$element] -= floor($ElementQueue[$element] * (1 - $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])));
-                    if ($ships[$element] <= 0) {
-                        unset($ships[$element]);
+                    $amount = is_numeric($amount) ? round($amount) : 0;
+                    if ($amount > 0) {
+                        $ElementQueue[$element] = max(0, min($amount, floor($ships[$element] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]))));
+                        $ElementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $element);
+                        $QueueTime += $ElementTime * $ElementQueue[$element];
+                        $ships[$element] -= $ElementQueue[$element];
+                        $ships[$element] -= floor($ElementQueue[$element] * (1 - $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])));
+                        if ($ships[$element] <= 0) {
+                            unset($ships[$element]);
+                        }
                     }
                 }
             }
-            $QueueTime = max(1800, min($QueueTime, TIME_12_HOURS)); //Repair duration: min 30m, max 12h
+            $ElementQueue = array_filter($ElementQueue);
+
+            $min = max(Config::get()->min_build_time, 1800 - (TIMESTAMP - $wreckfield['created']));
+            $QueueTime = max($min, min($QueueTime, TIME_12_HOURS)); //Repair duration: min Creation + 30m, max 12h
 
             $sql = "UPDATE %%PLANET_WRECKFIELD%% SET `repair_order` = :repair_order, `repair_order_start` = :start_time, `repair_order_end` = :end_time
                 WHERE `planetID` = :planetID;";
             $db->update($sql, [
-                ':repair_order' => serialize($ElementQueue),
+                ':repair_order' => serialize(array_filter($ElementQueue)),
                 ':start_time' => TIMESTAMP,
                 ':end_time' => TIMESTAMP + $QueueTime,
                 ':planetID' => $PLANET['id'],
@@ -119,9 +125,9 @@ class ShowRepairdockPage extends AbstractGamePage
 
             $buildList = [
                 'ships' => $ElementQueue,
-                'start_time' => TIMESTAMP,
                 'time' => TIMESTAMP,
-                'end_time' => TIMESTAMP + $QueueTime,
+                'resttime' => $QueueTime,
+                'endtime' => TIMESTAMP + $QueueTime,
                 'pretty_end_time' => pretty_time($QueueTime),
             ];
 

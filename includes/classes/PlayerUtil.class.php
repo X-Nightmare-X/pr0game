@@ -850,7 +850,7 @@ class PlayerUtil
         $uniStatus = $db->selectSingle($sql, [
             ':uni' => $universe
         ], 'uni_status');
-        
+
         if ($maxPlanetAmount > 1 || $uniStatus != STATUS_CLOSED || $USER['authlevel'] != AUTH_ADM) {
             $result = "";
             $LNG =& Singleton()->LNG;
@@ -903,7 +903,7 @@ class PlayerUtil
                         sprintf("Try to create a planet at position: %s:%s:%s!", $pos['galaxy'], $pos['system'], $pos['position'])
                     );
                 }
-    
+
                 if (self::isPositionFree($universe, $pos['galaxy'], $pos['system'], $pos['position']) === false) {
                     throw new Exception(
                         sprintf("Position is not empty: %s:%s:%s!", $pos['galaxy'], $pos['system'], $pos['position'])
@@ -934,7 +934,7 @@ class PlayerUtil
             planet = :position,
             id_planet = :planetId
             WHERE id = :userId;";
-    
+
             $db->update($sql, [
                 ':galaxy'   => $pos['galaxy'],
                 ':system'   => $pos['system'],
@@ -991,6 +991,10 @@ class PlayerUtil
             $sql = "DELETE FROM %%PLANETS%% WHERE id = :lunaID;";
             $db->delete($sql, [
                 ':lunaID' => $planetData['id_luna']
+            ]);
+            $sql = "DELETE FROM %%PLANET_WRECKFIELD%% WHERE `planetID` = :planetID;";
+            $db->delete($sql, [
+                ':planetID' => $planetId,
             ]);
         }
 
@@ -1211,6 +1215,16 @@ class PlayerUtil
                     ':building' => $CPLANET['b_building'],
                     ':current_queue' => $CPLANET['b_building_id'],
                     ':timestamp' => TIMESTAMP,
+                ]);
+
+                $sql = "UPDATE %%PLANET_WRECKFIELD%% SET
+                `created` = `created` + :umode_delta,
+                `repair_order_start` =`repair_order_start` + :umode_delta,
+                `repair_order_end` = `repair_order_end` + :umode_delta
+                WHERE planetID = :planetID;";
+                $db->update($sql, [
+                    ':umode_delta' => $umode_delta,
+                    ':planetID' => $CPLANET['id'],
                 ]);
 
                 unset($CPLANET);

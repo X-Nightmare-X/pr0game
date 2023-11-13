@@ -144,7 +144,7 @@ class ShowOverviewPage extends AbstractGamePage
         }
 
 
-        $sql = "SELECT id,username FROM %%USERS%% 
+        $sql = "SELECT id,username FROM %%USERS%%
             WHERE universe = :universe AND onlinetime >= :onlinetime AND authlevel > :authlevel;";
         $onlineAdmins = $db->select($sql, [
             ':universe'     => Universe::current(),
@@ -160,7 +160,7 @@ class ShowOverviewPage extends AbstractGamePage
 
         // Fehler: Wenn Spieler gelöscht werden, werden sie nicht mehr in der Tabelle angezeigt.
         $sql = "SELECT u.id, u.username, s.total_points FROM %%USERS%% as u
-		    LEFT JOIN %%STATPOINTS%% as s ON s.id_owner = u.id AND s.stat_type = '1' 
+		    LEFT JOIN %%STATPOINTS%% as s ON s.id_owner = u.id AND s.stat_type = '1'
             WHERE ref_id = :userID;";
         $RefLinksRAW = $db->select($sql, [':userID'   => $USER['id']]);
 
@@ -197,7 +197,7 @@ class ShowOverviewPage extends AbstractGamePage
             );
         }
 
-        $sql = 'SELECT COUNT(*) AS amount FROM %%USERS%% 
+        $sql = 'SELECT COUNT(*) AS amount FROM %%USERS%%
             WHERE onlinetime >= UNIX_TIMESTAMP(NOW() - INTERVAL 15 MINUTE)';
         $usersOnline = $db->selectSingle($sql, [], 'amount');
 
@@ -321,7 +321,9 @@ class ShowOverviewPage extends AbstractGamePage
             } else {
                 PlayerUtil::deletePlanet($PLANET['id']);
 
-                Session::load()->planetId = $USER['id_planet'];
+                $session = Session::load();
+                $session->planetId = $USER['id_planet'];
+                $session->save();
                 $this->sendJSON(['ok' => true, 'message' => $LNG['ov_planet_abandoned']]);
             }
         }

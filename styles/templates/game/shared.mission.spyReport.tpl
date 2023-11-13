@@ -85,21 +85,25 @@
 {/if}
 	{foreach $spyData as $Class => $elementIDs}
 	<div class="spyRaportContainer">
-	<div class="spyRaportContainerHead spyRaportContainerHeadClass{$Class}">{$LNG.tech.$Class}</div>
-	{foreach $elementIDs as $elementID => $amount}
-		{if ($amount@iteration % 2) === 1}
-			<div class="spyRaportContainerRow clearfix">
-		{/if}
-			<div class="spyRaportContainerCell">
-				<a href='#' onclick='return Dialog.info({$elementID})' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$elementID}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$elementID}.
-				{if $elementID >=600 && $elementID <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$elementID}</td></tr></table></tr></table>">{$LNG.tech.$elementID}</a>
-			</div>
-			<div class="spyRaportContainerCell" data-info="{$Class}_{$elementID}">
-				{number_format($amount, 0, ",", ".")}
-			</div>
-		{if ($amount@iteration % 2) === 0}</div>{/if}
-	{/foreach}
+    <div class="spyRaportContainerHead spyRaportContainerHeadClass{$Class}">{$LNG.tech.$Class}</div>
+    {foreach $elementIDs as $elementID => $amount}
+      {if ($amount@iteration % 2) === 1}
+        <div class="spyRaportContainerRow clearfix">
+      {/if}
+        <div class="spyRaportContainerCell">
+          <a href='#' onclick='return Dialog.info({$elementID})' class='tooltip' data-tooltip-content="<table><tr><th>{$LNG.tech.{$elementID}}</th></tr><tr><table class='hoverinfo'><tr><td><img src='{$dpath}gebaeude/{$elementID}.
+          {if $elementID >=600 && $elementID <= 699}jpg{else}gif{/if}'></td><td>{$LNG.shortDescription.$elementID}</td></tr></table></tr></table>">{$LNG.tech.$elementID}</a>
+        </div>
+        <div class="spyRaportContainerCell" data-info="{$Class}_{$elementID}">
+          {number_format($amount, 0, ",", ".")}{if isset($repair_order[$elementID])} <span style="color: yellowgreen;">(+ {$repair_order[$elementID]})</span>{/if}
+        </div>
+      {if ($amount@iteration % 2) === 0}</div>{/if}
+    {/foreach}
 	</div>
+  {if !empty($repair_order) && $Class == 200}
+    <div><span style="color: yellowgreen;">(+ X)</span> {$LNG.sys_mess_spy_repair_order}</div>
+  {/if}
+  <br>
 	{/foreach}
 	<div class="spyRaportFooter">
 		<a href="game.php?page=fleetTable&amp;galaxy={$targetPlanet.galaxy}&amp;system={$targetPlanet.system}&amp;planet={$targetPlanet.planet}&amp;planettype={$targetPlanet.planet_type}&amp;target_mission=1">{$LNG.type_mission_1}</a>
