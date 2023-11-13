@@ -629,12 +629,9 @@ class PlayerUtil
         if ($parentPlanet['id_luna'] != 0) {
             return false;
         }
-
-        $sql = "SELECT moonSizeFactor FROM %%CONFIG%% WHERE uni = :universe;";
-
-        $moonSizeFactor = $db->selectSingle($sql, [
-            ':universe' => $universe,
-        ], 'moonSizeFactor' );
+        
+        $config = Config::get($universe);
+        $moonSizeFactor = $config->moonSizeFactor;
 
         if (is_null($diameter)) {
             $diameter = floor(pow(mt_rand(10, 20) + 3 * $chance, 0.5) * 1000 * $moonSizeFactor);
