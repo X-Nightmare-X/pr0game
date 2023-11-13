@@ -43,11 +43,11 @@ function ShowUniversePage()
             break;
         case 'delete':
             if (!empty($universe) && $universe != ROOT_UNI && $universe != Universe::current()) {
-                $sql = "DELETE FROM %%ALLIANCE_RANK%% WHERE `allianceID` IN (SELECT `id` AS 'allianceID' FROM %%ALLIANCE%% WHERE `universe` = :universe);";
+                $sql = "DELETE FROM %%ALLIANCE_RANK%% WHERE `allianceID` IN (SELECT `id` AS 'allianceID' FROM %%ALLIANCE%% WHERE `ally_universe` = :universe);";
                 $db->delete($sql, [':universe' => $universe]);
-                $sql = "DELETE FROM %%ALLIANCE_REQUEST%% WHERE `allianceID` IN (SELECT `id` AS 'allianceID' FROM %%ALLIANCE%% WHERE `universe` = :universe);";
+                $sql = "DELETE FROM %%ALLIANCE_REQUEST%% WHERE `allianceID` IN (SELECT `id` AS 'allianceID' FROM %%ALLIANCE%% WHERE `ally_universe` = :universe);";
                 $db->delete($sql, [':universe' => $universe]);
-                $sql = "DELETE FROM %%ALLIANCE%% WHERE `universe` = :universe;";
+                $sql = "DELETE FROM %%ALLIANCE%% WHERE `ally_universe` = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
 
                 $sql = "DELETE FROM %%LOG%% WHERE `universe` = :universe;";
@@ -64,13 +64,13 @@ function ShowUniversePage()
                 $sql = "DELETE FROM %%DIPLO%% WHERE `universe` = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
 
-                $sql = "DELETE FROM %%FLEETS_EVENT%% WHERE `fleetID` IN (SELECT `fleet_id` AS 'fleetID' FROM %%FLEETS%% WHERE `universe` = :universe);";
+                $sql = "DELETE FROM %%FLEETS_EVENT%% WHERE `fleetID` IN (SELECT `fleet_id` AS 'fleetID' FROM %%FLEETS%% WHERE `fleet_universe` = :universe);";
                 $db->delete($sql, [':universe' => $universe]);
-                $sql = "DELETE FROM %%AKS%% WHERE `id` IN (SELECT `fleet_group` AS 'id' FROM %%FLEETS%% WHERE `universe` = :universe);";
+                $sql = "DELETE FROM %%AKS%% WHERE `id` IN (SELECT `fleet_group` AS 'id' FROM %%FLEETS%% WHERE `fleet_universe` = :universe);";
                 $db->delete($sql, [':universe' => $universe]);
-                $sql = "DELETE FROM %%TRADES%% WHERE `seller_fleet_id` IN (SELECT `fleet_id` AS 'seller_fleet_id' FROM %%FLEETS%% WHERE `universe` = :universe);";
+                $sql = "DELETE FROM %%TRADES%% WHERE `seller_fleet_id` IN (SELECT `fleet_id` AS 'seller_fleet_id' FROM %%FLEETS%% WHERE `fleet_universe` = :universe);";
                 $db->delete($sql, [':universe' => $universe]);
-                $sql = "DELETE FROM %%FLEETS%% WHERE `universe` = :universe;";
+                $sql = "DELETE FROM %%FLEETS%% WHERE `fleet_universe` = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
 
                 $sql = "DELETE FROM %%LOG_FLEETS%% WHERE `fleet_universe` = :universe;";
@@ -93,11 +93,10 @@ function ShowUniversePage()
                 $sql = "DELETE FROM %%MULTI%% WHERE `universe` = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
 
-                $sql = "DELETE FROM %%TICKETS_ANSWER%% WHERE `ticketID` IN (SELECT `ticketID` FROM %%TICKETS_ANSWER%% WHERE `universe` = :universe);";
+                $sql = "DELETE FROM %%TICKETS_ANSWER%% WHERE `ticketID` IN (SELECT `ticketID` FROM %%TICKETS%% WHERE `universe` = :universe);";
                 $db->delete($sql, [':universe' => $universe]);
-                $sql = "DELETE FROM %%TICKETS_ANSWER%% WHERE `universe` = :universe;";
+                $sql = "DELETE FROM %%TICKETS%% WHERE `universe` = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
-
 
                 $sql = "DELETE FROM %%RW%% WHERE `rid` IN (SELECT `rid` FROM %%TOPKB%% WHERE `universe` = :universe);";
                 $db->delete($sql, [':universe' => $universe]);
