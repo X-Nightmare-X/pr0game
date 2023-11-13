@@ -26,7 +26,14 @@ class ShowPlayerCardPage extends AbstractGamePage
     {
         parent::__construct();
     }
-
+    public function spyTechAllowed($necessaryLevel, $PlayerID, $USER)
+    {
+        $allowed = true;
+        if(isModuleAvailable(MODULE_SPYTECH_DEPENDENT_STATS) && $PlayerID != $USER['id'] && $USER['authlevel'] == 0 && $USER['spy_tech'] < $necessaryLevel) {
+            $allowed = false;
+        }
+        return $allowed;
+    }
     public function show()
     {
         $USER =& Singleton()->USER;
@@ -37,88 +44,24 @@ class ShowPlayerCardPage extends AbstractGamePage
         $PlayerID 	= HTTP::_GP('id', 0);
 
         $stats = $this->get_stats($PlayerID);
-        $showBuild = true;
-        $showTech = true;
-        $showDef = true;
-        $showFleet = true;
-        $showBattle = true;
-        $color = '';
-        
-        if (isModuleAvailable(MODULE_SPYTECH_DEPENDENT_STATS) && $PlayerID != $USER['id'] && $USER['authlevel'] == 0) {
-            $spytech = $USER['spy_tech'];
-            switch ($spytech) {
-                case 0:
-                case 1:
-                    $player_data = $this->get_player_data($stats);
-                    $total_data = $this->get_total_data($stats);
-                    $build_data = $this->get_build_data($stats, false);
-                    $tech_data = $this->get_tech_data($stats, false);
-                    $def_data = $this->get_def_data($stats, false);
-                    $fleet_data = $this->get_fleet_data($stats, false);
-                    $battle_stats = $this->get_battle_stats($stats, false);
-                    $units = $this->get_units($stats, false);
-                    $real_units = $this->get_real_units($stats, false);
-                    $showBuild = false;
-                    $showTech = false;
-                    $showDef = false;
-                    $showFleet = false;
-                    $showBattle = false;
-                    break;
-                case 2:
-                case 3:
-                    $player_data = $this->get_player_data($stats);
-                    $total_data = $this->get_total_data($stats);
-                    $build_data = $this->get_build_data($stats);
-                    $tech_data = $this->get_tech_data($stats, false);
-                    $def_data = $this->get_def_data($stats, false);
-                    $fleet_data = $this->get_fleet_data($stats, false);
-                    $battle_stats = $this->get_battle_stats($stats, false);
-                    $units = $this->get_units($stats, false);
-                    $real_units = $this->get_real_units($stats, false);
-                    $showTech = false;
-                    $showDef = false;
-                    $showFleet = false;
-                    $showBattle = false;
-                    break;
-                case 4:
-                case 5:
-                    $player_data = $this->get_player_data($stats);
-                    $total_data = $this->get_total_data($stats);
-                    $build_data = $this->get_build_data($stats);
-                    $tech_data = $this->get_tech_data($stats);
-                    $def_data = $this->get_def_data($stats, false);
-                    $fleet_data = $this->get_fleet_data($stats, false);
-                    $battle_stats = $this->get_battle_stats($stats, false);
-                    $units = $this->get_units($stats, false);
-                    $real_units = $this->get_real_units($stats, false);
-                    $showDef = false;
-                    $showFleet = false;
-                    $showBattle = false;
-                    break;
-                default:
-                    $player_data = $this->get_player_data($stats);
-                    $total_data = $this->get_total_data($stats);
-                    $build_data = $this->get_build_data($stats);
-                    $tech_data = $this->get_tech_data($stats);
-                    $def_data = $this->get_def_data($stats);
-                    $fleet_data = $this->get_fleet_data($stats);
-                    $battle_stats = $this->get_battle_stats($stats);
-                    $units = $this->get_units($stats);
-                    $real_units = $this->get_real_units($stats);
-                    break;
-            }
-        } else {
-            $player_data = $this->get_player_data($stats);
-            $total_data = $this->get_total_data($stats);
-            $build_data = $this->get_build_data($stats);
-            $tech_data = $this->get_tech_data($stats);
-            $def_data = $this->get_def_data($stats);
-            $fleet_data = $this->get_fleet_data($stats);
-            $battle_stats = $this->get_battle_stats($stats);
-            $units = $this->get_units($stats);
-            $real_units = $this->get_real_units($stats);
-        }
-        $color = 'red';
+        $showPlayer = true;
+        $showTotal = true;
+        $showBuild = $this->spyTechAllowed(2, $PlayerID, $USER);
+        $showTech = $this->spyTechAllowed(4, $PlayerID, $USER);
+        $showDef = $this->spyTechAllowed(6, $PlayerID, $USER);
+        $showFleet = $this->spyTechAllowed(6, $PlayerID, $USER);
+        $showBattle = $this->spyTechAllowed(6, $PlayerID, $USER);
+
+        $player_data = $this->get_player_data($stats, $showPlayer);
+        $total_data = $this->get_total_data($stats, $showTotal);
+        $build_data = $this->get_build_data($stats, $showBuild);
+        $tech_data = $this->get_tech_data($stats, $showTech);
+        $def_data = $this->get_def_data($stats, $showDef);
+        $fleet_data = $this->get_fleet_data($stats, $showFleet);
+        $battle_stats = $this->get_battle_stats($stats, $showBattle);
+        $units = $this->get_units($stats, $showBattle);
+        $real_units = $this->get_real_units($stats, $showBattle);
+
         $this->assign([
             'id'			=> $PlayerID,
             'yourid'		=> $USER['id'],
@@ -166,7 +109,6 @@ class ShowPlayerCardPage extends AbstractGamePage
             'showDef'       => $showDef,
             'showFleet'     => $showFleet,
             'showBattle'    => $showBattle,
-            'color'         => $color,
         ]);
         $this->display('page.playerCard.default.tpl');
     }
