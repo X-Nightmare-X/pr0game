@@ -585,6 +585,7 @@ switch ($mode) {
 
                 $session    = Session::create();
                 $session->userId        = $userId;
+                $session->universe      = Universe::current();
                 $session->adminAccess   = 1;
 
                 @unlink($enableInstallToolFile);

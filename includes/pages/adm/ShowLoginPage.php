@@ -23,6 +23,7 @@ function ShowLoginPage()
 {
     $USER =& Singleton()->USER;
     $session	= Session::create();
+    $session->universe      = ROOT_UNI;
     if ($session->adminAccess == 1) {
         HTTP::redirectTo('admin.php');
     }
