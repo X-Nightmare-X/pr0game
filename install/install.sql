@@ -358,6 +358,7 @@ CREATE TABLE `%PREFIX%config` (
   `max_overflow` float(2,1) NOT NULL DEFAULT '1.0',
   `moon_factor` float(2,1) NOT NULL DEFAULT '1.0',
   `moon_chance` tinyint(3) unsigned NOT NULL DEFAULT '20',
+  `moonSizeFactor` float(4,3) unsigned NOT NULL DEFAULT '1.000',
   `factor_university` tinyint(3) unsigned NOT NULL DEFAULT '8',
   `max_fleets_per_acs` tinyint(3) unsigned NOT NULL DEFAULT '16',
   `max_participants_per_acs` tinyint(3) unsigned NOT NULL DEFAULT '5',
@@ -396,7 +397,6 @@ CREATE TABLE `%PREFIX%config` (
   `initial_temp` int(3) unsigned NOT NULL DEFAULT '50',
   `recaptchaPrivKey` varchar(255) DEFAULT '',
   `recaptchaPubKey` varchar(255) DEFAULT '',
-  `moonSizeFactor` float(4,3) unsigned NOT NULL DEFAULT '1.000',
   PRIMARY KEY (`uni`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
