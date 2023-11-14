@@ -66,7 +66,7 @@ $LNG['sys_mess_spy_activity'] = 'Spionage-Aktivität';
 $LNG['sys_mess_spy_link'] = '<a href="game.php?page=galaxy&amp;galaxy=%3$s&amp;system=%4$s">%1$s (%2$s) [%3$s:%4$s:%5$s]</a>';
 $LNG['sys_mess_spy_ennemyfleet_1'] = 'Feindliche Spionagesonden vom Planeten %s wurde in der Nähe von %s gesichtet.';
 $LNG['sys_mess_spy_ennemyfleet_3'] = 'Feindliche Spionagesonden vom Mond %s wurde in der Nähe von %s gesichtet.';
-$LNG['sys_mess_spy_destroyed'] = '<font color="red">Deine Spionagesonden wurden zerstört!</font>';
+$LNG['sys_mess_spy_destroyed'] = 'Deine Spionagesonden wurden zerstört!';
 $LNG['sys_adress_planet'] = '[%s:%s:%s]';
 
 $LNG['sys_stat_mess_stay'] = 'Stationierte Flotte';

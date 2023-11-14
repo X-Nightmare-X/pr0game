@@ -69,7 +69,7 @@ $LNG['sys_mess_spy_seen_at'] = 'fue vista cerca de tu planeta';
 $LNG['sys_mess_spy_link'] = '<a href="game.php?page=galaxy&amp;galaxy=%3$s&amp;system=%4$s">%1$s (%2$s) [%3$s:%4$s:%5$s]</a>';
 $LNG['sys_mess_spy_ennemyfleet_1'] = 'Sondas espías enemigas del planeta %s han sido avistadas cerca de %s.';
 $LNG['sys_mess_spy_ennemyfleet_3'] = 'Sondas espías enemigas de la luna %s han sido avistadas cerca de %s.';
-$LNG['sys_mess_spy_destroyed'] = '<font color="red">¡Tu sonda de espionaje ha sido destruida!</font>';
+$LNG['sys_mess_spy_destroyed'] = '¡Tu sonda de espionaje ha sido destruida!';
 $LNG['sys_adress_planet'] = '[%s:%s:%s]';
 
 $LNG['sys_stat_mess_stay'] = 'Flota estacionada';

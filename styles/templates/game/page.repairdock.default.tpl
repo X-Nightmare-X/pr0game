@@ -45,27 +45,30 @@
     <form action="game.php?page=repairdock" method="post">
       {foreach $elementList as $ID => $Element}
         <div class="infos" id="s{$ID}">
-          <div class="buildn">
+          <div class="repairShipHeader">
             <a href="#" onclick="return Dialog.info({$ID})">{$LNG.tech.{$ID}}</a>
             <span id="val_{$ID}">{if $Element.available != 0} ({$LNG.bd_available} {number_format($Element.available, 0, ",", ".")}){/if}</span>
           </div>
-          <div class="buildl">
-            <a href="#" onclick="return Dialog.info({$ID})">
+          <div class="repairShipContainer">
+            <a style="padding: 10px;" href="#" onclick="return Dialog.info({$ID})">
               <img style="float: left;" src="{$dpath}gebaeude/{$ID}.gif" alt="{$LNG.tech.{$ID}}" width="120" height="120">
             </a>
-            {$LNG.bd_remaining}<br>
-            <p>{$LNG.bd_max_ships_repair}:<span style="font-weight:700"><br>{number_format($Element.maxBuildable, 0, ",", ".")}</p>
-          </div>
-          <div class="buildl">
-            {if $ID==212} +{$SolarEnergy} {$LNG.tech.911}<br>{/if}
-            <span>
-              {if !$buisy}
-                <input type="number" name="fmenge[{$ID}]" id="input_{$ID}" size="3" value="0" tabindex="{$smarty.foreach.FleetList.iteration}">
-                <input type="button" value="{$LNG.bd_max_ships}" onclick="$('#input_{$ID}').val('{$Element.maxBuildable}')">
-              {/if}
-              {$LNG.fgf_time}
-              <span class="statictime" timestamp="{$Element.elementTime}"></span>
-            </span>
+            <div class="repairShipContainerContent">
+              <span>
+                <p>{$LNG.bd_max_ships_repair}:<br><span style="font-weight:700">{number_format($Element.maxBuildable, 0, ",", ".")}</span></p>
+              </span>
+            </div>
+            <div class="repairShipContainerContent">
+              <span>
+                {if $ID==212} +{$SolarEnergy} {$LNG.tech.911}<br>{/if}
+                {if !$buisy}
+                  <input type="number" name="fmenge[{$ID}]" id="input_{$ID}" size="3" value="0" tabindex="{$smarty.foreach.FleetList.iteration}">
+                  <input type="button" value="{$LNG.bd_max_ships}" onclick="$('#input_{$ID}').val('{$Element.maxBuildable}')">
+                {/if}
+                {$LNG.fgf_time}
+                <span class="statictime" timestamp="{$Element.elementTime}"></span>
+              </span>
+            </div>
           </div>
         </div>
       {/foreach}

@@ -31,6 +31,7 @@ class ShowRepairdockPage extends AbstractGamePage
         $PLANET =& Singleton()->PLANET;
         $LNG =& Singleton()->LNG;
         $resource =& Singleton()->resource;
+        $reslist =& Singleton()->reslist;
         $db = Database::get();
         if ($PLANET[$resource[REPAIR_DOCK]] == 0) {
             $this->printMessage($LNG['bd_repairdock_required']);
@@ -152,14 +153,15 @@ class ShowRepairdockPage extends AbstractGamePage
             }
         }
 
+        $elementIDs = $reslist['fleet'];
         $elementList = [];
-        foreach ($ships as $Element => $amount) {
+        foreach ($elementIDs as $Element) {
             if (!isset($ships[$Element])) {
                 continue;
             }
 
             $elementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $Element);
-            $maxBuildable = floor($amount * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]));
+            $maxBuildable = floor($ships[$Element] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]));
 
             $elementList[$Element] = [
                 'id' => $Element,

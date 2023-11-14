@@ -69,7 +69,7 @@ $LNG['sys_mess_spy_seen_at'] = 'был обнаружен вблизи от пл
 $LNG['sys_mess_spy_link'] = '<a href="game.php?page=galaxy&amp;galaxy=%3$s&amp;system=%4$s">%1$s (%2$s) [%3$s:%4$s:%5$s]</a>';
 $LNG['sys_mess_spy_ennemyfleet_1'] = 'Вражеские зонды-шпионы с планеты %s были замечены вблизи %s.';
 $LNG['sys_mess_spy_ennemyfleet_3'] = 'Вражеские зонды-шпионы с луны %s были замечены вблизи %s.';
-$LNG['sys_mess_spy_destroyed'] = '<font color="red">Ваши шпионские зонды были уничтожены.</font>';
+$LNG['sys_mess_spy_destroyed'] = 'Ваши шпионские зонды были уничтожены.';
 $LNG['sys_adress_planet'] = '[%s:%s:%s]';
 
 $LNG['sys_stat_mess_stay'] = 'Удерживающийся флот';

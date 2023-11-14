@@ -655,6 +655,33 @@ table.tablesorter thead tr .headerSortDown {
   line-height: 1.4;
   padding: 8px;
 }
+.repairShipHeader {
+  border-radius: 15px 15px 0px 0px;
+  padding: 6px;
+  overflow: auto;
+  background: #256b99;
+  /* background: #9acd32; */
+}
+.repairShipHeader a:hover {
+  color: #e62cf7;
+  font-weight: bold;
+}
+.repairShipContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #212121;
+}
+.repairShipContainerContent {
+  float: left;
+  width: 50%;
+  line-height: 1.4;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 @media screen and (max-width: 1165px) {
 	body {

@@ -66,7 +66,7 @@ $LNG['sys_mess_spy_activity'] = 'Papageien-Aktivität';
 $LNG['sys_mess_spy_link'] = '<a href="game.php?page=galaxy&amp;galaxy=%3$s&amp;system=%4$s">%1$s (%2$s) [%3$s:%4$s:%5$s]</a>';
 $LNG['sys_mess_spy_ennemyfleet_1'] = 'Feindliche Papageien vom Hafen %s wurde in der Nähe von %s gesichtet.';
 $LNG['sys_mess_spy_ennemyfleet_3'] = 'Feindliche Papageien von der Insel %s wurde in der Nähe von %s gesichtet.';
-$LNG['sys_mess_spy_destroyed'] = '<font color="red">Deine Papageien sind abgestürzt!</font>';
+$LNG['sys_mess_spy_destroyed'] = 'Deine Papageien sind abgestürzt!';
 $LNG['sys_adress_planet'] = '[%s:%s:%s]';
 $LNG['sys_stat_mess_stay'] = 'Stationierte Flotte';
 $LNG['sys_stat_mess'] = 'Deine Flotte erreicht den %s %s und liefert %s %s, %s %s und %s %s.';
