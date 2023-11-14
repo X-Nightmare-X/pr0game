@@ -510,6 +510,8 @@ $LNG['se_max_planets_info'] = 'Maximum number of Planets to colonize (default: 1
 $LNG['se_min_player_planets'] = 'Maximum planets';
 $LNG['se_max_player_planets_info'] = 'Maximum planets Without Exploration';
 $LNG['se_max_player_planets'] = 'Maximum Planets with Exploration';
+$LNG['se_moonSizeFactor'] = 'Moon size factor';
+$LNG['se_moonSizeFactor_info'] = 'Factor to influence the moon size, 1 = default';
 $LNG['se_min_player_planets_info'] = 'Maximum number of colonies with the research';
 $LNG['se_planet_factor'] = 'Size of the planet';
 $LNG['se_planet_factor_info'] = 'Planet size multiplier';

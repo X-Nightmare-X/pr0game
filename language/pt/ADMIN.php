@@ -517,6 +517,8 @@ $LNG['se_crystal_start'] = 'Inicio - Cristal';
 $LNG['se_crystal_start_info'] = 'Recursos iniciais de Cristal para novo jogador.';
 $LNG['se_deuterium_start'] = 'Inicio - Deutério';
 $LNG['se_deuterium_start_info'] = 'Recursos iniciais de Deutério para novo jogador.';
+$LNG['se_moonSizeFactor'] = 'Fator de tamanho da lua';
+$LNG['se_moonSizeFactor_info'] = 'Fator que influencia o tamanho da lua, 1 = predefinição';
 $LNG['se_debris_moon'] = 'Excluir Destroços na Lua';
 $LNG['se_debris_moon_info'] = 'Limpa os destroços depois de Formação de Lua';
 $LNG['se_buildlist'] = 'Lista de Construcção';

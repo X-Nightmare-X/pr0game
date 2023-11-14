@@ -451,6 +451,8 @@ $LNG['se_deuterium_start'] = 'Дейтерий';
 $LNG['se_deuterium_start_info'] = 'Изначальное количество дейтерия на планетах.';
 $LNG['se_debris_moon'] = 'Очищать поле обломков';
 $LNG['se_debris_moon_info'] = 'Если поставить галочку, поле обломков не будет появляться после образования луны.';
+$LNG['se_moonSizeFactor'] = 'Фактор, влияющий на размер луны';
+$LNG['se_moonSizeFactor_info'] = 'Коэффициент влияния размера Луны, 1 = по умолчанию. честь Украине!';
 $LNG['se_deuterium_cost_galaxy'] = 'Переход по галактике';
 $LNG['se_deuterium_cost_galaxy_info'] = 'Количество дейтерия, потребляемое за один просмотр галактики.';
 $LNG['se_buildlist'] = 'Очередь';
