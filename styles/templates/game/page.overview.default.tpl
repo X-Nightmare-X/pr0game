@@ -40,7 +40,7 @@
 
         .colorMission2friend{
             color:{$colors.colorMission2friend}
-        } 
+        }
         .colorMission1Own{
             color:{$colors.colorMission1Own}
         }
@@ -70,7 +70,7 @@
         }
         .colorMission9Own{
             color:{$colors.colorMission9Own}
-        } 
+        }
         .colorMission10Own{
             color:{$colors.colorMission10Own}
         }
@@ -100,7 +100,7 @@
         }
         .colorMission5Foreign{
             color:{$colors.colorMission5Foreign}
-        } 
+        }
         .colorMission6Foreign{
             color:{$colors.colorMission6Foreign}
         }
@@ -256,6 +256,20 @@
                     </div>
                 {else}
                     <a href="game.php?page=shipyard&amp;mode=fleet">{$LNG.lm_shipshard}: {$LNG.ov_free}</a>
+                    <br>
+                {/if}
+                {if $buildInfo.repair}
+                  {if $buildInfo.repair.repairing}
+                    <a href="game.php?page=repairdock">{$LNG.lm_repairdock}: </a><span id="repairtext" data-alttext="{$buildInfo.repair['deploy_text']}">{$buildInfo.repair['text']}</span>
+                  {else}
+                    <a href="game.php?page=repairdock">{$LNG.lm_repairdock}: </a><span id="repairtext">{$buildInfo.repair['deploy_text']}</span>
+                  {/if}
+                  <br>
+                  <div class="timerrepair" data-umode="{$umode}" data-time="{$buildInfo.repair['timeleft']}" data-repairing={$buildInfo.repair['repairing']}>
+                    {$buildInfo.repair['starttime']}
+                  </div>
+                {else}
+                    <a href="game.php?page=repairdock">{$LNG.lm_repairdock}: {$LNG.ov_free}</a>
                     <br>
                 {/if}
                 <br>

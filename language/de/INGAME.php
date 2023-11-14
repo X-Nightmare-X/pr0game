@@ -482,6 +482,9 @@ $LNG['bd_repairdock_required'] = 'Du musst zuerst ein Reparaturdock auf diesem P
 $LNG['bd_repairdock_buisy'] = 'Das Reparaturdock arbeitet bereits an einem Auftrag!';
 $LNG['bd_repairdock_empty'] = 'Es ist kein Wrackfeld vorhanden!';
 $LNG['bd_repairdock_deploy'] = 'Die Schiffe wurden wieder in Dienst gestellt!';
+$LNG['bd_max_ships_repair'] = 'Maximal wiederherstellbare Einheiten';
+$LNG['bd_repairing'] = 'Reparatur in Arbeit';
+$LNG['bd_deployable'] = 'Reparatur abgeschlossen! Automatisches Einsetzten in:';
 $LNG['bd_available'] = 'Vorhanden: ';
 $LNG['bd_build_ships'] = 'Absenden';
 $LNG['bd_protection_shield_only_one'] = 'Sie können nur eine Schildkuppel bauen!';
@@ -505,7 +508,6 @@ $LNG['bd_cancel_send'] = 'Markierte - Löschen';
 $LNG['bd_destroy_time'] = 'Dauer';
 $LNG['bd_max_ships'] = 'max';
 $LNG['bd_max_ships_long'] = 'Maximal baubare Einheiten';
-$LNG['bd_max_ships_repair'] = 'Maximal wiederherstellbare Einheiten';
 $LNG['sys_notenough_money'] = 'Sie verfügen auf Planet %s <a href="?page=buildings&amp;cp=%d&amp;re=0">[%d:%d:%d]</a>'
     . ' nicht über genügend Ressourcen, um mit dem Bau von %s zu beginnen. <br>Sie verfügen über %s %s , %s %s und %s'
     . ' %s. <br>Die Baukosten betragen %s %s , %s %s und %s %s.';

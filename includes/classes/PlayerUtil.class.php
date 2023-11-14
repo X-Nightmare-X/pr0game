@@ -790,7 +790,9 @@ class PlayerUtil
             ':userId'   => $userId
         ]);
 
-        $sql = 'DELETE FROM %%PLANETS%% WHERE id_owner = :userId;';
+        $sql = 'DELETE %%PLANETS%%, %%PLANET_WRECKFIELD%%
+        FROM %%PLANETS%% LEFT JOIN %%PLANET_WRECKFIELD%% on planetID = id
+        WHERE id_owner = :userId;';
         $db->delete($sql, [
             ':userId'   => $userId
         ]);

@@ -143,6 +143,23 @@ class ShowOverviewPage extends AbstractGamePage
             $buildInfo['tech']  = false;
         }
 
+        $sql = "SELECT * FROM %%PLANET_WRECKFIELD%% WHERE `planetID` = :planetID;";
+        $wreckfield = $db->selectSingle($sql, [':planetID' => $PLANET['id']]);
+        if (!empty($wreckfield['repair_order'])) {
+            $repairing = $wreckfield['repair_order_end'] > TIMESTAMP;
+            $timeleft = $USER['urlaubs_modus'] ? ($wreckfield['repair_order_end'] - $USER['urlaubs_start']) : ($wreckfield['repair_order_end'] - TIMESTAMP);
+            $deploy_timeleft = $USER['urlaubs_modus'] ? ($wreckfield['repair_order_end'] + TIME_72_HOURS - $USER['urlaubs_start']) : ($wreckfield['repair_order_end'] + TIME_72_HOURS - TIMESTAMP);
+            $buildInfo['repair'] = [
+                'text'          => $LNG['bd_repairing'],
+                'deploy_text'   => $LNG['bd_deployable'],
+                'timeleft'      => $timeleft + ($repairing ? 0 : TIME_72_HOURS),
+                'time'          => $wreckfield['repair_order_end'] + ($repairing ? 0 : TIME_72_HOURS),
+                'starttime'     => pretty_time($repairing ? $timeleft : $deploy_timeleft),
+                'repairing'     => $repairing,
+            ];
+        } else {
+            $buildInfo['repair']  = false;
+        }
 
         $sql = "SELECT id,username FROM %%USERS%%
             WHERE universe = :universe AND onlinetime >= :onlinetime AND authlevel > :authlevel;";
