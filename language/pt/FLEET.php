@@ -35,6 +35,9 @@ $LNG['debree_field_2'] = 'A flutuar na orbita do planeta.';
 $LNG['sys_moonproba'] = 'A probabilidade de criação de lua devido aos destroços do combate é de';
 $LNG['sys_moonbuilt'] = 'Após o combate, a grande quantidade de metal e cristal deixados nos destroços atraem-se,'
     . ' devido ao efeito gravitacional, e formam lentamente um satélite lunar na órbita do planeta.';
+$LNG['sys_wreckfield'] = 'Algumas das naves destruídas do defensor formam um campo de destroços na órbita do planeta por alguns dias.';
+$LNG['sys_wreckfield_added'] = 'Adicionado ao campo de destroços:';
+$LNG['sys_mess_spy_repair_order'] = 'Os navios estão sendo restaurados na doca de reparos.';
 $LNG['sys_attack_title'] = 'As frotas seguintes encontraram-se em';
 $LNG['sys_attack_round'] = 'Ronda Nr';
 $LNG['sys_attack_attacker_pos'] = 'Atacante';

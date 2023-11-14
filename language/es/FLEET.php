@@ -27,6 +27,9 @@ $LNG['debree_field_2'] = 'flotan en la orbita del planeta.';
 $LNG['sys_moonproba'] = 'La probabilidad de que surja una luna de los escombros es de:';
 $LNG['sys_moonbuilt'] = 'Las enormes cantidades de metal y cristal libres se atraen y forman un satélite alrededor'
     . ' del planeta !';
+$LNG['sys_wreckfield'] = 'Algunas de las naves destruidas del defensor forman un campo de restos en la órbita del planeta durante unos días.';
+$LNG['sys_wreckfield_added'] = 'Agregado a wreckfield:';
+$LNG['sys_mess_spy_repair_order'] = 'Los barcos se están restaurando actualmente en el muelle de reparación.';
 $LNG['sys_attack_title'] = 'Las flotas se enfrentan en ';
 $LNG['sys_attack_round'] = 'Ronda';
 $LNG['sys_attack_attacker_pos'] = 'Atacante';

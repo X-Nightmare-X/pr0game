@@ -338,7 +338,7 @@ $LNG['longDescription'] = [
      34 => 'Das Allianzdepot bietet die Möglichkeit, befreundete Flotten, die bei der Verteidigung helfen und im Orbit'
          . ' stehen, mit Treibstoff zu versorgen. Für jeden Ausbaulevel des Allianzdepots können 10.000 Einheiten'
          . ' Deuterium pro Stunde an die zu versorgenden Flotten im Orbit geschickt werden.',
-     34 => 'Das Reparaturdock bietet die Möglichkeit zerstörte Schiffe, die in Folge eines Kampfes ein Wrackfeld hinterlassen'
+     35 => 'Das Reparaturdock bietet die Möglichkeit zerstörte Schiffe, die in Folge eines Kampfes ein Wrackfeld hinterlassen'
          . ' haben, zu reparieren. Die Reparaturzeit beträgt maximal 12h, aber es dauert mindestens 30min bis die Schiffe'
          . ' in Dienst gestellt werden können.<br>Ab Entstehung des Wrackfeldes bleiben 3 Tage Zeit um mit der Reparatur'
          . ' zu beginnen. Die reparierten Schiffe müssen nach Ablauf der Reparatur aktiv wieder in Dienst gestellt werden.'

@@ -27,6 +27,8 @@ $LNG['debree_field_2'] = '.';
 $LNG['sys_moonproba'] = 'Die Chance einer Mondentstehung beträgt:';
 $LNG['sys_moonbuilt'] = 'Die enormen Mengen an freiem Metall und Kristall ziehen sich an und formen einen Trabanten um den Planeten !';
 $LNG['sys_wreckfield'] = 'Ein Teil der zerstörten Schiffe des Verteidigers bildet für wenige Tage ein Wrackfeld im Orbit des Planeten.';
+$LNG['sys_wreckfield_added'] = 'Dem Wrackfeld hinzugefügt:';
+$LNG['sys_mess_spy_repair_order'] = 'Schiffe werden gerade im Reparaturdock wieder hergestellt.';
 $LNG['sys_attack_title'] = 'Folgende Flotten stehen sich gegenüber am';
 $LNG['sys_attack_round'] = 'Runde';
 $LNG['sys_attack_attacker_pos'] = 'Angreifer';
@@ -37,7 +39,6 @@ $LNG['sys_ship_count'] = 'Anzahl';
 $LNG['sys_ship_weapon'] = 'Bewaff.';
 $LNG['sys_ship_shield'] = 'Schilde';
 $LNG['sys_ship_armour'] = 'Hülle';
-$LNG['sys_wreckfield_added'] = 'Dem Wrackfeld hinzugefügt:';
 $LNG['sys_def_rebuild'] = 'Die Verteidigungsanlangen konnten teilweise repariert werden:';
 $LNG['sys_ship_repaired'] = 'Repariert';
 $LNG['sys_destroyed'] = 'Zerstört';
@@ -66,7 +67,6 @@ $LNG['sys_mess_spy_link'] = '<a href="game.php?page=galaxy&amp;galaxy=%3$s&amp;s
 $LNG['sys_mess_spy_ennemyfleet_1'] = 'Feindliche Spionagesonden vom Planeten %s wurde in der Nähe von %s gesichtet.';
 $LNG['sys_mess_spy_ennemyfleet_3'] = 'Feindliche Spionagesonden vom Mond %s wurde in der Nähe von %s gesichtet.';
 $LNG['sys_mess_spy_destroyed'] = '<font color="red">Deine Spionagesonden wurden zerstört!</font>';
-$LNG['sys_mess_spy_repair_order'] = 'Schiffe werden gerade im Reparaturdock wieder hergestellt.';
 $LNG['sys_adress_planet'] = '[%s:%s:%s]';
 
 $LNG['sys_stat_mess_stay'] = 'Stationierte Flotte';
