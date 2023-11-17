@@ -65,7 +65,11 @@ class ShowRepairdockPage extends AbstractGamePage
             foreach ($ElementQueue as $elementID => $amount) {
                 $repaired[] = '`' . $resource[$elementID] . '` = ' . $resource[$elementID] . ' + :' . $resource[$elementID];
                 $params[':' . $resource[$elementID]] = $amount;
-                $ships[$elementID] -= floor($amount * (1 - $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])));
+                if (floor($ships[$elementID] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])) == $amount) {
+                    $ships[$elementID] = 0;
+                } else {
+                    $ships[$elementID] -= floor($amount / $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]));
+                }
                 if ($ships[$elementID] <= 0) {
                     unset($ships[$elementID]);
                 }
@@ -102,11 +106,6 @@ class ShowRepairdockPage extends AbstractGamePage
                         $ElementQueue[$element] = max(0, min($amount, floor($ships[$element] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]))));
                         $ElementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $element);
                         $QueueTime += $ElementTime * $ElementQueue[$element];
-                        $ships[$element] -= $ElementQueue[$element];
-                        $ships[$element] -= floor($ElementQueue[$element] * (1 - $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])));
-                        if ($ships[$element] <= 0) {
-                            unset($ships[$element]);
-                        }
                     }
                 }
             }
@@ -133,6 +132,7 @@ class ShowRepairdockPage extends AbstractGamePage
             ];
 
             $db->commit();
+            $this->redirectTo('game.php?page=repairdock');
         }
         elseif (!empty($ElementQueue)) {
             $buildList = [
@@ -143,11 +143,15 @@ class ShowRepairdockPage extends AbstractGamePage
                 'pretty_end_time' => _date($LNG['php_tdformat'], $wreckfield['repair_order_end'], $USER['timezone']),
             ];
 
-            foreach ($ElementQueue as $element => $amount) {
-                if (isset($ships[$element])) {
-                    $ships[$element] -= floor($amount * (1 - $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])));
-                    if ($ships[$element] <= 0) {
-                        unset($ships[$element]);
+            foreach ($ElementQueue as $elementID => $amount) {
+                if (isset($ships[$elementID])) {
+                    if (floor($ships[$elementID] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])) == $amount) {
+                        $ships[$elementID] = 0;
+                    } else {
+                        $ships[$elementID] -= floor($amount / $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]));
+                    }
+                    if ($ships[$elementID] <= 0) {
+                        unset($ships[$elementID]);
                     }
                 }
             }
@@ -155,17 +159,17 @@ class ShowRepairdockPage extends AbstractGamePage
 
         $elementIDs = $reslist['fleet'];
         $elementList = [];
-        foreach ($elementIDs as $Element) {
-            if (!isset($ships[$Element])) {
+        foreach ($elementIDs as $elementID) {
+            if (!isset($ships[$elementID])) {
                 continue;
             }
 
-            $elementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $Element);
-            $maxBuildable = floor($ships[$Element] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]));
+            $elementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $elementID);
+            $maxBuildable = floor($ships[$elementID] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]));
 
-            $elementList[$Element] = [
-                'id' => $Element,
-                'available' => $PLANET[$resource[$Element]],
+            $elementList[$elementID] = [
+                'id' => $elementID,
+                'available' => $PLANET[$resource[$elementID]],
                 'elementTime' => $elementTime,
                 'maxBuildable' => floatToString($maxBuildable),
             ];
@@ -174,9 +178,7 @@ class ShowRepairdockPage extends AbstractGamePage
 
         $buisy = !empty($wreckfield['repair_order']);
 
-        if ($buisy) {
-            $this->tplObj->loadscript('repairdock.js');
-        }
+        $this->tplObj->loadscript('repairdock.js');
 
         $this->assign([
             'umode' => $USER['urlaubs_modus'],

@@ -11,7 +11,7 @@
         {$ID = $List.element}
         <div class="buildb">
           {$List@iteration}.:
-          {if !($isBusy.research && ($ID == 6 || $ID == 31)) && !($isBusy.shipyard && ($ID == 15 || $ID == 21)) && $RoomIsOk && $CanBuildElement && $BuildInfoList[$ID].buyable}
+          {if !($isBusy.research && ($ID == 6 || $ID == 31)) && !($isBusy.shipyard && ($ID == 15 || $ID == 21)) && !($isBusy.repair && $ID == 35) && $RoomIsOk && $CanBuildElement && $BuildInfoList[$ID].buyable}
             <form class="build_form" action="game.php?page=buildings" method="post">
               <input type="hidden" name="cmd" value="insert">
               <input type="hidden" name="building" value="{$ID}">

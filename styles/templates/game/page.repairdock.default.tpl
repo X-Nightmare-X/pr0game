@@ -43,6 +43,13 @@
       <button id="ship1">{$LNG.fm_civil}</button> | <button id="ship2">{$LNG.fm_military}</button> | <button id="ship3">{$LNG.fm_all}</button>
     </div>
     <form action="game.php?page=repairdock" method="post">
+      {if !$buisy}
+        <br>
+        <div class="planeto">
+          <input type="button" value="{$LNG.bd_max_ships}" onclick="repairAll()">
+          <input class="b colorPositive" type="submit" value="{$LNG.bd_repair_ships}">
+        </div>
+      {/if}
       {foreach $elementList as $ID => $Element}
         <div class="infos" id="s{$ID}">
           <div class="repairShipHeader">
@@ -62,10 +69,11 @@
               <span>
                 {if $ID==212} +{$SolarEnergy} {$LNG.tech.911}<br>{/if}
                 {if !$buisy}
-                  <input type="number" name="fmenge[{$ID}]" id="input_{$ID}" size="3" value="0" tabindex="{$smarty.foreach.FleetList.iteration}">
+                  <input type="number" class="numfield" data-max="{$Element.maxBuildable}" name="fmenge[{$ID}]" id="input_{$ID}" size="3" value="0" tabindex="{$smarty.foreach.FleetList.iteration}">
                   <input type="button" value="{$LNG.bd_max_ships}" onclick="$('#input_{$ID}').val('{$Element.maxBuildable}')">
+                  <br>
                 {/if}
-                {$LNG.fgf_time}
+                {$LNG.fgr_time}
                 <span class="statictime" timestamp="{$Element.elementTime}"></span>
               </span>
             </div>
@@ -73,8 +81,10 @@
         </div>
       {/foreach}
       {if !$buisy}
+        <br>
         <div class="planeto">
-          <input class="b colorPositive" type="submit" value="{$LNG.bd_build_ships}">
+          <input type="button" value="{$LNG.bd_max_ships}" onclick="repairAll()">
+          <input class="b colorPositive" type="submit" value="{$LNG.bd_repair_ships}">
         </div>
       {/if}
     </form>
