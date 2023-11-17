@@ -6,7 +6,7 @@ INSERT INTO `%PREFIX%vars` (`elementID`, `name`, `class`, `onPlanetType`, `onePe
 INSERT INTO `%PREFIX%vars_requriements` (`elementID`, `requireID`, `requireLevel`) VALUES
 (35, 21, 2);
 
-ALTER TABLE `%PREFIX%plantets` ADD `repair_dock` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `silo`;
+ALTER TABLE `%PREFIX%planets` ADD `repair_dock` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `silo`;
 
 CREATE TABLE `%PREFIX%planet_wreckfield` (
   `planetID` int(11) unsigned NOT NULL AUTO_INCREMENT,
