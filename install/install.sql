@@ -635,7 +635,7 @@ CREATE TABLE `%PREFIX%planet_wreckfield` (
   `repair_order` text,
   `repair_order_start` int(11) NOT NULL DEFAULT '0',
   `repair_order_end` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`planetID`),
+  PRIMARY KEY (`planetID`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%planets` (
