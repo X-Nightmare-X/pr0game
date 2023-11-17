@@ -7,3 +7,13 @@ INSERT INTO `%PREFIX%vars_requriements` (`elementID`, `requireID`, `requireLevel
 (35, 21, 2);
 
 ALTER TABLE `%PREFIX%plantets` ADD `repair_dock` tinyint(3) unsigned NOT NULL DEFAULT '0' AFTER `silo`;
+
+CREATE TABLE `%PREFIX%planet_wreckfield` (
+  `planetID` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `created` int(11) NOT NULL DEFAULT '0',
+  `ships` text,
+  `repair_order` text,
+  `repair_order_start` int(11) NOT NULL DEFAULT '0',
+  `repair_order_end` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`planetID`),
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
