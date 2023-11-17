@@ -82,10 +82,9 @@ function ShowUniversePage()
                 $sql = "DELETE FROM %%NOTES%% WHERE `universe` = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
 
-                $sql = "DELETE FROM %%PLANETS%%, %%PLANET_WRECKFIELD%%
-                    USING %%PLANETS%%
-                    LEFT JOIN %%PLANET_WRECKFIELD%% ON %%PLANETS%%.`id` = %%PLANET_WRECKFIELD%%.`planetID`
-                    WHERE `universe` = :universe;";
+                $sql = "DELETE FROM %%PLANET_WRECKFIELD%% WHERE `planetID` IN (SELECT `id` FROM %%PLANETS%% WHERE `universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%PLANETS%% WHERE `universe` = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
 
                 $sql = "DELETE FROM %%STATPOINTS%% WHERE `universe` = :universe;";

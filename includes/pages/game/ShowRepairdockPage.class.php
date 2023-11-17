@@ -192,6 +192,6 @@ class ShowRepairdockPage extends AbstractGamePage
     }
 
     private function getRepairRate($repairDockLvl) : float {
-        return (44 + pow($repairDockLvl, 0.85)) / 100;
+        return (24 + pow($repairDockLvl, 1.5)) / 100;
     }
 }
