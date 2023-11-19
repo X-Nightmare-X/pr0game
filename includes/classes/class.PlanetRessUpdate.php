@@ -385,7 +385,7 @@ class ResourceUpdate
     }
 
     /**
-     * Atomatic deployment of finished repair jobs after 72h.
+     * Automatic deployment of finished repair jobs after 72h.
      *
      * @return void
      */
