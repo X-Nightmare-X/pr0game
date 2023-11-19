@@ -26,6 +26,9 @@ $LNG['debree_field_1'] = 'Auf diesne Raumgoordinatne liegne nun';
 $LNG['debree_field_2'] = '.';
 $LNG['sys_moonproba'] = 'Die Chance einer Mondentschdehung bedrägd:';
 $LNG['sys_moonbuilt'] = 'Die enormne Mengne an freiem Medall und Gristall ziehne sich an und formne nen Drabantne um den Blaneten!';
+$LNG['sys_wreckfield'] = 'Ein Deil der dsersdördne Schiffe des Ferdeidigers bilded für wenige Dage ein Wraggfeld im Orbid des Blanedne hätt i gsachd.';
+$LNG['sys_wreckfield_added'] = 'Dem Wraggfeld hindsugefügd:';
+$LNG['sys_mess_spy_repair_order'] = 'Schiffe werdne gerade im Rebaradurdogg scho widder hergesdelld.';
 $LNG['sys_attack_title'] = 'Folgende Floddne schdehne sich genüber am';
 $LNG['sys_attack_round'] = 'Runde';
 $LNG['sys_attack_attacker_pos'] = 'Angreifer';
@@ -63,7 +66,7 @@ $LNG['sys_mess_spy_activity'] = 'Schbionage Aktivität';
 $LNG['sys_mess_spy_link'] = '<a href="game.php?page=galaxy&amp;galaxy=%3$s&amp;system=%4$s">%1$s (%2$s) [%3$s:%4$s:%5$s]</a>';
 $LNG['sys_mess_spy_ennemyfleet_1'] = 'Feindliche Schbionagesondne fom Blanedne %s wurde in der Nähe fonääh %s gesichded.';
 $LNG['sys_mess_spy_ennemyfleet_3'] = 'Feindliche Schbionagesondne fom Mond %ss wurde in der Nähe fonääh %s gesichded.';
-$LNG['sys_mess_spy_destroyed'] = '<font color="red">Deine Schbionagesondne wurdne zermeddld tazächlich sogar! </font>';
+$LNG['sys_mess_spy_destroyed'] = 'Deine Schbionagesondne wurdne zermeddld tazächlich sogar!';
 $LNG['sys_adress_planet'] = '[%s:%s:%s]';
 
 $LNG['sys_stat_mess_stay'] = 'Schdationierte Flodde ';

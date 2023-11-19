@@ -88,6 +88,7 @@ $LNG['tech'] = [
      31 => 'Forschungslabor',
      33 => 'Terraformer',
      34 => 'Allianzdepot',
+     35 => 'Reparaturdock',
      40 => 'Mondgebäude',
      41 => 'Basisstützpunkt',
      42 => 'Sensorenphalanx',
@@ -179,6 +180,7 @@ $LNG['shortDescription'] = [
      33 => 'Der Terraformer vergrößert die nutzbare Fläche auf Planeten.',
      34 => 'Das Allianzdepot bietet die Möglichkeit, befreundete Flotten, die bei der Verteidigung helfen und im Orbit'
          . ' stehen, mit Treibstoff zu versorgen.',
+     35 => 'Das Reparaturdock ermöglicht Schiffe aus einem Wrackfeld wiederherzustellen.',
      41 => 'Ein Mond verfügt über keinerlei Atmosphäre, deshalb muss vor der Besiedlung eine Mondbasis errichtet'
          . ' werden.',
      42 => 'Die Sensorphalanx erlaubt es, Flottenbewegungen zu beobachten. Je höher die Ausbaustufe, desto größer ist'
@@ -336,6 +338,11 @@ $LNG['longDescription'] = [
      34 => 'Das Allianzdepot bietet die Möglichkeit, befreundete Flotten, die bei der Verteidigung helfen und im Orbit'
          . ' stehen, mit Treibstoff zu versorgen. Für jeden Ausbaulevel des Allianzdepots können 10.000 Einheiten'
          . ' Deuterium pro Stunde an die zu versorgenden Flotten im Orbit geschickt werden.',
+     35 => 'Das Reparaturdock bietet die Möglichkeit zerstörte Schiffe, die in Folge eines Kampfes ein Wrackfeld hinterlassen'
+         . ' haben, zu reparieren. Die Reparaturzeit beträgt maximal 12h, aber es dauert mindestens 30min bis die Schiffe'
+         . ' in Dienst gestellt werden können.<br>Ab Entstehung des Wrackfeldes bleiben 3 Tage Zeit um mit der Reparatur'
+         . ' zu beginnen. Die reparierten Schiffe müssen nach Ablauf der Reparatur aktiv wieder in Dienst gestellt werden.'
+         . ' Geschieht dies nicht, gehen sie nach 3 Tagen automatisch wieder in Dienst.',
      41 => 'Ein Mond verfügt über keinerlei Atmosphäre, deshalb muss vor der Besiedlung eine Mondbasis errichtet'
          . ' werden. Diese sorgt für die nötige Atemluft, Gravitation und Wärme. Je höher die Ausbaustufe der Mondbasis'
          . ' ist, umso größer ist die Fläche die mit einer Biosphäre versorgt wird. Pro Mondbasislevel können 3 Felder'

@@ -165,7 +165,7 @@ define('AUTH_MOD', 1);
 define('AUTH_USR', 0);
 
 // Modules
-define('MODULE_AMOUNT', 48); //+1 to largest index
+define('MODULE_AMOUNT', 49); //+1 to largest index
 define('MODULE_ALLIANCE', 0);
 define('MODULE_BANLIST', 21);
 define('MODULE_BANNER', 37);
@@ -209,6 +209,7 @@ define('MODULE_TECHTREE', 28);
 define('MODULE_MARKET_TRADE', 45);
 define('MODULE_MARKET_TRANSFER', 46);
 define('MODULE_SPYTECH_DEPENDENT_STATS', 47);
+define('MODULE_REPAIR_DOCK', 48);
 
 // FLEET STATE
 define('FLEET_OUTWARD', 0);
@@ -260,6 +261,7 @@ define('CRYSTAL_STORE', 23);
 define('DEUTERIUM_STORE', 24);
 define('RESEARCH_LABORATORY', 31);
 define('TERRAFORMER', 33);
+define('REPAIR_DOCK', 35);
 define('MOONBASE', 41);
 define('PHALANX', 42);
 define('SPRUNGTOR', 43);
@@ -316,7 +318,9 @@ define('MISSION_TRANSFER', 17);
 
 // general time constants
 define('TIME_6_HOURS', 21600);
+define('TIME_12_HOURS', 43200);
 define('TIME_24_HOURS', 86400);
+define('TIME_72_HOURS', 259200);
 define('TIME_1_WEEK', 604800);
 define('TIME_1_MONTH', 2592000);
 

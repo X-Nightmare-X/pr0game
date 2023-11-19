@@ -26,6 +26,9 @@ $LNG['debree_field_1'] = 'Pole zniszczeń';
 $LNG['debree_field_2'] = '.';
 $LNG['sys_moonproba'] = 'Szansa na księżyc: ';
 $LNG['sys_moonbuilt'] = 'Ogromne ilości wolnego metalu i kryształu przyciągają się wzajemnie i tworzą satelitę wokół planety!';
+$LNG['sys_wreckfield'] = 'Niektóre ze zniszczonych statków obrońcy przez kilka dni tworzą pole wraków na orbicie planety.';
+$LNG['sys_wreckfield_added'] = 'Dodano do wraku:';
+$LNG['sys_mess_spy_repair_order'] = 'Statki są obecnie odnawiane w doku naprawczym.';
 $LNG['sys_attack_title'] = 'Doszło do starcia następujących flot: ';
 $LNG['sys_attack_round'] = 'Runda';
 $LNG['sys_attack_attacker_pos'] = 'Agresor';
@@ -68,7 +71,7 @@ $LNG['sys_mess_spy_seen_at'] = 'została dostrzeżona w pobliżu twojej planety'
 $LNG['sys_mess_spy_link'] = '<a href="game.php?page=galaxy&amp;galaxy=%3$s&amp;system=%4$s">%1$s (%2$s) [%3$s:%4$s:%5$s]</a>';
 $LNG['sys_mess_spy_ennemyfleet_1'] = 'W pobliżu %s wykryto wrogie sondy szpiegowskie z planety %s.';
 $LNG['sys_mess_spy_ennemyfleet_3'] = 'W pobliżu %s zauważono wrogie sondy szpiegowskie z księżyca %s.';
-$LNG['sys_mess_spy_destroyed'] = '<font color="red">Twoja sonda została zniszczona! </font>';
+$LNG['sys_mess_spy_destroyed'] = 'Twoja sonda została zniszczona!';
 $LNG['sys_adress_planet'] = '[%s:%s:%s]';
 
 $LNG['sys_stat_mess_stay'] = 'Położenie floty';
