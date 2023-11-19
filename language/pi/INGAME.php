@@ -80,7 +80,7 @@ $LNG['own'] = 'Eigene';
 $LNG['recordsOptIn'] = 'Deine Rekorde allen Spielern anzeigen';
 
 $LNG['type_planet_1'] = 'Hafen';
-$LNG['type_planet_2'] = 'Wrackfeld';
+$LNG['type_planet_2'] = 'Treibgut-Feld';
 $LNG['type_planet_3'] = 'Insel';
 
 $LNG['user_level_0'] = 'Spieler';
@@ -251,7 +251,7 @@ $LNG['gl_pos'] = 'Pos';
 $LNG['gl_planet'] = 'Hafen';
 $LNG['gl_name_activity'] = 'Name (Aktivität)';
 $LNG['gl_moon'] = 'Insel';
-$LNG['gl_debris'] = 'WF';
+$LNG['gl_debris'] = 'TF';
 $LNG['gl_wreckfield_short'] = 'WF';
 $LNG['gl_wreckfield'] = 'Wrackfeld';
 $LNG['gl_player_estate'] = 'Spieler (Status)';
@@ -266,7 +266,7 @@ $LNG['gl_member_add'] = '%d Mitglied';
 $LNG['gl_alliance_page'] = 'Allianzseite';
 $LNG['gl_see_on_stats'] = 'Statistiken';
 $LNG['gl_alliance_web_page'] = 'Allianz Homepage';
-$LNG['gl_debris_field'] = 'Wrackfeld';
+$LNG['gl_debris_field'] = 'Treibgut-Feld';
 $LNG['gl_collect'] = 'Abbauen';
 $LNG['gl_resources'] = 'Rohstoffe';
 $LNG['gl_features'] = 'Eigenschaften';
@@ -411,7 +411,7 @@ $LNG['fl_acs_newname_alphanum'] = 'Der Name darf nur aus alphanumerische Zeichen
 $LNG['fl_acs_change'] = 'Ändern';
 $LNG['fl_acs_change_name'] = 'Geben sie einen neuen Namen ein';
 $LNG['fl_error_not_avalible'] = 'Auf diesen Koordinaten befinden sich kein Hafen!';
-$LNG['fl_error_empty_derbis'] = 'Kein Wrackfeld vorhanden!';
+$LNG['fl_error_empty_derbis'] = 'Kein Treibgut vorhanden!';
 $LNG['fl_error_no_moon'] = 'Keine Insel vorhanden!';
 $LNG['fl_error_same_planet'] = 'Start- und Zielhafen sind identisch!';
 $LNG['fl_invalid_target'] = 'Kein gültiges Ziel';
@@ -1071,8 +1071,8 @@ $LNG['cff_mission_own_mip'] = 'Bombenangriff (%d) vom %s %s %s auf den %s %s %s.
 $LNG['cff_mission_own_expo_0'] = 'Eine deiner %s vom %s %s %s erreicht die Position %s. Mission: %s';
 $LNG['cff_mission_own_expo_1'] = 'Eine deiner %s kehrt von der Position %s zurück zum %s %s %s. Mission: %s';
 $LNG['cff_mission_own_expo_2'] = 'Eine deiner %s vom %s %s %s ist auf einer Expedition bei Position %s. Mission: %s';
-$LNG['cff_mission_own_recy_0'] = 'Eine deiner %s vom %s %s %s erreicht das Wrackfeld %s. Mission: %s';
-$LNG['cff_mission_own_recy_1'] = 'Eine deiner %s kehrt vom Wrackfeld %s zurück zum Planeten %s %s %s. Mission: %s';
+$LNG['cff_mission_own_recy_0'] = 'Eine deiner %s vom %s %s %s erreicht das Treibgut-Feld %s. Mission: %s';
+$LNG['cff_mission_own_recy_1'] = 'Eine deiner %s kehrt vom Treibgut-Feld %s zurück zum Planeten %s %s %s. Mission: %s';
 $LNG['cff_mission_target_bad'] = 'Eine feindliche %s vom Spieler %s vom %s %s %s erreicht den %s %s %s. Mission: %s';
 $LNG['cff_mission_target_good'] = 'Eine friedliche %s vom Spieler %s vom %s %s %s erreicht den %s %s %s. Mission: %s';
 $LNG['cff_mission_target_stay'] = 'Eine friedliche %s vom Spieler %s vom %s %s %s ist im Meer von dem %s %s %s.'
@@ -1238,8 +1238,8 @@ $LNG['pl_destroy'] = '%s war an folgenden Zerstörungen beteiligt';
 $LNG['pl_destroy_real'] = '%s hat real folgendes selbst Zerstört';
 $LNG['pl_unitsshot'] = 'Geschossene Units';
 $LNG['pl_unitslose'] = 'Verlorene Units';
-$LNG['pl_dermetal'] = 'Gesamt Wrackfeld Holz';
-$LNG['pl_dercrystal'] = 'Gesamt Wrackfeld Gold';
+$LNG['pl_dermetal'] = 'Gesamt Treibgut Holz';
+$LNG['pl_dercrystal'] = 'Gesamt Treibgut Gold';
 $LNG['pl_etc'] = 'Kontakt';
 
 //----------------------------------------------------------------------------//
@@ -1293,7 +1293,7 @@ $LNG['rec_last_update_on'] = 'Letztes Update um';
 //----------------------------------------------------------------------------//
 // BattleSimulator
 
-$LNG['bs_derbis_raport'] = 'Es werden %s %s für das Wrackfeld benötigt.';
+$LNG['bs_derbis_raport'] = 'Es werden %s %s für das gesamte Treibgut benötigt.';
 $LNG['bs_steal_raport'] = 'Für die Beute werden %s %s oder %s %s benötigt.';
 $LNG['bs_names'] = 'Schiffname';
 $LNG['bs_atter'] = 'Angreifer';
@@ -1381,7 +1381,7 @@ $LNG['Achievement_names'] = [
     14 => 'Slippys Fluch',
     15 => 'Haben wir noch L. Brigs?',
 
-    16 => 'Hey man, wo ist mein Wrackfeld?!',
+    16 => 'Hey man, wo ist mein Treibgut?!',
     17 => 'Overlord Defense!',
     18 => 'Frankfurter Hauptbahnhof',
     19 => 'Dicke Haut 1',

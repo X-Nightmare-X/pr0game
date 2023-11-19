@@ -22,7 +22,7 @@ $LNG['and'] = 'und';
 $LNG['sys_attacker_lostunits'] = 'Der Angreifer hat insgesamt';
 $LNG['sys_defender_lostunits'] = 'Der Verteidiger hat insgesamt';
 $LNG['sys_units'] = 'Units verloren';
-$LNG['debree_field_1'] = 'In diesem Wrackfeld liegen nun';
+$LNG['debree_field_1'] = 'In diesem Treibgut-Feld liegen nun';
 $LNG['debree_field_2'] = '.';
 $LNG['sys_moonproba'] = 'Die Chance einer Inselentstehung beträgt:';
 $LNG['sys_moonbuilt'] = 'Die enormen Mengen an freiem Holz und Gold schwimmen auf einen Haufen und eine Insel bildet sich !';
@@ -293,7 +293,7 @@ $LNG['sys_irak_mess'] = 'Brandbomben (%d) von %s sind auf dem Hafen %s eingeschl
 $LNG['sys_fleet_won'] = 'Eine deiner Flotten kehrt vom Angriff beim Hafen %s %s zurück zu %s %s. Sie haben %s %s, %s %s und'
     . ' %s %s erbeutet';
 $LNG['sys_lost'] = 'Verluste';
-$LNG['sys_debris'] = 'Wrackfeld';
+$LNG['sys_debris'] = 'Treibgut-Feld';
 $LNG['sys_destruc_title'] = 'Folgende Flotten stehen sich zur Inselzerstörung gegenüber am';
 $LNG['sys_mess_destruc_report'] = 'Bericht: Zerstörung einer Insel';
 $LNG['sys_raport_not_found'] = 'Ungültige Kampfbericht ID';
@@ -329,7 +329,7 @@ $LNG['type_planet_short_2'] = 'T';
 $LNG['type_planet_short_3'] = 'M';
 
 $LNG['type_planet_1'] = 'Hafen';
-$LNG['type_planet_2'] = 'Wrackfeld';
+$LNG['type_planet_2'] = 'Treibgut-Feld';
 $LNG['type_planet_3'] = 'Insel';
 
 $LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
