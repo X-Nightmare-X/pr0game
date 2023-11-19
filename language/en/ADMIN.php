@@ -527,6 +527,8 @@ $LNG['se_max_overflow'] = 'Memória Overflow';
 $LNG['se_max_overflow_info'] = 'Factor how many resources can be produced in planet';
 $LNG['se_moon_factor'] = 'Chance of Moon';
 $LNG['se_moon_factor_info'] = 'Factor of Chance creation of Moon';
+$LNG['se_cascading_moon_chance'] = 'Cascading moon chance';
+$LNG['se_cascading_moon_chance_info'] = 'Additional moon chance that is added per failed Moon try with maximum moon chance. Only applies to the first moon in an account. 0 = switched off';
 $LNG['se_moon_chance'] = 'Max. Chance of Moon';
 $LNG['se_moon_chance_info'] = 'Max chance of lunar origin';
 $LNG['se_factor_university'] = 'Factor of University';

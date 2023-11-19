@@ -339,6 +339,8 @@ $LNG['se_debris_moon'] = 'Ay harabesini sil';
 $LNG['se_debris_moon_info'] = 'Ay olustugu zaman harabe kabolsun mu';
 $LNG['se_moonSizeFactor'] = 'Ay boyutu faktörü';
 $LNG['se_moonSizeFactor_info'] = 'Ay boyutunu etkileyen faktör, 1 = varsayılan';
+$LNG['se_cascading_moon_chance'] = 'Basamaklı ay şansı';
+$LNG['se_cascading_moon_chance_info'] = 'Maksimum ay şansı ile başarısız Ay denemesi başına eklenen ek ay şansı. Yalnızca bir hesaptaki ilk ay için geçerlidir. 0 = kapalı';
 $LNG['se_buildlist'] = 'Insa/Uretim/Arastirma Listesi';
 $LNG['se_timzone'] = 'Zaman Dilimi';
 $LNG['se_alliance_create_min_points'] = 'Ittifak kurmak icin gereken min. Puan';

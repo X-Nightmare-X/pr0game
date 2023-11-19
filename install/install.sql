@@ -183,6 +183,8 @@ CREATE TABLE `%PREFIX%advanced_stats` (
 
   `moons_created`           bigint(20) unsigned NOT NULL DEFAULT '0',
   `moons_destroyed`         bigint(20) unsigned NOT NULL DEFAULT '0',
+  `moons_received`          bigint(20) unsigned NOT NULL DEFAULT '0',
+  `first_moon_trys`         bigint(20) unsigned NOT NULL DEFAULT '0',
   `destroy_moon_rips_lost`  bigint(20) unsigned NOT NULL DEFAULT '0',
   `set_sail_wins`           bigint(20) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`userID`)
@@ -359,6 +361,7 @@ CREATE TABLE `%PREFIX%config` (
   `moon_factor` float(2,1) NOT NULL DEFAULT '1.0',
   `moon_chance` tinyint(3) unsigned NOT NULL DEFAULT '20',
   `moonSizeFactor` float(4,3) unsigned NOT NULL DEFAULT '1.000',
+  `cascading_moon_chance` float(3,1) unsigned NOT NULL DEFAULT '0.0',
   `factor_university` tinyint(3) unsigned NOT NULL DEFAULT '8',
   `max_fleets_per_acs` tinyint(3) unsigned NOT NULL DEFAULT '16',
   `max_participants_per_acs` tinyint(3) unsigned NOT NULL DEFAULT '5',

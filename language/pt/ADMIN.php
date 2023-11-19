@@ -519,6 +519,8 @@ $LNG['se_deuterium_start'] = 'Inicio - Deutério';
 $LNG['se_deuterium_start_info'] = 'Recursos iniciais de Deutério para novo jogador.';
 $LNG['se_moonSizeFactor'] = 'Fator de tamanho da lua';
 $LNG['se_moonSizeFactor_info'] = 'Fator que influencia o tamanho da lua, 1 = predefinição';
+$LNG['se_cascading_moon_chance'] = 'Oportunidade de lua em cascata';
+$LNG['se_cascading_moon_chance_info'] = 'Probabilidade adicional de lua que é adicionada por cada tentativa falhada de lua com a probabilidade máxima de lua. Só se aplica à primeira lua de uma conta. 0 = desligado';
 $LNG['se_debris_moon'] = 'Excluir Destroços na Lua';
 $LNG['se_debris_moon_info'] = 'Limpa os destroços depois de Formação de Lua';
 $LNG['se_buildlist'] = 'Lista de Construcção';

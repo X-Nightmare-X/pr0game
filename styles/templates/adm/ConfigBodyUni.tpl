@@ -251,13 +251,16 @@
 			<td><input name="debris_moon" {if $debris_moon} checked="checked" {/if} type="checkbox"></td>
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_debris_moon_info}"></td>
 		</tr>
-
 		<tr>
 			<td>{$LNG.se_moonSizeFactor}</td>
 			<td><input name="moonSizeFactor" maxlength="11" size="11" type="text" value="{$moonSizeFactor}"></td>
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_moonSizeFactor_info}"></td>
 		</tr>
-
+		<tr>
+			<td>{$LNG.se_cascading_moon_chance}</td>
+			<td><input name="cascading_moon_chance" maxlength="11" size="11" type="text" value="{$cascading_moon_chance}"> %</td>
+			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_cascading_moon_chance_info}"></td>
+		</tr>
 		<tr>
 			<th colspan="2">{$LNG.se_expedition_parameters}</th>
 			<th>&nbsp;</th>
