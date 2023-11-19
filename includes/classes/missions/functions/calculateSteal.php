@@ -56,30 +56,53 @@ function calculateSteal($attackFleets, $defenderPlanet, $simulate = false)
         return $stealResource;
     }
 
+    $planetResource = [
+        $firstResource => $defenderPlanet[$resource[$firstResource]],
+        $secondResource => $defenderPlanet[$resource[$secondResource]],
+        $thirdResource => $defenderPlanet[$resource[$thirdResource]]
+    ];
+
+    if (isModuleAvailable(MODULE_RESOURCE_STASH)) {
+        // Up to 10% (1% per resource store level) of daily production is protected from stealing
+        $daily = [
+            $firstResource => $defenderPlanet['metal_perhour'] * TIME_24_HOURS,
+            $secondResource => $defenderPlanet['crystal_perhour'] * TIME_24_HOURS,
+            $thirdResource => $defenderPlanet['deuterium_perhour'] * TIME_24_HOURS
+        ];
+        $protected = [
+            $firstResource => min(0.1, 0.01 * $defenderPlanet['metal_store']),
+            $secondResource => min(0.1, 0.01 * $defenderPlanet['crystal_store']),
+            $thirdResource => min(0.1, 0.01 * $defenderPlanet['deuterium_store'])
+        ];
+        $planetResource[$firstResource] = max(0, $planetResource[$firstResource] - $daily[$firstResource] * $protected[$firstResource]);
+        $planetResource[$secondResource] = max(0, $planetResource[$secondResource] - $daily[$secondResource] * $protected[$secondResource]);
+        $planetResource[$thirdResource] = max(0, $planetResource[$thirdResource] - $daily[$thirdResource] * $protected[$thirdResource]);
+    }
+
     // Step 1
-    $stealResource[$firstResource] = min($capacity / 3, $defenderPlanet[$resource[$firstResource]] / 2);
+    $stealResource[$firstResource] = min($capacity / 3, $planetResource[$firstResource] / 2);
     $capacity -= $stealResource[$firstResource];
 
     // Step 2
-    $stealResource[$secondResource] = min($capacity / 2, $defenderPlanet[$resource[$secondResource]] / 2);
+    $stealResource[$secondResource] = min($capacity / 2, $planetResource[$secondResource] / 2);
     $capacity -= $stealResource[$secondResource];
 
     // Step 3
-    $stealResource[$thirdResource] = min($capacity, $defenderPlanet[$resource[$thirdResource]] / 2);
+    $stealResource[$thirdResource] = min($capacity, $planetResource[$thirdResource] / 2);
     $capacity -= $stealResource[$thirdResource];
 
     // Step 4
     $oldMetalBooty = $stealResource[$firstResource];
     $stealResource[$firstResource] += min(
         $capacity / 2,
-        $defenderPlanet[$resource[$firstResource]] / 2 - $stealResource[$firstResource]
+        $planetResource[$firstResource] / 2 - $stealResource[$firstResource]
     );
     $capacity -= $stealResource[$firstResource] - $oldMetalBooty;
 
     // Step 5
     $stealResource[$secondResource] += min(
         $capacity,
-        $defenderPlanet[$resource[$secondResource]] / 2 - $stealResource[$secondResource]
+        $planetResource[$secondResource] / 2 - $stealResource[$secondResource]
     );
 
     $stealResource[$firstResource] = floor(max(0, $stealResource[$firstResource]));
