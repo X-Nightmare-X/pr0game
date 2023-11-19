@@ -263,8 +263,7 @@ class GalaxyRows
         $ressUdate = new ResourceUpdate();
         if (isModuleAvailable(MODULE_REPAIR_DOCK) &&
             !empty($this->galaxyRow['wrecks']) &&
-            !$ressUdate->WreckfieldCheck($this->galaxyRow['id'], TIMESTAMP, $this->galaxyRow['urlaubs_modus'])
-            ) {
+            !$ressUdate->WreckfieldCheck($this->galaxyRow['id'], TIMESTAMP, $this->galaxyRow['urlaubs_modus'])) {
             $this->galaxyData[$this->galaxyRow['planet']]['wreckfield'] = FleetFunctions::unserialize($this->galaxyRow['wrecks']);
         }
     }
