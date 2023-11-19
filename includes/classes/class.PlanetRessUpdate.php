@@ -353,22 +353,22 @@ class ResourceUpdate
     }
 
     /**
-     * Checks wreckfield for deletion after 72h. Will be called in PlanetRessUpdate and GalxyRows
+     * Checks wreckfield for deletion after 72h. Will be called in PlanetRessUpdate and GalxyRows.
      *
      * @param int $planetID
      * @param int $time
      * @param boolean $vmode
-     * @return void
+     * @return boolean true, when wreckfield was deleted
      */
     public function WreckfieldCheck($planetID, $time, $vmode = false)
     {
         if (!isModuleAvailable(MODULE_REPAIR_DOCK) || $vmode) {
-            return;
+            return false;
         }
         $db = Database::get();
 
         $sql = "SELECT * FROM %%PLANET_WRECKFIELD%% WHERE `planetID` = :planetID FOR UPDATE;";
-        $wreckfield = $db->selectSingle($sql, [':planetID' => $planetID);
+        $wreckfield = $db->selectSingle($sql, [':planetID' => $planetID]);
 
         if (!empty($wreckfield) && $wreckfield['created'] <= $time - TIME_72_HOURS) {
             if (empty($wreckfield['repair_order'])) {
@@ -379,7 +379,9 @@ class ResourceUpdate
                     WHERE `planetID` = :planetID;";
                 $db->update($sql, [':planetID' => $planetID]);
             }
+            return true;
         }
+        return false;
     }
 
     /**

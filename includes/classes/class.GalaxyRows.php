@@ -259,11 +259,12 @@ class GalaxyRows
 
     protected function getWreckfieldData()
     {
+        $this->galaxyData[$this->galaxyRow['planet']]['wreckfield'] = false;
         $ressUdate = new ResourceUpdate();
-        $ressUdate->WreckfieldCheck($this->galaxyRow['id'], TIMESTAMP, $this->galaxyRow['urlaubs_modus']);
-        if (empty($this->galaxyRow['wrecks']) || !isModuleAvailable(MODULE_REPAIR_DOCK)) {
-            $this->galaxyData[$this->galaxyRow['planet']]['wreckfield'] = false;
-        } else {
+        if (isModuleAvailable(MODULE_REPAIR_DOCK) &&
+            !empty($this->galaxyRow['wrecks']) &&
+            !$ressUdate->WreckfieldCheck($this->galaxyRow['id'], TIMESTAMP, $this->galaxyRow['urlaubs_modus'])
+            ) {
             $this->galaxyData[$this->galaxyRow['planet']]['wreckfield'] = FleetFunctions::unserialize($this->galaxyRow['wrecks']);
         }
     }
