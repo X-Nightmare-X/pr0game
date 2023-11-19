@@ -259,6 +259,8 @@ class GalaxyRows
 
     protected function getWreckfieldData()
     {
+        $ressUdate = new ResourceUpdate();
+        $ressUdate->WreckfieldCheck($this->galaxyRow['id'], TIMESTAMP, $this->galaxyRow['urlaubs_modus']);
         if (empty($this->galaxyRow['wrecks']) || !isModuleAvailable(MODULE_REPAIR_DOCK)) {
             $this->galaxyData[$this->galaxyRow['planet']]['wreckfield'] = false;
         } else {

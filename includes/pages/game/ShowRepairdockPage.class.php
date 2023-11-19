@@ -176,13 +176,13 @@ class ShowRepairdockPage extends AbstractGamePage
         }
         $SolarEnergy = round((($PLANET['temp_max'] + 160) / 6) * Config::get()->energySpeed, 1);
 
-        $buisy = !empty($wreckfield['repair_order']);
+        $busy = !empty($wreckfield['repair_order']);
 
         $this->tplObj->loadscript('repairdock.js');
 
         $this->assign([
             'umode' => $USER['urlaubs_modus'],
-            'buisy' => $buisy,
+            'busy' => $busy,
             'elementList' => $elementList,
             'List' => $buildList,
             'messages' => ($Messages > 0) ? (($Messages == 1) ? $LNG['ov_have_new_message']

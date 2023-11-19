@@ -3,10 +3,10 @@
   {if $messages}
     <div class="message"><a href="?page=messages">{$messages}</a></div>
   {/if}
-  {if $buisy}
+  {if $busy}
     <table width="70%" id="infobox" style="border: 2px solid red; text-align:center;background:transparent">
       <tr>
-        <td>{$LNG.bd_repairdock_buisy}</td>
+        <td>{$LNG.bd_repairdock_busy}</td>
       </tr>
     </table><br><br>
   {/if}
@@ -43,7 +43,7 @@
       <button id="ship1">{$LNG.fm_civil}</button> | <button id="ship2">{$LNG.fm_military}</button> | <button id="ship3">{$LNG.fm_all}</button>
     </div>
     <form action="game.php?page=repairdock" method="post">
-      {if !$buisy}
+      {if !$busy}
         <br>
         <div class="planeto">
           <input type="button" value="{$LNG.bd_max_ships}" onclick="repairAll()">
@@ -68,7 +68,7 @@
             <div class="repairShipContainerContent">
               <span>
                 {if $ID==212} +{$SolarEnergy} {$LNG.tech.911}<br>{/if}
-                {if !$buisy}
+                {if !$busy}
                   <input type="number" class="numfield" data-max="{$Element.maxBuildable}" name="fmenge[{$ID}]" id="input_{$ID}" size="3" value="0" tabindex="{$smarty.foreach.FleetList.iteration}">
                   <input type="button" value="{$LNG.bd_max_ships}" onclick="$('#input_{$ID}').val('{$Element.maxBuildable}')">
                   <br>
@@ -80,7 +80,7 @@
           </div>
         </div>
       {/foreach}
-      {if !$buisy}
+      {if !$busy}
         <br>
         <div class="planeto">
           <input type="button" value="{$LNG.bd_max_ships}" onclick="repairAll()">

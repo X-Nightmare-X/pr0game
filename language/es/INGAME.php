@@ -447,14 +447,14 @@ $LNG['bd_research'] = 'Investigar';
 $LNG['bd_shipyard_required'] = '&#161;Debes construir un hangar en este planeta para continuar!';
 $LNG['bd_building_shipyard'] = 'No puedes fabricar durante la ampliaci&oacute;n del hangar, f&aacute;brica de robots o'
     . ' nanobots';
-$LNG['bd_deploy'] = 'Inserte';
+$LNG['bd_deploy'] = 'Despliegue';
 $LNG['bd_repairdock_required'] = '¡Primero debes construir un muelle de reparación en este planeta!';
-$LNG['bd_repairdock_buisy'] = 'El muelle de reparaciones ya está trabajando.';
+$LNG['bd_repairdock_busy'] = 'El muelle de reparaciones ya está trabajando.';
 $LNG['bd_repairdock_empty'] = '¡No hay campo de naufragio!';
 $LNG['bd_repairdock_deploy'] = 'Los barcos han vuelto a entrar en servicio.';
 $LNG['bd_max_ships_repair'] = 'Unidades máximas recuperables';
 $LNG['bd_repairing'] = 'Reparación en curso';
-$LNG['bd_deployable'] = 'Reparación finalizada Inserción automática en:';
+$LNG['bd_deployable'] = 'Reparación finalizada Despliegue automático en:';
 $LNG['bd_available'] = 'Disponible: ';
 $LNG['bd_build_ships'] = 'Construir';
 $LNG['bd_repair_ships'] = 'Repare';

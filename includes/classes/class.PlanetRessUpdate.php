@@ -95,7 +95,6 @@ class ResourceUpdate
         $this->TIME = is_null($TIME) ? TIMESTAMP : $TIME;
         $this->config = Config::get($this->USER['universe']);
 
-        $this->WreckfieldCheck(); // Option: Delete in Umode
         if ($this->USER['urlaubs_modus'] == 1 || $this->config->uni_status == STATUS_CLOSED || $this->config->uni_status == STATUS_REG_ONLY) {
             return $this->ReturnVars();
         }
@@ -103,7 +102,7 @@ class ResourceUpdate
         if ($this->Build) {
             $this->ShipyardQueue();
             $this->RepairJob();
-            $this->WreckfieldCheck(); // Option: Delete not in Umode
+            $this->WreckfieldCheck($this->PLANET['id'], $this->TIME); // Option: Delete not in Umode
 
             while (($this->Tech && $this->USER['b_tech'] != 0 && $this->USER['b_tech'] < $this->TIME) ||
                     ($this->PLANET['b_building'] != 0 && $this->PLANET['b_building'] < $this->TIME)) {
@@ -353,28 +352,41 @@ class ResourceUpdate
         }
     }
 
-    public function WreckfieldCheck()
+    /**
+     * Checks wreckfield for deletion after 72h. Will be called in PlanetRessUpdate and GalxyRows
+     *
+     * @param int $planetID
+     * @param int $time
+     * @param boolean $vmode
+     * @return void
+     */
+    public function WreckfieldCheck($planetID, $time, $vmode = false)
     {
-        if (!isModuleAvailable(MODULE_REPAIR_DOCK)) {
+        if (!isModuleAvailable(MODULE_REPAIR_DOCK) || $vmode) {
             return;
         }
         $db = Database::get();
 
         $sql = "SELECT * FROM %%PLANET_WRECKFIELD%% WHERE `planetID` = :planetID FOR UPDATE;";
-        $wreckfield = $db->selectSingle($sql, [':planetID' => $this->PLANET['id']]);
+        $wreckfield = $db->selectSingle($sql, [':planetID' => $planetID);
 
-        if (!empty($wreckfield) && $wreckfield['created'] <= $this->TIME - TIME_72_HOURS) {
+        if (!empty($wreckfield) && $wreckfield['created'] <= $time - TIME_72_HOURS) {
             if (empty($wreckfield['repair_order'])) {
                 $sql = "DELETE FROM %%PLANET_WRECKFIELD%% WHERE `planetID` = :planetID;";
-                $db->delete($sql, [':planetID' => $this->PLANET['id']]);
+                $db->delete($sql, [':planetID' => $planetID]);
             } else {
                 $sql = "UPDATE %%PLANET_WRECKFIELD%% SET `ships` = ''
                     WHERE `planetID` = :planetID;";
-                $db->update($sql, [':planetID' => $this->PLANET['id']]);
+                $db->update($sql, [':planetID' => $planetID]);
             }
         }
     }
 
+    /**
+     * Atomatic deployment of finished repair jobs after 72h.
+     *
+     * @return void
+     */
     private function RepairJob()
     {
         if (!isModuleAvailable(MODULE_REPAIR_DOCK)) {
