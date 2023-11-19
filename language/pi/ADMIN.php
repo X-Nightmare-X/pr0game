@@ -1049,6 +1049,7 @@ $LNG['modul_26'] = 'Suche';
 $LNG['modul_27'] = 'Support Tickets';
 $LNG['modul_28'] = 'Techtree';
 $LNG['modul_47'] = 'Spionagetechnikabhängige Statistikdetails';
+$LNG['modul_49'] = 'Sichere Ressourcen';
 
 $LNG['mod_module'] = 'Module';
 $LNG['mod_info'] = 'Module im Game<br><font color="red">Admins können weiterhin die Bereiche betreten!</font>';

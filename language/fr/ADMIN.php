@@ -1088,6 +1088,7 @@ $LNG['modul_26'] = 'Rechercher';
 $LNG['modul_27'] = 'Tickets Support';
 $LNG['modul_28'] = 'Technologies';
 $LNG['modul_47'] = 'Spy Technology dependent Stat Details';
+$LNG['modul_49'] = 'Des ressources sûres';
 
 $LNG['mod_module'] = 'Modules';
 $LNG['mod_info'] = 'Modules dans le Jeu';
