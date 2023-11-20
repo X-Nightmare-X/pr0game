@@ -1034,6 +1034,7 @@ $LNG['modul_27'] = 'Badania techniczne';
 $LNG['modul_28'] = 'Technologia';
 $LNG['modul_47'] = 'Szczegóły statystyk zależnych od technologii szpiegowskiej';
 $LNG['modul_48'] = 'Dok naprawczy';
+$LNG['modul_49'] = 'Bezpieczne zasoby';
 
 $LNG['mod_module'] = 'Moduły';
 $LNG['mod_info'] = 'Moduły w grze <br><font color="red">Admini mogą dalej używać nie aktywne opcje!</font>';

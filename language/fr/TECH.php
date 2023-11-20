@@ -414,3 +414,4 @@ $LNG['longDescription'] = [
 
 $LNG['spytechStatsDescription']='Aux niveaux 0 et 1, seuls les points totaux des autres joueurs sont visibles. À partir du niveau 2, les points de construction des autres joueurs sont également visibles. '
     . 'À partir du niveau 4, les points de recherche sont également affichés. A partir du niveau 6, les navires et les points de défense sont affichés ainsi que les statistiques de la bataille.';
+$LNG['secureResources'] = 'Selon le niveau d\'amélioration, 1 % de la production quotidienne, jusqu\'à un maximum de 10 %, est protégé contre le pillage pendant les attaques.';
