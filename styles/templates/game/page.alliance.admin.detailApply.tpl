@@ -1,106 +1,278 @@
 {block name="title" prepend}{$LNG.lm_alliance}{/block}
 {block name="content"}
+	<style>
+	.tooltip1 {
+		position: relative;
+		display: inline-block;
+		border-bottom: 1px dotted black;
+	}
+
+	.tooltip1 .tooltiptext {
+		visibility: hidden;
+		width: 120px;
+		background-color: black;
+		color: #fff;
+		text-align: center;
+		border-radius: 6px;
+		padding: 5px 0;
+		position: absolute;
+		z-index: 1;
+		top: 150%;
+		left: 50%;
+		margin-left: -60px;
+	}
+
+	.tooltip1 .tooltiptext::after {
+		content: "";
+		position: absolute;
+		bottom: 100%;
+		left: 50%;
+		margin-left: -5px;
+		border-width: 5px;
+		border-style: solid;
+		border-color: transparent transparent black transparent;
+	}
+
+	.tooltip1:hover .tooltiptext {
+		visibility: visible;
+	}
+	</style>
 
 	<table class="table519">
 	<tr>
-		<th colspan="4">{sprintf($LNG.al_request_from,$applyDetail.username)} {$apply_time}</th>
+		<th colspan="5">{sprintf($LNG.al_request_from,$name)} {$apply_time}</th>
 	</tr>
 	<tr>
 		<td colspan="2">{$LNG.pl_name}</td>
-		<td colspan="2">{$applyDetail.username}</td>
+		<td colspan="3">{$name}</td>
 	</tr>
 	<tr>
 		<td colspan="2">{$LNG.pl_homeplanet}</td>
-		<td colspan="2">{$applyDetail.name} <a href="#" onclick="parent.location = 'game.php?page=galaxy&amp;galaxy={$applyDetail.galaxy}&amp;system={$applyDetail.system}';return false;">[{$applyDetail.coordinates}]</a></td>
+		<td colspan="3">{$homeplanet} <a href="#" onclick="parent.location = 'game.php?page=galaxy&amp;galaxy={$galaxy}&amp;system={$system}';return false;">[{$galaxy}:{$system}:{$planet}]</a></td>
 	</tr>
 	<tr>
 		<td colspan="2">{$LNG.al_request_register_time}</td>
-		<td colspan="2">{$register_time}</td>
+		<td colspan="3">{$register_time}</td>
 	</tr>
 	<tr>
 		<td colspan="2">{$LNG.al_request_last_onlinetime}</td>
-		<td colspan="2">{$onlinetime}</td>
+		<td colspan="3">{$onlinetime}</td>
 	</tr>
 	<tr>
 		<th colspan="2" style="text-align:center;">&nbsp;</th>
-		<th colspan="1" style="text-align:center;">{$LNG.pl_points}</th>
+		<th colspan="2" style="text-align:center;">{$LNG.pl_points}</th>
 		<th colspan="1" style="text-align:center;">{$LNG.pl_range}</th>
 	</tr>
 	<tr>
-		<td colspan="2">{$LNG.pl_tech}</td>
-		<td colspan="1">{$applyDetail.tech_points}</td>
-		<td colspan="1">{$applyDetail.tech_rank}</td>
+		{if $showBuild == true}
+			<td></td>
+			<td>{$LNG.pl_builds}</td>
+			<td>{$build_points}</td>
+			<td>{$build_percent}%</td>
+			<td>{$build_rank}</td>
+		{else}
+			<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level2}</span></div></td>
+			<td colspan="1">{$LNG.pl_builds}</td>
+			<td colspan="3">-</td>
+		{/if}
 	</tr>
 	<tr>
-		<td colspan="2">{$LNG.pl_builds}</td>
-		<td colspan="1">{$applyDetail.build_points}</td>
-		<td colspan="1">{$applyDetail.build_rank}</td>
+		{if $showTech == true}
+			<td></td>
+			<td>{$LNG.pl_tech}</td>
+			<td>{$tech_points}</td>
+			<td>{$tech_percent}%</td>
+			<td>{$tech_rank}</td>
+		{else}
+			<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level4}</span></div></td>
+			<td colspan="1">{$LNG.pl_tech}</td>
+			<td colspan="3">-</td>
+		{/if}
 	</tr>
 	<tr>
-		<td colspan="2">{$LNG.pl_def}</td>
-		<td colspan="1">{$applyDetail.defs_points}</td>
-		<td colspan="1">{$applyDetail.defs_rank}</td>
+		{if $showFleet == true}
+			<td></td>
+			<td>{$LNG.pl_fleet}</td>
+			<td>{$fleet_points}</td>
+			<td>{$fleet_percent}%</td>
+			<td>{$fleet_rank}</td>
+		{else}
+			<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>
+			<td colspan="1">{$LNG.pl_fleet}</td>
+			<td colspan="3">-</td>
+		{/if}
 	</tr>
 	<tr>
-		<td colspan="2">{$LNG.pl_fleet}</td>
-		<td colspan="1">{$applyDetail.fleet_points}</td>
-		<td colspan="1">{$applyDetail.fleet_rank}</td>
+		{if $showDef == true}
+			<td></td>
+			<td>{$LNG.pl_def}</td>
+			<td>{$defs_points}</td>
+			<td>{$defs_percent}%</td>
+			<td>{$defs_rank}</td>
+		{else}
+			<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>
+			<td colspan="1">{$LNG.pl_def}</td>
+			<td colspan="3">-</td>
+		{/if}
 	</tr>
 	<tr>
 		<td colspan="2">{$LNG.pl_total}</td>
-		<td colspan="1">{$applyDetail.total_points}</td>
-		<td colspan="1">{$applyDetail.total_rank}</td>
-	</tr>
+		<td colspan="1">{$total_points}</td>
+		<td colspan="1">100%</td>
+		<td colspan="1">{$total_rank}</td>
 		<tr>
-		<th colspan="4">{$LNG.pl_fightstats}</th>
+		<th colspan="5">{$LNG.pl_fightstats}</th>
 	</tr>
 	<tr>
 		<td colspan="2">&nbsp;</td>
-		<td colspan="1">{$LNG.pl_fights}</td>
-		<td colspan="1">{$LNG.pl_fprocent}</td>
+		<td>{$LNG.pl_fights}</td>
+		<td colspan="2">{$LNG.pl_fprocent}</td>
 	</tr>
-	<tr>
-		<td colspan="2">{$LNG.pl_fightwon}</td>
-		<td colspan="1">{$applyDetail.wons}</td>
-		<td colspan="1">{$applyDetail.wons_percentage} %</td>
-	</tr>
-	<tr>
-		<td colspan="2">{$LNG.pl_fightdraw}</td>
-		<td colspan="1">{$applyDetail.draws}</td>
-		<td colspan="1">{$applyDetail.draws_percentage} %</td>
-	</tr>
-	<tr>
-		<td colspan="2">{$LNG.pl_fightlose}</td>
-		<td colspan="1">{$applyDetail.loos}</td>
-		<td colspan="1">{$applyDetail.loos_percentage} %</td>
-	</tr>
-	<tr>
-		<td colspan="2">{$LNG.pl_totalfight}</td>
-		<td colspan="1">{$applyDetail.total_fights}</td>
-		<td colspan="1">100 %</td>
-	</tr>
-	<tr>
-		<td colspan="2">{$LNG.pl_unitsshot}</td>
-		<td colspan="2">{$applyDetail.desunits}</td>
-	</tr>
-	<tr>
-		<td colspan="2">{$LNG.pl_unitslose}</td>
-		<td colspan="2">{$applyDetail.lostunits}</td>
-	</tr>
-	<tr>
-		<td colspan="2">{$LNG.pl_dermetal}</td>
-		<td colspan="2">{$applyDetail.kbmetal}</td>
-	</tr>
-	<tr>
-		<td colspan="2">{$LNG.pl_dercrystal}</td>
-		<td colspan="2">{$applyDetail.kbcrystal}</td>
-	</tr>
+	{if $showBattle == true}
+		<tr>
+			<td></td>
+			<td>{$LNG.pl_fightwon}</td>
+			<td>{$wons}</td>
+			<td colspan="2">{$siegprozent}%</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>{$LNG.pl_fightdraw}</td>
+			<td>{$draws}</td>
+			<td colspan="2">{$drawsprozent}%</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>{$LNG.pl_fightlose}</td>
+			<td>{$loos}</td>
+			<td colspan="2">{$loosprozent}%</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>{$LNG.pl_totalfight}</td>
+			<td>{$totalfights}</td>
+			<td colspan="2">100%</td>
+		</tr>
+		<tr>
+			<th colspan="5">{$playerdestory}:</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td>{$LNG.pl_unitsshot}</td>
+			<td colspan="4">{$desunits}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>{$LNG.pl_unitslose}</td>
+			<td colspan="3">{$lostunits}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>{$LNG.pl_dermetal}</td>
+			<td colspan="3">{$kbmetal}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>{$LNG.pl_dercrystal}</td>
+			<td colspan="3">{$kbcrystal}</td>
+		</tr>
+		<tr>
+			<th colspan="5">{$realdestory}:</th>
+		</tr>
+		<tr>
+			<td></td>
+			<td>{$LNG.pl_unitsshot}</td>
+			<td colspan="3">{$realdesunits}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>{$LNG.pl_unitslose}</td>
+			<td colspan="3">{$reallostunits}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>{$LNG.pl_dermetal}</td>
+			<td colspan="3">{$realmetal}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>{$LNG.pl_dercrystal}</td>
+			<td colspan="3">{$realcrystal}</td>
+		</tr>
+	{else}
+		<tr>
+			<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>
+			<td colspan="1">{$LNG.pl_fightwon}</td>
+			<td colspan="3">-</td>
+		</tr>
+		<tr>
+			<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>
+			<td colspan="1">{$LNG.pl_fightdraw}</td>
+			<td colspan="3">-</td>
+		</tr>
+		<tr>
+			<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>
+			<td colspan="1">{$LNG.pl_fightlose}</td>
+			<td colspan="3">-</td>
+		</tr>
+		<tr>
+			<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>
+			<td colspan="1">{$LNG.pl_totalfight}</td>
+			<td colspan="3">-</td>
+		</tr>
+		<tr>
+			<th colspan="5">{$playerdestory}:</th>
+		</tr>
+		<tr>
+			<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>
+			<td>{$LNG.pl_unitsshot}</td>
+			<td colspan="3">-</td>
+		</tr>
+		<tr>
+			<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>
+			<td>{$LNG.pl_unitslose}</td>
+			<td colspan="3">-</td>
+		</tr>
+		<tr>
+			<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>
+			<td>{$LNG.pl_dermetal}</td>
+			<td colspan="3">-</td>
+		</tr>
+		<tr>
+			<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>
+			<td>{$LNG.pl_dercrystal}</td>
+			<td colspan="3">-</td>
+		</tr>
+		<tr>
+			<th colspan="5">{$realdestory}:</th>
+		</tr>
+		<tr>
+			<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>
+			<td>{$LNG.pl_unitsshot}</td>
+			<td colspan="3">-</td>
+		</tr>
+		<tr>
+			<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>
+			<td>{$LNG.pl_unitslose}</td>
+			<td colspan="3">-</td>
+		</tr>
+		<tr>
+			<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>
+			<td>{$LNG.pl_dermetal}</td>
+			<td colspan="3">-</td>
+		</tr>
+		<tr>
+			<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>
+			<td>{$LNG.pl_dercrystal}</td>
+			<td colspan="3">-</td>
+		</tr>
+	{/if}
 	{if !empty($applyDetail.text)}
 	<tr>
-		<th colspan="4">{$LNG.al_message}</th>
+		<th colspan="5">{$LNG.al_message}</th>
 	</tr>
 	<tr>
-		<td colspan="4">{$applyDetail.text}</td>
+		<td colspan="5">{$applyDetail.text}</td>
 	</tr>
 	{/if}
 	</table>
