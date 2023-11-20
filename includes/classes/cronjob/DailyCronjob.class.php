@@ -24,8 +24,15 @@ class DailyCronJob implements CronjobTask
         $this->clearCache();
         $this->reCalculateCronjobs();
         $this->clearEcoCache();
-        $this->cancelVacation();
-        $this->updateInactiveMines();
+        $sql = "SELECT uni FROM %%CONFIG%%;";
+        $universes = Database::get()->select($sql);
+        foreach ($universes as $universe) {
+            $uni = $universe['uni'];
+            if (isModuleAvailable(MODULE_VMODE_KICK, $uni)) {
+                $this->cancelVacation($uni);
+            }
+            $this->updateInactiveMines($uni);
+        }
         $this->eraseIPAdresses();
     }
 
@@ -51,30 +58,56 @@ class DailyCronJob implements CronjobTask
         Database::get()->update($sql, [':oneMonth' => TIMESTAMP - TIME_1_MONTH]);
     }
 
-    public function cancelVacation()
+    public function cancelVacation($universe)
     {
         $sql = "SELECT id, b_tech_planet, b_tech, b_tech_id, b_tech_queue, urlaubs_until, universe FROM %%USERS%%
-				WHERE urlaubs_modus = 1 AND onlinetime < :inactive AND bana = 0;";
+				WHERE urlaubs_modus = 1 AND onlinetime < :inactive AND bana = 0 AND universe = :universe;";
         $players = Database::get()->select($sql, [
             ':inactive' => TIMESTAMP - INACTIVE_LONG,
+            ':universe' => $universe
         ]);
-
+        $emptyBuddy = isModuleAvailable(MODULE_EMPTY_BUDDY, $universe);
         foreach ($players as $player) {
             PlayerUtil::disable_vmode($player);
             PlayerUtil::clearPlanets($player);
+            if ($emptyBuddy) {
+                $this->emptyInactiveAllianceAndBuddy($player['id']);
+            }
         }
     }
 
-    public function updateInactiveMines()
+    public function emptyInactiveAllianceAndBuddy($playerId) {
+        $db = Database::get();
+        $sql = 'SELECT id, ally_id FROM %%USERS%% WHERE id = :userId;';
+        $userData = $db->selectSingle($sql, [
+            ':userId'   => $playerId
+        ]);
+        PlayerUtil::removeFromAlliance($userData);
+        PlayerUtil::removeFromBuddy($playerId);
+    }
+
+    public function updateInactiveMines($universe)
     {
         $sql = "UPDATE %%PLANETS%% set metal_mine_porcent = :full, crystal_mine_porcent = :full, deuterium_sintetizer_porcent = :full, solar_plant_porcent = :full, fusion_plant_porcent = :full, solar_satelit_porcent = :full
-				WHERE planet_type = :planet AND id_owner IN ( SELECT u.id FROM %%USERS%% AS u WHERE urlaubs_modus = 0 AND onlinetime < :inactive );";
+				WHERE planet_type = :planet AND id_owner IN (SELECT u.id FROM %%USERS%% AS u WHERE urlaubs_modus = 0 AND onlinetime < :inactive AND universe = :universe);";
 
         Database::get()->update($sql, [
             ':full' 	=> 10, // 10 = 100%
             ':planet'	=> 1,
             ':inactive' => TIMESTAMP - INACTIVE,
+            ':universe' => $universe
         ]);
+
+        if (isModuleAvailable(MODULE_EMPTY_BUDDY, $universe)) {
+            $sql = "SELECT u.id FROM %%USERS%% AS u WHERE urlaubs_modus = 0 AND onlinetime < :inactive AND universe = :universe;";
+            $players = Database::get()->select($sql, [
+                ':inactive' => TIMESTAMP - INACTIVE,
+                ':universe' => $universe
+            ]);
+            foreach ($players as $player) {
+                $this->emptyInactiveAllianceAndBuddy($player['id']);
+            }
+        }
     }
 }
 

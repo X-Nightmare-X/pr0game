@@ -209,6 +209,9 @@ abstract class AbstractGamePage
             } else {
                 $vacation = $LNG['tn_vacation_mode'];
             }
+            if (isModuleAvailable(MODULE_VMODE_KICK, $USER['universe'])) {
+                $vacation .= $LNG['tn_vacation_mode_kick'];
+            }
         }
 
         $this->assign([

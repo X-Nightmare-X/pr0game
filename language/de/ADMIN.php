@@ -1087,6 +1087,8 @@ $LNG['modul_27'] = 'Support Tickets';
 $LNG['modul_28'] = 'Techtree';
 $LNG['modul_47'] = 'Spionagetechnikabhängige Statistikdetails';
 $LNG['modul_48'] = 'Reparaturdock';
+$LNG['modul_49'] = 'Urlaubsmoduskick';
+$LNG['modul_50'] = 'Buddy- und Allianzkick';
 
 $LNG['mod_module'] = 'Module';
 $LNG['mod_info'] = 'Module im Game<br><font color="red">Admins können weiterhin die Bereiche betreten!</font>';

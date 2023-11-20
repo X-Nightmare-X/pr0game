@@ -606,7 +606,11 @@ class ShowSettingsPage extends AbstractGamePage
         require_once 'includes/classes/achievements/MiscAchievement.class.php';
         MiscAchievement::checkSettingsAchievements($USER['id'], $recordsOptIn);
         if ($vacation == 1) {
-            $this->printMessage($LNG['op_options_changed_vacation'], [
+            $text = $LNG['op_options_changed_vacation'];
+            if (isModuleAvailable(MODULE_VMODE_KICK, $USER['universe'])) {
+                $text .= $LNG['tn_vacation_mode_kick'];
+            }
+            $this->printMessage($text, [
                 [
                     'label' => $LNG['sys_forward'],
                     'url'   => 'game.php?page=settings',
