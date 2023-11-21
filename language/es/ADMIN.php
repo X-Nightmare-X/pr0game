@@ -466,6 +466,8 @@ $LNG['se_debris_moon'] = 'Eliminar Campo de Escombros';
 $LNG['se_debris_moon_info'] = 'Elimina los Escombros una vez que se creo la Luna.';
 $LNG['se_moonSizeFactor'] = 'Factor de tamaño de la luna';
 $LNG['se_moonSizeFactor_info'] = 'Factor que influye en el tamaño de la luna, 1 = por defecto';
+$LNG['se_cascading_moon_chance'] = 'Oportunidad de luna en cascada';
+$LNG['se_cascading_moon_chance_info'] = 'Probabilidad de luna adicional que se añade por cada intento fallido de Luna con la máxima probabilidad de luna. Sólo se aplica a la primera luna de una cuenta. 0 = desactivado';
 $LNG['se_deuterium_cost_galaxy'] = 'Costo de Visión galaxia';
 $LNG['se_deuterium_cost_galaxy_info'] = 'Costo en Deuterio / Vista de Galaxia';
 $LNG['se_buildlist'] = 'Ajustes de Edificios';

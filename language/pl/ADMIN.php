@@ -468,6 +468,8 @@ $LNG['se_debris_moon'] = 'Usuń pole zniszczań po powstaniu księżyca';
 $LNG['se_debris_moon_info'] = 'Ustaw, czy po powstaniu księżyca pole zniszczeń ma zostać usunięte.';
 $LNG['se_moonSizeFactor'] = 'Współczynnik rozmiaru księżyca';
 $LNG['se_moonSizeFactor_info'] = 'Czynnik wpływający na rozmiar księżyca, 1 = domyślny';
+$LNG['se_cascading_moon_chance'] = 'Szansa na kaskadowy księżyc';
+$LNG['se_cascading_moon_chance_info'] = 'Dodatkowa szansa na księżyc dodawana za każdą nieudaną próbę z maksymalną szansą na księżyc. Dotyczy tylko pierwszego księżyca na koncie. 0 = wyłączone';
 $LNG['se_deuterium_cost_galaxy'] = 'Galaktyczny podatek';
 $LNG['se_deuterium_cost_galaxy_info'] = 'Koszt deuterium za przeglądanie galaktyki';
 $LNG['se_buildlist'] = 'Kolejka budowy';

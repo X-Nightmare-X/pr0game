@@ -482,6 +482,8 @@ $LNG['se_debris_moon'] = 'Lösche TF nach Mond';
 $LNG['se_debris_moon_info'] = 'Löscht das TF, nachdem ein Mond entstanden ist.';
 $LNG['se_moonSizeFactor'] = 'Mondgrößenfaktor';
 $LNG['se_moonSizeFactor_info'] = 'Faktor um die Mondgröße zu beeinflussen, 1 = default';
+$LNG['se_cascading_moon_chance'] = 'Kaskadierende Mondchance';
+$LNG['se_cascading_moon_chance_info'] = 'Zusätzliche Mondchance die pro fehlgeschlagenem MV mit maximaler Mondchance dazuaddiert wird. Gilt nur für den ersten Mond in einem Account. 0 = ausgeschaltet';
 $LNG['se_deuterium_cost_galaxy'] = 'Galaxiegebühren';
 $LNG['se_deuterium_cost_galaxy_info'] = 'Kosten Deuterium / Klick in der Galaxy';
 $LNG['se_buildlist'] = 'Bauliste Einstellungen';

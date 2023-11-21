@@ -95,7 +95,8 @@ function ShowConfigUniPage()
             'expo_ress_crys_chance'    => $config->expo_ress_crys_chance,
             'expo_ress_deut_chance'    => $config->expo_ress_deut_chance,
             'del_user_automatic'	   => $config->del_user_automatic, 
-            'moonSizeFactor'	   => $config->moonSizeFactor, 
+            'moonSizeFactor'	   => $config->moonSizeFactor,
+            'cascading_moon_chance' => $config->cascading_moon_chance,
         ];
 
         $noobprotection         = isset($_POST['noobprotection']) && $_POST['noobprotection'] == 'on' ? 1 : 0;
@@ -169,6 +170,7 @@ function ShowConfigUniPage()
         $expo_ress_deut_chance = HTTP::_GP('expo_ress_deut_chance', 0);
         $del_user_automatic		= HTTP::_GP('del_user_automatic', 0);
         $moonSizeFactor		= HTTP::_GP('moonSizeFactor', 1.0);
+        $cascading_moon_chance = HTTP::_GP('cascading_moon_chance', 0.0);
 
         $config_after = [
             'noobprotectiontime'    => $noobprotectiontime,
@@ -240,7 +242,8 @@ function ShowConfigUniPage()
             'expo_ress_crys_chance' => $expo_ress_crys_chance,
             'expo_ress_deut_chance'  => $expo_ress_deut_chance,
             'del_user_automatic'	   => $del_user_automatic,
-            'moonSizeFactor'	   => $moonSizeFactor, 
+            'moonSizeFactor'	   => $moonSizeFactor,
+            'cascading_moon_chance' => $cascading_moon_chance,
         ];
 
         // If login is opened, update all planet timestamps to avoid resource produciton during closed login times.
@@ -320,6 +323,7 @@ function ShowConfigUniPage()
         'trade_charge'                  => $config->trade_charge,
         'del_user_automatic'			=> $config->del_user_automatic,
         'moonSizeFactor'			    => $config->moonSizeFactor,
+        'cascading_moon_chance'         => $config->cascading_moon_chance,
         'Selector'                      => [
             'langs' => $LNG->getAllowedLangs(false),
             'uni_status' => [

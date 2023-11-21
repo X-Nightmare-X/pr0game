@@ -514,6 +514,8 @@ $LNG['se_debris_moon'] = 'Supprimer TF par la lune';
 $LNG['se_debris_moon_info'] = 'Efface le TF, après qu\'une lune était originaire.';
 $LNG['se_moonSizeFactor'] = 'Facteur de taille de la lune';
 $LNG['se_moonSizeFactor_info'] = 'Facteur pour influencer la taille de la lune, 1 = par défaut';
+$LNG['se_cascading_moon_chance'] = 'Chance de lune en cascade';
+$LNG['se_cascading_moon_chance_info'] = 'Chance de lune supplémentaire qui s\'ajoute à chaque essai de lune raté avec la chance de lune maximale. Ne s\'applique qu\'à la première lune d\'un compte. 0 = désactivé';
 $LNG['se_buildlist'] = 'Liste des paramètres de construction';
 $LNG['se_timzone'] = 'Fuseau Horaire';
 $LNG['se_alliance_create_min_points'] = 'Nombre minimum de points pour rejoindre une alliance.';
