@@ -624,3 +624,4 @@ $LNG['longDescription'] = [
 
 $LNG['spytechStatsDescription']='Mit Level 0 und 1 sind nur die Gesamtpunkte anderer Spieler sichtbar. Ab Level 2 werden zusätzlich auch die Gebäudepunkte anderer Spieler sichtbar. '
     . 'Ab Level 4 werden dann auch die Forschungspunkte angezeigt. Ab Level 6 werden die Schiffe und Verteidigungspunkte angezeigt sowie zusätzlich die Kampfstatistiken.';
+$LNG['secureResources']='Je Ausbaustufe werden 1% der Tagesproduktion bis zu einem Maximum von 10% vor Plünderung bei Angriffen geschützt.';

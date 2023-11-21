@@ -1030,8 +1030,9 @@ $LNG['modul_27'] = 'Tickets de Soporte';
 $LNG['modul_28'] = 'Tecnología';
 $LNG['modul_47'] = 'Tecnología espía dependiente Stat Detalles';
 $LNG['modul_48'] = 'Muelle de reparación';
-$LNG['modul_49'] = 'Salida del modo Vacaciones';
-$LNG['modul_50'] = 'Patada de Buddy y Alliance';
+$LNG['modul_49'] = 'Recursos seguros';
+$LNG['modul_50'] = 'Salida del modo Vacaciones';
+$LNG['modul_51'] = 'Patada de Buddy y Alliance';
 
 $LNG['mod_module'] = 'Modulos';
 $LNG['mod_info'] = 'Módulos en el Juego<br><font color="red">¡Los administradores pueden entrar en las zonas!</font>';

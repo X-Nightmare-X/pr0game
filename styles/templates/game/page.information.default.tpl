@@ -9,11 +9,13 @@
 		<td>
 			<table>
 				<tr>
-					<td class="transparent left"><p>{$LNG.longDescription.$elementID} {if $elementID == 106 && $spytechStatsEnabled == true}<br>{$LNG.spytechStatsDescription}{/if}</p>
+					<td class="transparent left"><p>{$LNG.longDescription.$elementID}</p>
+          {if $elementID == 106 && $spytechStatsEnabled == true}<p>{$LNG.spytechStatsDescription}</p>{/if}
+          {if $elementID >= 22 && $elementID <= 24 && isModuleAvailable($smarty.const.MODULE_RESOURCE_STASH)}<p>{$LNG.secureResources}</p>{/if}
 					{if !empty($Bonus)}<p>
 					<b>{$LNG.in_bonus}</b><br>
 					{foreach $Bonus as $BonusName => $elementBouns}{if $elementBouns[0] < 0}-{else}+{/if}{if $elementBouns[1] == 0}{abs($elementBouns[0] * 100)}%{else}{floatval($elementBouns[0])}{/if} {$LNG.bonus.$BonusName}<br>{/foreach}
-					</p>{/if}	
+					</p>{/if}
 					{if !empty($FleetInfo)}
 					{if !empty($FleetInfo.rapidfire.to)}<p>
 					{foreach $FleetInfo.rapidfire.to as $rapidfireID => $shoots}
@@ -25,7 +27,7 @@
 					{$LNG.in_rf_from} {$LNG.tech.$rapidfireID}: <span class="colorNegative">{number_format($shoots, 0, ",", ".")}</span><br>
 					{/foreach}
 					</p>{/if}
-					{/if}				
+					{/if}
 					</td>
 				</tr>
 			</table>

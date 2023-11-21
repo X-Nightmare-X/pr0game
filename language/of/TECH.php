@@ -624,3 +624,4 @@ $LNG['longDescription'] = [
 
 $LNG['spytechStatsDescription']='Mid Lefel 0 und 1 sind nur die Gesamdbungde anderer Schbieler sichdbar. Ab Lefel 2 werdne dsusäddslich auch die Gebäudebungde anderer Schbieler sichdbar. '
     . 'Ab Lefel 4 werdne dann auch die Forschungsbungde angedseigd hätt i gsachd. Ab Lefel 6 werdne die Schiffe und Ferdeidigungsbungde angedseigd sowie dsusäddslich die Gambfsdadisdigne.';
+$LNG['secureResources'] = 'Je Ausbausdufe werdne 1% der Dagesbrodugdion bis dsu einem Maggsimum fon 10% for Blünderung bei Angriffne geschüddsd.';
