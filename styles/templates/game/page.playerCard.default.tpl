@@ -34,7 +34,7 @@
 	}
 
 	.tooltip1:hover .tooltiptext {
-	visibility: visible;
+		visibility: visible;
 	}
 	</style>
 <table style="width:95%">
