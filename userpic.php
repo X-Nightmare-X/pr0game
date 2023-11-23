@@ -33,6 +33,7 @@ if (!isModuleAvailable(MODULE_BANNER) || $id == 0) {
 }
 
 $LNG = new Language();
+Singleton()->LNG = $LNG;
 $LNG->getUserAgentLanguage();
 $LNG->includeData(['L18N', 'BANNER', 'CUSTOM']);
 
