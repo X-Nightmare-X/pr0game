@@ -165,7 +165,7 @@ define('AUTH_MOD', 1);
 define('AUTH_USR', 0);
 
 // Modules
-define('MODULE_AMOUNT', 50); //+1 to largest index
+define('MODULE_AMOUNT', 52); //+1 to largest index
 define('MODULE_ALLIANCE', 0);
 define('MODULE_BANLIST', 21);
 define('MODULE_BANNER', 37);
@@ -206,11 +206,14 @@ define('MODULE_SIMULATOR', 39);
 define('MODULE_STATISTICS', 25);
 define('MODULE_SUPPORT', 27);
 define('MODULE_TECHTREE', 28);
-define('MODULE_MARKET_TRADE', 45);
-define('MODULE_MARKET_TRANSFER', 46);
-define('MODULE_SPYTECH_DEPENDENT_STATS', 47);
-define('MODULE_REPAIR_DOCK', 48);
-define('MODULE_RESOURCE_STASH', 49);
+define('MODULE_MARKET_TRADE', 45);              // Trade Ressources to other players through the marketplace
+define('MODULE_MARKET_TRANSFER', 46);           // Transfer Ships to other players through the marketplace
+define('MODULE_SPYTECH_DEPENDENT_STATS', 47);   // Viewable stats depent on spytech level
+define('MODULE_REPAIR_DOCK', 48);               // Repair ships in orbit
+define('MODULE_RESOURCE_STASH', 49);            // Save ressources from stealing
+define('MODULE_VMODE_KICK', 50);                // Kick player from vmode if he is inactive ( Big I default 28 days)
+define('MODULE_EMPTY_BUDDY', 51);               // Empty Buddylist and remove from Alliance on inactive outside of vmode
+
 
 // FLEET STATE
 define('FLEET_OUTWARD', 0);

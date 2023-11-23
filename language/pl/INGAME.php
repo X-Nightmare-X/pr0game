@@ -110,8 +110,9 @@ $LNG['banned_message'] = 'Zostałeś zbanowany. Jeśli uważasz, że to nieporoz
 //----------------------------------------------------------------------------//
 //TOPNAV
 $LNG['tn_player_title'] = 'Imperator';
-$LNG['tn_vacation_mode'] = 'Jesteś w trybie wakacyjnym.<br><br>Uwaga: Tryb wakacyjny jest automatycznie wyłączany po 4 tygodniach nieaktywności.';
-$LNG['tn_vacation_mode_until'] = 'Jesteś w trybie wakacyjnym co najmniej do godziny %s.<br><br>Uwaga: Tryb wakacyjny jest automatycznie wyłączany po 4 tygodniach nieaktywności.';
+$LNG['tn_vacation_mode'] = 'Jesteś w trybie wakacyjnym.';
+$LNG['tn_vacation_mode_until'] = 'Jesteś w trybie wakacyjnym co najmniej do godziny %s.';
+$LNG['tn_vacation_mode_kick'] = '<br><br>Uwaga: Tryb wakacyjny jest automatycznie wyłączany po 4 tygodniach nieaktywności.';
 $LNG['tn_delete_mode'] = 'Twoje konto zostanie automatycznie usunięte %s ';
 
 //----------------------------------------------------------------------------//
@@ -949,7 +950,7 @@ $LNG['op_cant_activate_vacation_mode'] = 'Nie możesz aktywować trybu urlopoweg
 $LNG['op_password_changed'] = 'Hasło zmienione<br><a href="index.php" target="_top">Wróć</a>';
 $LNG['op_username_changed'] = 'Nazwa użytkownika zmieniona<br><a href="index.php" target="_top">Wróć</a>';
 $LNG['op_options_changed'] = 'Ustawienia zapisane.';
-$LNG['op_options_changed_vacation'] = 'Ustawienia zapisane.<br><br>Uwaga: Tryb wakacyjny jest automatycznie wyłączany po 4 tygodniach nieaktywności.';
+$LNG['op_options_changed_vacation'] = 'Ustawienia zapisane.';
 $LNG['op_vacation_mode_active_message'] = 'Urlop będzie można zakończyć nie wcześniej niż: ';
 $LNG['op_end_vacation_mode'] = 'Koniec Urlopu';
 $LNG['op_save_changes'] = 'Zapisz zmiany';

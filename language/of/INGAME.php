@@ -100,8 +100,9 @@ $LNG['banned_message'] = 'Sie wurdne vom Banhammer erschlagne tadsächlich sogar
 //----------------------------------------------------------------------------//
 //TOPNAV
 $LNG['tn_player_title'] = 'Imberator';
-$LNG['tn_vacation_mode'] = 'Sie sind im Urlaubsmodus - des bascht scho. <br><br>ACHDUNG: Urlaubsmodus wird nach 4 Wochne Inagtivität audomadisch deagtiviert!';
-$LNG['tn_vacation_mode_until'] = 'Sie sind bis mindeschdens %s Uhr im Urlaubsmodus<br><br>ACHDUNG hätt ich gsachd: Der Urlaubsmodus wird nach 4 Wochne Inagtivität audomadisch deagtiviert.';
+$LNG['tn_vacation_mode'] = 'Sie sind im Urlaubsmodus - des bascht scho. ';
+$LNG['tn_vacation_mode_until'] = 'Sie sind bis mindeschdens %s Uhr im Urlaubsmodus.';
+$LNG['tn_vacation_mode_kick'] = '<br><br>ACHDUNG: Urlaubsmodus wird nach 4 Wochne Inagtivität audomadisch deagtiviert!';
 $LNG['tn_delete_mode'] = 'Ihr Accound wird amääh %s audomadisch gelöschd tazächlich sogar! ';
 
 //----------------------------------------------------------------------------//
@@ -961,7 +962,7 @@ $LNG['op_cant_activate_vacation_mode'] = 'Sie gönnene ned in den Urlaubsmodus w
 $LNG['op_password_changed'] = 'Basswort wurde geändert';
 $LNG['op_username_changed'] = 'Username geändert';
 $LNG['op_options_changed'] = 'Einschdellungne gesbeichert.';
-$LNG['op_options_changed_vacation'] = 'Einschdellungne gesbeichert.<br><br>ACHDUNG: Der Urlaubsmodus wird nach 4 Wochne Inagtivität audomadisch deagtiviert.';
+$LNG['op_options_changed_vacation'] = 'Einschdellungne gesbeichert.';
 $LNG['op_vacation_mode_active_message'] = 'Urlaubsmodus agtiviert und alles. Urlaubsmodus mindeschdens bis: ';
 $LNG['op_end_vacation_mode'] = 'Urlaubsmodus beenden';
 $LNG['op_save_changes'] = 'Einschdellungne sbeichern';

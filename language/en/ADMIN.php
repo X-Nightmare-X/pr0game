@@ -1089,6 +1089,8 @@ $LNG['modul_28'] = 'Techtree';
 $LNG['modul_47'] = 'Spy Technology dependent Stat Details';
 $LNG['modul_48'] = 'Repair dock';
 $LNG['modul_49'] = 'Secure resources';
+$LNG['modul_50'] = 'Kick from Vacation mode';
+$LNG['modul_51'] = 'Kick from Buddy and Alliance';
 
 $LNG['mod_module'] = 'Modules';
 $LNG['mod_info'] = 'Modules in the Game';

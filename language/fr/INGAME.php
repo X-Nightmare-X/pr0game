@@ -95,8 +95,9 @@ $LNG['banned_message'] = 'Vous avez été banni. Si vous pensez qu\'il s\'agit d
 //----------------------------------------------------------------------------//
 //TOPNAV
 $LNG['tn_player_title'] = 'Empereur';
-$LNG['tn_vacation_mode'] = 'Vous êtes en mode vacances.<br><br>NOTATION : Le mode vacances est automatiquement désactivé après 4 semaines d\'inactivité.';
-$LNG['tn_vacation_mode_until'] = 'Vous êtes en mode vacances jusqu\'à au moins %s heures.<br><br>NOTATION : Le mode vacances est automatiquement désactivé après 4 semaines d\'inactivité.';
+$LNG['tn_vacation_mode'] = 'Vous êtes en mode vacances.';
+$LNG['tn_vacation_mode_until'] = 'Vous êtes en mode vacances jusqu\'à au moins %s heures.';
+$LNG['tn_vacation_mode_kick'] = '<br><br>NOTATION : Le mode vacances est automatiquement désactivé après 4 semaines d\'inactivité.';
 $LNG['tn_delete_mode'] = 'Votre compte %s va être supprimé !';
 
 //----------------------------------------------------------------------------//
@@ -936,7 +937,7 @@ $LNG['op_password_changed'] = 'Le Mot de Passe a été changé avec succès<br'
     . '<a href="index.php" target="_top">Retour</a>';
 $LNG['op_username_changed'] = 'Nom d\'Utilisateur modifié avec succès<br><a href="index.php" target="_top">Retour</a>';
 $LNG['op_options_changed'] = 'Options enregistrées.';
-$LNG['op_options_changed_vacation'] = 'Options enregistrées.<br><br>NOTATION : Le mode vacances est automatiquement désactivé après 4 semaines d\'inactivité.';
+$LNG['op_options_changed_vacation'] = 'Options enregistrées.';
 $LNG['op_vacation_mode_active_message'] = 'Le mode vacances est actif ! Vous serez en vacances au moins jusqu\'à : ';
 $LNG['op_end_vacation_mode'] = 'Sortir du mode vacances';
 $LNG['op_save_changes'] = 'Enregistrer les changements';

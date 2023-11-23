@@ -342,7 +342,7 @@ CREATE TABLE `%PREFIX%config` (
   `user_valid` tinyint(1) NOT NULL DEFAULT '0',
   `ga_active` varchar(42) NOT NULL DEFAULT '0',
   `ga_key` varchar(42) NOT NULL DEFAULT '',
-  `moduls` varchar(100) NOT NULL DEFAULT '',
+  `moduls` varchar(200) NOT NULL DEFAULT '',
   `trade_allowed_ships` varchar(255) NOT NULL DEFAULT '202,203,204,205,206,207,208,209,210,211,212,213,214,215',
   `trade_charge` varchar(5) NOT NULL DEFAULT '30',
   `max_galaxy` tinyint(3) unsigned NOT NULL DEFAULT '9',

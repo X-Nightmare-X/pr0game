@@ -378,10 +378,10 @@ function getNumber($from, $default = 0)
     return is_numeric($from) ? $from : $default;
 }
 
-function isModuleAvailable($ID)
+function isModuleAvailable($ID, $universe = 0)
 {
-    $USER =& Singleton()->USER;
-    $modules = explode(';', Config::get()->moduls);
+    $config = Config::get($universe);
+    $modules = explode(';', $config->moduls);
     if (!isset($modules[$ID])) {
         $modules[$ID] = 1;
     }

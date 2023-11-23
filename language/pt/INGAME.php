@@ -110,8 +110,9 @@ $LNG['banned_message'] = 'Foi banido. Se pensa que isto é um mal-entendido, esc
 //----------------------------------------------------------------------------//
 // Topnav
 $LNG['tn_player_title'] = 'Imperador';
-$LNG['tn_vacation_mode'] = 'Encontra-se em modo de férias.<br>>br>PLEASE NOTA: O modo de férias é automaticamente desactivado após 4 semanas de inactividade.';
-$LNG['tn_vacation_mode_until'] = 'Está em modo de férias até, pelo menos, às % horas.<br>>br>PLEASE NOTA: O modo de férias é automaticamente desactivado após 4 semanas de inactividade.';
+$LNG['tn_vacation_mode'] = 'Encontra-se em modo de férias.';
+$LNG['tn_vacation_mode_until'] = 'Está em modo de férias até, pelo menos, às % horas.';
+$LNG['tn_vacation_mode_kick'] = '<br><br>PLEASE NOTA: O modo de férias é automaticamente desactivado após 4 semanas de inactividade.';
 $LNG['tn_delete_mode'] = 'A conta às %s será automaticamente apagada!';
 
 //----------------------------------------------------------------------------//
@@ -944,7 +945,7 @@ $LNG['op_cant_activate_vacation_mode'] = 'Você não pode ativar o modo férias 
 $LNG['op_password_changed'] = 'Password alterada';
 $LNG['op_username_changed'] = 'Username alterado';
 $LNG['op_options_changed'] = 'Definições guardadas.';
-$LNG['op_options_changed_vacation'] = 'Definições guardadas.<br>>br>PLEASE NOTA: O modo de férias é automaticamente desactivado após 4 semanas de inactividade.';
+$LNG['op_options_changed_vacation'] = 'Definições guardadas.';
 $LNG['op_vacation_mode_active_message'] = 'O modo de férias está activo e acabará em: ';
 $LNG['op_end_vacation_mode'] = 'Finalizar periodo de férias';
 $LNG['op_save_changes'] = 'Guardar alterações';

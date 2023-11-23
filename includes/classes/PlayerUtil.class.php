@@ -714,24 +714,9 @@ class PlayerUtil
 
         return $moonId;
     }
-
-    public static function deletePlayer($userId)
+    public static function removeFromAlliance($userData)
     {
-        if (ROOT_USER == $userId) {
-            // superuser can not be deleted.
-            throw new Exception("Superuser #" . ROOT_USER . " can't be deleted!");
-        }
-
         $db = Database::get();
-        $sql = 'SELECT universe, ally_id FROM %%USERS%% WHERE id = :userId;';
-        $userData = $db->selectSingle($sql, [
-            ':userId'   => $userId
-        ]);
-
-        if (empty($userData)) {
-            return false;
-        }
-
         if (!empty($userData['ally_id'])) {
             $sql = 'SELECT ally_members FROM %%ALLIANCE%% WHERE id = :allianceId;';
             $memberCount = $db->selectSingle($sql, [
@@ -761,17 +746,46 @@ class PlayerUtil
                     ':resetId'      => 0
                 ]);
             }
+            $sql = "UPDATE %%USERS%% SET ally_id = 0, ally_register_time = 0, ally_register_time = 5 WHERE id = :UserID;";
+        $db->update($sql, [
+            ':UserID' => $userData['id']
+        ]);
         }
-
         $sql = 'DELETE FROM %%ALLIANCE_REQUEST%% WHERE userID = :userId;';
         $db->delete($sql, [
-            ':userId'   => $userId
+            ':userId'   => $userData['id']
         ]);
+    }
 
+    public static function removeFromBuddy($userId)
+    {
+        $db = Database::get();
         $sql = 'DELETE FROM %%BUDDY%% WHERE owner = :userId OR sender = :userId;';
         $db->delete($sql, [
             ':userId'   => $userId
         ]);
+    }
+
+    public static function deletePlayer($userId)
+    {
+        if (ROOT_USER == $userId) {
+            // superuser can not be deleted.
+            throw new Exception("Superuser #" . ROOT_USER . " can't be deleted!");
+        }
+
+        $db = Database::get();
+        $sql = 'SELECT id, universe, ally_id FROM %%USERS%% WHERE id = :userId;';
+        $userData = $db->selectSingle($sql, [
+            ':userId'   => $userId
+        ]);
+
+        if (empty($userData)) {
+            return false;
+        }
+
+        PlayerUtil::removeFromAlliance($userData);
+
+        PlayerUtil::removeFromBuddy($userId);
 
         $sql = 'DELETE %%FLEETS%%, %%FLEETS_EVENT%%
 		FROM %%FLEETS%% LEFT JOIN %%FLEETS_EVENT%% on fleet_id = fleetId

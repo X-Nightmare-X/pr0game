@@ -1055,6 +1055,8 @@ $LNG['modul_28'] = 'Tecnologias';
 $LNG['modul_47'] = 'Detalhes do estado dependente da tecnologia de espionagem';
 $LNG['modul_48'] = 'Doca de reparação';
 $LNG['modul_49'] = 'Recursos seguros';
+$LNG['modul_50'] = 'Chutar do modo de férias';
+$LNG['modul_51'] = 'Pontapé de saída de Buddy e Alliance';
 
 $LNG['mod_module'] = 'Modulos';
 $LNG['mod_info'] = 'Modulos no Jogo';
