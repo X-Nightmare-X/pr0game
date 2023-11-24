@@ -31,8 +31,8 @@ if ($USER['authlevel'] == AUTH_USR) {
     HTTP::redirectTo('game.php');
 }
 
-$session	= Session::create();
-$session->universe      = ROOT_UNI;
+$session = Session::create();
+$session->universe = $USER['universe'];
 if ($session->adminAccess != 1) {
     include_once('includes/pages/adm/ShowLoginPage.php');
     ShowLoginPage();
