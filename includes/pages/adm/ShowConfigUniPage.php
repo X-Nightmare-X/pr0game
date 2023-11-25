@@ -259,13 +259,13 @@ function ShowConfigUniPage()
             $db->startTransaction();
             $timestamp = time();
             $sql = "SELECT * FROM %%USERS%% WHERE universe = :universe FOR UPDATE;";
-            $users = $db->selectSingle($sql, [
+            $users = $db->select($sql, [
                 ':universe' => Universe::getEmulated(),
             ]);
 
             foreach ($users as $user) {
                 $sql = "SELECT * FROM %%PLANETS%% WHERE id_owner = :ownerID AND universe = :universe AND planet_type = 1 FOR UPDATE;";
-                $planets = $db->selectSingle($sql, [
+                $planets = $db->select($sql, [
                     ':ownerID' => $user['id'],
                     ':universe' => Universe::getEmulated(),
                 ]);
