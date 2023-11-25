@@ -23,6 +23,7 @@ class ShowRegisterPage extends AbstractLoginPage
     public function show()
     {
         $LNG =& Singleton()->LNG;
+        $db = Database::get();
         $universeSelect = [];
         $universeSelected = Universe::current();
         $referralData = ['id' => 0, 'name' => ''];
@@ -33,20 +34,32 @@ class ShowRegisterPage extends AbstractLoginPage
             if ($config->uni_status == STATUS_CLOSED) {
                 $universeSelect[$uniId] = $config->uni_name . $LNG['uni_closed'];
             } elseif ($config->uni_status == STATUS_REG_ONLY) {
-                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_open'];
-                $universeSelected = $uniId;
+                $sql = "SELECT COUNT(id) FROM %%USERS%% WHERE universe = :universe AND authlevel = 0;";
+                $registered = $db->select($sql, [
+                    ':universe' => $uniId,
+                ]);
+                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_open'] . sprintf($LNG['uni_reg_users'], $registered);
             } elseif ($config->uni_status == STATUS_LOGIN_ONLY) {
-                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_closed'];
+                $sql = "SELECT COUNT(id) FROM %%USERS%% WHERE universe = :universe AND authlevel = 0 AND onlinetime > :active;";
+                $active = $db->select($sql, [
+                    ':universe' => $uniId,
+                    ':active' => TIMESTAMP - INACTIVE,
+                ]);
+                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_closed'] . sprintf($LNG['uni_active_users'], $active);
+                $universeSelected = $uniId;
             } else {
-                $universeSelect[$uniId] = $config->uni_name;
+                $sql = "SELECT COUNT(id) FROM %%USERS%% WHERE universe = :universe AND authlevel = 0 AND onlinetime > :active;";
+                $active = $db->select($sql, [
+                    ':universe' => $uniId,
+                    ':active' => TIMESTAMP - INACTIVE,
+                ]);
+                $universeSelect[$uniId] = $config->uni_name . sprintf($LNG['uni_active_users'], $active);
                 $universeSelected = $uniId;
             }
         }
 
         $config = Config::get();
         if ($config->ref_active == 1 && !empty($referralID)) {
-            $db = Database::get();
-
             $sql = "SELECT username FROM %%USERS%% WHERE id = :referralID AND universe = :universe;";
             $referralAccountName = $db->selectSingle($sql, [
                 ':referralID' => $referralID,

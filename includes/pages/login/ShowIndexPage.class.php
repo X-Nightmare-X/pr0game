@@ -24,6 +24,7 @@ class ShowIndexPage extends AbstractLoginPage
     public function show()
     {
         $LNG =& Singleton()->LNG;
+        $db = Database::get();
 
         $referralID = HTTP::_GP('ref', 0);
         if (!empty($referralID)) {
@@ -38,12 +39,26 @@ class ShowIndexPage extends AbstractLoginPage
             if ($config->uni_status == STATUS_CLOSED) {
                 $universeSelect[$uniId] = $config->uni_name . $LNG['uni_closed'];
             } elseif ($config->uni_status == STATUS_REG_ONLY) {
-                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_open'];
+                $sql = "SELECT COUNT(id) FROM %%USERS%% WHERE universe = :universe AND authlevel = 0;";
+                $registered = $db->select($sql, [
+                    ':universe' => $uniId,
+                ]);
+                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_open'] . sprintf($LNG['uni_reg_users'], $registered);
             } elseif ($config->uni_status == STATUS_LOGIN_ONLY) {
-                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_closed'];
+                $sql = "SELECT COUNT(id) FROM %%USERS%% WHERE universe = :universe AND authlevel = 0 AND onlinetime > :active;";
+                $active = $db->select($sql, [
+                    ':universe' => $uniId,
+                    ':active' => TIMESTAMP - INACTIVE,
+                ]);
+                $universeSelect[$uniId] = $config->uni_name . $LNG['uni_reg_closed'] . sprintf($LNG['uni_active_users'], $active);
                 $universeSelected = $uniId;
             } else {
-                $universeSelect[$uniId] = $config->uni_name;
+                $sql = "SELECT COUNT(id) FROM %%USERS%% WHERE universe = :universe AND authlevel = 0 AND onlinetime > :active;";
+                $active = $db->select($sql, [
+                    ':universe' => $uniId,
+                    ':active' => TIMESTAMP - INACTIVE,
+                ]);
+                $universeSelect[$uniId] = $config->uni_name . sprintf($LNG['uni_active_users'], $active);
                 $universeSelected = $uniId;
             }
         }
@@ -57,7 +72,6 @@ class ShowIndexPage extends AbstractLoginPage
         if (isset($_COOKIE['uni']) && !empty($_COOKIE['uni'])) {
             $universeSelected = (int) $_COOKIE['uni'];
         }
-        $db = Database::get();
         $sql = "SELECT count(*) as count FROM %%CONFIG%% WHERE recaptchaPubKey != ''";
         $countcaptchakey = $db->selectSingle($sql, [], 'count');
         $this->assign([

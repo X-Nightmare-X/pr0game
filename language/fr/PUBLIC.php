@@ -33,6 +33,8 @@ $LNG['universe']					= 'Univers';
 $LNG['uni_closed']					= ' (fermée)';
 $LNG['uni_reg_closed']				= ' (Enregistrement fermé)';
 $LNG['uni_reg_open']				= ' (Enregistrement seulement)';
+$LNG['uni_reg_users']               = ' (%d utilisateurs enregistrés)';
+$LNG['uni_active_users']            = ' (%d utilisateurs actifs)';
 
 // Button
 $LNG['buttonRegister']				= 'S\'enregistrer maintenant!';

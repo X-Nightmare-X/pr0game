@@ -46,6 +46,8 @@ $LNG['universe']					= 'Evren';
 $LNG['uni_closed']					= ' (kapalı)';
 $LNG['uni_reg_closed']				= ' (Kayıtlar kapandı)';
 $LNG['uni_reg_open']				= ' (Sadece kayıt)';
+$LNG['uni_reg_users']               = ' (%d kayıtlı kullanıcılar)';
+$LNG['uni_active_users']            = ' (%d aktif kullanıcılar)';
 
 // Button
 $LNG['buttonRegister']				= 'Kayit Ol!';

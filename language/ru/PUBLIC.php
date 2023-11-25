@@ -44,6 +44,8 @@ $LNG['universe']                    = 'Вселенная';
 $LNG['uni_closed']                  = ' (отключена)';
 $LNG['uni_reg_closed']				= ' (Регистрация закрыта)';
 $LNG['uni_reg_open']				= ' (Только регистрация)';
+$LNG['uni_reg_users']               = ' (%d зарегистрированные пользователи)';
+$LNG['uni_active_users']            = ' (%d Активные пользователи)';
 
 // Кнопки
 $LNG['buttonRegister']              = 'Зарегистрироваться';

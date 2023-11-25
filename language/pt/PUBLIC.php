@@ -46,6 +46,8 @@ $LNG['universe']					= 'Universo';
 $LNG['uni_closed']					= ' (fechado)';
 $LNG['uni_reg_closed']				= ' (Registo encerrado)';
 $LNG['uni_reg_open']				= ' (Apenas registo)';
+$LNG['uni_reg_users']               = ' (%d utilizadores registados)';
+$LNG['uni_active_users']            = ' (%d utilizadores activos)';
 
 // Button
 $LNG['buttonRegister']				= 'Regista Agora!';
