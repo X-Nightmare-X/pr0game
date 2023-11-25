@@ -509,7 +509,7 @@ class statbuilder
 
         foreach ($this->universes as $uni) {
             $config = Config::get($uni);
-            if (isModuleAvailable(MODULE_STATS_JSON, $uni) && $config->uni_status == STATUS_REG_ONLY) {
+            if (isModuleAvailable(MODULE_STATS_JSON, $uni) && $config->uni_status != STATUS_REG_ONLY && $config->uni_status != STATUS_CLOSED) {
                 $scores = $database->select($sql, [
                     ':universe' => $uni,
                 ]);
