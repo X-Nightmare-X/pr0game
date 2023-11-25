@@ -1094,6 +1094,7 @@ $LNG['modul_48'] = 'Dock de réparation';
 $LNG['modul_49'] = 'Des ressources sûres';
 $LNG['modul_50'] = 'Coup de pied dans le mode vacances';
 $LNG['modul_51'] = 'Coup de pied de Buddy et Alliance';
+$LNG['modul_52'] = 'Stats.json';
 
 $LNG['mod_module'] = 'Modules';
 $LNG['mod_info'] = 'Modules dans le Jeu';

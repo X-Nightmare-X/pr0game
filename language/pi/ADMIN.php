@@ -1055,6 +1055,7 @@ $LNG['modul_48'] = 'Reparaturdock';
 $LNG['modul_49'] = 'Sichere Ressourcen';
 $LNG['modul_50'] = 'Urlaubsmoduskick';
 $LNG['modul_51'] = 'Buddy- und Allianzkick';
+$LNG['modul_52'] = 'Stats.json';
 
 $LNG['mod_module'] = 'Module';
 $LNG['mod_info'] = 'Module im Game<br><font color="red">Admins können weiterhin die Bereiche betreten!</font>';

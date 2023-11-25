@@ -165,7 +165,7 @@ define('AUTH_MOD', 1);
 define('AUTH_USR', 0);
 
 // Modules
-define('MODULE_AMOUNT', 52); //+1 to largest index
+define('MODULE_AMOUNT', 53); //+1 to largest index
 define('MODULE_ALLIANCE', 0);
 define('MODULE_BANLIST', 21);
 define('MODULE_BANNER', 37);
@@ -213,6 +213,7 @@ define('MODULE_REPAIR_DOCK', 48);               // Repair ships in orbit
 define('MODULE_RESOURCE_STASH', 49);            // Save ressources from stealing
 define('MODULE_VMODE_KICK', 50);                // Kick player from vmode if he is inactive ( Big I default 28 days)
 define('MODULE_EMPTY_BUDDY', 51);               // Empty Buddylist and remove from Alliance on inactive outside of vmode
+define('MODULE_STATS_JSON', 52);                // Create stats.json file for external use (contains player stats per Universe)
 
 
 // FLEET STATE
