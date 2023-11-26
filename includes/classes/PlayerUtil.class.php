@@ -629,7 +629,7 @@ class PlayerUtil
         if ($parentPlanet['id_luna'] != 0) {
             return false;
         }
-        
+
         $config = Config::get($universe);
         $moonSizeFactor = $config->moonSizeFactor;
 
@@ -718,18 +718,76 @@ class PlayerUtil
     {
         $db = Database::get();
         if (!empty($userData['ally_id'])) {
-            $sql = 'SELECT ally_members FROM %%ALLIANCE%% WHERE id = :allianceId;';
-            $memberCount = $db->selectSingle($sql, [
+            $sql = 'SELECT ally_owner, ally_members FROM %%ALLIANCE%% WHERE id = :allianceId;';
+            $allyData = $db->selectSingle($sql, [
                 ':allianceId'   => $userData['ally_id']
-            ], 'ally_members');
+            ]);
 
-            if ($memberCount > 1) {
-                $sql = 'UPDATE %%ALLIANCE%% SET ally_members = ally_members - 1 WHERE id = :allianceId;';
-                $db->update($sql, [
+            if ($allyData['ally_members'] > 1) {
+                if ($allyData['ally_owner'] == $userData['id']) { // Removed player is ally leader
+                    // Find new leader by respecting rank settings
+                    $sql = 'SELECT u.id FROM %%ALLIANCE_RANK%% r
+                        JOIN %%USERS%% u ON u.ally_rank_id = r.rankID
+                        WHERE r.allianceID = :allianceId
+                          AND u.onlinetime < :onlinetime
+                          AND ( r.transfer = 1 OR r.admin = 1 OR r.kick = 1 OR r.diplomatic = 1 OR r.manageusers = 1 OR r.ranks = 1 )
+                          ORDER BY r.transfer DESC, r.admin DESC, r.kick DESC, r.diplomatic DESC, r.manageusers DESC, r.ranks DESC, u.onlinetime DESC
+                          LIMIT 1;';
+                    $newLeaders = $db->select($sql, [
+                        ':allianceId'   => $userData['ally_id'],
+                        ':onlinetime'   => TIMESTAMP - TIME_72_HOURS,
+                    ]);
+
+                    $newLeader = 0;
+                    if (!empty($newLeaders)) { // New leader by rank found?
+                        $newLeader = $newLeaders[0]['id'];
+                    } else {
+                        // Find new leader by onlinetime
+                        $sql = 'SELECT u.id FROM %%ALLIANCE_RANK%% r
+                            JOIN %%USERS%% u ON u.ally_rank_id = r.rankID
+                            WHERE r.allianceID = :allianceId
+                            ORDER BY u.onlinetime DESC;';
+                        $newLeader = $db->selectSingle($sql, [
+                            ':allianceId'   => $userData['ally_id'],
+                        ], 'id');
+                    }
+
+                    if (!empty($newLeader)) { // New leader found?
+                        // Update rank of new leader
+                        $sql = "UPDATE %%USERS%% SET ally_rank_id = 0 WHERE id = :UserID;";
+                        $db->update($sql, [
+                            ':UserID' => $newLeader,
+                        ]);
+
+                        // Update ally_owner to new leader and reduce member amount
+                        $sql = 'UPDATE %%ALLIANCE%% SET ally_leader = :UserID, ally_members = ally_members - 1 WHERE id = :allianceId;';
+                        $db->update($sql, [
+                            ':allianceId'   => $userData['ally_id'],
+                            ':UserID' => $newLeader,
+                        ]);
+                    }
+                    else {
+                        // No new leader found, just reduce member amount
+                        $sql = 'UPDATE %%ALLIANCE%% SET ally_members = ally_members - 1 WHERE id = :allianceId;';
+                        $db->update($sql, [
+                            ':allianceId'   => $userData['ally_id']
+                        ]);
+                    }
+                } else {
+                    // Removed player is not leader, just reduce member amount
+                    $sql = 'UPDATE %%ALLIANCE%% SET ally_members = ally_members - 1 WHERE id = :allianceId;';
+                    $db->update($sql, [
+                        ':allianceId'   => $userData['ally_id']
+                    ]);
+                }
+            } else {
+                // Delete alliance, since there are no members
+                $sql = 'DELETE FROM %%ALLIANCE%% WHERE id = :allianceId;';
+                $db->delete($sql, [
                     ':allianceId'   => $userData['ally_id']
                 ]);
-            } else {
-                $sql = 'DELETE FROM %%ALLIANCE%% WHERE id = :allianceId;';
+
+                $sql = 'DELETE FROM %%ALLIANCE_RANK%% WHERE allianceID = :allianceId;';
                 $db->delete($sql, [
                     ':allianceId'   => $userData['ally_id']
                 ]);
@@ -746,11 +804,20 @@ class PlayerUtil
                     ':resetId'      => 0
                 ]);
             }
-            $sql = "UPDATE %%USERS%% SET ally_id = 0, ally_register_time = 0, ally_register_time = 5 WHERE id = :UserID;";
-        $db->update($sql, [
-            ':UserID' => $userData['id']
-        ]);
+
+            $sql = "UPDATE %%USERS%% SET ally_id = 0, ally_register_time = 0, ally_rank_id = 0 WHERE id = :UserID;";
+            $db->update($sql, [
+                ':UserID' => $userData['id']
+            ]);
+
+            $sql = 'UPDATE %%STATPOINTS%% SET id_ally = :resetId WHERE stat_type = :type AND id_owner = :UserID;';
+            $db->update($sql, [
+                ':UserID'   => $userData['id'],
+                ':resetId'  => 0,
+                ':type'     => 1,
+            ]);
         }
+
         $sql = 'DELETE FROM %%ALLIANCE_REQUEST%% WHERE userID = :userId;';
         $db->delete($sql, [
             ':userId'   => $userData['id']
