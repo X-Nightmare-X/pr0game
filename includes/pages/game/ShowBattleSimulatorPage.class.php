@@ -179,6 +179,7 @@ class ShowBattleSimulatorPage extends AbstractGamePage
             'debris'                => $debris,
             'stealResource'         => $stealResource,
             'moonChance'            => $chanceCreateMoon,
+            'additionalChance'      => 0,
             'moonDestroy'           => false,
             'moonName'              => null,
             'moonDestroyChance'     => null,

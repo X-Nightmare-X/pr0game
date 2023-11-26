@@ -345,6 +345,7 @@ HTML;
             'debris'                => $debris,
             'stealResource'         => $stealResource,
             'moonChance'            => null,
+            'additionalChance'      => 0,
             'moonDestroy'           => true,
             'moonName'              => null,
             'moonDestroyChance'     => null,
