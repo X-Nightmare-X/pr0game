@@ -1517,3 +1517,29 @@ $LNG['spytech_playercard'] = [
     'level4'  => 'Viewable from Spy Technology 4!',
     'level6'  => 'Viewable from Spy Technology 6!',
 ];
+//----------------------------------------------------------------------------//
+//Team
+$LNG['team'] =                      'The team';
+$LNG['teamAktiv'] =                 'Aktiv';
+$LNG['teamIngameName'] =            'Ingame Name';
+$LNG['teamDiscordName'] =           'Discord Name';
+$LNG['teamRole'] =                  'Role';
+$LNG['teamPlayer'] =                'Player';
+$LNG['teamAdmin'] =                 'Admin';
+$LNG['teamAdminLong'] =             'Has access to special features for administering the game';
+$LNG['teamDatabase'] =              'Database access';
+$LNG['teamTickets'] =               'Ticket access';
+$LNG['teamTicketsLong'] =           'Can read along with all opened tickets';
+$LNG['teamScripte'] =               'Check scripts';
+$LNG['teamScripteLong'] =           'Evaluates the scripts created by the players so that Team<br>can decide whether to allow the script with the features';
+$LNG['teamMod'] =                   'Moderator';
+$LNG['teamModLong'] =               'Handling your cases/issues<br>Tries to provide a fair gaming experience<br>Is responsible for punishments<br>Has access to Discord section for mod discussions<br>Has access to Discord section for dev discussions<br>Has access to Discord section for ticket meetings with devs';
+$LNG['teamEmergency'] =             'Emergency team';
+$LNG['teamEmergencyLong'] =         'Receives a ping from users in the event of server outages';
+$LNG['teamDev'] =                   'Developer';
+$LNG['teamDevLong'] =               'Maintains and develops the project<br>Has access to Discord section for dev discussions<br>Has access to Discord section for ticket meetings with mods';
+$LNG['teamNo'] =                    'No';
+$LNG['teamYes'] =                   'Yes';
+$LNG['teamAlumni'] =                'Former / Inactive team members';
+$LNG['teamAlumniLong'] =            'We would like to thank';
+$LNG['teamLegend'] =                'Legend, explanation of roles / rights';

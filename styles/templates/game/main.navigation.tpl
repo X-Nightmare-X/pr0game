@@ -61,8 +61,18 @@
     <li><a href="game.php?page=search">{$LNG.lm_search}</a></li>
   {/if}
 
-  <li><a href="https://discord.gg/jhYYN3yuat" target="copy">Discord</a></li>
-  <li><a href="https://ko-fi.com/pr0game" target="copy">{$LNG.donate}</a></li>
+  {if isModuleAvailable($smarty.const.MODULE_SIMULATOR)}
+    <li><a href="game.php?page=battleSimulator">{$LNG.lm_battlesim}</a></li>
+  {/if}
+  <li><a href="game.php?page=battleHall">{$LNG.lm_topkb}</a></li>
+  {if isModuleAvailable($smarty.const.MODULE_RECORDS)}
+    <li><a href="game.php?page=records">{$LNG.lm_records}</a></li>
+  {/if}
+  <li><a href="game.php?page=achievements">{$LNG.Achievements}</a></li>
+
+  <li class="menu-separator"></li>
+  <li><a href="https://wiki.pr0game.com">Wiki</a></li>
+  <li><a href="game.php?page=team">Team</a></li>
   {if isModuleAvailable($smarty.const.MODULE_SUPPORT)}
     <li><a href="game.php?page=ticket">{$LNG.lm_support}</a></li>
   {/if}
@@ -73,14 +83,9 @@
   {if false}
     <li><a href="index.php?page=rules" target="rules">{$LNG.lm_rules}</a></li>
   {/if}
-  {if isModuleAvailable($smarty.const.MODULE_SIMULATOR)}
-    <li><a href="game.php?page=battleSimulator">{$LNG.lm_battlesim}</a></li>
-  {/if}
-  <li><a href="game.php?page=battleHall">{$LNG.lm_topkb}</a></li>
-  {if isModuleAvailable($smarty.const.MODULE_RECORDS)}
-    <li><a href="game.php?page=records">{$LNG.lm_records}</a></li>
-  {/if}
-  <li><a href="game.php?page=achievements">{$LNG.Achievements}</a></li>
+  <li><a href="https://discord.gg/jhYYN3yuat" target="copy">Discord</a></li>
+  <li><a href="https://ko-fi.com/pr0game" target="copy">{$LNG.donate}</a></li>
+
 
   <li class="menu-separator"></li>
   {if isModuleAvailable($smarty.const.MODULE_NOTICE)}
