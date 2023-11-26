@@ -256,43 +256,39 @@
       <th colspan="{8+{$colespanAdd}}">{$LNG.cff_fleet_target}</th>
     </tr>
   </table>
-  <script>
-    const galakey="{$galaxy}:{$system}"
+  <script type="text/javascript">
+    const galakey = "{$galaxy}:{$system}";
     const systemdata = {
-        {for $planet=1 to $max_planets}
-          {if !isset($GalaxyRows[$planet])}
-            {$planet}:null,
-          {elseif $GalaxyRows[$planet].destroyed == true}
-            {$planet}:null,
-          {else}
-            {$currentPlanet = $GalaxyRows[$planet]}
-            {$planet}: {
+      {for $planet=1 to $max_planets}
+        {if !isset($GalaxyRows[$planet])}
+          {$planet}:null,
+        {elseif $GalaxyRows[$planet].destroyed == true}
+          {$planet}:null,
+        {else}
+          {$currentPlanet = $GalaxyRows[$planet]}
+          {$planet}: {
             planetname: "{$currentPlanet.planet.name}",
             hasmoon: {if $currentPlanet.moon}true{else}false{/if},
             playerid: {$currentPlanet.user.id},
             name: "{$currentPlanet.user.username}",
             {if $currentPlanet.alliance}
               allianceid:{$currentPlanet.alliance.id},
-            alliancename:"{$currentPlanet.alliance.name}",{else}
+              alliancename:"{$currentPlanet.alliance.name}",
+            {else}
               allianceid: -1,
-            alliancename: "-",{/if}
-            special:{if !empty($currentPlanet.user.class)}"
-              {foreach $currentPlanet.user.class as $class}{$ShortStatus.$class}
-              {/foreach}"
-            {else}""
-            {/if},
+              alliancename: "-",
+            {/if}
+            special: {if !empty($currentPlanet.user.class)}"{foreach $currentPlanet.user.class as $class}{$ShortStatus.$class}{/foreach}"{else}""{/if},
           },
         {/if}
       {/for}
       timepoint: Date.now(),
-    }
-  </script>
-  <script type="text/javascript">
+    };
     status_ok		= '{$LNG.gl_ajax_status_ok}';
     status_fail		= '{$LNG.gl_ajax_status_fail}';
     MaxFleetSetting = {$settings_fleetactions};
-    const planetlng="{$LNG['bonus']['Planets']}"
-    const moonshortlng="{$LNG['type_planet_short_3']}"
-    const confirmlng="{$LNG["delete_confirm_gala"]}"
+    const planetlng = "{$LNG['bonus']['Planets']}";
+    const moonshortlng = "{$LNG['type_planet_short_3']}";
+    const confirmlng = "{$LNG["delete_confirm_gala"]}";
   </script>
 {/block}
