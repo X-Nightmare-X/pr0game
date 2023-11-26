@@ -17,7 +17,3 @@ stats.json
 
 composer.phar
 .php-cs-fixer.cache
-.ddev/addon-metadata/phpmyadmin/manifest.yaml
-.ddev/commands/host/phpmyadmin
-.ddev/docker-compose.phpmyadmin-norouter.yaml
-.ddev/docker-compose.phpmyadmin.yaml
