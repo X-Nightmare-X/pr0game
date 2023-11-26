@@ -115,7 +115,7 @@
 									{foreach $Element.destroyResources as $ResType => $ResCount}
 									<tr>
 										<td>{$LNG.tech.{$ResType}}</td>
-										<td><span class='{if empty($Element.destroyOverflow[$RessID])}colorPositive{else}colorNeutral{/if}'>{number_format($ResCount, 0, ",", ".")}</span></td>
+										<td><span class='{if empty($Element.destroyOverflow[$ResType])}colorPositive{else}colorNeutral{/if}'>{number_format($ResCount, 0, ",", ".")}</span></td>
 									</tr>
 									{/foreach}
 									<tr>
