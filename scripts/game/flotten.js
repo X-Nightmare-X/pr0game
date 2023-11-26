@@ -399,6 +399,19 @@ function checkHold(mission) {
 	}
 }
 
+function sendFleet(message) {
+	$("#submit:visible").removeAttr('style').hide().fadeOut();
+	$("#wait:hidden").removeAttr('style').hide().fadeIn();
+	if (message) {
+		if (!confirm(message)) {
+			$("#wait:visible").removeAttr('style').hide().fadeOut();
+			$("#submit:hidden").removeAttr('style').hide().fadeIn();
+			return false;
+		}
+	}
+	return true;
+}
+
 $(function() {
 	$('.shortcut-delete').live('click', function() {
 		$(this).prev().val('');
