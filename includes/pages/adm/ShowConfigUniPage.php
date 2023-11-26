@@ -246,8 +246,20 @@ function ShowConfigUniPage()
             'cascading_moon_chance' => $cascading_moon_chance,
         ];
 
-        // If login is opened, update all planet timestamps to avoid resource produciton during closed login times.
-        if (($uni_status == STATUS_OPEN || $uni_status == STATUS_LOGIN_ONLY) && ($config->uni_status == STATUS_CLOSED || $config->uni_status == STATUS_REG_ONLY)) {
+
+        if (($uni_status == STATUS_OPEN || $uni_status == STATUS_LOGIN_ONLY) && ($config->uni_status == STATUS_REG_ONLY)) {
+            // If login is opened after register only, update all planet timestamps to avoid resource production during closed login times.
+            Database::get()->update("UPDATE %%PLANETS%% SET `last_update` = :newTime, `eco_hash` = '' WHERE `universe` = :universe;", [
+                ':newTime' => time(),
+                ':universe' => Universe::getEmulated(),
+            ]);
+            // And update all player online times to avoid inactives at universe start.
+            Database::get()->update("UPDATE %%USERS%% SET `onlinetime` = :newTime WHERE `universe` = :universe;", [
+                ':newTime' => time(),
+                ':universe' => Universe::getEmulated(),
+            ]);
+        } elseif (($uni_status == STATUS_OPEN || $uni_status == STATUS_LOGIN_ONLY) && ($config->uni_status == STATUS_CLOSED)) {
+            // If login is opened, update all planet timestamps to avoid resource production during closed login times.
             Database::get()->update("UPDATE %%PLANETS%% SET `last_update` = :newTime, `eco_hash` = '' WHERE `universe` = :universe;", [
                 ':newTime' => time(),
                 ':universe' => Universe::getEmulated(),
