@@ -1033,6 +1033,7 @@ $LNG['modul_48'] = 'Muelle de reparación';
 $LNG['modul_49'] = 'Recursos seguros';
 $LNG['modul_50'] = 'Salida del modo Vacaciones';
 $LNG['modul_51'] = 'Patada de Buddy y Alliance';
+$LNG['modul_52'] = 'Stats.json';
 
 $LNG['mod_module'] = 'Modulos';
 $LNG['mod_info'] = 'Módulos en el Juego<br><font color="red">¡Los administradores pueden entrar en las zonas!</font>';

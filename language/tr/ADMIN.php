@@ -399,6 +399,7 @@ $LNG['modul_48'] = 'Onarım rıhtımı';
 $LNG['modul_49'] = 'Güvenli kaynaklar';
 $LNG['modul_50'] = 'Tatil modundan çıkma';
 $LNG['modul_51'] = 'Buddy ve Alliance\'dan tekme';
+$LNG['modul_52'] = 'Stats.json';
 
 $LNG['mod_module'] = 'Moduller';
 $LNG['mod_info'] = 'Oyundaki Moduller';
