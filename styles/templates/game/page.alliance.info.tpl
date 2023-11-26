@@ -109,40 +109,40 @@
 <tr>
 	{if $show}<td></td>{else}<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>{/if}
 	<td>{$LNG.pl_totalfight}</td>
-	<td>{if $show}{number_format($totalfight, 0, ",", ".")}{else}-{/if}</td>
+	<td>{if $show}{number_format($statisticData.fightwon, 0, ",", ".")}{else}-{/if}</td>
 </tr>
 <tr>
 	{if $show}<td></td>{else}<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>{/if}
 	<td>{$LNG.pl_fightwon}</td>
-	<td>{if $show}{number_format($fightwon, 0, ",", ".")} {if $totalfight}({round($fightwon / $totalfight * 100, 2)}%){/if}{else}-{/if}</td>
+	<td>{if $show}{number_format($statisticData.fightwon, 0, ",", ".")} {if $totalfight}({round($fightwon / $totalfight * 100, 2)}%){/if}{else}-{/if}</td>
 </tr>
 <tr>	
 	{if $show}<td></td>{else}<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>{/if}
 	<td>{$LNG.pl_fightlose}</td>
-	<td>{if $show}{number_format($fightlose, 0, ",", ".")} {if $totalfight}({round($fightlose / $totalfight * 100, 2)}%){/if}{else}-{/if}</td>
+	<td>{if $show}{number_format($statisticData.fightlose, 0, ",", ".")} {if $totalfight}({round($fightlose / $totalfight * 100, 2)}%){/if}{else}-{/if}</td>
 <tr>	
 	{if $show}<td></td>{else}<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>{/if}
 	<td>{$LNG.pl_fightdraw}</td>
-	<td>{if $show}{number_format($fightdraw, 0, ",", ".")} {if $totalfight}({round($fightdraw / $totalfight * 100, 2)}%){/if}{else}-{/if}</td></tr>
+	<td>{if $show}{number_format($statisticData.fightdraw, 0, ",", ".")} {if $totalfight}({round($fightdraw / $totalfight * 100, 2)}%){/if}{else}-{/if}</td></tr>
 <tr>
 	{if $show}<td></td>{else}<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>{/if}
 	<td>{$LNG.pl_unitsshot}</td>
-	<td>{if $show}{$unitsshot}{else}-{/if}</td>
+	<td>{if $show}{$statisticData.unitsshot}{else}-{/if}</td>
 </tr>
 <tr>
 	{if $show}<td></td>{else}<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>{/if}
 	<td>{$LNG.pl_unitslose}</td>
-	<td>{if $show}{$unitslose}{else}-{/if}</td>
+	<td>{if $show}{$statisticData.unitslose}{else}-{/if}</td>
 </tr>
 <tr>
 	{if $show}<td></td>{else}<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>{/if}
 	<td>{$LNG.pl_dermetal}</td>
-	<td>{if $show}{$dermetal}{else}-{/if}</td>
+	<td>{if $show}{$statisticData.dermetal}{else}-{/if}</td>
 </tr>
 <tr>
 	{if $show}<td></td>{else}<td><div class="tooltip1"><img src="./styles/resource/images/icons/lock.png" height="10" width="10"><span class="tooltiptext">{$LNG.spytech_playercard.level6}</span></div></td>{/if}
 	<td>{$LNG.pl_dercrystal}</td>
-	<td>{if $show}{$dercrystal}{else}-{/if}</td>
+	<td>{if $show}{$statisticData.dercrystal}{else}-{/if}</td>
 </tr>
 {/if}
 </table>
