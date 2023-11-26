@@ -67,7 +67,7 @@ function calculateSteal($attackFleets, $defenderPlanet, $simulate = false)
         $thirdResource => 0
     ];
 
-    if (isModuleAvailable(MODULE_RESOURCE_STASH)) {
+    if (isModuleAvailable(MODULE_RESOURCE_STASH) && !$simulate) {
         // Up to 10% (1% per resource store level) of daily production is protected from stealing
         $dailyProduction = [
             $firstResource => $defenderPlanet['metal_perhour'] * TIME_24_HOURS,
@@ -162,4 +162,81 @@ function calculateSteal($attackFleets, $defenderPlanet, $simulate = false)
     }
 
     return $stealResource;
+}
+
+function calculateMinCapacity($defenderPlanet) : int {
+    $pricelist =& Singleton()->pricelist;
+    $resource =& Singleton()->resource;
+    $firstResource = RESOURCE_METAL;
+    $secondResource = RESOURCE_CRYSTAL;
+    $thirdResource = RESOURCE_DEUT;
+
+    $stealResource = [
+        $firstResource => 0,
+        $secondResource => 0,
+        $thirdResource => 0
+    ];
+
+    $planetResource = [
+        $firstResource => $defenderPlanet[$resource[$firstResource]],
+        $secondResource => $defenderPlanet[$resource[$secondResource]],
+        $thirdResource => $defenderPlanet[$resource[$thirdResource]]
+    ];
+
+    $shipCapacity = $pricelist[SHIP_SMALL_CARGO]['capacity'];
+    $startAmount = ceil(($planetResource[$firstResource]/2 + $planetResource[$secondResource]/2 + $planetResource[$thirdResource]/2) / $shipCapacity);
+    if ($startAmount >= 1) {
+        $startAmount -= 1; // one gets added at start of while loop
+    }
+    $startCapacity = $shipCapacity * $startAmount;
+    $capacity = $startCapacity;
+
+    while ($stealResource[$firstResource] < $planetResource[$firstResource]/2 ||
+        $stealResource[$secondResource] < $planetResource[$secondResource]/2 ||
+        $stealResource[$thirdResource] < $planetResource[$thirdResource]/2) {
+
+        // init values
+        $stealResource[$firstResource] = 0;
+        $stealResource[$secondResource] = 0;
+        $stealResource[$thirdResource] = 0;
+        $startCapacity += $shipCapacity;
+        $capacity = $startCapacity;
+
+        // Step 1
+        $stealResource[$firstResource] = min(
+            $capacity / 3, //one third of capacity
+            $planetResource[$firstResource] / 2, //half of metal
+        );
+        $capacity -= $stealResource[$firstResource];
+
+        // Step 2
+        $stealResource[$secondResource] = min(
+            $capacity / 2, //half of rest capacity (= one third or more)
+            $planetResource[$secondResource] / 2, //half of crystal
+        );
+        $capacity -= $stealResource[$secondResource];
+
+        // Step 3
+        $stealResource[$thirdResource] = min(
+            $capacity, //rest capacity (= one third or more)
+            $planetResource[$thirdResource] / 2, //half of deut
+        );
+        $capacity -= $stealResource[$thirdResource];
+
+        // Step 4
+        $oldMetalBooty = $stealResource[$firstResource];
+        $stealResource[$firstResource] += min(
+            $capacity / 2, //half of rest capacity
+            $planetResource[$firstResource] / 2 - $stealResource[$firstResource], //half of metal minus already stolen
+        );
+        $capacity -= $stealResource[$firstResource] - $oldMetalBooty;
+
+        // Step 5
+        $stealResource[$secondResource] += min(
+            $capacity, //other half of rest capacity (or more)
+            $planetResource[$secondResource] / 2 - $stealResource[$secondResource], //half of crystal minus already stolen
+        );
+    }
+
+    return $startCapacity;
 }

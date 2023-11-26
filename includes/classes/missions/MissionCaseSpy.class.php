@@ -214,14 +214,13 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         ];
         $fleetSimulate[] = $simulated;
 
-        $stealResource = calculateSteal($fleetSimulate, [
+        $capacityNeeded = calculateMinCapacity([
             'metal' => getNumber($targetPlanet[$resource[RESOURCE_METAL]]),
             'crystal' => getNumber($targetPlanet[$resource[RESOURCE_CRYSTAL]]),
             'deuterium' => getNumber($targetPlanet[$resource[RESOURCE_DEUT]]),
-            ], true);
-        $sumSteal = array_sum($stealResource);
-        $smallCargoNeeded = ceil($sumSteal / $pricelist[SHIP_SMALL_CARGO]['capacity']);
-        $largeCargoNeeded = ceil($sumSteal / $pricelist[SHIP_LARGE_CARGO]['capacity']);
+        ]);
+        $smallCargoNeeded = ceil($capacityNeeded / $pricelist[SHIP_SMALL_CARGO]['capacity']);
+        $largeCargoNeeded = ceil($capacityNeeded / $pricelist[SHIP_LARGE_CARGO]['capacity']);
 
         // I'm use template class here, because i want to exclude HTML in PHP.
 
