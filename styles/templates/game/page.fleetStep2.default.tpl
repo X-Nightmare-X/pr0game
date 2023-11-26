@@ -135,8 +135,7 @@
 		</tr>
 		{/if}
         <tr id="submit">
-			{* <td colspan="2" style="height:20px;"><input value="{$LNG.fl_continue}" type="submit" onclick="return sendFleet({$question});"/></td> *}
-			<td colspan="2" style="height:20px;"><input value="{$LNG.fl_continue}" type="submit" onclick="return sendFleet('Test');"/></td>
+			<td colspan="2" style="height:20px;"><input value="{$LNG.fl_continue}" type="submit" onclick="return sendFleet({$question});"/></td>
         </tr>
 		<tr id="wait" style="display:none;">
 			<td colspan="2" style="height:20px">{$LNG.fl_continue}</td>
