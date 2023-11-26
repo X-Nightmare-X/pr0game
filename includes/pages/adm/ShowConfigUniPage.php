@@ -94,7 +94,7 @@ function ShowConfigUniPage()
             'expo_ress_met_chance'     => $config->expo_ress_met_chance,
             'expo_ress_crys_chance'    => $config->expo_ress_crys_chance,
             'expo_ress_deut_chance'    => $config->expo_ress_deut_chance,
-            'del_user_automatic'	   => $config->del_user_automatic, 
+            'del_user_automatic'	   => $config->del_user_automatic,
             'moonSizeFactor'	   => $config->moonSizeFactor,
             'cascading_moon_chance' => $config->cascading_moon_chance,
         ];
@@ -252,9 +252,29 @@ function ShowConfigUniPage()
                 ':newTime' => time(),
                 ':universe' => Universe::getEmulated(),
             ]);
-        } elseif (($uni_status == STATUS_CLOSED || $uni_status == STATUS_REG_ONLY) && ($config->uni_status == STATUS_OPEN || $config->uni_status == STATUS_LOGIN_ONLY)) {
-            // Open: calc ress for all planets when uni login gets closed? Otherwise ress will be lost when reopened.
-            // $ecoObj = new ResourceUpdate();
+        } elseif (($uni_status == STATUS_CLOSED) && ($config->uni_status == STATUS_OPEN)) {
+            // Calc ress for all planets when uni login gets closed. Otherwise ress will be lost when reopened.
+            $ecoObj = new ResourceUpdate();
+            $db = Database::get();
+            $db->startTransaction();
+            $timestamp = time();
+            $sql = "SELECT * FROM %%USERS%% WHERE universe = :universe FOR UPDATE;";
+            $users = $db->select($sql, [
+                ':universe' => Universe::getEmulated(),
+            ]);
+
+            foreach ($users as $user) {
+                $sql = "SELECT * FROM %%PLANETS%% WHERE id_owner = :ownerID AND universe = :universe AND planet_type = 1 FOR UPDATE;";
+                $planets = $db->select($sql, [
+                    ':ownerID' => $user['id'],
+                    ':universe' => Universe::getEmulated(),
+                ]);
+
+                foreach ($planets as $planet) {
+                    $ecoObj->CalcResource($user, $planet, true, $timestamp);
+                }
+            }
+            $db->commit();
         }
 
         foreach ($config_after as $key => $value) {
