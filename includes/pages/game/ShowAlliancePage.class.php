@@ -197,7 +197,15 @@ class ShowAlliancePage extends AbstractGamePage
                 $LNG['al_requests_min_points'],
                 pretty_number($this->allianceData['ally_request_min_points'])
             ),
-            'show' => $show
+            'show' => $show,
+            'totalfight' => $statisticData['totalfight'],
+            'fightwon' => $statisticData['fightwon'],
+            'fightlose' => $statisticData['fightlose'],
+            'fightdraw' => $statisticData['fightdraw'],
+            'unitsshot' => $statisticData['unitsshot'],
+            'unitslose' => $statisticData['unitslose'],
+            'dermetal' => $statisticData['dermetal'],
+            'dercrystal' => $statisticData['dercrystal'],
         ]);
 
         $this->display('page.alliance.info.tpl');
