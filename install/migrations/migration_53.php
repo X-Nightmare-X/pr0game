@@ -70,16 +70,16 @@ function processSimulations()
         ':threeDays' => TIMESTAMP - TIME_72_HOURS,
     ]);
 
-    foreach ($simulations as $raport) {
+    foreach ($simulations as $report) {
         $sql = "INSERT INTO `" . DB_PREFIX . "raports_temp` (`rid`, `raport`, `time`, `attacker`, `defender`)
             VALUES (:rid, :raport, :time, :attacker, :defender);";
         try {
             $db->insert($sql, [
-                ':rid'      => $raport['rid'],
-                ':raport'   => $raport['raport'],
-                ':time'     => $raport['time'],
-                ':attacker' => $raport['attacker'],
-                ':defender' => $raport['defender'],
+                ':rid'      => $report['rid'],
+                ':raport'   => $report['raport'],
+                ':time'     => $report['time'],
+                ':attacker' => $report['attacker'],
+                ':defender' => $report['defender'],
             ]);
         } catch (\Throwable $th) {
             error_log('Query: [' . $sql . '] failed. Error: ' . $th->getMessage() . '. Skipped');
@@ -150,7 +150,7 @@ function insertValues(array $topkbs)
         }
     
         $sql = "SELECT * FROM %%RW%% WHERE `rid` = :rid;";
-        $raport = $db->select($sql, [
+        $report = $db->selectSingle($sql, [
             ':rid' => $topkb['rid'],
         ]);
     
@@ -158,11 +158,11 @@ function insertValues(array $topkbs)
             VALUES (:rid, :raport, :time, :attacker, :defender);";
         try {
             $db->insert($sql, [
-                ':rid'      => $raport[0]['rid'],
-                ':raport'   => $raport[0]['raport'],
-                ':time'     => $raport[0]['time'],
-                ':attacker' => $raport[0]['attacker'],
-                ':defender' => $raport[0]['defender'],
+                ':rid'      => $report['rid'],
+                ':raport'   => $report['raport'],
+                ':time'     => $report['time'],
+                ':attacker' => $report['attacker'],
+                ':defender' => $report['defender'],
             ]);
         } catch (\Throwable $th) {
             error_log('Query: [' . $sql . '] failed. Error: ' . $th->getMessage() . '. Skipped');
