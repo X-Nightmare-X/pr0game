@@ -22,8 +22,8 @@ if ($USER['authlevel'] == AUTH_USR) {
 function ShowLoginPage()
 {
     $USER =& Singleton()->USER;
-    $session	= Session::create();
-    $session->universe      = ROOT_UNI;
+    $session = Session::create();
+    $session->universe = $USER['universe'];
     if ($session->adminAccess == 1) {
         HTTP::redirectTo('admin.php');
     }

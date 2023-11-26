@@ -109,8 +109,9 @@ $LNG['banned_message'] = 'You received a Ban. If you think this is a mistake, wr
 //----------------------------------------------------------------------------//
 // Topnav
 $LNG['tn_player_title'] = 'Emperor';
-$LNG['tn_vacation_mode'] = 'Your account is in vacation mode.<br><br>PLEASE NOTE: Vacation mode is automatically deactivated after 4 weeks of inactivity.';
-$LNG['tn_vacation_mode_until'] = 'Your account is in vacation mode until at least %s clock.<br><br>PLEASE NOTE: Vacation mode is automatically deactivated after 4 weeks of inactivity.';
+$LNG['tn_vacation_mode'] = 'Your account is in vacation mode.';
+$LNG['tn_vacation_mode_until'] = 'Your account is in vacation mode until at least %s clock.';
+$LNG['tn_vacation_mode_kick'] = '<br><br>PLEASE NOTE: Vacation mode is automatically deactivated after 4 weeks of inactivity.';
 $LNG['tn_delete_mode'] = 'The account at %s will be deleted!';
 
 //----------------------------------------------------------------------------//
@@ -124,6 +125,7 @@ $LNG['lm_buildings'] = 'Buildings';
 $LNG['lm_research'] = 'Research';
 $LNG['lm_shipshard'] = 'Hangar';
 $LNG['lm_defenses'] = 'Defenses';
+$LNG['lm_repairdock'] = 'Repair dock';
 $LNG['lm_marketplace'] = 'Marketplace';
 $LNG['lm_resources'] = 'Resources';
 $LNG['lm_fleettrader'] = 'Merchant of Fleets';
@@ -259,6 +261,8 @@ $LNG['gl_planet'] = 'Planet';
 $LNG['gl_name_activity'] = 'Name (Activity)';
 $LNG['gl_moon'] = 'Moon';
 $LNG['gl_debris'] = 'Debris';
+$LNG['gl_wreckfield_short'] = 'WF';
+$LNG['gl_wreckfield'] = 'Wreck field';
 $LNG['gl_player_estate'] = 'Player (State)';
 $LNG['gl_alliance'] = 'Alliance';
 $LNG['gl_actions'] = 'Actions';
@@ -483,8 +487,17 @@ $LNG['bd_lvl'] = 'Level';
 $LNG['bd_research'] = 'Research for';
 $LNG['bd_shipyard_required'] = 'You need to build a Shipyard first';
 $LNG['bd_building_shipyard'] = 'Cannot build ships until Shipyard upgrade is completed.';
+$LNG['bd_deploy'] = 'Deploy';
+$LNG['bd_repairdock_required'] = 'You must first build a repair dock on this planet!';
+$LNG['bd_repairdock_busy'] = 'The repair dock is already working on a job!';
+$LNG['bd_repairdock_empty'] = 'There is no wreck field!';
+$LNG['bd_repairdock_deploy'] = 'The ships have been put back into service!';
+$LNG['bd_max_ships_repair'] = 'Maximum recoverable units';
+$LNG['bd_repairing'] = 'Repair in progress';
+$LNG['bd_deployable'] = 'Repair completed! Automatic deployment in:';
 $LNG['bd_available'] = 'Available: ';
 $LNG['bd_build_ships'] = 'Build';
+$LNG['bd_repair_ships'] = 'Repair';
 $LNG['bd_protection_shield_only_one'] = 'You can only build one shield!';
 $LNG['bd_build_defenses'] = 'Build defense';
 $LNG['bd_actual_production'] = 'Current production:';
@@ -964,7 +977,7 @@ $LNG['op_cant_activate_vacation_mode'] = 'You can not activate the vacation mode
 $LNG['op_password_changed'] = 'Password changed';
 $LNG['op_username_changed'] = 'Username changed';
 $LNG['op_options_changed'] = 'Options saved.';
-$LNG['op_options_changed_vacation'] = 'Options saved.<br><br>PLEASE NOTE: Vacation mode is automatically deactivated after 4 weeks of inactivity.';
+$LNG['op_options_changed_vacation'] = 'Options saved.';
 $LNG['op_vacation_mode_active_message'] = 'Vacation mode is active and will end up in: ';
 $LNG['op_end_vacation_mode'] = 'End period of vacation';
 $LNG['op_save_changes'] = 'Save changes';
@@ -1090,6 +1103,7 @@ $LNG['fcm_info'] = 'Info';
 $LNG['fcp_colony'] = 'Colony';
 $LNG['fgp_require'] = 'Requirements: ';
 $LNG['fgf_time'] = 'Time: ';
+$LNG['fgr_time'] = 'Repair time: ';
 $LNG['sys_module_inactive'] = 'Inactive module';
 $LNG['sys_refferal_from'] = 'System';
 $LNG['sys_refferal_title'] = 'Player Bonus %s';
@@ -1496,4 +1510,10 @@ $LNG['Achievement_text'] = [
     53 => 'Have the highest level in 5 researches at the same time.',
     54 => 'Time an attack on an active player to 01.01. 00:00:00',
     55 => 'Special Achievement',
+];
+
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Viewable from Spy Technology 2!',
+    'level4'  => 'Viewable from Spy Technology 4!',
+    'level6'  => 'Viewable from Spy Technology 6!',
 ];

@@ -110,8 +110,9 @@ $LNG['banned_message'] = 'Zostałeś zbanowany. Jeśli uważasz, że to nieporoz
 //----------------------------------------------------------------------------//
 //TOPNAV
 $LNG['tn_player_title'] = 'Imperator';
-$LNG['tn_vacation_mode'] = 'Jesteś w trybie wakacyjnym.<br><br>Uwaga: Tryb wakacyjny jest automatycznie wyłączany po 4 tygodniach nieaktywności.';
-$LNG['tn_vacation_mode_until'] = 'Jesteś w trybie wakacyjnym co najmniej do godziny %s.<br><br>Uwaga: Tryb wakacyjny jest automatycznie wyłączany po 4 tygodniach nieaktywności.';
+$LNG['tn_vacation_mode'] = 'Jesteś w trybie wakacyjnym.';
+$LNG['tn_vacation_mode_until'] = 'Jesteś w trybie wakacyjnym co najmniej do godziny %s.';
+$LNG['tn_vacation_mode_kick'] = '<br><br>Uwaga: Tryb wakacyjny jest automatycznie wyłączany po 4 tygodniach nieaktywności.';
 $LNG['tn_delete_mode'] = 'Twoje konto zostanie automatycznie usunięte %s ';
 
 //----------------------------------------------------------------------------//
@@ -124,6 +125,7 @@ $LNG['lm_buildings'] = 'Budynki';
 $LNG['lm_research'] = 'Badania';
 $LNG['lm_shipshard'] = 'Stocznia';
 $LNG['lm_defenses'] = 'Obrona';
+$LNG['lm_repairdock'] = 'Dok naprawczy';
 $LNG['lm_resources'] = 'Zasoby';
 $LNG['lm_fleettrader'] = 'Złomowanie floty';
 $LNG['lm_technology'] = 'Technologie';
@@ -242,6 +244,8 @@ $LNG['gl_planet'] = 'Planeta';
 $LNG['gl_name_activity'] = 'Nazwa (Aktywność)';
 $LNG['gl_moon'] = 'Księżyc';
 $LNG['gl_debris'] = 'PZ';
+$LNG['gl_wreckfield_short'] = 'PW';
+$LNG['gl_wreckfield'] = 'Pole wraku';
 $LNG['gl_player_estate'] = 'Gracz (Status)';
 $LNG['gl_alliance'] = 'Sojusz';
 $LNG['gl_actions'] = 'Akcja';
@@ -455,8 +459,17 @@ $LNG['bd_building_lab'] = 'Nie możesz rozwijać badań, gdy laboratorium jest w
 $LNG['bd_research'] = 'Badania';
 $LNG['bd_shipyard_required'] = 'Musisz najpierw zbudować stocznię!';
 $LNG['bd_building_shipyard'] = 'Fabryka nanitów lub stocznia jest rozbudowywana!';
+$LNG['bd_deploy'] = 'Wstawka';
+$LNG['bd_repairdock_required'] = 'Musisz najpierw zbudować dok naprawczy na tej planecie!';
+$LNG['bd_repairdock_busy'] = 'Stacja naprawcza już pracuje nad zadaniem!';
+$LNG['bd_repairdock_empty'] = 'Nie ma pola wraku!';
+$LNG['bd_repairdock_deploy'] = 'Statki zostały przywrócone do służby!';
+$LNG['bd_max_ships_repair'] = 'Maksymalne odzyskiwalne jednostki';
+$LNG['bd_repairing'] = 'Naprawa w toku';
+$LNG['bd_deployable'] = 'Naprawa zakończona! Automatyczne wprowadzanie:';
 $LNG['bd_available'] = 'Dostępne: ';
 $LNG['bd_build_ships'] = 'Buduj';
+$LNG['bd_repair_ships'] = 'Naprawa';
 $LNG['bd_protection_shield_only_one'] = 'Możesz mieć tylko jedną na planecie';
 $LNG['bd_build_defenses'] = 'Buduj';
 $LNG['bd_actual_production'] = 'Aktualna produkcja:';
@@ -937,7 +950,7 @@ $LNG['op_cant_activate_vacation_mode'] = 'Nie możesz aktywować trybu urlopoweg
 $LNG['op_password_changed'] = 'Hasło zmienione<br><a href="index.php" target="_top">Wróć</a>';
 $LNG['op_username_changed'] = 'Nazwa użytkownika zmieniona<br><a href="index.php" target="_top">Wróć</a>';
 $LNG['op_options_changed'] = 'Ustawienia zapisane.';
-$LNG['op_options_changed_vacation'] = 'Ustawienia zapisane.<br><br>Uwaga: Tryb wakacyjny jest automatycznie wyłączany po 4 tygodniach nieaktywności.';
+$LNG['op_options_changed_vacation'] = 'Ustawienia zapisane.';
 $LNG['op_vacation_mode_active_message'] = 'Urlop będzie można zakończyć nie wcześniej niż: ';
 $LNG['op_end_vacation_mode'] = 'Koniec Urlopu';
 $LNG['op_save_changes'] = 'Zapisz zmiany';
@@ -1058,6 +1071,7 @@ $LNG['fcm_info'] = 'Informacje';
 $LNG['fcp_colony'] = 'Kolonia';
 $LNG['fgp_require'] = 'Potrzebujesz: ';
 $LNG['fgf_time'] = 'Czas budowy: ';
+$LNG['fgr_time'] = 'Czas naprawy: ';
 $LNG['sys_module_inactive'] = 'Moduł nieaktywny';
 $LNG['sys_refferal_from'] = 'System';
 $LNG['sys_refferal_title'] = 'Bonus dla gracza %s';
@@ -1432,4 +1446,10 @@ $LNG['Achievement_text'] = [
     53 => 'Najwyższy poziom w 5 badaniach jednocześnie.',
     54 => 'Czas ataku na aktywnego gracza do 01.01. 00:00:00',
     55 => 'Osiągnięcie specjalne',
+];
+
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Wyświetlane z poziomu Technologia Szpiegowska 2!',
+    'level4'  => 'Wyświetlane z poziomu Technologia Szpiegowska 4!',
+    'level6'  => 'Wyświetlane z poziomu Technologia Szpiegowska 6!',
 ];

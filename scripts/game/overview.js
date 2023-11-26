@@ -25,18 +25,39 @@ $(document).ready(function () {
       $(this).text(getRestTimeFormat(s));
     });
 
-  $('.timershort').each(function () {
-    var s = $(this).data('time')
-    if (!umode) {
-      s = s - (serverTime.getTime() - startTime) / 1000;
-    }
+    $('.timerrepair').each(function () {
+      var s = $(this).data('time')
+	    if (!umode) {
+		    s = s - (serverTime.getTime() - startTime) / 1000;
+	    }
 
-    if (s <= 0) {
-      s = 0;
-    }
+      if (s <= 0) {
+        if ($(this).data('repairing')) {
+          $(this).data('repairing', false);
+          $(this).data('time', $(this).data('time') + 259200);
+          $("#repairtext").text($("#repairtext").data('alttext'));
+          s = $(this).data('time');
+          s = s - (serverTime.getTime() - startTime) / 1000;
+        } else {
+          s = 0;
+        }
+      }
 
-    $(this).text(getRestTimeFormat(s,true));
-  });
+      $(this).text(getRestTimeFormat(s));
+    });
+
+    $('.timershort').each(function () {
+      var s = $(this).data('time')
+      if (!umode) {
+        s = s - (serverTime.getTime() - startTime) / 1000;
+      }
+
+      if (s <= 0) {
+        s = 0;
+      }
+
+      $(this).text(getRestTimeFormat(s,true));
+    });
 
   }, 1000);
 

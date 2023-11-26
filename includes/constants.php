@@ -64,7 +64,7 @@ define('UNIS_WILDCAST', false);
 define('FIELDS_BY_MOONBASIS_LEVEL', 3);
 
 // FIELDS FOR EACH LEVEL OF THE TERRAFORMER
-define('FIELDS_BY_TERRAFORMER', 5);
+define('FIELDS_BY_TERRAFORMER', 5.5);
 
 // TIME IN SECONDS for 24 hours
 define('ONE_DAY', 86400);
@@ -165,7 +165,7 @@ define('AUTH_MOD', 1);
 define('AUTH_USR', 0);
 
 // Modules
-define('MODULE_AMOUNT', 47); //+1 to largest index
+define('MODULE_AMOUNT', 53); //+1 to largest index
 define('MODULE_ALLIANCE', 0);
 define('MODULE_BANLIST', 21);
 define('MODULE_BANNER', 37);
@@ -206,8 +206,15 @@ define('MODULE_SIMULATOR', 39);
 define('MODULE_STATISTICS', 25);
 define('MODULE_SUPPORT', 27);
 define('MODULE_TECHTREE', 28);
-define('MODULE_MARKET_TRADE', 45);
-define('MODULE_MARKET_TRANSFER', 46);
+define('MODULE_MARKET_TRADE', 45);              // Trade Ressources to other players through the marketplace
+define('MODULE_MARKET_TRANSFER', 46);           // Transfer Ships to other players through the marketplace
+define('MODULE_SPYTECH_DEPENDENT_STATS', 47);   // Viewable stats depent on spytech level
+define('MODULE_REPAIR_DOCK', 48);               // Repair ships in orbit
+define('MODULE_RESOURCE_STASH', 49);            // Save ressources from stealing
+define('MODULE_VMODE_KICK', 50);                // Kick player from vmode if he is inactive ( Big I default 28 days)
+define('MODULE_EMPTY_BUDDY', 51);               // Empty Buddylist and remove from Alliance on inactive outside of vmode
+define('MODULE_STATS_JSON', 52);                // Create stats.json file for external use (contains player stats per Universe)
+
 
 // FLEET STATE
 define('FLEET_OUTWARD', 0);
@@ -259,6 +266,7 @@ define('CRYSTAL_STORE', 23);
 define('DEUTERIUM_STORE', 24);
 define('RESEARCH_LABORATORY', 31);
 define('TERRAFORMER', 33);
+define('REPAIR_DOCK', 35);
 define('MOONBASE', 41);
 define('PHALANX', 42);
 define('SPRUNGTOR', 43);
@@ -315,7 +323,9 @@ define('MISSION_TRANSFER', 17);
 
 // general time constants
 define('TIME_6_HOURS', 21600);
+define('TIME_12_HOURS', 43200);
 define('TIME_24_HOURS', 86400);
+define('TIME_72_HOURS', 259200);
 define('TIME_1_WEEK', 604800);
 define('TIME_1_MONTH', 2592000);
 

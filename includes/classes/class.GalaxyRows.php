@@ -48,12 +48,13 @@ class GalaxyRows
 
         $sql = 'SELECT SQL_BIG_RESULT DISTINCT'
             . ' p.galaxy, p.system, p.planet, p.id, p.id_owner, p.name, p.image, p.last_update, p.diameter, p.temp_min,'
-            . ' p.destruyed, p.der_metal, p.der_crystal, p.id_luna, u.id as userid, u.ally_id, u.username,'
+            . ' p.destruyed, p.der_metal, p.der_crystal, p.id_luna, wf.ships AS wrecks, u.id as userid, u.ally_id, u.username,'
             . ' u.onlinetime, u.urlaubs_modus, u.banaday, m.id as m_id, m.diameter as m_diameter, m.name as m_name,'
             . ' m.temp_min as m_temp_min, m.last_update as m_last_update, s.total_points, s.total_rank, a.id as allyid,'
             . ' a.ally_tag, a.ally_web, a.ally_members, a.ally_name, allys.total_rank as ally_rank,'
             . ' (a.ally_owner=u.id) as is_leader, a.ally_owner_range, r.DIPLOMATIC as is_diplo,'
             . ' COUNT(buddy.id) as buddy, d.level as diploLevel FROM %%PLANETS%% p '
+            . ' LEFT JOIN %%PLANET_WRECKFIELD%% wf ON wf.planetID = p.id'
             . ' LEFT JOIN %%USERS%% u ON p.id_owner = u.id'
             . ' LEFT JOIN %%PLANETS%% m ON m.id = p.id_luna'
             . ' LEFT JOIN %%STATPOINTS%% s ON s.id_owner = u.id AND s.stat_type = :statTypeUser'
@@ -104,6 +105,7 @@ class GalaxyRows
             $this->getPlanetData();
             $this->getAllianceData();
             $this->getDebrisData();
+            $this->getWreckfieldData();
             $this->getMoonData();
             $this->getActionButtons();
         }
@@ -252,6 +254,17 @@ class GalaxyRows
                 'rank'   => $this->galaxyRow['ally_rank'],
                 'class'  => $Class,
             ];
+        }
+    }
+
+    protected function getWreckfieldData()
+    {
+        $this->galaxyData[$this->galaxyRow['planet']]['wreckfield'] = false;
+        $ressUdate = new ResourceUpdate();
+        if (isModuleAvailable(MODULE_REPAIR_DOCK) &&
+            !empty($this->galaxyRow['wrecks']) &&
+            !$ressUdate->WreckfieldCheck($this->galaxyRow['id'], TIMESTAMP, $this->galaxyRow['urlaubs_modus'])) {
+            $this->galaxyData[$this->galaxyRow['planet']]['wreckfield'] = FleetFunctions::unserialize($this->galaxyRow['wrecks']);
         }
     }
 

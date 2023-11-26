@@ -100,8 +100,9 @@ $LNG['banned_message'] = 'Sie wurdne vom Banhammer erschlagne tadsächlich sogar
 //----------------------------------------------------------------------------//
 //TOPNAV
 $LNG['tn_player_title'] = 'Imberator';
-$LNG['tn_vacation_mode'] = 'Sie sind im Urlaubsmodus - des bascht scho. <br><br>ACHDUNG: Urlaubsmodus wird nach 4 Wochne Inagtivität audomadisch deagtiviert!';
-$LNG['tn_vacation_mode_until'] = 'Sie sind bis mindeschdens %s Uhr im Urlaubsmodus<br><br>ACHDUNG hätt ich gsachd: Der Urlaubsmodus wird nach 4 Wochne Inagtivität audomadisch deagtiviert.';
+$LNG['tn_vacation_mode'] = 'Sie sind im Urlaubsmodus - des bascht scho. ';
+$LNG['tn_vacation_mode_until'] = 'Sie sind bis mindeschdens %s Uhr im Urlaubsmodus.';
+$LNG['tn_vacation_mode_kick'] = '<br><br>ACHDUNG: Urlaubsmodus wird nach 4 Wochne Inagtivität audomadisch deagtiviert!';
 $LNG['tn_delete_mode'] = 'Ihr Accound wird amääh %s audomadisch gelöschd tazächlich sogar! ';
 
 //----------------------------------------------------------------------------//
@@ -114,6 +115,7 @@ $LNG['lm_buildings'] = 'Gebäudne';
 $LNG['lm_research'] = 'Forschunk';
 $LNG['lm_shipshard'] = 'Schiffswerfd';
 $LNG['lm_defenses'] = 'Werteidigung';
+$LNG['lm_repairdock'] = 'Rebaradurdogg';
 $LNG['lm_resources'] = 'Rohschdoffe';
 $LNG['lm_fleettrader'] = 'Schroddhändler';
 $LNG['lm_technology'] = 'Dechnologie';
@@ -251,6 +253,8 @@ $LNG['gl_planet'] = 'Blanet';
 $LNG['gl_name_activity'] = 'Name (Aktivität)';
 $LNG['gl_moon'] = 'Mond';
 $LNG['gl_debris'] = 'DF';
+$LNG['gl_wreckfield_short'] = 'WF';
+$LNG['gl_wreckfield'] = 'Wraggfeld';
 $LNG['gl_player_estate'] = 'Schbieler (Status)';
 $LNG['gl_alliance'] = 'Allianz';
 $LNG['gl_actions'] = 'Agtion';
@@ -468,8 +472,17 @@ $LNG['bd_lvl'] = 'Schdufe';
 $LNG['bd_research'] = 'Forschung';
 $LNG['bd_shipyard_required'] = 'Du musschd zuerschd ne Schiffswerfd uff diesem Blanedne bauen';
 $LNG['bd_building_shipyard'] = 'Die Nanitenfabrig oder Raumschiffwerfd wird zurzeid ausgebaud!';
+$LNG['bd_deploy'] = 'Einseddsdne';
+$LNG['bd_repairdock_required'] = 'Du mussd dsuersd ein Rebaradurdogg uff diesem Blanedne baune tazächlich!';
+$LNG['bd_repairdock_busy'] = 'Das Rebaradurdogg schneided, renderd, läd-hoch bereids an einem Aufdrag!';
+$LNG['bd_repairdock_empty'] = 'Es isd gein Wraggfeld forhandne etzala!';
+$LNG['bd_repairdock_deploy'] = 'Die Schiffe wurdne scho widder in Diensd gesdelld des bascht scho!';
+$LNG['bd_max_ships_repair'] = 'Maggsimal wiederhersdellbare Einheidne';
+$LNG['bd_repairing'] = 'Rebaradur in Abbeid';
+$LNG['bd_deployable'] = 'Rebaradur abgeschlossne tazächlich sogar! Audomadisches Einseddsdne in:';
 $LNG['bd_available'] = 'Worhandne: ';
 $LNG['bd_build_ships'] = 'Absenden';
+$LNG['bd_repair_ships'] = 'Rebarierne';
 $LNG['bd_protection_shield_only_one'] = 'Sie gönnene nur ne Schildguppel bauen!';
 $LNG['bd_build_defenses'] = 'Absenden';
 $LNG['bd_actual_production'] = 'Agtuelle Broduktion:';
@@ -949,7 +962,7 @@ $LNG['op_cant_activate_vacation_mode'] = 'Sie gönnene ned in den Urlaubsmodus w
 $LNG['op_password_changed'] = 'Basswort wurde geändert';
 $LNG['op_username_changed'] = 'Username geändert';
 $LNG['op_options_changed'] = 'Einschdellungne gesbeichert.';
-$LNG['op_options_changed_vacation'] = 'Einschdellungne gesbeichert.<br><br>ACHDUNG: Der Urlaubsmodus wird nach 4 Wochne Inagtivität audomadisch deagtiviert.';
+$LNG['op_options_changed_vacation'] = 'Einschdellungne gesbeichert.';
 $LNG['op_vacation_mode_active_message'] = 'Urlaubsmodus agtiviert und alles. Urlaubsmodus mindeschdens bis: ';
 $LNG['op_end_vacation_mode'] = 'Urlaubsmodus beenden';
 $LNG['op_save_changes'] = 'Einschdellungne sbeichern';
@@ -1077,6 +1090,7 @@ $LNG['fcm_info'] = 'Informadion';
 $LNG['fcp_colony'] = 'Golonie';
 $LNG['fgp_require'] = 'Benödigd';
 $LNG['fgf_time'] = 'Bauzeid';
+$LNG['fgr_time'] = 'Rebaradurdseid';
 $LNG['sys_module_inactive'] = 'Modul inagtiv';
 $LNG['sys_refferal_from'] = 'Syschdem';
 $LNG['sys_refferal_title'] = 'Bonus für Schbieler %s';
@@ -1486,4 +1500,10 @@ $LNG['Achievement_text'] = [
     53 => 'Habe in 5 Forschungne gleichdseidig die höchsde Schdufe.',
     54 => 'Dime \'nen Angriff uff \'nen agdifne Schbieler uff den 01.01. 00:00:00',
     55 => 'Sonderachiefemend',
+];
+
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Sichdbar ab Schbionagetechnik 2!',
+    'level4'  => 'Sichdbar ab Schbionagetechnik 4!',
+    'level6'  => 'Sichdbar ab Schbionagetechnik 6!',
 ];

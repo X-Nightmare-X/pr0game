@@ -125,26 +125,40 @@ class ShowAlliancePage extends AbstractGamePage
                 WHERE r.DIPLOMATIC = 1 AND u.ally_id = :ally_id;";
             $diplomats = Database::get()->select($sql, [':ally_id' => $this->allianceData['id']]);
         }
-
+        $show = true;
         if ($this->allianceData['ally_stats'] == 1) {
-            $sql = 'SELECT SUM(wons) as wons, SUM(loos) as loos, SUM(draws) as draws, SUM(kbmetal) as kbmetal,
-            SUM(kbcrystal) as kbcrystal, SUM(lostunits) as lostunits, SUM(desunits) as desunits
-            FROM %%USERS%% WHERE ally_id = :allyID;';
+            if (!isModuleAvailable(MODULE_SPYTECH_DEPENDENT_STATS) || $USER['spy_tech'] >= 6 || $USER['authlevel'] > 0) {
+                $sql = 'SELECT SUM(wons) as wons, SUM(loos) as loos, SUM(draws) as draws, SUM(kbmetal) as kbmetal,
+                SUM(kbcrystal) as kbcrystal, SUM(lostunits) as lostunits, SUM(desunits) as desunits
+                FROM %%USERS%% WHERE ally_id = :allyID;';
 
-            $statisticResult = Database::get()->selectSingle($sql, [
-                ':allyID' => $this->allianceData['id']
-            ]);
+                $statisticResult = Database::get()->selectSingle($sql, [
+                    ':allyID' => $this->allianceData['id']
+                ]);
 
-            $statisticData = [
-                'totalfight' => $statisticResult['wons'] + $statisticResult['loos'] + $statisticResult['draws'],
-                'fightwon' => $statisticResult['wons'],
-                'fightlose' => $statisticResult['loos'],
-                'fightdraw' => $statisticResult['draws'],
-                'unitsshot' => pretty_number($statisticResult['desunits']),
-                'unitslose' => pretty_number($statisticResult['lostunits']),
-                'dermetal' => pretty_number($statisticResult['kbmetal']),
-                'dercrystal' => pretty_number($statisticResult['kbcrystal']),
-            ];
+                $statisticData = [
+                    'totalfight' => $statisticResult['wons'] + $statisticResult['loos'] + $statisticResult['draws'],
+                    'fightwon' => $statisticResult['wons'],
+                    'fightlose' => $statisticResult['loos'],
+                    'fightdraw' => $statisticResult['draws'],
+                    'unitsshot' => pretty_number($statisticResult['desunits']),
+                    'unitslose' => pretty_number($statisticResult['lostunits']),
+                    'dermetal' => pretty_number($statisticResult['kbmetal']),
+                    'dercrystal' => pretty_number($statisticResult['kbcrystal']),
+                ];
+            } else {
+                $statisticData = [
+                    'totalfight' => 0,
+                    'fightwon' => 0,
+                    'fightlose' => 0,
+                    'fightdraw' => 0,
+                    'unitsshot' => 0,
+                    'unitslose' => 0,
+                    'dermetal' => 0,
+                    'dercrystal' => 0,
+                ];
+                $show = false;
+            }
         }
 
         $sql = 'SELECT total_points
@@ -182,7 +196,8 @@ class ShowAlliancePage extends AbstractGamePage
             'ally_request_min_points_info' => sprintf(
                 $LNG['al_requests_min_points'],
                 pretty_number($this->allianceData['ally_request_min_points'])
-            )
+            ),
+            'show' => $show
         ]);
 
         $this->display('page.alliance.info.tpl');
@@ -635,7 +650,31 @@ class ShowAlliancePage extends AbstractGamePage
         } else {
             $allytext = '';
         }
-
+        $show = true;
+        if (!isModuleAvailable(MODULE_SPYTECH_DEPENDENT_STATS) || $USER['spy_tech'] >= 6 || $USER['authlevel'] > 0) {
+            $fightdata = [
+                'totalfight' => $statisticResult['wons'] + $statisticResult['loos'] + $statisticResult['draws'],
+                'wons' => $statisticResult['wons'],
+                'loos' => $statisticResult['loos'],
+                'draws' => $statisticResult['draws'],
+                'kbmetal' => $statisticResult['kbmetal'],
+                'kbcrystal' => $statisticResult['kbcrystal'],
+                'lostunits' => $statisticResult['lostunits'],
+                'desunits' => $statisticResult['desunits'],
+            ];
+        } else {
+            $fightdata = [
+                'totalfight' => 0,
+                'wons' => 0,
+                'loos' => 0,
+                'draws' => 0,
+                'kbmetal' => 0,
+                'kbcrystal' => 0,
+                'lostunits' => 0,
+                'desunits' => 0,
+            ];
+            $show = false;
+        }
         $this->assign([
             'DiploInfo' => $this->getDiplomatic(),
             'ally_web' => $this->allianceData['ally_web'],
@@ -654,15 +693,16 @@ class ShowAlliancePage extends AbstractGamePage
             'diploRequestsOut' => $LNG['al_diplo_accept_send'] . ' - ' . $DiploCountOut,
             'diploCountIn' => $DiploCountIn,
             'diploCountOut' => $DiploCountOut,
-            'totalfight' => $statisticResult['wons'] + $statisticResult['loos'] + $statisticResult['draws'],
-            'fightwon' => $statisticResult['wons'],
-            'fightlose' => $statisticResult['loos'],
-            'fightdraw' => $statisticResult['draws'],
-            'unitsshot' => pretty_number($statisticResult['desunits']),
-            'unitslose' => pretty_number($statisticResult['lostunits']),
-            'dermetal' => pretty_number($statisticResult['kbmetal']),
-            'dercrystal' => pretty_number($statisticResult['kbcrystal']),
-            'isOwner' => $this->allianceData['ally_owner'] == $USER['id']
+            'totalfight' => $fightdata['totalfight'],
+            'fightwon' => $fightdata['wons'],
+            'fightlose' => $fightdata['loos'],
+            'fightdraw' => $fightdata['draws'],
+            'unitsshot' => pretty_number($fightdata['desunits']),
+            'unitslose' => pretty_number($fightdata['lostunits']),
+            'dermetal' => pretty_number($fightdata['kbmetal']),
+            'dercrystal' => pretty_number($fightdata['kbcrystal']),
+            'isOwner' => $this->allianceData['ally_owner'] == $USER['id'],
+            'show' => $show
         ]);
 
         $this->display('page.alliance.home.tpl');
@@ -1354,51 +1394,10 @@ class ShowAlliancePage extends AbstractGamePage
 
         $db = Database::get();
 
-        $sql = 'SELECT
-			r.`applyID`,
-			r.`time`,
-			r.`text`,
-			u.`username`,
-			u.`register_time`,
-			u.`onlinetime`,
-			u.`galaxy`,
-			u.`system`,
-			u.`planet`,
-			CONCAT_WS(\':\', u.`galaxy`, u.`system`, u.`planet`) AS `coordinates`,
-			@total_fights := u.`wons` + u.`loos` + u.`draws`,
-			@total_fights_percentage := @total_fights / 100,
-			@total_fights AS `total_fights`,
-			u.`wons`,
-			ROUND(u.`wons` / @total_fights_percentage, 2) AS `wons_percentage`,
-			u.`loos`,
-			ROUND(u.`loos` / @total_fights_percentage, 2) AS `loos_percentage`,
-			u.`draws`,
-			ROUND(u.`draws` / @total_fights_percentage, 2) AS `draws_percentage`,
-			u.`kbmetal`,
-			u.`kbcrystal`,
-			u.`lostunits`,
-			u.`desunits`,
-			stat.`tech_rank`,
-			stat.`tech_points`,
-			stat.`build_rank`,
-			stat.`build_points`,
-			stat.`defs_rank`,
-			stat.`defs_points`,
-			stat.`fleet_rank`,
-			stat.`fleet_points`,
-			stat.`total_rank`,
-			stat.`total_points`,
-			p.`name`
-		FROM
-			%%ALLIANCE_REQUEST%% AS r
-		LEFT JOIN
-			%%USERS%% AS u ON r.userId = u.id
-		INNER JOIN
-			%%STATPOINTS%% AS stat ON r.userId = stat.id_owner
-		LEFT JOIN
-			%%PLANETS%% AS p ON p.id = u.id_planet
-		WHERE
-			applyID = :applyID;';
+        $sql = 'SELECT r.`applyID`, r.`time`, r.`text`, u.`id`, u.`register_time`, u.`onlinetime`
+		FROM %%ALLIANCE_REQUEST%% AS r
+		LEFT JOIN %%USERS%% AS u ON r.userId = u.id
+		WHERE applyID = :applyID;';
 
         $applyDetail = $db->selectSingle($sql, [
             ':applyID' => $id
@@ -1410,18 +1409,76 @@ class ShowAlliancePage extends AbstractGamePage
                 'url' => 'game.php?page=alliance&mode=admin&action=manageApply'
             ]]);
         }
+        require_once('includes/pages/game/ShowPlayerCardPage.class.php');
+        $playerCard = new ShowPlayerCardPage();
+        $targetUserId = $applyDetail['id'];
+        $stats = $playerCard->get_stats($targetUserId);
+        $showPlayer = true;
+        $showTotal = true;
+        $showBuild = $playerCard->spyTechAllowed(2, $targetUserId, $USER);
+        $showTech = $playerCard->spyTechAllowed(4, $targetUserId, $USER);
+        $showDef = $playerCard->spyTechAllowed(6, $targetUserId, $USER);
+        $showFleet = $playerCard->spyTechAllowed(6, $targetUserId, $USER);
+        $showBattle = $playerCard->spyTechAllowed(6, $targetUserId, $USER);
+
+        $player_data = $playerCard->get_player_data($stats, $showPlayer);
+        $total_data = $playerCard->get_total_data($stats, $showTotal);
+        $build_data = $playerCard->get_build_data($stats, $showBuild);
+        $tech_data = $playerCard->get_tech_data($stats, $showTech);
+        $def_data = $playerCard->get_def_data($stats, $showDef);
+        $fleet_data = $playerCard->get_fleet_data($stats, $showFleet);
+        $battle_stats = $playerCard->get_battle_stats($stats, $showBattle);
+        $units = $playerCard->get_units($stats, $showBattle);
+        $real_units = $playerCard->get_real_units($stats, $showBattle);
 
         $applyDetail['text'] = nl2br($applyDetail['text']);
-        $applyDetail['kbmetal'] = pretty_number($applyDetail['kbmetal']);
-        $applyDetail['kbcrystal'] = pretty_number($applyDetail['kbcrystal']);
-        $applyDetail['lostunits'] = pretty_number($applyDetail['lostunits']);
-        $applyDetail['desunits'] = pretty_number($applyDetail['desunits']);
 
         $this->assign([
-            'applyDetail' => $applyDetail,
-            'apply_time' => _date($LNG['php_tdformat'], $applyDetail['time'], $USER['timezone']),
+            'applyDetail'   => $applyDetail,
+            'name'			=> $player_data['username'],
+            'homeplanet'	=> $player_data['planetname'],
+            'galaxy'		=> $player_data['galaxy'],
+            'system'		=> $player_data['system'],
+            'planet'		=> $player_data['planet'],
+            'apply_time'    => _date($LNG['php_tdformat'], $applyDetail['time'], $USER['timezone']),
             'register_time' => _date($LNG['php_tdformat'], $applyDetail['register_time'], $USER['timezone']),
-            'onlinetime' => _date($LNG['php_tdformat'], $applyDetail['onlinetime'], $USER['timezone']),
+            'onlinetime'    => _date($LNG['php_tdformat'], $applyDetail['onlinetime'], $USER['timezone']),
+            'playerdestory' => sprintf($LNG['pl_destroy'], $player_data['username']),
+            'realdestory'   => sprintf($LNG['pl_destroy_real'], $player_data['username']),
+            'tech_rank'     => pretty_number($tech_data['tech_rank']),
+            'tech_points'   => pretty_number($tech_data['tech_points']),
+            'build_rank'    => pretty_number($build_data['build_rank']),
+            'build_points'  => pretty_number($build_data['build_points']),
+            'defs_rank'     => pretty_number($def_data['defs_rank']),
+            'defs_points'   => pretty_number($def_data['defs_points']),
+            'fleet_rank'    => pretty_number($fleet_data['fleet_rank']),
+            'fleet_points'  => pretty_number($fleet_data['fleet_points']),
+            'total_rank'    => pretty_number($total_data['total_rank']),
+            'total_points'  => pretty_number($total_data['total_points']),
+            'wons'          => pretty_number($battle_stats['wons']),
+            'loos'          => pretty_number($battle_stats['loos']),
+            'draws'         => pretty_number($battle_stats['draws']),
+            'kbmetal'       => pretty_number($units['kbmetal']),
+            'kbcrystal'     => pretty_number($units['kbcrystal']),
+            'lostunits'     => pretty_number($units['lostunits']),
+            'desunits'      => pretty_number($units['desunits']),
+            'realdesunits'  => pretty_number($real_units["destroyed"]),
+            'reallostunits' => pretty_number($real_units["lost"]),
+            'realmetal'     => pretty_number($real_units["debris_metal"]),
+            'realcrystal'   => pretty_number($real_units["debris_crystal"]),
+            'totalfights'   => pretty_number($battle_stats['totalfights']),
+            'siegprozent'   => round($battle_stats["siegprozent"], 2),
+            'loosprozent'   => round($battle_stats["loosprozent"], 2),
+            'drawsprozent'  => round($battle_stats["drawsprozent"], 2),
+            'tech_percent'  => $tech_data['tech_percent'] == 0 ? '0,00' : round($tech_data['tech_percent'], 2),
+            'build_percent' => $build_data['build_percent'] == 0 ? '0,00' : round($build_data['build_percent'], 2),
+            'defs_percent'  => $def_data['defs_percent'] == 0 ? '0,00' : round($def_data['defs_percent'], 2),
+            'fleet_percent' => $fleet_data['fleet_percent'] == 0 ? '0,00' : round($fleet_data['fleet_percent'], 2),
+            'showBuild'     => $showBuild,
+            'showTech'      => $showTech,
+            'showDef'       => $showDef,
+            'showFleet'     => $showFleet,
+            'showBattle'    => $showBattle,
         ]);
 
         $this->display('page.alliance.admin.detailApply.tpl');

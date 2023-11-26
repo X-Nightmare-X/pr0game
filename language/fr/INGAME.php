@@ -95,8 +95,9 @@ $LNG['banned_message'] = 'Vous avez été banni. Si vous pensez qu\'il s\'agit d
 //----------------------------------------------------------------------------//
 //TOPNAV
 $LNG['tn_player_title'] = 'Empereur';
-$LNG['tn_vacation_mode'] = 'Vous êtes en mode vacances.<br><br>NOTATION : Le mode vacances est automatiquement désactivé après 4 semaines d\'inactivité.';
-$LNG['tn_vacation_mode_until'] = 'Vous êtes en mode vacances jusqu\'à au moins %s heures.<br><br>NOTATION : Le mode vacances est automatiquement désactivé après 4 semaines d\'inactivité.';
+$LNG['tn_vacation_mode'] = 'Vous êtes en mode vacances.';
+$LNG['tn_vacation_mode_until'] = 'Vous êtes en mode vacances jusqu\'à au moins %s heures.';
+$LNG['tn_vacation_mode_kick'] = '<br><br>NOTATION : Le mode vacances est automatiquement désactivé après 4 semaines d\'inactivité.';
 $LNG['tn_delete_mode'] = 'Votre compte %s va être supprimé !';
 
 //----------------------------------------------------------------------------//
@@ -110,6 +111,7 @@ $LNG['lm_buildings'] = 'Bâtiments';
 $LNG['lm_research'] = 'Recherche';
 $LNG['lm_shipshard'] = 'Chantier Spatial';
 $LNG['lm_defenses'] = 'Défense';
+$LNG['lm_repairdock'] = 'Dock de réparation';
 $LNG['lm_resources'] = 'Ressources';
 $LNG['lm_fleettrader'] = 'Ferrailleur Intergalactique';
 $LNG['lm_technology'] = 'Technologie';
@@ -227,6 +229,8 @@ $LNG['gl_planet'] = 'Planète';
 $LNG['gl_name_activity'] = 'Nom (Activité)';
 $LNG['gl_moon'] = 'Lune';
 $LNG['gl_debris'] = 'CDR';
+$LNG['gl_wreckfield_short'] = 'CDÉ';
+$LNG['gl_wreckfield'] = 'Champ d\'épaves';
 $LNG['gl_player_estate'] = 'Joueur (Statut)';
 $LNG['gl_alliance'] = 'Alliance';
 $LNG['gl_actions'] = 'Action';
@@ -437,8 +441,17 @@ $LNG['bd_lvl'] = 'Niveau';
 $LNG['bd_research'] = 'Recherche pour';
 $LNG['bd_shipyard_required'] = 'Vous devez construire un chantier spatial sur cette planète en premier lieu !';
 $LNG['bd_building_shipyard'] = 'L\'usine de Nanites ou le chantier spatial est actuellement en cours de développement!';
+$LNG['bd_deploy'] = 'Déployer';
+$LNG['bd_repairdock_required'] = 'Tu dois d\'abord construire un dock de réparation sur cette planète !';
+$LNG['bd_repairdock_busy'] = 'Le dock de réparation travaille déjà sur une mission !';
+$LNG['bd_repairdock_empty'] = 'Il n\'y a pas de champ d\'épaves !';
+$LNG['bd_repairdock_deploy'] = 'Les navires ont été remis en service !';
+$LNG['bd_max_ships_repair'] = 'Unités maximales récupérables';
+$LNG['bd_repairing'] = 'Réparation en cours';
+$LNG['bd_deployable'] = 'Réparation terminée ! Déploiement automatique en cours :';
 $LNG['bd_available'] = 'Disponible: ';
 $LNG['bd_build_ships'] = 'Construire';
+$LNG['bd_repair_ships'] = 'Réparer';
 $LNG['bd_protection_shield_only_one'] = 'Le bouclier ne peut être construit qu\'une seule fois !';
 $LNG['bd_build_defenses'] = 'Construire';
 $LNG['bd_actual_production'] = 'Production actuelle:';
@@ -924,7 +937,7 @@ $LNG['op_password_changed'] = 'Le Mot de Passe a été changé avec succès<br'
     . '<a href="index.php" target="_top">Retour</a>';
 $LNG['op_username_changed'] = 'Nom d\'Utilisateur modifié avec succès<br><a href="index.php" target="_top">Retour</a>';
 $LNG['op_options_changed'] = 'Options enregistrées.';
-$LNG['op_options_changed_vacation'] = 'Options enregistrées.<br><br>NOTATION : Le mode vacances est automatiquement désactivé après 4 semaines d\'inactivité.';
+$LNG['op_options_changed_vacation'] = 'Options enregistrées.';
 $LNG['op_vacation_mode_active_message'] = 'Le mode vacances est actif ! Vous serez en vacances au moins jusqu\'à : ';
 $LNG['op_end_vacation_mode'] = 'Sortir du mode vacances';
 $LNG['op_save_changes'] = 'Enregistrer les changements';
@@ -1050,6 +1063,7 @@ $LNG['fcm_info'] = 'Information';
 $LNG['fcp_colony'] = 'Colonie';
 $LNG['fgp_require'] = 'Requière : ';
 $LNG['fgf_time'] = 'Temps de construction :';
+$LNG['fgr_time'] = 'Temps de réparation :';
 $LNG['sys_module_inactive'] = 'Module inactif';
 $LNG['sys_refferal_from'] = 'Système';
 $LNG['sys_refferal_title'] = 'Bonus pour les joueurs %s';
@@ -1420,4 +1434,10 @@ $LNG['Achievement_text'] = [
     53 => 'Avoir le niveau le plus élevé dans 5 recherches en même temps.',
     54 => 'Time une attaque sur un joueur actif au 01.01. 00:00:00',
     55 => 'Award spécial',
+];
+
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Visible à partir de la Technologie d\'Espionnage 2!',
+    'level4'  => 'Visible à partir de la Technologie d\'Espionnage 4!',
+    'level6'  => 'Visible à partir de la Technologie d\'Espionnage 6!',
 ];

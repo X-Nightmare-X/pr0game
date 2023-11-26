@@ -31,6 +31,9 @@ $LNG['debree_field_1'] = 'Su an bu alan koordinatlarinda bulunan:';
 $LNG['debree_field_2'] = '.';
 $LNG['sys_moonproba'] = 'Bir Ayin ortaya Cikma sansi: ';
 $LNG['sys_moonbuilt'] = 'Muazzam miktarda serbest metal ve kristal gezegenin etrafında bir uydu oluşturur ve çeker!';
+$LNG['sys_wreckfield'] = 'Savunmanın yok edilen gemilerinden bazıları, birkaç gün boyunca gezegenin yörüngesinde bir enkaz alanı oluşturur.';
+$LNG['sys_wreckfield_added'] = 'Enkaz alanına eklendi:';
+$LNG['sys_mess_spy_repair_order'] = 'Gemiler şu anda onarım iskelesinde onarılıyor.';
 $LNG['sys_attack_title'] = 'Bu Filolar: ';
 $LNG['sys_attack_round'] = 'Round';
 $LNG['sys_attack_attacker_pos'] = 'Saldiran';
@@ -70,7 +73,7 @@ $LNG['sys_mess_spy_seen_at'] = 'ait filo su gezegeninin Yakinlarinda ';
 $LNG['sys_mess_spy_link'] = '<a href="game.php?page=galaxy&amp;galaxy=%3$s&amp;system=%4$s">%1$s (%2$s) [%3$s:%4$s:%5$s]</a>';
 $LNG['sys_mess_spy_ennemyfleet_1'] = 'Gezegen %s\'den gelen düşman casus sondaları %s yakınlarında görüldü.';
 $LNG['sys_mess_spy_ennemyfleet_3'] = 'Ay %s\'den gelen düşman casus sondaları %s yakınlarında görüldü.';
-$LNG['sys_mess_spy_destroyed'] = '<font color="red">Casus sondaniz ile baglanti kurulamiyor! </font>';
+$LNG['sys_mess_spy_destroyed'] = 'Casus sondaniz ile baglanti kurulamiyor!';
 $LNG['sys_adress_planet'] = '[%s:%s:%s]';
 
 $LNG['sys_stat_mess_stay'] = 'Filo Konuslandirma';

@@ -32,39 +32,70 @@ class ShowStatisticsPage extends AbstractGamePage
         $who = HTTP::_GP('who', 1);
         $type = HTTP::_GP('type', 1);
         $range = HTTP::_GP('range', 1);
-
-        switch ($type) {
-            case 2:
+        if (!isModuleAvailable(MODULE_SPYTECH_DEPENDENT_STATS)){
+            switch ($type) {
+                case 2:
+                    $Order = "fleet_rank";
+                    $Points = "fleet_points";
+                    $Rank = "fleet_rank";
+                    $OldRank = "fleet_old_rank";
+                    break;
+                case 3:
+                    $Order = "tech_rank";
+                    $Points = "tech_points";
+                    $Rank = "tech_rank";
+                    $OldRank = "tech_old_rank";
+                    break;
+                case 4:
+                    $Order = "build_rank";
+                    $Points = "build_points";
+                    $Rank = "build_rank";
+                    $OldRank = "build_old_rank";
+                    break;
+                case 5:
+                    $Order = "defs_rank";
+                    $Points = "defs_points";
+                    $Rank = "defs_rank";
+                    $OldRank = "defs_old_rank";
+                    break;
+                default:
+                    $Order = "total_rank";
+                    $Points = "total_points";
+                    $Rank = "total_rank";
+                    $OldRank = "total_old_rank";
+                    break;
+            }
+        } else {
+            //prevent url manipulation
+            $spytech = $USER['spy_tech'];
+            if ($type == 2 && $spytech >= 6){
                 $Order = "fleet_rank";
                 $Points = "fleet_points";
                 $Rank = "fleet_rank";
                 $OldRank = "fleet_old_rank";
-                break;
-            case 3:
+            } elseif ($type == 3 && $spytech >= 4){
                 $Order = "tech_rank";
                 $Points = "tech_points";
                 $Rank = "tech_rank";
                 $OldRank = "tech_old_rank";
-                break;
-            case 4:
+            } elseif ($type == 4 && $spytech >= 2){
                 $Order = "build_rank";
                 $Points = "build_points";
                 $Rank = "build_rank";
                 $OldRank = "build_old_rank";
-                break;
-            case 5:
+            } elseif ($type == 5 && $spytech >= 6){
                 $Order = "defs_rank";
                 $Points = "defs_points";
                 $Rank = "defs_rank";
                 $OldRank = "defs_old_rank";
-                break;
-            default:
+            } else {
                 $Order = "total_rank";
                 $Points = "total_points";
                 $Rank = "total_rank";
                 $OldRank = "total_old_rank";
-                break;
+            }
         }
+        
 
         $RangeList = [];
 
@@ -229,14 +260,51 @@ class ShowStatisticsPage extends AbstractGamePage
             1 => $LNG['st_player'],
             2 => $LNG['st_alliance'],
         ];
-
-        $Selector['type'] = [
-            1 => $LNG['st_points'],
-            2 => $LNG['st_fleets'],
-            3 => $LNG['st_researh'],
-            4 => $LNG['st_buildings'],
-            5 => $LNG['st_defenses'],
-        ];
+        if (!isModuleAvailable(MODULE_SPYTECH_DEPENDENT_STATS) || $USER['authlevel'] == 0){
+            $Selector['type'] = [
+                1 => $LNG['st_points'],
+                2 => $LNG['st_fleets'],
+                3 => $LNG['st_researh'],
+                4 => $LNG['st_buildings'],
+                5 => $LNG['st_defenses'],
+            ];
+        } else {
+            // only show selectable stat types
+            $spytech = $USER['spy_tech'];
+            switch ($spytech) {
+                case 0:
+                case 1:
+                    $Selector['type'] = [
+                        1 => $LNG['st_points'],
+                    ];
+                    break;
+                case 2:
+                case 3:
+                    $Selector['type'] = [
+                        1 => $LNG['st_points'],
+                        2 => $LNG['st_buildings'],
+                    ];
+                    break;
+                case 4:
+                case 5:
+                    $Selector['type'] = [
+                        1 => $LNG['st_points'],
+                        2 => $LNG['st_buildings'],
+                        3 => $LNG['st_researh'],
+                    ];
+                    break;
+                default:
+                    $Selector['type'] = [
+                        1 => $LNG['st_points'],
+                        2 => $LNG['st_fleets'],
+                        3 => $LNG['st_researh'],
+                        4 => $LNG['st_buildings'],
+                        5 => $LNG['st_defenses'],
+                    ];
+                    break;
+            }
+        }
+        
 
         require_once 'includes/classes/Cronjob.class.php';
 

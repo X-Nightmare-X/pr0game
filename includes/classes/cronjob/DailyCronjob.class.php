@@ -24,8 +24,14 @@ class DailyCronJob implements CronjobTask
         $this->clearCache();
         $this->reCalculateCronjobs();
         $this->clearEcoCache();
-        $this->cancelVacation();
-        $this->updateInactiveMines();
+        $sql = "SELECT uni FROM %%CONFIG%%;";
+        $universes = Database::get()->select($sql);
+        foreach ($universes as $universe) {
+            $uni = $universe['uni'];
+            $this->cancelVacation($uni);
+            $this->updateInactiveMines($uni);
+            $this->emptyInactiveAllianceAndBuddy($uni);
+        }
         $this->eraseIPAdresses();
     }
 
@@ -51,29 +57,51 @@ class DailyCronJob implements CronjobTask
         Database::get()->update($sql, [':oneMonth' => TIMESTAMP - TIME_1_MONTH]);
     }
 
-    public function cancelVacation()
+    public function cancelVacation($universe)
     {
-        $sql = "SELECT id, b_tech_planet, b_tech, b_tech_id, b_tech_queue, urlaubs_until, universe FROM %%USERS%%
-				WHERE urlaubs_modus = 1 AND onlinetime < :inactive AND bana = 0;";
-        $players = Database::get()->select($sql, [
-            ':inactive' => TIMESTAMP - INACTIVE_LONG,
-        ]);
-
-        foreach ($players as $player) {
-            PlayerUtil::disable_vmode($player);
-            PlayerUtil::clearPlanets($player);
+        if (isModuleAvailable(MODULE_VMODE_KICK, $universe)) {
+            $sql = "SELECT id, b_tech_planet, b_tech, b_tech_id, b_tech_queue, urlaubs_until, universe FROM %%USERS%%
+                    WHERE urlaubs_modus = 1 AND onlinetime < :inactive AND bana = 0 AND universe = :universe;";
+            $players = Database::get()->select($sql, [
+                ':inactive' => TIMESTAMP - INACTIVE_LONG,
+                ':universe' => $universe
+            ]);
+            foreach ($players as $player) {
+                PlayerUtil::disable_vmode($player);
+                PlayerUtil::clearPlanets($player);
+            }
         }
     }
 
-    public function updateInactiveMines()
+    public function emptyInactiveAllianceAndBuddy($universe) {
+        if (isModuleAvailable(MODULE_EMPTY_BUDDY, $universe)) {
+            $db = Database::get();
+            $sql = "SELECT u.id FROM %%USERS%% AS u WHERE urlaubs_modus = 0 AND onlinetime < :inactive AND universe = :universe;";
+            $players = $db->select($sql, [
+                ':inactive' => TIMESTAMP - INACTIVE,
+                ':universe' => $universe
+            ]);
+            foreach ($players as $player) {
+                $sql = 'SELECT id, ally_id FROM %%USERS%% WHERE id = :userId;';
+                $userData = $db->selectSingle($sql, [
+                    ':userId'   => $player['id']
+                ]);
+                PlayerUtil::removeFromAlliance($userData);
+                PlayerUtil::removeFromBuddy($player['id']);
+            }
+        }
+    }
+
+    public function updateInactiveMines($universe)
     {
         $sql = "UPDATE %%PLANETS%% set metal_mine_porcent = :full, crystal_mine_porcent = :full, deuterium_sintetizer_porcent = :full, solar_plant_porcent = :full, fusion_plant_porcent = :full, solar_satelit_porcent = :full
-				WHERE planet_type = :planet AND id_owner IN ( SELECT u.id FROM %%USERS%% AS u WHERE urlaubs_modus = 0 AND onlinetime < :inactive );";
+				WHERE planet_type = :planet AND id_owner IN (SELECT u.id FROM %%USERS%% AS u WHERE urlaubs_modus = 0 AND onlinetime < :inactive AND universe = :universe);";
 
         Database::get()->update($sql, [
             ':full' 	=> 10, // 10 = 100%
             ':planet'	=> 1,
             ':inactive' => TIMESTAMP - INACTIVE,
+            ':universe' => $universe
         ]);
     }
 }

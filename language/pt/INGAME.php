@@ -110,8 +110,9 @@ $LNG['banned_message'] = 'Foi banido. Se pensa que isto é um mal-entendido, esc
 //----------------------------------------------------------------------------//
 // Topnav
 $LNG['tn_player_title'] = 'Imperador';
-$LNG['tn_vacation_mode'] = 'Encontra-se em modo de férias.<br>>br>PLEASE NOTA: O modo de férias é automaticamente desactivado após 4 semanas de inactividade.';
-$LNG['tn_vacation_mode_until'] = 'Está em modo de férias até, pelo menos, às % horas.<br>>br>PLEASE NOTA: O modo de férias é automaticamente desactivado após 4 semanas de inactividade.';
+$LNG['tn_vacation_mode'] = 'Encontra-se em modo de férias.';
+$LNG['tn_vacation_mode_until'] = 'Está em modo de férias até, pelo menos, às % horas.';
+$LNG['tn_vacation_mode_kick'] = '<br><br>PLEASE NOTA: O modo de férias é automaticamente desactivado após 4 semanas de inactividade.';
 $LNG['tn_delete_mode'] = 'A conta às %s será automaticamente apagada!';
 
 //----------------------------------------------------------------------------//
@@ -125,6 +126,7 @@ $LNG['lm_buildings'] = 'Edificios';
 $LNG['lm_research'] = 'Pesquisas';
 $LNG['lm_shipshard'] = 'Hangar';
 $LNG['lm_defenses'] = 'Defesas';
+$LNG['lm_repairdock'] = 'Doca de reparação';
 $LNG['lm_resources'] = 'Recursos';
 $LNG['lm_fleettrader'] = 'Mercador de Frotas';
 $LNG['lm_technology'] = 'Tecnologias';
@@ -240,6 +242,8 @@ $LNG['gl_planet'] = 'Planeta';
 $LNG['gl_name_activity'] = 'Nome (Atividade)';
 $LNG['gl_moon'] = 'Lua';
 $LNG['gl_debris'] = 'CD';
+$LNG['gl_wreckfield_short'] = 'CN';
+$LNG['gl_wreckfield'] = 'Campo de naufrágio';
 $LNG['gl_player_estate'] = 'Jogador (Estado)';
 $LNG['gl_alliance'] = 'Aliança';
 $LNG['gl_actions'] = 'Ações';
@@ -449,8 +453,17 @@ $LNG['bd_lvl'] = 'Nível';
 $LNG['bd_research'] = 'Pesquisa para';
 $LNG['bd_shipyard_required'] = 'Terás de construir um hangar primeiro!';
 $LNG['bd_building_shipyard'] = 'Não podes construir naves enquanto estiveres a subir o hangar de nível';
+$LNG['bd_deploy'] = 'Implantar';
+$LNG['bd_repairdock_required'] = 'Primeiro tens de construir uma doca de reparação neste planeta!';
+$LNG['bd_repairdock_busy'] = 'A doca de reparação já está a trabalhar num trabalho!';
+$LNG['bd_repairdock_empty'] = 'Não existe um campo de destroços!';
+$LNG['bd_repairdock_deploy'] = 'Os navios voltaram a entrar em serviço!';
+$LNG['bd_max_ships_repair'] = 'Unidades recuperáveis máximas';
+$LNG['bd_repairing'] = 'Reparação em curso';
+$LNG['bd_deployable'] = 'Reparação concluída! Desdobramento automático em:';
 $LNG['bd_available'] = 'Disponível: ';
 $LNG['bd_build_ships'] = 'Construir';
+$LNG['bd_repair_ships'] = 'Reparação';
 $LNG['bd_protection_shield_only_one'] = 'Só podes construir o escudo 1 vez!';
 $LNG['bd_build_defenses'] = 'Construir defesa';
 $LNG['bd_actual_production'] = 'Produção atual:';
@@ -932,7 +945,7 @@ $LNG['op_cant_activate_vacation_mode'] = 'Você não pode ativar o modo férias 
 $LNG['op_password_changed'] = 'Password alterada';
 $LNG['op_username_changed'] = 'Username alterado';
 $LNG['op_options_changed'] = 'Definições guardadas.';
-$LNG['op_options_changed_vacation'] = 'Definições guardadas.<br>>br>PLEASE NOTA: O modo de férias é automaticamente desactivado após 4 semanas de inactividade.';
+$LNG['op_options_changed_vacation'] = 'Definições guardadas.';
 $LNG['op_vacation_mode_active_message'] = 'O modo de férias está activo e acabará em: ';
 $LNG['op_end_vacation_mode'] = 'Finalizar periodo de férias';
 $LNG['op_save_changes'] = 'Guardar alterações';
@@ -1060,6 +1073,7 @@ $LNG['fcm_info'] = 'Informação';
 $LNG['fcp_colony'] = 'Colonia';
 $LNG['fgp_require'] = 'Requerimentos: ';
 $LNG['fgf_time'] = 'Tempo: ';
+$LNG['fgr_time'] = 'Tempo de reparação: ';
 $LNG['sys_module_inactive'] = 'Modulo inativo';
 $LNG['sys_refferal_from'] = 'Sistema';
 $LNG['sys_refferal_title'] = 'Bonus de Jogador %s';
@@ -1432,4 +1446,10 @@ $LNG['Achievement_text'] = [
     53 => 'Ter o nível mais alto em 5 pesquisas ao mesmo tempo.',
     54 => 'Temporizar um ataque a um jogador ativo para 01.01. 00:00:0',
     55 => 'Realização especial',
+];
+
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Visível a partir de Tecnologia de Espionagem 2!',
+    'level4'  => 'Visível a partir de Tecnologia de Espionagem 4!',
+    'level6'  => 'Visível a partir de Tecnologia de Espionagem 6!',
 ];

@@ -105,12 +105,12 @@ $LNG['tech'] = [
     31  => 'Bilimsel Arastirma Laboratuvari',
     33  => 'Terraformer',
     34  => 'Ittifak Deposu',
-    44  => 'Roket Silosu',
-
+    35  => 'Onarım rıhtımı',
     40  => 'Ay Binalari',
     41  => 'Ay Merkez Istasyonu',
     42  => 'Radar Istasyonu',
     43  => 'Sicrama Gecidi',
+    44  => 'Roket Silosu',
 
     100 => 'Arastirmalar',
     106 => 'Casusluk Teknigi',
@@ -223,6 +223,7 @@ $LNG['shortDescription'] = [
         . ' alanini belirli oranda artiriyor.',
     34 => 'Ittifak Deposu savunmaya yardim eden ve yorungede bulunan dost ittifak filolarina yakit aktarilmasini'
         . ' saglar. Ortak Savunma Sistemi (OSS) icin gereklidir.',
+    35 => 'Onarım rıhtımı, gemilerin bir enkaz alanından geri getirilmesini sağlar.',
     41 => 'Atmosfersiz Ay icin belirli krater oyuklarindan teknolojik islemeler sonucu olusur. Her kademe Ayda belirli'
         . ' bir alan acar. Bu alan sayesinde Ay uzerindeki insaatlariniz devam eder.',
     42 => 'Radar mukemmel bir teknolojidir. Radar teknolojisine sahip Aylardan Radar insaat kademesine oranla galaksi'
@@ -412,6 +413,11 @@ $LNG['longDescription'] = [
     34 => 'Ittifak Deposu, savunmaya yardim eden ve yorungede bulunan dost ittifak filolarina yakit aktarilmasini'
         . ' saglar. Ittifak Deposunun gelistirilen her kademesi icin, yorungedeki filolara extra 10000 deuterium'
         . ' aktarilabilir. ',
+    35 => 'Onarım iskelesi, çatışma sonucu enkaz alanından ayrılan, tahrip olmuş gemileri onarma fırsatı sunuyor.'
+        . ' Onarım süresi maksimum 12 saattir ancak gemilerin hizmete girebilmesi en az 30 dakika sürer.<br>Enkaz'
+        . ' sahası oluşturulduğu andan itibaren onarımlara başlamak için 3 gün kaldı. Tamir edilen gemilerin, onarım'
+        . ' tamamlandıktan sonra aktif olarak tekrar hizmete alınması gerekmektedir. Aksi takdirde 3 gün sonra otomatik'
+        . ' olarak tekrar hizmete girecekler.',
     41 => 'Ayda atmosfer olmadigi icin, iskana acilmadan once mutlaka bir ay merkez istasyonu kurulmasi gerekir. Bu'
         . ' istasyon isi, yercekimi ve de oksijen sorununu giderir. Gelisim seviyesi arttikca bu sorunlarin'
         . ' giderilebildigi alan da buyur, yani daha genis bir mekan iskana acilmis olur. Her ay merkez istasyonu'
@@ -651,3 +657,7 @@ $LNG['longDescription'] = [
     911 => 'Energy is needed for the production of every resource.',
     //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 ];
+
+$LNG['spytechStatsDescription']='Seviye 0 ve 1\'de sadece diğer oyuncuların toplam puanları görünür. Seviye 2\'den itibaren diğer oyuncuların bina puanları da görülebilir. '
+    . 'Seviye 4\'ten itibaren araştırma puanları da görüntülenir. Seviye 6\'dan itibaren, gemiler ve savunma puanlarının yanı sıra savaş istatistikleri de görüntülenir.';
+$LNG['secureResources'] = 'Yükseltme seviyesine bağlı olarak, günlük üretimin %1\'i maksimum %10\'a kadar saldırılar sırasında yağmalamaya karşı korunur.';

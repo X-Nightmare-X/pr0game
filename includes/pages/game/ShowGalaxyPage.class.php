@@ -140,7 +140,7 @@ class ShowGalaxyPage extends AbstractGamePage
             'planet_type' 				=> $PLANET['planet_type'],
             'max_planets'               => $config->max_planets,
             'missileSelector'			=> $missileSelector,
-            'hiddenDebris'					=> $hiddenDebris,
+            'hiddenDebris'				=> $hiddenDebris,
             'ShortStatus'				=> [
                 'vacation'					=> $LNG['gl_short_vacation'],
                 'banned'					=> $LNG['gl_short_ban'],

@@ -65,8 +65,10 @@ class ShowRaportPage extends AbstractGamePage
             ];
         }
 
+        $combatReport['wreckfield_created'] = !empty($combatReport['wreckfield']);
         if (!$isDefender) {
             $combatReport['repaired'] = [];
+            $combatReport['wreckfield'] = [];
         }
 
         return $combatReport;
@@ -130,7 +132,7 @@ class ShowRaportPage extends AbstractGamePage
 
         $Info = null;
         if (!$showDetails) {
-            $sql = "SELECT 
+            $sql = "SELECT
 			raport, time,
 			(
 				SELECT

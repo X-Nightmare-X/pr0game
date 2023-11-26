@@ -88,11 +88,12 @@ $LNG['tech'] = [
  31 => 'Laboratorio de investigaci&oacute;n',
  33 => 'Terraformer',
  34 => 'Dep&oacute;sito de la Alianza',
- 44 => 'Silo',
+ 35 => 'Muelle de reparación',
  40 => 'Construcciones Lunares',
  41 => 'Base lunar',
  42 => 'Sensor Phalanx',
  43 => 'Salto cu&aacute;ntico',
+ 44 => 'Silo',
 
 100 => 'Investigaci&oacute;n',
 106 => 'Tecnolog&iacute;a de espionaje',
@@ -186,6 +187,7 @@ $LNG['shortDescription'] = [
 33 => 'El Terraformer aumenta la superficie &uacute;til en el planeta.',
 34 => 'El dep&oacute;sito de la alianza ofrece la posibilidad de repostar a las flotas aliadas que est&eacute;n'
     . ' estacionadas en la &oacute;rbita ayudando a defender.',
+35 => 'El dique de reparación permite restaurar los buques procedentes de un campo de naufragios.',
 41 => 'La luna no tiene atm&oacute;sfera por tanto, una base lunar debe ser construido antes de la liquidaci&oacute;n'
     . ' de otros edificios.',
 42 => 'La matriz del sensor le permite controlar los movimientos de la flota. Cuanto mayor sea la etapa, el mayor es el'
@@ -380,6 +382,12 @@ $LNG['longDescription'] = [
         . ' estacionadas en la &oacute;rbita ayudando a defender. Cada mejora del dep&oacute;sito de alianza permite'
         . ' proveer de 10.000 unidades adicionales de deuterio, por hora, a las flotas estacionadas en la'
         . ' &oacute;rbita.',
+    35 => 'El muelle de reparación ofrece la oportunidad de reparar barcos destruidos que han abandonado un campo de'
+        . ' naufragios como resultado de una pelea. El tiempo de reparación es de un máximo de 12 horas, pero se necesitan'
+        . ' al menos 30 minutos hasta que los barcos puedan ponerse en servicio.<br>Desde el momento en que se crea el campo'
+        . ' de restos del naufragio, quedan 3 días para comenzar las reparaciones. Los buques reparados deben volver a ponerse'
+        . ' en servicio activamente una vez finalizada la reparación. Si esto no ocurre, volverán a estar en servicio'
+        . ' automáticamente al cabo de 3 días.',
     41 => 'Dado que la luna no tiene atm&oacute;sfera, se necesita una base lunar para generar espacio habitable. La'
         . ' base lunar no solo provee el ox&iacute;geno necesario, tambi&eacute;n la gravedad artificial, temperatura y'
         . ' protecci&oacute;n necesarias. Cuanto m&aacute;s se mejore la base lunar, mayor es el &aacute;rea para'
@@ -578,3 +586,7 @@ $LNG['longDescription'] = [
 911 => 'Energy is needed for the production of every resource.',
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 ];
+
+$LNG['spytechStatsDescription']='En los niveles 0 y 1, sólo son visibles los puntos totales de otros jugadores. A partir del nivel 2, también son visibles los puntos de construcción de otros jugadores. '
+    . 'A partir del nivel 4, también se muestran los puntos de investigación. A partir del nivel 6, se muestran las naves y los puntos de defensa, así como las estadísticas de batalla.';
+$LNG['secureResources'] = 'Dependiendo del nivel de mejora, el 1% de la producción diaria hasta un máximo del 10% está protegida contra el saqueo durante los ataques.';

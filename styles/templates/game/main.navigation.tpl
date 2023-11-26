@@ -14,6 +14,9 @@
   {if isModuleAvailable($smarty.const.MODULE_SHIPYARD_DEFENSIVE)}
     <li><a href="game.php?page=shipyard&amp;mode=defense">{$LNG.lm_defenses}</a></li>
   {/if}
+  {if isModuleAvailable($smarty.const.MODULE_REPAIR_DOCK)}
+    <li><a href="game.php?page=repairdock">{$LNG.lm_repairdock}</a></li>
+  {/if}
   {if isModuleAvailable($smarty.const.MODULE_RESEARCH)}
     <li><a href="game.php?page=research">{$LNG.lm_research}</a></li>
   {/if}
@@ -59,7 +62,7 @@
   {/if}
 
   <li><a href="https://discord.gg/jhYYN3yuat" target="copy">Discord</a></li>
-  <!--<li><a href="https://ko-fi.com/pr0game" target="copy">{$LNG.donate}</a></li>-->
+  <li><a href="https://ko-fi.com/pr0game" target="copy">{$LNG.donate}</a></li>
   {if isModuleAvailable($smarty.const.MODULE_SUPPORT)}
     <li><a href="game.php?page=ticket">{$LNG.lm_support}</a></li>
   {/if}
