@@ -258,19 +258,21 @@
                     <a href="game.php?page=shipyard&amp;mode=fleet">{$LNG.lm_shipshard}: {$LNG.ov_free}</a>
                     <br>
                 {/if}
-                {if $buildInfo.repair}
-                  {if $buildInfo.repair.repairing}
-                    <a href="game.php?page=repairdock">{$LNG.lm_repairdock}: </a><span id="repairtext" data-alttext="{$buildInfo.repair['deploy_text']}">{$buildInfo.repair['text']}</span>
-                  {else}
-                    <a href="game.php?page=repairdock">{$LNG.lm_repairdock}: </a><span id="repairtext">{$buildInfo.repair['deploy_text']}</span>
-                  {/if}
-                  <br>
-                  <div class="timerrepair" data-umode="{$umode}" data-time="{$buildInfo.repair['timeleft']}" data-repairing={$buildInfo.repair['repairing']}>
-                    {$buildInfo.repair['starttime']}
-                  </div>
-                {else}
-                    <a href="game.php?page=repairdock">{$LNG.lm_repairdock}: {$LNG.ov_free}</a>
-                    <br>
+                {if isModuleAvailable($smarty.const.MODULE_REPAIR_DOCK)}
+                    {if $buildInfo.repair}
+                        {if $buildInfo.repair.repairing}
+                            <a href="game.php?page=repairdock">{$LNG.lm_repairdock}: </a><span id="repairtext" data-alttext="{$buildInfo.repair['deploy_text']}">{$buildInfo.repair['text']}</span>
+                        {else}
+                            <a href="game.php?page=repairdock">{$LNG.lm_repairdock}: </a><span id="repairtext">{$buildInfo.repair['deploy_text']}</span>
+                        {/if}
+                        <br>
+                        <div class="timerrepair" data-umode="{$umode}" data-time="{$buildInfo.repair['timeleft']}" data-repairing={$buildInfo.repair['repairing']}>
+                            {$buildInfo.repair['starttime']}
+                        </div>
+                    {else}
+                        <a href="game.php?page=repairdock">{$LNG.lm_repairdock}: {$LNG.ov_free}</a>
+                        <br>
+                    {/if}
                 {/if}
                 <br>
                 {$LNG.ov_diameter}: {$planet_diameter} {$LNG.ov_distance_unit} (<a title="{$LNG.ov_developed_fields}">{$planet_field_current}</a> / <a title="{$LNG.ov_max_developed_fields}">{$planet_field_max}</a> {$LNG.ov_fields})
