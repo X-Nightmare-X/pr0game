@@ -35,12 +35,12 @@ class ShowTeamPage extends AbstractGamePage
             ':universe' => $universe,
         ]);
 
-        $idDawnOfTheUwe = "0";
-        $idAdman        = "0";
-        $idHackbrett    = "0";
-        $idMasterspiel  = "0";
-        $idReflexrecon  = "0";
-        $idTimoKa       = "0";
+        $idDawnOfTheUwe     = "0";
+        $idAdman            = "0";
+        $idHackbrett        = "0";
+        $idMasterspiel      = "0";
+        $idReflexrecon      = "0";
+        $idTimoKa           = "0";
 
         foreach ($admins as $user) {
             switch (strtolower($user["username"])){
@@ -69,6 +69,7 @@ class ShowTeamPage extends AbstractGamePage
         $this->assign([
             'idDawnOfTheUwe'		=> $idDawnOfTheUwe,
             'idAdman'		        => $idAdman,
+            'idHackbrett'		    => $idHackbrett,
             'idMasterspiel'		    => $idMasterspiel,
             'idReflexrecon'		    => $idReflexrecon,
             'idTimoKa'		        => $idTimoKa,

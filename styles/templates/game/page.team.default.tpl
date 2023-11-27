@@ -1,6 +1,11 @@
 {block name="title" prepend}Team{/block}
 {nocache}
 {block name="content"}
+<style>
+	content {
+		max-width: unset;
+	}
+</style>
 <h1>{$LNG.team}</h1>
 <h3>{$LNG.teamAktiv}</h3>
 <table>
@@ -15,8 +20,12 @@
 		<th>{$LNG.teamScripte}</th>
 	</tr>
 	<tr>
-		<td><a href="#" onclick="return Dialog.PM({$idDawnOfTheUwe});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
-		<td>DawnOfTheUwe</td>
+		{if $idDawnOfTheUwe != 0}
+			<td><a href="#" onclick="return Dialog.PM({$idDawnOfTheUwe});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
+			<td>DawnOfTheUwe</td>
+		{else}
+			<td colspan="2">DawnOfTheUwe</td>
+		{/if}
 		<td>DawnOfTheUwe</td>
 		<td>{$LNG.teamMod}</td>
 		<td>{$LNG.teamNo}</td>
@@ -26,7 +35,12 @@
 		<td>{$LNG.teamNo}</td>
 	</tr>
 	<tr>
-		<td colspan="2">Hackbrett</td>
+		{if $idHackbrett != 0}
+			<td><a href="#" onclick="return Dialog.PM({$idHackbrett});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
+			<td>Hackbrett</td>
+		{else}
+			<td colspan="2">Hackbrett</td>
+		{/if}
 		<td>Hackbrett</td>
 		<td>{$LNG.teamMod}</td>
 		<td>{$LNG.teamYes}</td>
@@ -35,9 +49,13 @@
 		<td>{$LNG.teamYes}</td>
 		<td>{$LNG.teamNo}</td>
 	</tr>
-	<tr>
-		<td><a href="#" onclick="return Dialog.PM({$idAdman});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
-		<td>Adman</td>
+	<tr>		
+		{if $idAdman != 0}
+			<td><a href="#" onclick="return Dialog.PM({$idAdman});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
+			<td>Adman</td>
+		{else}
+			<td colspan="2">Adman</td>
+		{/if}
 		<td>Hyman</td>
 		<td>{$LNG.teamDev}, {$LNG.teamEmergency}, {$LNG.teamMod}</td>
 		<td>{$LNG.teamNo}</td>
@@ -47,8 +65,12 @@
 		<td>{$LNG.teamYes}</td>
 	</tr>
 	<tr>
-		<td><a href="#" onclick="return Dialog.PM({$idMasterspiel});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
-		<td>Masterspiel</td>
+		{if $idMasterspiel != 0}
+			<td><a href="#" onclick="return Dialog.PM({$idMasterspiel});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
+			<td>Masterspiel</td>
+		{else}
+			<td colspan="2">Masterspiel</td>
+		{/if}
 		<td>Masterspiel</td>
 		<td>{$LNG.teamMod}</td>
 		<td>{$LNG.teamNo}</td>
@@ -58,8 +80,12 @@
 		<td>{$LNG.teamNo}</td>
 	</tr>
 	<tr>
-		<td><a href="#" onclick="return Dialog.PM({$idReflexrecon});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
-		<td>reflexrecon</td>
+		{if $idReflexrecon != 0}
+			<td><a href="#" onclick="return Dialog.PM({$idReflexrecon});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
+			<td>reflexrecon</td>
+		{else}
+			<td colspan="2">reflexrecon</td>
+		{/if}
 		<td>reflexrecon</td>
 		<td>{$LNG.teamDev}, {$LNG.teamEmergency}, {$LNG.teamMod}</td>
 		<td>{$LNG.teamNo}</td>
@@ -69,8 +95,12 @@
 		<td>{$LNG.teamNo}</td>
 	</tr>
 	<tr>
-		<td><a href="#" onclick="return Dialog.PM({$idTimoKa});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
-		<td>Timo_Ka</td>
+		{if $idTimoKa != 0}
+			<td><a href="#" onclick="return Dialog.PM({$idTimoKa});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
+			<td>Timo_Ka</td>
+		{else}
+			<td colspan="2">Timo_Ka</td>
+		{/if}
 		<td>Timo_Ka</td>
 		<td>{$LNG.teamDev}, {$LNG.teamEmergency}, {$LNG.teamMod}</td>
 		<td>{$LNG.teamNo}</td>
@@ -82,7 +112,7 @@
 </table>
 
 <h3>{$LNG.teamAlumni}</h3>
-<p>{$LNG.teamAlumniLong}: atain, ava, Axel auf dem Floß, Eichhorn, Captain Mrgl, Fionera, Klarname, klk & Slippy</p>
+<p>{$LNG.teamAlumniLong}: atain, ava, Axel auf dem Floß, Eichhorn, Captain Mrgl, Fionera, Klarname & Slippy</p>
 
 <h4>{$LNG.teamLegend}:</h4>
 <table>
