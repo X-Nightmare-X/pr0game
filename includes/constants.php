@@ -389,3 +389,5 @@ define('NOT_IMPLEMENTED_ACHIEVEMENTS', [
  define('REAL_FIGHT', 1);
  define('SIM_FIGHT', 2);
  define('EXPO_FIGHT', 3);
+ 
+ define('MAXPLANETPICTURECOUNT', 58);
