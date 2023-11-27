@@ -15,6 +15,8 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
+$planetPictures = ['trocken' => mt_rand(1, 10), 'wuesten' => mt_rand(1, 4), 'dschjungel' => mt_rand(1, 10), 'normaltemp' => mt_rand(1, 7), 'wasser' => mt_rand(1, 9), 'eis' => mt_rand(1, 10), 'gas' => mt_rand(1, 8)];
+
 $planetData	= [
     1	=> ['temp' => mt_rand(220, 260), 'avgTemp' => 240,	'fields' => mt_rand(96, 172), 'avgFields' => 134,	'image' => $planetPictures],
     2	=> ['temp' => mt_rand(170, 210), 'avgTemp' => 190,	'fields' => mt_rand(104, 176), 'avgFields' => 140,	'image' => $planetPictures],
@@ -32,5 +34,3 @@ $planetData	= [
     14	=> ['temp' => mt_rand(-90, -50), 'avgTemp' => -70,	'fields' => mt_rand(100, 168), 'avgFields' => 134,	'image' => $planetPictures],
     15	=> ['temp' => mt_rand(-130, -90), 'avgTemp' => -110,	'fields' => mt_rand(90, 164), 'avgFields' => 127,	'image' => $planetPictures]
 ];
-
-$planetPictures = ['trocken' => mt_rand(1, 10), 'wuesten' => mt_rand(1, 4), 'dschjungel' => mt_rand(1, 10), 'normaltemp' => mt_rand(1, 7), 'wasser' => mt_rand(1, 9), 'eis' => mt_rand(1, 10), 'gas' => mt_rand(1, 8)];
