@@ -24,14 +24,14 @@ class DailyCronJob implements CronjobTask
         $this->clearCache();
         $this->reCalculateCronjobs();
         $this->clearEcoCache();
-        $sql = "SELECT uni FROM %%CONFIG%%;";
-        $universes = Database::get()->select($sql);
+        $universes = Universe::availableUniverses();
         foreach ($universes as $universe) {
             $uni = $universe['uni'];
             $this->cancelVacation($uni);
             $this->updateInactiveMines($uni);
             $this->emptyInactiveAllianceAndBuddy($uni);
         }
+        $this->cleanReports($universes);
         $this->eraseIPAdresses();
     }
 
@@ -103,6 +103,50 @@ class DailyCronJob implements CronjobTask
             ':inactive' => TIMESTAMP - INACTIVE,
             ':universe' => $universe
         ]);
+    }
+
+    /**
+     * Deletes old battle reports depending on config settings and unit size for battle hall
+     *
+     * @param array $universes
+     * @return void
+     */
+    private function cleanReports(array $universes)
+    {
+        $db = Database::get();
+
+        $config	= Config::get(ROOT_UNI);
+        $del_before = TIMESTAMP - ($config->del_oldstuff * 86400); // Global setting: Delete messages/reports after X days
+
+        foreach ($universes as $universe) {
+            // Select lowest units to keep per universe
+            $sql = "SELECT `units` FROM %%TOPKB%% WHERE `universe` = :universe ORDER BY `units` DESC LIMIT 1 OFFSET 150;";
+            $units = $db->selectSingle($sql, [
+                ':universe' => $universe,
+            ], 'units');
+
+            if (!empty($units)) {
+                // Delete lower battlehall KBs
+                $sql = "DELETE FROM %%TOPKB%% WHERE `universe` = :universe AND `units` < :units;";
+                $db->delete($sql. [
+                    ':universe' => $universe,
+                    ':units' => $units,
+                ]);
+            }
+        }
+
+        // Delete simulations/expofights older than 3 days and KBs older than config setting and not in Battlehall
+        $sql = "DELETE FROM %%RW%% WHERE 
+            ( `defender` = '' AND `time` < :threeDays ) OR
+            ( `defender` != '' AND `time` < :oldStuff AND `rid` NOT IN ( SELECT `rid` FROM %%TOPKB%% ) );";
+        $db->delete($sql, [
+            ':threeDays' => TIMESTAMP - TIME_72_HOURS, // Keep only last 3 days of sims/pirate/aliens
+            ':oldStuff' => TIMESTAMP - $del_before,
+        ]);
+
+        // Delete unused user_to_topkb
+        $sql = "DELETE FROM %%TOPKB_USERS%% WHERE `rid` NOT IN ( SELECT `rid` FROM %%TOPKB%% );";
+        $db->delete($sql);
     }
 }
 
