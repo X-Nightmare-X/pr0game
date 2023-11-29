@@ -149,7 +149,7 @@
                 {if !$Name@first}
                     &nbsp;&bull;&nbsp;
                 {/if}
-                <a href="#" onclick="return Dialog.PM({$ID})"><a class="colorPositive">{$Name}</a>
+                <a class="colorPositive" href="#" onclick="return Dialog.PM({$ID})">{$Name}</a>
             {/foreach}
             <br><br>
             {$LNG.ov_points} {$rankInfo}
