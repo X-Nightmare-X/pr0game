@@ -533,16 +533,20 @@ class PlayerUtil
             array_push( $planetPictures, $value["image"]);
         }
 
+        $enabledAllPlanetPictures = $config->all_planet_pictures;
         $maxImages = 0;
         do {
+            if ($enabledAllPlanetPictures){
+                $planetData[$dataIndex]['image'] = getAllPlanetPictures();
+            }
             $imageNames = array_keys($planetData[$dataIndex]['image']);
             $imageNameType = $imageNames[array_rand($imageNames)];
             $imageName = $imageNameType;
             $imageName .= 'planet';
             $imageName .= $planetData[$dataIndex]['image'][$imageNameType] < 10 ? '0' : '';
             $imageName .= $planetData[$dataIndex]['image'][$imageNameType];
-            $maxImages = $maxImages + 1;
-        } while (in_array($imageName, $planetPictures) && ($maxImages < MAXPLANETPICTURECOUNT) );
+            $maxImages++;
+        } while (in_array($imageName, $planetPictures) && ($maxImages < MAXPLANETPICTURECOUNT) && ($enabledAllPlanetPictures));
 
         if (empty($name)) {
             $name = $isHome ? $LNG['fcm_mainplanet'] : $LNG['fcp_colony'];
