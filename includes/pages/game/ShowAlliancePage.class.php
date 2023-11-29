@@ -107,7 +107,16 @@ class ShowAlliancePage extends AbstractGamePage
         $USER =& Singleton()->USER;
         $allianceId = HTTP::_GP('id', 0);
 
-        $statisticData = [];
+        $statisticData = [
+            'totalfight' => 0,
+            'fightwon' => 0,
+            'fightlose' => 0,
+            'fightdraw' => 0,
+            'unitsshot' => 0,
+            'unitslose' => 0,
+            'dermetal' => 0,
+            'dercrystal' => 0,
+        ];
         $diplomaticmaticData = false;
         $diplomats = false;
 
@@ -147,16 +156,6 @@ class ShowAlliancePage extends AbstractGamePage
                     'dercrystal' => pretty_number($statisticResult['kbcrystal']),
                 ];
             } else {
-                $statisticData = [
-                    'totalfight' => 0,
-                    'fightwon' => 0,
-                    'fightlose' => 0,
-                    'fightdraw' => 0,
-                    'unitsshot' => 0,
-                    'unitslose' => 0,
-                    'dermetal' => 0,
-                    'dercrystal' => 0,
-                ];
                 $show = false;
             }
         }
