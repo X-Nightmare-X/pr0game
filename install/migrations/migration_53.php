@@ -8,18 +8,21 @@ set_include_path(ROOT_PATH);
 
 require 'includes/common.php';
 
+// requires additional testing
+exit;
+
 try {
-    createTempTables();
-    processSimulations();
-    processRecent();
+    // createTempTables();
+    // processSimulations();
+    // processRecent();
     
-    $unis = Universe::availableUniverses();
-    foreach($unis as $uni) {
-        processTop($uni);
-    }
+    // $unis = Universe::availableUniverses();
+    // foreach($unis as $uni) {
+    //     processTop($uni);
+    // }
     
-    deleteTables();
-    renameTempTables();
+    // deleteTables();
+    // renameTempTables();
 } catch (\Throwable $th) {
     error_log('Error: ' . $th->getMessage() . '.');
 }
