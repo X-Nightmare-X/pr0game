@@ -392,7 +392,7 @@ class MissionFunctions
     }
 
     /**
-     * Return if the Battlereport has more destroyed Units tham the given limit.
+     * Return if the Battlereport has more destroyed Units than the given limit.
      * 
      * @param int $units
      * @param int $universe
