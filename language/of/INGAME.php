@@ -1507,3 +1507,29 @@ $LNG['spytech_playercard'] = [
     'level4'  => 'Sichdbar ab Schbionagetechnik 4!',
     'level6'  => 'Sichdbar ab Schbionagetechnik 6!',
 ];
+//----------------------------------------------------------------------------//
+//Team
+$LNG['team'] =                      'Das Deam';
+$LNG['teamAktiv'] =                 'Agdif';
+$LNG['teamIngameName'] =            'Ingame Name';
+$LNG['teamDiscordName'] =           'Lord gorea Name';
+$LNG['teamRole'] =                  'Rolle';
+$LNG['teamPlayer'] =                'Schbieler';
+$LNG['teamAdmin'] =                 'Admin';
+$LNG['teamAdminLong'] =             'Had Dsugriff uff Sonderfeadures dsum Adminisdrierne des Schbiels';
+$LNG['teamDatabase'] =              'Dadenbangdsugang';
+$LNG['teamTickets'] =               'Diggeddsugang';
+$LNG['teamTicketsLong'] =           'Gann bei allne eröffnedne Diggeds midlesne';
+$LNG['teamScripte'] =               'Sgribde überbrüfne';
+$LNG['teamScripteLong'] =           'Bewerded die fon den Schbielern ersdelldne Sgribde damid des Deam<br>endscheidne gann, ob des Sgribd mid den Feadures erlaubd werdne derf';
+$LNG['teamMod'] =                   'Moderador';
+$LNG['teamModLong'] =               'Bearbeided eurer Fällebrobleme<br>fersuchd/ für a faires Schbielerlebnis dsu sorgen<br>drägd bei Besdrafungne die Ferandwordung<br>had Dsugriff uff Discordbereich- für Moddisgussionen<br>had- Dsugriff uff Discordbereich- für Defdisgussionen<br>had- Dsugriff uff Discordbereich- für Diggedbesbrechungne mid Defs';
+$LNG['teamEmergency'] =             'Nodfalldeam';
+$LNG['teamEmergencyLong'] =         'Erhäld fon den Usern \'nen Bing, wen es dsu Serferausfällne gommd';
+$LNG['teamDev'] =                   'Endwiggler';
+$LNG['teamDevLong'] =               'Bflegd und endwiggeld des Brojegd weider<br>had Dsugriff uff Discordbereich- für Defdisgussionen<br>had- Dsugriff uff Discordbereich- für Diggedbesbrechungne mid Mods';
+$LNG['teamNo'] =                    'Nein';
+$LNG['teamYes'] =                   'Ja';
+$LNG['teamAlumni'] =                'Ehemalige, Inagdife Deammidglieder';
+$LNG['teamAlumniLong'] =            'Wir bedangne uns gands herdslich bei';
+$LNG['teamLegend'] =                'Legende, Erglärung der Rollne und Rechde';

@@ -1463,3 +1463,29 @@ $LNG['spytech_playercard'] = [
     'level4'  => 'Casusluk Teknigi 4\'den görüntülenebilir!',
     'level6'  => 'Casusluk Teknigi 6\'den görüntülenebilir!',
 ];
+//----------------------------------------------------------------------------//
+//Team
+$LNG['team'] =                      'Ekip';
+$LNG['teamAktiv'] =                 'Varlık';
+$LNG['teamIngameName'] =            'Oyun İçi İsim';
+$LNG['teamDiscordName'] =           'Discord Adı';
+$LNG['teamRole'] =                  'Rol';
+$LNG['teamPlayer'] =                'Oyuncu';
+$LNG['teamAdmin'] =                 'Admin';
+$LNG['teamAdminLong'] =             'Oyunu yönetmek için özel özelliklere erişimi vardır';
+$LNG['teamDatabase'] =              'Veritabanı erişimi';
+$LNG['teamTickets'] =               'Bilet erişimi';
+$LNG['teamTicketsLong'] =           'Açılan tüm biletleri okuyabilir';
+$LNG['teamScripte'] =               'Komut dosyalarını kontrol etme';
+$LNG['teamScripteLong'] =           'Oyuncular tarafından oluşturulan komut dosyalarını değerlendirir, böylece Takım<br>komut dosyasına özelliklerle izin verip vermeyeceğine karar verebilir';
+$LNG['teamMod'] =                   'Moderatör';
+$LNG['teamModLong'] =               'Vakalarınızı/sorunlarınızı ele almak<br>Adil bir oyun deneyimi sağlamaya çalışır<br>Cezalardan sorumludur<br>Mod tartışmaları için Discord bölümüne erişimi vardır<br>Geliştirici tartışmaları için Discord bölümüne erişimi vardır<br>Geliştiricilerle bilet toplantıları için Discord bölümüne erişimi vardır';
+$LNG['teamEmergency'] =             'Acil Durum Ekibi';
+$LNG['teamEmergencyLong'] =         'Sunucu kesintileri meydana geldiğinde kullanıcılardan bir ping alır';
+$LNG['teamDev'] =                   'Geliştirici';
+$LNG['teamDevLong'] =               'Projeyi sürdürür ve geliştirir<br>Geliştirici tartışmaları için Discord bölümüne erişimi vardır<br>Modlarla bilet toplantıları için Discord bölümüne erişimi vardır';
+$LNG['teamNo'] =                    'Hayır';
+$LNG['teamYes'] =                   'Ve';
+$LNG['teamAlumni'] =                'Eski / Aktif Olmayan Ekip Üyeleri';
+$LNG['teamAlumniLong'] =            'Teşekkür ederiz';
+$LNG['teamLegend'] =                'Açıklama, Rollerin / Hakların Açıklaması';

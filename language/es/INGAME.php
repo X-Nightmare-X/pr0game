@@ -1454,3 +1454,29 @@ $LNG['spytech_playercard'] = [
     'level4'  => 'Visible desde Tecnolog&iacute;a de espionaje 4!',
     'level6'  => 'Visible desde Tecnolog&iacute;a de espionaje 6!',
 ];
+//----------------------------------------------------------------------------//
+//Team
+$LNG['team'] =                      'El equipo';
+$LNG['teamAktiv'] =                 'Activo';
+$LNG['teamIngameName'] =            'Nombre en el juego';
+$LNG['teamDiscordName'] =           'Nombre de discordia';
+$LNG['teamRole'] =                  'Papel';
+$LNG['teamPlayer'] =                'Jugador';
+$LNG['teamAdmin'] =                 'Administrador';
+$LNG['teamAdminLong'] =             'Tiene acceso a funciones especiales para administrar el juego';
+$LNG['teamDatabase'] =              'Acceso a la base de datos';
+$LNG['teamTickets'] =               'Acceso a las entradas';
+$LNG['teamTicketsLong'] =           'Puede leer todos los tickets abiertos';
+$LNG['teamScripte'] =               'Comprobación de scripts';
+$LNG['teamScripteLong'] =           'Evalúa los scripts creados por los jugadores para que el Equipo<br>pueda decidir si permite el script con las características';
+$LNG['teamMod'] =                   'Presentador';
+$LNG['teamModLong'] =               'Manejo de sus casos/problemas<br>Intenta proporcionar una experiencia de juego justa<br>Es responsable de los castigos<br>Tiene acceso a la sección de Discord para discusiones de mods<br>Tiene acceso a la sección de Discord para discusiones de desarrolladores<br>Tiene acceso a la sección de Discord para reuniones de tickets con desarrolladores';
+$LNG['teamEmergency'] =             'Equipo de emergencia';
+$LNG['teamEmergencyLong'] =         'Recibe un ping de los usuarios cuando se producen interrupciones del servidor';
+$LNG['teamDev'] =                   'Desarrollador';
+$LNG['teamDevLong'] =               'Mantiene y desarrolla el proyecto<br>Tiene acceso a la sección de Discord para discusiones de desarrollo<br>Tiene acceso a la sección de Discord para reuniones de tickets con mods';
+$LNG['teamNo'] =                    'No';
+$LNG['teamYes'] =                   'Sí';
+$LNG['teamAlumni'] =                'Miembros del equipo antiguos / inactivos';
+$LNG['teamAlumniLong'] =            'Nos gustaría agradecer';
+$LNG['teamLegend'] =                'Leyenda, Explicación de Roles / Derechos';
