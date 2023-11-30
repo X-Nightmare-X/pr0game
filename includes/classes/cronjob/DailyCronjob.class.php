@@ -31,7 +31,7 @@ class DailyCronJob implements CronjobTask
             $this->updateInactiveMines($uni);
             $this->emptyInactiveAllianceAndBuddy($uni);
         }
-        $this->cleanReports($universes);
+        // $this->cleanReports($universes);
         $this->eraseIPAdresses();
     }
 
