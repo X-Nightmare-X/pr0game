@@ -4,6 +4,20 @@
 <!--[if IE 8 ]>    <html lang="{$lang}" class="no-js ie8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="{$lang}" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="{$lang}" class="no-js"> <!--<![endif]-->
+<style>
+  .colorPositive {
+    color: #00ff00;
+  }
+
+  .colorNegative {
+    color: #ff0000; !important;
+  }
+
+  .colorNeutral {
+    color: #ffffff;
+  }
+</style>
+
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="styles/theme/nova/formate.css?v={$REV}">
@@ -28,7 +42,7 @@
 	<script src="scripts/base/jquery.fancybox.js?v={$REV}"></script>
 	<script src="scripts/login/main.js"></script>
 	<script>{if isset($code)}var loginError = {$code|json_encode};{/if}</script>
-	{block name="script"}{/block}	
+	{block name="script"}{/block}
 </head>
 <body id="{$smarty.get.page|default:'overview'}" class="{$bodyclass}">
 	<div id="page">
