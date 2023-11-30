@@ -390,4 +390,30 @@ class MissionFunctions
             ':userId' => $user,
         ]);
     }
+
+    /**
+     * Return if the Battlereport has more destroyed Units than the given limit.
+     * 
+     * @param int $units
+     * @param int $universe
+     * 
+     * @return boolean
+     */
+    public function checkForTopKB($units, $universe)
+    {
+        require_once 'includes/classes/Database.class.php';
+        $db = Database::get();
+        $sql = 'SELECT units FROM %%TOPKB%% WHERE universe = :universe and memorial = 0 LIMIT :topKbLimLow, 1;';
+        $topKbUnits = $db->selectSingle($sql, [
+            ':universe'     => $universe,
+            ':topKbLimLow'  => TOPKB_LIMIT-1,
+        ], 'units');
+
+        $result = false;
+        if ($units > $topKbUnits) {
+            $result = true;
+        }
+
+        return $result;
+    }
 }
