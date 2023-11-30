@@ -30,12 +30,14 @@ function GenerateReport($combatResult, $reportInfo, $battleType)
     $DATA['moon']	= [
         'moonName'				=> $reportInfo['moonName'],
         'moonChance'			=> (int) $reportInfo['moonChance'],
+        'additionalChance'		=> (int) $reportInfo['additionalChance'],
         'moonDestroyChance'		=> (int) $reportInfo['moonDestroyChance'],
         'moonDestroySuccess'	=> (int) $reportInfo['moonDestroySuccess'],
         'fleetDestroyChance'	=> (int) $reportInfo['fleetDestroyChance'],
         'fleetDestroySuccess'	=> (int) $reportInfo['fleetDestroySuccess']
     ];
     $DATA['repaired'] = $combatResult['repaired'];
+    $DATA['wreckfield'] = $combatResult['wreckfield'];
     if (isset($reportInfo['additionalInfo'])) {
         $DATA['additionalInfo'] = $reportInfo['additionalInfo'];
     } else {
@@ -109,7 +111,7 @@ function GenerateReport($combatResult, $reportInfo, $battleType)
             $DATA['rounds'][$Round]['info']	= [null, null, null, null];
         }
     }
-    
+
     if ($battleType == REAL_FIGHT) {
         require_once 'includes/classes/achievements/BattleAchievement.class.php';
 		$db = Database::get();

@@ -88,6 +88,7 @@ $LNG['tech'] = [
      31 => 'Forschungslabor',
      33 => 'Derraformer',
      34 => 'Allianzdebot',
+     35 => 'Rebaradurdogg',
      40 => 'Mondgebäudne',
      41 => 'Basisstützpungt',
      42 => 'Sensorenbhalanx',
@@ -179,6 +180,7 @@ $LNG['shortDescription'] = [
      33 => 'Der Derraformer vergrößerd die nudzbare Fläche uff Blaneten.',
      34 => 'Das Allianzdebot bieded die Möglichgeit, befreundede Floddne, die bei der Werteidigung helfne und im Orbid'
          . ' schdehne, mid Dreibstoff zu wersorgen. Agtuell Sinnlos hädix8',
+     35 => 'Das Rebaradurdogg ermöglichd Schiffe aus einem Wraggfeld wiederherdsusdellne.',
      41 => 'Ein Mond verfügd über geinerlei Atmosbhäre, deshalb muss wor der Besiedlung ne Mondbasis errichtet'
          . ' werdne.',
      42 => 'Die Sensorbhalanx erlaubd es, Floddenbewegungne zu beobachdne. Je höher die Ausbauschdufe, deschdo größer ischd'
@@ -336,6 +338,11 @@ $LNG['longDescription'] = [
      34 => 'Ein absolud unnudzes Gebäude. Etzala Genauso wie der Grieg von Audism gecher Aldschauerberg alda.'
          . ' Nichd durchdachd, ineffiziend und langweilig hätt ich gsachd. Ganz im Gegendeil zum'
          . ' Regrutierungsbüro für Uni2! Bidde hier endlang:  <a href="https://discord.gg/9xwPT77HnN </a>',
+     35 => 'Das Rebaradurdogg bieded die Möglichgeid dsersdörde Schiffe, die in Folge eines Gambfes a Wraggfeld hinderlassne habne, dsu'
+         . ' rebarierne. Die Rebaradurdseid bedrägd maggsimal 12h, aber es dauerd mindesdens 30min bis die Schiffe in Diensd gesdelld werdne'
+         . ' gönnen<br>ab und alles. Endsdehung des Wraggfeldes bleibne 3 Dage Dseid um mid der Rebaradur dsu beginnene. Die rebarierdne Schiffe'
+         . ' müssne nach Ablauf der Rebaradur agdif widde in Diensd gesdelld werdne des bascht scho. Geschiehd dies ned, gehne sie nach 3 Dagne'
+         . ' audomadisch widda in Diensd.',
      41 => 'Ein Mond verfügd über geinerlei Atmosbhäre, deshalb muss wor der Besiedlung ne Mondbasis errichded '
          . ' werdne. Diese sorgd für die nödige Ademlufd, Gravidadion und Wärme. Etzala Je höher die Ausbauschdufe der Mondbasis '
          . ' isd, umso größer is die Fläche die mid einer Biosbhäre versorgd wird alda. Bro Mondbasislewel gönnene 3 Felder '
@@ -614,3 +621,7 @@ $LNG['longDescription'] = [
         . ' die Gravidadion beeinflussne und dadurch zerschdörerische Waffne baune. Allerdings is dies bis heude noch'
         . ' gaum jemandne gelungne .',
 ];
+
+$LNG['spytechStatsDescription']='Mid Lefel 0 und 1 sind nur die Gesamdbungde anderer Schbieler sichdbar. Ab Lefel 2 werdne dsusäddslich auch die Gebäudebungde anderer Schbieler sichdbar. '
+    . 'Ab Lefel 4 werdne dann auch die Forschungsbungde angedseigd hätt i gsachd. Ab Lefel 6 werdne die Schiffe und Ferdeidigungsbungde angedseigd sowie dsusäddslich die Gambfsdadisdigne.';
+$LNG['secureResources'] = 'Je Ausbausdufe werdne 1% der Dagesbrodugdion bis dsu einem Maggsimum fon 10% for Blünderung bei Angriffne geschüddsd.';

@@ -337,6 +337,10 @@ $LNG['se_deuterium_start'] = 'Deuterium Baslangic';
 $LNG['se_deuterium_start_info'] = 'Oyuncunun oyuna basladigindaki Deuterium miktari.';
 $LNG['se_debris_moon'] = 'Ay harabesini sil';
 $LNG['se_debris_moon_info'] = 'Ay olustugu zaman harabe kabolsun mu';
+$LNG['se_moonSizeFactor'] = 'Ay boyutu faktörü';
+$LNG['se_moonSizeFactor_info'] = 'Ay boyutunu etkileyen faktör, 1 = varsayılan';
+$LNG['se_cascading_moon_chance'] = 'Basamaklı ay şansı';
+$LNG['se_cascading_moon_chance_info'] = 'Maksimum ay şansı ile başarısız Ay denemesi başına eklenen ek ay şansı. Yalnızca bir hesaptaki ilk ay için geçerlidir. 0 = kapalı';
 $LNG['se_buildlist'] = 'Insa/Uretim/Arastirma Listesi';
 $LNG['se_timzone'] = 'Zaman Dilimi';
 $LNG['se_alliance_create_min_points'] = 'Ittifak kurmak icin gereken min. Puan';
@@ -390,6 +394,13 @@ $LNG['modul_37'] = 'Istatistik banneri';
 $LNG['modul_26'] = 'Ara';
 $LNG['modul_27'] = 'Destek/Ticket';
 $LNG['modul_28'] = 'Teknoloji';
+$LNG['modul_47'] = 'Casus Teknolojisine Bağlı İstatistikler';
+$LNG['modul_48'] = 'Onarım rıhtımı';
+$LNG['modul_49'] = 'Güvenli kaynaklar';
+$LNG['modul_50'] = 'Tatil modundan çıkma';
+$LNG['modul_51'] = 'Buddy ve Alliance\'dan tekme';
+$LNG['modul_52'] = 'Stats.json';
+
 $LNG['mod_module'] = 'Moduller';
 $LNG['mod_info'] = 'Oyundaki Moduller';
 $LNG['mod_active'] = 'Su an Aktif';
@@ -1231,3 +1242,11 @@ $LNG['up_chmod_error'] = 'Dosyayi degistirme yetkisi yok : \n\n';
 $LNG['up_need_curl'] = 'Hata: CURL girilmemis.<br> Augame guncellemeleri icin cURL girmelisiniz';
 $LNG['up_no_xml_ext'] = 'Hata: XML Parser girilmemis.<br>Augame server otomatik bakim icin XML Parser girmelisiniz.';
 $LNG['up_offline'] = 'Sunucuyla baglanti kurulamadi';
+
+//Reshuffle Planets
+$LNG['rp_header'] = 'Gezegenleri yeniden karıştırın';
+$LNG['rp_explain'] = 'Gönder\'e tıkladıktan sonra, lütfen açılır pencere görünene kadar bekleyin. Yeniden konumlandırma birkaç saniye sürebilir!';
+$LNG['rp_done'] = 'Gezegenler başarıyla yeniden karıştırıldı';
+$LNG['rp_planet_error'] = 'Oyuncu başına birden fazla gezegen var!';
+$LNG['rp_universe_error'] = 'Evren tamamen kapalı değildir!';
+$LNG['rp_rights_error'] = 'Yönetici hakları yok!';

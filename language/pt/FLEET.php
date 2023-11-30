@@ -35,6 +35,9 @@ $LNG['debree_field_2'] = 'A flutuar na orbita do planeta.';
 $LNG['sys_moonproba'] = 'A probabilidade de criação de lua devido aos destroços do combate é de';
 $LNG['sys_moonbuilt'] = 'Após o combate, a grande quantidade de metal e cristal deixados nos destroços atraem-se,'
     . ' devido ao efeito gravitacional, e formam lentamente um satélite lunar na órbita do planeta.';
+$LNG['sys_wreckfield'] = 'Algumas das naves destruídas do defensor formam um campo de destroços na órbita do planeta por alguns dias.';
+$LNG['sys_wreckfield_added'] = 'Adicionado ao campo de destroços:';
+$LNG['sys_mess_spy_repair_order'] = 'Os navios estão sendo restaurados na doca de reparos.';
 $LNG['sys_attack_title'] = 'As frotas seguintes encontraram-se em';
 $LNG['sys_attack_round'] = 'Ronda Nr';
 $LNG['sys_attack_attacker_pos'] = 'Atacante';
@@ -76,7 +79,7 @@ $LNG['sys_mess_spy_seen_at'] = 'Foi avistada perto do teu planeta';
 $LNG['sys_mess_spy_link'] = '<a href="game.php?page=galaxy&amp;galaxy=%3$s&amp;system=%4$s">%1$s (%2$s) [%3$s:%4$s:%5$s]</a>';
 $LNG['sys_mess_spy_ennemyfleet_1'] = 'As sondas espiãs inimigas da lua %s foram avistadas perto de %s.';
 $LNG['sys_mess_spy_ennemyfleet_3'] = 'As sondas espiãs inimigas do planeta %s foram avistadas perto de %s.';
-$LNG['sys_mess_spy_destroyed'] = '<font color="red">As tua frota foi descoberta e destruida!</font>';
+$LNG['sys_mess_spy_destroyed'] = 'As tua frota foi descoberta e destruida!';
 $LNG['sys_adress_planet'] = '[%s:%s:%s]';
 
 $LNG['sys_stat_mess_stay'] = 'Frota Localizada';

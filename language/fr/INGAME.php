@@ -95,8 +95,9 @@ $LNG['banned_message'] = 'Vous avez été banni. Si vous pensez qu\'il s\'agit d
 //----------------------------------------------------------------------------//
 //TOPNAV
 $LNG['tn_player_title'] = 'Empereur';
-$LNG['tn_vacation_mode'] = 'Vous êtes en mode vacances.<br><br>NOTATION : Le mode vacances est automatiquement désactivé après 4 semaines d\'inactivité.';
-$LNG['tn_vacation_mode_until'] = 'Vous êtes en mode vacances jusqu\'à au moins %s heures.<br><br>NOTATION : Le mode vacances est automatiquement désactivé après 4 semaines d\'inactivité.';
+$LNG['tn_vacation_mode'] = 'Vous êtes en mode vacances.';
+$LNG['tn_vacation_mode_until'] = 'Vous êtes en mode vacances jusqu\'à au moins %s heures.';
+$LNG['tn_vacation_mode_kick'] = '<br><br>NOTATION : Le mode vacances est automatiquement désactivé après 4 semaines d\'inactivité.';
 $LNG['tn_delete_mode'] = 'Votre compte %s va être supprimé !';
 
 //----------------------------------------------------------------------------//
@@ -110,6 +111,7 @@ $LNG['lm_buildings'] = 'Bâtiments';
 $LNG['lm_research'] = 'Recherche';
 $LNG['lm_shipshard'] = 'Chantier Spatial';
 $LNG['lm_defenses'] = 'Défense';
+$LNG['lm_repairdock'] = 'Dock de réparation';
 $LNG['lm_resources'] = 'Ressources';
 $LNG['lm_fleettrader'] = 'Ferrailleur Intergalactique';
 $LNG['lm_technology'] = 'Technologie';
@@ -227,6 +229,8 @@ $LNG['gl_planet'] = 'Planète';
 $LNG['gl_name_activity'] = 'Nom (Activité)';
 $LNG['gl_moon'] = 'Lune';
 $LNG['gl_debris'] = 'CDR';
+$LNG['gl_wreckfield_short'] = 'CDÉ';
+$LNG['gl_wreckfield'] = 'Champ d\'épaves';
 $LNG['gl_player_estate'] = 'Joueur (Statut)';
 $LNG['gl_alliance'] = 'Alliance';
 $LNG['gl_actions'] = 'Action';
@@ -414,6 +418,7 @@ $LNG['fl_hold_max_fleets'] = 'Il y a déjà trop de flottes en route vers ces co
 $LNG['fl_hold_max_user'] = 'Le nombre maximum d\'empires à défendre a déjà été atteint. La flotte n\'a pas pu être envoyée.';
 $LNG['fl_attack_confirm_diplo'] = 'Un pacte (%s) a été conclu avec l\'alliance %s et votre alliance. Vous voulez vraiment lancer l\'attaque ?';
 $LNG['fl_attack_confirm_buddy'] = 'La cible est sur ta liste d\'amis. Vous voulez vraiment faire l\'attaque ?';
+$LNG['fl_error'] = 'Quelque chose a mal tourné. Réessayez.';
 
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES
@@ -436,8 +441,17 @@ $LNG['bd_lvl'] = 'Niveau';
 $LNG['bd_research'] = 'Recherche pour';
 $LNG['bd_shipyard_required'] = 'Vous devez construire un chantier spatial sur cette planète en premier lieu !';
 $LNG['bd_building_shipyard'] = 'L\'usine de Nanites ou le chantier spatial est actuellement en cours de développement!';
+$LNG['bd_deploy'] = 'Déployer';
+$LNG['bd_repairdock_required'] = 'Tu dois d\'abord construire un dock de réparation sur cette planète !';
+$LNG['bd_repairdock_busy'] = 'Le dock de réparation travaille déjà sur une mission !';
+$LNG['bd_repairdock_empty'] = 'Il n\'y a pas de champ d\'épaves !';
+$LNG['bd_repairdock_deploy'] = 'Les navires ont été remis en service !';
+$LNG['bd_max_ships_repair'] = 'Unités maximales récupérables';
+$LNG['bd_repairing'] = 'Réparation en cours';
+$LNG['bd_deployable'] = 'Réparation terminée ! Déploiement automatique en cours :';
 $LNG['bd_available'] = 'Disponible: ';
 $LNG['bd_build_ships'] = 'Construire';
+$LNG['bd_repair_ships'] = 'Réparer';
 $LNG['bd_protection_shield_only_one'] = 'Le bouclier ne peut être construit qu\'une seule fois !';
 $LNG['bd_build_defenses'] = 'Construire';
 $LNG['bd_actual_production'] = 'Production actuelle:';
@@ -923,7 +937,7 @@ $LNG['op_password_changed'] = 'Le Mot de Passe a été changé avec succès<br'
     . '<a href="index.php" target="_top">Retour</a>';
 $LNG['op_username_changed'] = 'Nom d\'Utilisateur modifié avec succès<br><a href="index.php" target="_top">Retour</a>';
 $LNG['op_options_changed'] = 'Options enregistrées.';
-$LNG['op_options_changed_vacation'] = 'Options enregistrées.<br><br>NOTATION : Le mode vacances est automatiquement désactivé après 4 semaines d\'inactivité.';
+$LNG['op_options_changed_vacation'] = 'Options enregistrées.';
 $LNG['op_vacation_mode_active_message'] = 'Le mode vacances est actif ! Vous serez en vacances au moins jusqu\'à : ';
 $LNG['op_end_vacation_mode'] = 'Sortir du mode vacances';
 $LNG['op_save_changes'] = 'Enregistrer les changements';
@@ -1049,6 +1063,7 @@ $LNG['fcm_info'] = 'Information';
 $LNG['fcp_colony'] = 'Colonie';
 $LNG['fgp_require'] = 'Requière : ';
 $LNG['fgf_time'] = 'Temps de construction :';
+$LNG['fgr_time'] = 'Temps de réparation :';
 $LNG['sys_module_inactive'] = 'Module inactif';
 $LNG['sys_refferal_from'] = 'Système';
 $LNG['sys_refferal_title'] = 'Bonus pour les joueurs %s';
@@ -1393,7 +1408,7 @@ $LNG['Achievement_text'] = [
     34 => 'Se faire attaquer une fois.',
     35 => 'Attaquer un joueur actif qui a moins de 1/10 de tes points',
 
-    36 => 'Recevoir un message contenant l\'un des éléments suivants: 
+    36 => 'Recevoir un message contenant l\'un des éléments suivants:
                         "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
     37 => 'Votre flotte a été détruite par un ACS avec 5 participants.',
     38 => 'Attaque tes propres membres de l\'alliance.',
@@ -1402,7 +1417,7 @@ $LNG['Achievement_text'] = [
 
     41 => 'Bloquer un slot de flotte pendant une semaine avec une mauvaise offre de marché.',
     42 => 'Se produit 4 fois dans le Hall of Fame en tant que perdant',
-    43 => 'Gagner un combat pendant lequel ton compte est marqué comme inactif, 
+    43 => 'Gagner un combat pendant lequel ton compte est marqué comme inactif,
             sur une de tes planètes sur laquelle une flotte est arrivée avec un temps de vol de plus de 7 jours.',
     44 => 'Produire sur une planète pendant plus de 7 jours une ressource dont le rendement énergétique est inférieur à 100%.',
     45 => 'Gagne une attaque sur un joueur classé dans le top 10 de la défense.',
@@ -1411,7 +1426,7 @@ $LNG['Achievement_text'] = [
     47 => 'Détruire 5 lunes.',
     48 => 'Perdre 5 Étoiles de la mort en essayant de détruire des lunes.',
     49 => 'Démolissez une colonie peu après sa création.',
-    50 => 'Perds tous tes satellites solaires sur une planète ayant suffisamment de 
+    50 => 'Perds tous tes satellites solaires sur une planète ayant suffisamment de
             énergie pour faire de la recherche sur le graviton, sans avoir fait de recherche sur le graviton.',
 
     51 => 'Consomme tout ton deutérium dans la vue Galaxie.',
@@ -1419,4 +1434,10 @@ $LNG['Achievement_text'] = [
     53 => 'Avoir le niveau le plus élevé dans 5 recherches en même temps.',
     54 => 'Time une attaque sur un joueur actif au 01.01. 00:00:00',
     55 => 'Award spécial',
+];
+
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Visible à partir de la Technologie d\'Espionnage 2!',
+    'level4'  => 'Visible à partir de la Technologie d\'Espionnage 4!',
+    'level6'  => 'Visible à partir de la Technologie d\'Espionnage 6!',
 ];

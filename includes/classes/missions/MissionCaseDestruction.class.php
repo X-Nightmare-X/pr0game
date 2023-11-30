@@ -84,6 +84,20 @@ HTML;
             ':planetId' => $this->_fleet['fleet_end_id'],
         ]);
 
+        // select wreckfield to lock it, can be empty
+        if ($targetPlanet['planet_type'] == 3) {
+            $sql = "SELECT * FROM %%PLANETS%% WHERE id_luna = :planetId;";
+            $targetPlanetID = $db->selectSingle($sql, [
+                ':planetId' => $this->_fleet['fleet_end_id']
+            ], 'id');
+        } else {
+            $targetPlanetID = $targetPlanet['id'];
+        }
+        $sql = "SELECT * FROM %%PLANET_WRECKFIELD%% WHERE planetId = :planetId FOR UPDATE;";
+        $db->selectSingle($sql, [
+            ':planetId' => $targetPlanetID
+        ]);
+
         // return fleet if target planet deleted
         if ($targetPlanet == false) {
             $this->setState(FLEET_RETURN);
@@ -331,6 +345,7 @@ HTML;
             'debris'                => $debris,
             'stealResource'         => $stealResource,
             'moonChance'            => null,
+            'additionalChance'      => 0,
             'moonDestroy'           => true,
             'moonName'              => null,
             'moonDestroyChance'     => null,
@@ -445,6 +460,9 @@ HTML;
 
         require_once 'includes/classes/missions/functions/GenerateReport.php';
         $reportData = GenerateReport($combatResult, $reportInfo, REAL_FIGHT);
+
+        require_once('includes/classes/missions/functions/GenerateWreckField.php');
+        GenerateWreckField($this->_fleet['fleet_end_id'], $combatResult);
 
         $reportID = md5(uniqid('', true) . TIMESTAMP);
 

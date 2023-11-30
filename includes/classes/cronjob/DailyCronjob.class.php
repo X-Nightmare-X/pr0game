@@ -24,8 +24,15 @@ class DailyCronJob implements CronjobTask
         $this->clearCache();
         $this->reCalculateCronjobs();
         $this->clearEcoCache();
-        $this->cancelVacation();
-        $this->updateInactiveMines();
+        $universes = Universe::availableUniverses();
+        foreach ($universes as $universe) {
+            $uni = $universe['uni'];
+            $this->cancelVacation($uni);
+            $this->updateInactiveMines($uni);
+            $this->emptyInactiveAllianceAndBuddy($uni);
+        }
+        $this->cleanReports($universes);
+        $this->eraseIPAdresses();
     }
 
     public function clearCache()
@@ -44,30 +51,102 @@ class DailyCronJob implements CronjobTask
         Database::get()->update($sql);
     }
 
-    public function cancelVacation()
+    public function eraseIPAdresses()
     {
-        $sql = "SELECT id, b_tech_planet, b_tech, b_tech_id, b_tech_queue, urlaubs_until, universe FROM %%USERS%%
-				WHERE urlaubs_modus = 1 AND onlinetime < :inactive AND bana = 0;";
-        $players = Database::get()->select($sql, [
-            ':inactive' => TIMESTAMP - INACTIVE_LONG,
-        ]);
+        $sql = "UPDATE %%MULTI%% SET multi_ip = 'cleared' WHERE lastActivity < :oneMonth;";
+        Database::get()->update($sql, [':oneMonth' => TIMESTAMP - TIME_1_MONTH]);
+    }
 
-        foreach ($players as $player) {
-            PlayerUtil::disable_vmode($player);
-            PlayerUtil::clearPlanets($player);
+    public function cancelVacation($universe)
+    {
+        if (isModuleAvailable(MODULE_VMODE_KICK, $universe)) {
+            $sql = "SELECT id, b_tech_planet, b_tech, b_tech_id, b_tech_queue, urlaubs_until, universe FROM %%USERS%%
+                    WHERE urlaubs_modus = 1 AND onlinetime < :inactive AND bana = 0 AND universe = :universe;";
+            $players = Database::get()->select($sql, [
+                ':inactive' => TIMESTAMP - INACTIVE_LONG,
+                ':universe' => $universe
+            ]);
+            foreach ($players as $player) {
+                PlayerUtil::disable_vmode($player);
+                PlayerUtil::clearPlanets($player);
+            }
         }
     }
 
-    public function updateInactiveMines()
+    public function emptyInactiveAllianceAndBuddy($universe) {
+        if (isModuleAvailable(MODULE_EMPTY_BUDDY, $universe)) {
+            $db = Database::get();
+            $sql = "SELECT u.id FROM %%USERS%% AS u WHERE urlaubs_modus = 0 AND onlinetime < :inactive AND universe = :universe;";
+            $players = $db->select($sql, [
+                ':inactive' => TIMESTAMP - INACTIVE,
+                ':universe' => $universe
+            ]);
+            foreach ($players as $player) {
+                $sql = 'SELECT id, ally_id FROM %%USERS%% WHERE id = :userId;';
+                $userData = $db->selectSingle($sql, [
+                    ':userId'   => $player['id']
+                ]);
+                PlayerUtil::removeFromAlliance($userData);
+                PlayerUtil::removeFromBuddy($player['id']);
+            }
+        }
+    }
+
+    public function updateInactiveMines($universe)
     {
         $sql = "UPDATE %%PLANETS%% set metal_mine_porcent = :full, crystal_mine_porcent = :full, deuterium_sintetizer_porcent = :full, solar_plant_porcent = :full, fusion_plant_porcent = :full, solar_satelit_porcent = :full
-				WHERE planet_type = :planet AND id_owner IN ( SELECT u.id FROM %%USERS%% AS u WHERE urlaubs_modus = 0 AND onlinetime < :inactive );";
+				WHERE planet_type = :planet AND id_owner IN (SELECT u.id FROM %%USERS%% AS u WHERE urlaubs_modus = 0 AND onlinetime < :inactive AND universe = :universe);";
 
         Database::get()->update($sql, [
             ':full' 	=> 10, // 10 = 100%
             ':planet'	=> 1,
             ':inactive' => TIMESTAMP - INACTIVE,
+            ':universe' => $universe
         ]);
+    }
+
+    /**
+     * Deletes old battle reports depending on config settings and unit size for battle hall
+     *
+     * @param array $universes
+     * @return void
+     */
+    private function cleanReports(array $universes)
+    {
+        $db = Database::get();
+
+        $config	= Config::get(ROOT_UNI);
+        $del_before = TIMESTAMP - ($config->del_oldstuff * 86400); // Global setting: Delete messages/reports after X days
+
+        foreach ($universes as $universe) {
+            // Select lowest units to keep per universe
+            $sql = "SELECT `units` FROM %%TOPKB%% WHERE `universe` = :universe ORDER BY `units` DESC LIMIT 1 OFFSET 150;";
+            $units = $db->selectSingle($sql, [
+                ':universe' => $universe,
+            ], 'units');
+
+            if (!empty($units)) {
+                // Delete lower battlehall KBs
+                $sql = "DELETE FROM %%TOPKB%% WHERE `universe` = :universe AND `units` < :units;";
+                $db->delete($sql. [
+                    ':universe' => $universe,
+                    ':units' => $units,
+                ]);
+            }
+        }
+
+        // Delete simulations/expofights older than 3 days and KBs older than config setting and not in Battlehall
+        $sql = "DELETE FROM %%RW%% WHERE 
+            ( `defender` = '' AND `time` < :threeDays ) OR
+            ( `defender` != '' AND `time` < :oldStuff AND `rid` NOT IN ( SELECT `rid` FROM %%TOPKB%% ) );";
+        $db->delete($sql, [
+            ':threeDays' => TIMESTAMP - TIME_72_HOURS, // Keep only last 3 days of sims/pirate/aliens
+            ':oldStuff' => TIMESTAMP - $del_before,
+        ]);
+
+        // Delete unused user_to_topkb
+        $sql = "DELETE FROM %%TOPKB_USERS%% WHERE `rid` NOT IN ( SELECT `rid` FROM %%TOPKB%% );";
+        $db->delete($sql);
     }
 }
 

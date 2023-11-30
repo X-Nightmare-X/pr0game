@@ -509,6 +509,10 @@ $LNG['se_crystal_start'] = 'Start Kristall';
 $LNG['se_crystal_start_info'] = 'Gibt an, wieviel Kristall auf neuen Planeten vorhanden ist.';
 $LNG['se_deuterium_start'] = 'Start Deuterium';
 $LNG['se_deuterium_start_info'] = 'Gibt an, wieviel Deuterium auf neuen Planeten vorhanden ist.';
+$LNG['se_moonSizeFactor'] = 'Mondgrößenfaktor';
+$LNG['se_moonSizeFactor_info'] = 'Faktor um die Mondgröße zu beeinflussen, 1 = default';
+$LNG['se_cascading_moon_chance'] = 'Kaskadierende Mondchance';
+$LNG['se_cascading_moon_chance_info'] = 'Zusätzliche Mondchance die pro fehlgeschlagenem MV mit maximaler Mondchance dazuaddiert wird. Gilt nur für den ersten Mond in einem Account. 0 = ausgeschaltet';
 $LNG['se_debris_moon'] = 'Lösche TF nach Mond';
 $LNG['se_debris_moon_info'] = 'Löscht das TF, nachdem ein Mond entstanden ist.';
 $LNG['se_deuterium_cost_galaxy'] = 'Galaxiegebühren';
@@ -1081,6 +1085,12 @@ $LNG['modul_37'] = 'Statistiken Banner';
 $LNG['modul_26'] = 'Suche';
 $LNG['modul_27'] = 'Support Tickets';
 $LNG['modul_28'] = 'Techtree';
+$LNG['modul_47'] = 'Spionagetechnikabhängige Statistikdetails';
+$LNG['modul_48'] = 'Reparaturdock';
+$LNG['modul_49'] = 'Sichere Ressourcen';
+$LNG['modul_50'] = 'Urlaubsmoduskick';
+$LNG['modul_51'] = 'Buddy- und Allianzkick';
+$LNG['modul_52'] = 'Stats.json';
 
 $LNG['mod_module'] = 'Module';
 $LNG['mod_info'] = 'Module im Game<br><font color="red">Admins können weiterhin die Bereiche betreten!</font>';
@@ -1311,3 +1321,11 @@ $LNG['du_select_all_tables'] = 'Alle Tabellen';
 $LNG['du_choose_tables'] = 'Tabellen auswählen';
 $LNG['du_success'] = 'Backup erfolgreich erstellt! Datei: %s';
 $LNG['du_not_tables_selected'] = 'Du hast keine Tabellen zum sichern ausgewählt!';
+
+//Reshuffle Planets
+$LNG['rp_header'] = 'Planeten neu setzen';
+$LNG['rp_explain'] = 'Nach dem klicken auf Senden, bitte warten bis das popup erscheint. Das Neuplatzieren kann mehrere Sekunden dauern!';
+$LNG['rp_done'] = 'Planeten erfolgreich neu gesetzt!';
+$LNG['rp_planet_error'] = 'Pro Spieler gibt es mehr als einen Planeten!';
+$LNG['rp_universe_error'] = 'Das Universum ist nicht vollständig geschlossen!';
+$LNG['rp_rights_error'] = 'Keine Administratorenrechte!';

@@ -175,7 +175,7 @@ function message($mes, $dest = "", $time = "3", $topnav = false)
 function CalculateMaxPlanetFields($planet)
 {
     $resource =& Singleton()->resource;
-    return $planet['field_max'] + ($planet[$resource[33]] * FIELDS_BY_TERRAFORMER) + ($planet[$resource[41]]
+    return $planet['field_max'] + floor($planet[$resource[33]] * FIELDS_BY_TERRAFORMER) + ($planet[$resource[41]]
         * FIELDS_BY_MOONBASIS_LEVEL);
 }
 
@@ -378,10 +378,10 @@ function getNumber($from, $default = 0)
     return is_numeric($from) ? $from : $default;
 }
 
-function isModuleAvailable($ID)
+function isModuleAvailable($ID, $universe = 0)
 {
-    $USER =& Singleton()->USER;
-    $modules = explode(';', Config::get()->moduls);
+    $config = Config::get($universe);
+    $modules = explode(';', $config->moduls);
     if (!isset($modules[$ID])) {
         $modules[$ID] = 1;
     }

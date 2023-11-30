@@ -512,6 +512,10 @@ $LNG['se_deuterium_start'] = 'Démarrer en deuterium';
 $LNG['se_deuterium_start_info'] = 'Indique combien de deuterium est présent sur la nouvelle planète.';
 $LNG['se_debris_moon'] = 'Supprimer TF par la lune';
 $LNG['se_debris_moon_info'] = 'Efface le TF, après qu\'une lune était originaire.';
+$LNG['se_moonSizeFactor'] = 'Facteur de taille de la lune';
+$LNG['se_moonSizeFactor_info'] = 'Facteur pour influencer la taille de la lune, 1 = par défaut';
+$LNG['se_cascading_moon_chance'] = 'Chance de lune en cascade';
+$LNG['se_cascading_moon_chance_info'] = 'Chance de lune supplémentaire qui s\'ajoute à chaque essai de lune raté avec la chance de lune maximale. Ne s\'applique qu\'à la première lune d\'un compte. 0 = désactivé';
 $LNG['se_buildlist'] = 'Liste des paramètres de construction';
 $LNG['se_timzone'] = 'Fuseau Horaire';
 $LNG['se_alliance_create_min_points'] = 'Nombre minimum de points pour rejoindre une alliance.';
@@ -1085,6 +1089,12 @@ $LNG['modul_37'] = 'Bannière Statistiques';
 $LNG['modul_26'] = 'Rechercher';
 $LNG['modul_27'] = 'Tickets Support';
 $LNG['modul_28'] = 'Technologies';
+$LNG['modul_47'] = 'Spy Technology dependent Stat Details';
+$LNG['modul_48'] = 'Dock de réparation';
+$LNG['modul_49'] = 'Des ressources sûres';
+$LNG['modul_50'] = 'Coup de pied dans le mode vacances';
+$LNG['modul_51'] = 'Coup de pied de Buddy et Alliance';
+$LNG['modul_52'] = 'Stats.json';
 
 $LNG['mod_module'] = 'Modules';
 $LNG['mod_info'] = 'Modules dans le Jeu';
@@ -1317,3 +1327,11 @@ $LNG['du_select_all_tables'] = 'Toutes les tables';
 $LNG['du_choose_tables'] = 'Sélectionner les tables';
 $LNG['du_success'] = 'Backup creer avec succes! Fichier: %s';
 $LNG['du_not_tables_selected'] = 'Vous n\'avez pas séléctioner de tables pour le backup!';
+
+//Reshuffle Planets
+$LNG['rp_header'] = 'Remaniement des planètes';
+$LNG['rp_explain'] = 'Après avoir cliqué sur Envoyer, veuillez patienter jusqu\'à ce que la fenêtre contextuelle apparaisse. Le repositionnement peut prendre plusieurs secondes!';
+$LNG['rp_done'] = 'Les planètes ont été remaniées avec succès';
+$LNG['rp_planet_error'] = 'Il y a plus d\'une planète par joueur!';
+$LNG['rp_universe_error'] = 'L\'univers n\'est pas complètement fermé!';
+$LNG['rp_rights_error'] = 'Pas de droits d\'administrateur!';

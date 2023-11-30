@@ -466,6 +466,10 @@ $LNG['se_deuterium_start'] = 'Start Deuterium';
 $LNG['se_deuterium_start_info'] = 'Określ ilość deuterium, z którą zaczyna nowa planeta.';
 $LNG['se_debris_moon'] = 'Usuń pole zniszczań po powstaniu księżyca';
 $LNG['se_debris_moon_info'] = 'Ustaw, czy po powstaniu księżyca pole zniszczeń ma zostać usunięte.';
+$LNG['se_moonSizeFactor'] = 'Współczynnik rozmiaru księżyca';
+$LNG['se_moonSizeFactor_info'] = 'Czynnik wpływający na rozmiar księżyca, 1 = domyślny';
+$LNG['se_cascading_moon_chance'] = 'Szansa na kaskadowy księżyc';
+$LNG['se_cascading_moon_chance_info'] = 'Dodatkowa szansa na księżyc dodawana za każdą nieudaną próbę z maksymalną szansą na księżyc. Dotyczy tylko pierwszego księżyca na koncie. 0 = wyłączone';
 $LNG['se_deuterium_cost_galaxy'] = 'Galaktyczny podatek';
 $LNG['se_deuterium_cost_galaxy_info'] = 'Koszt deuterium za przeglądanie galaktyki';
 $LNG['se_buildlist'] = 'Kolejka budowy';
@@ -1030,6 +1034,12 @@ $LNG['modul_37'] = 'Baner';
 $LNG['modul_26'] = 'Wyszukiwarka';
 $LNG['modul_27'] = 'Badania techniczne';
 $LNG['modul_28'] = 'Technologia';
+$LNG['modul_47'] = 'Szczegóły statystyk zależnych od technologii szpiegowskiej';
+$LNG['modul_48'] = 'Dok naprawczy';
+$LNG['modul_49'] = 'Bezpieczne zasoby';
+$LNG['modul_50'] = 'Kopnięcie z trybu wakacyjnego';
+$LNG['modul_51'] = 'Kopnięcie od Buddy\'ego i Alliance';
+$LNG['modul_52'] = 'Stats.json';
 
 $LNG['mod_module'] = 'Moduły';
 $LNG['mod_info'] = 'Moduły w grze <br><font color="red">Admini mogą dalej używać nie aktywne opcje!</font>';
@@ -1268,3 +1278,11 @@ $LNG['du_success'] = 'Utworzono kopię pomyślnie! Dane: %s';
 $LNG['du_not_tables_selected'] = 'Nie wybrałeś tabel!';
 // Translated into Polish by Sirgomo . All rights reversed (C) 2012
 // Edited by TheRavikin. All rights resteemed (C) 2018
+
+//Reshuffle Planets
+$LNG['rp_header'] = 'Przetasowanie planet';
+$LNG['rp_explain'] = 'Po kliknięciu przycisku Wyślij poczekaj, aż pojawi się wyskakujące okienko. Zmiana pozycji może potrwać kilka sekund!';
+$LNG['rp_done'] = 'Planety pomyślnie przetasowane';
+$LNG['rp_planet_error'] = 'Na jednego gracza przypada więcej niż jedna planeta!';
+$LNG['rp_universe_error'] = 'Wszechświat nie jest całkowicie zamknięty!';
+$LNG['rp_rights_error'] = 'Brak uprawnień administratora!';

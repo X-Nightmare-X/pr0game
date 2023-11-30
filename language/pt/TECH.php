@@ -91,12 +91,12 @@ $LNG['tech'] = [
     31 => 'Laboratório de Pesquisas',
     33 => 'Terra-Formador',
     34 => 'Depósito da aliança',
-    44 => 'Silo de Mísseis',
-
+    35 => 'Doca de reparação',
     40 => 'Edifícios especiais',
     41 => 'Base lunar',
     42 => 'Sensor Phalanx',
     43 => 'P. de Salto Quântico',
+    44 => 'Silo de Mísseis',
 
     100 => 'Pesquisas',
     106 => 'Tecnologia de Espionagem',
@@ -192,6 +192,7 @@ $LNG['shortDescription'] = [
         . ' de pesquisas.',
     33 => 'O Terra-Formador permite aumentar o número de áreas disponíveis para no construção do planeta.',
     34 => 'O depósito da aliança permite às frotas da aliança a possibilidade de reabastecer.',
+    35 => 'A doca de reparação permite restaurar navios a partir de um campo de destroços.',
     41 => 'Sabendo que uma lua não possui atmosfera, uma base lunar é necessária para criar um espaço habitável.',
     42 => 'Um dispositivo de alta resolução do sensor é utilizado para espiar um espectro de frequência.',
     43 => 'O Portal de Salto Quântico é um transcetor enorme capaz de transportar instantaneamente uma frota inteira'
@@ -344,6 +345,11 @@ $LNG['longDescription'] = [
         . ' de pesquisas.',
     33 => 'O Terra-Formador permite aumentar o número de áreas disponíveis para no construção do planeta.',
     34 => 'O depósito da aliança permite às frotas da aliança a possibilidade de reabastecer.',
+    35 => 'A doca de reparos oferece a oportunidade de reparar navios destruídos que deixaram um campo de destroços como'
+        . ' resultado de uma luta. O tempo de reparo é de no máximo 12 horas, mas leva pelo menos 30 minutos até que os'
+        . ' navios possam ser colocados em serviço.<br>A partir do momento em que o campo de naufrágios é criado, faltam'
+        . ' 3 dias para iniciar os reparos. Os navios reparados devem ser ativamente colocados de volta em serviço após a'
+        . ' conclusão do reparo. Se isso não acontecer, eles voltarão a funcionar automaticamente após 3 dias.',
     41 => 'Sabendo que uma lua não possui atmosfera, uma base lunar é necessária para criar um espaço habitável.',
     42 => 'Um dispositivo de alta resolução do sensor é utilizado para espiar um espectro de frequência.',
     43 => 'O Portal de Salto Quântico é um transcetor enorme capaz de transportar instantaneamente uma frota inteira'
@@ -471,3 +477,7 @@ $LNG['longDescription'] = [
     911 => 'Energy is needed for the production of every resource.',
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 ];
+
+$LNG['spytechStatsDescription']='Nos níveis 0 e 1, apenas são visíveis os pontos totais dos outros jogadores. A partir do nível 2, os pontos de construção dos outros jogadores também são visíveis. '
+    . 'A partir do nível 4, os pontos de pesquisa também são exibidos. A partir do nível 6, são apresentados os pontos de navios e de defesa, bem como as estatísticas de batalha.';
+$LNG['secureResources'] = 'Dependendo do nível de atualização, 1% da produção diária, até um máximo de 10%, está protegida contra o saque durante os ataques.';

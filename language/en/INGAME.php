@@ -109,8 +109,9 @@ $LNG['banned_message'] = 'You received a Ban. If you think this is a mistake, wr
 //----------------------------------------------------------------------------//
 // Topnav
 $LNG['tn_player_title'] = 'Emperor';
-$LNG['tn_vacation_mode'] = 'Your account is in vacation mode.<br><br>PLEASE NOTE: Vacation mode is automatically deactivated after 4 weeks of inactivity.';
-$LNG['tn_vacation_mode_until'] = 'Your account is in vacation mode until at least %s clock.<br><br>PLEASE NOTE: Vacation mode is automatically deactivated after 4 weeks of inactivity.';
+$LNG['tn_vacation_mode'] = 'Your account is in vacation mode.';
+$LNG['tn_vacation_mode_until'] = 'Your account is in vacation mode until at least %s clock.';
+$LNG['tn_vacation_mode_kick'] = '<br><br>PLEASE NOTE: Vacation mode is automatically deactivated after 4 weeks of inactivity.';
 $LNG['tn_delete_mode'] = 'The account at %s will be deleted!';
 
 //----------------------------------------------------------------------------//
@@ -124,6 +125,7 @@ $LNG['lm_buildings'] = 'Buildings';
 $LNG['lm_research'] = 'Research';
 $LNG['lm_shipshard'] = 'Hangar';
 $LNG['lm_defenses'] = 'Defenses';
+$LNG['lm_repairdock'] = 'Repair dock';
 $LNG['lm_marketplace'] = 'Marketplace';
 $LNG['lm_resources'] = 'Resources';
 $LNG['lm_fleettrader'] = 'Merchant of Fleets';
@@ -259,6 +261,8 @@ $LNG['gl_planet'] = 'Planet';
 $LNG['gl_name_activity'] = 'Name (Activity)';
 $LNG['gl_moon'] = 'Moon';
 $LNG['gl_debris'] = 'Debris';
+$LNG['gl_wreckfield_short'] = 'WF';
+$LNG['gl_wreckfield'] = 'Wreck field';
 $LNG['gl_player_estate'] = 'Player (State)';
 $LNG['gl_alliance'] = 'Alliance';
 $LNG['gl_actions'] = 'Actions';
@@ -461,6 +465,7 @@ $LNG['fl_hold_max_fleets'] = 'There are already too many fleets heading to these
 $LNG['fl_hold_max_user'] = 'The maximum number of defending empires has already been reached. The fleet could not be sent.';
 $LNG['fl_attack_confirm_diplo'] = 'A pact (%s) has been made with the %s alliance and your alliance. Do you really want to carry out the attack?';
 $LNG['fl_attack_confirm_buddy'] = 'The target is on your buddy list. Do you really want to carry out the attack?';
+$LNG['fl_error'] = 'Something went wrong. Try again.';
 //----------------------------------------------------------------------------//
 // Buildings
 $LNG['bd_dismantle'] = 'Demolish';
@@ -482,8 +487,17 @@ $LNG['bd_lvl'] = 'Level';
 $LNG['bd_research'] = 'Research for';
 $LNG['bd_shipyard_required'] = 'You need to build a Shipyard first';
 $LNG['bd_building_shipyard'] = 'Cannot build ships until Shipyard upgrade is completed.';
+$LNG['bd_deploy'] = 'Deploy';
+$LNG['bd_repairdock_required'] = 'You must first build a repair dock on this planet!';
+$LNG['bd_repairdock_busy'] = 'The repair dock is already working on a job!';
+$LNG['bd_repairdock_empty'] = 'There is no wreck field!';
+$LNG['bd_repairdock_deploy'] = 'The ships have been put back into service!';
+$LNG['bd_max_ships_repair'] = 'Maximum recoverable units';
+$LNG['bd_repairing'] = 'Repair in progress';
+$LNG['bd_deployable'] = 'Repair completed! Automatic deployment in:';
 $LNG['bd_available'] = 'Available: ';
 $LNG['bd_build_ships'] = 'Build';
+$LNG['bd_repair_ships'] = 'Repair';
 $LNG['bd_protection_shield_only_one'] = 'You can only build one shield!';
 $LNG['bd_build_defenses'] = 'Build defense';
 $LNG['bd_actual_production'] = 'Current production:';
@@ -963,7 +977,7 @@ $LNG['op_cant_activate_vacation_mode'] = 'You can not activate the vacation mode
 $LNG['op_password_changed'] = 'Password changed';
 $LNG['op_username_changed'] = 'Username changed';
 $LNG['op_options_changed'] = 'Options saved.';
-$LNG['op_options_changed_vacation'] = 'Options saved.<br><br>PLEASE NOTE: Vacation mode is automatically deactivated after 4 weeks of inactivity.';
+$LNG['op_options_changed_vacation'] = 'Options saved.';
 $LNG['op_vacation_mode_active_message'] = 'Vacation mode is active and will end up in: ';
 $LNG['op_end_vacation_mode'] = 'End period of vacation';
 $LNG['op_save_changes'] = 'Save changes';
@@ -1089,6 +1103,7 @@ $LNG['fcm_info'] = 'Info';
 $LNG['fcp_colony'] = 'Colony';
 $LNG['fgp_require'] = 'Requirements: ';
 $LNG['fgf_time'] = 'Time: ';
+$LNG['fgr_time'] = 'Repair time: ';
 $LNG['sys_module_inactive'] = 'Inactive module';
 $LNG['sys_refferal_from'] = 'System';
 $LNG['sys_refferal_title'] = 'Player Bonus %s';
@@ -1469,7 +1484,7 @@ $LNG['Achievement_text'] = [
     34 => 'Get attacked once.',
     35 => 'Attack an active player who has less than 1/10 of your points',
 
-    36 => 'Receive a message that contains one of the following blocks: 
+    36 => 'Receive a message that contains one of the following blocks:
                         "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
     37 => 'Your fleet was destroyed by an ACS with 5 participants.',
     38 => 'Attack your own alliance members.',
@@ -1478,7 +1493,7 @@ $LNG['Achievement_text'] = [
 
     41 => 'Block a fleet slot for a week with a bad marketplace offer.',
     42 => 'Join the Battlehall 4 times on the losing side.',
-    43 => 'Win a battle while your account is flagged as Inactive, 
+    43 => 'Win a battle while your account is flagged as Inactive,
             on one of your planets where a fleet has previously arrived that had a flight time of more than 7 days.',
     44 => 'Produce on a planet for more than 7 days a resource with less than 100% energy use.',
     45 => 'Win an attack on a player who is in the top 10 defense.',
@@ -1487,7 +1502,7 @@ $LNG['Achievement_text'] = [
     47 => 'Destroy 5 moons.',
     48 => 'Lose 5 death stars trying to destroy moons.',
     49 => 'Tear off a colony shortly after the creation.',
-    50 => 'Lose all of your solar satellites on a planet with enough 
+    50 => 'Lose all of your solar satellites on a planet with enough
             energy to research Graviton technology without you having researched Graviton technology.',
 
     51 => 'Use up all your deuterium in galaxy view.',
@@ -1495,4 +1510,10 @@ $LNG['Achievement_text'] = [
     53 => 'Have the highest level in 5 researches at the same time.',
     54 => 'Time an attack on an active player to 01.01. 00:00:00',
     55 => 'Special Achievement',
+];
+
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Viewable from Spy Technology 2!',
+    'level4'  => 'Viewable from Spy Technology 4!',
+    'level6'  => 'Viewable from Spy Technology 6!',
 ];

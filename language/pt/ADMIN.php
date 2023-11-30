@@ -517,6 +517,10 @@ $LNG['se_crystal_start'] = 'Inicio - Cristal';
 $LNG['se_crystal_start_info'] = 'Recursos iniciais de Cristal para novo jogador.';
 $LNG['se_deuterium_start'] = 'Inicio - Deutério';
 $LNG['se_deuterium_start_info'] = 'Recursos iniciais de Deutério para novo jogador.';
+$LNG['se_moonSizeFactor'] = 'Fator de tamanho da lua';
+$LNG['se_moonSizeFactor_info'] = 'Fator que influencia o tamanho da lua, 1 = predefinição';
+$LNG['se_cascading_moon_chance'] = 'Oportunidade de lua em cascata';
+$LNG['se_cascading_moon_chance_info'] = 'Probabilidade adicional de lua que é adicionada por cada tentativa falhada de lua com a probabilidade máxima de lua. Só se aplica à primeira lua de uma conta. 0 = desligado';
 $LNG['se_debris_moon'] = 'Excluir Destroços na Lua';
 $LNG['se_debris_moon_info'] = 'Limpa os destroços depois de Formação de Lua';
 $LNG['se_buildlist'] = 'Lista de Construcção';
@@ -1048,6 +1052,12 @@ $LNG['modul_37'] = 'Banner';
 $LNG['modul_26'] = 'Procura';
 $LNG['modul_27'] = 'Sistema de Suporte';
 $LNG['modul_28'] = 'Tecnologias';
+$LNG['modul_47'] = 'Detalhes do estado dependente da tecnologia de espionagem';
+$LNG['modul_48'] = 'Doca de reparação';
+$LNG['modul_49'] = 'Recursos seguros';
+$LNG['modul_50'] = 'Chutar do modo de férias';
+$LNG['modul_51'] = 'Pontapé de saída de Buddy e Alliance';
+$LNG['modul_52'] = 'Stats.json';
 
 $LNG['mod_module'] = 'Modulos';
 $LNG['mod_info'] = 'Modulos no Jogo';
@@ -1272,3 +1282,11 @@ $LNG['du_select_all_tables'] = 'Todas as tabelas';
 $LNG['du_choose_tables'] = 'Selecionar tabelas';
 $LNG['du_success'] = 'Backup criado com sucesso! Ficheiros: %s';
 $LNG['du_not_tables_selected'] = 'Não selecionaste tabelas para fazer backup!';
+
+//Reshuffle Planets
+$LNG['rp_header'] = 'Reorganizar os planetas';
+$LNG['rp_explain'] = 'Depois de clicar em Enviar, aguarde até aparecer a janela de pop-up. O reposicionamento pode demorar alguns segundos!';
+$LNG['rp_done'] = 'Os planetas foram baralhados com sucesso';
+$LNG['rp_planet_error'] = 'Há mais do que um planeta por jogador!';
+$LNG['rp_universe_error'] = 'O universo não está completamente fechado!';
+$LNG['rp_rights_error'] = 'Sem direitos de administrador!';

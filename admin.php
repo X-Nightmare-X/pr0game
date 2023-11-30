@@ -31,7 +31,8 @@ if ($USER['authlevel'] == AUTH_USR) {
     HTTP::redirectTo('game.php');
 }
 
-$session	= Session::create();
+$session = Session::create();
+$session->universe = $USER['universe'];
 if ($session->adminAccess != 1) {
     include_once('includes/pages/adm/ShowLoginPage.php');
     ShowLoginPage();
@@ -189,6 +190,10 @@ switch($page) {
     case 'dump':
         include_once('includes/pages/adm/ShowDumpPage.php');
         ShowDumpPage();
+        break;
+    case 'reshufflePlayers':
+        include_once('includes/pages/adm/ShowReshufflePage.php');
+        ShowReshufflePage();
         break;
     default:
         include_once('includes/pages/adm/ShowIndexPage.php');

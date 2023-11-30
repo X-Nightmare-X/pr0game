@@ -80,7 +80,7 @@ $LNG['own'] = 'Eigene';
 $LNG['recordsOptIn'] = 'Deine Rekorde allen Spielern anzeigen';
 
 $LNG['type_planet_1'] = 'Hafen';
-$LNG['type_planet_2'] = 'Wrackfeld';
+$LNG['type_planet_2'] = 'Treibgut-Feld';
 $LNG['type_planet_3'] = 'Insel';
 
 $LNG['user_level_0'] = 'Spieler';
@@ -100,8 +100,9 @@ $LNG['banned_message'] = 'Sie wurden gebannt. Wenn Sie glauben, dass es sich dab
 //----------------------------------------------------------------------------//
 //TOPNAV
 $LNG['tn_player_title'] = 'Admiral';
-$LNG['tn_vacation_mode'] = 'Sie sind im Urlaubsmodus.<br><br>ACHTUNG: Der Urlaubsmodus wird nach 4 Wochen Inaktivität automatisch deaktiviert.';
-$LNG['tn_vacation_mode_until'] = 'Sie sind bis mindestens %s Uhr im Urlaubsmodus.<br><br>ACHTUNG: Der Urlaubsmodus wird nach 4 Wochen Inaktivität automatisch deaktiviert.';
+$LNG['tn_vacation_mode'] = 'Sie sind im Urlaubsmodus.';
+$LNG['tn_vacation_mode_until'] = 'Sie sind bis mindestens %s Uhr im Urlaubsmodus.';
+$LNG['tn_vacation_mode_kick'] = '<br><br>ACHTUNG: Der Urlaubsmodus wird nach 4 Wochen Inaktivität automatisch deaktiviert.';
 $LNG['tn_delete_mode'] = 'Ihr Account wird am %s automatisch gelöscht!';
 
 //----------------------------------------------------------------------------//
@@ -114,6 +115,7 @@ $LNG['lm_buildings'] = 'Gebäude';
 $LNG['lm_research'] = 'Forschung';
 $LNG['lm_shipshard'] = 'Schiffswerft';
 $LNG['lm_defenses'] = 'Verteidigung';
+$LNG['lm_repairdock'] = 'Reparaturdock';
 $LNG['lm_resources'] = 'Rohstoffe';
 $LNG['lm_fleettrader'] = 'Schrotthändler';
 $LNG['lm_technology'] = 'Technologie';
@@ -250,7 +252,9 @@ $LNG['gl_pos'] = 'Pos';
 $LNG['gl_planet'] = 'Hafen';
 $LNG['gl_name_activity'] = 'Name (Aktivität)';
 $LNG['gl_moon'] = 'Insel';
-$LNG['gl_debris'] = 'WF';
+$LNG['gl_debris'] = 'TF';
+$LNG['gl_wreckfield_short'] = 'WF';
+$LNG['gl_wreckfield'] = 'Wrackfeld';
 $LNG['gl_player_estate'] = 'Spieler (Status)';
 $LNG['gl_alliance'] = 'Allianz';
 $LNG['gl_actions'] = 'Aktion';
@@ -263,7 +267,7 @@ $LNG['gl_member_add'] = '%d Mitglied';
 $LNG['gl_alliance_page'] = 'Allianzseite';
 $LNG['gl_see_on_stats'] = 'Statistiken';
 $LNG['gl_alliance_web_page'] = 'Allianz Homepage';
-$LNG['gl_debris_field'] = 'Wrackfeld';
+$LNG['gl_debris_field'] = 'Treibgut-Feld';
 $LNG['gl_collect'] = 'Abbauen';
 $LNG['gl_resources'] = 'Rohstoffe';
 $LNG['gl_features'] = 'Eigenschaften';
@@ -408,7 +412,7 @@ $LNG['fl_acs_newname_alphanum'] = 'Der Name darf nur aus alphanumerische Zeichen
 $LNG['fl_acs_change'] = 'Ändern';
 $LNG['fl_acs_change_name'] = 'Geben sie einen neuen Namen ein';
 $LNG['fl_error_not_avalible'] = 'Auf diesen Koordinaten befinden sich kein Hafen!';
-$LNG['fl_error_empty_derbis'] = 'Kein Wrackfeld vorhanden!';
+$LNG['fl_error_empty_derbis'] = 'Kein Treibgut vorhanden!';
 $LNG['fl_error_no_moon'] = 'Keine Insel vorhanden!';
 $LNG['fl_error_same_planet'] = 'Start- und Zielhafen sind identisch!';
 $LNG['fl_invalid_target'] = 'Kein gültiges Ziel';
@@ -446,6 +450,7 @@ $LNG['fl_hold_max_fleets'] = 'Es sind bereits zu viele Flotten zu diesen Koordin
 $LNG['fl_hold_max_user'] = 'Die maximale Anzahl verteidigender Imperien ist bereits erreicht. Die Flotte konnte nicht gesendet werden.';
 $LNG['fl_attack_confirm_diplo'] = 'Es wurde ein Pakt (%s) mit der Allianz %s und Deiner Allianz geschlossen. Möchtst Du den Angriff wirklich durchführen?';
 $LNG['fl_attack_confirm_buddy'] = 'Das Ziel ist auf Deiner Buddy-Liste. Möchtst Du den Angriff wirklich durchführen?';
+$LNG['fl_error'] = 'Bei Neptuns Nippeln! Das üben wir nochmal! (Etwas ging schief)';
 
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES
@@ -460,15 +465,24 @@ $LNG['bd_tech_next_level'] = 'Forschen auf Stufe ';
 $LNG['bd_add_to_list'] = 'Zur Bauliste hinzufügen';
 $LNG['bd_no_more_fields'] = 'Hafen ausgebaut!';
 $LNG['bd_remaining'] = 'Fehlende Rohstoffe:';
-$LNG['bd_lab_required'] = 'Du musst zuerst ein Wissenschaftszentrum auf diesem Hafen bauen!';
+$LNG['bd_lab_required'] = 'Du musst zuerst ein Wissenschaftszentrum in diesem Hafen bauen!';
 $LNG['bd_building_lab'] = 'Das Wissenschaftszentrum wird zurzeit ausgebaut!';
 $LNG['bd_max_lvl'] = 'Max. Level:';
 $LNG['bd_lvl'] = 'Stufe';
 $LNG['bd_research'] = 'Forschung';
-$LNG['bd_shipyard_required'] = 'Du musst zuerst eine Schiffswerft auf diesem Planeten Bauen!';
+$LNG['bd_shipyard_required'] = 'Du musst zuerst eine Schiffswerft in diesem Hafen Bauen!';
 $LNG['bd_building_shipyard'] = 'Der Sklavenmarkt oder Schiffwerft wird zurzeit ausgebaut!';
+$LNG['bd_deploy'] = 'Einsetzten';
+$LNG['bd_repairdock_required'] = 'Du musst zuerst ein Reparaturdock in diesem Hafen bauen!';
+$LNG['bd_repairdock_busy'] = 'Das Reparaturdock arbeitet bereits an einem Auftrag!';
+$LNG['bd_repairdock_empty'] = 'Es ist kein Wrackfeld vorhanden!';
+$LNG['bd_repairdock_deploy'] = 'Die Schiffe wurden wieder in Dienst gestellt!';
+$LNG['bd_max_ships_repair'] = 'Maximal wiederherstellbare Einheiten';
+$LNG['bd_repairing'] = 'Reparatur in Arbeit';
+$LNG['bd_deployable'] = 'Reparatur abgeschlossen! Automatisches Einsetzten in:';
 $LNG['bd_available'] = 'Vorhanden: ';
 $LNG['bd_build_ships'] = 'Absenden';
+$LNG['bd_repair_ships'] = 'Reparieren';
 $LNG['bd_protection_shield_only_one'] = 'Sie können nur einen Wall Bauen!';
 $LNG['bd_build_defenses'] = 'Absenden';
 $LNG['bd_actual_production'] = 'Aktuelle Produktion:';
@@ -948,7 +962,7 @@ $LNG['op_cant_activate_vacation_mode'] = 'Sie können nicht in den Urlaubsmodus 
 $LNG['op_password_changed'] = 'Passwort wurde geändert';
 $LNG['op_username_changed'] = 'Username geändert';
 $LNG['op_options_changed'] = 'Einstellungen gespeichert.';
-$LNG['op_options_changed_vacation'] = 'Einstellungen gespeichert.<br><br>ACHTUNG: Der Urlaubsmodus wird nach 4 Wochen Inaktivität automatisch deaktiviert.';
+$LNG['op_options_changed_vacation'] = 'Einstellungen gespeichert.';
 $LNG['op_vacation_mode_active_message'] = 'Urlaubsmodus aktiviert. Urlaubsmodus mindestens bis: ';
 $LNG['op_end_vacation_mode'] = 'Urlaubsmodus beenden';
 $LNG['op_save_changes'] = 'Einstellungen speichern';
@@ -1058,8 +1072,8 @@ $LNG['cff_mission_own_mip'] = 'Bombenangriff (%d) vom %s %s %s auf den %s %s %s.
 $LNG['cff_mission_own_expo_0'] = 'Eine deiner %s vom %s %s %s erreicht die Position %s. Mission: %s';
 $LNG['cff_mission_own_expo_1'] = 'Eine deiner %s kehrt von der Position %s zurück zum %s %s %s. Mission: %s';
 $LNG['cff_mission_own_expo_2'] = 'Eine deiner %s vom %s %s %s ist auf einer Expedition bei Position %s. Mission: %s';
-$LNG['cff_mission_own_recy_0'] = 'Eine deiner %s vom %s %s %s erreicht das Wrackfeld %s. Mission: %s';
-$LNG['cff_mission_own_recy_1'] = 'Eine deiner %s kehrt vom Wrackfeld %s zurück zum Planeten %s %s %s. Mission: %s';
+$LNG['cff_mission_own_recy_0'] = 'Eine deiner %s vom %s %s %s erreicht das Treibgut-Feld %s. Mission: %s';
+$LNG['cff_mission_own_recy_1'] = 'Eine deiner %s kehrt vom Treibgut-Feld %s zurück zum Planeten %s %s %s. Mission: %s';
 $LNG['cff_mission_target_bad'] = 'Eine feindliche %s vom Spieler %s vom %s %s %s erreicht den %s %s %s. Mission: %s';
 $LNG['cff_mission_target_good'] = 'Eine friedliche %s vom Spieler %s vom %s %s %s erreicht den %s %s %s. Mission: %s';
 $LNG['cff_mission_target_stay'] = 'Eine friedliche %s vom Spieler %s vom %s %s %s ist im Meer von dem %s %s %s.'
@@ -1076,6 +1090,7 @@ $LNG['fcm_info'] = 'Information';
 $LNG['fcp_colony'] = 'Kolonie';
 $LNG['fgp_require'] = 'Benötigt';
 $LNG['fgf_time'] = 'Bauzeit';
+$LNG['fgr_time'] = 'Reparaturzeit';
 $LNG['sys_module_inactive'] = 'Modul inaktiv';
 $LNG['sys_refferal_from'] = 'System';
 $LNG['sys_refferal_title'] = 'Bonus für Spieler %s';
@@ -1224,8 +1239,8 @@ $LNG['pl_destroy'] = '%s war an folgenden Zerstörungen beteiligt';
 $LNG['pl_destroy_real'] = '%s hat real folgendes selbst Zerstört';
 $LNG['pl_unitsshot'] = 'Geschossene Units';
 $LNG['pl_unitslose'] = 'Verlorene Units';
-$LNG['pl_dermetal'] = 'Gesamt Wrackfeld Holz';
-$LNG['pl_dercrystal'] = 'Gesamt Wrackfeld Gold';
+$LNG['pl_dermetal'] = 'Gesamt Treibgut Holz';
+$LNG['pl_dercrystal'] = 'Gesamt Treibgut Gold';
 $LNG['pl_etc'] = 'Kontakt';
 
 //----------------------------------------------------------------------------//
@@ -1279,7 +1294,7 @@ $LNG['rec_last_update_on'] = 'Letztes Update um';
 //----------------------------------------------------------------------------//
 // BattleSimulator
 
-$LNG['bs_derbis_raport'] = 'Es werden %s %s für das Wrackfeld benötigt.';
+$LNG['bs_derbis_raport'] = 'Es werden %s %s für das gesamte Treibgut benötigt.';
 $LNG['bs_steal_raport'] = 'Für die Beute werden %s %s oder %s %s benötigt.';
 $LNG['bs_names'] = 'Schiffname';
 $LNG['bs_atter'] = 'Angreifer';
@@ -1367,7 +1382,7 @@ $LNG['Achievement_names'] = [
     14 => 'Slippys Fluch',
     15 => 'Haben wir noch L. Brigs?',
 
-    16 => 'Hey man, wo ist mein Wrackfeld?!',
+    16 => 'Hey man, wo ist mein Treibgut?!',
     17 => 'Overlord Defense!',
     18 => 'Frankfurter Hauptbahnhof',
     19 => 'Dicke Haut 1',
@@ -1459,7 +1474,7 @@ $LNG['Achievement_text'] = [
     34 => 'Werde einmal angegriffen.',
     35 => 'Greife einen aktiven Spieler an, der weniger als 1/10 deiner Punkte hat',
 
-    36 => 'Erhalte eine Nachricht die eine der folgenden Bausteine enthält: 
+    36 => 'Erhalte eine Nachricht die eine der folgenden Bausteine enthält:
                         "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
     37 => 'Deine Flotte wurde von einem AKS mit 5 Beteiligten zerstört.',
     38 => 'Greife deine eigenen Allianzmitglieder an.',
@@ -1468,7 +1483,7 @@ $LNG['Achievement_text'] = [
 
     41 => 'Blockiere einen Flottenslot für eine Woche mit einem schlechten Marktplatzangebot.',
     42 => 'Tritt 4 Mal in der Battlehall als Verlierer auf.',
-    43 => 'Gewinne einen Kampf während dem dein Account als Inaktiv geflagged ist, 
+    43 => 'Gewinne einen Kampf während dem dein Account als Inaktiv geflagged ist,
                         in einem deiner Häfen an dem vorher eine Flotten angekommen, ist die eine Flugzeit von mehr als 7 Tagen hatte.',
     44 => 'Produziere in einem Hafen für mehr als 7 Tage eine Ressource mit weniger als 100% Energienutzen.',
     45 => 'Gewinne einen Angriff auf einen Spieler, der in den Top 10 der Verteidigung steht.',
@@ -1477,7 +1492,7 @@ $LNG['Achievement_text'] = [
     47 => 'Zerstöre 5 Inseln.',
     48 => 'Verliere 5 Schwimmende Festungen beim Versuch Inseln zu zerstören.',
     49 => 'Reiße einen Hafen kurz nach der Entstehung ab.',
-    50 => 'Verliere alle deine Fischerboote in einem Hafen mit ausreichend 
+    50 => 'Verliere alle deine Fischerboote in einem Hafen mit ausreichend
                         Energie um Festungsforschung zu forschen, ohne dass du Festungsforschung geforscht hast.',
 
     51 => 'Verbrauche all deinen Rum in der Galaansicht.',
@@ -1485,4 +1500,10 @@ $LNG['Achievement_text'] = [
     53 => 'Habe in 5 Forschungen gleichzeitig die höchste Stufe.',
     54 => 'Time einen Angriff auf einen aktiven Spieler auf den 01.01. 00:00:00',
     55 => 'Sonderachievement',
+];
+
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Sichtbar ab Papageiendressur 2!',
+    'level4'  => 'Sichtbar ab Papageiendressur 4!',
+    'level6'  => 'Sichtbar ab Papageiendressur 6!',
 ];

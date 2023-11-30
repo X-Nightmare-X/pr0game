@@ -141,7 +141,7 @@ abstract class AbstractGamePage
         $resourceSpeed = $config->resource_multiplier;
         foreach ($reslist['resstype'][1] as $resourceID) {
             $resourceTable[$resourceID]['name'] = $resource[$resourceID];
-            $resourceTable[$resourceID]['current'] = $PLANET[$resource[$resourceID]];
+            $resourceTable[$resourceID]['current'] = floor($PLANET[$resource[$resourceID]]);
             $resourceTable[$resourceID]['max'] = $PLANET[$resource[$resourceID] . '_max'];
             if ($USER['urlaubs_modus'] == 1 || $PLANET['planet_type'] != 1) {
                 $resourceTable[$resourceID]['production'] = $PLANET[$resource[$resourceID] . '_perhour'];
@@ -208,6 +208,9 @@ abstract class AbstractGamePage
                 $vacation = sprintf($LNG['tn_vacation_mode_until'], _date($LNG['php_tdformat'], $USER['urlaubs_until'], $USER['timezone']));
             } else {
                 $vacation = $LNG['tn_vacation_mode'];
+            }
+            if (isModuleAvailable(MODULE_VMODE_KICK, $USER['universe'])) {
+                $vacation .= $LNG['tn_vacation_mode_kick'];
             }
         }
 

@@ -77,12 +77,12 @@ $LNG['tech'] = [
 31 => 'Laboratoire de Recherche',
 33 => 'Terraformeur',
 34 => 'Dépôt d\'Alliance',
-44 => 'Silo de Missiles',
-
+35 => 'Dock de réparation',
 40 => 'Bâtiments lunaires',
 41 => 'Base Lunaire',
 42 => 'Phalange de capteurs',
 43 => 'Porte de Saut',
+44 => 'Silo de Missiles',
 // Technologies
 100 => 'Recherche',
 106 => 'Technologie d\'Espionnage',
@@ -174,6 +174,7 @@ $LNG['shortDescription'] = [
 31 => 'Le laboratoire de recherche est nécessaire pour développer de nouvelles technologies.',
 33 => 'Le terraformeur augmente la surface utilisable de la planète.',
 34 => 'Le dépôt d\'alliance offre la possibilité de fournir du carburant aux flottes amicales en orbite.',
+35 => 'Le dock de réparation permet de restaurer des navires à partir d\'un champ d\'épaves.',
 41 => 'Une lune n\'a pas d\'atmosphère donc une base lunaire doit être construite avant le développement des autres'
     . ' bâtiments.',
 42 => 'Le réseau de capteurs permet de surveiller les mouvements de la flotte. Plus le stade est élevé, plus la gamme'
@@ -302,6 +303,11 @@ $LNG['longDescription'] = [
 31 => 'Un laboratoire de recherche est nécessaire afin de mener des recherches sur les nouvelles technologies.',
 33 => 'Le terraformeur augmente la surface exploitable de la planète.',
 34 => 'L\'Alliance Dépot offre la possibilité de fournir du carburant aux flottes alliés en orbite.',
+35 => 'Le quai de réparation offre la possibilité de réparer les navires détruits qui ont quitté un champ d\'épaves à la'
+    . ' suite d\'un combat. Le temps de réparation est de 12 heures maximum, mais il faut au moins 30 minutes jusqu\'à ce'
+    . ' que les navires puissent être mis en service.<br>A partir du moment où le champ d\'épave est créé, il reste 3 jours'
+    . ' pour commencer les réparations. Les navires réparés doivent être activement remis en service une fois la réparation'
+    . ' terminée. Si cela ne se produit pas, ils seront automatiquement remis en service au bout de 3 jours.',
 41 => 'La lune n\'a pas d\'atmosphère donc une base lunaire doit être construite avant la construction d\'autres'
     . ' bâtiments.',
 42 => 'Le réseau de capteurs permet de surveiller les mouvements de la flotte. Plus le niveau est haut, plus la portée'
@@ -405,3 +411,7 @@ $LNG['longDescription'] = [
     . ' faut creuser les fonds marins pour l\'obtenir, ce qui en fait également la ressource la plus coûteuse.',
 911 => 'De l\'énergie est nécessaire à la production de chacune des ressources.',
 ];
+
+$LNG['spytechStatsDescription']='Aux niveaux 0 et 1, seuls les points totaux des autres joueurs sont visibles. À partir du niveau 2, les points de construction des autres joueurs sont également visibles. '
+    . 'À partir du niveau 4, les points de recherche sont également affichés. A partir du niveau 6, les navires et les points de défense sont affichés ainsi que les statistiques de la bataille.';
+$LNG['secureResources'] = 'Selon le niveau d\'amélioration, 1 % de la production quotidienne, jusqu\'à un maximum de 10 %, est protégé contre le pillage pendant les attaques.';

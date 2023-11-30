@@ -32,7 +32,7 @@ class CleanerCronjob implements CronjobTask
         $del_messages 	= TIMESTAMP - ($config->message_delete_days * 86400);
 
         if ($del_inactive === TIMESTAMP) {
-            $del_inactive = 2147483647;
+            $del_inactive = 2147483647; // Tue Jan 19 2038 04:14:07 GMT+0100
         }
 
         $sql	= 'DELETE FROM %%MESSAGES%% WHERE `message_time` < :time;';
@@ -72,11 +72,16 @@ class CleanerCronjob implements CronjobTask
         foreach($unis as $uni)
         {
             $config	= Config::get($uni);
+            $status = $config->uni_status;
+            if ($status == STATUS_REG_ONLY) {
+                continue;
+            }
+
             $del_inactive 	= TIMESTAMP - ($config->del_user_automatic * 86400);
             $del_deleted 	= TIMESTAMP - ($config->del_user_manually * 86400);
             $sql	= 'SELECT `id` FROM %%USERS%% WHERE `authlevel` = :authlevel AND universe = :uni
 		    AND ((`db_deaktjava` != 0 AND `db_deaktjava` < :timeDeleted) OR `onlinetime` < :timeInactive);';
-            
+
             $deleteUserIds = Database::get()->select($sql, [
                 ':authlevel'	=> AUTH_USR,
                 ':timeDeleted'	=> $del_deleted,

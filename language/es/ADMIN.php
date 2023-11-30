@@ -464,6 +464,10 @@ $LNG['se_deuterium_start'] = 'Deuterio Inicial';
 $LNG['se_deuterium_start_info'] = 'Especifíca la cantidad de Deuterio presente en un nuevo Planeta.';
 $LNG['se_debris_moon'] = 'Eliminar Campo de Escombros';
 $LNG['se_debris_moon_info'] = 'Elimina los Escombros una vez que se creo la Luna.';
+$LNG['se_moonSizeFactor'] = 'Factor de tamaño de la luna';
+$LNG['se_moonSizeFactor_info'] = 'Factor que influye en el tamaño de la luna, 1 = por defecto';
+$LNG['se_cascading_moon_chance'] = 'Oportunidad de luna en cascada';
+$LNG['se_cascading_moon_chance_info'] = 'Probabilidad de luna adicional que se añade por cada intento fallido de Luna con la máxima probabilidad de luna. Sólo se aplica a la primera luna de una cuenta. 0 = desactivado';
 $LNG['se_deuterium_cost_galaxy'] = 'Costo de Visión galaxia';
 $LNG['se_deuterium_cost_galaxy_info'] = 'Costo en Deuterio / Vista de Galaxia';
 $LNG['se_buildlist'] = 'Ajustes de Edificios';
@@ -1024,6 +1028,12 @@ $LNG['modul_37'] = 'Estadísticas Banner';
 $LNG['modul_26'] = 'Buscar';
 $LNG['modul_27'] = 'Tickets de Soporte';
 $LNG['modul_28'] = 'Tecnología';
+$LNG['modul_47'] = 'Tecnología espía dependiente Stat Detalles';
+$LNG['modul_48'] = 'Muelle de reparación';
+$LNG['modul_49'] = 'Recursos seguros';
+$LNG['modul_50'] = 'Salida del modo Vacaciones';
+$LNG['modul_51'] = 'Patada de Buddy y Alliance';
+$LNG['modul_52'] = 'Stats.json';
 
 $LNG['mod_module'] = 'Modulos';
 $LNG['mod_info'] = 'Módulos en el Juego<br><font color="red">¡Los administradores pueden entrar en las zonas!</font>';
@@ -1252,3 +1262,11 @@ $LNG['du_select_all_tables'] = 'Todas las Tablas';
 $LNG['du_choose_tables'] = 'Elegir Tablas';
 $LNG['du_success'] = 'Copia de seguridad creada con éxito! Archivo: %s';
 $LNG['du_not_tables_selected'] = 'No Ha seleccionado tablas para hacer las copias de Seguridad!';
+
+//Reshuffle Planets
+$LNG['rp_header'] = 'Remodelar planetas';
+$LNG['rp_explain'] = 'Después de hacer clic en Enviar, espere a que aparezca la ventana emergente. El reposicionamiento puede tardar varios segundos.';
+$LNG['rp_done'] = 'Los planetas se reorganizan con éxito';
+$LNG['rp_planet_error'] = '¡Hay más de un planeta por jugador!';
+$LNG['rp_universe_error'] = 'El universo no está completamente cerrado.';
+$LNG['rp_rights_error'] = 'Sin derechos de administrador.';

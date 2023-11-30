@@ -18,9 +18,15 @@
 function ShowMenuPage()
 {
     $USER =& Singleton()->USER;
+    $db = Database::get();
     $template	= new template();
+    $template->setCaching(Smarty::CACHING_OFF);
+
+    $sql = "SELECT COUNT(*) AS anz FROM %%TICKETS%% WHERE `universe` = :universe AND `status` = 0;";
+    $anzTickets = $db->selectSingle($sql, [':universe' => Universe::getEmulated()], 'anz');
+
     $template->assign_vars([
-        'supportticks'	=> $GLOBALS['DATABASE']->getFirstCell("SELECT COUNT(*) FROM ".TICKETS." WHERE universe = ".Universe::getEmulated()." AND status = 0;"),
+        'supportticks'	=> $anzTickets,
         'signalColors'	=> $USER['signalColors'],
     ]);
 

@@ -185,6 +185,24 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             }
         }
 
+        // show ships beeing repaired
+        $repair_order = [];
+        if ($SpyFleet && isModuleAvailable(MODULE_REPAIR_DOCK)) {
+            $sql = "SELECT `repair_order` FROM %%PLANET_WRECKFIELD%%
+                WHERE planetID = :planetID;";
+            $repairing = $db->selectSingle($sql, [
+                ':planetID' => $this->_fleet['fleet_end_id'],
+            ], 'repair_order');
+            if (!empty($repairing)) {
+                $repair_order = unserialize($repairing);
+                foreach ($repair_order as $elementID => $amount) {
+                    if (!isset($spyData[200][$elementID])) {
+                        $spyData[200][$elementID] = 0;
+                    }
+                }
+            }
+        }
+
         require_once 'includes/classes/missions/functions/calculateSteal.php';
         $sumPlanetRessources = 2 * ($targetPlanet[$resource[RESOURCE_METAL]] + $targetPlanet[$resource[RESOURCE_CRYSTAL]] + $targetPlanet[$resource[RESOURCE_DEUT]]);
         $simulated = [];
@@ -196,14 +214,13 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         ];
         $fleetSimulate[] = $simulated;
 
-        $stealResource = calculateSteal($fleetSimulate, [
+        $capacityNeeded = calculateMinCapacity([
             'metal' => getNumber($targetPlanet[$resource[RESOURCE_METAL]]),
             'crystal' => getNumber($targetPlanet[$resource[RESOURCE_CRYSTAL]]),
             'deuterium' => getNumber($targetPlanet[$resource[RESOURCE_DEUT]]),
-            ], true);
-        $sumSteal = array_sum($stealResource);
-        $smallCargoNeeded = ceil($sumSteal / $pricelist[SHIP_SMALL_CARGO]['capacity']);
-        $largeCargoNeeded = ceil($sumSteal / $pricelist[SHIP_LARGE_CARGO]['capacity']);
+        ]);
+        $smallCargoNeeded = ceil($capacityNeeded / $pricelist[SHIP_SMALL_CARGO]['capacity']);
+        $largeCargoNeeded = ceil($capacityNeeded / $pricelist[SHIP_LARGE_CARGO]['capacity']);
 
         // I'm use template class here, because i want to exclude HTML in PHP.
 
@@ -263,6 +280,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             'energy'                            => $energy,
             'energyClass'                       => $energyClass,
             'spyData'                           => $spyData,
+            'repair_order'                      => $repair_order,
             'targetPlanet'                      => $targetPlanet,
             'targetChance'                      => $targetChance,
             'spyChance'                         => $spyChance,

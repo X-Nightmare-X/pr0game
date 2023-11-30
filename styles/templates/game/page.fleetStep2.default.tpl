@@ -134,13 +134,12 @@
 			</td>
 		</tr>
 		{/if}
-        <tr style="height:20px;">
-			{if !empty($question)}
-        		<td colspan="2"><input value="{$LNG.fl_continue}" type="submit" onclick="return confirm('{$question}');"/></td>
-			{else}
-				<td colspan="2"><input value="{$LNG.fl_continue}" type="submit" /></td>
-			{/if}
+        <tr id="submit">
+			<td colspan="2" style="height:20px;"><input value="{$LNG.fl_continue}" type="submit" onclick="return sendFleet({$question});"/></td>
         </tr>
+		<tr id="wait" style="display:none;">
+			<td colspan="2" style="height:20px">{$LNG.fl_continue}</td>
+		</tr>
     </table>
 </form>
 <script type="text/javascript">

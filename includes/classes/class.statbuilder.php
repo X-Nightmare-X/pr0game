@@ -508,20 +508,21 @@ class statbuilder
             ORDER BY %%STATPOINTS%%.`total_rank`");
 
         foreach ($this->universes as $uni) {
-            $scores = $database->select($sql, [
-                ':universe' => $uni,
-            ]);
+            $config = Config::get($uni);
+            if (isModuleAvailable(MODULE_STATS_JSON, $uni) && $config->uni_status != STATUS_REG_ONLY && $config->uni_status != STATUS_CLOSED) {
+                $scores = $database->select($sql, [
+                    ':universe' => $uni,
+                ]);
+                $name = $config->uni_name;
+                $name = str_replace(' ', '_', $name);
+                $fh = fopen(ROOT_PATH . 'stats/stats_' . $name . '_' . date('Y-m-d_H') . '.json', 'w+');
+                fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
+                fclose($fh);
 
-            $name = Config::get($uni)->uni_name;
-            $name = str_replace(' ', '_', $name);
-
-            $fh = fopen(ROOT_PATH . 'stats/stats_' . $name . '_' . date('Y-m-d_H') . '.json', 'w+');
-            fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
-            fclose($fh);
-
-            $fh = fopen(ROOT_PATH . 'stats_' . $name . '.json', 'w+');
-            fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
-            fclose($fh);
+                $fh = fopen(ROOT_PATH . 'stats_' . $name . '.json', 'w+');
+                fwrite($fh, json_encode($scores, JSON_PRETTY_PRINT));
+                fclose($fh);
+            }
         }
     }
 

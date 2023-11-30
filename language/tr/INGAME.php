@@ -108,8 +108,9 @@ $LNG['banned_message'] = 'Engellendiniz. Bir yanlış anlaşılma olduğunu dü�
 //----------------------------------------------------------------------------//
 // Topnav
 $LNG['tn_player_title'] = 'Imparator';
-$LNG['tn_vacation_mode'] = 'Tatil modundasınız.<br><br>LÜTFEN DİKKAT: Tatil modu 4 hafta kullanılmadığında otomatik olarak devre dışı bırakılır.';
-$LNG['tn_vacation_mode_until'] = 'Saat en az %s olana kadar tatil modundasınız.<br><br>LÜTFEN DİKKAT: Tatil modu 4 hafta kullanılmadığında otomatik olarak devre dışı bırakılır.';
+$LNG['tn_vacation_mode'] = 'Tatil modundasınız.';
+$LNG['tn_vacation_mode_until'] = 'Saat en az %s olana kadar tatil modundasınız.';
+$LNG['tn_vacation_mode_kick'] = '<br><br>LÜTFEN DİKKAT: Tatil modu 4 hafta kullanılmadığında otomatik olarak devre dışı bırakılır.';
 $LNG['tn_delete_mode'] = 'Hesabiniz Silme Modunda Silinecegi Tarih :';
 
 //----------------------------------------------------------------------------//
@@ -123,6 +124,7 @@ $LNG['lm_buildings'] = 'Binalar';
 $LNG['lm_research'] = 'Arastirma';
 $LNG['lm_shipshard'] = 'Tersane';
 $LNG['lm_defenses'] = 'Savunma';
+$LNG['lm_repairdock'] = 'Onarım rıhtımı';
 $LNG['lm_resources'] = 'Hammadde';
 $LNG['lm_fleettrader'] = 'Hurdaci';
 $LNG['lm_technology'] = 'Teknolojiler';
@@ -242,6 +244,8 @@ $LNG['gl_planet'] = 'Gezegen';
 $LNG['gl_name_activity'] = 'Isim (Aktivite)';
 $LNG['gl_moon'] = 'Ay';
 $LNG['gl_debris'] = 'HA';
+$LNG['gl_wreckfield_short'] = 'EA';
+$LNG['gl_wreckfield'] = 'Enkaz alanı';
 $LNG['gl_player_estate'] = 'Oyuncu (Statu)';
 $LNG['gl_alliance'] = 'Ittifak';
 $LNG['gl_actions'] = 'Aksiyonlar';
@@ -429,6 +433,7 @@ $LNG['fl_hold_max_fleets'] = 'Zaten bu koordinatlara yönelen çok fazla filo va
 $LNG['fl_hold_max_user'] = 'Savunan imparatorlukların maksimum sayısına çoktan ulaşıldı. Filo gönderilemedi.';
 $LNG['fl_attack_confirm_diplo'] = 'İttifakınız ve %s ittifakı ile bir anlaşma (%s) yapıldı. Saldırıyı gerçekten gerçekleştirmek istiyor musunuz?';
 $LNG['fl_attack_confirm_buddy'] = 'Hedef arkadaş listende. Saldırıyı gerçekten gerçekleştirmek istiyor musun?';
+$LNG['fl_error'] = 'Bir şeyler ters gitti. Tekrar dene.';
 
 //----------------------------------------------------------------------------//
 // Binalar
@@ -451,8 +456,17 @@ $LNG['bd_lvl'] = 'Kademe';
 $LNG['bd_research'] = 'Arastirma';
 $LNG['bd_shipyard_required'] = 'Ilk olarak bu gezegende bir tersane kurman gerekli ';
 $LNG['bd_building_shipyard'] = 'Tersane yada Nanit fabrikasinda calisma var';
+$LNG['bd_deploy'] = 'Dağıtım';
+$LNG['bd_repairdock_required'] = 'Önce bu gezegende bir onarım rıhtımı inşa etmelisiniz!';
+$LNG['bd_repairdock_busy'] = 'Onarım iskelesi zaten bir iş üzerinde çalışıyor!';
+$LNG['bd_repairdock_empty'] = 'Enkaz alanı yok!';
+$LNG['bd_repairdock_deploy'] = 'Gemiler tekrar hizmete girdi!';
+$LNG['bd_max_ships_repair'] = 'Maksimum geri kazanılabilir birimler';
+$LNG['bd_repairing'] = 'Onarım devam ediyor';
+$LNG['bd_deployable'] = 'Onarım tamamlandı! Otomatik dağıtım başladı:';
 $LNG['bd_available'] = 'Uygun: ';
 $LNG['bd_build_ships'] = 'Uretim Emri Ver';
+$LNG['bd_repair_ships'] = 'Onarım';
 $LNG['bd_protection_shield_only_one'] = 'Kalkan Kubbeleri sadece 1 kez uretilebilir!';
 $LNG['bd_build_defenses'] = 'Uretim Emri Ver';
 $LNG['bd_actual_production'] = 'Mevcut Uretim:';
@@ -939,7 +953,7 @@ $LNG['op_password_changed'] = 'Sifreniz degistirildi Lutfen Tekrar giris yapin<b
 $LNG['op_username_changed'] = 'Uye Adiniz degistirildi Lutfen Tekrar giris yapin<br />'
     . '<a href="index.php" target="_top">Geri</a>';
 $LNG['op_options_changed'] = 'Ayarlar kaydedilir.';
-$LNG['op_options_changed_vacation'] = 'Ayarlar kaydedilir.<br><br>LÜTFEN DİKKAT: Tatil modu 4 hafta kullanılmadığında otomatik olarak devre dışı bırakılır.';
+$LNG['op_options_changed_vacation'] = 'Ayarlar kaydedilir.';
 $LNG['op_vacation_mode_active_message'] = 'Tatil Modu Aktif :  ';
 $LNG['op_end_vacation_mode'] = 'Tatilden Cik';
 $LNG['op_save_changes'] = 'Ayarlari kaydet';
@@ -1074,6 +1088,7 @@ $LNG['fcm_info'] = 'Bilgiler';
 $LNG['fcp_colony'] = 'Koloni';
 $LNG['fgp_require'] = 'Gerekenler: ';
 $LNG['fgf_time'] = 'Gereken Sure';
+$LNG['fgr_time'] = 'Onarım süresi';
 $LNG['sys_module_inactive'] = 'Modul Aktif Degil';
 $LNG['sys_refferal_from'] = 'Sistem';
 $LNG['sys_refferal_title'] = 'Oyuncu Bonusu %s';
@@ -1416,7 +1431,7 @@ $LNG['Achievement_text'] = [
     34 => 'Bir kez saldırıya uğrayın.',
     35 => 'Puanlarınızın 1/10\'undan daha azına sahip aktif bir oyuncuya saldırın',
 
-    36 => 'Aşağıdaki yapı taşlarından birini içeren bir mesaj alın: 
+    36 => 'Aşağıdaki yapı taşlarından birini içeren bir mesaj alın:
                         "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
     37 => 'Filonuz 5 katılımcısı olan bir AKS tarafından yok edildi.',
     38 => 'Kendi ittifak üyelerinize saldırın.',
@@ -1425,7 +1440,7 @@ $LNG['Achievement_text'] = [
 
     41 => 'Kötü bir pazar yeri teklifi ile bir filo slotunu bir haftalığına bloke edin.',
     42 => 'Battlehall\'da 4 kez kaybeden olarak görünür.',
-    43 => 'Hesabınız Aktif Değil olarak işaretlenmişken bir savaş kazanın, 
+    43 => 'Hesabınız Aktif Değil olarak işaretlenmişken bir savaş kazanın,
             daha önce 7 günden fazla uçuş süresi olan bir filonun geldiği gezegenlerinizden birinde.',
     44 => 'Bir gezegende 7 günden fazla süreyle %100\'den daha az enerji kullanarak bir kaynak üretin.',
     45 => 'Savunmada ilk 10\'da yer alan bir oyuncuya saldırı kazanın.',
@@ -1434,11 +1449,17 @@ $LNG['Achievement_text'] = [
     47 => '5 ay yok et.',
     48 => 'Ayları yok etmeye çalışırken 5 Ölüm Yıldızı kaybet.',
     49 => 'Kolo oluştuktan kısa bir süre sonra koparın.',
-    50 => 'Gravi\'yi araştırmak için yeterli enerjiye sahip bir gezegendeki tüm güneş uydularınızı kaybedin. 
+    50 => 'Gravi\'yi araştırmak için yeterli enerjiye sahip bir gezegendeki tüm güneş uydularınızı kaybedin.
             Gravi\'yi araştırmadan Gravi\'yi araştırmak için enerji.',
     51 => 'Tüm döteryumunuzu gala manzarasında kullanın.',
     52 => 'Önce diğer savaş gemilerini inşa etmeden bir Ölüm Yıldızı inşa edin.',
     53 => 'Aynı anda 5 araştırmada en yüksek seviyeye sahibim.',
     54 => 'Aktif bir oyuncuya yapılan bir saldırıyı 01.01. 00:00:00 olarak zamanlayın',
     55 => 'Özel Başarı',
+];
+
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Casusluk Teknigi 2\'den görüntülenebilir!',
+    'level4'  => 'Casusluk Teknigi 4\'den görüntülenebilir!',
+    'level6'  => 'Casusluk Teknigi 6\'den görüntülenebilir!',
 ];

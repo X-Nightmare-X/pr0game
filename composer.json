@@ -45,7 +45,7 @@
     "dragonmantank/cron-expression": "^3.3",
         "erusev/parsedown": "1.6.0",
     "phpmailer/phpmailer": "v6.5.3",
-    "smarty/smarty": "v4.2.1",
+    "smarty/smarty": "v4.3.2",
     "symfony/var-dumper": "v6.2.3"
   },
   "require-dev": {

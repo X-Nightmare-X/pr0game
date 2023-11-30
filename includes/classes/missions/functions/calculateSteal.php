@@ -20,9 +20,9 @@ function calculateSteal($attackFleets, $defenderPlanet, $simulate = false)
     // See: http://www.owiki.de/Beute
     $pricelist =& Singleton()->pricelist;
     $resource =& Singleton()->resource;
-    $firstResource = 901;
-    $secondResource = 902;
-    $thirdResource = 903;
+    $firstResource = RESOURCE_METAL;
+    $secondResource = RESOURCE_CRYSTAL;
+    $thirdResource = RESOURCE_DEUT;
 
     $SortFleets = [];
     $capacity = 0;
@@ -56,30 +56,69 @@ function calculateSteal($attackFleets, $defenderPlanet, $simulate = false)
         return $stealResource;
     }
 
+    $planetResource = [
+        $firstResource => $defenderPlanet[$resource[$firstResource]],
+        $secondResource => $defenderPlanet[$resource[$secondResource]],
+        $thirdResource => $defenderPlanet[$resource[$thirdResource]]
+    ];
+    $protected = [
+        $firstResource => 0,
+        $secondResource => 0,
+        $thirdResource => 0
+    ];
+
+    if (isModuleAvailable(MODULE_RESOURCE_STASH) && !$simulate) {
+        // Up to 10% (1% per resource store level) of daily production is protected from stealing
+        $dailyProduction = [
+            $firstResource => $defenderPlanet['metal_perhour'] * TIME_24_HOURS,
+            $secondResource => $defenderPlanet['crystal_perhour'] * TIME_24_HOURS,
+            $thirdResource => $defenderPlanet['deuterium_perhour'] * TIME_24_HOURS
+        ];
+        $protected = [
+            $firstResource => $dailyProduction[$firstResource] * min(0.1, 0.01 * $defenderPlanet[$resource[METAL_STORE]]),
+            $secondResource => $dailyProduction[$secondResource] * min(0.1, 0.01 * $defenderPlanet[$resource[CRYSTAL_STORE]]),
+            $thirdResource => $dailyProduction[$thirdResource] * min(0.1, 0.01 * $defenderPlanet[$resource[DEUTERIUM_STORE]])
+        ];
+    }
+
     // Step 1
-    $stealResource[$firstResource] = min($capacity / 3, $defenderPlanet[$resource[$firstResource]] / 2);
+    $stealResource[$firstResource] = min(
+        $capacity / 3, //one third of capacity
+        $planetResource[$firstResource] / 2, //half of metal
+        max(0, $planetResource[$firstResource] - $protected[$firstResource]) //leave protected amount
+    );
     $capacity -= $stealResource[$firstResource];
 
     // Step 2
-    $stealResource[$secondResource] = min($capacity / 2, $defenderPlanet[$resource[$secondResource]] / 2);
+    $stealResource[$secondResource] = min(
+        $capacity / 2, //half of rest capacity (= one third or more)
+        $planetResource[$secondResource] / 2, //half of crystal
+        max(0, $planetResource[$secondResource] - $protected[$secondResource]) //leave protected amount
+    );
     $capacity -= $stealResource[$secondResource];
 
     // Step 3
-    $stealResource[$thirdResource] = min($capacity, $defenderPlanet[$resource[$thirdResource]] / 2);
+    $stealResource[$thirdResource] = min(
+        $capacity, //rest capacity (= one third or more)
+        $planetResource[$thirdResource] / 2, //half of deut
+        max(0, $planetResource[$thirdResource] - $protected[$thirdResource]) //leave protected amount
+    );
     $capacity -= $stealResource[$thirdResource];
 
     // Step 4
     $oldMetalBooty = $stealResource[$firstResource];
     $stealResource[$firstResource] += min(
-        $capacity / 2,
-        $defenderPlanet[$resource[$firstResource]] / 2 - $stealResource[$firstResource]
+        $capacity / 2, //half of rest capacity
+        $planetResource[$firstResource] / 2 - $stealResource[$firstResource], //half of metal minus already stolen
+        max(0, $planetResource[$firstResource] - $stealResource[$firstResource] - $protected[$firstResource]) //leave protected amount
     );
     $capacity -= $stealResource[$firstResource] - $oldMetalBooty;
 
     // Step 5
     $stealResource[$secondResource] += min(
-        $capacity,
-        $defenderPlanet[$resource[$secondResource]] / 2 - $stealResource[$secondResource]
+        $capacity, //other half of rest capacity (or more)
+        $planetResource[$secondResource] / 2 - $stealResource[$secondResource], //half of crystal minus already stolen
+        max(0, $planetResource[$secondResource] - $stealResource[$secondResource] - $protected[$secondResource]) //leave protected amount
     );
 
     $stealResource[$firstResource] = floor(max(0, $stealResource[$firstResource]));
@@ -123,4 +162,81 @@ function calculateSteal($attackFleets, $defenderPlanet, $simulate = false)
     }
 
     return $stealResource;
+}
+
+function calculateMinCapacity($defenderPlanet) : int {
+    $pricelist =& Singleton()->pricelist;
+    $resource =& Singleton()->resource;
+    $firstResource = RESOURCE_METAL;
+    $secondResource = RESOURCE_CRYSTAL;
+    $thirdResource = RESOURCE_DEUT;
+
+    $stealResource = [
+        $firstResource => 0,
+        $secondResource => 0,
+        $thirdResource => 0
+    ];
+
+    $planetResource = [
+        $firstResource => $defenderPlanet[$resource[$firstResource]],
+        $secondResource => $defenderPlanet[$resource[$secondResource]],
+        $thirdResource => $defenderPlanet[$resource[$thirdResource]]
+    ];
+
+    $shipCapacity = $pricelist[SHIP_SMALL_CARGO]['capacity'];
+    $startAmount = ceil(($planetResource[$firstResource]/2 + $planetResource[$secondResource]/2 + $planetResource[$thirdResource]/2) / $shipCapacity);
+    if ($startAmount >= 1) {
+        $startAmount -= 1; // one gets added at start of while loop
+    }
+    $startCapacity = $shipCapacity * $startAmount;
+    $capacity = $startCapacity;
+
+    while ($stealResource[$firstResource] < $planetResource[$firstResource]/2 ||
+        $stealResource[$secondResource] < $planetResource[$secondResource]/2 ||
+        $stealResource[$thirdResource] < $planetResource[$thirdResource]/2) {
+
+        // init values
+        $stealResource[$firstResource] = 0;
+        $stealResource[$secondResource] = 0;
+        $stealResource[$thirdResource] = 0;
+        $startCapacity += $shipCapacity;
+        $capacity = $startCapacity;
+
+        // Step 1
+        $stealResource[$firstResource] = min(
+            $capacity / 3, //one third of capacity
+            $planetResource[$firstResource] / 2, //half of metal
+        );
+        $capacity -= $stealResource[$firstResource];
+
+        // Step 2
+        $stealResource[$secondResource] = min(
+            $capacity / 2, //half of rest capacity (= one third or more)
+            $planetResource[$secondResource] / 2, //half of crystal
+        );
+        $capacity -= $stealResource[$secondResource];
+
+        // Step 3
+        $stealResource[$thirdResource] = min(
+            $capacity, //rest capacity (= one third or more)
+            $planetResource[$thirdResource] / 2, //half of deut
+        );
+        $capacity -= $stealResource[$thirdResource];
+
+        // Step 4
+        $oldMetalBooty = $stealResource[$firstResource];
+        $stealResource[$firstResource] += min(
+            $capacity / 2, //half of rest capacity
+            $planetResource[$firstResource] / 2 - $stealResource[$firstResource], //half of metal minus already stolen
+        );
+        $capacity -= $stealResource[$firstResource] - $oldMetalBooty;
+
+        // Step 5
+        $stealResource[$secondResource] += min(
+            $capacity, //other half of rest capacity (or more)
+            $planetResource[$secondResource] / 2 - $stealResource[$secondResource], //half of crystal minus already stolen
+        );
+    }
+
+    return $startCapacity;
 }
