@@ -48,7 +48,7 @@ function ShowDisclamerPage()
         foreach ($config_after as $key => $value) {
             $config->$key	= $value;
         }
-        $config->save();
+        $config->saveGlobalKeys();
 
         $LOG = new Log(3);
         $LOG->target = 5;
