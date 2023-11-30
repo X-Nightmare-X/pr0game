@@ -240,7 +240,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
 
     if (
         ($config->uni_status == STATUS_CLOSED || $config->uni_status == STATUS_REG_ONLY) && $USER['authlevel'] == AUTH_USR &&
-        (!isset($_GET['page']) || $_GET['page'] !== 'logout')
+        (!isset($_GET['page']) || $_GET['page'] !== 'logout') && !$raportWithoutSession
     ) {
         ShowErrorPage::printError($LNG['sys_closed_game'] . '<br><br>' . $config->close_reason, false);
     }

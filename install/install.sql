@@ -349,6 +349,7 @@ CREATE TABLE `%PREFIX%config` (
   `max_system` smallint(5) unsigned NOT NULL DEFAULT '400',
   `max_planets` tinyint(3) unsigned NOT NULL DEFAULT '15',
   `planet_factor` float(2,1) NOT NULL DEFAULT '1.0',
+  `all_planet_pictures` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `max_elements_build` tinyint(3) unsigned NOT NULL DEFAULT '5',
   `max_elements_tech` tinyint(3) unsigned NOT NULL DEFAULT '2',
   `max_elements_ships` tinyint(3) unsigned NOT NULL DEFAULT '10',

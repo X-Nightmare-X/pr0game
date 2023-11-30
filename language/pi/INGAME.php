@@ -1507,3 +1507,29 @@ $LNG['spytech_playercard'] = [
     'level4'  => 'Sichtbar ab Papageiendressur 4!',
     'level6'  => 'Sichtbar ab Papageiendressur 6!',
 ];
+//----------------------------------------------------------------------------//
+//Team
+$LNG['team'] =                      'Die Freibeuter';
+$LNG['teamAktiv'] =                 'Aktiv';
+$LNG['teamIngameName'] =            'Ingame Name';
+$LNG['teamDiscordName'] =           'Discord Name';
+$LNG['teamRole'] =                  'Rolle';
+$LNG['teamPlayer'] =                'Matrose';
+$LNG['teamAdmin'] =                 'Kaptän';
+$LNG['teamAdminLong'] =             'Befeligt das Schiff';
+$LNG['teamDatabase'] =              'Lademeister';
+$LNG['teamTickets'] =               'Schreiber';
+$LNG['teamTicketsLong'] =           'Kann bei allen eröffneten Tickets mitlesen';
+$LNG['teamScripte'] =               'Kanonier';
+$LNG['teamScripteLong'] =           'Trägt die Verantwortung für die Bewaffnung';
+$LNG['teamMod'] =                   'Navigator';
+$LNG['teamModLong'] =               'Navigiert über die wilde See';
+$LNG['teamEmergency'] =             'Entermanschaft';
+$LNG['teamEmergencyLong'] =         'Arrgh!';
+$LNG['teamDev'] =                   'Ausguck';
+$LNG['teamDevLong'] =               'Sucht nach neuen Zielen';
+$LNG['teamNo'] =                    'Nein';
+$LNG['teamYes'] =                   'Aye';
+$LNG['teamAlumni'] =                'Besuchen Davy Jones';
+$LNG['teamAlumniLong'] =            'Kameraden waren';
+$LNG['teamLegend'] =                'Karte';
