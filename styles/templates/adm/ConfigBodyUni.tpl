@@ -191,6 +191,12 @@
 			<td><input name="planet_factor" maxlength="3" size="3" value="{$planet_factor}" type="text"></td>
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_planet_factor_info}"></td>
 		</tr>
+		<tr>
+			<td>{$LNG.se_all_planet_pictures}</td>
+			<td><input name="all_planet_pictures" {if $all_planet_pictures} checked="checked" {/if} type="checkbox"></td>
+			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_all_planet_pictures_info}"></td>
+		</tr>
+
 
 		<tr>
 			<th colspan="2">{$LNG.se_server_planet_parameters}</th>

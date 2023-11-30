@@ -68,6 +68,7 @@ function ShowConfigUniPage()
             'planets_tech'          => $config->planets_tech,
             'planets_per_tech'      => $config->planets_per_tech,
             'planet_factor'         => $config->planet_factor,
+            'all_planet_pictures'   => $config->all_planet_pictures,
             'max_elements_build'    => $config->max_elements_build,
             'max_elements_tech'     => $config->max_elements_tech,
             'max_elements_ships'    => $config->max_elements_ships,
@@ -105,6 +106,7 @@ function ShowConfigUniPage()
         $OverviewNewsFrame      = isset($_POST['newsframe']) && $_POST['newsframe'] == 'on' ? 1 : 0;
         $user_valid             = isset($_POST['user_valid']) && $_POST['user_valid'] == 'on' ? 1 : 0;
         $debris_moon            = isset($_POST['debris_moon']) && $_POST['debris_moon'] == 'on' ? 1 : 0;
+        $all_planet_pictures    = isset($_POST['all_planet_pictures']) && $_POST['all_planet_pictures'] == 'on' ? 1 : 0;
         $ref_active             = isset($_POST['ref_active']) && $_POST['ref_active'] == 'on' ? 1 : 0;
 
         $OverviewNewsText       = $_POST['NewsText'];
@@ -215,6 +217,7 @@ function ShowConfigUniPage()
             'planets_tech'          => $planets_tech,
             'planets_per_tech'      => $planets_per_tech,
             'planet_factor'         => $planet_factor,
+            'all_planet_pictures'   => $all_planet_pictures,
             'max_elements_build'    => $max_elements_build,
             'max_elements_tech'     => $max_elements_tech,
             'max_elements_ships'    => $max_elements_ships,
@@ -401,6 +404,7 @@ function ShowConfigUniPage()
         'planets_tech'                  => $config->planets_tech,
         'planets_per_tech'              => $config->planets_per_tech,
         'planet_factor'                 => $config->planet_factor,
+        'all_planet_pictures'           => $config->all_planet_pictures,
         'max_elements_build'            => $config->max_elements_build,
         'max_elements_tech'             => $config->max_elements_tech,
         'max_elements_ships'            => $config->max_elements_ships,

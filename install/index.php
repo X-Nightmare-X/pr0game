@@ -195,14 +195,16 @@ switch ($mode) {
                     $ch = curl_init($httpRoot . $fileInfo['fileName']);
                     curl_setopt($ch, CURLOPT_HEADER, false);
                     curl_setopt($ch, CURLOPT_NOBODY, true);
-                    curl_setopt($ch, CURLOPT_MUTE, true);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, false); // no output
+                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // ignore self signed certificates
+                    curl_setopt($ch, CURLOPT_TIMEOUT, 600); // process timeout
                     curl_exec($ch);
-                    if (curl_errno($ch)) {
+                    if (curl_errno($ch) > 0) {
                         throw new Exception(
                             sprintf(
                                 'Update error.<br><br>CURL-Error on update %s:%s<br><br>' .
                                 '<b><i>You should restore with a backup.</i></b>',
-                                basename($fileInfo['filePath']),
+                                basename($fileInfo['fileName']),
                                 curl_error($ch)
                             )
                         );

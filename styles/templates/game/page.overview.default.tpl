@@ -149,7 +149,7 @@
                 {if !$Name@first}
                     &nbsp;&bull;&nbsp;
                 {/if}
-                <a href="#" onclick="return Dialog.PM({$ID})"><a class="colorPositive">{$Name}</a>
+                <a class="colorPositive" href="#" onclick="return Dialog.PM({$ID})">{$Name}</a>
             {/foreach}
             <br><br>
             {$LNG.ov_points} {$rankInfo}
@@ -258,6 +258,7 @@
                     <a href="game.php?page=shipyard&amp;mode=fleet">{$LNG.lm_shipshard}: {$LNG.ov_free}</a>
                     <br>
                 {/if}
+                {nocache}
                 {if isModuleAvailable($smarty.const.MODULE_REPAIR_DOCK)}
                     {if $buildInfo.repair}
                         {if $buildInfo.repair.repairing}
@@ -274,6 +275,7 @@
                         <br>
                     {/if}
                 {/if}
+                {/nocache}
                 <br>
                 {$LNG.ov_diameter}: {$planet_diameter} {$LNG.ov_distance_unit} (<a title="{$LNG.ov_developed_fields}">{$planet_field_current}</a> / <a title="{$LNG.ov_max_developed_fields}">{$planet_field_max}</a> {$LNG.ov_fields})
                 <br>
