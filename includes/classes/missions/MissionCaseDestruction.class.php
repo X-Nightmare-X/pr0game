@@ -482,6 +482,9 @@ HTML;
         ]);
 
         $i = 0;
+        $units = $combatResult['unitLost']['attacker'] + $combatResult['unitLost']['defender'];
+        $universe = $this->_fleet['fleet_universe'];
+        $topkb = $this->checkForTopKB($units, $universe);
 
         foreach ([$userAttack, $userDefend] as $data) {
             foreach ($data as $userID => $userName) {
@@ -533,18 +536,20 @@ HTML;
                     $this->_fleet['fleet_universe']
                 );
 
-                $sql = "INSERT INTO %%TOPKB_USERS%% SET
-				rid			= :reportId,
-				role		= :userRole,
-				username    = :username,
-				uid			= :userId;";
+                if ($topkb) {
+                    $sql = "INSERT INTO %%TOPKB_USERS%% SET
+                    rid			= :reportId,
+                    role		= :userRole,
+                    username    = :username,
+                    uid			= :userId;";
 
-                $db->insert($sql, [
-                    ':reportId' => $reportID,
-                    ':userRole' => $i + 1,
-                    ':username' => $userName,
-                    ':userId'   => $userID,
-                ]);
+                    $db->insert($sql, [
+                        ':reportId' => $reportID,
+                        ':userRole' => $i + 1,
+                        ':username' => $userName,
+                        ':userId'   => $userID,
+                    ]);
+                }
             }
 
             $i++;
@@ -586,20 +591,22 @@ HTML;
             ]);
         }
 
+        if ($topkb) {
         $sql = 'INSERT INTO %%TOPKB%% SET
-		units 		= :units,
-		rid			= :reportId,
-		time		= :time,
-		universe    = :universe,
-		result		= :result;';
+            units 		= :units,
+            rid			= :reportId,
+            time		= :time,
+            universe    = :universe,
+            result		= :result;';
 
-        $db->insert($sql, [
-            ':units'    => $combatResult['unitLost']['attacker'] + $combatResult['unitLost']['defender'],
-            ':reportId' => $reportID,
-            ':time'     => $this->_fleet['fleet_start_time'],
-            ':universe' => $this->_fleet['fleet_universe'],
-            ':result'   => $combatResult['won'],
-        ]);
+            $db->insert($sql, [
+                ':units'    => $units,
+                ':reportId' => $reportID,
+                ':time'     => $this->_fleet['fleet_start_time'],
+                ':universe' => $this->_fleet['fleet_universe'],
+                ':result'   => $combatResult['won'],
+            ]);
+        }
 
         $sql = 'UPDATE %%USERS%% SET
 		`' . $attackStatus . '` = `' . $attackStatus . '` + 1,

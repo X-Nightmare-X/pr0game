@@ -391,3 +391,4 @@ define('NOT_IMPLEMENTED_ACHIEVEMENTS', [
  define('EXPO_FIGHT', 3);
  
  define('MAXPLANETPICTURECOUNT', 58);
+ define('TOPKB_LIMIT', 150);
