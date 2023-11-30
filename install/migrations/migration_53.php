@@ -101,12 +101,19 @@ function processRecent()
 function processTop($universe)
 {
     $db = Database::get();
-    $sql = "SELECT * FROM %%TOPKB%% WHERE `universe` = :universe ORDER BY `units` LIMIT 150;";
+    $sql = "SELECT * FROM %%TOPKB%% WHERE `universe` = :universe AND `memorial` = 0 ORDER BY `units` DESC LIMIT 150;";
     $top = $db->select($sql, [
         ':universe' => $universe,
     ]);
 
     insertValues($top);
+
+    $sql = "SELECT * FROM %%TOPKB%% WHERE `universe` = :universe AND `memorial` = 1;";
+    $memorials = $db->select($sql, [
+        ':universe' => $universe,
+    ]);
+
+    insertValues($memorials);
 }
 
 function insertValues(array $topkbs)
