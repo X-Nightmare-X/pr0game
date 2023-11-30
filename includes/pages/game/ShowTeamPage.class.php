@@ -64,8 +64,6 @@ class ShowTeamPage extends AbstractGamePage
             }
         }
 
-        $LNG =& Singleton()->LNG;
-
         $this->assign([
             'idDawnOfTheUwe'		=> $idDawnOfTheUwe,
             'idAdman'		        => $idAdman,
