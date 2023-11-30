@@ -3,6 +3,7 @@
 {if $isMultiUniverse}
   <form name="stats" id="stats" method="post" action="">
     <select name="universe" id="universe" class="changeUni" onchange="$('#stats').submit();">{html_options options=$universeSelect selected=$universe}</select>
+	<select name="memorial" id="memorial" class="changeUni" onchange="$('#stats').submit();">{html_options options=$memorialSelect selected=$memorial}</select>
   </form>
 {/if}
 <table>
