@@ -120,14 +120,14 @@ class DailyCronJob implements CronjobTask
 
         foreach ($universes as $universe) {
             // Select lowest units to keep per universe
-            $sql = "SELECT `units` FROM %%TOPKB%% WHERE `universe` = :universe ORDER BY `units` DESC LIMIT 1 OFFSET 150;";
+            $sql = "SELECT `units` FROM %%TOPKB%% WHERE `universe` = :universe AND `memorial` = 0 ORDER BY `units` DESC LIMIT 1 OFFSET 150;";
             $units = $db->selectSingle($sql, [
                 ':universe' => $universe,
             ], 'units');
 
             if (!empty($units)) {
                 // Delete lower battlehall KBs
-                $sql = "DELETE FROM %%TOPKB%% WHERE `universe` = :universe AND `units` < :units;";
+                $sql = "DELETE FROM %%TOPKB%% WHERE `universe` = :universe AND `units` < :units AND `memorial` = 0;";
                 $db->delete($sql. [
                     ':universe' => $universe,
                     ':units' => $units,
