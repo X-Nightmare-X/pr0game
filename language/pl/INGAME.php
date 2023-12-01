@@ -1453,3 +1453,29 @@ $LNG['spytech_playercard'] = [
     'level4'  => 'Wyświetlane z poziomu Technologia Szpiegowska 4!',
     'level6'  => 'Wyświetlane z poziomu Technologia Szpiegowska 6!',
 ];
+//----------------------------------------------------------------------------//
+//Team
+$LNG['team'] =                      'Zespół';
+$LNG['teamAktiv'] =                 'Aktywa';
+$LNG['teamIngameName'] =            'Nazwa w grze';
+$LNG['teamDiscordName'] =           'Nazwa Discorda';
+$LNG['teamRole'] =                  'Rola';
+$LNG['teamPlayer'] =                'Gracz';
+$LNG['teamAdmin'] =                 'Admin';
+$LNG['teamAdminLong'] =             'Ma dostęp do specjalnych funkcji do administrowania grą';
+$LNG['teamDatabase'] =              'Dostęp do bazy danych';
+$LNG['teamTickets'] =               'Dostęp do biletów';
+$LNG['teamTicketsLong'] =           'Może odczytać wszystkie otwarte bilety';
+$LNG['teamScripte'] =               'Sprawdzanie skryptów';
+$LNG['teamScripteLong'] =           'Ocenia skrypty stworzone przez graczy, aby Drużyna<br>mogła zdecydować, czy zezwolić na skrypt z funkcjami';
+$LNG['teamMod'] =                   'Moderator';
+$LNG['teamModLong'] =               'Zajmowanie się Twoimi sprawami/problemami<br>Stara się zapewnić uczciwe wrażenia z gry<br>Odpowiada za kary<br>Ma dostęp do sekcji Discord do dyskusji o modach<br>Ma dostęp do sekcji Discord do dyskusji deweloperów<br>Ma dostęp do sekcji Discord na spotkaniach z twórcami';
+$LNG['teamEmergency'] =             'Zespół ratunkowy';
+$LNG['teamEmergencyLong'] =         'Odbiera ping od użytkowników, gdy wystąpią awarie serwera';
+$LNG['teamDev'] =                   'Wywoływacz';
+$LNG['teamDevLong'] =               'Utrzymuje i rozwija projekt, Ma dostęp do obszaru Discord do dyskusji deweloperów, Ma dostęp do obszaru Discord na spotkania biletowe z moderatorami';
+$LNG['teamNo'] =                    'Nie';
+$LNG['teamYes'] =                   'I';
+$LNG['teamAlumni'] =                'Byli / nieaktywni członkowie zespołu';
+$LNG['teamAlumniLong'] =            'Serdecznie dziękujemy';
+$LNG['teamLegend'] =                'Legenda, Wyjaśnienie ról / praw';

@@ -32,3 +32,8 @@ $planetData	= [
     14	=> ['temp' => mt_rand(-90, -50), 'avgTemp' => -70,	'fields' => mt_rand(100, 168), 'avgFields' => 134,	'image' => ['eis' => mt_rand(1, 10), 'gas' => mt_rand(1, 8)]],
     15	=> ['temp' => mt_rand(-130, -90), 'avgTemp' => -110,	'fields' => mt_rand(90, 164), 'avgFields' => 127,	'image' => ['eis' => mt_rand(1, 10), 'gas' => mt_rand(1, 8)]]
 ];
+
+
+function getAllPlanetPictures() : array {
+    return ['trocken' => mt_rand(1, 10), 'wuesten' => mt_rand(1, 4), 'dschjungel' => mt_rand(1, 10), 'normaltemp' => mt_rand(1, 7), 'wasser' => mt_rand(1, 9), 'eis' => mt_rand(1, 10), 'gas' => mt_rand(1, 8)];
+}

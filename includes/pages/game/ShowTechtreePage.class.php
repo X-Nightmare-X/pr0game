@@ -49,7 +49,9 @@ class ShowTechtreePage extends AbstractGamePage
         $techTreeList = [];
         $Messages		= $USER['messages'];
         foreach ($elementIDs as $elementId) {
-            if (!isset($resource[$elementId])) {
+            if (!BuildFunctions::isEnabled($elementId)) {
+                continue;
+            } elseif (!isset($resource[$elementId])) {
                 $techTreeList[$elementId]	= $elementId;
             } else {
                 $requirementsList	= [];

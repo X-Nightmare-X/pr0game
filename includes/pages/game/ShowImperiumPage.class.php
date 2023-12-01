@@ -136,16 +136,25 @@ class ShowImperiumPage extends AbstractGamePage
 
 
             foreach ($reslist['build'] as $elementID) {
+                if (!BuildFunctions::isEnabled($elementID)) {
+                    continue;
+                }
                 $planetList['build'][$elementID][$Planet['id']] = $Planet[$resource[$elementID]];
             }
             $planetList['currentShipyard'][$Planet['id']] = [];
             foreach ($reslist['fleet'] as $elementID) {
+                if (!BuildFunctions::isEnabled($elementID)) {
+                    continue;
+                }
                 $planetList['fleet'][$elementID][$Planet['id']] = $Planet[$resource[$elementID]];
                 $planetList['currentShipyard'][$elementID][$Planet['id']] = 0;
             }
 
 
             foreach ($reslist['defense'] as $elementID) {
+                if (!BuildFunctions::isEnabled($elementID)) {
+                    continue;
+                }
                 $planetList['defense'][$elementID][$Planet['id']] = $Planet[$resource[$elementID]];
                 $planetList['currentShipyard'][$elementID][$Planet['id']] = 0;
             }
@@ -163,6 +172,9 @@ class ShowImperiumPage extends AbstractGamePage
         }
 
         foreach ($reslist['tech'] as $elementID) {
+            if (!BuildFunctions::isEnabled($elementID)) {
+                continue;
+            }
             $planetList['tech'][$elementID] = $USER[$resource[$elementID]];
         }
 

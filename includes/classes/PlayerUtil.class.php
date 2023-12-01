@@ -523,12 +523,30 @@ class PlayerUtil
 
         $diameter = (int) floor(1000 * sqrt($maxFields));
 
-        $imageNames = array_keys($planetData[$dataIndex]['image']);
-        $imageNameType = $imageNames[array_rand($imageNames)];
-        $imageName = $imageNameType;
-        $imageName .= 'planet';
-        $imageName .= $planetData[$dataIndex]['image'][$imageNameType] < 10 ? '0' : '';
-        $imageName .= $planetData[$dataIndex]['image'][$imageNameType];
+        $sql = 'SELECT `image` FROM %%PLANETS%% WHERE `id_owner` = :userId; and destruyed = 0';
+        $planetPicturesAchieved = $db->select($sql, [
+            ':userId' => $userId,
+        ]);
+
+        $planetPictures = [];
+        foreach ($planetPicturesAchieved as $image => $value) {
+            array_push( $planetPictures, $value["image"]);
+        }
+
+        $enabledAllPlanetPictures = $config->all_planet_pictures;
+        $maxImages = 0;
+        do {
+            if ($enabledAllPlanetPictures){
+                $planetData[$dataIndex]['image'] = getAllPlanetPictures();
+            }
+            $imageNames = array_keys($planetData[$dataIndex]['image']);
+            $imageNameType = $imageNames[array_rand($imageNames)];
+            $imageName = $imageNameType;
+            $imageName .= 'planet';
+            $imageName .= $planetData[$dataIndex]['image'][$imageNameType] < 10 ? '0' : '';
+            $imageName .= $planetData[$dataIndex]['image'][$imageNameType];
+            $maxImages++;
+        } while (in_array($imageName, $planetPictures) && ($maxImages < MAXPLANETPICTURECOUNT) && ($enabledAllPlanetPictures));
 
         if (empty($name)) {
             $name = $isHome ? $LNG['fcm_mainplanet'] : $LNG['fcp_colony'];

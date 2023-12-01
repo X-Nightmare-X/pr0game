@@ -443,7 +443,7 @@ function ClearCache()
     $config = Config::get();
     $version = explode('.', $config->VERSION);
     $config->VERSION = $version[0] . '.' . $version[1] . '.' . 'git';
-    $config->save();
+    $config->saveGlobalKeys();
 }
 
 function allowedTo($side)

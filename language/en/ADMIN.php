@@ -515,6 +515,8 @@ $LNG['se_moonSizeFactor_info'] = 'Factor to influence the moon size, 1 = default
 $LNG['se_min_player_planets_info'] = 'Maximum number of colonies with the research';
 $LNG['se_planet_factor'] = 'Size of the planet';
 $LNG['se_planet_factor_info'] = 'Planet size multiplier';
+$LNG['se_all_planet_pictures'] = 'All planetpictures';
+$LNG['se_all_planet_pictures_info'] = 'allows all planet pictures at all positions.';
 $LNG['se_max_elements_build'] = 'Max. Construction Buildings';
 $LNG['se_max_elements_build_info'] = 'Maximum number of queued buildings Construction';
 $LNG['se_max_elements_tech'] = 'Max. Construction - Research';

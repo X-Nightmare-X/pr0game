@@ -1,6 +1,8 @@
 {block name="title" prepend}{$LNG.lm_galaxy}{/block}
 {block name="content"}
+  {nocache}
   {assign var=colespanAdd value=(isModuleAvailable($smarty.const.MODULE_REPAIR_DOCK)) ? 1 : 0}
+  {/nocache}
   <form action="?page=galaxy" method="post" id="galaxy_form">
     <input type="hidden" id="auto" value="dr">
     <table style="min-width:324px;width:324px;">
@@ -72,9 +74,11 @@
       <th style="white-space: nowrap">{$LNG.gl_name_activity}</th>
       <th style="white-space: nowrap">{$LNG.gl_moon}</th>
       <th style="white-space: nowrap">{$LNG.gl_debris}</th>
+      {nocache}
       {if isModuleAvailable($smarty.const.MODULE_REPAIR_DOCK)}
         <th style="white-space: nowrap">{$LNG.gl_wreckfield_short}</th>
       {/if}
+      {/nocache}
       <th style="white-space: nowrap">{$LNG.gl_player_estate}</th>
       <th style="white-space: nowrap">{$LNG.gl_alliance}</th>
       <th style="white-space: nowrap">{$LNG.gl_actions}</th>
@@ -89,9 +93,11 @@
           <td></td>
           <td></td>
           <td></td>
+          {nocache}
           {if isModuleAvailable($smarty.const.MODULE_REPAIR_DOCK)}
             <td></td>
           {/if}
+          {/nocache}
           <td></td>
           <td></td>
           <td></td>
@@ -110,9 +116,11 @@
               </a>
             {/if}
           </td>
+          {nocache}
           {if isModuleAvailable($smarty.const.MODULE_REPAIR_DOCK)}
             <td></td>
           {/if}
+          {/nocache}
           <td></td>
           <td></td>
           <td></td>
@@ -141,6 +149,7 @@
               </a>
             {/if}
           </td>
+          {nocache}
           {if isModuleAvailable($smarty.const.MODULE_REPAIR_DOCK)}
             <td style="white-space: nowrap;">
               {if $currentPlanet.wreckfield}
@@ -166,6 +175,7 @@
               {/if}
             </td>
           {/if}
+          {/nocache}
           <td>
             <a class="tooltip_sticky" data-tooltip-content="<table style='width:240px'><tr><th colspan='2'>{$currentPlanet.user.playerrank}</th></tr><tr>{if !$currentPlanet.user.isBuddy && !$currentPlanet.ownPlanet}<tr><td><a href='#' onclick='return Dialog.Buddy({$currentPlanet.user.id})'>{$LNG.gl_buddy_request}</a></td></tr>{/if}<tr><td><a href='#' playerid='{$currentPlanet.user.id}' onclick='return Dialog.Playercard({$currentPlanet.user.id});'>{$LNG.gl_playercard}</a></td></tr><tr><td><a href='?page=statistics&amp;who=1&amp;start={$currentPlanet.user.rank}'>{$LNG.gl_see_on_stats}</a></td></tr></table>">
               <span playerid='{$currentPlanet.user.id}' class="{foreach $currentPlanet.user.class as $class}
