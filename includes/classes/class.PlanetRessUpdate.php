@@ -39,9 +39,9 @@ class ResourceUpdate
         $this->Build = $Build;
         $this->Tech = $Tech;
 
-        $this->Builded[RESOURCE_METAL] = 0;
-        $this->Builded[RESOURCE_CRYSTAL] = 0;
-        $this->Builded[RESOURCE_DEUT] = 0;
+        $this->Builded[RESOURCE_METAL] = 0.0;
+        $this->Builded[RESOURCE_CRYSTAL] = 0.0;
+        $this->Builded[RESOURCE_DEUT] = 0.0;
     }
 
     public function setData($USER, $PLANET)
@@ -934,7 +934,11 @@ class ResourceUpdate
                     } else {
                         $buildQueries[] = ', p.' . $resource[$Element] . ' = p.' . $resource[$Element] . ' + :'
                             . $resource[$Element];
-                        $params[':' . $resource[$Element]] = floatToString($Count);
+                        if ($Element >= 900 && $Element < 1000) {
+                            $params[':' . $resource[$Element]] = floatToString($Count, 6);
+                        } else {
+                            $params[':' . $resource[$Element]] = floatToString($Count);
+                        }
                     }
                     if ($Element >= 200 && $Element < 900) { // Update Builded stats for ships, def and rockets
                         $buildQueries[] = ', s.build_' . $Element . ' = s.build_' . $Element . ' + :'
