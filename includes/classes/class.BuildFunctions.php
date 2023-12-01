@@ -121,6 +121,10 @@ class BuildFunctions
     {
         $requeriments =& Singleton()->requeriments;
         $resource =& Singleton()->resource;
+        if (!BuildFunctions::isEnabled($Element)) {
+            return false;
+        }
+
         if (!isset($requeriments[$Element])) {
             return true;
         }
@@ -134,6 +138,15 @@ class BuildFunctions
             }
         }
         return true;
+    }
+
+    public static function isEnabled(int $elementID) : bool {
+        switch ($elementID) {
+            case REPAIR_DOCK:
+                return isModuleAvailable(MODULE_REPAIR_DOCK);
+            default:
+                return true;
+        }
     }
 
     public static function getBuildingTime(
