@@ -34,6 +34,8 @@ $planetData	= [
 ];
 
 
-function getAllPlanetPictures() : array {
-    return ['trocken' => mt_rand(1, 10), 'wuesten' => mt_rand(1, 4), 'dschjungel' => mt_rand(1, 10), 'normaltemp' => mt_rand(1, 7), 'wasser' => mt_rand(1, 9), 'eis' => mt_rand(1, 10), 'gas' => mt_rand(1, 8)];
+if (!function_exists('getAllPlanetPictures')) {
+    function getAllPlanetPictures() : array {
+        return ['trocken' => mt_rand(1, 10), 'wuesten' => mt_rand(1, 4), 'dschjungel' => mt_rand(1, 10), 'normaltemp' => mt_rand(1, 7), 'wasser' => mt_rand(1, 9), 'eis' => mt_rand(1, 10), 'gas' => mt_rand(1, 8)];
+    }
 }
