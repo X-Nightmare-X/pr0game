@@ -120,10 +120,10 @@ class DailyCronJob implements CronjobTask
 
         foreach ($universes as $universe) {
             // Select lowest units to keep per universe
-            $sql = "SELECT `units` FROM %%TOPKB%% WHERE `universe` = :universe AND `memorial` = 0 ORDER BY `units` DESC LIMIT 1 OFFSET :topKbLimLow;";
+            $sql = "SELECT `units` FROM %%TOPKB%% WHERE `universe` = :universe AND `memorial` = 0 ORDER BY `units` DESC LIMIT 1 OFFSET :offset;";
             $units = $db->selectSingle($sql, [
                 ':universe' => $universe,
-                ':topKbLimLow'  => TOPKB_LIMIT-1,
+                ':offset'  => TOPKB_LIMIT-1,
             ], 'units');
 
             if (!empty($units)) {

@@ -403,10 +403,10 @@ class MissionFunctions
     {
         require_once 'includes/classes/Database.class.php';
         $db = Database::get();
-        $sql = "SELECT `units` FROM %%TOPKB%% WHERE `universe` = :universe AND `memorial` = 0 ORDER BY `units` DESC LIMIT 1 OFFSET :topKbLimLow;";
+        $sql = "SELECT `units` FROM %%TOPKB%% WHERE `universe` = :universe AND `memorial` = 0 ORDER BY `units` DESC LIMIT 1 OFFSET :offset;";
         $topKbUnits = $db->selectSingle($sql, [
             ':universe'     => $universe,
-            ':topKbLimLow'  => TOPKB_LIMIT-1,
+            ':offset'  => TOPKB_LIMIT-1,
         ], 'units');
 
         $result = false;
