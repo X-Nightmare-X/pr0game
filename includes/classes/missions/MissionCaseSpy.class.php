@@ -173,6 +173,9 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         foreach ($classIDs as $classID => $elementIDs) {
             foreach ($elementIDs as $elementID) {
+                if (!BuildFunctions::isEnabled($elementID)) {
+                    continue;
+                }
                 if (isset($targetUser[$resource[$elementID]])) {
                     $spyData[$classID][$elementID] = $targetUser[$resource[$elementID]];
                 } else {

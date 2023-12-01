@@ -47,9 +47,6 @@ class VarsBuildCache implements BuildCache
 
         $varsResult = $db->nativeQuery('SELECT * FROM %%VARS%%;');
         foreach ($varsResult as $varsRow) {
-            if (!$this->isEnabled($varsRow['elementID'])) {
-                continue;
-            }
             $resource[$varsRow['elementID']] = $varsRow['name'];
             $CombatCaps[$varsRow['elementID']] = [
                 'attack'    => $varsRow['attack'],
@@ -166,14 +163,5 @@ class VarsBuildCache implements BuildCache
             'pricelist'     => $pricelist,
             'requeriments'  => $requeriments,
         ];
-    }
-
-    private function isEnabled(int $elementID) : bool {
-        switch ($elementID) {
-            case REPAIR_DOCK:
-                return isModuleAvailable(MODULE_REPAIR_DOCK);
-            default:
-                return true;
-        }
     }
 }
