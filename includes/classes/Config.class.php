@@ -28,14 +28,17 @@ class Config
      *
      * These keys will be changed for every univers of this server!
      */
-    protected static $globalConfigKeys	= ['VERSION', 'game_name', 'stat', 'stat_level', 'stat_last_update',
-                                           'stat_settings', 'stat_update_time', 'stat_last_db_update', 'stats_fly_lock',
-                                           'cron_lock', 'mail_active', 'mail_use', 'smtp_host',
-                                           'smtp_port', 'smtp_user', 'smtp_pass', 'smtp_ssl', 'smtp_sendmail',
-                                           'smail_path', 'ga_active', 'ga_key',
-                                           'ttf_file', 'sendmail_inactive', 'del_user_sendmail',
-                                           'del_oldstuff', 'del_user_manually', 'ref_max_referals',
-                                           'disclamerAddress','disclamerPhone','disclamerMail','disclamerNotice', 'git_issues_link', 'recaptchaPrivKey', 'recaptchaPubKey'];
+    protected static $globalConfigKeys	= [
+        'VERSION', 'stat', 'stat_level', 'stat_last_update', 'stat_settings',
+        'stat_update_time', 'stat_last_db_update', 'stats_fly_lock', 'cron_lock',
+        'game_name', 'ttf_file', 'timezone', 'dst', 'git_issues_link',
+        'del_oldstuff', 'del_user_manually', 'sendmail_inactive', 'del_user_sendmail',
+        'mail_active', 'mail_use', 'smtp_sendmail', 'smail_path', 'smtp_host',
+        'smtp_ssl', 'smtp_port', 'smtp_user', 'smtp_pass',
+        'message_delete_behavior', 'message_delete_days', 'ga_active', 'ga_key',
+        'disclamerAddress', 'disclamerPhone', 'disclamerMail', 'disclamerNotice',
+        'recaptchaPrivKey', 'recaptchaPubKey'
+    ];
 
     /**
      * Global configkeys
@@ -114,43 +117,55 @@ class Config
         return isset($this->configData[$key]);
     }
 
-    public function save($options = null)
+    public function save()
     {
         if (empty($this->updateRecords)) {
             // Do nothing here.
             return true;
         }
 
-        if (is_null($options)) {
-            $options	= [];
+        $updateData = [];
+        $params = [];
+        foreach ($this->updateRecords as $columnName) {
+            if (!in_array($columnName, self::$globalConfigKeys)) {
+                $updateData[] = '`' . $columnName . '` = :' . $columnName;
+                $params[':' . $columnName] = $this->configData[$columnName];
+            }
+        }
+        $params[':universe'] = $this->configData['uni'];
+
+        $sql = 'UPDATE %%CONFIG%% SET '.implode(', ', $updateData).' WHERE `UNI` = :universe';
+        Database::get()->update($sql, $params);
+
+        $this->updateRecords = [];
+        return true;
+    }
+
+    public function saveGlobalKeys()
+    {
+        if (empty($this->updateRecords)) {
+            // Do nothing here.
+            return true;
         }
 
-        $options	+= [
-            'noGlobalSave' => false
-        ];
+        $db = Database::get();
 
         $updateData = [];
-        $params     = [];
-        foreach ($this->updateRecords as $columnName) {
-            $updateData[]             = '`' . $columnName . '` = :' . $columnName;
-            $params[':' . $columnName] = $this->configData[$columnName];
+        $params = [];
 
-            //TODO: find a better way ...
-            if (!$options['noGlobalSave'] && in_array($columnName, self::$globalConfigKeys)) {
-                foreach (Universe::availableUniverses() as $universeId) {
-                    if ($universeId != $this->configData['uni']) {
-                        $config = Config::get();
-                        $config->$columnName = $this->configData[$columnName];
-                        $config->save(['noGlobalSave' => true]);
-                    }
-                }
+        foreach ($this->updateRecords as $columnName) {
+            if (in_array($columnName, self::$globalConfigKeys)) {
+                $updateData[] = '`' . $columnName . '` = :' . $columnName;
+                $params[':' . $columnName] = $this->configData[$columnName];
             }
         }
 
-        $sql = 'UPDATE %%CONFIG%% SET '.implode(', ', $updateData).' WHERE `UNI` = :universe';
-        $params[':universe'] = $this->configData['uni'];
-        $db     = Database::get();
-        $db->update($sql, $params);
+        foreach (Universe::availableUniverses() as $universeId) {
+            $params[':universe'] = $universeId;
+            
+            $sql = 'UPDATE %%CONFIG%% SET '.implode(', ', $updateData).' WHERE `UNI` = :universe';
+            $db->update($sql, $params);
+        }
 
         $this->updateRecords = [];
         return true;

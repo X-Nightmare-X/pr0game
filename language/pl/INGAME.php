@@ -110,8 +110,9 @@ $LNG['banned_message'] = 'Zostałeś zbanowany. Jeśli uważasz, że to nieporoz
 //----------------------------------------------------------------------------//
 //TOPNAV
 $LNG['tn_player_title'] = 'Imperator';
-$LNG['tn_vacation_mode'] = 'Jesteś w trybie wakacyjnym.<br><br>Uwaga: Tryb wakacyjny jest automatycznie wyłączany po 4 tygodniach nieaktywności.';
-$LNG['tn_vacation_mode_until'] = 'Jesteś w trybie wakacyjnym co najmniej do godziny %s.<br><br>Uwaga: Tryb wakacyjny jest automatycznie wyłączany po 4 tygodniach nieaktywności.';
+$LNG['tn_vacation_mode'] = 'Jesteś w trybie wakacyjnym.';
+$LNG['tn_vacation_mode_until'] = 'Jesteś w trybie wakacyjnym co najmniej do godziny %s.';
+$LNG['tn_vacation_mode_kick'] = '<br><br>Uwaga: Tryb wakacyjny jest automatycznie wyłączany po 4 tygodniach nieaktywności.';
 $LNG['tn_delete_mode'] = 'Twoje konto zostanie automatycznie usunięte %s ';
 
 //----------------------------------------------------------------------------//
@@ -124,6 +125,7 @@ $LNG['lm_buildings'] = 'Budynki';
 $LNG['lm_research'] = 'Badania';
 $LNG['lm_shipshard'] = 'Stocznia';
 $LNG['lm_defenses'] = 'Obrona';
+$LNG['lm_repairdock'] = 'Dok naprawczy';
 $LNG['lm_resources'] = 'Zasoby';
 $LNG['lm_fleettrader'] = 'Złomowanie floty';
 $LNG['lm_technology'] = 'Technologie';
@@ -242,6 +244,8 @@ $LNG['gl_planet'] = 'Planeta';
 $LNG['gl_name_activity'] = 'Nazwa (Aktywność)';
 $LNG['gl_moon'] = 'Księżyc';
 $LNG['gl_debris'] = 'PZ';
+$LNG['gl_wreckfield_short'] = 'PW';
+$LNG['gl_wreckfield'] = 'Pole wraku';
 $LNG['gl_player_estate'] = 'Gracz (Status)';
 $LNG['gl_alliance'] = 'Sojusz';
 $LNG['gl_actions'] = 'Akcja';
@@ -433,6 +437,7 @@ $LNG['fl_hold_max_fleets'] = 'Już teraz zbyt wiele flot zmierza do tych współ
 $LNG['fl_hold_max_user'] = 'Maksymalna liczba broniących się imperiów została już osiągnięta. Flota nie mogła zostać wysłana.';
 $LNG['fl_attack_confirm_diplo'] = 'Pakt (%s) został zawarty z sojuszem %s i twoim sojuszem. Czy naprawdę chcesz przeprowadzić atak?';
 $LNG['fl_attack_confirm_buddy'] = 'Cel jest na twojej liście znajomych. Czy naprawdę chcesz przeprowadzić atak?';
+$LNG['fl_error'] = 'Coś poszło nie tak. Spróbuj ponownie.';
 
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES
@@ -454,8 +459,17 @@ $LNG['bd_building_lab'] = 'Nie możesz rozwijać badań, gdy laboratorium jest w
 $LNG['bd_research'] = 'Badania';
 $LNG['bd_shipyard_required'] = 'Musisz najpierw zbudować stocznię!';
 $LNG['bd_building_shipyard'] = 'Fabryka nanitów lub stocznia jest rozbudowywana!';
+$LNG['bd_deploy'] = 'Wstawka';
+$LNG['bd_repairdock_required'] = 'Musisz najpierw zbudować dok naprawczy na tej planecie!';
+$LNG['bd_repairdock_busy'] = 'Stacja naprawcza już pracuje nad zadaniem!';
+$LNG['bd_repairdock_empty'] = 'Nie ma pola wraku!';
+$LNG['bd_repairdock_deploy'] = 'Statki zostały przywrócone do służby!';
+$LNG['bd_max_ships_repair'] = 'Maksymalne odzyskiwalne jednostki';
+$LNG['bd_repairing'] = 'Naprawa w toku';
+$LNG['bd_deployable'] = 'Naprawa zakończona! Automatyczne wprowadzanie:';
 $LNG['bd_available'] = 'Dostępne: ';
 $LNG['bd_build_ships'] = 'Buduj';
+$LNG['bd_repair_ships'] = 'Naprawa';
 $LNG['bd_protection_shield_only_one'] = 'Możesz mieć tylko jedną na planecie';
 $LNG['bd_build_defenses'] = 'Buduj';
 $LNG['bd_actual_production'] = 'Aktualna produkcja:';
@@ -936,7 +950,7 @@ $LNG['op_cant_activate_vacation_mode'] = 'Nie możesz aktywować trybu urlopoweg
 $LNG['op_password_changed'] = 'Hasło zmienione<br><a href="index.php" target="_top">Wróć</a>';
 $LNG['op_username_changed'] = 'Nazwa użytkownika zmieniona<br><a href="index.php" target="_top">Wróć</a>';
 $LNG['op_options_changed'] = 'Ustawienia zapisane.';
-$LNG['op_options_changed_vacation'] = 'Ustawienia zapisane.<br><br>Uwaga: Tryb wakacyjny jest automatycznie wyłączany po 4 tygodniach nieaktywności.';
+$LNG['op_options_changed_vacation'] = 'Ustawienia zapisane.';
 $LNG['op_vacation_mode_active_message'] = 'Urlop będzie można zakończyć nie wcześniej niż: ';
 $LNG['op_end_vacation_mode'] = 'Koniec Urlopu';
 $LNG['op_save_changes'] = 'Zapisz zmiany';
@@ -1057,6 +1071,7 @@ $LNG['fcm_info'] = 'Informacje';
 $LNG['fcp_colony'] = 'Kolonia';
 $LNG['fgp_require'] = 'Potrzebujesz: ';
 $LNG['fgf_time'] = 'Czas budowy: ';
+$LNG['fgr_time'] = 'Czas naprawy: ';
 $LNG['sys_module_inactive'] = 'Moduł nieaktywny';
 $LNG['sys_refferal_from'] = 'System';
 $LNG['sys_refferal_title'] = 'Bonus dla gracza %s';
@@ -1289,3 +1304,178 @@ $LNG['stb_med_time'] = 'stosunek średnich zasobów na sekundę';
 
 $LNG['stb_big_time_tooltip'] = 'Opisuje najlepszy możliwy zysk zasobów na sekundę, zaokrąglony do dwóch miejsc po przecinku. Stosunek mniejszy niż wprowadzona wartość jest interpretowany jako dobry (jasnozielony), a wartość powyżej jako optymalna (jasnoniebieski).';
 $LNG['stb_big_time'] = 'Stosunek dobrych zasobów na sekundę';
+
+//----------------------------------------------------------------------------//
+//Achievements
+$LNG['Description'] = 'Opis';
+$LNG['Achievements'] = 'Osiągnięcia';
+$LNG['Achievement_names'] = [
+    1 => 'Bezsenność i zły nastrój',
+    2 => 'Absolutne podstawy',
+    3 => 'Zasłużony',
+    4 => 'O co teraz chodzi?',
+    5 => 'Ponieważ mogę',
+
+    6 => 'Osoby o niskich dochodach',
+    7 => 'Rewolucja francuska',
+    8 => 'Pijany w Saven',
+    9 => 'To nie jest księżyc',
+    10 => 'Gra w kulki',
+
+    11 => 'TheLegend27',
+    12 => 'Błogosławieństwo Slippy\'ego',
+    13 => 'Było blisko',
+    14 => 'Klątwa Slippy\'ego',
+    15 => 'Czy nadal mamy łowców światła??',
+
+    16 => 'Hej stary, gdzie jest moje pole odłamków?!',
+    17 => 'Obrona Overlord!',
+    18 => 'Dworzec główny we Frankfurcie',
+    19 => 'Gruba skóra 1',
+    20 => 'Gruba skóra 2',
+
+    21 => 'Gruba skóra 3',
+    22 => 'Gruba skóra 4',
+    23 => 'Gruba skóra 5',
+    24 => 'Odpalam mój laser',
+    25 => 'Naruszenie DSGVO',
+
+    26 => 'Wszystko dla osiągnięć',
+    27 => 'Czas wielkiego mózgu',
+    28 => 'Alternatywna rozgrywka',
+    29 => 'Manifest komunistyczny',
+    30 => 'To jest Sparta',
+
+    31 => 'Wyjazd na wakacje',
+    32 => 'Bukanier!',
+    33 => 'Mogę przestać, jeśli chcę!',
+    34 => 'Edelfarm',
+    35 => 'To nie jest miłe!',
+
+    36 => 'Miesernachtsmann',
+    37 => 'Nie jestem taki',
+    38 => 'Cornag oraz Offz',
+    39 => 'Sens życia',
+    40 => 'Columbus',
+
+    41 => 'Patron slotu flotowego',
+    42 => 'Najważniejszą rzeczą jest Battlehall',
+    43 => 'Z zamkniętymi oczami',
+    44 => 'Każdemu zdarza się to przez pomyłkę',
+    45 => 'Kluczowa usługa',
+
+    46 => 'Czysta nienawiść!',
+    47 => 'Jack the Ripper',
+    48 => 'Rip the Jacker',
+    49 => 'To był kolejny strzał w piec',
+    50 => 'Oopsie',
+
+    51 => 'Nie wiem, czy to przychodzi naturalnie',
+    52 => 'Urojenia wielkości',
+    53 => 'Einstein',
+    54 => 'Szczęśliwego nowego roku!',
+    55 => 'Żywa legenda',
+];
+
+$LNG['Achievement_text'] = [
+    1 => 'Nie spałeś całą noc i nie oddałeś strzału.',
+    2 => 'W ciągu ostatnich 90 dni miałeś stały ruch floty.',
+    3 => 'Utracono flotę, gdy ustawienia języka były ustawione na "francuski".',
+    4 => 'Poznaj technologię jonową 10.',
+    5 => 'Poznaj badania nad grawitonami 2.',
+
+    6 => 'Jeden z twoich ataków przyniósł 1 metal, 1 kryształ i 1 deuter.',
+    7 => 'Pokonaj flotę statków pirackich lub obcych liczącą co najmniej 10 000 statków.',
+    8 => 'Weź udział w tabeli zaostrzeń (wtorki od 20:00 na Discordzie).',
+    9 => 'Zbuduj swoją pierwszą Gwiazdę Śmierci.',
+    10 => 'Zniszcz księżyc gracza.',
+
+    11 => 'Graj przez 14 dni wyłącznie na telefonie komórkowym.',
+    12 => 'Twoja flota została zniszczona podczas pierwszej ekspedycji.',
+    13 => 'Wyślij swoją flotę, gdy do nadchodzącego ataku pozostało mniej niż 5 sekund.',
+    14 => 'Straciłeś 10 flot przez czarne dziury.',
+    15 => 'Spędź 10 prób zdobycia księżyca na planecie bez zdobycia księżyca.',
+
+    16 => 'Ponad 250 recyklerów powróciło bez ładunku',
+    17 => 'Wprowadzić do produkcji co najmniej 5000 wyrzutni rakiet z zamówieniem na budowę.',
+    18 => 'Zużycie 5 milionów deuteru na planecie w ciągu 24 godzin w postaci kosztów paliwa.',
+    19 => 'Poznaj pancerz statku kosmicznego 3.',
+    20 => 'Poznaj pancerz statku kosmicznego 6.',
+
+    21 => 'Poznaj pancerz statku kosmicznego 9.',
+    22 => 'Poznaj pancerz statku kosmicznego 12.',
+    23 => 'Poznaj pancerz statku kosmicznego 15.',
+    24 => 'Poznaj technologię laserową 12.',
+    25 => 'Użytkownik wyraził zgodę na otrzymywanie danych',
+
+    26 => 'Usuń planetę, która daje ci najwięcej punktów. (Co najmniej 100 000 punktów)',
+    27 => 'Poznaj Międzygalaktyczną Sieć Badawczą 1.',
+    28 => 'Ulepsz wszystkie trzy magazyny zasobów na księżycu do co najmniej poziomu 3.',
+    29 => 'Zbierz flotę gracza z wyższą liczbą punktów za pomocą 5-osobowego ACS.',
+    30 => 'Samodzielne odparcie 5-osobowego ACS',
+
+    31 => 'Awansowałeś gracza do trybu wakacyjnego dzięki swojemu atakowi.',
+    32 => 'Podnieś 1000 planet, gdy aktywowany jest motyw "SetSail".',
+    33 => 'Powrót z trybu U.',
+    34 => 'Zostać zaatakowanym raz.',
+    35 => 'Zaatakuj aktywnego gracza, który ma mniej niż 1/10 twoich punktów.',
+
+    36 => 'Otrzymanie wiadomości zawierającej jeden z następujących bloków:
+                        "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
+    37 => 'Twoja flota została zniszczona przez AKS z 5 uczestnikami.',
+    38 => 'Atakuj członków własnego sojuszu.',
+    39 => 'Zaatakuj kogoś, kto ma dokładnie 42 statki.',
+    40 => 'Skolonizować planetę oddaloną o co najmniej pół wszechświata.',
+
+    41 => 'Blockiere einen Flottenslot für eine Woche mit einem schlechten Marktplatzangebot.',
+    42 => 'Pojawia się 4 razy w Battlehall jako przegrany.',
+    43 => 'Wygrasz bitwę, gdy twoje konto jest oznaczone jako nieaktywne,
+            na jednej z planet, na którą wcześniej przybyła flota o czasie lotu dłuższym niż 7 dni.',
+    44 => 'Produkowanie zasobów przy zużyciu energii mniejszym niż 100% na planecie przez ponad 7 dni.',
+    45 => 'Wygraj atak na zawodnika, który znajduje się w pierwszej dziesiątce obrony.',
+
+    46 => 'Uruchamiaj ochronę przed uderzeniami, wystrzeliwując pociski międzyplanetarne.',
+    47 => 'Zniszcz 5 księżyców.',
+    48 => 'Strać 5 Gwiazd Śmierci podczas próby zniszczenia księżyców.',
+    49 => 'Oderwij colo wkrótce po jego uformowaniu.',
+    50 => 'Utrata wszystkich satelitów słonecznych na planecie z wystarczającą ilością energii do zbadania Graviego.
+            energii do zbadania Graviego bez zbadania Graviego.',
+
+    51 => 'Zużyj cały deuter w widoku gali.',
+    52 => 'Zbuduj Gwiazdę Śmierci bez wcześniejszego zbudowania innych pancerników.',
+    53 => 'Najwyższy poziom w 5 badaniach jednocześnie.',
+    54 => 'Czas ataku na aktywnego gracza do 01.01. 00:00:00',
+    55 => 'Osiągnięcie specjalne',
+];
+
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Wyświetlane z poziomu Technologia Szpiegowska 2!',
+    'level4'  => 'Wyświetlane z poziomu Technologia Szpiegowska 4!',
+    'level6'  => 'Wyświetlane z poziomu Technologia Szpiegowska 6!',
+];
+//----------------------------------------------------------------------------//
+//Team
+$LNG['team'] =                      'Zespół';
+$LNG['teamAktiv'] =                 'Aktywa';
+$LNG['teamIngameName'] =            'Nazwa w grze';
+$LNG['teamDiscordName'] =           'Nazwa Discorda';
+$LNG['teamRole'] =                  'Rola';
+$LNG['teamPlayer'] =                'Gracz';
+$LNG['teamAdmin'] =                 'Admin';
+$LNG['teamAdminLong'] =             'Ma dostęp do specjalnych funkcji do administrowania grą';
+$LNG['teamDatabase'] =              'Dostęp do bazy danych';
+$LNG['teamTickets'] =               'Dostęp do biletów';
+$LNG['teamTicketsLong'] =           'Może odczytać wszystkie otwarte bilety';
+$LNG['teamScripte'] =               'Sprawdzanie skryptów';
+$LNG['teamScripteLong'] =           'Ocenia skrypty stworzone przez graczy, aby Drużyna<br>mogła zdecydować, czy zezwolić na skrypt z funkcjami';
+$LNG['teamMod'] =                   'Moderator';
+$LNG['teamModLong'] =               'Zajmowanie się Twoimi sprawami/problemami<br>Stara się zapewnić uczciwe wrażenia z gry<br>Odpowiada za kary<br>Ma dostęp do sekcji Discord do dyskusji o modach<br>Ma dostęp do sekcji Discord do dyskusji deweloperów<br>Ma dostęp do sekcji Discord na spotkaniach z twórcami';
+$LNG['teamEmergency'] =             'Zespół ratunkowy';
+$LNG['teamEmergencyLong'] =         'Odbiera ping od użytkowników, gdy wystąpią awarie serwera';
+$LNG['teamDev'] =                   'Wywoływacz';
+$LNG['teamDevLong'] =               'Utrzymuje i rozwija projekt, Ma dostęp do obszaru Discord do dyskusji deweloperów, Ma dostęp do obszaru Discord na spotkania biletowe z moderatorami';
+$LNG['teamNo'] =                    'Nie';
+$LNG['teamYes'] =                   'I';
+$LNG['teamAlumni'] =                'Byli / nieaktywni członkowie zespołu';
+$LNG['teamAlumniLong'] =            'Serdecznie dziękujemy';
+$LNG['teamLegend'] =                'Legenda, Wyjaśnienie ról / praw';

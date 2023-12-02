@@ -98,14 +98,17 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
             case 0:
                 $Message = $LNG['sys_expe_found_ress_1_' . mt_rand(1, 4)];
                 $factor = mt_rand(10, 50);
+                $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], "res_small");
                 break;
             case 1:
                 $Message = $LNG['sys_expe_found_ress_2_' . mt_rand(1, 3)];
                 $factor = mt_rand(50, 100);
+                $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], "res_medium");
                 break;
             case 2:
                 $Message = $LNG['sys_expe_found_ress_3_' . mt_rand(1, 2)];
                 $factor = mt_rand(100, 200);
+                $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], "res_large");
                 break;
         }
 
@@ -226,14 +229,17 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
             case 0:
                 $Size = mt_rand(10, 50);
                 $Message = $LNG['sys_expe_found_ships_1_' . mt_rand(1, 4)];
+                $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], "ships_small");
                 break;
             case 1:
                 $Size = mt_rand(52, 100);
                 $Message = $LNG['sys_expe_found_ships_2_' . mt_rand(1, 2)];
+                $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], "ships_medium");
                 break;
             case 2:
                 $Size = mt_rand(102, 200);
                 $Message = $LNG['sys_expe_found_ships_3_' . mt_rand(1, 2)];
+                $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], "ships_large");
                 break;
         }
 
@@ -297,6 +303,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
                 $attackFactor = $pirates ? (30 + mt_rand(-3, 3)) / 100 : (40 + mt_rand(-4, 4)) / 100;
                 $bonusShip = $pirates ? SHIP_LIGHT_FIGHTER : SHIP_HEAVY_FIGHTER;
                 $targetFleetData[$bonusShip] = 5;
+                $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], $pirates ? "pirates_small" : "aliens_small");
                 break;
             case 1:
                 $Message = $pirates
@@ -304,6 +311,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
                 $attackFactor = $pirates ? (50 + mt_rand(-5, 5)) / 100 : (60 + mt_rand(-6, 6)) / 100;
                 $bonusShip = $pirates ? SHIP_CRUISER : SHIP_BATTLECRUISER;
                 $targetFleetData[$bonusShip] = 3;
+                $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], $pirates ? "pirates_medium" : "aliens_medium");
                 break;
             case 2:
                 $Message = $pirates
@@ -311,6 +319,7 @@ class MissionCaseExpedition extends MissionFunctions implements Mission
                 $attackFactor = $pirates ? (80 + mt_rand(-8, 8)) / 100 : (90 + mt_rand(-9, 9)) / 100;
                 $bonusShip = $pirates ? SHIP_BATTLESHIP : SHIP_DESTROYER;
                 $targetFleetData[$bonusShip] = 2;
+                $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], $pirates ? "pirates_large" : "aliens_large");
                 break;
         }
 
@@ -422,6 +431,7 @@ HTML;
             'debris' => $debris,
             'stealResource' => $stealResource,
             'moonChance' => 0,
+            'additionalChance' => 0,
             'moonDestroy' => false,
             'moonName' => null,
             'moonDestroyChance' => null,
@@ -430,7 +440,7 @@ HTML;
             'fleetDestroySuccess' => null,
         ];
 
-        $reportData = GenerateReport($combatResult, $reportInfo);
+        $reportData = GenerateReport($combatResult, $reportInfo, EXPO_FIGHT);
         $reportID = md5(uniqid('', true) . TIMESTAMP);
 
         $sql = "INSERT INTO %%RW%% SET
@@ -630,9 +640,7 @@ HTML;
         mt_srand(floor(microtime(true) * 10000));
         usleep(50);
 
-
         $GetEvent = $this->chooseEvent();
-
         if ($GetEvent < 370) {
             // Find resources: 37%. Values from http://owiki.de/Expedition + 4.5% compensation for dark matter
             $Message .= $this->handleEventFoundRes();
@@ -650,6 +658,10 @@ HTML;
             $this->KillFleet();
             $Message .= $LNG['sys_expe_lost_fleet_' . mt_rand(1, 4)];
             $this->eventtype = "Lost";
+            $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], "black_hole");
+            require_once 'includes/classes/achievements/MiscAchievement.class.php';
+            MiscAchievement::checkExpoAchievements($this->_fleet['fleet_owner']);
+            
         } elseif ($GetEvent < 812) {
             // The fleet delays or return earlier: 9%
             # http://owiki.de/Expedition#Ver.C3.A4nderte_Flugzeit
@@ -667,15 +679,18 @@ HTML;
                 $this->UpdateFleet('fleet_end_time', $endTime);
                 $Message .= $LNG['sys_expe_time_slow_' . mt_rand(1, 6)];
                 $this->eventsize = "Slow";
+                $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], "slow");
             } else {
                 // Less return time
                 $endTime = $this->_fleet['fleet_end_stay'] + max(1, $normalBackTime - $stayTime / 3 * $factor);
                 $this->UpdateFleet('fleet_end_time', $endTime);
                 $Message .= $LNG['sys_expe_time_fast_' . mt_rand(1, 3)];
                 $this->eventsize = "Fast";
+                $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], "fast");
             }
         } else {
             $this->eventtype = "Nothing";
+            $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], "nothing");
             $Message .= $LNG['sys_expe_nothing_' . mt_rand(1, 8)]; // default
         }
 
@@ -698,7 +713,7 @@ HTML;
             1,
             $this->_fleet['fleet_universe']
         );
-
+        $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], "count");
         $this->setState(FLEET_RETURN);
         $this->SaveFleet();
     }

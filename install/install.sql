@@ -22,6 +22,13 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+CREATE TABLE IF NOT EXISTS `%PREFIX%achievements` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
 CREATE TABLE `%PREFIX%advanced_stats` (
   `userId` int(10) unsigned NOT NULL,
 
@@ -155,6 +162,31 @@ CREATE TABLE `%PREFIX%advanced_stats` (
   `found_901` int(10) unsigned NOT NULL DEFAULT '0',
   `found_902` int(10) unsigned NOT NULL DEFAULT '0',
   `found_903` int(10) unsigned NOT NULL DEFAULT '0',
+
+  `expo_count`              bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_black_hole`         bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_pirates_small`      bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_pirates_medium`     bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_pirates_large`      bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_aliens_small`       bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_aliens_medium`      bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_aliens_large`       bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_res_small`          bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_res_medium`         bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_res_large`          bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_ships_small`        bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_ships_medium`       bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_ships_large`        bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_slow`               bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_fast`               bigint(20) unsigned NOT NULL DEFAULT '0',
+  `expo_nothing`            bigint(20) unsigned NOT NULL DEFAULT '0',
+
+  `moons_created`           bigint(20) unsigned NOT NULL DEFAULT '0',
+  `moons_destroyed`         bigint(20) unsigned NOT NULL DEFAULT '0',
+  `moons_received`          bigint(20) unsigned NOT NULL DEFAULT '0',
+  `first_moon_trys`         bigint(20) unsigned NOT NULL DEFAULT '0',
+  `destroy_moon_rips_lost`  bigint(20) unsigned NOT NULL DEFAULT '0',
+  `set_sail_wins`           bigint(20) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`userID`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -310,13 +342,14 @@ CREATE TABLE `%PREFIX%config` (
   `user_valid` tinyint(1) NOT NULL DEFAULT '0',
   `ga_active` varchar(42) NOT NULL DEFAULT '0',
   `ga_key` varchar(42) NOT NULL DEFAULT '',
-  `moduls` varchar(100) NOT NULL DEFAULT '',
+  `moduls` varchar(200) NOT NULL DEFAULT '',
   `trade_allowed_ships` varchar(255) NOT NULL DEFAULT '202,203,204,205,206,207,208,209,210,211,212,213,214,215',
   `trade_charge` varchar(5) NOT NULL DEFAULT '30',
   `max_galaxy` tinyint(3) unsigned NOT NULL DEFAULT '9',
   `max_system` smallint(5) unsigned NOT NULL DEFAULT '400',
   `max_planets` tinyint(3) unsigned NOT NULL DEFAULT '15',
   `planet_factor` float(2,1) NOT NULL DEFAULT '1.0',
+  `all_planet_pictures` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `max_elements_build` tinyint(3) unsigned NOT NULL DEFAULT '5',
   `max_elements_tech` tinyint(3) unsigned NOT NULL DEFAULT '2',
   `max_elements_ships` tinyint(3) unsigned NOT NULL DEFAULT '10',
@@ -328,6 +361,8 @@ CREATE TABLE `%PREFIX%config` (
   `max_overflow` float(2,1) NOT NULL DEFAULT '1.0',
   `moon_factor` float(2,1) NOT NULL DEFAULT '1.0',
   `moon_chance` tinyint(3) unsigned NOT NULL DEFAULT '20',
+  `moonSizeFactor` float(4,3) unsigned NOT NULL DEFAULT '1.000',
+  `cascading_moon_chance` float(3,1) unsigned NOT NULL DEFAULT '0.0',
   `factor_university` tinyint(3) unsigned NOT NULL DEFAULT '8',
   `max_fleets_per_acs` tinyint(3) unsigned NOT NULL DEFAULT '16',
   `max_participants_per_acs` tinyint(3) unsigned NOT NULL DEFAULT '5',
@@ -560,9 +595,19 @@ CREATE TABLE `%PREFIX%messages` (
 
 CREATE TABLE `%PREFIX%multi` (
   `multiID` int(11) NOT NULL AUTO_INCREMENT,
+  `multi_ip` varchar(40) NOT NULL DEFAULT '',
+  `universe` tinyint(3) unsigned NOT NULL,
+  `lastActivity` int(11) NOT NULL DEFAULT '0',
+  `allowed` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`multiID`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE `%PREFIX%multi_to_users` (
+  `multiID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  PRIMARY KEY (`multiID`),
-  KEY `userID` (`userID`)
+  `lastActivity` int(11) NOT NULL DEFAULT '0',
+  `allowed` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`multiID`, `userID`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%news` (
@@ -585,6 +630,16 @@ CREATE TABLE `%PREFIX%notes` (
   PRIMARY KEY (`id`),
   KEY `universe` (`universe`),
   KEY `owner` (`owner`,`time`,`priority`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE `%PREFIX%planet_wreckfield` (
+  `planetID` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `created` int(11) NOT NULL DEFAULT '0',
+  `ships` text,
+  `repair_order` text,
+  `repair_order_start` int(11) NOT NULL DEFAULT '0',
+  `repair_order_end` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`planetID`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%planets` (
@@ -637,6 +692,7 @@ CREATE TABLE `%PREFIX%planets` (
   `university` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `ally_deposit` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `silo` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `repair_dock` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `mondbasis` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `phalanx` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `sprungtor` tinyint(3) unsigned NOT NULL DEFAULT '0',
@@ -682,6 +738,7 @@ CREATE TABLE `%PREFIX%planets` (
   `der_crystal` double(50,0) unsigned NOT NULL DEFAULT '0',
   `tf_active` tinyint(1) NOT NULL DEFAULT '0',
   `id_luna` int(11) NOT NULL DEFAULT '0',
+  `creation_time` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `id_luna` (`id_luna`),
   KEY `id_owner` (`id_owner`),
@@ -931,12 +988,28 @@ CREATE TABLE `%PREFIX%users` (
   `stb_big_time` tinyint(2) NOT NULL DEFAULT 3,
   `stb_enabled` tinyint(1) NOT NULL DEFAULT 0,
   `records_optIn` tinyint(1) NOT NULL DEFAULT 0,
+  `publish_achievement` tinyint(0) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `authlevel` (`authlevel`),
   KEY `ref_bonus` (`ref_bonus`),
   KEY `universe` (`universe`,`username`,`password`,`onlinetime`,`authlevel`),
   KEY `ally_id` (`ally_id`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE `%PREFIX%users_comments` (
+    `id` int(11) unsigned NOT NULL,
+    `comment` varchar(255) NOT NULL DEFAULT '',
+    `created_at` int(11) NOT NULL,
+    KEY `comment` (`id`,`comment`,`created_at`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `%PREFIX%users_to_achievements` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userID` int(11) NOT NULL,
+  `achievementID` int(11) NOT NULL,
+  `date` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 CREATE TABLE `%PREFIX%users_to_acs` (
   `userID` int(10) unsigned NOT NULL,
@@ -1064,6 +1137,71 @@ CREATE TABLE `%PREFIX%recaptcha` (
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS `%PREFIX%marketplace` (
+  `universeId` int(11) NOT NULL AUTO_INCREMENT,
+  `metCrysRatio` float(23) NOT NULL DEFAULT 2,
+  `metDeutRatio` float(23) NOT NULL DEFAULT 2,
+  `crysDeutRatio` float(23) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`universeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+INSERT INTO `%PREFIX%achievements` (`id`, `name`, `image`) VALUES
+(1, 'Sleepless and in a bad mood', 'achievement_1'),
+(2, 'Absolute basics', 'achievement_2'),
+(3, 'Deserved', 'achievement_3'),
+(4, 'What does this do?', 'achievement_4'),
+(5, 'Because I can', 'achievement_5'),
+(6, 'Low performer', 'achievement_6'),
+(7, 'French revolution', 'achievement_7'),
+(8, 'Save drunk', 'achievement_8'),
+(9, 'Thats no moon', 'achievement_9'),
+(10, 'Marble game', 'achievement_10'),
+(11, 'TheLegend27', 'achievement_11'),
+(12, "Slippy's blessing", 'achievement_12'),
+(13, 'That was close', 'achievement_13'),
+(14, "Slippy's curse", 'achievement_14'),
+(15, 'Do we still have LF?', 'achievement_15'),
+(16, "Dude, Where's My Debris?", 'achievement_16'),
+(17, 'Overlord Defense!', 'achievement_17'),
+(18, 'Frankfurt trainstation', 'achievement_18'),
+(19, 'Thick skin 1', 'achievement_19'),
+(20, 'Thick skin 2', 'achievement_20'),
+(21, 'Thick skin 3', 'achievement_21'),
+(22, 'Thick skin 4', 'achievement_22'),
+(23, 'Thick skin 5', 'achievement_23'),
+(24, "Imma firin' mah laz0r", 'achievement_24'),
+(25, 'GDPR breach', 'achievement_25'),
+(26, 'Everything for the achievements', 'achievement_26'),
+(27, 'Big Brain Time', 'achievement_27'),
+(28, 'Alternate gameplay', 'achievement_28'),
+(29, 'Communist Manifesto', 'achievement_29'),
+(30, 'This is Sparta', 'achievement_30'),
+(31, 'Off on vacation', 'achievement_31'),
+(32, 'Privateer!', 'achievement_32'),
+(33, 'I can stop whenever I want', 'achievement_33'),
+(34, 'Noble farm', 'achievement_34'),
+(35, "That's not nice!", 'achievement_35'),
+(36, 'Miesernachtsmann', 'achievement_36'),
+(37, 'I am not one of those', 'achievement_37'),
+(38, 'Cornag and Offz', 'achievement_38'),
+(39, 'The meaning of life', 'achievement_39'),
+(40, 'Columbus', 'achievement_40'),
+(41, 'Fleetslot patron', 'achievement_41'),
+(42, 'Atleast Battlehall', 'achievement_42'),
+(43, 'With my Eyes closed', 'achievement_43'),
+(44, 'Happens to everyone accidentally', 'achievement_44'),
+(45, 'Locksmith', 'achievement_45'),
+(46, 'Pure hatred!', 'achievement_46'),
+(47, 'Jack the Ripper', 'achievement_47'),
+(48, 'Rip the Jacker', 'achievement_48'),
+(49, "We're blasting off again!", 'achievement_49'),
+(50, 'Oopsie', 'achievement_50'),
+(51, "No clue, it's just there", 'achievement_51'),
+(52, 'Megalomania', 'achievement_52'),
+(53, 'Einstein', 'achievement_53'),
+(54, 'Happy New Year!', 'achievement_54'),
+(55, 'Living Legend', 'achievement_55');
+
 INSERT INTO `%PREFIX%config` (`uni`, `VERSION`, `uni_name`, `game_name`, `close_reason`, `OverviewNewsText`, `moduls`, `disclamerAddress`, `disclamerPhone`, `disclamerMail`, `disclamerNotice`) VALUES
 (1, '%VERSION%', '', 'SteemNova', '', '', '', '', '', '', '');
 
@@ -1098,6 +1236,7 @@ INSERT INTO `%PREFIX%vars` (`elementID`, `name`, `class`, `onPlanetType`, `onePe
 (31, 'laboratory', 0, '1', 0, 2.00, 255, 200, 400, 200, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (33, 'terraformer', 0, '1', 0, 2.00, 255, 0, 50000, 100000, 1000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (34, 'ally_deposit', 0, '1', 0, 2.00, 255, 20000, 40000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(35, 'repair_dock', 0, '1', 0, 2.00, 255, 20000, 2000, 3000, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (41, 'mondbasis', 0, '3', 0, 2.00, 255, 20000, 40000, 20000, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (42, 'phalanx', 0, '3', 0, 2.00, 255, 20000, 40000, 20000, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (43, 'sprungtor', 0, '3', 0, 2.00, 255, 2000000, 4000000, 2000000, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -1263,6 +1402,7 @@ INSERT INTO `%PREFIX%vars_requriements` (`elementID`, `requireID`, `requireLevel
 (21, 14, 2),
 (33, 15, 1),
 (33, 113, 12),
+(35, 21, 2),
 (42, 41, 1),
 (43, 41, 1),
 (43, 114, 7),
@@ -1403,6 +1543,7 @@ INSERT INTO `%PREFIX%vars_requriements` (`elementID`, `requireID`, `requireLevel
 (503, 21, 1),
 (503, 117, 1);
 
+INSERT INTO `%PREFIX%marketplace` (`universeId`) VALUES (1);
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

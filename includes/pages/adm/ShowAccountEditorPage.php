@@ -618,7 +618,13 @@ function ShowAccountEditorPage()
                 ) {
                     if ($beforePlanet['planet_type'] == '1') {
                         if (
-                            PlayerUtil::checkPosition(
+                            !PlayerUtil::checkPosition(
+                                Universe::getEmulated(),
+                                $galaxy,
+                                $system,
+                                $planet
+                            ) ||
+                            !PlayerUtil::isPositionFree(
                                 Universe::getEmulated(),
                                 $galaxy,
                                 $system,
@@ -662,6 +668,19 @@ function ShowAccountEditorPage()
                     } else {
                         if (
                             !PlayerUtil::checkPosition(
+                                Universe::getEmulated(),
+                                $galaxy,
+                                $system,
+                                $planet
+                            ) ||
+                            PlayerUtil::isPositionFree(
+                                Universe::getEmulated(),
+                                $galaxy,
+                                $system,
+                                $planet,
+                                1
+                            ) ||
+                            !PlayerUtil::isPositionFree(
                                 Universe::getEmulated(),
                                 $galaxy,
                                 $system,

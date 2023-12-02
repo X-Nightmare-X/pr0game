@@ -393,6 +393,8 @@ class ShowBuildingsPage extends AbstractGamePage
             ];
         }
 
+        $sql = "SELECT `repair_order` FROM %%PLANET_WRECKFIELD%% WHERE planetID = :planetID;";
+        $wreckfield = Database::get()->selectSingle($sql, [':planetID' => $PLANET['id']]);
 
         if ($QueueCount != 0) {
             $this->tplObj->loadscript('buildlist.js');
@@ -407,6 +409,7 @@ class ShowBuildingsPage extends AbstractGamePage
             'isBusy'            => [
                 'shipyard' => !empty($PLANET['b_hangar_id']),
                 'research' => $USER['b_tech_planet'] != 0,
+                'repair' => !empty($wreckfield['repair_order']),
             ],
             'messages'          => ($Messages > 0) ?
                 (($Messages == 1) ? $LNG['ov_have_new_message']

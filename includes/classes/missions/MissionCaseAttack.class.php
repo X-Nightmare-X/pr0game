@@ -92,6 +92,20 @@ HTML;
             return;
         }
 
+        // select wreckfield to lock it, can be empty
+        if ($targetPlanet['planet_type'] == 3) {
+            $sql = "SELECT * FROM %%PLANETS%% WHERE id_luna = :planetId;";
+            $targetPlanetID = $db->selectSingle($sql, [
+                ':planetId' => $this->_fleet['fleet_end_id']
+            ], 'id');
+        } else {
+            $targetPlanetID = $targetPlanet['id'];
+        }
+        $sql = "SELECT * FROM %%PLANET_WRECKFIELD%% WHERE planetId = :planetId FOR UPDATE;";
+        $db->selectSingle($sql, [
+            ':planetId' => $targetPlanetID
+        ]);
+
         $sql = "SELECT * FROM %%USERS%% WHERE id = :userId;";
         $targetUser = $db->selectSingle($sql, [
             ':userId'   => $targetPlanet['id_owner']
@@ -339,11 +353,29 @@ HTML;
             $chanceCreateMoon = 0;
         }
 
+        $sql='SELECT moons_received FROM %%ADVANCED_STATS%% WHERE userId = :userId;';
+        $moons_received = $db->selectSingle($sql, [
+            ':userId' => $targetUser['id']
+        ], 'moons_received');
+        $additionalChance = 0;
+        if($config->cascading_moon_chance > 0 && $chanceCreateMoon == $maxMoonChance && $moons_received == 0) {
+            $sql='SELECT first_moon_trys FROM %%ADVANCED_STATS%% WHERE userId = :userId;';
+            $trys = $db->selectSingle($sql, [
+                ':userId' => $targetUser['id']
+            ], 'first_moon_trys');
+            $additionalChance = $config->cascading_moon_chance*$trys;
+            $sql = 'UPDATE %%ADVANCED_STATS%% SET first_moon_trys = first_moon_trys + 1 WHERE userId = :userId;';
+            $db->update($sql, [
+                ':userId' => $targetUser['id']
+            ]);
+        }
+        
         $reportInfo = [
             'thisFleet'             => $this->_fleet,
             'debris'                => $debris,
             'stealResource'         => $stealResource,
             'moonChance'            => $chanceCreateMoon,
+            'additionalChance'      => $additionalChance,
             'moonDestroy'           => false,
             'moonName'              => null,
             'moonDestroyChance'     => null,
@@ -353,7 +385,7 @@ HTML;
         ];
 
         $randChance = mt_rand(1, 100);
-        if ($randChance <= $chanceCreateMoon) {
+        if ($randChance <= $chanceCreateMoon + $additionalChance) {
             $LNG = $this->getLanguage($targetUser['lang']);
             $reportInfo['moonName'] = $LNG['type_planet_3'];
 
@@ -365,7 +397,12 @@ HTML;
                 $targetUser['id'],
                 $chanceCreateMoon,
             );
-
+            $sql = 'UPDATE %%ADVANCED_STATS%% SET moons_received = moons_received + 1 WHERE userId = :userId;';
+			$db->update($sql, [
+                ':userId' => $targetUser['id']
+            ]);
+            $sql = 'UPDATE %%ADVANCED_STATS%% SET moons_created = moons_created + 1 WHERE userId IN (' . implode(',', array_keys($userAttack)) . ');';
+			$db->update($sql);
             if (Config::get($this->_fleet['fleet_universe'])->debris_moon == 1) {
                 foreach ($debrisResource as $elementID) {
                     $planetDebris[$elementID] = 0;
@@ -374,7 +411,10 @@ HTML;
         }
 
         require_once 'includes/classes/missions/functions/GenerateReport.php';
-        $reportData = GenerateReport($combatResult, $reportInfo);
+        $reportData = GenerateReport($combatResult, $reportInfo, REAL_FIGHT);
+
+        require_once('includes/classes/missions/functions/GenerateWreckField.php');
+        GenerateWreckField($this->_fleet['fleet_end_id'], $combatResult);
 
         switch ($combatResult['won']) {
             case "a":
@@ -416,6 +456,9 @@ HTML;
         ]);
 
         $i = 0;
+        $units = $combatResult['unitLost']['attacker'] + $combatResult['unitLost']['defender'];
+        $universe = $this->_fleet['fleet_universe'];
+        $topkb = $this->checkForTopKB($units, $universe);
 
         foreach ([$userAttack, $userDefend] as $data) {
             foreach ($data as $userID => $userName) {
@@ -467,18 +510,20 @@ HTML;
                     $this->_fleet['fleet_universe']
                 );
 
-                $sql = "INSERT INTO %%TOPKB_USERS%% SET
-				rid			= :reportId,
-				role		= :userRole,
-				username    = :username,
-				uid			= :userId;";
+                if ($topkb) {
+                    $sql = "INSERT INTO %%TOPKB_USERS%% SET
+                    rid			= :reportId,
+                    role		= :userRole,
+                    username    = :username,
+                    uid			= :userId;";
 
-                $db->insert($sql, [
-                    ':reportId' => $reportID,
-                    ':userRole' => $i + 1,
-                    ':username' => $userName,
-                    ':userId'   => $userID,
-                ]);
+                    $db->insert($sql, [
+                        ':reportId' => $reportID,
+                        ':userRole' => $i + 1,
+                        ':username' => $userName,
+                        ':userId'   => $userID,
+                    ]);
+                }
             }
 
             $i++;
@@ -516,22 +561,24 @@ HTML;
             ':planetId'     => $this->_fleet['fleet_end_id'],
         ]);
 
-        $sql = 'INSERT INTO %%TOPKB%% SET
-		units 		= :units,
-		rid			= :reportId,
-		time		= :time,
-		universe    = :universe,
-		galaxy		= :galaxy,
-		result		= :result;';
+        if ($topkb) {
+            $sql = 'INSERT INTO %%TOPKB%% SET
+            units 		= :units,
+            rid			= :reportId,
+            time		= :time,
+            universe    = :universe,
+            galaxy		= :galaxy,
+            result		= :result;';
 
-        $db->insert($sql, [
-            ':units'    => $combatResult['unitLost']['attacker'] + $combatResult['unitLost']['defender'],
-            ':reportId' => $reportID,
-            ':time'     => $this->_fleet['fleet_start_time'],
-            ':universe' => $this->_fleet['fleet_universe'],
-            ':galaxy'	=> $this->_fleet['fleet_end_galaxy'],
-            ':result'   => $combatResult['won'],
-        ]);
+            $db->insert($sql, [
+                ':units'    => $units,
+                ':reportId' => $reportID,
+                ':time'     => $this->_fleet['fleet_start_time'],
+                ':universe' => $this->_fleet['fleet_universe'],
+                ':galaxy'	=> $this->_fleet['fleet_end_galaxy'],
+                ':result'   => $combatResult['won'],
+            ]);
+        }
 
         $sql = 'UPDATE %%USERS%% SET
 		`' . $attackStatus . '` = `' . $attackStatus . '` + 1,

@@ -374,6 +374,11 @@ class ShowMarketPlacePage extends AbstractGamePage
             ':fleet_no_m_return' => 1,
             ':fleet_mess' => 0,
         ];
+        $logParams = array_merge($params, [
+            ':fleet_start_time_formated' => Database::formatDate($fleetStartTime),
+            ':fleet_end_stay_formated' => Database::formatDate($fleetStayTime),
+            ':fleet_end_time_formated' => Database::formatDate($fleetEndTime),
+        ]);
         $sql = "UPDATE %%FLEETS%% SET `fleet_no_m_return` = :fleet_no_m_return, `fleet_end_id` = :fleet_end_id,"
             . " `fleet_target_owner` = :fleet_target_owner, `fleet_mess` = :fleet_mess,"
             . " `fleet_mission` = :fleet_mission, `fleet_end_stay` = :fleet_end_stay,"
@@ -385,9 +390,11 @@ class ShowMarketPlacePage extends AbstractGamePage
             . " `fleet_target_owner` = :fleet_target_owner, `fleet_mess` = :fleet_mess,"
             . " `fleet_mission` = :fleet_mission, `fleet_end_stay` = :fleet_end_stay,"
             . " `fleet_end_time` = :fleet_end_time ,`fleet_start_time` = :fleet_start_time,"
+            . " `fleet_start_time_formated` = :fleet_start_time_formated ,`fleet_end_stay_formated` = :fleet_end_stay_formated,"
+            . " `fleet_end_time_formated` = :fleet_end_time_formated ,"
             . " `fleet_end_planet` = :fleet_end_planet, `fleet_end_system` = :fleet_end_system,"
             . " `fleet_end_galaxy` = :fleet_end_galaxy WHERE fleet_id = :fleetID;";
-        $db->update($sql, $params);
+        $db->update($sql, $logParams);
         $sql = 'UPDATE %%FLEETS_EVENT%% SET  `time` = :endTime WHERE fleetID	= :fleetId;';
         $db->update($sql, [
             ':fleetId'  => $FleetID,
@@ -473,7 +480,7 @@ class ShowMarketPlacePage extends AbstractGamePage
         $pMarket = new MarketManager();
         $offer = 0;
         $fleetMarket = $fleetsRow['transaction_type'] == 1;
-        $ask = $pMarket->convertExpResTypeToMetal($fleetsRow['ex_resource_type'], $fleetsRow['ex_resource_amount']);
+        $ask = $pMarket->convertExpResTypeToDeut($fleetsRow['ex_resource_type'], $fleetsRow['ex_resource_amount']);
 
         if ($fleetMarket) {
             $fleet = FleetFunctions::unserialize($fleetsRow['fleet_array']);
@@ -485,7 +492,7 @@ class ShowMarketPlacePage extends AbstractGamePage
                 'deuterium' => $fleetsRow['fleet_resource_deuterium'],
             ];
 
-            $offer = $pMarket->convertToMetal($offerArray);
+            $offer = $pMarket->convertToDeut($offerArray);
             return $pMarket->isPush($offer, $ask, $seller, $buyer);
         }
     }
@@ -605,8 +612,7 @@ class ShowMarketPlacePage extends AbstractGamePage
 
             $pMarket = new MarketManager();
             $fleetValue = $pMarket->getFleetValue($FROM_fleet);
-            $ask = $pMarket->convertExpResTypeToMetal($fleetsRow['ex_resource_type'], $fleetsRow['ex_resource_amount']);
-
+            $ask = $pMarket->convertExpResTypeToDeut($fleetsRow['ex_resource_type'], $fleetsRow['ex_resource_amount']);
             $fleetRatio = round(($fleetValue / $ask), 2);
 
             $FlyingFleetList[] = [

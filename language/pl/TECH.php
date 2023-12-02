@@ -88,11 +88,12 @@ $LNG['tech'] = [
     31 => 'Laboratorium Badawcze',
     33 => 'Terraformer',
     34 => 'Depozyt sojuszniczy',
-    44 => 'Silos Rakietowy',
+    35 => 'Dok naprawczy',
     40 => 'Budynki Księżycowe',
     41 => 'Baza Księżycowa',
     42 => 'Falanga',
     43 => 'Teleporter',
+    44 => 'Silos Rakietowy',
 
     100 => 'Badania',
     106 => 'Technologia Szpiegowska',
@@ -177,6 +178,7 @@ $LNG['shortDescription'] = [
     31 => 'Konieczne do tego, by móc odkrywać nowe technologie.',
     33 => 'Terraformer przez terraforming zwiększa ilość dostępnych pól do zabudowy na planecie.',
     34 => 'Zasila w paliwo sojusznicza flotę na orbicie.',
+    35 => 'Dok naprawczy umożliwia odbudowę statków z pola wraków.',
     41 => 'Jako iż na księżycu nie ma atmosfery, musisz najpierw zbudować bazę księżycową.',
     42 => 'Falanga pozwala obrserwować aktywne floty w jej zasięgu. Każdy level zwiększa maksymalny zasięg.',
     43 => 'Teleporter pozwala przenosić floty bez staraty cennego czasu!.',
@@ -296,6 +298,10 @@ $LNG['longDescription'] = [
         . ' miejsca na budowę. Rozwiązaniem tego problemu są terraformery.',
     34 => 'Depozyt pozwala zaopatrywać sojuszniczą flotę stojącą na orbicie w paliwo. Każdy level zwiększa ilość'
         . ' dostarczanego paliwa o 10 000 deuterium.',
+    35 => 'Dok naprawczy daje możliwość naprawy zniszczonych statków, które opuściły pole wraku w wyniku walki. Czas naprawy'
+        . ' wynosi maksymalnie 12 godzin, przy czym do oddania statków do użytku potrzeba co najmniej 30 minut.<br>Od momentu'
+        . ' powstania pola wrakowego pozostały 3 dni na rozpoczęcie naprawy. Naprawione statki muszą zostać aktywnie przywrócone'
+        . ' do eksploatacji po zakończeniu naprawy. Jeśli tak się nie stanie, automatycznie wrócą do użytku po 3 dniach.',
     41 => 'Z powodu braku atmosfery na księżycu musisz najpierw zbudować bazę księżycową, by dostarczyła tlenu i'
         . ' miejsca na budowę.',
     42 => 'Falanga czujników analizuje spektrum światła i gazów w swoim zasięgu, a potem superkomputer dostarcza danych'
@@ -440,3 +446,7 @@ $LNG['longDescription'] = [
 
 // Translated into Polish by Sirgomo . All rights reversed (C) 2012
 // Edited by TheRavikin. All rights resteemed (C) 2018
+
+$LNG['spytechStatsDescription']='Na poziomach 0 i 1 widoczna jest tylko suma punktów innych graczy. Od poziomu 2 widoczne są również punkty budynków innych graczy. '
+    . 'Od poziomu 4 wyświetlane są również punkty badań. Od poziomu 6 wyświetlane są statki i punkty obrony, a także statystyki bitewne.';
+$LNG['secureResources'] = 'W zależności od poziomu ulepszenia, 1% dziennej produkcji do maksymalnie 10% jest chronione przed grabieżą podczas ataków.';

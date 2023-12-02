@@ -510,9 +510,13 @@ $LNG['se_max_planets_info'] = 'Maximum number of Planets to colonize (default: 1
 $LNG['se_min_player_planets'] = 'Maximum planets';
 $LNG['se_max_player_planets_info'] = 'Maximum planets Without Exploration';
 $LNG['se_max_player_planets'] = 'Maximum Planets with Exploration';
+$LNG['se_moonSizeFactor'] = 'Moon size factor';
+$LNG['se_moonSizeFactor_info'] = 'Factor to influence the moon size, 1 = default';
 $LNG['se_min_player_planets_info'] = 'Maximum number of colonies with the research';
 $LNG['se_planet_factor'] = 'Size of the planet';
 $LNG['se_planet_factor_info'] = 'Planet size multiplier';
+$LNG['se_all_planet_pictures'] = 'All planetpictures';
+$LNG['se_all_planet_pictures_info'] = 'allows all planet pictures at all positions.';
 $LNG['se_max_elements_build'] = 'Max. Construction Buildings';
 $LNG['se_max_elements_build_info'] = 'Maximum number of queued buildings Construction';
 $LNG['se_max_elements_tech'] = 'Max. Construction - Research';
@@ -525,6 +529,8 @@ $LNG['se_max_overflow'] = 'Memória Overflow';
 $LNG['se_max_overflow_info'] = 'Factor how many resources can be produced in planet';
 $LNG['se_moon_factor'] = 'Chance of Moon';
 $LNG['se_moon_factor_info'] = 'Factor of Chance creation of Moon';
+$LNG['se_cascading_moon_chance'] = 'Cascading moon chance';
+$LNG['se_cascading_moon_chance_info'] = 'Additional moon chance that is added per failed Moon try with maximum moon chance. Only applies to the first moon in an account. 0 = switched off';
 $LNG['se_moon_chance'] = 'Max. Chance of Moon';
 $LNG['se_moon_chance_info'] = 'Max chance of lunar origin';
 $LNG['se_factor_university'] = 'Factor of University';
@@ -1082,6 +1088,12 @@ $LNG['modul_37'] = 'Statistics Banner';
 $LNG['modul_26'] = 'Search';
 $LNG['modul_27'] = 'Support Tickets';
 $LNG['modul_28'] = 'Techtree';
+$LNG['modul_47'] = 'Spy Technology dependent Stat Details';
+$LNG['modul_48'] = 'Repair dock';
+$LNG['modul_49'] = 'Secure resources';
+$LNG['modul_50'] = 'Kick from Vacation mode';
+$LNG['modul_51'] = 'Kick from Buddy and Alliance';
+$LNG['modul_52'] = 'Stats.json';
 
 $LNG['mod_module'] = 'Modules';
 $LNG['mod_info'] = 'Modules in the Game';
@@ -1313,3 +1325,11 @@ $LNG['du_select_all_tables'] = 'All Tables';
 $LNG['du_choose_tables'] = 'Select tables';
 $LNG['du_success'] = 'Backup created successfully! File: %s';
 $LNG['du_not_tables_selected'] = 'You have no tables selected to backup!';
+
+//Reshuffle Planets
+$LNG['rp_header'] = 'Reshuffle planets';
+$LNG['rp_explain'] = 'After clicking on Send, please wait until the pop-up appears. The repositioning may take several seconds!';
+$LNG['rp_done'] = 'Planets successfully reshuffled';
+$LNG['rp_planet_error'] = 'There is more than one planet per player!';
+$LNG['rp_universe_error'] = 'The universe is not completely closed!';
+$LNG['rp_rights_error'] = 'No administrator rights!';

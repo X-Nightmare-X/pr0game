@@ -131,7 +131,8 @@ class ShowShipyardPage extends AbstractGamePage
             foreach ($costResources as $resourceId => $amount) {
                 $totalCostResources[$resourceId] += $amount;
             }
-
+            require_once 'includes/classes/achievements/MiscAchievement.class.php';
+            MiscAchievement::checkShipyardAchievements($USER['id'], $Count, $Element);
             $BuildArray[] = [$Element, $Count];
             $PLANET['b_hangar_id'] = serialize($BuildArray);
         }

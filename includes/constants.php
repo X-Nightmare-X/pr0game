@@ -64,7 +64,7 @@ define('UNIS_WILDCAST', false);
 define('FIELDS_BY_MOONBASIS_LEVEL', 3);
 
 // FIELDS FOR EACH LEVEL OF THE TERRAFORMER
-define('FIELDS_BY_TERRAFORMER', 5);
+define('FIELDS_BY_TERRAFORMER', 5.5);
 
 // TIME IN SECONDS for 24 hours
 define('ONE_DAY', 86400);
@@ -165,7 +165,7 @@ define('AUTH_MOD', 1);
 define('AUTH_USR', 0);
 
 // Modules
-define('MODULE_AMOUNT', 47); //+1 to largest index
+define('MODULE_AMOUNT', 53); //+1 to largest index
 define('MODULE_ALLIANCE', 0);
 define('MODULE_BANLIST', 21);
 define('MODULE_BANNER', 37);
@@ -206,8 +206,15 @@ define('MODULE_SIMULATOR', 39);
 define('MODULE_STATISTICS', 25);
 define('MODULE_SUPPORT', 27);
 define('MODULE_TECHTREE', 28);
-define('MODULE_MARKET_TRADE', 45);
-define('MODULE_MARKET_TRANSFER', 46);
+define('MODULE_MARKET_TRADE', 45);              // Trade Ressources to other players through the marketplace
+define('MODULE_MARKET_TRANSFER', 46);           // Transfer Ships to other players through the marketplace
+define('MODULE_SPYTECH_DEPENDENT_STATS', 47);   // Viewable stats depent on spytech level
+define('MODULE_REPAIR_DOCK', 48);               // Repair ships in orbit
+define('MODULE_RESOURCE_STASH', 49);            // Save ressources from stealing
+define('MODULE_VMODE_KICK', 50);                // Kick player from vmode if he is inactive ( Big I default 28 days)
+define('MODULE_EMPTY_BUDDY', 51);               // Empty Buddylist and remove from Alliance on inactive outside of vmode
+define('MODULE_STATS_JSON', 52);                // Create stats.json file for external use (contains player stats per Universe)
+
 
 // FLEET STATE
 define('FLEET_OUTWARD', 0);
@@ -245,12 +252,24 @@ define('RESOURCE_DEUT', 903);
 define('RESOURCE_ENERGY', 911);
 
 // buildings
+define('metal_mine', 1);
+define('crystal_mine', 2);
+define('deuterium_sintetizer', 3);
+define('solar_plant', 4);
+define('university', 6);
+define('fusion_plant', 12);
 define('ROBOT_FACTORY', 14);
 define('NANITE_FACTORY', 15);
 define('SHIPYARD', 21);
+define('METAL_STORE', 22);
+define('CRYSTAL_STORE', 23);
+define('DEUTERIUM_STORE', 24);
 define('RESEARCH_LABORATORY', 31);
 define('TERRAFORMER', 33);
+define('REPAIR_DOCK', 35);
 define('MOONBASE', 41);
+define('PHALANX', 42);
+define('SPRUNGTOR', 43);
 define('SILO', 44);
 
 // ships
@@ -268,6 +287,10 @@ define('SHIP_SOLSAT', 212);
 define('SHIP_DESTROYER', 213);
 define('SHIP_RIP', 214);
 define('SHIP_BATTLECRUISER', 215);
+define('LUNE_NOIR', 216);
+define('EV_TRANSPORTER', 217);
+define('STAR_CRASHER', 218);
+define('GIGA_RECYKLER', 219);
 
 // Defense
 define('MISSILE_LAUNCHER', 401);
@@ -300,7 +323,9 @@ define('MISSION_TRANSFER', 17);
 
 // general time constants
 define('TIME_6_HOURS', 21600);
+define('TIME_12_HOURS', 43200);
 define('TIME_24_HOURS', 86400);
+define('TIME_72_HOURS', 259200);
 define('TIME_1_WEEK', 604800);
 define('TIME_1_MONTH', 2592000);
 
@@ -309,3 +334,61 @@ define('STATUS_OPEN', 0);
 define('STATUS_CLOSED', 1);
 define('STATUS_REG_ONLY', 2);
 define('STATUS_LOGIN_ONLY', 3);
+
+// universe type
+define('UNIVERSE_LINEAR', 0);
+define('UNIVERSE_CIRCULAR', 1);
+define('UNIVERSE_BALL', 2);
+
+// galaxy type
+define('GALAXY_LINEAR', 0);
+define('GALAXY_CIRCULAR', 1);
+define('GALAXY_BALL', 2);
+
+// technologies
+define('SPY_TECH', 106);
+define('COMPUTER_TECH', 108);
+define('MILITARY_TECH', 109);
+define('SHIELD_TECH', 110);
+define('DEFENCE_TECH', 111);
+define('ENERGY_TECH', 113);
+define('HYPERSPACE_TECH', 114);
+define('COMBUSTION_TECH', 115);
+define('IMPULSE_MOTOR_TECH', 117);
+define('HYPERSPACE_MOTOR_TECH', 118);
+define('LASER_TECH', 120);
+define('IONIC_TECH', 121);
+define('BUSTER_TECH', 122);
+define('INTERGALACTIC_TECH', 123);
+define('EXPEDITION_TECH', 124);
+define('METAL_PROC_TECH', 131);
+define('CRYSTAL_PROC_TECH', 132);
+define('DEUTERIUM_PROC_TECH', 133);
+define('GRAVITON_TECH', 199);
+
+//achievements
+define('NOT_IMPLEMENTED_ACHIEVEMENTS', [
+    1,
+    2,
+    11,
+    13,
+    15,
+    18,
+    29,
+    30,
+    41,
+    42,
+    44,
+    46,
+    50,
+    53,
+    54
+ ]);
+
+ //battle
+ define('REAL_FIGHT', 1);
+ define('SIM_FIGHT', 2);
+ define('EXPO_FIGHT', 3);
+ 
+ define('MAXPLANETPICTURECOUNT', 58);
+ define('TOPKB_LIMIT', 150);

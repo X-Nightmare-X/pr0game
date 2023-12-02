@@ -109,8 +109,9 @@ $LNG['banned_message'] = 'You received a Ban. If you think this is a mistake, wr
 //----------------------------------------------------------------------------//
 // Topnav
 $LNG['tn_player_title'] = 'Emperor';
-$LNG['tn_vacation_mode'] = 'Your account is in vacation mode.<br><br>PLEASE NOTE: Vacation mode is automatically deactivated after 4 weeks of inactivity.';
-$LNG['tn_vacation_mode_until'] = 'Your account is in vacation mode until at least %s clock.<br><br>PLEASE NOTE: Vacation mode is automatically deactivated after 4 weeks of inactivity.';
+$LNG['tn_vacation_mode'] = 'Your account is in vacation mode.';
+$LNG['tn_vacation_mode_until'] = 'Your account is in vacation mode until at least %s clock.';
+$LNG['tn_vacation_mode_kick'] = '<br><br>PLEASE NOTE: Vacation mode is automatically deactivated after 4 weeks of inactivity.';
 $LNG['tn_delete_mode'] = 'The account at %s will be deleted!';
 
 //----------------------------------------------------------------------------//
@@ -124,6 +125,7 @@ $LNG['lm_buildings'] = 'Buildings';
 $LNG['lm_research'] = 'Research';
 $LNG['lm_shipshard'] = 'Hangar';
 $LNG['lm_defenses'] = 'Defenses';
+$LNG['lm_repairdock'] = 'Repair dock';
 $LNG['lm_marketplace'] = 'Marketplace';
 $LNG['lm_resources'] = 'Resources';
 $LNG['lm_fleettrader'] = 'Merchant of Fleets';
@@ -259,6 +261,8 @@ $LNG['gl_planet'] = 'Planet';
 $LNG['gl_name_activity'] = 'Name (Activity)';
 $LNG['gl_moon'] = 'Moon';
 $LNG['gl_debris'] = 'Debris';
+$LNG['gl_wreckfield_short'] = 'WF';
+$LNG['gl_wreckfield'] = 'Wreck field';
 $LNG['gl_player_estate'] = 'Player (State)';
 $LNG['gl_alliance'] = 'Alliance';
 $LNG['gl_actions'] = 'Actions';
@@ -461,6 +465,7 @@ $LNG['fl_hold_max_fleets'] = 'There are already too many fleets heading to these
 $LNG['fl_hold_max_user'] = 'The maximum number of defending empires has already been reached. The fleet could not be sent.';
 $LNG['fl_attack_confirm_diplo'] = 'A pact (%s) has been made with the %s alliance and your alliance. Do you really want to carry out the attack?';
 $LNG['fl_attack_confirm_buddy'] = 'The target is on your buddy list. Do you really want to carry out the attack?';
+$LNG['fl_error'] = 'Something went wrong. Try again.';
 //----------------------------------------------------------------------------//
 // Buildings
 $LNG['bd_dismantle'] = 'Demolish';
@@ -482,8 +487,17 @@ $LNG['bd_lvl'] = 'Level';
 $LNG['bd_research'] = 'Research for';
 $LNG['bd_shipyard_required'] = 'You need to build a Shipyard first';
 $LNG['bd_building_shipyard'] = 'Cannot build ships until Shipyard upgrade is completed.';
+$LNG['bd_deploy'] = 'Deploy';
+$LNG['bd_repairdock_required'] = 'You must first build a repair dock on this planet!';
+$LNG['bd_repairdock_busy'] = 'The repair dock is already working on a job!';
+$LNG['bd_repairdock_empty'] = 'There is no wreck field!';
+$LNG['bd_repairdock_deploy'] = 'The ships have been put back into service!';
+$LNG['bd_max_ships_repair'] = 'Maximum recoverable units';
+$LNG['bd_repairing'] = 'Repair in progress';
+$LNG['bd_deployable'] = 'Repair completed! Automatic deployment in:';
 $LNG['bd_available'] = 'Available: ';
 $LNG['bd_build_ships'] = 'Build';
+$LNG['bd_repair_ships'] = 'Repair';
 $LNG['bd_protection_shield_only_one'] = 'You can only build one shield!';
 $LNG['bd_build_defenses'] = 'Build defense';
 $LNG['bd_actual_production'] = 'Current production:';
@@ -963,7 +977,7 @@ $LNG['op_cant_activate_vacation_mode'] = 'You can not activate the vacation mode
 $LNG['op_password_changed'] = 'Password changed';
 $LNG['op_username_changed'] = 'Username changed';
 $LNG['op_options_changed'] = 'Options saved.';
-$LNG['op_options_changed_vacation'] = 'Options saved.<br><br>PLEASE NOTE: Vacation mode is automatically deactivated after 4 weeks of inactivity.';
+$LNG['op_options_changed_vacation'] = 'Options saved.';
 $LNG['op_vacation_mode_active_message'] = 'Vacation mode is active and will end up in: ';
 $LNG['op_end_vacation_mode'] = 'End period of vacation';
 $LNG['op_save_changes'] = 'Save changes';
@@ -1089,6 +1103,7 @@ $LNG['fcm_info'] = 'Info';
 $LNG['fcp_colony'] = 'Colony';
 $LNG['fgp_require'] = 'Requirements: ';
 $LNG['fgf_time'] = 'Time: ';
+$LNG['fgr_time'] = 'Repair time: ';
 $LNG['sys_module_inactive'] = 'Inactive module';
 $LNG['sys_refferal_from'] = 'System';
 $LNG['sys_refferal_title'] = 'Player Bonus %s';
@@ -1353,3 +1368,178 @@ $LNG['stb_med_time'] = 'Average resources per second ratio';
 
 $LNG['stb_big_time_tooltip'] = 'Describes the best possible resource yield per second, rounded to two decimal places. A ratio less than the entered value is interpreted as good (light green), a value above as optimal (light blue).';
 $LNG['stb_big_time'] = 'Good resources per second ratio';
+
+//----------------------------------------------------------------------------//
+//Achievements
+$LNG['Description'] = 'Description';
+$LNG['Achievements'] = 'Achievements';
+$LNG['Achievement_names'] = [
+    1 => 'Sleepless and in a bad mood',
+    2 => 'Complete Basics',
+    3 => 'Deserved',
+    4 => 'What\'s the point now?',
+    5 => 'Because I can',
+
+    6 => 'Low-income earner',
+    7 => 'French Revolution',
+    8 => 'Drunk saving',
+    9 => 'Thats no moon',
+    10 => 'Marbles game',
+
+    11 => 'TheLegend27',
+    12 => 'Slippy\'s blessing',
+    13 => 'That was close',
+    14 => 'Slippy\'s curse',
+    15 => 'Do we still have LF?',
+
+    16 => 'Hey man, where\'s my DF?!',
+    17 => 'Overlord Defense!',
+    18 => 'Frankfurt Central Station',
+    19 => 'Thick skin 1',
+    20 => 'Thick skin 2',
+
+    21 => 'Thick skin 3',
+    22 => 'Thick skin 4',
+    23 => 'Thick skin 5',
+    24 => 'Imma firin\' mah laz0r',
+    25 => 'GDPR breach',
+
+    26 => 'Everything for the Achievements',
+    27 => 'Big Brain Time',
+    28 => 'Alternative gameplay',
+    29 => 'Communist Manifesto',
+    30 => 'This is Sparta',
+
+    31 => 'Off on holiday',
+    32 => 'Buccaneer!',
+    33 => 'I can stop if I want to!',
+    34 => 'Precious Farm',
+    35 => 'That\'s not nice!',
+
+    36 => 'Miesernachtsmann',
+    37 => 'I am not one of those',
+    38 => 'Cornag and Offz',
+    39 => 'The meaning of life',
+    40 => 'Columbus',
+
+    41 => 'Fleet slot patron',
+    42 => 'The main thing is Battlehall',
+    43 => 'With my Eyes closed',
+    44 => 'Happens to everyone by mistake',
+    45 => 'Key service',
+
+    46 => 'Pure hatred!',
+    47 => 'Jack the Ripper',
+    48 => 'Rip the Jacker',
+    49 => 'Team Rocket blast off again',
+    50 => 'Oopsie',
+
+    51 => 'I don\'t know that comes by itself',
+    52 => 'Megalomania',
+    53 => 'Einstein',
+    54 => 'Happy new year!',
+    55 => 'Living legend',
+];
+
+$LNG['Achievement_text'] = [
+    1 => 'You\'ve had a night to yourself, and you haven\'t landed a shot.',
+    2 => 'You have had permanently running fleet movements for the last 90 days.',
+    3 => 'You lost your fleet while your language settings were set to "French".',
+    4 => 'Explore ion technology 10.',
+    5 => 'Explore Graviton Research 2.',
+
+    6 => 'One of your attacks came back with 1 metal, 1 crystal, 1 deuterium.',
+    7 => 'Defeat a fleet of pirate or alien ships with a total of at least 10,000 ships.',
+    8 => 'Participate in the Strammtisch (Tuesdays from 8 pm on Discord).',
+    9 => 'Build your first Death Star.',
+    10 => 'Destroy the moon of a player.',
+
+    11 => 'Play 14 days exclusively on mobile.',
+    12 => 'Your fleet was destroyed in your first expedition.',
+    13 => 'Send your fleet away while an incoming attack has less than 5 seconds remaining.',
+    14 => 'You have lost 10 fleets to black holes.',
+    15 => 'Spend 10 Moon trys on a planet without getting a moon',
+
+    16 => 'More than 250 of your recyclers have returned without cargo',
+    17 => 'Put at least 5000 rocket launchers into production with one build order.',
+    18 => 'Consume 5 million deuterium on a planet within 24h in the form of fuel cost.',
+    19 => 'Explore armor technology 3.',
+    20 => 'Explore armor technology 6.',
+
+    21 => 'Explore armor technology 9.',
+    22 => 'Explore armor technology 12.',
+    23 => 'Explore armor technology 15.',
+    24 => 'Explore laser technology 12.',
+    25 => 'You have agreed to opt-in to the records',
+
+    26 => 'Delete the planet that gives you the most points. (At least 100,000 points)',
+    27 => 'Explore Intergalactic Research Network 1.',
+    28 => 'Upgrade all three resource camps on a moon to at least level 3.',
+    29 => 'Collectivize the fleet of a higher scoring player with a 5-man ACS',
+    30 => 'Repel a 5 man ACS alone',
+
+    31 => 'You have senta player into vacation mode with your attack.',
+    32 => 'Raid 1000 planets while the theme "SetSail" is activated.',
+    33 => 'Come back from V-Mode.',
+    34 => 'Get attacked once.',
+    35 => 'Attack an active player who has less than 1/10 of your points',
+
+    36 => 'Receive a message that contains one of the following blocks:
+                        "Hurensohn", "gleichstarke Ziele", "gegen Schwächere", "ehrenlos"',
+    37 => 'Your fleet was destroyed by an ACS with 5 participants.',
+    38 => 'Attack your own alliance members.',
+    39 => 'Attack someone with exactly 42 ships.',
+    40 => 'Colonize a planet at least half a universe away.',
+
+    41 => 'Block a fleet slot for a week with a bad marketplace offer.',
+    42 => 'Join the Battlehall 4 times on the losing side.',
+    43 => 'Win a battle while your account is flagged as Inactive,
+            on one of your planets where a fleet has previously arrived that had a flight time of more than 7 days.',
+    44 => 'Produce on a planet for more than 7 days a resource with less than 100% energy use.',
+    45 => 'Win an attack on a player who is in the top 10 defense.',
+
+    46 => 'Trigger bash protection by shooting interplanetary missiles.',
+    47 => 'Destroy 5 moons.',
+    48 => 'Lose 5 death stars trying to destroy moons.',
+    49 => 'Tear off a colony shortly after the creation.',
+    50 => 'Lose all of your solar satellites on a planet with enough
+            energy to research Graviton technology without you having researched Graviton technology.',
+
+    51 => 'Use up all your deuterium in galaxy view.',
+    52 => 'Build a Death Star without having built other battleships first.',
+    53 => 'Have the highest level in 5 researches at the same time.',
+    54 => 'Time an attack on an active player to 01.01. 00:00:00',
+    55 => 'Special Achievement',
+];
+
+$LNG['spytech_playercard'] = [
+    'level2'  => 'Viewable from Spy Technology 2!',
+    'level4'  => 'Viewable from Spy Technology 4!',
+    'level6'  => 'Viewable from Spy Technology 6!',
+];
+//----------------------------------------------------------------------------//
+//Team
+$LNG['team'] =                      'The team';
+$LNG['teamAktiv'] =                 'Aktiv';
+$LNG['teamIngameName'] =            'Ingame Name';
+$LNG['teamDiscordName'] =           'Discord Name';
+$LNG['teamRole'] =                  'Role';
+$LNG['teamPlayer'] =                'Player';
+$LNG['teamAdmin'] =                 'Admin';
+$LNG['teamAdminLong'] =             'Has access to special features for administering the game';
+$LNG['teamDatabase'] =              'Database access';
+$LNG['teamTickets'] =               'Ticket access';
+$LNG['teamTicketsLong'] =           'Can read along with all opened tickets';
+$LNG['teamScripte'] =               'Check scripts';
+$LNG['teamScripteLong'] =           'Evaluates the scripts created by the players so that the team<br>can decide whether to allow the script with the features';
+$LNG['teamMod'] =                   'Moderator';
+$LNG['teamModLong'] =               'Handling your cases/issues<br>Tries to provide a fair gaming experience<br>Is responsible for punishments<br>Has access to Discord section for mod discussions<br>Has access to Discord section for dev discussions<br>Has access to Discord section for ticket meetings with devs';
+$LNG['teamEmergency'] =             'Emergency team';
+$LNG['teamEmergencyLong'] =         'Receives a ping on our Discord "@Emergency Response Team" from users in the event of server outages';
+$LNG['teamDev'] =                   'Developer';
+$LNG['teamDevLong'] =               'Maintains and develops the project<br>Has access to Discord section for dev discussions<br>Has access to Discord section for ticket meetings with mods';
+$LNG['teamNo'] =                    'No';
+$LNG['teamYes'] =                   'Yes';
+$LNG['teamAlumni'] =                'Former / Inactive team members';
+$LNG['teamAlumniLong'] =            'We would like to thank';
+$LNG['teamLegend'] =                'Legend, explanation of roles / rights';

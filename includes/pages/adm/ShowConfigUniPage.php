@@ -68,6 +68,7 @@ function ShowConfigUniPage()
             'planets_tech'          => $config->planets_tech,
             'planets_per_tech'      => $config->planets_per_tech,
             'planet_factor'         => $config->planet_factor,
+            'all_planet_pictures'   => $config->all_planet_pictures,
             'max_elements_build'    => $config->max_elements_build,
             'max_elements_tech'     => $config->max_elements_tech,
             'max_elements_ships'    => $config->max_elements_ships,
@@ -95,6 +96,8 @@ function ShowConfigUniPage()
             'expo_ress_crys_chance'    => $config->expo_ress_crys_chance,
             'expo_ress_deut_chance'    => $config->expo_ress_deut_chance,
             'del_user_automatic'	   => $config->del_user_automatic,
+            'moonSizeFactor'	   => $config->moonSizeFactor,
+            'cascading_moon_chance' => $config->cascading_moon_chance,
         ];
 
         $noobprotection         = isset($_POST['noobprotection']) && $_POST['noobprotection'] == 'on' ? 1 : 0;
@@ -103,6 +106,7 @@ function ShowConfigUniPage()
         $OverviewNewsFrame      = isset($_POST['newsframe']) && $_POST['newsframe'] == 'on' ? 1 : 0;
         $user_valid             = isset($_POST['user_valid']) && $_POST['user_valid'] == 'on' ? 1 : 0;
         $debris_moon            = isset($_POST['debris_moon']) && $_POST['debris_moon'] == 'on' ? 1 : 0;
+        $all_planet_pictures    = isset($_POST['all_planet_pictures']) && $_POST['all_planet_pictures'] == 'on' ? 1 : 0;
         $ref_active             = isset($_POST['ref_active']) && $_POST['ref_active'] == 'on' ? 1 : 0;
 
         $OverviewNewsText       = $_POST['NewsText'];
@@ -167,6 +171,8 @@ function ShowConfigUniPage()
         $expo_ress_crys_chance = HTTP::_GP('expo_ress_crys_chance', 0);
         $expo_ress_deut_chance = HTTP::_GP('expo_ress_deut_chance', 0);
         $del_user_automatic		= HTTP::_GP('del_user_automatic', 0);
+        $moonSizeFactor		= HTTP::_GP('moonSizeFactor', 1.0);
+        $cascading_moon_chance = HTTP::_GP('cascading_moon_chance', 0.0);
 
         $config_after = [
             'noobprotectiontime'    => $noobprotectiontime,
@@ -211,6 +217,7 @@ function ShowConfigUniPage()
             'planets_tech'          => $planets_tech,
             'planets_per_tech'      => $planets_per_tech,
             'planet_factor'         => $planet_factor,
+            'all_planet_pictures'   => $all_planet_pictures,
             'max_elements_build'    => $max_elements_build,
             'max_elements_tech'     => $max_elements_tech,
             'max_elements_ships'    => $max_elements_ships,
@@ -238,17 +245,51 @@ function ShowConfigUniPage()
             'expo_ress_crys_chance' => $expo_ress_crys_chance,
             'expo_ress_deut_chance'  => $expo_ress_deut_chance,
             'del_user_automatic'	   => $del_user_automatic,
+            'moonSizeFactor'	   => $moonSizeFactor,
+            'cascading_moon_chance' => $cascading_moon_chance,
         ];
 
-        // If login is opened, update all planet timestamps to avoid resource produciton during closed login times.
-        if (($uni_status == STATUS_OPEN || $uni_status == STATUS_LOGIN_ONLY) && ($config->uni_status == STATUS_CLOSED || $config->uni_status == STATUS_REG_ONLY)) {
+
+        if (($uni_status == STATUS_OPEN || $uni_status == STATUS_LOGIN_ONLY) && ($config->uni_status == STATUS_REG_ONLY)) {
+            // If login is opened after register only, update all planet timestamps to avoid resource production during closed login times.
             Database::get()->update("UPDATE %%PLANETS%% SET `last_update` = :newTime, `eco_hash` = '' WHERE `universe` = :universe;", [
                 ':newTime' => time(),
                 ':universe' => Universe::getEmulated(),
             ]);
-        } elseif (($uni_status == STATUS_CLOSED || $uni_status == STATUS_REG_ONLY) && ($config->uni_status == STATUS_OPEN || $config->uni_status == STATUS_LOGIN_ONLY)) {
-            // Open: calc ress for all planets when uni login gets closed? Otherwise ress will be lost when reopened.
-            // $ecoObj = new ResourceUpdate();
+            // And update all player online times to avoid inactives at universe start.
+            Database::get()->update("UPDATE %%USERS%% SET `onlinetime` = :newTime WHERE `universe` = :universe;", [
+                ':newTime' => time(),
+                ':universe' => Universe::getEmulated(),
+            ]);
+        } elseif (($uni_status == STATUS_OPEN || $uni_status == STATUS_LOGIN_ONLY) && ($config->uni_status == STATUS_CLOSED)) {
+            // If login is opened, update all planet timestamps to avoid resource production during closed login times.
+            Database::get()->update("UPDATE %%PLANETS%% SET `last_update` = :newTime, `eco_hash` = '' WHERE `universe` = :universe;", [
+                ':newTime' => time(),
+                ':universe' => Universe::getEmulated(),
+            ]);
+        } elseif (($uni_status == STATUS_CLOSED) && ($config->uni_status == STATUS_OPEN)) {
+            // Calc ress for all planets when uni login gets closed. Otherwise ress will be lost when reopened.
+            $ecoObj = new ResourceUpdate();
+            $db = Database::get();
+            $db->startTransaction();
+            $timestamp = time();
+            $sql = "SELECT * FROM %%USERS%% WHERE universe = :universe FOR UPDATE;";
+            $users = $db->select($sql, [
+                ':universe' => Universe::getEmulated(),
+            ]);
+
+            foreach ($users as $user) {
+                $sql = "SELECT * FROM %%PLANETS%% WHERE id_owner = :ownerID AND universe = :universe AND planet_type = 1 FOR UPDATE;";
+                $planets = $db->select($sql, [
+                    ':ownerID' => $user['id'],
+                    ':universe' => Universe::getEmulated(),
+                ]);
+
+                foreach ($planets as $planet) {
+                    $ecoObj->CalcResource($user, $planet, true, $timestamp);
+                }
+            }
+            $db->commit();
         }
 
         foreach ($config_after as $key => $value) {
@@ -316,6 +357,8 @@ function ShowConfigUniPage()
         'trade_allowed_ships'           => $config->trade_allowed_ships,
         'trade_charge'                  => $config->trade_charge,
         'del_user_automatic'			=> $config->del_user_automatic,
+        'moonSizeFactor'			    => $config->moonSizeFactor,
+        'cascading_moon_chance'         => $config->cascading_moon_chance,
         'Selector'                      => [
             'langs' => $LNG->getAllowedLangs(false),
             'uni_status' => [
@@ -361,6 +404,7 @@ function ShowConfigUniPage()
         'planets_tech'                  => $config->planets_tech,
         'planets_per_tech'              => $config->planets_per_tech,
         'planet_factor'                 => $config->planet_factor,
+        'all_planet_pictures'           => $config->all_planet_pictures,
         'max_elements_build'            => $config->max_elements_build,
         'max_elements_tech'             => $config->max_elements_tech,
         'max_elements_ships'            => $config->max_elements_ships,

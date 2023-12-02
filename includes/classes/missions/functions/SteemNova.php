@@ -15,22 +15,24 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-function fight(&$attackers, &$defenders, $sim)
+function fight(&$attackers, &$defenders, $sim, &$advancedStats)
 {
     $attack = new Ds\Map(['attack' => 0, 'shield' => 0]);
     $defense = new Ds\Map(['attack' => 0, 'shield' => 0]);
+
     // attackers shoot
     foreach ($attackers as $fleetID => $attacker) {
         foreach ($attacker['units'] as $element => $unit) {
-            shoot($attacker['player']['id'], $unit, $defenders, $attack, $sim);
+            shoot($attacker['player']['id'], $unit, $defenders, $attack, $sim, $advancedStats);
         }
     }
     // defenders shoot
     foreach ($defenders as $fleetID => $defender) {
         foreach ($defender['units'] as $element => $unit) {
-            shoot($defender['player']['id'], $unit, $attackers, $defense, $sim);
+            shoot($defender['player']['id'], $unit, $attackers, $defense, $sim, $advancedStats);
         }
     }
+
     return new Ds\Map([
         'attack' => $attack['attack'],
         'defense' => $defense['attack'],
@@ -55,7 +57,7 @@ function destroy(&$attackers)
     }
 }
 
-function shoot($attacker, $unit, &$defenders, &$ad, $sim)
+function shoot($attacker, $unit, &$defenders, &$ad, $sim, &$advancedStats)
 {
     // SHOOT
     $CombatCaps =& Singleton()->CombatCaps;
@@ -101,17 +103,19 @@ function shoot($attacker, $unit, &$defenders, &$ad, $sim)
                 $ran = rand(0, (int) $initialArmor);
                 if ($ran > $victimShip['armor']) {
                     $victimShip['explode'] = true;
-                    if (!$sim) {
-                        require_once 'includes/classes/class.MissionFunctions.php';
-                        MissionFunctions::updateDestroyedAdvancedStats($attacker, $victim, $victimShip['unit']);
+                    if (!isset($advancedStats[$attacker][$victim][$victimShip['unit']])) {
+                        $advancedStats[$attacker][$victim][$victimShip['unit']] = 0;
                     }
+                    $advancedStats[$attacker][$victim][$victimShip['unit']] += 1;
                 }
             }
         }
-        if (!$sim && $victimShip['armor'] <= 0 && !$victimShip['explode']) {
+        if ($victimShip['armor'] <= 0 && !$victimShip['explode']) {
             $victimShip['explode'] = true;
-            require_once 'includes/classes/class.MissionFunctions.php';
-            MissionFunctions::updateDestroyedAdvancedStats($attacker, $victim, $victimShip['unit']);
+            if (!isset($advancedStats[$attacker][$victim][$victimShip['unit']])) {
+                $advancedStats[$attacker][$victim][$victimShip['unit']] = 0;
+            }
+            $advancedStats[$attacker][$victim][$victimShip['unit']] += 1;
         }
     }
     // else bounced hit (Weaponry of the shooting unit is less than 1% of the Shielding of the target unit)
@@ -122,7 +126,7 @@ function shoot($attacker, $unit, &$defenders, &$ad, $sim)
             if ($victimShip['unit'] == $sdId) {
                 $ran = rand(0, $count);
                 if ($ran < $count) {
-                    shoot($attacker, $unit, $defenders, $ad, $sim);
+                    shoot($attacker, $unit, $defenders, $ad, $sim, $advancedStats);
                 }
             }
         }
@@ -230,18 +234,23 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
                 // ships
                 $DRES['metal'] += $pricelist[$element]['cost'][901] * $amount;
                 $DRES['crystal'] += $pricelist[$element]['cost'][902] * $amount;
-            } else {
-                // defense
+            }
+
+            if ($fleetID == 0) {
                 if (!isset($STARTDEF[$element])) {
                     $STARTDEF[$element] = 0;
                 }
 
                 $STARTDEF[$element] += $amount;
             }
+
             $TRES['defender'] += $pricelist[$element]['cost'][901] * $amount;
             $TRES['defender'] += $pricelist[$element]['cost'][902] * $amount;
         }
     }
+
+    //will also be filled during simulation to have a comparable ram usage. If sim crashes, the real fight will not work.
+    $advancedStats = [];
 
     for ($ROUNDC = 0; $ROUNDC <= MAX_ATTACK_ROUNDS; $ROUNDC++) {
         $attArray = [];
@@ -261,7 +270,7 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
 
         if ($att['attackAmount']['total'] > 0 && $def['attackAmount']['total'] > 0 && $ROUNDC < MAX_ATTACK_ROUNDS) {
             // FIGHT
-            $fightResults = fight($attackers, $defenders, $sim);
+            $fightResults = fight($attackers, $defenders, $sim, $advancedStats);
 
             destroy($attackers);
             destroy($defenders);
@@ -275,6 +284,17 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
             $ROUND[$ROUNDC]['defShield'] = $fightResults['defShield'];
         } else {
             break;
+        }
+    }
+
+    if (!$sim) {
+        require_once 'includes/classes/class.MissionFunctions.php';
+        foreach ($advancedStats as $attacker => $victims) {
+            foreach ($victims as $victim => $ships) {
+                foreach ($ships as $element => $amount) {
+                    MissionFunctions::updateDestroyedAdvancedStats($attacker, $victim, $element, $amount);
+                }
+            }
         }
     }
 
@@ -301,6 +321,13 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
 
     // restore defense (70% +/- 20%)
     $repairedDef = [];
+    // wreckfield ships
+    $wreckfield = [];
+    // wreckfield requirements
+    $defendingPlayer = [
+        'total' => 0,
+        'lost' => 0,
+    ];
     foreach ($defenders as $fleetID => $defender) {
         foreach ($defender['unit'] as $element => $amount) {
             if ($element < 300) {                           // flotte defenseur en CDR
@@ -309,6 +336,16 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
 
                 $TRES['defender'] -= $pricelist[$element]['cost'][901] * $amount;
                 $TRES['defender'] -= $pricelist[$element]['cost'][902] * $amount;
+
+                if ($fleetID == 0 && isModuleAvailable(MODULE_REPAIR_DOCK) && $STARTDEF[$element] > $amount) {
+                    $lost = $STARTDEF[$element] - $amount;
+
+                    $wreckfield[$element] = floor($lost * (1-($FleetTF / 100)));
+                    $defendingPlayer['total'] += $pricelist[$element]['cost'][901] * $STARTDEF[$element];
+                    $defendingPlayer['total'] += $pricelist[$element]['cost'][902] * $STARTDEF[$element];
+                    $defendingPlayer['lost'] += $pricelist[$element]['cost'][901] * $lost;
+                    $defendingPlayer['lost'] += $pricelist[$element]['cost'][902] * $lost;
+                }
             } else {                                    // defs defenseur en CDR + reconstruction
                 $TRES['defender'] -= $pricelist[$element]['cost'][901] * $amount;
                 $TRES['defender'] -= $pricelist[$element]['cost'][902] * $amount;
@@ -347,6 +384,11 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
     $debDefMet = ($DRES['metal'] * ($FleetTF / 100)) + ($DRESDefs['metal'] * ($DefTF / 100));
     $debDefCry = ($DRES['crystal'] * ($FleetTF / 100)) + ($DRESDefs['crystal'] * ($DefTF / 100));
 
+    //Repairable wreckfield only with min 150.000 lost units and min 5% lost fleet
+    if ($defendingPlayer['lost'] < 150000 || $defendingPlayer['lost']/$defendingPlayer['total'] < 0.05) {
+        $wreckfield = [];
+    }
+
     return [
         'won' => $won,
         'debris' => [
@@ -362,5 +404,6 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
         'rw' => $ROUND,
         'unitLost' => $totalLost,
         'repaired' => $repairedDef,
+        'wreckfield' => $wreckfield,
     ];
 }

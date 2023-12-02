@@ -56,6 +56,7 @@ class ShowLoginPage extends AbstractLoginPage
 
             $session	= Session::create();
             $session->userId		= (int) $loginData['id'];
+            $session->universe      = $universe;
             $session->adminAccess	= 0;
             $session->save();
 

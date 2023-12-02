@@ -22,6 +22,12 @@ ddev is a local development environment system based on Docker and docker-compos
 
 To start the project for development purposes, you just need one command:
 
+Since ddev removed phpmyadmin from scratch, you just need run one command (maybe you have to run it after the fallowing ddev start and combine it with ddev restart ):
+
+```
+ddev get ddev/ddev-phpmyadmin
+```
+
 ```
 ddev start
 ```

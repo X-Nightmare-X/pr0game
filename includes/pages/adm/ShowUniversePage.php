@@ -25,6 +25,9 @@ function ShowUniversePage()
     $USER =& Singleton()->USER;
     $template   = new template();
 
+    require_once('includes/classes/Database.class.php');
+    $db = Database::get();
+
     $action     = HTTP::_GP('action', '');
     $universe   = HTTP::_GP('uniID', 0);
     switch ($action) {
@@ -40,44 +43,100 @@ function ShowUniversePage()
             break;
         case 'delete':
             if (!empty($universe) && $universe != ROOT_UNI && $universe != Universe::current()) {
-                $GLOBALS['DATABASE']->query("DELETE FROM " . ALLIANCE . ", " . ALLIANCE_RANK . ", " . ALLIANCE_REQUEST
-                . " USING " . ALLIANCE . "
-				LEFT JOIN " . ALLIANCE_RANK . " ON " . ALLIANCE . ".id = " . ALLIANCE_RANK . ".allianceID
-				LEFT JOIN " . ALLIANCE_REQUEST . " ON " . ALLIANCE . ".id = " . ALLIANCE_REQUEST . " .allianceID
-				WHERE ally_universe = " . $universe . ";");
-                $GLOBALS['DATABASE']->query("DELETE FROM " . BANNED . " WHERE universe = " . $universe . ";");
-                $GLOBALS['DATABASE']->query("DELETE FROM " . BUDDY . ", " . BUDDY_REQUEST . "
-				USING " . BUDDY . "
-				LEFT JOIN " . BUDDY_REQUEST . " ON " . BUDDY . ".id = " . BUDDY_REQUEST . ".id
-				WHERE " . BUDDY . ".universe = " . $universe . ";");
-                $GLOBALS['DATABASE']->query("DELETE FROM " . CONFIG . " WHERE uni = " . $universe . ";");
-                $GLOBALS['DATABASE']->query("DELETE FROM " . DIPLO . " WHERE universe = " . $universe . ";");
-                $GLOBALS['DATABASE']->query("DELETE FROM " . FLEETS . ", " . FLEETS_EVENT . ", " . AKS . ", "
-                . LOG_FLEETS . " USING " . FLEETS . "
-				LEFT JOIN " . FLEETS_EVENT . " ON " . FLEETS . ".fleet_id = " . FLEETS_EVENT . ".fleetID
-				LEFT JOIN " . AKS . " ON " . FLEETS . ".fleet_group = " . AKS . ".id
-				LEFT JOIN " . LOG_FLEETS . " ON " . FLEETS . ".fleet_id = " . LOG_FLEETS . ".fleet_id
-				WHERE " . FLEETS . ".fleet_universe = " . $universe . ";");
-                $GLOBALS['DATABASE']->query("DELETE FROM " . MESSAGES . " WHERE message_universe = " . $universe . ";");
-                $GLOBALS['DATABASE']->query("DELETE FROM " . NOTES . " WHERE universe = " . $universe . ";");
-                $GLOBALS['DATABASE']->query("DELETE FROM " . PLANETS . " WHERE universe = " . $universe . ";");
-                $GLOBALS['DATABASE']->query("DELETE FROM " . STATPOINTS . " WHERE universe = " . $universe . ";");
-                $GLOBALS['DATABASE']->query("DELETE FROM " . TICKETS . ", " . TICKETS_ANSWER . "
-				USING " . TICKETS . "
-				LEFT JOIN " . TICKETS_ANSWER . " ON " . TICKETS . ".ticketID = " . TICKETS_ANSWER . ".ticketID
-				WHERE universe = " . $universe . ";");
-                $GLOBALS['DATABASE']->query("DELETE FROM " . TOPKB . " WHERE universe = " . $universe . ";");
-                $GLOBALS['DATABASE']->query("DELETE FROM " . USERS . ", " . USERS_ACS . ", " . TOPKB_USERS . ", "
-                    . SESSION . ", " . SHORTCUTS . ", " . RECORDS . "
-				USING " . USERS . "
-				LEFT JOIN " . USERS_ACS . " ON " . USERS . ".id = " . USERS_ACS . ".userID
-				LEFT JOIN " . TOPKB_USERS . " ON " . USERS . ".id = " . TOPKB_USERS . ".uid
-				LEFT JOIN " . SESSION . " ON " . USERS . ".id = " . SESSION . ".userID
-				LEFT JOIN " . SHORTCUTS . " ON " . USERS . ".id = " . SHORTCUTS . ".ownerID
-				LEFT JOIN " . RECORDS . " ON " . USERS . ".id = " . RECORDS . ".userID
-				LEFT JOIN " . LOSTPASSWORD . " ON " . USERS . ".id = " . LOSTPASSWORD . ".userID
-				WHERE " . USERS . ".universe = " . $universe . ";");
-                $GLOBALS['DATABASE']->query("DELETE FROM " . USERS_VALID . " WHERE universe = " . $universe . ";");
+                $sql = "DELETE FROM %%ALLIANCE_RANK%% WHERE `allianceID` IN (SELECT `id` AS 'allianceID' FROM %%ALLIANCE%% WHERE `ally_universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%ALLIANCE_REQUEST%% WHERE `allianceID` IN (SELECT `id` AS 'allianceID' FROM %%ALLIANCE%% WHERE `ally_universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%ALLIANCE%% WHERE `ally_universe` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%LOG%% WHERE `universe` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%BANNED%% WHERE `universe` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%BUDDY_REQUEST%% WHERE `id` IN (SELECT `id` FROM %%BUDDY%% WHERE `universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%BUDDY%% WHERE `universe` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%DIPLO%% WHERE `universe` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%FLEETS_EVENT%% WHERE `fleetID` IN (SELECT `fleet_id` AS 'fleetID' FROM %%FLEETS%% WHERE `fleet_universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%AKS%% WHERE `id` IN (SELECT `fleet_group` AS 'id' FROM %%FLEETS%% WHERE `fleet_universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%TRADES%% WHERE `seller_fleet_id` IN (SELECT `fleet_id` AS 'seller_fleet_id' FROM %%FLEETS%% WHERE `fleet_universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%FLEETS%% WHERE `fleet_universe` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%LOG_FLEETS%% WHERE `fleet_universe` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%MESSAGES%% WHERE `message_universe` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%NOTES%% WHERE `universe` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%PLANET_WRECKFIELD%% WHERE `planetID` IN (SELECT `id` FROM %%PLANETS%% WHERE `universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%PLANETS%% WHERE `universe` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%STATPOINTS%% WHERE `universe` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%MULTI_TO_USERS%% WHERE `multiID` IN (SELECT `multiID` FROM %%MULTI%% WHERE `universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%MULTI%% WHERE `universe` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%TICKETS_ANSWER%% WHERE `ticketID` IN (SELECT `ticketID` FROM %%TICKETS%% WHERE `universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%TICKETS%% WHERE `universe` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%RW%% WHERE `rid` IN (SELECT `rid` FROM %%TOPKB%% WHERE `universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%TOPKB%% WHERE `universe` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%USERS_ACS%% WHERE `userID` IN (SELECT `id` as 'userID' FROM %%USERS%% WHERE `universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%TOPKB_USERS%% WHERE `uid` IN (SELECT `id` as 'uid' FROM %%USERS%% WHERE `universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%SESSION%% WHERE `userID` IN (SELECT `id` as 'userID' FROM %%USERS%% WHERE `universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%SHORTCUTS%% WHERE `ownerID` IN (SELECT `id` as 'ownerID' FROM %%USERS%% WHERE `universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%RECORDS%% WHERE `userID` IN (SELECT `id` as 'userID' FROM %%USERS%% WHERE `universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%LOSTPASSWORD%% WHERE `userID` IN (SELECT `id` as 'userID' FROM %%USERS%% WHERE `universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%USERS_TO_ACHIEVEMENTS%% WHERE `userID` IN (SELECT `id` as 'userID' FROM %%USERS%% WHERE `universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%USERS_COMMENTS%% WHERE `id` IN (SELECT `id` as 'id' FROM %%USERS%% WHERE `universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%RECAPTCHA%% WHERE `userID` IN (SELECT `id` as 'userID' FROM %%USERS%% WHERE `universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%ADVANCED_STATS%% WHERE `userId` IN (SELECT `id` as 'userId' FROM %%USERS%% WHERE `universe` = :universe);";
+                $db->delete($sql, [':universe' => $universe]);
+                $sql = "DELETE FROM %%USERS%% WHERE `universe` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%USERS_VALID%% WHERE universe = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%MARKETPLACE%% WHERE `universeId` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
+                $sql = "DELETE FROM %%CONFIG%% WHERE `uni` = :universe;";
+                $db->delete($sql, [':universe' => $universe]);
+
                 if (Universe::getEmulated() == $universe) {
                     Universe::setEmulated(Universe::current());
                 }
@@ -90,14 +149,10 @@ function ShowUniversePage()
             }
             break;
         case 'create':
-            $universeCount = count(Universe::availableUniverses());
+            $universeCount = max(Universe::availableUniverses());
             // Check Multiuniverse Support
             $ch = curl_init();
-            if ($universeCount == 1) {
-                curl_setopt($ch, CURLOPT_URL, PROTOCOL . HTTP_HOST . HTTP_BASE . "uni" . ROOT_UNI . "/");
-            } else {
-                curl_setopt($ch, CURLOPT_URL, PROTOCOL . HTTP_HOST . HTTP_BASE);
-            }
+            curl_setopt($ch, CURLOPT_URL, PROTOCOL . HTTP_HOST . HTTP_BASE . "uni" . ($universeCount + 1) . "/");
             curl_setopt($ch, CURLOPT_HTTPGET, true);
             curl_setopt($ch, CURLOPT_AUTOREFERER, true);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
@@ -144,13 +199,17 @@ function ShowUniversePage()
             $configSQL[]    = '`uni_name` = "' . $LNG['fcm_universe'] . ' ' . ($universeCount + 1) . '"';
             $configSQL[]    = '`uni_status` = "1"';
             $configSQL[]    = '`close_reason` = "The universe is being set up. Please wait."';
-            $configSQL[]    = '`OverviewNewsText` = "' . $GLOBALS['DATABASE']->escape($config->OverviewNewsText) . '"';
+            $configSQL[]    = '`OverviewNewsText` = "' . $config->OverviewNewsText . '"';
 
-            $GLOBALS['DATABASE']->query("INSERT INTO " . CONFIG . " SET " . implode(', ', $configSQL) . ";");
-            $newUniverse    = $GLOBALS['DATABASE']->GetInsertID();
+            $sql = "INSERT INTO %%CONFIG%% SET " . implode(', ', $configSQL) . ";";
+            $db->insert($sql);
+            $newUniverse = $db->lastInsertId();
 
             Config::reload();
-
+            $sql = "INSERT INTO %%MARKETPLACE%% (`universeId`) VALUES (:universe);";
+            $db->insert($sql, [
+                ':universe' => $newUniverse,
+            ]);
             list($userID, $planetID) = PlayerUtil::createPlayer(
                 $newUniverse,
                 $USER['username'],
@@ -163,9 +222,12 @@ function ShowUniversePage()
                 null,
                 AUTH_ADM
             );
-            $GLOBALS['DATABASE']->query(
-                "UPDATE " . USERS . " SET password = '" . $USER['password'] . "' WHERE id = " . $userID . ";"
-            );
+
+            $sql = "UPDATE %%USERS%% SET `password` = :pass WHERE id = :userID;";
+            $db->update($sql, [
+                ':pass' => $USER['password'],
+                ':userID' => $userID,
+            ]);
 
             if ($universeCount === 1) {
                 // Hack The Session
@@ -185,17 +247,17 @@ function ShowUniversePage()
 
     $uniList = [];
 
-    $uniResult  = $GLOBALS['DATABASE']->query("
-    SELECT uni, users_amount, uni_status, energySpeed, halt_speed, resource_multiplier, fleet_speed, building_speed,
-    shipyard_speed, research_speed, uni_name, COUNT(DISTINCT inac.id) as inactive, COUNT(planet.id) as planet
-	FROM " . CONFIG . " conf
-	LEFT JOIN " . USERS . " as inac ON uni = inac.universe AND inac.onlinetime < " . (TIMESTAMP - INACTIVE) . "
-	LEFT JOIN " . PLANETS . " as planet ON uni = planet.universe
-	GROUP BY conf.uni, inac.universe, planet.universe
-	ORDER BY uni ASC;");
+    $sql = "SELECT `uni`, `users_amount`, `uni_status`, `energySpeed`, `halt_speed`, `resource_multiplier`, `fleet_speed`, `building_speed`,
+                `shipyard_speed`, `research_speed`, `uni_name`, COUNT(DISTINCT inac.`id`) as inactive, COUNT(planet.`id`) as planet
+	    FROM %%CONFIG%% conf
+	    LEFT JOIN %%USERS%% as inac ON `uni` = inac.`universe` AND inac.`onlinetime` < :inactive
+	    LEFT JOIN %%PLANETS%% as planet ON `uni` = planet.`universe`
+	    GROUP BY conf.`uni`, inac.`universe`, planet.`universe`
+	    ORDER BY `uni` ASC;";
+    $uniResult = $db->select($sql, [':inactive' => TIMESTAMP - INACTIVE]);
 
-    while ($uniRow = $GLOBALS['DATABASE']->fetch_array($uniResult)) {
-        $uniList[$uniRow['uni']]    = $uniRow;
+    foreach ($uniResult as $uniRow) {
+        $uniList[$uniRow['uni']] = $uniRow;
     }
 
     $template->assign_vars([

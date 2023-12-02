@@ -90,12 +90,12 @@ $LNG['tech'] = [
  31 => 'Research Lab',
  33 => 'Terraformer',
  34 => 'Alliance Depot',
- 44 => 'Missile Silo',
-
+ 35 => 'Repair dock',
  40 => 'Moon Buildings',
  41 => 'Moon base',
  42 => 'Phalanx Sensor',
  43 => 'Jumpgate',
+ 44 => 'Missile Silo',
 
 100 => 'Research',
 106 => 'Spy Technology',
@@ -183,6 +183,7 @@ $LNG['shortDescription'] = [
 33 => 'The Terraformer increases the usable area on the planet. For each level of terraformer, you get 5 additional'
     . ' empty fields to use and an extra one every even level, one of which is taken up by the terraformer.',
 34 => 'The Alliance Depot is used to supply fuel to friendly fleets in orbit.',
+35 => 'The repair dock enables ships to be restored from a wreck field.',
 41 => 'The moon has no atmosphere therefore a lunar base must be built before the settlement of other buildings.',
 42 => 'The sensor array allows you to monitor fleet movements. The higher the stage, the greater is the range of the'
     . ' phalanx.',
@@ -300,6 +301,11 @@ $LNG['longDescription'] = [
     . ' friendly fleets so they can remain stationed at your planet for a time. The depot can launch a support-rocket'
     . ' that brings deuterium to the fleet in the orbit. The amount of deuterium is 20,000 deuterium for each Alliance'
     . ' Depot Level.',
+35 => 'The repair dock offers the possibility to repair destroyed ships that have left a wreckage field after a battle.'
+    . ' The repair time is a maximum of 12 hours, but it takes at least 30 minutes before the ships can be put back into'
+    . ' service.<br>Once the wreck field has been created, you have 3 days to start the repair. The repaired ships must'
+    . ' be actively put back into service at the end of the repair. If this is not done, they will automatically return'
+    . ' to service after 3 days.',
 41 => 'The moon has no atmosphere therefore a lunar base must be built before the settlement of other buildings. Each'
     . ' level of Moon Base gives 3 extra fields. Once built, the Moon Base can never be deconstructed. ',
 42 => 'The sensor array allows you to monitor fleet movements. The higher the stage, the greater is the range of the'
@@ -417,3 +423,7 @@ $LNG['longDescription'] = [
     . ' get to the ground of the sea in order to get Deuterium, it is the most expensive resource.',
 911 => 'Energy is needed for the production of every resource.',
 ];
+
+$LNG['spytechStatsDescription']='At level 0 and 1, only the total points of other players are visible. From level 2, the building points of other players are also visible. '
+    . 'From level 4, the research points are also displayed. From level 6, the ships and defence points are displayed as well as the battle statistics.';
+$LNG['secureResources'] = 'Depending on the upgrade level, 1% of the daily production up to a maximum of 10% is protected against looting during attacks.';

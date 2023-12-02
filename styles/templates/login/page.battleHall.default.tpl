@@ -1,14 +1,17 @@
 {block name="title" prepend}{$LNG.siteTitleBattleHall}{/block}
 {block name="content"}
-{if $isMultiUniverse}<p>
-{html_options options=$universeSelect selected=$UNI class="changeUni" id="universe" name="universe"}
-</p>{/if}
+{if $isMultiUniverse}
+  <form name="stats" id="stats" method="post" action="">
+    <select name="universe" id="universe" class="changeUni" onchange="$('#stats').submit();">{html_options options=$universeSelect selected=$universe}</select>
+	<select name="memorial" id="memorial" class="changeUni" onchange="$('#stats').submit();">{html_options options=$memorialSelect selected=$memorial}</select>
+  </form>
+{/if}
 <table>
 <tr>
-	<th class="colorPositive">{$LNG.tkb_platz}</th>
-	<th class="colorPositive">{$LNG.tkb_owners}</th>
-	<th class="colorPositive">{$LNG.tkb_datum}</th>
-	<th class="colorPositive">{$LNG.tkb_units}</th>
+	<th style="text-align: center;">{$LNG.tkb_platz}</th>
+	<th style="text-align: center;">{$LNG.tkb_owners}</th>
+	<th style="text-align: center;">{$LNG.tkb_datum}</th>
+	<th style="text-align: center;">{$LNG.tkb_units}</th>
 </tr>
 {foreach $hallList as $hallRow}
 <tr>

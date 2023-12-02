@@ -327,6 +327,10 @@ class FleetFunctions
 
     public static function unserialize($fleetAmount)
     {
+        if (empty($fleetAmount)) {
+            return [];
+        }
+
         $fleetTyps = explode(';', $fleetAmount);
 
         $fleetAmount = [];
@@ -346,6 +350,22 @@ class FleetFunctions
         }
 
         return $fleetAmount;
+    }
+
+    public static function serialize($fleet)
+    {
+        $serialized = '';
+        if (empty($fleet)) {
+            return $serialized;
+        }
+
+        foreach ($fleet as $elementID => $amount) {
+            if ($amount > 0) {
+                $serialized .= $elementID . ',' . floatToString($amount) . ';';
+            }
+        }
+
+        return empty($fleet) ? $serialized : substr($serialized, 0, -1);
     }
 
     public static function getACSDuration($acsId)
@@ -502,7 +522,9 @@ class FleetFunctions
 
         $sql = 'UPDATE %%LOG_FLEETS%% SET
 		fleet_end_stay	= :endStayTime,
+		fleet_end_stay_formated		= :fleetStayTimeFormated,
 		fleet_end_time	= :endTime,
+		fleet_end_time_formated		= :fleetEndTimeFormated,
 		fleet_mess		= :fleetState,
 		fleet_state		= 2,
 		hasCanceled		= :hasCanceled
@@ -512,6 +534,8 @@ class FleetFunctions
             ':id' => $FleetID,
             ':endStayTime' => TIMESTAMP,
             ':endTime' => $fleetEndTime,
+            ':fleetStayTimeFormated' => Database::formatDate(TIMESTAMP),
+            ':fleetEndTimeFormated' => Database::formatDate($fleetEndTime),
             ':fleetState' => FLEET_RETURN,
             ':hasCanceled' => 1
         ]);

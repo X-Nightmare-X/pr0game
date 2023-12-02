@@ -11,7 +11,7 @@
         {$ID = $List.element}
         <div class="buildb">
           {$List@iteration}.:
-          {if !($isBusy.research && ($ID == 6 || $ID == 31)) && !($isBusy.shipyard && ($ID == 15 || $ID == 21)) && $RoomIsOk && $CanBuildElement && $BuildInfoList[$ID].buyable}
+          {if !($isBusy.research && ($ID == 6 || $ID == 31)) && !($isBusy.shipyard && ($ID == 15 || $ID == 21)) && !($isBusy.repair && $ID == 35) && $RoomIsOk && $CanBuildElement && $BuildInfoList[$ID].buyable}
             <form class="build_form" action="game.php?page=buildings" method="post">
               <input type="hidden" name="cmd" value="insert">
               <input type="hidden" name="building" value="{$ID}">
@@ -47,7 +47,7 @@
                 -
               {/if}
             {/if}
-            <br><span class="colorPositive" data-time="{$List.endtime}" data-umode="{$umode}" class="timer">{if $umode == 0}{$List.display}{else}{$LNG.bd_paused}{/if}</span>
+            <br><span class="colorPositive timer" data-time="{$List.endtime}" data-umode="{$umode}">{if $umode == 0}{$List.display}{else}{$LNG.bd_paused}{/if}</span>
           </div>
         {/foreach}
       </div>
@@ -115,7 +115,7 @@
 									{foreach $Element.destroyResources as $ResType => $ResCount}
 									<tr>
 										<td>{$LNG.tech.{$ResType}}</td>
-										<td><span class='{if empty($Element.destroyOverflow[$RessID])}colorPositive{else}colorNeutral{/if}'>{number_format($ResCount, 0, ",", ".")}</span></td>
+										<td><span class='{if empty($Element.destroyOverflow[$ResType])}colorPositive{else}colorNeutral{/if}'>{number_format($ResCount, 0, ",", ".")}</span></td>
 									</tr>
 									{/foreach}
 									<tr>

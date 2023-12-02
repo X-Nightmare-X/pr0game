@@ -130,6 +130,11 @@ class ShowBattleSimulatorPage extends AbstractGamePage
                 903 => 0,
             ];
         }
+        $capacityNeeded = calculateMinCapacity([
+            'metal' => getNumber($BattleArray[0][1][901]),
+            'crystal' => getNumber($BattleArray[0][1][902]),
+            'deuterium' => getNumber($BattleArray[0][1][903]),
+        ]);
 
         $debris = [];
 
@@ -146,8 +151,6 @@ class ShowBattleSimulatorPage extends AbstractGamePage
         $chanceCreateMoon = floor($debrisTotal / 100000 * $moonFactor);
         $chanceCreateMoon = min($chanceCreateMoon, $maxMoonChance);
 
-        $sumSteal = array_sum($stealResource);
-
         $stealResourceInformation = sprintf(
             $LNG['bs_derbis_raport'],
             pretty_number(ceil($debrisTotal / $pricelist[209]['capacity'])),
@@ -158,9 +161,9 @@ class ShowBattleSimulatorPage extends AbstractGamePage
 
         $stealResourceInformation .= sprintf(
             $LNG['bs_steal_raport'],
-            pretty_number(ceil($sumSteal / $pricelist[202]['capacity'])),
+            pretty_number(ceil($capacityNeeded / $pricelist[202]['capacity'])),
             $LNG['tech'][202],
-            pretty_number(ceil($sumSteal / $pricelist[203]['capacity'])),
+            pretty_number(ceil($capacityNeeded / $pricelist[203]['capacity'])),
             $LNG['tech'][203]
         );
 
@@ -179,6 +182,7 @@ class ShowBattleSimulatorPage extends AbstractGamePage
             'debris'                => $debris,
             'stealResource'         => $stealResource,
             'moonChance'            => $chanceCreateMoon,
+            'additionalChance'      => 0,
             'moonDestroy'           => false,
             'moonName'              => null,
             'moonDestroyChance'     => null,
@@ -188,7 +192,7 @@ class ShowBattleSimulatorPage extends AbstractGamePage
             'additionalInfo'        => $stealResourceInformation,
         ];
 
-        $reportData = GenerateReport($combatResult, $reportInfo);
+        $reportData = GenerateReport($combatResult, $reportInfo, SIM_FIGHT);
         unset($reportData['repaired']);
         $reportID = md5(uniqid('', true) . TIMESTAMP);
 

@@ -347,6 +347,17 @@ class MissionFunctions
         ]);
     }
 
+    public function updateExpoStatAdvancedStats($user, $Element)
+    {
+        require_once 'includes/classes/Database.class.php';
+        $db = Database::get();
+
+        $sql = "UPDATE %%ADVANCED_STATS%% SET expo_" . $Element . " = expo_" . $Element . " + 1 WHERE userId = :userId";
+        $db->update($sql, [
+            ':userId' => $user,
+        ]);
+    }
+
     public function updateFoundShipsAdvancedStats($user, $fleetArray)
     {
         $resource =& Singleton()->resource;
@@ -378,5 +389,31 @@ class MissionFunctions
             ':' . $Element => $amount,
             ':userId' => $user,
         ]);
+    }
+
+    /**
+     * Return if the Battlereport has more destroyed Units than the given limit.
+     * 
+     * @param int $units
+     * @param int $universe
+     * 
+     * @return boolean
+     */
+    public function checkForTopKB($units, $universe)
+    {
+        require_once 'includes/classes/Database.class.php';
+        $db = Database::get();
+        $sql = "SELECT `units` FROM %%TOPKB%% WHERE `universe` = :universe AND `memorial` = 0 ORDER BY `units` DESC LIMIT 1 OFFSET :offset;";
+        $topKbUnits = $db->selectSingle($sql, [
+            ':universe'     => $universe,
+            ':offset'  => TOPKB_LIMIT-1,
+        ], 'units');
+
+        $result = false;
+        if ($units > $topKbUnits) {
+            $result = true;
+        }
+
+        return $result;
     }
 }

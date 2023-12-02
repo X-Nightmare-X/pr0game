@@ -86,10 +86,10 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             ':userId'   => $this->_fleet['fleet_target_owner']
         ]);
 
-        $sql = 'SELECT name FROM %%PLANETS%% WHERE id = :planetId;';
-        $senderPlanetName = $db->selectSingle($sql, [
+        $sql = 'SELECT `name`, `planet_type` FROM %%PLANETS%% WHERE id = :planetId;';
+        $senderPlanet = $db->selectSingle($sql, [
             ':planetId' => $this->_fleet['fleet_start_id']
-        ], 'name');
+        ]);
 
         $LNG = $this->getLanguage($senderUser['lang']);
 
@@ -173,6 +173,9 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
         foreach ($classIDs as $classID => $elementIDs) {
             foreach ($elementIDs as $elementID) {
+                if (!BuildFunctions::isEnabled($elementID)) {
+                    continue;
+                }
                 if (isset($targetUser[$resource[$elementID]])) {
                     $spyData[$classID][$elementID] = $targetUser[$resource[$elementID]];
                 } else {
@@ -182,6 +185,24 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 
             if ($senderUser['spyMessagesMode'] == 1) {
                 $spyData[$classID] = array_filter($spyData[$classID]);
+            }
+        }
+
+        // show ships beeing repaired
+        $repair_order = [];
+        if ($SpyFleet && isModuleAvailable(MODULE_REPAIR_DOCK)) {
+            $sql = "SELECT `repair_order` FROM %%PLANET_WRECKFIELD%%
+                WHERE planetID = :planetID;";
+            $repairing = $db->selectSingle($sql, [
+                ':planetID' => $this->_fleet['fleet_end_id'],
+            ], 'repair_order');
+            if (!empty($repairing)) {
+                $repair_order = unserialize($repairing);
+                foreach ($repair_order as $elementID => $amount) {
+                    if (!isset($spyData[200][$elementID])) {
+                        $spyData[200][$elementID] = 0;
+                    }
+                }
             }
         }
 
@@ -196,14 +217,13 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         ];
         $fleetSimulate[] = $simulated;
 
-        $stealResource = calculateSteal($fleetSimulate, [
+        $capacityNeeded = calculateMinCapacity([
             'metal' => getNumber($targetPlanet[$resource[RESOURCE_METAL]]),
             'crystal' => getNumber($targetPlanet[$resource[RESOURCE_CRYSTAL]]),
             'deuterium' => getNumber($targetPlanet[$resource[RESOURCE_DEUT]]),
-            ], true);
-        $sumSteal = array_sum($stealResource);
-        $smallCargoNeeded = ceil($sumSteal / $pricelist[SHIP_SMALL_CARGO]['capacity']);
-        $largeCargoNeeded = ceil($sumSteal / $pricelist[SHIP_LARGE_CARGO]['capacity']);
+        ]);
+        $smallCargoNeeded = ceil($capacityNeeded / $pricelist[SHIP_SMALL_CARGO]['capacity']);
+        $largeCargoNeeded = ceil($capacityNeeded / $pricelist[SHIP_LARGE_CARGO]['capacity']);
 
         // I'm use template class here, because i want to exclude HTML in PHP.
 
@@ -221,12 +241,12 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         // keep in mind if you manipulate the sprintf you have to add the element in the $LNG['sys_mess_head'] language\*\FLEET.php
         $spyTime = _date($LNG['php_tdformat'], $this->_fleet['fleet_end_stay'], $senderUser['timezone'], $LNG);
         $title = sprintf(
-            $LNG['sys_mess_head'],
+            $LNG['sys_mess_spy_report_details_' . $targetPlanet['planet_type']],
             $targetPlanet['name'],
             $targetUser['username'],
-            $targetPlanet['galaxy'],
-            $targetPlanet['system'],
-            $targetPlanet['planet'],
+            $this->_fleet['fleet_end_galaxy'],
+            $this->_fleet['fleet_end_system'],
+            $this->_fleet['fleet_end_planet'],
             $spyTime,
         );
 
@@ -263,6 +283,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
             'energy'                            => $energy,
             'energyClass'                       => $energyClass,
             'spyData'                           => $spyData,
+            'repair_order'                      => $repair_order,
             'targetPlanet'                      => $targetPlanet,
             'targetChance'                      => $targetChance,
             'spyChance'                         => $spyChance,
@@ -281,7 +302,7 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         PlayerUtil::sendMessage(
             $this->_fleet['fleet_owner'],
             0,
-            $LNG['sys_mess_qg'],
+            $LNG['sys_mess_spy_qg'],
             0,
             $LNG['sys_mess_spy_report'],
             $spyReport,
@@ -292,27 +313,30 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         );
 
         $LNG = $this->getLanguage($targetUser['lang']);
-        $targetMessage = $LNG['sys_mess_spy_ennemyfleet'] . " " . $senderPlanetName;
 
-        if ($this->_fleet['fleet_start_type'] == 3) {
-            $targetMessage .= $LNG['sys_mess_spy_report_moon'] . ' ';
-        }
-
-        $text = '<a href="game.php?page=galaxy&amp;galaxy=%1$s&amp;system=%2$s">[%1$s:%2$s:%3$s]</a> %7$s
-		%8$s <a href="game.php?page=galaxy&amp;galaxy=%4$s&amp;system=%5$s">[%4$s:%5$s:%6$s]</a>';
-
-        $targetMessage .= sprintf(
-            $text,
+        $sourceLink = sprintf(
+            $LNG['sys_mess_spy_link'],
+            $senderPlanet['name'],
+            $senderUser['username'],
             $this->_fleet['fleet_start_galaxy'],
             $this->_fleet['fleet_start_system'],
             $this->_fleet['fleet_start_planet'],
+        );
+
+        $targetLink = sprintf(
+            $LNG['sys_mess_spy_link'],
+            $targetPlanet['name'],
+            $LNG['type_planet_short_' . $targetPlanet['planet_type']],
             $this->_fleet['fleet_end_galaxy'],
             $this->_fleet['fleet_end_system'],
             $this->_fleet['fleet_end_planet'],
-            $LNG['sys_mess_spy_seen_at'],
-            $targetPlanet['name']
         );
 
+        $targetMessage = sprintf(
+            $LNG['sys_mess_spy_ennemyfleet_' . $senderPlanet['planet_type']],
+            $sourceLink,
+            $targetLink,
+        );
 
         PlayerUtil::sendMessage(
             $this->_fleet['fleet_target_owner'],

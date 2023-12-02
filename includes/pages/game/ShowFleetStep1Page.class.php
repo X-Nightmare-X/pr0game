@@ -353,24 +353,24 @@ class ShowFleetStep1Page extends AbstractGamePage
                 $this->sendJSON($LNG['fl_error_empty_derbis']);
             }
 
-            $sql = 'SELECT (
-				(SELECT COUNT(*) FROM %%MULTI%% WHERE userID = :userID) +
-				(SELECT COUNT(*) FROM %%MULTI%% WHERE userID = :dataID)
-			) as count;';
+            // $sql = 'SELECT (
+			// 	(SELECT COUNT(*) FROM %%MULTI%% WHERE userID = :userID) +
+			// 	(SELECT COUNT(*) FROM %%MULTI%% WHERE userID = :dataID)
+			// ) as count;';
 
-            if (!empty($planetData)) {
-                $multiCount = $db->selectSingle($sql, [
-                    ':userID' => $USER['id'],
-                    ':dataID' => $planetData['id'],
-                ], 'count');
-            }
+            // if (!empty($planetData)) {
+            //     $multiCount = $db->selectSingle($sql, [
+            //         ':userID' => $USER['id'],
+            //         ':dataID' => $planetData['id'],
+            //     ], 'count');
+            // }
 
-            if (
-                ENABLE_MULTIALERT && $USER['id'] != $planetData['id'] && $USER['authlevel'] != AUTH_ADM
-                && $USER['user_lastip'] == $planetData['user_lastip'] && $multiCount != 2
-            ) {
-                $this->sendJSON($LNG['fl_multi_alarm']);
-            }
+            // if (
+            //     ENABLE_MULTIALERT && $USER['id'] != $planetData['id'] && $USER['authlevel'] != AUTH_ADM
+            //     && $USER['user_lastip'] == $planetData['user_lastip'] && $multiCount != 2
+            // ) {
+            //     $this->sendJSON($LNG['fl_multi_alarm']);
+            // }
         } else {
             if ($USER[$resource[124]] == 0) {
                 $this->sendJSON($LNG['fl_expedition_tech_required']);
