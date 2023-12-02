@@ -1218,6 +1218,20 @@ class PlayerUtil
             ':unread'   => $unread,
             ':universe' => $universe,
         ]);
+
+        require 'includes/config.php';
+        if ($messageType === 1 && isset($discord['webhook_pns']) && !empty($discord['webhook_pns']) && isset($discord[$userId])) {
+
+            $title = '<@' . $discord[$userId] . '> hat eine neue Ingame-Nachricht erhalten.';
+            $content = [
+                'Universum' => $universe,
+                'Absender' => $senderId . ' - ' . $senderName,
+                'Betreff' => $subject,
+            ];
+            require_once 'includes/classes/class.Discord.php';
+            Discord::sendMessage($discord['webhook_pns'], $title, $content);
+        }
+
         require_once 'includes/classes/achievements/PlayerUtilAchievement.class.php';
         PlayerUtilAchievement::checkPlayerUtilAchievements36($userId, $text);
     }
