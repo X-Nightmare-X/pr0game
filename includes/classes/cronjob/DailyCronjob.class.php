@@ -26,10 +26,9 @@ class DailyCronJob implements CronjobTask
         $this->clearEcoCache();
         $universes = Universe::availableUniverses();
         foreach ($universes as $universe) {
-            $uni = $universe['uni'];
-            $this->cancelVacation($uni);
-            $this->updateInactiveMines($uni);
-            $this->emptyInactiveAllianceAndBuddy($uni);
+            $this->cancelVacation($universe);
+            $this->updateInactiveMines($universe);
+            $this->emptyInactiveAllianceAndBuddy($universe);
         }
         // $this->cleanReports($universes);
         $this->eraseIPAdresses();
