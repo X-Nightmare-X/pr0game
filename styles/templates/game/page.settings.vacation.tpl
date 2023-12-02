@@ -1,20 +1,20 @@
 {block name="title" prepend}{$LNG.lm_options}{/block}
 {block name="content"}
-<form action="game.php?page=settings&amp;mode=send" method="post">
-	<table class="table519">
-		<tr>
-			<th colspan="2">{$LNG.op_vacation_mode_active_message} {$vacationUntil}</th>
-		</tr>
-		<tr>
-			<td>{$LNG.op_end_vacation_mode}</td>
-			<td><input name="vacation" type="checkbox" value="1" {if !$canVacationDisbaled}disabled{/if}></td>
-		</tr><tr>
-			<td><a title="{$LNG.op_dlte_account_descrip}">{$LNG.op_dlte_account}</a></td>
-			<td><input name="delete" type="checkbox" value="1" {if $delete > 0}checked="checked"{/if}></td>
-		</tr>
-		<tr>
-			<td colspan="2"><input type="submit" value="{$LNG.op_save_changes}"></td>
-		</tr>
-	</table>
-</form>
+<table class="table519">
+	<tr>
+		<th colspan="2">{$LNG.op_vacation_mode_active_message} {$vacationUntil}</th>
+	</tr>
+	<td>
+		<form action="game.php?page=settings" method="post">
+			<input type="hidden" name="mode" value="toggleVacation">
+			<input name="vacation" type="submit" value="{$LNG.op_end_vacation_mode}" {if !$canVacationDisbaled}disabled{/if}> <img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.op_activate_vacation_mode_descrip}">
+		</form>
+	</td>
+	<td>
+		<form action="game.php?page=settings" method="post">
+			<input type="hidden" name="mode" value="toggleDelete">
+			<input name="delete" type="submit" value="{if $delete}{$LNG.op_stop_dlte_account}{else}{$LNG.op_dlte_account}{/if}"> <img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.op_dlte_account_descrip}">
+		</form>
+	</td>
+</table>
 {/block}

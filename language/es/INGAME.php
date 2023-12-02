@@ -939,7 +939,11 @@ $LNG['op_password_changed'] = 'La contraseña ha sido cambiada.<br /><a href="in
 $LNG['op_username_changed'] = 'El nombre de usuario ha sido cambiado.<br />'
     . '<a href="index.php" target="_top">Volver</a>';
 $LNG['op_options_changed'] = 'Los cambios se han guardado.<br /><a href="game.php?page=settings">Volver</a>';
-$LNG['op_options_changed_vacation'] = 'Ajustes guardados.';
+$LNG['op_options_vacation_activated'] = 'Modo vacaciones activado';
+$LNG['op_options_vacation_deactivated'] = 'Modo vacaciones desactivado.';
+$LNG['op_options_deletion_activated'] = 'Eliminación de cuenta activada';
+$LNG['op_options_deletion_deactivated'] = 'Eliminación de cuenta desactivada';
+$LNG['op_options_no_other_settings_changed'] = 'No se han modificado otros ajustes.';
 $LNG['op_vacation_mode_active_message'] = 'El modo vacaciones esta activado. Tendrás que estar de vacaciones como'
     . ' mínimo hasta el: ';
 $LNG['op_end_vacation_mode'] = 'Finalizar modo vacaciones';
@@ -976,6 +980,7 @@ $LNG['op_send_report'] = 'Enviar informe';
 $LNG['op_vacation_delete_mode'] = 'Modo de vacaciones / Borrar cuenta';
 $LNG['op_activate_vacation_mode'] = 'Activar modo vacaciones';
 $LNG['op_dlte_account'] = 'Borrar cuenta';
+$LNG['op_stop_dlte_account'] = 'Cancelar la eliminación de la cuenta';
 $LNG['op_email_adress_descrip'] = 'Ésta dirección puede ser cambiada en cualquier momento. La dirección será permanente'
     . ' si no se realizan cambios en los próximos 7 días.';
 $LNG['op_deactivate_ipcheck_descrip'] = 'La comprobación de IP significa que se realizará una desconección de seguridad'
@@ -983,14 +988,14 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'La comprobación de IP significa que se
     . ' ¡Desactivar la comprobación de IP puede causar un agujero de seguridad!';
 $LNG['op_spy_probes_number_descrip'] = 'Cantidad de sondas de espionaje que serán enviadas en cada espionaje desde el'
     . ' menú de galaxia.';
-$LNG['op_activate_vacation_mode_descrip'] = 'El modo vacaciones protege tu cuenta durante tu ausencia. Sólo podrá ser'
-    . ' activada si no se está construyendo nada (flotas, edificios o defensas), nada está siendo investigado y ninguna'
-    . ' de tus flotas está en movimiento. Una vez activada estás protegido contra ataques. Los ataques que esten en'
-    . ' proceso finalizaran. Durante las vacaciones la producción se establece a cero y deberas devolverla al 100%'
-    . ' cuando vuelvas a estar activo. El modo vacaciones dura como mínimo dos dias y solo se podra desactivar despues'
-    . ' de ese tiempo.';
-$LNG['op_dlte_account_descrip'] = 'Si seleccionas ésta opcion, el sistema borrará tu cuenta automáticamente pasados 7'
-    . ' días.';
+$LNG['op_activate_vacation_mode_descrip'] = 'El modo Vacaciones está diseñado para protegerte durante largos periodos de'
+    . ' ausencia. Sólo puede activarse cuando no hay flotas propias en camino. Si se activa, le protege de nuevos ataques.'
+    . ' Sin embargo, los ataques ya iniciados continuarán. Durante el modo vacaciones, la producción se pone a cero y debe'
+    . ' restablecerse manualmente al 100% una vez que se ha salido del modo vacaciones. El modo vacaciones dura al menos'
+    . ' 48 horas, tras las cuales puede volver a desactivarlo.';
+$LNG['op_dlte_account_descrip'] = 'Esto eliminará automáticamente su cuenta por completo después de al menos 7 días. La'
+    . ' eliminación final depende del tiempo de ejecución de la tarea cron de eliminación y puede tardar algunos días más.'
+    . ' El borrado puede detenerse mientras no se haya llevado a cabo, es decir, mientras aún puedas conectarte a la cuenta.';
 $LNG['op_need_pass_mail'] = '¡Para cambiar la dirección de Correo Electrónico, es necesario introducir la contraseña!';
 $LNG['op_not_vaild_mail'] = 'No tienes una dirección válida de correo electrónico.';
 $LNG['op_change_mail_exist'] = 'La dirección de correo electrónico %s ya está en uso.';
