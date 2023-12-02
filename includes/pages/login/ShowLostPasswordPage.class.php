@@ -60,6 +60,18 @@ class ShowLostPasswordPage extends AbstractLoginPage
 
         $newPassword	= uniqid();
 
+        $sql = "UPDATE %%USERS%% SET password = :newPassword WHERE id = :userID;";
+        $db->update($sql, [
+            ':userID'		=> $userID,
+            ':newPassword'	=> PlayerUtil::cryptPassword($newPassword)
+        ]);
+
+        $sql = "UPDATE %%LOSTPASSWORD%% SET hasChanged = 1 WHERE userID = :userID AND `key` = :validationKey;";
+        $db->update($sql, [
+            ':userID'			=> $userID,
+            ':validationKey'	=> $validationKey
+        ]);
+
         $sql = "SELECT username, email_2 as mail, universe FROM %%USERS%% WHERE id = :userID;";
         $userData = $db->selectSingle($sql, [
             ':userID'	=> $userID,
@@ -80,33 +92,21 @@ class ShowLostPasswordPage extends AbstractLoginPage
             $newPassword,
         ], $MailRAW);
 
-        $sql = "UPDATE %%USERS%% SET password = :newPassword WHERE id = :userID;";
-        $db->update($sql, [
-            ':userID'		=> $userID,
-            ':newPassword'	=> PlayerUtil::cryptPassword($newPassword)
-        ]);
-
-        if (!empty($config->smtp_host)) {
+        if ($config->mail_active && !empty($config->smtp_host)) {
             require 'includes/classes/Mail.class.php';
             $subject	= sprintf($LNG['passwordChangedMailTitle'], $config->game_name);
             Mail::send($userData['mail'], $userData['username'], $subject, $MailContent);
+
+            $this->printMessage($LNG['passwordChangedMailSend'], [[
+                'label'	=> $LNG['passwordNext'],
+                'url'	=> 'index.php',
+            ]]);
         } else {
             $this->printMessage(nl2br($MailContent), [[
                 'label'	=> $LNG['passwordNext'],
                 'url'	=> 'index.php',
             ]]);
         }
-
-        $sql = "UPDATE %%LOSTPASSWORD%% SET hasChanged = 1 WHERE userID = :userID AND `key` = :validationKey;";
-        $db->update($sql, [
-            ':userID'			=> $userID,
-            ':validationKey'	=> $validationKey
-        ]);
-
-        $this->printMessage($LNG['passwordChangedMailSend'], [[
-            'label'	=> $LNG['passwordNext'],
-            'url'	=> 'index.php',
-        ]]);
     }
 
     public function send()
@@ -166,6 +166,14 @@ class ShowLostPasswordPage extends AbstractLoginPage
 
         $validationKey	= md5(uniqid());
 
+        $sql = "INSERT INTO %%LOSTPASSWORD%% SET userID = :userID, `key` = :validationKey, `time` = :timestamp, fromIP = :remoteAddr;";
+        $db->insert($sql, [
+            ':userID'		=> $userID,
+            ':timestamp'	=> TIMESTAMP,
+            ':validationKey'=> $validationKey,
+            ':remoteAddr'	=> Session::getClientIp()
+        ]);
+
         $MailRAW		= $LNG->getTemplate('email_lost_password_validation');
 
         $MailContent	= str_replace([
@@ -178,26 +186,20 @@ class ShowLostPasswordPage extends AbstractLoginPage
             HTTP_PATH.'index.php?page=lostPassword&mode=newPassword&u='.$userID.'&k='.$validationKey,
         ], $MailRAW);
 
-        if (!empty($config->smtp_host)) {
+        if ($config->mail_active && !empty($config->smtp_host)) {
             require 'includes/classes/Mail.class.php';
             $subject	= sprintf($LNG['passwordValidMailTitle'], $config->game_name);
             Mail::send($mail, $username, $subject, $MailContent);
+
+            $this->printMessage($LNG['passwordValidMailSend'], [[
+                'label'	=> $LNG['passwordNext'],
+                'url'	=> 'index.php',
+            ]]);
         } else {
-            $validurl = HTTP_PATH.'index.php?page=lostPassword&mode=newPassword&u='.$userID.'&k='.$validationKey;
-            echo '<meta http-equiv="refresh" content="0; url='.$validurl.'"/>';
+            $verifyURL = 'index.php?page=lostPassword&mode=newPassword&u='.$userID.'&k='.$validationKey;
+            $this->redirectTo($verifyURL);
+            // $validurl = HTTP_PATH.'index.php?page=lostPassword&mode=newPassword&u='.$userID.'&k='.$validationKey;
+            // echo '<meta http-equiv="refresh" content="0; url='.$validurl.'"/>';
         }
-
-        $sql = "INSERT INTO %%LOSTPASSWORD%% SET userID = :userID, `key` = :validationKey, `time` = :timestamp, fromIP = :remoteAddr;";
-        $db->insert($sql, [
-            ':userID'		=> $userID,
-            ':timestamp'	=> TIMESTAMP,
-            ':validationKey'=> $validationKey,
-            ':remoteAddr'	=> Session::getClientIp()
-        ]);
-
-        $this->printMessage($LNG['passwordValidMailSend'], [[
-            'label'	=> $LNG['passwordNext'],
-            'url'	=> 'index.php',
-        ]]);
     }
 }
