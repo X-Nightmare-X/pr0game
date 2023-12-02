@@ -778,7 +778,7 @@ class PlayerUtil
                         ]);
 
                         // Update ally_owner to new leader and reduce member amount
-                        $sql = 'UPDATE %%ALLIANCE%% SET ally_leader = :UserID, ally_members = ally_members - 1 WHERE id = :allianceId;';
+                        $sql = 'UPDATE %%ALLIANCE%% SET ally_owner = :UserID, ally_members = ally_members - 1 WHERE id = :allianceId;';
                         $db->update($sql, [
                             ':allianceId'   => $userData['ally_id'],
                             ':UserID' => $newLeader,
