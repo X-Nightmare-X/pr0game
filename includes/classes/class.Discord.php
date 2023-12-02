@@ -45,6 +45,14 @@ class Discord
             return;
         }
 
+        /**
+         * You can grab the discord IDs by turning on developer mode (settings -> (App-Settings) Advanced), and then right clicking on the relevant channel/user and using "copy ID"
+         * <#channel_id>
+         * <@user_id>
+         * <@&role_id> \@role to get ID
+         * <:emojiName:emojiId> \:customEmojiName: to get ID
+         */
+
         $message = '**' . $title . '**' . PHP_EOL . '```';
         foreach ($content ?? [] as $key => $row) {
             if (is_array($row)) {
