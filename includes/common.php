@@ -146,7 +146,11 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     if (!$raportWithoutSession) {
         $sql    = "SELECT
     	user.*, s.total_points,
-    	COUNT(message.message_id) as messages
+    	COUNT(message.message_id) as messages,
+        CASE
+            WHEN COUNT(DISTINCT message.message_type) = 1 THEN message.message_type
+            ELSE ''
+        END AS message_type
     	FROM %%USERS%% as user
         LEFT JOIN %%STATPOINTS%% s ON s.id_owner = user.id AND s.stat_type = :statTypeUser
     	LEFT JOIN %%MESSAGES%% as message ON message.message_owner = user.id AND message.message_unread = :unread

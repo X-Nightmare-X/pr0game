@@ -1037,6 +1037,7 @@ $LNG['op_sort_down'] = 'Descendant';
 $LNG['op_user_name_no_alphanumeric'] = 'Please enter the user name only alphanumeric characters!';
 $LNG['op_change_name_pro_week'] = 'Only you can change your username once every 7 days!';
 $LNG['op_change_name_exist'] = 'The name chosen %s already exists';
+$LNG['op_show_message_category'] = 'Show directly matching message category';
 $LNG['op_active_build_messages'] = 'Enable messages of building';
 $LNG['op_active_spy_messages_mode'] = 'Enable Summarized Spy Reports';
 $LNG['op_dst_mode'] = 'Daylight Saving Time?';
