@@ -114,23 +114,31 @@ class ShowSettingsPage extends AbstractGamePage
         $USER =& Singleton()->USER;
 
         if ($USER['urlaubs_modus'] == 1) {
+            if ($USER['urlaubs_until'] > TIMESTAMP) {
+                $this->printMessage($LNG['op_cant_deactivate_vacation_mode'], [
+                    [
+                        'label' => $LNG['sys_forward'],
+                        'url'   => 'game.php?page=settings',
+                    ],
+                ]);
+            }
+            
             $db = Database::get();
             $db->startTransaction();
+
             $sql = "SELECT id FROM %%USERS%% WHERE universe = :universe AND id = :userID FOR UPDATE;";
             $db->selectSingle($sql, [
                 ':universe' => Universe::current(),
                 ':userID'   => $USER['id'],
             ]);
 
-            if ($USER['urlaubs_until'] <= TIMESTAMP) {
-                $sql = "SELECT id FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :userID FOR UPDATE;";
-                $db->select($sql, [
-                    ':universe' => Universe::current(),
-                    ':userID'   => $USER['id'],
-                ]);
+            $sql = "SELECT id FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :userID FOR UPDATE;";
+            $db->select($sql, [
+                ':universe' => Universe::current(),
+                ':userID'   => $USER['id'],
+            ]);
 
-                PlayerUtil::disable_vmode($USER, $PLANET);
-            }
+            PlayerUtil::disable_vmode($USER, $PLANET);
             $db->commit();
 
             $this->printMessage($LNG['op_options_vacation_deactivated'], [
@@ -147,9 +155,9 @@ class ShowSettingsPage extends AbstractGamePage
                         'url'   => 'game.php?page=settings',
                     ]
                 ]);
-            } else {
-                PlayerUtil::enable_vmode($USER, $PLANET);
             }
+
+            PlayerUtil::enable_vmode($USER, $PLANET);
 
             $text = $LNG['op_options_vacation_activated'];
             $text .= '<br>' . $LNG['op_options_no_other_settings_changed'];

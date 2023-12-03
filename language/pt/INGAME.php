@@ -942,6 +942,7 @@ $LNG['sh_loading'] = '(A ler ...)';
 //OPTIONS
 $LNG['op_error'] = 'Erro';
 $LNG['op_cant_activate_vacation_mode'] = 'Você não pode ativar o modo férias enquanto estiver usando a frota.';
+$LNG['op_cant_deactivate_vacation_mode'] = 'Ainda não é possível sair do modo de férias.';
 $LNG['op_password_changed'] = 'Password alterada';
 $LNG['op_username_changed'] = 'Username alterado';
 $LNG['op_options_changed'] = 'Definições guardadas.';
@@ -993,10 +994,11 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'Verificação de IP significa que o log
     . ' IP pode representar um risco à segurança!';
 $LNG['op_spy_probes_number_descrip'] = 'Numero de sondas que podes mandar diretamente da vista da Galaxia.';
 $LNG['op_activate_vacation_mode_descrip'] = 'O modo de férias foi concebido para o proteger durante períodos de ausência'
-    . ' mais longos. Só pode ser ativado quando não há frotas próprias a caminho. Se for ativado, protege-te de novos ataques.'
-    . ' No entanto, os ataques que já começaram continuarão. A produção de recursos, a construção de edifícios e de encomendas'
-    . ' de estaleiros, bem como a investigação, são interrompidas durante este período e serão retomadas depois. O modo de'
-    . ' férias dura pelo menos 48 horas, após as quais pode ser desativado novamente.';
+    . ' mais longos. Só pode ser ativado quando não há frotas próprias em movimento. Quando é ativado, protege-o de novos'
+    . ' ataques. No entanto, os ataques que já começaram continuarão e as frotas amigas que estiverem a aguardar serão'
+    . ' mandadas de volta! A produção de recursos, a construção de edifícios e encomendas de estaleiros, bem como a'
+    . ' investigação, são interrompidas durante este período e serão retomadas depois. O modo de férias dura pelo menos'
+    . ' 48 horas, após as quais o podes desativar novamente.';
 $LNG['op_dlte_account_descrip'] = 'Isto irá eliminar automaticamente a sua conta após pelo menos 7 dias. A eliminação'
     . ' final depende do tempo de execução do cron job de eliminação e pode demorar mais alguns dias. A eliminação pode'
     . ' ser interrompida desde que ainda não tenha sido efectuada, ou seja, desde que ainda possa iniciar sessão na conta.';

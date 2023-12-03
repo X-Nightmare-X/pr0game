@@ -933,6 +933,7 @@ $LNG['sh_loading'] = '(Chargement ...)';
 //OPTIONS
 $LNG['op_error'] = 'Erreur';
 $LNG['op_cant_activate_vacation_mode'] = 'Vous ne pouvez pas activer le mode vacances pendant l\'utilisation de la flotte.';
+$LNG['op_cant_deactivate_vacation_mode'] = 'Vous ne pouvez pas encore quitter le mode vacances.';
 $LNG['op_password_changed'] = 'Le Mot de Passe a été changé avec succès<br'
     . '<a href="index.php" target="_top">Retour</a>';
 $LNG['op_username_changed'] = 'Nom d\'Utilisateur modifié avec succès<br><a href="index.php" target="_top">Retour</a>';
@@ -986,11 +987,11 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'Vérifier l\'IP signifie que la déconn
 $LNG['op_spy_probes_number_descrip'] = 'Nombre de sondes d\'espionnage qui peuvent être envoyées directement à partir'
     . ' de chaque scan dans le menu Galaxie.';
 $LNG['op_activate_vacation_mode_descrip'] = 'Le mode vacances est conçu pour vous protéger pendant les périodes d\'absence'
-    . ' prolongées. Il ne peut être activé que lorsqu\'aucune de vos flottes n\'est en route. Lorsqu\'il est activé, il'
-    . ' vous protège contre les nouvelles attaques. Cependant, les attaques déjà commencées se poursuivent. La production'
-    . ' de ressources, la construction de bâtiments et de chantiers navals, ainsi que la recherche sont interrompues pendant'
-    . ' cette période et reprennent ensuite. Le mode vacances dure au moins 48 heures, après quoi vous pouvez le désactiver à'
-    . ' nouveau.';
+    . ' prolongées. Il ne peut être activé que lorsqu\'aucune de vos flottes n\'est en mouvement. Lorsqu\'il est activé, il'
+    . ' vous protège des nouvelles attaques. Cependant, les attaques déjà commencées se poursuivent et les flottes amies qui'
+    . ' se maintiennent sont renvoyées ! La production de ressources, la construction de bâtiments et de chantiers navals'
+    . ' ainsi que la recherche sont interrompues pendant cette période et reprendront ensuite. Le mode vacances dure au moins'
+    . ' 48 heures, après quoi vous pouvez le désactiver à nouveau.';
 $LNG['op_dlte_account_descrip'] = 'Cette opération supprimera automatiquement votre compte au bout d\'au moins 7 jours.'
     . ' La suppression finale dépend de l\'heure d\'exécution de la tâche cron de suppression et peut prendre quelques'
     . ' jours de plus. La suppression peut être interrompue tant qu\'elle n\'a pas été exécutée, c\'est-à-dire tant que'

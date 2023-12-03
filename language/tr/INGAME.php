@@ -948,6 +948,7 @@ $LNG['sh_loading'] = '(Yukleniyor ...)';
 //AYARLAR
 $LNG['op_error'] = 'Hata';
 $LNG['op_cant_activate_vacation_mode'] = 'Filoyu kullanırken tatil modunu etkinleştiremezsiniz.';
+$LNG['op_cant_deactivate_vacation_mode'] = 'Henüz tatil modundan çıkamazsınız.';
 $LNG['op_password_changed'] = 'Sifreniz degistirildi Lutfen Tekrar giris yapin<br />'
     . '<a href="index.php" target="_top">Geri</a>';
 $LNG['op_username_changed'] = 'Uye Adiniz degistirildi Lutfen Tekrar giris yapin<br />'
@@ -1001,11 +1002,12 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'IP kontrol. IP degistirilmesi ya da iki
     . ' otomatik olarak atilirsin. IP kontrolunu devre disi birakmak cok onemli guvenlik acigi meydana getirebilir!';
 $LNG['op_spy_probes_number_descrip'] = 'Her tarama sirasinda galaksi menusunden direk gonderilen casusluk sondalarinin'
     . ' sayisi.';
-$LNG['op_activate_vacation_mode_descrip'] = 'Tatil modu uzun süreli yokluklarda sizi korumak için tasarlanmıştır. Yalnızca'
-    . ' kendi filolarınız yolda olmadığında etkinleştirilebilir. Etkinleştirildiğinde sizi yeni saldırılara karşı korur.'
-    . ' Ancak, halihazırda başlamış olan saldırılar devam edecektir. Kaynakların üretimi, binaların inşası ve tersane'
-    . ' siparişlerinin yanı sıra araştırma bu süre zarfında duraklatılır ve daha sonra yeniden başlatılır. Tatil modu'
-    . ' en az 48 saat sürer, daha sonra tekrar devre dışı bırakabilirsiniz.';
+$LNG['op_activate_vacation_mode_descrip'] = 'Tatil modu uzun süreli yokluklarda sizi korumak için tasarlanmıştır.'
+    . ' Yalnızca kendi filolarınız hareket halinde değilken etkinleştirilebilir. Etkinleştirildiğinde sizi yeni saldırılara'
+    . ' karşı korur. Ancak, halihazırda başlamış olan saldırılar devam edecek ve beklemekte olan dost filolar geri'
+    . ' gönderilecektir! Kaynakların üretimi, binaların inşası ve tersane siparişlerinin yanı sıra araştırma bu süre'
+    . ' zarfında duraklatılır ve daha sonra yeniden başlatılır. Tatil modu en az 48 saat sürer, sonrasında tekrar devre'
+    . ' dışı bırakabilirsiniz.';
 $LNG['op_dlte_account_descrip'] = 'Bu, en az 7 gün sonra hesabınızı otomatik olarak tamamen silecektir. Nihai silme'
     . ' işlemi, silme cron işinin yürütülme süresine bağlıdır ve birkaç gün daha sürebilir. Silme işlemi henüz'
     . ' gerçekleştirilmediği sürece, yani hala hesapta oturum açabildiğiniz sürece durdurulabilir.';

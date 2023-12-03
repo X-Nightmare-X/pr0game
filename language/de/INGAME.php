@@ -965,6 +965,7 @@ $LNG['sh_loading'] = '(Lade ...)';
 //OPTIONS
 $LNG['op_error'] = 'Fehler';
 $LNG['op_cant_activate_vacation_mode'] = 'Sie können nicht in den Urlaubsmodus während die Flotte bewegt wird.';
+$LNG['op_cant_deactivate_vacation_mode'] = 'Sie können den Urlaubsmodus noch nicht verlassen.';
 $LNG['op_password_changed'] = 'Passwort wurde geändert';
 $LNG['op_username_changed'] = 'Username geändert';
 $LNG['op_options_changed'] = 'Einstellungen gespeichert.';
@@ -1016,7 +1017,12 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'IP-Check bedeutet, dass automatisch ein
     . ' IP-Check zu deaktivieren kann ein Sicherheitsrisiko darstellen!';
 $LNG['op_spy_probes_number_descrip'] = 'Anzahl der Spionagesonden, die bei jedem Scan aus dem Galaxiemenu direkt'
     . ' versendet werden.';
-$LNG['op_activate_vacation_mode_descrip'] = 'Der Urlaubsmodus soll Sie während längerer Abwesenheit schützen. Er kann nur aktiviert werden, wenn keine eigenen Flotten unterwegs sind. Wenn er aktiviert ist, schützt er Sie vor neuen Angriffen. Bereits begonnene Angriffe werden jedoch fortgesetzt. Die Produktion von Ressourcen, der Bau von Gebäuden und Werftaufträgen, sowie die Forschung ist in dieser Zeit pausiert und wird anschließend fortgesetzt. Der Urlaubsmodus hält mindestens 48 Stunden an, danach können Sie ihn wieder deaktivieren.';
+$LNG['op_activate_vacation_mode_descrip'] = 'Der Urlaubsmodus soll Sie während längerer Abwesenheit schützen. Er kann nur'
+    . ' aktiviert werden, wenn keine eigenen Flotten unterwegs sind. Wenn er aktiviert ist, schützt er Sie vor neuen Angriffen.'
+    . ' Bereits begonnene Angriffe werden jedoch fortgesetzt und haltende befreundete Flotten werden zurückgeschickt! Die'
+    . ' Produktion von Ressourcen, der Bau von Gebäuden und Werftaufträgen, sowie die Forschung ist in dieser Zeit pausiert'
+    . ' und wird anschließend fortgesetzt. Der Urlaubsmodus hält mindestens 48 Stunden an, danach können Sie ihn wieder'
+    . ' deaktivieren.';
 $LNG['op_dlte_account_descrip'] = 'Hiermit wird Ihr Konto nach mindestens 7 Tagen automatisch vollständig gelöscht. Die'
     . ' endgültige Löschung hängt von der Ausführungszeit des Lösch-Cronjobs ab und kann noch ein paar Tage dauern. Die'
     . ' Löschung kann gestoppt werden, solange sie noch nicht durchgeführt wurde, d.h. solange Sie sich noch in das Konto'

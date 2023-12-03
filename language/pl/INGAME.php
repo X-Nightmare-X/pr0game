@@ -947,6 +947,7 @@ $LNG['sh_loading'] = '(Ładuję...)';
 //OPTIONS
 $LNG['op_error'] = 'Błąd';
 $LNG['op_cant_activate_vacation_mode'] = 'Nie możesz aktywować trybu urlopowego podczas korzystania z floty.';
+$LNG['op_cant_deactivate_vacation_mode'] = 'Nie można jeszcze wyjść z trybu wakacyjnego.';
 $LNG['op_password_changed'] = 'Hasło zmienione<br><a href="index.php" target="_top">Wróć</a>';
 $LNG['op_username_changed'] = 'Nazwa użytkownika zmieniona<br><a href="index.php" target="_top">Wróć</a>';
 $LNG['op_options_changed'] = 'Ustawienia zapisane.';
@@ -997,10 +998,11 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'Gdy do gry zaloguje się kolejna osoba 
     . ' Wyłączenie kontroli IP jest niewskazane!';
 $LNG['op_spy_probes_number_descrip'] = 'Liczba sond wysyłanych bezpośrednio z panelu galaktyki.';
 $LNG['op_activate_vacation_mode_descrip'] = 'Tryb wakacyjny został zaprojektowany w celu ochrony użytkownika podczas'
-    . ' dłuższych okresów nieobecności. Można go aktywować tylko wtedy, gdy żadna flota nie jest w drodze. Po aktywacji'
-    . ' tryb ten chroni przed nowymi atakami. Jednak ataki, które już się rozpoczęły, będą kontynuowane. Produkcja surowców,'
-    . ' budowa budynków i stoczni, a także badania są wstrzymane w tym czasie i zostaną wznowione po jego zakończeniu. Tryb'
-    . ' wakacyjny trwa co najmniej 48 godzin, po czym można go ponownie dezaktywować.';
+    . ' dłuższych okresów nieobecności. Można go aktywować tylko wtedy, gdy żadna flota nie jest w ruchu. Po aktywacji'
+    . ' tryb ten chroni gracza przed nowymi atakami. Jednak ataki, które już się rozpoczęły, będą kontynuowane, a'
+    . ' przyjazne floty, które się utrzymują, zostaną odesłane! Produkcja surowców, budowa budynków i stoczni, a także'
+    . ' badania są w tym czasie wstrzymane, a następnie zostaną wznowione. Tryb wakacyjny trwa co najmniej 48 godzin,'
+    . ' po czym można go ponownie dezaktywować.';
 $LNG['op_dlte_account_descrip'] = 'Spowoduje to automatyczne całkowite usunięcie konta po co najmniej 7 dniach.'
     . ' Ostateczne usunięcie zależy od czasu wykonania zadania cron usuwania i może potrwać kilka kolejnych dni.'
     . ' Usuwanie można zatrzymać, o ile nie zostało ono jeszcze wykonane, tj. o ile nadal można zalogować się na konto.';
