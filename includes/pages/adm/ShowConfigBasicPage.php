@@ -140,7 +140,7 @@ function ShowConfigBasicPage()
         'signalColors'              => $USER['signalColors'],
         'Selector'                  => [
             'timezone' => $TimeZones,
-            'mail' => $LNG['se_mail_sel'],
+            'mail' => [0 => $LNG['se_mail_sel_0'], 2 => $LNG['se_mail_sel_2']], // 1 = sendmail, is deprecated, use SMTP (2) instead
             'encry' => ['' => $LNG['se_smtp_ssl_1'], 'ssl' => $LNG['se_smtp_ssl_2'], 'tls' => $LNG['se_smtp_ssl_3']],
             'message_delete_behavior' => [0 => $LNG['se_message_delete_behavior_0'], 1 => $LNG['se_message_delete_behavior_1']],
         ],
