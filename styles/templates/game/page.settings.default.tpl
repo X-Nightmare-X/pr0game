@@ -12,6 +12,14 @@
 			<td>{$LNG.op_admin_planets_protection}</td>
 			<td><input name="adminprotection" type="checkbox" value="1" {if $adminProtection > 0}checked="checked"{/if}></td>
 		</tr>
+		<tr>
+			<td>{$LNG.op_admin_discord_id}</td>
+			<td width="50%" style="height:22px;"><input name="discord_id" size="25" value="{$discord_id}" type="text" maxlength="25"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.op_admin_discord_hook}</td>
+			<td width="75%" style="height:22px;"><input name="discord_hook" size="150" value="{$discord_hook}" type="text" maxlength="150"></td>
+		</tr>
 		{/if}
 		<tr>
 			<th colspan="2">{$LNG.op_user_data}</th>

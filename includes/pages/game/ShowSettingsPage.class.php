@@ -65,6 +65,8 @@ class ShowSettingsPage extends AbstractGamePage
                     'lang' => $LNG->getAllowedLangs(false),
                 ],
                 'adminProtection'       => $USER['authattack'],
+                'discord_id'            => $USER['discord_id'],
+                'discord_hook'          => $USER['discord_hook'],
                 'userAuthlevel'         => $USER['authlevel'],
                 'changeNickTime'        => ($USER['uctime'] + USERNAME_CHANGETIME) - TIMESTAMP,
                 'username'              => $USER['username'],
@@ -214,6 +216,8 @@ class ShowSettingsPage extends AbstractGamePage
         $THEME =& Singleton()->THEME;
         $PLANET =& Singleton()->PLANET;
         $adminprotection    = HTTP::_GP('adminprotection', 0);
+        $discord_id         = HTTP::_GP('discord_id', '');
+        $discord_hook       = HTTP::_GP('discord_hook', '');
 
         $username           = HTTP::_GP('username', $USER['username'], UTF8_SUPPORT);
         $password           = HTTP::_GP('password', '');
@@ -308,7 +312,13 @@ class ShowSettingsPage extends AbstractGamePage
 
         // Vertify
 
-        $adminprotection    = ($adminprotection == 1 && $USER['authlevel'] != AUTH_USR) ? $USER['authlevel'] : 0;
+        if ($USER['authlevel'] != AUTH_USR) {
+            $adminprotection = ($adminprotection == 1) ? $USER['authlevel'] : 0;
+        } else {
+            $adminprotection = 0;
+            $discord_id = '';
+            $discord_hook = '';
+        }
 
         $spycount           = min(max(round($spycount), 1), 4294967295);
         $fleetactions       = min(max($fleetactions, 1), 99);
@@ -472,6 +482,8 @@ class ShowSettingsPage extends AbstractGamePage
 		settings_mis			    = :galaxyMissle,
 		settings_blockPM		    = :blockPM,
 		authattack				    = :adminProtection,
+		discord_id				    = :discord_id,
+		discord_hook				= :discord_hook,
 		lang					    = :language,
 		hof						    = :queueMessages,
 		spyMessagesMode			    = :spyMessagesMode,
@@ -542,6 +554,8 @@ class ShowSettingsPage extends AbstractGamePage
             ':galaxyMissle'                 => $galaxyMissle,
             ':blockPM'                      => $blockPM,
             ':adminProtection'              => $adminprotection,
+            ':discord_id'                   => $discord_id,
+            ':discord_hook'                 => $discord_hook,
             ':language'                     => $language,
             ':queueMessages'                => $queueMessages,
             ':spyMessagesMode'              => $spyMessagesMode,
