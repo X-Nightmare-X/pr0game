@@ -320,7 +320,7 @@ abstract class AbstractGamePage
         $THEME =& Singleton()->THEME;
         $LNG =& Singleton()->LNG;
         $USER =& Singleton()->USER;
-        $this->updatePlanetTime();
+        // $this->updatePlanetTime();
 
         if ($this->getWindow() !== 'ajax') {
             $this->getPageData();
@@ -347,14 +347,14 @@ abstract class AbstractGamePage
 
     protected function sendJSON($data)
     {
-        $this->updatePlanetTime();
+        // $this->updatePlanetTime();
         echo json_encode($data);
         exit;
     }
 
     protected function redirectTo($url)
     {
-        $this->updatePlanetTime();
+        // $this->updatePlanetTime();
         HTTP::redirectTo($url);
         exit;
     }

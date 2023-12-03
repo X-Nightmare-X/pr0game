@@ -20,7 +20,7 @@ class ShowPlayerCardPage extends AbstractGamePage
 {
     public static $requireModule = MODULE_PLAYERCARD;
 
-    protected $disableEcoSystem = true;
+    // protected $disableEcoSystem = true;
 
     public function __construct()
     {
