@@ -998,9 +998,9 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'Gdy do gry zaloguje się kolejna osoba 
 $LNG['op_spy_probes_number_descrip'] = 'Liczba sond wysyłanych bezpośrednio z panelu galaktyki.';
 $LNG['op_activate_vacation_mode_descrip'] = 'Tryb wakacyjny został zaprojektowany w celu ochrony użytkownika podczas'
     . ' dłuższych okresów nieobecności. Można go aktywować tylko wtedy, gdy żadna flota nie jest w drodze. Po aktywacji'
-    . ' tryb ten chroni przed nowymi atakami. Jednak ataki, które już się rozpoczęły, będą kontynuowane. Podczas trybu'
-    . ' urlopowego produkcja jest ustawiona na zero i musi zostać ręcznie zresetowana do 100% po wyjściu z trybu'
-    . ' urlopowego. Tryb wakacyjny trwa co najmniej 48 godzin, po czym można go ponownie dezaktywować.';
+    . ' tryb ten chroni przed nowymi atakami. Jednak ataki, które już się rozpoczęły, będą kontynuowane. Produkcja surowców,'
+    . ' budowa budynków i stoczni, a także badania są wstrzymane w tym czasie i zostaną wznowione po jego zakończeniu. Tryb'
+    . ' wakacyjny trwa co najmniej 48 godzin, po czym można go ponownie dezaktywować.';
 $LNG['op_dlte_account_descrip'] = 'Spowoduje to automatyczne całkowite usunięcie konta po co najmniej 7 dniach.'
     . ' Ostateczne usunięcie zależy od czasu wykonania zadania cron usuwania i może potrwać kilka kolejnych dni.'
     . ' Usuwanie można zatrzymać, o ile nie zostało ono jeszcze wykonane, tj. o ile nadal można zalogować się na konto.';

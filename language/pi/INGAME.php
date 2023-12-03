@@ -1010,11 +1010,11 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'IP-Check bedeutet, dass automatisch ein
     . ' IP-Check zu deaktivieren kann ein Sicherheitsrisiko darstellen!';
 $LNG['op_spy_probes_number_descrip'] = 'Anzahl der Spähpapageien, die bei jedem Scan aus dem Galaxiemenu direkt'
     . ' versendet werden.';
-$LNG['op_activate_vacation_mode_descrip'] = 'Der Urlaubsmodus soll Sie während längerer Abwesenheit schützen. Er kann'
-    . ' nur aktiviert werden, wenn keine eigenen Flotten unterwegs sind. Wenn er aktiviert ist, schützt er Sie vor'
-    . ' neuen Angriffen. Bereits begonnene Angriffe werden jedoch fortgesetzt. Während des Urlaubsmodus wird die'
-    . ' Produktion auf Null gesetzt und muss nach Beendigung des Urlaubsmodus manuell auf 100% zurückgesetzt werden.'
-    . ' Der Urlaubsmodus hält mindestens 48 Stunden an, danach können Sie ihn wieder deaktivieren.';
+$LNG['op_activate_vacation_mode_descrip'] = 'Der Urlaubsmodus soll Sie während längerer Abwesenheit schützen. Er kann nur'
+    . ' aktiviert werden, wenn keine eigenen Flotten unterwegs sind. Wenn er aktiviert ist, schützt er Sie vor neuen Angriffen.'
+    . ' Bereits begonnene Angriffe werden jedoch fortgesetzt. Die Produktion von Ressourcen, der Bau von Gebäuden und Werftaufträgen,'
+    . ' sowie die Forschung ist in dieser Zeit pausiert und wird anschließend fortgesetzt. Der Urlaubsmodus hält mindestens 48 Stunden'
+    . ' an, danach können Sie ihn wieder deaktivieren.';
 $LNG['op_dlte_account_descrip'] = 'Hiermit wird Ihr Konto nach mindestens 7 Tagen automatisch vollständig gelöscht. Die'
     . ' endgültige Löschung hängt von der Ausführungszeit des Lösch-Cronjobs ab und kann noch ein paar Tage dauern. Die'
     . ' Löschung kann gestoppt werden, solange sie noch nicht durchgeführt wurde, d.h. solange Sie sich noch in das Konto'

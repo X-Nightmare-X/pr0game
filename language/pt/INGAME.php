@@ -992,11 +992,11 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'Verificação de IP significa que o log
     . ' quando o IP muda ou duas pessoas são registrados em uma conta de IPs diferentes. Desativando a verificação de'
     . ' IP pode representar um risco à segurança!';
 $LNG['op_spy_probes_number_descrip'] = 'Numero de sondas que podes mandar diretamente da vista da Galaxia.';
-$LNG['op_activate_vacation_mode_descrip'] = 'O modo de férias foi concebido para o proteger durante períodos de'
-    . ' ausência mais longos. Só pode ser ativado quando não há frotas próprias a caminho. Se for ativado, protege-te'
-    . ' de novos ataques. No entanto, os ataques que já começaram continuarão. Durante o modo de férias, a produção é'
-    . ' fixada em zero e deve ser reposta manualmente a 100% assim que o modo de férias for abandonado. O modo de férias'
-    . ' tem uma duração mínima de 48 horas, após as quais pode ser novamente desativado.';
+$LNG['op_activate_vacation_mode_descrip'] = 'O modo de férias foi concebido para o proteger durante períodos de ausência'
+    . ' mais longos. Só pode ser ativado quando não há frotas próprias a caminho. Se for ativado, protege-te de novos ataques.'
+    . ' No entanto, os ataques que já começaram continuarão. A produção de recursos, a construção de edifícios e de encomendas'
+    . ' de estaleiros, bem como a investigação, são interrompidas durante este período e serão retomadas depois. O modo de'
+    . ' férias dura pelo menos 48 horas, após as quais pode ser desativado novamente.';
 $LNG['op_dlte_account_descrip'] = 'Isto irá eliminar automaticamente a sua conta após pelo menos 7 dias. A eliminação'
     . ' final depende do tempo de execução do cron job de eliminação e pode demorar mais alguns dias. A eliminação pode'
     . ' ser interrompida desde que ainda não tenha sido efectuada, ou seja, desde que ainda possa iniciar sessão na conta.';

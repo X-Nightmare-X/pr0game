@@ -985,11 +985,12 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'Vérifier l\'IP signifie que la déconn
     . ' adresses IP. Désactiver la vérification IP peut représenter un risque pour la sécurité !';
 $LNG['op_spy_probes_number_descrip'] = 'Nombre de sondes d\'espionnage qui peuvent être envoyées directement à partir'
     . ' de chaque scan dans le menu Galaxie.';
-$LNG['op_activate_vacation_mode_descrip'] = 'Le mode vacances est conçu pour vous protéger pendant les périodes'
-    . ' d\'absence prolongées. Il ne peut être activé que lorsqu\'aucune de vos flottes n\'est en route. Lorsqu\'il est'
-    . ' activé, il vous protège contre les nouvelles attaques. Cependant, les attaques déjà commencées se poursuivent.'
-    . ' Pendant le mode vacances, la production est mise à zéro et doit être remise manuellement à 100 % une fois le mode'
-    . ' vacances quitté. Le mode vacances dure au moins 48 heures, après quoi vous pouvez le désactiver à nouveau.';
+$LNG['op_activate_vacation_mode_descrip'] = 'Le mode vacances est conçu pour vous protéger pendant les périodes d\'absence'
+    . ' prolongées. Il ne peut être activé que lorsqu\'aucune de vos flottes n\'est en route. Lorsqu\'il est activé, il'
+    . ' vous protège contre les nouvelles attaques. Cependant, les attaques déjà commencées se poursuivent. La production'
+    . ' de ressources, la construction de bâtiments et de chantiers navals, ainsi que la recherche sont interrompues pendant'
+    . ' cette période et reprennent ensuite. Le mode vacances dure au moins 48 heures, après quoi vous pouvez le désactiver à'
+    . ' nouveau.';
 $LNG['op_dlte_account_descrip'] = 'Cette opération supprimera automatiquement votre compte au bout d\'au moins 7 jours.'
     . ' La suppression finale dépend de l\'heure d\'exécution de la tâche cron de suppression et peut prendre quelques'
     . ' jours de plus. La suppression peut être interrompue tant qu\'elle n\'a pas été exécutée, c\'est-à-dire tant que'

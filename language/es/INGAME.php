@@ -990,9 +990,9 @@ $LNG['op_spy_probes_number_descrip'] = 'Cantidad de sondas de espionaje que ser�
     . ' menú de galaxia.';
 $LNG['op_activate_vacation_mode_descrip'] = 'El modo Vacaciones está diseñado para protegerte durante largos periodos de'
     . ' ausencia. Sólo puede activarse cuando no hay flotas propias en camino. Si se activa, le protege de nuevos ataques.'
-    . ' Sin embargo, los ataques ya iniciados continuarán. Durante el modo vacaciones, la producción se pone a cero y debe'
-    . ' restablecerse manualmente al 100% una vez que se ha salido del modo vacaciones. El modo vacaciones dura al menos'
-    . ' 48 horas, tras las cuales puede volver a desactivarlo.';
+    . ' Sin embargo, los ataques ya iniciados continuarán. La producción de recursos, la construcción de edificios y pedidos'
+    . ' de astilleros, así como la investigación se pausan durante este tiempo y se reanudarán después. El modo de vacaciones'
+    . ' dura al menos 48 horas, tras las cuales puede volver a desactivarlo.';
 $LNG['op_dlte_account_descrip'] = 'Esto eliminará automáticamente su cuenta por completo después de al menos 7 días. La'
     . ' eliminación final depende del tiempo de ejecución de la tarea cron de eliminación y puede tardar algunos días más.'
     . ' El borrado puede detenerse mientras no se haya llevado a cabo, es decir, mientras aún puedas conectarte a la cuenta.';
