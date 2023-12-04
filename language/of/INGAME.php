@@ -959,6 +959,7 @@ $LNG['sh_loading'] = '(rendere ...)';
 //OPTIONS
 $LNG['op_error'] = 'Fehler';
 $LNG['op_cant_activate_vacation_mode'] = 'Sie gönnene ned in den Urlaubsmodus während die Flodde bewegd wird.';
+$LNG['op_cant_deactivate_vacation_mode'] = 'Sie gönnene den Urlaubsmodus noch ned ferlassne.';
 $LNG['op_password_changed'] = 'Basswort wurde geändert';
 $LNG['op_username_changed'] = 'Username geändert';
 $LNG['op_options_changed'] = 'Einschdellungne gesbeichert.';
@@ -1010,11 +1011,12 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'IBCheck- imblementiert, das audomadisch
     . ' IBCheck- zu deagtivierne kann ein Sicherheitsrisigo darstellen!';
 $LNG['op_spy_probes_number_descrip'] = 'Anzahl der Schbionagesondne, die bei jedem Scan aus dem Galaggsiemenu direkt'
     . ' versended werden.';
-$LNG['op_activate_vacation_mode_descrip'] = 'Der Urlaubsmodus soll Sie während längerer Abwesenheid schüddsne. Er gann nur'
-    . ' agdifierd werdne, wen geine eigenene Floddne underwegs sind alde. Wen er agdifierd isd, schüddsd er Sie for neune'
-    . ' Angriffne hätt i gsachd. Bereids begonnene Angriffe werdne jedoch fordgeseddsd. Während des Urlaubsmodus wird die Brodugdion'
-    . ' uff Null geseddsd und muss nach Beendigung des Urlaubsmodus manuell uff 100% dsurügggeseddsd werdne hätt i gsachd. Der'
-    . ' Urlaubsmodus häld mindesdens 48 Schdundne an, danach gönnene Sie ihn widde deagdifierne alde.';
+$LNG['op_activate_vacation_mode_descrip'] = 'Der Urlaubsmodus soll Sie während längerer Abwesenheid schüddsne etzala. Er gann nur'
+    . ' agdifierd werdne, wen geine eigenene Floddne underwegs sind. Wen er agdifierd isd, schüddsd er Sie for neune Angriffne alda.'
+    . ' Bereids begonnene Angriffe werdne jedoch fordgeseddsd und haldende befreundede Floddne werdne dsurügggeschiggd! Die Brodugdion'
+    . ' fon Ressourcne, der Bau fon Gebäudne und Werfdaufdrägne, sowie die Forschung is\' in dieser Dseid bausierd und wird'
+    . ' anschließend fordgeseddsd alde. Der Urlaubsmodus häld mindesdens 48 Schdundne an, danach gönnene Sie ihn scho widder'
+    . ' deagdifierne des bascht scho.';
 $LNG['op_dlte_account_descrip'] = 'Hiermid wird Ihr Gondo nach mindesdens 7 Dagne audomadisch follsdändig gelöschd. Die endgüldige'
     . ' Löschung hängd fonääh der Ausführungsdseid des Löschcronjobs- ab und gann noch a baar Dage dauern. Die Löschung gann gesdobbd'
     . ' werdne, solange sie noch ned durchgeführd wurde, dh. solange Sie sich noch in des Gondo einloggne gönnene tadsächlich sogar.';

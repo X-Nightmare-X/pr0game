@@ -974,6 +974,7 @@ $LNG['sh_loading'] = '(Loading ...)';
 //OPTIONS
 $LNG['op_error'] = 'Error';
 $LNG['op_cant_activate_vacation_mode'] = 'You can not activate the vacation mode while using the fleet.';
+$LNG['op_cant_deactivate_vacation_mode'] = 'You cannot exit vacation mode yet.';
 $LNG['op_password_changed'] = 'Password changed';
 $LNG['op_username_changed'] = 'Username changed';
 $LNG['op_options_changed'] = 'Options saved.';
@@ -1024,15 +1025,12 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'Verification of IP means that the secur
     . ' the IP changes or two people are recorded in an account of different IPs. Disabling the check of IP can'
     . ' represent a security risk!';
 $LNG['op_spy_probes_number_descrip'] = 'Number of probes you can send directly from the view of Galaxia.';
-$LNG['op_activate_vacation_mode_descrip'] = 'Vacation mode is designed to protect you during longer periods of'
-    . ' absence. It can only be activated when no fleets of your own are on their way. If it is activated, it'
-    . ' protects you from new attacks. However, attacks that have already begun will continue. During vacation mode,'
-    . ' production is set to zero and must be manually reset to 100% once vacation mode has been exited. Vacation'
-    . ' mode lasts for at least 48 hours, after which you can deactivate it again.';
-$LNG['op_dlte_account_descrip'] = 'This will automatically delete your account completely after at least 7 days. The'
-    . ' final deletion depends on the execution time of the deletion cron job and may take a few more days. The'
-    . ' deletion can be stopped as long as it has not yet been carried out, i.e. as long as you can still log into'
-    . ' the account.';
+$LNG['op_activate_vacation_mode_descrip'] = 'Vacation mode is designed to protect you during longer periods of absence.'
+    . ' It can only be activated when no fleets of your own are on the move. When it is activated, it protects you from'
+    . ' new attacks. However, attacks that have already begun will continue and friendly fleets that are holding will'
+    . ' be sent back! The production of resources, the construction of buildings and shipyard orders as well as research'
+    . ' is paused during this time and will be resumed afterwards. Vacation mode lasts for at least 48 hours, after which'
+    . ' you can deactivate it again.';
 $LNG['op_need_pass_mail'] = 'To change your email address is need to enter the password in the box!';
 $LNG['op_not_vaild_mail'] = 'You dont inserted a valid E-Mail!';
 $LNG['op_change_mail_exist'] = 'The Email introduced %s already in use!';

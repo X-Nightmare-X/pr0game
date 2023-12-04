@@ -935,6 +935,7 @@ $LNG['sh_loading'] = '(Cargando ...)';
 //OPTIONS
 $LNG['op_error'] = 'Errores encontrados';
 $LNG['op_cant_activate_vacation_mode'] = 'No puede activar el modo de vacaciones mientras usa la flota.';
+$LNG['op_cant_deactivate_vacation_mode'] = 'Aún no puedes salir del modo vacaciones.';
 $LNG['op_password_changed'] = 'La contraseña ha sido cambiada.<br /><a href="index.php" target="_top">Volver</a>';
 $LNG['op_username_changed'] = 'El nombre de usuario ha sido cambiado.<br />'
     . '<a href="index.php" target="_top">Volver</a>';
@@ -989,10 +990,11 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'La comprobación de IP significa que se
 $LNG['op_spy_probes_number_descrip'] = 'Cantidad de sondas de espionaje que serán enviadas en cada espionaje desde el'
     . ' menú de galaxia.';
 $LNG['op_activate_vacation_mode_descrip'] = 'El modo Vacaciones está diseñado para protegerte durante largos periodos de'
-    . ' ausencia. Sólo puede activarse cuando no hay flotas propias en camino. Si se activa, le protege de nuevos ataques.'
-    . ' Sin embargo, los ataques ya iniciados continuarán. Durante el modo vacaciones, la producción se pone a cero y debe'
-    . ' restablecerse manualmente al 100% una vez que se ha salido del modo vacaciones. El modo vacaciones dura al menos'
-    . ' 48 horas, tras las cuales puede volver a desactivarlo.';
+    . ' ausencia. Sólo puede activarse cuando no hay flotas propias en movimiento. Cuando se activa, te protege de nuevos'
+    . ' ataques. Sin embargo, los ataques que ya hayan comenzado continuarán y las flotas amigas que estén aguantando ¡serán'
+    . ' enviadas de vuelta! La producción de recursos, la construcción de edificios y pedidos de astilleros así como la'
+    . ' investigación se pausan durante este tiempo y se reanudarán después. El modo de vacaciones dura al menos 48 horas,'
+    . ' tras las cuales podrás desactivarlo de nuevo.';
 $LNG['op_dlte_account_descrip'] = 'Esto eliminará automáticamente su cuenta por completo después de al menos 7 días. La'
     . ' eliminación final depende del tiempo de ejecución de la tarea cron de eliminación y puede tardar algunos días más.'
     . ' El borrado puede detenerse mientras no se haya llevado a cabo, es decir, mientras aún puedas conectarte a la cuenta.';
