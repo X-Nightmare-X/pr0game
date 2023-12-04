@@ -1220,7 +1220,7 @@ class PlayerUtil
         ]);
 
         if ($messageType === 1) {
-            $sql = "SELECT `username` `discord_id` `discord_hook` FROM %%USERS%% 
+            $sql = "SELECT `username`, `discord_id`, `discord_hook` FROM %%USERS%% 
                 WHERE `universe` = :universe AND `id` = :userID AND `authlevel` > 0;";
             $admin = $db->selectSingle($sql, [
                 ':universe' => $universe,
