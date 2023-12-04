@@ -29,6 +29,7 @@ class ShowBattleSimulatorPage extends AbstractGamePage
         $reslist =& Singleton()->reslist;
         $pricelist =& Singleton()->pricelist;
         $LNG =& Singleton()->LNG;
+        $USER =& Singleton()->USER;
         if (!isset($_REQUEST['battleinput'])) {
             $this->sendJSON(0);
         }
@@ -122,7 +123,7 @@ class ShowBattleSimulatorPage extends AbstractGamePage
             'metal' => getNumber($BattleArray[0][1][901]),
             'crystal' => getNumber($BattleArray[0][1][902]),
             'deuterium' => getNumber($BattleArray[0][1][903]),
-            ], true);
+            ], $USER['universe'], true);
         } else {
             $stealResource = [
                 901 => 0,
