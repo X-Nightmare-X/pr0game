@@ -1005,6 +1005,7 @@ $LNG['op_sort_down'] = 'Décroissant';
 $LNG['op_user_name_no_alphanumeric'] = 'Merci d\'entrer un nom d\'Utilisateur à base de caractères alphanumériques !';
 $LNG['op_change_name_pro_week'] = 'Vous pouvez modifier votre nom d\'Utilisateur une fois par semaine';
 $LNG['op_change_name_exist'] = 'Le nom %s existe déjà';
+$LNG['op_show_message_category'] = 'Afficher directement la catégorie de messages correspondante';
 $LNG['op_active_build_messages'] = 'Actualités queue de construction';
 $LNG['op_dst_mode'] = 'Heure d\été ?';
 $LNG['op_dst_mode_sel'][0] = 'Non';

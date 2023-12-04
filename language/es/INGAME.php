@@ -1007,6 +1007,7 @@ $LNG['op_sort_down'] = 'Descendiente';
 $LNG['op_user_name_no_alphanumeric'] = 'Por favor introduce en el nombre de usuario sólo caracteres alfanuméricos.';
 $LNG['op_change_name_pro_week'] = 'Puede cambiar su nombre de usuario sólo 1 vez por semana.';
 $LNG['op_change_name_exist'] = 'El nombre %s ya existe.';
+$LNG['op_show_message_category'] = 'Mostrar directamente la categoría de mensaje correspondiente';
 $LNG['op_active_build_messages'] = 'Mensajes cola Edificios';
 $LNG['op_active_spy_messages_mode'] = 'Mensajes de Espionajes Resumidos';
 $LNG['op_dst_mode'] = 'Horario de Verano?';

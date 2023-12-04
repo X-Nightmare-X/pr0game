@@ -922,6 +922,7 @@ CREATE TABLE `%PREFIX%users` (
   `ally_rank_id` int(11) unsigned NOT NULL DEFAULT '0',
   `bana` tinyint(1) NOT NULL DEFAULT '0',
   `banaday` int(11) NOT NULL DEFAULT '0',
+  `showMessageCategory` tinyint(1) NOT NULL DEFAULT '0',
   `hof` tinyint(1) NOT NULL DEFAULT '1',
   `spyMessagesMode` tinyint(1) NOT NULL DEFAULT '0',
   `wons` int(11) unsigned NOT NULL DEFAULT '0',

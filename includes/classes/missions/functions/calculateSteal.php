@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-function calculateSteal($attackFleets, $defenderPlanet, $simulate = false)
+function calculateSteal($attackFleets, $defenderPlanet, $universe, $simulate = false)
 {
     // See: http://www.owiki.de/Beute
     $pricelist =& Singleton()->pricelist;
@@ -68,11 +68,12 @@ function calculateSteal($attackFleets, $defenderPlanet, $simulate = false)
     ];
 
     if (isModuleAvailable(MODULE_RESOURCE_STASH) && !$simulate) {
+        $config = Config::get($universe);
         // Up to 10% (1% per resource store level) of daily production is protected from stealing
         $dailyProduction = [
-            $firstResource => $defenderPlanet['metal_perhour'] * TIME_24_HOURS,
-            $secondResource => $defenderPlanet['crystal_perhour'] * TIME_24_HOURS,
-            $thirdResource => $defenderPlanet['deuterium_perhour'] * TIME_24_HOURS
+            $firstResource => ($defenderPlanet['metal_perhour'] + $config->metal_basic_income * $config->resource_multiplier) / 3600 * TIME_24_HOURS,
+            $secondResource => ($defenderPlanet['crystal_perhour'] + $config->crystal_basic_income * $config->resource_multiplier) / 3600 * TIME_24_HOURS,
+            $thirdResource => ($defenderPlanet['deuterium_perhour'] + $config->deuterium_basic_income * $config->resource_multiplier) / 3600 * TIME_24_HOURS
         ];
         $protected = [
             $firstResource => $dailyProduction[$firstResource] * min(0.1, 0.01 * $defenderPlanet[$resource[METAL_STORE]]),

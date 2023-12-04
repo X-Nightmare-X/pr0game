@@ -1030,6 +1030,7 @@ $LNG['op_sort_down'] = 'absteigend';
 $LNG['op_user_name_no_alphanumeric'] = 'Bitte beim Username nur alphanumerische Zeichen eingeben!';
 $LNG['op_change_name_pro_week'] = 'Sie Können ihren Usernamen nur 1x pro Woche ändern';
 $LNG['op_change_name_exist'] = 'Der Name %s existiert bereits';
+$LNG['op_show_message_category'] = 'Direkt passende Nachrichtenkategorie anzeigen';
 $LNG['op_active_build_messages'] = 'Baulistennachrichten aktivieren';
 $LNG['op_active_spy_messages_mode'] = 'Spioangeberichte zusammenfassen';
 $LNG['op_dst_mode'] = 'Sommerzeit?';

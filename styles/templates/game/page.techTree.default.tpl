@@ -10,11 +10,7 @@
     .minus {
         display:none;	}
 </style>
-{if $messages}
-	<div class="message"><a href="?page=messages">{$messages}</a></div>
-	
-	{/if}
-<div>
+{include file='shared.messages.tpl'}
 <div class="infos"> 
 {foreach $TechTreeList as $elementID => $requireList}
 {if !is_array($requireList)}
