@@ -133,11 +133,7 @@
         }
     </style>
     <div>
-        {if $messages}
-            <div class="message">
-                <a href="?page=messages">{$messages}</a>
-            </div>
-        {/if}
+        {include file='shared.messages.tpl'}
         <div class="infos">
             <div class="planeto">
                 <a href="#" onclick="return Dialog.PlanetAction();" title="{$LNG.ov_planetmenu}">{$LNG["type_planet_{$planet_type}"]} {$planetname}</a> ({$username})

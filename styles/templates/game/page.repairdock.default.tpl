@@ -1,8 +1,6 @@
 {block name="title" prepend}{$LNG.lm_repairdock}{/block}
 {block name="content"}
-  {if $messages}
-    <div class="message"><a href="?page=messages">{$messages}</a></div>
-  {/if}
+  {include file='shared.messages.tpl'}
   {if $busy}
     <table width="70%" id="infobox" style="border: 2px solid red; text-align:center;background:transparent">
       <tr>

@@ -1,4 +1,2 @@
--- added all planet pictures everywhere
-
-ALTER TABLE `%PREFIX%users` ADD `discord_id` varchar(25) NOT NULL DEFAULT '' AFTER `rights`;
-ALTER TABLE `%PREFIX%users` ADD `discord_hook` text AFTER `discord_id`;
+-- Add option to navigate directly to message category
+ALTER TABLE `%PREFIX%users`  ADD `showMessageCategory` tinyint(1) NOT NULL DEFAULT '0' AFTER `banaday`;

@@ -1013,6 +1013,7 @@ $LNG['op_sort_down'] = 'Azalan';
 $LNG['op_user_name_no_alphanumeric'] = 'Lutfen sadece alfabetik ve rakamsal karakter kulaniniz!';
 $LNG['op_change_name_pro_week'] = 'Oyuncu ismini 7 gun icinde en fazla 1 kez degistirebilirsin!';
 $LNG['op_change_name_exist'] = 'Oyuncu ismi %s zaten mevcut';
+$LNG['op_show_message_category'] = 'Doğrudan eşleşen mesaj kategorisini göster';
 $LNG['op_active_build_messages'] = 'Bina mesajlarini goster';
 $LNG['op_active_spy_messages_mode'] = 'Casus raporlarini ozetle';
 $LNG['op_dst_mode'] = 'Yaz/Kis saati uygulamasi';

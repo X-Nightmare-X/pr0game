@@ -1009,6 +1009,7 @@ $LNG['op_sort_down'] = 'Malejąco';
 $LNG['op_user_name_no_alphanumeric'] = 'Podaj nazwę użytkownika. Tylko cyfry i litery!';
 $LNG['op_change_name_pro_week'] = 'Możesz zmienić nazwę użytkownika raz w tygodniu';
 $LNG['op_change_name_exist'] = 'Taka nazwa %s już istnieje';
+$LNG['op_show_message_category'] = 'Pokaż bezpośrednio pasującą kategorię wiadomości';
 $LNG['op_active_build_messages'] = 'Kolejka nowych wiadomości';
 $LNG['op_active_spy_messages_mode'] = 'Skrócone raporty szpiegowskie';
 $LNG['op_dst_mode'] = 'Czas letni?';
