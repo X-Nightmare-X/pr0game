@@ -948,12 +948,17 @@ $LNG['sh_loading'] = '(Yukleniyor ...)';
 //AYARLAR
 $LNG['op_error'] = 'Hata';
 $LNG['op_cant_activate_vacation_mode'] = 'Filoyu kullanırken tatil modunu etkinleştiremezsiniz.';
+$LNG['op_cant_deactivate_vacation_mode'] = 'Henüz tatil modundan çıkamazsınız.';
 $LNG['op_password_changed'] = 'Sifreniz degistirildi Lutfen Tekrar giris yapin<br />'
     . '<a href="index.php" target="_top">Geri</a>';
 $LNG['op_username_changed'] = 'Uye Adiniz degistirildi Lutfen Tekrar giris yapin<br />'
     . '<a href="index.php" target="_top">Geri</a>';
 $LNG['op_options_changed'] = 'Ayarlar kaydedilir.';
-$LNG['op_options_changed_vacation'] = 'Ayarlar kaydedilir.';
+$LNG['op_options_vacation_activated'] = 'Tatil modu etkinleştirildi.';
+$LNG['op_options_vacation_deactivated'] = 'Tatil modu devre dışı bırakıldı.';
+$LNG['op_options_deletion_activated'] = 'Hesap silme etkinleştirildi.';
+$LNG['op_options_deletion_deactivated'] = 'Hesap silme devre dışı bırakıldı.';
+$LNG['op_options_no_other_settings_changed'] = 'Başka hiçbir ayar değiştirilmedi.';
 $LNG['op_vacation_mode_active_message'] = 'Tatil Modu Aktif :  ';
 $LNG['op_end_vacation_mode'] = 'Tatilden Cik';
 $LNG['op_save_changes'] = 'Ayarlari kaydet';
@@ -989,6 +994,7 @@ $LNG['op_send_report'] = 'Rapor Yolla';
 $LNG['op_vacation_delete_mode'] = 'Tatil Modu / Hesap Silme Ayarlari';
 $LNG['op_activate_vacation_mode'] = 'Tatil Modunu Aktif Et';
 $LNG['op_dlte_account'] = 'Hesabi Sil';
+$LNG['op_stop_dlte_account'] = 'Hesap silme işlemini iptal et';
 $LNG['op_email_adress_descrip'] = 'Istediginiz zaman mail adresinizi degistirebilirsiniz. Bir sonraki degisiklik'
     . ' sureniz 7 gundur';
 $LNG['op_deactivate_ipcheck_descrip'] = 'IP kontrol. IP degistirilmesi ya da iki farkli kisinin farkli IP adresleri ile'
@@ -996,10 +1002,15 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'IP kontrol. IP degistirilmesi ya da iki
     . ' otomatik olarak atilirsin. IP kontrolunu devre disi birakmak cok onemli guvenlik acigi meydana getirebilir!';
 $LNG['op_spy_probes_number_descrip'] = 'Her tarama sirasinda galaksi menusunden direk gonderilen casusluk sondalarinin'
     . ' sayisi.';
-$LNG['op_activate_vacation_mode_descrip'] = 'Tatil modu, uzun sure giris yapmama durumunda size gelecek saldirilardan'
-    . ' komumadir. Tatil moduna gecmek icin once bina, tersane, savunma ve arastirmada bir sey basmamak gerekir. Tatil'
-    . ' moduna gecipte uzun bir sure giris olmadigi zaman account otomatik olarak silinir.';
-$LNG['op_dlte_account_descrip'] = 'Kayit silme islemide 7 gun sonra kayit otomatik olarak silinecektir.';
+$LNG['op_activate_vacation_mode_descrip'] = 'Tatil modu uzun süreli yokluklarda sizi korumak için tasarlanmıştır.'
+    . ' Yalnızca kendi filolarınız hareket halinde değilken etkinleştirilebilir. Etkinleştirildiğinde sizi yeni saldırılara'
+    . ' karşı korur. Ancak, halihazırda başlamış olan saldırılar devam edecek ve beklemekte olan dost filolar geri'
+    . ' gönderilecektir! Kaynakların üretimi, binaların inşası ve tersane siparişlerinin yanı sıra araştırma bu süre'
+    . ' zarfında duraklatılır ve daha sonra yeniden başlatılır. Tatil modu en az 48 saat sürer, sonrasında tekrar devre'
+    . ' dışı bırakabilirsiniz.';
+$LNG['op_dlte_account_descrip'] = 'Bu, en az 7 gün sonra hesabınızı otomatik olarak tamamen silecektir. Nihai silme'
+    . ' işlemi, silme cron işinin yürütülme süresine bağlıdır ve birkaç gün daha sürebilir. Silme işlemi henüz'
+    . ' gerçekleştirilmediği sürece, yani hala hesapta oturum açabildiğiniz sürece durdurulabilir.';
 $LNG['op_need_pass_mail'] = 'Email adresini degistirmek icin kutuya sifreni yazmalisin!';
 $LNG['op_not_vaild_mail'] = 'Gecersiz email adresi!';
 $LNG['op_change_mail_exist'] = 'Verilen email adresi %s azaten kullanimda!';
