@@ -70,6 +70,10 @@
 		</tr>
 		{/if}
 		<tr>
+			<td>{$LNG.op_show_message_category}</td>
+			<td><input name="showMessageCategory" type="checkbox" value="1" {if $showMessageCategory == 1}checked="checked"{/if}></td>
+		</tr>
+		<tr>
 			<td>{$LNG.op_active_build_messages}</td>
 			<td><input name="queueMessages" type="checkbox" value="1" {if $queueMessages == 1}checked="checked"{/if}></td>
 		</tr>

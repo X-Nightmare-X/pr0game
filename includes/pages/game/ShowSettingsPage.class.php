@@ -78,6 +78,7 @@ class ShowSettingsPage extends AbstractGamePage
                 'fleetActions'          => $USER['settings_fleetactions'],
                 'timezone'              => $USER['timezone'],
                 'delete'                => $USER['db_deaktjava'],
+                'showMessageCategory'   => $USER['showMessageCategory'],
                 'queueMessages'         => $USER['hof'],
                 'spyMessagesMode'       => $USER['spyMessagesMode'],
                 'galaxySpy'             => $USER['settings_esp'],
@@ -231,6 +232,7 @@ class ShowSettingsPage extends AbstractGamePage
 
         $theme              = HTTP::_GP('theme', $THEME->getThemeName());
 
+        $showMessageCategory = HTTP::_GP('showMessageCategory', 0);
         $queueMessages      = HTTP::_GP('queueMessages', 0);
         $spyMessagesMode    = HTTP::_GP('spyMessagesMode', 0);
 
@@ -473,6 +475,7 @@ class ShowSettingsPage extends AbstractGamePage
 		settings_blockPM		    = :blockPM,
 		authattack				    = :adminProtection,
 		lang					    = :language,
+        showMessageCategory         = :showMessageCategory,
 		hof						    = :queueMessages,
 		spyMessagesMode			    = :spyMessagesMode,
         colorMission2friend         = :colorMission2friend,
@@ -543,6 +546,7 @@ class ShowSettingsPage extends AbstractGamePage
             ':blockPM'                      => $blockPM,
             ':adminProtection'              => $adminprotection,
             ':language'                     => $language,
+            ':showMessageCategory'          => $showMessageCategory,
             ':queueMessages'                => $queueMessages,
             ':spyMessagesMode'              => $spyMessagesMode,
             ':userID'                       => $USER['id'],
