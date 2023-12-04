@@ -1218,6 +1218,33 @@ class PlayerUtil
             ':unread'   => $unread,
             ':universe' => $universe,
         ]);
+
+        if ($messageType === 1) {
+            $sql = "SELECT `username`, `discord_id`, `discord_hook` FROM %%USERS%% 
+                WHERE `universe` = :universe AND `id` = :userID AND `authlevel` > 0;";
+            $admin = $db->selectSingle($sql, [
+                ':universe' => $universe,
+                ':userID' => $userId,
+            ]);
+
+            if (!empty($admin['discord_hook'])) {
+                $title = '';
+                if (!empty($admin['discord_id'])) {
+                    $title = '<@' . $admin['discord_id'] . '> hat eine neue Ingame-Nachricht erhalten.';
+                } else {
+                    $title = '<@' . $admin['username'] . '> hat eine neue Ingame-Nachricht erhalten.';
+                }
+
+                $content = [
+                    'Universum' => $universe,
+                    'Absender' => $senderId . ' - ' . $senderName,
+                    'Betreff' => $subject,
+                ];
+                require_once 'includes/classes/class.Discord.php';
+                Discord::sendMessage($admin['discord_hook'], $title, $content);
+            }
+        }
+
         require_once 'includes/classes/achievements/PlayerUtilAchievement.class.php';
         PlayerUtilAchievement::checkPlayerUtilAchievements36($userId, $text);
     }

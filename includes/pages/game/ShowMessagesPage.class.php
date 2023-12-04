@@ -147,9 +147,10 @@ class ShowMessagesPage extends AbstractGamePage
 
     private function sendData($Code, $Message)
     {
-        $this->returnData['code']	= $Code;
-        $this->returnData['mess']	= $Message;
-        $this->sendJSON($this->returnData);
+        $this->sendJSON([
+            'code' => $Code,
+            'mess' => $Message,
+        ]);
     }
 
     public function deleteMessage()

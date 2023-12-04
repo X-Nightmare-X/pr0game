@@ -947,15 +947,22 @@ $LNG['sh_loading'] = '(Ładuję...)';
 //OPTIONS
 $LNG['op_error'] = 'Błąd';
 $LNG['op_cant_activate_vacation_mode'] = 'Nie możesz aktywować trybu urlopowego podczas korzystania z floty.';
+$LNG['op_cant_deactivate_vacation_mode'] = 'Nie można jeszcze wyjść z trybu wakacyjnego.';
 $LNG['op_password_changed'] = 'Hasło zmienione<br><a href="index.php" target="_top">Wróć</a>';
 $LNG['op_username_changed'] = 'Nazwa użytkownika zmieniona<br><a href="index.php" target="_top">Wróć</a>';
 $LNG['op_options_changed'] = 'Ustawienia zapisane.';
-$LNG['op_options_changed_vacation'] = 'Ustawienia zapisane.';
+$LNG['op_options_vacation_activated'] = 'Tryb wakacyjny włączony.';
+$LNG['op_options_vacation_deactivated'] = 'Tryb wakacyjny wyłączony';
+$LNG['op_options_deletion_activated'] = 'Usunięcie konta aktywowane.';
+$LNG['op_options_deletion_deactivated'] = 'Usuwanie konta nieaktywne.';
+$LNG['op_options_no_other_settings_changed'] = 'Żadne inne ustawienia nie zostały zmienione.';
 $LNG['op_vacation_mode_active_message'] = 'Urlop będzie można zakończyć nie wcześniej niż: ';
 $LNG['op_end_vacation_mode'] = 'Koniec Urlopu';
 $LNG['op_save_changes'] = 'Zapisz zmiany';
 $LNG['op_admin_title_options'] = 'Opcje możliwe do zarządzania';
 $LNG['op_admin_planets_protection'] = 'Ochrona planety';
+$LNG['op_admin_discord_id'] = 'Własny identyfikator użytkownika Discord do pingowania dla PM';
+$LNG['op_admin_discord_hook'] = 'Discord webhook dla wiadomości PM';
 $LNG['op_user_data'] = 'Dane użytkownika';
 $LNG['op_username'] = 'Nazwa użytkownika';
 $LNG['op_old_pass'] = 'Stare hasło';
@@ -986,16 +993,21 @@ $LNG['op_send_report'] = 'Wyślij raport';
 $LNG['op_vacation_delete_mode'] = 'Tryb urlop/usuń konto';
 $LNG['op_activate_vacation_mode'] = 'Aktywuj urlop. UWAGA urlop trwa minimum 3 dni!';
 $LNG['op_dlte_account'] = 'Usuń konto';
+$LNG['op_stop_dlte_account'] = 'Anulowanie usuwania konta';
 $LNG['op_email_adress_descrip'] = 'Możesz zmieniać adres tyle razy, ile chcesz. Po 7 dniach bez zmiany zostanie'
     . ' zapisany na stałe.';
 $LNG['op_deactivate_ipcheck_descrip'] = 'Gdy do gry zaloguje się kolejna osoba z tym samym IP, zostaniesz wylogowany.'
     . ' Wyłączenie kontroli IP jest niewskazane!';
 $LNG['op_spy_probes_number_descrip'] = 'Liczba sond wysyłanych bezpośrednio z panelu galaktyki.';
-$LNG['op_activate_vacation_mode_descrip'] = 'Tryb urlop podczas długiej nieobecności. By można było aktywować nie'
-    . ' możesz nic budować, prowadzić badań, a twoje floty muszą być nieaktywne. Tryb broni przed nowymi aktakami'
-    . ' (tzn., że jeśli aktywujesz go podczas wrogiego ataku, to ten atak dojdzie do skutku, ale nie będzie można'
-    . ' wysłać następnych). Urlop trwa co najmniej 2 dni. Podczas urlopu produkcja spada do 0!';
-$LNG['op_dlte_account_descrip'] = 'Jeśli to zaznaczysz, twoje konto zostanie automatycznie usunięte po 7 dniach.';
+$LNG['op_activate_vacation_mode_descrip'] = 'Tryb wakacyjny został zaprojektowany w celu ochrony użytkownika podczas'
+    . ' dłuższych okresów nieobecności. Można go aktywować tylko wtedy, gdy żadna flota nie jest w ruchu. Po aktywacji'
+    . ' tryb ten chroni gracza przed nowymi atakami. Jednak ataki, które już się rozpoczęły, będą kontynuowane, a'
+    . ' przyjazne floty, które się utrzymują, zostaną odesłane! Produkcja surowców, budowa budynków i stoczni, a także'
+    . ' badania są w tym czasie wstrzymane, a następnie zostaną wznowione. Tryb wakacyjny trwa co najmniej 48 godzin,'
+    . ' po czym można go ponownie dezaktywować.';
+$LNG['op_dlte_account_descrip'] = 'Spowoduje to automatyczne całkowite usunięcie konta po co najmniej 7 dniach.'
+    . ' Ostateczne usunięcie zależy od czasu wykonania zadania cron usuwania i może potrwać kilka kolejnych dni.'
+    . ' Usuwanie można zatrzymać, o ile nie zostało ono jeszcze wykonane, tj. o ile nadal można zalogować się na konto.';
 $LNG['op_need_pass_mail'] = 'By zmienić adres e-mail musisz podać twoje hasło!';
 $LNG['op_not_vaild_mail'] = 'Błędny adres e-mail!';
 $LNG['op_change_mail_exist'] = 'Ten e-mail %s jest już używany!';
@@ -1007,6 +1019,7 @@ $LNG['op_sort_down'] = 'Malejąco';
 $LNG['op_user_name_no_alphanumeric'] = 'Podaj nazwę użytkownika. Tylko cyfry i litery!';
 $LNG['op_change_name_pro_week'] = 'Możesz zmienić nazwę użytkownika raz w tygodniu';
 $LNG['op_change_name_exist'] = 'Taka nazwa %s już istnieje';
+$LNG['op_show_message_category'] = 'Pokaż bezpośrednio pasującą kategorię wiadomości';
 $LNG['op_active_build_messages'] = 'Kolejka nowych wiadomości';
 $LNG['op_active_spy_messages_mode'] = 'Skrócone raporty szpiegowskie';
 $LNG['op_dst_mode'] = 'Czas letni?';

@@ -1,9 +1,6 @@
 {block name="title" prepend}{$LNG.lm_research}{/block}
 {block name="content"}
-	{if $messages}
-	<div class="message"><a href="?page=messages">{$messages}</a></div>
-
-	{/if}
+	{include file='shared.messages.tpl'}
 {if !empty($Queue)}
 	<div id="buildlist" class="infos1">
 		{foreach $Queue as $List}
