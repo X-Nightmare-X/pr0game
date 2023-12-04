@@ -870,6 +870,8 @@ CREATE TABLE `%PREFIX%users` (
   `authattack` tinyint(1) NOT NULL DEFAULT '0',
   `authlevel` tinyint(1) NOT NULL DEFAULT '0',
   `rights` text,
+  `discord_id` varchar(25) NOT NULL DEFAULT '',
+  `discord_hook` text,
   `id_planet` int(11) unsigned NOT NULL DEFAULT '0',
   `universe` tinyint(3) unsigned NOT NULL,
   `galaxy` tinyint(3) unsigned NOT NULL DEFAULT '0',
