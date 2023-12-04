@@ -95,7 +95,6 @@ class ShowStatisticsPage extends AbstractGamePage
                 $OldRank = "total_old_rank";
             }
         }
-        
 
         $RangeList = [];
 
@@ -282,15 +281,15 @@ class ShowStatisticsPage extends AbstractGamePage
                 case 3:
                     $Selector['type'] = [
                         1 => $LNG['st_points'],
-                        2 => $LNG['st_buildings'],
+                        4 => $LNG['st_buildings'],
                     ];
                     break;
                 case 4:
                 case 5:
                     $Selector['type'] = [
                         1 => $LNG['st_points'],
-                        2 => $LNG['st_buildings'],
                         3 => $LNG['st_researh'],
+                        4 => $LNG['st_buildings'],
                     ];
                     break;
                 default:

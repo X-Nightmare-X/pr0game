@@ -942,10 +942,15 @@ $LNG['sh_loading'] = '(A ler ...)';
 //OPTIONS
 $LNG['op_error'] = 'Erro';
 $LNG['op_cant_activate_vacation_mode'] = 'Você não pode ativar o modo férias enquanto estiver usando a frota.';
+$LNG['op_cant_deactivate_vacation_mode'] = 'Ainda não é possível sair do modo de férias.';
 $LNG['op_password_changed'] = 'Password alterada';
 $LNG['op_username_changed'] = 'Username alterado';
 $LNG['op_options_changed'] = 'Definições guardadas.';
-$LNG['op_options_changed_vacation'] = 'Definições guardadas.';
+$LNG['op_options_vacation_activated'] = 'Modo de férias ativado.';
+$LNG['op_options_vacation_deactivated'] = 'Modo de férias desativado.';
+$LNG['op_options_deletion_activated'] = 'Eliminação de conta activada.';
+$LNG['op_options_deletion_deactivated'] = 'Eliminação de conta desactivada.';
+$LNG['op_options_no_other_settings_changed'] = 'Não foram alteradas outras definições.';
 $LNG['op_vacation_mode_active_message'] = 'O modo de férias está activo e acabará em: ';
 $LNG['op_end_vacation_mode'] = 'Finalizar periodo de férias';
 $LNG['op_save_changes'] = 'Guardar alterações';
@@ -983,19 +988,22 @@ $LNG['op_send_report'] = 'Enviar relatório';
 $LNG['op_vacation_delete_mode'] = 'Modo de Férias / Apagar conta';
 $LNG['op_activate_vacation_mode'] = 'Activar Modo de Férias';
 $LNG['op_dlte_account'] = 'Apagar conta';
+$LNG['op_stop_dlte_account'] = 'Cancelar a eliminação da conta';
 $LNG['op_email_adress_descrip'] = 'Podes alterar este endereço de email, em qualquer altura. Tornar-se-á o email'
     . ' permanente após 7 dias, sem alterações.';
 $LNG['op_deactivate_ipcheck_descrip'] = 'Verificação de IP significa que o logout de segurança ocorre automaticamente'
     . ' quando o IP muda ou duas pessoas são registrados em uma conta de IPs diferentes. Desativando a verificação de'
     . ' IP pode representar um risco à segurança!';
 $LNG['op_spy_probes_number_descrip'] = 'Numero de sondas que podes mandar diretamente da vista da Galaxia.';
-$LNG['op_activate_vacation_mode_descrip'] = 'O modo de férias proteje a tua conta durante o tempo que estiveres ausente'
-    . ' do jogo. Mas só poderás ativá-lo se nao tiveres nada em construção (frota, edifícios, ou defesa), e nada a ser'
-    . ' pesquisado, e tanbém nenhuma das tuas frotas em vôo. Assim que for ativado, estás protejido contra ataques.'
-    . ' Ataques que já tivessem sido lançados antes continuarão. Durante o modo de férias, a produção é posta a 0%'
-    . ' assim que desativares o modo de férias deves repor a produção a 100%. Assim que ativares o modo de férias és'
-    . ' obrigado a permanecer assim por um tempo mínimo de 48 horas. Só depois poderá ser desativado.';
-$LNG['op_dlte_account_descrip'] = 'Se escolheres esta opcção a tua conta será apagada após 7 dias.';
+$LNG['op_activate_vacation_mode_descrip'] = 'O modo de férias foi concebido para o proteger durante períodos de ausência'
+    . ' mais longos. Só pode ser ativado quando não há frotas próprias em movimento. Quando é ativado, protege-o de novos'
+    . ' ataques. No entanto, os ataques que já começaram continuarão e as frotas amigas que estiverem a aguardar serão'
+    . ' mandadas de volta! A produção de recursos, a construção de edifícios e encomendas de estaleiros, bem como a'
+    . ' investigação, são interrompidas durante este período e serão retomadas depois. O modo de férias dura pelo menos'
+    . ' 48 horas, após as quais o podes desativar novamente.';
+$LNG['op_dlte_account_descrip'] = 'Isto irá eliminar automaticamente a sua conta após pelo menos 7 dias. A eliminação'
+    . ' final depende do tempo de execução do cron job de eliminação e pode demorar mais alguns dias. A eliminação pode'
+    . ' ser interrompida desde que ainda não tenha sido efectuada, ou seja, desde que ainda possa iniciar sessão na conta.';
 $LNG['op_need_pass_mail'] = 'Para alterar o seu endereço de e-mail é preciso digitar a senha na caixa!';
 $LNG['op_not_vaild_mail'] = 'Não intruduziste um E-Mail válido!';
 $LNG['op_change_mail_exist'] = 'O E-Mail intruduzido %s já esta em uso!';

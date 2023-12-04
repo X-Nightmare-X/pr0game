@@ -933,11 +933,16 @@ $LNG['sh_loading'] = '(Chargement ...)';
 //OPTIONS
 $LNG['op_error'] = 'Erreur';
 $LNG['op_cant_activate_vacation_mode'] = 'Vous ne pouvez pas activer le mode vacances pendant l\'utilisation de la flotte.';
+$LNG['op_cant_deactivate_vacation_mode'] = 'Vous ne pouvez pas encore quitter le mode vacances.';
 $LNG['op_password_changed'] = 'Le Mot de Passe a été changé avec succès<br'
     . '<a href="index.php" target="_top">Retour</a>';
 $LNG['op_username_changed'] = 'Nom d\'Utilisateur modifié avec succès<br><a href="index.php" target="_top">Retour</a>';
 $LNG['op_options_changed'] = 'Options enregistrées.';
-$LNG['op_options_changed_vacation'] = 'Options enregistrées.';
+$LNG['op_options_vacation_activated'] = 'Mode vacances activé.' ;
+$LNG['op_options_vacation_deactivated'] = 'Mode vacances désactivé.';
+$LNG['op_options_deletion_activated'] = 'Suppression de compte activée.';
+$LNG['op_options_deletion_deactivated'] = 'Suppression du compte désactivée.';
+$LNG['op_options_no_other_settings_changed'] = 'Aucun autre paramètre n\'a été modifié.';
 $LNG['op_vacation_mode_active_message'] = 'Le mode vacances est actif ! Vous serez en vacances au moins jusqu\'à : ';
 $LNG['op_end_vacation_mode'] = 'Sortir du mode vacances';
 $LNG['op_save_changes'] = 'Enregistrer les changements';
@@ -975,6 +980,7 @@ $LNG['op_send_report'] = 'Envoyer un rapport';
 $LNG['op_vacation_delete_mode'] = 'Activer le mode vacances/Supprimer compte';
 $LNG['op_activate_vacation_mode'] = 'Activer le mode vacances';
 $LNG['op_dlte_account'] = 'Supprimer le compte';
+$LNG['op_stop_dlte_account'] = 'Annuler la suppression du compte';
 $LNG['op_email_adress_descrip'] = 'Vous pouvez changer cette adresse Email à tout moment. Celle-ci remplacera'
     . ' l\'adresse permanente après 7 jours sans changement.';
 $LNG['op_deactivate_ipcheck_descrip'] = 'Vérifier l\'IP signifie que la déconnexion de sécurité se produit'
@@ -982,13 +988,16 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'Vérifier l\'IP signifie que la déconn
     . ' adresses IP. Désactiver la vérification IP peut représenter un risque pour la sécurité !';
 $LNG['op_spy_probes_number_descrip'] = 'Nombre de sondes d\'espionnage qui peuvent être envoyées directement à partir'
     . ' de chaque scan dans le menu Galaxie.';
-$LNG['op_activate_vacation_mode_descrip'] = 'Le mode vacances vous protège pendant les absences prolongées. Il ne peut'
-    . ' seulement être activé si il n\'y a aucune activité sur les planètes et colonies (pas de constructions de'
-    . ' bâtiments, flottes ou défenses, aucun mouvement de flottes). A partir du moment où il est activé, vous êtes'
-    . ' protégé des nouvelles attaques. Les attaques en cours iront à leur terme. Durant le mode vacances, la'
-    . ' production est paramétrée à 0 et vous devrez manuellement la rétablir à 100% à votre retour. Le mode vacances'
-    . ' dure au minimum deux jours et ne peut être désactivé avant cette échéance.';
-$LNG['op_dlte_account_descrip'] = 'Si vous cocher cette case, votre compte sera supprimé d\'ici 7 jours.';
+$LNG['op_activate_vacation_mode_descrip'] = 'Le mode vacances est conçu pour vous protéger pendant les périodes d\'absence'
+    . ' prolongées. Il ne peut être activé que lorsqu\'aucune de vos flottes n\'est en mouvement. Lorsqu\'il est activé, il'
+    . ' vous protège des nouvelles attaques. Cependant, les attaques déjà commencées se poursuivent et les flottes amies qui'
+    . ' se maintiennent sont renvoyées ! La production de ressources, la construction de bâtiments et de chantiers navals'
+    . ' ainsi que la recherche sont interrompues pendant cette période et reprendront ensuite. Le mode vacances dure au moins'
+    . ' 48 heures, après quoi vous pouvez le désactiver à nouveau.';
+$LNG['op_dlte_account_descrip'] = 'Cette opération supprimera automatiquement votre compte au bout d\'au moins 7 jours.'
+    . ' La suppression finale dépend de l\'heure d\'exécution de la tâche cron de suppression et peut prendre quelques'
+    . ' jours de plus. La suppression peut être interrompue tant qu\'elle n\'a pas été exécutée, c\'est-à-dire tant que'
+    . ' vous pouvez encore vous connecter au compte.';
 $LNG['op_need_pass_mail'] = 'Pour changer votre adresse e-mail, vous devez entrer votre mot de passe!';
 $LNG['op_not_vaild_mail'] = 'L\'Email entré est invalide !';
 $LNG['op_change_mail_exist'] = 'L\'Email %s est déjà utilisé !';

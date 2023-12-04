@@ -974,10 +974,15 @@ $LNG['sh_loading'] = '(Loading ...)';
 //OPTIONS
 $LNG['op_error'] = 'Error';
 $LNG['op_cant_activate_vacation_mode'] = 'You can not activate the vacation mode while using the fleet.';
+$LNG['op_cant_deactivate_vacation_mode'] = 'You cannot exit vacation mode yet.';
 $LNG['op_password_changed'] = 'Password changed';
 $LNG['op_username_changed'] = 'Username changed';
 $LNG['op_options_changed'] = 'Options saved.';
-$LNG['op_options_changed_vacation'] = 'Options saved.';
+$LNG['op_options_vacation_activated'] = 'Vacation mode activated.';
+$LNG['op_options_vacation_deactivated'] = 'Vacation mode deactivated.';
+$LNG['op_options_deletion_activated'] = 'Account deletion activated.';
+$LNG['op_options_deletion_deactivated'] = 'Account deletion deactivated.';
+$LNG['op_options_no_other_settings_changed'] = 'No other settings have been changed.';
 $LNG['op_vacation_mode_active_message'] = 'Vacation mode is active and will end up in: ';
 $LNG['op_end_vacation_mode'] = 'End period of vacation';
 $LNG['op_save_changes'] = 'Save changes';
@@ -1015,19 +1020,19 @@ $LNG['op_send_report'] = 'Send report';
 $LNG['op_vacation_delete_mode'] = 'Vacation mode/delete account';
 $LNG['op_activate_vacation_mode'] = 'Activate vacation mode';
 $LNG['op_dlte_account'] = 'Delete account';
+$LNG['op_stop_dlte_account'] = 'Cancel account deletion';
 $LNG['op_email_adress_descrip'] = 'You can change this e-mail address at any time. Will become the permanent e-mail'
     . ' after 7 days, without changes.';
 $LNG['op_deactivate_ipcheck_descrip'] = 'Verification of IP means that the security logout occurs automatically when'
     . ' the IP changes or two people are recorded in an account of different IPs. Disabling the check of IP can'
     . ' represent a security risk!';
 $LNG['op_spy_probes_number_descrip'] = 'Number of probes you can send directly from the view of Galaxia.';
-$LNG['op_activate_vacation_mode_descrip'] = 'Vacation mode protects your account for as long as you are out of the'
-    . ' game. But you can only activate it if its not you have nothing in construction (buildings, fleet, or defense),'
-    . ' and nothing to be searched, and none of your fleets is destroyed. Once activated, is protected against attacks.'
-    . ' Attacks that had already been posted before will continue during the holidays, the production is put at 0% so'
-    . ' desativares vacation mode will reset the production to 100%. So ativares the holidays are bound to remain so'
-    . ' for a minimum time of 48 hours. Only then will be disabled.';
-$LNG['op_dlte_account_descrip'] = 'If you choose this option your account will be deleted after 7 days.';
+$LNG['op_activate_vacation_mode_descrip'] = 'Vacation mode is designed to protect you during longer periods of absence.'
+    . ' It can only be activated when no fleets of your own are on the move. When it is activated, it protects you from'
+    . ' new attacks. However, attacks that have already begun will continue and friendly fleets that are holding will'
+    . ' be sent back! The production of resources, the construction of buildings and shipyard orders as well as research'
+    . ' is paused during this time and will be resumed afterwards. Vacation mode lasts for at least 48 hours, after which'
+    . ' you can deactivate it again.';
 $LNG['op_need_pass_mail'] = 'To change your email address is need to enter the password in the box!';
 $LNG['op_not_vaild_mail'] = 'You dont inserted a valid E-Mail!';
 $LNG['op_change_mail_exist'] = 'The Email introduced %s already in use!';
