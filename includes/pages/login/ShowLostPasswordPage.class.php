@@ -27,6 +27,10 @@ class ShowLostPasswordPage extends AbstractLoginPage
 
     public function show()
     {
+        if (!Config::get()->mail_active) {
+            $this->redirectTo('index.php');
+        }
+
         $universeSelect	= $this->getUniverseSelector();
 
         $this->assign([
