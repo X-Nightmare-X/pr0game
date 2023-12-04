@@ -20,7 +20,9 @@
 		</form>
 
 		<!-- <a href="/index.php?page=register"><input value="{$LNG.buttonRegister}"></a> -->
-		<a href="index.php?page=lostPassword" style="text-decoration:none;"><input type="submit" value="{$LNG.buttonLostPassword}"></a>
+		{if $mailEnable}
+			<a href="index.php?page=lostPassword" style="text-decoration:none;"><input type="submit" value="{$LNG.buttonLostPassword}"></a>
+		{/if}
 		<br><span class="small">{$loginInfo}</span>
 	</div>
 </section>
