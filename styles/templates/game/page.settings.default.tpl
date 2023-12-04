@@ -18,7 +18,7 @@
 					</tr>
 					<tr>
 						<td>{$LNG.op_admin_discord_hook}</td>
-						<td width="75%" style="height:22px;"><input name="discord_hook" size="150" value="{$discord_hook}" type="text" maxlength="150"></td>
+						<td width="75%" style="height:22px;"><input name="discord_hook" size="50" value="{$discord_hook}" type="text" maxlength="150"></td>
 					</tr>
 				{/if}
 				<tr>
