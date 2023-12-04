@@ -321,7 +321,7 @@ HTML;
 
         if ($combatResult['won'] == "a") {
             require_once 'includes/classes/missions/functions/calculateSteal.php';
-            $stealResource = calculateSteal($fleetAttack, $targetPlanet);
+            $stealResource = calculateSteal($fleetAttack, $targetPlanet, $this->_fleet['fleet_universe']);
         }
 
         if ($this->_fleet['fleet_end_type'] == 3) {
