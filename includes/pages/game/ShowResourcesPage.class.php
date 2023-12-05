@@ -54,10 +54,11 @@ class ShowResourcesPage extends AbstractGamePage
             }
 
             if (!empty($updateSQL)) {
-                $sql = 'UPDATE %%PLANETS%% SET ' . implode(', ', $updateSQL) . ' WHERE id = :planetId;';
+                $sql = "UPDATE %%PLANETS%% SET " . implode(', ', $updateSQL) . ", eco_hash = '' WHERE id = :planetId;";
                 $db->update($sql, $param);
+                $PLANET['eco_hash'] = '';
 
-                list($USER, $PLANET) = $this->ecoObj->CalcResource($USER, $PLANET, true);
+                list($USER, $PLANET) = $this->ecoObj->CalcResource($USER, $PLANET, true, TIMESTAMP + 1);
             }
 
             $db->commit();
