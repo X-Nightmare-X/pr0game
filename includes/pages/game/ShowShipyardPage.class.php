@@ -152,6 +152,7 @@ class ShowShipyardPage extends AbstractGamePage
         }
         $Messages = $USER['messages'];
 
+        $mode = HTTP::_GP('mode', 'fleet');
         $buildTodo = HTTP::_GP('fmenge', []);
         $action = HTTP::_GP('action', '');
 
@@ -185,6 +186,7 @@ class ShowShipyardPage extends AbstractGamePage
                 $PLANET = $db->selectSingle("SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;", [':planetId' => $PLANET['id']]);
                 $this->buildAuftr($buildTodo);
                 $db->commit();
+                $this->redirectTo('game.php?page=shipyard&amp;mode=' . $mode);
             }
 
             if ($action == "delete") {
@@ -193,6 +195,7 @@ class ShowShipyardPage extends AbstractGamePage
                 $PLANET = $db->selectSingle("SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;", [':planetId' => $PLANET['id']]);
                 $this->cancelAuftr();
                 $db->commit();
+                $this->redirectTo('game.php?page=shipyard&amp;mode=' . $mode);
             }
         }
 
@@ -222,9 +225,6 @@ class ShowShipyardPage extends AbstractGamePage
                 'pretty_time_b_hangar' => pretty_time(max($QueueTime - $PLANET['b_hangar'], 0)),
             ];
         }
-
-
-        $mode = HTTP::_GP('mode', 'fleet');
 
         if ($mode == 'defense') {
             $elementIDs = array_merge($reslist['defense'], $reslist['missile']);
