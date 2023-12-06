@@ -441,6 +441,7 @@ HTML;
         ];
 
         $reportData = GenerateReport($combatResult, $reportInfo, EXPO_FIGHT);
+        $reportData['time']	= $this->_fleet['fleet_end_stay'];
         $reportID = md5(uniqid('', true) . TIMESTAMP);
 
         $sql = "INSERT INTO %%RW%% SET
@@ -452,7 +453,7 @@ HTML;
         Database::get()->insert($sql, [
             ':reportId' => $reportID,
             ':reportData' => serialize($reportData),
-            ':time' => $this->_fleet['fleet_start_time'],
+            ':time' => $this->_fleet['fleet_end_stay'],
             ':attacker' => $this->_fleet['fleet_owner'],
         ]);
 
