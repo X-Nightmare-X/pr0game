@@ -480,7 +480,13 @@ class ResourceUpdate
             }
             $NewQueue[] = [$Element, $Count];
         }
-        $this->PLANET['b_hangar_id'] = !empty($NewQueue) ? serialize($NewQueue) : '';
+        
+        if (empty($NewQueue)) {
+            $this->PLANET['b_hangar_id'] = '';
+            $this->PLANET['b_hangar'] = 0;
+        } else {
+            $this->PLANET['b_hangar_id'] = serialize($NewQueue);
+        }
 
         return true;
     }
