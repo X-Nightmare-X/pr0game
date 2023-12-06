@@ -652,6 +652,7 @@ HTML;
         } elseif ($GetEvent < 719) {
             // Find pirates or aliens: 8,4% - 69% (total 5.8%) pirates , 31% (2.6%) aliens.
             $Message .= $this->handleEventCombat();
+            MiscAchievement::checkExpoAchievements($this->_fleet['fleet_owner']);
         } elseif ($GetEvent < 722) {
             // Black hole: 0,3%
             MissionFunctions::updateLostAdvancedStats($this->_fleet['fleet_owner'], $fleetArray);
