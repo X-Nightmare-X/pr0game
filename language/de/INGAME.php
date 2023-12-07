@@ -1461,7 +1461,7 @@ $LNG['Achievement_text'] = [
     10 => 'Zerstöre den Mond eines Spielers.',
 
     11 => 'Spiele 14 Tage ausschließlich am Handy.',
-    12 => 'Deine Flotte wurde in deiner ersten Expedition zerstört.',
+    12 => 'Deine Flotte wurde in deiner ersten Expedition durch ein schwarzes Loch zerstört.',
     13 => 'Sende deine Flotte weg, während ein einfliegender Angriff weniger als 5 Sekunden Restzeit hat.',
     14 => 'Du hast 10 Flotten an schwarze Löcher verloren.',
     15 => 'Verbrate 10 MVs auf einen Planeten ohne einen Mond zu bekommen',

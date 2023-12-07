@@ -1416,7 +1416,7 @@ $LNG['Achievement_text'] = [
     10 => 'Bir oyuncunun ayını yok et.',
 
     11 => '14 gün boyunca sadece cep telefonundan oynayın.',
-    12 => 'Filonuz ilk seferinizde yok edildi.',
+    12 => 'Filonuz ilk seferiniz sırasında bir kara delik tarafından yok edildi.',
     13 => 'Gelen bir saldırının bitmesine 5 saniyeden az kalmışken filonuzu uzağa gönderin.',
     14 => 'Kara delikler yüzünden 10 filo kaybettiniz.',
     15 => 'Bir gezegende ay almadan 10 ay denemesi yapın',
