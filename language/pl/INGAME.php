@@ -1404,7 +1404,7 @@ $LNG['Achievement_text'] = [
     10 => 'Zniszcz księżyc gracza.',
 
     11 => 'Graj przez 14 dni wyłącznie na telefonie komórkowym.',
-    12 => 'Twoja flota została zniszczona podczas pierwszej ekspedycji.',
+    12 => 'Twoja flota została zniszczona przez czarną dziurę podczas pierwszej wyprawy.',
     13 => 'Wyślij swoją flotę, gdy do nadchodzącego ataku pozostało mniej niż 5 sekund.',
     14 => 'Straciłeś 10 flot przez czarne dziury.',
     15 => 'Spędź 10 prób zdobycia księżyca na planecie bez zdobycia księżyca.',

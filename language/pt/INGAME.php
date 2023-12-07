@@ -1402,7 +1402,7 @@ $LNG['Achievement_text'] = [
     10 => 'Destruir a lua de um jogador.',
 
     11 => 'Jogar 14 dias exclusivamente no telemóvel.',
-    12 => 'A vossa frota foi destruída na vossa primeira expedição.',
+    12 => 'A vossa frota foi destruída por um buraco negro durante a vossa primeira expedição.',
     13 => 'Envia a tua frota para longe quando um ataque tem menos de 5 segundos.',
     14 => 'Perdeu 10 frotas para buracos negros.',
     15 => 'Passar 10 tentativas de lua num planeta sem obter uma lua',

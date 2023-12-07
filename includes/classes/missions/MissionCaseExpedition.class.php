@@ -652,8 +652,6 @@ HTML;
         } elseif ($GetEvent < 719) {
             // Find pirates or aliens: 8,4% - 69% (total 5.8%) pirates , 31% (2.6%) aliens.
             $Message .= $this->handleEventCombat();
-            require_once 'includes/classes/achievements/MiscAchievement.class.php';
-            MiscAchievement::checkExpoAchievements($this->_fleet['fleet_owner']);
         } elseif ($GetEvent < 722) {
             // Black hole: 0,3%
             MissionFunctions::updateLostAdvancedStats($this->_fleet['fleet_owner'], $fleetArray);
@@ -663,7 +661,6 @@ HTML;
             $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], "black_hole");
             require_once 'includes/classes/achievements/MiscAchievement.class.php';
             MiscAchievement::checkExpoAchievements($this->_fleet['fleet_owner']);
-            
         } elseif ($GetEvent < 812) {
             // The fleet delays or return earlier: 9%
             # http://owiki.de/Expedition#Ver.C3.A4nderte_Flugzeit

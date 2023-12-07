@@ -1391,7 +1391,7 @@ $LNG['Achievement_text'] = [
     10 => 'Détruire la lune d\'un joueur.',
 
     11 => 'Joue 14 jours exclusivement sur téléphone portable.',
-    12 => 'Ta flotte a été détruite lors de ta première expédition.',
+    12 => 'Votre flotte a été détruite par un trou noir lors de votre première expédition.',
     13 => 'Envoyez votre flotte alors qu\'il reste moins de 5 secondes à une attaque entrante.',
     14 => 'Tu as perdu 10 flottes à cause des trous noirs.',
     15 => 'Dépensez 10 essais lunaires sur une planète sans obtenir une lune',

@@ -1455,7 +1455,7 @@ $LNG['Achievement_text'] = [
     10 => 'Dsersdöre den Mond eines Schbielers.',
 
     11 => 'Schbiele 14 Dage ausschließlich am Handy alda.',
-    12 => 'Deine Flodde wurde in deiner ersdne Eggsbedidion dsermeddld hätt i gsachd.',
+    12 => 'Deine Flodde wurde in deiner ersdne Eggsbedidion durch ein schwardses Loch dsermeddld und alles.',
     13 => 'Sende deine Flodde weg, während a einfliegender Angriff wenicher als 5 Segundne Resddseid had des bascht scho.',
     14 => 'Du hasd 10 Floddne an schwardse Löcher ferlorne alde.',
     15 => 'Ferbrade 10 Mfs uff \'nen Blanedne ohne \'nen Mond dsu begommne',
