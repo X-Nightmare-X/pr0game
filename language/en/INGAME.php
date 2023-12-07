@@ -1463,7 +1463,7 @@ $LNG['Achievement_text'] = [
     10 => 'Destroy the moon of a player.',
 
     11 => 'Play 14 days exclusively on mobile.',
-    12 => 'Your fleet was destroyed in your first expedition.',
+    12 => 'Your fleet was destroyed by a black hole during your first expedition.',
     13 => 'Send your fleet away while an incoming attack has less than 5 seconds remaining.',
     14 => 'You have lost 10 fleets to black holes.',
     15 => 'Spend 10 Moon trys on a planet without getting a moon',

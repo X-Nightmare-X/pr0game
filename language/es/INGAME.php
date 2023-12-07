@@ -1402,7 +1402,7 @@ $LNG['Achievement_text'] = [
     10 => 'Destruye la luna de un jugador.',
 
     11 => 'Juega 14 días exclusivamente en el móvil.',
-    12 => 'Su flota fue destruida en su primera expedición.',
+    12 => 'Su flota fue destruida por un agujero negro durante su primera expedición.',
     13 => 'Envía tu flota lejos mientras a un ataque entrante le queden menos de 5 segundos.',
     14 => 'Has perdido 10 flotas por agujeros negros.',
     15 => 'Pasa 10 intentos de luna en un planeta sin conseguir una luna',
