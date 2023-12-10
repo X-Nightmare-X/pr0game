@@ -548,6 +548,8 @@ CREATE TABLE `%PREFIX%log_fleets` (
   `fleet_gained_deuterium` double(50,0) unsigned NOT NULL DEFAULT '0',
 	`fleet_wanted_resource` tinyint(3) unsigned NOT NULL DEFAULT '0',
 	`fleet_wanted_resource_amount` double(50,0) unsigned NOT NULL DEFAULT '0',
+	`current_market_rate` text,
+	`current_market_value` double(50,0) unsigned NOT NULL DEFAULT '0'
 	`fleet_no_m_return` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `fleet_target_owner` int(11) unsigned NOT NULL DEFAULT '0',
   `fleet_target_owner_name` varchar(32) NOT NULL DEFAULT '',
