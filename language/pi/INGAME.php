@@ -959,15 +959,22 @@ $LNG['sh_loading'] = '(Lade ...)';
 //OPTIONS
 $LNG['op_error'] = 'Fehler';
 $LNG['op_cant_activate_vacation_mode'] = 'Sie können nicht in den Urlaubsmodus während die Flotte bewegt wird.';
+$LNG['op_cant_deactivate_vacation_mode'] = 'Sie können den Urlaubsmodus noch nicht verlassen.';
 $LNG['op_password_changed'] = 'Passwort wurde geändert';
 $LNG['op_username_changed'] = 'Username geändert';
 $LNG['op_options_changed'] = 'Einstellungen gespeichert.';
-$LNG['op_options_changed_vacation'] = 'Einstellungen gespeichert.';
+$LNG['op_options_vacation_activated'] = 'Urlaubsmodus aktiviert.';
+$LNG['op_options_vacation_deactivated'] = 'Urlaubsmodus deaktiviert.';
+$LNG['op_options_deletion_activated'] = 'Account-Löschung aktiviert.';
+$LNG['op_options_deletion_deactivated'] = 'Account-Löschung deaktiviert.';
+$LNG['op_options_no_other_settings_changed'] = 'Es wurden keine anderen Einstellungen geändert.';
 $LNG['op_vacation_mode_active_message'] = 'Urlaubsmodus aktiviert. Urlaubsmodus mindestens bis: ';
 $LNG['op_end_vacation_mode'] = 'Urlaubsmodus beenden';
 $LNG['op_save_changes'] = 'Einstellungen speichern';
 $LNG['op_admin_title_options'] = 'Administrator Optionen';
 $LNG['op_admin_planets_protection'] = 'Adminschutz aktiveren';
+$LNG['op_admin_discord_id'] = 'Eigene Discord-UserID für Ping bei PN';
+$LNG['op_admin_discord_hook'] = 'Discord-Webhook für Nachricht bei PN';
 $LNG['op_user_data'] = 'Benutzerdaten';
 $LNG['op_username'] = 'Username';
 $LNG['op_old_pass'] = 'Altes Passwort';
@@ -998,6 +1005,7 @@ $LNG['op_send_report'] = 'Spionagereport';
 $LNG['op_vacation_delete_mode'] = 'Urlaubsmodus / Account löschen';
 $LNG['op_activate_vacation_mode'] = 'Urlaubsmodus aktiveren';
 $LNG['op_dlte_account'] = 'Account löschen';
+$LNG['op_stop_dlte_account'] = 'Accountlöschung abbrechen';
 $LNG['op_email_adress_descrip'] = 'Diese Mailadresse kann jederzeit von Dir geändert werden. Nach 7 Tagen ohne Änderung'
     . ' wird diese als permanente Adresse eingetragen.';
 $LNG['op_deactivate_ipcheck_descrip'] = 'IP-Check bedeutet, dass automatisch ein Sicherheitslogout erfolgt, wenn die IP'
@@ -1005,14 +1013,16 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'IP-Check bedeutet, dass automatisch ein
     . ' IP-Check zu deaktivieren kann ein Sicherheitsrisiko darstellen!';
 $LNG['op_spy_probes_number_descrip'] = 'Anzahl der Spähpapageien, die bei jedem Scan aus dem Galaxiemenu direkt'
     . ' versendet werden.';
-$LNG['op_activate_vacation_mode_descrip'] = 'Der Urlaubsmodus soll während längerer Abwesenheitszeiten schützen. Man'
-    . ' kann ihn nur aktivieren, wenn nichts gebaut und geforscht wird und auch keine eigenen Flotten unterwegs sind.'
-    . ' Ist er aktiviert, schützt er euch vor neuen Angriffen, bereits begonnene Angriffe werden jedoch fortgesetzt.'
-    . ' Während des Urlaubsmodus wird die Produktion auf Null gesetzt und muss nach Beenden des Urlaubsmodus manuell'
-    . ' wieder auf 100% gesetzt werden. Der Urlaubsmodus Dauert mindestens 2 Tage, erst danach könnt Ihr ihn wieder'
+$LNG['op_activate_vacation_mode_descrip'] = 'Der Urlaubsmodus soll Sie während längerer Abwesenheit schützen. Er kann'
+    . ' nur aktiviert werden, wenn keine eigenen Flotten unterwegs sind. Wenn er aktiviert ist, schützt er Sie vor neuen'
+    . ' Angriffen. Bereits begonnene Angriffe werden jedoch fortgesetzt und haltende befreundete Flotten werden zurückgeschickt!'
+    . ' Die Produktion von Ressourcen, der Bau von Gebäuden und Werftaufträgen, sowie die Forschung ist in dieser Zeit pausiert'
+    . ' und wird anschließend fortgesetzt. Der Urlaubsmodus hält mindestens 48 Stunden an, danach können Sie ihn wieder'
     . ' deaktivieren.';
-$LNG['op_dlte_account_descrip'] = 'Wenn du hier ein Hacken setzt, wird dein Account nach 7 Tagen automatisch komplett'
-    . ' gelöscht.';
+$LNG['op_dlte_account_descrip'] = 'Hiermit wird Ihr Konto nach mindestens 7 Tagen automatisch vollständig gelöscht. Die'
+    . ' endgültige Löschung hängt von der Ausführungszeit des Lösch-Cronjobs ab und kann noch ein paar Tage dauern. Die'
+    . ' Löschung kann gestoppt werden, solange sie noch nicht durchgeführt wurde, d.h. solange Sie sich noch in das Konto'
+    . ' einloggen können.';
 $LNG['op_need_pass_mail'] = 'Um deine E-Mail-Adresse zu ändern, musst du dein Passwort eingeben!';
 $LNG['op_not_vaild_mail'] = 'Du hast keine gültige E-Mail Adresse angegeben!';
 $LNG['op_change_mail_exist'] = 'Die angegebene E-Mail-Adresse %s wird bereits verwendet!';
@@ -1024,6 +1034,7 @@ $LNG['op_sort_down'] = 'absteigend';
 $LNG['op_user_name_no_alphanumeric'] = 'Bitte beim Username nur alphanumerische Zeichen eingeben!';
 $LNG['op_change_name_pro_week'] = 'Sie Können ihren Usernamen nur 1x pro Woche ändern';
 $LNG['op_change_name_exist'] = 'Der Name %s existiert bereits';
+$LNG['op_show_message_category'] = 'Direkt passende Nachrichtenkategorie anzeigen';
 $LNG['op_active_build_messages'] = 'Baulistennachrichten aktivieren';
 $LNG['op_active_spy_messages_mode'] = 'Spioangeberichte zusammenfassen';
 $LNG['op_dst_mode'] = 'Sommerzeit?';
@@ -1445,7 +1456,7 @@ $LNG['Achievement_text'] = [
     10 => 'Zerstöre die Insel eines Spielers.',
 
     11 => 'Spiele 14 Tage ausschließlich am Handy.',
-    12 => 'Deine Flotte wurde in deiner ersten Expedition zerstört.',
+    12 => 'Deine Flotte wurde in deiner ersten Expedition durch ein schwarzes Loch zerstört.',
     13 => 'Sende deine Flotte weg, während ein einfliegender Angriff weniger als 5 Sekunden Restzeit hat.',
     14 => 'Du hast 10 Flotten an schwarze Löcher verloren.',
     15 => 'Verbrate 10 MVs in einem Hafen ohne eine Insel zu bekommen',

@@ -65,6 +65,8 @@ class ShowSettingsPage extends AbstractGamePage
                     'lang' => $LNG->getAllowedLangs(false),
                 ],
                 'adminProtection'       => $USER['authattack'],
+                'discord_id'            => $USER['discord_id'],
+                'discord_hook'          => $USER['discord_hook'],
                 'userAuthlevel'         => $USER['authlevel'],
                 'changeNickTime'        => ($USER['uctime'] + USERNAME_CHANGETIME) - TIMESTAMP,
                 'username'              => $USER['username'],
@@ -78,6 +80,7 @@ class ShowSettingsPage extends AbstractGamePage
                 'fleetActions'          => $USER['settings_fleetactions'],
                 'timezone'              => $USER['timezone'],
                 'delete'                => $USER['db_deaktjava'],
+                'showMessageCategory'   => $USER['showMessageCategory'],
                 'queueMessages'         => $USER['hof'],
                 'spyMessagesMode'       => $USER['spyMessagesMode'],
                 'galaxySpy'             => $USER['settings_esp'],
@@ -105,6 +108,121 @@ class ShowSettingsPage extends AbstractGamePage
             ]);
 
             $this->display('page.settings.default.tpl');
+        }
+    }
+
+    public function toggleVacation()
+    {
+        $LNG =& Singleton()->LNG;
+        $USER =& Singleton()->USER;
+
+        if ($USER['urlaubs_modus'] == 1) {
+            if ($USER['urlaubs_until'] > TIMESTAMP) {
+                $this->printMessage($LNG['op_cant_deactivate_vacation_mode'], [
+                    [
+                        'label' => $LNG['sys_forward'],
+                        'url'   => 'game.php?page=settings',
+                    ],
+                ]);
+            }
+            
+            $db = Database::get();
+            $db->startTransaction();
+
+            $sql = "SELECT id FROM %%USERS%% WHERE universe = :universe AND id = :userID FOR UPDATE;";
+            $db->selectSingle($sql, [
+                ':universe' => Universe::current(),
+                ':userID'   => $USER['id'],
+            ]);
+
+            $sql = "SELECT id FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :userID FOR UPDATE;";
+            $db->select($sql, [
+                ':universe' => Universe::current(),
+                ':userID'   => $USER['id'],
+            ]);
+
+            PlayerUtil::disable_vmode($USER, $PLANET);
+            $db->commit();
+
+            $this->printMessage($LNG['op_options_vacation_deactivated'], [
+                [
+                    'label' => $LNG['sys_forward'],
+                    'url'   => 'game.php?page=settings',
+                ],
+            ]);
+        } else {
+            if (!$this->checkVMode()) {
+                $this->printMessage($LNG['op_cant_activate_vacation_mode'], [
+                    [
+                        'label' => $LNG['sys_back'],
+                        'url'   => 'game.php?page=settings',
+                    ]
+                ]);
+            }
+
+            PlayerUtil::enable_vmode($USER, $PLANET);
+
+            $text = $LNG['op_options_vacation_activated'];
+            $text .= '<br>' . $LNG['op_options_no_other_settings_changed'];
+            if (isModuleAvailable(MODULE_VMODE_KICK, $USER['universe'])) {
+                $text .= $LNG['tn_vacation_mode_kick'];
+            }
+            $this->printMessage($text, [
+                [
+                    'label' => $LNG['sys_forward'],
+                    'url'   => 'game.php?page=settings',
+                ]
+            ]);
+        }
+    }
+
+    public function toggleDelete()
+    {
+        $LNG =& Singleton()->LNG;
+        $USER =& Singleton()->USER;
+
+        $db = Database::get();
+        $db->startTransaction();
+
+        $sql = "SELECT id FROM %%USERS%% WHERE universe = :universe AND id = :userID FOR UPDATE;";
+        $db->selectSingle($sql, [
+            ':universe' => Universe::current(),
+            ':userID'   => $USER['id'],
+        ]);
+
+        if ($USER['db_deaktjava'] === 0) {
+            $sql = "UPDATE %%USERS%% SET db_deaktjava = :timestamp WHERE id = :userID;";
+            $db->update($sql, [
+                ':userID'       => $USER['id'],
+                ':timestamp'    => TIMESTAMP,
+            ]);
+            $db->commit();
+
+            $text = $LNG['op_options_deletion_activated'];
+            if ($USER['urlaubs_modus'] == 0) { // only in standard settings menu
+                $text .= '<br>' . $LNG['op_options_no_other_settings_changed'];
+            }
+            $this->printMessage($text, [
+                [
+                    'label' => $LNG['sys_forward'],
+                    'url'   => 'game.php?page=settings',
+                ]
+            ]);
+        } else {
+            $sql = "UPDATE %%USERS%% SET db_deaktjava = 0 WHERE id = :userID;";
+            $db->update($sql, [':userID'   => $USER['id']]);
+            $db->commit();
+
+            $text = $LNG['op_options_deletion_deactivated'];
+            if ($USER['urlaubs_modus'] == 0) { // only in standard settings menu
+                $text .= '<br>' . $LNG['op_options_no_other_settings_changed'];
+            }
+            $this->printMessage($text, [
+                [
+                    'label' => $LNG['sys_forward'],
+                    'url'   => 'game.php?page=settings',
+                ]
+            ]);
         }
     }
 
@@ -151,69 +269,11 @@ class ShowSettingsPage extends AbstractGamePage
     public function send()
     {
         $USER =& Singleton()->USER;
-        if ($USER['urlaubs_modus'] == 1) {
-            $this->sendVacation();
-        } else {
-            $this->sendDefault();
-        }
-    }
-
-    private function sendVacation()
-    {
-        $USER =& Singleton()->USER;
-        $LNG =& Singleton()->LNG;
-        $PLANET =& Singleton()->PLANET;
-        $delete     = HTTP::_GP('delete', 0);
-        $vacation   = HTTP::_GP('vacation', 0);
-
-        $db = Database::get();
-        $db->startTransaction();
-
-
-        $sql = "SELECT id FROM %%USERS%% WHERE universe = :universe AND id = :userID FOR UPDATE;";
-        $db->selectSingle($sql, [
-            ':universe' => Universe::current(),
-            ':userID'   => $USER['id'],
-        ]);
-
-        if ($vacation == 1 && $USER['urlaubs_until'] <= TIMESTAMP) {
-            $sql = "SELECT id FROM %%PLANETS%% WHERE universe = :universe AND id_owner = :userID FOR UPDATE;";
-            $db->select($sql, [
-                ':universe' => Universe::current(),
-                ':userID'   => $USER['id'],
-            ]);
-
-            PlayerUtil::disable_vmode($USER, $PLANET);
-        }
-
-        if ($delete == 1) {
-            $sql    = "UPDATE %%USERS%% SET db_deaktjava = :timestamp WHERE id = :userID;";
-            $db->update($sql, [
-                ':userID'       => $USER['id'],
-                ':timestamp'    => TIMESTAMP,
-            ]);
-        } else {
-            $sql    = "UPDATE %%USERS%% SET db_deaktjava = 0 WHERE id = :userID;";
-            $db->update($sql, [':userID'   => $USER['id']]);
-        }
-
-        $db->commit();
-
-        $this->printMessage($LNG['op_options_changed'], [
-            [
-                'label' => $LNG['sys_forward'],
-                'url'   => 'game.php?page=settings',
-            ],
-        ]);
-    }
-
-    private function sendDefault()
-    {
-        $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
         $THEME =& Singleton()->THEME;
-        $PLANET =& Singleton()->PLANET;
         $adminprotection    = HTTP::_GP('adminprotection', 0);
+        $discord_id         = HTTP::_GP('discord_id', '');
+        $discord_hook       = HTTP::_GP('discord_hook', '');
 
         $username           = HTTP::_GP('username', $USER['username'], UTF8_SUPPORT);
         $password           = HTTP::_GP('password', '');
@@ -231,6 +291,7 @@ class ShowSettingsPage extends AbstractGamePage
 
         $theme              = HTTP::_GP('theme', $THEME->getThemeName());
 
+        $showMessageCategory = HTTP::_GP('showMessageCategory', 0);
         $queueMessages      = HTTP::_GP('queueMessages', 0);
         $spyMessagesMode    = HTTP::_GP('spyMessagesMode', 0);
 
@@ -242,9 +303,6 @@ class ShowSettingsPage extends AbstractGamePage
         $galaxyBuddyList    = HTTP::_GP('galaxyBuddyList', 0);
         $galaxyMissle       = HTTP::_GP('galaxyMissle', 0);
         $blockPM            = HTTP::_GP('blockPM', 0);
-
-        $vacation           = HTTP::_GP('vacation', 0);
-        $delete             = HTTP::_GP('delete', 0);
 
         $colorMission2friend = HTTP::_GP('colorMission2friend', '#ff00ff');
 
@@ -308,7 +366,13 @@ class ShowSettingsPage extends AbstractGamePage
 
         // Vertify
 
-        $adminprotection    = ($adminprotection == 1 && $USER['authlevel'] != AUTH_USR) ? $USER['authlevel'] : 0;
+        if ($USER['authlevel'] != AUTH_USR) {
+            $adminprotection = ($adminprotection == 1) ? $USER['authlevel'] : 0;
+        } else {
+            $adminprotection = 0;
+            $discord_id = '';
+            $discord_hook = '';
+        }
 
         $spycount           = min(max(round($spycount), 1), 4294967295);
         $fleetactions       = min(max($fleetactions, 1), 99);
@@ -434,31 +498,6 @@ class ShowSettingsPage extends AbstractGamePage
             }
         }
 
-
-        if ($vacation == 1) {
-            if (!$this->checkVMode()) {
-                $this->printMessage($LNG['op_cant_activate_vacation_mode'], [
-                    [
-                        'label' => $LNG['sys_back'],
-                        'url'   => 'game.php?page=settings',
-                    ],
-                ]);
-            } else {
-                PlayerUtil::enable_vmode($USER, $PLANET);
-            }
-        }
-
-        if ($delete == 1) {
-            $sql    = "UPDATE %%USERS%% SET db_deaktjava = :timestamp WHERE id = :userID;";
-            $db->update($sql, [
-                ':userID'       => $USER['id'],
-                ':timestamp'    => TIMESTAMP,
-            ]);
-        } else {
-            $sql    = "UPDATE %%USERS%% SET db_deaktjava = 0 WHERE id = :userID;";
-            $db->update($sql, [':userID' => $USER['id']]);
-        }
-
         $sql =  "UPDATE %%USERS%% SET
 		dpath					    = :theme,
 		timezone				    = :timezone,
@@ -472,7 +511,10 @@ class ShowSettingsPage extends AbstractGamePage
 		settings_mis			    = :galaxyMissle,
 		settings_blockPM		    = :blockPM,
 		authattack				    = :adminProtection,
+		discord_id				    = :discord_id,
+		discord_hook				= :discord_hook,
 		lang					    = :language,
+        showMessageCategory         = :showMessageCategory,
 		hof						    = :queueMessages,
 		spyMessagesMode			    = :spyMessagesMode,
         colorMission2friend         = :colorMission2friend,
@@ -542,7 +584,10 @@ class ShowSettingsPage extends AbstractGamePage
             ':galaxyMissle'                 => $galaxyMissle,
             ':blockPM'                      => $blockPM,
             ':adminProtection'              => $adminprotection,
+            ':discord_id'                   => $discord_id,
+            ':discord_hook'                 => $discord_hook,
             ':language'                     => $language,
+            ':showMessageCategory'          => $showMessageCategory,
             ':queueMessages'                => $queueMessages,
             ':spyMessagesMode'              => $spyMessagesMode,
             ':userID'                       => $USER['id'],
@@ -605,24 +650,12 @@ class ShowSettingsPage extends AbstractGamePage
 
         require_once 'includes/classes/achievements/MiscAchievement.class.php';
         MiscAchievement::checkSettingsAchievements($USER['id'], $recordsOptIn);
-        if ($vacation == 1) {
-            $text = $LNG['op_options_changed_vacation'];
-            if (isModuleAvailable(MODULE_VMODE_KICK, $USER['universe'])) {
-                $text .= $LNG['tn_vacation_mode_kick'];
-            }
-            $this->printMessage($text, [
-                [
-                    'label' => $LNG['sys_forward'],
-                    'url'   => 'game.php?page=settings',
-                ]
-            ]);
-        } else {
-            $this->printMessage($LNG['op_options_changed'], [
-                [
-                    'label' => $LNG['sys_forward'],
-                    'url'   => 'game.php?page=settings',
-                ]
-            ]);
-        }
+
+        $this->printMessage($LNG['op_options_changed'], [
+            [
+                'label' => $LNG['sys_forward'],
+                'url'   => 'game.php?page=settings',
+            ]
+        ]);
     }
 }

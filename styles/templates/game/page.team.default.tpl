@@ -24,7 +24,8 @@
 			<td><a href="#" onclick="return Dialog.PM({$idDawnOfTheUwe});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
 			<td>DawnOfTheUwe</td>
 		{else}
-			<td colspan="2">DawnOfTheUwe</td>
+			<td></td>
+			<td>DawnOfTheUwe</td>
 		{/if}
 		<td>DawnOfTheUwe</td>
 		<td>{$LNG.teamMod}</td>
@@ -39,7 +40,8 @@
 			<td><a href="#" onclick="return Dialog.PM({$idHackbrett});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
 			<td>Hackbrett</td>
 		{else}
-			<td colspan="2">Hackbrett</td>
+			<td></td>
+			<td>Hackbrett</td>
 		{/if}
 		<td>Hackbrett</td>
 		<td>{$LNG.teamMod}</td>
@@ -54,7 +56,8 @@
 			<td><a href="#" onclick="return Dialog.PM({$idAdman});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
 			<td>Adman</td>
 		{else}
-			<td colspan="2">Adman</td>
+			<td></td>
+			<td>Adman</td>
 		{/if}
 		<td>Hyman</td>
 		<td>{$LNG.teamDev}, {$LNG.teamEmergency}, {$LNG.teamMod}</td>
@@ -69,7 +72,8 @@
 			<td><a href="#" onclick="return Dialog.PM({$idMasterspiel});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
 			<td>Masterspiel</td>
 		{else}
-			<td colspan="2">Masterspiel</td>
+			<td></td>
+			<td>Masterspiel</td>
 		{/if}
 		<td>Masterspiel</td>
 		<td>{$LNG.teamMod}</td>
@@ -84,7 +88,8 @@
 			<td><a href="#" onclick="return Dialog.PM({$idReflexrecon});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
 			<td>reflexrecon</td>
 		{else}
-			<td colspan="2">reflexrecon</td>
+			<td></td>
+			<td>reflexrecon</td>
 		{/if}
 		<td>reflexrecon</td>
 		<td>{$LNG.teamDev}, {$LNG.teamEmergency}, {$LNG.teamMod}</td>
@@ -99,7 +104,8 @@
 			<td><a href="#" onclick="return Dialog.PM({$idTimoKa});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
 			<td>Timo_Ka</td>
 		{else}
-			<td colspan="2">Timo_Ka</td>
+			<td></td>
+			<td>Timo_Ka</td>
 		{/if}
 		<td>Timo_Ka</td>
 		<td>{$LNG.teamDev}, {$LNG.teamEmergency}, {$LNG.teamMod}</td>

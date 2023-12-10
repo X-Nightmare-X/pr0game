@@ -32,7 +32,7 @@ class ShowStatisticsPage extends AbstractGamePage
         $who = HTTP::_GP('who', 1);
         $type = HTTP::_GP('type', 1);
         $range = HTTP::_GP('range', 1);
-        if (!isModuleAvailable(MODULE_SPYTECH_DEPENDENT_STATS)){
+        if (!isModuleAvailable(MODULE_SPYTECH_DEPENDENT_STATS) || $USER['authlevel'] > 0){
             switch ($type) {
                 case 2:
                     $Order = "fleet_rank";
@@ -95,7 +95,6 @@ class ShowStatisticsPage extends AbstractGamePage
                 $OldRank = "total_old_rank";
             }
         }
-        
 
         $RangeList = [];
 
@@ -260,7 +259,7 @@ class ShowStatisticsPage extends AbstractGamePage
             1 => $LNG['st_player'],
             2 => $LNG['st_alliance'],
         ];
-        if (!isModuleAvailable(MODULE_SPYTECH_DEPENDENT_STATS) || $USER['authlevel'] == 0){
+        if (!isModuleAvailable(MODULE_SPYTECH_DEPENDENT_STATS) || $USER['authlevel'] > 0){
             $Selector['type'] = [
                 1 => $LNG['st_points'],
                 2 => $LNG['st_fleets'],
@@ -282,15 +281,15 @@ class ShowStatisticsPage extends AbstractGamePage
                 case 3:
                     $Selector['type'] = [
                         1 => $LNG['st_points'],
-                        2 => $LNG['st_buildings'],
+                        4 => $LNG['st_buildings'],
                     ];
                     break;
                 case 4:
                 case 5:
                     $Selector['type'] = [
                         1 => $LNG['st_points'],
-                        2 => $LNG['st_buildings'],
                         3 => $LNG['st_researh'],
+                        4 => $LNG['st_buildings'],
                     ];
                     break;
                 default:

@@ -152,6 +152,7 @@ class ShowShipyardPage extends AbstractGamePage
         }
         $Messages = $USER['messages'];
 
+        $type = HTTP::_GP('type', 'fleet');
         $buildTodo = HTTP::_GP('fmenge', []);
         $action = HTTP::_GP('action', '');
 
@@ -185,6 +186,7 @@ class ShowShipyardPage extends AbstractGamePage
                 $PLANET = $db->selectSingle("SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;", [':planetId' => $PLANET['id']]);
                 $this->buildAuftr($buildTodo);
                 $db->commit();
+                $this->redirectTo('game.php?page=shipyard&type=' . $type);
             }
 
             if ($action == "delete") {
@@ -193,6 +195,7 @@ class ShowShipyardPage extends AbstractGamePage
                 $PLANET = $db->selectSingle("SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;", [':planetId' => $PLANET['id']]);
                 $this->cancelAuftr();
                 $db->commit();
+                $this->redirectTo('game.php?page=shipyard&type=' . $type);
             }
         }
 
@@ -223,10 +226,7 @@ class ShowShipyardPage extends AbstractGamePage
             ];
         }
 
-
-        $mode = HTTP::_GP('mode', 'fleet');
-
-        if ($mode == 'defense') {
+        if ($type == 'defense') {
             $elementIDs = array_merge($reslist['defense'], $reslist['missile']);
         } else {
             $elementIDs = $reslist['fleet'];
@@ -277,9 +277,10 @@ class ShowShipyardPage extends AbstractGamePage
             'NotBuilding' => $NotBuilding,
             'BuildList' => $buildList,
             'maxlength' => strlen(Config::get()->max_fleet_per_build),
-            'mode' => $mode,
+            'type' => $type,
             'messages' => ($Messages > 0) ? (($Messages == 1) ? $LNG['ov_have_new_message']
                 : sprintf($LNG['ov_have_new_messages'], pretty_number($Messages))) : false,
+            'message_type' => $USER['showMessageCategory'] === 1 ? $USER['message_type'] : false,
             'SolarEnergy' => $SolarEnergy,
         ]);
 

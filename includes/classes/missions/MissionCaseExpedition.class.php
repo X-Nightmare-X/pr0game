@@ -441,6 +441,7 @@ HTML;
         ];
 
         $reportData = GenerateReport($combatResult, $reportInfo, EXPO_FIGHT);
+        $reportData['time']	= $this->_fleet['fleet_end_stay'];
         $reportID = md5(uniqid('', true) . TIMESTAMP);
 
         $sql = "INSERT INTO %%RW%% SET
@@ -452,7 +453,7 @@ HTML;
         Database::get()->insert($sql, [
             ':reportId' => $reportID,
             ':reportData' => serialize($reportData),
-            ':time' => $this->_fleet['fleet_start_time'],
+            ':time' => $this->_fleet['fleet_end_stay'],
             ':attacker' => $this->_fleet['fleet_owner'],
         ]);
 
@@ -661,7 +662,6 @@ HTML;
             $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], "black_hole");
             require_once 'includes/classes/achievements/MiscAchievement.class.php';
             MiscAchievement::checkExpoAchievements($this->_fleet['fleet_owner']);
-            
         } elseif ($GetEvent < 812) {
             // The fleet delays or return earlier: 9%
             # http://owiki.de/Expedition#Ver.C3.A4nderte_Flugzeit

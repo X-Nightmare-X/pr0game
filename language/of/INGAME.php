@@ -959,15 +959,22 @@ $LNG['sh_loading'] = '(rendere ...)';
 //OPTIONS
 $LNG['op_error'] = 'Fehler';
 $LNG['op_cant_activate_vacation_mode'] = 'Sie gönnene ned in den Urlaubsmodus während die Flodde bewegd wird.';
+$LNG['op_cant_deactivate_vacation_mode'] = 'Sie gönnene den Urlaubsmodus noch ned ferlassne.';
 $LNG['op_password_changed'] = 'Basswort wurde geändert';
 $LNG['op_username_changed'] = 'Username geändert';
 $LNG['op_options_changed'] = 'Einschdellungne gesbeichert.';
-$LNG['op_options_changed_vacation'] = 'Einschdellungne gesbeichert.';
+$LNG['op_options_vacation_activated'] = 'Urlaubsmodus agdifierd.';
+$LNG['op_options_vacation_deactivated'] = 'Urlaubsmodus deagdifierd.';
+$LNG['op_options_deletion_activated'] = 'Accoundlöschung- agdifierd.';
+$LNG['op_options_deletion_deactivated'] = 'Accoundlöschung- deagdifierd.';
+$LNG['op_options_no_other_settings_changed'] = 'Es wurdne geine anderne Einsdellungne geänderd alde.';
 $LNG['op_vacation_mode_active_message'] = 'Urlaubsmodus agtiviert und alles. Urlaubsmodus mindeschdens bis: ';
 $LNG['op_end_vacation_mode'] = 'Urlaubsmodus beenden';
 $LNG['op_save_changes'] = 'Einschdellungne sbeichern';
 $LNG['op_admin_title_options'] = 'Adminischdrator Obtionen';
 $LNG['op_admin_planets_protection'] = 'Adminschutz aktiveren';
+$LNG['op_admin_discord_id'] = 'Eigene Discord-UserID für Ping bei PN';
+$LNG['op_admin_discord_hook'] = 'Discord-Webhook für Nachricht bei PN';
 $LNG['op_user_data'] = 'Benutzerdaten';
 $LNG['op_username'] = 'Username';
 $LNG['op_old_pass'] = 'Aldes Basswort';
@@ -998,6 +1005,7 @@ $LNG['op_send_report'] = 'Schbionagereport';
 $LNG['op_vacation_delete_mode'] = 'Urlaubsmodus / Account löschen';
 $LNG['op_activate_vacation_mode'] = 'Urlaubsmodus agtiveren';
 $LNG['op_dlte_account'] = 'Account löschen';
+$LNG['op_stop_dlte_account'] = 'Accoundlöschung abbrechne';
 $LNG['op_email_adress_descrip'] = 'Diese Mailadresse kann jederzeid vonääh Dir geänderd werdne. Etzala Nach 7 Dagne ohne Änderung'
     . ' wird diese als bermanente Adresse eingetragen.';
 $LNG['op_deactivate_ipcheck_descrip'] = 'IBCheck- imblementiert, das audomadisch a Sicherheidslogoud erfolgd, wne die IB'
@@ -1005,14 +1013,15 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'IBCheck- imblementiert, das audomadisch
     . ' IBCheck- zu deagtivierne kann ein Sicherheitsrisigo darstellen!';
 $LNG['op_spy_probes_number_descrip'] = 'Anzahl der Schbionagesondne, die bei jedem Scan aus dem Galaggsiemenu direkt'
     . ' versended werden.';
-$LNG['op_activate_vacation_mode_descrip'] = 'Der Urlaubsmodus soll während längerer Abwesenheidszeidne schüdzne. Man'
-    . ' kann ihn nur agtivierne, wne nichds gebaud und geforschd wird und auch geine eigenene Floddne underwegs sind.'
-    . ' Ischd er agtiviert, schüdzd er euch wor neune Angriffne, bereids begonnene Angriffe werdne jedoch fordgesedzd.'
-    . ' Während des Urlaubsmodus wird die Broduktion uff Null gesedzd und muss nach Beendne des Urlaubsmodus manuell'
-    . ' widde uff 100% gesedzd werdne. Pass auf, Der Urlaubsmodus dauerd mindeschdens 2 Dage, erschd danach gönnt Ihr ihn wieder'
-    . ' deagtivieren.';
-$LNG['op_dlte_account_descrip'] = 'Wenn du hier a Haggne sedzd, wird dein Accound nach 7 Dagne audomadisch gomplett - hätt ich gsachd'
-    . ' gelöscht.';
+$LNG['op_activate_vacation_mode_descrip'] = 'Der Urlaubsmodus soll Sie während längerer Abwesenheid schüddsne etzala. Er gann nur'
+    . ' agdifierd werdne, wen geine eigenene Floddne underwegs sind. Wen er agdifierd isd, schüddsd er Sie for neune Angriffne alda.'
+    . ' Bereids begonnene Angriffe werdne jedoch fordgeseddsd und haldende befreundede Floddne werdne dsurügggeschiggd! Die Brodugdion'
+    . ' fon Ressourcne, der Bau fon Gebäudne und Werfdaufdrägne, sowie die Forschung is\' in dieser Dseid bausierd und wird'
+    . ' anschließend fordgeseddsd alde. Der Urlaubsmodus häld mindesdens 48 Schdundne an, danach gönnene Sie ihn scho widder'
+    . ' deagdifierne des bascht scho.';
+$LNG['op_dlte_account_descrip'] = 'Hiermid wird Ihr Gondo nach mindesdens 7 Dagne audomadisch follsdändig gelöschd. Die endgüldige'
+    . ' Löschung hängd fonääh der Ausführungsdseid des Löschcronjobs- ab und gann noch a baar Dage dauern. Die Löschung gann gesdobbd'
+    . ' werdne, solange sie noch ned durchgeführd wurde, dh. solange Sie sich noch in des Gondo einloggne gönnene tadsächlich sogar.';
 $LNG['op_need_pass_mail'] = 'Um deine EMailAdresse- zu ändern, musschd du dein Basswort eingeben!';
 $LNG['op_not_vaild_mail'] = 'Du haschd geine güldige EMail- Adresse angegeben!';
 $LNG['op_change_mail_exist'] = 'Die angegebene EMailAdresse %s wird bereids verwendet!';
@@ -1024,6 +1033,7 @@ $LNG['op_sort_down'] = 'absteigend';
 $LNG['op_user_name_no_alphanumeric'] = 'Bidde beim Username nur albhanumerische Zeichne eingeben!';
 $LNG['op_change_name_pro_week'] = 'Sie Gönnene ihrne Usernamne nur 1ggs bro Woche ändern';
 $LNG['op_change_name_exist'] = 'Der Name %s exischdiert bereits';
+$LNG['op_show_message_category'] = 'Diregd bassende Nachrichdengadegorie andseigne';
 $LNG['op_active_build_messages'] = 'Baulischdennachrichtne aktivieren';
 $LNG['op_active_spy_messages_mode'] = 'Schbioangeberichte zusammenfassne';
 $LNG['op_dst_mode'] = 'Sommerzeit?';
@@ -1445,7 +1455,7 @@ $LNG['Achievement_text'] = [
     10 => 'Dsersdöre den Mond eines Schbielers.',
 
     11 => 'Schbiele 14 Dage ausschließlich am Handy alda.',
-    12 => 'Deine Flodde wurde in deiner ersdne Eggsbedidion dsermeddld hätt i gsachd.',
+    12 => 'Deine Flodde wurde in deiner ersdne Eggsbedidion durch ein schwardses Loch dsermeddld und alles.',
     13 => 'Sende deine Flodde weg, während a einfliegender Angriff wenicher als 5 Segundne Resddseid had des bascht scho.',
     14 => 'Du hasd 10 Floddne an schwardse Löcher ferlorne alde.',
     15 => 'Ferbrade 10 Mfs uff \'nen Blanedne ohne \'nen Mond dsu begommne',
