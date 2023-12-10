@@ -156,11 +156,6 @@ class ShowShipyardPage extends AbstractGamePage
         $buildTodo = HTTP::_GP('fmenge', []);
         $action = HTTP::_GP('action', '');
 
-        error_log($type);
-        error_log(print_r($buildTodo, true));
-        $e = new \Exception;
-        error_log($e->getTraceAsString());
-
         $NotBuilding = true;
         if (!empty($PLANET['b_building_id'])) {
             $CurrentQueue = !empty($PLANET['b_building_id']) ? unserialize($PLANET['b_building_id']) : [];
