@@ -115,7 +115,7 @@ class ShowSettingsPage extends AbstractGamePage
     {
         $LNG =& Singleton()->LNG;
         $USER =& Singleton()->USER;
-
+        $PLANET =& Singleton()->PLANET;
         if ($USER['urlaubs_modus'] == 1) {
             if ($USER['urlaubs_until'] > TIMESTAMP) {
                 $this->printMessage($LNG['op_cant_deactivate_vacation_mode'], [
