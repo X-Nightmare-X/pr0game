@@ -336,8 +336,7 @@ $LNG['longDescription'] = [
          . ' machne. Pass auf, In diesem Gebäude werdne fordwährend eigens dafür gonstruierte Nanidne broduziert, die für einee'
          . ' gonstante Qualidäd des Bodens sorgne hätt ich gsachd. Einmal gebaud kann der Derraformer ned widda abgerissne werden alde.',
      34 => 'Ein absolud unnudzes Gebäude. Etzala Genauso wie der Grieg von Audism gecher Aldschauerberg alda.'
-         . ' Nichd durchdachd, ineffiziend und langweilig hätt ich gsachd. Ganz im Gegendeil zum'
-         . ' Regrutierungsbüro für Uni2! Bidde hier endlang:  <a href="https://discord.gg/9xwPT77HnN </a>',
+         . ' Nichd durchdachd, ineffiziend und langweilig hätt ich gsachd.',
      35 => 'Das Rebaradurdogg bieded die Möglichgeid dsersdörde Schiffe, die in Folge eines Gambfes a Wraggfeld hinderlassne habne, dsu'
          . ' rebarierne. Die Rebaradurdseid bedrägd maggsimal 12h, aber es dauerd mindesdens 30min bis die Schiffe in Diensd gesdelld werdne'
          . ' gönnen<br>ab und alles. Endsdehung des Wraggfeldes bleibne 3 Dage Dseid um mid der Rebaradur dsu beginnene. Die rebarierdne Schiffe'

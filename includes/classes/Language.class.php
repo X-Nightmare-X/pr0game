@@ -94,6 +94,11 @@ class Language implements ArrayAccess
         }
     }
 
+    public function getData() :array
+    {
+        return $this->container;
+    }
+
     public function addData($data)
     {
         $this->container = array_replace_recursive($this->container, $data);
@@ -114,7 +119,7 @@ class Language implements ArrayAccess
     }
 
 
-    public function includeData($files)
+    public function includeData($files, $defaults = true)
     {
         // Fixed BOM problems.
         ob_start();
@@ -141,13 +146,15 @@ class Language implements ArrayAccess
         }
 
         // Build missing language data from English to client language
-        foreach ($DEFAULT as $TextKey => $TextData) {
-            if (is_array($TextData)) {
-                foreach ($TextData as $Element => $ElementText) {
-                    if (array_key_exists($Element, $LNG[$TextKey])) {
-                        continue;
+        if ($defaults) {
+            foreach ($DEFAULT as $TextKey => $TextData) {
+                if (is_array($TextData)) {
+                    foreach ($TextData as $Element => $ElementText) {
+                        if (array_key_exists($Element, $LNG[$TextKey])) {
+                            continue;
+                        }
+                        $LNG[$TextKey][$Element] = $ElementText;
                     }
-                    $LNG[$TextKey][$Element] = $ElementText;
                 }
             }
         }

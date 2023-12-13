@@ -327,6 +327,9 @@ abstract class AbstractGamePage
         }
         $config = Config::get();
         $captchakey = $config->recaptchaPubKey;
+
+        $local = (str_contains(HTTP_HOST, '127.0.0.1') || str_contains(HTTP_HOST, 'localhost'));
+
         $this->assign([
             'lang'              => $LNG->getLanguage(),
             'dpath'             => $THEME->getTheme(),
@@ -336,6 +339,7 @@ abstract class AbstractGamePage
             'TIMEZONESTRING'    => $USER['timezone'],
             'signalColors'      => $USER['signalColors'],
             'captchakey'        => $captchakey,
+            'local'             => $local,
         ]);
         $this->assign([
             'LNG' => $LNG

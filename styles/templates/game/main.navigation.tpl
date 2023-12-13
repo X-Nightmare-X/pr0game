@@ -99,6 +99,9 @@
   {if $authlevel > 0}
     <li><a href="./admin.php" class="colorPositive">{$LNG.lm_administration} ({$VERSION})</a></li>
   {/if}
+  {if $local}
+    <li><a href="game.php?page=translation" class="colorPositive">Translation</a></li>
+  {/if}
   {/nocache}
 </ul>
 <div id="disclamer" class="no-mobile">
