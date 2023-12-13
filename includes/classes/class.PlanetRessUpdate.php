@@ -99,7 +99,9 @@ class ResourceUpdate
             return $this->ReturnVars();
         }
 
-        if ($this->Build) {
+        $this->ProductionTime = ($this->TIME - $this->PLANET['last_update']);
+
+        if ($this->Build && $this->ProductionTime > 0) {
             $this->ShipyardQueue();
             $this->RepairJob();
             $this->WreckfieldCheck($this->PLANET['id'], $this->TIME); // Option: Delete not in Umode
@@ -129,8 +131,6 @@ class ResourceUpdate
 
     private function UpdateResource($TIME, $HASH = false)
     {
-        $this->ProductionTime = ($TIME - $this->PLANET['last_update']);
-
         if ($this->ProductionTime > 0) {
             $this->PLANET['last_update'] = $TIME;
             if ($HASH === false) {
