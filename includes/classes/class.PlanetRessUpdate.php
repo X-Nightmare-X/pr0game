@@ -25,7 +25,6 @@ class ResourceUpdate
 
     private $TIME = null;
     private $HASH = null;
-    private $ProductionTime = null;
 
     private $Build = true;
     private $Tech = true;
@@ -99,9 +98,9 @@ class ResourceUpdate
             return $this->ReturnVars();
         }
 
-        $this->ProductionTime = ($this->TIME - $this->PLANET['last_update']);
+        $ProductionTime = ($this->TIME - $this->PLANET['last_update']);
 
-        if ($this->Build && $this->ProductionTime > 0) {
+        if ($this->Build && $ProductionTime > 0) {
             $this->ShipyardQueue();
             $this->RepairJob();
             $this->WreckfieldCheck($this->PLANET['id'], $this->TIME); // Option: Delete not in Umode
@@ -131,7 +130,9 @@ class ResourceUpdate
 
     private function UpdateResource($TIME, $HASH = false)
     {
-        if ($this->ProductionTime > 0) {
+        $ProductionTime = ($this->TIME - $this->PLANET['last_update']);
+
+        if ($ProductionTime > 0) {
             $this->PLANET['last_update'] = $TIME;
             if ($HASH === false) {
                 $this->ReBuildCache();
