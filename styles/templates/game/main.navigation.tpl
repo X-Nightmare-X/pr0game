@@ -71,7 +71,7 @@
   <li><a href="game.php?page=achievements">{$LNG.Achievements}</a></li>
 
   <li class="menu-separator"></li>
-  <li><a href="https://wiki.pr0game.com">Wiki</a></li>
+  <li><a href="https://wiki.pr0game.com" target="_blank">Wiki</a></li>
   <li><a href="game.php?page=team">Team</a></li>
   {if isModuleAvailable($smarty.const.MODULE_SUPPORT)}
     <li><a href="game.php?page=ticket">{$LNG.lm_support}</a></li>
