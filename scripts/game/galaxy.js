@@ -26,8 +26,13 @@ const universe = GM_getValue("universe", {})
 const playerids = GM_getValue("playerids", {})
 const allyids = GM_getValue("allyids", {})
 
+function parseUni() {
+  return window.location.pathname.match('uni?.')?.[0] || 'uni1'
+}
+
 function GM_getValue(key, defaultv) {
-  let x = localStorage.getItem(key);
+  let uni = parseUni()
+  let x = localStorage.getItem(`${uni}_${key}`);
   if (x === null) {
     return defaultv;
   }
@@ -35,7 +40,8 @@ function GM_getValue(key, defaultv) {
 }
 
 function GM_setValue(key, value) {
-  localStorage.setItem(key, JSON.stringify(value))
+  let uni = parseUni()
+  localStorage.setItem(`${uni}_${key}`, JSON.stringify(value))
 }
 
 
