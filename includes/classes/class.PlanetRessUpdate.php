@@ -144,11 +144,11 @@ class ResourceUpdate
                     $this->ReBuildCache();
                 }
             }
-            $this->ExecCalc();
+            $this->ExecCalc($ProductionTime);
         }
     }
 
-    private function ExecCalc()
+    private function ExecCalc($ProductionTime)
     {
         if ($this->PLANET['planet_type'] == 3) {
             return;
@@ -158,21 +158,21 @@ class ResourceUpdate
         $MaxCristalStorage = $this->PLANET['crystal_max'] * $this->config->max_overflow;
         $MaxDeuteriumStorage = $this->PLANET['deuterium_max'] * $this->config->max_overflow;
 
-        $MetalTheoretical = $this->ProductionTime * (
+        $MetalTheoretical = $ProductionTime * (
                 ($this->config->metal_basic_income * $this->config->resource_multiplier)
                 + $this->PLANET['metal_perhour']
             ) / 3600;
 
         $this->setProduction(RESOURCE_METAL, $MetalTheoretical, $MaxMetalStorage);
 
-        $CristalTheoretical = $this->ProductionTime * (
+        $CristalTheoretical = $ProductionTime * (
                 ($this->config->crystal_basic_income * $this->config->resource_multiplier)
                 + $this->PLANET['crystal_perhour']
             ) / 3600;
 
         $this->setProduction(RESOURCE_CRYSTAL, $CristalTheoretical, $MaxCristalStorage);
 
-        $DeuteriumTheoretical = $this->ProductionTime * (
+        $DeuteriumTheoretical = $ProductionTime * (
                 ($this->config->deuterium_basic_income * $this->config->resource_multiplier)
                 + $this->PLANET['deuterium_perhour']
             ) / 3600;
