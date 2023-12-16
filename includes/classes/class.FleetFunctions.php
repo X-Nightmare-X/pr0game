@@ -921,7 +921,7 @@ class FleetFunctions
 		fleet_resource_crystal		= :fleetResource902,
 		fleet_resource_deuterium    = :fleetResource903,
 		current_market_rate         = :current_market_rate,
-		current_market_value        = :current_market_value,
+		current_market_value_based_on_DSE        = :current_market_value,
 		fleet_no_m_return           = :fleetNoMReturn,
 		fleet_group					= :fleetGroup,
 		fleet_target_obj			= :missileTarget,
