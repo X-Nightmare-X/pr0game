@@ -118,7 +118,7 @@
 </table>
 
 <h3>{$LNG.teamAlumni}</h3>
-<p>{$LNG.teamAlumniLong}: atain, ava, Axel auf dem Floß, Eichhorn, Captain Mrgl, Fionera, Klarname & Slippy</p>
+<p>{$LNG.teamAlumniLong}: atain, ava, Axel auf dem Floß, Eichhorn, Captain Mrgl, Fionera, Klarname, Rosenreemann & Slippy</p>
 
 <h4>{$LNG.teamLegend}:</h4>
 <table>
