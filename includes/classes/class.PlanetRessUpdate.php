@@ -130,7 +130,7 @@ class ResourceUpdate
 
     private function UpdateResource($TIME, $HASH = false)
     {
-        $ProductionTime = ($this->TIME - $this->PLANET['last_update']);
+        $ProductionTime = ($TIME - $this->PLANET['last_update']);
 
         if ($ProductionTime > 0) {
             $this->PLANET['last_update'] = $TIME;
