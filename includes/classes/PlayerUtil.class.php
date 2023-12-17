@@ -692,7 +692,7 @@ class PlayerUtil
             ':planet'           => $position,
             ':updateTimestamp'  => TIMESTAMP,
             ':type'             => 3,
-            ':image'            => 'mond',
+            ':image'            => 'mond0'.rand(1,9),
             ':diameter'         => $diameter,
             ':fields'           => 1,
             ':minTemperature'   => $minTemperature,
