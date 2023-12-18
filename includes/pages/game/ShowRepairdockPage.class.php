@@ -92,7 +92,7 @@ class ShowRepairdockPage extends AbstractGamePage
                 'url'   => 'game.php?page=repairdock'
             ]]);
         }
-        elseif (empty($ElementQueue) && !empty($buildTodo) && $USER['urlaubs_modus'] == 0) {
+        elseif (empty($ElementQueue) && !empty($buildTodo) && array_sum($buildTodo) > 0 && $USER['urlaubs_modus'] == 0) {
             $db->startTransaction();
             $sql = "SELECT * FROM %%PLANET_WRECKFIELD%%
                 WHERE `planetID` = :planetID FOR UPDATE;";
