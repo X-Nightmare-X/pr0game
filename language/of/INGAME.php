@@ -1521,7 +1521,7 @@ $LNG['spytech_playercard'] = [
 //Team
 $LNG['team'] =                      'Das Deam';
 $LNG['teamAktiv'] =                 'Agdif';
-$LNG['kontakt'] =                   'Willgommne in unserem Communidybrojegd<br>gomm- uff unsern <a style="color: red;font-size: large;" href="https://discord.gg/jhYYN3yuat">discord</a>serfer= dsum chaddne, Ideenausdausch und besbrechne und alles. Bei Ingamenachrichdne- bidde um Fersdändnis für mögliche längere Andworddseidne da wir dieses Brojegd auch nur als Hobby. Qualidäd in unserne Andwordne isd uns wichdig, um die besdmögliche Erfahrung für alle dsu biedne.';
+$LNG['kontakt'] =                   'Wir bevorzugen die Kommunikation via <a href="https://discord.gg/jhYYN3yuat">Discord</a>.';
 $LNG['teamIngameName'] =            'Ingame Name';
 $LNG['teamDiscordName'] =           'Lord gorea Name';
 $LNG['teamRole'] =                  'Rolle';

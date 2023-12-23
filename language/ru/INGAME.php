@@ -1417,7 +1417,7 @@ $LNG['spytech_playercard'] = [
 //Team
 $LNG['team'] =                      'Команда';
 $LNG['teamAktiv'] =                 'Авуары';
-$LNG['kontakt'] =                   'Добро пожаловать на наш проект! <br>Заходите на наш <a style="color: red;font-size: large;" href="https://discord.gg/jhYYN3yuat">Discord</a> сервер, чтобы пообщаться, обменяться идеями и обсудить. Для внутриигровых сообщений, пожалуйста, поймите, что время ответа может быть больше, так как мы делаем этот проект только как хобби. Качество наших ответов очень важно для нас, чтобы обеспечить наилучший возможный опыт для всех.';
+$LNG['kontakt'] =                   'Мы предпочитаем общаться через <a href="https://discord.gg/jhYYN3yuat">Discord</a>.';
 $LNG['teamIngameName'] =            'Внутриигровое имя';
 $LNG['teamDiscordName'] =           'Имя Discord';
 $LNG['teamRole'] =                  'Роль';
