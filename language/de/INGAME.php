@@ -1528,7 +1528,16 @@ $LNG['spytech_playercard'] = [
 //Team
 $LNG['team'] =                      'Das Team';
 $LNG['teamAktiv'] =                 'Aktiv';
-$LNG['kontakt'] =                   'Wir bevorzugen die Kommunikation via <a href="https://discord.gg/jhYYN3yuat">Discord</a>.';
+$LNG['kontakt'] =                   'Hi!<br>'
+                                    .'Auf dieser Seite findest du Informationen zu den Leuten, die dieses Projekt aktiv betreiben, moderieren und weiterentwickeln.<br>'
+                                    .'Wende dich bei Fragen und Problemen gern an uns.<br>'
+                                    .'<br>'
+                                    .'Für den besseren Austausch mit uns, aber auch mit den anderen Mitspeilern, haben wir einen Discord-Server eingerichtet. Du findest ihn » <a href="https://discord.gg/jhYYN3yuat">hier</a> « oder über das Menü.<br>'
+                                    .'Auf dem Server findest du die aktuellsten News, sowie spannende Memes zwischen den Allianzen des Universums.<br>'
+                                    .'Stelle Fragen zu Spielmechaniken und hilf durch eigene Vorschläge mit bei der Weiterentwicklung des Spiels.<br>'
+                                    .'<br>'
+                                    .'Natürlich antworten wir dir dennoch auch bei Ingame-Nachriten.<br>'
+                                    .'Bedenke jedoch, dass auch wir das Spiel nur als Hobby betreiben. Antworten können sich einige Tage hinziehen.<br>';
 $LNG['teamIngameName'] =            'Ingame Name';
 $LNG['teamDiscordName'] =           'Discord Name';
 $LNG['teamRole'] =                  'Rolle';

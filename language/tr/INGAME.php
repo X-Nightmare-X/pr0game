@@ -1481,7 +1481,17 @@ $LNG['spytech_playercard'] = [
 //Team
 $LNG['team'] =                      'Ekip';
 $LNG['teamAktiv'] =                 'Varlık';
-$LNG['kontakt'] =                   '<a href="https://discord.gg/jhYYN3yuat">Discord</a> üzerinden iletişimi tercih ediyoruz.';
+$LNG['kontakt'] =                   'Merhaba!<br>'
+                                    .'Bu sayfada, bu projeyi aktif olarak yürüten, yöneten ve geliştiren kişiler hakkında bilgi bulacaksınız.<br>'
+                                    .'Herhangi bir sorunuz veya sorununuz varsa bizimle iletişime geçmekten çekinmeyin.<br>'
+                                    .'<br>'
+                                    .'Bizimle ve aynı zamanda diğer ortak yayıncılarla daha iyi bir alışveriş için bir Discord sunucusu kurduk.'
+                                    .'"<a href="https://discord.gg/jhYYN3yuat">burada</a>" veya menü aracılığıyla bulabilirsiniz.<br>'
+                                    .'Sunucuda en son haberlerin yanı sıra evrenin ittifakları arasındaki heyecan verici memleri bulacaksınız.<br>'
+                                    .'Oyun mekanikleri hakkında sorular sorun ve oyunun daha da geliştirilmesi için kendi önerilerinizle yardımcı olun.<br>'
+                                    .'<br>'
+                                    .'Elbette oyun içi atıp tutmalarınıza da cevap vereceğiz.<br>'
+                                    .'Ancak, lütfen oyunu sadece hobi olarak oynadığımızı unutmayın. Cevaplar birkaç gün sürebilir.<br>';
 $LNG['teamIngameName'] =            'Oyun İçi İsim';
 $LNG['teamDiscordName'] =           'Discord Adı';
 $LNG['teamRole'] =                  'Rol';
