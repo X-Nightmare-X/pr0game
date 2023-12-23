@@ -1526,13 +1526,13 @@ $LNG['kontakt'] =                   'Ahoi!<br>'
                                     .'Auf dies\' Seite findest du Kunde über jene, die dieses Unterfangen aktiv betreiben, moderieren und fortführen.<br>'
                                     .'Wend\' dich bei Fragen und Sorgen gern an uns.<br>'
                                     .'<br>'
-                                    .'Für den bess\'ren Austausch mit uns und den anderen Kaperfahrern haben wir einen Discord-Knoten eingerichtet.'
+                                    .'Für den bess\'ren Austausch mit uns und den anderen Kaperfahrern haben wir einen Discord-Knoten eingerichtet. '
                                     .'Du findest ihn » <a href="https://discord.gg/jhYYN3yuat">hier</a> « oder über das Menü.<br>'
                                     .'Auf dem Knoten erblickst du die neuesten Kunde, sowie spannende Seemannsgarn zwischen den Allianzen des Universums.<br>'
                                     .'Stell\' Fragen zu den Spielgebräuchen und hilf durch eig\'ne Vorschläge mit bei der Fortentwicklung des Spiels.<br>'
                                     .'<br>'
-                                    .'Selbstverständlich antworten wir dir auch via Ingame-Botschaften.<br>'
-                                    .'Bedenk\' jedoch, dass auch wir das Spiel bloß als Freizeitvergnügen betreiben. Antworten können sich ein paar Tagesläufe hinzieh\'n..<br>';
+                                    .'Selbstverständlich antworten wir dir auch via Flaschenpost.<br>'
+                                    .'Bedenk\' jedoch, dass auch wir das Spiel bloß als Freibeutervergnügen betreiben. Antworten können sich ein paar Tagesläufe hinzieh\'n, je nachdem wie voll die Rum bauddel ist.<br>';
 $LNG['teamIngameName'] =            'Ingame Name';
 $LNG['teamDiscordName'] =           'Discord Name';
 $LNG['teamRole'] =                  'Rolle';
