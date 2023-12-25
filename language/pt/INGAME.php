@@ -385,6 +385,7 @@ $LNG['fl_player'] = 'Jogador ';
 $LNG['fl_add_to_attack'] = ' adicionado ao ataque.';
 $LNG['fl_already_invited'] = ' ja foi convidado..';
 $LNG['fl_dont_exist'] = ' não existe.';
+$LNG['fl_blocked'] = ' não aceita convites.';
 $LNG['fl_acs_invitation_message'] = ' convidado a ACS.';
 $LNG['fl_acs_invitation_title'] = 'ACS';
 $LNG['fl_sac_of_fleet'] = 'Frota para ACS';
@@ -1490,3 +1491,7 @@ $LNG['teamYes'] =                   'e ainda';
 $LNG['teamAlumni'] =                'Antigos / Inativos Membros da Equipa';
 $LNG['teamAlumniLong'] =            'Gostaríamos de agradecer';
 $LNG['teamLegend'] =                'Legenda, Explicação de Papéis / Direitos';
+
+//----------------------------------------------------------------------------//
+$LNG['BlockTrade']  = 'Comércio em bloco';
+$LNG['blockDm']    = 'Bloquear MP';

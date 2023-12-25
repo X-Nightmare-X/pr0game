@@ -61,6 +61,9 @@ class ShowPlayerCardPage extends AbstractGamePage
         $battle_stats = $this->get_battle_stats($stats, $showBattle);
         $units = $this->get_units($stats, $showBattle);
         $real_units = $this->get_real_units($stats, $showBattle);
+        $blocked = PlayerUtil::get_block_status($PlayerID, $USER['id']);
+        $authlevel = PlayerUtil::get_authlevel($PlayerID);
+
 
         $this->assign([
             'id'			=> $PlayerID,
@@ -109,6 +112,9 @@ class ShowPlayerCardPage extends AbstractGamePage
             'showDef'       => $showDef,
             'showFleet'     => $showFleet,
             'showBattle'    => $showBattle,
+            'blockTrade'    => $blocked['block_trade'],
+            'blockDm'       => $blocked['block_dm'],
+            'targetRights'  => $authlevel,
         ]);
         $this->display('page.playerCard.default.tpl');
     }
@@ -355,5 +361,73 @@ class ShowPlayerCardPage extends AbstractGamePage
             "total_rank"    => $data['total_rank'],
             "total_points"  => $data['total_points']
         );
+    }
+
+    /**
+	 * Toggle player block status
+	 * 
+     * returns staus code 200 on success
+	 */
+    public function toggleBlock()
+    {
+        $USER =& Singleton()->USER;
+        $db = Database::get();
+
+        $this->initTemplate();
+        $this->setWindow('ajax');
+        
+        $PlayerID 	    = HTTP::_GP('id', 0);
+        $blockTrade     = HTTP::_GP('blockTrade', 0);
+        $blockDm        = HTTP::_GP('blockDm', 0);
+
+        $sql = "SELECT id FROM %%USERS_BLOCKLIST%% 
+                WHERE blocking_user = :userID AND blocked_user = :targetID;";
+        $blockid = $db->selectSingle($sql, [
+            ':userID'       => $USER['id'],
+            ':targetID'     => $PlayerID,
+        ], 'id');
+        if ($blockid && $blockTrade == 0 && $blockDm == 0) {
+            $sql =  "DELETE FROM %%USERS_BLOCKLIST%% 
+		        WHERE blocking_user = :userID AND blocked_user = :targetID;";
+            $db->delete($sql, [
+                ':userID'             => $USER['id'],
+                ':targetID'           => $PlayerID,
+            ]);
+        } else if ($blockid) {
+            $sql =  "UPDATE %%USERS_BLOCKLIST%% SET
+		        block_dm		= :block_dm,
+		        block_trade	    = :block_trade
+		        WHERE blocking_user = :userID AND blocked_user = :targetID;";
+            $db->update($sql, [
+                ':block_dm'           => $blockDm,
+                ':block_trade'        => $blockTrade,
+                ':userID'             => $USER['id'],
+                ':targetID'           => $PlayerID,
+            ]);
+        } else {
+            $sql = "INSERT INTO %%USERS_BLOCKLIST%% SET
+                blocking_user	= :userID,
+                blocked_user	= :targetID,
+                block_dm		= :block_dm,
+                block_trade	    = :block_trade;";
+            $db->insert($sql, [
+                ':userID'       => $USER['id'],
+                ':targetID'     => $PlayerID,
+                ':block_dm'     => $blockDm,
+                ':block_trade'  => $blockTrade,
+            ]);
+        }
+        $this->sendData(200, 'Successfully changed block settings');
+    }
+
+    /**
+	 * sends json data to client
+	 */
+    private function sendData($Code, $Message)
+    {
+        $this->sendJSON([
+            'code' => $Code,
+            'mess' => $Message,
+        ]);
     }
 }

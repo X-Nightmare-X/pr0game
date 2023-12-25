@@ -406,6 +406,7 @@ $LNG['fl_player'] = 'Player ';
 $LNG['fl_add_to_attack'] = ' added to attack.';
 $LNG['fl_already_invited'] = ' has been invited..';
 $LNG['fl_dont_exist'] = ' does not exist.';
+$LNG['fl_blocked'] = ' does not accept invites.';
 $LNG['fl_acs_invitation_message'] = ' invited to ACS.';
 $LNG['fl_acs_invitation_title'] = 'ACS';
 $LNG['fl_sac_of_fleet'] = 'ACS fleet';
@@ -1551,3 +1552,7 @@ $LNG['teamYes'] =                   'Yes';
 $LNG['teamAlumni'] =                'Former / Inactive team members';
 $LNG['teamAlumniLong'] =            'We would like to thank';
 $LNG['teamLegend'] =                'Legend, explanation of roles / rights';
+
+//----------------------------------------------------------------------------//
+$LNG['BlockTrade']  = 'Block trade';
+$LNG['blockDm']    = 'Block DM';
