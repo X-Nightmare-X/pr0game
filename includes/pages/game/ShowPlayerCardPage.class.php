@@ -363,7 +363,13 @@ class ShowPlayerCardPage extends AbstractGamePage
         );
     }
 
-    public function toggleBlock(){
+    /**
+	 * Toggle player block status
+	 * 
+     * returns staus code 200 on success
+	 */
+    public function toggleBlock()
+    {
         $USER =& Singleton()->USER;
         $db = Database::get();
 
@@ -411,8 +417,12 @@ class ShowPlayerCardPage extends AbstractGamePage
                 ':block_trade'  => $blockTrade,
             ]);
         }
-        $this->sendData(202, '$blockTrade: ' . $blockTrade . ' $blockDm: ' . $blockDm);
+        $this->sendData(200, 'Successfully changed block settings');
     }
+
+    /**
+	 * sends json data to client
+	 */
     private function sendData($Code, $Message)
     {
         $this->sendJSON([

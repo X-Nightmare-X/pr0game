@@ -396,6 +396,7 @@ $LNG['fl_player'] = 'Der Schbieler ';
 $LNG['fl_add_to_attack'] = ' wurde eingeladne.';
 $LNG['fl_already_invited'] = ' wurde bereids  eingeladne.';
 $LNG['fl_dont_exist'] = ' exischdiert nichd.';
+$LNG['fl_blocked'] = ' agdsebdierd geine Einladung.';
 $LNG['fl_acs_invitation_message'] = ' lädd Sie zu einem AGS ein.';
 $LNG['fl_acs_invitation_title'] = 'AGS Einladung';
 $LNG['fl_sac_of_fleet'] = 'Flodden-AGS';

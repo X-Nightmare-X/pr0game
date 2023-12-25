@@ -396,6 +396,7 @@ $LNG['fl_player'] = 'Der Spieler ';
 $LNG['fl_add_to_attack'] = ' wurde eingeladen.';
 $LNG['fl_already_invited'] = ' wurde bereits eingeladen.';
 $LNG['fl_dont_exist'] = ' existiert nicht.';
+$LNG['fl_blocked'] = ' akzeptiert keine Einladung.';
 $LNG['fl_acs_invitation_message'] = ' lädt Sie zu einem AKS ein.';
 $LNG['fl_acs_invitation_title'] = 'AKS Einladung';
 $LNG['fl_sac_of_fleet'] = 'Flotten-AKS';

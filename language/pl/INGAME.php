@@ -392,6 +392,7 @@ $LNG['fl_player'] = 'Gracz ';
 $LNG['fl_add_to_attack'] = ' został zaproszony';
 $LNG['fl_already_invited'] = ' został już zaproszony.';
 $LNG['fl_dont_exist'] = ' nie instnieje.';
+$LNG['fl_blocked'] = ' nie przyjmuje zaproszeń.';
 $LNG['fl_acs_invitation_message'] = ' zaprasza do udziału w ACS.';
 $LNG['fl_acs_invitation_title'] = 'Zaproszenie do ACS';
 $LNG['fl_sac_of_fleet'] = 'Floty-ACS';

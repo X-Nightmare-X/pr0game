@@ -387,6 +387,7 @@ $LNG['fl_player'] = 'Oyuncu ';
 $LNG['fl_add_to_attack'] = ' saldiriya eklendi.';
 $LNG['fl_already_invited'] = ' davet edildi..';
 $LNG['fl_dont_exist'] = ' saldiriya eklenemedi.';
+$LNG['fl_blocked'] = ' davetiyeleri kabul etmiyor.';
 $LNG['fl_acs_invitation_message'] = ' sizi ittifak saldirisina davet ediyor.';
 $LNG['fl_acs_invitation_title'] = 'Ittifak Saldirisi';
 $LNG['fl_sac_of_fleet'] = 'Ittifak Filosu';

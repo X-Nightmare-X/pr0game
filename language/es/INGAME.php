@@ -380,6 +380,7 @@ $LNG['fl_add_to_attack'] = ' fue agregado al ataque.';
 $LNG['fl_selected_resources'] = 'recursos seleccionados';
 $LNG['fl_already_invited'] = ' Ya ha sido invitado.';
 $LNG['fl_dont_exist'] = ' no existe.';
+$LNG['fl_blocked'] = ' no acepta invitaciones.';
 $LNG['fl_acs_invitation_message'] = ' te invita a participar en un SAC.';
 $LNG['fl_acs_invitation_title'] = 'Invitación a SAC';
 $LNG['fl_sac_of_fleet'] = 'SAC de flota';

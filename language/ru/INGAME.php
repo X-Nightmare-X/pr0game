@@ -372,6 +372,7 @@ $LNG['fl_player'] = 'Игрок ';
 $LNG['fl_add_to_attack'] = ' присоединился к САБ.';
 $LNG['fl_already_invited'] = ' уже был приглашён к другому САБ.';
 $LNG['fl_dont_exist'] = ' не смог присоединиться к САБ.';
+$LNG['fl_blocked'] = ' не принимает приглашения.';
 $LNG['fl_acs_invitation_message'] = ' приглашает Вас присоединиться к САБ.';
 $LNG['fl_acs_invitation_title'] = 'Приглашение в САБ';
 $LNG['fl_sac_of_fleet'] = 'САБ';
