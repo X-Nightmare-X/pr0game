@@ -1544,3 +1544,7 @@ $LNG['teamYes'] =                   'Aye';
 $LNG['teamAlumni'] =                'Besuchen Davy Jones';
 $LNG['teamAlumniLong'] =            'Kameraden waren';
 $LNG['teamLegend'] =                'Karte';
+
+//----------------------------------------------------------------------------//
+$LNG['BlockTrade']  = 'Handel blockieren';
+$LNG['blockDm']    = 'PN blockieren';

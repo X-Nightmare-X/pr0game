@@ -1503,3 +1503,7 @@ $LNG['teamYes'] =                   'Ve';
 $LNG['teamAlumni'] =                'Eski / Aktif Olmayan Ekip Üyeleri';
 $LNG['teamAlumniLong'] =            'Teşekkür ederiz';
 $LNG['teamLegend'] =                'Açıklama, Rollerin / Hakların Açıklaması';
+
+//----------------------------------------------------------------------------//
+$LNG['BlockTrade']  = 'Blok ticareti';
+$LNG['blockDm']     = 'Blok O.M.';

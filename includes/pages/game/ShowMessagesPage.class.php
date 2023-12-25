@@ -331,9 +331,14 @@ class ShowMessagesPage extends AbstractGamePage
         $text		= makebr($text);
 
         $session	= Session::load();
+        $blocked    = PlayerUtil::get_block_status($USER['id'], $receiverID);
+        $blockedInverted = PlayerUtil::get_block_status($receiverID, $USER['id']);
 
         if (empty($receiverID) || empty($text) || !isset($session->messageToken) || $session->messageToken != md5($USER['id'].'|'.$receiverID)) {
             $this->sendJSON($LNG['mg_error']);
+        }
+        if ($blocked['block_dm'] == 1 || $blockedInverted['block_dm'] == 1) {
+            $this->sendJSON($LNG['mg_blocked']);
         }
 
         $session->messageToken = null;

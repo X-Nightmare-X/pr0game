@@ -1551,3 +1551,7 @@ $LNG['teamYes'] =                   'Yes';
 $LNG['teamAlumni'] =                'Former / Inactive team members';
 $LNG['teamAlumniLong'] =            'We would like to thank';
 $LNG['teamLegend'] =                'Legend, explanation of roles / rights';
+
+//----------------------------------------------------------------------------//
+$LNG['BlockTrade']  = 'Block trade';
+$LNG['blockDm']    = 'Block DM';

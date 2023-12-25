@@ -1543,3 +1543,6 @@ $LNG['teamYes'] =                   'Ja';
 $LNG['teamAlumni'] =                'Ehemalige, Inagdife Deammidglieder';
 $LNG['teamAlumniLong'] =            'Wir bedangne uns gands herdslich bei';
 $LNG['teamLegend'] =                'Legende, Erglärung der Rollne und Rechde';
+
+$LNG['BlockTrade']  = 'Handel bloggierne';
+$LNG['blockDm']    = 'PN bloggierne';
