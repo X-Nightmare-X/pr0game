@@ -60,7 +60,9 @@
             </a>
             <div class="repairShipContainerContent">
               <span>
-                <p>{$LNG.bd_max_ships_repair}:<br><span style="font-weight:700">{number_format($Element.maxBuildable, 0, ",", ".")}</span></p>
+                <p>{$LNG.bd_wreck_count}: <span style="font-weight:700">{number_format($Element.wrecks, 0, ",", ".")}</span></p>
+                <p>{$LNG.bd_repair_rate}: <span style="font-weight:700">{number_format($repairRate, 1, ",", ".")}%</span></p>
+                <p>{$LNG.bd_max_ships_repair}: <span style="font-weight:700">{number_format($Element.maxBuildable, 0, ",", ".")}</span></p>
               </span>
             </div>
             <div class="repairShipContainerContent">
