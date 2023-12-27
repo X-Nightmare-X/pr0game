@@ -169,10 +169,11 @@ class ShowMessagesPage extends AbstractGamePage
         }
 
         if (Config::get()->message_delete_behavior == 1) {
-            $sql = "UPDATE %%MESSAGES%% SET message_deleted = :timestamp WHERE message_owner = :userID;";
+            $sql = "UPDATE %%MESSAGES%% SET message_deleted = :timestamp WHERE message_id = :messID AND message_owner = :userID;";
             $db->update($sql, [
                 ':timestamp'    => TIMESTAMP,
-                ':userID'       => $USER['id']
+                ':messID' => $delMessID,
+                ':userID'       => $USER['id'],
             ]);
         } else {
             $sql = 'DELETE FROM %%MESSAGES%% WHERE message_id = :messID AND message_owner = :userId;';
