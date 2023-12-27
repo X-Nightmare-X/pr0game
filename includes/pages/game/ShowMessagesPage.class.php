@@ -168,13 +168,19 @@ class ShowMessagesPage extends AbstractGamePage
             $this->sendData(0, $LNG['error']);
         }
 
-
-        $sql = 'DELETE FROM %%MESSAGES%% WHERE message_id = :messID AND message_owner = :userId;';
-
-        $db->delete($sql, [
-            ':userId' => $USER['id'],
-            ':messID' => $delMessID,
-        ]);
+        if (Config::get()->message_delete_behavior == 1) {
+            $sql = "UPDATE %%MESSAGES%% SET message_deleted = :timestamp WHERE message_owner = :userID;";
+            $db->update($sql, [
+                ':timestamp'    => TIMESTAMP,
+                ':userID'       => $USER['id']
+            ]);
+        } else {
+            $sql = 'DELETE FROM %%MESSAGES%% WHERE message_id = :messID AND message_owner = :userId;';
+            $db->delete($sql, [
+                ':userId' => $USER['id'],
+                ':messID' => $delMessID,
+            ]);
+        }
 
         $this->sendData($delMessID, $LNG['mg_deleted']);
     }
