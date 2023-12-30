@@ -69,7 +69,7 @@ class ShowLoginPage extends AbstractLoginPage
             if ($loginData['username'] == $username) {
                 $senderName = $LNG['loginUsernamePMSenderName'];
                 $subject 	= $LNG['loginUsernamePMSubject'];
-                $message 	= sprintf($LNG['loginUsernamePMText']);
+                $message 	= $LNG['loginUsernamePMText'];
     
                 PlayerUtil::sendMessage($loginData['id'], 1, $senderName, 50, $subject, $message, TIMESTAMP);
             }
