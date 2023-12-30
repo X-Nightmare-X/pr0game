@@ -485,6 +485,8 @@ $LNG['bd_repairdock_busy'] = 'Das Reparaturdock arbeitet bereits an einem Auftra
 $LNG['bd_repairdock_empty'] = 'Es ist kein Wrackfeld vorhanden!';
 $LNG['bd_repairdock_deploy'] = 'Die Schiffe wurden wieder in Dienst gestellt!';
 $LNG['bd_max_ships_repair'] = 'Maximal wiederherstellbare Einheiten';
+$LNG['bd_wreck_count'] = 'Wracks im Wrackfeld';
+$LNG['bd_repair_rate'] = 'Reparaturrate';
 $LNG['bd_repairing'] = 'Reparatur in Arbeit';
 $LNG['bd_deployable'] = 'Reparatur abgeschlossen! Automatisches Einsetzten in:';
 $LNG['bd_available'] = 'Vorhanden: ';
@@ -600,7 +602,7 @@ $LNG['mg_read_marked'] = 'Markierte Nachrichten als gelesen markieren';
 $LNG['mg_delete_marked'] = 'Markierte Nachrichten löschen';
 $LNG['mg_read_type_all'] = 'Alle Nachrichten dieses Typs als gelesen markieren';
 $LNG['mg_delete_type_all'] = 'Alle Nachrichten dieses Typs löschen';
-$LNG['mg_delete_unmarked'] = 'Nicht Markierte Nachrichten löschen';
+$LNG['mg_delete_unmarked'] = 'Nicht Markierte Nachrichten dieses Typs löschen';
 $LNG['mg_read_all'] = 'Alle Nachrichten als gelesen markieren';
 $LNG['mg_delete_all'] = 'Alle Nachrichten löschen';
 $LNG['mg_show_only_header_spy_reports'] = 'Spionageberichte nur teilweise anzeigen';
@@ -1530,6 +1532,17 @@ $LNG['spytech_playercard'] = [
 //Team
 $LNG['team'] =                      'Das Team';
 $LNG['teamAktiv'] =                 'Aktiv';
+$LNG['kontakt'] =                   'Hi!<br>'
+                                    .'Auf dieser Seite findest du Informationen zu den Leuten, die dieses Projekt aktiv betreiben, moderieren und weiterentwickeln.<br>'
+                                    .'Wende dich bei Fragen und Problemen gern an uns.<br>'
+                                    .'<br>'
+                                    .'Für den besseren Austausch mit uns, aber auch mit den anderen Mitspielern, haben wir einen Discord-Server eingerichtet.'
+                                    .'Du findest ihn » <a href="https://discord.gg/jhYYN3yuat">hier</a> « oder über das Menü.<br>'
+                                    .'Auf dem Server findest du die aktuellsten News, sowie spannende Memes zwischen den Allianzen des Universums.<br>'
+                                    .'Stelle Fragen zu Spielmechaniken und hilf durch eigene Vorschläge mit bei der Weiterentwicklung des Spiels.<br>'
+                                    .'<br>'
+                                    .'Natürlich antworten wir dir dennoch auch bei Ingame-Nachriten.<br>'
+                                    .'Bedenke jedoch, dass auch wir das Spiel nur als Hobby betreiben. Antworten können sich einige Tage hinziehen.<br>';
 $LNG['teamIngameName'] =            'Ingame Name';
 $LNG['teamDiscordName'] =           'Discord Name';
 $LNG['teamRole'] =                  'Rolle';

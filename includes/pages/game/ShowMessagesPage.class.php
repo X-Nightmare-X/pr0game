@@ -168,13 +168,20 @@ class ShowMessagesPage extends AbstractGamePage
             $this->sendData(0, $LNG['error']);
         }
 
-
-        $sql = 'DELETE FROM %%MESSAGES%% WHERE message_id = :messID AND message_owner = :userId;';
-
-        $db->delete($sql, [
-            ':userId' => $USER['id'],
-            ':messID' => $delMessID,
-        ]);
+        if (Config::get()->message_delete_behavior == 1) {
+            $sql = "UPDATE %%MESSAGES%% SET message_deleted = :timestamp WHERE message_id = :messID AND message_owner = :userID;";
+            $db->update($sql, [
+                ':timestamp'    => TIMESTAMP,
+                ':messID' => $delMessID,
+                ':userID'       => $USER['id'],
+            ]);
+        } else {
+            $sql = 'DELETE FROM %%MESSAGES%% WHERE message_id = :messID AND message_owner = :userId;';
+            $db->delete($sql, [
+                ':userId' => $USER['id'],
+                ':messID' => $delMessID,
+            ]);
+        }
 
         $this->sendData($delMessID, $LNG['mg_deleted']);
     }
@@ -303,16 +310,35 @@ class ShowMessagesPage extends AbstractGamePage
                 }
 
                 if (Config::get()->message_delete_behavior == 1) {
-                    $sql = 'UPDATE %%MESSAGES%% SET message_deleted = :timestamp WHERE message_id NOT IN (' . implode(',', array_keys($messageIDs)) . ') AND message_owner = :userId;';
-                    $db->update($sql, [
-                        ':timestamp' => TIMESTAMP,
-                        ':userId' => $USER['id'],
-                    ]);
+                    $sql = 'UPDATE %%MESSAGES%% SET message_deleted = :timestamp WHERE message_id NOT IN (' . implode(',', array_keys($messageIDs)) . ') AND message_owner = :userId';
+                    if ($MessCategory != 100) {
+                        $sql .= ' AND message_type = :messCategory;';
+                        $db->delete($sql, [
+                            ':timestamp'    => TIMESTAMP,
+                            ':userId'       => $USER['id'],
+                            ':messCategory' => $MessCategory,
+                        ]);
+                    } else {
+                        $sql .= ';';
+                        $db->delete($sql, [
+                            ':timestamp' => TIMESTAMP,
+                            ':userId'    => $USER['id'],
+                        ]);
+                    }
                 } else {
-                    $sql = 'DELETE FROM %%MESSAGES%% WHERE message_id NOT IN ('.implode(',', array_keys($messageIDs)).') AND message_owner = :userId;';
-                    $db->delete($sql, [
-                        ':userId'       => $USER['id'],
-                    ]);
+                    $sql = 'DELETE FROM %%MESSAGES%% WHERE message_id NOT IN ('.implode(',', array_keys($messageIDs)).') AND message_owner = :userId';
+                    if ($MessCategory != 100) {
+                        $sql .= ' AND message_type = :messCategory;';
+                        $db->delete($sql, [
+                            ':userId'       => $USER['id'],
+                            ':messCategory' => $MessCategory,
+                        ]);
+                    } else {
+                        $sql .= ';';
+                        $db->delete($sql, [
+                            ':userId'       => $USER['id'],
+                        ]);
+                    }
                 }
                 break;
         }

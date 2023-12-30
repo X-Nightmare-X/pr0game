@@ -479,6 +479,8 @@ $LNG['bd_repairdock_busy'] = 'Das Reparaturdock arbeitet bereits an einem Auftra
 $LNG['bd_repairdock_empty'] = 'Es ist kein Wrackfeld vorhanden!';
 $LNG['bd_repairdock_deploy'] = 'Die Schiffe wurden wieder in Dienst gestellt!';
 $LNG['bd_max_ships_repair'] = 'Maximal wiederherstellbare Einheiten';
+$LNG['bd_wreck_count'] = 'Wracks im Wrackfeld';
+$LNG['bd_repair_rate'] = 'Reparaturrate';
 $LNG['bd_repairing'] = 'Reparatur in Arbeit';
 $LNG['bd_deployable'] = 'Reparatur abgeschlossen! Automatisches Einsetzten in:';
 $LNG['bd_available'] = 'Vorhanden: ';
@@ -594,7 +596,7 @@ $LNG['mg_read_marked'] = 'Markierte Nachrichten als gelesen markieren';
 $LNG['mg_delete_marked'] = 'Markierte Nachrichten löschen';
 $LNG['mg_read_type_all'] = 'Alle Nachrichten dieses Typs als gelesen markieren';
 $LNG['mg_delete_type_all'] = 'Alle Nachrichten dieses Typs löschen';
-$LNG['mg_delete_unmarked'] = 'Nicht Markierte Nachrichten löschen';
+$LNG['mg_delete_unmarked'] = 'Nicht Markierte Nachrichten dieses Typs löschen';
 $LNG['mg_read_all'] = 'Alle Nachrichten als gelesen markieren';
 $LNG['mg_delete_all'] = 'Alle Nachrichten löschen';
 $LNG['mg_show_only_header_spy_reports'] = 'Spionageberichte nur teilweise anzeigen';
@@ -1523,6 +1525,17 @@ $LNG['spytech_playercard'] = [
 //Team
 $LNG['team'] =                      'Die Freibeuter';
 $LNG['teamAktiv'] =                 'Aktiv';
+$LNG['kontakt'] =                   'Ahoi!<br>'
+                                    .'Auf dies\' Seite findest du Kunde über jene, die dieses Unterfangen aktiv betreiben, moderieren und fortführen.<br>'
+                                    .'Wend\' dich bei Fragen und Sorgen gern an uns.<br>'
+                                    .'<br>'
+                                    .'Für den bess\'ren Austausch mit uns und den anderen Kaperfahrern haben wir einen Discord-Knoten eingerichtet. '
+                                    .'Du findest ihn » <a href="https://discord.gg/jhYYN3yuat">hier</a> « oder über das Menü.<br>'
+                                    .'Auf dem Knoten erblickst du die neuesten Kunde, sowie spannende Seemannsgarn zwischen den Allianzen des Universums.<br>'
+                                    .'Stell\' Fragen zu den Spielgebräuchen und hilf durch eig\'ne Vorschläge mit bei der Fortentwicklung des Spiels.<br>'
+                                    .'<br>'
+                                    .'Selbstverständlich antworten wir dir auch via Flaschenpost.<br>'
+                                    .'Bedenk\' jedoch, dass auch wir das Spiel bloß als Freibeutervergnügen betreiben. Antworten können sich ein paar Tagesläufe hinzieh\'n, je nachdem wie voll die Rum bauddel ist.<br>';
 $LNG['teamIngameName'] =            'Ingame Name';
 $LNG['teamDiscordName'] =           'Discord Name';
 $LNG['teamRole'] =                  'Rolle';

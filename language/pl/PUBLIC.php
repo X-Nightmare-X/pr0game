@@ -54,12 +54,16 @@ $LNG['gameInformations']			= "Gra online strategiczno-ekonomiczna czasu rzeczywi
 
 // Login
 $LNG['loginHeader']					= 'Zaloguj';
-$LNG['loginUsername']				= 'Nazwa użytkownika';
+$LNG['loginUsername']				= 'Nazwa użytkownika/adres e-mail';
 $LNG['loginPassword']				= 'Hasło';
 $LNG['loginButton']					= 'Login';
 $LNG['loginInfo']					= 'Logując się akceptujesz %s.';
 $LNG['loginWelcome']				= 'Witaj na %s';
 $LNG['loginServerDesc']				= '%s to gra online, gdzie stajesz naprzeciw innych graczy, <strong>jednocześnie</strong> próbując zostać najlepszym. Wszystko, czego potrzebujesz do gry, to zwykła przeglądarka.';
+$LNG['loginUsernamePMSenderName']	= 'Administrator';
+$LNG['loginUsernamePMSubject']	    = 'Uwaga: Zmiana loginu';
+$LNG['loginUsernamePMText']		    = 'Ze względu na zagrożenie bezpieczeństwa podczas logowania za pomocą nazwy użytkownika, login zostanie wkrótce zmieniony na zapisany adres e-mail.<p>'
+    . 'Zaloguj się teraz, używając wyłącznie adresu e-mail. Można go znaleźć w menu ustawień.';
 
 // Register
 $LNG['registerUsername']			= 'Nazwa użytkownika';
@@ -136,9 +140,10 @@ $LNG['passwordNext']				= 'Dalej';
 
 //case default
 
-$LNG['login_error_1']				= 'Błąd nazwy użytkownika lub hasła!';
+$LNG['login_error_1']				= 'Nieprawidłowa nazwa użytkownika, adres e-mail lub hasło!';
 $LNG['login_error_2']				= 'Ktoś zalogował się na twoje konto z innego komputera!';
 $LNG['login_error_3']				= 'Sesja wygasła!';
+$LNG['login_error_4']				= 'Podjęto zbyt wiele prób logowania. Skontaktuj się z administratorem przez Discord, aby uzyskać nowe dane logowania. Przygotuj swój adres e-mail do weryfikacji.';
 
 //Rules
 $LNG['rulesHeader']					= 'Regulamin';
