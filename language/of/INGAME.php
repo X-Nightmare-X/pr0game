@@ -1522,6 +1522,17 @@ $LNG['spytech_playercard'] = [
 //Team
 $LNG['team'] =                      'Das Deam';
 $LNG['teamAktiv'] =                 'Agdif';
+$LNG['kontakt'] =                   'Hi!<br>'
+                                    .'On this page you will find information about the people who actively run, moderate and develop this project.<br>'
+                                    .'Feel free to contact us if you have any questions or problems.<br>'
+                                    .'<br>'
+                                    .'For a better exchange with us, but also with the other co-spilers, we have set up a Discord server.'
+                                    .'You can find it " <a href="https://discord.gg/jhYYN3yuat">here</a> " or via the menu.<br>'
+                                    .'On the server you will find the latest news, as well as exciting memes between the alliances of the universe.<br>'
+                                    .'Ask questions about game mechanics and help with your own suggestions for the further development of the game.<br>'
+                                    .'<br>'
+                                    .'Of course, we will also answer your in-game questions.<br>'
+                                    .'However, please bear in mind that we only play the game as a hobby. Answers may take a few days.<br>';
 $LNG['teamIngameName'] =            'Ingame Name';
 $LNG['teamDiscordName'] =           'Lord gorea Name';
 $LNG['teamRole'] =                  'Rolle';
