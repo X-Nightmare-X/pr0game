@@ -55,12 +55,16 @@ $LNG['gameInformations']    		= "A space strategy game in real time.\nGame with 
 
 // Login
 $LNG['loginHeader']					= 'Login';
-$LNG['loginUsername']				= 'Username';
+$LNG['loginUsername']				= 'Username/email';
 $LNG['loginPassword']				= 'Password';
 $LNG['loginButton']					= 'Login';
 $LNG['loginInfo']					= 'With the login I accept the %s.';
 $LNG['loginWelcome']				= 'Welcome to %s';
 $LNG['loginServerDesc']				= '%s is a space strategy game with hundreds of players playing together <strong>at the same time</strong> trying to be the best. Everything what you need to the play is a Standard Browser.';
+$LNG['loginUsernamePMSenderName']	= 'Administrator';
+$LNG['loginUsernamePMSubject']	    = 'Attention: Login change';
+$LNG['loginUsernamePMText']		    = 'Due to a security risk when logging in via the user name, the login will soon be changed to the stored e-mail address.<p>'
+    . 'Please log in now with your e-mail address only. You can find it in the settings menu.';
 
 // Register
 $LNG['registerUsername']			= 'Username';
@@ -137,9 +141,10 @@ $LNG['passwordNext']				= 'Next';
 
 //case default
 
-$LNG['login_error_1']				= 'Wrong username/password!';
+$LNG['login_error_1']				= 'Wrong username, email or password!';
 $LNG['login_error_2']				= 'Someone has logged in from a different PC in your account, or your IP is different!';
 $LNG['login_error_3']				= 'Your session has expired!';
+$LNG['login_error_4']				= 'There have been too many login attempts. Please contact an administrator via Discord for new login details. Have your e-mail address ready for verification.';
 
 //Rules
 $LNG['rulesHeader']					= 'Rules';

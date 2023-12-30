@@ -55,12 +55,16 @@ $LNG['gameInformations']			= "Un juego de estrategia espacial en tiempo real.\nJ
 
 // Login
 $LNG['loginHeader']					= 'Iniciar Sesión';
-$LNG['loginUsername']				= 'Usuario';
+$LNG['loginUsername']				= 'Usuario/email';
 $LNG['loginPassword']				= 'Contraseña';
 $LNG['loginButton']					= 'Iniciar Sesión';
 $LNG['loginInfo']					= 'Con el Inicio de Sesión acepto las %s.';
 $LNG['loginWelcome']				= 'Bienvenido a %s';
 $LNG['loginServerDesc']				= '%s es un juego de estrategia espacial con cientos de jugadores jugando juntos <strong>al mismo tiempo</strong> tratando de ser el mejor. Todo lo que necesitas para jugar es un navegador estándar.';
+$LNG['loginUsernamePMSenderName']	= 'Administrador';
+$LNG['loginUsernamePMSubject']	    = 'Atención: Cambio de login';
+$LNG['loginUsernamePMText']		    = 'Debido a un riesgo de seguridad al iniciar sesión a través del nombre de usuario, el inicio de sesión pronto se cambiará a la dirección de correo electrónico almacenada.<p>'
+    . 'Conéctese ahora sólo con su dirección de correo electrónico. La encontrará en el menú de configuración.';
 
 // Register
 $LNG['registerUsername']			= 'Usuario';
@@ -137,9 +141,10 @@ $LNG['passwordNext']				= 'Siguiente';
 
 //case default
 
-$LNG['login_error_1']				= 'Incorrecto Usuario/Contraseña!';
+$LNG['login_error_1']				= 'Nombre de usuario, correo electrónico o contraseña incorrectos.';
 $LNG['login_error_2']				= 'Alguien se ha conectado desde otro PC en su cuenta, o su dirección IP es diferente!';
 $LNG['login_error_3']				= 'Tu sesión ha expirado!';
+$LNG['login_error_4']				= 'Ha habido demasiados intentos de inicio de sesión. Ponte en contacto con un administrador a través de Discord para obtener nuevos datos de acceso. Ten preparada tu dirección de correo electrónico para la verificación.';
 
 //Rules
 $LNG['rulesHeader']					= 'Reglas';

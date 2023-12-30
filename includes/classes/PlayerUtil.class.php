@@ -1576,6 +1576,36 @@ class PlayerUtil
             'colorNeutral' => $USER['colorNeutral'],
         ];
     }
+
+    public static function get_block_status($userId, $targetUserId)
+    {
+        $db = Database::get();
+
+        $sql = "SELECT `block_dm`, `block_trade` FROM %%USERS_BLOCKLIST%% WHERE blocked_user = :userID AND blocking_user = :targetID;";
+        $blocked = $db->selectSingle($sql, [
+            ':userID'       => $userId,
+            ':targetID'     => $targetUserId,
+        ]);
+        if (empty($blocked)) {
+            return [
+                'block_dm' => 0,
+                'block_trade' => 0,
+            ];
+        }
+        return $blocked;
+    }
+
+    public static function get_authlevel($userId)
+    {
+        $db = Database::get();
+
+        $sql = "SELECT `authlevel` FROM %%USERS%% WHERE id = :userID;";
+        $authlevel = $db->selectSingle($sql, [
+            ':userID'       => $userId,
+        ], 'authlevel');
+
+        return $authlevel;
+    }
 }
 /*
     Enable to debug

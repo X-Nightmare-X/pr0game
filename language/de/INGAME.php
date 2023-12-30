@@ -402,6 +402,7 @@ $LNG['fl_player'] = 'Der Spieler ';
 $LNG['fl_add_to_attack'] = ' wurde eingeladen.';
 $LNG['fl_already_invited'] = ' wurde bereits eingeladen.';
 $LNG['fl_dont_exist'] = ' existiert nicht.';
+$LNG['fl_blocked'] = ' akzeptiert keine Einladung.';
 $LNG['fl_acs_invitation_message'] = ' lädt Sie zu einem AKS ein.';
 $LNG['fl_acs_invitation_title'] = 'AKS Einladung';
 $LNG['fl_sac_of_fleet'] = 'Flotten-AKS';
@@ -484,6 +485,8 @@ $LNG['bd_repairdock_busy'] = 'Das Reparaturdock arbeitet bereits an einem Auftra
 $LNG['bd_repairdock_empty'] = 'Es ist kein Wrackfeld vorhanden!';
 $LNG['bd_repairdock_deploy'] = 'Die Schiffe wurden wieder in Dienst gestellt!';
 $LNG['bd_max_ships_repair'] = 'Maximal wiederherstellbare Einheiten';
+$LNG['bd_wreck_count'] = 'Wracks im Wrackfeld';
+$LNG['bd_repair_rate'] = 'Reparaturrate';
 $LNG['bd_repairing'] = 'Reparatur in Arbeit';
 $LNG['bd_deployable'] = 'Reparatur abgeschlossen! Automatisches Einsetzten in:';
 $LNG['bd_available'] = 'Vorhanden: ';
@@ -599,7 +602,7 @@ $LNG['mg_read_marked'] = 'Markierte Nachrichten als gelesen markieren';
 $LNG['mg_delete_marked'] = 'Markierte Nachrichten löschen';
 $LNG['mg_read_type_all'] = 'Alle Nachrichten dieses Typs als gelesen markieren';
 $LNG['mg_delete_type_all'] = 'Alle Nachrichten dieses Typs löschen';
-$LNG['mg_delete_unmarked'] = 'Nicht Markierte Nachrichten löschen';
+$LNG['mg_delete_unmarked'] = 'Nicht Markierte Nachrichten dieses Typs löschen';
 $LNG['mg_read_all'] = 'Alle Nachrichten als gelesen markieren';
 $LNG['mg_delete_all'] = 'Alle Nachrichten löschen';
 $LNG['mg_show_only_header_spy_reports'] = 'Spionageberichte nur teilweise anzeigen';
@@ -614,6 +617,7 @@ $LNG['mg_message_type'] = 'Nachrichtentyp';
 $LNG['mg_total'] = 'Insgesamt';
 $LNG['mg_game_operators'] = 'Game Operatoren';
 $LNG['mg_error'] = 'Empfänger nicht gefunden!';
+$LNG['mg_blocked'] = 'Empfänger akzeptiert keine Nachrichten!';
 $LNG['mg_overview'] = 'Nachrichtenverwaltung';
 $LNG['mg_send_new'] = 'Eine Nachricht schreiben';
 $LNG['mg_send_to'] = 'Empfänger';
@@ -1528,6 +1532,17 @@ $LNG['spytech_playercard'] = [
 //Team
 $LNG['team'] =                      'Das Team';
 $LNG['teamAktiv'] =                 'Aktiv';
+$LNG['kontakt'] =                   'Hi!<br>'
+                                    .'Auf dieser Seite findest du Informationen zu den Leuten, die dieses Projekt aktiv betreiben, moderieren und weiterentwickeln.<br>'
+                                    .'Wende dich bei Fragen und Problemen gern an uns.<br>'
+                                    .'<br>'
+                                    .'Für den besseren Austausch mit uns, aber auch mit den anderen Mitspielern, haben wir einen Discord-Server eingerichtet.'
+                                    .'Du findest ihn » <a href="https://discord.gg/jhYYN3yuat">hier</a> « oder über das Menü.<br>'
+                                    .'Auf dem Server findest du die aktuellsten News, sowie spannende Memes zwischen den Allianzen des Universums.<br>'
+                                    .'Stelle Fragen zu Spielmechaniken und hilf durch eigene Vorschläge mit bei der Weiterentwicklung des Spiels.<br>'
+                                    .'<br>'
+                                    .'Natürlich antworten wir dir dennoch auch bei Ingame-Nachriten.<br>'
+                                    .'Bedenke jedoch, dass auch wir das Spiel nur als Hobby betreiben. Antworten können sich einige Tage hinziehen.<br>';
 $LNG['teamIngameName'] =            'Ingame Name';
 $LNG['teamDiscordName'] =           'Discord Name';
 $LNG['teamRole'] =                  'Rolle';
@@ -1550,4 +1565,8 @@ $LNG['teamYes'] =                   'Ja';
 $LNG['teamAlumni'] =                'Ehemalige / Inaktive / Gelegentliche Teammitglieder';
 $LNG['teamAlumniLong'] =            'Wir bedanken uns ganz herzlich bei';
 $LNG['teamLegend'] =                'Legende, Erklärung der Rollen / Rechte';
+
+//----------------------------------------------------------------------------//
+$LNG['BlockTrade']  = 'Handel blockieren';
+$LNG['blockDm']    = 'PN blockieren';
 // Translated into German by Jan . All rights reversed (C) 2011

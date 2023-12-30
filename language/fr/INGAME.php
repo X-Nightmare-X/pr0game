@@ -372,6 +372,7 @@ $LNG['fl_player'] = 'Le joueur ';
 $LNG['fl_add_to_attack'] = ' a été invité.';
 $LNG['fl_already_invited'] = ' a été invité.';
 $LNG['fl_dont_exist'] = ' n\'existe pas.';
+$LNG['fl_blocked'] = ' n\'accepte pas les invitations.';
 $LNG['fl_acs_invitation_message'] = ' vous invite a partciper à une ACS.';
 $LNG['fl_acs_invitation_title'] = 'Invitation à ACS';
 $LNG['fl_sac_of_fleet'] = 'flotte ACS';
@@ -447,6 +448,8 @@ $LNG['bd_repairdock_busy'] = 'Le dock de réparation travaille déjà sur une mi
 $LNG['bd_repairdock_empty'] = 'Il n\'y a pas de champ d\'épaves !';
 $LNG['bd_repairdock_deploy'] = 'Les navires ont été remis en service !';
 $LNG['bd_max_ships_repair'] = 'Unités maximales récupérables';
+$LNG['bd_wreck_count'] = 'Épaves dans le champ d\'épaves';
+$LNG['bd_repair_rate'] = 'Taux de réparation';
 $LNG['bd_repairing'] = 'Réparation en cours';
 $LNG['bd_deployable'] = 'Réparation terminée ! Déploiement automatique en cours :';
 $LNG['bd_available'] = 'Disponible: ';
@@ -562,7 +565,7 @@ $LNG['mg_no_text'] = 'Aucun texte fourni';
 $LNG['mg_msg_sended'] = 'Message envoyé !';
 $LNG['mg_delete_marked'] = 'Supprimer le(s) message(s) sélectionné(s)';
 $LNG['mg_delete_type_all'] = 'Supprimer tous les messages de ce type';
-$LNG['mg_delete_unmarked'] = 'Supprimer tous les messages sélectionnés';
+$LNG['mg_delete_unmarked'] = 'Supprimer les messages non marqués de ce type';
 $LNG['mg_delete_all'] = 'Supprimer tous les messages';
 $LNG['mg_show_only_header_spy_reports'] = 'Montrer seulement une partie des rapports d\'espionnage';
 $LNG['mg_action'] = 'Action';
@@ -1457,6 +1460,17 @@ $LNG['spytech_playercard'] = [
 //Team
 $LNG['team'] =                      'L\'équipe';
 $LNG['teamAktiv'] =                 'Actif';
+$LNG['kontakt'] =                   'Salut!<br>'
+                                    .'Sur cette page, tu trouveras des informations sur les personnes qui gèrent, modèrent et développent activement ce projet.<br>'
+                                    .'N\'hésite pas à nous contacter si tu as des questions ou des problèmes.<br>'
+                                    .'<br>'
+                                    .'Pour faciliter l\'échange avec nous, mais aussi avec les autres membres du projet, nous avons mis en place un serveur Discord.'
+                                    .'Tu le trouveras " <a href="https://discord.gg/jhYYN3yuat">ici</a> " ou via le menu.<br>'
+                                    .'Sur le serveur, tu trouveras les dernières nouvelles, ainsi que des mèmes passionnants entre les alliances de l\'univers.<br>'
+                                    .'Pose des questions sur les mécanismes du jeu et contribue au développement du jeu par tes propres suggestions.<br>'
+                                    .'<br>'
+                                    .'Bien entendu, nous te répondrons également sur les post-its en jeu.<br>'
+                                    .'Bedenke jedoch, dass auch wir das Spiel nur als Hobby betreiben. Les réponses peuvent prendre quelques jours.<br>';
 $LNG['teamIngameName'] =            'Nom du jeu';
 $LNG['teamDiscordName'] =           'Nom de Discord';
 $LNG['teamRole'] =                  'Rôle';
@@ -1479,3 +1493,7 @@ $LNG['teamYes'] =                   'Oui';
 $LNG['teamAlumni'] =                'Anciens membres de l\'équipe / Membres inactifs de l\'équipe';
 $LNG['teamAlumniLong'] =            'Nous tenons à remercier';
 $LNG['teamLegend'] =                'Légende, Explication des rôles / droits';
+
+//----------------------------------------------------------------------------//
+$LNG['BlockTrade']  = 'Commerce en bloc';
+$LNG['blockDm']    = 'Bloc PM';

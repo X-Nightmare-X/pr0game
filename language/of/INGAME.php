@@ -396,6 +396,7 @@ $LNG['fl_player'] = 'Der Schbieler ';
 $LNG['fl_add_to_attack'] = ' wurde eingeladne.';
 $LNG['fl_already_invited'] = ' wurde bereids  eingeladne.';
 $LNG['fl_dont_exist'] = ' exischdiert nichd.';
+$LNG['fl_blocked'] = ' agdsebdierd geine Einladung.';
 $LNG['fl_acs_invitation_message'] = ' lädd Sie zu einem AGS ein.';
 $LNG['fl_acs_invitation_title'] = 'AGS Einladung';
 $LNG['fl_sac_of_fleet'] = 'Flodden-AGS';
@@ -478,6 +479,8 @@ $LNG['bd_repairdock_busy'] = 'Das Rebaradurdogg schneided, renderd, läd-hoch be
 $LNG['bd_repairdock_empty'] = 'Es isd gein Wraggfeld forhandne etzala!';
 $LNG['bd_repairdock_deploy'] = 'Die Schiffe wurdne scho widder in Diensd gesdelld des bascht scho!';
 $LNG['bd_max_ships_repair'] = 'Maggsimal wiederhersdellbare Einheidne';
+$LNG['bd_wreck_count'] = 'Wraggs im Wraggfeld';
+$LNG['bd_repair_rate'] = 'Rebaradurrade';
 $LNG['bd_repairing'] = 'Rebaradur in Abbeid';
 $LNG['bd_deployable'] = 'Rebaradur abgeschlossne tazächlich sogar! Audomadisches Einseddsdne in:';
 $LNG['bd_available'] = 'Worhandne: ';
@@ -593,7 +596,7 @@ $LNG['mg_read_marked'] = 'Margierte Nachrichdne als gelesne margieren';
 $LNG['mg_delete_marked'] = 'Margierte Nachrichdne löschen';
 $LNG['mg_read_type_all'] = 'Alle Nachrichdne dieses Dyps als gelesne margieren';
 $LNG['mg_delete_type_all'] = 'Alle Nachrichdne dieses Dyps löschen';
-$LNG['mg_delete_unmarked'] = 'Nichd Margierte Nachrichdne löschen';
+$LNG['mg_delete_unmarked'] = 'Nichd Margierde Nachrichdne dieses Dybs löschne';
 $LNG['mg_read_all'] = 'Alle Nachrichdne als gelesne margieren';
 $LNG['mg_delete_all'] = 'Alle Nachrichdne wegmeddln';
 $LNG['mg_show_only_header_spy_reports'] = 'Schbionageberichte nur deilweise anzeigen';
@@ -1521,6 +1524,17 @@ $LNG['spytech_playercard'] = [
 //Team
 $LNG['team'] =                      'Das Deam';
 $LNG['teamAktiv'] =                 'Agdif';
+$LNG['kontakt'] =                   'Hi!<br>'
+                                    .'On this page you will find information about the people who actively run, moderate and develop this project.<br>'
+                                    .'Feel free to contact us if you have any questions or problems.<br>'
+                                    .'<br>'
+                                    .'For a better exchange with us, but also with the other co-spilers, we have set up a Discord server.'
+                                    .'You can find it " <a href="https://discord.gg/jhYYN3yuat">here</a> " or via the menu.<br>'
+                                    .'On the server you will find the latest news, as well as exciting memes between the alliances of the universe.<br>'
+                                    .'Ask questions about game mechanics and help with your own suggestions for the further development of the game.<br>'
+                                    .'<br>'
+                                    .'Of course, we will also answer your in-game questions.<br>'
+                                    .'However, please bear in mind that we only play the game as a hobby. Answers may take a few days.<br>';
 $LNG['teamIngameName'] =            'Ingame Name';
 $LNG['teamDiscordName'] =           'Lord gorea Name';
 $LNG['teamRole'] =                  'Rolle';
@@ -1543,3 +1557,6 @@ $LNG['teamYes'] =                   'Ja';
 $LNG['teamAlumni'] =                'Ehemalige, Inagdife Deammidglieder';
 $LNG['teamAlumniLong'] =            'Wir bedangne uns gands herdslich bei';
 $LNG['teamLegend'] =                'Legende, Erglärung der Rollne und Rechde';
+
+$LNG['BlockTrade']  = 'Handel bloggierne';
+$LNG['blockDm']    = 'PN bloggierne';

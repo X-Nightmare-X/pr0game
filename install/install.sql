@@ -868,6 +868,7 @@ CREATE TABLE `%PREFIX%users` (
   `password` varchar(60) NOT NULL DEFAULT '',
   `email` varchar(64) NOT NULL DEFAULT '',
   `email_2` varchar(64) NOT NULL DEFAULT '',
+  `failed_logins` tinyint(1) NOT NULL DEFAULT '0',
   `lang` varchar(2) NOT NULL DEFAULT 'de',
   `authattack` tinyint(1) NOT NULL DEFAULT '0',
   `authlevel` tinyint(1) NOT NULL DEFAULT '0',
@@ -1023,6 +1024,17 @@ CREATE TABLE `%PREFIX%users_to_acs` (
   KEY `acsID` (`acsID`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+CREATE TABLE `%PREFIX%users_blocklist` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `blocking_user` int(11) unsigned NOT NULL,
+  `blocked_user` int(11) unsigned NOT NULL,
+  `block_dm` int(1) unsigned NOT NULL DEFAULT '0',
+  `block_trade` int(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE INDEX idx_userids ON `%PREFIX%users_blocklist` (`blocking_user`, `blocked_user`);
+
 CREATE TABLE `%PREFIX%users_to_topkb` (
   `rid` varchar(32) NOT NULL,
   `uid` int(11) NOT NULL,
@@ -1042,6 +1054,7 @@ CREATE TABLE `%PREFIX%users_valid` (
  `language` varchar(3) NOT NULL,
  `universe` tinyint(3) unsigned NOT NULL,
  `referralID` int(11) DEFAULT NULL,
+ `failed_logins` tinyint(1) NOT NULL DEFAULT '0',
  PRIMARY KEY (`validationID`,`validationKey`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

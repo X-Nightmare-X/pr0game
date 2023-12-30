@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-define('DB_VERSION_REQUIRED', 58);
+define('DB_VERSION_REQUIRED', 60);
 define('DB_NAME'			, $database['databasename']);
 define('DB_PREFIX'			, $database['tableprefix']);
 
@@ -61,6 +61,7 @@ $dbTableNames   = [
     'TOPKB'                 => DB_PREFIX . 'topkb',
     'TOPKB_USERS'           => DB_PREFIX . 'users_to_topkb',
     'USERS'                 => DB_PREFIX . 'users',
+    'USERS_BLOCKLIST'       => DB_PREFIX . 'users_blocklist',
     'USERS_TO_ACHIEVEMENTS' => DB_PREFIX . 'users_to_achievements',
     'USERS_TO_ACS'          => DB_PREFIX . 'users_to_acs',
     'USERS_COMMENTS'        => DB_PREFIX . 'users_comments',
