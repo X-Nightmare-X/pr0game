@@ -868,6 +868,7 @@ CREATE TABLE `%PREFIX%users` (
   `password` varchar(60) NOT NULL DEFAULT '',
   `email` varchar(64) NOT NULL DEFAULT '',
   `email_2` varchar(64) NOT NULL DEFAULT '',
+  `failed_logins` tinyint(1) NOT NULL DEFAULT '0',
   `lang` varchar(2) NOT NULL DEFAULT 'de',
   `authattack` tinyint(1) NOT NULL DEFAULT '0',
   `authlevel` tinyint(1) NOT NULL DEFAULT '0',
@@ -1053,6 +1054,7 @@ CREATE TABLE `%PREFIX%users_valid` (
  `language` varchar(3) NOT NULL,
  `universe` tinyint(3) unsigned NOT NULL,
  `referralID` int(11) DEFAULT NULL,
+ `failed_logins` tinyint(1) NOT NULL DEFAULT '0',
  PRIMARY KEY (`validationID`,`validationKey`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
