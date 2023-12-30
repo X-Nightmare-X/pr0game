@@ -41,7 +41,7 @@ class ShowRepairdockPage extends AbstractGamePage
         $sql = "SELECT * FROM %%PLANET_WRECKFIELD%% WHERE `planetID` = :planetID;";
         $wreckfield = $db->selectSingle($sql, [':planetID' => $PLANET['id']]);
 
-        if (empty($wreckfield)) {
+        if (empty($wreckfield) || (empty($wreckfield['ships']) && empty($wreckfield['repair_order']))) {
             $this->printMessage($LNG['bd_repairdock_empty']);
         }
 
@@ -172,6 +172,7 @@ class ShowRepairdockPage extends AbstractGamePage
                 'available' => $PLANET[$resource[$elementID]],
                 'elementTime' => $elementTime,
                 'maxBuildable' => floatToString($maxBuildable),
+                'wrecks' => $ships[$elementID],
             ];
         }
         $SolarEnergy = round((($PLANET['temp_max'] + 160) / 6) * Config::get()->energySpeed, 1);
@@ -189,6 +190,7 @@ class ShowRepairdockPage extends AbstractGamePage
                 : sprintf($LNG['ov_have_new_messages'], pretty_number($Messages))) : false,
             'message_type' => $USER['showMessageCategory'] === 1 ? $USER['message_type'] : false,
             'SolarEnergy' => $SolarEnergy,
+            'repairRate' => $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]) * 100,
         ]);
 
         $this->display('page.repairdock.default.tpl');
