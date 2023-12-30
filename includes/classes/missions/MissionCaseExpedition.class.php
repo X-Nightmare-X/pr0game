@@ -441,6 +441,7 @@ HTML;
         ];
 
         $reportData = GenerateReport($combatResult, $reportInfo, EXPO_FIGHT);
+        $reportData['time']	= $this->_fleet['fleet_end_stay'];
         $reportID = md5(uniqid('', true) . TIMESTAMP);
 
         $sql = "INSERT INTO %%RW%% SET
@@ -452,7 +453,7 @@ HTML;
         Database::get()->insert($sql, [
             ':reportId' => $reportID,
             ':reportData' => serialize($reportData),
-            ':time' => $this->_fleet['fleet_start_time'],
+            ':time' => $this->_fleet['fleet_end_stay'],
             ':attacker' => $this->_fleet['fleet_owner'],
         ]);
 
@@ -582,12 +583,13 @@ HTML;
         // Get Expeditions count in this system
         $sql = "SELECT COUNT(*) AS total FROM %%LOG_FLEETS%% where `fleet_end_galaxy` = :fleet_end_galaxy"
             . " and `fleet_end_system` = :fleet_end_system and `fleet_end_planet` = :fleet_end_planet"
-            . " and `fleet_end_stay` > UNIX_TIMESTAMP(NOW() - INTERVAL 1 DAY)";
+            . " and `fleet_end_stay` > UNIX_TIMESTAMP(NOW() - INTERVAL 1 DAY) and fleet_universe = :universe";
 
         $expeditionsCount = Database::get()->selectSingle($sql, [
-            'fleet_end_galaxy' => $this->_fleet['fleet_end_galaxy'],
-            'fleet_end_system' => $this->_fleet['fleet_end_system'],
-            'fleet_end_planet' => $this->_fleet['fleet_end_planet']
+            'fleet_end_galaxy'  => $this->_fleet['fleet_end_galaxy'],
+            'fleet_end_system'  => $this->_fleet['fleet_end_system'],
+            'fleet_end_planet'  => $this->_fleet['fleet_end_planet'],
+            'universe'          => $this->_fleet['fleet_universe'],
         ], 'total');
 
         // Hold time bonus

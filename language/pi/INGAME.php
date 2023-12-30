@@ -396,6 +396,7 @@ $LNG['fl_player'] = 'Der Spieler ';
 $LNG['fl_add_to_attack'] = ' wurde eingeladen.';
 $LNG['fl_already_invited'] = ' wurde bereits eingeladen.';
 $LNG['fl_dont_exist'] = ' existiert nicht.';
+$LNG['fl_blocked'] = ' akzeptiert keine Einladung.';
 $LNG['fl_acs_invitation_message'] = ' lädt Sie zu einem AKS ein.';
 $LNG['fl_acs_invitation_title'] = 'AKS Einladung';
 $LNG['fl_sac_of_fleet'] = 'Flotten-AKS';
@@ -1526,8 +1527,8 @@ $LNG['teamIngameName'] =            'Ingame Name';
 $LNG['teamDiscordName'] =           'Discord Name';
 $LNG['teamRole'] =                  'Rolle';
 $LNG['teamPlayer'] =                'Matrose';
-$LNG['teamAdmin'] =                 'Kaptän';
-$LNG['teamAdminLong'] =             'Befeligt das Schiff';
+$LNG['teamAdmin'] =                 'Kapitän';
+$LNG['teamAdminLong'] =             'Befehligt das Schiff';
 $LNG['teamDatabase'] =              'Lademeister';
 $LNG['teamTickets'] =               'Schreiber';
 $LNG['teamTicketsLong'] =           'Kann bei allen eröffneten Tickets mitlesen';
@@ -1544,3 +1545,7 @@ $LNG['teamYes'] =                   'Aye';
 $LNG['teamAlumni'] =                'Besuchen Davy Jones';
 $LNG['teamAlumniLong'] =            'Kameraden waren';
 $LNG['teamLegend'] =                'Karte';
+
+//----------------------------------------------------------------------------//
+$LNG['BlockTrade']  = 'Handel blockieren';
+$LNG['blockDm']    = 'PN blockieren';

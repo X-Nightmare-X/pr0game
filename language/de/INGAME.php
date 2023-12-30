@@ -402,6 +402,7 @@ $LNG['fl_player'] = 'Der Spieler ';
 $LNG['fl_add_to_attack'] = ' wurde eingeladen.';
 $LNG['fl_already_invited'] = ' wurde bereits eingeladen.';
 $LNG['fl_dont_exist'] = ' existiert nicht.';
+$LNG['fl_blocked'] = ' akzeptiert keine Einladung.';
 $LNG['fl_acs_invitation_message'] = ' lädt Sie zu einem AKS ein.';
 $LNG['fl_acs_invitation_title'] = 'AKS Einladung';
 $LNG['fl_sac_of_fleet'] = 'Flotten-AKS';
@@ -614,6 +615,7 @@ $LNG['mg_message_type'] = 'Nachrichtentyp';
 $LNG['mg_total'] = 'Insgesamt';
 $LNG['mg_game_operators'] = 'Game Operatoren';
 $LNG['mg_error'] = 'Empfänger nicht gefunden!';
+$LNG['mg_blocked'] = 'Empfänger akzeptiert keine Nachrichten!';
 $LNG['mg_overview'] = 'Nachrichtenverwaltung';
 $LNG['mg_send_new'] = 'Eine Nachricht schreiben';
 $LNG['mg_send_to'] = 'Empfänger';
@@ -1540,7 +1542,7 @@ $LNG['teamTicketsLong'] =           'Kann bei allen eröffneten Tickets mitlesen
 $LNG['teamScripte'] =               'Skripte überprüfen';
 $LNG['teamScripteLong'] =           'Bewertet die von den Spielern erstellten Skripte, damit das Team<br>entscheiden kann, ob das Skript mit den Features erlaubt werden darf';
 $LNG['teamMod'] =                   'Moderator';
-$LNG['teamModLong'] =               'BBearbeitet eure Fälle/Probleme<br>Versucht für ein faires Spielerlebnis zu sorgen<br>Trägt bei Bestrafungen die Verantwortung<br>Hat Zugriff auf Discord-Bereich für Mod-Diskussionen<br>Hat Zugriff auf Discord-Bereich für Dev-Diskussionen<br>Hat Zugriff auf Discord-Bereich für Ticketbesprechungen mit Devs';
+$LNG['teamModLong'] =               'Bearbeitet eure Fälle/Probleme<br>Versucht für ein faires Spielerlebnis zu sorgen<br>Trägt bei Bestrafungen die Verantwortung<br>Hat Zugriff auf Discord-Bereich für Mod-Diskussionen<br>Hat Zugriff auf Discord-Bereich für Dev-Diskussionen<br>Hat Zugriff auf Discord-Bereich für Ticketbesprechungen mit Devs';
 $LNG['teamEmergency'] =             'Notfallteam';
 $LNG['teamEmergencyLong'] =         'Erhält von den Usern im Discord über "@Emergency Response Team" einen Ping, wenn es zu Serverausfällen kommt ';
 $LNG['teamDev'] =                   'Entwickler';
@@ -1550,4 +1552,8 @@ $LNG['teamYes'] =                   'Ja';
 $LNG['teamAlumni'] =                'Ehemalige / Inaktive / Gelegentliche Teammitglieder';
 $LNG['teamAlumniLong'] =            'Wir bedanken uns ganz herzlich bei';
 $LNG['teamLegend'] =                'Legende, Erklärung der Rollen / Rechte';
+
+//----------------------------------------------------------------------------//
+$LNG['BlockTrade']  = 'Handel blockieren';
+$LNG['blockDm']    = 'PN blockieren';
 // Translated into German by Jan . All rights reversed (C) 2011
