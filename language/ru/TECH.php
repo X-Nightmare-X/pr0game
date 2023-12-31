@@ -36,6 +36,8 @@ $LNG['shortNames'] = [
     217 => 'Ул. трансп.',
     218 => 'Аватар',
     219 => 'Мега перераб.',
+    221 => 'Fighter bomber',
+    222 => 'Carrier',
 
     401 => 'РУ',
     402 => 'Лёг. лазер',
@@ -135,6 +137,8 @@ $LNG['tech'] = [
     217 => 'Улучшенный транспорт',
     218 => 'Аватар',
     219 => 'Мега переработчик',
+    221 => 'Fighter bomber',
+    222 => 'Carrier',
 
     400 => 'Оборона',
     401 => 'Ракетная установка',
@@ -251,6 +255,8 @@ $LNG['shortDescription'] = [
     218 => 'При виде этого корабля, жители впадают в ужас и покидают колонии. Прекрасные боевые качества, но очень'
         . ' медленный.',
     219 => 'Инженеры разработали новый переработчик, он летает быстрее и может собрать значительно больше обломков.',
+    221 => 'Fighter bomber',
+    222 => 'Carrier',
 
     401 => 'Ракетная установка - простое и дешёвое средство обороны.',
     402 => 'При помощи концентрированного обстрела цели фотонами можно достичь значительно больших разрушений, чем при'
@@ -274,13 +280,13 @@ $LNG['shortDescription'] = [
     503 => 'Межпланетные ракеты уничтожают защиту противника.',
 
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
-901 => 'Metal is the main resource for Buildings and Ships. It is the cheapest resource, but it is needed the most as'
-    . ' well. Producing Metal is the least energy expensive. The bigger the mines are, the deeper they dig into the'
-    . ' earth.',
-902 => 'Crystals are the main resource used to build electronic circuits and form certain alloy compounds.',
-903 => 'Deuterium is found in the deepest sea. It belongs to the rarest resources in the Universe. Because you have to'
-    . ' get to the ground of the sea in order to get Deuterium, it is the most expensive resource.',
-911 => 'Energy is needed for the production of every resource.',
+    901 => 'Metal is the main resource for Buildings and Ships. It is the cheapest resource, but it is needed the most as'
+        . ' well. Producing Metal is the least energy expensive. The bigger the mines are, the deeper they dig into the'
+        . ' earth.',
+    902 => 'Crystals are the main resource used to build electronic circuits and form certain alloy compounds.',
+    903 => 'Deuterium is found in the deepest sea. It belongs to the rarest resources in the Universe. Because you have to'
+        . ' get to the ground of the sea in order to get Deuterium, it is the most expensive resource.',
+    911 => 'Energy is needed for the production of every resource.',
 //PLACEHOLDER MISSING TRANSLATION PREVENTING BUG
 ];
 
@@ -383,6 +389,8 @@ $LNG['longDescription'] = [
     218 => 'При виде этого корабля, жители впадают в ужас и покидают колонии. Прекрасные боевые качества, но очень'
         . ' медленный.',
     219 => 'Инженеры разработали новый переработчик, он летает быстрее и может собрать значительно больше обломков.',
+    221 => 'Fighter bomber',
+    222 => 'Carrier',
 
     401 => 'Ракетная установка - простое и дешёвое средство обороны.',
     402 => 'При помощи концентрированного обстрела цели фотонами можно достичь значительно больших разрушений, чем при'

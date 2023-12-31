@@ -36,6 +36,8 @@ $LNG['shortNames'] = [
     217 => 'Transp. Espacial',
     218 => 'Avatar',
     219 => 'Mega-Reciclador',
+    221 => 'Fighter bomber',
+    222 => 'Carrier',
 
     401 => 'Lanzamisiles',
     402 => 'L&aacute;ser',
@@ -135,6 +137,8 @@ $LNG['tech'] = [
 217 => 'Transporte Espacial',
 218 => 'Avatar',
 219 => 'Mega-Reciclador',
+221 => 'Fighter bomber',
+222 => 'Carrier',
 
 400 => 'Sistemas de defensa',
 401 => 'Lanzamisiles',
@@ -274,6 +278,8 @@ $LNG['shortDescription'] = [
 218 => 'La absoluta, aunque muy lentamente.',
 219 => 'Es un espacio de carga enorme y nuevos motores, que pueda volar m&aacute;s r&aacute;pido y obtener m&aacute;s'
     . ' en los campos de escombros.',
+221 => 'Fighter bomber',
+222 => 'Carrier',
 
 401 => 'El lanzamisiles es un sistema de defensa sencillo, pero barato.',
 402 => 'Por medio de un rayo l&aacute;ser concentrado, se puede provocar m&aacute;s da&ntilde;o que con las armas'
@@ -521,6 +527,8 @@ $LNG['longDescription'] = [
     218 => 'Es la nave absoluta, aunque muy lenta. Es la nave del emperador',
     219 => 'Es un nave con espacio de carga enorme y nuevos motores, que pueda volar m&aacute;s r&aacute;pido y obtener'
         . ' m&aacute;s en los campos de escombros.',
+    221 => 'Fighter bomber',
+    222 => 'Carrier',
 
     401 => 'El lanzamisiles es un sistema de defensa sencillo, pero barato. Puede ser muy efectivo si se construye en'
         . ' grandes n&uacute;meros, no necesita tecnolog&iacute;a alguna puesto que es una sencilla arma'

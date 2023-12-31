@@ -38,6 +38,8 @@ $LNG['shortNames'] = [
 217 => 'Battle Transporter',
 218 => 'Avatar',
 219 => 'Battle Recycler',
+221 => 'Fighter bomber',
+222 => 'Carrier',
 
 401 => 'Missile Launcher',
 402 => 'Light Laser Turret',
@@ -137,6 +139,8 @@ $LNG['tech'] = [
 217 => 'Battle Transporter',
 218 => 'Avatar',
 219 => 'Battle Recycler',
+221 => 'Fighter bomber',
+222 => 'Carrier',
 
 400 => 'Planetary Defense',
 401 => 'Missile Launcher',
@@ -245,6 +249,8 @@ $LNG['shortDescription'] = [
 217 => 'Is a development of the large cargo, it has more carry capacity and flies faster with the right techonology.',
 218 => 'The absolute worst case scenario, albeit very slowly.',
 219 => 'Is a huge cargo space and new engines, enable it to fly faster and gather more in debris fields .',
+221 => 'Fighter bomber',
+222 => 'Carrier',
 
 401 => 'The Rocket Launcher is a simple but cost-effective defense.',
 402 => 'Light Lasers are simple ground based defense weapons. They use special targeting systems to track and attack'
@@ -390,6 +396,8 @@ $LNG['longDescription'] = [
 217 => 'Is a development of the large cargo, it has more carry capacity and flies faster with the right techonology.',
 218 => 'The absolute worst case scenario, albeit very slowly.',
 219 => 'Is a huge cargo space and new engines, enable it to fly faster and gather more in debris fields .',
+221 => 'Fighter bomber',
+222 => 'Carrier',
 
 401 => 'The Rocket Launcher is a simple but cost-effective defense.',
 402 => 'Light Lasers are simple ground based weapons that utilize special targeting systems to track the enemy and fire'

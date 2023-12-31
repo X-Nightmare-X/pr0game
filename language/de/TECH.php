@@ -36,6 +36,8 @@ $LNG['shortNames'] = [
     217 => 'Evo. Transporter',
     218 => 'Avatar',
     219 => 'Gigarecycler',
+    221 => 'Jagtbomber',
+    222 => 'Träger',
 
     401 => 'Raketenwerfer',
     402 => 'L. Lasergeschütz',
@@ -135,6 +137,8 @@ $LNG['tech'] = [
     217 => 'Evolution Transporter',
     218 => 'Avatar',
     219 => 'Gigarecycler',
+    221 => 'Jagtbomber',
+    222 => 'Träger',
 
     400 => 'Verteidigungsanlagen',
     401 => 'Raketenwerfer',
@@ -247,6 +251,8 @@ $LNG['shortDescription'] = [
     217 => 'Ist der eine Weiterentwicklung des großen Transporters. Er hat mehr Ladevermögen und fliegt schneller.',
     218 => 'Der Supergau schlechthin, allerdings sehr langsam.',
     219 => 'Ist eine gigantische Weltraumrecycleanlage und hyperschnell.',
+    221 => 'Jagtbomber',
+    222 => 'Träger',
 
     401 => 'Der Raketenwerfer ist eine einfache aber kostengünstige Verteidigungsmöglichkeit.',
     402 => 'Durch den konzentrierten Beschuss eines Ziels mit Photonen kann eine wesentlich größere Schadenswirkung'
@@ -522,6 +528,8 @@ $LNG['longDescription'] = [
     218 => 'Dieses Schiff ist eine Verbesserung mehrerer Schiffe gleichzeitig und der Kaiser der Kampfsterne.',
     219 => 'Dieses Schiff ist eine wahrhaft gigantische Recycelanlage im Weltraum mit Atemberaubender Geschwindigkeit'
         . ' und riesigem Lagerraum! Geschaffen für große Imperien.',
+    221 => 'Jagtbomber',
+    222 => 'Träger',
 
     401 => 'Der Raketenwerfer ist eine einfache aber kostengünstige Verteidigungsmöglichkeit. Da er nur eine'
         . ' Weiterentwicklung gewöhnlicher ballistischer Feuerwaffen ist, benötigt er keine weitere Forschung. Seine'

@@ -25,6 +25,8 @@ $LNG['shortNames'] = [
 217 => 'Transporteur ultime',
 218 => 'Avatar',
 219 => 'Recycleur ultime',
+221 => 'Fighter bomber',
+222 => 'Carrier',
 
 401 => 'Lanceur de missiles',
 402 => 'Canon laser léger',
@@ -124,6 +126,8 @@ $LNG['tech'] = [
 217 => 'Transporteur ultime',
 218 => 'Avatar',
 219 => 'Recycleur ultime',
+221 => 'Fighter bomber',
+222 => 'Carrier',
 
 400 => 'Systèmes de Défense',
 401 => 'Lanceur de missiles',
@@ -249,6 +253,8 @@ $LNG['shortDescription'] = [
 218 => 'Il vous procurera le pire des scénarios, bien que très lent.',
 219 => 'Le recycleur ultime dispose d\'une capacité de chargement énorme et de nouveaux moteurs qui lui permettent de'
     . ' voler plus vite et de recueillir davantage dans les champs de débris.',
+221 => 'Fighter bomber',
+222 => 'Carrier',
 
 401 => 'Le lanceur de missiles est un moyen de défense simple mais rentable.',
 402 => 'Le canon laser léger est une arme au sol simple qui utilise des systèmes spéciaux de ciblage pour suivre'
@@ -380,6 +386,8 @@ $LNG['longDescription'] = [
 218 => 'Le pire de tous, bien que très lent.',
 219 => 'C\'est un immense cargo de recyclage, avec de nouveaux moteurs, qui lui permettent de voler plus vite et de'
     . ' recueillir plus de débris.',
+221 => 'Fighter bomber',
+222 => 'Carrier',
 
 401 => 'Le lance-roquettes est une défense simple mais rentable.',
 402 => 'Les Lasers légers sont des armes simples basés au sol qui utilisent des systèmes spéciaux de ciblage pour'

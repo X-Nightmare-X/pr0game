@@ -36,6 +36,8 @@ $LNG['shortNames'] = [
     217 => 'Giga Transporter',
     218 => 'Avatar',
     219 => 'Gigarecykler',
+    221 => 'Fighter bomber',
+    222 => 'Carrier',
 
     401 => 'Wyrzutnia Rakiet',
     402 => 'L. Laser',
@@ -116,42 +118,44 @@ $LNG['tech'] = [
     133 => 'Technologia Produkcji Deuterium',
     199 => 'Rozwój Grawitonów',
 
-        200 => 'Statki',
-202 => 'Mały Tranporter',
-203 => 'Duży Tranporter',
-204 => 'Lekki Myśliwiec',
-205 => 'Ciężki Myśliwiec',
-206 => 'Krążownik',
-207 => 'Okręt Wojenny',
-208 => 'Statek Kolonizacyjny',
-209 => 'Recykler',
-210 => 'Sonda Szpiegowska',
-211 => 'Bombowiec',
-212 => 'Satelita Słoneczny',
-213 => 'Niszczyciel',
-214 => 'Gwiazda śmierci',
-215 => 'Pancernik',
-216 => 'Dark Moon',
-217 => 'Star Freighter',
-218 => 'Avatar',
-219 => 'Giga-Recycler',
+    200 => 'Statki',
+    202 => 'Mały Tranporter',
+    203 => 'Duży Tranporter',
+    204 => 'Lekki Myśliwiec',
+    205 => 'Ciężki Myśliwiec',
+    206 => 'Krążownik',
+    207 => 'Okręt Wojenny',
+    208 => 'Statek Kolonizacyjny',
+    209 => 'Recykler',
+    210 => 'Sonda Szpiegowska',
+    211 => 'Bombowiec',
+    212 => 'Satelita Słoneczny',
+    213 => 'Niszczyciel',
+    214 => 'Gwiazda śmierci',
+    215 => 'Pancernik',
+    216 => 'Dark Moon',
+    217 => 'Star Freighter',
+    218 => 'Avatar',
+    219 => 'Giga-Recycler',
+    221 => 'Fighter bomber',
+    222 => 'Carrier',
 
-400 => 'Obrona Planetarna',
-401 => 'Wyrzutnia Rakiet',
-402 => 'Lekki Laser',
-403 => 'Ciężki Laser',
-404 => 'Działo Gauss',
-405 => 'Działo Jonowe',
-406 => 'Wyrzutnia Plazmy',
-407 => 'Mała Osłona',
-408 => 'Duża Osłona',
-409 => 'Atmospheric Shield',
-410 => 'Działo Grawitonowe',
-411 => 'Orbitalna Platforma Obronna',
+    400 => 'Obrona Planetarna',
+    401 => 'Wyrzutnia Rakiet',
+    402 => 'Lekki Laser',
+    403 => 'Ciężki Laser',
+    404 => 'Działo Gauss',
+    405 => 'Działo Jonowe',
+    406 => 'Wyrzutnia Plazmy',
+    407 => 'Mała Osłona',
+    408 => 'Duża Osłona',
+    409 => 'Atmospheric Shield',
+    410 => 'Działo Grawitonowe',
+    411 => 'Orbitalna Platforma Obronna',
 
-500 => 'Rakiety',
-502 => 'Antyrakieta',
-503 => 'Rakieta Międzyplanetarna',
+    500 => 'Rakiety',
+    502 => 'Antyrakieta',
+    503 => 'Rakieta Międzyplanetarna',
 
     900 => 'Zasoby',
     901 => 'Metal',
@@ -187,83 +191,85 @@ $LNG['shortDescription'] = [
     106 => 'Dzięki tej technologi mogą być zbierane informacje o innych planetach i księżycach.',
     108 => 'Dzięki rozwojowi technologi komputerowej możesz zarządzać większą ilością flot. Każdy level zwiększa ilość'
         . ' flot, którymi możesz zarządzać, o 1 jednostkę.',
-109 => 'Technologia broni podnosi efektywność używania broni. Każdy level zwiększa obrażenia o 10% wartości bazowej.',
-110 => 'Technologia osłony podnosi efektywność wykorzystania osłon statków, jak również ich struktur obronnych. Każdy'
-    . ' level zwiększa siłę osłony o 10% wartości bazowej!.',
-111 => 'Specjalne stopy metalu zwiększają wytrzymałość opancerzenia. Każdy level zwiększa wytrzymałość opancerzenia o'
-    . ' 10% wartości bazowej.',
+    109 => 'Technologia broni podnosi efektywność używania broni. Każdy level zwiększa obrażenia o 10% wartości bazowej.',
+    110 => 'Technologia osłony podnosi efektywność wykorzystania osłon statków, jak również ich struktur obronnych. Każdy'
+        . ' level zwiększa siłę osłony o 10% wartości bazowej!.',
+    111 => 'Specjalne stopy metalu zwiększają wytrzymałość opancerzenia. Każdy level zwiększa wytrzymałość opancerzenia o'
+        . ' 10% wartości bazowej.',
     113 => 'Znajomość wielu różnych rodzajów energii jest potrzebna dla nowych technologii.',
-114 => 'Z połączenia 4 i 5 wymiaru udało się stworzyć napęd znacznie szybszy i bardziej efektywny.',
-115 => 'Dalsze rozwijanie tego napędu sprawia, iż niektóre statki poruszają się 10% szybciej w porównaniu do prędkości'
-    . ' bazowej.',
+    114 => 'Z połączenia 4 i 5 wymiaru udało się stworzyć napęd znacznie szybszy i bardziej efektywny.',
+    115 => 'Dalsze rozwijanie tego napędu sprawia, iż niektóre statki poruszają się 10% szybciej w porównaniu do prędkości'
+        . ' bazowej.',
     117 => 'Dalsze rozwijanie tego napędu sprawia, iż niektóre statki poruszają się o 20% szybciej w porównaniu do'
         . ' prędkości bazowej.',
-118 => 'Napęd nadprzestrzenny zagina przestrzeń wokół statku. Dalszy rozwój tego napędu sprawia, iż niektóre statki'
-    . ' poruszają się o 30% szybciej w porównaniu do prędkości bazowej.',
-120 => 'Poprawa koncentracji wiązki światła sprawia, iż zadaje ona obrażenia.',
+    118 => 'Napęd nadprzestrzenny zagina przestrzeń wokół statku. Dalszy rozwój tego napędu sprawia, iż niektóre statki'
+        . ' poruszają się o 30% szybciej w porównaniu do prędkości bazowej.',
+    120 => 'Poprawa koncentracji wiązki światła sprawia, iż zadaje ona obrażenia.',
     121 => 'Działo jonowe przyśpiesza jony. Dzięki temu podczas uderzenia w obiekt wyrządzają one duże szkody.',
-122 => 'Zwięczenie technologii jonowej. Jony są tak przyspieszone, iż wiązka zmienia się w plazmę. Zadaje olbrzymie'
-    . ' obrażenia podczas uderzenia w cel.',
-123 => 'Naukowcy z różnych planet komunikują się ze sobą przez tę sieć. Wraz z rozbudową na kolejny poziom, do sieci'
-    . ' zostanie przyłączone dodatkowe laboratorium, przy czym przyłączane będą zawsze laboratoria o najwyższym'
-    . ' poziomie.',
-124 => 'Moduł astrofizyczny pozwala na kolonizację wiekszej ilości planet. Każdy nieparzysty poziom tej technologi'
-    . ' zwiększa maksymalną ilość planet o 1. Astrofizyka zwiększa również ilość ekspedycji.<br><br>'
-    . '<li>Poziom 1-3 - 1 ekspedycja</li><li>Poziom 4-8 - 2 ekspedycje</li><li>Poziom 9-15 - 3 ekspedycje</li>'
-    . '<li>Poziom 16-24 - 4 ekspedycje</li>',
+    122 => 'Zwięczenie technologii jonowej. Jony są tak przyspieszone, iż wiązka zmienia się w plazmę. Zadaje olbrzymie'
+        . ' obrażenia podczas uderzenia w cel.',
+    123 => 'Naukowcy z różnych planet komunikują się ze sobą przez tę sieć. Wraz z rozbudową na kolejny poziom, do sieci'
+        . ' zostanie przyłączone dodatkowe laboratorium, przy czym przyłączane będą zawsze laboratoria o najwyższym'
+        . ' poziomie.',
+    124 => 'Moduł astrofizyczny pozwala na kolonizację wiekszej ilości planet. Każdy nieparzysty poziom tej technologi'
+        . ' zwiększa maksymalną ilość planet o 1. Astrofizyka zwiększa również ilość ekspedycji.<br><br>'
+        . '<li>Poziom 1-3 - 1 ekspedycja</li><li>Poziom 4-8 - 2 ekspedycje</li><li>Poziom 9-15 - 3 ekspedycje</li>'
+        . '<li>Poziom 16-24 - 4 ekspedycje</li>',
     131 => 'Zwiększa produkcję metalu o 2%.',
-132 => 'Zwiększa produkcję kryształu o 2%.',
-133 => 'Zwiększa produkcję deuterium o 2%.',
+    132 => 'Zwiększa produkcję kryształu o 2%.',
+    133 => 'Zwiększa produkcję deuterium o 2%.',
     199 => 'Skoncentrowane cząstki grawitonowe tworzą sztuczne pole grawitacji, które wciąga wszystko w siebie jak'
         . ' czarna dziura. Pole jest tak potężne, że może zniszczyć księżyc.',
 
     202 => 'Mały transportowiec służy do szybkiego transportu surowców na pobliskie planety.',
-203 => 'Duży transportowiec może zabrać nie tylko więcej surowców, ale również - dzięki lepszemu napędowi - jest'
-    . ' znacznie szybszy.',
-204 => 'Jest to pierwsza jednostka wojskowa, którą możesz zbudować. W początkowej fazie gry przydają się, by napadać'
-    . ' pobliskie planety posiadające niewielką obronę. Mimo tego, że są stosunkowo słabe, są tanie, a icg duża ilość'
-    . ' potrafi być groźna.',
-205 => 'Następca lekkiego myśliwca, lepiej uzbrojony i opancerzony.',
-206 => 'Krążownik nie dość, że dużo lepiej opancerzony od myśliwców, to jest jeszcze znacznie szybszy.',
-207 => 'Okręty wojenne to trzon każdej floty. Ich ciężkie działa, duża szybkość i ładowność sprawia, że są'
-    . ' niezastąpione.',
-208 => 'Niezamieszkane planety skolonizujesz za pomocą tego statku.',
-209 => 'Recyklery - jak nazwa wskazuje - zbierają złom, który powstaje po walkach flot.',
-210 => 'Sondy szpiegowskie to małe, bezzałogowe, bardzo szybkie stateczki, które przekazują dane na temat wroga.',
-211 => 'Bombowce służą do niszczenia obrony na planecie.',
-212 => 'Satelity słoneczne to małe kolektory energii krążące na wysokiej orbicie. Przekazują energię na planetę za'
-    . ' pomocą wiązki lasera. ',
-213 => 'Niszczyciel to król statków wojennych.',
-214 => 'Niszczycielska siła gwiazd śmierci nie ma sobie równych. Jest tak duża, że może niszczyć księżyce.',
-215 => 'Ten typ statku ma tylko jeden cel - przechwycić i zniszczyć wrogą flotę.',
-216 => 'Następca Gwiazdy śmierci. Szybszy, ale nie tak potężny.',
-217 => 'Powstał dzięki potrzebie transportu większych ładunków i szybszego transportu.',
-218 => 'Można powiedzieć, iż to przedstawiciel koszmaru na tym świecie, niestety strasznie powolny.',
-219 => 'Ogromna ładowność, a dzięki nowym technologiom porusza się znacznie szybciej od standardowego recyklera .',
+    203 => 'Duży transportowiec może zabrać nie tylko więcej surowców, ale również - dzięki lepszemu napędowi - jest'
+        . ' znacznie szybszy.',
+    204 => 'Jest to pierwsza jednostka wojskowa, którą możesz zbudować. W początkowej fazie gry przydają się, by napadać'
+        . ' pobliskie planety posiadające niewielką obronę. Mimo tego, że są stosunkowo słabe, są tanie, a icg duża ilość'
+        . ' potrafi być groźna.',
+    205 => 'Następca lekkiego myśliwca, lepiej uzbrojony i opancerzony.',
+    206 => 'Krążownik nie dość, że dużo lepiej opancerzony od myśliwców, to jest jeszcze znacznie szybszy.',
+    207 => 'Okręty wojenne to trzon każdej floty. Ich ciężkie działa, duża szybkość i ładowność sprawia, że są'
+        . ' niezastąpione.',
+    208 => 'Niezamieszkane planety skolonizujesz za pomocą tego statku.',
+    209 => 'Recyklery - jak nazwa wskazuje - zbierają złom, który powstaje po walkach flot.',
+    210 => 'Sondy szpiegowskie to małe, bezzałogowe, bardzo szybkie stateczki, które przekazują dane na temat wroga.',
+    211 => 'Bombowce służą do niszczenia obrony na planecie.',
+    212 => 'Satelity słoneczne to małe kolektory energii krążące na wysokiej orbicie. Przekazują energię na planetę za'
+        . ' pomocą wiązki lasera. ',
+    213 => 'Niszczyciel to król statków wojennych.',
+    214 => 'Niszczycielska siła gwiazd śmierci nie ma sobie równych. Jest tak duża, że może niszczyć księżyce.',
+    215 => 'Ten typ statku ma tylko jeden cel - przechwycić i zniszczyć wrogą flotę.',
+    216 => 'Następca Gwiazdy śmierci. Szybszy, ale nie tak potężny.',
+    217 => 'Powstał dzięki potrzebie transportu większych ładunków i szybszego transportu.',
+    218 => 'Można powiedzieć, iż to przedstawiciel koszmaru na tym świecie, niestety strasznie powolny.',
+    219 => 'Ogromna ładowność, a dzięki nowym technologiom porusza się znacznie szybciej od standardowego recyklera .',
+    221 => 'Fighter bomber',
+    222 => 'Carrier',
 
     401 => 'Wyrzutnia rakiet to podstawowa struktura obronna, tania i efektywna.',
-402 => 'Wiązki laserowe - dzięki specjalnym systemom namierzania i podążania za celem - są kierowane tak, by przebijać'
-    . ' kadłub.',
-403 => 'Ciężki laser to ulepszona wersja lekkiego.',
-404 => 'Działo Gaussa strzela ogromnymi metalowymi pociskami, siejącymi straszne zniszczenia.',
-405 => 'Działo jonowe strzela skoncentrowaną wiązką jonów naładowanych dodatnio lub ujemnie.',
-406 => 'Wyrzutnia plazmy, z powodu jego zapotrzebowania na energię, jest zasilane dużym reaktorem jądrowym.',
-407 => 'Mała osłona roztacza nad planetą zabezpieczenie, które pochłania część obrażeń.',
-408 => 'Jest to silniejsza wersja małej osłony, niestety wymaga również więcej zasobów energii.',
-409 => 'Szczyt badań nad osłonami. Jest dużo bardziej wytrzymała niż duża, ale jej zapotrzebowanie na energię też jest'
-    . ' duże!.',
-410 => 'Po latach badań nad grawitonami stworzono działo strzelające polem elektormagnetycznym, wyrządzającym znaczne'
-    . ' szkody.',
-411 => 'To nieruchoma stacja obronna, niepotrzebująca zasilania z zewnątrz. Jej budowa wymaga znacznych ilości'
-    . ' energii.',
+    402 => 'Wiązki laserowe - dzięki specjalnym systemom namierzania i podążania za celem - są kierowane tak, by przebijać'
+        . ' kadłub.',
+    403 => 'Ciężki laser to ulepszona wersja lekkiego.',
+    404 => 'Działo Gaussa strzela ogromnymi metalowymi pociskami, siejącymi straszne zniszczenia.',
+    405 => 'Działo jonowe strzela skoncentrowaną wiązką jonów naładowanych dodatnio lub ujemnie.',
+    406 => 'Wyrzutnia plazmy, z powodu jego zapotrzebowania na energię, jest zasilane dużym reaktorem jądrowym.',
+    407 => 'Mała osłona roztacza nad planetą zabezpieczenie, które pochłania część obrażeń.',
+    408 => 'Jest to silniejsza wersja małej osłony, niestety wymaga również więcej zasobów energii.',
+    409 => 'Szczyt badań nad osłonami. Jest dużo bardziej wytrzymała niż duża, ale jej zapotrzebowanie na energię też jest'
+        . ' duże!.',
+    410 => 'Po latach badań nad grawitonami stworzono działo strzelające polem elektormagnetycznym, wyrządzającym znaczne'
+        . ' szkody.',
+    411 => 'To nieruchoma stacja obronna, niepotrzebująca zasilania z zewnątrz. Jej budowa wymaga znacznych ilości'
+        . ' energii.',
 
     502 => 'Antyrakiety przechwytują rakiety międzyplanetarne przeciwnika.',
-503 => 'Międzyplanetarne rakiety. Ich jedynym celem jest niszczenie obrony przeciwnika.',
+    503 => 'Międzyplanetarne rakiety. Ich jedynym celem jest niszczenie obrony przeciwnika.',
 
-901 => 'Główny surowiec do budowy konstrukcji nośnych budynków i statków kosmicznych.',
-902 => 'Główny surowiec do budowy elementów elektronicznych i stopów metali.',
-903 => 'Deuter jest izotopem wodoru, paliwo dla statków kosmicznych, nawigatorów i naukowców.',
-911 => 'Czysta energia napędzająca przemysł wydobywczy.',
+    901 => 'Główny surowiec do budowy konstrukcji nośnych budynków i statków kosmicznych.',
+    902 => 'Główny surowiec do budowy elementów elektronicznych i stopów metali.',
+    903 => 'Deuter jest izotopem wodoru, paliwo dla statków kosmicznych, nawigatorów i naukowców.',
+    911 => 'Czysta energia napędzająca przemysł wydobywczy.',
 ];
 
 $LNG['longDescription'] = [
@@ -408,6 +414,8 @@ $LNG['longDescription'] = [
     217 => 'Powstał dzięki potrzebie transportu większych ładunków, jak również szybszego transportu.',
     218 => 'Można powiedzieć, iż to przedstawiciel koszmaru na tym świecie, niestety strasznie powolny.',
     219 => 'Ogromna ładowność, a dzięki nowym technologiom porusza się znacznie szybciej od standardowego recyklera.',
+    221 => 'Fighter bomber',
+    222 => 'Carrier',
 
     401 => 'Twoja pierwsza linia obrony. Po walce i zniszczeniu jest 70% szans, że zostanie naprawiona.',
     402 => 'Wiązki laserowe dzięki specjalnym systemom namierzania i podążania za celem są kierowane tak, by przebijać'

@@ -40,16 +40,18 @@ $LNG['shortNames'] = [
     217 => 'Ultra Nakliye',
     218 => 'Avatar',
     219 => 'Ultra Donusumcu',
+    221 => 'Fighter bomber',
+    222 => 'Carrier',
 
-    221 => 'Thor',
-    222 => 'Thriller',
-    223 => 'Behamut',
-    224 => 'Wiper',
-    225 => 'Ifrit',
-    226 => 'Shiva',
-    227 => 'Destiny',
-    228 => 'Viking',
-    229 => 'Odin',
+    // 221 => 'Thor',
+    // 222 => 'Thriller',
+    // 223 => 'Behamut',
+    // 224 => 'Wiper',
+    // 225 => 'Ifrit',
+    // 226 => 'Shiva',
+    // 227 => 'Destiny',
+    // 228 => 'Viking',
+    // 229 => 'Odin',
 
     401 => 'Roket Aticilar',
     402 => 'Hafif Lazer Topu',
@@ -152,16 +154,18 @@ $LNG['tech'] = [
     217 => 'Ultra Nakliye',
     218 => 'Avatar',
     219 => 'Ultra Donusumcu',
+    221 => 'Fighter bomber',
+    222 => 'Carrier',
 
-    221 => 'Thor',
-    222 => 'Thriller',
-    223 => 'Behamut',
-    224 => 'Wiper',
-    225 => 'Ifrit',
-    226 => 'Shiva',
-    227 => 'Destiny',
-    228 => 'Viking',
-    229 => 'Odin',
+    // 221 => 'Thor',
+    // 222 => 'Thriller',
+    // 223 => 'Behamut',
+    // 224 => 'Wiper',
+    // 225 => 'Ifrit',
+    // 226 => 'Shiva',
+    // 227 => 'Destiny',
+    // 228 => 'Viking',
+    // 229 => 'Odin',
 
     400 => 'Savunma Uniteleri',
     401 => 'Roket Aticilar',
@@ -306,21 +310,23 @@ $LNG['shortDescription'] = [
         . ' gemisi oldukca guclu olmasina karsin Cok Yavas hareket eder. ',
     219 => 'Geri donusumculerin gelistirilmis versiyonudur. Bu yeni gemi Geri Donusumculere oranla daha fazla Yuk tasir'
         . ' ve Daha Hizlidir. ',
+    221 => 'Fighter bomber',
+    222 => 'Carrier',
 
-    221 => 'Kara savascinin evrene hakim olmasindan sonra bilim adamlari onu durduracar bir gemi uretmeye calistirlar.'
-        . ' Bunun sonucunda ortaya Thor cikti. ',
-    222 => 'Evrenin yeni kabusu olmaya aday bu gemi oxion klani tarafindan gelistirildi fakat diger irklarin da ustun'
-        . ' casusluk seviyeleri sayesinde su an her irk bu gemiyi uretebiliyor. Ayni anda hem yuksek saldiri hem de'
-        . ' savunma gucu tasiyor',
-    223 => 'Avatarin evrene gelmesinden sonra saldiridan uzak yasayan irklar tarafindan gelistirilen bu gemi kesinlikle'
-        . ' evrenin en buyuk savunma silahi haline getirdiler',
-    224 => 'Defans teknolojilerinin hizla gelismesi sonucu muhribi yaratan muhendisler tarafindan savunmasi'
-        . ' gelistirilen Wiper yuksek bir savunma gucune sahip.',
-    225 => 'Ifrit Savunmalari ayni olsa da Wiper\'a gore daha hizli ve daha yuksek saldiri gucune sahiptir.',
-    226 => 'Shiva, ifrit ile benzer ozellik tasir, en buyuk farki shivanin daha ucuz maliyetidir',
-    227 => 'Destiny, komuta gemisinin gelismis versiyonudur',
-    228 => 'Viking yuksek hizi ve saglam savunmasi ile korsanlar tarafindan en cok kullanilan gemidir',
-    229 => 'Evrenin kesinlikle en hizli saldiri gemisi olan odin korsanlarin gozbebegidir',
+    // 221 => 'Kara savascinin evrene hakim olmasindan sonra bilim adamlari onu durduracar bir gemi uretmeye calistirlar.'
+    //     . ' Bunun sonucunda ortaya Thor cikti. ',
+    // 222 => 'Evrenin yeni kabusu olmaya aday bu gemi oxion klani tarafindan gelistirildi fakat diger irklarin da ustun'
+    //     . ' casusluk seviyeleri sayesinde su an her irk bu gemiyi uretebiliyor. Ayni anda hem yuksek saldiri hem de'
+    //     . ' savunma gucu tasiyor',
+    // 223 => 'Avatarin evrene gelmesinden sonra saldiridan uzak yasayan irklar tarafindan gelistirilen bu gemi kesinlikle'
+    //     . ' evrenin en buyuk savunma silahi haline getirdiler',
+    // 224 => 'Defans teknolojilerinin hizla gelismesi sonucu muhribi yaratan muhendisler tarafindan savunmasi'
+    //     . ' gelistirilen Wiper yuksek bir savunma gucune sahip.',
+    // 225 => 'Ifrit Savunmalari ayni olsa da Wiper\'a gore daha hizli ve daha yuksek saldiri gucune sahiptir.',
+    // 226 => 'Shiva, ifrit ile benzer ozellik tasir, en buyuk farki shivanin daha ucuz maliyetidir',
+    // 227 => 'Destiny, komuta gemisinin gelismis versiyonudur',
+    // 228 => 'Viking yuksek hizi ve saglam savunmasi ile korsanlar tarafindan en cok kullanilan gemidir',
+    // 229 => 'Evrenin kesinlikle en hizli saldiri gemisi olan odin korsanlarin gozbebegidir',
 
     401 => 'Roketatar hem ucuz hem de etkili bir savunma mekanizmasidir. Neredeyse tum gezegenlerde ilk savunma araci'
         . ' niteligindedir.',
@@ -588,26 +594,28 @@ $LNG['longDescription'] = [
         . ' hareket eder. ',
     219 => 'Geri donusumculerin gelistirilmis versiyonudur. Bu yeni gemi Geri Donusumculere oranla daha fazla Yuk tasir'
         . ' ve Daha Hizlidir.',
+    221 => 'Fighter bomber',
+    222 => 'Carrier',
 
-    221 => 'Kara savascinin evrene hakim olmasindan sonra bilim adamlari onu durduracar bir gemi uretmeye calistirlar.'
-        . ' Ozellikle iyon teknolonojisinde cok buyuk ilerleme kaydeden bilimadamlari bunu Thorda birlestirdiler. Kara'
-        . ' savascinin silahlarina karsi ayrica ozel savunmalar gelistirildi ve onu vuracak etkili silahlar'
-        . ' gelistirildi. Her ne kadar bu gemi kara savasciya karsi cok guclu olsa da, olum yildizinin saldiri gucunun'
-        . ' cok altinda. ',
-    222 => 'Evrenin yeni kabusu olmaya aday bu gemi oxion klani tarafindan gelistirildi fakat diger irklarin da ustun'
-        . ' casusluk seviyeleri sayesinde su an her irk bu gemiyi uretebiliyor. Ayni anda hem yuksek saldiri hem de'
-        . ' savunma gucu tasiyor',
-    223 => 'Avatarin evrene gelmesinden sonra saldiridan uzak yasayan irklar tarafindan gelistirilen bu gemi kesinlikle'
-        . ' evrenin en buyuk savunma silahi haline getirdiler',
-    224 => 'Defans teknolojilerinin hizla gelismesi sonucu muhribi yaratan muhendisler tarafindan savunmasi'
-        . ' gelistirilen Wiper yuksek bir savunma gucune sahip.',
-    225 => 'Ifrit Savunmalari ayni olsa da Wiper\'a gore daha hizli ve daha yuksek saldiri gucune sahiptir.',
-    226 => 'Shiva, ifrit ile benzer ozellik tasir, en buyuk farki shivanin daha ucuz maliyetidir',
-    227 => 'Destiny, komuta gemisinin gelismis versiyonudur. En son teknolojilerle donatilan destini her gezegende'
-        . ' olmazsa olmaz bir gemidir. ',
-    228 => 'Viking yuksek hizi ve saglam savunmasi ile korsanlar tarafindan en cok kullanilan gemidir',
-    229 => 'Evrenin kesinlikle en hizli saldiri gemisi olan odin korsanlarin gozbebegidir. Bir galaksiden otekine cok'
-        . ' hizli bir sekilde yol alip dusmani hic ummadigi bir anda yakalayabilir.',
+    // 221 => 'Kara savascinin evrene hakim olmasindan sonra bilim adamlari onu durduracar bir gemi uretmeye calistirlar.'
+    //     . ' Ozellikle iyon teknolonojisinde cok buyuk ilerleme kaydeden bilimadamlari bunu Thorda birlestirdiler. Kara'
+    //     . ' savascinin silahlarina karsi ayrica ozel savunmalar gelistirildi ve onu vuracak etkili silahlar'
+    //     . ' gelistirildi. Her ne kadar bu gemi kara savasciya karsi cok guclu olsa da, olum yildizinin saldiri gucunun'
+    //     . ' cok altinda. ',
+    // 222 => 'Evrenin yeni kabusu olmaya aday bu gemi oxion klani tarafindan gelistirildi fakat diger irklarin da ustun'
+    //     . ' casusluk seviyeleri sayesinde su an her irk bu gemiyi uretebiliyor. Ayni anda hem yuksek saldiri hem de'
+    //     . ' savunma gucu tasiyor',
+    // 223 => 'Avatarin evrene gelmesinden sonra saldiridan uzak yasayan irklar tarafindan gelistirilen bu gemi kesinlikle'
+    //     . ' evrenin en buyuk savunma silahi haline getirdiler',
+    // 224 => 'Defans teknolojilerinin hizla gelismesi sonucu muhribi yaratan muhendisler tarafindan savunmasi'
+    //     . ' gelistirilen Wiper yuksek bir savunma gucune sahip.',
+    // 225 => 'Ifrit Savunmalari ayni olsa da Wiper\'a gore daha hizli ve daha yuksek saldiri gucune sahiptir.',
+    // 226 => 'Shiva, ifrit ile benzer ozellik tasir, en buyuk farki shivanin daha ucuz maliyetidir',
+    // 227 => 'Destiny, komuta gemisinin gelismis versiyonudur. En son teknolojilerle donatilan destini her gezegende'
+    //     . ' olmazsa olmaz bir gemidir. ',
+    // 228 => 'Viking yuksek hizi ve saglam savunmasi ile korsanlar tarafindan en cok kullanilan gemidir',
+    // 229 => 'Evrenin kesinlikle en hizli saldiri gemisi olan odin korsanlarin gozbebegidir. Bir galaksiden otekine cok'
+    //     . ' hizli bir sekilde yol alip dusmani hic ummadigi bir anda yakalayabilir.',
 
     401 => 'Roketatar hem cok ucuz hemde cok basit bit savunma mekanizmasidir.Ancak sayisi arttirildikca cok guclu bir'
         . ' savunma agi olusturabilirler. ',
