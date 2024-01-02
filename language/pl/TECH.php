@@ -36,8 +36,8 @@ $LNG['shortNames'] = [
     217 => 'Giga Transporter',
     218 => 'Avatar',
     219 => 'Gigarecykler',
-    221 => 'Fighter bomber',
-    222 => 'Carrier',
+    220 => 'Fighter bomber',
+    221 => 'Carrier',
 
     401 => 'Wyrzutnia Rakiet',
     402 => 'L. Laser',
@@ -137,8 +137,8 @@ $LNG['tech'] = [
     217 => 'Star Freighter',
     218 => 'Avatar',
     219 => 'Giga-Recycler',
-    221 => 'Fighter bomber',
-    222 => 'Carrier',
+    220 => 'Fighter bomber',
+    221 => 'Carrier',
 
     400 => 'Obrona Planetarna',
     401 => 'Wyrzutnia Rakiet',
@@ -244,8 +244,8 @@ $LNG['shortDescription'] = [
     217 => 'Powstał dzięki potrzebie transportu większych ładunków i szybszego transportu.',
     218 => 'Można powiedzieć, iż to przedstawiciel koszmaru na tym świecie, niestety strasznie powolny.',
     219 => 'Ogromna ładowność, a dzięki nowym technologiom porusza się znacznie szybciej od standardowego recyklera .',
-    221 => 'Fighter bomber',
-    222 => 'Carrier',
+    220 => 'Fighter bomber',
+    221 => 'Carrier',
 
     401 => 'Wyrzutnia rakiet to podstawowa struktura obronna, tania i efektywna.',
     402 => 'Wiązki laserowe - dzięki specjalnym systemom namierzania i podążania za celem - są kierowane tak, by przebijać'
@@ -414,8 +414,8 @@ $LNG['longDescription'] = [
     217 => 'Powstał dzięki potrzebie transportu większych ładunków, jak również szybszego transportu.',
     218 => 'Można powiedzieć, iż to przedstawiciel koszmaru na tym świecie, niestety strasznie powolny.',
     219 => 'Ogromna ładowność, a dzięki nowym technologiom porusza się znacznie szybciej od standardowego recyklera.',
-    221 => 'Fighter bomber',
-    222 => 'Carrier',
+    220 => 'Fighter bomber',
+    221 => 'Carrier',
 
     401 => 'Twoja pierwsza linia obrony. Po walce i zniszczeniu jest 70% szans, że zostanie naprawiona.',
     402 => 'Wiązki laserowe dzięki specjalnym systemom namierzania i podążania za celem są kierowane tak, by przebijać'

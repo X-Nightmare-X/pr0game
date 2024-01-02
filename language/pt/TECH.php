@@ -36,8 +36,8 @@ $LNG['shortNames'] = [
     217 => 'Cargueiro Armado',
     218 => 'Avatar',
     219 => 'Reciclador de Batalha',
-    221 => 'Fighter bomber',
-    222 => 'Carrier',
+    220 => 'Fighter bomber',
+    221 => 'Carrier',
 
     401 => 'L.Misseis.',
     402 => 'Laser L.',
@@ -140,8 +140,8 @@ $LNG['tech'] = [
     217 => 'Cargueiro Armado',
     218 => 'Avatar',
     219 => 'Reciclador de Batalha',
-    221 => 'Fighter bomber',
-    222 => 'Carrier',
+    220 => 'Fighter bomber',
+    221 => 'Carrier',
 
     400 => 'Sistemas de Defesa',
     401 => 'Lançador de Mísseis',
@@ -278,8 +278,8 @@ $LNG['shortDescription'] = [
         . ' batalhas entre grandes impérios! O Reciclador de Batalha é uma nave muito desejada devido à sua capacidade'
         . ' de carga e velocidade, mas continua sem sistemas de defesa o que faz dela uma nave impotente a não ser para'
         . ' reciclagem.',
-    221 => 'Fighter bomber',
-    222 => 'Carrier',
+    220 => 'Fighter bomber',
+    221 => 'Carrier',
 
     401 => 'O lançador de mísseis é um sistema de defesa simples e barato. Tornam-se muito eficazes em número e podem'
         . ' ser construídos sem pesquisa específica porque é uma arma de balística simples.',
@@ -441,8 +441,8 @@ $LNG['longDescription'] = [
         . ' batalhas entre grandes impérios! O Reciclador de Batalha é uma nave muito desejada devido à sua capacidade'
         . ' de carga e velocidade, mas continua sem sistemas de defesa o que faz dela uma nave impotente a não ser para'
         . ' reciclagem.',
-    221 => 'Fighter bomber',
-    222 => 'Carrier',
+    220 => 'Fighter bomber',
+    221 => 'Carrier',
 
     401 => 'O lançador de mísseis é um sistema de defesa simples e barato. Tornam-se muito eficazes em número e podem'
         . ' ser construídos sem pesquisa específica porque é uma arma de balística simples.',

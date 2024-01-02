@@ -40,8 +40,8 @@ $LNG['shortNames'] = [
     217 => 'Ultra Nakliye',
     218 => 'Avatar',
     219 => 'Ultra Donusumcu',
-    221 => 'Fighter bomber',
-    222 => 'Carrier',
+    220 => 'Fighter bomber',
+    221 => 'Carrier',
 
     // 221 => 'Thor',
     // 222 => 'Thriller',
@@ -154,8 +154,8 @@ $LNG['tech'] = [
     217 => 'Ultra Nakliye',
     218 => 'Avatar',
     219 => 'Ultra Donusumcu',
-    221 => 'Fighter bomber',
-    222 => 'Carrier',
+    220 => 'Fighter bomber',
+    221 => 'Carrier',
 
     // 221 => 'Thor',
     // 222 => 'Thriller',
@@ -310,8 +310,8 @@ $LNG['shortDescription'] = [
         . ' gemisi oldukca guclu olmasina karsin Cok Yavas hareket eder. ',
     219 => 'Geri donusumculerin gelistirilmis versiyonudur. Bu yeni gemi Geri Donusumculere oranla daha fazla Yuk tasir'
         . ' ve Daha Hizlidir. ',
-    221 => 'Fighter bomber',
-    222 => 'Carrier',
+    220 => 'Fighter bomber',
+    221 => 'Carrier',
 
     // 221 => 'Kara savascinin evrene hakim olmasindan sonra bilim adamlari onu durduracar bir gemi uretmeye calistirlar.'
     //     . ' Bunun sonucunda ortaya Thor cikti. ',
@@ -594,8 +594,8 @@ $LNG['longDescription'] = [
         . ' hareket eder. ',
     219 => 'Geri donusumculerin gelistirilmis versiyonudur. Bu yeni gemi Geri Donusumculere oranla daha fazla Yuk tasir'
         . ' ve Daha Hizlidir.',
-    221 => 'Fighter bomber',
-    222 => 'Carrier',
+    220 => 'Fighter bomber',
+    221 => 'Carrier',
 
     // 221 => 'Kara savascinin evrene hakim olmasindan sonra bilim adamlari onu durduracar bir gemi uretmeye calistirlar.'
     //     . ' Ozellikle iyon teknolonojisinde cok buyuk ilerleme kaydeden bilimadamlari bunu Thorda birlestirdiler. Kara'

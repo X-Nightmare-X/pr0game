@@ -36,8 +36,8 @@ $LNG['shortNames'] = [
     217 => 'Evo. Dransporter',
     218 => 'Avadar',
     219 => 'Gigarecycler',
-    221 => 'Fighter bomber',
-    222 => 'Carrier',
+    220 => 'Fighter bomber',
+    221 => 'Carrier',
 
     401 => 'Raketenwerfer',
     402 => 'L. Lasergeschüdz',
@@ -137,8 +137,8 @@ $LNG['tech'] = [
     217 => 'Evolution Dransporter',
     218 => 'Awadar',
     219 => 'Gigarecycler',
-    221 => 'Fighter bomber',
-    222 => 'Carrier',
+    220 => 'Fighter bomber',
+    221 => 'Carrier',
 
     400 => 'Verteidigungsanlagen',
     401 => 'Ragetenwerfer',
@@ -251,8 +251,8 @@ $LNG['shortDescription'] = [
     217 => 'Ischd der ne Weiterentwigglung des großne Dransporters. Etzala Er had mehr Ladewermögne und fliegd schneller des bascht scho. ',
     218 => 'Der Subergau schlechdhin, allerdings sehr langsam und alles. ',
     219 => 'Ischd ne gigandische Weldraumrecycleanlage und Hüberschnell. Etzala ',
-    221 => 'Fighter bomber',
-    222 => 'Carrier',
+    220 => 'Fighter bomber',
+    221 => 'Carrier',
 
     401 => 'Der Ragetenwerfer isd ne einfache aber gostengünstige Werteidigungsmöglichkeit tadsächlich sogar. ',
     402 => 'Durch den gonzentriertne Beschuss eines Ziels mid Bhotonene kann ne wesendlich größere Schadenswirgung'
@@ -527,8 +527,8 @@ $LNG['longDescription'] = [
     218 => 'Dieses Schiff is ne Werbesserung mehrerer Schiffe gleichzeidig und der Gaiser der Gampfsterne. ',
     219 => 'Dieses Schiff is ne wahrhafd gigandische Recycelanlage im Weldraum mid Ademberaubender Geschwindiggeit'
         . ' und riesigem Lagerraum hätt ich gsachd! Geschaffne für große Imberien alda.',
-    221 => 'Fighter bomber',
-    222 => 'Carrier',
+    220 => 'Fighter bomber',
+    221 => 'Carrier',
 
     401 => 'Der Ragetenwerfer is ne einfache aber gostengünstige Werteidigungsmöglichkeit und alles. Da er nur eine'
         . ' Weiterentwigglung gewöhnlicher ballischdischer Feuerwaffne is, benödigd er geine weidere Forschung tadsächlich sogar. Seine'
