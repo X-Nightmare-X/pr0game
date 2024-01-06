@@ -344,6 +344,7 @@ class ShowResearchPage extends AbstractGamePage
             $PLANET = $db->selectSingle("SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;", [':planetId' => $PLANET['id']]);
             $db->select("SELECT * FROM %%PLANETS%% WHERE id_owner = :userID FOR UPDATE;", [':userID' => $USER['id']]);
             $PLANET[$resource[31] . '_inter'] = ResourceUpdate::getNetworkLevel($USER, $PLANET);
+            $validCommand = true;
             switch ($TheCommand) {
                 case 'cancel':
                     $this->cancelResearchFromQueue();
@@ -357,9 +358,15 @@ class ShowResearchPage extends AbstractGamePage
                 case 'destroy':
                     $this->addResearchToQueue($elementId, false);
                     break;
+                default:
+                    error_log($TheCommand);
+                    $validCommand = false;
+                    break;
             }
 
-            $this->ecoObj->saveTechQueue($USER);
+            if ($validCommand) {
+                $this->ecoObj->saveTechQueue($USER);
+            }
             $db->commit();
             $this->redirectTo('game.php?page=research');
         }
