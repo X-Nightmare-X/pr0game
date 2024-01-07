@@ -16,7 +16,7 @@
 	<tr>
 		<td>{$LNG.al_diplo_text}<br>(<span id="cntChars">0</span> / 5000 {$LNG.al_characters})</td>
 		<td>
-			<textarea name="text" cols="60" rows="10" onkeyup="$('#cntChars').text($(this).val().length);"></textarea>
+			<textarea name="text" cols="60" rows="10" onkeyup="$('#cntChars').text($(this).val().length);" maxlength="5000"></textarea>
 		</td>
 	</tr>
 	<tr>
