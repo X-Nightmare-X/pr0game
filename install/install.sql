@@ -434,7 +434,7 @@ CREATE TABLE `%PREFIX%diplo` (
   `owner_2` int(11) unsigned NOT NULL,
   `level` tinyint(1) unsigned NOT NULL,
   `accept` tinyint(1) unsigned NOT NULL,
-  `accept_text` varchar(255) NOT NULL,
+  `accept_text` text CHARACTER SET utf8mb4,
   `universe` tinyint(3) unsigned NOT NULL,
   `request_time` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
