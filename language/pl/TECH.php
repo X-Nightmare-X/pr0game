@@ -414,8 +414,8 @@ $LNG['longDescription'] = [
     217 => 'Powstał dzięki potrzebie transportu większych ładunków, jak również szybszego transportu.',
     218 => 'Można powiedzieć, iż to przedstawiciel koszmaru na tym świecie, niestety strasznie powolny.',
     219 => 'Ogromna ładowność, a dzięki nowym technologiom porusza się znacznie szybciej od standardowego recyklera.',
-    220 => 'Fighter bomber',
-    221 => 'Carrier',
+    220 => 'Myśliwiec bombardujący to zaawansowany technologicznie statek bojowy wielkości myśliwca. Został opracowany w celu skutecznego zwalczania najbardziej zaawansowanych klas statków i systemów obronnych. W tym celu zainstalowano najnowocześniejsze komputery celownicze i potężne systemy laserowe. Systemy te zużywają jednak dużo energii, przez co spada prędkość przelotowa. Aby zaradzić tej sytuacji, w tym samym czasie opracowano lotniskowce.',
+    221 => 'Lotniskowiec został opracowany w celu skompensowania prędkości przelotowej myśliwców bombardujących. Lotniskowce są podobnych rozmiarów co pancerniki, mają taką samą technologię napędu, znacznie mniej uzbrojenia, ale znacznie więcej osłon chroniących ogromne otwory hangarowe w kadłubie. Każdy lotniskowiec może przewozić 10 myśliwców bombardujących, co zmniejsza koszty lotu o 90% na każdy myśliwiec bombardujący. Jeśli we flocie jest wystarczająco dużo lotniskowców dla wszystkich myśliwców bombardujących, cała flota może latać szybciej.',
 
     401 => 'Twoja pierwsza linia obrony. Po walce i zniszczeniu jest 70% szans, że zostanie naprawiona.',
     402 => 'Wiązki laserowe dzięki specjalnym systemom namierzania i podążania za celem są kierowane tak, by przebijać'

@@ -310,8 +310,8 @@ $LNG['shortDescription'] = [
         . ' gemisi oldukca guclu olmasina karsin Cok Yavas hareket eder. ',
     219 => 'Geri donusumculerin gelistirilmis versiyonudur. Bu yeni gemi Geri Donusumculere oranla daha fazla Yuk tasir'
         . ' ve Daha Hizlidir. ',
-    220 => 'Fighter bomber',
-    221 => 'Carrier',
+    220 => 'Avcı-bombardıman uçakları ultra-modern savaş gemilerine ve savunma tesislerine karşı kullanılmaktadır.',
+    221 => 'Taşıyıcılar, yakıt tüketimini azaltmak ve filonun hızını en aza indirmek için 10 avcı-bombardıman uçağı taşıyabilir.',
 
     // 221 => 'Kara savascinin evrene hakim olmasindan sonra bilim adamlari onu durduracar bir gemi uretmeye calistirlar.'
     //     . ' Bunun sonucunda ortaya Thor cikti. ',
@@ -594,8 +594,8 @@ $LNG['longDescription'] = [
         . ' hareket eder. ',
     219 => 'Geri donusumculerin gelistirilmis versiyonudur. Bu yeni gemi Geri Donusumculere oranla daha fazla Yuk tasir'
         . ' ve Daha Hizlidir.',
-    220 => 'Fighter bomber',
-    221 => 'Carrier',
+    220 => 'Avcı-bombardıman uçağı, avcı uçağı büyüklüğünde yüksek teknolojili bir savaş gemisidir. En gelişmiş gemi sınıfları ve savunma sistemleriyle etkili bir şekilde mücadele etmek için geliştirilmiştir. Bu amaçla en modern hedefleme bilgisayarları ve güçlü lazer sistemleri kurulmuştur. Ancak, bu sistemler büyük miktarda enerji tüketir, bu nedenle seyir hızı sonuç olarak zarar görür. Bu durumu düzeltmek için aynı zamanda taşıyıcı gemiler de geliştirilmiştir.',
+    221 => 'Uçak gemisi avcı-bombardıman uçaklarının seyir hızını dengelemek için geliştirilmiştir. Uçak gemileri boyut olarak savaş gemilerine benzer, aynı tahrik teknolojisine, önemli ölçüde daha az silahlanmaya, ancak gövdedeki devasa hangar açıklıklarını korumak için önemli ölçüde daha fazla kalkana sahiptir. Her uçak gemisi 10 avcı-bombardıman uçağı taşıyabilir ve bu da uçuş maliyetlerini avcı-bombardıman uçağı başına %90 oranında azaltır. Filodaki tüm avcı-bombardıman uçakları için yeterli sayıda taşıyıcı varsa, tüm filo daha hızlı uçabilir.',
 
     // 221 => 'Kara savascinin evrene hakim olmasindan sonra bilim adamlari onu durduracar bir gemi uretmeye calistirlar.'
     //     . ' Ozellikle iyon teknolonojisinde cok buyuk ilerleme kaydeden bilimadamlari bunu Thorda birlestirdiler. Kara'

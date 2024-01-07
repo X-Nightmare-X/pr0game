@@ -273,6 +273,13 @@ class FleetFunctions
         foreach ($FleetArray as $Ship => $Count) {
             $speedalls[$Ship] = self::getShipSpeed($Ship, $Player);
         }
+        if (isset($FleetArray[FIGHTER_BOMBER]) && isset($FleetArray[CARRIER])) {
+            $carried = $FleetArray[CARRIER] * 10;
+            if ($carried >= $Count) {
+                //All fighter bombers fit into carriers, therefore no fleet speed influence
+                unset($speedalls[FIGHTER_BOMBER]);
+            }
+        }
 
         return min($speedalls);
     }
@@ -286,7 +293,19 @@ class FleetFunctions
             $ShipConsumption = self::getShipConsumption($Ship, $Player);
 
             $spd = 35000 / max($MissionDuration * $GameSpeed - 10, 1) * sqrt($MissionDistance * 10 / $ShipSpeed);
-            $basicConsumption = $ShipConsumption * $Count;
+            if ($Ship == FIGHTER_BOMBER && isset($FleetArray[CARRIER])) {
+                $carried = $FleetArray[CARRIER] * 10;
+                if ($carried >= $Count) {
+                    //All fighter bombers fit into carriers, therefore 90% consumption reduction
+                    $basicConsumption = $ShipConsumption * 0.9 * $Count;
+                } else {
+                    //Partialy reduce consumtion for fighter bombers fiting into carriers
+                    $basicConsumption = $ShipConsumption * 0.9 * $carried;
+                    $basicConsumption += $ShipConsumption * ($Count - $carried);
+                }
+            } else {
+                $basicConsumption = $ShipConsumption * $Count;
+            }
             $consumption += $basicConsumption * $MissionDistance / 35000 * (($spd / 10) + 1) * (($spd / 10) + 1);
         }
         return (round($consumption) + 1);

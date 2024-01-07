@@ -36,7 +36,7 @@ $LNG['shortNames'] = [
     217 => 'Evo. Transporter',
     218 => 'Avatar',
     219 => 'Gigarecycler',
-    220 => 'Jagtbomber',
+    220 => 'Jagdbomber',
     221 => 'Träger',
 
     401 => 'Raketenwerfer',
@@ -137,7 +137,7 @@ $LNG['tech'] = [
     217 => 'Evolution Transporter',
     218 => 'Avatar',
     219 => 'Gigarecycler',
-    220 => 'Jagtbomber',
+    220 => 'Jagdbomber',
     221 => 'Träger',
 
     400 => 'Verteidigungsanlagen',
@@ -251,8 +251,9 @@ $LNG['shortDescription'] = [
     217 => 'Ist der eine Weiterentwicklung des großen Transporters. Er hat mehr Ladevermögen und fliegt schneller.',
     218 => 'Der Supergau schlechthin, allerdings sehr langsam.',
     219 => 'Ist eine gigantische Weltraumrecycleanlage und hyperschnell.',
-    220 => 'Jagtbomber',
-    221 => 'Träger',
+    220 => 'Jagdbomber werden gegen hochmoderne Kampfschiffe und Verteidigungsanlagen eingesetzt.',
+    221 => 'Träger können bis zu 10 Jagdbomber transportieren, um den Treibstoffverbrauch zu reduzieren und die'
+        . ' Geschwindigkeit der Flotte zu erhöhen.',
 
     401 => 'Der Raketenwerfer ist eine einfache aber kostengünstige Verteidigungsmöglichkeit.',
     402 => 'Durch den konzentrierten Beschuss eines Ziels mit Photonen kann eine wesentlich größere Schadenswirkung'
@@ -522,14 +523,22 @@ $LNG['longDescription'] = [
         . ' bekämpfen. Durch seine schlanke Bauform und die starken Bewaffnung ist die Ladekapazität begrenzt. Dies'
         . ' wird jedoch durch den verbrauchsarmen Hyperraumantrieb wieder ausgeglichen.',
     216 => 'Dieses monströse Schiff ist eine Weiterentwicklung des Todessternes, die an Geschwindigkeit zugenommen hat,'
-        . ' doch an Stärke verloren.	',
+        . ' doch an Stärke verloren.',
     217 => 'Dieser Transporter ist zwar langsamer aber dafür kann er jetzt mehr aufladen. Doch wenn man die richtige'
         . ' Forschung hat ist er fast so schnell wie der große Transporter.',
     218 => 'Dieses Schiff ist eine Verbesserung mehrerer Schiffe gleichzeitig und der Kaiser der Kampfsterne.',
     219 => 'Dieses Schiff ist eine wahrhaft gigantische Recycelanlage im Weltraum mit Atemberaubender Geschwindigkeit'
         . ' und riesigem Lagerraum! Geschaffen für große Imperien.',
-    220 => 'Jagtbomber',
-    221 => 'Träger',
+    220 => 'Der Jagdbomber ist ein Hochtechnologisiertes Kampfschiff in der größe eines Jägers. Er wurde entwickelt, um'
+        . ' die fortschrittlichsten Schiffsklassen und Verteidigungsanlagen effektiv zu bekämpfen. Hierzu werden die'
+        . ' modernsten Zielkomputer und stärksten Lasersysteme verbaut. Dese Systeme verbrauchen allerdings sehr viel'
+        . ' Energie, so dass die Reisegeschwindigkeit darunter leidet. Um hier Abhilfe zu schaffen, wurden zeitgleich'
+        . ' Träger-Schiffe entwickelt.',
+    221 => 'Der Träger wurde entwickelt, um die Reisegeschwindigkeit von Jagdbombern zu kompensieren. Träger sind ähnlich'
+        . ' groß wie Schlachtschiffe, haben die gleiche Antriebstechnik, deutlich weniger Bewafnung, aber deutlich mehr'
+        . ' Schilde, um die riesiegen Hangaröffungen in der Hülle zu schützen. Jeder Träger kann 10 Jagdbomber aufnehmen,'
+        . ' wodurch die Flugkosten um 90% je Jagdbomber reduziert werden. Sind genug Träger für alle Jagdbomber in der'
+        . ' Flotte vorhanden, so kann die gesamte Flotte schneller fliegen.',
 
     401 => 'Der Raketenwerfer ist eine einfache aber kostengünstige Verteidigungsmöglichkeit. Da er nur eine'
         . ' Weiterentwicklung gewöhnlicher ballistischer Feuerwaffen ist, benötigt er keine weitere Forschung. Seine'

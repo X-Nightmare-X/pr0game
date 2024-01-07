@@ -249,8 +249,9 @@ $LNG['shortDescription'] = [
 217 => 'Is a development of the large cargo, it has more carry capacity and flies faster with the right techonology.',
 218 => 'The absolute worst case scenario, albeit very slowly.',
 219 => 'Is a huge cargo space and new engines, enable it to fly faster and gather more in debris fields .',
-220 => 'Fighter bomber',
-221 => 'Carrier',
+220 => 'Fighter-bombers are used against ultra-modern combat ships and defence installations.',
+221 => 'Carriers can transport up to 10 fighter-bombers to reduce fuel consumption and minimise'
+    . ' speed of the fleet.',
 
 401 => 'The Rocket Launcher is a simple but cost-effective defense.',
 402 => 'Light Lasers are simple ground based defense weapons. They use special targeting systems to track and attack'
@@ -396,8 +397,8 @@ $LNG['longDescription'] = [
 217 => 'Is a development of the large cargo, it has more carry capacity and flies faster with the right techonology.',
 218 => 'The absolute worst case scenario, albeit very slowly.',
 219 => 'Is a huge cargo space and new engines, enable it to fly faster and gather more in debris fields .',
-220 => 'Fighter bomber',
-221 => 'Carrier',
+220 => 'The fighter-bomber is a high-tech fighter ship the size of a fighter. It was developed to effectively combat the most advanced ship classes and defense systems. The most modern targeting computers and powerful laser systems are installed for this purpose. However, these systems consume a great deal of energy, so that cruising speed suffers as a result. To remedy this situation, carrier ships were developed at the same time.',
+221 => 'The carrier was developed to compensate for the cruising speed of fighter-bombers. Carriers are similar in size to battleships, have the same propulsion technology, significantly less armament, but significantly more shields to protect the huge hangar openings in the hull. Each carrier can carry 10 fighter-bombers, reducing flight costs by 90% per fighter-bomber. If there are enough carriers for all the fighter-bombers in the fleet, the entire fleet can fly faster.',
 
 401 => 'The Rocket Launcher is a simple but cost-effective defense.',
 402 => 'Light Lasers are simple ground based weapons that utilize special targeting systems to track the enemy and fire'

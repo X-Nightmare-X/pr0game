@@ -527,8 +527,8 @@ $LNG['longDescription'] = [
     218 => 'Es la nave absoluta, aunque muy lenta. Es la nave del emperador',
     219 => 'Es un nave con espacio de carga enorme y nuevos motores, que pueda volar m&aacute;s r&aacute;pido y obtener'
         . ' m&aacute;s en los campos de escombros.',
-    220 => 'Fighter bomber',
-    221 => 'Carrier',
+    220 => 'El cazabombardero es una nave de combate de alta tecnología del tamaño de un caza. Se desarrolló para combatir eficazmente las clases de naves y los sistemas de defensa más avanzados. Para ello lleva instalados los más modernos ordenadores de puntería y potentes sistemas láser. Sin embargo, estos sistemas consumen mucha energía, por lo que la velocidad de crucero se resiente en consecuencia. Para remediar esta situación, se desarrollaron al mismo tiempo buques portadores.',
+    221 => 'El portaaviones se desarrolló para compensar la velocidad de crucero de los cazabombarderos. Los portaaviones son similares en tamaño a los acorazados, tienen la misma tecnología de propulsión, bastante menos armamento, pero bastantes más escudos para proteger las enormes aberturas de los hangares en el casco. Cada portaaviones puede transportar 10 cazabombarderos, lo que reduce los costes de vuelo en un 90% por cazabombardero. Si hay suficientes portaaviones para todos los cazabombarderos de la flota, toda la flota puede volar más rápido.',
 
     401 => 'El lanzamisiles es un sistema de defensa sencillo, pero barato. Puede ser muy efectivo si se construye en'
         . ' grandes n&uacute;meros, no necesita tecnolog&iacute;a alguna puesto que es una sencilla arma'

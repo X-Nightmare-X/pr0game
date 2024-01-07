@@ -278,8 +278,8 @@ $LNG['shortDescription'] = [
         . ' batalhas entre grandes impérios! O Reciclador de Batalha é uma nave muito desejada devido à sua capacidade'
         . ' de carga e velocidade, mas continua sem sistemas de defesa o que faz dela uma nave impotente a não ser para'
         . ' reciclagem.',
-    220 => 'Fighter bomber',
-    221 => 'Carrier',
+    220 => 'O caça-bombardeiro é uma nave de combate de alta tecnologia do tamanho de um caça. Foi desenvolvido para combater eficazmente as classes de navios e sistemas de defesa mais avançados. Para o efeito, são instalados os mais modernos computadores de mira e poderosos sistemas laser. No entanto, estes sistemas consomem uma grande quantidade de energia, pelo que a velocidade de cruzeiro é afetada. Para remediar esta situação, foram desenvolvidos ao mesmo tempo navios de transporte.',
+    221 => 'Os porta-aviões podem transportar até 10 caças-bombardeiros para reduzir o consumo de combustível e minimizar a velocidade da frota.',
 
     401 => 'O lançador de mísseis é um sistema de defesa simples e barato. Tornam-se muito eficazes em número e podem'
         . ' ser construídos sem pesquisa específica porque é uma arma de balística simples.',
@@ -441,8 +441,8 @@ $LNG['longDescription'] = [
         . ' batalhas entre grandes impérios! O Reciclador de Batalha é uma nave muito desejada devido à sua capacidade'
         . ' de carga e velocidade, mas continua sem sistemas de defesa o que faz dela uma nave impotente a não ser para'
         . ' reciclagem.',
-    220 => 'Fighter bomber',
-    221 => 'Carrier',
+    220 => 'O caça-bombardeiro é uma nave de combate de alta tecnologia do tamanho de um caça. Foi desenvolvido para combater eficazmente as classes de navios e sistemas de defesa mais avançados. Para o efeito, são instalados os mais modernos computadores de mira e poderosos sistemas laser. No entanto, estes sistemas consomem uma grande quantidade de energia, pelo que a velocidade de cruzeiro é afetada. Para remediar esta situação, foram desenvolvidos ao mesmo tempo navios de transporte.',
+    221 => 'O porta-aviões foi desenvolvido para compensar a velocidade de cruzeiro dos caças-bombardeiros. Os porta-aviões são semelhantes em tamanho aos navios de guerra, têm a mesma tecnologia de propulsão, significativamente menos armamento, mas significativamente mais escudos para proteger as enormes aberturas dos hangares no casco. Cada porta-aviões pode transportar 10 caças-bombardeiros, reduzindo os custos de voo em 90% por caça-bombardeiro. Se houver porta-aviões suficientes para todos os caças-bombardeiros da frota, toda a frota pode voar mais depressa.',
 
     401 => 'O lançador de mísseis é um sistema de defesa simples e barato. Tornam-se muito eficazes em número e podem'
         . ' ser construídos sem pesquisa específica porque é uma arma de balística simples.',

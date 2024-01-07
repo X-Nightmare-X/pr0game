@@ -251,8 +251,9 @@ $LNG['shortDescription'] = [
     217 => 'Ischd der ne Weiterentwigglung des großne Dransporters. Etzala Er had mehr Ladewermögne und fliegd schneller des bascht scho. ',
     218 => 'Der Subergau schlechdhin, allerdings sehr langsam und alles. ',
     219 => 'Ischd ne gigandische Weldraumrecycleanlage und Hüberschnell. Etzala ',
-    220 => 'Fighter bomber',
-    221 => 'Carrier',
+    220 => 'Jagdbomber werden gegen hochmoderne Kampfschiffe und Verteidigungsanlagen eingesetzt.',
+    221 => 'Träger können bis zu 10 Jagdbomber transportieren, um den Treibstoffverbrauch zu reduzieren und die'
+        . ' Geschwindigkeit der Flotte zu erhöhen.',
 
     401 => 'Der Ragetenwerfer isd ne einfache aber gostengünstige Werteidigungsmöglichkeit tadsächlich sogar. ',
     402 => 'Durch den gonzentriertne Beschuss eines Ziels mid Bhotonene kann ne wesendlich größere Schadenswirgung'
@@ -527,8 +528,16 @@ $LNG['longDescription'] = [
     218 => 'Dieses Schiff is ne Werbesserung mehrerer Schiffe gleichzeidig und der Gaiser der Gampfsterne. ',
     219 => 'Dieses Schiff is ne wahrhafd gigandische Recycelanlage im Weldraum mid Ademberaubender Geschwindiggeit'
         . ' und riesigem Lagerraum hätt ich gsachd! Geschaffne für große Imberien alda.',
-    220 => 'Fighter bomber',
-    221 => 'Carrier',
+    220 => 'Der Jagdbomber ist ein Hochtechnologisiertes Kampfschiff in der größe eines Jägers. Er wurde entwickelt, um'
+        . ' die fortschrittlichsten Schiffsklassen und Verteidigungsanlagen effektiv zu bekämpfen. Hierzu werden die'
+        . ' modernsten Zielkomputer und stärksten Lasersysteme verbaut. Dese Systeme verbrauchen allerdings sehr viel'
+        . ' Energie, so dass die Reisegeschwindigkeit darunter leidet. Um hier Abhilfe zu schaffen, wurden zeitgleich'
+        . ' Träger-Schiffe entwickelt.',
+    221 => 'Der Träger wurde entwickelt, um die Reisegeschwindigkeit von Jagdbombern zu kompensieren. Träger sind ähnlich'
+        . ' groß wie Schlachtschiffe, haben die gleiche Antriebstechnik, deutlich weniger Bewafnung, aber deutlich mehr'
+        . ' Schilde, um die riesiegen Hangaröffungen in der Hülle zu schützen. Jeder Träger kann 10 Jagdbomber aufnehmen,'
+        . ' wodurch die Flugkosten um 90% je Jagdbomber reduziert werden. Sind genug Träger für alle Jagdbomber in der'
+        . ' Flotte vorhanden, so kann die gesamte Flotte schneller fliegen.',
 
     401 => 'Der Ragetenwerfer is ne einfache aber gostengünstige Werteidigungsmöglichkeit und alles. Da er nur eine'
         . ' Weiterentwigglung gewöhnlicher ballischdischer Feuerwaffne is, benödigd er geine weidere Forschung tadsächlich sogar. Seine'

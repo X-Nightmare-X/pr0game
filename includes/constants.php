@@ -291,6 +291,8 @@ define('LUNE_NOIR', 216);
 define('EV_TRANSPORTER', 217);
 define('STAR_CRASHER', 218);
 define('GIGA_RECYKLER', 219);
+define('FIGHTER_BOMBER', 220);
+define('CARRIER', 221);
 
 // Defense
 define('MISSILE_LAUNCHER', 401);

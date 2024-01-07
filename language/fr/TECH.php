@@ -253,8 +253,8 @@ $LNG['shortDescription'] = [
 218 => 'Il vous procurera le pire des scénarios, bien que très lent.',
 219 => 'Le recycleur ultime dispose d\'une capacité de chargement énorme et de nouveaux moteurs qui lui permettent de'
     . ' voler plus vite et de recueillir davantage dans les champs de débris.',
-220 => 'Fighter bomber',
-221 => 'Carrier',
+220 => 'Les chasseurs-bombardiers sont utilisés contre les navires de combat et les installations de défense ultramodernes.',
+221 => 'Les porte-avions peuvent transporter jusqu\'à 10 chasseurs-bombardiers afin de réduire la consommation de carburant et la vitesse de la flotte.',
 
 401 => 'Le lanceur de missiles est un moyen de défense simple mais rentable.',
 402 => 'Le canon laser léger est une arme au sol simple qui utilise des systèmes spéciaux de ciblage pour suivre'
@@ -386,8 +386,8 @@ $LNG['longDescription'] = [
 218 => 'Le pire de tous, bien que très lent.',
 219 => 'C\'est un immense cargo de recyclage, avec de nouveaux moteurs, qui lui permettent de voler plus vite et de'
     . ' recueillir plus de débris.',
-220 => 'Fighter bomber',
-221 => 'Carrier',
+220 => 'Le chasseur-bombardier est un vaisseau de combat de haute technologie de la taille d\'un chasseur. Il a été développé pour combattre efficacement les classes de navires et les systèmes de défense les plus avancés. Les ordinateurs de ciblage les plus modernes et les systèmes laser les plus puissants sont installés à cet effet. Cependant, ces systèmes consomment beaucoup d\'énergie, ce qui nuit à la vitesse de croisière. Pour remédier à cette situation, des porte-avions ont été développés en parallèle.',
+221 => 'Le porte-avions a été développé pour compenser la vitesse de croisière des chasseurs-bombardiers. Les porte-avions ont la même taille que les cuirassés, la même technologie de propulsion, beaucoup moins d\'armement, mais beaucoup plus de boucliers pour protéger les énormes ouvertures des hangars dans la coque. Chaque porte-avions peut transporter 10 chasseurs-bombardiers, ce qui réduit les coûts de vol de 90 % par chasseur-bombardier. S\'il y a suffisamment de porte-avions pour tous les chasseurs-bombardiers de la flotte, celle-ci peut voler plus rapidement.',
 
 401 => 'Le lance-roquettes est une défense simple mais rentable.',
 402 => 'Les Lasers légers sont des armes simples basés au sol qui utilisent des systèmes spéciaux de ciblage pour'
