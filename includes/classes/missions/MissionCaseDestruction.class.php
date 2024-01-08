@@ -84,6 +84,13 @@ HTML;
             ':planetId' => $this->_fleet['fleet_end_id'],
         ]);
 
+        // return fleet if target planet deleted
+        if ($targetPlanet == false) {
+            $this->setState(FLEET_RETURN);
+            $this->SaveFleet();
+            return;
+        }
+
         // select wreckfield to lock it, can be empty
         if ($targetPlanet['planet_type'] == 3) {
             $sql = "SELECT * FROM %%PLANETS%% WHERE id_luna = :planetId;";
@@ -97,13 +104,6 @@ HTML;
         $db->selectSingle($sql, [
             ':planetId' => $targetPlanetID
         ]);
-
-        // return fleet if target planet deleted
-        if ($targetPlanet == false) {
-            $this->setState(FLEET_RETURN);
-            $this->SaveFleet();
-            return;
-        }
 
         $sql = "SELECT * FROM %%USERS%% WHERE id = :userId;";
         $targetUser = $db->selectSingle($sql, [
