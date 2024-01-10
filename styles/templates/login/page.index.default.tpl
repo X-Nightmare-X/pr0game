@@ -27,7 +27,7 @@
 	</div>
 </section>
 <section>
-  <div class="button-box">
+	<div class="button-box">
 		<div class="button-box-inner">
 			<div class="button-important">
 				<a href="index.php?page=register">
@@ -41,16 +41,34 @@
 	<div class="button-box">
 		<div class="button-box-inner">
 			<div class="button multi">
-				<a href="index.php?page=battleHall">
+				<a href="index.php?page=battleHall" target="_blank">
 					<span class="button-left"></span>
 					<span class="button-center">{$LNG.menu_battlehall}</span>
 					<span class="button-right"></span>
 				</a>
 			</div>
       		<div class="button multi">
-				<a href="index.php?page=screens">
+				<a href="index.php?page=screens" target="_blank">
 					<span class="button-left"></span>
 					<span class="button-center">{$LNG.buttonScreenshot}</span>
+					<span class="button-right"></span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="button-box">
+		<div class="button-box-inner">
+			<div class="button multi">
+				<a href="https://discord.gg/jhYYN3yuat" target="_blank">
+					<span class="button-left"></span>
+					<span class="button-center">Discord</span>
+					<span class="button-right"></span>
+				</a>
+			</div>
+      		<div class="button multi">
+				<a href="https://wiki.pr0game.com" target="_blank">
+					<span class="button-left"></span>
+					<span class="button-center">Wiki</span>
 					<span class="button-right"></span>
 				</a>
 			</div>
