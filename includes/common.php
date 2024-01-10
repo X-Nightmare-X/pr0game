@@ -34,8 +34,8 @@ ini_set('display_errors', 1);
 header('Content-Type: text/html; charset=UTF-8');
 define('TIMESTAMP', time());
 
-require 'includes/constants.php';
 require 'includes/classes/class.Singleton.php';
+require 'includes/constants.php';
 
 ini_set('log_errors', 'On');
 ini_set('error_log', 'includes/error.log');

@@ -82,10 +82,32 @@ class Config
     private static function generateInstances()
     {
         $db     = Database::get();
-        $configResult = $db->nativeQuery("SELECT * FROM %%CONFIG%%;");
-        foreach ($configResult as $configRow) {
-            self::$instances[$configRow['uni']] = new self($configRow);
-            Universe::add($configRow['uni']);
+        $configRow = $db->selectSingle('SELECT * FROM %%CONFIG%%;');
+        $universeResult = $db->select('SELECT * FROM %%CONFIG_UNIVERSE%%;');
+        foreach ($universeResult as $universeRow) {
+            $modulesResult = $db->select('SELECT * FROM %%CONFIG_UNIVERSE_MODULES%% WHERE `uni` = :universe;', [':universe' => $universeRow['uni']]);
+            $moduls = [];
+            foreach ($modulesResult as $modulesRow) {
+                $moduls[$modulesRow['module']] = $modulesRow['state'];
+            }
+            $modules =& Singleton()->modules;
+            foreach ($modules as $moduleKey => $moduleName) {
+                if (!isset($moduls[$moduleKey])) {
+                    $sql = 'INSERT INTO %%CONFIG_UNIVERSE_MODULES%% (`uni`, `module`, `module_name`, `state`)
+                        VALUES (:uni, :module, :module_name, :state)';
+                    $db->insert($sql, [
+                        ':uni' => $universeRow['uni'],
+                        ':module' => $moduleKey,
+                        ':module_name' => $moduleName,
+                        ':state' => 1,
+                    ]);
+                    $moduls[$moduleKey] = 1;
+                }
+            }
+            $universeRow['modules'] = $moduls;
+            $universeRow = array_merge($universeRow, $configRow);
+            self::$instances[$universeRow['uni']] = new self($universeRow);
+            Universe::add($universeRow['uni']);
         }
     }
 
