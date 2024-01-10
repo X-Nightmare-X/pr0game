@@ -8,8 +8,8 @@
 	<td>{$LNG.bo_username}</td>
 	<td colspan="2"><input name="ban_name" type="text" value="{$name}" readonly="true" class="character"/></td>
 </tr><tr>
-	<td>{$LNG.bo_reason} <br><br>{$LNG.bo_characters_1}<input id="result2" value="50" size="2" readonly="true" class="character"></td> 
-	<td colspan="2"><textarea name="why" maxlength="50" cols="20" rows="5" onkeyup="$('#result2').val(50 - parseInt($(this).val().length));">{$reas}</textarea></td>
+	<td>{$LNG.bo_reason} <br><br>{$LNG.bo_characters_1}<input id="result2" value="500" size="2" readonly="true" class="character"></td> 
+	<td colspan="2"><textarea name="why" maxlength="500" cols="20" rows="5" onkeyup="$('#result2').val(500 - parseInt($(this).val().length));">{$reas}</textarea></td>
 </tr>
 	{$timesus}
 <tr>

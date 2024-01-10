@@ -117,12 +117,12 @@ class ResourceUpdate
                     }
                 }
             }
-        }
 
-        $this->UpdateResource($this->TIME, $HASH);
-
-        if ($SAVE === true) {
-            $this->SavePlanetToDB($this->USER, $this->PLANET);
+            $this->UpdateResource($this->TIME, $HASH);
+    
+            if ($SAVE === true) {
+                $this->SavePlanetToDB($this->USER, $this->PLANET);
+            }
         }
 
         return $this->ReturnVars();
