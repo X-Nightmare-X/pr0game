@@ -381,12 +381,15 @@ function getNumber($from, $default = 0)
 function isModuleAvailable($ID, $universe = 0)
 {
     $config = Config::get($universe);
-    $modules = explode(';', $config->moduls);
+    $modules = $config->moduls;
+    
     if (!isset($modules[$ID])) {
-        $modules[$ID] = 1;
+        $e = new \Exception;
+        error_log('Unknown module ID: ' . $ID);
+        error_log('\n' . $e->getTraceAsString());
     }
 
-    return $modules[$ID] == 1;
+    return isset($modules[$ID]) ? $modules[$ID] == 1 : true;
 }
 
 function ClearCache()

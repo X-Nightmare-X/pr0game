@@ -104,7 +104,7 @@ class Config
                     $moduls[$moduleKey] = 1;
                 }
             }
-            $universeRow['modules'] = $moduls;
+            $universeRow['moduls'] = $moduls;
             $universeRow = array_merge($universeRow, $configRow);
             self::$instances[$universeRow['uni']] = new self($universeRow);
             Universe::add($universeRow['uni']);
@@ -149,14 +149,14 @@ class Config
         $updateData = [];
         $params = [];
         foreach ($this->updateRecords as $columnName) {
-            if (!in_array($columnName, self::$globalConfigKeys)) {
+            if (!in_array($columnName, self::$globalConfigKeys) && !$columnName == 'moduls') {
                 $updateData[] = '`' . $columnName . '` = :' . $columnName;
                 $params[':' . $columnName] = $this->configData[$columnName];
             }
         }
         $params[':universe'] = $this->configData['uni'];
 
-        $sql = 'UPDATE %%CONFIG%% SET '.implode(', ', $updateData).' WHERE `UNI` = :universe';
+        $sql = 'UPDATE %%CONFIG_UNIVERSE%% SET '.implode(', ', $updateData).' WHERE `UNI` = :universe';
         Database::get()->update($sql, $params);
 
         $this->updateRecords = [];
@@ -182,14 +182,24 @@ class Config
             }
         }
 
-        foreach (Universe::availableUniverses() as $universeId) {
-            $params[':universe'] = $universeId;
-            
-            $sql = 'UPDATE %%CONFIG%% SET '.implode(', ', $updateData).' WHERE `UNI` = :universe';
-            $db->update($sql, $params);
-        }
+        $sql = 'UPDATE %%CONFIG%% SET '.implode(', ', $updateData).';';
+        $db->update($sql, $params);
 
         $this->updateRecords = [];
+        return true;
+    }
+
+    public function saveModules()
+    {
+        foreach ($this->configData['moduls'] as $modulKey => $modulValue) {
+            $sql = 'UPDATE %%CONFIG_UNIVERSE_MODULES%% SET `state` = :state 
+                WHERE `uni` = :universe AND `module` = :module;';
+            Database::get()->update($sql, [
+                ':universe' => $this->configData['uni'],
+                ':module' => $modulKey,
+                ':state' => $modulValue,
+            ]);
+        }
         return true;
     }
 
