@@ -323,7 +323,7 @@ CREATE TABLE `%PREFIX%config` (
   `stats_fly_lock` int(11) NOT NULL DEFAULT 0, -- unused
   `cron_lock` int(11) NOT NULL DEFAULT 0, -- unused
   `sql_revision` INT NOT NULL DEFAULT  0, -- unused, alternative for uni1_system
-  `dst` enum(0,1,2) NOT NULL DEFAULT 2 -- unused, summertime(LNG"op_dst_mode"): 0=no, 1=yes, 2=automatic, no input field
+  `dst` enum("0","1","2") NOT NULL DEFAULT "2" -- unused, summertime(LNG"op_dst_mode"): 0=no, 1=yes, 2=automatic, no input field
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE `%PREFIX%config_universe` (
