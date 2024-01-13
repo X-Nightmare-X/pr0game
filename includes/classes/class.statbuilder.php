@@ -136,7 +136,7 @@ class statbuilder
     {
         $this->universes = [];
 
-        $uniResult = Database::get()->select("SELECT uni FROM %%CONFIG%% ORDER BY uni ASC;");
+        $uniResult = Database::get()->select("SELECT uni FROM %%CONFIG_UNIVERSE%% ORDER BY uni ASC;");
         foreach ($uniResult as $uni) {
             $this->universes[] = $uni['uni'];
         }

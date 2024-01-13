@@ -40,7 +40,7 @@ class TrackingCronjob implements CronjobTask
         }
 
         try {
-            $sql	= 'SELECT COUNT(*) as state FROM %%CONFIG%%;';
+            $sql	= 'SELECT COUNT(*) as state FROM %%CONFIG_UNIVERSE%%;';
             $serverData['unis']			= Database::get()->selectSingle($sql, [], 'state');
         } catch (Exception $e) {
             $serverData['unis']			= null;

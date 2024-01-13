@@ -192,16 +192,12 @@ function ShowUniversePage()
             $config = Config::get();
 
             $configSQL  = [];
-            foreach (Config::getGlobalConfigKeys() as $basicConfigKey) {
-                $configSQL[]    = '`' . $basicConfigKey . '` = "' . $config->$basicConfigKey . '"';
-            }
+            $configSQL[] = '`uni_name` = "' . $LNG['fcm_universe'] . ' ' . ($universeCount + 1) . '"';
+            $configSQL[] = '`uni_status` = "1"';
+            $configSQL[] = '`close_reason` = "The universe is being set up. Please wait."';
+            $configSQL[] = '`OverviewNewsText` = "' . $config->OverviewNewsText . '"';
 
-            $configSQL[]    = '`uni_name` = "' . $LNG['fcm_universe'] . ' ' . ($universeCount + 1) . '"';
-            $configSQL[]    = '`uni_status` = "1"';
-            $configSQL[]    = '`close_reason` = "The universe is being set up. Please wait."';
-            $configSQL[]    = '`OverviewNewsText` = "' . $config->OverviewNewsText . '"';
-
-            $sql = "INSERT INTO %%CONFIG%% SET " . implode(', ', $configSQL) . ";";
+            $sql = "INSERT INTO %%CONFIG_UNIVERSE%% SET " . implode(', ', $configSQL) . ";";
             $db->insert($sql);
             $newUniverse = $db->lastInsertId();
 

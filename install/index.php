@@ -516,15 +516,15 @@ switch ($mode) {
 
                     $config = Config::get(Universe::current());
                     $config->timezone           = @date_default_timezone_get();
+                    $config->saveGlobalKeys();
+
                     $config->lang               = $LNG->getLanguage();
                     $config->OverviewNewsText   = $LNG['sql_welcome'] . $installVersion;
                     $config->uni_name           = $LNG['fcm_universe'] . ' ' . Universe::current();
                     $config->close_reason       = $LNG['sql_close_reason'];
-                    $config->moduls             = implode(';', array_fill(0, MODULE_AMOUNT - 1, 1));
+                    $config->save();
 
                     unset($installSQL, $installRevision, $installVersion);
-
-                    $config->save();
 
                     HTTP::redirectTo('index.php?mode=install&step=7');
                 } catch (Exception $e) {
