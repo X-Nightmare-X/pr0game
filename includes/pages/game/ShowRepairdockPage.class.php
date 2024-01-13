@@ -65,13 +65,15 @@ class ShowRepairdockPage extends AbstractGamePage
             foreach ($ElementQueue as $elementID => $amount) {
                 $repaired[] = '`' . $resource[$elementID] . '` = ' . $resource[$elementID] . ' + :' . $resource[$elementID];
                 $params[':' . $resource[$elementID]] = $amount;
-                if (floor($ships[$elementID] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])) == $amount) {
-                    $ships[$elementID] = 0;
-                } else {
-                    $ships[$elementID] -= floor($amount / $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]));
-                }
-                if ($ships[$elementID] <= 0) {
-                    unset($ships[$elementID]);
+                if (!empty($ships[$elementID])) {
+                    if (floor($ships[$elementID] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])) == $amount) {
+                        $ships[$elementID] = 0;
+                    } else {
+                        $ships[$elementID] -= floor($amount / $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]));
+                    }
+                    if ($ships[$elementID] <= 0) {
+                        unset($ships[$elementID]);
+                    }
                 }
             }
 
