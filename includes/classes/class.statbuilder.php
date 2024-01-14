@@ -443,8 +443,8 @@ class statbuilder
         $pricelist =& Singleton()->pricelist;
         $reslist =& Singleton()->reslist;
         $config = Config::get();
-        $fleetIntoDebris = $config->Fleet_Cdr;
-        $defIntoDebris = $config->Defs_Cdr;
+        $fleetIntoDebris = $config->fleet_debris_percentage;
+        $defIntoDebris = $config->def_debris_percentage;
 
         $columns = [
             '%%STATPOINTS%%.id_owner AS playerId',

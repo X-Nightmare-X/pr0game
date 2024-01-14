@@ -248,7 +248,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     ) {
         ShowErrorPage::printError($LNG['sys_closed_game'] . '<br><br>' . $config->close_reason, false);
     }
-    $privKey = $config->recaptchaPrivKey;
+    $privKey = $config->recaptcha_priv_key;
     $rcaptcha = HTTP::_GP('rcaptcha', '');
 
     if (isset($privKey) && isset($rcaptcha)) {

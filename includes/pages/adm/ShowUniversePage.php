@@ -157,7 +157,7 @@ function ShowUniversePage()
             curl_setopt($ch, CURLOPT_AUTOREFERER, true);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (compatible; pr0game/" . Config::get()->VERSION
+            curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (compatible; pr0game/" . Config::get()->version
                 . "; +https://pr0game.com)");
             curl_setopt($ch, CURLOPT_HTTPHEADER, [
                 "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -195,7 +195,7 @@ function ShowUniversePage()
             $configSQL[] = '`uni_name` = "' . $LNG['fcm_universe'] . ' ' . ($universeCount + 1) . '"';
             $configSQL[] = '`uni_status` = "1"';
             $configSQL[] = '`close_reason` = "The universe is being set up. Please wait."';
-            $configSQL[] = '`OverviewNewsText` = "' . $config->OverviewNewsText . '"';
+            $configSQL[] = '`overview_news_text` = "' . $config->overview_news_text . '"';
 
             $sql = "INSERT INTO %%CONFIG_UNIVERSE%% SET " . implode(', ', $configSQL) . ";";
             $db->insert($sql);
@@ -243,7 +243,7 @@ function ShowUniversePage()
 
     $uniList = [];
 
-    $sql = "SELECT `uni`, `users_amount`, `uni_status`, `energySpeed`, `halt_speed`, `resource_multiplier`, `fleet_speed`, `building_speed`,
+    $sql = "SELECT `uni`, `users_amount`, `uni_status`, `energy_multiplier`, `expo_hold_multiplier`, `resource_multiplier`, `fleet_speed`, `building_speed`,
                 `shipyard_speed`, `research_speed`, `uni_name`, COUNT(DISTINCT inac.`id`) as inactive, COUNT(planet.`id`) as planet
 	    FROM %%CONFIG%% conf
 	    LEFT JOIN %%USERS%% as inac ON `uni` = inac.`universe` AND inac.`onlinetime` < :inactive

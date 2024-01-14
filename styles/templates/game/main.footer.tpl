@@ -1,7 +1,7 @@
-{if $ga_active}
+{if $use_google_analytics}
 <script type="text/javascript">
 	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', '{$ga_key}']);
+	_gaq.push(['_setAccount', '{$google_analytics_key}']);
 	_gaq.push(['_trackPageview']);
 
 	(function() {

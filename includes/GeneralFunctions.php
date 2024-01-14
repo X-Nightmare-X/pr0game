@@ -13,7 +13,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-function userStatus($data, $noobprotection = false)
+function userStatus($data, $noob_protection = false)
 {
     $Array = [];
 
@@ -33,11 +33,11 @@ function userStatus($data, $noobprotection = false)
         $Array[] = 'inactive';
     }
 
-    if ($noobprotection && $noobprotection['NoobPlayer']) {
+    if ($noob_protection && $noob_protection['NoobPlayer']) {
         $Array[] = 'noob';
     }
 
-    if ($noobprotection && $noobprotection['StrongPlayer']) {
+    if ($noob_protection && $noob_protection['StrongPlayer']) {
         $Array[] = 'strong';
     }
 
@@ -310,9 +310,9 @@ function CheckNoobProtec($OwnerPlayer, $TargetPlayer, $Player)
 {
     $config = Config::get();
     if (
-        $config->noobprotection == 0
-        || $config->noobprotectiontime == 0
-        || $config->noobprotectionmulti == 0
+        $config->noob_protection == 0
+        || $config->noob_protection_time == 0
+        || $config->noob_protection_multi == 0
         || $Player['banaday'] > TIMESTAMP
         || $Player['onlinetime'] < TIMESTAMP - INACTIVE
     ) {
@@ -327,16 +327,16 @@ function CheckNoobProtec($OwnerPlayer, $TargetPlayer, $Player)
                 ODER weniger als 5.000 hat.
             */
             // Addional Comment: Letzteres ist eigentlich sinnfrei, bitte testen.a
-            ($TargetPlayer['total_points'] <= $config->noobprotectiontime) && // Default: 25.000
-            ($OwnerPlayer['total_points'] > $TargetPlayer['total_points'] * $config->noobprotectionmulti)
+            ($TargetPlayer['total_points'] <= $config->noob_protection_time) && // Default: 25.000
+            ($OwnerPlayer['total_points'] > $TargetPlayer['total_points'] * $config->noob_protection_multi)
         ),
         'StrongPlayer' => (
             /* WAHR:
                 Wenn Spieler weniger als 5000 Punkte hat UND
                 Mehr als das funfache der eigende Punkte hat
             */
-            ($OwnerPlayer['total_points'] < $config->noobprotectiontime) && // Default: 5.000
-            ($OwnerPlayer['total_points'] * $config->noobprotectionmulti < $TargetPlayer['total_points'])
+            ($OwnerPlayer['total_points'] < $config->noob_protection_time) && // Default: 5.000
+            ($OwnerPlayer['total_points'] * $config->noob_protection_multi < $TargetPlayer['total_points'])
         ),
     ];
 }
@@ -440,12 +440,12 @@ function ClearCache()
         }
     }
 
-    $config->VERSION    = $version[0].'.'.$version[1].'.'.$REV;
+    $config->version    = $version[0].'.'.$version[1].'.'.$REV;
     */
 
     $config = Config::get();
-    $version = explode('.', $config->VERSION);
-    $config->VERSION = $version[0] . '.' . $version[1] . '.' . 'git';
+    $version = explode('.', $config->version);
+    $config->version = $version[0] . '.' . $version[1] . '.' . 'git';
     $config->saveGlobalKeys();
 }
 
@@ -520,9 +520,9 @@ function exceptionHandler($exception)
     ];
 
     if (file_exists(ROOT_PATH . 'install/VERSION')) {
-        $VERSION = file_get_contents(ROOT_PATH . 'install/VERSION') . ' (FILE)';
+        $version = file_get_contents(ROOT_PATH . 'install/VERSION') . ' (FILE)';
     } else {
-        $VERSION = 'UNKNOWN';
+        $version = 'UNKNOWN';
     }
     $gameName = '-';
 
@@ -530,7 +530,7 @@ function exceptionHandler($exception)
         try {
             $config = Config::get();
             $gameName = $config->game_name;
-            $VERSION = $config->VERSION;
+            $version = $config->version;
         } catch (ErrorException $e) {
         }
     }
@@ -547,11 +547,11 @@ function exceptionHandler($exception)
 <head>
 	<title>' . $gameName . ' - Error</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/resource/css/base/boilerplate.css?v=' . $VERSION
+	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/resource/css/base/boilerplate.css?v=' . $version
         . '">
-	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/resource/css/ingame/main.css?v=' . $VERSION . '">
-	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/resource/css/base/jquery.css?v=' . $VERSION . '">
-	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/theme/gow/formate.css?v=' . $VERSION . '">
+	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/resource/css/ingame/main.css?v=' . $version . '">
+	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/resource/css/base/jquery.css?v=' . $version . '">
+	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/theme/gow/formate.css?v=' . $version . '">
 	<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
 	<script type="text/javascript">
 	var ServerTimezoneOffset = -3600;
@@ -611,7 +611,7 @@ Line: ' . $exception->getLine() . '
 URL: ' . PROTOCOL . HTTP_HOST . $_SERVER['REQUEST_URI'] . '
 PHP-Version: ' . PHP_VERSION . '
 PHP-API: ' . php_sapi_name() . '
-pr0game Version: ' . $VERSION . '
+pr0game Version: ' . $version . '
 
 Debug Backtrace:
 ' . makebr(htmlspecialchars($exception->getTraceAsString())) . '
@@ -629,7 +629,7 @@ Debug Backtrace:
     $errorText = date("[d-M-Y H:i:s]", TIMESTAMP) . ' ' . $errorType[$errno] . ': "'
         . strip_tags($exception->getMessage()) . "\"\r\n";
     $errorText .= 'File: ' . $exception->getFile() . ' | Line: ' . $exception->getLine() . "\r\n";
-    $errorText .= 'URL: ' . PROTOCOL . HTTP_HOST . $_SERVER['REQUEST_URI'] . ' | Version: ' . $VERSION . "\r\n";
+    $errorText .= 'URL: ' . PROTOCOL . HTTP_HOST . $_SERVER['REQUEST_URI'] . ' | Version: ' . $version . "\r\n";
     $errorText .= "Stack trace:\r\n";
     $errorText .= str_replace(
         ROOT_PATH,

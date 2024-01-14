@@ -541,7 +541,7 @@ HTML;
         $Message = $enemyData[1];
 
         require_once 'includes/classes/missions/functions/calculateAttack.php';
-        $combatResult = calculateAttack($fleetAttack, $fleetDefend, $config->Fleet_Cdr, $config->Defs_Cdr);
+        $combatResult = calculateAttack($fleetAttack, $fleetDefend, $config->fleet_debris_percentage, $config->def_debris_percentage);
 
         $fleetArray = '';
         $totalCount = 0;

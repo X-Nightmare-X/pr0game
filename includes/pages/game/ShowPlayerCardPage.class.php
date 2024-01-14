@@ -136,8 +136,8 @@ class ShowPlayerCardPage extends AbstractGamePage
         $reslist =& Singleton()->reslist;
         $pricelist =& Singleton()->pricelist;
         $config = Config::get();
-        $fleetIntoDebris = $config->Fleet_Cdr;
-        $defIntoDebris = $config->Defs_Cdr;
+        $fleetIntoDebris = $config->fleet_debris_percentage;
+        $defIntoDebris = $config->def_debris_percentage;
 
         $units_real_destroyed = 0;
         $units_real_lost = 0;

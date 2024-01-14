@@ -175,7 +175,7 @@ class ShowRepairdockPage extends AbstractGamePage
                 'wrecks' => $ships[$elementID],
             ];
         }
-        $SolarEnergy = round((($PLANET['temp_max'] + 160) / 6) * Config::get()->energySpeed, 1);
+        $SolarEnergy = round((($PLANET['temp_max'] + 160) / 6) * Config::get()->energy_multiplier, 1);
 
         $busy = !empty($wreckfield['repair_order']);
 

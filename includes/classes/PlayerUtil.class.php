@@ -80,7 +80,7 @@ class PlayerUtil
         $db = Database::get();
         //get avg planets per system per galaxy
         $sql = 'SELECT tab.`galaxy`, (sum(tab.anz)/:maxSys) as AvgPlanetsPerSys FROM (
-            SELECT p.`galaxy`, p.`system`, COUNT(p.planet) as anz
+            SELECT p.`galaxy`, p.`system`, COUNT(p.`planet`) as anz
             FROM %%PLANETS%% p
             JOIN %%USERS%% u on u.`id` = p.`id_owner`
             WHERE `planet_type` = 1 AND p.`galaxy` <= :maxGala AND u.`onlinetime` >= ( :ts - :inactive ) AND p.`universe` = :universe
@@ -225,7 +225,7 @@ class PlayerUtil
                         GROUP BY `galaxy`, `system`
                         HAVING COUNT(`planet`) < :maxPlanets
                     ) as tab ON tab.`galaxy` = p.`galaxy` AND tab.`system` = p.`system`
-                JOIN %%USERS%% u on u.`id` = p.id_owner
+                JOIN %%USERS%% u on u.`id` = p.`id_owner`
                 WHERE p.`planet_type` = 1 AND u.`onlinetime` >= ( :ts - :inactive ) AND p.`universe` = :universe
                 GROUP BY p.`galaxy`, p.`system`
                 HAVING COUNT(p.`planet`) < :planetamount;';
@@ -269,9 +269,9 @@ class PlayerUtil
     }
 
     public static function linearHP($universe, $config){
-        $galaxy = $config->LastSettedGalaxyPos;
-            $system = $config->LastSettedSystemPos;
-            $position = $config->LastSettedPlanetPos;
+        $galaxy = $config->last_galaxy_pos;
+            $system = $config->last_system_pos;
+            $position = $config->last_planet_pos;
 
             if ($galaxy > $config->max_galaxy) {
                 $galaxy = 1;
@@ -300,9 +300,9 @@ class PlayerUtil
             } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
 
             // Update last coordinates to config table
-            $config->LastSettedGalaxyPos = $galaxy;
-            $config->LastSettedSystemPos = $system;
-            $config->LastSettedPlanetPos = $position;
+            $config->last_galaxy_pos = $galaxy;
+            $config->last_system_pos = $system;
+            $config->last_planet_pos = $position;
 
             $pos = [
                 'galaxy'   => $galaxy,
@@ -506,10 +506,10 @@ class PlayerUtil
             $maxFields = $config->initial_fields;
             $maxTemperature = $config->initial_temp;
         } elseif (!empty($planetArray) && $planetArray['anz'] == 1) {
-            $maxFields = (int) floor($planetData[$dataIndex]['avgFields'] * $config->planet_factor);
+            $maxFields = (int) floor($planetData[$dataIndex]['avgFields'] * $config->planet_size_factor);
             $maxTemperature = $planetData[$dataIndex]['avgTemp'];
         } else {
-            $maxFields = (int) floor($planetData[$dataIndex]['fields'] * $config->planet_factor);
+            $maxFields = (int) floor($planetData[$dataIndex]['fields'] * $config->planet_size_factor);
             $maxTemperature = $planetData[$dataIndex]['temp'];
         }
 
@@ -649,10 +649,10 @@ class PlayerUtil
         }
 
         $config = Config::get($universe);
-        $moonSizeFactor = $config->moonSizeFactor;
+        $moon_size_factor = $config->moon_size_factor;
 
         if (is_null($diameter)) {
-            $diameter = floor(pow(mt_rand(10, 20) + 3 * $chance, 0.5) * 1000 * $moonSizeFactor);
+            $diameter = floor(pow(mt_rand(10, 20) + 3 * $chance, 0.5) * 1000 * $moon_size_factor);
         }
 
         $maxTemperature = $parentPlanet['temp_max'] - mt_rand(10, 45);
@@ -977,8 +977,8 @@ class PlayerUtil
                 ':userId'   => $userId['id'],
             ]);
         }
-        $config->LastSettedGalaxyPos = 1;
-        $config->LastSettedSystemPos = 1;
+        $config->last_galaxy_pos = 1;
+        $config->last_system_pos = 1;
         foreach ($userIds as $userId) {
             if ($config->planet_creation == 1) {
                 $pos = PlayerUtil::randomHP($universe);
@@ -1122,19 +1122,19 @@ class PlayerUtil
         $resource =& Singleton()->resource;
         $config = Config::get($USER['universe']);
 
-        $planetPerTech = $config->planets_tech;
+        $planetPerTech = $config->max_additional_planets;
 
-        if ($config->min_player_planets == 0) {
+        if ($config->max_initial_planets == 0) {
             $planetPerTech = 999;
         }
 
-        if ($config->min_player_planets == 0) {
+        if ($config->max_initial_planets == 0) {
             $planetPerBonus = 999;
         }
 
         // http://owiki.de/index.php/Astrophysik#.C3.9Cbersicht
         return (int) ceil(
-            $config->min_player_planets + min(
+            $config->max_initial_planets + min(
                 $planetPerTech,
                 PlayerUtil::getAstroTech($USER) * $config->planets_per_tech
             )
@@ -1194,15 +1194,15 @@ class PlayerUtil
         $db = Database::get();
 
         $sql = 'INSERT INTO %%MESSAGES%% SET
-            `message_owner`		= :userId,
-            `message_sender`		= :sender,
-            `message_time`		= :time,
-            `message_type`		= :type,
-            `message_from`		= :from,
-            `message_subject` 	= :subject,
-            `message_text`		= :text,
-            `message_unread`		= :unread,
-            `message_universe`	= :universe;';
+            `message_owner`     = :userId,
+            `message_sender`    = :sender,
+            `message_time`      = :time,
+            `message_type`      = :type,
+            `message_from`      = :from,
+            `message_subject`   = :subject,
+            `message_text`      = :text,
+            `message_unread`    = :unread,
+            `message_universe`  = :universe;';
 
         $db->insert($sql, [
             ':userId'   => $userId,
@@ -1288,7 +1288,7 @@ class PlayerUtil
                 $USER['b_tech_queue'] = serialize($CurrentQueue);
                 unset($CurrentQueue);
                 $sql = 'UPDATE %%USERS%% SET
-                    `b_tech` = b_tech + :umode_delta,
+                    `b_tech` = `b_tech` + :umode_delta,
                     `b_tech_queue` = :b_tech_queue
                     WHERE `id` = :userID;';
                 $db->update($sql, [

@@ -488,7 +488,7 @@ switch ($mode) {
             case 6:
                 $db = Database::get();
                 $installSQL      = file_get_contents('install/install.sql');
-                $installVersion  = file_get_contents('install/VERSION');
+                $installVersion  = file_get_contents('install/version');
                 $installRevision = 0;
                 preg_match('!\$' . 'Id: install.sql ([0-9]+)!', $installSQL, $match);
                 $installVersion = explode('.', $installVersion);
@@ -504,7 +504,7 @@ switch ($mode) {
                 try {
                     $db->query(str_replace([
                         '%PREFIX%',
-                        '%VERSION%',
+                        '%version%',
                         '%REVISION%',
                         '%DB_VERSION%'
                     ], [
@@ -519,7 +519,7 @@ switch ($mode) {
                     $config->saveGlobalKeys();
 
                     $config->lang               = $LNG->getLanguage();
-                    $config->OverviewNewsText   = $LNG['sql_welcome'] . $installVersion;
+                    $config->overview_news_text   = $LNG['sql_welcome'] . $installVersion;
                     $config->uni_name           = $LNG['fcm_universe'] . ' ' . Universe::current();
                     $config->close_reason       = $LNG['sql_close_reason'];
                     $config->save();
