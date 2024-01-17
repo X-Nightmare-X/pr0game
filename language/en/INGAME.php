@@ -494,6 +494,8 @@ $LNG['bd_repairdock_busy'] = 'The repair dock is already working on a job!';
 $LNG['bd_repairdock_empty'] = 'There is no wreck field!';
 $LNG['bd_repairdock_deploy'] = 'The ships have been put back into service!';
 $LNG['bd_max_ships_repair'] = 'Maximum recoverable units';
+$LNG['bd_wreck_count'] = 'Wrecks in the wreck field';
+$LNG['bd_repair_rate'] = 'Repair rate';
 $LNG['bd_repairing'] = 'Repair in progress';
 $LNG['bd_deployable'] = 'Repair completed! Automatic deployment in:';
 $LNG['bd_available'] = 'Available: ';
@@ -608,7 +610,7 @@ $LNG['mg_no_text'] = 'Without text';
 $LNG['mg_msg_sended'] = 'Message sent';
 $LNG['mg_delete_marked'] = 'Delete marked messages';
 $LNG['mg_delete_type_all'] = 'Delete all messages of this type';
-$LNG['mg_delete_unmarked'] = 'Delete all messages not marked';
+$LNG['mg_delete_unmarked'] = 'Delete unmarked messages of this type';
 $LNG['mg_delete_all'] = 'Delete all messages';
 $LNG['mg_show_only_header_spy_reports'] = 'Show only a part of the espionage reports ';
 $LNG['mg_action'] = 'Action';
@@ -1530,6 +1532,17 @@ $LNG['spytech_playercard'] = [
 //Team
 $LNG['team'] =                      'The team';
 $LNG['teamAktiv'] =                 'Aktiv';
+$LNG['kontakt'] =                   'Hi!<br>'
+                                    .'On this page you will find information about the people who actively run, moderate and develop this project.<br>'
+                                    .'Feel free to contact us if you have any questions or problems.<br>'
+                                    .'<br>'
+                                    .'For a better exchange with us, but also with the other co-spilers, we have set up a Discord server.'
+                                    .'You can find it " <a href="https://discord.gg/jhYYN3yuat">here</a> " or via the menu.<br>'
+                                    .'On the server you will find the latest news, as well as exciting memes between the alliances of the universe.<br>'
+                                    .'Ask questions about game mechanics and help with your own suggestions for the further development of the game.<br>'
+                                    .'<br>'
+                                    .'Of course, we will also answer your in-game questions.<br>'
+                                    .'However, please bear in mind that we only play the game as a hobby. Answers may take a few days.<br>';
 $LNG['teamIngameName'] =            'Ingame Name';
 $LNG['teamDiscordName'] =           'Discord Name';
 $LNG['teamRole'] =                  'Role';

@@ -7,7 +7,8 @@
 	}
 </style>
 <h1>{$LNG.team}</h1>
-<h3>{$LNG.teamAktiv}</h3>
+{* <h3>{$LNG.teamAktiv}</h3> *}
+<h4>{$LNG.kontakt}</h4>
 <table>
 	<tr>
 		<th colspan="2">{$LNG.teamIngameName}</th>

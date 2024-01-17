@@ -34,8 +34,8 @@ ini_set('display_errors', 1);
 header('Content-Type: text/html; charset=UTF-8');
 define('TIMESTAMP', time());
 
-require 'includes/constants.php';
 require 'includes/classes/class.Singleton.php';
+require 'includes/constants.php';
 
 ini_set('log_errors', 'On');
 ini_set('error_log', 'includes/error.log');
@@ -248,7 +248,7 @@ if (MODE === 'INGAME' || MODE === 'ADMIN' || MODE === 'CRON') {
     ) {
         ShowErrorPage::printError($LNG['sys_closed_game'] . '<br><br>' . $config->close_reason, false);
     }
-    $privKey = $config->recaptchaPrivKey;
+    $privKey = $config->recaptcha_priv_key;
     $rcaptcha = HTTP::_GP('rcaptcha', '');
 
     if (isset($privKey) && isset($rcaptcha)) {

@@ -256,6 +256,7 @@ class ShowBuildingsPage extends AbstractGamePage
             $db = Database::get();
             $db->startTransaction();
             $PLANET = $db->selectSingle("SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;", [':planetId' => $PLANET['id']]);
+            $validCommand = true;
             switch ($TheCommand) {
                 case 'cancel':
                     $this->cancelBuildingFromQueue();
@@ -269,9 +270,15 @@ class ShowBuildingsPage extends AbstractGamePage
                 case 'destroy':
                     $this->addBuildingToQueue($Element, false);
                     break;
+                default:
+                    error_log($TheCommand);
+                    $validCommand = false;
+                    break;
             }
 
-            $this->ecoObj->saveBuilingQueue($PLANET);
+            if ($validCommand) {
+                $this->ecoObj->saveBuilingQueue($PLANET);
+            }
             $db->commit();
             $this->redirectTo('game.php?page=buildings');
         }
@@ -332,7 +339,7 @@ class ShowBuildingsPage extends AbstractGamePage
                 $Prod       = eval(ResourceUpdate::getProd($ProdGrid[$Element]['production'][RESOURCE_ENERGY], $Element));
 
                 $requireEnergy  = $Prod - $Need;
-                $requireEnergy  = round($requireEnergy * $config->energySpeed);
+                $requireEnergy  = round($requireEnergy * $config->energy_multiplier);
 
                 if ($requireEnergy < 0) {
                     $infoEnergy = sprintf(

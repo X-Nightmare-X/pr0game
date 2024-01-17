@@ -53,16 +53,20 @@ $LNG['gameInformations']			= "Ein Weltraum-Strategiespiel in Echtzeit.\nSpiele z
 
 // Login
 $LNG['loginHeader']					= 'Login';
-$LNG['loginUsername']				= 'Nickname';
+$LNG['loginUsername']				= 'Username/E-Mail';
 $LNG['loginPassword']				= 'Passwort';
 $LNG['loginButton']					= 'Login';
 $LNG['loginInfo']					= 'Mit dem Login akzeptiere ich die %s.';
 $LNG['loginWelcome']				= 'Willkommen bei %s';
 $LNG['loginServerDesc']				= '%s ist ein Weltraum-Strategiespiel mit hunderten Spielern die erdumgreifend <strong>gleichzeitig</strong> versuchen der/die Beste zu werden. Alles was ihr zum spielen braucht ist ein Standardwebbrowser.';
+$LNG['loginUsernamePMSenderName']	= 'Administrator';
+$LNG['loginUsernamePMSubject']	    = 'Achtung: Login-Änderung';
+$LNG['loginUsernamePMText']		    = 'Aufgrund eines Sicherheitsrisikos beim Login über den Usernamen wird der Login in Kürze auf die hinterlegte E-Mail-Adresse umgestellt.<p>'
+    . 'Bitte logge dich bereits jetzt nur noch mit deiner E-Mail-Adresse ein. Du kannst sie über das Einstellungen-Menü nachlesen.';
 
 // Register
-$LNG['registerUsername']			= 'Nickname';
-$LNG['registerUsernameDesc']		= 'Der Nickname muss mindestens 3 und darf maximal 25 Zeichen und darf nur aus Zahlen, Buchstaben, Punkte, Binde- und Unterstriche und Leerzeichen bestehen';
+$LNG['registerUsername']			= 'Username';
+$LNG['registerUsernameDesc']		= 'Der Username muss mindestens 3 und darf maximal 25 Zeichen und darf nur aus Zahlen, Buchstaben, Punkte, Binde- und Unterstriche und Leerzeichen bestehen';
 $LNG['registerPassword']			= 'Passwort';
 $LNG['registerPasswordDesc']		= 'Das Passwort muss mindestens %s Zeichen lang sein.';
 $LNG['registerPasswordReplay']		= 'Passwort widerhohlen';
@@ -83,9 +87,9 @@ $LNG['registerBack']				= 'Zurück';
 $LNG['registerNext']				= 'Weiter';
 
 $LNG['registerErrorUniClosed']		= 'Die Registrierung ist in diesem Universum geschlossen. Das tut uns Leid!';
-$LNG['registerErrorUsernameEmpty']	= 'Du hast keinen Nicknamen eingeben!';
-$LNG['registerErrorUsernameChar']	= 'Im Nickname sind nur Zahlen, Buchstaben, Leerzeichen, _, -, . erlaubt!';
-$LNG['registerErrorUsernameExist']	= 'Der Nickname ist bereits vergeben!';
+$LNG['registerErrorUsernameEmpty']	= 'Du hast keinen Usernamen eingeben!';
+$LNG['registerErrorUsernameChar']	= 'Im Username sind nur Zahlen, Buchstaben, Leerzeichen, _, -, . erlaubt!';
+$LNG['registerErrorUsernameExist']	= 'Der Username ist bereits vergeben!';
 $LNG['registerErrorPasswordLength']	= 'Das Passwort muss mindestens %s Zeichen lang sein!';
 $LNG['registerErrorPasswordSame']	= 'Sie haben 2 unterschiedliche Passwörter eingegeben!';
 $LNG['registerErrorMailEmpty']		= 'Du musst eine E-Mail-Adresse angeben!';
@@ -135,9 +139,10 @@ $LNG['passwordNext']				= 'Weiter';
 
 //case default
 
-$LNG['login_error_1']				= 'Falscher Benutzername/Passwort!';
+$LNG['login_error_1']				= 'Falscher Benutzername, E-Mail oder Passwort!';
 $LNG['login_error_2']				= 'Jemand hat sich von einem anderem PC in deinem Account eingeloggt!';
 $LNG['login_error_3']				= 'Deine Session ist abgelaufen!';
+$LNG['login_error_4']				= 'Es gab zu viele Loginversuche. Bitte melde dich bei einem Administrator über Discord für neue Login-Daten. Halte deine E-Mail-Adresse zur Verifikation bereit.';
 
 //Rules
 $LNG['rulesHeader']					= 'Regelwerk';

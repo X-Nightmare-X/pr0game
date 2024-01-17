@@ -463,6 +463,8 @@ $LNG['bd_repairdock_busy'] = 'Onarım iskelesi zaten bir iş üzerinde çalış�
 $LNG['bd_repairdock_empty'] = 'Enkaz alanı yok!';
 $LNG['bd_repairdock_deploy'] = 'Gemiler tekrar hizmete girdi!';
 $LNG['bd_max_ships_repair'] = 'Maksimum geri kazanılabilir birimler';
+$LNG['bd_wreck_count'] = 'Enkaz alanındaki enkazlar';
+$LNG['bd_repair_rate'] = 'Onarım oranı';
 $LNG['bd_repairing'] = 'Onarım devam ediyor';
 $LNG['bd_deployable'] = 'Onarım tamamlandı! Otomatik dağıtım başladı:';
 $LNG['bd_available'] = 'Uygun: ';
@@ -576,7 +578,7 @@ $LNG['mg_no_text'] = 'Mesaj Yok';
 $LNG['mg_msg_sended'] = 'Mesaj Gonderildi';
 $LNG['mg_delete_marked'] = 'Secili Mesajlari Sil';
 $LNG['mg_delete_type_all'] = 'Bu tip mesajlari sil';
-$LNG['mg_delete_unmarked'] = 'Isaretlenmemis mesajlari sil';
+$LNG['mg_delete_unmarked'] = 'Bu türdeki işaretlenmemiş mesajları sil';
 $LNG['mg_delete_all'] = 'Butun mesajlari sil';
 $LNG['mg_show_only_header_spy_reports'] = 'Casusluk mesajlarinin sadece basligini goster ';
 $LNG['mg_action'] = 'Aksiyon';
@@ -1482,6 +1484,17 @@ $LNG['spytech_playercard'] = [
 //Team
 $LNG['team'] =                      'Ekip';
 $LNG['teamAktiv'] =                 'Varlık';
+$LNG['kontakt'] =                   'Merhaba!<br>'
+                                    .'Bu sayfada, bu projeyi aktif olarak yürüten, yöneten ve geliştiren kişiler hakkında bilgi bulacaksınız.<br>'
+                                    .'Herhangi bir sorunuz veya sorununuz varsa bizimle iletişime geçmekten çekinmeyin.<br>'
+                                    .'<br>'
+                                    .'Bizimle ve aynı zamanda diğer ortak yayıncılarla daha iyi bir alışveriş için bir Discord sunucusu kurduk.'
+                                    .'"<a href="https://discord.gg/jhYYN3yuat">burada</a>" veya menü aracılığıyla bulabilirsiniz.<br>'
+                                    .'Sunucuda en son haberlerin yanı sıra evrenin ittifakları arasındaki heyecan verici memleri bulacaksınız.<br>'
+                                    .'Oyun mekanikleri hakkında sorular sorun ve oyunun daha da geliştirilmesi için kendi önerilerinizle yardımcı olun.<br>'
+                                    .'<br>'
+                                    .'Elbette oyun içi atıp tutmalarınıza da cevap vereceğiz.<br>'
+                                    .'Ancak, lütfen oyunu sadece hobi olarak oynadığımızı unutmayın. Cevaplar birkaç gün sürebilir.<br>';
 $LNG['teamIngameName'] =            'Oyun İçi İsim';
 $LNG['teamDiscordName'] =           'Discord Adı';
 $LNG['teamRole'] =                  'Rol';

@@ -76,7 +76,7 @@ class ResourceUpdate
 
         $Hash[] = $this->config->resource_multiplier;
         $Hash[] = $this->config->storage_multiplier;
-        $Hash[] = $this->config->energySpeed;
+        $Hash[] = $this->config->energy_multiplier;
         $Hash[] = $this->PLANET[$resource[22]];
         $Hash[] = $this->PLANET[$resource[23]];
         $Hash[] = $this->PLANET[$resource[24]];
@@ -117,12 +117,12 @@ class ResourceUpdate
                     }
                 }
             }
-        }
 
-        $this->UpdateResource($this->TIME, $HASH);
-
-        if ($SAVE === true) {
-            $this->SavePlanetToDB($this->USER, $this->PLANET);
+            $this->UpdateResource($this->TIME, $HASH);
+    
+            if ($SAVE === true) {
+                $this->SavePlanetToDB($this->USER, $this->PLANET);
+            }
         }
 
         return $this->ReturnVars();
@@ -330,8 +330,8 @@ class ResourceUpdate
         $this->PLANET['crystal_max'] = $temp[902]['max'] * $this->config->storage_multiplier;
         $this->PLANET['deuterium_max'] = $temp[903]['max'] * $this->config->storage_multiplier;
 
-        $this->PLANET['energy'] = round($temp[911]['plus'] * $this->config->energySpeed);
-        $this->PLANET['energy_used'] = $temp[911]['minus'] * $this->config->energySpeed;
+        $this->PLANET['energy'] = round($temp[911]['plus'] * $this->config->energy_multiplier);
+        $this->PLANET['energy_used'] = $temp[911]['minus'] * $this->config->energy_multiplier;
         if ($this->PLANET['energy_used'] == 0) {
             $this->PLANET['metal_perhour'] = 0;
             $this->PLANET['crystal_perhour'] = 0;

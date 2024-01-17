@@ -33,6 +33,7 @@ class ShowIndexPage extends AbstractLoginPage
         $universeSelect = [];
         $universeSelected = Universe::current();
 
+        $countcaptchakey = 0;
         foreach (Universe::availableUniverses() as $uniId) {
             $config = Config::get($uniId);
             if ($config->uni_status == STATUS_CLOSED) {
@@ -46,6 +47,9 @@ class ShowIndexPage extends AbstractLoginPage
                 $universeSelect[$uniId] = $config->uni_name;
                 $universeSelected = $uniId;
             }
+            if (!empty($config->recaptcha_pub_key)) {
+                $countcaptchakey += 1;
+            }
         }
 
         $Code = HTTP::_GP('code', 0);
@@ -57,9 +61,6 @@ class ShowIndexPage extends AbstractLoginPage
         if (isset($_COOKIE['uni']) && !empty($_COOKIE['uni'])) {
             $universeSelected = (int) $_COOKIE['uni'];
         }
-        $db = Database::get();
-        $sql = "SELECT count(*) as count FROM %%CONFIG%% WHERE recaptchaPubKey != ''";
-        $countcaptchakey = $db->selectSingle($sql, [], 'count');
         $this->assign([
             'universeSelect'    => $universeSelect,
             'universeSelected'  => $universeSelected,

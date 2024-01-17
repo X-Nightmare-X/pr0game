@@ -299,7 +299,7 @@ class FleetFunctions
         $stayBlock = [];
         $exchange = false;
 
-        $haltSpeed = Config::get($USER['universe'])->halt_speed;
+        $haltSpeed = Config::get($USER['universe'])->expo_hold_multiplier;
 
         if (in_array(MISSION_EXPEDITION, $Missions)) {
             for ($i = 1; $i <= $USER[$resource[124]]; $i++) {
@@ -407,6 +407,32 @@ class FleetFunctions
             ':time' => $timeDifference,
             ':acsId' => $acsId,
         ]);
+
+        $sql = 'SELECT `fleet_id`, `fleet_start_time`, `fleet_end_stay`, `fleet_end_time` FROM %%LOG_FLEETS%%
+            WHERE `fleet_group` = :acsId;';
+        $logFleets = $db->select($sql, [
+            ':acsId' => $acsId,
+        ]);
+
+        $sql = 'UPDATE %%LOG_FLEETS%% SET
+            `fleet_start_time` = :fleet_start_time,
+            `fleet_start_time_formated` = :fleet_start_time_formated,
+            `fleet_end_stay` = :fleet_end_stay,
+            `fleet_end_stay_formated` = :fleet_end_stay_formated,
+            `fleet_end_time` = :fleet_end_time,
+            `fleet_end_time_formated` = :fleet_end_time_formated
+            WHERE `fleet_id` = :fleet_id;';
+        foreach ($logFleets as $logFleet) {
+            $db->update($sql, [
+                ':fleet_start_time' => $logFleet['fleet_start_time'] + $timeDifference,
+                ':fleet_start_time_formated' => Database::formatDate($logFleet['fleet_start_time'] + $timeDifference),
+                ':fleet_end_stay' => $logFleet['fleet_end_stay'] + $timeDifference,
+                ':fleet_end_stay_formated' => Database::formatDate($logFleet['fleet_end_stay'] + $timeDifference),
+                ':fleet_end_time' => $logFleet['fleet_end_time'] + $timeDifference,
+                ':fleet_end_time_formated' => Database::formatDate($logFleet['fleet_end_time'] + $timeDifference),
+                ':fleet_id' => $logFleet['fleet_id'],
+            ]);
+        }
 
         return true;
     }
