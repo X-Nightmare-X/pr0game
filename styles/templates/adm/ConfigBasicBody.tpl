@@ -18,7 +18,7 @@
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td>{$LNG.opt_dst_mode}</td>
+				<td>{$LNG.op_dst_mode}</td>
 				<td>{html_options name=dst options=$Selector.dst selected=$dst}</td>
 				<td>&nbsp;</td>
 			</tr>
