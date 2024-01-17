@@ -270,7 +270,7 @@ class ShowInformationPage extends AbstractGamePage
                     $Production = eval(ResourceUpdate::getProd($ProdGrid[$elementID]['production'][$ID], $elementID));
 
                     if (in_array($ID, $reslist['resstype'][2])) {
-                        $Production *= Config::get()->energySpeed;
+                        $Production *= Config::get()->energy_multiplier;
                     } else {
                         $Production *= Config::get()->resource_multiplier;
                     }

@@ -265,13 +265,13 @@ abstract class AbstractGamePage
             'bodyclass' => $this->getWindow(),
             'game_name' => $config->game_name,
             'uni_name' => $config->uni_name,
-            'ga_active' => $config->ga_active,
-            'ga_key' => $config->ga_key,
+            'use_google_analytics' => $config->use_google_analytics,
+            'google_analytics_key' => $config->google_analytics_key,
             'debug' => $config->debug,
-            'VERSION' => $config->VERSION,
+            'version' => $config->version,
             'date' => explode("|", date('Y\|n\|j\|G\|i\|s\|Z', TIMESTAMP)),
             'isPlayerCardActive' => isModuleAvailable(MODULE_PLAYERCARD),
-            'REV' => substr($config->VERSION, -4),
+            'REV' => substr($config->version, -4),
             'Offset' => $dateTimeUser->getOffset() - $dateTimeServer->getOffset(),
             'queryString' => $this->getQueryString(),
             'themeSettings' => $THEME->getStyleSettings(),
@@ -326,7 +326,7 @@ abstract class AbstractGamePage
             $this->getPageData();
         }
         $config = Config::get();
-        $captchakey = $config->recaptchaPubKey;
+        $captchakey = $config->recaptcha_pub_key;
         $this->assign([
             'lang'              => $LNG->getLanguage(),
             'dpath'             => $THEME->getTheme(),

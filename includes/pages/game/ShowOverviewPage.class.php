@@ -224,8 +224,8 @@ class ShowOverviewPage extends AbstractGamePage
         $this->assign([
             'umode'                     => $USER['urlaubs_modus'],
             'rankInfo'                  => $rankInfo,
-            'is_news'                   => $config->OverviewNewsFrame,
-            'news'                      => makebr($config->OverviewNewsText),
+            'is_news'                   => $config->overview_news_frame,
+            'news'                      => makebr($config->overview_news_text),
             'usersOnline'               => $usersOnline,
             'fleetsOnline'              => $fleetsOnline,
             'planetname'                => $PLANET['name'],

@@ -421,8 +421,8 @@ class ShowMessagesPage extends AbstractGamePage
         $db = Database::get();
 
         require_once 'includes/classes/Config.class.php';
-        $fleetIntoDebris = Config::get()->Fleet_Cdr;
-        $defIntoDebris = Config::get()->Defs_Cdr;
+        $fleetIntoDebris = Config::get()->fleet_debris_percentage;
+        $defIntoDebris = Config::get()->def_debris_percentage;
         $uniType = Config::get()->uni_type;
         $maxGalaxy = Config::get()->max_galaxy;
 
