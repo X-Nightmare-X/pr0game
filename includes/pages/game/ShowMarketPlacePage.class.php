@@ -199,6 +199,11 @@ class ShowMarketPlacePage extends AbstractGamePage
         $FleetID = HTTP::_GP('fleetID', 0);
         $shipType = HTTP::_GP('shipType', "");
         $db = Database::get();
+        //Get trade fleet
+        $sql = "SELECT * FROM %%FLEETS%% JOIN %%TRADES%% ON fleet_id = seller_fleet_id JOIN %%USERS%%"
+            . " ON fleet_owner = id WHERE fleet_id = :fleet_id AND fleet_mess = 2;";
+        $fleetResult = $db->select($sql, [':fleet_id' => $FleetID]);
+        $isFleetTrade = ($fleetResult[0]['transaction_type'] == 1);
 
         //Vmode check
         $vmode = $this->checkVmode();
@@ -251,7 +256,12 @@ class ShowMarketPlacePage extends AbstractGamePage
         }
 
         //if not in range 1-3
-        $fleetNeeded = $this->calculateFleetSize($fleetResult[0], $shipType);
+        if ($fleetResult[0]['resource_amount'] > $fleetResult[0]['ex_resource_amount'] && $isFleetTrade) {
+            $amount['ex_resource_amount'] = $fleetResult[0]['resource_amount'];
+        } else {
+            $amount['ex_resource_amount'] = $fleetResult[0]['ex_resource_amount'];
+        }
+        $fleetNeeded = $this->calculateFleetSize($amount, $shipType);
         if (
             $fleetResult[0]['ex_resource_type'] >= 4 ||
             $fleetResult[0]['ex_resource_type'] <= 0
@@ -268,17 +278,25 @@ class ShowMarketPlacePage extends AbstractGamePage
 
         $fleetArray = array_filter($fleetNeeded);
         $amount = $fleetResult['ex_resource_amount'];
-
+        $marketplace = (Config::get($USER['universe'])->max_planets + 2);
+        
         $SpeedFactor = FleetFunctions::getGameSpeedFactor();
-        $Distance = FleetFunctions::getTargetDistance(
-            [$PLANET['galaxy'], $PLANET['system'], $PLANET['planet']],
-            [$fleetResult['fleet_end_galaxy'], $fleetResult['fleet_end_system'], $fleetResult['fleet_end_planet']]
-        );
+        if ($isFleetTrade) {
+            $Distance = FleetFunctions::getTargetDistance(
+                [$PLANET['galaxy'], $PLANET['system'], $PLANET['planet']],
+                [$fleetResult['fleet_end_galaxy'], $fleetResult['fleet_end_system'], $fleetResult['fleet_end_planet']]
+            );
+        } else {
+            $Distance = FleetFunctions::getTargetDistance(
+                [$PLANET['galaxy'], $PLANET['system'], $PLANET['planet']],
+                [$PLANET['galaxy'], $PLANET['system'], $marketplace]
+            );
+        }
+        
         $SpeedAllMin = FleetFunctions::getFleetMaxSpeed($fleetArray, $USER);
         $Duration = FleetFunctions::getMissionDuration(10, $SpeedAllMin, $Distance, $SpeedFactor, $USER);
         $consumption = FleetFunctions::getFleetConsumption($fleetArray, $Duration, $Distance, $USER, $SpeedFactor);
 
-        $isFleetTrade = ($fleetResult['transaction_type'] == 1);
         if ($isFleetTrade) {
             $fleet = FleetFunctions::unserialize($fleetResult['fleet_array']);
             $fleetSpeedAllMin = FleetFunctions::getFleetMaxSpeed($fleet, $USER);
@@ -319,10 +337,14 @@ class ShowMarketPlacePage extends AbstractGamePage
         $PLANET[$resource[901]] -= $fleetResource[901];
         $PLANET[$resource[902]] -= $fleetResource[902];
         $PLANET[$resource[903]] -= $fleetResource[903] + $consumption;
-
+        $buyerMission = $isFleetTrade ? 3 : 16;
+        $targetGalaxy = $isFleetTrade ? $fleetResult['fleet_start_galaxy'] : $PLANET['galaxy'];
+        $targetSystem = $isFleetTrade ? $fleetResult['fleet_start_system'] : $PLANET['system'];
+        $targetPlanet = $isFleetTrade ? $fleetResult['fleet_start_planet'] : $marketplace;
+        $targetType = $isFleetTrade ? $fleetResult['fleet_start_type'] : 1;
         $buyerfleet = FleetFunctions::sendFleet(
             $fleetArray,
-            3/*Transport*/,
+            $buyerMission /*buyerfleet to automatically get rerouted*/,
             $USER['id'],
             $PLANET['id'],
             $PLANET['galaxy'],
@@ -331,10 +353,10 @@ class ShowMarketPlacePage extends AbstractGamePage
             $PLANET['planet_type'],
             $fleetResult['fleet_owner'],
             $fleetResult['fleet_start_id'],
-            $fleetResult['fleet_start_galaxy'],
-            $fleetResult['fleet_start_system'],
-            $fleetResult['fleet_start_planet'],
-            $fleetResult['fleet_start_type'],
+            $targetGalaxy,
+            $targetSystem,
+            $targetPlanet,
+            $targetType,
             $fleetResource,
             $fleetStartTime,
             $fleetStayTime,
@@ -354,27 +376,44 @@ class ShowMarketPlacePage extends AbstractGamePage
         $fleetArray = FleetFunctions::unserialize($fleetResult['fleet_array']);
         $SpeedFactor = FleetFunctions::getGameSpeedFactor();
         $Distance = FleetFunctions::getTargetDistance(
-            [$PLANET['galaxy'], $PLANET['system'], $PLANET['planet']],
-            [$fleetResult['fleet_end_galaxy'], $fleetResult['fleet_end_system'], $fleetResult['fleet_end_planet']]
+            [$PLANET['galaxy'], $PLANET['system'], $marketplace],
+            [$fleetResult['fleet_end_galaxy'], $fleetResult['fleet_end_system'], $marketplace]
         );
         $SpeedAllMin = FleetFunctions::getFleetMaxSpeed($fleetArray, $USER_2);
         $Duration = FleetFunctions::getMissionDuration(10, $SpeedAllMin, $Distance, $SpeedFactor, $USER_2);
-
-        $fleetStartTime = $Duration + TIMESTAMP;
-        $fleetStayTime = $fleetStartTime;
-        $fleetEndTime = $fleetStayTime + $Duration;
-
+        if ($PLANET['galaxy'] == $fleetResult['fleet_end_galaxy'] && $PLANET['system'] == $fleetResult['fleet_end_system'] && !$isFleetTrade) {
+            $Distance = FleetFunctions::getTargetDistance(
+                [$fleetResult['fleet_start_galaxy'], $fleetResult['fleet_start_system'], $marketplace],
+                [$fleetResult['fleet_end_galaxy'], $fleetResult['fleet_end_system'], $marketplace]
+            );
+            $Duration = FleetFunctions::getMissionDuration(10, $SpeedAllMin, $Distance, $SpeedFactor, $USER_2);
+            $startTime = $fleetResult['start_time'];
+            $fleetStartTime = $fleetResult['fleet_start_time'];
+            $fleetStayTime = $fleetStartTime + TIME_12_HOURS;
+            $fleetEndTime = $fleetStayTime + $Duration;
+        } else if (!$isFleetTrade) {
+            $startTime = TIMESTAMP;
+            $fleetStartTime = $Duration + TIMESTAMP;
+            $fleetStayTime = $fleetStartTime + TIME_12_HOURS;
+            $fleetEndTime = $fleetStayTime + $Duration;
+        } else {
+            $startTime = $fleetResult['start_time'];
+            $fleetStartTime = $Duration + TIMESTAMP;
+            $fleetStayTime = $fleetStartTime;
+            $fleetEndTime = $fleetStayTime + $Duration;
+        }
         $params = [
             ':fleetID' => $FleetID,
             ':fleet_target_owner' => $USER['id'],
-            ':fleet_end_id' => $PLANET['id'],
-            ':fleet_end_planet' => $PLANET['planet'],
+            ':fleet_end_id' => $isFleetTrade ? $PLANET['id'] : 0,
+            ':fleet_end_planet' => $isFleetTrade ? $PLANET['planet'] : $marketplace,
             ':fleet_end_system' => $PLANET['system'],
             ':fleet_end_galaxy' => $PLANET['galaxy'],
+            ':start_time' => $startTime,
             ':fleet_start_time' => $fleetStartTime,
             ':fleet_end_stay' => $fleetStayTime,
             ':fleet_end_time' => $fleetEndTime,
-            ':fleet_mission' => $fleetResult['transaction_type'] == 0 ? 3 : 17,
+            ':fleet_mission' => $fleetResult['transaction_type'] == 0 ? 16 : 17,
             ':fleet_no_m_return' => 1,
             ':fleet_mess' => 0,
         ];
@@ -383,17 +422,23 @@ class ShowMarketPlacePage extends AbstractGamePage
             ':fleet_end_stay_formated' => Database::formatDate($fleetStayTime),
             ':fleet_end_time_formated' => Database::formatDate($fleetEndTime),
         ]);
+        $params = array_merge($params, [
+            ':metal' => 0,
+            ':crystal' => 0,
+            ':deuterium' => 0,
+        ]);
         $sql = "UPDATE %%FLEETS%% SET `fleet_no_m_return` = :fleet_no_m_return, `fleet_end_id` = :fleet_end_id,"
             . " `fleet_target_owner` = :fleet_target_owner, `fleet_mess` = :fleet_mess,"
             . " `fleet_mission` = :fleet_mission, `fleet_end_stay` = :fleet_end_stay,"
-            . " `fleet_end_time` = :fleet_end_time,`fleet_start_time` = :fleet_start_time,"
+            . " `fleet_end_time` = :fleet_end_time,`fleet_start_time` = :fleet_start_time, start_time = :start_time,"
             . " `fleet_end_planet` = :fleet_end_planet, `fleet_end_system` = :fleet_end_system,"
-            . " `fleet_end_galaxy` = :fleet_end_galaxy WHERE fleet_id = :fleetID;";
+            . " `fleet_end_galaxy` = :fleet_end_galaxy, `fleet_resource_metal` = :metal,"
+            . " `fleet_resource_crystal` = :crystal, `fleet_resource_deuterium` = :deuterium WHERE fleet_id = :fleetID;";
         $db->update($sql, $params);
         $sql = "UPDATE %%LOG_FLEETS%% SET `fleet_no_m_return` = :fleet_no_m_return, `fleet_end_id` = :fleet_end_id,"
             . " `fleet_target_owner` = :fleet_target_owner, `fleet_mess` = :fleet_mess,"
             . " `fleet_mission` = :fleet_mission, `fleet_end_stay` = :fleet_end_stay,"
-            . " `fleet_end_time` = :fleet_end_time ,`fleet_start_time` = :fleet_start_time,"
+            . " `fleet_end_time` = :fleet_end_time ,`fleet_start_time` = :fleet_start_time, start_time = :start_time,"
             . " `fleet_start_time_formated` = :fleet_start_time_formated ,`fleet_end_stay_formated` = :fleet_end_stay_formated,"
             . " `fleet_end_time_formated` = :fleet_end_time_formated ,"
             . " `fleet_end_planet` = :fleet_end_planet, `fleet_end_system` = :fleet_end_system,"
@@ -420,15 +465,18 @@ class ShowMarketPlacePage extends AbstractGamePage
         if (array_key_exists(203, $fleetArray)) {
             $HC = $fleetArray[203];
         }
-
+        $sql="SELECT `marketplace_galaxy`, `marketplace_system` FROM %%TRADES%% WHERE seller_fleet_id = :fleetId;";
+        $target = $db->selectSingle($sql, [
+            ':fleetId' => $FleetID,
+        ]);
         // To customer
         $Message = sprintf(
             $LNG['market_msg_trade_bought'],
             sprintf(
                 '%s:%s:%s',
-                $fleetResult['fleet_start_galaxy'],
-                $fleetResult['fleet_start_system'],
-                $fleetResult['fleet_start_planet']
+                $isFleetTrade ? $fleetResult['fleet_start_galaxy'] : $target['marketplace_galaxy'],
+                $isFleetTrade ? $fleetResult['fleet_start_system'] : $target['marketplace_system'],
+                $isFleetTrade ? $fleetResult['fleet_start_planet'] : $marketplace
             ),
             $fleetResource[901],
             $LNG['tech'][901],
@@ -455,7 +503,7 @@ class ShowMarketPlacePage extends AbstractGamePage
         // To salesmen
         $Message = sprintf(
             $LNG['market_msg_trade_sold'],
-            $PLANET['galaxy'] . ":" . $PLANET['system'] . ":" . $PLANET['planet'],
+            $PLANET['galaxy'] . ":" . $PLANET['system'] . ":" . $isFleetTrade ? $marketplace : $PLANET['planet'],
             $fleetResult['fleet_resource_metal'],
             $LNG['tech'][901],
             $fleetResult['fleet_resource_crystal'],
@@ -528,7 +576,9 @@ class ShowMarketPlacePage extends AbstractGamePage
 			ON al = ally_id
 			WHERE fleet_mission = :trade
 			AND fleet_universe = :universe
-			AND fleet_mess = 2 ORDER BY fleet_end_time ASC;';
+			AND fleet_mess = 2 
+            and buyer_fleet_id IS NULL 
+            ORDER BY fleet_end_time ASC;';
         $fleetResult = $db->select($sql, [
             ':al'       => $USER['ally_id'],
             ':trade'    => MISSION_TRADE,
@@ -558,13 +608,13 @@ class ShowMarketPlacePage extends AbstractGamePage
             if ($fleetsRow['accept'] == 0) {
                 $fleetsRow['level'] = null;
             }
-
+            $marketplace = (Config::get($USER['universe'])->max_planets + 2);
             $SpeedFactor = FleetFunctions::getGameSpeedFactor();
             //FROM
             $FROM_fleet =  FleetFunctions::unserialize($fleetsRow['fleet_array']);
             $FROM_Distance = FleetFunctions::getTargetDistance(
                 [$PLANET['galaxy'], $PLANET['system'], $PLANET['planet']],
-                [$fleetsRow['fleet_end_galaxy'], $fleetsRow['fleet_end_system'], $fleetsRow['fleet_end_planet']]
+                [$fleetsRow['fleet_end_galaxy'], $fleetsRow['fleet_end_system'], $marketplace]
             );
             $FROM_SpeedAllMin = FleetFunctions::getFleetMaxSpeed($FROM_fleet, $fleetsRow);
             $FROM_Duration = FleetFunctions::getMissionDuration(
@@ -574,11 +624,14 @@ class ShowMarketPlacePage extends AbstractGamePage
                 $SpeedFactor,
                 $fleetsRow
             );
-
+            $sql="SELECT `marketplace_galaxy`, `marketplace_system` FROM %%TRADES%% WHERE seller_fleet_id = :fleetId;";
+            $target = $db->selectSingle($sql, [
+                ':fleetId' => $fleetsRow['fleet_id'],
+            ]);
             //TO
             $TO_Distance = FleetFunctions::getTargetDistance(
                 [$PLANET['galaxy'], $PLANET['system'], $PLANET['planet']],
-                [$fleetsRow['fleet_start_galaxy'], $fleetsRow['fleet_start_system'], $fleetsRow['fleet_start_planet']]
+                [$target['marketplace_galaxy'], $target['marketplace_system'], $marketplace]
             );
             $TO_LC_SPEED = FleetFunctions::getFleetMaxSpeed([202 => 1], $USER);
             $TO_LC_DUR = FleetFunctions::getMissionDuration(10, $TO_LC_SPEED, $TO_Distance, $SpeedFactor, $USER);

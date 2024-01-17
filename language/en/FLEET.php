@@ -286,6 +286,7 @@ $LNG['sys_transfer_mess_user'] = 'A peaceful fleet of %s %s reached %s %s and de
 $LNG['sys_mess_fleetback'] = 'Fleet return';
 $LNG['sys_tran_mess_back'] = 'One of your fleets returns from the planet %s %s.';
 $LNG['sys_trade_mess_back'] = 'One of your trading fleets returns to the planet %s %s without success.';
+$LNG['sys_trade_mess_back_success'] = 'One of your merchant fleets successfully returned to the planet %4$s %5$s with %1$s metal, %2$s crystal and %3$s deuterium.';
 $LNG['sys_recy_gotten'] = 'Your recyclers have collected %2$s %6$s and %3$s %7$s from a total of %4$s %6$s and %5$s %7$s at coordinates %1$s.';
 $LNG['sys_gain'] = 'Profit';
 $LNG['sys_irak_subject'] = 'Rocket impact';

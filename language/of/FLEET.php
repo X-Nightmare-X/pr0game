@@ -296,6 +296,7 @@ $LNG['sys_tran_mess_user'] = 'Eine friedliche Flodde von %s %s erreichd %s %s un
 $LNG['sys_mess_fleetback'] = 'Floddenrüggkehr ';
 $LNG['sys_tran_mess_back'] = 'Eine deiner Floddne gehrt zum Blanetne %s %s zurügg.';
 $LNG['sys_trade_mess_back'] = 'Eine deiner Handelsfloddne gehrte erfolglos zum Blanetne  %s %s zurügg.';
+$LNG['sys_trade_mess_back_success'] = 'Eine deiner Handelsfloddne gehrde erfolgreich mid %1$s medall, %2$s grisdall und %3$s deuderium dsum Blanedne %4$s %5$s dsurügg alda.';
 $LNG['sys_recy_gotten'] = 'Deine Rescheikler habne an den Goordinatne %1$s %2$s %6$s und %3$s %7$s von insgesamt %4$s %6$s und %5$s %7$s gesammelt.';
 $LNG['sys_gain'] = 'Gewinn';
 $LNG['sys_irak_subject'] = 'Rageteneinschlag';

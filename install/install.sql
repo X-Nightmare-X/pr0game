@@ -491,6 +491,10 @@ CREATE TABLE `%PREFIX%trades` (
 	`filter_flighttime` mediumint unsigned NOT NULL DEFAULT 0,
 	`ex_resource_type` tinyint(1) unsigned NOT NULL DEFAULT 0,
 	`ex_resource_amount` double(50,0) unsigned NOT NULL DEFAULT '0',
+  `resource_type` tinyint unsigned NOT NULL DEFAULT 0,
+  `resource_amount` double(50,0) unsigned NOT NULL DEFAULT '0',
+  `marketplace_galaxy` tinyint unsigned NOT NULL DEFAULT 0,
+  `marketplace_system` smallint unsigned NOT NULL DEFAULT 0,
 	PRIMARY KEY (`seller_fleet_id`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

@@ -458,7 +458,7 @@ class ShowFleetStep3Page extends AbstractGamePage
             903 => min($TransportDeuterium, floor($PLANET[$resource[903]] - $consumption)),
         ];
 
-        $StorageNeeded = array_sum($fleetResource);
+        $StorageNeeded = max(array_sum($fleetResource), $WantedResourceAmount);
 
         if ($StorageNeeded > $fleetStorage) {
             $this->printMessage($LNG['fl_not_enough_space'], [[
@@ -528,22 +528,48 @@ class ShowFleetStep3Page extends AbstractGamePage
             $consumption
         );
 
+
+        if ($fleetResource[901] > 0) {
+            $resourceType = 1;
+            $resourceAmount = $fleetResource[901];
+        } elseif ($fleetResource[902] > 0) {
+            $resourceType = 2;
+            $resourceAmount = $fleetResource[902];
+        } elseif ($fleetResource[903] > 0) {
+            $resourceType = 3;
+            $resourceAmount = $fleetResource[903];
+        } else {
+            $resourceType = 0;
+            $resourceAmount = 0;
+        }
+        $PLANET[$resource[901]] -= $fleetResource[901];
+        $PLANET[$resource[902]] -= $fleetResource[902];
+        $PLANET[$resource[903]] -= $fleetResource[903] + $consumption;
+
         if ($targetMission == MISSION_TRADE) {
             $sql = 'INSERT INTO %%TRADES%% SET
 				transaction_type			= :transaction,
 				seller_fleet_id				= :sellerFleet,
 				filter_visibility			= :visibility,
 				filter_flighttime			= :flightTime,
-				ex_resource_type			= :resType,
-				ex_resource_amount		= :resAmount;';
+				ex_resource_type			= :exResType,
+				ex_resource_amount		    = :exResAmount,
+                resource_type               = :resType,
+                resource_amount             = :resAmount,
+                marketplace_galaxy          = :galaxy,
+                marketplace_system          = :system;';
 
             $db->insert($sql, [
                 ':transaction'          => $markettype,
                 ':sellerFleet'          => $fleet_id,
-                ':resType'                  => $WantedResourceType,
-                ':resAmount'                => $WantedResourceAmount,
-                ':flightTime'               => $maxFlightTime * 3600,
-                ':visibility'               => $visibility
+                ':exResType'            => $WantedResourceType,
+                ':exResAmount'          => $WantedResourceAmount,
+                ':flightTime'           => $maxFlightTime * 3600,
+                ':visibility'           => $visibility,
+                ':resType'              => $resourceType,
+                ':resAmount'            => $resourceAmount,
+                ':galaxy'               => $targetGalaxy,
+                ':system'               => $targetSystem,
             ]);
         }
 

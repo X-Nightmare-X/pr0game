@@ -250,6 +250,8 @@ $LNG['sys_tran_mess_user'] = 'Dost Nakliye Filosu %s %s koordinatindan %s %s koo
     . ' Getirdigi madenler %s %s, %s %s ve %s %s.';
 $LNG['sys_mess_fleetback'] = 'Geri Donen Filo';
 $LNG['sys_tran_mess_back'] = 'Filolarinizdan biri %s %s.koordinatlarina geri dondu.';
+$LNG['sys_trade_mess_back'] = 'Ticaret filolarınızdan biri %s %s gezegenine başarılı olamadan geri döndü.';
+$LNG['sys_trade_mess_back_success'] = 'Ticaret filolarınızdan biri %4$s %5$s gezegenine %1$s metal, %2$s kristal ve %3$s döteryum ile başarıyla döndü.';
 $LNG['sys_recy_gotten'] = 'Geri dönüşümcüleriniz %1$s koordinatlarındaki toplam %4$s %6$s ve %5$s %7$s %2$s %6$s ve %3$s %7$s topladı.'
     . ' gezegeninize getiriliyor. ';
 $LNG['sys_gain'] = 'Ele Geciriliyor';

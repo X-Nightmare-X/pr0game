@@ -85,7 +85,6 @@
 			<th></th>
 			<th></th>
 			<th></th>
-			<th></th>
 			<th class="LC" style="display: none;"></th>
 			<th class="HC"></th>
 			<th></th>
@@ -101,7 +100,6 @@
 			<th  class="no-background no-border center">-></th>
 			<th>{$LNG.market_p_cost_type}</th>
 			<th>{$LNG.market_p_cost_amount}</th>
-			<th>{$LNG.market_p_from_duration}</th>
 			<th class="LC" style="display: none;">{$LNG.market_p_to_duration}</th>
 			<th class="HC">{$LNG.market_p_to_duration}</th>
 			<th>{$LNG.market_p_buy}</th>
@@ -135,7 +133,6 @@
 		</td>
 		<td class="wanted-resource-{$FlyingFleetRow.fleet_wanted_resource_id}">{$FlyingFleetRow.fleet_wanted_resource}</td>
 		<td class="wanted-resource-amount">{number_format($FlyingFleetRow.fleet_wanted_resource_amount, 0, ",", ".")}</td>
-		<td>{pretty_fly_time({$FlyingFleetRow.from_duration})}</td>
 		<td class="LC" style="display: none;">{pretty_fly_time({$FlyingFleetRow.to_lc_duration})}</td>
 		<td class="HC">{pretty_fly_time({$FlyingFleetRow.to_hc_duration})}</td>
 		<td>

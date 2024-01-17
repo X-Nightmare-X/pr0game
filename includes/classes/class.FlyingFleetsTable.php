@@ -69,10 +69,11 @@ class FlyingFleetsTable
                 ':rec'      => MISSION_RECYCLING,
             ];
         } else {
-            $where  = 'fleet_owner = :userId OR (fleet_target_owner = :userId AND fleet_mission != :rec)';
+            $where  = 'fleet_owner = :userId OR (fleet_target_owner = :userId AND fleet_mission != :rec AND fleet_mission != :trade)';
             $param = [
                 ':userId'   => $this->userId,
                 ':rec'      => MISSION_RECYCLING,
+                ':trade'    => MISSION_TRADE,
             ];
         }
 
