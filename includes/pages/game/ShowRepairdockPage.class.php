@@ -65,13 +65,15 @@ class ShowRepairdockPage extends AbstractGamePage
             foreach ($ElementQueue as $elementID => $amount) {
                 $repaired[] = '`' . $resource[$elementID] . '` = ' . $resource[$elementID] . ' + :' . $resource[$elementID];
                 $params[':' . $resource[$elementID]] = $amount;
-                if (floor($ships[$elementID] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])) == $amount) {
-                    $ships[$elementID] = 0;
-                } else {
-                    $ships[$elementID] -= floor($amount / $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]));
-                }
-                if ($ships[$elementID] <= 0) {
-                    unset($ships[$elementID]);
+                if (!empty($ships[$elementID])) {
+                    if (floor($ships[$elementID] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])) == $amount) {
+                        $ships[$elementID] = 0;
+                    } else {
+                        $ships[$elementID] -= floor($amount / $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]));
+                    }
+                    if ($ships[$elementID] <= 0) {
+                        unset($ships[$elementID]);
+                    }
                 }
             }
 
@@ -100,7 +102,7 @@ class ShowRepairdockPage extends AbstractGamePage
 
             $QueueTime = 0;
             foreach ($buildTodo as $element => $amount) {
-                if (isset($ships[$element])) {
+                if (!empty($ships[$element])) {
                     $amount = is_numeric($amount) ? round($amount) : 0;
                     if ($amount > 0) {
                         $ElementQueue[$element] = max(0, min($amount, floor($ships[$element] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]))));
@@ -144,7 +146,7 @@ class ShowRepairdockPage extends AbstractGamePage
             ];
 
             foreach ($ElementQueue as $elementID => $amount) {
-                if (isset($ships[$elementID])) {
+                if (!empty($ships[$elementID])) {
                     if (floor($ships[$elementID] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])) == $amount) {
                         $ships[$elementID] = 0;
                     } else {
