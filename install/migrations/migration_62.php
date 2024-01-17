@@ -49,10 +49,10 @@ $sql = 'CREATE TABLE `%PREFIX%config` (
   `recaptcha_priv_key` varchar(255) DEFAULT "",
   `recaptcha_pub_key` varchar(255) DEFAULT "",
 
-  `disclamer_address` text NOT NULL DEFAULT "",
-  `disclamer_phone` text NOT NULL DEFAULT "",
-  `disclamer_mail` text NOT NULL DEFAULT "",
-  `disclamer_notice` text NOT NULL DEFAULT "",
+  `disclamer_address` text,
+  `disclamer_phone` text,
+  `disclamer_mail` text,
+  `disclamer_notice` text,
   
   `stat_settings` int(11) unsigned NOT NULL DEFAULT 1000,
   `stat` tinyint(3) unsigned NOT NULL DEFAULT 0,
@@ -100,7 +100,7 @@ $sql = 'CREATE TABLE `%PREFIX%config_universe` (
   `alliance_create_min_points` BIGINT UNSIGNED NOT NULL DEFAULT 0,
   `debug` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `uni_status` tinyint(1) unsigned NOT NULL DEFAULT 1,
-  `close_reason` text NOT NULL DEFAULT "",
+  `close_reason` text,
 
   `max_elements_build` tinyint(3) unsigned NOT NULL DEFAULT 5,
   `max_elements_tech` tinyint(3) unsigned NOT NULL DEFAULT 2,
@@ -163,7 +163,7 @@ $sql = 'CREATE TABLE `%PREFIX%config_universe` (
   `trade_charge` varchar(5) NOT NULL DEFAULT 30,
 
   `overview_news_frame` tinyint(1) NOT NULL DEFAULT 1,
-  `overview_news_text` text NOT NULL DEFAULT "",
+  `overview_news_text` text,
   PRIMARY KEY (`uni`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;';
 
