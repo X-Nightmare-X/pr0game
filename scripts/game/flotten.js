@@ -276,7 +276,7 @@ function CheckResources()
   resEx = e != null ? e.value : 0;
   e = document.getElementsByName("exchange")[0];
   exchange = e != null ? e.value : 0;
-  e = document.getElementsByName("markettype")[0].value;
+  e = document.getElementsByName("markettype")[0];
   markettype = e != null ? e.value : 0;
   $.getJSON('game.php?page=fleetStep2&mode=checkResources&metal='+document.getElementsByName("metal")[0].value+'&crystal='+document.getElementsByName("crystal")[0].value+'&deuterium='+document.getElementsByName("deuterium")[0].value+'&mission='+document.querySelector('input[name="mission"]:checked').value+'&markettype='+markettype+'&resEx='+resEx+'&exchange='+exchange+'&token='+document.getElementsByName("token")[0].value, function(data) {
 		if (data == "OK") {
