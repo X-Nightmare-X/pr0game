@@ -1,4 +1,4 @@
-{block name="title" prepend}{if $type == "defense"}{$LNG.lm_defenses}{else}{$LNG.lm_shipshard}{/if}{/block}
+{block name="title" prepend}{if $mode == "defense"}{$LNG.lm_defenses}{else}{$LNG.lm_shipshard}{/if}{/block}
 {block name="content"}
 	{include file='shared.messages.tpl'}
 
@@ -13,7 +13,7 @@
 			<div style="text-align: center;">
 				<div id="bx" class="z"></div>
 				<div class="ship">
-					<form action="game.php?page=shipyard&amp;mode={$type}" method="post" >
+					<form action="game.php?page=shipyard&amp;mode={$mode}" method="post" >
 						<input type="hidden" name="action" value="delete">
 						<div >
 							<select name="auftr[]" id="auftr" onchange="this.form.myText.setAttribute('size', this.value);" multiple class="shipl"><option>&nbsp;</option></select><br><br>{$LNG.bd_cancel_warning}<br><input class="z" type="submit" value="{$LNG.bd_cancel_send}" />
@@ -26,7 +26,7 @@
 			<div style="text-align: center;">
 				<div id="bxumode" class="zumode"></div>
 				<div class="shipumode">
-					<form action="game.php?page=shipyard&amp;mode={$type}" method="post" >
+					<form action="game.php?page=shipyard&amp;mode={$mode}" method="post" >
 						<input type="hidden" name="action" value="delete">
 						<div >
 							<select name="auftrumode[]" id="auftrumode" onchange="this.form.myText.setAttribute('size', this.value);" multiple class="shipl"><option>&nbsp;</option></select><br><br><br><input class="z" value="{$LNG['bd_paused']}" />
@@ -38,13 +38,13 @@
 		{/if}
 	{/if}
 
-	{if $type == "fleet"}
+	{if $mode == "fleet"}
 		<div class="planeto"> <button id="ship1">{$LNG.fm_civil}</button> | <button id="ship2">{$LNG.fm_military}</button> | <button id="ship3">{$LNG.fm_all}</button></div>
 	{/if}	
 
 	{foreach $elementList as $ID => $Element}
 		<div class="infos" id="s{$ID}">
-			<form action="game.php?page=shipyard&amp;type={$type}" method="post" id="s{$ID}">
+			<form action="game.php?page=shipyard&amp;type={$mode}" method="post" id="s{$ID}">
 				<div class="buildn"><a href="#" onclick="return Dialog.info({$ID})">{$LNG.tech.{$ID}}</a>
 					<span id="val_{$ID}">{if $Element.available != 0} ({$LNG.bd_available} {number_format($Element.available, 0, ",", ".")}){/if}</span>
 				</div>
