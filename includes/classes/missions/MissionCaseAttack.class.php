@@ -203,8 +203,8 @@ HTML;
 
         require_once 'includes/classes/missions/functions/calculateAttack.php';
 
-        $fleetIntoDebris = $config->Fleet_Cdr;
-        $defIntoDebris = $config->Defs_Cdr;
+        $fleetIntoDebris = $config->fleet_debris_percentage;
+        $defIntoDebris = $config->def_debris_percentage;
 
         $combatResult = calculateAttack($fleetAttack, $fleetDefend, $fleetIntoDebris, $defIntoDebris);
 

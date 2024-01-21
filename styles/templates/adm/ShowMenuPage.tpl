@@ -3,12 +3,11 @@
 	<ul id="menu">
 		<li style="background-image: url('./styles/resource/images/pr0game.gif');background-repeat: no-repeat;background-size: 99%;height:10em;"></li>
 		<li><a href="javascript:void(0);"><span class="colorPositive">{$LNG.mu_general}</span></a></li>
+		{nocache}
 		{if allowedTo('ShowInformationPage')}<li><a href="?page=infos" target="Hauptframe">{$LNG.mu_game_info}</a></li>{/if}
 		{if allowedTo('ShowConfigBasicPage')}<li><a href="?page=config" target="Hauptframe">{$LNG.mu_settings}</a></li>{/if}
 		{if allowedTo('ShowConfigUniPage')}<li><a href="?page=configuni" target="Hauptframe">{$LNG.mu_unisettings}</a></li>{/if}
 		{if allowedTo('ShowModulePage')}<li><a href="?page=module" target="Hauptframe">{$LNG.mu_module}</a></li>{/if}
-		{if allowedTo('ShowDisclamerPage')}<li><a href="?page=disclamer" target="Hauptframe">{$LNG.mu_disclaimer}</a></li>{/if}
-		{if allowedTo('ShowStatsPage')}<li><a href="?page=statsconf" target="Hauptframe">{$LNG.mu_stats_options}</a></li>{/if}
 		{* if allowedTo('ShowVertifyPage')}<li><a href="?page=vertify" target="Hauptframe">{$LNG.mu_vertify}</a></li>{/if *}
 		{if allowedTo('ShowCronjobPage')}<li><a href="?page=cronjob" target="Hauptframe">{$LNG.mu_cronjob}</a></li>{/if}
 		{if allowedTo('ShowDumpPage')}<li><a href="?page=dump" target="Hauptframe">{$LNG.mu_dump}</a></li>{/if}
@@ -39,6 +38,7 @@
 		{if allowedTo('ShowStatUpdatePage')}<li><a href="?page=statsupdate" target="Hauptframe" onClick=" return confirm('{$LNG.mu_mpu_confirmation}');">{$LNG.mu_manual_points_update}</a></li>{/if}
 		{if allowedTo('ShowClearCachePage')}<li><a href="?page=clearcache" target="Hauptframe">{$LNG.mu_clear_cache}</a></li>{/if}
 		{if allowedTo('ShowReshufflePage')}<li><a href="?page=reshufflePlayers" target="Hauptframe">{$LNG.rp_header}</a></li>{/if}
+		{/nocache}
 		<li style="background-image: url('./styles/theme/gow/img/menu-foot.png');height:30px;"></li>
 	</ul>
 </div>

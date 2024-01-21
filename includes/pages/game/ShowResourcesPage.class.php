@@ -154,7 +154,7 @@ class ShowResourcesPage extends AbstractGamePage
                 $Production = eval(ResourceUpdate::getProd($ProdGrid[$ProdID]['production'][$ID], $ProdID));
 
                 if (in_array($ID, $reslist['resstype'][2])) {
-                    $Production *= $config->energySpeed;
+                    $Production *= $config->energy_multiplier;
                 } else {
                     $Production *= $prodLevel * $config->resource_multiplier;
                 }
@@ -190,7 +190,7 @@ class ShowResourcesPage extends AbstractGamePage
             901 => $basicIncome[901] * $config->resource_multiplier,
             902 => $basicIncome[902] * $config->resource_multiplier,
             903 => $basicIncome[903] * $config->resource_multiplier,
-            911 => $basicIncome[911] * $config->energySpeed,
+            911 => $basicIncome[911] * $config->energy_multiplier,
         ];
 
         $totalProduction = [

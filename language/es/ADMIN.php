@@ -324,7 +324,7 @@ $LNG['se_normal_speed_fleet'] = 'Velocidad normal de las flotas: 1<br>Velocidad 
 $LNG['se_normal_speed_halt'] = 'Velocidad normal de estacionamiento: 1 <br> Velocidad máxima recomendada: 20';
 $LNG['se_fleet_speed'] = 'Velocidad de las flotas';
 $LNG['se_resources_producion_speed'] = 'Velocidad de producción';
-$LNG['se_halt_speed'] = 'Factor-Expedición';
+$LNG['se_expo_hold_multiplier'] = 'Factor-Expedición';
 $LNG['se_energy_speed'] = 'Factor-Energía';
 $LNG['se_forum_link'] = 'Enlace del foro';
 $LNG['se_uni_status'] = 'Estatus de la Uni';
@@ -425,12 +425,12 @@ $LNG['se_max_system'] = 'Máx. Sistemas';
 $LNG['se_max_system_info'] = 'Cantidad Máxima de Sistemas Solares en una Galaxia';
 $LNG['se_max_planets'] = 'Max. Planetas';
 $LNG['se_max_planets_info'] = 'Cantidad Máxima de Planetas en un Sistema';
-$LNG['se_min_player_planets'] = 'Mín. Planetas / Jugador';
+$LNG['se_max_initial_planets'] = 'Mín. Planetas / Jugador';
 $LNG['se_max_player_planets_info'] = 'Número máximo de Colonias sin Investigación';
 $LNG['se_max_player_planets'] = 'Máx. Planetas / Jugador';
-$LNG['se_min_player_planets_info'] = 'Número máximo de Colonias con Investigación';
-$LNG['se_planet_factor'] = 'Multiplicador de planeta.';
-$LNG['se_planet_factor_info'] = 'Multiplicador de Tamaño de Planeta';
+$LNG['se_max_initial_planets_info'] = 'Número máximo de Colonias con Investigación';
+$LNG['se_planet_size_factor'] = 'Multiplicador de planeta.';
+$LNG['se_planet_size_factor_info'] = 'Multiplicador de Tamaño de Planeta';
 $LNG['se_all_planet_pictures'] = 'Todas las imágenes planetarias.';
 $LNG['se_all_planet_pictures_info'] = 'Permite a todos los pujadores planetarios en todas las posiciones';
 $LNG['se_max_elements_build'] = 'Máx. Contratos (Edificios)';
@@ -466,8 +466,8 @@ $LNG['se_deuterium_start'] = 'Deuterio Inicial';
 $LNG['se_deuterium_start_info'] = 'Especifíca la cantidad de Deuterio presente en un nuevo Planeta.';
 $LNG['se_debris_moon'] = 'Eliminar Campo de Escombros';
 $LNG['se_debris_moon_info'] = 'Elimina los Escombros una vez que se creo la Luna.';
-$LNG['se_moonSizeFactor'] = 'Factor de tamaño de la luna';
-$LNG['se_moonSizeFactor_info'] = 'Factor que influye en el tamaño de la luna, 1 = por defecto';
+$LNG['se_moon_size_factor'] = 'Factor de tamaño de la luna';
+$LNG['se_moon_size_factor_info'] = 'Factor que influye en el tamaño de la luna, 1 = por defecto';
 $LNG['se_cascading_moon_chance'] = 'Oportunidad de luna en cascada';
 $LNG['se_cascading_moon_chance_info'] = 'Probabilidad de luna adicional que se añade por cada intento fallido de Luna con la máxima probabilidad de luna. Sólo se aplica a la primera luna de una cuenta. 0 = desactivado';
 $LNG['se_deuterium_cost_galaxy'] = 'Costo de Visión galaxia';
@@ -499,8 +499,8 @@ $LNG['se_server_colonisation_config'] = 'Configuración de Colonización';
 $LNG['se_planets_min'] = 'Max. Planetas Colonizables sin investigación';
 $LNG['se_planets_min_info'] = 'Desde el principio, el jugador tiene la opción de colonizar la cantidad especificada de'
     . ' planetas';
-$LNG['se_planets_tech'] = 'Max. Número de Planetas adicionales por la investigación planetaria';
-$LNG['se_planets_tech_info'] = 'A través de investigaciones de astrofísica, el jugador tiene la opción de colonizar la'
+$LNG['se_max_additional_planets'] = 'Max. Número de Planetas adicionales por la investigación planetaria';
+$LNG['se_max_additional_planets_info'] = 'A través de investigaciones de astrofísica, el jugador tiene la opción de colonizar la'
     . ' cantidad máxima especificada, además de los planetas.';
 $LNG['se_planets_per_tech'] = 'Planetas adicionales por cada nivel de la investigación.';
 $LNG['se_planets_per_tech_info'] = 'Por cana nivel de la investigación, el jugador puede colonizar el número'

@@ -152,7 +152,7 @@ class ShowShipyardPage extends AbstractGamePage
         }
         $Messages = $USER['messages'];
 
-        $type = HTTP::_GP('type', 'fleet');
+        $mode = HTTP::_GP('mode', 'fleet');
         $buildTodo = HTTP::_GP('fmenge', []);
         $action = HTTP::_GP('action', '');
 
@@ -186,7 +186,7 @@ class ShowShipyardPage extends AbstractGamePage
                 $PLANET = $db->selectSingle("SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;", [':planetId' => $PLANET['id']]);
                 $this->buildAuftr($buildTodo);
                 $db->commit();
-                $this->redirectTo('game.php?page=shipyard&type=' . $type);
+                $this->redirectTo('game.php?page=shipyard&mode=' . $mode);
             }
 
             if ($action == "delete") {
@@ -195,7 +195,7 @@ class ShowShipyardPage extends AbstractGamePage
                 $PLANET = $db->selectSingle("SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;", [':planetId' => $PLANET['id']]);
                 $this->cancelAuftr();
                 $db->commit();
-                $this->redirectTo('game.php?page=shipyard&type=' . $type);
+                $this->redirectTo('game.php?page=shipyard&mode=' . $mode);
             }
         }
 
@@ -226,7 +226,7 @@ class ShowShipyardPage extends AbstractGamePage
             ];
         }
 
-        if ($type == 'defense') {
+        if ($mode == 'defense') {
             $elementIDs = array_merge($reslist['defense'], $reslist['missile']);
         } else {
             $elementIDs = $reslist['fleet'];
@@ -250,7 +250,7 @@ class ShowShipyardPage extends AbstractGamePage
             $elementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $Element, $costResources);
             $buyable = BuildFunctions::isElementBuyable($USER, $PLANET, $Element, $costResources);
             $maxBuildable = BuildFunctions::getMaxConstructibleElements($USER, $PLANET, $Element, $costResources);
-            $SolarEnergy = round((($PLANET['temp_max'] + 160) / 6) * Config::get()->energySpeed, 1);
+            $SolarEnergy = round((($PLANET['temp_max'] + 160) / 6) * Config::get()->energy_multiplier, 1);
 
             if (isset($MaxMissiles[$Element])) {
                 $maxBuildable = min($maxBuildable, $MaxMissiles[$Element]);
@@ -277,7 +277,7 @@ class ShowShipyardPage extends AbstractGamePage
             'NotBuilding' => $NotBuilding,
             'BuildList' => $buildList,
             'maxlength' => strlen(Config::get()->max_fleet_per_build),
-            'type' => $type,
+            'mode' => $mode,
             'messages' => ($Messages > 0) ? (($Messages == 1) ? $LNG['ov_have_new_message']
                 : sprintf($LNG['ov_have_new_messages'], pretty_number($Messages))) : false,
             'message_type' => $USER['showMessageCategory'] === 1 ? $USER['message_type'] : false,

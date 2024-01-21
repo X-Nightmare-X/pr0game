@@ -97,7 +97,7 @@
   <li><a href="game.php?page=settings">{$LNG.lm_options}</a></li>
   <li><a href="game.php?page=logout">{$LNG.lm_logout}</a></li>
   {if $authlevel > 0}
-    <li><a href="./admin.php" class="colorPositive">{$LNG.lm_administration} ({$VERSION})</a></li>
+    <li><a href="./admin.php" class="colorPositive">{$LNG.lm_administration} ({$version})</a></li>
   {/if}
   {/nocache}
 </ul>

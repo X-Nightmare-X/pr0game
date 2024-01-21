@@ -19,8 +19,8 @@
 		<td>{number_format(($uniRow.research_speed / 2500), 0, ",", ".")}</td>
 		<td>{number_format(($uniRow.fleet_speed / 2500), 0, ",", ".")}</td>
 		<td>{number_format($uniRow.resource_multiplier, 0, ",", ".")}</td>
-		<td>{number_format($uniRow.halt_speed, 0, ",", ".")}</td>
-		<td>{number_format($uniRow.energySpeed, 0, ",", ".")}</td>
+		<td>{number_format($uniRow.expo_hold_multiplier, 0, ",", ".")}</td>
+		<td>{number_format($uniRow.energy_multiplier, 0, ",", ".")}</td>
 		<td>{number_format($uniRow.users_amount, 0, ",", ".")}</td>
 		<td>{number_format($uniRow.planet, 0, ",", ".")}</td>
 		<td>{number_format($uniRow.inactive, 0, ",", ".")}</td>

@@ -339,7 +339,7 @@ class ShowBuildingsPage extends AbstractGamePage
                 $Prod       = eval(ResourceUpdate::getProd($ProdGrid[$Element]['production'][RESOURCE_ENERGY], $Element));
 
                 $requireEnergy  = $Prod - $Need;
-                $requireEnergy  = round($requireEnergy * $config->energySpeed);
+                $requireEnergy  = round($requireEnergy * $config->energy_multiplier);
 
                 if ($requireEnergy < 0) {
                     $infoEnergy = sprintf(

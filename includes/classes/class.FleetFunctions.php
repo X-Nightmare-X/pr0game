@@ -299,7 +299,7 @@ class FleetFunctions
         $stayBlock = [];
         $exchange = false;
 
-        $haltSpeed = Config::get($USER['universe'])->halt_speed;
+        $haltSpeed = Config::get($USER['universe'])->expo_hold_multiplier;
 
         if (in_array(MISSION_EXPEDITION, $Missions)) {
             for ($i = 1; $i <= $USER[$resource[124]]; $i++) {
