@@ -9,10 +9,10 @@
     <li><a href="game.php?page=buildings">{$LNG.lm_buildings}</a></li>
   {/if}
   {if isModuleAvailable($smarty.const.MODULE_SHIPYARD_FLEET)}
-    <li><a href="game.php?page=shipyard&amp;type=fleet">{$LNG.lm_shipshard}</a></li>
+    <li><a href="game.php?page=shipyard&amp;mode=fleet">{$LNG.lm_shipshard}</a></li>
   {/if}
   {if isModuleAvailable($smarty.const.MODULE_SHIPYARD_DEFENSIVE)}
-    <li><a href="game.php?page=shipyard&amp;type=defense">{$LNG.lm_defenses}</a></li>
+    <li><a href="game.php?page=shipyard&amp;mode=defense">{$LNG.lm_defenses}</a></li>
   {/if}
   {if isModuleAvailable($smarty.const.MODULE_REPAIR_DOCK)}
     <li><a href="game.php?page=repairdock">{$LNG.lm_repairdock}</a></li>
