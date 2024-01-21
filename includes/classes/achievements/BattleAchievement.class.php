@@ -33,7 +33,7 @@ class BattleAchievement
 		BattleAchievement::checkBattleAchievement38($mainAttacker, $combatResult, $db, $planetDefender);
 		BattleAchievement::checkBattleAchievement32($mainAttacker, $combatResult, $db);
 		BattleAchievement::checkBattleAchievement3($combatResult, $planetDefender, $db);
-		BattleAchievement::checkBattleAchievement45($mainAttacker, $combatResult, $db, $planetDefender);
+		BattleAchievement::checkBattleAchievement45($combatResult, $db, $planetDefender);
 		BattleAchievement::checkBattleAchievement43($combatResult, $planetDefender, $db, $DATA);
 	}
 
@@ -320,7 +320,7 @@ class BattleAchievement
 	 * @param Database	 	$db       			The database object
 	 * @param int	 		$planetDefender     The id of the User
 	 */
-	static public function checkBattleAchievement45($mainAttacker, $combatResult, $db, $planetDefender){
+	static public function checkBattleAchievement45($combatResult, $db, $planetDefender){
 		require_once 'includes/classes/Achievement.class.php';
 		$sql = "SELECT defs_rank FROM uni1_statpoints WHERE id_owner = :id AND stat_type = 1;";
 		$defs_rank = $db->selectSingle($sql, array(
@@ -331,7 +331,7 @@ class BattleAchievement
 			$attackers = [];
 			foreach ($combatResult['rw'][0]['attackers'] as $player)
 			{
-				if (!in_array($player['player']['id'], $attackers)&& !Achievement::checkAchievement($mainAttacker, 45)) {
+				if (!in_array($player['player']['id'], $attackers) && !Achievement::checkAchievement($player['player']['id'], 45)) {
 					$countAttacker++;
 					array_push($attackers, $player['player']['id']);
 				}
