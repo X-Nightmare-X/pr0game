@@ -44,7 +44,7 @@
 
 	{foreach $elementList as $ID => $Element}
 		<div class="infos" id="s{$ID}">
-			<form action="game.php?page=shipyard&amp;type={$mode}" method="post" id="s{$ID}">
+			<form action="game.php?page=shipyard&amp;mode={$mode}" method="post" id="s{$ID}">
 				<div class="buildn"><a href="#" onclick="return Dialog.info({$ID})">{$LNG.tech.{$ID}}</a>
 					<span id="val_{$ID}">{if $Element.available != 0} ({$LNG.bd_available} {number_format($Element.available, 0, ",", ".")}){/if}</span>
 				</div>
