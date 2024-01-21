@@ -165,56 +165,61 @@ define('AUTH_MOD', 1);
 define('AUTH_USR', 0);
 
 // Modules
-define('MODULE_AMOUNT', 53); //+1 to largest index
-define('MODULE_ALLIANCE', 0);
-define('MODULE_BANLIST', 21);
-define('MODULE_BANNER', 37);
-define('MODULE_BATTLEHALL', 12);
-define('MODULE_BUDDYLIST', 6);
-define('MODULE_BUILDING', 2);
-define('MODULE_FLEET_EVENTS', 10);
-define('MODULE_FLEET_TABLE', 9);
-define('MODULE_FLEET_TRADER', 38);
-define('MODULE_GALAXY', 11);
-define('MODULE_IMPERIUM', 15);
-define('MODULE_INFORMATION', 14);
-define('MODULE_MESSAGES', 16);
-define('MODULE_MISSILEATTACK', 40);
-define('MODULE_MISSION_ATTACK', 1);
-define('MODULE_MISSION_ACS', 42);
-define('MODULE_MISSION_COLONY', 35);
-define('MODULE_MISSION_DESTROY', 29);
-define('MODULE_MISSION_EXPEDITION', 30);
-define('MODULE_MISSION_HOLD', 33);
-define('MODULE_MISSION_RECYCLE', 32);
-define('MODULE_MISSION_TRADE', 43);
-define('MODULE_MISSION_SPY', 24);
-define('MODULE_MISSION_STATION', 36);
-define('MODULE_MISSION_TRANSPORT', 34);
-define('MODULE_MISSION_TRANSFER', 44);
-define('MODULE_NOTICE', 17);
-define('MODULE_PHALANX', 19);
-define('MODULE_PLAYERCARD', 20);
-define('MODULE_RECORDS', 22);
-define('MODULE_RESEARCH', 3);
-define('MODULE_RESSOURCE_LIST', 23);
-define('MODULE_SEARCH', 26);
-define('MODULE_SHIPYARD_FLEET', 4);
-define('MODULE_SHIPYARD_DEFENSIVE', 5);
-define('MODULE_SHORTCUTS', 41);
-define('MODULE_SIMULATOR', 39);
-define('MODULE_STATISTICS', 25);
-define('MODULE_SUPPORT', 27);
-define('MODULE_TECHTREE', 28);
-define('MODULE_MARKET_TRADE', 45);              // Trade Ressources to other players through the marketplace
-define('MODULE_MARKET_TRANSFER', 46);           // Transfer Ships to other players through the marketplace
-define('MODULE_SPYTECH_DEPENDENT_STATS', 47);   // Viewable stats depent on spytech level
-define('MODULE_REPAIR_DOCK', 48);               // Repair ships in orbit
-define('MODULE_RESOURCE_STASH', 49);            // Save ressources from stealing
-define('MODULE_VMODE_KICK', 50);                // Kick player from vmode if he is inactive ( Big I default 28 days)
-define('MODULE_EMPTY_BUDDY', 51);               // Empty Buddylist and remove from Alliance on inactive outside of vmode
-define('MODULE_STATS_JSON', 52);                // Create stats.json file for external use (contains player stats per Universe)
-
+$modules = [
+    0 => 'MODULE_ALLIANCE',
+    1 => 'MODULE_MISSION_ATTACK',
+    2 => 'MODULE_BUILDING',
+    3 => 'MODULE_RESEARCH',
+    4 => 'MODULE_SHIPYARD_FLEET',
+    5 => 'MODULE_SHIPYARD_DEFENSIVE',
+    6 => 'MODULE_BUDDYLIST',
+    9 => 'MODULE_FLEET_TABLE',
+    10 => 'MODULE_FLEET_EVENTS',
+    11 => 'MODULE_GALAXY',
+    12 => 'MODULE_BATTLEHALL',
+    14 => 'MODULE_INFORMATION',
+    15 => 'MODULE_IMPERIUM',
+    16 => 'MODULE_MESSAGES',
+    17 => 'MODULE_NOTICE',
+    19 => 'MODULE_PHALANX',
+    20 => 'MODULE_PLAYERCARD',
+    21 => 'MODULE_BANLIST',
+    22 => 'MODULE_RECORDS',
+    23 => 'MODULE_RESSOURCE_LIST',
+    24 => 'MODULE_MISSION_SPY',
+    25 => 'MODULE_STATISTICS',
+    26 => 'MODULE_SEARCH',
+    27 => 'MODULE_SUPPORT',
+    28 => 'MODULE_TECHTREE',
+    29 => 'MODULE_MISSION_DESTROY',
+    30 => 'MODULE_MISSION_EXPEDITION',
+    32 => 'MODULE_MISSION_RECYCLE',
+    33 => 'MODULE_MISSION_HOLD',
+    34 => 'MODULE_MISSION_TRANSPORT',
+    35 => 'MODULE_MISSION_COLONY',
+    36 => 'MODULE_MISSION_STATION',
+    37 => 'MODULE_BANNER',
+    38 => 'MODULE_FLEET_TRADER',
+    39 => 'MODULE_SIMULATOR',
+    40 => 'MODULE_MISSILEATTACK',
+    41 => 'MODULE_SHORTCUTS',
+    42 => 'MODULE_MISSION_ACS',
+    43 => 'MODULE_MISSION_TRADE',
+    44 => 'MODULE_MISSION_TRANSFER',
+    45 => 'MODULE_MARKET_TRADE',            // Trade Ressources to other players through the marketplace
+    46 => 'MODULE_MARKET_TRANSFER',         // Transfer Ships to other players through the marketplace
+    47 => 'MODULE_SPYTECH_DEPENDENT_STATS', // Viewable stats depent on spytech level
+    48 => 'MODULE_REPAIR_DOCK',             // Repair ships in orbit
+    49 => 'MODULE_RESOURCE_STASH',          // Save ressources from stealing
+    50 => 'MODULE_VMODE_KICK',              // Kick player from vmode if he is inactive ( Big I default 28 days)
+    51 => 'MODULE_EMPTY_BUDDY',             // Empty Buddylist and remove from Alliance on inactive outside of vmode
+    52 => 'MODULE_STATS_JSON',              // Create stats.json file for external use (contains player stats per Universe)
+];
+Singleton()->modules = $modules;
+$modules =& Singleton()->modules;
+foreach ($modules as $key => $value) {
+    define($value, $key);
+}
 
 // FLEET STATE
 define('FLEET_OUTWARD', 0);

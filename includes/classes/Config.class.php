@@ -29,15 +29,47 @@ class Config
      * These keys will be changed for every univers of this server!
      */
     protected static $globalConfigKeys	= [
-        'VERSION', 'stat', 'stat_level', 'stat_last_update', 'stat_settings',
-        'stat_update_time', 'stat_last_db_update', 'stats_fly_lock', 'cron_lock',
-        'game_name', 'ttf_file', 'timezone', 'dst', 'git_issues_link',
-        'del_oldstuff', 'del_user_manually', 'sendmail_inactive', 'del_user_sendmail',
-        'mail_active', 'mail_use', 'smtp_sendmail', 'smail_path', 'smtp_host',
-        'smtp_ssl', 'smtp_port', 'smtp_user', 'smtp_pass',
-        'message_delete_behavior', 'message_delete_days', 'ga_active', 'ga_key',
-        'disclamerAddress', 'disclamerPhone', 'disclamerMail', 'disclamerNotice',
-        'recaptchaPrivKey', 'recaptchaPubKey'
+        'game_name',
+        'version',
+        'timezone',
+        'dst',
+        'forum_url',
+        'git_issues_link',
+        'ttf_file',
+        
+        'mail_active',
+        'smtp_sendmail',
+        'mail_use',
+        'smail_path',
+        'smtp_ssl',
+        'smtp_host',
+        'smtp_port',
+        'smtp_user',
+        'smtp_pass',
+        
+        'del_oldstuff',
+        'del_user_manually',
+        'user_valid',
+        'sendmail_inactive',
+        'del_user_sendmail',
+        
+        'message_delete_behavior',
+        'message_delete_days',
+        
+        'use_google_analytics',
+        'google_analytics_key',
+        
+        'recaptcha_priv_key',
+        'recaptcha_pub_key',
+        
+        'disclamer_address',
+        'disclamer_phone',
+        'disclamer_mail',
+        'disclamer_notice',
+
+        'stat_settings',
+        'stat',
+        'stat_level',
     ];
 
     /**
@@ -82,10 +114,66 @@ class Config
     private static function generateInstances()
     {
         $db     = Database::get();
-        $configResult = $db->nativeQuery("SELECT * FROM %%CONFIG%%;");
-        foreach ($configResult as $configRow) {
-            self::$instances[$configRow['uni']] = new self($configRow);
-            Universe::add($configRow['uni']);
+        $sql = 'SELECT * FROM %%CONFIG%%;';
+        $configRow = $db->selectSingle($sql);
+        try {
+            $sql = 'SELECT * FROM %%CONFIG_UNIVERSE%%;';
+            $universeResult = $db->select($sql);
+            foreach ($universeResult as $universeRow) {
+                $sql = 'SELECT * FROM %%CONFIG_UNIVERSE_MODULES%% WHERE `uni` = :universe;';
+                $modulesResult = $db->select($sql, [
+                    ':universe' => $universeRow['uni'],
+                ]);
+                $moduls = [];
+                foreach ($modulesResult as $modulesRow) {
+                    $moduls[$modulesRow['module']] = $modulesRow['state'];
+                }
+                $modules =& Singleton()->modules;
+                foreach ($modules as $moduleKey => $moduleName) {
+                    if (!isset($moduls[$moduleKey])) {
+                        $sql = 'INSERT INTO %%CONFIG_UNIVERSE_MODULES%% (`uni`, `module`, `module_name`, `state`)
+                            VALUES (:uni, :module, :module_name, :state)';
+                        $db->insert($sql, [
+                            ':uni' => $universeRow['uni'],
+                            ':module' => $moduleKey,
+                            ':module_name' => $moduleName,
+                            ':state' => 0,
+                        ]);
+                        $moduls[$moduleKey] = 0;
+                    }
+                }
+                $universeRow['moduls'] = $moduls;
+                $universeRow = array_merge($universeRow, $configRow);
+                self::$instances[$universeRow['uni']] = new self($universeRow);
+                Universe::add($universeRow['uni']);
+            }
+        } catch (\Throwable $th) {
+            //keep old way for migrations
+            $sql = 'SELECT `uni`, `VERSION` AS `version`, `sql_revision`, `users_amount`, `building_speed`, `shipyard_speed`, `research_speed`,
+                `fleet_speed`, `resource_multiplier`, `storage_multiplier`, `message_delete_behavior`, `message_delete_days`, `halt_speed` AS `expo_hold_multiplier`,
+                `Fleet_Cdr` AS `fleet_debris_percentage`, `Defs_Cdr` AS `def_debris_percentage`, `initial_fields`, `uni_name`, `game_name`, `uni_status`, `close_reason`,
+                `metal_basic_income`, `crystal_basic_income`, `deuterium_basic_income`, `energy_basic_income`, `LastSettedGalaxyPos` AS `last_galaxy_pos`,
+                `LastSettedSystemPos` AS `last_system_pos`, `LastSettedPlanetPos` AS `last_planet_pos`, `noobprotection` AS `noob_protection`,
+                `noobprotectiontime` AS `noob_protection_time`, `noobprotectionmulti` AS `noob_protection_multi`, `forum_url`, `adm_attack`, `debug`,
+                `lang`, `stat`, `stat_level`, `stat_last_update`, `stat_settings`, `stat_update_time`, `stat_last_db_update`, `stats_fly_lock`,
+                `cron_lock`, `OverviewNewsFrame` AS `overview_news_frame`, `OverviewNewsText` AS `overview_news_text`, `min_build_time`, `mail_active`, `mail_use`,
+                `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `smtp_ssl`, `smtp_sendmail`, `smail_path`, `user_valid`, `ga_active` AS `use_google_analytics`,
+                `ga_key` AS `google_analytics_key`, `moduls`, `trade_allowed_ships`, `trade_charge`, `max_galaxy`, `max_system`, `max_planets`,
+                `planet_factor` AS `planet_size_factor`, `all_planet_pictures`, `max_elements_build`, `max_elements_tech`, `max_elements_ships`,
+                `min_player_planets` AS `max_initial_planets`, `planets_tech` AS `max_additional_planets`, `planets_per_tech`, `max_fleet_per_build`, `deuterium_cost_galaxy`,
+                `max_overflow`, `moon_factor`, `moon_chance`, `moonSizeFactor` AS `moon_size_factor`, `cascading_moon_chance`, `factor_university`, `max_fleets_per_acs`,
+                `max_participants_per_acs`, `debris_moon`, `vmode_min_time`, `jumpgate_factor`, `metal_start`, `crystal_start`, `deuterium_start`, `ttf_file`, `git_issues_link`,
+                `ref_active`, `ref_bonus`, `ref_minpoints`, `ref_max_referals`, `del_oldstuff`, `del_user_manually`, `del_user_automatic`, `del_user_sendmail`,
+                `sendmail_inactive`, `silo_factor`, `timezone`, `dst`, `energySpeed` AS `energy_multiplier`, `disclamerAddress` AS `disclamer_address`,
+                `disclamerPhone` AS `disclamer_phone`, `disclamerMail` AS `disclamer_mail`, `disclamerNotice` AS `disclamer_notice`, `alliance_create_min_points`, `uni_type`,
+                `galaxy_type`, `planet_creation`, `expo_ress_met_chance`, `expo_ress_crys_chance`, `expo_ress_deut_chance`, `initial_temp`,
+                `recaptchaPrivKey` AS `recaptcha_priv_key`, `recaptchaPubKey` AS `recaptcha_pub_key`
+                FROM %%CONFIG%%;';
+            $configResult = $db->nativeQuery($sql);
+            foreach ($configResult as $configRow) {
+                self::$instances[$configRow['uni']] = new self($configRow);
+                Universe::add($configRow['uni']);
+            }
         }
     }
 
@@ -127,14 +215,14 @@ class Config
         $updateData = [];
         $params = [];
         foreach ($this->updateRecords as $columnName) {
-            if (!in_array($columnName, self::$globalConfigKeys)) {
+            if (!in_array($columnName, self::$globalConfigKeys) && $columnName != 'moduls') {
                 $updateData[] = '`' . $columnName . '` = :' . $columnName;
                 $params[':' . $columnName] = $this->configData[$columnName];
             }
         }
         $params[':universe'] = $this->configData['uni'];
 
-        $sql = 'UPDATE %%CONFIG%% SET '.implode(', ', $updateData).' WHERE `UNI` = :universe';
+        $sql = 'UPDATE %%CONFIG_UNIVERSE%% SET '.implode(', ', $updateData).' WHERE `UNI` = :universe';
         Database::get()->update($sql, $params);
 
         $this->updateRecords = [];
@@ -160,14 +248,24 @@ class Config
             }
         }
 
-        foreach (Universe::availableUniverses() as $universeId) {
-            $params[':universe'] = $universeId;
-            
-            $sql = 'UPDATE %%CONFIG%% SET '.implode(', ', $updateData).' WHERE `UNI` = :universe';
-            $db->update($sql, $params);
-        }
+        $sql = 'UPDATE %%CONFIG%% SET '.implode(', ', $updateData).';';
+        $db->update($sql, $params);
 
         $this->updateRecords = [];
+        return true;
+    }
+
+    public function saveModules()
+    {
+        foreach ($this->configData['moduls'] as $modulKey => $modulValue) {
+            $sql = 'UPDATE %%CONFIG_UNIVERSE_MODULES%% SET `state` = :state 
+                WHERE `uni` = :universe AND `module` = :module;';
+            Database::get()->update($sql, [
+                ':universe' => $this->configData['uni'],
+                ':module' => $modulKey,
+                ':state' => $modulValue,
+            ]);
+        }
         return true;
     }
 

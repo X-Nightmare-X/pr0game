@@ -7,7 +7,8 @@
 	}
 </style>
 <h1>{$LNG.team}</h1>
-<h3>{$LNG.teamAktiv}</h3>
+{* <h3>{$LNG.teamAktiv}</h3> *}
+<h4>{$LNG.kontakt}</h4>
 <table>
 	<tr>
 		<th colspan="2">{$LNG.teamIngameName}</th>
@@ -24,7 +25,8 @@
 			<td><a href="#" onclick="return Dialog.PM({$idDawnOfTheUwe});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
 			<td>DawnOfTheUwe</td>
 		{else}
-			<td colspan="2">DawnOfTheUwe</td>
+			<td></td>
+			<td>DawnOfTheUwe</td>
 		{/if}
 		<td>DawnOfTheUwe</td>
 		<td>{$LNG.teamMod}</td>
@@ -39,7 +41,8 @@
 			<td><a href="#" onclick="return Dialog.PM({$idHackbrett});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
 			<td>Hackbrett</td>
 		{else}
-			<td colspan="2">Hackbrett</td>
+			<td></td>
+			<td>Hackbrett</td>
 		{/if}
 		<td>Hackbrett</td>
 		<td>{$LNG.teamMod}</td>
@@ -54,7 +57,8 @@
 			<td><a href="#" onclick="return Dialog.PM({$idAdman});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
 			<td>Adman</td>
 		{else}
-			<td colspan="2">Adman</td>
+			<td></td>
+			<td>Adman</td>
 		{/if}
 		<td>Hyman</td>
 		<td>{$LNG.teamDev}, {$LNG.teamEmergency}, {$LNG.teamMod}</td>
@@ -69,7 +73,8 @@
 			<td><a href="#" onclick="return Dialog.PM({$idMasterspiel});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
 			<td>Masterspiel</td>
 		{else}
-			<td colspan="2">Masterspiel</td>
+			<td></td>
+			<td>Masterspiel</td>
 		{/if}
 		<td>Masterspiel</td>
 		<td>{$LNG.teamMod}</td>
@@ -84,7 +89,8 @@
 			<td><a href="#" onclick="return Dialog.PM({$idReflexrecon});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
 			<td>reflexrecon</td>
 		{else}
-			<td colspan="2">reflexrecon</td>
+			<td></td>
+			<td>reflexrecon</td>
 		{/if}
 		<td>reflexrecon</td>
 		<td>{$LNG.teamDev}, {$LNG.teamEmergency}, {$LNG.teamMod}</td>
@@ -99,7 +105,8 @@
 			<td><a href="#" onclick="return Dialog.PM({$idTimoKa});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
 			<td>Timo_Ka</td>
 		{else}
-			<td colspan="2">Timo_Ka</td>
+			<td></td>
+			<td>Timo_Ka</td>
 		{/if}
 		<td>Timo_Ka</td>
 		<td>{$LNG.teamDev}, {$LNG.teamEmergency}, {$LNG.teamMod}</td>
@@ -112,7 +119,7 @@
 </table>
 
 <h3>{$LNG.teamAlumni}</h3>
-<p>{$LNG.teamAlumniLong}: atain, ava, Axel auf dem Floß, Eichhorn, Captain Mrgl, Fionera, Klarname & Slippy</p>
+<p>{$LNG.teamAlumniLong}: atain, ava, Axel auf dem Floß, Eichhorn, Captain Mrgl, Fionera, Klarname, Rosenreemann & Slippy</p>
 
 <h4>{$LNG.teamLegend}:</h4>
 <table>

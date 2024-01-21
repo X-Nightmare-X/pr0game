@@ -385,6 +385,7 @@ $LNG['fl_player'] = 'Jogador ';
 $LNG['fl_add_to_attack'] = ' adicionado ao ataque.';
 $LNG['fl_already_invited'] = ' ja foi convidado..';
 $LNG['fl_dont_exist'] = ' não existe.';
+$LNG['fl_blocked'] = ' não aceita convites.';
 $LNG['fl_acs_invitation_message'] = ' convidado a ACS.';
 $LNG['fl_acs_invitation_title'] = 'ACS';
 $LNG['fl_sac_of_fleet'] = 'Frota para ACS';
@@ -459,6 +460,8 @@ $LNG['bd_repairdock_busy'] = 'A doca de reparação já está a trabalhar num tr
 $LNG['bd_repairdock_empty'] = 'Não existe um campo de destroços!';
 $LNG['bd_repairdock_deploy'] = 'Os navios voltaram a entrar em serviço!';
 $LNG['bd_max_ships_repair'] = 'Unidades recuperáveis máximas';
+$LNG['bd_wreck_count'] = 'Destroços no campo de destroços';
+$LNG['bd_repair_rate'] = 'Taxa de reparação';
 $LNG['bd_repairing'] = 'Reparação em curso';
 $LNG['bd_deployable'] = 'Reparação concluída! Desdobramento automático em:';
 $LNG['bd_available'] = 'Disponível: ';
@@ -576,7 +579,7 @@ $LNG['mg_no_text'] = 'Sem texto';
 $LNG['mg_msg_sended'] = 'Mensagem enviada';
 $LNG['mg_delete_marked'] = 'Apagar mensagens marcadas';
 $LNG['mg_delete_type_all'] = 'Apagar todas as mensagens deste tipo';
-$LNG['mg_delete_unmarked'] = 'Apagar todas as mensagens não marcadas';
+$LNG['mg_delete_unmarked'] = 'Eliminar mensagens não marcadas deste tipo';
 $LNG['mg_delete_all'] = 'Apagar todas as mensagens';
 $LNG['mg_show_only_header_spy_reports'] = 'Mostrar apenas uma parte dos relatórios de espionagem ';
 $LNG['mg_action'] = 'Ação';
@@ -942,15 +945,22 @@ $LNG['sh_loading'] = '(A ler ...)';
 //OPTIONS
 $LNG['op_error'] = 'Erro';
 $LNG['op_cant_activate_vacation_mode'] = 'Você não pode ativar o modo férias enquanto estiver usando a frota.';
+$LNG['op_cant_deactivate_vacation_mode'] = 'Ainda não é possível sair do modo de férias.';
 $LNG['op_password_changed'] = 'Password alterada';
 $LNG['op_username_changed'] = 'Username alterado';
 $LNG['op_options_changed'] = 'Definições guardadas.';
-$LNG['op_options_changed_vacation'] = 'Definições guardadas.';
+$LNG['op_options_vacation_activated'] = 'Modo de férias ativado.';
+$LNG['op_options_vacation_deactivated'] = 'Modo de férias desativado.';
+$LNG['op_options_deletion_activated'] = 'Eliminação de conta activada.';
+$LNG['op_options_deletion_deactivated'] = 'Eliminação de conta desactivada.';
+$LNG['op_options_no_other_settings_changed'] = 'Não foram alteradas outras definições.';
 $LNG['op_vacation_mode_active_message'] = 'O modo de férias está activo e acabará em: ';
 $LNG['op_end_vacation_mode'] = 'Finalizar periodo de férias';
 $LNG['op_save_changes'] = 'Guardar alterações';
 $LNG['op_admin_title_options'] = 'Opções Administrativas';
 $LNG['op_admin_planets_protection'] = 'Ativar proteção de Planetas';
+$LNG['op_admin_discord_id'] = 'UserID próprio do Discord para pingar para PM';
+$LNG['op_admin_discord_hook'] = 'Webhook do Discord para mensagem para PM';
 $LNG['op_user_data'] = 'Dados de Utilizador';
 $LNG['op_username'] = 'Nome';
 $LNG['op_old_pass'] = 'Password Atual';
@@ -981,19 +991,22 @@ $LNG['op_send_report'] = 'Enviar relatório';
 $LNG['op_vacation_delete_mode'] = 'Modo de Férias / Apagar conta';
 $LNG['op_activate_vacation_mode'] = 'Activar Modo de Férias';
 $LNG['op_dlte_account'] = 'Apagar conta';
+$LNG['op_stop_dlte_account'] = 'Cancelar a eliminação da conta';
 $LNG['op_email_adress_descrip'] = 'Podes alterar este endereço de email, em qualquer altura. Tornar-se-á o email'
     . ' permanente após 7 dias, sem alterações.';
 $LNG['op_deactivate_ipcheck_descrip'] = 'Verificação de IP significa que o logout de segurança ocorre automaticamente'
     . ' quando o IP muda ou duas pessoas são registrados em uma conta de IPs diferentes. Desativando a verificação de'
     . ' IP pode representar um risco à segurança!';
 $LNG['op_spy_probes_number_descrip'] = 'Numero de sondas que podes mandar diretamente da vista da Galaxia.';
-$LNG['op_activate_vacation_mode_descrip'] = 'O modo de férias proteje a tua conta durante o tempo que estiveres ausente'
-    . ' do jogo. Mas só poderás ativá-lo se nao tiveres nada em construção (frota, edifícios, ou defesa), e nada a ser'
-    . ' pesquisado, e tanbém nenhuma das tuas frotas em vôo. Assim que for ativado, estás protejido contra ataques.'
-    . ' Ataques que já tivessem sido lançados antes continuarão. Durante o modo de férias, a produção é posta a 0%'
-    . ' assim que desativares o modo de férias deves repor a produção a 100%. Assim que ativares o modo de férias és'
-    . ' obrigado a permanecer assim por um tempo mínimo de 48 horas. Só depois poderá ser desativado.';
-$LNG['op_dlte_account_descrip'] = 'Se escolheres esta opcção a tua conta será apagada após 7 dias.';
+$LNG['op_activate_vacation_mode_descrip'] = 'O modo de férias foi concebido para o proteger durante períodos de ausência'
+    . ' mais longos. Só pode ser ativado quando não há frotas próprias em movimento. Quando é ativado, protege-o de novos'
+    . ' ataques. No entanto, os ataques que já começaram continuarão e as frotas amigas que estiverem a aguardar serão'
+    . ' mandadas de volta! A produção de recursos, a construção de edifícios e encomendas de estaleiros, bem como a'
+    . ' investigação, são interrompidas durante este período e serão retomadas depois. O modo de férias dura pelo menos'
+    . ' 48 horas, após as quais o podes desativar novamente.';
+$LNG['op_dlte_account_descrip'] = 'Isto irá eliminar automaticamente a sua conta após pelo menos 7 dias. A eliminação'
+    . ' final depende do tempo de execução do cron job de eliminação e pode demorar mais alguns dias. A eliminação pode'
+    . ' ser interrompida desde que ainda não tenha sido efectuada, ou seja, desde que ainda possa iniciar sessão na conta.';
 $LNG['op_need_pass_mail'] = 'Para alterar o seu endereço de e-mail é preciso digitar a senha na caixa!';
 $LNG['op_not_vaild_mail'] = 'Não intruduziste um E-Mail válido!';
 $LNG['op_change_mail_exist'] = 'O E-Mail intruduzido %s já esta em uso!';
@@ -1005,6 +1018,7 @@ $LNG['op_sort_down'] = 'Descendente';
 $LNG['op_user_name_no_alphanumeric'] = 'Por favor, digite o nome do usuário apenas carateres alfanuméricos!';
 $LNG['op_change_name_pro_week'] = 'Só podes alterar o nome de usuário uma vez por cada 7 dias!';
 $LNG['op_change_name_exist'] = 'O nome escolhido %s já existe';
+$LNG['op_show_message_category'] = 'Mostrar diretamente a categoria de mensagem correspondente';
 $LNG['op_active_build_messages'] = 'Ativar mensagens de construção';
 $LNG['op_active_spy_messages_mode'] = 'Ativar relatórios de Espionagem em Sumário?';
 $LNG['op_dst_mode'] = 'Daylight Saving Time?';
@@ -1391,7 +1405,7 @@ $LNG['Achievement_text'] = [
     10 => 'Destruir a lua de um jogador.',
 
     11 => 'Jogar 14 dias exclusivamente no telemóvel.',
-    12 => 'A vossa frota foi destruída na vossa primeira expedição.',
+    12 => 'A vossa frota foi destruída por um buraco negro durante a vossa primeira expedição.',
     13 => 'Envia a tua frota para longe quando um ataque tem menos de 5 segundos.',
     14 => 'Perdeu 10 frotas para buracos negros.',
     15 => 'Passar 10 tentativas de lua num planeta sem obter uma lua',
@@ -1457,6 +1471,17 @@ $LNG['spytech_playercard'] = [
 //Team
 $LNG['team'] =                      'A Equipa';
 $LNG['teamAktiv'] =                 'Ativos';
+$LNG['kontakt'] =                   'Hi!<br>'
+                                    .'Nesta página, encontrará informações sobre as pessoas que gerem, moderam e desenvolvem ativamente este projeto.<br>'
+                                    .'Não hesites em contactar-nos se tiveres alguma dúvida ou problema.<br>'
+                                    .'<br>'
+                                    .'Para um melhor intercâmbio connosco, mas também com os outros co-especuladores, criámos um servidor Discord.'
+                                    .'Você pode encontrá-lo " <a href="https://discord.gg/jhYYN3yuat">aqui</a> " ou através do menu.<br>'
+                                    .'No servidor encontrarás as últimas notícias, bem como memes emocionantes entre as alianças do universo.<br>'
+                                    .'Faz perguntas sobre a mecânica do jogo e ajuda com as tuas próprias sugestões para o desenvolvimento do jogo.<br>'
+                                    .'<br>'
+                                    .'Claro que também responderemos às tuas perguntas no jogo.<br>'
+                                    .'No entanto, não te esqueças de que jogamos o jogo apenas como um passatempo. As respostas podem demorar alguns dias.<br>';
 $LNG['teamIngameName'] =            'Nome do jogo';
 $LNG['teamDiscordName'] =           'Nome do Discord';
 $LNG['teamRole'] =                  'Funções';
@@ -1479,3 +1504,7 @@ $LNG['teamYes'] =                   'e ainda';
 $LNG['teamAlumni'] =                'Antigos / Inativos Membros da Equipa';
 $LNG['teamAlumniLong'] =            'Gostaríamos de agradecer';
 $LNG['teamLegend'] =                'Legenda, Explicação de Papéis / Direitos';
+
+//----------------------------------------------------------------------------//
+$LNG['BlockTrade']  = 'Comércio em bloco';
+$LNG['blockDm']    = 'Bloquear MP';

@@ -31,27 +31,47 @@ class ShowLoginPage extends AbstractLoginPage
             HTTP::redirectTo('index.php');
         }
 
+        $LNG =& Singleton()->LNG;
         $db = Database::get();
 
         $username = HTTP::_GP('username', '', UTF8_SUPPORT);
         $password = HTTP::_GP('password', '', true);
         $universe = Universe::current();
 
-        $sql = "SELECT id, password FROM %%USERS%% WHERE universe = :universe AND username = :username;";
+        $sql = 'SELECT `id`, `username`, `password`, `failed_logins` FROM %%USERS%% 
+            WHERE `universe` = :universe AND (`username` = :username OR `email` = :username);';
         $loginData = $db->selectSingle($sql, [
             ':universe'	=> $universe,
-            ':username'	=> $username
+            ':username'	=> $username,
         ]);
 
-        $sql = "SELECT * FROM %%USERS_VALID%% WHERE universe = :universe AND userName = :username;";
+        $sql = 'SELECT * FROM %%USERS_VALID%% 
+            WHERE `universe` = :universe AND (`userName` = :username OR `email` = :username);';
         $validationData = $db->selectSingle($sql, [
             ':universe'	=> $universe,
-            ':username'	=> $username
+            ':username'	=> $username,
         ]);
 
         if (!empty($loginData)) {
             if (!password_verify($password, $loginData['password'])) {
-                HTTP::redirectTo('index.php?code=1');
+                if ($loginData['failed_logins'] < 4) {
+                    $sql = 'UPDATE %%USERS%% SET `failed_logins` = `failed_logins` + 1 WHERE `id` = :userId;';
+                    $db->update($sql, [':userId' => $loginData['id']]);
+                    HTTP::redirectTo('index.php?code=1');
+                } else {
+                    HTTP::redirectTo('index.php?code=4');
+                }
+            }
+
+            $sql = 'UPDATE %%USERS%% SET `failed_logins` = 0 WHERE `id` = :userId;';
+            $db->update($sql, [':userId' => $loginData['id']]);
+
+            if ($loginData['username'] == $username) {
+                $senderName = $LNG['loginUsernamePMSenderName'];
+                $subject 	= $LNG['loginUsernamePMSubject'];
+                $message 	= $LNG['loginUsernamePMText'];
+    
+                PlayerUtil::sendMessage($loginData['id'], 1, $senderName, 50, $subject, $message, TIMESTAMP);
             }
 
             $session	= Session::create();
@@ -64,7 +84,13 @@ class ShowLoginPage extends AbstractLoginPage
             HTTP::redirectTo('game.php');
         } elseif (!empty($validationData) && Config::get()->user_valid == 0) {
             if (!password_verify($password, $validationData['password'])) {
-                HTTP::redirectTo('index.php?code=1');
+                if ($validationData['failed_logins'] < 4) {
+                    $sql = 'UPDATE %%USERS_VALID%% SET `failed_logins` = `failed_logins` + 1 WHERE `validationID` = :validationID;';
+                    $db->update($sql, [':validationID' => $validationData['validationID']]);
+                    HTTP::redirectTo('index.php?code=1');
+                } else {
+                    HTTP::redirectTo('index.php?code=4');
+                }
             }
 
             $verifyURL = 'index.php?page=vertify&i=' . $validationData['validationID'] . '&k=' . $validationData['validationKey'];

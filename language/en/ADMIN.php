@@ -346,7 +346,7 @@ $LNG['se_normal_speed_halt'] = 'Normal speed: 1';
 $LNG['se_fleet_speed'] = 'Fleet Speed';
 $LNG['se_resources_producion_speed'] = 'Speed of production of resources';
 $LNG['se_storage_producion_speed'] = 'Resource storage multiplicator';
-$LNG['se_halt_speed'] = 'Expedition speed';
+$LNG['se_expo_hold_multiplier'] = 'Expedition speed';
 $LNG['se_forum_link'] = 'Forum Link';
 $LNG['se_uni_status'] = 'Uni status';
 $LNG['se_uni_status_regopen_gameopen'] = 'Registration and login open';
@@ -363,6 +363,7 @@ $LNG['se_per_hour'] = 'per hour';
 $LNG['se_metal_production'] = 'Production of Metal Basic';
 $LNG['se_crystal_production'] = 'Production of Crystal Basic';
 $LNG['se_deuterium_production'] = 'Production of Deuterium Basic';
+$LNG['se_energy_production'] = 'Production of Energy Basic';
 $LNG['se_galaxy_parameters'] = 'Galaxy settings';
 $LNG['se_uni_type'] = 'Universe type';
 $LNG['se_uni_type_info'] = '<TABLE>'
@@ -434,8 +435,8 @@ $LNG['se_server_colonisation_config'] = 'Colonization Configuration';
 $LNG['se_planets_min'] = 'Max planets without research';
 $LNG['se_planets_min_info'] = 'From the outset, the player has the opportunity to occupy the specified number of'
     . ' planets';
-$LNG['se_planets_tech'] = 'Amount max of Colonies with Astrophysics';
-$LNG['se_planets_tech_info'] = 'This is how many planets user can have with Astrophysics';
+$LNG['se_max_additional_planets'] = 'Amount max of Colonies with Astrophysics';
+$LNG['se_max_additional_planets_info'] = 'This is how many planets user can have with Astrophysics';
 $LNG['se_planets_per_tech'] = 'Additional planets per level of Astrophysics';
 $LNG['se_planets_per_tech_info'] = 'This is the amount of colonies unlock per level';
 $LNG['se_ref_active'] = 'Activate Referallink';
@@ -490,6 +491,10 @@ $LNG['se_google_info'] = 'Google Analytics is the solution for web sites that al
 $LNG['se_google_active'] = 'Enable/disable?';
 $LNG['se_google_key'] = 'Google Analytics Key';
 $LNG['se_google_key_info'] = 'Identify the key analog site for your policy. It always starts with UA-00000000-0';
+$LNG['se_recaptcha'] = 'Recaptcha settings';
+$LNG['se_recaptcha_info'] = 'Recaptcha can be used to differenciate between human actions and automatic actions.';
+$LNG['se_recaptcha_priv_key'] = 'Recaptcha private key';
+$LNG['se_recaptcha_pub_key'] = 'Recaptcha public key';
 $LNG['se_messages'] = 'Messages';
 $LNG['se_message_delete_behavior'] = 'Message delete behavior';
 $LNG['se_message_delete_behavior_0'] = 'Delete messages directly';
@@ -507,14 +512,14 @@ $LNG['se_max_system'] = 'Max. Solar Systems';
 $LNG['se_max_system_info'] = 'Maximum of Solar Systems for each Galaxy';
 $LNG['se_max_planets'] = 'Max. Planets';
 $LNG['se_max_planets_info'] = 'Maximum number of Planets to colonize (default: 15)';
-$LNG['se_min_player_planets'] = 'Maximum planets';
+$LNG['se_max_initial_planets'] = 'Maximum planets';
 $LNG['se_max_player_planets_info'] = 'Maximum planets Without Exploration';
 $LNG['se_max_player_planets'] = 'Maximum Planets with Exploration';
-$LNG['se_moonSizeFactor'] = 'Moon size factor';
-$LNG['se_moonSizeFactor_info'] = 'Factor to influence the moon size, 1 = default';
-$LNG['se_min_player_planets_info'] = 'Maximum number of colonies with the research';
-$LNG['se_planet_factor'] = 'Size of the planet';
-$LNG['se_planet_factor_info'] = 'Planet size multiplier';
+$LNG['se_moon_size_factor'] = 'Moon size factor';
+$LNG['se_moon_size_factor_info'] = 'Factor to influence the moon size, 1 = default';
+$LNG['se_max_initial_planets_info'] = 'Maximum number of colonies with the research';
+$LNG['se_planet_size_factor'] = 'Planet size factor';
+$LNG['se_planet_size_factor_info'] = 'Factor to influence the planet size, 1 = default';
 $LNG['se_all_planet_pictures'] = 'All planetpictures';
 $LNG['se_all_planet_pictures_info'] = 'allows all planet pictures at all positions.';
 $LNG['se_max_elements_build'] = 'Max. Construction Buildings';
@@ -558,6 +563,8 @@ $LNG['se_disclaimerAddress'] = 'Address';
 $LNG['se_disclaimerPhone'] = 'Phone number';
 $LNG['se_disclaimerMail'] = 'Email address';
 $LNG['se_disclaimerNotice'] = 'More information';
+$LNG['se_buildings'] = 'Building settings';
+$LNG['se_attacks'] = 'Attack settings';
 
 
 //###########################################################//

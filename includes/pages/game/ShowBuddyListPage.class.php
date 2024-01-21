@@ -79,7 +79,11 @@ class ShowBuddyListPage extends AbstractGamePage
         if ($id == $USER['id']) {
             $this->printMessage($LNG['bu_cannot_request_yourself']);
         }
-
+        $blocked    = PlayerUtil::get_block_status($USER['id'], $id);
+        $blockedInverted = PlayerUtil::get_block_status($id, $USER['id']);
+        if ($blocked['block_dm'] == 1 || $blockedInverted['block_dm'] == 1) {
+            $this->printMessage($LNG['mg_blocked']);
+        }
         $db = Database::get();
 
         $sql = "SELECT COUNT(*) as count FROM %%BUDDY%% WHERE (sender = :userID AND owner = :friendID) OR (owner = :userID AND sender = :friendID);";

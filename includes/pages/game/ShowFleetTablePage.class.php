@@ -147,11 +147,15 @@ class ShowFleetTablePage extends AbstractGamePage
                 ':universe' => Universe::current(),
                 ':username' => $newUser,
             ], 'id');
+            $blocked    = PlayerUtil::get_block_status($USER['id'], $newUserID);
+            $blockedInverted = PlayerUtil::get_block_status($newUserID, $USER['id']);
 
             if (empty($newUserID)) {
                 $statusMessage = $LNG['fl_player'] . " " . $newUser . " " . $LNG['fl_dont_exist'];
             } elseif (isset($invitedUsers[$newUserID])) {
                 $statusMessage = $LNG['fl_player'] . " " . $newUser . " " . $LNG['fl_already_invited'];
+            } elseif ($blocked['block_dm'] == 1 || $blockedInverted['block_dm'] == 1) {
+                $statusMessage = $LNG['fl_player'] . " " . $newUser . " " . $LNG['fl_blocked'];
             } else {
                 $statusMessage = $LNG['fl_player'] . " " . $newUser . " " . $LNG['fl_add_to_attack'];
 

@@ -49,7 +49,7 @@ class GalaxyRows
         $sql = 'SELECT SQL_BIG_RESULT DISTINCT'
             . ' p.galaxy, p.system, p.planet, p.id, p.id_owner, p.name, p.image, p.last_update, p.diameter, p.temp_min,'
             . ' p.destruyed, p.der_metal, p.der_crystal, p.id_luna, wf.ships AS wrecks, u.id as userid, u.ally_id, u.username,'
-            . ' u.onlinetime, u.urlaubs_modus, u.banaday, m.id as m_id, m.diameter as m_diameter, m.name as m_name,'
+            . ' u.onlinetime, u.urlaubs_modus, u.banaday, m.id as m_id, m.diameter as m_diameter, m.name as m_name, m.image as m_image,'
             . ' m.temp_min as m_temp_min, m.last_update as m_last_update, s.total_points, s.total_rank, a.id as allyid,'
             . ' a.ally_tag, a.ally_web, a.ally_members, a.ally_name, allys.total_rank as ally_rank,'
             . ' (a.ally_owner=u.id) as is_leader, a.ally_owner_range, r.DIPLOMATIC as is_diplo,'
@@ -291,6 +291,7 @@ class GalaxyRows
                 'name'     => htmlspecialchars($this->galaxyRow['m_name'], ENT_QUOTES, "UTF-8"),
                 'temp_min' => $this->galaxyRow['m_temp_min'],
                 'diameter' => $this->galaxyRow['m_diameter'],
+                'image'    => $this->galaxyRow['m_image'],
             ];
         }
     }
