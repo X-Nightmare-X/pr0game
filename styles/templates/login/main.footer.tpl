@@ -1,4 +1,5 @@
 <footer>
+	<a href="https://discord.gg/jhYYN3yuat" title="Discord" target="copy">Discord</a> community server<br>
 </footer>
 </div>
 <div id="dialog" style="display:none;"></div>

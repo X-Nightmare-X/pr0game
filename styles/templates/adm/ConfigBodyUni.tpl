@@ -47,18 +47,13 @@
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
-			<td>{$LNG.se_max_overflow}</td>
-			<td><input name="max_overflow" maxlength="3" size="3" value="{$max_overflow}" type="text"></td>
-			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_max_overflow_info}"></td>
-		</tr>
-		<tr>
-			<td>{$LNG.se_expo_hold_multiplier}</td>
-			<td><input name="expo_hold_multiplier" value="{$expo_hold_multiplier}" type="text"></td>
+			<td>{$LNG.se_halt_speed}</td>
+			<td><input name="halt_speed" value="{$halt_speed}" type="text"></td>
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_normal_speed_halt}"></td>
 		</tr>
 		<tr>
 			<td>{$LNG.se_energy_speed}</td>
-			<td><input name="energy_multiplier" value="{$energy_multiplier}" type="text"></td>
+			<td><input name="energySpeed" value="{$energySpeed}" type="text"></td>
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
@@ -67,19 +62,9 @@
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_del_user_automatic_info}"></td>
 		</tr>
 		<tr>
-			<td>{$LNG.se_vmode_min_time}</td>
-			<td><input name="vmode_min_time" maxlength="11" size="11" value="{$vmode_min_time}" type="text"></td>
-			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_vmode_min_time_info}"></td>
-		</tr>
-		<tr>
-			<td>{$LNG.se_alliance_create_min_points}</td>
-			<td><input name="alliance_create_min_points" maxlength="20" size="25" value="{$alliance_create_min_points}" type="text"></td>
+			<td>{$LNG.se_forum_link}</td>
+			<td><input name="forum_url" size="60" maxlength="254" value="{$forum_url}" type="text"></td>
 			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>{$LNG.se_debug_mode}</td>
-			<td><input name="debug" {if $debug} checked="checked" {/if} type="checkbox"></td>
-			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_debug_message}"></td>
 		</tr>
 		<tr>
 			<td>{$LNG.se_uni_status}</td>
@@ -91,7 +76,6 @@
 			<td><textarea name="close_reason" cols="80" rows="5">{$close_reason}</textarea></td>
 			<td>&nbsp;</td>
 		</tr>
-
 
 		<tr>
 			<th colspan="2">{$LNG.se_buildlist}</th>
@@ -117,12 +101,6 @@
 			<td><input name="max_fleet_per_build" maxlength="20" size="15" value="{$max_fleet_per_build}" type="text"></td>
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_max_fleet_per_build_info}"></td>
 		</tr>
-		<tr>
-			<td>{$LNG.se_min_build_time}</td>
-			<td><input name="min_build_time" maxlength="2" size="5" value="{$min_build_time}" type="text"></td>
-			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_min_build_time_info}" /></td>
-		</tr>
-
 
 		<tr>
 			<th colspan="2">{$LNG.se_ref}</th>
@@ -148,7 +126,6 @@
 			<td><input name="ref_max_referals" maxlength="6" size="8" value="{$ref_max_referals}" type="text"></td>
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_ref_max_referals_info}"></td>
 		</tr>
-
 
 		<tr>
 			<th colspan="2">{$LNG.se_galaxy_parameters}</th>
@@ -190,20 +167,19 @@
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_planet_creation_info}"></td>
 		</tr>
 
-
 		<tr>
 			<th colspan="2">{$LNG.se_server_colonisation_config}</th>
 			<th>&nbsp;</th>
 		</tr>
 		<tr>
 			<td>{$LNG.se_planets_min}</td>
-			<td><input name="max_initial_planets" maxlength="11" size="11" value="{$max_initial_planets}" type="text"></td>
+			<td><input name="min_player_planets" maxlength="11" size="11" value="{$min_player_planets}" type="text"></td>
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_planets_min_info}"></td>
 		</tr>
 		<tr>
-			<td>{$LNG.se_max_additional_planets}</td>
-			<td><input name="max_additional_planets" maxlength="11" size="11" value="{$max_additional_planets}" type="text"></td>
-			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_max_additional_planets_info}"></td>
+			<td>{$LNG.se_planets_tech}</td>
+			<td><input name="planets_tech" maxlength="11" size="11" value="{$planets_tech}" type="text"></td>
+			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_planets_tech_info}"></td>
 		</tr>
 		<tr>
 			<td>{$LNG.se_planets_per_tech}</td>
@@ -211,9 +187,9 @@
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_planets_per_tech_info}"></td>
 		</tr>
 		<tr>
-			<td>{$LNG.se_planet_size_factor}</td>
-			<td><input name="planet_size_factor" maxlength="3" size="3" value="{$planet_size_factor}" type="text"></td>
-			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_planet_size_factor_info}"></td>
+			<td>{$LNG.se_planet_factor}</td>
+			<td><input name="planet_factor" maxlength="3" size="3" value="{$planet_factor}" type="text"></td>
+			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_planet_factor_info}"></td>
 		</tr>
 		<tr>
 			<td>{$LNG.se_all_planet_pictures}</td>
@@ -267,11 +243,6 @@
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
-			<td>{$LNG.se_energy_production}</td>
-			<td><input name="energy_basic_income" maxlength="10" size="10" value="{$energy_basic_income}" type="text"> {$LNG.se_per_hour}</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
 			<td>{$LNG.se_moon_factor}</td>
 			<td><input name="moon_factor" maxlength="3" size="3" value="{$moon_factor}" type="text"></td>
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_moon_factor_info}"></td>
@@ -287,38 +258,15 @@
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_debris_moon_info}"></td>
 		</tr>
 		<tr>
-			<td>{$LNG.se_moon_size_factor}</td>
-			<td><input name="moon_size_factor" maxlength="11" size="11" type="text" value="{$moon_size_factor}"></td>
-			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_moon_size_factor_info}"></td>
+			<td>{$LNG.se_moonSizeFactor}</td>
+			<td><input name="moonSizeFactor" maxlength="11" size="11" type="text" value="{$moonSizeFactor}"></td>
+			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_moonSizeFactor_info}"></td>
 		</tr>
 		<tr>
 			<td>{$LNG.se_cascading_moon_chance}</td>
 			<td><input name="cascading_moon_chance" maxlength="11" size="11" type="text" value="{$cascading_moon_chance}"> %</td>
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_cascading_moon_chance_info}"></td>
 		</tr>
-
-
-		<tr>
-			<th colspan="2">{$LNG.se_buildings}</th>
-			<th>&nbsp;</th>
-		</tr>
-		<tr>
-			<td>{$LNG.se_factor_university}</td>
-			<td><input name="factor_university" maxlength="3" size="3" value="{$factor_university}" type="text"></td>
-			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_factor_university_info}"></td>
-		</tr>
-		<tr>
-			<td>{$LNG.se_silo_factor}</td>
-			<td><input name="silo_factor" maxlength="2" size="2" value="{$silo_factor}" type="text"></td>
-			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_silo_factor_info}"></td>
-		</tr>
-		<tr>
-			<td>{$LNG.se_jumpgate_factor}</td>
-			<td><input name="jumpgate_factor" maxlength="11" size="11" value="{$jumpgate_factor}" type="text"></td>
-			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_jumpgate_factor_info}"></td>
-		</tr>
-
-
 		<tr>
 			<th colspan="2">{$LNG.se_expedition_parameters}</th>
 			<th>&nbsp;</th>
@@ -332,22 +280,52 @@
 					<input name="expo_ress_deut_chance" type="range" min="0" max="100" value="{$expo_ress_deut_chance}" class="slider" id="expoDeut"> {$LNG.tech.903}: <span id="expoDeutValue"></span>
 				</div>
 			</td>
-			<td>&nbsp;</td>
+			<td></td>
 		</tr>
 
 		<tr>
-			<th colspan="2">{$LNG.se_attacks}</th>
+			<th colspan="2">{$LNG.se_several_parameters}</th>
 			<th>&nbsp;</th>
 		</tr>
 		<tr>
+			<td>{$LNG.se_min_build_time}</td>
+			<td><input name="min_build_time" maxlength="2" size="5" value="{$min_build_time}" type="text"></td>
+			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_min_build_time_info}" /></td>
+		</tr>
+		<tr>
+			<td>{$LNG.se_verfiy_mail}<br></td>
+			<td><input name="user_valid" {if $user_valid} checked="checked" {/if} type="checkbox"></td>
+			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_verfiy_mail_info}" /></td>
+		</tr>
+		<tr>
+			<td>{$LNG.se_admin_protection}</td>
+			<td><input name="adm_attack" {if $adm_attack} checked="checked" {/if} type="checkbox"></td>
+			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_title_admins_protection}" /></td>
+		</tr>
+		<tr>
+			<td>{$LNG.se_debug_mode}</td>
+			<td><input name="debug" {if $debug} checked="checked" {/if} type="checkbox"></td>
+			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_debug_message}"></td>
+		</tr>
+		<tr>
 			<td>{$LNG.se_ships_cdr}</td>
-			<td><input name="fleet_debris_percentage" maxlength="3" size="3" value="{$shiips}" type="text"> %</td>
+			<td><input name="Fleet_Cdr" maxlength="3" size="3" value="{$shiips}" type="text"> %</td>
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_ships_cdr_message}"></td>
 		</tr>
 		<tr>
 			<td>{$LNG.se_def_cdr}</td>
-			<td><input name="def_debris_percentage" maxlength="3" size="3" value="{$defenses}" type="text"> %</td>
+			<td><input name="Defs_Cdr" maxlength="3" size="3" value="{$defenses}" type="text"> %</td>
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_def_cdr_message}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.se_max_overflow}</td>
+			<td><input name="max_overflow" maxlength="3" size="3" value="{$max_overflow}" type="text"></td>
+			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_max_overflow_info}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.se_factor_university}</td>
+			<td><input name="factor_university" maxlength="3" size="3" value="{$factor_university}" type="text"></td>
+			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_factor_university_info}"></td>
 		</tr>
 		<tr>
 			<td>{$LNG.se_max_fleets_per_acs}</td>
@@ -360,32 +338,40 @@
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_max_participants_per_acs_info}"></td>
 		</tr>
 		<tr>
+			<td>{$LNG.se_silo_factor}</td>
+			<td><input name="silo_factor" maxlength="2" size="2" value="{$silo_factor}" type="text"></td>
+			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_silo_factor_info}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.se_vmode_min_time}</td>
+			<td><input name="vmode_min_time" maxlength="11" size="11" value="{$vmode_min_time}" type="text"></td>
+			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_vmode_min_time_info}"></td>
+		</tr>
+		<tr>
+			<td>{$LNG.se_jumpgate_factor}</td>
+			<td><input name="jumpgate_factor" maxlength="11" size="11" value="{$jumpgate_factor}" type="text"></td>
+			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_jumpgate_factor_info}"></td>
+		</tr>
+		<tr>
 			<td>{$LNG.se_noob_protect}</td>
-			<td><input name="noob_protection" {if $noobprot} checked="checked" {/if} type="checkbox"></td>
+			<td><input name="noobprotection" {if $noobprot} checked="checked" {/if} type="checkbox"></td>
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
 			<td>{$LNG.se_noob_protect2}</td>
-			<td><input name="noob_protection_time" value="{$noobprot2}" type="text"></td>
+			<td><input name="noobprotectiontime" value="{$noobprot2}" type="text"></td>
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_noob_protect_e2}"></td>
 		</tr>
 		<tr>
 			<td>{$LNG.se_noob_protect3}</td>
-			<td><input name="noob_protection_multi" value="{$noobprot3}" type="text"></td>
+			<td><input name="noobprotectionmulti" value="{$noobprot3}" type="text"></td>
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_noob_protect_e3}"></td>
 		</tr>
 		<tr>
-			<td>{$LNG.se_admin_protection}</td>
-			<td><input name="adm_attack" {if $adm_attack} checked="checked" {/if} type="checkbox"></td>
-			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_title_admins_protection}" /></td>
+			<td>{$LNG.se_alliance_create_min_points}</td>
+			<td><input name="alliance_create_min_points" maxlength="20" size="25" value="{$alliance_create_min_points}" type="text"></td>
+			<td>&nbsp;</td>
 		</tr>
-
-		
-		<tr>
-			<th colspan="2">{$LNG.se_several_parameters}</th>
-			<th>&nbsp;</th>
-		</tr>
-
 
 		<tr>
 			<th colspan="2">{$LNG.se_trader_head}</th>
@@ -401,7 +387,6 @@
 			<td><input name="trade_charge" maxlength="5" size="10" value="{$trade_charge}" type="text"></td>
 			<td></td>
 		</tr>
-
 
 		<tr>
 			<th colspan="2">{$LNG.se_news_head}</th>
@@ -424,7 +409,8 @@
 </form>
 <script src="./scripts/admin/Percentslider.js?v={$REV}"></script>
 <script>
-	addpercentsliderstuff(["expoMetal", "expoCrystal", "expoDeut"])
+  addpercentsliderstuff(["expoMetal","expoCrystal","expoDeut"])
+
 </script>
 
 {include file="overall_footer.tpl"}

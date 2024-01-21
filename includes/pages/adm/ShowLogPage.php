@@ -169,7 +169,7 @@ function ShowLogDetail()
         'stat_update_time'  => $LNG['cs_time_between_updates'],
         'stat_level'        => $LNG['cs_access_lvl'],
 
-        'google_analytics_key'        => $LNG['se_google_key'],
+        'ga_key'        => $LNG['se_google_key'],
 
         'metal'         => $LNG['tech'][901],
         'crystal'       => $LNG['tech'][902],

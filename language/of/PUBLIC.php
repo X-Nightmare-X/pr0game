@@ -53,20 +53,16 @@ $LNG['gameInformations']			= "Ein Weltraum Schdrategiespiel- in Echdzeid hädich
 
 // Login
 $LNG['loginHeader']					= 'Login';
-$LNG['loginUsername']				= 'Username/E-Mail';
+$LNG['loginUsername']				= 'Niggname ';
 $LNG['loginPassword']				= 'Basswort';
 $LNG['loginButton']					= 'Login';
 $LNG['loginInfo']					= 'Mid dem Login agzeptiere ich die %s.';
 $LNG['loginWelcome']				= 'Willgommne bei %s';
 $LNG['loginServerDesc']				= '%s isd a WeltraumSchdrategiespiel- mid hunderdne Schbielern die erdumgreifend <strong>gleichzeitig</strong> wersuchne der/die Beschde zu werdne. Alles was ihr zum sbielne brauchd isd a Schdandardwebbrowser.';
-$LNG['loginUsernamePMSenderName']	= 'Administrator';
-$LNG['loginUsernamePMSubject']	    = 'Achtung: Login-Änderung';
-$LNG['loginUsernamePMText']		    = 'Aufgrund eines Sicherheitsrisikos beim Login über den Usernamen wird der Login in Kürze auf die hinterlegte E-Mail-Adresse umgestellt.<p>'
-    . 'Bitte logge dich bereits jetzt nur noch mit deiner E-Mail-Adresse ein. Du kannst sie über das Einstellungen-Menü nachlesen.';
 
 // Register
-$LNG['registerUsername']			= 'Username';
-$LNG['registerUsernameDesc']		= 'Der Username muss mindeschdens 3 und derf maggsimal 25 Zeichne und derf nur aus Zahlne, Buchschdabne, Bunkte, Binde- und Unterschdriche und Leerzeichne beschdehne';
+$LNG['registerUsername']			= 'Niggname';
+$LNG['registerUsernameDesc']		= 'Der Niggname muss mindeschdens 3 und derf maggsimal 25 Zeichne und derf nur aus Zahlne, Buchschdabne, Bunkte, Binde- und Unterschdriche und Leerzeichne beschdehne';
 $LNG['registerPassword']			= 'Basswort';
 $LNG['registerPasswordDesc']		= 'Das Basswort muss mindeschdens %s Zeichen lang sein.';
 $LNG['registerPasswordReplay']		= 'Basswort widerhohlen';
@@ -87,9 +83,9 @@ $LNG['registerBack']				= 'Zurück';
 $LNG['registerNext']				= 'Weiter';
 
 $LNG['registerErrorUniClosed']		= 'Die Registrierung ist in diesem Universum geschlossen. Das tut uns Leid!';
-$LNG['registerErrorUsernameEmpty']	= 'Du hast keinen Usernamne eingeben!';
-$LNG['registerErrorUsernameChar']	= 'Im Username sind nur Zahlen, Buchstaben, Leerzeichen, _, -, . erlaubt!';
-$LNG['registerErrorUsernameExist']	= 'Der Username ist bereits vergeben!';
+$LNG['registerErrorUsernameEmpty']	= 'Du hast keinen Nicknamen eingeben!';
+$LNG['registerErrorUsernameChar']	= 'Im Niggname sind nur Zahlen, Buchstaben, Leerzeichen, _, -, . erlaubt!';
+$LNG['registerErrorUsernameExist']	= 'Der Niggname ist bereits vergeben!';
 $LNG['registerErrorPasswordLength']	= 'Das Basswort muss mindestens %s Zeichen lang sein!';
 $LNG['registerErrorPasswordSame']	= 'Sie haben 2 unterschiedliche Basswort eingegeben!';
 $LNG['registerErrorMailEmpty']		= 'Du musst eine E-Mail-Adresse angeben!';
@@ -139,10 +135,9 @@ $LNG['passwordNext']				= 'Weiter';
 
 //case default
 
-$LNG['login_error_1']				= 'Falscher Benuddsername, Email- oder Bassword tazächlich sogar!';
+$LNG['login_error_1']				= 'Falscher Benutzername - Basswort';
 $LNG['login_error_2']				= 'Jemand had sich von einem anderem Bezeh in deinem Accound eingeloggd tazächlich sogar!';
 $LNG['login_error_3']				= 'Da isd deine Session abgelaufne tazächlich sogar! ';
-$LNG['login_error_4']				= 'Es gab dsu fiele Loginfersuche des bascht scho. Bidde melde dich bei einem Adminisdrador über Lord gorea für neue Logindadne- Halde deine Emailadresse- dsur Ferifigadion bereid und alles.';
 
 //Rules
 $LNG['rulesHeader']					= 'Regelwerk';

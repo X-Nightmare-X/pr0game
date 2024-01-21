@@ -71,7 +71,6 @@ class ShowTechtreePage extends AbstractGamePage
         $this->assign([
             'TechTreeList'		=> $techTreeList,
             'messages'			=> ($Messages > 0) ? (($Messages == 1) ? $LNG['ov_have_new_message'] : sprintf($LNG['ov_have_new_messages'], pretty_number($Messages))) : false,
-            'message_type'      => $USER['showMessageCategory'] === 1 ? $USER['message_type'] : false,
         ]);
 
         $this->display('page.techTree.default.tpl');

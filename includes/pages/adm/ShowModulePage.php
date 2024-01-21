@@ -24,21 +24,36 @@ function ShowModulePage()
     $LNG =& Singleton()->LNG;
     $USER =& Singleton()->USER;
     $config = Config::get(Universe::getEmulated());
-    $module = $config->moduls;
+    $module = explode(';', $config->moduls);
 
     if (isset($_GET['mode'])) {
         $module[HTTP::_GP('id', 0)] = ($_GET['mode'] == 'aktiv') ? 1 : 0;
-        $config->moduls = $module;
-        $config->saveModules();
+        $config->moduls = implode(";", $module);
+        $config->save();
         ClearCache();
     }
 
-    foreach ($module as $ID => $state) {
-        $Modules[$ID] = [
-            'name'  => $LNG['modul_' . $ID],
-            'state' => $state,
-        ];
+    $IDs = range(0, MODULE_AMOUNT - 1);
+    // TODO: rework "module system"
+    // This ignore list is needed, since the modules have fixed IDs:
+    // 7 - Chat Module
+    // 8 - DM Bank
+    // 18 - Officers Module
+    // 31 - DM Mission
+    $ignoreList = [7,8,18,31];
+    foreach ($IDs as $ID => $Name) {
+        if (in_array($ID, $ignoreList)) {
+            $module[$ID] = 0;
+        } else {
+            $Modules[$ID] = [
+                'name'  => $LNG['modul_' . $ID],
+                'state' => isset($module[$ID]) ? getNumber($module[$ID], 1) : 1,
+            ];
+            $module[$ID] = $Modules[$ID]['state'];
+        }
     }
+    $config->moduls = implode(";", $module);
+    $config->save();
 
     asort($Modules);
     $template = new template();

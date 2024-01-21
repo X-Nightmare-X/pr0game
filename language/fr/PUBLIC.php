@@ -44,16 +44,12 @@ $LNG['gameInformations']			= "Un jeu de conquête spatial en temps réel.\nJeu c
 
 // Login
 $LNG['loginHeader']					= 'Connexion';
-$LNG['loginUsername']				= 'Login/email';
+$LNG['loginUsername']				= 'Login';
 $LNG['loginPassword']				= 'Mot de passe';
 $LNG['loginButton']					= 'Se connecter';
 $LNG['loginInfo']					= 'En me connectant j\'accepte les %s.';
 $LNG['loginWelcome']				= 'Bienvenue sur %s';
 $LNG['loginServerDesc']				= '%s est un jeu de stratégie spatial regroupant des milliers d\'utilisateurs par univers <strong>en meme temps</strong> essayez d\'être le meilleur, d\'etre le maître de votre univers. La seule chose dont vous avez besoin c\'est un navigateur internet (ou application du PlayStore).';
-$LNG['loginUsernamePMSenderName']	= 'Administrateur';
-$LNG['loginUsernamePMSubject']	    = 'Attention : Changement de login';
-$LNG['loginUsernamePMText']		    = 'En raison d\'un risque de sécurité lors de la connexion via le nom d\'utilisateur, le login sera bientôt remplacé par l\'adresse e-mail enregistrée.<p>'
-    . 'Veuillez vous connecter maintenant avec votre adresse e-mail uniquement. Vous la trouverez dans le menu des paramètres.';
 
 // Register
 $LNG['registerUsername']			= 'Login';
@@ -129,10 +125,9 @@ $LNG['passwordNext']				= 'Suivant';
 
 //case default
 
-$LNG['login_error_1']				= 'Mauvais nom d\'utilisateur, email ou mot de passe !';
+$LNG['login_error_1']				= 'Combinaison login/mot de passe incorrect!';
 $LNG['login_error_2']				= 'Quelqu\'un est connecté à partir d\'un autre PC sur votre compte ou bien votre adresse IP est différente!';
 $LNG['login_error_3']				= 'Votre session a expirée !';
-$LNG['login_error_4']				= 'Il y a eu trop de tentatives de connexion. Veuillez contacter un administrateur via Discord pour obtenir de nouveaux détails de connexion. Préparez votre adresse e-mail pour la vérification.';
 
 //Rules
 $LNG['rulesHeader']					= 'Règles';

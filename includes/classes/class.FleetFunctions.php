@@ -299,7 +299,7 @@ class FleetFunctions
         $stayBlock = [];
         $exchange = false;
 
-        $haltSpeed = Config::get($USER['universe'])->expo_hold_multiplier;
+        $haltSpeed = Config::get($USER['universe'])->halt_speed;
 
         if (in_array(MISSION_EXPEDITION, $Missions)) {
             for ($i = 1; $i <= $USER[$resource[124]]; $i++) {
@@ -407,32 +407,6 @@ class FleetFunctions
             ':time' => $timeDifference,
             ':acsId' => $acsId,
         ]);
-
-        $sql = 'SELECT `fleet_id`, `fleet_start_time`, `fleet_end_stay`, `fleet_end_time` FROM %%LOG_FLEETS%%
-            WHERE `fleet_group` = :acsId;';
-        $logFleets = $db->select($sql, [
-            ':acsId' => $acsId,
-        ]);
-
-        $sql = 'UPDATE %%LOG_FLEETS%% SET
-            `fleet_start_time` = :fleet_start_time,
-            `fleet_start_time_formated` = :fleet_start_time_formated,
-            `fleet_end_stay` = :fleet_end_stay,
-            `fleet_end_stay_formated` = :fleet_end_stay_formated,
-            `fleet_end_time` = :fleet_end_time,
-            `fleet_end_time_formated` = :fleet_end_time_formated
-            WHERE `fleet_id` = :fleet_id;';
-        foreach ($logFleets as $logFleet) {
-            $db->update($sql, [
-                ':fleet_start_time' => $logFleet['fleet_start_time'] + $timeDifference,
-                ':fleet_start_time_formated' => Database::formatDate($logFleet['fleet_start_time'] + $timeDifference),
-                ':fleet_end_stay' => $logFleet['fleet_end_stay'] + $timeDifference,
-                ':fleet_end_stay_formated' => Database::formatDate($logFleet['fleet_end_stay'] + $timeDifference),
-                ':fleet_end_time' => $logFleet['fleet_end_time'] + $timeDifference,
-                ':fleet_end_time_formated' => Database::formatDate($logFleet['fleet_end_time'] + $timeDifference),
-                ':fleet_id' => $logFleet['fleet_id'],
-            ]);
-        }
 
         return true;
     }
@@ -906,16 +880,6 @@ class FleetFunctions
             ':endTime' => $fleetStartTime
         ]);
 
-        require_once 'includes/classes/class.MarketManager.php';
-        $pMarket = new MarketManager();
-        $refrates = $pMarket->getReferenceRatios();
-        $current_market_rate = $refrates['metal'].";".$refrates['crystal'].";".$refrates['deuterium'];
-        $current_market_value_metal = $fleetResource[901] / $refrates['metal'];
-        $current_market_value_crystal = $fleetResource[902] / $refrates['crystal'];
-        $current_market_value_deuterium = $fleetResource[903] / $refrates['deuterium'];
-
-        $current_market_value = $current_market_value_metal + $current_market_value_crystal + $current_market_value_deuterium;
-
         $sql = 'INSERT INTO %%LOG_FLEETS%% SET
 		fleet_id					= :fleetId,
 		fleet_owner					= :fleetStartOwner,
@@ -946,8 +910,6 @@ class FleetFunctions
 		fleet_resource_metal		= :fleetResource901,
 		fleet_resource_crystal		= :fleetResource902,
 		fleet_resource_deuterium    = :fleetResource903,
-		current_market_rate         = :current_market_rate,
-		current_market_value_based_on_DSE        = :current_market_value,
 		fleet_no_m_return           = :fleetNoMReturn,
 		fleet_group					= :fleetGroup,
 		fleet_target_obj			= :missileTarget,
@@ -986,8 +948,6 @@ class FleetFunctions
             ':fleetResource901' => $fleetResource[901],
             ':fleetResource902' => $fleetResource[902],
             ':fleetResource903' => $fleetResource[903],
-            ':current_market_rate' => $current_market_rate,
-            ':current_market_value' => $current_market_value,
             ':fleetNoMReturn' => $fleetNoMReturn,
             ':fleetGroup' => $fleetGroup,
             ':missileTarget' => $missileTarget,

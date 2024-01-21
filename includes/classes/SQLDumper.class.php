@@ -65,7 +65,7 @@ class SQLDumper
         $database	= [];
         require 'includes/config.php';
         $integerTypes	= ['tinyint', 'smallint', 'mediumint', 'int', 'bigint', 'decimal', 'float', 'double', 'real'];
-        $gameVersion	= Config::get()->version;
+        $gameVersion	= Config::get()->VERSION;
         $fp	= fopen($filePath, 'w');
         fwrite($fp, "-- MySQL dump | pr0game dumper v{$gameVersion}
 --

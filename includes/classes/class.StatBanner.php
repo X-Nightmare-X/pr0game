@@ -24,10 +24,10 @@ class StatBanner
         $sql = 'SELECT user.username, user.wons, user.loos, user.draws,
 		stat.total_points, stat.total_rank,
 		planet.name, planet.galaxy, planet.system, planet.planet, config.game_name,
-		config_u.users_amount, config.ttf_file
-		FROM %%USERS%% as user, %%STATPOINTS%% as stat, %%PLANETS%% as planet, %%CONFIG%% as config, %%CONFIG_UNIVERSE%% as config_u
+		config.users_amount, config.ttf_file
+		FROM %%USERS%% as user, %%STATPOINTS%% as stat, %%PLANETS%% as planet, %%CONFIG%% as config
 		WHERE user.id = :userId AND stat.stat_type = :statType AND stat.id_owner = :userId
-		AND planet.id = user.id_planet AND config_u.uni = user.universe;';
+		AND planet.id = user.id_planet AND config.uni = user.universe;';
 
         return Database::get()->selectSingle($sql, [
             ':userId'	=> $id,

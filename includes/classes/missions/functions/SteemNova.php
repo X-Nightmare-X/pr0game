@@ -124,7 +124,7 @@ function shoot($attacker, $unit, &$defenders, &$ad, $sim, &$advancedStats)
     if (isset($CombatCaps[$unit['unit']]['sd'])) {
         foreach ($CombatCaps[$unit['unit']]['sd'] as $sdId => $count) {
             if ($victimShip['unit'] == $sdId) {
-                $ran = rand(1, $count);
+                $ran = rand(0, $count);
                 if ($ran < $count) {
                     shoot($attacker, $unit, $defenders, $ad, $sim, $advancedStats);
                 }

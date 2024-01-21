@@ -362,8 +362,8 @@ class MissionCaseSpy extends MissionFunctions implements Mission
 			WHERE ' . $whereCol . ' = :planetId;';
 
             $db->update($sql, [
-                ':metal'    => $fleetAmount * $pricelist[210]['cost'][901] * $config->fleet_debris_percentage / 100,
-                ':crystal'  => $fleetAmount * $pricelist[210]['cost'][902] * $config->fleet_debris_percentage / 100,
+                ':metal'    => $fleetAmount * $pricelist[210]['cost'][901] * $config->Fleet_Cdr / 100,
+                ':crystal'  => $fleetAmount * $pricelist[210]['cost'][902] * $config->Fleet_Cdr / 100,
                 ':new_debris' => 1,
                 ':planetId' => $this->_fleet['fleet_end_id'],
             ]);
@@ -419,8 +419,8 @@ class MissionCaseSpy extends MissionFunctions implements Mission
         $pricelist =& Singleton()->pricelist;
 
         $config = Config::get($this->_fleet['fleet_universe']);
-        $fleetIntoDebris = $config->fleet_debris_percentage;
-        $defIntoDebris = $config->def_debris_percentage;
+        $fleetIntoDebris = $config->Fleet_Cdr;
+        $defIntoDebris = $config->Defs_Cdr;
 
         $recycleValue = 0;
 

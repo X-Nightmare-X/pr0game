@@ -94,12 +94,12 @@ abstract class AbstractLoginPage
             'gameName' 				=> $config->game_name,
             'mailEnable'			=> $config->mail_active,
             'referralEnable'		=> $config->ref_active,
-            'analyticsEnable'		=> $config->use_google_analytics,
-            'analyticsUID'			=> $config->google_analytics_key,
+            'analyticsEnable'		=> $config->ga_active,
+            'analyticsUID'			=> $config->ga_key,
             'lang'					=> $LNG->getLanguage(),
             'UNI'					=> Universe::current(),
-            'version'				=> $config->version,
-            'REV'					=> substr($config->version, -4),
+            'VERSION'				=> $config->VERSION,
+            'REV'					=> substr($config->VERSION, -4),
             'languages'				=> Language::getAllowedLangs(false),
         ]);
     }

@@ -112,7 +112,7 @@ class ShowGalaxyPage extends AbstractGamePage
             $Result = [];
         }
 
-        $hiddenDebris = ($pricelist[SHIP_PROBE]['cost'][RESOURCE_METAL] + $pricelist[SHIP_PROBE]['cost'][RESOURCE_CRYSTAL]) * ($config->fleet_debris_percentage / 100);
+        $hiddenDebris = ($pricelist[SHIP_PROBE]['cost'][RESOURCE_METAL] + $pricelist[SHIP_PROBE]['cost'][RESOURCE_CRYSTAL]) * ($config->Fleet_Cdr / 100);
 
         $Duration		= FleetFunctions::getMIPDuration($PLANET['system'], $system);
 

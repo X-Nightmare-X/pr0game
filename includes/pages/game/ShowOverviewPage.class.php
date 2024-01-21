@@ -224,8 +224,8 @@ class ShowOverviewPage extends AbstractGamePage
         $this->assign([
             'umode'                     => $USER['urlaubs_modus'],
             'rankInfo'                  => $rankInfo,
-            'is_news'                   => $config->overview_news_frame,
-            'news'                      => makebr($config->overview_news_text),
+            'is_news'                   => $config->OverviewNewsFrame,
+            'news'                      => makebr($config->OverviewNewsText),
             'usersOnline'               => $usersOnline,
             'fleetsOnline'              => $fleetsOnline,
             'planetname'                => $PLANET['name'],
@@ -245,7 +245,6 @@ class ShowOverviewPage extends AbstractGamePage
                 ($Messages == 1) ? $LNG['ov_have_new_message']
                     : sprintf($LNG['ov_have_new_messages'], pretty_number($Messages))
             ) : false,
-            'message_type'              => $USER['showMessageCategory'] === 1 ? $USER['message_type'] : false,
             'planet_diameter'           => pretty_number($PLANET['diameter']),
             'planet_field_current'      => $PLANET['field_current'],
             'planet_field_max'          => CalculateMaxPlanetFields($PLANET),

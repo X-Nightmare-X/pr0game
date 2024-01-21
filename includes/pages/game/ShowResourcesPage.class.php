@@ -54,11 +54,10 @@ class ShowResourcesPage extends AbstractGamePage
             }
 
             if (!empty($updateSQL)) {
-                $sql = "UPDATE %%PLANETS%% SET " . implode(', ', $updateSQL) . ", eco_hash = '' WHERE id = :planetId;";
+                $sql = 'UPDATE %%PLANETS%% SET ' . implode(', ', $updateSQL) . ' WHERE id = :planetId;';
                 $db->update($sql, $param);
-                $PLANET['eco_hash'] = '';
 
-                list($USER, $PLANET) = $this->ecoObj->CalcResource($USER, $PLANET, true, TIMESTAMP + 1);
+                list($USER, $PLANET) = $this->ecoObj->CalcResource($USER, $PLANET, true);
             }
 
             $db->commit();
@@ -154,7 +153,7 @@ class ShowResourcesPage extends AbstractGamePage
                 $Production = eval(ResourceUpdate::getProd($ProdGrid[$ProdID]['production'][$ID], $ProdID));
 
                 if (in_array($ID, $reslist['resstype'][2])) {
-                    $Production *= $config->energy_multiplier;
+                    $Production *= $config->energySpeed;
                 } else {
                     $Production *= $prodLevel * $config->resource_multiplier;
                 }
@@ -190,7 +189,7 @@ class ShowResourcesPage extends AbstractGamePage
             901 => $basicIncome[901] * $config->resource_multiplier,
             902 => $basicIncome[902] * $config->resource_multiplier,
             903 => $basicIncome[903] * $config->resource_multiplier,
-            911 => $basicIncome[911] * $config->energy_multiplier,
+            911 => $basicIncome[911] * $config->energySpeed,
         ];
 
         $totalProduction = [

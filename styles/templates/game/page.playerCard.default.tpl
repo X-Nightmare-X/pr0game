@@ -37,16 +37,6 @@
 		visibility: visible;
 	}
 	</style>
-	<script type="text/javascript">
-		function block(targetUser) {
-			var trade = document.getElementById("blockTrade").checked ? 1 : 0;
-			var dm = document.getElementById("blockDm").checked ? 1 : 0;
-			console.log('dm: '+dm+', trade: '+trade)
-			$.getJSON('game.php?page=playerCard&mode=toggleBlock&id='+targetUser+'&blockTrade='+trade+'&blockDm='+dm+'&ajax=1', function(data) {
-				$('#loading').show();
-			});
-		}   
-	</script>
 <table style="width:95%">
 	<tr>
 		<th colspan="5">{$LNG.pl_overview}</th>
@@ -283,15 +273,6 @@
 		<td colspan="1"><a href="#" onclick="return Dialog.Buddy({$id})">{$LNG.pl_buddy}</a></td>
 		<td colspan="3"><a href="#" onclick="return Dialog.PM({$id});" title="{$LNG.pl_message}">{$LNG.pl_message}</a></td>
 	</tr>
-	{if  $targetRights == 0}
-		<form action="game.php?page=playerCard&id={$id}" method="post">
-			<tr>
-				<td></td>
-				<td colspan="1"><label for="blockTrade">Handel blockieren</label> <input onclick="block({$id});" name="blockTrade" id="blockTrade" type="checkbox" value="1" {if $blockTrade == 1}checked="checked" {/if}></td>
-				<td colspan="3"><label for="blockDm">PN blockieren</label> <input onclick="block({$id});" name="blockDm" id="blockDm" type="checkbox" value="1" {if $blockDm == 1}checked="checked" {/if}></td>
-			</tr>
-		</form>
-	{/if}
 {/if}
 	<tr>
 		<th colspan="5">{$LNG.Achievements}:</th>

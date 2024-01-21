@@ -40,13 +40,13 @@ class TrackingCronjob implements CronjobTask
         }
 
         try {
-            $sql	= 'SELECT COUNT(*) as state FROM %%CONFIG_UNIVERSE%%;';
+            $sql	= 'SELECT COUNT(*) as state FROM %%CONFIG%%;';
             $serverData['unis']			= Database::get()->selectSingle($sql, [], 'state');
         } catch (Exception $e) {
             $serverData['unis']			= null;
         }
 
-        $serverData['version']		= Config::get(ROOT_UNI)->version;
+        $serverData['version']		= Config::get(ROOT_UNI)->VERSION;
 
         $ch	= curl_init('http://tracking.jkroepke.de/');
         curl_setopt($ch, CURLOPT_HTTPGET, true);

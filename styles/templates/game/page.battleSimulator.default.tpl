@@ -1,22 +1,16 @@
 {block name="title" prepend}{$LNG.lm_battlesim}{/block}
 {block name="content"}
 <form id="form" name="battlesim">
-	<input type="hidden" name="slots" id="slots" value="{$Slots}">
+	<input type="hidden" name="slots" id="slots" value="{$Slots + 1}">
 	<table style="width:80%">
 		<tr>
 			<th>{$LNG.lm_battlesim}</th>
 		</tr>
 		<tr>
-			<input type="hidden" value="{$battleinput.0.0.901}" name="battleinput[0][0][901]">
-			<input type="hidden" value="{$battleinput.0.0.902}" name="battleinput[0][0][902]">
-			<input type="hidden" value="{$battleinput.0.0.903}" name="battleinput[0][0][903]">
 			<td>{$LNG.bs_steal} {$LNG.tech.901}: <input type="number" size="10" value="{if isset($battleinput.0.1.901)}{$battleinput.0.1.901}{else}0{/if}" name="battleinput[0][1][901]"> {$LNG.tech.902}: <input type="number" size="10" value="{if isset($battleinput.0.1.902)}{$battleinput.0.1.902}{else}0{/if}" name="battleinput[0][1][902]"> {$LNG.tech.903}: <input type="number" size="10" value="{if isset($battleinput.0.1.903)}{$battleinput.0.1.903}{else}0{/if}" name="battleinput[0][1][903]"></td>
 		</tr>
 		<tr>
-			<td class="left">
-				<input type="button" onClick="return add();" value="{$LNG.bs_add_acs_slot}">
-				<input type="button" onClick="return switchSides();" value="{$LNG.bs_atter} <-> {$LNG.bs_deffer}">
-			</td>
+			<td class="left"><input type="button" onClick="return add();" value="{$LNG.bs_add_acs_slot}"></td>
 		</tr>
 		<tr>
 			<td class="transparent" style="padding:0;">
@@ -71,12 +65,7 @@
 										{foreach $fleetList as $id}
 										<tr>
 											<td>{$LNG.tech.$id}:</td>
-											{if $id == $smarty.const.SHIP_SOLSAT}
-												<input type="hidden" value="{if isset($battleinput.{$smarty.section.content.index}.0.$id)}{$battleinput.{$smarty.section.content.index}.0.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][0][{$id}]">
-												<td>-</td>
-											{else}
-												<td><input type="number" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.0.$id)}{$battleinput.{$smarty.section.content.index}.0.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][0][{$id}]"></td>
-											{/if}
+											<td><input type="number" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.0.$id)}{$battleinput.{$smarty.section.content.index}.0.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][0][{$id}]"></td>
 											<td><input type="number" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.1.$id)}{$battleinput.{$smarty.section.content.index}.1.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][1][{$id}]"></td>
 										</tr>
 										{/foreach}
@@ -98,11 +87,10 @@
 											{foreach $defensiveList as $id}
 											<tr>
 												<td>{$LNG.tech.$id}:</td>
-												<input type="hidden" value="{if isset($battleinput.{$smarty.section.content.index}.0.$id)}{$battleinput.{$smarty.section.content.index}.0.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][0][{$id}]">
 												<td>-</td>
 												<td><input type="number" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.1.$id)}{$battleinput.{$smarty.section.content.index}.1.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][1][{$id}]"></td>
 											</tr>
-											{/foreach}
+										{/foreach}
 										</table>
 									</td>
 								{/if}

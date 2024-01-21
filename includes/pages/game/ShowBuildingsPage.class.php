@@ -256,7 +256,6 @@ class ShowBuildingsPage extends AbstractGamePage
             $db = Database::get();
             $db->startTransaction();
             $PLANET = $db->selectSingle("SELECT * FROM %%PLANETS%% WHERE id = :planetId FOR UPDATE;", [':planetId' => $PLANET['id']]);
-            $validCommand = true;
             switch ($TheCommand) {
                 case 'cancel':
                     $this->cancelBuildingFromQueue();
@@ -270,15 +269,9 @@ class ShowBuildingsPage extends AbstractGamePage
                 case 'destroy':
                     $this->addBuildingToQueue($Element, false);
                     break;
-                default:
-                    error_log($TheCommand);
-                    $validCommand = false;
-                    break;
             }
 
-            if ($validCommand) {
-                $this->ecoObj->saveBuilingQueue($PLANET);
-            }
+            $this->ecoObj->saveBuilingQueue($PLANET);
             $db->commit();
             $this->redirectTo('game.php?page=buildings');
         }
@@ -339,7 +332,7 @@ class ShowBuildingsPage extends AbstractGamePage
                 $Prod       = eval(ResourceUpdate::getProd($ProdGrid[$Element]['production'][RESOURCE_ENERGY], $Element));
 
                 $requireEnergy  = $Prod - $Need;
-                $requireEnergy  = round($requireEnergy * $config->energy_multiplier);
+                $requireEnergy  = round($requireEnergy * $config->energySpeed);
 
                 if ($requireEnergy < 0) {
                     $infoEnergy = sprintf(
@@ -421,7 +414,6 @@ class ShowBuildingsPage extends AbstractGamePage
             'messages'          => ($Messages > 0) ?
                 (($Messages == 1) ? $LNG['ov_have_new_message']
                     : sprintf($LNG['ov_have_new_messages'], pretty_number($Messages))) : false,
-            'message_type'      => $USER['showMessageCategory'] === 1 ? $USER['message_type'] : false,
         ]);
 
         $this->display('page.buildings.default.tpl');

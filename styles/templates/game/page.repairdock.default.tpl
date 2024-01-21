@@ -1,6 +1,8 @@
 {block name="title" prepend}{$LNG.lm_repairdock}{/block}
 {block name="content"}
-  {include file='shared.messages.tpl'}
+  {if $messages}
+    <div class="message"><a href="?page=messages">{$messages}</a></div>
+  {/if}
   {if $busy}
     <table width="70%" id="infobox" style="border: 2px solid red; text-align:center;background:transparent">
       <tr>
@@ -60,15 +62,13 @@
             </a>
             <div class="repairShipContainerContent">
               <span>
-                <p>{$LNG.bd_wreck_count}: <span style="font-weight:700">{number_format($Element.wrecks, 0, ",", ".")}</span></p>
-                <p>{$LNG.bd_repair_rate}: <span style="font-weight:700">{number_format($repairRate, 1, ",", ".")}%</span></p>
-                <p>{$LNG.bd_max_ships_repair}: <span style="font-weight:700">{number_format($Element.maxBuildable, 0, ",", ".")}</span></p>
+                <p>{$LNG.bd_max_ships_repair}:<br><span style="font-weight:700">{number_format($Element.maxBuildable, 0, ",", ".")}</span></p>
               </span>
             </div>
             <div class="repairShipContainerContent">
               <span>
                 {if $ID==212} +{$SolarEnergy} {$LNG.tech.911}<br>{/if}
-                {if !$busy && $Element.maxBuildable > 1}
+                {if !$busy}
                   <input type="number" class="numfield" data-max="{$Element.maxBuildable}" name="fmenge[{$ID}]" id="input_{$ID}" size="3" value="0" tabindex="{$smarty.foreach.FleetList.iteration}">
                   <input type="button" value="{$LNG.bd_max_ships}" onclick="$('#input_{$ID}').val('{$Element.maxBuildable}')">
                   <br>

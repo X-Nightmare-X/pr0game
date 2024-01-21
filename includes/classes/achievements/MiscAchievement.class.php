@@ -10,9 +10,11 @@ class MiscAchievement
 {
 	/**
 	 * Check for achievement in relation to Expeditions
-	 * Slippy's blessing(12): Lose your first expedition to a black hole
-	 * Slippy's curse(14): Lose 10 expeditions to black holes
+	 * Slippy's blessing(12): Lose your first expedition
+	 * Slippy's curse(14):Lose 10 expeditions
 	 *
+	 * @param array			$PLANET       	The planet array
+	 * @param array			$resource       The resource array
 	 * @param int	 		$userId       	The id of the User
 	 */
 	static public function checkExpoAchievements($userId){
@@ -22,7 +24,7 @@ class MiscAchievement
 		$expoStats = Database::get()->selectSingle($sql, [
 			':userId' => $userId,
 		],);
-		if ($expoStats['expo_count'] == 0 && $expoStats['expo_black_hole'] == 1 && !Achievement::checkAchievement($userId, 12)) {
+		if ($expoStats['expo_count'] == 0 && !Achievement::checkAchievement($userId, 12)) {
 			Achievement::setAchievement($userId, 12);
 		} else if ($expoStats['expo_black_hole'] == 10 && !Achievement::checkAchievement($userId, 14)) {
 			Achievement::setAchievement($userId, 14);

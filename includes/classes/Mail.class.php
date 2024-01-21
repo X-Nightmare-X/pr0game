@@ -27,11 +27,7 @@ class Mail
         $mail->Subject	= $mailSubject;
         $mail->Body		= $mailContent;
         $mail->AddAddress($mailTarget, $mailTargetName);
-        try {
-            $mail->Send();
-        } catch (Exception $e) {
-            error_log($mail->ErrorInfo);
-        }
+        $mail->Send();
     }
 
     public static function multiSend($mailTargets, $mailSubject, $mailContent = null)
@@ -53,6 +49,7 @@ class Mail
     private static function getMailObject()
     {
         $mail               = new PHPMailer(true);
+        $mail->PluginDir	= 'includes/libs/phpmailer/';
 
         $config				= Config::get();
 

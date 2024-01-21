@@ -25,13 +25,13 @@ class PlayerUtil
     public static function isPositionFree($universe, $galaxy, $system, $position, $type = 1)
     {
         $db = Database::get();
-        $sql = 'SELECT COUNT(*) as record
-            FROM %%PLANETS%%
-            WHERE `universe` = :universe
-            AND `galaxy` = :galaxy
-            AND `system` = :system
-            AND `planet` = :position
-            AND `planet_type` = :type;';
+        $sql = "SELECT COUNT(*) as record
+		FROM %%PLANETS%%
+		WHERE universe = :universe
+		AND galaxy = :galaxy
+		AND system = :system
+		AND planet = :position
+		AND planet_type = :type;";
 
         $count = $db->selectSingle($sql, [
             ':universe' => $universe,
@@ -79,13 +79,13 @@ class PlayerUtil
         $config = Config::get($universe);
         $db = Database::get();
         //get avg planets per system per galaxy
-        $sql = 'SELECT tab.`galaxy`, (sum(tab.anz)/:maxSys) as AvgPlanetsPerSys FROM (
-            SELECT p.`galaxy`, p.`system`, COUNT(p.`planet`) as anz
+        $sql = 'SELECT tab.galaxy, (sum(tab.anz)/:maxSys) as AvgPlanetsPerSys FROM (
+            SELECT p.galaxy, p.`system`, COUNT(p.planet) as anz
             FROM %%PLANETS%% p
-            JOIN %%USERS%% u on u.`id` = p.`id_owner`
-            WHERE `planet_type` = 1 AND p.`galaxy` <= :maxGala AND u.`onlinetime` >= ( :ts - :inactive ) AND p.`universe` = :universe
-            GROUP BY p.`galaxy`, p.`system`
-        ) as tab GROUP BY `galaxy` ORDER BY tab.`galaxy` ASC;';
+            JOIN %%USERS%% u on u.id = p.id_owner
+            WHERE planet_type = 1 AND p.galaxy <= :maxGala AND u.onlinetime >= ( :ts - :inactive ) AND p.universe = :universe
+            GROUP BY p.galaxy, p.`system`
+        ) as tab GROUP BY galaxy ORDER BY tab.galaxy ASC';
         $result = $db->select($sql, [
             ':universe' => $universe,
             ':maxGala' => $config->max_galaxy,
@@ -131,8 +131,8 @@ class PlayerUtil
         $galaxy = $galaArray[rand(0, count($galaArray) - 1)];
 
         // get system with planet count for selected gala
-        $sql = 'SELECT `system`, count(`planet`) as anz FROM %%PLANETS%%
-            WHERE `planet_type` = 1 AND `galaxy` = :gala AND `universe` = :universe GROUP BY `system`;';
+        $sql = 'SELECT `system`, count(planet) as anz FROM %%PLANETS%%
+            WHERE planet_type = 1 AND galaxy = :gala AND universe = :universe GROUP BY `system`';
         $result = $db->select($sql, [
             ':gala' => $galaxy,
             ':universe' => $universe,
@@ -197,7 +197,7 @@ class PlayerUtil
         $db = Database::get();
 
         //if less than 50 planets, place randomly
-        $sql = 'SELECT Count(`id`) AS planetcount FROM %%PLANETS%% WHERE `universe` = :universe;';
+        $sql = 'SELECT Count(id) as planetcount from %%PLANETS%% WHERE universe = :universe';
         $planetcount = $db->selectSingle($sql, [
             ':universe' => $universe,
         ], 'planetcount');
@@ -212,7 +212,7 @@ class PlayerUtil
 
         //Search for systems with one planet, if none, search for 2 planets
         for ($planetamount = 1; $planetamount < 3; $planetamount++) {
-            $sql = 'SELECT p.`galaxy`, p.`system` FROM
+            $sql = "SELECT p.`galaxy`, p.`system` FROM
                 %%PLANETS%% p
                 JOIN (
                         SELECT `galaxy`, `system`
@@ -225,10 +225,10 @@ class PlayerUtil
                         GROUP BY `galaxy`, `system`
                         HAVING COUNT(`planet`) < :maxPlanets
                     ) as tab ON tab.`galaxy` = p.`galaxy` AND tab.`system` = p.`system`
-                JOIN %%USERS%% u on u.`id` = p.`id_owner`
+                JOIN %%USERS%% u on u.`id` = p.id_owner
                 WHERE p.`planet_type` = 1 AND u.`onlinetime` >= ( :ts - :inactive ) AND p.`universe` = :universe
                 GROUP BY p.`galaxy`, p.`system`
-                HAVING COUNT(p.`planet`) < :planetamount;';
+                HAVING COUNT(p.`planet`) < :planetamount;";
             $systems = $db->select($sql, [
                 ':universe' => $universe,
                 ':maxGala' => $config->max_galaxy,
@@ -269,9 +269,9 @@ class PlayerUtil
     }
 
     public static function linearHP($universe, $config){
-        $galaxy = $config->last_galaxy_pos;
-            $system = $config->last_system_pos;
-            $position = $config->last_planet_pos;
+        $galaxy = $config->LastSettedGalaxyPos;
+            $system = $config->LastSettedSystemPos;
+            $position = $config->LastSettedPlanetPos;
 
             if ($galaxy > $config->max_galaxy) {
                 $galaxy = 1;
@@ -300,9 +300,9 @@ class PlayerUtil
             } while (self::isPositionFree($universe, $galaxy, $system, $position) === false);
 
             // Update last coordinates to config table
-            $config->last_galaxy_pos = $galaxy;
-            $config->last_system_pos = $system;
-            $config->last_planet_pos = $position;
+            $config->LastSettedGalaxyPos = $galaxy;
+            $config->LastSettedSystemPos = $system;
+            $config->LastSettedPlanetPos = $position;
 
             $pos = [
                 'galaxy'   => $galaxy,
@@ -381,19 +381,19 @@ class PlayerUtil
         ];
 
         $sql = 'INSERT INTO %%USERS%% SET
-            `username`		= :username,
-            `email`			= :email,
-            `email_2`		= :email2,
-            `authlevel`		= :authlevel,
-            `universe`		= :universe,
-            `lang`			= :language,
-            `ip_at_reg`		= :registerAddress,
-            `onlinetime`	= :onlinetime,
-            `register_time` = :registerTimestamp,
-            `password`		= :password,
-            `dpath`			= :dpath,
-            `timezone`		= :timezone,
-            `uctime`		= :nameLastChanged;';
+		username		= :username,
+		email			= :email,
+		email_2			= :email2,
+		authlevel		= :authlevel,
+		universe		= :universe,
+		lang			= :language,
+		ip_at_reg		= :registerAddress,
+		onlinetime		= :onlinetime,
+		register_time   = :registerTimestamp,
+		password		= :password,
+		dpath			= :dpath,
+		timezone		= :timezone,
+		uctime			= :nameLastChanged;';
 
         $db->insert($sql, $params);
 
@@ -415,12 +415,12 @@ class PlayerUtil
         $currentUserAmount = $config->users_amount + 1;
         $config->users_amount = $currentUserAmount;
 
-        $sql = 'UPDATE %%USERS%% SET
-            `galaxy` = :galaxy,
-            `system` = :system,
-            `planet` = :position,
-            `id_planet` = :planetId
-            WHERE `id` = :userId;';
+        $sql = "UPDATE %%USERS%% SET
+		galaxy = :galaxy,
+		system = :system,
+		planet = :position,
+		id_planet = :planetId
+		WHERE id = :userId;";
 
         $db->update($sql, [
             ':galaxy'   => $pos['galaxy'],
@@ -430,21 +430,21 @@ class PlayerUtil
             ':userId'   => $userId,
         ]);
 
-        $sql = 'SELECT MAX(`total_rank`) as `rank` FROM %%STATPOINTS%% WHERE `universe` = :universe AND `stat_type` = :type;';
+        $sql = "SELECT MAX(total_rank) as `rank` FROM %%STATPOINTS%% WHERE universe = :universe AND stat_type = :type;";
         $rank = $db->selectSingle($sql, [
             ':universe' => $universe,
             ':type'     => 1,
         ], 'rank');
 
         $sql = "INSERT INTO %%STATPOINTS%% SET
-            `id_owner`   = :userId,
-            `universe`   = :universe,
-            `stat_type`  = :type,
-            `tech_rank`  = :rank,
-            `build_rank` = :rank,
-            `defs_rank`	 = :rank,
-            `fleet_rank` = :rank,
-            `total_rank` = :rank;";
+				id_owner	= :userId,
+				universe	= :universe,
+				stat_type	= :type,
+				tech_rank	= :rank,
+				build_rank	= :rank,
+				defs_rank	= :rank,
+				fleet_rank	= :rank,
+				total_rank	= :rank;";
 
         $db->insert($sql, [
            ':universe'  => $universe,
@@ -453,7 +453,7 @@ class PlayerUtil
            ':rank'      => $rank + 1,
         ]);
 
-        $sql = 'INSERT INTO %%ADVANCED_STATS%% SET `userId` = :userId;';
+        $sql = "INSERT INTO %%ADVANCED_STATS%% SET userId = :userId;";
         $db->insert($sql, [
             ':userId'    => $userId,
         ]);
@@ -491,7 +491,7 @@ class PlayerUtil
         }
         $db = Database::get();
 
-        $sql = 'SELECT count(`id`) as anz FROM %%PLANETS%% WHERE `id_owner` = :userId AND `planet_type` = 1';
+        $sql = 'SELECT count(id) as anz FROM %%PLANETS%% WHERE id_owner = :userId AND planet_type = 1';
         $planetArray = $db->selectSingle($sql, [
             ':userId' => $userId,
         ]);
@@ -506,15 +506,15 @@ class PlayerUtil
             $maxFields = $config->initial_fields;
             $maxTemperature = $config->initial_temp;
         } elseif (!empty($planetArray) && $planetArray['anz'] == 1) {
-            $maxFields = (int) floor($planetData[$dataIndex]['avgFields'] * $config->planet_size_factor);
+            $maxFields = (int) floor($planetData[$dataIndex]['avgFields'] * $config->planet_factor);
             $maxTemperature = $planetData[$dataIndex]['avgTemp'];
         } else {
-            $maxFields = (int) floor($planetData[$dataIndex]['fields'] * $config->planet_size_factor);
+            $maxFields = (int) floor($planetData[$dataIndex]['fields'] * $config->planet_factor);
             $maxTemperature = $planetData[$dataIndex]['temp'];
         }
 
         require_once 'includes/classes/achievements/PlayerUtilAchievement.class.php';
-        $sql = 'SELECT `galaxy` FROM %%USERS%% WHERE `id` = :userId;';
+        $sql = 'SELECT galaxy FROM %%USERS%% WHERE id = :userId;';
         $hpGala = $db->selectSingle($sql, [
             ':userId' => $userId,
         ], 'galaxy');
@@ -523,7 +523,7 @@ class PlayerUtil
 
         $diameter = (int) floor(1000 * sqrt($maxFields));
 
-        $sql = 'SELECT `image` FROM %%PLANETS%% WHERE `id_owner` = :userId; and `destruyed` = 0';
+        $sql = 'SELECT `image` FROM %%PLANETS%% WHERE `id_owner` = :userId; and destruyed = 0';
         $planetPicturesAchieved = $db->select($sql, [
             ':userId' => $userId,
         ]);
@@ -573,23 +573,23 @@ class PlayerUtil
         ];
 
         $sql = 'INSERT INTO %%PLANETS%% SET
-            `name`		    = :name,
-            `universe`      = :universe,
-            `id_owner`      = :userId,
-            `galaxy`		= :galaxy,
-            `system`		= :system,
-            `planet`		= :position,
-            `last_update`   = :updateTimestamp,
-            `planet_type`   = :type,
-            `image`		    = :imageName,
-            `diameter`      = :diameter,
-            `field_max`     = :maxFields,
-            `temp_min` 	    = :minTemperature,
-            `temp_max` 	    = :maxTemperature,
-            `metal`		    = :metal_start,
-            `crystal`		= :crystal_start,
-            `deuterium`     = :deuterium_start,
-            `creation_time` = :creation_time;';
+		name		    = :name,
+		universe        = :universe,
+		id_owner        = :userId,
+		galaxy		    = :galaxy,
+		system		    = :system,
+		planet		    = :position,
+		last_update     = :updateTimestamp,
+		planet_type     = :type,
+		image		    = :imageName,
+		diameter        = :diameter,
+		field_max       = :maxFields,
+		temp_min 	    = :minTemperature,
+		temp_max 	    = :maxTemperature,
+		metal		    = :metal_start,
+		crystal		    = :crystal_start,
+		deuterium       = :deuterium_start,
+        creation_time   = :creation_time;';
 
         $db->insert($sql, $params);
 
@@ -628,13 +628,13 @@ class PlayerUtil
 
         $db = Database::get();
 
-        $sql = 'SELECT `id_luna`, `planet_type`, `id`, `name`, `temp_max`, `temp_min`
-            FROM %%PLANETS%%
-            WHERE `universe` = :universe
-            AND `galaxy` = :galaxy
-            AND `system` = :system
-            AND `planet` = :position
-            AND `planet_type` = :type;';
+        $sql = "SELECT id_luna, planet_type, id, name, temp_max, temp_min
+				FROM %%PLANETS%%
+				WHERE universe = :universe
+				AND galaxy = :galaxy
+				AND system = :system
+				AND planet = :position
+				AND planet_type = :type;";
 
         $parentPlanet = $db->selectSingle($sql, [
             ':universe' => $universe,
@@ -649,10 +649,10 @@ class PlayerUtil
         }
 
         $config = Config::get($universe);
-        $moon_size_factor = $config->moon_size_factor;
+        $moonSizeFactor = $config->moonSizeFactor;
 
         if (is_null($diameter)) {
-            $diameter = floor(pow(mt_rand(10, 20) + 3 * $chance, 0.5) * 1000 * $moon_size_factor);
+            $diameter = floor(pow(mt_rand(10, 20) + 3 * $chance, 0.5) * 1000 * $moonSizeFactor);
         }
 
         $maxTemperature = $parentPlanet['temp_max'] - mt_rand(10, 45);
@@ -662,26 +662,26 @@ class PlayerUtil
             $moonName = $LNG['type_planet_3'] ?? 'Mond';
         }
 
-        $sql = 'INSERT INTO %%PLANETS%% SET
-            `name`				= :name,
-            `id_owner`			= :owner,
-            `universe`			= :universe,
-            `galaxy`			= :galaxy,
-            `system`			= :system,
-            `planet`			= :planet,
-            `last_update`		= :updateTimestamp,
-            `planet_type`		= :type,
-            `image`				= :image,
-            `diameter`			= :diameter,
-            `field_max`			= :fields,
-            `temp_min`			= :minTemperature,
-            `temp_max`			= :maxTemperature,
-            `metal`				= :metal,
-            `metal_perhour`		= :metPerHour,
-            `crystal`			= :crystal,
-            `crystal_perhour`	= :cryPerHour,
-            `deuterium`			= :deuterium,
-            `deuterium_perhour` = :deuPerHour;';
+        $sql = "INSERT INTO %%PLANETS%% SET
+		name				= :name,
+		id_owner			= :owner,
+		universe			= :universe,
+		galaxy				= :galaxy,
+		system				= :system,
+		planet				= :planet,
+		last_update			= :updateTimestamp,
+		planet_type			= :type,
+		image				= :image,
+		diameter			= :diameter,
+		field_max			= :fields,
+		temp_min			= :minTemperature,
+		temp_max			= :maxTemperature,
+		metal				= :metal,
+		metal_perhour		= :metPerHour,
+		crystal				= :crystal,
+		crystal_perhour		= :cryPerHour,
+		deuterium			= :deuterium,
+		deuterium_perhour   = :deuPerHour;";
 
         $db->insert($sql, [
             ':name'             => $moonName,
@@ -692,7 +692,7 @@ class PlayerUtil
             ':planet'           => $position,
             ':updateTimestamp'  => TIMESTAMP,
             ':type'             => 3,
-            ':image'            => 'mond0'.rand(1,9),
+            ':image'            => 'mond',
             ':diameter'         => $diameter,
             ':fields'           => 1,
             ':minTemperature'   => $minTemperature,
@@ -723,7 +723,7 @@ class PlayerUtil
 
         $moonId = $db->lastInsertId();
 
-        $sql = 'UPDATE %%PLANETS%% SET `id_luna` = :moonId WHERE `id` = :planetId;';
+        $sql = "UPDATE %%PLANETS%% SET id_luna = :moonId WHERE id = :planetId;";
 
         $db->update($sql, [
             ':moonId'   => $moonId,
@@ -736,7 +736,7 @@ class PlayerUtil
     {
         $db = Database::get();
         if (!empty($userData['ally_id'])) {
-            $sql = 'SELECT `ally_owner`, `ally_members` FROM %%ALLIANCE%% WHERE `id` = :allianceId;';
+            $sql = 'SELECT ally_owner, ally_members FROM %%ALLIANCE%% WHERE id = :allianceId;';
             $allyData = $db->selectSingle($sql, [
                 ':allianceId'   => $userData['ally_id']
             ]);
@@ -744,12 +744,12 @@ class PlayerUtil
             if ($allyData['ally_members'] > 1) {
                 if ($allyData['ally_owner'] == $userData['id']) { // Removed player is ally leader
                     // Find new leader by respecting rank settings
-                    $sql = 'SELECT u.`id` FROM %%ALLIANCE_RANK%% r
-                        JOIN %%USERS%% u ON u.`ally_rank_id` = r.`rankID`
-                        WHERE r.`allianceID` = :allianceId
-                          AND u.`onlinetime` < :onlinetime
-                          AND ( r.`transfer` = 1 OR r.`admin` = 1 OR r.`kick` = 1 OR r.`diplomatic` = 1 OR r.`manageusers` = 1 OR r.`ranks` = 1 )
-                          ORDER BY r.`transfer` DESC, r.`admin` DESC, r.`kick` DESC, r.`diplomatic` DESC, r.`manageusers` DESC, r.`ranks` DESC, u.`onlinetime` DESC
+                    $sql = 'SELECT u.id FROM %%ALLIANCE_RANK%% r
+                        JOIN %%USERS%% u ON u.ally_rank_id = r.rankID
+                        WHERE r.allianceID = :allianceId
+                          AND u.onlinetime < :onlinetime
+                          AND ( r.transfer = 1 OR r.admin = 1 OR r.kick = 1 OR r.diplomatic = 1 OR r.manageusers = 1 OR r.ranks = 1 )
+                          ORDER BY r.transfer DESC, r.admin DESC, r.kick DESC, r.diplomatic DESC, r.manageusers DESC, r.ranks DESC, u.onlinetime DESC
                           LIMIT 1;';
                     $newLeaders = $db->select($sql, [
                         ':allianceId'   => $userData['ally_id'],
@@ -761,10 +761,10 @@ class PlayerUtil
                         $newLeader = $newLeaders[0]['id'];
                     } else {
                         // Find new leader by onlinetime
-                        $sql = 'SELECT u.`id` FROM %%ALLIANCE_RANK%% r
-                            JOIN %%USERS%% u ON u.`ally_rank_id` = r.`rankID`
-                            WHERE r.`allianceID` = :allianceId
-                            ORDER BY u.`onlinetime` DESC;';
+                        $sql = 'SELECT u.id FROM %%ALLIANCE_RANK%% r
+                            JOIN %%USERS%% u ON u.ally_rank_id = r.rankID
+                            WHERE r.allianceID = :allianceId
+                            ORDER BY u.onlinetime DESC;';
                         $newLeader = $db->selectSingle($sql, [
                             ':allianceId'   => $userData['ally_id'],
                         ], 'id');
@@ -772,13 +772,13 @@ class PlayerUtil
 
                     if (!empty($newLeader)) { // New leader found?
                         // Update rank of new leader
-                        $sql = 'UPDATE %%USERS%% SET `ally_rank_id` = 0 WHERE `id` = :UserID;';
+                        $sql = "UPDATE %%USERS%% SET ally_rank_id = 0 WHERE id = :UserID;";
                         $db->update($sql, [
                             ':UserID' => $newLeader,
                         ]);
 
                         // Update ally_owner to new leader and reduce member amount
-                        $sql = 'UPDATE %%ALLIANCE%% SET `ally_owner` = :UserID, `ally_members` = `ally_members` - 1 WHERE `id` = :allianceId;';
+                        $sql = 'UPDATE %%ALLIANCE%% SET ally_leader = :UserID, ally_members = ally_members - 1 WHERE id = :allianceId;';
                         $db->update($sql, [
                             ':allianceId'   => $userData['ally_id'],
                             ':UserID' => $newLeader,
@@ -786,49 +786,49 @@ class PlayerUtil
                     }
                     else {
                         // No new leader found, just reduce member amount
-                        $sql = 'UPDATE %%ALLIANCE%% SET `ally_members` = `ally_members` - 1 WHERE `id` = :allianceId;';
+                        $sql = 'UPDATE %%ALLIANCE%% SET ally_members = ally_members - 1 WHERE id = :allianceId;';
                         $db->update($sql, [
                             ':allianceId'   => $userData['ally_id']
                         ]);
                     }
                 } else {
                     // Removed player is not leader, just reduce member amount
-                    $sql = 'UPDATE %%ALLIANCE%% SET `ally_members` = `ally_members` - 1 WHERE `id` = :allianceId;';
+                    $sql = 'UPDATE %%ALLIANCE%% SET ally_members = ally_members - 1 WHERE id = :allianceId;';
                     $db->update($sql, [
                         ':allianceId'   => $userData['ally_id']
                     ]);
                 }
             } else {
                 // Delete alliance, since there are no members
-                $sql = 'DELETE FROM %%ALLIANCE%% WHERE `id` = :allianceId;';
+                $sql = 'DELETE FROM %%ALLIANCE%% WHERE id = :allianceId;';
                 $db->delete($sql, [
                     ':allianceId'   => $userData['ally_id']
                 ]);
 
-                $sql = 'DELETE FROM %%ALLIANCE_RANK%% WHERE `allianceID` = :allianceId;';
+                $sql = 'DELETE FROM %%ALLIANCE_RANK%% WHERE allianceID = :allianceId;';
                 $db->delete($sql, [
                     ':allianceId'   => $userData['ally_id']
                 ]);
 
-                $sql = 'DELETE FROM %%STATPOINTS%% WHERE `stat_type` = :type AND `id_owner` = :allianceId;';
+                $sql = 'DELETE FROM %%STATPOINTS%% WHERE stat_type = :type AND id_owner = :allianceId;';
                 $db->delete($sql, [
                     ':allianceId'   => $userData['ally_id'],
                     ':type'         => 2
                 ]);
 
-                $sql = 'UPDATE %%STATPOINTS%% SET `id_ally` = :resetId WHERE `id_ally` = :allianceId;';
+                $sql = 'UPDATE %%STATPOINTS%% SET id_ally = :resetId WHERE id_ally = :allianceId;';
                 $db->update($sql, [
                     ':allianceId'   => $userData['ally_id'],
                     ':resetId'      => 0
                 ]);
             }
 
-            $sql = 'UPDATE %%USERS%% SET `ally_id` = 0, `ally_register_time` = 0, `ally_rank_id` = 0 WHERE `id` = :UserID;';
+            $sql = "UPDATE %%USERS%% SET ally_id = 0, ally_register_time = 0, ally_rank_id = 0 WHERE id = :UserID;";
             $db->update($sql, [
                 ':UserID' => $userData['id']
             ]);
 
-            $sql = 'UPDATE %%STATPOINTS%% SET `id_ally` = :resetId WHERE `stat_type` = :type AND `id_owner` = :UserID;';
+            $sql = 'UPDATE %%STATPOINTS%% SET id_ally = :resetId WHERE stat_type = :type AND id_owner = :UserID;';
             $db->update($sql, [
                 ':UserID'   => $userData['id'],
                 ':resetId'  => 0,
@@ -836,7 +836,7 @@ class PlayerUtil
             ]);
         }
 
-        $sql = 'DELETE FROM %%ALLIANCE_REQUEST%% WHERE `userID` = :userId;';
+        $sql = 'DELETE FROM %%ALLIANCE_REQUEST%% WHERE userID = :userId;';
         $db->delete($sql, [
             ':userId'   => $userData['id']
         ]);
@@ -845,7 +845,7 @@ class PlayerUtil
     public static function removeFromBuddy($userId)
     {
         $db = Database::get();
-        $sql = 'DELETE FROM %%BUDDY%% WHERE `owner` = :userId OR `sender` = :userId;';
+        $sql = 'DELETE FROM %%BUDDY%% WHERE owner = :userId OR sender = :userId;';
         $db->delete($sql, [
             ':userId'   => $userId
         ]);
@@ -859,7 +859,7 @@ class PlayerUtil
         }
 
         $db = Database::get();
-        $sql = 'SELECT `id`, `universe`, `ally_id` FROM %%USERS%% WHERE `id` = :userId;';
+        $sql = 'SELECT id, universe, ally_id FROM %%USERS%% WHERE id = :userId;';
         $userData = $db->selectSingle($sql, [
             ':userId'   => $userId
         ]);
@@ -873,46 +873,46 @@ class PlayerUtil
         PlayerUtil::removeFromBuddy($userId);
 
         $sql = 'DELETE %%FLEETS%%, %%FLEETS_EVENT%%
-            FROM %%FLEETS%% LEFT JOIN %%FLEETS_EVENT%% on `fleet_id` = fleetId
-            WHERE `fleet_owner` = :userId;';
+		FROM %%FLEETS%% LEFT JOIN %%FLEETS_EVENT%% on fleet_id = fleetId
+		WHERE fleet_owner = :userId;';
         $db->delete($sql, [
             ':userId'   => $userId
         ]);
 
-        $sql = 'DELETE FROM %%MESSAGES%% WHERE `message_owner` = :userId;';
+        $sql = 'DELETE FROM %%MESSAGES%% WHERE message_owner = :userId;';
         $db->delete($sql, [
             ':userId'   => $userId
         ]);
 
-        $sql = 'DELETE FROM %%NOTES%% WHERE `owner` = :userId;';
+        $sql = 'DELETE FROM %%NOTES%% WHERE owner = :userId;';
         $db->delete($sql, [
             ':userId'   => $userId
         ]);
 
         $sql = 'DELETE %%PLANETS%%, %%PLANET_WRECKFIELD%%
-            FROM %%PLANETS%% LEFT JOIN %%PLANET_WRECKFIELD%% on `planetID` = id
-            WHERE `id_owner` = :userId;';
+        FROM %%PLANETS%% LEFT JOIN %%PLANET_WRECKFIELD%% on planetID = id
+        WHERE id_owner = :userId;';
         $db->delete($sql, [
             ':userId'   => $userId
         ]);
 
-        $sql = 'DELETE FROM %%USERS%% WHERE `id` = :userId;';
+        $sql = 'DELETE FROM %%USERS%% WHERE id = :userId;';
         $db->delete($sql, [
             ':userId'   => $userId
         ]);
 
-        $sql = 'DELETE FROM %%STATPOINTS%% WHERE `stat_type` = :type AND `id_owner` = :userId;';
+        $sql = 'DELETE FROM %%STATPOINTS%% WHERE stat_type = :type AND id_owner = :userId;';
         $db->delete($sql, [
             ':userId'   => $userId,
             ':type'     => 1
         ]);
 
-        $sql = 'DELETE FROM %%ADVANCED_STATS%% WHERE `userId` = :userId;';
+        $sql = "DELETE FROM %%ADVANCED_STATS%% WHERE userId = :userId;";
         $db->delete($sql, [
             ':userId'    => $userId,
         ]);
 
-        $fleetIds = $db->select('SELECT `fleet_id` FROM %%FLEETS%% WHERE `fleet_target_owner` = :userId;', [
+        $fleetIds = $db->select('SELECT fleet_id FROM %%FLEETS%% WHERE fleet_target_owner = :userId;', [
             ':userId'   => $userId
         ]);
 
@@ -921,7 +921,7 @@ class PlayerUtil
         }
 
         /*
-        $sql = 'UPDATE %%UNIVERSE%% SET `userAmount` = `userAmount` - 1 WHERE `universe` = :universe;';
+        $sql = 'UPDATE %%UNIVERSE%% SET userAmount = userAmount - 1 WHERE universe = :universe;';
         $db->update($sql, array(
             ':universe' => $userData['universe']
         ));
@@ -943,11 +943,14 @@ class PlayerUtil
         $USER =& Singleton()->USER;
         $db = Database::get();
         $config = Config::get($universe);
-        $sql = 'SELECT MAX(count) AS max FROM(SELECT count(*) AS count, `id_owner` FROM %%PLANETS%% WHERE `universe` = :uni GROUP BY `id_owner`) AS plani;';
+        $sql = 'select MAX(count) as max from(select count(*) as count, id_owner from %%PLANETS%% where universe = :uni group by id_owner) as plani;';
         $maxPlanetAmount = $db->selectSingle($sql, [
             ':uni' => $universe
         ], 'max');
-        $uniStatus = $config->uni_status;
+        $sql = 'select uni_status from %%CONFIG%% where uni = :uni;';
+        $uniStatus = $db->selectSingle($sql, [
+            ':uni' => $universe
+        ], 'uni_status');
 
         if ($maxPlanetAmount > 1 || $uniStatus != STATUS_CLOSED || $USER['authlevel'] != AUTH_ADM) {
             $result = "";
@@ -961,24 +964,24 @@ class PlayerUtil
             }
             return $result;
         }
-        $sql = 'UPDATE %%USERS%% SET `onlinetime` = :onlinetime WHERE `universe` = :universe;';
+        $sql = "update %%USERS%% set onlinetime = :onlinetime where universe = :universe;";
         $db->update($sql, [
             ':onlinetime' => TIMESTAMP,
             ':universe' => $universe
         ]);
-        $sql = 'SELECT `id` FROM %%USERS%% WHERE `authlevel` = :auth AND `universe` = :universe ORDER BY `id`;';
+        $sql = 'select id from %%USERS%% where authlevel = :auth and universe = :universe order by id;';
         $userIds = $db->select($sql, [
             ':auth'      => AUTH_USR,
             ':universe' => $universe
         ], 'id');
         foreach ($userIds as $userId) {
-            $sql = 'DELETE FROM %%PLANETS%% WHERE `id_owner` = :userId;';
+            $sql = 'delete from %%PLANETS%% where id_owner = :userId;';
             $db->delete($sql, [
                 ':userId'   => $userId['id'],
             ]);
         }
-        $config->last_galaxy_pos = 1;
-        $config->last_system_pos = 1;
+        $config->LastSettedGalaxyPos = 1;
+        $config->LastSettedSystemPos = 1;
         foreach ($userIds as $userId) {
             if ($config->planet_creation == 1) {
                 $pos = PlayerUtil::randomHP($universe);
@@ -1008,7 +1011,7 @@ class PlayerUtil
                     );
                 }
             }
-            $sql = 'SELECT `lang` FROM %%USERS%% WHERE `id` = :userId;';
+            $sql = 'select lang from %%USERS%% where id = :userId;';
             $lang = $db->selectSingle($sql, [
                 ':userId' => $userId['id'],
             ], 'lang');
@@ -1026,12 +1029,12 @@ class PlayerUtil
                 $name,
                 true
             );
-            $sql = 'UPDATE %%USERS%% SET
-                `galaxy` = :galaxy,
-                `system` = :system,
-                `planet` = :position,
-                `id_planet` = :planetId
-                WHERE `id` = :userId;';
+            $sql = "UPDATE %%USERS%% SET
+            galaxy = :galaxy,
+            system = :system,
+            planet = :position,
+            id_planet = :planetId
+            WHERE id = :userId;";
 
             $db->update($sql, [
                 ':galaxy'   => $pos['galaxy'],
@@ -1046,8 +1049,8 @@ class PlayerUtil
     public static function deletePlanet($planetId)
     {
         $db = Database::get();
-        $sql = 'SELECT `id_owner`, `planet_type`, `id_luna` FROM %%PLANETS%% 
-                    WHERE `id` = :planetId AND `id` NOT IN (SELECT `id_planet` FROM %%USERS%%);';
+        $sql = 'SELECT id_owner, planet_type, id_luna FROM %%PLANETS%% '
+                . 'WHERE id = :planetId AND id NOT IN (SELECT id_planet FROM %%USERS%%);';
         $planetData = $db->selectSingle($sql, [
             ':planetId' => $planetId
         ]);
@@ -1056,8 +1059,8 @@ class PlayerUtil
             throw new Exception("Can not found planet #" . $planetId . "!");
         }
 
-        $sql = 'SELECT `fleet_id` FROM %%FLEETS%% WHERE `fleet_end_id` = :planetId 
-                    OR (`fleet_end_type` = 3 AND `fleet_end_id` = :moondId);';
+        $sql = 'SELECT fleet_id FROM %%FLEETS%% WHERE fleet_end_id = :planetId '
+                        . 'OR (fleet_end_type = 3 AND fleet_end_id = :moondId);';
         $fleetIds = $db->select($sql, [
             ':planetId' => $planetId,
             ':moondId'  => $planetData['id_luna']
@@ -1073,7 +1076,7 @@ class PlayerUtil
                 ':planetId' => $planetId
             ]);
 
-            $sql = 'UPDATE %%PLANETS%% SET `id_luna` = :resetId WHERE `id_luna` = :planetId;';
+            $sql = 'UPDATE %%PLANETS%% SET id_luna = :resetId WHERE id_luna = :planetId;';
             $db->update($sql, [
                 ':resetId'  => 0,
                 ':planetId' => $planetId
@@ -1081,16 +1084,16 @@ class PlayerUtil
         } else {
             require_once 'includes/classes/achievements/PlayerUtilAchievement.class.php';
             PlayerUtilAchievement::checkPlayerUtilAchievementsDeletion($planetData, $planetId);
-            $sql = 'UPDATE %%PLANETS%% SET `destruyed` = :time WHERE `id` = :planetID;';
+            $sql = "UPDATE %%PLANETS%% SET destruyed = :time WHERE id = :planetID;";
             $db->update($sql, [
                 ':time'   => TIMESTAMP + 86400,
                 ':planetID' => $planetId,
             ]);
-            $sql = 'DELETE FROM %%PLANETS%% WHERE `id` = :lunaID;';
+            $sql = "DELETE FROM %%PLANETS%% WHERE id = :lunaID;";
             $db->delete($sql, [
                 ':lunaID' => $planetData['id_luna']
             ]);
-            $sql = 'DELETE FROM %%PLANET_WRECKFIELD%% WHERE `planetID` = :planetID;';
+            $sql = "DELETE FROM %%PLANET_WRECKFIELD%% WHERE `planetID` = :planetID;";
             $db->delete($sql, [
                 ':planetID' => $planetId,
             ]);
@@ -1122,19 +1125,19 @@ class PlayerUtil
         $resource =& Singleton()->resource;
         $config = Config::get($USER['universe']);
 
-        $planetPerTech = $config->max_additional_planets;
+        $planetPerTech = $config->planets_tech;
 
-        if ($config->max_initial_planets == 0) {
+        if ($config->min_player_planets == 0) {
             $planetPerTech = 999;
         }
 
-        if ($config->max_initial_planets == 0) {
+        if ($config->min_player_planets == 0) {
             $planetPerBonus = 999;
         }
 
         // http://owiki.de/index.php/Astrophysik#.C3.9Cbersicht
         return (int) ceil(
-            $config->max_initial_planets + min(
+            $config->min_player_planets + min(
                 $planetPerTech,
                 PlayerUtil::getAstroTech($USER) * $config->planets_per_tech
             )
@@ -1193,16 +1196,16 @@ class PlayerUtil
 
         $db = Database::get();
 
-        $sql = 'INSERT INTO %%MESSAGES%% SET
-            `message_owner`     = :userId,
-            `message_sender`    = :sender,
-            `message_time`      = :time,
-            `message_type`      = :type,
-            `message_from`      = :from,
-            `message_subject`   = :subject,
-            `message_text`      = :text,
-            `message_unread`    = :unread,
-            `message_universe`  = :universe;';
+        $sql = "INSERT INTO %%MESSAGES%% SET
+		message_owner		= :userId,
+		message_sender		= :sender,
+		message_time		= :time,
+		message_type		= :type,
+		message_from		= :from,
+		message_subject 	= :subject,
+		message_text		= :text,
+		message_unread		= :unread,
+		message_universe 	= :universe;";
 
         $db->insert($sql, [
             ':userId'   => $userId,
@@ -1215,33 +1218,6 @@ class PlayerUtil
             ':unread'   => $unread,
             ':universe' => $universe,
         ]);
-
-        if ($messageType === 1) {
-            $sql = 'SELECT `username`, `discord_id`, `discord_hook` FROM %%USERS%% 
-                WHERE `universe` = :universe AND `id` = :userID AND `authlevel` > 0;';
-            $admin = $db->selectSingle($sql, [
-                ':universe' => $universe,
-                ':userID' => $userId,
-            ]);
-
-            if (!empty($admin['discord_hook'])) {
-                $title = '';
-                if (!empty($admin['discord_id'])) {
-                    $title = '<@' . $admin['discord_id'] . '> hat eine neue Ingame-Nachricht erhalten.';
-                } else {
-                    $title = '<@' . $admin['username'] . '> hat eine neue Ingame-Nachricht erhalten.';
-                }
-
-                $content = [
-                    'Universum' => $universe,
-                    'Absender' => $senderId . ' - ' . $senderName,
-                    'Betreff' => $subject,
-                ];
-                require_once 'includes/classes/class.Discord.php';
-                Discord::sendMessage($admin['discord_hook'], $title, $content);
-            }
-        }
-
         require_once 'includes/classes/achievements/PlayerUtilAchievement.class.php';
         PlayerUtilAchievement::checkPlayerUtilAchievements36($userId, $text);
     }
@@ -1266,7 +1242,7 @@ class PlayerUtil
             $params[] = $resource[$element] . ' = 0';
         }
 
-        $sql = 'UPDATE %%PLANETS%% SET `b_hangar` = 0, `b_hangar_id` = "", ' . implode(", ", $params) . ' WHERE `id_owner` = :owner;';
+        $sql = "UPDATE %%PLANETS%% SET b_hangar = 0, b_hangar_id = '', " . implode(", ", $params) . " WHERE id_owner = :owner;";
         $db->update($sql, [':owner' => $USER['id']]);
     }
 
@@ -1274,7 +1250,7 @@ class PlayerUtil
     {
         $db = Database::get();
 
-        $sql = 'SELECT `urlaubs_start` FROM %%USERS%% WHERE `id` = :userID;';
+        $sql = "SELECT urlaubs_start FROM %%USERS%% WHERE id = :userID;";
         $umode_start = $db->selectSingle($sql, [
             ':userID'   => $USER['id'],
         ], 'urlaubs_start');
@@ -1287,10 +1263,10 @@ class PlayerUtil
                 }
                 $USER['b_tech_queue'] = serialize($CurrentQueue);
                 unset($CurrentQueue);
-                $sql = 'UPDATE %%USERS%% SET
-                    `b_tech` = `b_tech` + :umode_delta,
-                    `b_tech_queue` = :b_tech_queue
-                    WHERE `id` = :userID;';
+                $sql = "UPDATE %%USERS%% SET
+                    b_tech = b_tech + :umode_delta,
+                    b_tech_queue = :b_tech_queue
+                    WHERE id = :userID;";
                 $db->update($sql, [
                     ':umode_delta' => $umode_delta,
                     ':userID'   => $USER['id'],
@@ -1308,7 +1284,7 @@ class PlayerUtil
                 unset($CurrentQueue);
             }
 
-            $sql = 'SELECT `id`, `b_building`, `b_building_id` FROM %%PLANETS%% WHERE `id_owner` = :userID AND `destruyed` = 0;';
+            $sql = "SELECT id, b_building, b_building_id FROM %%PLANETS%% WHERE id_owner = :userID AND destruyed = 0;";
             $planets = $db->select($sql, [
                 ':userID'   => $USER['id'],
             ]);
@@ -1324,17 +1300,17 @@ class PlayerUtil
                     unset($CurrentQueue);
                 }
 
-                $sql = 'UPDATE %%PLANETS%% SET
-                    `b_building` = :building,
-                    `b_building_id` = :current_queue,
-                    `last_update` = :timestamp,
-                    `metal_mine_porcent` = 10,
-                    `crystal_mine_porcent` = 10,
-                    `deuterium_sintetizer_porcent` = 10,
-                    `solar_plant_porcent` = 10,
-                    `fusion_plant_porcent` = 10,
-                    `solar_satelit_porcent` = 10
-                    WHERE `id` = :planetID;';
+                $sql = "UPDATE %%PLANETS%% SET
+                b_building = :building,
+                b_building_id = :current_queue,
+                last_update = :timestamp,
+                metal_mine_porcent = '10',
+                crystal_mine_porcent = '10',
+                deuterium_sintetizer_porcent = '10',
+                solar_plant_porcent = '10',
+                fusion_plant_porcent = '10',
+                solar_satelit_porcent = '10'
+                WHERE id = :planetID;";
                 $db->update($sql, [
                     ':planetID' => $CPLANET['id'],
                     ':building' => $CPLANET['b_building'],
@@ -1342,11 +1318,11 @@ class PlayerUtil
                     ':timestamp' => TIMESTAMP,
                 ]);
 
-                $sql = 'UPDATE %%PLANET_WRECKFIELD%% SET
-                    `created` = `created` + :umode_delta,
-                    `repair_order_start` =`repair_order_start` + :umode_delta,
-                    `repair_order_end` = `repair_order_end` + :umode_delta
-                    WHERE `planetID` = :planetID;';
+                $sql = "UPDATE %%PLANET_WRECKFIELD%% SET
+                `created` = `created` + :umode_delta,
+                `repair_order_start` =`repair_order_start` + :umode_delta,
+                `repair_order_end` = `repair_order_end` + :umode_delta
+                WHERE planetID = :planetID;";
                 $db->update($sql, [
                     ':umode_delta' => $umode_delta,
                     ':planetID' => $CPLANET['id'],
@@ -1355,11 +1331,11 @@ class PlayerUtil
                 unset($CPLANET);
             }
 
-            $sql = 'UPDATE %%USERS%% SET
-                `urlaubs_modus` = 0,
-                `urlaubs_until` = 0,
-                `urlaubs_start` = 0
-                WHERE `id` = :userID;';
+            $sql = "UPDATE %%USERS%% SET
+						urlaubs_modus = '0',
+						urlaubs_until = '0',
+                        urlaubs_start = '0'
+						WHERE id = :userID;";
             $db->update($sql, [':userID'   => $USER['id']]);
 
             $USER['urlaubs_modus'] = 0;
@@ -1391,26 +1367,26 @@ class PlayerUtil
     {
         $db = Database::get();
 
-        $sql = 'UPDATE %%USERS%% SET `urlaubs_modus` = 1, `urlaubs_until` = :time, `urlaubs_start` = :startTime
-            WHERE `id` = :userID';
+        $sql = "UPDATE %%USERS%% SET urlaubs_modus = '1', urlaubs_until = :time, urlaubs_start = :startTime"
+                    . " WHERE id = :userID";
         $db->update($sql, [
             ':userID'       => $USER['id'],
             ':time'         => (TIMESTAMP + Config::get()->vmode_min_time),
             ':startTime'    => TIMESTAMP,
         ]);
 
-        $sql = 'UPDATE %%PLANETS%% SET `energy_used` = 0, `energy` = 0, `metal_mine_porcent` = 0,
-            `crystal_mine_porcent` = 0, `deuterium_sintetizer_porcent` = 0, `solar_plant_porcent` = 0,
-            `fusion_plant_porcent` = 0, `solar_satelit_porcent` = 0, `metal_perhour` = 0,
-            `crystal_perhour` = 0, `deuterium_perhour` = 0 WHERE `id_owner` = :userID;';
+        $sql = "UPDATE %%PLANETS%% SET energy_used = '0', energy = '0', metal_mine_porcent = '0',"
+            . " crystal_mine_porcent = '0', deuterium_sintetizer_porcent = '0', solar_plant_porcent = '0',"
+            . " fusion_plant_porcent = '0', solar_satelit_porcent = '0', metal_perhour = '0',"
+            . " crystal_perhour = '0', deuterium_perhour = '0' WHERE id_owner = :userID;";
         $db->update($sql, [
             ':userID'   => $USER['id'],
         ]);
 
-        $sql = 'SELECT `fleet_id`, `fleet_owner` FROM %%FLEETS%%
-            WHERE `fleet_universe` = :universe
-            AND `fleet_mission` = :fleet_mision
-            AND `fleet_target_owner` = :id;';
+        $sql = "SELECT fleet_id, fleet_owner FROM %%FLEETS%%
+            WHERE fleet_universe = :universe
+            AND fleet_mission = :fleet_mision
+            AND fleet_target_owner = :id;";
         $FleetsRAW = $db->select($sql, [
             ':universe'     => Universe::current(),
             ':fleet_mision' => MISSION_HOLD,
@@ -1572,36 +1548,6 @@ class PlayerUtil
             'colorNegative' => $USER['colorNegative'],
             'colorNeutral' => $USER['colorNeutral'],
         ];
-    }
-
-    public static function get_block_status($userId, $targetUserId)
-    {
-        $db = Database::get();
-
-        $sql = 'SELECT `block_dm`, `block_trade` FROM %%USERS_BLOCKLIST%% WHERE `blocked_user` = :userID AND `blocking_user` = :targetID;';
-        $blocked = $db->selectSingle($sql, [
-            ':userID'       => $userId,
-            ':targetID'     => $targetUserId,
-        ]);
-        if (empty($blocked)) {
-            return [
-                'block_dm' => 0,
-                'block_trade' => 0,
-            ];
-        }
-        return $blocked;
-    }
-
-    public static function get_authlevel($userId)
-    {
-        $db = Database::get();
-
-        $sql = 'SELECT `authlevel` FROM %%USERS%% WHERE `id` = :userID;';
-        $authlevel = $db->selectSingle($sql, [
-            ':userID'       => $userId,
-        ], 'authlevel');
-
-        return $authlevel;
     }
 }
 /*

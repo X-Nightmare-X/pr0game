@@ -29,7 +29,6 @@ class ShowBattleSimulatorPage extends AbstractGamePage
         $reslist =& Singleton()->reslist;
         $pricelist =& Singleton()->pricelist;
         $LNG =& Singleton()->LNG;
-        $USER =& Singleton()->USER;
         if (!isset($_REQUEST['battleinput'])) {
             $this->sendJSON(0);
         }
@@ -56,13 +55,13 @@ class ShowBattleSimulatorPage extends AbstractGamePage
                 $attacker['player'] = [
                     'id' => (1000 + $BattleSlotID + 1),
                     'username'  => $LNG['bs_atter'] . ' Nr.' . ($BattleSlotID + 1),
-                    'military_tech' => getNumber($BattleSlot[0][MILITARY_TECH]),
-                    'shield_tech' => getNumber($BattleSlot[0][SHIELD_TECH]),
-                    'defence_tech' => getNumber($BattleSlot[0][DEFENCE_TECH]),
+                    'military_tech' => getNumber($BattleSlot[0][109]),
+                    'shield_tech' => getNumber($BattleSlot[0][110]),
+                    'defence_tech' => getNumber($BattleSlot[0][111]),
                 ];
 
                 foreach ($BattleSlot[0] as $ID => $Count) {
-                    if (!in_array($ID, $reslist['fleet']) || getNumber($BattleSlot[0][$ID]) <= 0 || $ID == SHIP_SOLSAT) {
+                    if (!in_array($ID, $reslist['fleet']) || getNumber($BattleSlot[0][$ID]) <= 0) {
                         unset($BattleSlot[0][$ID]);
                     }
                 }
@@ -91,9 +90,9 @@ class ShowBattleSimulatorPage extends AbstractGamePage
                 $defender['player'] = [
                     'id' => (2000 + $BattleSlotID + 1),
                     'username'  => $LNG['bs_deffer'] . ' Nr.' . ($BattleSlotID + 1),
-                    'military_tech' => getNumber($BattleSlot[1][MILITARY_TECH]),
-                    'shield_tech' => getNumber($BattleSlot[1][SHIELD_TECH]),
-                    'defence_tech' => getNumber($BattleSlot[1][DEFENCE_TECH]),
+                    'military_tech' => getNumber($BattleSlot[1][109]),
+                    'shield_tech' => getNumber($BattleSlot[1][110]),
+                    'defence_tech' => getNumber($BattleSlot[1][111]),
                 ];
 
                 foreach ($BattleSlot[1] as $ID => $Count) {
@@ -116,30 +115,30 @@ class ShowBattleSimulatorPage extends AbstractGamePage
         require_once 'includes/classes/missions/functions/calculateSteal.php';
         require_once 'includes/classes/missions/functions/GenerateReport.php';
 
-        $combatResult = calculateAttack($fleetAttack, $fleetDefend, Config::get()->fleet_debris_percentage, Config::get()->def_debris_percentage, true);
+        $combatResult = calculateAttack($fleetAttack, $fleetDefend, Config::get()->Fleet_Cdr, Config::get()->Defs_Cdr, true);
 
         if ($combatResult['won'] == "a") {
             $stealResource = calculateSteal($fleetAttack, [
-            'metal' => getNumber($BattleArray[0][1][RESOURCE_METAL]),
-            'crystal' => getNumber($BattleArray[0][1][RESOURCE_CRYSTAL]),
-            'deuterium' => getNumber($BattleArray[0][1][RESOURCE_DEUT]),
-            ], $USER['universe'], true);
+            'metal' => getNumber($BattleArray[0][1][901]),
+            'crystal' => getNumber($BattleArray[0][1][902]),
+            'deuterium' => getNumber($BattleArray[0][1][903]),
+            ], true);
         } else {
             $stealResource = [
-                RESOURCE_METAL => 0,
-                RESOURCE_CRYSTAL => 0,
-                RESOURCE_DEUT => 0,
+                901 => 0,
+                902 => 0,
+                903 => 0,
             ];
         }
         $capacityNeeded = calculateMinCapacity([
-            'metal' => getNumber($BattleArray[0][1][RESOURCE_METAL]),
-            'crystal' => getNumber($BattleArray[0][1][RESOURCE_CRYSTAL]),
-            'deuterium' => getNumber($BattleArray[0][1][RESOURCE_DEUT]),
+            'metal' => getNumber($BattleArray[0][1][901]),
+            'crystal' => getNumber($BattleArray[0][1][902]),
+            'deuterium' => getNumber($BattleArray[0][1][903]),
         ]);
 
         $debris = [];
 
-        foreach ([RESOURCE_METAL, RESOURCE_CRYSTAL] as $elementID) {
+        foreach ([901, 902] as $elementID) {
             $debris[$elementID] = $combatResult['debris']['attacker'][$elementID]
                 + $combatResult['debris']['defender'][$elementID];
         }
@@ -154,18 +153,18 @@ class ShowBattleSimulatorPage extends AbstractGamePage
 
         $stealResourceInformation = sprintf(
             $LNG['bs_derbis_raport'],
-            pretty_number(ceil($debrisTotal / $pricelist[SHIP_RECYCLER]['capacity'])),
-            $LNG['tech'][SHIP_RECYCLER]
+            pretty_number(ceil($debrisTotal / $pricelist[209]['capacity'])),
+            $LNG['tech'][209]
         );
 
         $stealResourceInformation .= '<br>';
 
         $stealResourceInformation .= sprintf(
             $LNG['bs_steal_raport'],
-            pretty_number(ceil($capacityNeeded / $pricelist[SHIP_SMALL_CARGO]['capacity'])),
-            $LNG['tech'][SHIP_SMALL_CARGO],
-            pretty_number(ceil($capacityNeeded / $pricelist[SHIP_LARGE_CARGO]['capacity'])),
-            $LNG['tech'][SHIP_LARGE_CARGO]
+            pretty_number(ceil($capacityNeeded / $pricelist[202]['capacity'])),
+            $LNG['tech'][202],
+            pretty_number(ceil($capacityNeeded / $pricelist[203]['capacity'])),
+            $LNG['tech'][203]
         );
 
         $reportInfo = [
@@ -216,35 +215,21 @@ class ShowBattleSimulatorPage extends AbstractGamePage
         $reslist =& Singleton()->reslist;
         $resource =& Singleton()->resource;
         $Slots = HTTP::_GP('slots', 1);
-        $action = HTTP::_GP('action', '');
 
-        $BattleArray[0][0][MILITARY_TECH] = $USER[$resource[MILITARY_TECH]];
-        $BattleArray[0][0][SHIELD_TECH] = $USER[$resource[SHIELD_TECH]];
-        $BattleArray[0][0][DEFENCE_TECH] = $USER[$resource[DEFENCE_TECH]];
+
+        $BattleArray[0][0][109] = $USER[$resource[109]];
+        $BattleArray[0][0][110] = $USER[$resource[110]];
+        $BattleArray[0][0][111] = $USER[$resource[111]];
 
         if (empty($_REQUEST['battleinput'])) {
-            foreach ($reslist['resstype'][1] as $ID) {
-                $BattleArray[0][0][$ID] = floor($PLANET[$resource[$ID]]);
-            }
             foreach ($reslist['fleet'] as $ID) {
-                $BattleArray[0][0][$ID] = $PLANET[$resource[$ID]];
-            }
-            foreach ($reslist['defense'] as $ID) {
-                $BattleArray[0][0][$ID] = $PLANET[$resource[$ID]];
+                if (FleetFunctions::getFleetMaxSpeed($ID, $USER) > 0) {
+                    // Add just flyable elements
+                    $BattleArray[0][0][$ID] = $PLANET[$resource[$ID]];
+                }
             }
         } else {
             $BattleArray = HTTP::_GP('battleinput', []);
-        }
-
-        if ($action == 'moreslots') {
-            $Slots += 1;
-        } elseif ($action == 'switch') {
-            foreach ($BattleArray as $slot => $a) {
-                $temp = $BattleArray[$slot][0];
-                $BattleArray[$slot][0] = $BattleArray[$slot][1];
-                $BattleArray[$slot][1] = $temp;
-                unset($temp);
-            }
         }
 
         if (isset($_REQUEST['im'])) {

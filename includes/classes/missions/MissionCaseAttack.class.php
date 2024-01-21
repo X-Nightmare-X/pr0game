@@ -203,8 +203,8 @@ HTML;
 
         require_once 'includes/classes/missions/functions/calculateAttack.php';
 
-        $fleetIntoDebris = $config->fleet_debris_percentage;
-        $defIntoDebris = $config->def_debris_percentage;
+        $fleetIntoDebris = $config->Fleet_Cdr;
+        $defIntoDebris = $config->Defs_Cdr;
 
         $combatResult = calculateAttack($fleetAttack, $fleetDefend, $fleetIntoDebris, $defIntoDebris);
 
@@ -322,7 +322,7 @@ HTML;
 
         if ($combatResult['won'] == "a") {
             require_once 'includes/classes/missions/functions/calculateSteal.php';
-            $stealResource = calculateSteal($fleetAttack, $targetPlanet, $this->_fleet['fleet_universe']);
+            $stealResource = calculateSteal($fleetAttack, $targetPlanet);
         }
 
         if ($this->_fleet['fleet_end_type'] == 3) {
@@ -403,7 +403,7 @@ HTML;
             ]);
             $sql = 'UPDATE %%ADVANCED_STATS%% SET moons_created = moons_created + 1 WHERE userId IN (' . implode(',', array_keys($userAttack)) . ');';
 			$db->update($sql);
-            if ($config->debris_moon == 1) {
+            if (Config::get($this->_fleet['fleet_universe'])->debris_moon == 1) {
                 foreach ($debrisResource as $elementID) {
                     $planetDebris[$elementID] = 0;
                 }

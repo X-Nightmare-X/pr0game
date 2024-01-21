@@ -67,13 +67,10 @@ class ShowMarketPlacePage extends AbstractGamePage
             'reason' => '',
         ];
     }
-    private function checkDiplo($visibility, $level, $seller_ally, $ally, $receiverID)
+    private function checkDiplo($visibility, $level, $seller_ally, $ally)
     {
         $LNG =& Singleton()->LNG;
-        $USER =& Singleton()->USER;
-        $blocked = PlayerUtil::get_block_status($USER['id'], $receiverID);
-        $blockedInverse = PlayerUtil::get_block_status($receiverID, $USER['id']);
-        if (($visibility == 2 && $level == 5) || $blocked['block_trade'] || $blockedInverse['block_trade']) {
+        if ($visibility == 2 && $level == 5) {
             return [
                 'buyable' => false,
                 'reason' => $LNG['market_buyable_no_enemies'],
@@ -237,8 +234,7 @@ class ShowMarketPlacePage extends AbstractGamePage
                 $fleetResult[0]['filter_visibility'],
                 $level,
                 $fleetResult[0]['ally_id'],
-                $USER['ally_id'],
-                $fleetResult[0]['fleet_owner'],
+                $USER['ally_id']
             );
             if (!$buy['buyable']) {
                 return $buy['reason'];
@@ -610,8 +606,7 @@ class ShowMarketPlacePage extends AbstractGamePage
                     $fleetsRow['filter_visibility'],
                     $fleetsRow['level'],
                     $fleetsRow['ally_id'],
-                    $USER['ally_id'],
-                    $seller,
+                    $USER['ally_id']
                 );
             }
 

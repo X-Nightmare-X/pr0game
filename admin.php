@@ -71,6 +71,14 @@ switch($page) {
         include_once('includes/pages/adm/ShowModulePage.php');
         ShowModulePage();
         break;
+    case 'statsconf':
+        include_once('includes/pages/adm/ShowStatsPage.php');
+        ShowStatsPage();
+        break;
+    case 'disclamer':
+        include_once('includes/pages/adm/ShowDisclamerPage.php');
+        ShowDisclamerPage();
+        break;
     case 'create':
         include_once('includes/pages/adm/ShowCreatorPage.php');
         ShowCreatorPage();

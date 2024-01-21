@@ -184,7 +184,7 @@ class PlayerUtilAchievement
 		}
 		$sql = "SELECT raport FROM %%RW%% 
 			WHERE (attacker LIKE ':user,%' OR attacker LIKE '%,:user,%' OR attacker LIKE '%,:user' or attacker = :user) 
-			AND `time` > :sixHours;";
+			AND 'time' > :sixHours;";
 		$attacks = $db->select($sql, array(
 			':user'			=> $userID,
 			':sixHours'		=> TIMESTAMP - TIME_6_HOURS

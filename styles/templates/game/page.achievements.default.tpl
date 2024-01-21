@@ -6,7 +6,10 @@
 <style>
     .minus { display:none;	}
 </style>
-{include file='shared.messages.tpl'}
+{if $messages}
+	<div class="message"><a href="?page=messages">{$messages}</a></div>
+{/if}
+<div>
 <div class="infos"> 
 {foreach $allAchievements as $achievement}
   {if !in_array($achievement['id'], $notImplemented)}

@@ -208,13 +208,7 @@ class BattleAchievement
 			$defenderPoints = $db->selectSingle($sql, array(
 				':defender' => $planetDefender,
 			), 'total_points');
-
-			$sql = "SELECT onlinetime FROM %%USERS%% WHERE id = :defender;";
-			$defenderOnlinetime = $db->selectSingle($sql, array(
-				':defender' => $planetDefender,
-			), 'onlinetime');
-
-			if ($attackerPoints/10 > $defenderPoints && $defenderOnlinetime > TIMESTAMP - INACTIVE) {
+			if ($attackerPoints/10 > $defenderPoints) {
 				Achievement::setAchievement($mainAttacker, 35);
 			}
 		}

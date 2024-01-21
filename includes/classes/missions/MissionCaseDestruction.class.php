@@ -84,13 +84,6 @@ HTML;
             ':planetId' => $this->_fleet['fleet_end_id'],
         ]);
 
-        // return fleet if target planet deleted
-        if ($targetPlanet == false) {
-            $this->setState(FLEET_RETURN);
-            $this->SaveFleet();
-            return;
-        }
-
         // select wreckfield to lock it, can be empty
         if ($targetPlanet['planet_type'] == 3) {
             $sql = "SELECT * FROM %%PLANETS%% WHERE id_luna = :planetId;";
@@ -104,6 +97,13 @@ HTML;
         $db->selectSingle($sql, [
             ':planetId' => $targetPlanetID
         ]);
+
+        // return fleet if target planet deleted
+        if ($targetPlanet == false) {
+            $this->setState(FLEET_RETURN);
+            $this->SaveFleet();
+            return;
+        }
 
         $sql = "SELECT * FROM %%USERS%% WHERE id = :userId;";
         $targetUser = $db->selectSingle($sql, [
@@ -202,8 +202,8 @@ HTML;
 
         require_once 'includes/classes/missions/functions/calculateAttack.php';
 
-        $fleetIntoDebris = Config::get($this->_fleet['fleet_universe'])->fleet_debris_percentage;
-        $defIntoDebris = Config::get($this->_fleet['fleet_universe'])->def_debris_percentage;
+        $fleetIntoDebris = Config::get($this->_fleet['fleet_universe'])->Fleet_Cdr;
+        $defIntoDebris = Config::get($this->_fleet['fleet_universe'])->Defs_Cdr;
 
         $combatResult = calculateAttack($fleetAttack, $fleetDefend, $fleetIntoDebris, $defIntoDebris);
 
@@ -321,7 +321,7 @@ HTML;
 
         if ($combatResult['won'] == "a") {
             require_once 'includes/classes/missions/functions/calculateSteal.php';
-            $stealResource = calculateSteal($fleetAttack, $targetPlanet, $this->_fleet['fleet_universe']);
+            $stealResource = calculateSteal($fleetAttack, $targetPlanet);
         }
 
         if ($this->_fleet['fleet_end_type'] == 3) {

@@ -41,7 +41,7 @@ class ShowRepairdockPage extends AbstractGamePage
         $sql = "SELECT * FROM %%PLANET_WRECKFIELD%% WHERE `planetID` = :planetID;";
         $wreckfield = $db->selectSingle($sql, [':planetID' => $PLANET['id']]);
 
-        if (empty($wreckfield) || (empty($wreckfield['ships']) && empty($wreckfield['repair_order']))) {
+        if (empty($wreckfield)) {
             $this->printMessage($LNG['bd_repairdock_empty']);
         }
 
@@ -65,15 +65,13 @@ class ShowRepairdockPage extends AbstractGamePage
             foreach ($ElementQueue as $elementID => $amount) {
                 $repaired[] = '`' . $resource[$elementID] . '` = ' . $resource[$elementID] . ' + :' . $resource[$elementID];
                 $params[':' . $resource[$elementID]] = $amount;
-                if (!empty($ships[$elementID])) {
-                    if (floor($ships[$elementID] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])) == $amount) {
-                        $ships[$elementID] = 0;
-                    } else {
-                        $ships[$elementID] -= floor($amount / $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]));
-                    }
-                    if ($ships[$elementID] <= 0) {
-                        unset($ships[$elementID]);
-                    }
+                if (floor($ships[$elementID] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])) == $amount) {
+                    $ships[$elementID] = 0;
+                } else {
+                    $ships[$elementID] -= floor($amount / $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]));
+                }
+                if ($ships[$elementID] <= 0) {
+                    unset($ships[$elementID]);
                 }
             }
 
@@ -94,7 +92,7 @@ class ShowRepairdockPage extends AbstractGamePage
                 'url'   => 'game.php?page=repairdock'
             ]]);
         }
-        elseif (empty($ElementQueue) && !empty($buildTodo) && array_sum($buildTodo) > 0 && $USER['urlaubs_modus'] == 0) {
+        elseif (empty($ElementQueue) && !empty($buildTodo) && $USER['urlaubs_modus'] == 0) {
             $db->startTransaction();
             $sql = "SELECT * FROM %%PLANET_WRECKFIELD%%
                 WHERE `planetID` = :planetID FOR UPDATE;";
@@ -102,7 +100,7 @@ class ShowRepairdockPage extends AbstractGamePage
 
             $QueueTime = 0;
             foreach ($buildTodo as $element => $amount) {
-                if (!empty($ships[$element])) {
+                if (isset($ships[$element])) {
                     $amount = is_numeric($amount) ? round($amount) : 0;
                     if ($amount > 0) {
                         $ElementQueue[$element] = max(0, min($amount, floor($ships[$element] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]))));
@@ -146,7 +144,7 @@ class ShowRepairdockPage extends AbstractGamePage
             ];
 
             foreach ($ElementQueue as $elementID => $amount) {
-                if (!empty($ships[$elementID])) {
+                if (isset($ships[$elementID])) {
                     if (floor($ships[$elementID] * $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]])) == $amount) {
                         $ships[$elementID] = 0;
                     } else {
@@ -174,10 +172,9 @@ class ShowRepairdockPage extends AbstractGamePage
                 'available' => $PLANET[$resource[$elementID]],
                 'elementTime' => $elementTime,
                 'maxBuildable' => floatToString($maxBuildable),
-                'wrecks' => $ships[$elementID],
             ];
         }
-        $SolarEnergy = round((($PLANET['temp_max'] + 160) / 6) * Config::get()->energy_multiplier, 1);
+        $SolarEnergy = round((($PLANET['temp_max'] + 160) / 6) * Config::get()->energySpeed, 1);
 
         $busy = !empty($wreckfield['repair_order']);
 
@@ -190,9 +187,7 @@ class ShowRepairdockPage extends AbstractGamePage
             'List' => $buildList,
             'messages' => ($Messages > 0) ? (($Messages == 1) ? $LNG['ov_have_new_message']
                 : sprintf($LNG['ov_have_new_messages'], pretty_number($Messages))) : false,
-            'message_type' => $USER['showMessageCategory'] === 1 ? $USER['message_type'] : false,
             'SolarEnergy' => $SolarEnergy,
-            'repairRate' => $this->getRepairRate($PLANET[$resource[REPAIR_DOCK]]) * 100,
         ]);
 
         $this->display('page.repairdock.default.tpl');

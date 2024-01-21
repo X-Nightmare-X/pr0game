@@ -57,19 +57,15 @@ $LNG['gameInformations']			= "Gercek zamanli uzay strateji oyunu.\nBuyuk bir rek
 
 // Login
 $LNG['loginHeader']					= 'Giris';
-$LNG['loginUsername']				= 'Kullanıcı adı/e-mail';
+$LNG['loginUsername']				= 'Kullanici Adi';
 $LNG['loginPassword']				= 'Sifre';
 $LNG['loginButton']					= 'Giris';
 $LNG['loginInfo']					= 'Giris yaparak tum %si kabul etmis oluyorsunuz.';
 $LNG['loginWelcome']				= ' %s hosgeldiniz ';
 $LNG['loginServerDesc']				= '%s tam zamanli bir uzay strateji oyunu. Yuzlerce oyuncunun <strong>ayni anda beraber oynayabildigi</strong> ve ellerinden geleni yaptigi bir oyun. Tek ihtiyacin olan herhangi bir web tarayicisi.';
-$LNG['loginUsernamePMSenderName']	= 'Yönetici';
-$LNG['loginUsernamePMSubject']	    = 'Dikkat! Giriş değişikliği';
-$LNG['loginUsernamePMText']		    = 'Kullanıcı adı ile giriş yapıldığında ortaya çıkan güvenlik riski nedeniyle, giriş yakında kayıtlı e-posta adresi ile değiştirilecektir.<p>'
-    . 'Lütfen şimdi sadece e-posta adresinizle giriş yapın. Bunu ayarlar menüsünde bulabilirsiniz.';
 
 // Register
-$LNG['registerUsername']			= 'Kullanici adi';
+$LNG['registerUsername']			= 'Kullanici Adi';
 $LNG['registerUsernameDesc']		= 'Kullanici adi 3 ila 25 karakter arasinda olmalidir ayrica sadece rakam, harf,tire (-) ve altcizgi (_) kullanilabilir. ';
 $LNG['registerPassword']			= 'Sifre';
 $LNG['registerPasswordDesc']		= 'Sifre en az %s karakterden olusmalidir.';
@@ -143,10 +139,9 @@ $LNG['passwordNext']				= 'Ileri';
 
 //case default
 
-$LNG['login_error_1']				= 'Yanlış kullanıcı adı, e-posta veya şifre!';
+$LNG['login_error_1']				= 'Kullanici adi yada sifre yanlis!';
 $LNG['login_error_2']				= 'Baskasi farki bir bilgisayardan bu hesaba girdi, yada IP adresiniz degisti!';
 $LNG['login_error_3']				= 'Oturumunuz sonlandi!';
-$LNG['login_error_4']				= 'Çok fazla giriş denemesi oldu. Yeni giriş bilgileri için lütfen Discord üzerinden bir yönetici ile iletişime geçin. Doğrulama için e-posta adresinizi hazır bulundurun.';
 
 //Rules
 $LNG['rulesHeader']					= 'Kurallar';

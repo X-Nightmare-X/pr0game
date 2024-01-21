@@ -387,7 +387,6 @@ $LNG['fl_player'] = 'Oyuncu ';
 $LNG['fl_add_to_attack'] = ' saldiriya eklendi.';
 $LNG['fl_already_invited'] = ' davet edildi..';
 $LNG['fl_dont_exist'] = ' saldiriya eklenemedi.';
-$LNG['fl_blocked'] = ' davetiyeleri kabul etmiyor.';
 $LNG['fl_acs_invitation_message'] = ' sizi ittifak saldirisina davet ediyor.';
 $LNG['fl_acs_invitation_title'] = 'Ittifak Saldirisi';
 $LNG['fl_sac_of_fleet'] = 'Ittifak Filosu';
@@ -463,8 +462,6 @@ $LNG['bd_repairdock_busy'] = 'Onarım iskelesi zaten bir iş üzerinde çalış�
 $LNG['bd_repairdock_empty'] = 'Enkaz alanı yok!';
 $LNG['bd_repairdock_deploy'] = 'Gemiler tekrar hizmete girdi!';
 $LNG['bd_max_ships_repair'] = 'Maksimum geri kazanılabilir birimler';
-$LNG['bd_wreck_count'] = 'Enkaz alanındaki enkazlar';
-$LNG['bd_repair_rate'] = 'Onarım oranı';
 $LNG['bd_repairing'] = 'Onarım devam ediyor';
 $LNG['bd_deployable'] = 'Onarım tamamlandı! Otomatik dağıtım başladı:';
 $LNG['bd_available'] = 'Uygun: ';
@@ -578,7 +575,7 @@ $LNG['mg_no_text'] = 'Mesaj Yok';
 $LNG['mg_msg_sended'] = 'Mesaj Gonderildi';
 $LNG['mg_delete_marked'] = 'Secili Mesajlari Sil';
 $LNG['mg_delete_type_all'] = 'Bu tip mesajlari sil';
-$LNG['mg_delete_unmarked'] = 'Bu türdeki işaretlenmemiş mesajları sil';
+$LNG['mg_delete_unmarked'] = 'Isaretlenmemis mesajlari sil';
 $LNG['mg_delete_all'] = 'Butun mesajlari sil';
 $LNG['mg_show_only_header_spy_reports'] = 'Casusluk mesajlarinin sadece basligini goster ';
 $LNG['mg_action'] = 'Aksiyon';
@@ -951,24 +948,17 @@ $LNG['sh_loading'] = '(Yukleniyor ...)';
 //AYARLAR
 $LNG['op_error'] = 'Hata';
 $LNG['op_cant_activate_vacation_mode'] = 'Filoyu kullanırken tatil modunu etkinleştiremezsiniz.';
-$LNG['op_cant_deactivate_vacation_mode'] = 'Henüz tatil modundan çıkamazsınız.';
 $LNG['op_password_changed'] = 'Sifreniz degistirildi Lutfen Tekrar giris yapin<br />'
     . '<a href="index.php" target="_top">Geri</a>';
 $LNG['op_username_changed'] = 'Uye Adiniz degistirildi Lutfen Tekrar giris yapin<br />'
     . '<a href="index.php" target="_top">Geri</a>';
 $LNG['op_options_changed'] = 'Ayarlar kaydedilir.';
-$LNG['op_options_vacation_activated'] = 'Tatil modu etkinleştirildi.';
-$LNG['op_options_vacation_deactivated'] = 'Tatil modu devre dışı bırakıldı.';
-$LNG['op_options_deletion_activated'] = 'Hesap silme etkinleştirildi.';
-$LNG['op_options_deletion_deactivated'] = 'Hesap silme devre dışı bırakıldı.';
-$LNG['op_options_no_other_settings_changed'] = 'Başka hiçbir ayar değiştirilmedi.';
+$LNG['op_options_changed_vacation'] = 'Ayarlar kaydedilir.';
 $LNG['op_vacation_mode_active_message'] = 'Tatil Modu Aktif :  ';
 $LNG['op_end_vacation_mode'] = 'Tatilden Cik';
 $LNG['op_save_changes'] = 'Ayarlari kaydet';
 $LNG['op_admin_title_options'] = 'Yonetici Ayarlari';
 $LNG['op_admin_planets_protection'] = 'Gezegen Korumasi';
-$LNG['op_admin_discord_id'] = 'PM için ping için kendi Discord Kullanıcı Kimliği';
-$LNG['op_admin_discord_hook'] = 'PM mesajı için Discord web kancası';
 $LNG['op_user_data'] = 'Kullanici Verileri';
 $LNG['op_username'] = 'Kullanici ismi';
 $LNG['op_old_pass'] = 'Eski Sifre';
@@ -999,7 +989,6 @@ $LNG['op_send_report'] = 'Rapor Yolla';
 $LNG['op_vacation_delete_mode'] = 'Tatil Modu / Hesap Silme Ayarlari';
 $LNG['op_activate_vacation_mode'] = 'Tatil Modunu Aktif Et';
 $LNG['op_dlte_account'] = 'Hesabi Sil';
-$LNG['op_stop_dlte_account'] = 'Hesap silme işlemini iptal et';
 $LNG['op_email_adress_descrip'] = 'Istediginiz zaman mail adresinizi degistirebilirsiniz. Bir sonraki degisiklik'
     . ' sureniz 7 gundur';
 $LNG['op_deactivate_ipcheck_descrip'] = 'IP kontrol. IP degistirilmesi ya da iki farkli kisinin farkli IP adresleri ile'
@@ -1007,15 +996,10 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'IP kontrol. IP degistirilmesi ya da iki
     . ' otomatik olarak atilirsin. IP kontrolunu devre disi birakmak cok onemli guvenlik acigi meydana getirebilir!';
 $LNG['op_spy_probes_number_descrip'] = 'Her tarama sirasinda galaksi menusunden direk gonderilen casusluk sondalarinin'
     . ' sayisi.';
-$LNG['op_activate_vacation_mode_descrip'] = 'Tatil modu uzun süreli yokluklarda sizi korumak için tasarlanmıştır.'
-    . ' Yalnızca kendi filolarınız hareket halinde değilken etkinleştirilebilir. Etkinleştirildiğinde sizi yeni saldırılara'
-    . ' karşı korur. Ancak, halihazırda başlamış olan saldırılar devam edecek ve beklemekte olan dost filolar geri'
-    . ' gönderilecektir! Kaynakların üretimi, binaların inşası ve tersane siparişlerinin yanı sıra araştırma bu süre'
-    . ' zarfında duraklatılır ve daha sonra yeniden başlatılır. Tatil modu en az 48 saat sürer, sonrasında tekrar devre'
-    . ' dışı bırakabilirsiniz.';
-$LNG['op_dlte_account_descrip'] = 'Bu, en az 7 gün sonra hesabınızı otomatik olarak tamamen silecektir. Nihai silme'
-    . ' işlemi, silme cron işinin yürütülme süresine bağlıdır ve birkaç gün daha sürebilir. Silme işlemi henüz'
-    . ' gerçekleştirilmediği sürece, yani hala hesapta oturum açabildiğiniz sürece durdurulabilir.';
+$LNG['op_activate_vacation_mode_descrip'] = 'Tatil modu, uzun sure giris yapmama durumunda size gelecek saldirilardan'
+    . ' komumadir. Tatil moduna gecmek icin once bina, tersane, savunma ve arastirmada bir sey basmamak gerekir. Tatil'
+    . ' moduna gecipte uzun bir sure giris olmadigi zaman account otomatik olarak silinir.';
+$LNG['op_dlte_account_descrip'] = 'Kayit silme islemide 7 gun sonra kayit otomatik olarak silinecektir.';
 $LNG['op_need_pass_mail'] = 'Email adresini degistirmek icin kutuya sifreni yazmalisin!';
 $LNG['op_not_vaild_mail'] = 'Gecersiz email adresi!';
 $LNG['op_change_mail_exist'] = 'Verilen email adresi %s azaten kullanimda!';
@@ -1027,7 +1011,6 @@ $LNG['op_sort_down'] = 'Azalan';
 $LNG['op_user_name_no_alphanumeric'] = 'Lutfen sadece alfabetik ve rakamsal karakter kulaniniz!';
 $LNG['op_change_name_pro_week'] = 'Oyuncu ismini 7 gun icinde en fazla 1 kez degistirebilirsin!';
 $LNG['op_change_name_exist'] = 'Oyuncu ismi %s zaten mevcut';
-$LNG['op_show_message_category'] = 'Doğrudan eşleşen mesaj kategorisini göster';
 $LNG['op_active_build_messages'] = 'Bina mesajlarini goster';
 $LNG['op_active_spy_messages_mode'] = 'Casus raporlarini ozetle';
 $LNG['op_dst_mode'] = 'Yaz/Kis saati uygulamasi';
@@ -1419,7 +1402,7 @@ $LNG['Achievement_text'] = [
     10 => 'Bir oyuncunun ayını yok et.',
 
     11 => '14 gün boyunca sadece cep telefonundan oynayın.',
-    12 => 'Filonuz ilk seferiniz sırasında bir kara delik tarafından yok edildi.',
+    12 => 'Filonuz ilk seferinizde yok edildi.',
     13 => 'Gelen bir saldırının bitmesine 5 saniyeden az kalmışken filonuzu uzağa gönderin.',
     14 => 'Kara delikler yüzünden 10 filo kaybettiniz.',
     15 => 'Bir gezegende ay almadan 10 ay denemesi yapın',
@@ -1484,17 +1467,6 @@ $LNG['spytech_playercard'] = [
 //Team
 $LNG['team'] =                      'Ekip';
 $LNG['teamAktiv'] =                 'Varlık';
-$LNG['kontakt'] =                   'Merhaba!<br>'
-                                    .'Bu sayfada, bu projeyi aktif olarak yürüten, yöneten ve geliştiren kişiler hakkında bilgi bulacaksınız.<br>'
-                                    .'Herhangi bir sorunuz veya sorununuz varsa bizimle iletişime geçmekten çekinmeyin.<br>'
-                                    .'<br>'
-                                    .'Bizimle ve aynı zamanda diğer ortak yayıncılarla daha iyi bir alışveriş için bir Discord sunucusu kurduk.'
-                                    .'"<a href="https://discord.gg/jhYYN3yuat">burada</a>" veya menü aracılığıyla bulabilirsiniz.<br>'
-                                    .'Sunucuda en son haberlerin yanı sıra evrenin ittifakları arasındaki heyecan verici memleri bulacaksınız.<br>'
-                                    .'Oyun mekanikleri hakkında sorular sorun ve oyunun daha da geliştirilmesi için kendi önerilerinizle yardımcı olun.<br>'
-                                    .'<br>'
-                                    .'Elbette oyun içi atıp tutmalarınıza da cevap vereceğiz.<br>'
-                                    .'Ancak, lütfen oyunu sadece hobi olarak oynadığımızı unutmayın. Cevaplar birkaç gün sürebilir.<br>';
 $LNG['teamIngameName'] =            'Oyun İçi İsim';
 $LNG['teamDiscordName'] =           'Discord Adı';
 $LNG['teamRole'] =                  'Rol';
@@ -1517,7 +1489,3 @@ $LNG['teamYes'] =                   'Ve';
 $LNG['teamAlumni'] =                'Eski / Aktif Olmayan Ekip Üyeleri';
 $LNG['teamAlumniLong'] =            'Teşekkür ederiz';
 $LNG['teamLegend'] =                'Açıklama, Rollerin / Hakların Açıklaması';
-
-//----------------------------------------------------------------------------//
-$LNG['BlockTrade']  = 'Blok ticareti';
-$LNG['blockDm']     = 'Blok O.M.';

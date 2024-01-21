@@ -441,7 +441,6 @@ HTML;
         ];
 
         $reportData = GenerateReport($combatResult, $reportInfo, EXPO_FIGHT);
-        $reportData['time']	= $this->_fleet['fleet_end_stay'];
         $reportID = md5(uniqid('', true) . TIMESTAMP);
 
         $sql = "INSERT INTO %%RW%% SET
@@ -453,7 +452,7 @@ HTML;
         Database::get()->insert($sql, [
             ':reportId' => $reportID,
             ':reportData' => serialize($reportData),
-            ':time' => $this->_fleet['fleet_end_stay'],
+            ':time' => $this->_fleet['fleet_start_time'],
             ':attacker' => $this->_fleet['fleet_owner'],
         ]);
 
@@ -541,7 +540,7 @@ HTML;
         $Message = $enemyData[1];
 
         require_once 'includes/classes/missions/functions/calculateAttack.php';
-        $combatResult = calculateAttack($fleetAttack, $fleetDefend, $config->fleet_debris_percentage, $config->def_debris_percentage);
+        $combatResult = calculateAttack($fleetAttack, $fleetDefend, $config->Fleet_Cdr, $config->Defs_Cdr);
 
         $fleetArray = '';
         $totalCount = 0;
@@ -583,13 +582,12 @@ HTML;
         // Get Expeditions count in this system
         $sql = "SELECT COUNT(*) AS total FROM %%LOG_FLEETS%% where `fleet_end_galaxy` = :fleet_end_galaxy"
             . " and `fleet_end_system` = :fleet_end_system and `fleet_end_planet` = :fleet_end_planet"
-            . " and `fleet_end_stay` > UNIX_TIMESTAMP(NOW() - INTERVAL 1 DAY) and fleet_universe = :universe";
+            . " and `fleet_end_stay` > UNIX_TIMESTAMP(NOW() - INTERVAL 1 DAY)";
 
         $expeditionsCount = Database::get()->selectSingle($sql, [
-            'fleet_end_galaxy'  => $this->_fleet['fleet_end_galaxy'],
-            'fleet_end_system'  => $this->_fleet['fleet_end_system'],
-            'fleet_end_planet'  => $this->_fleet['fleet_end_planet'],
-            'universe'          => $this->_fleet['fleet_universe'],
+            'fleet_end_galaxy' => $this->_fleet['fleet_end_galaxy'],
+            'fleet_end_system' => $this->_fleet['fleet_end_system'],
+            'fleet_end_planet' => $this->_fleet['fleet_end_planet']
         ], 'total');
 
         // Hold time bonus
@@ -663,6 +661,7 @@ HTML;
             $this->updateExpoStatAdvancedStats($this->_fleet['fleet_owner'], "black_hole");
             require_once 'includes/classes/achievements/MiscAchievement.class.php';
             MiscAchievement::checkExpoAchievements($this->_fleet['fleet_owner']);
+            
         } elseif ($GetEvent < 812) {
             // The fleet delays or return earlier: 9%
             # http://owiki.de/Expedition#Ver.C3.A4nderte_Flugzeit

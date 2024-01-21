@@ -25,6 +25,7 @@ class ResourceUpdate
 
     private $TIME = null;
     private $HASH = null;
+    private $ProductionTime = null;
 
     private $Build = true;
     private $Tech = true;
@@ -76,7 +77,7 @@ class ResourceUpdate
 
         $Hash[] = $this->config->resource_multiplier;
         $Hash[] = $this->config->storage_multiplier;
-        $Hash[] = $this->config->energy_multiplier;
+        $Hash[] = $this->config->energySpeed;
         $Hash[] = $this->PLANET[$resource[22]];
         $Hash[] = $this->PLANET[$resource[23]];
         $Hash[] = $this->PLANET[$resource[24]];
@@ -98,9 +99,7 @@ class ResourceUpdate
             return $this->ReturnVars();
         }
 
-        $ProductionTime = ($this->TIME - $this->PLANET['last_update']);
-
-        if ($this->Build && $ProductionTime > 0) {
+        if ($this->Build) {
             $this->ShipyardQueue();
             $this->RepairJob();
             $this->WreckfieldCheck($this->PLANET['id'], $this->TIME); // Option: Delete not in Umode
@@ -117,12 +116,12 @@ class ResourceUpdate
                     }
                 }
             }
+        }
 
-            $this->UpdateResource($this->TIME, $HASH);
-    
-            if ($SAVE === true) {
-                $this->SavePlanetToDB($this->USER, $this->PLANET);
-            }
+        $this->UpdateResource($this->TIME, $HASH);
+
+        if ($SAVE === true) {
+            $this->SavePlanetToDB($this->USER, $this->PLANET);
         }
 
         return $this->ReturnVars();
@@ -130,9 +129,9 @@ class ResourceUpdate
 
     private function UpdateResource($TIME, $HASH = false)
     {
-        $ProductionTime = ($TIME - $this->PLANET['last_update']);
+        $this->ProductionTime = ($TIME - $this->PLANET['last_update']);
 
-        if ($ProductionTime > 0) {
+        if ($this->ProductionTime > 0) {
             $this->PLANET['last_update'] = $TIME;
             if ($HASH === false) {
                 $this->ReBuildCache();
@@ -144,11 +143,11 @@ class ResourceUpdate
                     $this->ReBuildCache();
                 }
             }
-            $this->ExecCalc($ProductionTime);
+            $this->ExecCalc();
         }
     }
 
-    private function ExecCalc($ProductionTime)
+    private function ExecCalc()
     {
         if ($this->PLANET['planet_type'] == 3) {
             return;
@@ -158,21 +157,21 @@ class ResourceUpdate
         $MaxCristalStorage = $this->PLANET['crystal_max'] * $this->config->max_overflow;
         $MaxDeuteriumStorage = $this->PLANET['deuterium_max'] * $this->config->max_overflow;
 
-        $MetalTheoretical = $ProductionTime * (
+        $MetalTheoretical = $this->ProductionTime * (
                 ($this->config->metal_basic_income * $this->config->resource_multiplier)
                 + $this->PLANET['metal_perhour']
             ) / 3600;
 
         $this->setProduction(RESOURCE_METAL, $MetalTheoretical, $MaxMetalStorage);
 
-        $CristalTheoretical = $ProductionTime * (
+        $CristalTheoretical = $this->ProductionTime * (
                 ($this->config->crystal_basic_income * $this->config->resource_multiplier)
                 + $this->PLANET['crystal_perhour']
             ) / 3600;
 
         $this->setProduction(RESOURCE_CRYSTAL, $CristalTheoretical, $MaxCristalStorage);
 
-        $DeuteriumTheoretical = $ProductionTime * (
+        $DeuteriumTheoretical = $this->ProductionTime * (
                 ($this->config->deuterium_basic_income * $this->config->resource_multiplier)
                 + $this->PLANET['deuterium_perhour']
             ) / 3600;
@@ -330,8 +329,8 @@ class ResourceUpdate
         $this->PLANET['crystal_max'] = $temp[902]['max'] * $this->config->storage_multiplier;
         $this->PLANET['deuterium_max'] = $temp[903]['max'] * $this->config->storage_multiplier;
 
-        $this->PLANET['energy'] = round($temp[911]['plus'] * $this->config->energy_multiplier);
-        $this->PLANET['energy_used'] = $temp[911]['minus'] * $this->config->energy_multiplier;
+        $this->PLANET['energy'] = round($temp[911]['plus'] * $this->config->energySpeed);
+        $this->PLANET['energy_used'] = $temp[911]['minus'] * $this->config->energySpeed;
         if ($this->PLANET['energy_used'] == 0) {
             $this->PLANET['metal_perhour'] = 0;
             $this->PLANET['crystal_perhour'] = 0;
@@ -481,13 +480,7 @@ class ResourceUpdate
             }
             $NewQueue[] = [$Element, $Count];
         }
-        
-        if (empty($NewQueue)) {
-            $this->PLANET['b_hangar_id'] = '';
-            $this->PLANET['b_hangar'] = 0;
-        } else {
-            $this->PLANET['b_hangar_id'] = serialize($NewQueue);
-        }
+        $this->PLANET['b_hangar_id'] = !empty($NewQueue) ? serialize($NewQueue) : '';
 
         return true;
     }
