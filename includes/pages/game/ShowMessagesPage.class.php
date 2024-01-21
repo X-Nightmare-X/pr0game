@@ -147,9 +147,10 @@ class ShowMessagesPage extends AbstractGamePage
 
     private function sendData($Code, $Message)
     {
-        $this->returnData['code']	= $Code;
-        $this->returnData['mess']	= $Message;
-        $this->sendJSON($this->returnData);
+        $this->sendJSON([
+            'code' => $Code,
+            'mess' => $Message,
+        ]);
     }
 
     public function deleteMessage()
@@ -167,13 +168,20 @@ class ShowMessagesPage extends AbstractGamePage
             $this->sendData(0, $LNG['error']);
         }
 
-
-        $sql = 'DELETE FROM %%MESSAGES%% WHERE message_id = :messID AND message_owner = :userId;';
-
-        $db->delete($sql, [
-            ':userId' => $USER['id'],
-            ':messID' => $delMessID,
-        ]);
+        if (Config::get()->message_delete_behavior == 1) {
+            $sql = "UPDATE %%MESSAGES%% SET message_deleted = :timestamp WHERE message_id = :messID AND message_owner = :userID;";
+            $db->update($sql, [
+                ':timestamp'    => TIMESTAMP,
+                ':messID' => $delMessID,
+                ':userID'       => $USER['id'],
+            ]);
+        } else {
+            $sql = 'DELETE FROM %%MESSAGES%% WHERE message_id = :messID AND message_owner = :userId;';
+            $db->delete($sql, [
+                ':userId' => $USER['id'],
+                ':messID' => $delMessID,
+            ]);
+        }
 
         $this->sendData($delMessID, $LNG['mg_deleted']);
     }
@@ -302,16 +310,35 @@ class ShowMessagesPage extends AbstractGamePage
                 }
 
                 if (Config::get()->message_delete_behavior == 1) {
-                    $sql = 'UPDATE %%MESSAGES%% SET message_deleted = :timestamp WHERE message_id NOT IN (' . implode(',', array_keys($messageIDs)) . ') AND message_owner = :userId;';
-                    $db->update($sql, [
-                        ':timestamp' => TIMESTAMP,
-                        ':userId' => $USER['id'],
-                    ]);
+                    $sql = 'UPDATE %%MESSAGES%% SET message_deleted = :timestamp WHERE message_id NOT IN (' . implode(',', array_keys($messageIDs)) . ') AND message_owner = :userId';
+                    if ($MessCategory != 100) {
+                        $sql .= ' AND message_type = :messCategory;';
+                        $db->delete($sql, [
+                            ':timestamp'    => TIMESTAMP,
+                            ':userId'       => $USER['id'],
+                            ':messCategory' => $MessCategory,
+                        ]);
+                    } else {
+                        $sql .= ';';
+                        $db->delete($sql, [
+                            ':timestamp' => TIMESTAMP,
+                            ':userId'    => $USER['id'],
+                        ]);
+                    }
                 } else {
-                    $sql = 'DELETE FROM %%MESSAGES%% WHERE message_id NOT IN ('.implode(',', array_keys($messageIDs)).') AND message_owner = :userId;';
-                    $db->delete($sql, [
-                        ':userId'       => $USER['id'],
-                    ]);
+                    $sql = 'DELETE FROM %%MESSAGES%% WHERE message_id NOT IN ('.implode(',', array_keys($messageIDs)).') AND message_owner = :userId';
+                    if ($MessCategory != 100) {
+                        $sql .= ' AND message_type = :messCategory;';
+                        $db->delete($sql, [
+                            ':userId'       => $USER['id'],
+                            ':messCategory' => $MessCategory,
+                        ]);
+                    } else {
+                        $sql .= ';';
+                        $db->delete($sql, [
+                            ':userId'       => $USER['id'],
+                        ]);
+                    }
                 }
                 break;
         }
@@ -330,9 +357,14 @@ class ShowMessagesPage extends AbstractGamePage
         $text		= makebr($text);
 
         $session	= Session::load();
+        $blocked    = PlayerUtil::get_block_status($USER['id'], $receiverID);
+        $blockedInverted = PlayerUtil::get_block_status($receiverID, $USER['id']);
 
         if (empty($receiverID) || empty($text) || !isset($session->messageToken) || $session->messageToken != md5($USER['id'].'|'.$receiverID)) {
             $this->sendJSON($LNG['mg_error']);
+        }
+        if ($blocked['block_dm'] == 1 || $blockedInverted['block_dm'] == 1) {
+            $this->sendJSON($LNG['mg_blocked']);
         }
 
         $session->messageToken = null;
@@ -389,8 +421,8 @@ class ShowMessagesPage extends AbstractGamePage
         $db = Database::get();
 
         require_once 'includes/classes/Config.class.php';
-        $fleetIntoDebris = Config::get()->Fleet_Cdr;
-        $defIntoDebris = Config::get()->Defs_Cdr;
+        $fleetIntoDebris = Config::get()->fleet_debris_percentage;
+        $defIntoDebris = Config::get()->def_debris_percentage;
         $uniType = Config::get()->uni_type;
         $maxGalaxy = Config::get()->max_galaxy;
 

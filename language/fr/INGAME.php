@@ -372,6 +372,7 @@ $LNG['fl_player'] = 'Le joueur ';
 $LNG['fl_add_to_attack'] = ' a été invité.';
 $LNG['fl_already_invited'] = ' a été invité.';
 $LNG['fl_dont_exist'] = ' n\'existe pas.';
+$LNG['fl_blocked'] = ' n\'accepte pas les invitations.';
 $LNG['fl_acs_invitation_message'] = ' vous invite a partciper à une ACS.';
 $LNG['fl_acs_invitation_title'] = 'Invitation à ACS';
 $LNG['fl_sac_of_fleet'] = 'flotte ACS';
@@ -447,6 +448,8 @@ $LNG['bd_repairdock_busy'] = 'Le dock de réparation travaille déjà sur une mi
 $LNG['bd_repairdock_empty'] = 'Il n\'y a pas de champ d\'épaves !';
 $LNG['bd_repairdock_deploy'] = 'Les navires ont été remis en service !';
 $LNG['bd_max_ships_repair'] = 'Unités maximales récupérables';
+$LNG['bd_wreck_count'] = 'Épaves dans le champ d\'épaves';
+$LNG['bd_repair_rate'] = 'Taux de réparation';
 $LNG['bd_repairing'] = 'Réparation en cours';
 $LNG['bd_deployable'] = 'Réparation terminée ! Déploiement automatique en cours :';
 $LNG['bd_available'] = 'Disponible: ';
@@ -562,7 +565,7 @@ $LNG['mg_no_text'] = 'Aucun texte fourni';
 $LNG['mg_msg_sended'] = 'Message envoyé !';
 $LNG['mg_delete_marked'] = 'Supprimer le(s) message(s) sélectionné(s)';
 $LNG['mg_delete_type_all'] = 'Supprimer tous les messages de ce type';
-$LNG['mg_delete_unmarked'] = 'Supprimer tous les messages sélectionnés';
+$LNG['mg_delete_unmarked'] = 'Supprimer les messages non marqués de ce type';
 $LNG['mg_delete_all'] = 'Supprimer tous les messages';
 $LNG['mg_show_only_header_spy_reports'] = 'Montrer seulement une partie des rapports d\'espionnage';
 $LNG['mg_action'] = 'Action';
@@ -933,16 +936,23 @@ $LNG['sh_loading'] = '(Chargement ...)';
 //OPTIONS
 $LNG['op_error'] = 'Erreur';
 $LNG['op_cant_activate_vacation_mode'] = 'Vous ne pouvez pas activer le mode vacances pendant l\'utilisation de la flotte.';
+$LNG['op_cant_deactivate_vacation_mode'] = 'Vous ne pouvez pas encore quitter le mode vacances.';
 $LNG['op_password_changed'] = 'Le Mot de Passe a été changé avec succès<br'
     . '<a href="index.php" target="_top">Retour</a>';
 $LNG['op_username_changed'] = 'Nom d\'Utilisateur modifié avec succès<br><a href="index.php" target="_top">Retour</a>';
 $LNG['op_options_changed'] = 'Options enregistrées.';
-$LNG['op_options_changed_vacation'] = 'Options enregistrées.';
+$LNG['op_options_vacation_activated'] = 'Mode vacances activé.' ;
+$LNG['op_options_vacation_deactivated'] = 'Mode vacances désactivé.';
+$LNG['op_options_deletion_activated'] = 'Suppression de compte activée.';
+$LNG['op_options_deletion_deactivated'] = 'Suppression du compte désactivée.';
+$LNG['op_options_no_other_settings_changed'] = 'Aucun autre paramètre n\'a été modifié.';
 $LNG['op_vacation_mode_active_message'] = 'Le mode vacances est actif ! Vous serez en vacances au moins jusqu\'à : ';
 $LNG['op_end_vacation_mode'] = 'Sortir du mode vacances';
 $LNG['op_save_changes'] = 'Enregistrer les changements';
 $LNG['op_admin_title_options'] = 'Options disponibles pour la gestion de votre compte';
 $LNG['op_admin_planets_protection'] = 'Protection des planètes';
+$LNG['op_admin_discord_id'] = 'Identifiant Discord propre pour le ping pour les MP';
+$LNG['op_admin_discord_hook'] = 'Webhook Discord pour les messages PM';
 $LNG['op_user_data'] = 'Données Utilisateur';
 $LNG['op_username'] = 'Nom d\'Utilisateur';
 $LNG['op_old_pass'] = 'Ancien Mot de Passe';
@@ -973,6 +983,7 @@ $LNG['op_send_report'] = 'Envoyer un rapport';
 $LNG['op_vacation_delete_mode'] = 'Activer le mode vacances/Supprimer compte';
 $LNG['op_activate_vacation_mode'] = 'Activer le mode vacances';
 $LNG['op_dlte_account'] = 'Supprimer le compte';
+$LNG['op_stop_dlte_account'] = 'Annuler la suppression du compte';
 $LNG['op_email_adress_descrip'] = 'Vous pouvez changer cette adresse Email à tout moment. Celle-ci remplacera'
     . ' l\'adresse permanente après 7 jours sans changement.';
 $LNG['op_deactivate_ipcheck_descrip'] = 'Vérifier l\'IP signifie que la déconnexion de sécurité se produit'
@@ -980,13 +991,16 @@ $LNG['op_deactivate_ipcheck_descrip'] = 'Vérifier l\'IP signifie que la déconn
     . ' adresses IP. Désactiver la vérification IP peut représenter un risque pour la sécurité !';
 $LNG['op_spy_probes_number_descrip'] = 'Nombre de sondes d\'espionnage qui peuvent être envoyées directement à partir'
     . ' de chaque scan dans le menu Galaxie.';
-$LNG['op_activate_vacation_mode_descrip'] = 'Le mode vacances vous protège pendant les absences prolongées. Il ne peut'
-    . ' seulement être activé si il n\'y a aucune activité sur les planètes et colonies (pas de constructions de'
-    . ' bâtiments, flottes ou défenses, aucun mouvement de flottes). A partir du moment où il est activé, vous êtes'
-    . ' protégé des nouvelles attaques. Les attaques en cours iront à leur terme. Durant le mode vacances, la'
-    . ' production est paramétrée à 0 et vous devrez manuellement la rétablir à 100% à votre retour. Le mode vacances'
-    . ' dure au minimum deux jours et ne peut être désactivé avant cette échéance.';
-$LNG['op_dlte_account_descrip'] = 'Si vous cocher cette case, votre compte sera supprimé d\'ici 7 jours.';
+$LNG['op_activate_vacation_mode_descrip'] = 'Le mode vacances est conçu pour vous protéger pendant les périodes d\'absence'
+    . ' prolongées. Il ne peut être activé que lorsqu\'aucune de vos flottes n\'est en mouvement. Lorsqu\'il est activé, il'
+    . ' vous protège des nouvelles attaques. Cependant, les attaques déjà commencées se poursuivent et les flottes amies qui'
+    . ' se maintiennent sont renvoyées ! La production de ressources, la construction de bâtiments et de chantiers navals'
+    . ' ainsi que la recherche sont interrompues pendant cette période et reprendront ensuite. Le mode vacances dure au moins'
+    . ' 48 heures, après quoi vous pouvez le désactiver à nouveau.';
+$LNG['op_dlte_account_descrip'] = 'Cette opération supprimera automatiquement votre compte au bout d\'au moins 7 jours.'
+    . ' La suppression finale dépend de l\'heure d\'exécution de la tâche cron de suppression et peut prendre quelques'
+    . ' jours de plus. La suppression peut être interrompue tant qu\'elle n\'a pas été exécutée, c\'est-à-dire tant que'
+    . ' vous pouvez encore vous connecter au compte.';
 $LNG['op_need_pass_mail'] = 'Pour changer votre adresse e-mail, vous devez entrer votre mot de passe!';
 $LNG['op_not_vaild_mail'] = 'L\'Email entré est invalide !';
 $LNG['op_change_mail_exist'] = 'L\'Email %s est déjà utilisé !';
@@ -998,6 +1012,7 @@ $LNG['op_sort_down'] = 'Décroissant';
 $LNG['op_user_name_no_alphanumeric'] = 'Merci d\'entrer un nom d\'Utilisateur à base de caractères alphanumériques !';
 $LNG['op_change_name_pro_week'] = 'Vous pouvez modifier votre nom d\'Utilisateur une fois par semaine';
 $LNG['op_change_name_exist'] = 'Le nom %s existe déjà';
+$LNG['op_show_message_category'] = 'Afficher directement la catégorie de messages correspondante';
 $LNG['op_active_build_messages'] = 'Actualités queue de construction';
 $LNG['op_dst_mode'] = 'Heure d\été ?';
 $LNG['op_dst_mode_sel'][0] = 'Non';
@@ -1379,7 +1394,7 @@ $LNG['Achievement_text'] = [
     10 => 'Détruire la lune d\'un joueur.',
 
     11 => 'Joue 14 jours exclusivement sur téléphone portable.',
-    12 => 'Ta flotte a été détruite lors de ta première expédition.',
+    12 => 'Votre flotte a été détruite par un trou noir lors de votre première expédition.',
     13 => 'Envoyez votre flotte alors qu\'il reste moins de 5 secondes à une attaque entrante.',
     14 => 'Tu as perdu 10 flottes à cause des trous noirs.',
     15 => 'Dépensez 10 essais lunaires sur une planète sans obtenir une lune',
@@ -1445,6 +1460,17 @@ $LNG['spytech_playercard'] = [
 //Team
 $LNG['team'] =                      'L\'équipe';
 $LNG['teamAktiv'] =                 'Actif';
+$LNG['kontakt'] =                   'Salut!<br>'
+                                    .'Sur cette page, tu trouveras des informations sur les personnes qui gèrent, modèrent et développent activement ce projet.<br>'
+                                    .'N\'hésite pas à nous contacter si tu as des questions ou des problèmes.<br>'
+                                    .'<br>'
+                                    .'Pour faciliter l\'échange avec nous, mais aussi avec les autres membres du projet, nous avons mis en place un serveur Discord.'
+                                    .'Tu le trouveras " <a href="https://discord.gg/jhYYN3yuat">ici</a> " ou via le menu.<br>'
+                                    .'Sur le serveur, tu trouveras les dernières nouvelles, ainsi que des mèmes passionnants entre les alliances de l\'univers.<br>'
+                                    .'Pose des questions sur les mécanismes du jeu et contribue au développement du jeu par tes propres suggestions.<br>'
+                                    .'<br>'
+                                    .'Bien entendu, nous te répondrons également sur les post-its en jeu.<br>'
+                                    .'Bedenke jedoch, dass auch wir das Spiel nur als Hobby betreiben. Les réponses peuvent prendre quelques jours.<br>';
 $LNG['teamIngameName'] =            'Nom du jeu';
 $LNG['teamDiscordName'] =           'Nom de Discord';
 $LNG['teamRole'] =                  'Rôle';
@@ -1467,3 +1493,7 @@ $LNG['teamYes'] =                   'Oui';
 $LNG['teamAlumni'] =                'Anciens membres de l\'équipe / Membres inactifs de l\'équipe';
 $LNG['teamAlumniLong'] =            'Nous tenons à remercier';
 $LNG['teamLegend'] =                'Légende, Explication des rôles / droits';
+
+//----------------------------------------------------------------------------//
+$LNG['BlockTrade']  = 'Commerce en bloc';
+$LNG['blockDm']    = 'Bloc PM';

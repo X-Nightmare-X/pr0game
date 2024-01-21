@@ -339,7 +339,7 @@ $LNG['se_normal_speed_halt'] = 'Normaler Expospeed: 1 <br> Maximal empfohlene Ei
 $LNG['se_fleet_speed'] = 'Flottenspeed';
 $LNG['se_resources_producion_speed'] = 'Rohstoffspeed';
 $LNG['se_storage_producion_speed'] = 'Speicher Factor';
-$LNG['se_halt_speed'] = 'Expedition-Factor';
+$LNG['se_expo_hold_multiplier'] = 'Expedition-Factor';
 $LNG['se_energy_speed'] = 'Energie-Factor';
 $LNG['se_forum_link'] = 'Forum link';
 $LNG['se_uni_status'] = 'Uni-Status';
@@ -442,12 +442,12 @@ $LNG['se_max_system'] = 'Max. Systeme';
 $LNG['se_max_system_info'] = 'Maximale Anzahl der Systeme in einer Galaxie';
 $LNG['se_max_planets'] = 'Max. Planets';
 $LNG['se_max_planets_info'] = 'Maximale Anzahl der Planeten in einem System';
-$LNG['se_min_player_planets'] = 'Min. Planeten / Spieler';
+$LNG['se_max_initial_planets'] = 'Min. Planeten / Spieler';
 $LNG['se_max_player_planets_info'] = 'Anzahl der max. Kolonien ohne Forschung';
 $LNG['se_max_player_planets'] = 'Max. Planeten / Spieler';
-$LNG['se_min_player_planets_info'] = 'Anzahl der max. Kolonien mit Forschung';
-$LNG['se_planet_factor'] = 'Planetenmulti.';
-$LNG['se_planet_factor_info'] = 'Planetgrößen Multiplikator';
+$LNG['se_max_initial_planets_info'] = 'Anzahl der max. Kolonien mit Forschung';
+$LNG['se_planet_size_factor'] = 'Planetenmulti.';
+$LNG['se_planet_size_factor_info'] = 'Planetgrößen Multiplikator';
 $LNG['se_all_planet_pictures'] = 'Alle Planetenbilder.';
 $LNG['se_all_planet_pictures_info'] = 'Ermöglicht alle Planetenbidler auf auf allen Positionen';
 $LNG['se_max_elements_build'] = 'Max. Aufträge (Bau)';
@@ -482,8 +482,8 @@ $LNG['se_deuterium_start'] = 'Start Deuterium';
 $LNG['se_deuterium_start_info'] = 'Gibt an, wieviel Deuterium auf neuen Planeten vorhanden ist.';
 $LNG['se_debris_moon'] = 'Lösche TF nach Mond';
 $LNG['se_debris_moon_info'] = 'Löscht das TF, nachdem ein Mond entstanden ist.';
-$LNG['se_moonSizeFactor'] = 'Mondgrößenfaktor';
-$LNG['se_moonSizeFactor_info'] = 'Faktor um die Mondgröße zu beeinflussen, 1 = default';
+$LNG['se_moon_size_factor'] = 'Mondgrößenfaktor';
+$LNG['se_moon_size_factor_info'] = 'Faktor um die Mondgröße zu beeinflussen, 1 = default';
 $LNG['se_cascading_moon_chance'] = 'Kaskadierende Mondchance';
 $LNG['se_cascading_moon_chance_info'] = 'Zusätzliche Mondchance die pro fehlgeschlagenem MV mit maximaler Mondchance dazuaddiert wird. Gilt nur für den ersten Mond in einem Account. 0 = ausgeschaltet';
 $LNG['se_deuterium_cost_galaxy'] = 'Galaxiegebühren';
@@ -515,8 +515,8 @@ $LNG['se_server_colonisation_config'] = 'Kolonisationseinstellungen';
 $LNG['se_planets_min'] = 'Max. kolonisierbare Planeten ohne Forschungen';
 $LNG['se_planets_min_info'] = 'Von Beginn an hat der Spieler die Möglichkeit die Angegebene Anzahl an Planeten zu'
     . ' besiedeln';
-$LNG['se_planets_tech'] = 'Max. zusätzliche Planetenzahl durch Foschung. (0 = deaktiviert Limit)';
-$LNG['se_planets_tech_info'] = 'Durch Forschung von Astrophysik hat der Spieler die Möglichkeit maximal die angegebene'
+$LNG['se_max_additional_planets'] = 'Max. zusätzliche Planetenzahl durch Foschung. (0 = deaktiviert Limit)';
+$LNG['se_max_additional_planets_info'] = 'Durch Forschung von Astrophysik hat der Spieler die Möglichkeit maximal die angegebene'
     . ' Anzahl an Planeten zusätzlich zu besiedeln.';
 $LNG['se_planets_per_tech'] = 'Faktor: Planeten pro Stufe Astrophysik';
 $LNG['se_planets_per_tech_info'] = 'Pro geforschter Stufe kann der Spieler die angegebene Anzahl an Planeten zusätzlich'
