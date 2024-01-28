@@ -189,9 +189,9 @@ $LNG['ad_ally_delete'] = 'Excluir aliança';
 $LNG['ad_ally_delete_u'] = 'Excluir membro';
 $LNG['ad_ally_user_id'] = '(Inserir ID de Usário)';
 $LNG['ad_ally_succes'] = 'Sucesso';
-$LNG['ad_ally_not_exist3'] = 'O usário não existe ou não corresponde a lista de membros da Aliança!';
 $LNG['ad_ally_not_exist'] = 'A Aliança não existe!';
 $LNG['ad_ally_not_exist2'] = 'O membro não existe!';
+$LNG['ad_ally_not_exist3'] = 'O usário não existe ou não corresponde a lista de membros da Aliança!';
 
 //  Luas e Planetas
 $LNG['ad_pla_title'] = 'Luas e Planetas';
@@ -1167,9 +1167,10 @@ $LNG['log_log'] = 'Log';
 $LNG['log_menu'] = 'Menu de Log';
 $LNG['log_admin'] = 'Administrador';
 $LNG['log_time'] = 'Tempo';
-$LNG['log_target_user'] = 'Alterar Jogadores';
-$LNG['log_target_planet'] = 'Alterar Planeta';
-$LNG['log_target_universe'] = 'Alterar Universo';
+$LNG['log_target_user'] = 'Mudança de jogadores';
+$LNG['log_target_planet'] = 'Planetas alterados';
+$LNG['log_target_universe'] = 'Área de definição alterada';
+$LNG['log_target_alliance'] = 'Aliança alterada';
 $LNG['log_id'] = 'ID';
 $LNG['log_view'] = 'Ver';
 $LNG['log_info'] = 'Informação';
@@ -1179,6 +1180,8 @@ $LNG['log_new'] = 'Depois';
 $LNG['log_player'] = 'Jogador editado';
 $LNG['log_planet'] = 'Planeta editado';
 $LNG['log_settings'] = 'Opções editadas';
+$LNG['log_present'] = 'Apresentações distribuídas';
+$LNG['log_alliance'] = 'Alianças editadas';
 $LNG['log_cat'] = 'Escolha uma categoria de registro:';
 $LNG['log_no_data'] = 'Não há dados disponíveis no log!';
 $LNG['log_ssettings'] = 'Configuração de Jogo';
@@ -1186,7 +1189,6 @@ $LNG['log_usettings'] = 'Configuração de Universo';
 $LNG['log_statsettings'] = 'Opções de Estatisticas';
 $LNG['log_uni_short'] = 'Uni';
 $LNG['log_universe'] = 'Universo';
-$LNG['log_present'] = 'Distribuidos';
 
 
 // Giveaway

@@ -166,9 +166,9 @@ $LNG['ad_ally_delete'] = 'Allianz Löschen';
 $LNG['ad_ally_delete_u'] = 'User Löschen';
 $LNG['ad_ally_user_id'] = '(UserID Eingeben)';
 $LNG['ad_ally_succes'] = 'erfolgreich ausgeführt';
-$LNG['ad_ally_not_exist3'] = 'Der User existiert nicht oder ist kein Mitglied der Allianz';
 $LNG['ad_ally_not_exist'] = 'Die Allianz existiert nicht';
 $LNG['ad_ally_not_exist2'] = 'Der User existiert nicht';
+$LNG['ad_ally_not_exist3'] = 'Der User existiert nicht oder ist kein Mitglied der Allianz';
 
 //  PLANETAS Y LUNAS - PLANETS AND MOONS - PLANETEN UND MONDE
 $LNG['ad_pla_title'] = 'Planeten und/oder Monde bearbeiten';
@@ -1170,6 +1170,7 @@ $LNG['log_time'] = 'Zeitpunkt';
 $LNG['log_target_user'] = 'Ge&auml;nderter Spieler';
 $LNG['log_target_planet'] = 'Ge&auml;nderter Planet';
 $LNG['log_target_universe'] = 'Ge&auml;ndertes Universum';
+$LNG['log_target_alliance'] = 'Ge&auml;nderte Allianz';
 $LNG['log_id'] = 'ID';
 $LNG['log_view'] = 'Ansehen';
 $LNG['log_info'] = 'Information';
@@ -1180,6 +1181,7 @@ $LNG['log_player'] = 'Bearbeitete Spieler';
 $LNG['log_planet'] = 'Bearbeitete Planeten';
 $LNG['log_settings'] = 'Bearbeitete Einstellungen';
 $LNG['log_present'] = 'Verteilte Geschenke';
+$LNG['log_alliance'] = 'Bearbeitete Allianzen';
 $LNG['log_cat'] = 'Bitte w&auml;hle eine Log-Kategorie:';
 $LNG['log_no_data'] = 'Keine Log-Daten vorhanden!';
 $LNG['log_ssettings'] = 'Server Konfiguration';
