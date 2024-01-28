@@ -27,7 +27,11 @@ function ShowAccountEditorPage()
     $reslist =& Singleton()->reslist;
     $resource =& Singleton()->resource;
     $USER =& Singleton()->USER;
+    $db = Database::get();
     $template = new template();
+    $template->assign_vars([
+        'signalColors'      => $USER['signalColors'],
+    ]);
     if (!isset($_GET['edit'])) {
         $_GET['edit'] = '';
     }
@@ -40,39 +44,46 @@ function ShowAccountEditorPage()
 
             if ($_POST) {
                 if (!empty($id)) {
-                    $before = $GLOBALS['DATABASE']->getFirstRow(
-                        "SELECT `metal`,`crystal`,`deuterium`,`universe`  FROM "
-                        . PLANETS . " WHERE `id` = '" . $id . "';"
-                    );
+                    $sql = "SELECT `metal`, `crystal`, `deuterium` FROM %%PLANETS%%
+                        WHERE `id` = :planetID;";
+                    $beforeRess = $db->selectSingle($sql, [
+                        ':planetID' => $id,
+                    ]);
                 }
                 if (isset($_POST['add'])) {
                     if (!empty($id)) {
-                        $SQL = "UPDATE " . PLANETS . " SET ";
-                        $SQL .= "`metal` = `metal` + '" . $metal . "', ";
-                        $SQL .= "`crystal` = `crystal` + '" . $cristal . "', ";
-                        $SQL .= "`deuterium` = `deuterium` + '" . $deut . "' ";
-                        $SQL .= "WHERE ";
-                        $SQL .= "`id` = '" . $id . "' AND `universe` = '" . Universe::getEmulated() . "';";
-                        $GLOBALS['DATABASE']->query($SQL);
-                        $after = [
-                            'metal' => ($before['metal'] + $metal),
-                            'crystal' => ($before['crystal'] + $cristal),
-                            'deuterium' => ($before['deuterium'] + $deut),
+                        $sql = "UPDATE %%PLANETS%% SET `metal` = `metal` + :metal, `crystal` = `crystal` + :cristal,
+                            `deuterium` = `deuterium` + :deut
+                            WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, [
+                            ':metal' => $metal,
+                            ':cristal' => $cristal,
+                            ':deut' => $deut,
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]);
+                        $afterRess = [
+                            'metal' => ($beforeRess['metal'] + $metal),
+                            'crystal' => ($beforeRess['crystal'] + $cristal),
+                            'deuterium' => ($beforeRess['deuterium'] + $deut),
                         ];
                     }
                 } elseif (isset($_POST['delete'])) {
                     if (!empty($id)) {
-                        $SQL = "UPDATE " . PLANETS . " SET ";
-                        $SQL .= "`metal` = `metal` - '" . $metal . "', ";
-                        $SQL .= "`crystal` = `crystal` - '" . $cristal . "', ";
-                        $SQL .= "`deuterium` = `deuterium` - '" . $deut . "' ";
-                        $SQL .= "WHERE ";
-                        $SQL .= "`id` = '" . $id . "' AND `universe` = '" . Universe::getEmulated() . "';";
-                        $GLOBALS['DATABASE']->query($SQL);
-                        $after = [
-                            'metal' => ($before['metal'] - $metal),
-                            'crystal' => ($before['crystal'] - $cristal),
-                            'deuterium' => ($before['deuterium'] - $deut),
+                        $sql = "UPDATE %%PLANETS%% SET `metal` = `metal` - :metal, `crystal` = `crystal` - :cristal,
+                            `deuterium` = `deuterium` - :deut
+                            WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, [
+                            ':metal' => $metal,
+                            ':cristal' => $cristal,
+                            ':deut' => $deut,
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]);
+                        $afterRess = [
+                            'metal' => ($beforeRess['metal'] - $metal),
+                            'crystal' => ($beforeRess['crystal'] - $cristal),
+                            'deuterium' => ($beforeRess['deuterium'] - $deut),
                         ];
                     }
                 }
@@ -80,14 +91,11 @@ function ShowAccountEditorPage()
                 if (!empty($id)) {
                     $LOG = new Log(2);
                     $LOG->target = $id;
-                    $LOG->universe = $before['universe'];
-                    $LOG->old = $before;
-                    $LOG->new = $after;
+                    $LOG->universe = Universe::getEmulated();
+                    $LOG->old = $beforeRess;
+                    $LOG->new = $afterRess;
                     $LOG->save();
                 }
-                $template->assign_vars([
-                    'signalColors'      => $USER['signalColors'],
-                ]);
                 if (isset($_POST['add'])) {
                     $template->message($LNG['ad_add_res_sucess'], '?page=accounteditor&edit=resources');
                 } elseif (isset($_POST['delete'])) {
@@ -96,61 +104,67 @@ function ShowAccountEditorPage()
                 exit;
             }
 
-            $template->assign_vars([
-                'signalColors'      => $USER['signalColors'],
-            ]);
             $template->show('AccountEditorPageResources.tpl');
             break;
         case 'ships':
             if ($_POST) {
-                $before1 = $GLOBALS['DATABASE']->getFirstRow(
-                    "SELECT * FROM " . PLANETS . " WHERE `id` = '" . HTTP::_GP('id', 0) . "';"
-                );
-                $before = [];
-                $after = [];
+                $id = HTTP::_GP('id', 0);
                 foreach ($reslist['fleet'] as $ID) {
-                    $before[$ID] = $before1[$resource[$ID]];
+                    $fields[] = "`" . $resource[$ID] . "`";
                 }
+                $sql = "SELECT " + implode(", ", $fields) . " FROM %%PLANETS%% WHERE `id` = :planetID;";
+                $beforeShips = $db->selectSingle($sql, [
+                    ':planetID' => $id,
+                ]);
+                $afterShips = [];
                 if (isset($_POST['add'])) {
-                    $SQL = "UPDATE " . PLANETS . " SET ";
-                    $SQL .= "`eco_hash` = '', ";
+                    $QryUpdate = [];
+                    $sql = "UPDATE %%PLANETS%% SET `eco_hash` = '', ";
                     foreach ($reslist['fleet'] as $ID) {
-                        $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + '"
-                            . max(0, round(HTTP::_GP($resource[$ID], 0.0))) . "'";
-                        $after[$ID] = $before[$ID] + max(0, round(HTTP::_GP($resource[$ID], 0.0)));
+                        $count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
+                        if ($count > 0) {
+                            $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + :" . $resource[$ID];
+                            $params[':' . $resource[$ID]] = $count;
+                            $afterShips[$ID] = $beforeShips[$ID] + $count;
+                        }
                     }
-                    $SQL .= implode(", ", $QryUpdate);
-                    $SQL .= "WHERE ";
-                    $SQL .= "`id` = '" . HTTP::_GP('id', 0) . "' AND `universe` = '"
-                        . Universe::getEmulated() . "';";
-                    $GLOBALS['DATABASE']->query($SQL);
+                    if (!empty($QryUpdate)) {
+                        $sql .= implode(", ", $QryUpdate);
+                        $sql .= " WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, array_merge($params, [
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]));
+                    }
                 } elseif (isset($_POST['delete'])) {
-                    $SQL = "UPDATE " . PLANETS . " SET ";
-                    $SQL .= "`eco_hash` = '', ";
+                    $QryUpdate = [];
+                    $sql = "UPDATE %%PLANETS%% SET `eco_hash` = '', ";
                     foreach ($reslist['fleet'] as $ID) {
-                        $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - '"
-                            . max(0, round(HTTP::_GP($resource[$ID], 0.0))) . "'";
-                        $after[$ID] = max(
-                            $before[$ID] - max(0, round(HTTP::_GP($resource[$ID], 0.0))),
-                            0
-                        );
+                        $count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
+                        if ($count > 0) {
+                            $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - :" . $resource[$ID];
+                            $params[':' . $resource[$ID]] = $count;
+                            $afterShips[$ID] = max(0, $beforeShips[$ID] - $count);
+                        }
                     }
-                    $SQL .= implode(", ", $QryUpdate);
-                    $SQL .= "WHERE ";
-                    $SQL .= "`id` = '" . HTTP::_GP('id', 0) . "' AND `universe` = '"
-                        . Universe::getEmulated() . "';";
-                    $GLOBALS['DATABASE']->query($SQL);
+                    if (!empty($QryUpdate)) {
+                        $sql .= implode(", ", $QryUpdate);
+                        $sql .= " WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, array_merge($params, [
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]));
+                    }
                 }
 
-                $LOG = new Log(2);
-                $LOG->target = HTTP::_GP('id', 0);
-                $LOG->universe = $before1['universe'];
-                $LOG->old = $before;
-                $LOG->new = $after;
-                $LOG->save();
-                $template->assign_vars([
-                    'signalColors'      => $USER['signalColors'],
-                ]);
+                if (!empty($QryUpdate)) {
+                    $LOG = new Log(2);
+                    $LOG->target = $id;
+                    $LOG->universe = Universe::getEmulated();
+                    $LOG->old = $beforeShips;
+                    $LOG->new = $afterShips;
+                    $LOG->save();
+                }
                 if (isset($_POST['add'])) {
                     $template->message($LNG['ad_add_ships_sucess'], '?page=accounteditor&edit=ships');
                 } elseif (isset($_POST['delete'])) {
@@ -168,7 +182,6 @@ function ShowAccountEditorPage()
 
             $template->assign_vars([
                 'inputlist'     => $INPUT,
-                'signalColors'  => $USER['signalColors'],
             ]);
 
             $template->show('AccountEditorPageShips.tpl');
@@ -176,53 +189,63 @@ function ShowAccountEditorPage()
 
         case 'defenses':
             if ($_POST) {
-                $before1 = $GLOBALS['DATABASE']->getFirstRow(
-                    "SELECT * FROM " . PLANETS . " WHERE `id` = '" . HTTP::_GP('id', 0) . "';"
-                );
-                $before = [];
-                $after = [];
+                $id = HTTP::_GP('id', 0);
                 foreach ($reslist['defense'] as $ID) {
-                    $before[$ID] = $before1[$resource[$ID]];
+                    $fields[] = "`" . $resource[$ID] . "`";
                 }
+                $sql = "SELECT " + implode(", ", $fields) . " FROM %%PLANETS%% WHERE `id` = :planetID;";
+                $beforeDef = $db->selectSingle($sql, [
+                    ':planetID' => $id,
+                ]);
+                $afterDef = [];
                 if (isset($_POST['add'])) {
-                    $SQL = "UPDATE " . PLANETS . " SET ";
+                    $QryUpdate = [];
+                    $sql = "UPDATE %%PLANETS%% SET ";
                     foreach ($reslist['defense'] as $ID) {
-                        $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + '"
-                            . max(0, round(HTTP::_GP($resource[$ID], 0.0))) . "'";
-                        $after[$ID] = $before[$ID] + max(0, round(HTTP::_GP($resource[$ID], 0.0)));
+                        $count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
+                        if ($count > 0) {
+                            $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + :" . $resource[$ID];
+                            $params[':' . $resource[$ID]] = $count;
+                            $afterDef[$ID] = $beforeDef[$ID] + $count;
+                        }
                     }
-                    $SQL .= implode(", ", $QryUpdate);
-                    $SQL .= "WHERE ";
-                    $SQL .= "`id` = '" . HTTP::_GP('id', 0) . "' AND `universe` = '"
-                        . Universe::getEmulated() . "';";
-                    $GLOBALS['DATABASE']->query($SQL);
+                    if (!empty($QryUpdate)) {
+                        $sql .= implode(", ", $QryUpdate);
+                        $sql .= " WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, array_merge($params, [
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]));
+                    }
                 } elseif (isset($_POST['delete'])) {
-                    $SQL = "UPDATE " . PLANETS . " SET ";
+                    $QryUpdate = [];
+                    $sql = "UPDATE %%PLANETS%% SET ";
                     foreach ($reslist['defense'] as $ID) {
-                        $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - '"
-                            . max(0, round(HTTP::_GP($resource[$ID], 0.0))) . "'";
-                        $after[$ID] = max(
-                            $before[$ID] - max(0, round(HTTP::_GP($resource[$ID], 0.0))),
-                            0
-                        );
+                        $count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
+                        if ($count > 0) {
+                            $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - :" . $resource[$ID];
+                            $params[':' . $resource[$ID]] = $count;
+                            $afterDef[$ID] = max(0, $beforeDef[$ID] - $count);
+                        }
                     }
-                    $SQL .= implode(", ", $QryUpdate);
-                    $SQL .= "WHERE ";
-                    $SQL .= "`id` = '" . HTTP::_GP('id', 0) . "' AND `universe` = '"
-                        . Universe::getEmulated() . "';";
-                    $GLOBALS['DATABASE']->query($SQL);
-                    $Name = $LNG['log_nomoree'];
+                    if (!empty($QryUpdate)) {
+                        $sql .= implode(", ", $QryUpdate);
+                        $sql .= " WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, array_merge($params, [
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]));
+                    }
                 }
 
-                $LOG = new Log(2);
-                $LOG->target = HTTP::_GP('id', 0);
-                $LOG->universe = $before1['universe'];
-                $LOG->old = $before;
-                $LOG->new = $after;
-                $LOG->save();
-                $template->assign_vars([
-                    'signalColors'      => $USER['signalColors'],
-                ]);
+                if (!empty($QryUpdate)) {
+                    $LOG = new Log(2);
+                    $LOG->target = $id;
+                    $LOG->universe = Universe::getEmulated();
+                    $LOG->old = $beforeDef;
+                    $LOG->new = $afterDef;
+                    $LOG->save();
+                }
                 if (isset($_POST['add'])) {
                     $template->message($LNG['ad_add_defenses_success'], '?page=accounteditor&edit=defenses');
                 } elseif (isset($_POST['delete'])) {
@@ -237,7 +260,6 @@ function ShowAccountEditorPage()
 
             $template->assign_vars([
                 'inputlist' => $INPUT,
-                'signalColors'  => $USER['signalColors']
             ]);
 
             $template->show('AccountEditorPageDefenses.tpl');
@@ -246,61 +268,74 @@ function ShowAccountEditorPage()
 
         case 'buildings':
             if ($_POST) {
-                $PlanetData = $GLOBALS['DATABASE']->getFirstRow("SELECT * FROM " . PLANETS . " WHERE `id` = '"
-                    . HTTP::_GP('id', 0) . "';");
+                $id = HTTP::_GP('id', 0);
+                $sql = "SELECT * FROM %%PLANETS%% WHERE `id` = :planetID;";
+                $PlanetData = $db->selectSingle($sql, [
+                    ':planetID' => $id,
+                ]);
                 if (!isset($PlanetData)) {
                     $template->message($LNG['ad_add_not_exist'], '?page=accounteditor&edit=buildings');
                 }
-                $before = [];
-                $after = [];
+                $beforeBuildings = [];
+                $afterBuildings = [];
                 foreach ($reslist['allow'][$PlanetData['planet_type']] as $ID) {
-                    $before[$ID] = $PlanetData[$resource[$ID]];
+                    $beforeBuildings[$ID] = $PlanetData[$resource[$ID]];
                 }
                 if (isset($_POST['add'])) {
-                    $Fields = 0;
-                    $SQL = "UPDATE " . PLANETS . " SET ";
-                    $SQL .= "`eco_hash` = '', ";
-                    foreach ($reslist['allow'][$PlanetData['planet_type']] as $ID) {
-                        $Count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
-                        $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + '" . $Count . "'";
-                        $after[$ID] = $before[$ID] + $Count;
-                        $Fields += $Count;
-                    }
-                    $SQL .= implode(", ", $QryUpdate);
-                    $SQL .= ", `field_current` = `field_current` + '" . $Fields . "'";
-                    $SQL .= "WHERE ";
-                    $SQL .= "`id` = '" . HTTP::_GP('id', 0) . "' AND `universe` = '"
-                        . Universe::getEmulated() . "';";
-                    $GLOBALS['DATABASE']->query($SQL);
-                } elseif (isset($_POST['delete'])) {
-                    $Fields = 0;
                     $QryUpdate = [];
-
-                    $SQL = "UPDATE " . PLANETS . " SET ";
-                    $SQL .= "`eco_hash` = '', ";
+                    $fields = 0;
+                    $sql = "UPDATE %%PLANETS%% SET `eco_hash` = '', ";
                     foreach ($reslist['allow'][$PlanetData['planet_type']] as $ID) {
-                        $Count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
-                        $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - '" . $Count . "'";
-                        $after[$ID] = max($before[$ID] - $Count, 0);
-                        $Fields += $Count;
+                        $count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
+                        if ($count > 0) {
+                            $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + :" . $resource[$ID];
+                            $params[':' . $resource[$ID]] = $count;
+                            $afterBuildings[$ID] = $beforeBuildings[$ID] + $count;
+                            $fields += $count;
+                        }
                     }
-                    $SQL .= implode(", ", $QryUpdate);
-                    $SQL .= ", `field_current` = `field_current` - '" . $Fields . "'";
-                    $SQL .= "WHERE ";
-                    $SQL .= "`id` = '" . HTTP::_GP('id', 0) . "' AND `universe` = '"
-                        . Universe::getEmulated() . "';";
-                    $GLOBALS['DATABASE']->query($SQL);
+                    if (!empty($QryUpdate)) {
+                        $sql .= implode(", ", $QryUpdate);
+                        $sql .= ", `field_current` = `field_current` + :fields WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, array_merge($params, [
+                            ':fields' => $fields,
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]));
+                    }
+                } elseif (isset($_POST['delete'])) {
+                    $QryUpdate = [];
+                    $fields = 0;
+                    $sql = "UPDATE %%PLANETS%% SET `eco_hash` = '', ";
+                    foreach ($reslist['allow'][$PlanetData['planet_type']] as $ID) {
+                        $count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
+                        if ($count > 0) {
+                            $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - :" . $resource[$ID];
+                            $params[':' . $resource[$ID]] = $count;
+                            $afterBuildings[$ID] = max($beforeBuildings[$ID] - $count, 0);
+                            $fields += $count;
+                        }
+                    }
+                    if (!empty($QryUpdate)) {
+                        $sql .= implode(", ", $QryUpdate);
+                        $sql .= ", `field_current` = `field_current` - :fields WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, array_merge($params, [
+                            ':fields' => $fields,
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]));
+                    }
                 }
 
-                $LOG = new Log(2);
-                $LOG->target = HTTP::_GP('id', 0);
-                $LOG->universe = Universe::getEmulated();
-                $LOG->old = $before;
-                $LOG->new = $after;
-                $LOG->save();
-                $template->assign_vars([
-                    'signalColors'      => $USER['signalColors'],
-                ]);
+                if (!empty($QryUpdate)) {
+                    $LOG = new Log(2);
+                    $LOG->target = $id;
+                    $LOG->universe = Universe::getEmulated();
+                    $LOG->old = $beforeBuildings;
+                    $LOG->new = $afterBuildings;
+                    $LOG->save();
+                }
+
                 if (isset($_POST['add'])) {
                     $template->message($LNG['ad_add_build_success'], '?page=accounteditor&edit=buildings');
                 } elseif (isset($_POST['delete'])) {
@@ -315,7 +350,6 @@ function ShowAccountEditorPage()
 
             $template->assign_vars([
                 'inputlist' => $INPUT,
-                'signalColors'  => $USER['signalColors']
             ]);
 
             $template->show('AccountEditorPageBuilds.tpl');
@@ -323,52 +357,63 @@ function ShowAccountEditorPage()
 
         case 'researchs':
             if ($_POST) {
-                $before1 = $GLOBALS['DATABASE']->getFirstRow(
-                    "SELECT * FROM " . USERS . " WHERE `id` = '" . HTTP::_GP('id', 0) . "';"
-                );
-                $before = [];
-                $after = [];
+                $id = HTTP::_GP('id', 0);
                 foreach ($reslist['tech'] as $ID) {
-                    $before[$ID] = $before1[$resource[$ID]];
+                    $fields[] = "`" . $resource[$ID] . "`";
                 }
+                $sql = "SELECT " + implode(", ", $fields) . " FROM %%USERS%% WHERE `id` = :userID;";
+                $beforeResearch = $db->selectSingle($sql, [
+                    ':userID' => $id,
+                ]);
+                $afterResearch = [];
                 if (isset($_POST['add'])) {
-                    $SQL = "UPDATE " . USERS . " SET ";
+                    $QryUpdate = [];
+                    $sql = "UPDATE %%USERS%% SET ";
                     foreach ($reslist['tech'] as $ID) {
-                        $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + '"
-                            . max(0, round(HTTP::_GP($resource[$ID], 0.0))) . "'";
-                        $after[$ID] = $before[$ID] + max(0, round(HTTP::_GP($resource[$ID], 0.0)));
+                        $count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
+                        if ($count > 0) {
+                            $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` + :" . $resource[$ID];
+                            $params[':' . $resource[$ID]] = $count;
+                            $afterResearch[$ID] = $beforeResearch[$ID] + $count;
+                        }
                     }
-                    $SQL .= implode(", ", $QryUpdate);
-                    $SQL .= "WHERE ";
-                    $SQL .= "`id` = '" . HTTP::_GP('id', 0) . "' AND `universe` = '"
-                        . Universe::getEmulated() . "';";
-                    $GLOBALS['DATABASE']->query($SQL);
+                    if (!empty($QryUpdate)) {
+                        $sql .= implode(", ", $QryUpdate);
+                        $sql .= " WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, array_merge($params, [
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]));
+                    }
                 } elseif (isset($_POST['delete'])) {
-                    $SQL = "UPDATE " . USERS . " SET ";
+                    $QryUpdate = [];
+                    $sql = "UPDATE %%USERS%% SET ";
                     foreach ($reslist['tech'] as $ID) {
-                        $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - '"
-                            . max(0, round(HTTP::_GP($resource[$ID], 0.0))) . "'";
-                        $after[$ID] = max(
-                            $before[$ID] - max(0, round(HTTP::_GP($resource[$ID], 0.0))),
-                            0
-                        );
+                        $count = max(0, round(HTTP::_GP($resource[$ID], 0.0)));
+                        if ($count > 0) {
+                            $QryUpdate[] = "`" . $resource[$ID] . "` = `" . $resource[$ID] . "` - :" . $resource[$ID];
+                            $params[':' . $resource[$ID]] = $count;
+                            $afterResearch[$ID] = max(0, $beforeResearch[$ID] - $count);
+                        }
                     }
-                    $SQL .= implode(", ", $QryUpdate);
-                    $SQL .= "WHERE ";
-                    $SQL .= "`id` = '" . HTTP::_GP('id', 0) . "' AND `universe` = '"
-                        . Universe::getEmulated() . "';";
-                    $GLOBALS['DATABASE']->query($SQL);
+                    if (!empty($QryUpdate)) {
+                        $sql .= implode(", ", $QryUpdate);
+                        $sql .= " WHERE `id` = :id AND `universe` = :universe;";
+                        $db->update($sql, array_merge($params, [
+                            ':id' => $id,
+                            ':universe' => Universe::getEmulated(),
+                        ]));
+                    }
                 }
 
-                $LOG = new Log(1);
-                $LOG->target = HTTP::_GP('id', 0);
-                $LOG->universe = $before1['universe'];
-                $LOG->old = $before;
-                $LOG->new = $after;
-                $LOG->save();
-                $template->assign_vars([
-                    'signalColors'      => $USER['signalColors'],
-                ]);
+                if (!empty($QryUpdate)) {
+                    $LOG = new Log(1);
+                    $LOG->target = $id;
+                    $LOG->universe = Universe::getEmulated();
+                    $LOG->old = $beforeResearch;
+                    $LOG->new = $afterResearch;
+                    $LOG->save();
+                }
                 if (isset($_POST['add'])) {
                     $template->message($LNG['ad_add_tech_success'], '?page=accounteditor&edit=researchs');
                 } elseif (isset($_POST['delete'])) {
@@ -383,7 +428,6 @@ function ShowAccountEditorPage()
 
             $template->assign_vars([
                 'inputlist'     => $INPUT,
-                'signalColors'  => $USER['signalColors']
             ]);
 
             $template->show('AccountEditorPageResearch.tpl');
@@ -397,70 +441,76 @@ function ShowAccountEditorPage()
                 $email_2 = HTTP::_GP('email_2', '');
                 $vacation = HTTP::_GP('vacation', '');
 
-                $before = $GLOBALS['DATABASE']->getFirstRow(
-                    "SELECT `username`,`email`,`email_2`,`password`,`urlaubs_modus`,`urlaubs_until`,`universe` FROM " . USERS
-                    . " WHERE `id` = '" . HTTP::_GP('id', 0) . "';"
-                );
-                $after = [];
-
-                $PersonalQuery = "UPDATE " . USERS . " SET ";
+                $sql = "SELECT `username`,`email`,`email_2`,`password`,`urlaubs_modus`,`urlaubs_until`,`universe`
+                    FROM %%USERS%% WHERE `id` = :userID;";
+                $beforePersonal = $db->selectSingle($sql, [
+                    ':userID' => $id,
+                ]);
+                $afterPersonal = $beforePersonal;
+                $QryUpdate = [];
+                $params = [];
 
                 if (!empty($username) && $id != ROOT_USER) {
-                    $PersonalQuery .= "`username` = '" . $GLOBALS['DATABASE']->sql_escape($username) . "', ";
-                    $after['username'] = $username;
+                    $QryUpdate[] = "`username` = :username";
+                    $param[':username'] = $username;
+                    $afterPersonal['username'] = $username;
                 }
 
                 if (!empty($email) && $id != ROOT_USER) {
-                    $PersonalQuery .= "`email` = '" . $GLOBALS['DATABASE']->sql_escape($email) . "', ";
-                    $after['email'] = $email;
+                    $QryUpdate[] = "`email` = :email";
+                    $param[':email'] = $email;
+                    $afterPersonal['email'] = $email;
                 }
 
                 if (!empty($email_2) && $id != ROOT_USER) {
-                    $PersonalQuery .= "`email_2` = '" . $GLOBALS['DATABASE']->sql_escape($email_2) . "', ";
-                    $after['email_2'] = $email_2;
+                    $QryUpdate[] = "`email_2` = :email_2";
+                    $param[':email_2'] = $email_2;
+                    $afterPersonal['email_2'] = $email_2;
                 }
 
                 if (!empty($password) && $id != ROOT_USER) {
-                    $PersonalQuery .= "`password` = '"
-                        . $GLOBALS['DATABASE']->sql_escape(PlayerUtil::cryptPassword($password)) . "', ";
-                    $after['password'] = (PlayerUtil::cryptPassword($password) != $before['password']) ? 'CHANGED' : '';
+                    $QryUpdate[] = "`password` = :password";
+                    $param[':password'] = PlayerUtil::cryptPassword($password);
+                    $afterPersonal['password'] = (PlayerUtil::cryptPassword($password) != $beforePersonal['password']) ? 'CHANGED' : '';
+                } else {
+                    $afterPersonal['password'] = '';
                 }
-                $before['password'] = '';
-
-                $Answer = 0;
-                $TimeAns = 0;
+                $beforePersonal['password'] = '';
 
                 if ($vacation == 'yes') {
-                    $Answer = 1;
-                    $after['urlaubs_modus'] = 1;
+                    $QryUpdate[] = "`urlaubs_modus` = :urlaubs_modus";
+                    $param[':urlaubs_modus'] = 1;
+                    $afterPersonal['urlaubs_modus'] = 1;
                     $d = HTTP::_GP('d', 0);
                     $h = HTTP::_GP('h', 0);
                     $m = HTTP::_GP('m', 0);
                     $s = HTTP::_GP('s', 0);
                     $TimeAns = TIMESTAMP + $d * 86400 + $h * 3600 + $m * 60 + $s;
-                    $after['urlaubs_until'] = $TimeAns;
+                    $QryUpdate[] = "`urlaubs_until` = :urlaubs_until";
+                    $param[':urlaubs_until'] = $TimeAns;
+                    $afterPersonal['urlaubs_until'] = $TimeAns;
                 }
 
-                $PersonalQuery .= "`urlaubs_modus` = '" . $Answer . "', `urlaubs_until` = '" . $TimeAns . "' ";
-                $PersonalQuery .= "WHERE `id` = '" . $id . "' AND `universe` = '" . Universe::getEmulated() . "'";
-                $GLOBALS['DATABASE']->query($PersonalQuery);
+                $sql = "UPDATE %%USERS%% SET ";
+                $sql .= implode(", ", $QryUpdate);
+                $sql .= " WHERE `id` = :id AND `universe` = :universe;";
+                $db->update($sql, array_merge($params, [
+                    ':id' => $id,
+                    ':universe' => Universe::getEmulated(),
+                ]));
 
                 $LOG = new Log(1);
                 $LOG->target = $id;
-                $LOG->universe = $before['universe'];
-                $LOG->old = $before;
-                $LOG->new = $after;
+                $LOG->universe = Universe::getEmulated();
+                $LOG->old = $beforePersonal;
+                $LOG->new = $afterPersonal;
                 $LOG->save();
-                $template->assign_vars([
-                    'signalColors'      => $USER['signalColors'],
-                ]);
                 $template->message($LNG['ad_personal_succes'], '?page=accounteditor&edit=personal');
                 exit;
             }
 
             $template->assign_vars([
                 'Selector'      => ['' => $LNG['select_option'], 'yes' => $LNG['one_is_yes_1'], 'no' => $LNG['one_is_yes_0']],
-                'signalColors'  => $USER['signalColors']
             ]);
 
             $template->show('AccountEditorPagePersonal.tpl');
@@ -482,85 +532,91 @@ function ShowAccountEditorPage()
                 $system = HTTP::_GP('s', 0);
                 $planet = HTTP::_GP('p', 0);
 
+                $sql = "SELECT * FROM %%PLANETS%% WHERE `id` = :planetID AND `universe` = :universe;";
+                $beforePlanet = $db->selectSingle($sql, [
+                    ':planetID' => $id,
+                    ':universe' => Universe::getEmulated(),
+                ]);
+
+                if (!isset($beforePlanet)) {
+                    $template->message($LNG['ad_pla_error_planets2'], '?page=accounteditor&edit=planets');
+                    exit;
+                }
+
+                $afterPlanet = $beforePlanet;
+                $QryUpdate = [];
+                $params = [];
+
                 if (!empty($name)) {
-                    $GLOBALS['DATABASE']->query(
-                        "UPDATE " . PLANETS . " SET `name` = '" . $GLOBALS['DATABASE']->sql_escape($name)
-                        . "' WHERE `id` = '" . $id . "' AND `universe` = '" . Universe::getEmulated() . "';"
-                    );
+                    $QryUpdate[] = "`name` = :name";
+                    $params[':name'] = $name;
+                    $afterPlanet['name'] = $name;
                 }
 
                 if ($buildings == 'on') {
                     foreach ($reslist['build'] as $ID) {
-                        $BUILD[] = "`" . $resource[$ID] . "` = '0'";
+                        $QryUpdate[] = "`" . $resource[$ID] . "` = '0'";
+                        $afterPlanet[$ID] = 0;
                     }
-
-                    $GLOBALS['DATABASE']->query(
-                        "UPDATE " . PLANETS . " SET " . implode(', ', $BUILD) . " WHERE `id` = '" . $id
-                        . "' AND `universe` = '" . Universe::getEmulated() . "';"
-                    );
                 }
 
                 if ($ships == 'on') {
                     foreach ($reslist['fleet'] as $ID) {
-                        $SHIPS[] = "`" . $resource[$ID] . "` = '0'";
+                        $QryUpdate[] = "`" . $resource[$ID] . "` = '0'";
+                        $afterPlanet[$ID] = 0;
                     }
-
-                    $GLOBALS['DATABASE']->query(
-                        "UPDATE " . PLANETS . " SET " . implode(', ', $SHIPS) . " WHERE `id` = '" . $id
-                        . "' AND `universe` = '" . Universe::getEmulated() . "';"
-                    );
                 }
 
                 if ($defenses == 'on') {
                     foreach ($reslist['defense'] as $ID) {
-                        $DEFS[] = "`" . $resource[$ID] . "` = '0'";
+                        $QryUpdate[] = "`" . $resource[$ID] . "` = '0'";
+                        $afterPlanet[$ID] = 0;
                     }
-
-                    $GLOBALS['DATABASE']->query(
-                        "UPDATE " . PLANETS . " SET " . implode(', ', $DEFS) . " WHERE `id` = '" . $id
-                        . "' AND `universe` = '" . Universe::getEmulated() . "';"
-                    );
                 }
 
                 if ($c_hangar == 'on') {
-                    $GLOBALS['DATABASE']->query(
-                        "UPDATE " . PLANETS . " SET `b_hangar` = '0', `b_hangar_plus` = '0', `b_hangar_id` = ''"
-                        . " WHERE `id` = '" . $id . "' AND `universe` = '" . Universe::getEmulated() . "';"
-                    );
+                    $QryUpdate[] = "`b_hangar` = 0";
+                    $QryUpdate[] = "`b_hangar_plus` = 0";
+                    $QryUpdate[] = "`b_hangar_id` = ''";
+                    $afterPlanet['b_hangar'] = 0;
+                    $afterPlanet['b_hangar_plus'] = 0;
+                    $afterPlanet['b_hangar_id'] = '';
                 }
 
                 if ($c_buildings == 'on') {
-                    $GLOBALS['DATABASE']->query(
-                        "UPDATE " . PLANETS . " SET `b_building` = '0', `b_building_id` = '' WHERE `id` = '" . $id
-                        . "' AND `universe` = '" . Universe::getEmulated() . "';"
-                    );
+                    $QryUpdate[] = "`b_building` = 0";
+                    $QryUpdate[] = "`b_building_id` = ''";
+                    $afterPlanet['b_building'] = 0;
+                    $afterPlanet['b_building_id'] = '';
                 }
 
                 if (!empty($diameter)) {
-                    $GLOBALS['DATABASE']->query(
-                        "UPDATE " . PLANETS . " SET `diameter` = '" . $diameter . "' WHERE `id` = '" . $id
-                        . "' AND `universe` = '" . Universe::getEmulated() . "';"
-                    );
+                    $QryUpdate[] = "`diameter` = :diameter";
+                    $params[':diameter'] = $diameter;
+                    $afterPlanet['diameter'] = $diameter;
                 }
 
                 if (!empty($fields)) {
-                    $GLOBALS['DATABASE']->query(
-                        "UPDATE " . PLANETS . " SET `field_max` = '" . $fields . "' WHERE `id` = '" . $id
-                        . "' AND `universe` = '" . Universe::getEmulated() . "';"
-                    );
+                    $QryUpdate[] = "`field_max` = :field_max";
+                    $params[':field_max'] = $fields;
+                    $afterPlanet['field_max'] = $fields;
                 }
 
+                $QryUpdate2 = [];
+                $params2 = [];
+                $beforePlanet2 = [];
+                $afterPlanet2 = [];
+                $QryUpdate3 = [];
+                $params3 = [];
+                $beforePlanet3 = [];
+                $afterPlanet3 = [];
                 if (
                     $change_pos == 'on' && $galaxy > 0 && $system > 0 && $planet > 0
                     && $galaxy <= Config::get(Universe::getEmulated())->max_galaxy
                     && $system <= Config::get(Universe::getEmulated())->max_system
                     && $planet <= Config::get(Universe::getEmulated())->max_planets
                 ) {
-                    $P =   $GLOBALS['DATABASE']->getFirstRow(
-                        "SELECT galaxy,system,planet,planet_type FROM " . PLANETS . " WHERE `id` = '" . $id
-                        . "' AND `universe` = '" . Universe::getEmulated() . "';"
-                    );
-                    if ($P['planet_type'] == '1') {
+                    if ($beforePlanet['planet_type'] == '1') {
                         if (
                             !PlayerUtil::checkPosition(
                                 Universe::getEmulated(),
@@ -573,18 +629,42 @@ function ShowAccountEditorPage()
                                 $galaxy,
                                 $system,
                                 $planet,
-                                $P['planet_type']
+                                $beforePlanet['planet_type']
                             )
                         ) {
                             $template->message($LNG['ad_pla_error_planets3'], '?page=accounteditor&edit=planets');
                             exit;
                         }
 
-                        $GLOBALS['DATABASE']->query(
-                            "UPDATE " . PLANETS . " SET `galaxy` = '" . $galaxy . "', `system` = '" . $system
-                            . "', `planet` = '" . $planet . "' WHERE `id` = '" . $id . "' AND `universe` = '"
-                            . Universe::getEmulated() . "';"
-                        );
+                        $QryUpdate[] = "`galaxy` = :galaxy";
+                        $QryUpdate[] = "`system` = :system";
+                        $QryUpdate[] = "`planet` = :planet";
+                        $params[':galaxy'] = $galaxy;
+                        $params[':system'] = $system;
+                        $params[':planet'] = $planet;
+                        $afterPlanet['galaxy'] = $galaxy;
+                        $afterPlanet['system'] = $system;
+                        $afterPlanet['planet'] = $planet;
+
+                        if ($beforePlanet['id_luna'] > 0) {
+                            $sql = "SELECT * FROM %%PLANETS%%
+                                WHERE `id` = :id_luna AND `planet_type` = '3';";
+                            $beforePlanet2 = $db->selectSingle($sql, [
+                                ':id_luna' => $beforePlanet['id_luna'],
+                            ]);
+                            $afterPlanet2 = $beforePlanet2;
+
+                            $QryUpdate2[] = "`galaxy` = :galaxy";
+                            $QryUpdate2[] = "`system` = :system";
+                            $QryUpdate2[] = "`planet` = :planet";
+                            $params2[':galaxy'] = $galaxy;
+                            $params2[':system'] = $system;
+                            $params2[':planet'] = $planet;
+                            $params2[':id'] = $beforePlanet2['id'];
+                            $afterPlanet2['galaxy'] = $galaxy;
+                            $afterPlanet2['system'] = $system;
+                            $afterPlanet2['planet'] = $planet;
+                        }
                     } else {
                         if (
                             !PlayerUtil::checkPosition(
@@ -605,57 +685,107 @@ function ShowAccountEditorPage()
                                 $galaxy,
                                 $system,
                                 $planet,
-                                $P['planet_type']
+                                $beforePlanet['planet_type']
                             )
                         ) {
-                            $template->assign_vars([
-                                'signalColors'      => $USER['signalColors'],
-                            ]);
                             $template->message($LNG['ad_pla_error_planets5'], '?page=accounteditor&edit=planets');
                             exit;
                         }
 
-                        $Target = $GLOBALS['DATABASE']->getFirstRow(
-                            "SELECT id_luna FROM " . PLANETS . " WHERE `galaxy` = '" . $galaxy . "' AND `system` = '"
-                            . $system . "' AND `planet` = '" . $planet . "' AND `planet_type` = '1';"
-                        );
+                        $sql = "SELECT * FROM %%PLANETS%%
+                            WHERE `galaxy` = :galaxy AND `system` = :system
+                            AND `planet` = :planet AND `planet_type` = '1'
+                            AND `universe` = :universe;";
+                        $beforePlanet2 = $db->selectSingle($sql, [
+                            ':galaxy' => $galaxy,
+                            ':system' => $system,
+                            ':planet' => $planet,
+                            ':universe' => Universe::getEmulated(),
+                        ]);
+                        $afterPlanet2 = $beforePlanet2;
 
-                        if ($Target['id_luna'] != '0') {
+                        if ($beforePlanet2['id_luna'] > 0) {
                             $template->message($LNG['ad_pla_error_planets4'], '?page=accounteditor&edit=planets');
                             exit;
                         }
 
-                        $GLOBALS['DATABASE']->multi_query(
-                            "UPDATE " . PLANETS . " SET `id_luna` = '0' WHERE `galaxy` = '" . $P['galaxy']
-                            . "' AND `system` = '" . $P['system'] . "' AND `planet` = '" . $P['planet']
-                            . "' AND `planet_type` = '1';UPDATE " . PLANETS . " SET `id_luna` = '" . $id
-                            . "'  WHERE `galaxy` = '" . $galaxy . "' AND `system` = '" . $system . "' AND `planet` = '"
-                            . $planet . "' AND planet_type = '1';UPDATE " . PLANETS . " SET `galaxy` = '" . $galaxy
-                            . "', `system` = '" . $system . "', `planet` = '" . $planet . "' WHERE `id` = '" . $id
-                            . "' AND `universe` = '" . Universe::getEmulated() . "';"
-                        );
+                        $QryUpdate[] = "`galaxy` = :galaxy";
+                        $QryUpdate[] = "`system` = :system";
+                        $QryUpdate[] = "`planet` = :planet";
+                        $params[':galaxy'] = $galaxy;
+                        $params[':system'] = $system;
+                        $params[':planet'] = $planet;
+                        $afterPlanet['galaxy'] = $galaxy;
+                        $afterPlanet['system'] = $system;
+                        $afterPlanet['planet'] = $planet;
 
-                        $QMOON2 = $GLOBALS['DATABASE']->getFirstRow(
-                            "SELECT id_owner FROM " . PLANETS . " WHERE `galaxy` = '" . $galaxy . "' AND `system` = '"
-                            . $system . "' AND `planet` = '" . $planet . "';"
-                        );
-                        $GLOBALS['DATABASE']->query(
-                            "UPDATE " . PLANETS . " SET `galaxy` = '" . $galaxy . "', `system` = '" . $system
-                            . "', `planet` = '" . $planet . "', `id_owner` = '" . $QMOON2['id_owner']
-                            . "' WHERE `id` = '" . $id . "' AND `universe` = '" . Universe::getEmulated()
-                            . "' AND `planet_type` = '3';"
-                        );
+                        $QryUpdate2[] = "`id_luna` = :id_luna";
+                        $params2[':id_luna'] = $beforePlanet['id'];
+                        $params2[':id'] = $beforePlanet2['id'];
+                        $afterPlanet2['id_luna'] = $beforePlanet['id'];
+
+                        $sql = "SELECT * FROM %%PLANETS%%
+                            WHERE `id_luna` = :id AND `planet_type` = '1';";
+                        $beforePlanet3 = $db->selectSingle($sql, [
+                            ':id' => $beforePlanet['id'],
+                        ]);
+                        $afterPlanet3 = $beforePlanet3;
+
+                        $QryUpdate3[] = "`id_luna` = :id_luna";
+                        $params3[':id_luna'] = 0;
+                        $params3[':id'] = $beforePlanet3['id'];
+                        $afterPlanet3['id_luna'] = 0;
                     }
                 }
-                $template->assign_vars([
-                    'signalColors'      => $USER['signalColors'],
-                ]);
+
+                $sql = "UPDATE %%PLANETS%% SET ";
+                $sql .= implode(", ", $QryUpdate);
+                $sql .= " WHERE `id` = :id AND `universe` = :universe;";
+                $db->update($sql, array_merge($params, [
+                    ':id' => $id,
+                    ':universe' => Universe::getEmulated(),
+                ]));
+
+                $LOG = new Log(2);
+                $LOG->target = $id;
+                $LOG->universe = Universe::getEmulated();
+                $LOG->old = $beforePlanet;
+                $LOG->new = $afterPlanet;
+                $LOG->save();
+                if (isset($beforePlanet2)) {
+                    $sql = "UPDATE %%PLANETS%% SET ";
+                    $sql .= implode(", ", $QryUpdate2);
+                    $sql .= " WHERE `id` = :id AND `universe` = :universe;";
+                    $db->update($sql, array_merge($params2, [
+                        ':universe' => Universe::getEmulated(),
+                    ]));
+
+                    $LOG = new Log(2);
+                    $LOG->target = $beforePlanet2['id'];
+                    $LOG->universe = Universe::getEmulated();
+                    $LOG->old = $beforePlanet2;
+                    $LOG->new = $afterPlanet2;
+                    $LOG->save();
+                }
+                if (isset($beforePlanet3)) {
+                    $sql = "UPDATE %%PLANETS%% SET ";
+                    $sql .= implode(", ", $QryUpdate3);
+                    $sql .= " WHERE `id` = :id AND `universe` = :universe;";
+                    $db->update($sql, array_merge($params3, [
+                        ':universe' => Universe::getEmulated(),
+                    ]));
+
+                    $LOG = new Log(2);
+                    $LOG->target = $beforePlanet3['id'];
+                    $LOG->universe = Universe::getEmulated();
+                    $LOG->old = $beforePlanet3;
+                    $LOG->new = $afterPlanet3;
+                    $LOG->save();
+                }
+
                 $template->message($LNG['ad_pla_succes'], '?page=accounteditor&edit=planets');
                 exit;
             }
-            $template->assign_vars([
-                'signalColors'      => $USER['signalColors'],
-            ]);
             $template->show('AccountEditorPagePlanets.tpl');
             break;
 
@@ -671,88 +801,217 @@ function ShowAccountEditorPage()
                 $delete = HTTP::_GP('delete', '');
                 $delete_u = HTTP::_GP('delete_u', '');
 
-                $QueryF = $GLOBALS['DATABASE']->getFirstRow(
-                    "SELECT * FROM " . ALLIANCE . " WHERE `id` = '" . $id . "' AND `ally_universe` = '"
-                    . Universe::getEmulated() . "';"
-                );
+                $QryUpdate = [];
+                $params = [];
 
-                if (!empty($name)) {
-                    $GLOBALS['DATABASE']->query(
-                        "UPDATE " . ALLIANCE . " SET `ally_name` = '" . $name . "' WHERE `id` = '" . $id
-                        . "' AND `ally_universe` = '" . Universe::getEmulated() . "';"
-                    );
-                }
+                $sql = "SELECT * FROM %%ALLIANCE%% WHERE `id` = :allyId AND `ally_universe` = :universe;";
+                $beforeAlliance = $db->selectSingle($sql, [
+                    ':allyId' => $id,
+                    ':universe' => Universe::getEmulated(),
+                ]);
 
-                if (!empty($tag)) {
-                    $GLOBALS['DATABASE']->query(
-                        "UPDATE " . ALLIANCE . " SET `ally_tag` = '" . $tag . "' WHERE `id` = '" . $id
-                        . "' AND `ally_universe` = '" . Universe::getEmulated() . "';"
-                    );
-                }
-
-                $QueryF2 = $GLOBALS['DATABASE']->getFirstRow(
-                    "SELECT ally_id FROM " . USERS . " WHERE `id` = '" . $changeleader . "';"
-                );
-                $GLOBALS['DATABASE']->multi_query(
-                    "UPDATE " . ALLIANCE . " SET `ally_owner` = '" . $changeleader . "' WHERE `id` = '" . $id
-                    . "' AND `ally_universe` = '" . Universe::getEmulated() . "';UPDATE " . USERS
-                    . " SET `ally_rank_id` = '0' WHERE `id` = '" . $changeleader . "';"
-                );
-
-                if (!empty($externo)) {
-                    $GLOBALS['DATABASE']->query(
-                        "UPDATE " . ALLIANCE . " SET `ally_description` = '" . $externo . "' WHERE `id` = '" . $id
-                        . "' AND `ally_universe` = '" . Universe::getEmulated() . "';"
-                    );
-                }
-
-                if (!empty($interno)) {
-                    $GLOBALS['DATABASE']->query(
-                        "UPDATE " . ALLIANCE . " SET `ally_text` = '" . $interno . "' WHERE `id` = '" . $id
-                        . "' AND `ally_universe` = '" . Universe::getEmulated() . "';"
-                    );
-                }
-
-                if (!empty($solicitud)) {
-                    $GLOBALS['DATABASE']->query(
-                        "UPDATE " . ALLIANCE . " SET `ally_request` = '" . $solicitud . "' WHERE `id` = '" . $id
-                        . "' AND `ally_universe` = '" . Universe::getEmulated() . "';"
-                    );
+                if (!isset($beforeAlliance)) {
+                    $template->message($LNG['ad_ally_not_exist'], '?page=accounteditor&edit=alliances');
+                    exit;
                 }
 
                 if ($delete == 'on') {
-                    $GLOBALS['DATABASE']->multi_query(
-                        "DELETE FROM " . ALLIANCE . " WHERE `id` = '" . $id . "' AND `ally_universe` = '"
-                        . Universe::getEmulated() . "';UPDATE " . USERS . " SET `ally_id` = '0', `ally_rank_id` = '0',"
-                        . " `ally_register_time` = '0' WHERE `ally_id` = '" . $id . "';"
-                    );
+                    $sql = "SELECT `id`, `username`, `ally_id`, `ally_register_time`, `ally_rank_id`
+                        FROM %%USERS%% WHERE `ally_id` = :allyId AND `universe` = :universe;";
+                    $beforeMembers = $db->select($sql, [
+                        ':allyId' => $id,
+                        ':universe' => Universe::getEmulated(),
+                    ]);
+                    foreach ($beforeMembers as $member) {
+                        $afterMember = $member;
+                        $sql = "UPDATE %%USERS%% SET `ally_id` = '0', `ally_rank_id` = '0',
+                            `ally_register_time` = '0' WHERE `id` = :userId;";
+                        $db->update($sql, [
+                            ':id' => $member['id'],
+                        ]);
+                        $afterMember['ally_id'] = 0;
+                        $afterMember['ally_rank_id'] = 0;
+                        $afterMember['ally_register_time'] = 0;
+                        $beforeAlliance['USERS'][$member['id']] = $member;
+                        $afterAlliance['USERS'][$member['id']] = $afterMember;
+                    }
+
+                    $sql = "SELECT `id_owner`, `id_ally`, `stat_type` FROM %%STATPOINTS%% WHERE `id_ally` = :AllianceID;";
+                    $beforeStats = $db->select($sql, [
+                        ':AllianceID' => $id,
+                    ]);
+                    foreach ($beforeStats as $stats) {
+                        $afterStats = $beforeStats;
+                        $afterStats['id_ally'] = 0;
+                        $beforeAlliance['STATPOINTS'][1][] = $stats;
+                        $afterAlliance['STATPOINTS'][1][] = $afterStats;
+                    }
+                    $sql = "UPDATE %%STATPOINTS%% SET id_ally = '0' WHERE id_ally = :AllianceID;";
+                    $db->update($sql, [
+                        ':AllianceID' => $id,
+                    ]);
+
+                    $sql = "SELECT * FROM %%STATPOINTS%% WHERE `id_owner` = :AllianceID AND stat_type = 2;";
+                    $beforeStats = $db->selectSingle($sql, [
+                        ':AllianceID' => $id,
+                    ]);
+                    $sql = "DELETE FROM %%STATPOINTS%% WHERE id_owner = :AllianceID AND stat_type = 2;";
+                    $db->delete($sql, [
+                        ':AllianceID' => $id,
+                    ]);
+                    $beforeAlliance['STATPOINTS'][2] = $beforeStats;
+                    $afterAlliance['STATPOINTS'][2] = [];
+
+                    $sql = "DELETE FROM %%ALLIANCE%% WHERE `id` = :AllianceID;";
+                    $db->delete($sql, [
+                        ':AllianceID' => $id,
+                    ]);
+
+                    $sql = "SELECT * FROM %%ALLIANCE_REQUEST%% WHERE `allianceId` = :AllianceID;";
+                    $beforeRequest = $db->selectSingle($sql, [
+                        ':AllianceID' => $id,
+                    ]);
+                    $sql = "DELETE FROM %%ALLIANCE_REQUEST%% WHERE `allianceId` = :AllianceID;";
+                    $db->delete($sql, [
+                        ':AllianceID' => $id,
+                    ]);
+                    $beforeAlliance['ALLIANCE_REQUEST'] = $beforeRequest;
+                    $afterAlliance['ALLIANCE_REQUEST'] = [];
+
+                    $sql = "SELECT * FROM %%DIPLO%% WHERE `owner_1` = :AllianceID OR `owner_2` = :AllianceID;";
+                    $beforeDiplos = $db->select($sql, [
+                        ':AllianceID' => $id,
+                    ]);
+                    $sql = "DELETE FROM %%DIPLO%% WHERE `owner_1` = :AllianceID OR `owner_2` = :AllianceID;";
+                    $db->delete($sql, [
+                        ':AllianceID' => $id,
+                    ]);
+                    $beforeAlliance['DIPLO'] = $beforeDiplos;
+                    $afterAlliance['DIPLO'] = [];
+
+                    $LOG = new Log(6);
+                    $LOG->target = $id;
+                    $LOG->universe = Universe::getEmulated();
+                    $LOG->old = $beforeAlliance;
+                    $LOG->new = $afterAlliance;
+                    $LOG->save();
+
+                    $template->message($LNG['ad_ally_succes'], '?page=accounteditor&edit=alliances');
+                    exit;
+                }
+
+                $afterAlliance = $beforeAlliance;
+
+                if ($changeleader > 0) {
+                    $sql = "SELECT `id`, `username`, `ally_rank_id` FROM %%USERS%% WHERE `id` = :newLeaderId AND `universe` = :universe;";
+                    $beforeNewLeader = $db->selectSingle($sql, [
+                        ':newLeaderId' => $changeleader,
+                        ':universe' => Universe::getEmulated(),
+                    ]);
+                    $afterNewLeader = $beforeNewLeader;
+
+                    if (!isset($beforeNewLeader)) {
+                        $template->message($LNG['ad_ally_not_exist2'], '?page=accounteditor&edit=alliances');
+                        exit;
+                    }
+
+                    $sql = "UPDATE %%USERS%% SET `ally_rank_id` = 0 WHERE `id` = :newLeaderId;";
+                    $db->update($sql, [
+                        ':newLeaderId' => $changeleader,
+                    ]);
+                    $afterNewLeader['ally_rank_id'] = 0;
+
+                    $QryUpdate[] = "`ally_owner` = :newLeader";
+                    $params[':newLeader'] = $changeleader;
+                    $afterAlliance['ally_owner'] = $changeleader;
+                    $beforeAlliance['USERS'][$changeleader] = $beforeNewLeader;
+                    $afterAlliance['USERS'][$changeleader] = $afterNewLeader;
                 }
 
                 if (!empty($delete_u)) {
-                    $GLOBALS['DATABASE']->multi_query(
-                        "UPDATE " . ALLIANCE . " SET `ally_members` = ally_members - 1 WHERE `id` = '" . $id
-                        . "' AND `ally_universe` = '" . Universe::getEmulated() . "';UPDATE " . USERS
-                        . " SET `ally_id` = '0', `ally_rank_id` = '0', `ally_register_time` = '0' WHERE `id` = '"
-                        . $delete_u . "' AND `ally_id` = '" . $id . "';"
-                    );
+                    $sql = "SELECT `id`, `username`, `ally_id`, `ally_register_time`, `ally_rank_id`
+                        FROM %%USERS%% WHERE `userId` = :userId AND `ally_id` = :allyId AND `universe` = :universe;";
+                    $beforeMember = $db->selectSingle($sql, [
+                        ':userId' => $delete_u,
+                        ':allyId' => $id,
+                        ':universe' => Universe::getEmulated(),
+                    ]);
+                    $afterMember = $beforeMember;
+
+                    if (!isset($beforeMember)) {
+                        $template->message($LNG['ad_ally_not_exist3'], '?page=accounteditor&edit=alliances');
+                        exit;
+                    }
+
+                    $sql = "UPDATE %%USERS%% SET `ally_id` = '0', `ally_rank_id` = '0', `ally_register_time` = '0'
+                        WHERE `id` = :userId AND `ally_id` = :allyId AND `universe` = :universe;";
+                    $db->update($sql, [
+                        ':userId' => $delete_u,
+                        ':allyId' => $id,
+                        ':universe' => Universe::getEmulated(),
+                    ]);
+                    $afterMember['ally_id'] = 0;
+                    $afterMember['ally_rank_id'] = 0;
+                    $afterMember['ally_register_time'] = 0;
+
+                    $QryUpdate[] = "`ally_members` = ally_members - 1";
+                    $afterAlliance['ally_members'] -= 1;
+                    $beforeAlliance['USERS'][$delete_u] = $beforeMember;
+                    $afterAlliance['USERS'][$delete_u] = $afterMember;
                 }
 
-                $template->assign_vars([
-                    'signalColors'      => $USER['signalColors'],
-                ]);
+                if (!empty($name)) {
+                    $QryUpdate[] = "`ally_name` = :ally_name";
+                    $params[':ally_name'] = $name;
+                    $afterAlliance['ally_name'] = $name;
+                }
+
+                if (!empty($tag)) {
+                    $QryUpdate[] = "`ally_tag` = :ally_tag";
+                    $params[':ally_tag'] = $tag;
+                    $afterAlliance['ally_tag'] = $tag;
+                }
+
+                if (!empty($externo)) {
+                    $QryUpdate[] = "`ally_description` = :ally_description";
+                    $params[':ally_description'] = $externo;
+                    $afterAlliance['ally_description'] = $externo;
+                }
+
+                if (!empty($interno)) {
+                    $QryUpdate[] = "`ally_text` = :ally_text";
+                    $params[':ally_text'] = $interno;
+                    $afterAlliance['ally_text'] = $interno;
+                }
+
+                if (!empty($solicitud)) {
+                    $QryUpdate[] = "`ally_request` = :ally_request";
+                    $params[':ally_request'] = $solicitud;
+                    $afterAlliance['ally_request'] = $solicitud;
+                }
+
+                $sql = "UPDATE %%ALLIANCE%% SET ";
+                $sql .= implode(", ", $QryUpdate);
+                $sql .= " WHERE `id` = :id AND `ally_universe` = :universe;";
+                $db->update($sql, array_merge($params, [
+                    ':id' => $id,
+                    ':universe' => Universe::getEmulated(),
+                ]));
+
+                $LOG = new Log(6);
+                $LOG->target = $id;
+                $LOG->universe = Universe::getEmulated();
+                $LOG->old = $beforeAlliance;
+                $LOG->new = $afterAlliance;
+                $LOG->save();
+
                 $template->message($LNG['ad_ally_succes'], '?page=accounteditor&edit=alliances');
                 exit;
             }
-            $template->assign_vars([
-                'signalColors'      => $USER['signalColors'],
-            ]);
             $template->show('AccountEditorPageAlliance.tpl');
             break;
 
         default:
-            $template->assign_vars([
-                'signalColors'      => $USER['signalColors'],
-            ]);
             $template->show('AccountEditorPageMenu.tpl');
             break;
     }

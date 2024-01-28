@@ -1328,12 +1328,12 @@ class PlayerUtil
                     `b_building` = :building,
                     `b_building_id` = :current_queue,
                     `last_update` = :timestamp,
-                    `metal_mine_porcent` = 10,
-                    `crystal_mine_porcent` = 10,
-                    `deuterium_sintetizer_porcent` = 10,
-                    `solar_plant_porcent` = 10,
-                    `fusion_plant_porcent` = 10,
-                    `solar_satelit_porcent` = 10
+                    `metal_mine_porcent` = "10",
+                    `crystal_mine_porcent` = "10",
+                    `deuterium_sintetizer_porcent` = "10",
+                    `solar_plant_porcent` = "10",
+                    `fusion_plant_porcent` = "10",
+                    `solar_satelit_porcent` = "10"
                     WHERE `id` = :planetID;';
                 $db->update($sql, [
                     ':planetID' => $CPLANET['id'],
@@ -1399,9 +1399,9 @@ class PlayerUtil
             ':startTime'    => TIMESTAMP,
         ]);
 
-        $sql = 'UPDATE %%PLANETS%% SET `energy_used` = 0, `energy` = 0, `metal_mine_porcent` = 0,
-            `crystal_mine_porcent` = 0, `deuterium_sintetizer_porcent` = 0, `solar_plant_porcent` = 0,
-            `fusion_plant_porcent` = 0, `solar_satelit_porcent` = 0, `metal_perhour` = 0,
+        $sql = 'UPDATE %%PLANETS%% SET `energy_used` = 0, `energy` = 0, `metal_mine_porcent` = "0",
+            `crystal_mine_porcent` = "0", `deuterium_sintetizer_porcent` = "0", `solar_plant_porcent` = "0",
+            `fusion_plant_porcent` = "0", `solar_satelit_porcent` = "0", `metal_perhour` = 0,
             `crystal_perhour` = 0, `deuterium_perhour` = 0 WHERE `id_owner` = :userID;';
         $db->update($sql, [
             ':userID'   => $USER['id'],

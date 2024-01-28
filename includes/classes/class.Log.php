@@ -17,13 +17,13 @@
 
 class Log
 {
-    private $data	= [];
+    private $data = [];
 
     public function __construct($mode)
     {
-        $this->data['mode']		= $mode;
-        $this->data['admin']	= Session::load()->userId;
-        $this->data['uni']		= Universe::getEmulated();
+        $this->data['mode']     = $mode;
+        $this->data['admin']    = Session::load()->userId;
+        $this->data['uni']      = Universe::getEmulated();
     }
     public function __set($key, $value)
     {
@@ -44,20 +44,20 @@ class Log
         $uni = (empty($this->data['universe']) ? $this->data['uni'] : $this->data['universe']);
 
         $sql = "INSERT INTO %%LOG%% SET
-            target		= :id,
-            mode		= :mode,
-            admin		= :admin,
-            time		= :time,
-            data		= :data,
-            universe 	= :universe;";
+            `mode` = :mode,
+            `admin` = :admin,
+            `target` = :target,
+            `time` = :time,
+            `data` = :data,
+            `universe` = :universe;";
 
         $db->insert($sql, [
-            ':id'		=> $this->data['target'],
-            ':mode'		=> $this->data['mode'],
-            ':admin'	=> $this->data['admin'],
-            ':time'		=> TIMESTAMP,
-            ':data'		=> serialize($this->data['new']),
-            ':universe'	=> $uni,
+            ':mode'     => $this->data['mode'],
+            ':admin'    => $this->data['admin'],
+            ':target'   => $this->data['target'],
+            ':time'     => TIMESTAMP,
+            ':data'     => serialize($this->data['new']),
+            ':universe' => $uni,
         ]);
     }
 
@@ -67,20 +67,20 @@ class Log
         $uni = (empty($this->data['universe']) ? $this->data['uni'] : $this->data['universe']);
 
         $sql = "INSERT INTO %%LOG%% SET
-            target		= :id,
-            mode		= :mode,
-            admin		= :admin,
-            time		= :time,
-            data		= :data,
-            universe 	= :universe;";
+            `mode` = :mode,
+            `admin` = :admin,
+            `target` = :target,
+            `time` = :time,
+            `data` = :data,
+            `universe` = :universe;";
 
         $db->insert($sql, [
-            ':id'		=> $this->data['target'],
-            ':mode'		=> $this->data['mode'],
-            ':admin'	=> $this->data['admin'],
-            ':time'		=> TIMESTAMP,
-            ':data'		=> serialize([$this->data['old'], $this->data['new']]),
-            ':universe'	=> $uni,
+            ':mode'     => $this->data['mode'],
+            ':admin'    => $this->data['admin'],
+            ':target'   => $this->data['target'],
+            ':time'     => TIMESTAMP,
+            ':data'     => serialize($this->data['old'], $this->data['new']),
+            ':universe' => $uni,
         ]);
     }
 }

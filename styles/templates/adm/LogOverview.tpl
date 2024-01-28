@@ -9,7 +9,11 @@
 </tr>
 <tr>
 	<td><a href="?page=log&amp;type=settings">{$LNG.log_settings}</a></td>
+	<td><a href="?page=log&amp;type=alliance">{$LNG.log_alliance}</a></td>
+</tr>
+<tr>
 	<td><a href="?page=log&amp;type=present">{$LNG.log_present}</a></td>
+	<td></td>
 </tr>
 </table>
 </body>

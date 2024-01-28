@@ -619,9 +619,9 @@ $LNG['ad_ally_delete'] = 'Ittifagi Sil';
 $LNG['ad_ally_delete_u'] = 'Uye Sil';
 $LNG['ad_ally_user_id'] = '(ID Giriniz)';
 $LNG['ad_ally_succes'] = 'Basariyla Tamamlandi';
-$LNG['ad_ally_not_exist3'] = 'Bu kullanici bu ittifakta degil';
 $LNG['ad_ally_not_exist'] = 'Boyle bir ittifak yok!';
 $LNG['ad_ally_not_exist2'] = 'Boyle bir uye yok!';
+$LNG['ad_ally_not_exist3'] = 'Bu kullanici bu ittifakta degil';
 
 //  Gezegen & AY
 $LNG['ad_pla_title'] = 'Gezegen ve Aylar';
@@ -966,9 +966,10 @@ $LNG['log_log'] = 'Kayit';
 $LNG['log_menu'] = 'Kayit Menusu';
 $LNG['log_admin'] = 'Administrator';
 $LNG['log_time'] = 'Tarih';
-$LNG['log_target_user'] = 'Degisiklik Olan';
-$LNG['log_target_planet'] = 'Degisiklik Olan';
-$LNG['log_target_universe'] = 'Degisiklik Olan';
+$LNG['log_target_user'] = 'Değişen oyuncular';
+$LNG['log_target_planet'] = 'Değişen gezegenler';
+$LNG['log_target_universe'] = 'Değiştirilen ayar alanı';
+$LNG['log_target_alliance'] = 'İttifak değiştirildi';
 $LNG['log_id'] = 'ID';
 $LNG['log_view'] = 'Bak';
 $LNG['log_info'] = 'Bilgi';
@@ -978,6 +979,8 @@ $LNG['log_new'] = 'Sonra';
 $LNG['log_player'] = 'Degisiklik yapilan oyuncu';
 $LNG['log_planet'] = 'Degisiklik yapilan gezegen';
 $LNG['log_settings'] = 'Degisiklik yapilan ayar';
+$LNG['log_present'] = 'Dağıtılmış hediyeler';
+$LNG['log_alliance'] = 'Düzenlenmiş ittifaklar';
 $LNG['log_cat'] = 'Kategori seciniz:';
 $LNG['log_no_data'] = 'Herhangi bir kayit yok!';
 $LNG['log_ssettings'] = 'Oyun Ayarlari';
@@ -985,7 +988,6 @@ $LNG['log_usettings'] = 'Evren Ayarlari';
 $LNG['log_statsettings'] = 'Istatistik Ayarlari';
 $LNG['log_uni_short'] = 'Evren';
 $LNG['log_universe'] = 'Evren';
-$LNG['log_present'] = 'Genel Dagitim';
 $LNG['log_disclamersettings'] = 'Iletisim';
 
 //###########################################################//

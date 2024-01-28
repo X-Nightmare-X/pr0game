@@ -156,9 +156,9 @@ $LNG['ad_ally_delete'] = 'Supprimer Alliance';
 $LNG['ad_ally_delete_u'] = 'Supprimer joueur';
 $LNG['ad_ally_user_id'] = '(Entrer ID joueur)';
 $LNG['ad_ally_succes'] = 'Opération effectuée avec succès !';
-$LNG['ad_ally_not_exist3'] = 'Le joueur n\'existe pas ou n\'est pas membre de l\'Alliance!';
 $LNG['ad_ally_not_exist'] = 'L\'Alliance n\'existe pas !';
 $LNG['ad_ally_not_exist2'] = 'Le joueur n\'existe pas !';
+$LNG['ad_ally_not_exist3'] = 'Le joueur n\'existe pas ou n\'est pas membre de l\'Alliance!';
 
 // PLANETS AND MOONS
 $LNG['ad_pla_title'] = 'Editer Planètes et/ou Lunes';
@@ -1209,9 +1209,10 @@ $LNG['log_log'] = 'Connexion';
 $LNG['log_menu'] = 'Menu de Connexion';
 $LNG['log_admin'] = 'Administrateur';
 $LNG['log_time'] = 'Temps';
-$LNG['log_target_user'] = 'Changer joueur';
-$LNG['log_target_planet'] = 'Changer Planète';
-$LNG['log_target_universe'] = 'Changer Univers';
+$LNG['log_target_user'] = 'Changement de joueurs';
+$LNG['log_target_planet'] = 'Planètes modifiées';
+$LNG['log_target_universe'] = 'Zone de réglage modifiée';
+$LNG['log_target_alliance'] = 'Changement d\'alliance';
 $LNG['log_id'] = 'ID';
 $LNG['log_view'] = 'Voir';
 $LNG['log_info'] = 'Info';
@@ -1220,7 +1221,9 @@ $LNG['log_old'] = 'Avant';
 $LNG['log_new'] = 'Après';
 $LNG['log_player'] = 'Edités joueurs';
 $LNG['log_planet'] = 'Edités planètes';
-$LNG['log_settings'] = 'Options';
+$LNG['log_settings'] = 'Edités options';
+$LNG['log_present'] = 'Présentations distribuées';
+$LNG['log_alliance'] = 'Alliances traitées';
 $LNG['log_cat'] = 'Choisissez une catégorie pour vous inscrire:';
 $LNG['log_no_data'] = 'Il n\'existe aucunes données à partir du journal available!';
 $LNG['log_ssettings'] = 'Configuration du jeu';
@@ -1228,7 +1231,6 @@ $LNG['log_usettings'] = 'Configuration de l\'Univers';
 $LNG['log_statsettings'] = 'Options Statistiques';
 $LNG['log_uni_short'] = 'Uni';
 $LNG['log_universe'] = 'Univers';
-$LNG['log_present'] = 'Distribuè';
 $LNG['log_disclamersettings'] = 'Contacts';
 
 //Cronjobs

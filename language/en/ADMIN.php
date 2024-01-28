@@ -170,9 +170,9 @@ $LNG['ad_ally_delete'] = 'Delete Alliance';
 $LNG['ad_ally_delete_u'] = 'Delete Member';
 $LNG['ad_ally_user_id'] = '(Insert User ID)';
 $LNG['ad_ally_succes'] = 'Success';
-$LNG['ad_ally_not_exist3'] = 'The user does not exist in the alliance';
 $LNG['ad_ally_not_exist'] = 'The Alliance doesnt exist!';
 $LNG['ad_ally_not_exist2'] = 'The Member doesnt exist!';
+$LNG['ad_ally_not_exist3'] = 'The user does not exist in the alliance';
 
 //  Luas e Planetas
 $LNG['ad_pla_title'] = 'Moons and Planets';
@@ -1210,9 +1210,10 @@ $LNG['log_log'] = 'Log';
 $LNG['log_menu'] = 'Log Menu';
 $LNG['log_admin'] = 'Administrator';
 $LNG['log_time'] = 'Forecast';
-$LNG['log_target_user'] = 'Change Players';
-$LNG['log_target_planet'] = 'Change The Planet';
-$LNG['log_target_universe'] = 'Change The Universe';
+$LNG['log_target_user'] = 'Changed players';
+$LNG['log_target_planet'] = 'Changed planets';
+$LNG['log_target_universe'] = 'Changed setting area';
+$LNG['log_target_alliance'] = 'Changed alliance';
 $LNG['log_id'] = 'ID';
 $LNG['log_view'] = 'See';
 $LNG['log_info'] = 'Info';
@@ -1222,6 +1223,8 @@ $LNG['log_new'] = 'After';
 $LNG['log_player'] = 'Edited player';
 $LNG['log_planet'] = 'Planet edited';
 $LNG['log_settings'] = 'Options Edited';
+$LNG['log_present'] = 'Distributed presents';
+$LNG['log_alliance'] = 'Edited alliances';
 $LNG['log_cat'] = 'Choose a category:';
 $LNG['log_no_data'] = 'There is no data available in the log!';
 $LNG['log_ssettings'] = 'Configuration of the game';
@@ -1229,7 +1232,6 @@ $LNG['log_usettings'] = 'Configuration of the universe';
 $LNG['log_statsettings'] = 'Options of Statistics';
 $LNG['log_uni_short'] = 'Uni';
 $LNG['log_universe'] = 'Universe';
-$LNG['log_present'] = 'Distributed';
 $LNG['log_disclamersettings'] = 'Contacts';
 
 //Cronjobs
