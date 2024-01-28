@@ -7,9 +7,9 @@
 				{if $FleetInfo.tech == 1}{$LNG.tech.115}
 				{elseif $FleetInfo.tech == 2}{$LNG.tech.117}
 				{elseif $FleetInfo.tech == 3}{$LNG.tech.118}
-				{elseif $FleetInfo.tech == 4}{$LNG.tech.115} <span style="color:yellow">({$LNG.tech.117})</span>
-				{elseif $FleetInfo.tech == 5}{$LNG.tech.117} <span style="color:yellow">({$LNG.tech.118})</span>
-				{elseif $FleetInfo.tech == 6}{$LNG.tech.115} <span style="color:yellow">({$LNG.tech.117})</span> <span style="color:pink">({$LNG.tech.118})</span>
+				{elseif $FleetInfo.tech == 4}{$LNG.tech.115}<br><span style="color:yellow">({$LNG.tech.117} ≥ 5)</span>
+				{elseif $FleetInfo.tech == 5}{$LNG.tech.117}<br><span style="color:yellow">({$LNG.tech.118} ≥ 8)</span>
+				{elseif $FleetInfo.tech == 6}{$LNG.tech.115}<br><span style="color:yellow">({$LNG.tech.117} ≥ 17)</span><br><span style="color:pink">({$LNG.tech.118} ≥ 15)</span>
 				{else}-
 				{/if}
 			</td>
