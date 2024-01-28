@@ -480,7 +480,7 @@ $LNG['longDescription'] = [
         . ' wird. Die Anzahl der kolonisierbaren Planeten je Imperium ist direkt abhängig von der Astrophysik-Forschung.'
         . ' Die Erste, sowie jede weitere zweite Stufe ermöglichen eine weitere Besiedelung.',
     209 => 'Die Weltraumgefechte nahmen immer größere Ausmaße an. Tausende Schiffe wurden zerstört, aber die dadurch'
-        . ' entstehenden Trümmerfelder schienen für immer verloren. Normale Transporter konnten sich nicht nahe genug'
+        . ' entstandenen Trümmerfelder schienen für immer verloren. Normale Transporter konnten sich nicht nahe genug'
         . ' an diese Felder heran bewegen, ohne durch kleinere Trümmer riesigen Schaden zu nehmen. Mit einer neuen'
         . ' Entwicklung im Bereich der Schildtechnologie konnte dieses Problem effizient beseitigt werden. Es entstand'
         . ' eine neue Schiffsklasse, ähnlich dem großen Transporter, der Recycler. Mit dessen Hilfe konnten die'
