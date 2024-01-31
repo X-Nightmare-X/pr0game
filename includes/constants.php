@@ -257,12 +257,12 @@ define('RESOURCE_DEUT', 903);
 define('RESOURCE_ENERGY', 911);
 
 // buildings
-define('metal_mine', 1);
-define('crystal_mine', 2);
-define('deuterium_sintetizer', 3);
-define('solar_plant', 4);
-define('university', 6);
-define('fusion_plant', 12);
+define('METAL_MINE', 1);
+define('CRYSTAL_MINE', 2);
+define('DEUTERIUM_SINTETIZER', 3);
+define('SOLAR_PLANT', 4);
+define('UNIVERSITY', 6);
+define('FUSION_PLANT', 12);
 define('ROBOT_FACTORY', 14);
 define('NANITE_FACTORY', 15);
 define('SHIPYARD', 21);

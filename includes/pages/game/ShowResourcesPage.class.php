@@ -155,11 +155,11 @@ class ShowResourcesPage extends AbstractGamePage
 
                 if (in_array($ID, $reslist['resstype'][2])) {
                     $Production *= $config->energy_multiplier;
-                } else {
+                } else if ($ProdID != fusion_plant) {
                     $Production *= $prodLevel * $config->resource_multiplier;
                 }
 
-                if ($ProdID == 12 && $ID == RESOURCE_ENERGY) {
+                if ($ProdID == fusion_plant && $ID == RESOURCE_ENERGY) {
                     $BuildEnergy = 0;
                     $bonus = eval(ResourceUpdate::getProd($ProdGrid[$ProdID]['production'][$ID], $ProdID));
                     $temp[911]['bonus'] = $Production - $bonus;
