@@ -389,12 +389,12 @@ class ShowMarketPlacePage extends AbstractGamePage
             $Duration = FleetFunctions::getMissionDuration(10, $SpeedAllMin, $Distance, $SpeedFactor, $USER_2);
             $startTime = $fleetResult['start_time'];
             $fleetStartTime = $fleetResult['fleet_start_time'];
-            $fleetStayTime = $fleetStartTime + TIME_12_HOURS;
+            $fleetStayTime = $fleetStartTime + TIME_6_HOURS;
             $fleetEndTime = $fleetStayTime + $Duration;
         } else if (!$isFleetTrade) {
             $startTime = TIMESTAMP;
             $fleetStartTime = $Duration + TIMESTAMP;
-            $fleetStayTime = $fleetStartTime + TIME_12_HOURS;
+            $fleetStayTime = $fleetStartTime + TIME_6_HOURS;
             $fleetEndTime = $fleetStayTime + $Duration;
         } else {
             $startTime = $fleetResult['start_time'];

@@ -46,7 +46,7 @@ class MissionCaseTrade extends MissionFunctions implements Mission
                 $this->UpdateFleet('start_time', $this->_fleet['fleet_start_time']);
             }
             $fleetStartTime = $Duration + $this->_fleet['fleet_start_time'];
-            $fleetStayTime = $fleetStartTime + TIME_12_HOURS;
+            $fleetStayTime = $fleetStartTime + TIME_6_HOURS;
             $fleetEndTime = $fleetStayTime + $Duration;
             $this->UpdateFleet('fleet_start_time', $fleetStartTime);
             $this->UpdateFleet('fleet_end_stay', $fleetStayTime);
@@ -57,6 +57,7 @@ class MissionCaseTrade extends MissionFunctions implements Mission
             $this->UpdateFleet('fleet_resource_metal', 0);
             $this->UpdateFleet('fleet_resource_crystal', 0);
             $this->UpdateFleet('fleet_resource_deuterium', 0);
+            $this->setState(FLEET_OUTWARD);
         } else if ($this->_fleet['fleet_end_id'] == 0) {
             /*
             * either exchange ressources or hold at market place
