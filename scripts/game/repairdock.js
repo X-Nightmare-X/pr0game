@@ -43,7 +43,7 @@ $(document).ready(function () {
       if (time <= 0) return;
 
       $('#progressbar').progressbar({
-        value: Math.max(100 - (resttime / time) * 100, 0.01)
+        value: Math.max((time / (resttime+time)) * 100, 0.01)
       });
       if (!umode) {
         $('.ui-progressbar-value').addClass('ui-corner-right').animate({ width: "100%" }, resttime * 1000, "linear");
