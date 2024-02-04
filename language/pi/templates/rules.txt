@@ -34,6 +34,8 @@
 
 		<h1>3.2 Abschieds-KBs</h1>
 		<p>Abschieds-KBs müssen generell mit dem Moderatorenteam im Vorfeld abgeklärt werden.</p>
+		
+		<p><a href="https://wiki.pr0game.com/doku.php?id=regeln">wiki</a></p>
 	</li>
 	<hr>
 	<li>
