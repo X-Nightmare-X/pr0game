@@ -327,6 +327,7 @@ define('MISSION_TRADE', 16);
 define('MISSION_TRANSFER', 17);
 
 // general time constants
+define('TIME_30_MIN', 1800);
 define('TIME_6_HOURS', 21600);
 define('TIME_12_HOURS', 43200);
 define('TIME_24_HOURS', 86400);

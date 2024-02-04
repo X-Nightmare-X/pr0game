@@ -281,7 +281,8 @@ $LNG['sys_tran_mess_user'] = 'Мирный флот из %s %s достиг %s %
 
 $LNG['sys_mess_fleetback'] = 'Возвращение флота';
 $LNG['sys_tran_mess_back'] = 'Флот вернулся на планету %s %s. На борту флота нет ресурсов.';
-
+$LNG['sys_trade_mess_back'] = 'Один из ваших торговых флотов безуспешно возвращается на планету %s %s.';
+$LNG['sys_trade_mess_back_success'] = 'Один из ваших торговых флотов успешно вернулся на планету %4$s %5$s с %1$s металла, %2$s кристалла и %3$s дейтерия.';
 $LNG['sys_recy_gotten'] = 'Ваши переработчики собрали %2$s %6$s и %3$s %7$s из общего количества %4$s %6$s и %5$s %7$s в координатах %1$s.';
 $LNG['sys_gain'] = 'Добыча';
 $LNG['sys_irak_subject'] = 'Ракетная атака';
@@ -331,10 +332,6 @@ $LNG['type_planet_short_3'] = 'Л';
 $LNG['type_planet_1'] = 'Планета';
 $LNG['type_planet_2'] = 'Поле обломков';
 $LNG['type_planet_3'] = 'Луна';
-
-$LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
-$LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
-
 
 //----------------------------------------------------------------------------//
 // Scavengers Toolbox

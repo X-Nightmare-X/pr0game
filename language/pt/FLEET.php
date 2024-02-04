@@ -269,6 +269,8 @@ $LNG['sys_tran_mess_owner'] = 'Uma das suas frotas de %s %s chega ao %s %s %s e 
 $LNG['sys_tran_mess_user'] = 'Uma frota de %s %s %s vem entregar %s %s %s unidades, unidades de %s %s %s %s unidades.';
 $LNG['sys_mess_fleetback'] = 'Regresso da frota';
 $LNG['sys_tran_mess_back'] = 'A Frota voltou ao planeta % s% s. A frota não entregou os recursos.';
+$LNG['sys_trade_mess_back'] = 'Uma das vossas frotas comerciais regressa ao planeta %s %s sem sucesso.';
+$LNG['sys_trade_mess_back_success'] = 'Uma das vossas frotas mercantes regressou com sucesso ao planeta %4$s %5$s com %1$s metal, %2$s cristal e %3$s deutério.';
 $LNG['sys_recy_gotten'] = 'Os vossos recicladores recolheram %2$s %6$s e %3$s %7$s de um total de %4$s %6$s e %5$s %7$s nas coordenadas %1$s.';
 $LNG['sys_gain'] = 'Beneficios';
 $LNG['sys_irak_subject'] = 'Missil Interplanetário';
@@ -317,10 +319,6 @@ $LNG['type_planet_short_3'] = 'L';
 $LNG['type_planet_1'] = 'Planeta';
 $LNG['type_planet_2'] = 'Campo de Destroços';
 $LNG['type_planet_3'] = 'Lua';
-
-$LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
-$LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
-
 
 //----------------------------------------------------------------------------//
 // Scavengers Toolbox

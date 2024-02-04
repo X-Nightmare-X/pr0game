@@ -263,6 +263,8 @@ $LNG['sys_tran_mess_owner'] = 'Jedna z twoich flot z %s %s osiągnęła %s %s %s
 $LNG['sys_tran_mess_user'] = 'Pokojowo nastawiona flota z  %s %s osiągnęła %s %s i dostarczyła %s %s, %s %s i %s %s.';
 $LNG['sys_mess_fleetback'] = 'Powrót floty';
 $LNG['sys_tran_mess_back'] = 'Jedna z twoich flot wróciła z planety %s %s.';
+$LNG['sys_trade_mess_back'] = 'Jedna z flot handlowych powróciła na planetę %s %s bez powodzenia.';
+$LNG['sys_trade_mess_back_success'] = 'Jedna z twoich flot handlowych pomyślnie powróciła na planetę %4$s %5$s z %1$s metalem, %2$s kryształami i %3$s deuterem.';
 $LNG['sys_recy_gotten'] = 'Twoi recyklerzy zebrali %2$s %6$s i %3$s %7$s z łącznej ilości %4$s %6$s i %5$s %7$s na współrzędnych %1$s.';
 $LNG['sys_gain'] = 'Zysk';
 $LNG['sys_irak_subject'] = 'Zniszczenie spowodowane przez rakiety';
@@ -310,9 +312,6 @@ $LNG['type_planet_short_3'] = 'M';
 $LNG['type_planet_1'] = 'Planeta';
 $LNG['type_planet_2'] = 'Pole zniszczeń';
 $LNG['type_planet_3'] = 'Księżyc';
-
-$LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
-$LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
 
 // Translated into Polish by Sirgomo . All rights reversed (C) 2012
 // Edited by TheRavikin. All rights resteemed (C) 2018
