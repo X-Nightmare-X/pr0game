@@ -1518,7 +1518,7 @@ $LNG['teamAlumni'] =                'Eski / Aktif Olmayan Ekip Üyeleri';
 $LNG['teamAlumniLong'] =            'Teşekkür ederiz';
 $LNG['teamLegend'] =                'Açıklama, Rollerin / Hakların Açıklaması';
 $LNG['teamCommunity'] =             'Community Support';
-$LNG['teamCommunityLong'] =         'Desteğe ihtiyacınız olduğunda sizin için oradalar.<br>Endişeniz ne olursa olsun, onlarla buradan iletişime geçebilirsiniz ve bir çözüm bulmak için ellerinden geleni yapacaklardır.<br>Herhangi bir sorunuz varsa veya içinizi dökmek istiyorsanız, anonim olarak bile olsa, bunu yapabilirsiniz.<br>Ayrıca oyuncular ve modlar arasında arabuluculuk yapmaktan da sorumludur.';
+$LNG['teamCommunityLong'] =         'Desteğe ihtiyacınız olduğunda sizin için oradalar<hr>Sorununuz ne olursa olsun bizimle iletişime geçmeniz yeterli! Bir çözüm bulmak için elimizden geleni yapacağız<hr>Herhangi bir sorunuz varsa veya içinizi dökmek istiyorsanız, anonim olarak bile olsa, bunu yapabilirsiniz<hr>Ayrıca oyuncular ve modlar arasındaki irtibattan da biz sorumluyuz.';
 
 //----------------------------------------------------------------------------//
 $LNG['BlockTrade']  = 'Blok ticareti';
