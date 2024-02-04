@@ -1506,6 +1506,8 @@ $LNG['teamYes'] =                   'I';
 $LNG['teamAlumni'] =                'Byli / nieaktywni członkowie zespołu';
 $LNG['teamAlumniLong'] =            'Serdecznie dziękujemy';
 $LNG['teamLegend'] =                'Legenda, Wyjaśnienie ról / praw';
+$LNG['teamCommunity'] =             'Community Support';
+$LNG['teamCommunityLong'] =         'Są do Twojej dyspozycji, jeśli potrzebujesz wsparcia<hr>Bez względu na to, jaki masz problem, po prostu skontaktuj się z nami! Dołożymy wszelkich starań, aby znaleźć rozwiązanie<hr>Jeśli masz jakieś pytania lub chcesz coś z siebie wyrzucić, nawet anonimowo, możesz to zrobić<hr>Jesteśmy również odpowiedzialni za kontakty między graczami a modami.';
 
 //----------------------------------------------------------------------------//
 $LNG['BlockTrade']  = 'Handel pakietami';

@@ -15,6 +15,7 @@
 		<th>{$LNG.teamDiscordName}</th>
 		<th>{$LNG.teamRole}</th>
 		<th>{$LNG.teamPlayer}</th>
+		<th>{$LNG.teamCommunity}</th>
 		<th>{$LNG.teamAdmin}</th>
 		<th>{$LNG.teamDatabase}</th>
 		<th>{$LNG.teamTickets}</th>
@@ -30,6 +31,7 @@
 		{/if}
 		<td>DawnOfTheUwe</td>
 		<td>{$LNG.teamMod}</td>
+		<td>{$LNG.teamNo}</td>
 		<td>{$LNG.teamNo}</td>
 		<td>{$LNG.teamYes}</td>
 		<td>{$LNG.teamYes}</td>
@@ -49,6 +51,7 @@
 		<td>{$LNG.teamYes}</td>
 		<td>{$LNG.teamNo}</td>
 		<td>{$LNG.teamNo}</td>
+		<td>{$LNG.teamNo}</td>
 		<td>{$LNG.teamYes}</td>
 		<td>{$LNG.teamNo}</td>
 	</tr>
@@ -62,6 +65,7 @@
 		{/if}
 		<td>Hyman</td>
 		<td>{$LNG.teamDev}, {$LNG.teamEmergency}, {$LNG.teamMod}</td>
+		<td>{$LNG.teamNo}</td>
 		<td>{$LNG.teamNo}</td>
 		<td>{$LNG.teamYes}</td>
 		<td>{$LNG.teamYes}</td>
@@ -79,6 +83,7 @@
 		<td>Masterspiel</td>
 		<td>{$LNG.teamMod}</td>
 		<td>{$LNG.teamNo}</td>
+		<td>{$LNG.teamNo}</td>
 		<td>{$LNG.teamYes}</td>
 		<td>{$LNG.teamNo}</td>
 		<td>{$LNG.teamYes}</td>
@@ -95,9 +100,27 @@
 		<td>reflexrecon</td>
 		<td>{$LNG.teamDev}, {$LNG.teamEmergency}, {$LNG.teamMod}</td>
 		<td>{$LNG.teamNo}</td>
+		<td>{$LNG.teamNo}</td>
 		<td>{$LNG.teamYes}</td>
 		<td>{$LNG.teamYes}</td>
 		<td>{$LNG.teamYes}</td>
+		<td>{$LNG.teamNo}</td>
+	</tr>
+	<tr>
+		{if $idSchmopfi != 0}
+			<td><a href="#" onclick="return Dialog.PM({$idSchmopfi});"><img src="{$dpath}img/m.gif" border="0" title="{$LNG.write_message}"></a></td>
+			<td>Schmopfi</td>
+		{else}
+			<td></td>
+			<td>Schmopfi</td>
+		{/if}
+		<td>Schmopfi</td>
+		<td>{$LNG.teamCommunity}</td>
+		<td>{$LNG.teamYes}</td>
+		<td>{$LNG.teamYes}</td>
+		<td>{$LNG.teamNo}</td>
+		<td>{$LNG.teamNo}</td>
+		<td>{$LNG.teamNo}</td>
 		<td>{$LNG.teamNo}</td>
 	</tr>
 	<tr>
@@ -110,6 +133,7 @@
 		{/if}
 		<td>Timo_Ka</td>
 		<td>{$LNG.teamDev}, {$LNG.teamEmergency}, {$LNG.teamMod}</td>
+		<td>{$LNG.teamNo}</td>
 		<td>{$LNG.teamNo}</td>
 		<td>{$LNG.teamYes}</td>
 		<td>{$LNG.teamYes}</td>
@@ -137,6 +161,14 @@
 		</td>
 		<td>
 			{$LNG.teamEmergencyLong}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			{$LNG.teamCommunity}
+		</td>
+		<td>
+			{$LNG.teamCommunityLong}
 		</td>
 	</tr>
 	<tr>
