@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-define('DB_VERSION_REQUIRED', 62);
+define('DB_VERSION_REQUIRED', 63);
 define('DB_NAME'			, $database['databasename']);
 define('DB_PREFIX'			, $database['tableprefix']);
 
@@ -36,7 +36,6 @@ $dbTableNames   = [
     'CRONJOBS'                => DB_PREFIX . 'cronjobs',
     'CRONJOBS_LOG'            => DB_PREFIX . 'cronjobs_log',
     'DIPLO'                   => DB_PREFIX . 'diplo',
-    'TRADES'                  => DB_PREFIX . 'trades',
     'FLEETS'                  => DB_PREFIX . 'fleets',
     'FLEETS_EVENT'            => DB_PREFIX . 'fleet_event',
     'LOG'                     => DB_PREFIX . 'log',
@@ -62,6 +61,7 @@ $dbTableNames   = [
     'TICKETS_CATEGORY'        => DB_PREFIX . 'ticket_category',
     'TOPKB'                   => DB_PREFIX . 'topkb',
     'TOPKB_USERS'             => DB_PREFIX . 'users_to_topkb',
+    'TRADES'                  => DB_PREFIX . 'trades',
     'USERS'                   => DB_PREFIX . 'users',
     'USERS_BLOCKLIST'         => DB_PREFIX . 'users_blocklist',
     'USERS_TO_ACHIEVEMENTS'   => DB_PREFIX . 'users_to_achievements',

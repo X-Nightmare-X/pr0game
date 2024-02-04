@@ -83,7 +83,7 @@
 						</select>
 					</td>
 					<td>
-						<input name="exchange" size="10" type="text">
+						<input name="exchange" size="10" type="number">
 					</td>
 				</tr>
 				<tr class="no-border">

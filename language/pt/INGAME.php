@@ -1475,7 +1475,7 @@ $LNG['kontakt'] =                   'Hi!<br>'
                                     .'Nesta página, encontrará informações sobre as pessoas que gerem, moderam e desenvolvem ativamente este projeto.<br>'
                                     .'Não hesites em contactar-nos se tiveres alguma dúvida ou problema.<br>'
                                     .'<br>'
-                                    .'Para um melhor intercâmbio connosco, mas também com os outros co-especuladores, criámos um servidor Discord.'
+                                    .'Para um melhor intercâmbio connosco, mas também com os outros co-especuladores, criámos um servidor Discord. '
                                     .'Você pode encontrá-lo " <a href="https://discord.gg/jhYYN3yuat">aqui</a> " ou através do menu.<br>'
                                     .'No servidor encontrarás as últimas notícias, bem como memes emocionantes entre as alianças do universo.<br>'
                                     .'Faz perguntas sobre a mecânica do jogo e ajuda com as tuas próprias sugestões para o desenvolvimento do jogo.<br>'
@@ -1504,6 +1504,8 @@ $LNG['teamYes'] =                   'e ainda';
 $LNG['teamAlumni'] =                'Antigos / Inativos Membros da Equipa';
 $LNG['teamAlumniLong'] =            'Gostaríamos de agradecer';
 $LNG['teamLegend'] =                'Legenda, Explicação de Papéis / Direitos';
+$LNG['teamCommunity'] =             'Community Support';
+$LNG['teamCommunityLong'] =         'Estão à sua disposição se precisar de apoio<hr>Seja qual for o problema que tenha, basta entrar em contacto connosco! Faremos o nosso melhor para encontrar uma solução<hr>Se tiveres alguma questão ou quiseres desabafar, mesmo anonimamente, podes fazê-lo<hr>Também somos responsáveis pela ligação entre os jogadores e os mods.';
 
 //----------------------------------------------------------------------------//
 $LNG['BlockTrade']  = 'Comércio em bloco';

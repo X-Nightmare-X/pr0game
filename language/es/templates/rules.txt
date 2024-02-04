@@ -1,46 +1,85 @@
 <ul id="rules">
 	<li>
+		<p style="color: red;">ATTENTION: The rules can change and every user is obliged to keep himself informed about the status!</p>
+	</li>
+	<li>
 		<h1>1. Accounts</h1>
 		<p>The owner of an account is always the owner of the fixed e-mail address. An account may only be played alone. The only exception is siting. If it becomes necessary to monitor another person's account or to put it into holiday mode, the operator in charge must be informed in advance and permission obtained. For short-term sittings of less than 12 hours, a report to the operator is sufficient. During siting, all fleet movements are forbidden, only the siting of the fleet on coordinates of the sitter and the building of resources on the planet on which they are located is allowed. An account may be sat for a maximum of 72 hours. In case of exceptions, the permission of an operator must be obtained. The passing on of an account may take place max. every 3 months and exclusively free of charge. Report the account to the operator.</p>
 	</li>
+	<hr>
 	<li>
 		<h1>2. Multiaccounts</h1>
 		<p>Each player is only allowed to play one account per universe. If two or more accounts are usually, occasionally or permanently played from the same internet connection (e.g. schools, universities or internet cafés), this must be reported to an admin in advance. In such cases, the accounts in question are prohibited from having any fleet contact while using the same internet connection. Likewise, further commonalities are prohibited.</p>
 	</li>
+	<hr>
 	<li>
 		<h1>3. Pushing</h1>
-		<p>Pushing is forbidden as a matter of principle. Pushing is considered to be all transports/transfers and also moon attempts without appropriate consideration from accounts with lower points to accounts with higher points. Exceptions must be approved in advance by the operator. Failure to obtain approval may result in a ban. A trade must be completed within 24 hours or registered with an operator and approved. The sending player must still have more points than the recipient after the transfer. Sales to players with more points are allowed from 75 percent of the value (construction price, value of resources), sales to players with fewer points are allowed up to a maximum of 125 percent of the price. The current trade rate applies to the conversion.</p>
+		<p>Pushing is generally prohibited. Pushing includes, for example, all resource transports and moon shots without appropriate compensation from accounts with lower points to accounts with higher points.<br>
+		A trade must be completed within 24 hours. Exceptions must be approved in advance by the moderators via Discord ticket or in-game private message. <a href="index.php?page=team">You can find the team here.</a>.<br>
+		Failure to obtain authorization or disregarding the rule may result in a ban.</p>
+		
+		<h1>3.1 Trading and attacks</h1>
+		<p>If players wish to sell or distribute resources to other players, they may do so at a ratio between 75%% and 125%% of the market price.</p>
+		<p>Special case:<br>
+		If it is not possible to distribute the captured resources within the 24h window after attacks with Death Stars, this is generally permitted, but must be reported to the moderators.</p>
+		<details>
+			<summary style="color: #FFD700;">Examples of irregular trading/attacks (click to expand):</summary>
+			<ul style="border-style: solid;">
+			<li>Player A (weak in points) deliberately sends his fleet via attack to player B (strong in points) with the aim of destroying it completely. In this case, the stronger player must open a ticket.</li>
+			<li>Players from a common ACS do not share the captured resources and the debris field according to the 24h rule.</li>
+			<li>Player A informs others that he is quitting the game. For each recipient of this message, a 24h (from receiption of the message) attack stop applies to those notified. In this case, the moderators must be notified.</li>
+			<li>Player A shares his fleet details (arrival, flight times, size, position, etc.) with others so that this information can be used to attack player A. This is an unfair advantage over the other players (passive pushing). This represents an unfair advantage over the other players and is considered a provision of resources (passive pushing). In this case, the moderators must be notified.</li>
+			</ul>
+		</details>
+
+		<h1>3.2 Farewell battles</h1>
+		<p>Farewell battles must generally be coordinated with the moderation team in advance.</p>
 	</li>
+	<hr>
 	<li>
 		<h1>4. Bashing</h1>
 		<p>More than 6 attacks within 24 hours on the same planet count as bashing and are forbidden - the moon counts as an independent planet. Attacks with spy probes or interplanetary missiles are not counted.</p>
 		<p>The base rule applies exclusively to active players. If the parties are at war, further attacks are allowed. War must be declared in the forum at least 24 hours before further attacks (both alliances or the name of the individual declaring war must be correctly spelled in the topic of the announcement). A declaration of war can only be addressed to alliances, whereby the declaration of war can be made by an alliance or an individual.</p>
 		<p>Acceptance of the war is not required. Wars that obviously only serve the massive circumvention of the bash rule are forbidden. It is up to the responsible moderators and operators to judge this.</p>
 	</li>
+	<hr>
 	<li>
 		<h1>5. Interplanetary Missile-Attacks</h1>
 		<p>Only 1000 Iraq attacks per 24 hours are allowed. The number of missiles per attack is independent.</p>
 	</li>
+	<hr>
 	<li>
 		<h1>6. Bugusing</h1>
 		<p>Exploiting bugs and errors in programming is prohibited. Detected bugs should be reported as soon as possible via <a href="%s" target="_blank">GIT Issue</a> or in the Discord channel #bugs. Cheating is also forbidden.</p>
 	</li>
+	<hr>
 	<li>
 		<h1>6.1 Tools and Applications</h1>
 		<p>The use of external tools and user scripts that have not been fully released is prohibited.</p>
 		<p>Scripts and tools should not provide a gameplay advantage that players without them do not have. A moderator/administrator must be contacted to clear up any ambiguity regarding rule compliance of a tool.  For this approval process, the tool must be provided and approved for a specified reviewer. If a tool is approved through the review process, the features of it (not the tool itself) are published by the reviewer.</p>
 		<p>Note: Publishing and making available tools developed in-house is strongly encouraged, but not mandatory.</p>
 	</li>
+	<hr>
 	<li>
 		<h1>7. Threats/insults</h1>
 		<p>RL blackmail and threats will result in exclusion from one or all game areas. Real-life blackmail and threats are any kind of communication that clearly signal intentions to locate and harm a person or a close third party.</p>
 	</li>
+	<hr>
 	<li>
 		<h1>8. Spam and erotica</h1>
 		<p>Spamming and third-party advertising is prohibited. Any form of eroticism and pornography is forbidden. And will be punished with a universe-wide and lifelong ban!</p>
 	</li>
+	<hr>
 	<li>
-		<h1>9. The rules</h1>
-		<p>The rules can change and every user is obliged to keep himself informed about the status!</p>
+		<h1>9. Bullying</h1>
+		<p>Behavior that is harmful to the community and bullying are undesirable here!</p>
+
+		<p>To define this: Bullying is any behavior that involves repeated, regular, emotional harassment, torment and injury. 
+		Both by individuals and by a group of people in a superior position.
+		Abuse of power, threats of violence, verbal abuse, harassment, exposure and exclusion are just a few examples of how bullying can take place.</p>
+
+		<p>If you are being bullied yourself or if you hear about it, you are welcome to contact us!
+		We will try to find a way out of it. 
+		Bullying is not without consequences.</p>
 	</li>
 </ul>

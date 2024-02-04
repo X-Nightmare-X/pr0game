@@ -1464,7 +1464,7 @@ $LNG['kontakt'] =                   'Salut!<br>'
                                     .'Sur cette page, tu trouveras des informations sur les personnes qui gèrent, modèrent et développent activement ce projet.<br>'
                                     .'N\'hésite pas à nous contacter si tu as des questions ou des problèmes.<br>'
                                     .'<br>'
-                                    .'Pour faciliter l\'échange avec nous, mais aussi avec les autres membres du projet, nous avons mis en place un serveur Discord.'
+                                    .'Pour faciliter l\'échange avec nous, mais aussi avec les autres membres du projet, nous avons mis en place un serveur Discord. '
                                     .'Tu le trouveras " <a href="https://discord.gg/jhYYN3yuat">ici</a> " ou via le menu.<br>'
                                     .'Sur le serveur, tu trouveras les dernières nouvelles, ainsi que des mèmes passionnants entre les alliances de l\'univers.<br>'
                                     .'Pose des questions sur les mécanismes du jeu et contribue au développement du jeu par tes propres suggestions.<br>'
@@ -1488,6 +1488,8 @@ $LNG['teamEmergency'] =             'Équipe d\'urgence';
 $LNG['teamEmergencyLong'] =         'Reçoit un ping de la part des utilisateurs en cas de panne de serveur';
 $LNG['teamDev'] =                   'Promoteur';
 $LNG['teamDevLong'] =               'Maintient et développe le projet<br>A accès à la section Discord pour les discussions de développement<br>A accès à la section Discord pour les réunions de tickets avec les modérateurs';
+$LNG['teamCommunity'] =             'Community Support';
+$LNG['teamCommunityLong'] =         'Ils sont là pour vous aider si vous avez besoin d\'assistance<hr>Quel que soit votre problème, n\'hésitez pas à nous contacter ! Nous ferons de notre mieux pour trouver une solution<hr>Si vous avez des questions ou si vous voulez nous faire part de quelque chose, même de manière anonyme, n\'hésitez pas à le faire<hr>Nous sommes également responsables de la médiation entre les joueurs et les mods.';
 $LNG['teamNo'] =                    'Non';
 $LNG['teamYes'] =                   'Oui';
 $LNG['teamAlumni'] =                'Anciens membres de l\'équipe / Membres inactifs de l\'équipe';

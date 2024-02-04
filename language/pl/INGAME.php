@@ -1477,7 +1477,7 @@ $LNG['kontakt'] =                   'Cześć!<br>'
                                     .'Na tej stronie znajdziesz informacje o osobach, które aktywnie prowadzą, moderują i rozwijają ten projekt.<br>'
                                     .'Jeśli masz jakieś pytania lub problemy, skontaktuj się z nami.<br>'
                                     .'<br>'
-                                    .'Dla lepszej wymiany informacji z nami, ale także z innymi współspawaczami, uruchomiliśmy serwer Discord.'
+                                    .'Dla lepszej wymiany informacji z nami, ale także z innymi współspawaczami, uruchomiliśmy serwer Discord. '
                                     .'Można go znaleźć " <a href="https://discord.gg/jhYYN3yuat">tutaj</a> " lub poprzez menu.<br>'
                                     .'Na serwerze znajdziesz najnowsze wiadomości, a także ekscytujące memy między sojuszami wszechświata.<br>'
                                     .'Zadawaj pytania dotyczące mechaniki gry i pomagaj, przedstawiając własne sugestie dotyczące dalszego rozwoju gry.<br>'
@@ -1506,6 +1506,8 @@ $LNG['teamYes'] =                   'I';
 $LNG['teamAlumni'] =                'Byli / nieaktywni członkowie zespołu';
 $LNG['teamAlumniLong'] =            'Serdecznie dziękujemy';
 $LNG['teamLegend'] =                'Legenda, Wyjaśnienie ról / praw';
+$LNG['teamCommunity'] =             'Community Support';
+$LNG['teamCommunityLong'] =         'Są do Twojej dyspozycji, jeśli potrzebujesz wsparcia<hr>Bez względu na to, jaki masz problem, po prostu skontaktuj się z nami! Dołożymy wszelkich starań, aby znaleźć rozwiązanie<hr>Jeśli masz jakieś pytania lub chcesz coś z siebie wyrzucić, nawet anonimowo, możesz to zrobić<hr>Jesteśmy również odpowiedzialni za kontakty między graczami a modami.';
 
 //----------------------------------------------------------------------------//
 $LNG['BlockTrade']  = 'Handel pakietami';

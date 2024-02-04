@@ -1536,7 +1536,7 @@ $LNG['kontakt'] =                   'Hi!<br>'
                                     .'On this page you will find information about the people who actively run, moderate and develop this project.<br>'
                                     .'Feel free to contact us if you have any questions or problems.<br>'
                                     .'<br>'
-                                    .'For a better exchange with us, but also with the other co-spilers, we have set up a Discord server.'
+                                    .'For a better exchange with us, but also with the other players, we have set up a Discord server. '
                                     .'You can find it " <a href="https://discord.gg/jhYYN3yuat">here</a> " or via the menu.<br>'
                                     .'On the server you will find the latest news, as well as exciting memes between the alliances of the universe.<br>'
                                     .'Ask questions about game mechanics and help with your own suggestions for the further development of the game.<br>'
@@ -1560,6 +1560,8 @@ $LNG['teamEmergency'] =             'Emergency team';
 $LNG['teamEmergencyLong'] =         'Receives a ping on our Discord "@Emergency Response Team" from users in the event of server outages';
 $LNG['teamDev'] =                   'Developer';
 $LNG['teamDevLong'] =               'Maintains and develops the project<br>Has access to Discord section for dev discussions<br>Has access to Discord section for ticket meetings with mods';
+$LNG['teamCommunity'] =             'Community Support';
+$LNG['teamCommunityLong'] =         'They are there for you if you need support.<br>No matter what issue you have, just get in touch with us!<br>We\'ll do our best to find a solution.<br>If you have any questions or want to get something off your chest, even anonymously, you are welcome to do so.<br>We are also responsible for liaising between players and the mods.';
 $LNG['teamNo'] =                    'No';
 $LNG['teamYes'] =                   'Yes';
 $LNG['teamAlumni'] =                'Former / Inactive team members';

@@ -414,7 +414,7 @@ HTML;
         $reportData = GenerateReport($combatResult, $reportInfo, REAL_FIGHT);
 
         require_once('includes/classes/missions/functions/GenerateWreckField.php');
-        GenerateWreckField($this->_fleet['fleet_end_id'], $combatResult);
+        GenerateWreckField($targetPlanetID, $combatResult);
 
         switch ($combatResult['won']) {
             case "a":

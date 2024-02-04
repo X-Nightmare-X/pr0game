@@ -9,7 +9,26 @@
 	</li>
 	<li>
 		<h1>3. Pushing</h1>
-		<p>Pushing is forbidden as a matter of principle. Pushing is considered to be all transports/transfers and also moon attempts without appropriate consideration from accounts with lower points to accounts with higher points. Exceptions must be approved in advance by the operator. Failure to obtain approval may result in a ban. A trade must be completed within 24 hours or registered with an operator and approved. The sending player must still have more points than the recipient after the transfer. Sales to players with more points are allowed from 75 percent of the value (construction price, value of resources), sales to players with fewer points are allowed up to a maximum of 125 percent of the price. The current trade rate applies to the conversion.</p>
+		<p>Pushing is generally prohibited. Pushing includes, for example, all resource transports and moon shots without appropriate compensation from accounts with lower points to accounts with higher points.<br>
+		A trade must be completed within 24 hours. Exceptions must be approved in advance by the moderators via Discord ticket or in-game private message. <a href="index.php?page=team">You can find the team here.</a>.<br>
+		Failure to obtain authorization or disregarding the rule may result in a ban.</p>
+		
+		<h1>3.1 Trading and attacks</h1>
+		<p>If players wish to sell or distribute resources to other players, they may do so at a ratio between 75%% and 125%% of the market price.</p>
+		<p>Special case:<br>
+		If it is not possible to distribute the captured resources within the 24h window after attacks with Death Stars, this is generally permitted, but must be reported to the moderators.</p>
+		<details>
+			<summary>Examples of irregular trading/attacks (click to expand):</summary>
+			<ul>
+			<li>Player A (weak in points) deliberately sends his fleet via attack to player B (strong in points) with the aim of destroying it completely. In this case, the stronger player must open a ticket.</li>
+			<li>Players from a common ACS do not share the captured resources and the debris field according to the 24h rule.</li>
+			<li>Player A informs others that he is quitting the game. For each recipient of this message, a 24h (from receiption of the message) attack stop applies to those notified. In this case, the moderators must be notified.</li>
+			<li>Player A shares his fleet details (arrival, flight times, size, position, etc.) with others so that this information can be used to attack player A. This is an unfair advantage over the other players (passive pushing). This represents an unfair advantage over the other players and is considered a provision of resources (passive pushing). In this case, the moderators must be notified.</li>
+			</ul>
+		</details>
+
+		<h1>3.2 Farewell battles</h1>
+		<p>Farewell battles must generally be coordinated with the moderation team in advance.</p>
 	</li>
 	<li>
 		<h1>4. Bashing</h1>

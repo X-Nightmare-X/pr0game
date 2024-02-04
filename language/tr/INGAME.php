@@ -1488,7 +1488,7 @@ $LNG['kontakt'] =                   'Merhaba!<br>'
                                     .'Bu sayfada, bu projeyi aktif olarak yürüten, yöneten ve geliştiren kişiler hakkında bilgi bulacaksınız.<br>'
                                     .'Herhangi bir sorunuz veya sorununuz varsa bizimle iletişime geçmekten çekinmeyin.<br>'
                                     .'<br>'
-                                    .'Bizimle ve aynı zamanda diğer ortak yayıncılarla daha iyi bir alışveriş için bir Discord sunucusu kurduk.'
+                                    .'Bizimle ve aynı zamanda diğer ortak yayıncılarla daha iyi bir alışveriş için bir Discord sunucusu kurduk. '
                                     .'"<a href="https://discord.gg/jhYYN3yuat">burada</a>" veya menü aracılığıyla bulabilirsiniz.<br>'
                                     .'Sunucuda en son haberlerin yanı sıra evrenin ittifakları arasındaki heyecan verici memleri bulacaksınız.<br>'
                                     .'Oyun mekanikleri hakkında sorular sorun ve oyunun daha da geliştirilmesi için kendi önerilerinizle yardımcı olun.<br>'
@@ -1517,6 +1517,8 @@ $LNG['teamYes'] =                   'Ve';
 $LNG['teamAlumni'] =                'Eski / Aktif Olmayan Ekip Üyeleri';
 $LNG['teamAlumniLong'] =            'Teşekkür ederiz';
 $LNG['teamLegend'] =                'Açıklama, Rollerin / Hakların Açıklaması';
+$LNG['teamCommunity'] =             'Community Support';
+$LNG['teamCommunityLong'] =         'Desteğe ihtiyacınız olduğunda sizin için oradalar<hr>Sorununuz ne olursa olsun bizimle iletişime geçmeniz yeterli! Bir çözüm bulmak için elimizden geleni yapacağız<hr>Herhangi bir sorunuz varsa veya içinizi dökmek istiyorsanız, anonim olarak bile olsa, bunu yapabilirsiniz<hr>Ayrıca oyuncular ve modlar arasındaki irtibattan da biz sorumluyuz.';
 
 //----------------------------------------------------------------------------//
 $LNG['BlockTrade']  = 'Blok ticareti';

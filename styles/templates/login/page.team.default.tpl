@@ -1,15 +1,21 @@
-{block name="title" prepend}Team{/block}
+{block name="title" prepend}{$LNG.team}{/block}
 {nocache}
 {block name="content"}
 <style>
-	content {
-		max-width: unset;
+	#content {
+		max-width: 1500px;
+	}
+	table.team th {
+		height: 14px;
+  		padding: 4px 6px;
+	}
+	table.team td {
+		padding: 2px 3px;
+		text-align: center;
 	}
 </style>
-<h1>{$LNG.team}</h1>
-{* <h3>{$LNG.teamAktiv}</h3> *}
 <h4>{$LNG.kontakt}</h4>
-<table>
+<table class="team" style="border-collapse: separate; border-spacing: 2px;">
 	<tr>
 		<th colspan="2">{$LNG.teamIngameName}</th>
 		<th>{$LNG.teamDiscordName}</th>
@@ -146,7 +152,7 @@
 <p>{$LNG.teamAlumniLong}: atain, ava, Axel auf dem Floß, Eichhorn, Captain Mrgl, Fionera, Klarname, Rosenreemann & Slippy</p>
 
 <h4>{$LNG.teamLegend}:</h4>
-<table>
+<table class="team" style="border-collapse: separate; border-spacing: 2px;">
 	<tr>
 		<td>
 			{$LNG.teamMod}

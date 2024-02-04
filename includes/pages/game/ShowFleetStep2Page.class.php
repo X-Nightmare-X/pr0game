@@ -266,6 +266,8 @@ class ShowFleetStep2Page extends AbstractGamePage
         $TransportCrystal = max(0, round(HTTP::_GP('crystal', 0.0)));
         $TransportDeuterium = max(0, round(HTTP::_GP('deuterium', 0.0)));
         $WantedResourceType = HTTP::_GP('resEx', 0);
+        $WantedResourceAmount = max(0, round(HTTP::_GP('exchange', 0.0)));
+        $markettype = HTTP::_GP('markettype', 0); //0 = resources, 1 = ships
 
         if ($PLANET['metal'] < $TransportMetal) {
             $this->sendJSON(sprintf($LNG['fl_not_enough'], $LNG['tech'][RESOURCE_METAL]));
@@ -296,7 +298,7 @@ class ShowFleetStep2Page extends AbstractGamePage
             $this->sendJSON(sprintf($LNG['fl_not_enough'], $LNG['tech'][RESOURCE_DEUT]));
         }
 
-        if ($fleetStorage < $TransportMetal + $TransportCrystal + $TransportDeuterium + $consumption) {
+        if ($fleetStorage < $TransportMetal + $TransportCrystal + $TransportDeuterium + $consumption || $fleetStorage < $WantedResourceAmount) {
             $this->sendJSON($LNG['fl_not_enough_space']);
         }
 
@@ -306,7 +308,7 @@ class ShowFleetStep2Page extends AbstractGamePage
             $anz += $TransportCrystal > 0 ? 1 : 0;
             $anz += $TransportDeuterium > 0 ? 1 : 0;
 
-            if ($anz == 0) {
+            if ($anz == 0 && $markettype == 0) {
                 $this->sendJSON($LNG['fl_trade_no_resource_loaded']);
             } elseif ($anz > 1) {
                 $this->sendJSON($LNG['fl_trade_to_many_resources_loaded']);

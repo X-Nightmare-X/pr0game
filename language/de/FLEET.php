@@ -296,6 +296,7 @@ $LNG['sys_tran_mess_user'] = 'Eine friedliche Flotte von %s %s erreicht %s %s un
 $LNG['sys_mess_fleetback'] = 'Flottenrückkehr';
 $LNG['sys_tran_mess_back'] = 'Eine deiner Flotten kehrt zum Planeten %s %s zurück.';
 $LNG['sys_trade_mess_back'] = 'Eine deiner Handelsflotten kehrte erfolglos zum Planeten %s %s zurück.';
+$LNG['sys_trade_mess_back_success'] = 'Eine deiner Handelsflotten kehrte erfolgreich mit %1$s Metall, %2$s Kristall und %3$s Deuterium zum Planeten %4$s %5$s zurück.';
 $LNG['sys_recy_gotten'] = 'Deine Recycler haben an den Koordinaten %1$s %2$s %6$s und %3$s %7$s von insgesamt %4$s %6$s und %5$s %7$s gesammelt.';
 $LNG['sys_gain'] = 'Gewinn';
 $LNG['sys_irak_subject'] = 'Raketeneinschlag';
@@ -345,10 +346,6 @@ $LNG['type_planet_short_3'] = 'M';
 $LNG['type_planet_1'] = 'Planet';
 $LNG['type_planet_2'] = 'Trümmerfeld';
 $LNG['type_planet_3'] = 'Mond';
-
-$LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
-$LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
-
 
 //----------------------------------------------------------------------------//
 // Scavengers Toolbox

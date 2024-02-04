@@ -1536,7 +1536,7 @@ $LNG['kontakt'] =                   'Hi!<br>'
                                     .'Auf dieser Seite findest du Informationen zu den Leuten, die dieses Projekt aktiv betreiben, moderieren und weiterentwickeln.<br>'
                                     .'Wende dich bei Fragen und Problemen gern an uns.<br>'
                                     .'<br>'
-                                    .'Für den besseren Austausch mit uns, aber auch mit den anderen Mitspielern, haben wir einen Discord-Server eingerichtet.'
+                                    .'Für den besseren Austausch mit uns, aber auch mit den anderen Mitspielern, haben wir einen Discord-Server eingerichtet. '
                                     .'Du findest ihn » <a href="https://discord.gg/jhYYN3yuat">hier</a> « oder über das Menü.<br>'
                                     .'Auf dem Server findest du die aktuellsten News, sowie spannende Memes zwischen den Allianzen des Universums.<br>'
                                     .'Stelle Fragen zu Spielmechaniken und hilf durch eigene Vorschläge mit bei der Weiterentwicklung des Spiels.<br>'
@@ -1547,7 +1547,7 @@ $LNG['teamIngameName'] =            'Ingame Name';
 $LNG['teamDiscordName'] =           'Discord Name';
 $LNG['teamRole'] =                  'Rolle';
 $LNG['teamPlayer'] =                'Spieler';
-$LNG['teamAdmin'] =                 'Admin';
+$LNG['teamAdmin'] =                 'Game - Admin';
 $LNG['teamAdminLong'] =             'Hat Zugriff auf Sonderfeatures zum Administrieren des Spiels';
 $LNG['teamDatabase'] =              'Datenbankzugang';
 $LNG['teamTickets'] =               'Ticketzugang';
@@ -1560,6 +1560,8 @@ $LNG['teamEmergency'] =             'Notfallteam';
 $LNG['teamEmergencyLong'] =         'Erhält von den Usern im Discord über "@Emergency Response Team" einen Ping, wenn es zu Serverausfällen kommt ';
 $LNG['teamDev'] =                   'Entwickler';
 $LNG['teamDevLong'] =               'Pflegt und entwickelt das Projekt weiter<br>Hat Zugriff auf Discord-Bereich für Dev-Diskussionen<br>Hat Zugriff auf Discord-Bereich für Ticketbesprechungen mit Mods';
+$LNG['teamCommunity'] =             'Community Support';
+$LNG['teamCommunityLong'] =         'Sie sind für euch da, wenn ihr Support benötigt.<br>Egal welches Anliegen ihr habt, meldet euch einfach bei uns!<br>Wir geben unser Bestes, um eine Lösung zu finden.<br>Habt ihr Fragen oder möchtet ihr etwas loswerden?<br>Auch anonym könnt ihr euch jederzeit an uns wenden!<br>Auch verantwortlich für das Vermitteln zwischen Spielern und den Mods.';
 $LNG['teamNo'] =                    'Nein';
 $LNG['teamYes'] =                   'Ja';
 $LNG['teamAlumni'] =                'Ehemalige / Inaktive / Gelegentliche Teammitglieder';

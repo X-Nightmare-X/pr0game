@@ -13,7 +13,7 @@
  * @link https://codeberg.org/pr0game/pr0game
  */
 
-class ShowTeamPage extends AbstractGamePage
+class ShowTeamPage extends AbstractLoginPage
 {
 
     public function __construct()
@@ -28,7 +28,7 @@ class ShowTeamPage extends AbstractGamePage
         $universe = Universe::current();
         $db = Database::get();
 
-        $sql = "SELECT `id`, `username` FROM %%USERS%% WHERE authlevel >= 1 and `universe` = :universe";
+        $sql = "SELECT `id`, `username` FROM %%USERS%% WHERE `authlevel` >= 1 and `universe` = :universe";
         $admins = $db->select($sql,[
             ':universe' => $universe,
         ]);
