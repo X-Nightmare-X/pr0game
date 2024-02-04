@@ -38,6 +38,7 @@ class ShowTeamPage extends AbstractGamePage
         $idHackbrett        = "0";
         $idMasterspiel      = "0";
         $idReflexrecon      = "0";
+        $idSchmopfi         = "0";
         $idTimoKa           = "0";
 
         foreach ($admins as $user) {
@@ -68,6 +69,7 @@ class ShowTeamPage extends AbstractGamePage
             'idHackbrett'		    => $idHackbrett,
             'idMasterspiel'		    => $idMasterspiel,
             'idReflexrecon'		    => $idReflexrecon,
+            'idSchmopfi'		    => $idSchmopfi,
             'idTimoKa'		        => $idTimoKa,
         ]);
         $this->display('page.team.default.tpl');
