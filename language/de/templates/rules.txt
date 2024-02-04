@@ -74,7 +74,7 @@
 		<h1>9. Mobbing</h1>
 		<p>Communityschädliches Verhalten & Mobbing sind hier unerwünscht!</p>
 
-		<p>Um das zu definieren: Mobbing ist jedes Verhalten, dass wiederholtes, regelmäßiges, seelisches Schikanieren, Quälen und verletzten beinhaltet. 
+		<p>Um das zu definieren: Mobbing ist jedes Verhalten, dass wiederholtes, regelmäßiges, seelisches Schikanieren, Quälen und verletzen beinhaltet. 
 		Sowohl von einzelnen Personen, als auch von einer Gruppierung an Personen in überlegener Position.
 		Machtmissbrauch, Gewaltandrohungen, Beschimpfungen, Belästigungen, Bloßstellung und Ausgrenzung sind nur einige Beispiele, wie Mobbing ablaufen kann.</p>
 
