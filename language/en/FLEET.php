@@ -280,8 +280,6 @@ $LNG['sys_expe_back_home_ships_lost'] = 'The following ships were lost:';
 $LNG['sys_mess_transport'] = 'Transportmessage';
 $LNG['sys_tran_mess_owner'] = 'One of your fleets from %s %s reaches the %s %s %s and delivers %s %s, %s %s and %s %s.';
 $LNG['sys_tran_mess_user'] = 'A peaceful fleet of %s %s reached %s %s and delivers %s %s, %s %s and %s %s.';
-$LNG['sys_transfer_mess_owner'] = 'One of your fleets reaches the %s %s %s and delivers %s %s, %s %s and %s %s. ';
-$LNG['sys_transfer_mess_user'] = 'A peaceful fleet of %s %s reached %s %s and delivers %s %s, %s %s and %s %s. ';
 
 $LNG['sys_mess_fleetback'] = 'Fleet return';
 $LNG['sys_tran_mess_back'] = 'One of your fleets returns from the planet %s %s.';

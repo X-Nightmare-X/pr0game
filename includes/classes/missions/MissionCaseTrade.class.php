@@ -20,24 +20,25 @@ class MissionCaseTrade extends MissionFunctions implements Mission
 
     public function TargetEvent()
     {
+        $db = Database::get();
         if ($this->_fleet['fleet_end_id'] != 0) {
             /*
             * Buyer fleet flies to its own market place first
             * then gets rerouted to sellers marketplace
             */
-            $db = Database::get();
             $sql = "SELECT `marketplace_system`, `marketplace_galaxy` FROM %%TRADES%% WHERE `seller_fleet_id` = :fleet_id OR `buyer_fleet_id` = :fleet_id;";
             $target = $db->selectSingle($sql, [
                 ':fleet_id' => $this->_fleet['fleet_id']
             ]);
             //$this->UpdateFleet('fleet_mission', 3);
             $sql = "SELECT * FROM %%USERS%% WHERE id = :userId;";
-            $fleet_owner = Database::get()->selectSingle($sql, [':userId' => $this->_fleet['fleet_owner']]);
+            $fleet_owner = $db->selectSingle($sql, [':userId' => $this->_fleet['fleet_owner']]);
+            $config = Config::get($fleet_owner['universe']);
             $fleetArray = FleetFunctions::unserialize($this->_fleet['fleet_array']);
             $SpeedFactor = FleetFunctions::getGameSpeedFactor();
             $Distance = FleetFunctions::getTargetDistance(
-                [$this->_fleet['fleet_start_galaxy'], $this->_fleet['fleet_start_system'], (Config::get($fleet_owner['universe'])->max_planets + 2)],
-                [$target['marketplace_galaxy'], $target['marketplace_system'], (Config::get($fleet_owner['universe'])->max_planets + 2)]
+                [$this->_fleet['fleet_start_galaxy'], $this->_fleet['fleet_start_system'], ($config->max_planets + 2)],
+                [$target['marketplace_galaxy'], $target['marketplace_system'], ($config->max_planets + 2)]
             );
             $SpeedAllMin = FleetFunctions::getFleetMaxSpeed($fleetArray, $fleet_owner);
             $Duration = FleetFunctions::getMissionDuration(10, $SpeedAllMin, $Distance, $SpeedFactor, $fleet_owner);
@@ -54,6 +55,8 @@ class MissionCaseTrade extends MissionFunctions implements Mission
             $this->UpdateFleet('fleet_end_id', 0);
             $this->UpdateFleet('fleet_end_galaxy', $target['marketplace_galaxy']);
             $this->UpdateFleet('fleet_end_system', $target['marketplace_system']);
+            $this->UpdateFleetLog('fleet_end_galaxy', $target['marketplace_galaxy']);
+            $this->UpdateFleetLog('fleet_end_system', $target['marketplace_system']);
             $this->UpdateFleet('fleet_resource_metal', 0);
             $this->UpdateFleet('fleet_resource_crystal', 0);
             $this->UpdateFleet('fleet_resource_deuterium', 0);
@@ -63,7 +66,6 @@ class MissionCaseTrade extends MissionFunctions implements Mission
             * either exchange ressources or hold at market place
             * else is for holding(normal flight to marketplace)
             */
-            $db = Database::get();
             $sql = "SELECT `seller_fleet_id`, `ex_resource_type`, `ex_resource_amount`, `buy_time` FROM %%TRADES%% WHERE `seller_fleet_id` = :fleet_id;";
             $tradeSeller = $db->selectSingle($sql, [
                 ':fleet_id' => $this->_fleet['fleet_id']
@@ -86,6 +88,8 @@ class MissionCaseTrade extends MissionFunctions implements Mission
                             break;
                     }
                     $this->UpdateFleet($ressource, $tradeSeller['ex_resource_amount']);
+                    $this->UpdateFleetLog('fleet_wanted_resource', $tradeSeller['ex_resource_amount']);
+                    $this->UpdateFleetLog('fleet_wanted_resource_amount', $tradeSeller['ex_resource_type']);
                     $this->setState(FLEET_HOLD);
                     $this->UpdateFleet('fleet_no_m_return', 0);
                 } else {
@@ -106,6 +110,8 @@ class MissionCaseTrade extends MissionFunctions implements Mission
                             break;
                     }
                     $this->UpdateFleet($ressource, $tradeBuyer['resource_amount']);
+                    $this->UpdateFleetLog('fleet_wanted_resource', $tradeBuyer['resource_type']);
+                    $this->UpdateFleetLog('fleet_wanted_resource_amount', $tradeBuyer['resource_amount']);
                     $this->setState(FLEET_HOLD);
                     $this->UpdateFleet('fleet_no_m_return', 0);
                 } else {

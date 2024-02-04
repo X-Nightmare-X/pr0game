@@ -528,25 +528,21 @@ class ShowFleetStep3Page extends AbstractGamePage
             $consumption
         );
 
-
-        if ($fleetResource[901] > 0) {
-            $resourceType = 1;
-            $resourceAmount = $fleetResource[901];
-        } elseif ($fleetResource[902] > 0) {
-            $resourceType = 2;
-            $resourceAmount = $fleetResource[902];
-        } elseif ($fleetResource[903] > 0) {
-            $resourceType = 3;
-            $resourceAmount = $fleetResource[903];
-        } else {
-            $resourceType = 0;
-            $resourceAmount = 0;
-        }
-        $PLANET[$resource[901]] -= $fleetResource[901];
-        $PLANET[$resource[902]] -= $fleetResource[902];
-        $PLANET[$resource[903]] -= $fleetResource[903] + $consumption;
-
         if ($targetMission == MISSION_TRADE) {
+            if ($fleetResource[901] > 0) {
+                $resourceType = 1;
+                $resourceAmount = $fleetResource[901];
+            } elseif ($fleetResource[902] > 0) {
+                $resourceType = 2;
+                $resourceAmount = $fleetResource[902];
+            } elseif ($fleetResource[903] > 0) {
+                $resourceType = 3;
+                $resourceAmount = $fleetResource[903];
+            } else {
+                $resourceType = 0;
+                $resourceAmount = 0;
+            }
+
             $sql = 'INSERT INTO %%TRADES%% SET
 				transaction_type			= :transaction,
 				seller_fleet_id				= :sellerFleet,

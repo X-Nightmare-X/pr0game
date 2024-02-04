@@ -202,8 +202,8 @@ class ShowMarketPlacePage extends AbstractGamePage
         //Get trade fleet
         $sql = "SELECT * FROM %%FLEETS%% JOIN %%TRADES%% ON fleet_id = seller_fleet_id JOIN %%USERS%%"
             . " ON fleet_owner = id WHERE fleet_id = :fleet_id AND fleet_mess = 2;";
-        $fleetResult = $db->select($sql, [':fleet_id' => $FleetID]);
-        $isFleetTrade = ($fleetResult[0]['transaction_type'] == 1);
+        $fleetResult = $db->selectSingle($sql, [':fleet_id' => $FleetID]);
+        $isFleetTrade = ($fleetResult['transaction_type'] == 1);
 
         //Vmode check
         $vmode = $this->checkVmode();
@@ -219,52 +219,52 @@ class ShowMarketPlacePage extends AbstractGamePage
         //Get trade fleet
         $sql = "SELECT * FROM %%FLEETS%% JOIN %%TRADES%% ON fleet_id = seller_fleet_id JOIN %%USERS%%"
             . " ON fleet_owner = id WHERE fleet_id = :fleet_id AND fleet_mess = 2;";
-        $fleetResult = $db->select($sql, [':fleet_id' => $FleetID]);
+        $fleetResult = $db->selectSingle($sql, [':fleet_id' => $FleetID]);
 
         //Error: no results
         if ($db->rowCount() == 0) {
             return $LNG['market_p_msg_not_found'];
         }
 
-        if ($fleetResult[0]['filter_visibility'] != 0 && $USER['id'] != $fleetResult[0]['id']) {
+        if ($fleetResult['filter_visibility'] != 0 && $USER['id'] != $fleetResult['id']) {
             //Check packts
             $sql = "SELECT * FROM %%DIPLO%% WHERE (owner_1 = :ow AND owner_2 = :ow2) OR"
                 . " (owner_2 = :ow AND owner_1 = :ow2) AND accept = 1;";
             $res = $db->select($sql, [
                 ':ow' => $USER['ally_id'],
-                ':ow2' => $fleetResult[0]['ally_id'],
+                ':ow2' => $fleetResult['ally_id'],
             ]);
             $level = null;
             if ($db->rowCount() != 0) {
                 $level = $res[0]['level'];
             }
             $buy = $this->checkDiplo(
-                $fleetResult[0]['filter_visibility'],
+                $fleetResult['filter_visibility'],
                 $level,
-                $fleetResult[0]['ally_id'],
+                $fleetResult['ally_id'],
                 $USER['ally_id'],
-                $fleetResult[0]['fleet_owner'],
+                $fleetResult['fleet_owner'],
             );
             if (!$buy['buyable']) {
                 return $buy['reason'];
             }
         }
 
-        $isPush = $this->checkPush($fleetResult[0], $USER['id'], $fleetResult[0]['fleet_owner']);
+        $isPush = $this->checkPush($fleetResult, $USER['id'], $fleetResult['fleet_owner']);
         if ($isPush) {
             return $LNG['market_buyable_no_tech'];
         }
 
         //if not in range 1-3
-        if ($fleetResult[0]['resource_amount'] > $fleetResult[0]['ex_resource_amount'] && $isFleetTrade) {
-            $amount['ex_resource_amount'] = $fleetResult[0]['resource_amount'];
+        if ($fleetResult['resource_amount'] > $fleetResult['ex_resource_amount'] && $isFleetTrade) {
+            $amount['ex_resource_amount'] = $fleetResult['resource_amount'];
         } else {
-            $amount['ex_resource_amount'] = $fleetResult[0]['ex_resource_amount'];
+            $amount['ex_resource_amount'] = $fleetResult['ex_resource_amount'];
         }
         $fleetNeeded = $this->calculateFleetSize($amount, $shipType);
         if (
-            $fleetResult[0]['ex_resource_type'] >= 4 ||
-            $fleetResult[0]['ex_resource_type'] <= 0
+            $fleetResult['ex_resource_type'] >= 4 ||
+            $fleetResult['ex_resource_type'] <= 0
         ) {
             return $LNG['market_p_msg_wrong_resource_type'];
         }
@@ -273,8 +273,6 @@ class ShowMarketPlacePage extends AbstractGamePage
         if (!$fleetNeeded) {
             return $LNG['market_p_msg_more_ships_is_needed'];
         }
-
-        $fleetResult = $fleetResult[0]; // temp workaround
 
         $fleetArray = array_filter($fleetNeeded);
         $amount = $fleetResult['ex_resource_amount'];
@@ -337,7 +335,7 @@ class ShowMarketPlacePage extends AbstractGamePage
         $PLANET[$resource[901]] -= $fleetResource[901];
         $PLANET[$resource[902]] -= $fleetResource[902];
         $PLANET[$resource[903]] -= $fleetResource[903] + $consumption;
-        $buyerMission = $isFleetTrade ? 3 : 16;
+        $buyerMission = $isFleetTrade ? MISSION_TRANSPORT : MISSION_TRADE;
         $targetGalaxy = $isFleetTrade ? $fleetResult['fleet_start_galaxy'] : $PLANET['galaxy'];
         $targetSystem = $isFleetTrade ? $fleetResult['fleet_start_system'] : $PLANET['system'];
         $targetPlanet = $isFleetTrade ? $fleetResult['fleet_start_planet'] : $marketplace;
@@ -413,7 +411,7 @@ class ShowMarketPlacePage extends AbstractGamePage
             ':fleet_start_time' => $fleetStartTime,
             ':fleet_end_stay' => $fleetStayTime,
             ':fleet_end_time' => $fleetEndTime,
-            ':fleet_mission' => $fleetResult['transaction_type'] == 0 ? 16 : 17,
+            ':fleet_mission' => $fleetResult['transaction_type'] == 0 ? MISSION_TRADE : MISSION_TRANSFER,
             ':fleet_no_m_return' => 1,
             ':fleet_mess' => 0,
         ];
@@ -576,7 +574,7 @@ class ShowMarketPlacePage extends AbstractGamePage
 			ON al = ally_id
 			WHERE fleet_mission = :trade
 			AND fleet_universe = :universe
-			AND fleet_mess = 2 
+			AND fleet_mess = :hold 
             and buyer_fleet_id IS NULL 
             ORDER BY fleet_end_time ASC;';
         $fleetResult = $db->select($sql, [
@@ -584,6 +582,7 @@ class ShowMarketPlacePage extends AbstractGamePage
             ':trade'    => MISSION_TRADE,
             ':buyerid' => $USER['id'],
             ':universe' => Universe::current(),
+            ':hold'     => FLEET_HOLD,
         ]);
 
         $FlyingFleetList = [];

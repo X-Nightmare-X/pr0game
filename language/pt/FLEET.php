@@ -320,10 +320,6 @@ $LNG['type_planet_1'] = 'Planeta';
 $LNG['type_planet_2'] = 'Campo de Destroços';
 $LNG['type_planet_3'] = 'Lua';
 
-$LNG['sys_transfer_mess_owner'] = $LNG['sys_tran_mess_owner'];
-$LNG['sys_transfer_mess_user'] = $LNG['sys_tran_mess_user'];
-
-
 //----------------------------------------------------------------------------//
 // Scavengers Toolbox
 $LNG['spy_summary'] = 'Resumo';

@@ -267,7 +267,7 @@ class ShowFleetStep2Page extends AbstractGamePage
         $TransportDeuterium = max(0, round(HTTP::_GP('deuterium', 0.0)));
         $WantedResourceType = HTTP::_GP('resEx', 0);
         $WantedResourceAmount = max(0, round(HTTP::_GP('exchange', 0.0)));
-        $isFleetTrade = HTTP::_GP('markettype', 0);
+        $markettype = HTTP::_GP('markettype', 0); //0 = resources, 1 = ships
 
         if ($PLANET['metal'] < $TransportMetal) {
             $this->sendJSON(sprintf($LNG['fl_not_enough'], $LNG['tech'][RESOURCE_METAL]));
@@ -308,7 +308,7 @@ class ShowFleetStep2Page extends AbstractGamePage
             $anz += $TransportCrystal > 0 ? 1 : 0;
             $anz += $TransportDeuterium > 0 ? 1 : 0;
 
-            if ($anz == 0 && $isFleetTrade) {
+            if ($anz == 0 && $markettype == 0) {
                 $this->sendJSON($LNG['fl_trade_no_resource_loaded']);
             } elseif ($anz > 1) {
                 $this->sendJSON($LNG['fl_trade_to_many_resources_loaded']);
