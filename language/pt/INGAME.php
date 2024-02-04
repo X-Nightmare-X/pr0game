@@ -1505,7 +1505,7 @@ $LNG['teamAlumni'] =                'Antigos / Inativos Membros da Equipa';
 $LNG['teamAlumniLong'] =            'Gostaríamos de agradecer';
 $LNG['teamLegend'] =                'Legenda, Explicação de Papéis / Direitos';
 $LNG['teamCommunity'] =             'Community Support';
-$LNG['teamCommunityLong'] =         'É a mãe da empresa!<br>Estão à sua disposição se precisar de apoio.<br>Seja qual for a sua preocupação, pode contactar-nos aqui e faremos o nosso melhor para encontrar uma solução.<br>Se tiveres alguma dúvida ou quiseres desabafar, mesmo anonimamente, podes fazê-lo aqui.<br>Também somos responsáveis pela ligação entre os jogadores e os mods.';
+$LNG['teamCommunityLong'] =         'Eles estão ao seu dispor se precisar de apoio.<br>Qualquer que seja a sua preocupação, pode contactá-los aqui e eles farão o seu melhor para encontrar uma solução.<br>Se tiveres alguma dúvida ou quiseres desabafar, mesmo anonimamente, podes fazê-lo.<br>Também são responsáveis pela mediação entre os jogadores e os mods.';
 
 //----------------------------------------------------------------------------//
 $LNG['BlockTrade']  = 'Comércio em bloco';
