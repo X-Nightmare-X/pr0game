@@ -1559,7 +1559,7 @@ $LNG['teamAlumni'] =                'Besuchen Davy Jones';
 $LNG['teamAlumniLong'] =            'Kameraden waren';
 $LNG['teamLegend'] =                'Karte';
 $LNG['teamCommunity'] =             'Community Support';
-$LNG['teamCommunityLong'] =         'Sie sind für euch da, wenn ihr Support benötigt.<br>Was auch immer euer Anliegen ist, hier könnt euch melden und es wird das Beste geben eine um Lösung zu finden.<br>Wenn ihr Fragen habt oder, auch anonym, etwas loswerden wollt, könnt ihr das gerne machen.<br>Auch verantwortlich für das Vermitteln zwischen Spielern und den Mods.';
+$LNG['teamCommunityLong'] =         'Sie sind für euch da, wenn ihr Support benötigt.<br>Was auch immer euer Anliegen ist, hier könnt ihr euch melden und es wird das Beste gegeben um eine Lösung zu finden.<br>Wenn ihr Fragen habt oder, auch anonym, etwas loswerden wollt, könnt ihr das gerne machen.<br>Auch verantwortlich für das Vermitteln zwischen Spielern und den Mods.';
 
 //----------------------------------------------------------------------------//
 $LNG['BlockTrade']  = 'Handel blockieren';
