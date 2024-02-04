@@ -1525,16 +1525,16 @@ $LNG['spytech_playercard'] = [
 $LNG['team'] =                      'Das Deam';
 $LNG['teamAktiv'] =                 'Agdif';
 $LNG['kontakt'] =                   'Hi!<br>'
-                                    .'On this page you will find information about the people who actively run, moderate and develop this project.<br>'
-                                    .'Feel free to contact us if you have any questions or problems.<br>'
+                                    .'Auf dieser Seite findest du Informationen zu den Leuten, die dieses Projekt aktiv betreiben, moderieren und weiterentwickeln.<br>'
+                                    .'Wende dich bei Fragen und Problemen gern an uns.<br>'
                                     .'<br>'
-                                    .'For a better exchange with us, but also with the other co-spilers, we have set up a Discord server.'
-                                    .'You can find it " <a href="https://discord.gg/jhYYN3yuat">here</a> " or via the menu.<br>'
-                                    .'On the server you will find the latest news, as well as exciting memes between the alliances of the universe.<br>'
-                                    .'Ask questions about game mechanics and help with your own suggestions for the further development of the game.<br>'
+                                    .'Für den besseren Austausch mit uns, aber auch mit den anderen Mitspielern, haben wir einen Discord-Server eingerichtet.'
+                                    .'Du findest ihn » <a href="https://discord.gg/jhYYN3yuat">hier</a> « oder über das Menü.<br>'
+                                    .'Auf dem Server findest du die aktuellsten News, sowie spannende Memes zwischen den Allianzen des Universums.<br>'
+                                    .'Stelle Fragen zu Spielmechaniken und hilf durch eigene Vorschläge mit bei der Weiterentwicklung des Spiels.<br>'
                                     .'<br>'
-                                    .'Of course, we will also answer your in-game questions.<br>'
-                                    .'However, please bear in mind that we only play the game as a hobby. Answers may take a few days.<br>';
+                                    .'Natürlich antworten wir dir dennoch auch bei Ingame-Nachriten.<br>'
+                                    .'Bedenke jedoch, dass auch wir das Spiel nur als Hobby betreiben. Antworten können sich einige Tage hinziehen.<br>';
 $LNG['teamIngameName'] =            'Ingame Name';
 $LNG['teamDiscordName'] =           'Lord gorea Name';
 $LNG['teamRole'] =                  'Rolle';
