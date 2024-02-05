@@ -88,8 +88,8 @@ class MissionCaseTrade extends MissionFunctions implements Mission
                             break;
                     }
                     $this->UpdateFleet($ressource, $tradeSeller['ex_resource_amount']);
-                    $this->UpdateFleetLog('fleet_wanted_resource', $tradeSeller['ex_resource_amount']);
-                    $this->UpdateFleetLog('fleet_wanted_resource_amount', $tradeSeller['ex_resource_type']);
+                    $this->UpdateFleetLog('fleet_wanted_resource', $tradeSeller['ex_resource_type']);
+                    $this->UpdateFleetLog('fleet_wanted_resource_amount', $tradeSeller['ex_resource_amount']);
                     $this->setState(FLEET_HOLD);
                     $this->UpdateFleet('fleet_no_m_return', 0);
                 } else {
