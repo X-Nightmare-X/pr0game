@@ -201,6 +201,18 @@ function ShowUniversePage()
             $db->insert($sql);
             $newUniverse = $db->lastInsertId();
 
+            $modules =& Singleton()->modules;
+            foreach ($modules as $moduleKey => $moduleName) {
+                $sql = 'INSERT INTO %%CONFIG_UNIVERSE_MODULES%% (`uni`, `module`, `module_name`, `state`)
+                    VALUES (:uni, :module, :module_name, :state)';
+                $db->insert($sql, [
+                    ':uni' => $newUniverse,
+                    ':module' => $moduleKey,
+                    ':module_name' => $moduleName,
+                    ':state' => 1,
+                ]);
+            }
+
             Config::reload();
             $sql = "INSERT INTO %%MARKETPLACE%% (`universeId`) VALUES (:universe);";
             $db->insert($sql, [
@@ -236,8 +248,8 @@ function ShowUniversePage()
                     HTTPS,
                     true
                 );
-                HTTP::redirectTo("uni" . $USER['universe'] . "/admin.php?reload=r");
             }
+            HTTP::redirectTo("uni" . $USER['universe'] . "/admin.php?reload=r");
             break;
     }
 
