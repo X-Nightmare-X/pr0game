@@ -256,7 +256,7 @@ class ShowMarketPlacePage extends AbstractGamePage
         }
 
         //if not in range 1-3
-        if ($fleetResult['resource_amount'] > $fleetResult['ex_resource_amount'] && $isFleetTrade) {
+        if ($fleetResult['resource_amount'] > $fleetResult['ex_resource_amount'] || $isFleetTrade) {
             $amount['ex_resource_amount'] = $fleetResult['resource_amount'];
         } else {
             $amount['ex_resource_amount'] = $fleetResult['ex_resource_amount'];
@@ -350,7 +350,7 @@ class ShowMarketPlacePage extends AbstractGamePage
             $PLANET['planet'],
             $PLANET['planet_type'],
             $fleetResult['fleet_owner'],
-            $fleetResult['fleet_start_id'],
+            1,
             $targetGalaxy,
             $targetSystem,
             $targetPlanet,

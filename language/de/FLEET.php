@@ -297,6 +297,9 @@ $LNG['sys_mess_fleetback'] = 'Flottenrückkehr';
 $LNG['sys_tran_mess_back'] = 'Eine deiner Flotten kehrt zum Planeten %s %s zurück.';
 $LNG['sys_trade_mess_back'] = 'Eine deiner Handelsflotten kehrte erfolglos zum Planeten %s %s zurück.';
 $LNG['sys_trade_mess_back_success'] = 'Eine deiner Handelsflotten kehrte erfolgreich mit %1$s Metall, %2$s Kristall und %3$s Deuterium zum Planeten %4$s %5$s zurück.';
+$LNG['sys_trade_mess_arr_success'] = 'Eine deiner Handelsflotten ist bereit zur Rückkehr zum Planeten %1$s %2$s. <form action="game.php?page=fleetTable&amp;action=sendfleetback" method="post">'
+    . '<input name="fleetID" value="%3$s" type="hidden"><input value="%4$s" type="submit"></form>';
+$LNG['fl_send_back'] = 'Zurück';
 $LNG['sys_recy_gotten'] = 'Deine Recycler haben an den Koordinaten %1$s %2$s %6$s und %3$s %7$s von insgesamt %4$s %6$s und %5$s %7$s gesammelt.';
 $LNG['sys_gain'] = 'Gewinn';
 $LNG['sys_irak_subject'] = 'Raketeneinschlag';
