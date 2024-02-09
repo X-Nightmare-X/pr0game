@@ -60,7 +60,7 @@ border:0px;background:url(./styles/resource/images/admin/blank.gif);text-align:r
 					<tr><td height="22px">{$LNG.ac_auth_level}</td><td>{$nivel}</td></tr>
 					<tr><td height="22px">{$LNG.ac_on_vacation}</td><td>{$vacas}</td></tr>
 					<tr><td height="22px">{$LNG.ac_banned}</td><td>{$suspen} {$mas}</td></tr>
-<tr><td height="22px">{$LNG.ac_alliance}</td><td>{if isset($allianceData)}{$allianceData.name} ({$LNG.ac_ali_idid} {$allianceData.id}){else}{$LNG.ac_no_ally}{/if}</td></tr>
+					<tr><td height="22px">{$LNG.ac_alliance}</td><td>{if isset($allianceData)}{$allianceData.name} ({$LNG.ac_ali_idid} {$allianceData.id}){else}{$LNG.ac_no_ally}{/if}</td></tr>
 					<tr><td height="22px">{$LNG.ac_reg_ip}</td><td>{$ip}</td></tr>
 					<tr><td height="22px">{$LNG.ac_last_ip}</td><td>{$ip2}</td></tr>
 					<tr><td height="22px">{$LNG.ac_checkip_title}</td><td>{$ipcheck}</td></tr>
@@ -125,7 +125,7 @@ border:0px;background:url(./styles/resource/images/admin/blank.gif);text-align:r
 					<tr><td width="25%" align="center" >{$LNG.input_id}</td><td>{$allianceData.id}</td></tr>
 					<tr><td>{$LNG.ac_leader}</td><td>{$allianceData.leader}</td></tr>
 					<tr><td>{$LNG.ac_tag}</td><td>{$allianceData.tag}</td></tr>
-					<tr><td>{$LNG.ac_name_ali}</td><td>{$allianceData.name}</td></tr>
+					<tr><td>{$LNG.ac_name_ali}</td><td>{if isset($allianceData)}{$allianceData.name}{else}{$LNG.ac_no_ally}{/if}</td></tr>
 					<tr><td>{$LNG.ac_ext_text}</td><td>{if !$allianceData.externalText}{$LNG.ac_no_text_ext}{else}<a href="#" onclick="$('#externo').slideToggle();return false">{$LNG.ac_view_text_ext}{/if}</td></tr>
 					<tr><td>{$LNG.ac_int_text}</td><td>{if !$allianceData.internalText}{$LNG.ac_no_text_int}{else}<a href="#" onclick="$('#interno').slideToggle();return false">{$LNG.ac_view_text_int}{/if}</td></tr>
 					<tr><td>{$LNG.ac_sol_text}</td><td>{if !$allianceData.applyText}{$LNG.ac_no_text_sol}{else}<a href="#" onclick="$('#solicitud').slideToggle();return false">{$LNG.ac_view_text_sol}{/if}</td></tr>
