@@ -350,7 +350,7 @@ class ShowMarketPlacePage extends AbstractGamePage
             $PLANET['planet'],
             $PLANET['planet_type'],
             $fleetResult['fleet_owner'],
-            1,
+            $fleetResult['fleet_start_id'],
             $targetGalaxy,
             $targetSystem,
             $targetPlanet,
