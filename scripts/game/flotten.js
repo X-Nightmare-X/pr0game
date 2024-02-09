@@ -272,21 +272,23 @@ function CheckTarget()
 
 function CheckResources()
 {
-  e = document.getElementsByName("resEx")[0];
-  resEx = e != null ? e.value : 0;
-  e = document.getElementsByName("exchange")[0];
-  exchange = e != null ? e.value : 0;
-  e = document.getElementsByName("markettype");
-  markettype = e != null ? e[0].value : 0;
-  $.getJSON('game.php?page=fleetStep2&mode=checkResources&metal='+document.getElementsByName("metal")[0].value+'&crystal='+document.getElementsByName("crystal")[0].value+'&deuterium='+document.getElementsByName("deuterium")[0].value+'&mission='+document.querySelector('input[name="mission"]:checked').value+'&markettype='+markettype+'&resEx='+resEx+'&exchange='+exchange+'&token='+document.getElementsByName("token")[0].value, function(data) {
+	e = document.getElementsByName("resEx")[0];
+	resEx = e != null ? e.value : 0;
+	e = document.getElementsByName("exchange")[0];
+	exchange = e != null ? e.value : 0;
+	e = document.getElementsByName("markettype");
+	markettype = e != null ? e[0].value : 0;
+	$.getJSON('game.php?page=fleetStep2&mode=checkResources&metal='+document.getElementsByName("metal")[0].value+'&crystal='+document.getElementsByName("crystal")[0].value+'&deuterium='+document.getElementsByName("deuterium")[0].value+'&mission='+document.querySelector('input[name="mission"]:checked').value+'&markettype='+markettype+'&resEx='+resEx+'&exchange='+exchange+'&token='+document.getElementsByName("token")[0].value, function(data) {
 		if (data == "OK") {
 			document.getElementById('form').submit();
 		} else if (typeof data.error !== 'undefined' && data.error) {
-      Dialog.alert(data.message, function () {
-        document.location.href = 'game.php?page=fleetTable';
-      });
-    } else {
-      NotifyBox(data);
+			Dialog.alert(data.message, function () {
+				document.location.href = 'game.php?page=fleetTable';
+			});
+		} else {
+			$("#wait:visible").removeAttr('style').hide().fadeOut();
+			$("#submit:hidden").removeAttr('style').hide().fadeIn();
+			NotifyBox(data);
 		}
 	});
 	return false;
