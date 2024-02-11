@@ -89,13 +89,46 @@ class FlyingFleetsTable
         return Database::get()->select($sql, $param);
     }
 
-    public function renderTable()
+    public function renderTable($isPhalanx = false)
     {
-        $fleetResult    = $this->getFleets();
-        $ACSDone        = [];
-        $FleetData      = [];
+        $fleetResult            = $this->getFleets();
+        $ACSDone                = [];
+        $FleetData              = [];
+
+        if ($isPhalanx){
+
+            $USER =& Singleton()->USER;
+            $PLANET =& Singleton()->PLANET;
+            $db = Database::get();
+            $sql = 'INSERT INTO %%PHALANX_LOG%% SET 
+                owner					= :owner,
+                owner_planet_id			= :planet_id,
+                target                  = :target,
+                target_planet_id		= :foo,
+                phalanx_time            = :timestamp;';
+
+            $db->insert($sql, [
+                ':owner'                => $USER['id'],
+                ':planet_id'            => $PLANET['id'],
+                ':target'               => $this->userId,
+                ':foo'                  => $this->planetId,
+                ':timestamp'            => TIMESTAMP,
+            ]);
+
+            $phalanx_log_id = $db->lastInsertId();
+            $sql = '';
+
+        }
+        
+        
 
         foreach ($fleetResult as $fleetRow) {
+
+            if ($isPhalanx){
+                $foo = $fleetRow['fleet_id'];
+                $sql .= "INSERT INTO %%PHALANX_FLEETS%% (phalanx_log_id, fleet_id) VALUES ($phalanx_log_id, $foo);";
+            }
+
             if (
                 $fleetRow['fleet_mess'] == 0 && $fleetRow['fleet_start_time'] > TIMESTAMP
                 && ($fleetRow['fleet_group'] == 0 || !isset($ACSDone[$fleetRow['fleet_group']]))
@@ -143,6 +176,13 @@ class FlyingFleetsTable
                     $fleetRow,
                     1
                 );
+            }
+        
+        }
+
+        if ($isPhalanx){
+            if ($sql != '') {
+                $db->insert($sql);
             }
         }
 
