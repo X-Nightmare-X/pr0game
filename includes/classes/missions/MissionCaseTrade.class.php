@@ -21,6 +21,7 @@ class MissionCaseTrade extends MissionFunctions implements Mission
     public function TargetEvent()
     {
         $db = Database::get();
+        $LNG		= $this->getLanguage(null, $this->_fleet['fleet_owner']);
         if ($this->_fleet['fleet_end_id'] != 0) {
             /*
             * Buyer fleet flies to its own market place first
@@ -92,6 +93,8 @@ class MissionCaseTrade extends MissionFunctions implements Mission
                     $this->UpdateFleetLog('fleet_wanted_resource_amount', $tradeSeller['ex_resource_amount']);
                     $this->setState(FLEET_HOLD);
                     $this->UpdateFleet('fleet_no_m_return', 0);
+
+                    $this->sendHoldMessage();
                 } else {
                     $this->setState(FLEET_HOLD);
                     $this->UpdateFleet('fleet_no_m_return', 1);
@@ -114,6 +117,8 @@ class MissionCaseTrade extends MissionFunctions implements Mission
                     $this->UpdateFleetLog('fleet_wanted_resource_amount', $tradeBuyer['resource_amount']);
                     $this->setState(FLEET_HOLD);
                     $this->UpdateFleet('fleet_no_m_return', 0);
+
+                    $this->sendHoldMessage();
                 } else {
                     $this->setState(FLEET_HOLD);
                     $this->UpdateFleet('fleet_no_m_return', 1);
@@ -171,5 +176,28 @@ class MissionCaseTrade extends MissionFunctions implements Mission
         );
 
         $this->RestoreFleet();
+    }
+
+    private function sendHoldMessage()
+    {
+        $LNG		= $this->getLanguage(null, $this->_fleet['fleet_owner']);
+        $db = Database::get();
+        $sql		= 'SELECT name FROM %%PLANETS%% WHERE id = :planetId;';
+        $planetName	= $db->selectSingle($sql, [
+            ':planetId'	=> $this->_fleet['fleet_start_id'],
+        ], 'name');
+        $Message	= sprintf($LNG['sys_trade_mess_arr_success'], $planetName, GetStartAddressLink($this->_fleet, ''), $this->_fleet['fleet_id'], $LNG['fl_send_back']);
+        PlayerUtil::sendMessage(
+            $this->_fleet['fleet_owner'],
+            0,
+            $LNG['sys_mess_tower'],
+            4,
+            $LNG['sys_mess_fleetback'],
+            $Message,
+            $this->_fleet['fleet_start_time'],
+            null,
+            1,
+            $this->_fleet['fleet_universe']
+        );
     }
 }

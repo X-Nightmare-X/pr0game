@@ -256,7 +256,7 @@ class ShowMarketPlacePage extends AbstractGamePage
         }
 
         //if not in range 1-3
-        if ($fleetResult['resource_amount'] > $fleetResult['ex_resource_amount'] && $isFleetTrade) {
+        if ($fleetResult['resource_amount'] > $fleetResult['ex_resource_amount'] || $isFleetTrade) {
             $amount['ex_resource_amount'] = $fleetResult['resource_amount'];
         } else {
             $amount['ex_resource_amount'] = $fleetResult['ex_resource_amount'];

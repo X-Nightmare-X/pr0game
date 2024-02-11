@@ -452,25 +452,25 @@ function ShowAccountEditorPage()
 
                 if (!empty($username) && $id != ROOT_USER) {
                     $QryUpdate[] = "`username` = :username";
-                    $param[':username'] = $username;
+                    $params[':username'] = $username;
                     $afterPersonal['username'] = $username;
                 }
 
                 if (!empty($email) && $id != ROOT_USER) {
                     $QryUpdate[] = "`email` = :email";
-                    $param[':email'] = $email;
+                    $params[':email'] = $email;
                     $afterPersonal['email'] = $email;
                 }
 
                 if (!empty($email_2) && $id != ROOT_USER) {
                     $QryUpdate[] = "`email_2` = :email_2";
-                    $param[':email_2'] = $email_2;
+                    $params[':email_2'] = $email_2;
                     $afterPersonal['email_2'] = $email_2;
                 }
 
                 if (!empty($password) && $id != ROOT_USER) {
                     $QryUpdate[] = "`password` = :password";
-                    $param[':password'] = PlayerUtil::cryptPassword($password);
+                    $params[':password'] = PlayerUtil::cryptPassword($password);
                     $afterPersonal['password'] = (PlayerUtil::cryptPassword($password) != $beforePersonal['password']) ? 'CHANGED' : '';
                 } else {
                     $afterPersonal['password'] = '';
@@ -479,7 +479,7 @@ function ShowAccountEditorPage()
 
                 if ($vacation == 'yes') {
                     $QryUpdate[] = "`urlaubs_modus` = :urlaubs_modus";
-                    $param[':urlaubs_modus'] = 1;
+                    $params[':urlaubs_modus'] = 1;
                     $afterPersonal['urlaubs_modus'] = 1;
                     $d = HTTP::_GP('d', 0);
                     $h = HTTP::_GP('h', 0);
@@ -487,7 +487,7 @@ function ShowAccountEditorPage()
                     $s = HTTP::_GP('s', 0);
                     $TimeAns = TIMESTAMP + $d * 86400 + $h * 3600 + $m * 60 + $s;
                     $QryUpdate[] = "`urlaubs_until` = :urlaubs_until";
-                    $param[':urlaubs_until'] = $TimeAns;
+                    $params[':urlaubs_until'] = $TimeAns;
                     $afterPersonal['urlaubs_until'] = $TimeAns;
                 }
 
