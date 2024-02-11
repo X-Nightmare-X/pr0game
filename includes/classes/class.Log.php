@@ -79,7 +79,7 @@ class Log
             ':admin'    => $this->data['admin'],
             ':target'   => $this->data['target'],
             ':time'     => TIMESTAMP,
-            ':data'     => serialize($this->data['old'], $this->data['new']),
+            ':data'     => serialize([$this->data['old'], $this->data['new']]),
             ':universe' => $uni,
         ]);
     }
