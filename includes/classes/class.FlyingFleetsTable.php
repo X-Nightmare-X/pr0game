@@ -96,6 +96,9 @@ class FlyingFleetsTable
         $FleetData      = [];
 
         foreach ($fleetResult as $fleetRow) {
+            if ($fleetRow['fleet_mission'] == MISSION_TRADE) {
+                $fleetRow['target_planetname'] = "";
+            }
             if (
                 $fleetRow['fleet_mess'] == 0 && $fleetRow['fleet_start_time'] > TIMESTAMP
                 && ($fleetRow['fleet_group'] == 0 || !isset($ACSDone[$fleetRow['fleet_group']]))
