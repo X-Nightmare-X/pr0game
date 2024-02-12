@@ -126,7 +126,7 @@ class FlyingFleetsTable
 
             if ($isPhalanx){
                 $phalanxLogFleetID = $fleetRow['fleet_id'];
-                $sql .= "INSERT INTO %%PHALANX_FLEETS%% (phalanxLogID, fleet_id) VALUES ($phalanxLogID, $phalanxLogFleetID);";
+                $sql .= "INSERT INTO %%PHALANX_FLEETS%% (phalanx_log_id, fleet_id) VALUES ($phalanxLogID, $phalanxLogFleetID);";
             }
 
             if ($fleetRow['fleet_mission'] == MISSION_TRADE) {
