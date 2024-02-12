@@ -104,18 +104,18 @@ class FlyingFleetsTable
                 owner					= :owner,
                 owner_planet_id			= :planet_id,
                 target                  = :target,
-                target_planet_id		= :foo,
+                target_planet_id		= :designatedPlanetID,
                 phalanx_time            = :timestamp;';
 
             $db->insert($sql, [
                 ':owner'                => $USER['id'],
                 ':planet_id'            => $PLANET['id'],
                 ':target'               => $this->userId,
-                ':foo'                  => $this->planetId,
+                ':designatedPlanetID'   => $this->planetId,
                 ':timestamp'            => TIMESTAMP,
             ]);
 
-            $phalanx_log_id = $db->lastInsertId();
+            $phalanxLogID = $db->lastInsertId();
             $sql = '';
 
         }
@@ -125,8 +125,8 @@ class FlyingFleetsTable
         foreach ($fleetResult as $fleetRow) {
 
             if ($isPhalanx){
-                $foo = $fleetRow['fleet_id'];
-                $sql .= "INSERT INTO %%PHALANX_FLEETS%% (phalanx_log_id, fleet_id) VALUES ($phalanx_log_id, $foo);";
+                $phalanxLogFleetID = $fleetRow['fleet_id'];
+                $sql .= "INSERT INTO %%PHALANX_FLEETS%% (phalanxLogID, fleet_id) VALUES ($phalanxLogID, $phalanxLogFleetID);";
             }
 
             if (
