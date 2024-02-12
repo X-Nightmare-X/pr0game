@@ -283,6 +283,9 @@ $LNG['sys_mess_fleetback'] = 'Возвращение флота';
 $LNG['sys_tran_mess_back'] = 'Флот вернулся на планету %s %s. На борту флота нет ресурсов.';
 $LNG['sys_trade_mess_back'] = 'Один из ваших торговых флотов безуспешно возвращается на планету %s %s.';
 $LNG['sys_trade_mess_back_success'] = 'Один из ваших торговых флотов успешно вернулся на планету %4$s %5$s с %1$s металла, %2$s кристалла и %3$s дейтерия.';
+$LNG['sys_trade_mess_arr_success'] = 'Один из ваших торговых флотов готов вернуться на планету %1$s %2$s. <form action="game.php?page=fleetTable&amp;action=sendfleetback" method="post">'
+    . '<input name="fleetID" value="%3$s" type="hidden"><input value="%4$s" type="submit"></form>';
+$LNG['fl_send_back'] = 'Отзыв';
 $LNG['sys_recy_gotten'] = 'Ваши переработчики собрали %2$s %6$s и %3$s %7$s из общего количества %4$s %6$s и %5$s %7$s в координатах %1$s.';
 $LNG['sys_gain'] = 'Добыча';
 $LNG['sys_irak_subject'] = 'Ракетная атака';

@@ -271,6 +271,9 @@ $LNG['sys_mess_fleetback'] = 'Regresso da frota';
 $LNG['sys_tran_mess_back'] = 'A Frota voltou ao planeta % s% s. A frota não entregou os recursos.';
 $LNG['sys_trade_mess_back'] = 'Uma das vossas frotas comerciais regressa ao planeta %s %s sem sucesso.';
 $LNG['sys_trade_mess_back_success'] = 'Uma das vossas frotas mercantes regressou com sucesso ao planeta %4$s %5$s com %1$s metal, %2$s cristal e %3$s deutério.';
+$LNG['sys_trade_mess_arr_success'] = 'Uma das vossas frotas mercantes está pronta para regressar ao planeta %1$s %2$s. <form action="game.php?page=fleetTable&amp;action=sendfleetback" method="post">'
+    . '<input name="fleetID" value="%3$s" type="hidden"><input value="%4$s" type="submit"></form>';
+$LNG['fl_send_back'] = 'Regressar';
 $LNG['sys_recy_gotten'] = 'Os vossos recicladores recolheram %2$s %6$s e %3$s %7$s de um total de %4$s %6$s e %5$s %7$s nas coordenadas %1$s.';
 $LNG['sys_gain'] = 'Beneficios';
 $LNG['sys_irak_subject'] = 'Missil Interplanetário';

@@ -297,6 +297,9 @@ $LNG['sys_mess_fleetback'] = 'Floddenrüggkehr ';
 $LNG['sys_tran_mess_back'] = 'Eine deiner Floddne gehrt zum Blanetne %s %s zurügg.';
 $LNG['sys_trade_mess_back'] = 'Eine deiner Handelsfloddne gehrte erfolglos zum Blanetne  %s %s zurügg.';
 $LNG['sys_trade_mess_back_success'] = 'Eine deiner Handelsfloddne gehrde erfolgreich mid %1$s medall, %2$s grisdall und %3$s deuderium dsum Blanedne %4$s %5$s dsurügg alda.';
+$LNG['sys_trade_mess_arr_success'] = 'Eine deiner Handelsfloddne isd bereid dsur Rügggehr dsum Blanedne %1$s %2$s. <form action="game.php?page=fleetTable&amp;action=sendfleetback" method="post">'
+    . '<input name="fleetID" value="%3$s" type="hidden"><input value="%4$s" type="submit"></form>';
+$LNG['fl_send_back'] = 'Zurügg';
 $LNG['sys_recy_gotten'] = 'Deine Rescheikler habne an den Goordinatne %1$s %2$s %6$s und %3$s %7$s von insgesamt %4$s %6$s und %5$s %7$s gesammelt.';
 $LNG['sys_gain'] = 'Gewinn';
 $LNG['sys_irak_subject'] = 'Rageteneinschlag';

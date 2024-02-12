@@ -30,35 +30,32 @@ class ShowRecordsPage extends AbstractGamePage
         $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
         $reslist =& Singleton()->reslist;
+        $resource =& Singleton()->resource;
         $db = Database::get();
 
         $sql = "SELECT r.elementID, r.level, r.userID, u.username, u.records_optIn, v.name
-		FROM %%USERS%% u
-		INNER JOIN %%RECORDS%% r ON r.userID = u.id
-        INNER JOIN %%VARS%% v ON v.elementID = r.elementID
-		WHERE r.universe = :universe;";
-
+            FROM %%USERS%% u
+            INNER JOIN %%RECORDS%% r ON r.userID = u.id
+            INNER JOIN %%VARS%% v ON v.elementID = r.elementID
+            WHERE r.universe = :universe;";
         $recordResult = $db->select($sql, [':universe' => Universe::current()]);
 
-        $sql = "SELECT spy_tech, computer_tech, military_tech, defence_tech, shield_tech, 
-        energy_tech, hyperspace_tech, combustion_tech, impulse_motor_tech, hyperspace_motor_tech, laser_tech, 
-        ionic_tech, buster_tech, intergalactic_tech, expedition_tech, metal_proc_tech, crystal_proc_tech,
-        deuterium_proc_tech, graviton_tech
-        FROM %%USERS%% WHERE id = :userId;";
+        $selected_tech = [];
+        foreach ($reslist['tech'] as $Techno) {
+            $selected_tech[] = $resource[$Techno];
+        }
 
+        $sql = "SELECT " . implode(", ", $selected_tech) . " FROM %%USERS%% WHERE id = :userId;";
         $userTechResult = $db->selectSingle($sql, [':userId' => $USER['id']]);
 
-        $sql = "SELECT max(metal_mine) AS 'metal_mine', max(crystal_mine) AS 'crystal_mine', 
-        max(deuterium_sintetizer) AS 'deuterium_sintetizer', max(solar_plant) AS 'solar_plant', 
-        max(fusion_plant) AS 'fusion_plant', max(robot_factory) AS 'robot_factory', 
-        max(nano_factory) AS 'nano_factory', max(hangar) AS 'hangar', max(metal_store) AS 'metal_store', 
-        max(crystal_store) AS 'crystal_store', max(deuterium_store) AS 'deuterium_store', 
-        max(laboratory) AS 'laboratory', max(terraformer) AS 'terraformer', max(university) AS 'university', 
-        max(ally_deposit) AS 'ally_deposit', max(silo) AS 'silo', max(mondbasis) AS 'mondbasis', 
-        max(phalanx) AS 'phalanx', max(sprungtor)  AS 'sprungtor'
-        FROM %%PLANETS%% WHERE id_owner = :userId;";
+        $select_buildings = [];
+        foreach ($reslist['build'] as $Building) {
+            $select_buildings[] = sprintf('max(%1$s) AS \'%1$s\'', $resource[$Building]);
+        }
 
+        $sql = "SELECT " . implode(", ", $select_buildings) . " FROM %%PLANETS%% WHERE id_owner = :userId;";
         $userBuildResult = $db->selectSingle($sql, [':userId' => $USER['id']]);
+
         $defenseList = array_fill_keys($reslist['defense'], []);
         $fleetList = array_fill_keys($reslist['fleet'], []);
         $researchList = array_fill_keys($reslist['tech'], []);

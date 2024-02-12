@@ -60,7 +60,7 @@ border:0px;background:url(./styles/resource/images/admin/blank.gif);text-align:r
 					<tr><td height="22px">{$LNG.ac_auth_level}</td><td>{$nivel}</td></tr>
 					<tr><td height="22px">{$LNG.ac_on_vacation}</td><td>{$vacas}</td></tr>
 					<tr><td height="22px">{$LNG.ac_banned}</td><td>{$suspen} {$mas}</td></tr>
-<tr><td height="22px">{$LNG.ac_alliance}</td><td>{if isset($allianceData)}{$allianceData.name} ({$LNG.ac_ali_idid} {$allianceData.id}){else}{$LNG.ac_no_ally}{/if}</td></tr>
+					<tr><td height="22px">{$LNG.ac_alliance}</td><td>{if !empty($allianceData)}{$allianceData.name} ({$LNG.ac_ali_idid} {$allianceData.id}){else}{$LNG.ac_no_ally}{/if}</td></tr>
 					<tr><td height="22px">{$LNG.ac_reg_ip}</td><td>{$ip}</td></tr>
 					<tr><td height="22px">{$LNG.ac_last_ip}</td><td>{$ip2}</td></tr>
 					<tr><td height="22px">{$LNG.ac_checkip_title}</td><td>{$ipcheck}</td></tr>
@@ -105,7 +105,7 @@ border:0px;background:url(./styles/resource/images/admin/blank.gif);text-align:r
 	<!-- ALLIANCE -->
 	<tr>
 		<td class="unico transparent">
-			{if isset($allianceData)}
+			{if !empty($allianceData)}
 				<a href="#" onclick="$('#alianza').slideToggle();return false" class="link">
 					<img src="./styles/resource/images/admin/arrowright.png" width="16" height="10"> {$LNG.ac_alliance}
 				</a>
@@ -117,76 +117,78 @@ border:0px;background:url(./styles/resource/images/admin/blank.gif);text-align:r
 			{/if}
 		</td>
 	</tr>
-	<tr>
-		<td class="unico transparent">
-			<div id="alianza" style="display:none">
-				<table align="center" width="60%">
-					<tr><th colspan="2">{$LNG.ac_info_ally}</th></tr>
-					<tr><td width="25%" align="center" >{$LNG.input_id}</td><td>{$allianceData.id}</td></tr>
-					<tr><td>{$LNG.ac_leader}</td><td>{$allianceData.leader}</td></tr>
-					<tr><td>{$LNG.ac_tag}</td><td>{$allianceData.tag}</td></tr>
-					<tr><td>{$LNG.ac_name_ali}</td><td>{$allianceData.name}</td></tr>
-					<tr><td>{$LNG.ac_ext_text}</td><td>{if !$allianceData.externalText}{$LNG.ac_no_text_ext}{else}<a href="#" onclick="$('#externo').slideToggle();return false">{$LNG.ac_view_text_ext}{/if}</td></tr>
-					<tr><td>{$LNG.ac_int_text}</td><td>{if !$allianceData.internalText}{$LNG.ac_no_text_int}{else}<a href="#" onclick="$('#interno').slideToggle();return false">{$LNG.ac_view_text_int}{/if}</td></tr>
-					<tr><td>{$LNG.ac_sol_text}</td><td>{if !$allianceData.applyText}{$LNG.ac_no_text_sol}{else}<a href="#" onclick="$('#solicitud').slideToggle();return false">{$LNG.ac_view_text_sol}{/if}</td></tr>
-					<tr><td>{$LNG.ac_image}</td><td>{if !$allianceData.logo}{$LNG.ac_no_img}{else}<a href="#" onclick="$('#imagen').slideToggle();return false">{$LNG.ac_view_image2}{/if}</td></tr>
-					<tr><td>{$LNG.ac_ally_web}</td><td>"<a href="{$allianceData.website}" target=_blank>{$allianceData.website}</a></td></tr>
-					<tr><td>{$LNG.ac_register_ally_time}</td><td>{$allianceData.foundationDate}</td></tr>
-					<tr><td>{$LNG.ac_total_members}</td><td>{$allianceData.memberAmount}</td></tr>
-					<tr><td>{$LNG.ac_ranking}</td><td><a href="#" onclick="$('#puntaje_ali').slideToggle();return false">{$LNG.ac_see_ranking}</a></td></tr>
-				</table>
-				<br>
-
-				<div id="imagen" style="display:none">
+	{if !empty($allianceData)}
+		<tr>
+			<td class="unico transparent">
+				<div id="alianza" style="display:none">
 					<table align="center" width="60%">
-						<tr><th>{$LNG.ac_ali_logo_11}</th></tr>
-						<tr><td width="60%"><img src="{$allianceData.logo}" class="image"></td></tr>
-						<tr><td><a href="{$allianceData.logo}" target="_blank">{$LNG.ac_view_image}</a></td></tr>
-						<tr><td>{$LNG.ac_urlnow} <input type="text" size="50" value="{$allianceData.logo}"></td></tr>
+						<tr><th colspan="2">{$LNG.ac_info_ally}</th></tr>
+						<tr><td width="25%" align="center" >{$LNG.input_id}</td><td>{$allianceData.id}</td></tr>
+						<tr><td>{$LNG.ac_leader}</td><td>{$allianceData.leader}</td></tr>
+						<tr><td>{$LNG.ac_tag}</td><td>{$allianceData.tag}</td></tr>
+						<tr><td>{$LNG.ac_name_ali}</td><td>{$allianceData.name}</td></tr>
+						<tr><td>{$LNG.ac_ext_text}</td><td>{if !$allianceData.externalText}{$LNG.ac_no_text_ext}{else}<a href="#" onclick="$('#externo').slideToggle();return false">{$LNG.ac_view_text_ext}{/if}</td></tr>
+						<tr><td>{$LNG.ac_int_text}</td><td>{if !$allianceData.internalText}{$LNG.ac_no_text_int}{else}<a href="#" onclick="$('#interno').slideToggle();return false">{$LNG.ac_view_text_int}{/if}</td></tr>
+						<tr><td>{$LNG.ac_sol_text}</td><td>{if !$allianceData.applyText}{$LNG.ac_no_text_sol}{else}<a href="#" onclick="$('#solicitud').slideToggle();return false">{$LNG.ac_view_text_sol}{/if}</td></tr>
+						<tr><td>{$LNG.ac_image}</td><td>{if !$allianceData.logo}{$LNG.ac_no_img}{else}<a href="#" onclick="$('#imagen').slideToggle();return false">{$LNG.ac_view_image2}{/if}</td></tr>
+						<tr><td>{$LNG.ac_ally_web}</td><td>"<a href="{$allianceData.website}" target=_blank>{$allianceData.website}</a></td></tr>
+						<tr><td>{$LNG.ac_register_ally_time}</td><td>{$allianceData.foundationDate}</td></tr>
+						<tr><td>{$LNG.ac_total_members}</td><td>{$allianceData.memberAmount}</td></tr>
+						<tr><td>{$LNG.ac_ranking}</td><td><a href="#" onclick="$('#puntaje_ali').slideToggle();return false">{$LNG.ac_see_ranking}</a></td></tr>
 					</table>
 					<br>
-				</div>
 
-				<div id="externo" style="display:none">
-					<table align="center" width="60%">
-						<tr><th>{$LNG.ac_ali_text_11}</th></tr>
-						<tr><td width="60%">{$allianceData.externalText}</td></tr>
-					</table>
-					<br>
-				</div>
+					<div id="imagen" style="display:none">
+						<table align="center" width="60%">
+							<tr><th>{$LNG.ac_ali_logo_11}</th></tr>
+							<tr><td width="60%"><img src="{$allianceData.logo}" class="image"></td></tr>
+							<tr><td><a href="{$allianceData.logo}" target="_blank">{$LNG.ac_view_image}</a></td></tr>
+							<tr><td>{$LNG.ac_urlnow} <input type="text" size="50" value="{$allianceData.logo}"></td></tr>
+						</table>
+						<br>
+					</div>
 
-				<div id="interno" style="display:none">
-					<table align="center" width="60%">
-						<tr><td class="c">{$LNG.ac_ali_text_22}</td></tr>
-						<tr><td width="60%">{$allianceData.internalText}</td></tr>
-					</table>
-					<br>
-				</div>
+					<div id="externo" style="display:none">
+						<table align="center" width="60%">
+							<tr><th>{$LNG.ac_ali_text_11}</th></tr>
+							<tr><td width="60%">{$allianceData.externalText}</td></tr>
+						</table>
+						<br>
+					</div>
 
-				<div id="solicitud" style="display:none">
-					<table align="center" width="60%">
-						<tr><th>{$LNG.ac_ali_text_33}</th></tr>
-						<tr><td width="60%">{$allianceData.applyText}</td></tr>
-					</table>
-					<br>
-				</div>
+					<div id="interno" style="display:none">
+						<table align="center" width="60%">
+							<tr><td class="c">{$LNG.ac_ali_text_22}</td></tr>
+							<tr><td width="60%">{$allianceData.internalText}</td></tr>
+						</table>
+						<br>
+					</div>
 
-				<!-- USER ALLIANCE SCORE -->
-				<div id="puntaje_ali" style="display:none">
-					<table align="center" width="60%">
-						<tr><td class="c" colspan="3">{$LNG.ac_ally_ranking}</td></tr>
-						<tr><td width="15%"></td><td width="40%">{$LNG.ac_points_count}</td><td width="5%" class="centrado">{$LNG.ac_ranking}</td></tr>
-						<tr><td width="15%">{$LNG.researchs_title}</td><td width="40%">{pretty_number($allianceStats.tech_points)} ({pretty_number($allianceStats.tech_count)} {$LNG.researchs_title})</td><td width="5%"># {pretty_number($allianceStats.tech_rank)}</td></tr>
-						<tr><td width="15%">{$LNG.defenses_title}</td><td width="40%">{pretty_number($allianceStats.defs_points)} ({pretty_number($allianceStats.defs_count)} {$LNG.defenses_title})</td><td width="5%"># {pretty_number($allianceStats.defs_rank)}</td></tr>
-						<tr><td width="15%">{$LNG.ships_title}</td><td width="40%">{pretty_number($allianceStats.fleet_points)} ({pretty_number($allianceStats.fleet_count)} {$LNG.ships_title})</td><td width="5%"># {pretty_number($allianceStats.fleet_rank)}</td></tr>
-						<tr><td width="15%">{$LNG.buildings_title}</td><td width="40%">{pretty_number($allianceStats.build_points)} ({pretty_number($allianceStats.build_count)} {$LNG.buildings_title})</td><td width="5%"># {pretty_number($allianceStats.build_rank)}</td></tr>
-						<tr><td colspan="3">{$LNG.ac_total_points}<span class="colorNegative">{pretty_number($allianceStats.total_points)}</span></td></tr>
-					</table>
-					<br>
+					<div id="solicitud" style="display:none">
+						<table align="center" width="60%">
+							<tr><th>{$LNG.ac_ali_text_33}</th></tr>
+							<tr><td width="60%">{$allianceData.applyText}</td></tr>
+						</table>
+						<br>
+					</div>
+
+					<!-- USER ALLIANCE SCORE -->
+					<div id="puntaje_ali" style="display:none">
+						<table align="center" width="60%">
+							<tr><td class="c" colspan="3">{$LNG.ac_ally_ranking}</td></tr>
+							<tr><td width="15%"></td><td width="40%">{$LNG.ac_points_count}</td><td width="5%" class="centrado">{$LNG.ac_ranking}</td></tr>
+							<tr><td width="15%">{$LNG.researchs_title}</td><td width="40%">{pretty_number($allianceStats.tech_points)} ({pretty_number($allianceStats.tech_count)} {$LNG.researchs_title})</td><td width="5%"># {pretty_number($allianceStats.tech_rank)}</td></tr>
+							<tr><td width="15%">{$LNG.defenses_title}</td><td width="40%">{pretty_number($allianceStats.defs_points)} ({pretty_number($allianceStats.defs_count)} {$LNG.defenses_title})</td><td width="5%"># {pretty_number($allianceStats.defs_rank)}</td></tr>
+							<tr><td width="15%">{$LNG.ships_title}</td><td width="40%">{pretty_number($allianceStats.fleet_points)} ({pretty_number($allianceStats.fleet_count)} {$LNG.ships_title})</td><td width="5%"># {pretty_number($allianceStats.fleet_rank)}</td></tr>
+							<tr><td width="15%">{$LNG.buildings_title}</td><td width="40%">{pretty_number($allianceStats.build_points)} ({pretty_number($allianceStats.build_count)} {$LNG.buildings_title})</td><td width="5%"># {pretty_number($allianceStats.build_rank)}</td></tr>
+							<tr><td colspan="3">{$LNG.ac_total_points}<span class="colorNegative">{pretty_number($allianceStats.total_points)}</span></td></tr>
+						</table>
+						<br>
+					</div>
 				</div>
-			</div>
-		</td>
-	</tr>
+			</td>
+		</tr>
+	{/if}
 
 	<!-- PLANETS & MOONS -->
 	<tr>

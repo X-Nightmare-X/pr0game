@@ -68,7 +68,7 @@
             <div class="repairShipContainerContent">
               <span>
                 {if $ID==212} +{$SolarEnergy} {$LNG.tech.911}<br>{/if}
-                {if !$busy && $Element.maxBuildable > 1}
+                {if !$busy && $Element.maxBuildable > 0}
                   <input type="number" class="numfield" data-max="{$Element.maxBuildable}" name="fmenge[{$ID}]" id="input_{$ID}" size="3" value="0" tabindex="{$smarty.foreach.FleetList.iteration}">
                   <input type="button" value="{$LNG.bd_max_ships}" onclick="$('#input_{$ID}').val('{$Element.maxBuildable}')">
                   <br>

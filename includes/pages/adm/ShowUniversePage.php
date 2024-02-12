@@ -134,7 +134,7 @@ function ShowUniversePage()
                 $sql = "DELETE FROM %%MARKETPLACE%% WHERE `universeId` = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
 
-                $sql = "DELETE FROM %%CONFIG%% WHERE `uni` = :universe;";
+                $sql = "DELETE FROM %%CONFIG_UNIVERSE%% WHERE `uni` = :universe;";
                 $db->delete($sql, [':universe' => $universe]);
 
                 if (Universe::getEmulated() == $universe) {
@@ -201,6 +201,18 @@ function ShowUniversePage()
             $db->insert($sql);
             $newUniverse = $db->lastInsertId();
 
+            $modules =& Singleton()->modules;
+            foreach ($modules as $moduleKey => $moduleName) {
+                $sql = 'INSERT INTO %%CONFIG_UNIVERSE_MODULES%% (`uni`, `module`, `module_name`, `state`)
+                    VALUES (:uni, :module, :module_name, :state)';
+                $db->insert($sql, [
+                    ':uni' => $newUniverse,
+                    ':module' => $moduleKey,
+                    ':module_name' => $moduleName,
+                    ':state' => 1,
+                ]);
+            }
+
             Config::reload();
             $sql = "INSERT INTO %%MARKETPLACE%% (`universeId`) VALUES (:universe);";
             $db->insert($sql, [
@@ -236,16 +248,16 @@ function ShowUniversePage()
                     HTTPS,
                     true
                 );
-                HTTP::redirectTo("uni" . $USER['universe'] . "/admin.php?reload=r");
             }
+            HTTP::redirectTo("uni" . $USER['universe'] . "/admin.php?reload=r");
             break;
     }
 
     $uniList = [];
 
     $sql = "SELECT `uni`, `users_amount`, `uni_status`, `energy_multiplier`, `expo_hold_multiplier`, `resource_multiplier`, `fleet_speed`, `building_speed`,
-                `shipyard_speed`, `research_speed`, `uni_name`, COUNT(DISTINCT inac.`id`) as inactive, COUNT(planet.`id`) as planet
-	    FROM %%CONFIG%% conf
+                `shipyard_speed`, `research_speed`, `uni_name`, COUNT(DISTINCT inac.`id`) as 'inactive', COUNT(planet.`id`) as 'planet'
+	    FROM %%CONFIG_UNIVERSE%% conf
 	    LEFT JOIN %%USERS%% as inac ON `uni` = inac.`universe` AND inac.`onlinetime` < :inactive
 	    LEFT JOIN %%PLANETS%% as planet ON `uni` = planet.`universe`
 	    GROUP BY conf.`uni`, inac.`universe`, planet.`universe`
