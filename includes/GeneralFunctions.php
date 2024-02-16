@@ -642,18 +642,21 @@ Debug Backtrace:
     }
 
     /* Debug via Support Ticket */
-    $USER =& Singleton()->USER;
-    if (isset($USER) && is_array($USER) && !empty($USER['id']) && !empty($USER['username'])) {
-        $ErrSource = $USER['id'];
-        $ErrName = $USER['username'];
-    } else {
-        $ErrSource = 1;
-        $ErrName = 'System';
+    $config = Config::get();
+    if ($config->debug) {
+        $USER =& Singleton()->USER;
+        if (isset($USER) && is_array($USER) && !empty($USER['id']) && !empty($USER['username'])) {
+            $ErrSource = $USER['id'];
+            $ErrName = $USER['username'];
+        } else {
+            $ErrSource = 1;
+            $ErrName = 'System';
+        }
+        require 'includes/classes/class.SupportTickets.php';
+        $ticketObj = new SupportTickets();
+        $ticketID = $ticketObj->createTicket($ErrSource, '9', $errorType[$errno]);
+        $ticketObj->createAnswer($ticketID, $ErrSource, $ErrName, $errorType[$errno], $errorText, 0);
     }
-    require 'includes/classes/class.SupportTickets.php';
-    $ticketObj = new SupportTickets();
-    $ticketID = $ticketObj->createTicket($ErrSource, '1', $errorType[$errno]);
-    $ticketObj->createAnswer($ticketID, $ErrSource, $ErrName, $errorType[$errno], $errorText, 0);
 }
 
 /*

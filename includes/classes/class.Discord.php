@@ -10,11 +10,24 @@ class Discord
             return;
         }
 
-        self::send($discord['webhook_exceptions'], '**' . $exception->getMessage() . '**' . PHP_EOL .
-            '```File: ' . $exception->getFile() . PHP_EOL .
+        $USER =& Singleton()->USER;
+        if (isset($USER) && is_array($USER) && !empty($USER['id']) && !empty($USER['username'])) {
+            $ErrSource = $USER['id'];
+            $ErrName = $USER['username'];
+        } else {
+            $ErrSource = 1;
+            $ErrName = 'System';
+        }
+
+        self::send($discord['webhook_exceptions'], 
+            '**' . $exception->getMessage() . '**' . PHP_EOL .
+            '```' .
+            'User-Info: ' . $ErrSource . ' ' . $ErrName .
+            'File: ' . $exception->getFile() . PHP_EOL .
             'Line: ' . $exception->getLine() . PHP_EOL .
             'URL: ' . PROTOCOL . HTTP_HOST . $_SERVER['REQUEST_URI'] . PHP_EOL .
-            'Debug Backtrace: ' . PHP_EOL . htmlspecialchars($exception->getTraceAsString()) . '```');
+            'Debug Backtrace: ' . PHP_EOL . htmlspecialchars($exception->getTraceAsString()) .
+            '```');
     }
 
     public static function sendLog($title, ?array $data = null, ?Exception $exception = null)
