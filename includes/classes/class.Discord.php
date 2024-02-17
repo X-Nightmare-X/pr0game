@@ -22,7 +22,7 @@ class Discord
         self::send($discord['webhook_exceptions'], 
             '**' . $exception->getMessage() . '**' . PHP_EOL .
             '```' .
-            'User-Info: ' . $ErrSource . ' ' . $ErrName .
+            'User-Info: ' . $ErrSource . ' ' . $ErrName . PHP_EOL .
             'File: ' . $exception->getFile() . PHP_EOL .
             'Line: ' . $exception->getLine() . PHP_EOL .
             'URL: ' . PROTOCOL . HTTP_HOST . $_SERVER['REQUEST_URI'] . PHP_EOL .
