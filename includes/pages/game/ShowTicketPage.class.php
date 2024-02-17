@@ -34,10 +34,12 @@ class ShowTicketPage extends AbstractGamePage
         $LNG =& Singleton()->LNG;
         $db = Database::get();
 
-        $sql = "SELECT t.*, COUNT(a.ticketID) as answer
-		FROM %%TICKETS%% t
-		INNER JOIN %%TICKETS_ANSWER%% a USING (ticketID)
-		WHERE t.ownerID = :userID GROUP BY a.ticketID ORDER BY t.ticketID DESC;";
+        $sql = 'SELECT t.*, COUNT(a.`ticketID`) as answer
+            FROM %%TICKETS%% t
+            INNER JOIN %%TICKETS_ANSWER%% a USING (`ticketID`)
+            WHERE t.`ownerID` = :userID 
+            GROUP BY a.`ticketID` 
+            ORDER BY t.`ticketID` DESC;';
 
         $ticketResult = $db->select($sql, [
             ':userID' => $USER['id']
@@ -47,7 +49,6 @@ class ShowTicketPage extends AbstractGamePage
 
         foreach ($ticketResult as $ticketRow) {
             $ticketRow['time'] = _date($LNG['php_tdformat'], $ticketRow['time'], $USER['timezone']);
-            $ticketRow['message'] = nl2br($ticketRow['message']);
 
             $ticketList[$ticketRow['ticketID']] = $ticketRow;
         }
@@ -62,6 +63,8 @@ class ShowTicketPage extends AbstractGamePage
     public function create()
     {
         $categoryList = $this->ticketObj->getCategoryList();
+        // Remove debug category for users to choose from
+        unset($categoryList[9]);
 
         $this->assign([
             'categoryList' => $categoryList,
@@ -99,7 +102,9 @@ class ShowTicketPage extends AbstractGamePage
         } else {
             $db = Database::get();
 
-            $sql = "SELECT status FROM %%TICKETS%% WHERE ticketID = :ticketID;";
+            $sql = 'SELECT `status` 
+                FROM %%TICKETS%% 
+                WHERE `ticketID` = :ticketID;';
             $ticketStatus = $db->selectSingle($sql, [
                 ':ticketID' => $ticketID
             ], 'status');
@@ -122,7 +127,11 @@ class ShowTicketPage extends AbstractGamePage
 
         $ticketID = HTTP::_GP('id', 0);
 
-        $sql = "SELECT a.*, t.categoryID, t.status FROM %%TICKETS_ANSWER%% a INNER JOIN %%TICKETS%% t USING(ticketID) WHERE a.ticketID = :ticketID AND t.ownerID = :ownerID ORDER BY a.answerID;";
+        $sql = 'SELECT a.*, t.`categoryID`, t.`status` 
+            FROM %%TICKETS_ANSWER%% a 
+            INNER JOIN %%TICKETS%% t USING(`ticketID`) 
+            WHERE a.`ticketID` = :ticketID AND t.`ownerID` = :ownerID 
+            ORDER BY a.`answerID`;';
         $answerResult = $db->select($sql, [
             ':ticketID' => $ticketID,
             ':ownerID' => $USER['id']

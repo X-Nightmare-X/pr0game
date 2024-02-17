@@ -49,7 +49,7 @@ class ShowSupportPage
         $sql = 'SELECT t.*, u.`username`, COUNT(a.`ticketID`) as answer
             FROM %%TICKETS%% t
             INNER JOIN %%TICKETS_ANSWER%% a USING (`ticketID`)
-            INNER JOIN %%USERS%% u ON u.`id` = t.`ownerID`
+            LEFT JOIN %%USERS%% u ON u.`id` = t.`ownerID`
             WHERE t.`universe` = :universe AND ';
         if ($categoryID > 0) {
             $sql .= 't.`categoryID` = :categoryID ';

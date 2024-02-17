@@ -649,12 +649,12 @@ Debug Backtrace:
             $ErrSource = $USER['id'];
             $ErrName = $USER['username'];
         } else {
-            $ErrSource = 1;
+            $ErrSource = 0;
             $ErrName = 'System';
         }
         require 'includes/classes/class.SupportTickets.php';
         $ticketObj = new SupportTickets();
-        $ticketID = $ticketObj->createTicket($ErrSource, '9', $errorType[$errno]);
+        $ticketID = $ticketObj->createTicket($ErrSource, 9, $errorType[$errno]);
         $ticketObj->createAnswer($ticketID, $ErrSource, $ErrName, $errorType[$errno], $errorText, 0);
     }
 }
