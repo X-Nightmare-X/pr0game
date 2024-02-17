@@ -62,16 +62,19 @@ class ShowRecordsPage extends AbstractGamePage
         $buildList = array_fill_keys($reslist['build'], []);
 
         foreach ($recordResult as $recordRow) {
-            if (in_array($recordRow['elementID'], $reslist['defense'])) {
-                $defenseList[$recordRow['elementID']][] = $recordRow;
-            } elseif (in_array($recordRow['elementID'], $reslist['fleet'])) {
-                $fleetList[$recordRow['elementID']][] = $recordRow;
-            } elseif (in_array($recordRow['elementID'], $reslist['tech'])) {
-                $researchList[$recordRow['elementID']][] = $recordRow;
-            } elseif (in_array($recordRow['elementID'], $reslist['build'])) {
-                $buildList[$recordRow['elementID']][] = $recordRow;
-            } elseif (in_array($recordRow['elementID'], $reslist['missile'])) {
-                $defenseList[$recordRow['elementID']][] = $recordRow;
+            $element = $recordRow['elementID'];
+            if (BuildFunctions::isEnabled($element)) {
+                if (in_array($element, $reslist['defense'])) {
+                    $defenseList[$element][] = $recordRow;
+                } elseif (in_array($element, $reslist['fleet'])) {
+                    $fleetList[$element][] = $recordRow;
+                } elseif (in_array($element, $reslist['tech'])) {
+                    $researchList[$element][] = $recordRow;
+                } elseif (in_array($element, $reslist['build'])) {
+                    $buildList[$element][] = $recordRow;
+                } elseif (in_array($element, $reslist['missile'])) {
+                    $defenseList[$element][] = $recordRow;
+                }
             }
         }
 
