@@ -34,22 +34,22 @@ class ShowLoginPage extends AbstractLoginPage
         $LNG =& Singleton()->LNG;
         $db = Database::get();
 
-        $username = HTTP::_GP('username', '', UTF8_SUPPORT);
+        $email = HTTP::_GP('email', '', UTF8_SUPPORT);
         $password = HTTP::_GP('password', '', true);
         $universe = Universe::current();
 
         $sql = 'SELECT `id`, `username`, `password`, `failed_logins` FROM %%USERS%% 
-            WHERE `universe` = :universe AND (`username` = :username OR `email` = :username);';
+            WHERE `universe` = :universe AND `email` = :email;';
         $loginData = $db->selectSingle($sql, [
             ':universe'	=> $universe,
-            ':username'	=> $username,
+            ':email'	=> $email,
         ]);
 
         $sql = 'SELECT * FROM %%USERS_VALID%% 
-            WHERE `universe` = :universe AND (`userName` = :username OR `email` = :username);';
+            WHERE `universe` = :universe AND `email` = :email;';
         $validationData = $db->selectSingle($sql, [
             ':universe'	=> $universe,
-            ':username'	=> $username,
+            ':email'	=> $email,
         ]);
 
         if (!empty($loginData)) {
@@ -65,14 +65,6 @@ class ShowLoginPage extends AbstractLoginPage
 
             $sql = 'UPDATE %%USERS%% SET `failed_logins` = 0 WHERE `id` = :userId;';
             $db->update($sql, [':userId' => $loginData['id']]);
-
-            if ($loginData['username'] == $username) {
-                $senderName = $LNG['loginUsernamePMSenderName'];
-                $subject 	= $LNG['loginUsernamePMSubject'];
-                $message 	= $LNG['loginUsernamePMText'];
-    
-                PlayerUtil::sendMessage($loginData['id'], 1, $senderName, 50, $subject, $message, TIMESTAMP);
-            }
 
             $session	= Session::create();
             $session->userId		= (int) $loginData['id'];
