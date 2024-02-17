@@ -513,6 +513,10 @@ $LNG['se_disclamerAddress'] = 'Dirección';
 $LNG['se_disclamerPhone'] = 'Número de Teléfono';
 $LNG['se_disclamerMail'] = 'Dirección de E-Mail';
 $LNG['se_disclamerNotice'] = 'Para obtener más información';
+$LNG['se_discord_hooks'] = 'Discord Webhooks';
+$LNG['se_discord_logs_hook'] = 'Logs';
+$LNG['se_discord_exceptions_hook'] = 'Excepciones y advertencias';
+$LNG['se_discord_tickets_hook'] = 'Tickets';
 
 //###########################################################//
 

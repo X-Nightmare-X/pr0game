@@ -4,9 +4,9 @@ class Discord
 {
     public static function sendException($exception): void
     {
-        require 'includes/config.php';
+        $config = Config::get();
 
-        if (!isset($discord['webhook_exceptions']) || empty($discord['webhook_exceptions'])) {
+        if (!isset($config->discord_exceptions_hook) || empty($config->discord_exceptions_hook)) {
             return;
         }
 
@@ -19,7 +19,7 @@ class Discord
             $ErrName = 'System';
         }
 
-        self::send($discord['webhook_exceptions'], 
+        self::send($config->discord_exceptions_hook, 
             '**' . $exception->getMessage() . '**' . PHP_EOL .
             '```' .
             'User-Info: ' . $ErrSource . ' ' . $ErrName . PHP_EOL .
@@ -32,9 +32,9 @@ class Discord
 
     public static function sendLog($title, ?array $data = null, ?Exception $exception = null)
     {
-        require 'includes/config.php';
+        $config = Config::get();
 
-        if (!isset($discord['webhook_logs']) || empty($discord['webhook_logs'])) {
+        if (!isset($config->discord_logs_hook) || empty($config->discord_logs_hook)) {
             return;
         }
 
@@ -49,7 +49,7 @@ class Discord
         }
         $message .= '```';
 
-        self::send($discord['webhook_logs'], $message);
+        self::send($config->discord_logs_hook, $message);
     }
 
     public static function sendMessage(String $webHookUrl, String $title, array $content)

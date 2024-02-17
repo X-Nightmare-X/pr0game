@@ -350,6 +350,10 @@ $LNG['se_disclamerAddress'] = 'Adres';
 $LNG['se_disclamerPhone'] = 'Telefon';
 $LNG['se_disclamerMail'] = 'Email';
 $LNG['se_disclamerNotice'] = 'Daha fazla bilgi';
+$LNG['se_discord_hooks'] = 'Discord Webhooks';
+$LNG['se_discord_logs_hook'] = 'Logs';
+$LNG['se_discord_exceptions_hook'] = 'İstisnalar ve uyarılar';
+$LNG['se_discord_tickets_hook'] = 'Tickets';
 
 //###########################################################//
 

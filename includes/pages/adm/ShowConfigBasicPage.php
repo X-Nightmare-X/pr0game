@@ -33,6 +33,10 @@ function ShowConfigBasicPage()
             'git_issues_link'           => $config->git_issues_link,
             'ttf_file'                  => $config->ttf_file,
 
+            'discord_logs_hook'         => $config->discord_logs_hook,
+            'discord_exceptions_hook'   => $config->discord_exceptions_hook,
+            'discord_tickets_hook'      => $config->discord_tickets_hook,
+
             'mail_active'               => $config->mail_active,
             'smtp_sendmail'             => $config->smtp_sendmail,
             'mail_use'                  => $config->mail_use,
@@ -74,6 +78,10 @@ function ShowConfigBasicPage()
         $forum_url                  = HTTP::_GP('forum_url', '', true);
         $git_issues_link            = HTTP::_GP('git_issues_link', '', true);
         $ttf_file                   = HTTP::_GP('ttf_file', '');
+
+        $discord_logs_hook          = HTTP::_GP('discord_logs_hook', '');
+        $discord_exceptions_hook    = HTTP::_GP('discord_exceptions_hook', '');
+        $discord_tickets_hook       = HTTP::_GP('discord_tickets_hook', '');
         
         $mail_active                = isset($_POST['mail_active']) && $_POST['mail_active'] == 'on' ? 1 : 0;
         $smtp_sendmail              = HTTP::_GP('smtp_sendmail', '', true);
@@ -116,6 +124,10 @@ function ShowConfigBasicPage()
             'forum_url'                 => $forum_url,
             'git_issues_link'           => $git_issues_link,
             'ttf_file'                  => $ttf_file,
+
+            'discord_logs_hook'         => $discord_logs_hook,
+            'discord_exceptions_hook'   => $discord_exceptions_hook,
+            'discord_tickets_hook'      => $discord_tickets_hook,
             
             'mail_active'               => $mail_active,
             'smtp_sendmail'             => $smtp_sendmail,
@@ -177,6 +189,10 @@ function ShowConfigBasicPage()
         'forum_url'                 => $config->forum_url,
         'git_issues_link'           => $config->git_issues_link,
         'ttf_file'                  => $config->ttf_file,
+
+        'discord_logs_hook'         => $config->discord_logs_hook,
+        'discord_exceptions_hook'   => $config->discord_exceptions_hook,
+        'discord_tickets_hook'      => $config->discord_tickets_hook,
         
         'mail_active'               => $config->mail_active,
         'smtp_sendmail'             => $config->smtp_sendmail,

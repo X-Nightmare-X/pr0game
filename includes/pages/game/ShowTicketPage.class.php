@@ -77,6 +77,7 @@ class ShowTicketPage extends AbstractGamePage
     {
         $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
+        $config = Config::get();
         $ticketID = HTTP::_GP('id', 0);
         $categoryID = HTTP::_GP('category', 0);
         $message = HTTP::_GP('message', '', true);
@@ -99,6 +100,16 @@ class ShowTicketPage extends AbstractGamePage
             }
 
             $ticketID = $this->ticketObj->createTicket($USER['id'], $categoryID, $subject);
+
+            if (isset($config->discord_tickets_hook) && !empty($config->discord_tickets_hook)) {
+                require_once 'includes/classes/class.Discord.php';
+                Discord::sendMessage($config->discord_tickets_hook, 'New ingame ticket created', [
+                    'Ticket-ID' => $ticketID,
+                    'User' => $USER['username'] . ' (' . $USER['id'] . ')',
+                    'Subject' => $subject,
+                    'Message' => $message,
+                ]);
+            }
         } else {
             $db = Database::get();
 
@@ -111,6 +122,15 @@ class ShowTicketPage extends AbstractGamePage
 
             if ($ticketStatus == 2) {
                 $this->printMessage($LNG['ti_error_closed']);
+            } 
+            else if (isset($config->discord_tickets_hook) && !empty($config->discord_tickets_hook)) {
+                require_once 'includes/classes/class.Discord.php';
+                Discord::sendMessage($config->discord_tickets_hook, 'New ticket reply', [
+                    'Ticket-ID' => $ticketID,
+                    'User' => $USER['username'] . ' (' . $USER['id'] . ')',
+                    'Subject' => $subject,
+                    'Message' => $message,
+                ]);
             }
         }
 
@@ -130,7 +150,7 @@ class ShowTicketPage extends AbstractGamePage
         $sql = 'SELECT a.*, t.`categoryID`, t.`status` 
             FROM %%TICKETS_ANSWER%% a 
             INNER JOIN %%TICKETS%% t USING(`ticketID`) 
-            WHERE a.`ticketID` = :ticketID AND t.`ownerID` = :ownerID 
+            WHERE a.`ticketID` = :ticketID AND t.`ownerID` = :ownerID AND t.`categoryID` != 9
             ORDER BY a.`answerID`;';
         $answerResult = $db->select($sql, [
             ':ticketID' => $ticketID,

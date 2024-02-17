@@ -292,6 +292,9 @@ CREATE TABLE `%PREFIX%config` (
   `forum_url` varchar(128) NOT NULL DEFAULT "", -- board page redirect, input field in universe
   `git_issues_link` varchar(128) NOT NULL DEFAULT "<git_issues_link>",
   `ttf_file` varchar(128) NOT NULL DEFAULT "styles/resource/fonts/DroidSansMono.ttf",
+  `discord_logs_hook` varchar(255) DEFAULT "",
+  `discord_exceptions_hook` varchar(255) DEFAULT "",
+  `discord_tickets_hook` varchar(255) DEFAULT "",
   `mail_active` tinyint(1) NOT NULL DEFAULT 0,
   `smtp_sendmail` varchar(64) NOT NULL DEFAULT "",
   `mail_use` tinyint(1) NOT NULL DEFAULT 0,
