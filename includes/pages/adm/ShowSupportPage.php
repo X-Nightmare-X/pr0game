@@ -43,23 +43,15 @@ class ShowSupportPage
         $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
         $db = Database::get();
-
-        $categoryID = HTTP::_GP('categoryID', 0);
         
         $sql = 'SELECT t.*, u.`username`, COUNT(a.`ticketID`) as answer
             FROM %%TICKETS%% t
             INNER JOIN %%TICKETS_ANSWER%% a USING (`ticketID`)
             LEFT JOIN %%USERS%% u ON u.`id` = t.`ownerID`
-            WHERE t.`universe` = :universe AND ';
-        if ($categoryID > 0) {
-            $sql .= 't.`categoryID` = :categoryID ';
-        } else {
-            $sql .= 't.`categoryID` > :categoryID ';
-        }
-        $sql .= 'GROUP BY a.`ticketID` ORDER BY t.`ticketID` DESC;';
+            WHERE t.`universe` = :universe
+            GROUP BY a.`ticketID` ORDER BY t.`ticketID` DESC;';
         $ticketResult = $db->select($sql, [
             ':universe' => Universe::getEmulated(),
-            ':categoryID' => $categoryID,
         ]);
         $ticketList = [];
 
@@ -78,7 +70,6 @@ class ShowSupportPage
             'ticketList' => $ticketList,
             'signalColors' => $USER['signalColors'],
             'categories' => $categories,
-            'categoryID' => $categoryID,
         ]);
 
         $this->tplObj->show('page.ticket.default.tpl');
