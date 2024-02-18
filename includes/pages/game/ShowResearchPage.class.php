@@ -209,6 +209,7 @@ class ShowResearchPage extends AbstractGamePage
         $pricelist =& Singleton()->pricelist;
         if (
             !in_array($elementId, $reslist['tech'])
+            || !BuildFunctions::isEnabled($elementId)
             || !BuildFunctions::isTechnologieAccessible($USER, $PLANET, $elementId)
             || !$this->checkLabSettingsInQueue($PLANET)
         ) {
@@ -322,6 +323,7 @@ class ShowResearchPage extends AbstractGamePage
         $PLANET =& Singleton()->PLANET;
         $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
+        $requeriments =& Singleton()->requeriments;
         $resource =& Singleton()->resource;
         $reslist =& Singleton()->reslist;
         $pricelist =& Singleton()->pricelist;
@@ -382,8 +384,19 @@ class ShowResearchPage extends AbstractGamePage
         $kristproduction = $PLANET['crystal_perhour'] + $config->crystal_basic_income * $config->resource_multiplier;
         $deutproduction = $PLANET['deuterium_perhour']  + $config->deuterium_basic_income * $config->resource_multiplier;
         foreach ($reslist['tech'] as $elementId) {
-            if (!BuildFunctions::isTechnologieAccessible($USER, $PLANET, $elementId)) {
+            if (!BuildFunctions::isEnabled($elementId)) {
                 continue;
+            }
+            $requirementsList = [];
+            if (!BuildFunctions::isTechnologieAccessible($USER, $PLANET, $elementId)) {
+                if (isset($requeriments[$elementId])) {
+                    foreach ($requeriments[$elementId] as $requireID => $RedCount) {
+                        $requirementsList[$requireID] = [
+                            'count' => $RedCount,
+                            'own'   => isset($PLANET[$resource[$requireID]]) ? $PLANET[$resource[$requireID]] : $USER[$resource[$requireID]]
+                        ];
+                    }
+                }
             }
 
             if (isset($queueData['quickinfo'][$elementId])) {
@@ -417,7 +430,9 @@ class ShowResearchPage extends AbstractGamePage
                 'elementTime'       => $elementTime,
                 'buyable'           => $buyable,
                 'levelToBuild'      => $levelToBuild,
-                'timetobuild'       => $timetobuild
+                'timetobuild'       => $timetobuild,
+                'requirements'      => $requirementsList,
+                'unavailable'       => !$bContinue || !empty($requirementsList) || !$buyable,
             ];
         }
 

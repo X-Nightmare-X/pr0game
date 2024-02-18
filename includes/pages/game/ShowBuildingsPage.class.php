@@ -114,6 +114,7 @@ class ShowBuildingsPage extends AbstractGamePage
         $pricelist = &Singleton()->pricelist;
         if (
             !in_array($Element, $reslist['allow'][$PLANET['planet_type']])
+            || !BuildFunctions::isEnabled($Element)
             || !BuildFunctions::isTechnologieAccessible($USER, $PLANET, $Element)
             || ($Element == RESEARCH_LABORATORY && $USER["b_tech_planet"] != 0)
             || (($Element == NANITE_FACTORY || $Element == SHIPYARD) && !empty($PLANET['b_hangar_id']))
@@ -242,6 +243,7 @@ class ShowBuildingsPage extends AbstractGamePage
     {
         $ProdGrid = &Singleton()->ProdGrid;
         $LNG = &Singleton()->LNG;
+        $requeriments =& Singleton()->requeriments;
         $resource = &Singleton()->resource;
         $reslist = &Singleton()->reslist;
         $PLANET = &Singleton()->PLANET;
@@ -319,8 +321,19 @@ class ShowBuildingsPage extends AbstractGamePage
 
 
         foreach ($Elements as $Element) {
-            if (!BuildFunctions::isTechnologieAccessible($USER, $PLANET, $Element)) {
+            if (!BuildFunctions::isEnabled($Element)) {
                 continue;
+            }
+            $requirementsList = [];
+            if (!BuildFunctions::isTechnologieAccessible($USER, $PLANET, $Element)) {
+                if (isset($requeriments[$Element])) {
+                    foreach ($requeriments[$Element] as $requireID => $RedCount) {
+                        $requirementsList[$requireID] = [
+                            'count' => $RedCount,
+                            'own'   => isset($PLANET[$resource[$requireID]]) ? $PLANET[$resource[$requireID]] : $USER[$resource[$requireID]]
+                        ];
+                    }
+                }
             }
 
             $infoEnergy = "";
@@ -383,6 +396,13 @@ class ShowBuildingsPage extends AbstractGamePage
             $buyable = $QueueCount != 0 || BuildFunctions::isElementBuyable($USER, $PLANET, $Element, $costResources);
             $destroyable = ($Element != SILO || ($PLANET[$resource[INTERCEPTOR_MISSILE]] + $PLANET[$resource[INTERPLANETARY_MISSILE]]) == 0) && $Element != TERRAFORMER && $Element != MOONBASE;
 
+            $filterClass = 'other';
+            if (in_array($Element, $reslist['prod'])) {
+                $filterClass = 'prod';
+            } else if (in_array($Element, $reslist['storage'])) {
+                $filterClass = 'storage';
+            }
+
             $BuildInfoList[$Element]    = [
                 'level'             => $PLANET[$resource[$Element]],
                 'maxLevel'          => $pricelist[$Element]['max'],
@@ -396,7 +416,10 @@ class ShowBuildingsPage extends AbstractGamePage
                 'buyable'           => $buyable,
                 'destroyable'       => $destroyable,
                 'levelToBuild'      => $levelToBuild,
-                'timetobuild'       => $timetobuild
+                'timetobuild'       => $timetobuild,
+                'requirements'      => $requirementsList,
+                'filterClass'       => $filterClass,
+                'unavailable'       => !$CanBuildElement || !empty($requirementsList) || !$buyable,
             ];
         }
 

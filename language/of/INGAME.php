@@ -206,6 +206,7 @@ $LNG['ov_checknews_hide'] = 'Neuiggeitne ausblenden';
 //FILTER MENU
 
 $LNG['fm_mining'] = 'Rohschdoffabbau';
+$LNG['fm_storage'] = 'Lagerung';
 $LNG['fm_other'] = 'Sonschdige';
 $LNG['fm_all'] = 'Alle';
 $LNG['fm_civil'] = 'Zivil';
@@ -465,7 +466,7 @@ $LNG['bd_tech'] = 'Forschen';
 $LNG['bd_tech_next_level'] = 'Forschne uff Schdufe ';
 $LNG['bd_add_to_list'] = 'Zur Baulischde hinzufügen';
 $LNG['bd_no_more_fields'] = 'Blanet ausgebaud!';
-$LNG['bd_remaining'] = 'Fehlende Rohschdoffe:';
+$LNG['bd_remaining'] = 'Fehlende Rohschdoffe';
 $LNG['bd_lab_required'] = 'Du musschd zuerschd a Forschungslabor uff diesem Blanedne bauen!';
 $LNG['bd_building_lab'] = 'Das Forschungslabor wird zurzeid ausgebaud!';
 $LNG['bd_max_lvl'] = 'Maggs. Level:';
@@ -496,6 +497,7 @@ $LNG['bd_price_for_destroy'] = 'Gostne für Abriss:';
 $LNG['bd_ready'] = 'Fertig';
 $LNG['bd_finished'] = 'Fertig';
 $LNG['bd_maxlevel'] = 'Maggsimale Schdufe erreichd';
+$LNG['bd_requirements'] = 'Forausseddsungne ned erfülld';
 $LNG['bd_on'] = 'auf';
 $LNG['bd_max_builds'] = 'Sie gönnene maggs. %d Aufdräge versenden!';
 $LNG['bd_next_level'] = 'Nexd Lewel:';

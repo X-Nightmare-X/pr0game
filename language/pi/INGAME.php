@@ -206,6 +206,7 @@ $LNG['ov_checknews_hide'] = 'Neuigkeiten ausblenden';
 //FILTER MENU
 
 $LNG['fm_mining'] = 'Rohstoffabbau';
+$LNG['fm_storage'] = 'Lagerung';
 $LNG['fm_other'] = 'Sonstige';
 $LNG['fm_all'] = 'Alle';
 $LNG['fm_civil'] = 'Zivil';
@@ -465,7 +466,7 @@ $LNG['bd_tech'] = 'Forschen';
 $LNG['bd_tech_next_level'] = 'Forschen auf Stufe ';
 $LNG['bd_add_to_list'] = 'Zur Bauliste hinzufügen';
 $LNG['bd_no_more_fields'] = 'Hafen ausgebaut!';
-$LNG['bd_remaining'] = 'Fehlende Rohstoffe:';
+$LNG['bd_remaining'] = 'Fehlende Rohstoffe';
 $LNG['bd_lab_required'] = 'Du musst zuerst ein Wissenschaftszentrum in diesem Hafen bauen!';
 $LNG['bd_building_lab'] = 'Das Wissenschaftszentrum wird zurzeit ausgebaut!';
 $LNG['bd_max_lvl'] = 'Max. Level:';
@@ -496,6 +497,7 @@ $LNG['bd_price_for_destroy'] = 'Kosten für Abriss:';
 $LNG['bd_ready'] = 'Fertig';
 $LNG['bd_finished'] = 'Fertig';
 $LNG['bd_maxlevel'] = 'Maximale Stufe erreicht';
+$LNG['bd_requirements'] = 'Voraussetzungen nicht erfüllt';
 $LNG['bd_on'] = 'auf';
 $LNG['bd_max_builds'] = 'Sie können max. %d Aufträge versenden!';
 $LNG['bd_next_level'] = 'Next Level:';
