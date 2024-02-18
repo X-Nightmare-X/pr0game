@@ -67,6 +67,6 @@
 </form>
 {/block}
 {block name="script" append}
-<link rel="stylesheet" type="text/css" href="styles/resource/css/login/register.css?v={$REV}">
+<link rel="stylesheet" type="text/css" href="styles/resource/css/login/register.css">
 <script type="text/javascript" src="scripts/login/register.js"></script>
 {/block}
