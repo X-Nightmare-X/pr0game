@@ -36,6 +36,10 @@ class Config
         'forum_url',
         'git_issues_link',
         'ttf_file',
+
+        'discord_logs_hook',
+        'discord_exceptions_hook',
+        'discord_tickets_hook',
         
         'mail_active',
         'smtp_sendmail',
