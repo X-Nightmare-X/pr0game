@@ -89,13 +89,46 @@ class FlyingFleetsTable
         return Database::get()->select($sql, $param);
     }
 
-    public function renderTable()
+    public function renderTable($isPhalanx = false)
     {
-        $fleetResult    = $this->getFleets();
-        $ACSDone        = [];
-        $FleetData      = [];
+        $fleetResult            = $this->getFleets();
+        $ACSDone                = [];
+        $FleetData              = [];
+
+        if ($isPhalanx){
+
+            $USER =& Singleton()->USER;
+            $PLANET =& Singleton()->PLANET;
+            $db = Database::get();
+            $sql = 'INSERT INTO %%PHALANX_LOG%% SET 
+                owner					= :owner,
+                owner_planet_id			= :planet_id,
+                target                  = :target,
+                target_planet_id		= :designatedPlanetID,
+                phalanx_time            = :timestamp;';
+
+            $db->insert($sql, [
+                ':owner'                => $USER['id'],
+                ':planet_id'            => $PLANET['id'],
+                ':target'               => $this->userId,
+                ':designatedPlanetID'   => $this->planetId,
+                ':timestamp'            => TIMESTAMP,
+            ]);
+
+            $phalanxLogID = $db->lastInsertId();
+            $sql = '';
+
+        }
+        
+        
 
         foreach ($fleetResult as $fleetRow) {
+
+            if ($isPhalanx){
+                $phalanxLogFleetID = $fleetRow['fleet_id'];
+                $sql .= "INSERT INTO %%PHALANX_FLEETS%% (phalanx_log_id, fleet_id) VALUES ($phalanxLogID, $phalanxLogFleetID);";
+            }
+
             if ($fleetRow['fleet_mission'] == MISSION_TRADE) {
                 $fleetRow['target_planetname'] = "";
             }
@@ -146,6 +179,13 @@ class FlyingFleetsTable
                     $fleetRow,
                     1
                 );
+            }
+        
+        }
+
+        if ($isPhalanx){
+            if ($sql != '') {
+                $db->insert($sql);
             }
         }
 
