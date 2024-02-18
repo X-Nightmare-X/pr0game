@@ -22,6 +22,7 @@
 //---------------   Geral   ------------------------//
 $LNG['adm_login'] = 'Login';
 $LNG['adm_username'] = 'Username';
+$LNG['adm_email'] = 'Email';
 $LNG['adm_password'] = 'Password';
 $LNG['adm_absenden'] = 'Enter';
 $LNG['adm_password_info'] = 'Write your password in order to enter';

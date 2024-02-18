@@ -18,6 +18,7 @@
 //---------------   GENERAL ------------------------//
 $LNG['adm_login'] = 'Login';
 $LNG['adm_username'] = 'Username';
+$LNG['adm_email'] = 'E-Mail';
 $LNG['adm_password'] = 'Passwort';
 $LNG['adm_absenden'] = 'Absenden';
 $LNG['adm_password_info'] = 'Gebe dein Passwort ein, um dich zu vertifizeren!';

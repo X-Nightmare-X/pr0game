@@ -24,6 +24,7 @@
 //---------------   Genel   ------------------------//
 $LNG['adm_login'] = 'Giris';
 $LNG['adm_username'] = 'Kullanici Adi';
+$LNG['adm_email'] = 'E-mail';
 $LNG['adm_password'] = 'Sifre';
 $LNG['adm_absenden'] = 'Enter';
 $LNG['adm_password_info'] = 'Admin menusu icin sifreni gir';

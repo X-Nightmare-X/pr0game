@@ -18,6 +18,7 @@
 //---------------   GENERAL ------------------------//
 $LNG['adm_login'] = 'Login';
 $LNG['adm_username'] = 'Nazwa użytkownika';
+$LNG['adm_email'] = 'Adres e-mail';
 $LNG['adm_password'] = 'Hasło';
 $LNG['adm_absenden'] = 'Wyślij';
 $LNG['adm_password_info'] = 'Podaj hasło!';
