@@ -8,7 +8,7 @@
 				</tr>
 				<tr>
 					<td colspan="6" style="text-align: center;">
-						Category: <select id="categoryID">{html_options options=$categories selected=$categoryID}</select>
+						Category: <select id="categoryID">{html_options options=$categoryList}</select>
 					</td>
 				</tr>
 				<tr>
