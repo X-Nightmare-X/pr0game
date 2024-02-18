@@ -28,12 +28,12 @@
     <meta http-equiv="refresh" content="{$gotoinsec};URL={$goto}">
   {/if}
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" type="text/css" href="./styles/resource/css/base/boilerplate.css?v={$REV}">
-  <link rel="stylesheet" type="text/css" href="./styles/resource/css/ingame/main.css?v={$REV}">
-  <link rel="stylesheet" type="text/css" href="./styles/resource/css/base/jquery.css?v={$REV}">
-  <link rel="stylesheet" type="text/css" href="./styles/resource/css/base/jquery.fancybox.css?v={$REV}">
-  <link rel="stylesheet" type="text/css" href="./styles/resource/css/base/validationEngine.jquery.css?v={$REV}">
-  <link rel="stylesheet" type="text/css" href="{$dpath}formate.css?v={$REV}">
+  <link rel="stylesheet" type="text/css" href="./styles/resource/css/base/boilerplate.css">
+  <link rel="stylesheet" type="text/css" href="./styles/resource/css/ingame/main.css">
+  <link rel="stylesheet" type="text/css" href="./styles/resource/css/base/jquery.css">
+  <link rel="stylesheet" type="text/css" href="./styles/resource/css/base/jquery.fancybox.css">
+  <link rel="stylesheet" type="text/css" href="./styles/resource/css/base/validationEngine.jquery.css">
+  <link rel="stylesheet" type="text/css" href="{$dpath}formate.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css">
   <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
 
@@ -92,16 +92,16 @@
   {/if}
 
 
-  <script type="text/javascript" src="./scripts/base/jquery.js?v={$REV}"></script>
-  <script type="text/javascript" src="./scripts/base/jquery.ui.js?v={$REV}"></script>
-  <script type="text/javascript" src="./scripts/base/jquery.cookie.js?v={$REV}"></script>
-  <script type="text/javascript" src="./scripts/base/jquery.fancybox.js?v={$REV}"></script>
-  <script type="text/javascript" src="./scripts/base/jquery.validationEngine.js?v={$REV}"></script>
-  <script type="text/javascript" src="./scripts/l18n/validationEngine/jquery.validationEngine-{$lang}.js?v={$REV}"></script>
-  <script type="text/javascript" src="./scripts/base/tooltip.js?v={$REV}"></script>
-  <script type="text/javascript" src="./scripts/game/base.js?v={$REV}"></script>
+  <script type="text/javascript" src="./scripts/base/jquery.js"></script>
+  <script type="text/javascript" src="./scripts/base/jquery.ui.js"></script>
+  <script type="text/javascript" src="./scripts/base/jquery.cookie.js"></script>
+  <script type="text/javascript" src="./scripts/base/jquery.fancybox.js"></script>
+  <script type="text/javascript" src="./scripts/base/jquery.validationEngine.js"></script>
+  <script type="text/javascript" src="./scripts/l18n/validationEngine/jquery.validationEngine-{$lang}.js"></script>
+  <script type="text/javascript" src="./scripts/base/tooltip.js"></script>
+  <script type="text/javascript" src="./scripts/game/base.js"></script>
   {foreach item=scriptname from=$scripts}
-    <script type="text/javascript" src="./scripts/game/{$scriptname}.js?v={$REV}"></script>
+    <script type="text/javascript" src="./scripts/game/{$scriptname}.js"></script>
   {/foreach}
   {block name="script"}
     <script>
