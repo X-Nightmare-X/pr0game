@@ -20,6 +20,7 @@
 // Общее
 $LNG['adm_login'] = 'Логин';
 $LNG['adm_username'] = 'Логин';
+$LNG['adm_email'] = 'Электронная почта';
 $LNG['adm_password'] = 'Пароль';
 $LNG['adm_absenden'] = 'Войти';
 $LNG['adm_password_info'] = 'Введите пароль для авторизации.';

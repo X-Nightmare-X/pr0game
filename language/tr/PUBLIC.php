@@ -57,7 +57,7 @@ $LNG['gameInformations']			= "Gercek zamanli uzay strateji oyunu.\nBuyuk bir rek
 
 // Login
 $LNG['loginHeader']					= 'Giris';
-$LNG['loginEmail']				= 'E-mail';
+$LNG['loginEmail']				    = 'E-mail';
 $LNG['loginPassword']				= 'Sifre';
 $LNG['loginButton']					= 'Giris';
 $LNG['loginInfo']					= 'Giris yaparak tum %si kabul etmis oluyorsunuz.';

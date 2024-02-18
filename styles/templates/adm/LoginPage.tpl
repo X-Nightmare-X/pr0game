@@ -7,7 +7,7 @@
         </tr>
 		<tr>
             <td>
-				<div><label style="display:inline-block;width:100px;">{$LNG.adm_username}:</label><input type="text" readonly value="{$username}"></div>
+				<div><label style="display:inline-block;width:100px;">{$LNG.adm_email}:</label><input type="text" readonly value="{$email}"></div>
 				<div><label style="display:inline-block;width:100px;">{$LNG.adm_password}:</label><input type="password" name="admin_pw"></div>
 				<div><input type="submit" value="{$LNG.adm_absenden}"></div>
 			</td>
