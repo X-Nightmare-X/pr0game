@@ -140,7 +140,7 @@ class BuildFunctions
     /**
      * Checks if an element is enabled in the current universe.
      * Buldings, ships etc are enabled for all universes via table vars.
-     * To disable indivitual elements one can extend the switch cases and check e.g. for an active module.
+     * To disable individual elements one can extend the switch cases and check e.g. for an active module.
      *
      * @param integer $elementID
      * @return boolean
