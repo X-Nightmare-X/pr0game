@@ -57,16 +57,12 @@ $LNG['gameInformations']			= "Gercek zamanli uzay strateji oyunu.\nBuyuk bir rek
 
 // Login
 $LNG['loginHeader']					= 'Giris';
-$LNG['loginUsername']				= 'Kullanıcı adı/e-mail';
+$LNG['loginEmail']				= 'E-mail';
 $LNG['loginPassword']				= 'Sifre';
 $LNG['loginButton']					= 'Giris';
 $LNG['loginInfo']					= 'Giris yaparak tum %si kabul etmis oluyorsunuz.';
 $LNG['loginWelcome']				= ' %s hosgeldiniz ';
 $LNG['loginServerDesc']				= '%s tam zamanli bir uzay strateji oyunu. Yuzlerce oyuncunun <strong>ayni anda beraber oynayabildigi</strong> ve ellerinden geleni yaptigi bir oyun. Tek ihtiyacin olan herhangi bir web tarayicisi.';
-$LNG['loginUsernamePMSenderName']	= 'Yönetici';
-$LNG['loginUsernamePMSubject']	    = 'Dikkat! Giriş değişikliği';
-$LNG['loginUsernamePMText']		    = 'Kullanıcı adı ile giriş yapıldığında ortaya çıkan güvenlik riski nedeniyle, giriş yakında kayıtlı e-posta adresi ile değiştirilecektir.<p>'
-    . 'Lütfen şimdi sadece e-posta adresinizle giriş yapın. Bunu ayarlar menüsünde bulabilirsiniz.';
 
 // Register
 $LNG['registerUsername']			= 'Kullanici adi';

@@ -53,16 +53,12 @@ $LNG['gameInformations']			= "Ein Weltraum Schdrategiespiel- in Echdzeid hädich
 
 // Login
 $LNG['loginHeader']					= 'Login';
-$LNG['loginUsername']				= 'Username/E-Mail';
+$LNG['loginEmail']				    = 'E-Mail';
 $LNG['loginPassword']				= 'Basswort';
 $LNG['loginButton']					= 'Login';
 $LNG['loginInfo']					= 'Mid dem Login agzeptiere ich die %s.';
 $LNG['loginWelcome']				= 'Willgommne bei %s';
 $LNG['loginServerDesc']				= '%s isd a WeltraumSchdrategiespiel- mid hunderdne Schbielern die erdumgreifend <strong>gleichzeitig</strong> wersuchne der/die Beschde zu werdne. Alles was ihr zum sbielne brauchd isd a Schdandardwebbrowser.';
-$LNG['loginUsernamePMSenderName']	= 'Administrator';
-$LNG['loginUsernamePMSubject']	    = 'Achtung: Login-Änderung';
-$LNG['loginUsernamePMText']		    = 'Aufgrund eines Sicherheitsrisikos beim Login über den Usernamen wird der Login in Kürze auf die hinterlegte E-Mail-Adresse umgestellt.<p>'
-    . 'Bitte logge dich bereits jetzt nur noch mit deiner E-Mail-Adresse ein. Du kannst sie über das Einstellungen-Menü nachlesen.';
 
 // Register
 $LNG['registerUsername']			= 'Username';
