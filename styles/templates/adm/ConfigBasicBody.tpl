@@ -44,17 +44,17 @@
 			</tr>
 			<tr>
 				<td>{$LNG.se_discord_logs_hook}</td>
-				<td><input name="discord_logs_hook" value="{$discord_logs_hook}" type="text" maxlength="60"></td>
+				<td><input name="discord_logs_hook" value="{$discord_logs_hook}" type="text" maxlength="255"></td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
 				<td>{$LNG.se_discord_exceptions_hook}</td>
-				<td><input name="discord_exceptions_hook" value="{$discord_exceptions_hook}" type="text" maxlength="60"></td>
+				<td><input name="discord_exceptions_hook" value="{$discord_exceptions_hook}" type="text" maxlength="255"></td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
 				<td>{$LNG.se_discord_tickets_hook}</td>
-				<td><input name="discord_tickets_hook" value="{$discord_tickets_hook}" type="text" maxlength="60"></td>
+				<td><input name="discord_tickets_hook" value="{$discord_tickets_hook}" type="text" maxlength="255"></td>
 				<td>&nbsp;</td>
 			</tr>
 
