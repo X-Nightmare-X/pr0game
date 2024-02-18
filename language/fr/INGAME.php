@@ -433,6 +433,8 @@ $LNG['bd_research'] = 'Recherche';
 $LNG['bd_tech'] = 'Recherche';
 $LNG['bd_tech_next_level'] = 'Recherche niveau ';
 $LNG['bd_add_to_list'] = 'Ajouter à la queue de production';
+$LNG['bd_buildlist_full'] = 'La liste des constructions est complète';
+$LNG['bd_researclist_full'] = 'La liste des recherches est complète';
 $LNG['bd_no_more_fields'] = 'Plus de place sur la planète !';
 $LNG['bd_remaining'] = 'Manque de matières premières';
 $LNG['bd_lab_required'] = 'Vous devez construire un laboratoire de recherche sur cette planète en premier lieu !';
@@ -1020,6 +1022,11 @@ $LNG['op_dst_mode_sel'][0] = 'Non';
 $LNG['op_dst_mode_sel'][1] = 'Oui';
 $LNG['op_dst_mode_sel'][2] = 'Automatique';
 $LNG['op_timezone'] = 'Fuseau Horaire';
+$LNG['op_block_pm'] = 'Bloquer les messages privés';
+$LNG['op_build_pages'] = 'Paramètres des pages de construction et de recherche';
+$LNG['op_show_all_buildable_elements'] = 'Afficher les éléments dont les exigences sont manquantes';
+$LNG['op_missing_requirements_opacity'] = 'S\'estompe si les conditions ne sont pas remplies';
+$LNG['op_missing_resources_opacity'] = 'S\'estomper en cas de manque de ressources';
 
 //----------------------------------------------------------------------------//
 //BANNED

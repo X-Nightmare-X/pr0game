@@ -448,6 +448,8 @@ $LNG['bd_research'] = 'Arastirma';
 $LNG['bd_tech'] = 'Arastirma';
 $LNG['bd_tech_next_level'] = 'Kademe Yukselt ';
 $LNG['bd_add_to_list'] = 'Insa listesine ekle';
+$LNG['bd_buildlist_full'] = 'İnşaat listesi dolu';
+$LNG['bd_researclist_full'] = 'Araştırma listesi dolu';
 $LNG['bd_no_more_fields'] = 'Bu Gezegende Bina Yapabilmeniz icin daha fazla alan yok';
 $LNG['bd_remaining'] = 'Hammadde eksikliği';
 $LNG['bd_lab_required'] = 'Ilk olarak bu gezegende bir bilimsel arastirma merkezi kurman gerekli !';
@@ -1037,6 +1039,10 @@ $LNG['op_dst_mode_sel'][1] = 'Hayir';
 $LNG['op_dst_mode_sel'][2] = 'Otomatik';
 $LNG['op_timezone'] = 'Zaman Dilimi';
 $LNG['op_block_pm'] = 'Ozel mesajlari blokla';
+$LNG['op_build_pages'] = 'Bina ve araştırma sayfası ayarları';
+$LNG['op_show_all_buildable_elements'] = 'Eksik gereksinimleri olan öğeleri göster';
+$LNG['op_missing_requirements_opacity'] = 'Gereksinimler karşılanmazsa solma';
+$LNG['op_missing_resources_opacity'] = 'Kaynaklar yetersizse solma';
 
 //----------------------------------------------------------------------------//
 // BAN LISTESI

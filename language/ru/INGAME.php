@@ -432,6 +432,8 @@ $LNG['bd_build_next_level'] = 'Улучшить до уровня ';
 $LNG['bd_tech'] = 'Исследовать';
 $LNG['bd_tech_next_level'] = 'Исследовать до уровня ';
 $LNG['bd_add_to_list'] = 'Добавить в очередь';
+$LNG['bd_buildlist_full'] = 'Список строительства полон';
+$LNG['bd_researclist_full'] = 'Список исследований полон';
 $LNG['bd_no_more_fields'] = 'Закончились свободные поля.';
 $LNG['bd_remaining'] = 'Отсутствие сырья';
 $LNG['bd_lab_required'] = 'Сначала Вы должны построить исследовательскую лабораторию на это планете.';
@@ -1001,6 +1003,10 @@ $LNG['op_dst_mode_sel'][1] = 'Да';
 $LNG['op_dst_mode_sel'][2] = 'Автоматически';
 $LNG['op_timezone'] = 'Часовой пояс';
 $LNG['op_block_pm'] = 'Отключить получение сообщений от игроков';
+$LNG['op_build_pages'] = 'Настройки страниц зданий и исследований';
+$LNG['op_show_all_buildable_elements'] = 'Показать элементы с отсутствующими требованиями';
+$LNG['op_missing_requirements_opacity'] = 'Потускнеет, если требования не будут выполнены';
+$LNG['op_missing_resources_opacity'] = 'Угасание при недостатке ресурсов';
 
 // Заблокированные
 $LNG['bn_no_players_banned'] = 'Нет заблокированных игроков';

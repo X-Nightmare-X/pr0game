@@ -248,6 +248,9 @@ class ShowShipyardPage extends AbstractGamePage
             }
             $requirementsList = [];
             if (!BuildFunctions::isTechnologieAccessible($USER, $PLANET, $Element)) {
+                if (!$USER['show_all_buildable_elements']) {
+                    continue;
+                }
                 if (isset($requeriments[$Element])) {
                     foreach ($requeriments[$Element] as $requireID => $RedCount) {
                         $requirementsList[$requireID] = [
@@ -272,6 +275,10 @@ class ShowShipyardPage extends AbstractGamePage
             $AlreadyBuild = in_array($Element, $reslist['one'])
                 && (isset($elementInQueue[$Element]) || $PLANET[$resource[$Element]] != 0);
 
+            $fade = ($USER['missing_requirements_opacity'] && !empty($requirementsList)) ||
+                ($USER['missing_resources_opacity'] && !$buyable) ||
+                $AlreadyBuild;
+
             $elementList[$Element] = [
                 'id' => $Element,
                 'available' => $PLANET[$resource[$Element]],
@@ -282,7 +289,7 @@ class ShowShipyardPage extends AbstractGamePage
                 'maxBuildable' => floatToString($maxBuildable),
                 'AlreadyBuild' => $AlreadyBuild,
                 'requirements' => $requirementsList,
-                'unavailable' => !$NotBuilding || !empty($requirementsList) || !$buyable,
+                'fade' => $fade,
             ];
         }
 

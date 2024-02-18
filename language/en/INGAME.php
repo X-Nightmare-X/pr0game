@@ -480,6 +480,8 @@ $LNG['bd_research'] = 'Research';
 $LNG['bd_tech'] = 'Research';
 $LNG['bd_tech_next_level'] = 'Research to the next level ';
 $LNG['bd_add_to_list'] = 'Add to list';
+$LNG['bd_buildlist_full'] = 'Construction list is full';
+$LNG['bd_researclist_full'] = 'Research list is full';
 $LNG['bd_no_more_fields'] = 'Planet has no fields remaining';
 $LNG['bd_remaining'] = 'Lack of raw materials';
 $LNG['bd_lab_required'] = 'First, you have to build a research lab!';
@@ -1058,6 +1060,10 @@ $LNG['op_dst_mode_sel'][1] = 'No';
 $LNG['op_dst_mode_sel'][2] = 'Automatic';
 $LNG['op_timezone'] = 'Time zone';
 $LNG['op_block_pm'] = 'Block private messages';
+$LNG['op_build_pages'] = 'Building and research page settings';
+$LNG['op_show_all_buildable_elements'] = 'Show elements with missing requirements';
+$LNG['op_missing_requirements_opacity'] = 'Fade if requirements are not met';
+$LNG['op_missing_resources_opacity'] = 'Fade if resources are lacking';
 
 //----------------------------------------------------------------------------//
 // Lista de Jogadores Banidos

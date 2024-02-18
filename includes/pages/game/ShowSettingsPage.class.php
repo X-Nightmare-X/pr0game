@@ -105,6 +105,9 @@ class ShowSettingsPage extends AbstractGamePage
                 'missionPrios'          => $missionprios,
                 'recordsOptIn'          => $USER['records_optIn'],
                 'publish_achievement'   => $USER['publish_achievement'],
+                'show_all_buildable_elements' => $USER['show_all_buildable_elements'],
+                'missing_requirements_opacity' => $USER['missing_requirements_opacity'],
+                'missing_resources_opacity' => $USER['missing_resources_opacity'],
             ]);
 
             $this->display('page.settings.default.tpl');
@@ -294,6 +297,10 @@ class ShowSettingsPage extends AbstractGamePage
         $showMessageCategory = HTTP::_GP('showMessageCategory', 0);
         $queueMessages      = HTTP::_GP('queueMessages', 0);
         $spyMessagesMode    = HTTP::_GP('spyMessagesMode', 0);
+        
+        $show_all_buildable_elements = HTTP::_GP('show_all_buildable_elements', 0);
+        $missing_requirements_opacity = HTTP::_GP('missing_requirements_opacity', 0);
+        $missing_resources_opacity = HTTP::_GP('missing_resources_opacity', 0);
 
         $spycount           = HTTP::_GP('spycount', 1.0);
         $fleetactions       = HTTP::_GP('fleetactions', 5);
@@ -517,6 +524,9 @@ class ShowSettingsPage extends AbstractGamePage
         showMessageCategory         = :showMessageCategory,
 		hof						    = :queueMessages,
 		spyMessagesMode			    = :spyMessagesMode,
+        show_all_buildable_elements = :show_all_buildable_elements,
+        missing_requirements_opacity = :missing_requirements_opacity,
+        missing_resources_opacity   = :missing_resources_opacity,
         colorMission2friend         = :colorMission2friend,
         colorMission1Own            = :colorMission1Own,
         colorMission2Own            = :colorMission2Own,
@@ -590,6 +600,9 @@ class ShowSettingsPage extends AbstractGamePage
             ':showMessageCategory'          => $showMessageCategory,
             ':queueMessages'                => $queueMessages,
             ':spyMessagesMode'              => $spyMessagesMode,
+            ':show_all_buildable_elements'  => $show_all_buildable_elements,
+            ':missing_requirements_opacity' => $missing_requirements_opacity,
+            ':missing_resources_opacity'    => $missing_resources_opacity,
             ':userID'                       => $USER['id'],
             ':colorMission2friend'          => $colorMission2friend,
             ':colorMission1Own'             => $colorMission1Own,

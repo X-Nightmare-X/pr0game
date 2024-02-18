@@ -439,6 +439,8 @@ $LNG['bd_build_next_level'] = 'Ampliar al nivel ';
 $LNG['bd_tech'] = 'Investigar';
 $LNG['bd_tech_next_level'] = 'Investigar al Nivel ';
 $LNG['bd_add_to_list'] = 'A&ntilde;adir a la cola de producci&oacute;n';
+$LNG['bd_buildlist_full'] = 'La lista de obras está completa';
+$LNG['bd_researclist_full'] = 'La lista de investigación está completa';
 $LNG['bd_no_more_fields'] = 'No hay espacio en el planeta';
 $LNG['bd_remaining'] = 'Falta de materias primas';
 $LNG['bd_lab_required'] = '¡Es necesario construir primero un laboratorio de investigaci&oacute;n en este planeta!';
@@ -1024,6 +1026,10 @@ $LNG['op_dst_mode_sel'][1] = 'Si';
 $LNG['op_dst_mode_sel'][2] = 'Automatico';
 $LNG['op_timezone'] = 'Zona Horaria';
 $LNG['op_block_pm'] = 'Mensajes privados bloqueados';
+$LNG['op_build_pages'] = 'Configuración de la página de construcción e investigación';
+$LNG['op_show_all_buildable_elements'] = 'Mostrar elementos a los que les faltan requisitos';
+$LNG['op_missing_requirements_opacity'] = 'Desvanecimiento si no se cumplen los requisitos';
+$LNG['op_missing_resources_opacity'] = 'Se desvanece si faltan recursos';
 
 //----------------------------------------------------------------------------//
 //BANNED

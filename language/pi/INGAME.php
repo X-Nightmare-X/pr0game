@@ -465,6 +465,8 @@ $LNG['bd_build_next_level'] = 'Ausbauen auf Stufe ';
 $LNG['bd_tech'] = 'Forschen';
 $LNG['bd_tech_next_level'] = 'Forschen auf Stufe ';
 $LNG['bd_add_to_list'] = 'Zur Bauliste hinzufügen';
+$LNG['bd_buildlist_full'] = 'Bauliste ist voll';
+$LNG['bd_researclist_full'] = 'Forschungsliste ist voll';
 $LNG['bd_no_more_fields'] = 'Hafen ausgebaut!';
 $LNG['bd_remaining'] = 'Fehlende Rohstoffe';
 $LNG['bd_lab_required'] = 'Du musst zuerst ein Wissenschaftszentrum in diesem Hafen bauen!';
@@ -1048,6 +1050,10 @@ $LNG['op_dst_mode_sel'][1] = 'Ja';
 $LNG['op_dst_mode_sel'][2] = 'Automatisch';
 $LNG['op_timezone'] = 'Zeitzone';
 $LNG['op_block_pm'] = 'Private Nachrichten blockieren';
+$LNG['op_build_pages'] = 'Bau- und Forschungsseiten-Einstellungen';
+$LNG['op_show_all_buildable_elements'] = 'Elemente mit fehlenden Anforderungen anzeigen';
+$LNG['op_missing_requirements_opacity'] = 'Bei fehlenden Anforderungen verblassen';
+$LNG['op_missing_resources_opacity'] = 'Bei fehlenden Ressourcen verblassen';
 
 //----------------------------------------------------------------------------//
 //BANNED

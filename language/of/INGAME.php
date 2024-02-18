@@ -465,6 +465,8 @@ $LNG['bd_build_next_level'] = 'ausbau uff Schdufe ';
 $LNG['bd_tech'] = 'Forschen';
 $LNG['bd_tech_next_level'] = 'Forschne uff Schdufe ';
 $LNG['bd_add_to_list'] = 'Zur Baulischde hinzufügen';
+$LNG['bd_buildlist_full'] = 'Baulisde is\' foll';
+$LNG['bd_researclist_full'] = 'Forschungslisde isd foll';
 $LNG['bd_no_more_fields'] = 'Blanet ausgebaud!';
 $LNG['bd_remaining'] = 'Fehlende Rohschdoffe';
 $LNG['bd_lab_required'] = 'Du musschd zuerschd a Forschungslabor uff diesem Blanedne bauen!';
@@ -1047,6 +1049,10 @@ $LNG['op_dst_mode_sel'][1] = 'Ja';
 $LNG['op_dst_mode_sel'][2] = 'Automatisch';
 $LNG['op_timezone'] = 'Zeitzone';
 $LNG['op_block_pm'] = 'Brivate Nachrichdne bloggieren';
+$LNG['op_build_pages'] = 'Bau- und Forschungsseideneinsdellungne';
+$LNG['op_show_all_buildable_elements'] = 'Elemende mid fehlendne Anforderungne andseigne';
+$LNG['op_missing_requirements_opacity'] = 'Bei fehlendne Anforderungne ferblassne';
+$LNG['op_missing_resources_opacity'] = 'Bei fehlendne Ressourcne ferblassne';
 
 //----------------------------------------------------------------------------//
 //BANNED

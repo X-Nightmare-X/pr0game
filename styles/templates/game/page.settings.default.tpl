@@ -21,6 +21,7 @@
 						<td width="75%" style="height:22px;"><input name="discord_hook" size="50" value="{$discord_hook}" type="text" maxlength="150"></td>
 					</tr>
 				{/if}
+
 				<tr>
 					<th colspan="2">{$LNG.op_user_data}</th>
 				</tr>
@@ -48,6 +49,7 @@
 					<td style="height:22px;">{$LNG.op_permanent_email_adress}</td>
 					<td>{$permaEmail}</td>
 				</tr>
+
 				<tr>
 					<th colspan="2">{$LNG.op_general_settings}</th>
 				</tr>
@@ -97,6 +99,23 @@
 					<td>{$LNG.recordsOptIn}</td>
 					<td><input name="recordsOptIn" type="checkbox" value="1" {if $recordsOptIn == 1}checked="checked" {/if}></td>
 				</tr>
+
+				<tr>
+					<th colspan="2">{$LNG.op_build_pages}</th>
+				</tr>
+				<tr>
+					<td>{$LNG.op_show_all_buildable_elements}</td>
+					<td><input name="show_all_buildable_elements" type="checkbox" value="1" {if $show_all_buildable_elements == 1}checked="checked" {/if}></td>
+				</tr>
+				<tr>
+					<td>{$LNG.op_missing_requirements_opacity}</td>
+					<td><input name="missing_requirements_opacity" type="checkbox" value="1" {if $missing_requirements_opacity == 1}checked="checked" {/if}></td>
+				</tr>
+				<tr>
+					<td>{$LNG.op_missing_resources_opacity}</td>
+					<td><input name="missing_resources_opacity" type="checkbox" value="1" {if $missing_resources_opacity == 1}checked="checked" {/if}></td>
+				</tr>
+
 				<tr>
 					<th colspan="2">{$LNG.op_galaxy_settings}</th>
 				</tr>
@@ -108,6 +127,7 @@
 					<td>{$LNG.op_max_fleets_messages}</td>
 					<td><input name="fleetactions" maxlength="2" size="{$fleetActions|count_characters + 2}" value="{$fleetActions}" type="int"></td>
 				</tr>
+
 				<tr>
 					<th>{$LNG.op_shortcut}</th>
 					<th>{$LNG.op_show}</th>
@@ -128,6 +148,7 @@
 					<td><img src="{$dpath}img/r.gif" alt="">{$LNG.op_missile_attack}</td>
 					<td><input name="galaxyMissle" type="checkbox" value="1" {if $galaxyMissle == 1}checked="checked" {/if}></td>
 				</tr>
+
 				<tr>
 					<th colspan="2" onclick="toggle_rows('custom-colors-options-1')" style="border-spacing: 0px;cursor: pointer;"><span id="custom-colors-options-1-toggle">▲</span> {$LNG.own_colors}</th>
 				</tr>
@@ -242,6 +263,7 @@
 						<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button" style="vertical-align:middle;">{$LNG['nt_reset']}</button>
 					</td>
 				</tr>
+
 				<tr>
 					<th colspan="2" onclick="toggle_rows('custom-colors-options-2')" style="border-spacing: 0px;cursor: pointer;"><span id="custom-colors-options-2-toggle">▲</span> {$LNG.foreign_colors}</th>
 				</tr>
@@ -342,6 +364,7 @@
 						<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button" style="vertical-align:middle;">{$LNG['nt_reset']}</button>
 					</td>
 				</tr>
+
 				<tr>
 					<th colspan="2" onclick="toggle_rows('custom-colors-options-3')" style="border-spacing: 0px;cursor: pointer;"><span id="custom-colors-options-3-toggle">▲</span> {$LNG.general_colors}</th>
 				</tr>
@@ -373,10 +396,10 @@
 						<button onclick="let inpt=this.parentNode.getElementsByTagName('input')[0];inpt.value=inpt.getAttribute('basecolor');" type="button" style="vertical-align:middle;">{$LNG['nt_reset']}</button>
 					</td>
 				</tr>
+
 				<tr>
 					<th colspan="2" onclick="toggle_rows('custom-mission-prio')" style="border-spacing: 0px;cursor: pointer;"><span id="custom-mission-prio-toggle">▲</span> {$LNG.fleetPrio}</th>
 				</tr>
-
 				{foreach $missionPrios as $ID => $score}
 					<tr class="hidden custom-mission-prio">
 						<td>{$LNG[$ID]}</td>
@@ -463,6 +486,7 @@
 					</form>
 				</td>
 			</tr>
+
 			{if isModuleAvailable($smarty.const.MODULE_BANNER)}
 				<tr>
 					<th colspan="3">{$LNG.ov_userbanner}</th>

@@ -62,7 +62,7 @@
 		</div>
 
 		{foreach $ResearchList as $ID => $Element}
-			<div class="infos {if !empty($Element.requirements)}unavailable{/if}" id="t{$ID}">
+			<div class="infos {if $Element.fade}unavailable{/if}" id="t{$ID}">
 				<div class="buildn">
 					<a href="#" onclick="return Dialog.info({$ID})">{$LNG.tech.{$ID}}</a>{if $Element.level != 0} ({$LNG.bd_lvl} {$Element.level}{if $Element.maxLevel != 255}/{$Element.maxLevel}{/if}){/if}
 				</div>
@@ -95,11 +95,17 @@
 						{/foreach}
 					</span>
 					<br><br>
-					{if !empty($Element.requirements)}
+					{if $vacation}
+						<span class="colorNeutral">{$LNG.op_options_vacation_activated}</span>
+					{elseif !empty($Element.requirements)}
 						<span class="colorNeutral">{$LNG.bd_requirements}</span>
 					{elseif $Element.maxLevel == $Element.levelToBuild}
 						<span class="colorNeutral">{$LNG.bd_maxlevel}</span>
-					{elseif $IsLabinBuild || $IsFullQueue || !$Element.buyable}
+					{elseif $IsLabinBuild}
+						<span class="colorNeutral">{$LNG.sys_buildlist_fail}</span>
+					{elseif $IsFullQueue}
+						<span class="colorNeutral">{$LNG.bd_researclist_full}</span>
+					{elseif !$Element.buyable}
 						<span class="colorNeutral">{$LNG.bd_remaining}</span>
 					{else}
 						<form action="game.php?page=research" method="post" class="build_form">

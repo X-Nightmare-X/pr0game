@@ -389,6 +389,9 @@ class ShowResearchPage extends AbstractGamePage
             }
             $requirementsList = [];
             if (!BuildFunctions::isTechnologieAccessible($USER, $PLANET, $elementId)) {
+                if (!$USER['show_all_buildable_elements']) {
+                    continue;
+                }
                 if (isset($requeriments[$elementId])) {
                     foreach ($requeriments[$elementId] as $requireID => $RedCount) {
                         $requirementsList[$requireID] = [
@@ -421,6 +424,10 @@ class ShowResearchPage extends AbstractGamePage
             $elementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $elementId, $costResources);
             $buyable = $QueueCount != 0 || BuildFunctions::isElementBuyable($USER, $PLANET, $elementId, $costResources);
 
+            $fade = ($USER['missing_requirements_opacity'] && !empty($requirementsList)) ||
+                ($USER['missing_resources_opacity'] && !$buyable) ||
+                $pricelist[$elementId]['max'] == $levelToBuild;
+
             $ResearchList[$elementId]   = [
                 'id'                => $elementId,
                 'level'             => $USER[$resource[$elementId]],
@@ -432,7 +439,7 @@ class ShowResearchPage extends AbstractGamePage
                 'levelToBuild'      => $levelToBuild,
                 'timetobuild'       => $timetobuild,
                 'requirements'      => $requirementsList,
-                'unavailable'       => !$bContinue || !empty($requirementsList) || !$buyable,
+                'fade'              => $fade,
             ];
         }
 

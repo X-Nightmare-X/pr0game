@@ -451,6 +451,8 @@ $LNG['bd_build_next_level'] = 'Rozbuduj na poziom ';
 $LNG['bd_tech'] = 'Zbadaj';
 $LNG['bd_tech_next_level'] = 'Zbadaj na poziom ';
 $LNG['bd_add_to_list'] = 'Dodaj do kolejki';
+$LNG['bd_buildlist_full'] = 'Lista konstrukcji jest pełna';
+$LNG['bd_researclist_full'] = 'Lista badań jest pełna';
 $LNG['bd_no_more_fields'] = 'Brak miejsca na planecie!';
 $LNG['bd_remaining'] = 'Brak surowców';
 $LNG['bd_max_lvl'] = '(Maks. poziom: %s)';
@@ -1032,6 +1034,10 @@ $LNG['op_dst_mode_sel'][1] = 'Tak';
 $LNG['op_dst_mode_sel'][2] = 'Automatycznie';
 $LNG['op_timezone'] = 'Strefa czasowa';
 $LNG['op_block_pm'] = 'Zablokuj prywatne wiadomości od tego użytkownika';
+$LNG['op_build_pages'] = 'Ustawienia strony budowania i wyszukiwania';
+$LNG['op_show_all_buildable_elements'] = 'Pokaż elementy z brakującymi wymaganiami';
+$LNG['op_missing_requirements_opacity'] = 'Zanika, jeśli wymagania nie są spełnione';
+$LNG['op_missing_resources_opacity'] = 'Zanika, jeśli brakuje zasobów';
 
 //----------------------------------------------------------------------------//
 //BANNED

@@ -8,7 +8,7 @@
         {$ID = $List.element}
         <div class="buildb">
           {$List@iteration}.:
-          {if !($isBusy.research && ($ID == 6 || $ID == 31)) && !($isBusy.shipyard && ($ID == 15 || $ID == 21)) && !($isBusy.repair && $ID == 35) && $RoomIsOk && $CanBuildElement && $BuildInfoList[$ID].buyable}
+          {if !($isBusy.research && ($ID == 6 || $ID == 31)) && !($isBusy.shipyard && ($ID == 15 || $ID == 21)) && !($isBusy.repairdock && $ID == 35) && $RoomIsOk && $CanBuildElement && $BuildInfoList[$ID].buyable}
             <form class="build_form" action="game.php?page=buildings" method="post">
               <input type="hidden" name="cmd" value="insert">
               <input type="hidden" name="building" value="{$ID}">
@@ -57,7 +57,7 @@
   <div>
     <div class="planeto"> <button id="btn1">{$LNG.fm_mining}</button> | <button id="btn2">{$LNG.fm_storage}</button> | <button id="btn3">{$LNG.fm_other}</button> | <button id="btn4" class="selected">{$LNG.fm_all}</button></div>
     {foreach $BuildInfoList as $ID => $Element}
-      <div class="infos {$Element.filterClass} {if !empty($Element.requirements)}unavailable{/if}" >
+      <div class="infos {$Element.filterClass} {if $Element.fade}unavailable{/if}" >
         <div class="buildn">
           <a href="#" onclick="return Dialog.info({$ID})">{$LNG.tech.{$ID}}</a>{if $Element.level > 0} ({$LNG.bd_lvl} {$Element.level}{if $Element.maxLevel != 255}/{$Element.maxLevel}{/if}){/if}
         </div>
@@ -95,26 +95,26 @@
             {/foreach}
           </span>
           <br><br>
-          {if !empty($Element.requirements)}
+          {if $vacation}
+            <span class="colorNeutral">{$LNG.op_options_vacation_activated}</span>
+          {elseif !empty($Element.requirements)}
             <span class="colorNeutral">{$LNG.bd_requirements}</span>
           {elseif $Element.maxLevel == $Element.levelToBuild}
             <span class="colorNeutral">{$LNG.bd_maxlevel}</span>
-          {elseif ($isBusy.research && ($ID == 6 || $ID == 31)) || ($isBusy.shipyard && ($ID == 15 || $ID == 21))}
+          {elseif !$CanBuildElement}
+            <span class="colorNeutral">{$LNG.bd_buildlist_full}</span>
+          {elseif !$RoomIsOk}
+            <span class="colorNeutral">{$LNG.bd_no_more_fields}</span>
+          {elseif !$Element.buyable}
+            <span class="colorNeutral">{$LNG.bd_remaining}</span>
+          {elseif ($isBusy.research && ($ID == 6 || $ID == 31)) || ($isBusy.shipyard && ($ID == 15 || $ID == 21)) || ($isBusy.repairdock && ($ID == 35))}
             <span class="colorNeutral">{$LNG.bd_working}</span>
           {else}
-            {if $RoomIsOk}
-              {if $CanBuildElement && $Element.buyable}
-                <form action="game.php?page=buildings" method="post" class="build_form">
-                  <input type="hidden" name="cmd" value="insert">
-                  <input type="hidden" name="building" value="{$ID}">
-                  <button type="submit" class="colorPositive build_submit" {if $ID==34}onclick="window.open('https://www.youtube.com/watch?v=u3dahwW0njk');" {/if}>{if $Element.level == 0 && $Element.levelToBuild == 0}{$LNG.bd_build}{else}{$LNG.bd_build_next_level}{$Element.levelToBuild + 1}{/if}</button>
-                </form>
-              {else}
-                <span class="colorNeutral">{$LNG.bd_remaining}</span>
-              {/if}
-            {else}
-              <span class="colorNeutral">{$LNG.bd_no_more_fields}</span>
-            {/if}
+            <form action="game.php?page=buildings" method="post" class="build_form">
+              <input type="hidden" name="cmd" value="insert">
+              <input type="hidden" name="building" value="{$ID}">
+              <button type="submit" class="colorPositive build_submit" {if $ID==34}onclick="window.open('https://www.youtube.com/watch?v=u3dahwW0njk');" {/if}>{if $Element.level == 0 && $Element.levelToBuild == 0}{$LNG.bd_build}{else}{$LNG.bd_build_next_level}{$Element.levelToBuild + 1}{/if}</button>
+            </form>
           {/if}
 
           <br>

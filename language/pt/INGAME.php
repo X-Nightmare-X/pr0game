@@ -445,6 +445,8 @@ $LNG['bd_research'] = 'Pesquisar';
 $LNG['bd_tech'] = 'Pesquisa';
 $LNG['bd_tech_next_level'] = 'Pesquisar para o proximo nível ';
 $LNG['bd_add_to_list'] = 'Adicionar a lista';
+$LNG['bd_buildlist_full'] = 'A lista de construção está cheia';
+$LNG['bd_researclist_full'] = 'A lista de investigação está cheia';
 $LNG['bd_no_more_fields'] = 'Sem campos livres no planeta';
 $LNG['bd_remaining'] = 'Falta de matérias-primas';
 $LNG['bd_lab_required'] = 'Primeiro tens de construir um laboratorio de pesquisas!';
@@ -1028,6 +1030,10 @@ $LNG['op_dst_mode_sel'][1] = 'Não';
 $LNG['op_dst_mode_sel'][2] = 'Automático';
 $LNG['op_timezone'] = 'Fuso horário';
 $LNG['op_block_pm'] = 'Bloquear mensagens privadas';
+$LNG['op_build_pages'] = 'Definições da página de construção e pesquisa';
+$LNG['op_show_all_buildable_elements'] = 'Mostrar elementos com requisitos em falta';
+$LNG['op_missing_requirements_opacity'] = 'Desvanece-se se os requisitos não forem cumpridos';
+$LNG['op_missing_resources_opacity'] = 'Desvanecer-se em caso de falta de recursos';
 
 //----------------------------------------------------------------------------//
 // Lista de Jogadores Banidos
