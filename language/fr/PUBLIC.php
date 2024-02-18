@@ -44,16 +44,12 @@ $LNG['gameInformations']			= "Un jeu de conquête spatial en temps réel.\nJeu c
 
 // Login
 $LNG['loginHeader']					= 'Connexion';
-$LNG['loginUsername']				= 'Login/email';
+$LNG['loginEmail']				    = 'Email';
 $LNG['loginPassword']				= 'Mot de passe';
 $LNG['loginButton']					= 'Se connecter';
 $LNG['loginInfo']					= 'En me connectant j\'accepte les %s.';
 $LNG['loginWelcome']				= 'Bienvenue sur %s';
 $LNG['loginServerDesc']				= '%s est un jeu de stratégie spatial regroupant des milliers d\'utilisateurs par univers <strong>en meme temps</strong> essayez d\'être le meilleur, d\'etre le maître de votre univers. La seule chose dont vous avez besoin c\'est un navigateur internet (ou application du PlayStore).';
-$LNG['loginUsernamePMSenderName']	= 'Administrateur';
-$LNG['loginUsernamePMSubject']	    = 'Attention : Changement de login';
-$LNG['loginUsernamePMText']		    = 'En raison d\'un risque de sécurité lors de la connexion via le nom d\'utilisateur, le login sera bientôt remplacé par l\'adresse e-mail enregistrée.<p>'
-    . 'Veuillez vous connecter maintenant avec votre adresse e-mail uniquement. Vous la trouverez dans le menu des paramètres.';
 
 // Register
 $LNG['registerUsername']			= 'Login';
