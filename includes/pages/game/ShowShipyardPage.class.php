@@ -88,6 +88,7 @@ class ShowShipyardPage extends AbstractGamePage
             if (
                 empty($Count)
                 || !in_array($Element, array_merge($reslist['fleet'], $reslist['defense'], $reslist['missile']))
+                || !BuildFunctions::isEnabled($Element)
                 || !BuildFunctions::isTechnologieAccessible($USER, $PLANET, $Element)
             ) {
                 continue;
@@ -145,6 +146,7 @@ class ShowShipyardPage extends AbstractGamePage
         $USER =& Singleton()->USER;
         $PLANET =& Singleton()->PLANET;
         $LNG =& Singleton()->LNG;
+        $requeriments =& Singleton()->requeriments;
         $resource =& Singleton()->resource;
         $reslist =& Singleton()->reslist;
         if ($PLANET[$resource[21]] == 0) {
@@ -241,8 +243,22 @@ class ShowShipyardPage extends AbstractGamePage
         $MaxMissiles = BuildFunctions::getMaxConstructibleRockets($USER, $PLANET, $Missiles);
 
         foreach ($elementIDs as $Element) {
-            if (!BuildFunctions::isTechnologieAccessible($USER, $PLANET, $Element)) {
+            if (!BuildFunctions::isEnabled($Element)) {
                 continue;
+            }
+            $requirementsList = [];
+            if (!BuildFunctions::isTechnologieAccessible($USER, $PLANET, $Element)) {
+                if (!$USER['show_all_buildable_elements']) {
+                    continue;
+                }
+                if (isset($requeriments[$Element])) {
+                    foreach ($requeriments[$Element] as $requireID => $RedCount) {
+                        $requirementsList[$requireID] = [
+                            'count' => $RedCount,
+                            'own'   => isset($PLANET[$resource[$requireID]]) ? $PLANET[$resource[$requireID]] : $USER[$resource[$requireID]]
+                        ];
+                    }
+                }
             }
 
             $costResources = BuildFunctions::getElementPrice($USER, $PLANET, $Element);
@@ -259,6 +275,10 @@ class ShowShipyardPage extends AbstractGamePage
             $AlreadyBuild = in_array($Element, $reslist['one'])
                 && (isset($elementInQueue[$Element]) || $PLANET[$resource[$Element]] != 0);
 
+            $fade = ($USER['missing_requirements_opacity'] && !empty($requirementsList)) ||
+                ($USER['missing_resources_opacity'] && !$buyable) ||
+                $AlreadyBuild;
+
             $elementList[$Element] = [
                 'id' => $Element,
                 'available' => $PLANET[$resource[$Element]],
@@ -268,6 +288,8 @@ class ShowShipyardPage extends AbstractGamePage
                 'buyable' => $buyable,
                 'maxBuildable' => floatToString($maxBuildable),
                 'AlreadyBuild' => $AlreadyBuild,
+                'requirements' => $requirementsList,
+                'fade' => $fade,
             ];
         }
 

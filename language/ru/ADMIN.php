@@ -502,6 +502,10 @@ $LNG['se_disclaimerAddress'] = 'Адрес';
 $LNG['se_disclaimerPhone'] = 'Телефон';
 $LNG['se_disclaimerMail'] = 'Электронная почта';
 $LNG['se_disclaimerNotice'] = 'Дополнительная информация';
+$LNG['se_discord_hooks'] = 'Веб-крючки Discord';
+$LNG['se_discord_logs_hook'] = 'Журналы';
+$LNG['se_discord_exceptions_hook'] = 'Исключения и предупреждения';
+$LNG['se_discord_tickets_hook'] = 'Билеты';
 
 // Полномочия
 $LNG['mod_title'] = 'Полномочия Администрации';

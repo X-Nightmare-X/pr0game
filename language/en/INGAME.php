@@ -214,6 +214,7 @@ $LNG['ov_checknews_hide'] = 'Hide News';
 //FILTER MENU
 
 $LNG['fm_mining'] = 'Mining';
+$LNG['fm_storage'] = 'Storage';
 $LNG['fm_other'] = 'Other';
 $LNG['fm_all'] = 'All';
 $LNG['fm_civil'] = 'Civil';
@@ -479,8 +480,10 @@ $LNG['bd_research'] = 'Research';
 $LNG['bd_tech'] = 'Research';
 $LNG['bd_tech_next_level'] = 'Research to the next level ';
 $LNG['bd_add_to_list'] = 'Add to list';
+$LNG['bd_buildlist_full'] = 'Construction list is full';
+$LNG['bd_researclist_full'] = 'Research list is full';
 $LNG['bd_no_more_fields'] = 'Planet has no fields remaining';
-$LNG['bd_remaining'] = 'Remaining:';
+$LNG['bd_remaining'] = 'Lack of raw materials';
 $LNG['bd_lab_required'] = 'First, you have to build a research lab!';
 $LNG['bd_building_lab'] = 'You cannot research during lab upgrades.';
 $LNG['bd_max_lvl'] = 'Max. Level:';
@@ -511,6 +514,7 @@ $LNG['bd_price_for_destroy'] = 'Cost to demolish:';
 $LNG['bd_ready'] = 'Ready';
 $LNG['bd_finished'] = 'Finished';
 $LNG['bd_maxlevel'] = 'Maximum level reached';
+$LNG['bd_requirements'] = 'Requirements not fulfilled';
 $LNG['bd_on'] = 'connected';
 $LNG['bd_max_builds'] = 'You will have only max. %d queue building!';
 $LNG['bd_next_level'] = 'Next level:';
@@ -1056,6 +1060,10 @@ $LNG['op_dst_mode_sel'][1] = 'No';
 $LNG['op_dst_mode_sel'][2] = 'Automatic';
 $LNG['op_timezone'] = 'Time zone';
 $LNG['op_block_pm'] = 'Block private messages';
+$LNG['op_build_pages'] = 'Building and research page settings';
+$LNG['op_show_all_buildable_elements'] = 'Show elements with missing requirements';
+$LNG['op_missing_requirements_opacity'] = 'Fade if requirements are not met';
+$LNG['op_missing_resources_opacity'] = 'Fade if resources are lacking';
 
 //----------------------------------------------------------------------------//
 // Lista de Jogadores Banidos
@@ -1571,3 +1579,217 @@ $LNG['teamLegend'] =                'Legend, explanation of roles / rights';
 //----------------------------------------------------------------------------//
 $LNG['BlockTrade']  = 'Block trade';
 $LNG['blockDm']    = 'Block DM';
+
+//----------------------------------------------------------------------------//
+$LNG['found'] = 'Found ';
+$LNG['expedition'] = 'Expedition';
+$LNG['build'] = 'Build';
+$LNG['lost'] = 'Lost';
+$LNG['destroyed'] = 'Destroyed';
+$LNG['repaired'] = 'Repaired';
+$LNG['other'] = 'Other';
+$LNG['advancedStats'] = 'Advanced Stats';
+
+$LNG['stats'] = [
+    202 => 'Light Cargos',
+    203 => 'Heavy Cargos',
+    204 => 'Light Fighter',
+    205 => 'Heavy Fighter',
+    206 => 'Cruiser',
+    207 => 'Battleships',
+    208 => 'Colony Ships',
+    209 => 'Recycler',
+    210 => 'Spy Probes',
+    211 => 'Planet Bomber',
+    212 => 'Solar Satellites',
+    213 => 'Star Fighter',
+    214 => 'Battle Fortresses',
+    215 => 'Battle Cruiser',
+    216 => 'Black Moons',
+    217 => 'Battle Transporter',
+    218 => 'Avatars',
+    219 => 'Battle Recycler',
+
+    401 => 'Missile Launchers',
+    402 => 'Light Laser Turrets',
+    403 => 'Heavy Laser Turrets',
+    404 => 'Gauss Cannons',
+    405 => 'Ion Cannons',
+    406 => 'Plasma Cannons',
+    407 => 'Small Shield Domes',
+    408 => 'Large Shield Domes',
+    409 => 'Atmospheric Shields',
+    410 => 'Gravitons Cannons',
+    411 => 'Orbital Defence Platforms',
+
+    502 => 'Interceptors',
+    503 => 'Interplanetary missiles',
+
+    901 => 'Metal',
+    902 => 'Crystal',
+    903 => 'Deuterium',
+  ];
+$LNG['Advanced_Stats'] = [
+    'build_202' => $LNG['stats'][202],
+    'build_203' => $LNG['stats'][203],
+    'build_204' => $LNG['stats'][204],
+    'build_205' => $LNG['stats'][205],
+    'build_206' => $LNG['stats'][206],
+    'build_207' => $LNG['stats'][207],
+    'build_208' => $LNG['stats'][208],
+    'build_209' => $LNG['stats'][209],
+    'build_210' => $LNG['stats'][210],
+    'build_211' => $LNG['stats'][211],
+    'build_212' => $LNG['stats'][212],
+    'build_213' => $LNG['stats'][213],
+    'build_214' => $LNG['stats'][214],
+    'build_215' => $LNG['stats'][215],
+    'build_216' => $LNG['stats'][216],
+    'build_217' => $LNG['stats'][217],
+    'build_218' => $LNG['stats'][218],
+    'build_219' => $LNG['stats'][219],
+
+    'build_401' => $LNG['stats'][401],
+    'build_402' => $LNG['stats'][402],
+    'build_403' => $LNG['stats'][403],
+    'build_404' => $LNG['stats'][404],
+    'build_405' => $LNG['stats'][405],
+    'build_406' => $LNG['stats'][406],
+    'build_407' => $LNG['stats'][407],
+    'build_408' => $LNG['stats'][408],
+    'build_409' => $LNG['stats'][409],
+    'build_410' => $LNG['stats'][410],
+    'build_411' => $LNG['stats'][411],
+
+    'build_502' => $LNG['stats'][502],
+    'build_503' => $LNG['stats'][503],
+
+    'lost_202' => $LNG['stats'][202],
+    'lost_203' => $LNG['stats'][203],
+    'lost_204' => $LNG['stats'][204],
+    'lost_205' => $LNG['stats'][205],
+    'lost_206' => $LNG['stats'][206],
+    'lost_207' => $LNG['stats'][207],
+    'lost_208' => $LNG['stats'][208],
+    'lost_209' => $LNG['stats'][209],
+    'lost_210' => $LNG['stats'][210],
+    'lost_211' => $LNG['stats'][211],
+    'lost_212' => $LNG['stats'][212],
+    'lost_213' => $LNG['stats'][213],
+    'lost_214' => $LNG['stats'][214],
+    'lost_215' => $LNG['stats'][215],
+    'lost_216' => $LNG['stats'][216],
+    'lost_217' => $LNG['stats'][217],
+    'lost_218' => $LNG['stats'][218],
+    'lost_219' => $LNG['stats'][219],
+
+    'lost_401' => $LNG['stats'][401],
+    'lost_402' => $LNG['stats'][402],
+    'lost_403' => $LNG['stats'][403],
+    'lost_404' => $LNG['stats'][404],
+    'lost_405' => $LNG['stats'][405],
+    'lost_406' => $LNG['stats'][406],
+    'lost_407' => $LNG['stats'][407],
+    'lost_408' => $LNG['stats'][408],
+    'lost_409' => $LNG['stats'][409],
+    'lost_410' => $LNG['stats'][410],
+    'lost_411' => $LNG['stats'][411],
+
+    'lost_502' => $LNG['stats'][502],
+    'lost_503' => $LNG['stats'][503],
+
+    'repaired_401' => $LNG['stats'][401],
+    'repaired_402' => $LNG['stats'][402],
+    'repaired_403' => $LNG['stats'][403],
+    'repaired_404' => $LNG['stats'][404],
+    'repaired_405' => $LNG['stats'][405],
+    'repaired_406' => $LNG['stats'][406],
+    'repaired_407' => $LNG['stats'][407],
+    'repaired_408' => $LNG['stats'][408],
+    'repaired_409' => $LNG['stats'][409],
+    'repaired_410' => $LNG['stats'][410],
+    'repaired_411' => $LNG['stats'][411],
+
+    'destroyed_202' => $LNG['stats'][202],
+    'destroyed_203' => $LNG['stats'][203],
+    'destroyed_204' => $LNG['stats'][204],
+    'destroyed_205' => $LNG['stats'][205],
+    'destroyed_206' => $LNG['stats'][206],
+    'destroyed_207' => $LNG['stats'][207],
+    'destroyed_208' => $LNG['stats'][208],
+    'destroyed_209' => $LNG['stats'][209],
+    'destroyed_210' => $LNG['stats'][210],
+    'destroyed_211' => $LNG['stats'][211],
+    'destroyed_212' => $LNG['stats'][212],
+    'destroyed_213' => $LNG['stats'][213],
+    'destroyed_214' => $LNG['stats'][214],
+    'destroyed_215' => $LNG['stats'][215],
+    'destroyed_216' => $LNG['stats'][216],
+    'destroyed_217' => $LNG['stats'][217],
+    'destroyed_218' => $LNG['stats'][218],
+    'destroyed_219' => $LNG['stats'][219],
+
+    'destroyed_401' => $LNG['stats'][401],
+    'destroyed_402' => $LNG['stats'][402],
+    'destroyed_403' => $LNG['stats'][403],
+    'destroyed_404' => $LNG['stats'][404],
+    'destroyed_405' => $LNG['stats'][405],
+    'destroyed_406' => $LNG['stats'][406],
+    'destroyed_407' => $LNG['stats'][407],
+    'destroyed_408' => $LNG['stats'][408],
+    'destroyed_409' => $LNG['stats'][409],
+    'destroyed_410' => $LNG['stats'][410],
+    'destroyed_411' => $LNG['stats'][411],
+
+    'destroyed_502' => $LNG['stats'][502],
+    'destroyed_503' => $LNG['stats'][503],
+
+    'found_202' => $LNG['found'].$LNG['stats'][202],
+    'found_203' => $LNG['found'].$LNG['stats'][203],
+    'found_204' => $LNG['found'].$LNG['stats'][204],
+    'found_205' => $LNG['found'].$LNG['stats'][205],
+    'found_206' => $LNG['found'].$LNG['stats'][206],
+    'found_207' => $LNG['found'].$LNG['stats'][207],
+    'found_208' => $LNG['found'].$LNG['stats'][208],
+    'found_209' => $LNG['found'].$LNG['stats'][209],
+    'found_210' => $LNG['found'].$LNG['stats'][210],
+    'found_211' => $LNG['found'].$LNG['stats'][211],
+    'found_212' => $LNG['found'].$LNG['stats'][212],
+    'found_213' => $LNG['found'].$LNG['stats'][213],
+    'found_214' => $LNG['found'].$LNG['stats'][214],
+    'found_215' => $LNG['found'].$LNG['stats'][215],
+    'found_216' => $LNG['found'].$LNG['stats'][216],
+    'found_217' => $LNG['found'].$LNG['stats'][217],
+    'found_218' => $LNG['found'].$LNG['stats'][218],
+    'found_219' => $LNG['found'].$LNG['stats'][219],
+
+    'found_901' => $LNG['found'].$LNG['stats'][901],
+    'found_902' => $LNG['found'].$LNG['stats'][902],
+    'found_903' => $LNG['found'].$LNG['stats'][903],
+
+    'expo_count'                => 'Expeditions',
+    'expo_black_hole'           => 'Black Holes',
+    'expo_pirates_small'        => 'Small Pirates',
+    'expo_pirates_medium'       => 'Medium Pirates',
+    'expo_pirates_large'        => 'Large Pirates',
+    'expo_aliens_small'         => 'Small Aliens',
+    'expo_aliens_medium'        => 'Medium Aliens',
+    'expo_aliens_large'         => 'Large Aliens',
+    'expo_res_small'            => 'Small Resource Finds',
+    'expo_res_medium'           => 'Medium Resource Finds',
+    'expo_res_large'            => 'Large Resource Finds',
+    'expo_ships_small'          => 'Small Ship Finds',
+    'expo_ships_medium'         => 'Medium Ship Finds',
+    'expo_ships_large'          => 'Large Ship Finds',
+    'expo_slow'                 => 'Slow Expeditions',
+    'expo_fast'                 => 'Fast Expeditions',
+    'expo_nothing'              => 'Expeditions with no finds',
+
+    'moons_created'             => 'Moons created',
+    'moons_destroyed'           => 'Moons destroyed',
+    'moons_received'            => 'Moons received',
+    'first_moon_trys'           => 'Trys for the first Moon',
+    'destroy_moon_rips_lost'    => 'Lost Death Stars trying to destroy moons',
+    'set_sail_wins'             => 'Won fights with SetSails Theme active',
+
+];

@@ -57,16 +57,12 @@ $LNG['gameInformations']			= "Um jogo de estratégia em tempo real.\nJogo com ce
 
 // Login
 $LNG['loginHeader']					= 'Login';
-$LNG['loginUsername']				= 'Username/email';
+$LNG['loginEmail']				    = 'Email';
 $LNG['loginPassword']				= 'Password';
 $LNG['loginButton']					= 'Login';
 $LNG['loginInfo']					= 'Com o login eu aceito os %s.';
 $LNG['loginWelcome']				= 'Bem-vindo ao %s';
 $LNG['loginServerDesc']				= '%s é um jogo de estratégia espacial com milhares de jogadores a jogar juntos <strong>ao mesmo tempo</strong> a tentar ser o melhor do Universo. Tudo que precisas para o jogo é um navegador padrão.';
-$LNG['loginUsernamePMSenderName']	= 'Administrador';
-$LNG['loginUsernamePMSubject']	    = 'Atenção: Mudança de login';
-$LNG['loginUsernamePMText']		    = 'Devido a um risco de segurança ao iniciar sessão através do nome de utilizador, o início de sessão será em breve alterado para o endereço de correio eletrónico armazenado.<p>'
-    . 'Inicie sessão agora apenas com o seu endereço de correio eletrónico. Pode encontrá-lo no menu de definições.';
 
 // Register
 $LNG['registerUsername']			= 'Username';

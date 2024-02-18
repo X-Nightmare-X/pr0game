@@ -121,9 +121,6 @@ class BuildFunctions
     {
         $requeriments =& Singleton()->requeriments;
         $resource =& Singleton()->resource;
-        if (!BuildFunctions::isEnabled($Element)) {
-            return false;
-        }
 
         if (!isset($requeriments[$Element])) {
             return true;
@@ -140,6 +137,14 @@ class BuildFunctions
         return true;
     }
 
+    /**
+     * Checks if an element is enabled in the current universe.
+     * Buldings, ships etc are enabled for all universes via table vars.
+     * To disable individual elements one can extend the switch cases and check e.g. for an active module.
+     *
+     * @param integer $elementID
+     * @return boolean
+     */
     public static function isEnabled(int $elementID) : bool {
         switch ($elementID) {
             case REPAIR_DOCK:

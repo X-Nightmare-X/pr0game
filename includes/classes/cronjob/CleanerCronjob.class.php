@@ -69,6 +69,16 @@ class CleanerCronjob implements CronjobTask
         $sql	= 'UPDATE %%PLANETS%% SET `tf_active` = 0 WHERE `tf_active` = 1;';
         Database::get()->update($sql);
 
+        $sql	= 'DELETE FROM %%PHALANX_LOG%% WHERE `phalanx_time` < :time;';
+        Database::get()->delete($sql, [
+            ':time'	=> $del_before
+        ]);
+
+        $sql	= 'DELETE FROM %%PHALANX_FLEETS%% WHERE phalanx_log_id NOT IN (SELECT id FROM %%PHALANX_LOG%%)';
+        Database::get()->delete($sql, [
+            ':time'	=> $del_before
+        ]);
+
         foreach($unis as $uni)
         {
             $config	= Config::get($uni);

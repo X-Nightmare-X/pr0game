@@ -432,8 +432,10 @@ $LNG['bd_build_next_level'] = 'Улучшить до уровня ';
 $LNG['bd_tech'] = 'Исследовать';
 $LNG['bd_tech_next_level'] = 'Исследовать до уровня ';
 $LNG['bd_add_to_list'] = 'Добавить в очередь';
+$LNG['bd_buildlist_full'] = 'Список строительства полон';
+$LNG['bd_researclist_full'] = 'Список исследований полон';
 $LNG['bd_no_more_fields'] = 'Закончились свободные поля.';
-$LNG['bd_remaining'] = 'Не хватает:';
+$LNG['bd_remaining'] = 'Отсутствие сырья';
 $LNG['bd_lab_required'] = 'Сначала Вы должны построить исследовательскую лабораторию на это планете.';
 $LNG['bd_building_lab'] = 'Невозможно вести исследования, пока улучшается исследовательская лаборатория.';
 $LNG['bd_max_lvl'] = 'Макс. уровень:';
@@ -464,6 +466,7 @@ $LNG['bd_price_for_destroy'] = 'Стоимость разрушения';
 $LNG['bd_ready'] = 'готово';
 $LNG['bd_finished'] = 'готово';
 $LNG['bd_maxlevel'] = 'Достигнут максимальный уровень';
+$LNG['bd_requirements'] = 'Требования не выполнены';
 $LNG['bd_on'] = 'на';
 $LNG['bd_max_builds'] = 'Максимальное количество построек в очереди %d.';
 $LNG['bd_next_level'] = 'Следующий уровень:';
@@ -1000,6 +1003,10 @@ $LNG['op_dst_mode_sel'][1] = 'Да';
 $LNG['op_dst_mode_sel'][2] = 'Автоматически';
 $LNG['op_timezone'] = 'Часовой пояс';
 $LNG['op_block_pm'] = 'Отключить получение сообщений от игроков';
+$LNG['op_build_pages'] = 'Настройки страниц зданий и исследований';
+$LNG['op_show_all_buildable_elements'] = 'Показать элементы с отсутствующими требованиями';
+$LNG['op_missing_requirements_opacity'] = 'Потускнеет, если требования не будут выполнены';
+$LNG['op_missing_resources_opacity'] = 'Угасание при недостатке ресурсов';
 
 // Заблокированные
 $LNG['bn_no_players_banned'] = 'Нет заблокированных игроков';
@@ -1459,3 +1466,217 @@ $LNG['teamCommunityLong'] =         'Они всегда готовы помоч
 //----------------------------------------------------------------------------//
 $LNG['BlockTrade']  = 'Блочная торговля';
 $LNG['blockDm']    = 'Блок ЛС';
+
+//----------------------------------------------------------------------------//
+$LNG['found'] = 'Найдено ';
+$LNG['expedition'] = 'Экспедиция';
+$LNG['build'] = 'Построить';
+$LNG['lost'] = 'Потерянный';
+$LNG['destroyed'] = 'Разрушенный';
+$LNG['repaired'] = 'Ремонт';
+$LNG['other'] = 'Другие';
+$LNG['advancedStats'] = 'Расширенная статистика';
+
+$LNG['stats'] = [
+    202 => 'Малый транспорт',
+    203 => 'Большой транспорт',
+    204 => 'Лёгкий истребитель',
+    205 => 'Тяжёлый истребитель',
+    206 => 'Крейсер',
+    207 => 'Линкор',
+    208 => 'Колонизатор',
+    209 => 'Переработчик',
+    210 => 'Шпионский зонд',
+    211 => 'Бомбардировщик',
+    212 => 'Солнечный спутник',
+    213 => 'Уничтожитель',
+    214 => 'Звезда смерти',
+    215 => 'Линейный крейсер',
+    216 => 'Сверхновая звезда',
+    217 => 'Улучшенный транспорт',
+    218 => 'Аватар',
+    219 => 'Мега переработчик',
+
+    401 => 'Ракетная установка',
+    402 => 'Лёгкий лазер',
+    403 => 'Тяжёлый лазер',
+    404 => 'Пушка Гаусса',
+    405 => 'Ионное орудие',
+    406 => 'Плазменное орудие',
+    407 => 'Малый щитовой купол',
+    408 => 'Большой щитовой купол',
+    409 => 'Планетарный щитовой купол',
+    410 => 'Гравитонное орудие',
+    411 => 'Орбитальная база',
+
+    502 => 'Ракета-перехватчик',
+    503 => 'Межпланетная ракета',
+
+    901 => 'Металл',
+    902 => 'Кристалл',
+    903 => 'Дейтерий',
+  ];
+$LNG['Advanced_Stats'] = [
+    'build_202' => $LNG['stats'][202],
+    'build_203' => $LNG['stats'][203],
+    'build_204' => $LNG['stats'][204],
+    'build_205' => $LNG['stats'][205],
+    'build_206' => $LNG['stats'][206],
+    'build_207' => $LNG['stats'][207],
+    'build_208' => $LNG['stats'][208],
+    'build_209' => $LNG['stats'][209],
+    'build_210' => $LNG['stats'][210],
+    'build_211' => $LNG['stats'][211],
+    'build_212' => $LNG['stats'][212],
+    'build_213' => $LNG['stats'][213],
+    'build_214' => $LNG['stats'][214],
+    'build_215' => $LNG['stats'][215],
+    'build_216' => $LNG['stats'][216],
+    'build_217' => $LNG['stats'][217],
+    'build_218' => $LNG['stats'][218],
+    'build_219' => $LNG['stats'][219],
+
+    'build_401' => $LNG['stats'][401],
+    'build_402' => $LNG['stats'][402],
+    'build_403' => $LNG['stats'][403],
+    'build_404' => $LNG['stats'][404],
+    'build_405' => $LNG['stats'][405],
+    'build_406' => $LNG['stats'][406],
+    'build_407' => $LNG['stats'][407],
+    'build_408' => $LNG['stats'][408],
+    'build_409' => $LNG['stats'][409],
+    'build_410' => $LNG['stats'][410],
+    'build_411' => $LNG['stats'][411],
+
+    'build_502' => $LNG['stats'][502],
+    'build_503' => $LNG['stats'][503],
+
+    'lost_202' => $LNG['stats'][202],
+    'lost_203' => $LNG['stats'][203],
+    'lost_204' => $LNG['stats'][204],
+    'lost_205' => $LNG['stats'][205],
+    'lost_206' => $LNG['stats'][206],
+    'lost_207' => $LNG['stats'][207],
+    'lost_208' => $LNG['stats'][208],
+    'lost_209' => $LNG['stats'][209],
+    'lost_210' => $LNG['stats'][210],
+    'lost_211' => $LNG['stats'][211],
+    'lost_212' => $LNG['stats'][212],
+    'lost_213' => $LNG['stats'][213],
+    'lost_214' => $LNG['stats'][214],
+    'lost_215' => $LNG['stats'][215],
+    'lost_216' => $LNG['stats'][216],
+    'lost_217' => $LNG['stats'][217],
+    'lost_218' => $LNG['stats'][218],
+    'lost_219' => $LNG['stats'][219],
+
+    'lost_401' => $LNG['stats'][401],
+    'lost_402' => $LNG['stats'][402],
+    'lost_403' => $LNG['stats'][403],
+    'lost_404' => $LNG['stats'][404],
+    'lost_405' => $LNG['stats'][405],
+    'lost_406' => $LNG['stats'][406],
+    'lost_407' => $LNG['stats'][407],
+    'lost_408' => $LNG['stats'][408],
+    'lost_409' => $LNG['stats'][409],
+    'lost_410' => $LNG['stats'][410],
+    'lost_411' => $LNG['stats'][411],
+
+    'lost_502' => $LNG['stats'][502],
+    'lost_503' => $LNG['stats'][503],
+
+    'repaired_401' => $LNG['stats'][401],
+    'repaired_402' => $LNG['stats'][402],
+    'repaired_403' => $LNG['stats'][403],
+    'repaired_404' => $LNG['stats'][404],
+    'repaired_405' => $LNG['stats'][405],
+    'repaired_406' => $LNG['stats'][406],
+    'repaired_407' => $LNG['stats'][407],
+    'repaired_408' => $LNG['stats'][408],
+    'repaired_409' => $LNG['stats'][409],
+    'repaired_410' => $LNG['stats'][410],
+    'repaired_411' => $LNG['stats'][411],
+
+    'destroyed_202' => $LNG['stats'][202],
+    'destroyed_203' => $LNG['stats'][203],
+    'destroyed_204' => $LNG['stats'][204],
+    'destroyed_205' => $LNG['stats'][205],
+    'destroyed_206' => $LNG['stats'][206],
+    'destroyed_207' => $LNG['stats'][207],
+    'destroyed_208' => $LNG['stats'][208],
+    'destroyed_209' => $LNG['stats'][209],
+    'destroyed_210' => $LNG['stats'][210],
+    'destroyed_211' => $LNG['stats'][211],
+    'destroyed_212' => $LNG['stats'][212],
+    'destroyed_213' => $LNG['stats'][213],
+    'destroyed_214' => $LNG['stats'][214],
+    'destroyed_215' => $LNG['stats'][215],
+    'destroyed_216' => $LNG['stats'][216],
+    'destroyed_217' => $LNG['stats'][217],
+    'destroyed_218' => $LNG['stats'][218],
+    'destroyed_219' => $LNG['stats'][219],
+
+    'destroyed_401' => $LNG['stats'][401],
+    'destroyed_402' => $LNG['stats'][402],
+    'destroyed_403' => $LNG['stats'][403],
+    'destroyed_404' => $LNG['stats'][404],
+    'destroyed_405' => $LNG['stats'][405],
+    'destroyed_406' => $LNG['stats'][406],
+    'destroyed_407' => $LNG['stats'][407],
+    'destroyed_408' => $LNG['stats'][408],
+    'destroyed_409' => $LNG['stats'][409],
+    'destroyed_410' => $LNG['stats'][410],
+    'destroyed_411' => $LNG['stats'][411],
+
+    'destroyed_502' => $LNG['stats'][502],
+    'destroyed_503' => $LNG['stats'][503],
+
+    'found_202' => $LNG['found'].$LNG['stats'][202],
+    'found_203' => $LNG['found'].$LNG['stats'][203],
+    'found_204' => $LNG['found'].$LNG['stats'][204],
+    'found_205' => $LNG['found'].$LNG['stats'][205],
+    'found_206' => $LNG['found'].$LNG['stats'][206],
+    'found_207' => $LNG['found'].$LNG['stats'][207],
+    'found_208' => $LNG['found'].$LNG['stats'][208],
+    'found_209' => $LNG['found'].$LNG['stats'][209],
+    'found_210' => $LNG['found'].$LNG['stats'][210],
+    'found_211' => $LNG['found'].$LNG['stats'][211],
+    'found_212' => $LNG['found'].$LNG['stats'][212],
+    'found_213' => $LNG['found'].$LNG['stats'][213],
+    'found_214' => $LNG['found'].$LNG['stats'][214],
+    'found_215' => $LNG['found'].$LNG['stats'][215],
+    'found_216' => $LNG['found'].$LNG['stats'][216],
+    'found_217' => $LNG['found'].$LNG['stats'][217],
+    'found_218' => $LNG['found'].$LNG['stats'][218],
+    'found_219' => $LNG['found'].$LNG['stats'][219],
+
+    'found_901' => $LNG['found'].$LNG['stats'][901],
+    'found_902' => $LNG['found'].$LNG['stats'][902],
+    'found_903' => $LNG['found'].$LNG['stats'][903],
+
+    'expo_count'                => 'Экспедиции',
+    'expo_black_hole'           => 'Черные дыры',
+    'expo_pirates_small'        => 'Маленькие пираты',
+    'expo_pirates_medium'       => 'Средние пираты',
+    'expo_pirates_large'        => 'Большие пираты',
+    'expo_aliens_small'         => 'Маленькие инопланетяне',
+    'expo_aliens_medium'        => 'Средние инопланетяне',
+    'expo_aliens_large'         => 'Крупные инопланетяне',
+    'expo_res_small'            => 'Небольшие находки',
+    'expo_res_medium'           => 'Средние находки',
+    'expo_res_large'            => 'Крупные находки ресурсов',
+    'expo_ships_small'          => 'Находки малых кораблей',
+    'expo_ships_medium'         => 'Находки средних кораблей',
+    'expo_ships_large'          => 'Находки крупных кораблей',
+    'expo_slow'                 => 'Медленные экспедиции',
+    'expo_fast'                 => 'Быстрые экспедиции',
+    'expo_nothing'              => 'Экспедиции без находок',
+
+    'moons_created'             => 'Созданные луны',
+    'moons_destroyed'           => 'Уничтоженные луны',
+    'moons_received'            => 'Полученные луны',
+    'first_moon_trys'           => 'Попытка первой Луны',
+    'destroy_moon_rips_lost'    => 'Потерянные Звезды Смерти пытаются уничтожить луны',
+    'set_sail_wins'             => 'Победа в боях с активной темой SetSails',
+
+];

@@ -638,6 +638,10 @@ table.tablesorter thead tr .headerSortDown {
 	white-space: nowrap;
 }
 
+.unavailable {
+	opacity: 0.5;
+}
+
 #repairlist {
   display: flex;
   align-items: center;

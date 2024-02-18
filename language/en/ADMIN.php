@@ -565,6 +565,10 @@ $LNG['se_disclaimerMail'] = 'Email address';
 $LNG['se_disclaimerNotice'] = 'More information';
 $LNG['se_buildings'] = 'Building settings';
 $LNG['se_attacks'] = 'Attack settings';
+$LNG['se_discord_hooks'] = 'Discord Webhooks';
+$LNG['se_discord_logs_hook'] = 'Logs';
+$LNG['se_discord_exceptions_hook'] = 'Exceptions & warnings';
+$LNG['se_discord_tickets_hook'] = 'Tickets';
 
 
 //###########################################################//

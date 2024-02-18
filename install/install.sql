@@ -292,6 +292,9 @@ CREATE TABLE `%PREFIX%config` (
   `forum_url` varchar(128) NOT NULL DEFAULT "", -- board page redirect, input field in universe
   `git_issues_link` varchar(128) NOT NULL DEFAULT "<git_issues_link>",
   `ttf_file` varchar(128) NOT NULL DEFAULT "styles/resource/fonts/DroidSansMono.ttf",
+  `discord_logs_hook` varchar(255) DEFAULT "",
+  `discord_exceptions_hook` varchar(255) DEFAULT "",
+  `discord_tickets_hook` varchar(255) DEFAULT "",
   `mail_active` tinyint(1) NOT NULL DEFAULT 0,
   `smtp_sendmail` varchar(64) NOT NULL DEFAULT "",
   `mail_use` tinyint(1) NOT NULL DEFAULT 0,
@@ -937,7 +940,7 @@ CREATE TABLE `%PREFIX%users` (
   `banaday` int(11) NOT NULL DEFAULT '0',
   `showMessageCategory` tinyint(1) NOT NULL DEFAULT '0',
   `hof` tinyint(1) NOT NULL DEFAULT '1',
-  `spyMessagesMode` tinyint(1) NOT NULL DEFAULT '0',
+  `spyMessagesMode` tinyint(1) NOT NULL DEFAULT '1',
   `wons` int(11) unsigned NOT NULL DEFAULT '0',
   `loos` int(11) unsigned NOT NULL DEFAULT '0',
   `draws` int(11) unsigned NOT NULL DEFAULT '0',
@@ -1003,6 +1006,9 @@ CREATE TABLE `%PREFIX%users` (
   `stb_enabled` tinyint(1) NOT NULL DEFAULT 0,
   `records_optIn` tinyint(1) NOT NULL DEFAULT 0,
   `publish_achievement` tinyint(0) NOT NULL DEFAULT 0,
+  `show_all_buildable_elements` tinyint unsigned NOT NULL DEFAULT 1,
+  `missing_requirements_opacity` tinyint unsigned NOT NULL DEFAULT 1,
+  `missing_resources_opacity` tinyint unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `authlevel` (`authlevel`),
   KEY `ref_bonus` (`ref_bonus`),
@@ -1247,7 +1253,8 @@ INSERT INTO `%PREFIX%system` (`dbVersion`) VALUES
 (%DB_VERSION%);
 
 INSERT INTO `%PREFIX%ticket_category` (`categoryID`, `name`) VALUES
-(1, 'Support');
+(1, 'Support'),
+(9, 'Debug: Code errors and warnings');
 
 INSERT INTO `%PREFIX%vars` (`elementID`, `name`, `class`, `onPlanetType`, `onePerPlanet`, `factor`, `maxLevel`, `cost901`, `cost902`, `cost903`, `cost911`, `consumption1`, `consumption2`, `speedTech`, `speed1`, `speed2`, `speed3`, `capacity`, `attack`, `defend`, `timeBonus`, `bonusAttack`, `bonusDefensive`, `bonusShield`, `bonusBuildTime`, `bonusResearchTime`, `bonusShipTime`, `bonusDefensiveTime`, `bonusResource`, `bonusEnergy`, `bonusResourceStorage`, `bonusShipStorage`, `bonusFlyTime`, `bonusFleetSlots`, `bonusPlanets`, `bonusSpyPower`, `bonusExpedition`, `bonusGateCoolTime`, `bonusMoreFound`, `bonusAttackUnit`, `bonusDefensiveUnit`, `bonusShieldUnit`, `bonusBuildTimeUnit`, `bonusResearchTimeUnit`, `bonusShipTimeUnit`, `bonusDefensiveTimeUnit`, `bonusResourceUnit`, `bonusEnergyUnit`, `bonusResourceStorageUnit`, `bonusShipStorageUnit`, `bonusFlyTimeUnit`, `bonusFleetSlotsUnit`, `bonusPlanetsUnit`, `bonusSpyPowerUnit`, `bonusExpeditionUnit`, `bonusGateCoolTimeUnit`, `bonusMoreFoundUnit`, `speedFleetFactor`, `production901`, `production902`, `production903`, `production911`, `storage901`, `storage902`, `storage903`) VALUES
 (1, 'metal_mine', 0, '1', 0, 1.50, 255, 60, 15, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, '(30 * $BuildLevel * pow((1.1), $BuildLevel)) * (0.1 * $BuildLevelFactor)', NULL, NULL, '-(10 * $BuildLevel * pow((1.1), $BuildLevel)) * (0.1 * $BuildLevelFactor)', NULL, NULL, NULL),

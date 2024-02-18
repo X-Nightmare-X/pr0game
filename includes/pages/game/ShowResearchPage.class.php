@@ -209,6 +209,7 @@ class ShowResearchPage extends AbstractGamePage
         $pricelist =& Singleton()->pricelist;
         if (
             !in_array($elementId, $reslist['tech'])
+            || !BuildFunctions::isEnabled($elementId)
             || !BuildFunctions::isTechnologieAccessible($USER, $PLANET, $elementId)
             || !$this->checkLabSettingsInQueue($PLANET)
         ) {
@@ -322,6 +323,7 @@ class ShowResearchPage extends AbstractGamePage
         $PLANET =& Singleton()->PLANET;
         $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
+        $requeriments =& Singleton()->requeriments;
         $resource =& Singleton()->resource;
         $reslist =& Singleton()->reslist;
         $pricelist =& Singleton()->pricelist;
@@ -382,8 +384,22 @@ class ShowResearchPage extends AbstractGamePage
         $kristproduction = $PLANET['crystal_perhour'] + $config->crystal_basic_income * $config->resource_multiplier;
         $deutproduction = $PLANET['deuterium_perhour']  + $config->deuterium_basic_income * $config->resource_multiplier;
         foreach ($reslist['tech'] as $elementId) {
-            if (!BuildFunctions::isTechnologieAccessible($USER, $PLANET, $elementId)) {
+            if (!BuildFunctions::isEnabled($elementId)) {
                 continue;
+            }
+            $requirementsList = [];
+            if (!BuildFunctions::isTechnologieAccessible($USER, $PLANET, $elementId)) {
+                if (!$USER['show_all_buildable_elements']) {
+                    continue;
+                }
+                if (isset($requeriments[$elementId])) {
+                    foreach ($requeriments[$elementId] as $requireID => $RedCount) {
+                        $requirementsList[$requireID] = [
+                            'count' => $RedCount,
+                            'own'   => isset($PLANET[$resource[$requireID]]) ? $PLANET[$resource[$requireID]] : $USER[$resource[$requireID]]
+                        ];
+                    }
+                }
             }
 
             if (isset($queueData['quickinfo'][$elementId])) {
@@ -408,6 +424,10 @@ class ShowResearchPage extends AbstractGamePage
             $elementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $elementId, $costResources);
             $buyable = $QueueCount != 0 || BuildFunctions::isElementBuyable($USER, $PLANET, $elementId, $costResources);
 
+            $fade = ($USER['missing_requirements_opacity'] && !empty($requirementsList)) ||
+                ($USER['missing_resources_opacity'] && !$buyable) ||
+                $pricelist[$elementId]['max'] == $levelToBuild;
+
             $ResearchList[$elementId]   = [
                 'id'                => $elementId,
                 'level'             => $USER[$resource[$elementId]],
@@ -417,7 +437,9 @@ class ShowResearchPage extends AbstractGamePage
                 'elementTime'       => $elementTime,
                 'buyable'           => $buyable,
                 'levelToBuild'      => $levelToBuild,
-                'timetobuild'       => $timetobuild
+                'timetobuild'       => $timetobuild,
+                'requirements'      => $requirementsList,
+                'fade'              => $fade,
             ];
         }
 
