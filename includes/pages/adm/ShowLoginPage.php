@@ -39,7 +39,7 @@ function ShowLoginPage()
 
     $template->assign_vars([
         'bodyclass'		=> 'standalone',
-        'username'		=> $USER['username'],
+        'email'		    => $USER['email'],
         'signalColors'  => $USER['signalColors']
     ]);
     $template->show('LoginPage.tpl');

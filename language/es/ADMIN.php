@@ -18,6 +18,7 @@
 //---------------   GENERAL ------------------------//
 $LNG['adm_login'] = 'Ingresar';
 $LNG['adm_username'] = 'Nombre Usuario';
+$LNG['adm_email'] = 'Email';
 $LNG['adm_password'] = 'Contraseña';
 $LNG['adm_absenden'] = 'Enviar';
 $LNG['adm_password_info'] = '¡Ingrese su contraseña para verificar su identidad!';

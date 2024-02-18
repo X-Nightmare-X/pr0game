@@ -7,7 +7,8 @@
 
 //---------------   GENERAL ------------------------//
 $LNG['adm_login'] = 'Connectez-vous';
-$LNG['adm_username'] = 'Login';
+$LNG['adm_username'] = 'Nom d\'utilisateur';
+$LNG['adm_email'] = 'Email';
 $LNG['adm_password'] = 'Mot de passe';
 $LNG['adm_absenden'] = 'Envoyer';
 $LNG['adm_password_info'] = 'S\'il vous plaît entrer votre mot de passe pour la vérification du compte !';

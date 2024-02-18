@@ -24,6 +24,7 @@
 //---------------   Geral   ------------------------//
 $LNG['adm_login'] = 'Login';
 $LNG['adm_username'] = 'Username';
+$LNG['adm_email'] = 'Email';
 $LNG['adm_password'] = 'Password';
 $LNG['adm_absenden'] = 'Entrar';
 $LNG['adm_password_info'] = 'Escreve a tua senha para poderes entrar';
