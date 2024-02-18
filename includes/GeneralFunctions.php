@@ -547,11 +547,10 @@ function exceptionHandler($exception)
 <head>
 	<title>' . $gameName . ' - Error</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/resource/css/base/boilerplate.css?v=' . $version
-        . '">
-	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/resource/css/ingame/main.css?v=' . $version . '">
-	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/resource/css/base/jquery.css?v=' . $version . '">
-	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/theme/gow/formate.css?v=' . $version . '">
+	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/resource/css/base/boilerplate.css">
+	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/resource/css/ingame/main.css">
+	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/resource/css/base/jquery.css">
+	<link rel="stylesheet" type="text/css" href="' . $DIR . '/styles/theme/gow/formate.css">
 	<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
 	<script type="text/javascript">
 	var ServerTimezoneOffset = -3600;
@@ -578,13 +577,13 @@ function exceptionHandler($exception)
 	}
     }, 1);
 	</script>
-	<script type="text/javascript" src="' . $DIR . '/scripts/base/jquery.js?v=2123"></script>
-	<script type="text/javascript" src="' . $DIR . '/scripts/base/jquery.ui.js?v=2123"></script>
-	<script type="text/javascript" src="' . $DIR . '/scripts/base/jquery.cookie.js?v=2123"></script>
-	<script type="text/javascript" src="' . $DIR . '/scripts/base/jquery.fancybox.js?v=2123"></script>
-	<script type="text/javascript" src="' . $DIR . '/scripts/base/jquery.validationEngine.js?v=2123"></script>
-	<script type="text/javascript" src="' . $DIR . '/scripts/base/tooltip.js?v=2123"></script>
-	<script type="text/javascript" src="' . $DIR . '/scripts/game/base.js?v=2123"></script>
+	<script type="text/javascript" src="' . $DIR . '/scripts/base/jquery.js"></script>
+	<script type="text/javascript" src="' . $DIR . '/scripts/base/jquery.ui.js"></script>
+	<script type="text/javascript" src="' . $DIR . '/scripts/base/jquery.cookie.js"></script>
+	<script type="text/javascript" src="' . $DIR . '/scripts/base/jquery.fancybox.js"></script>
+	<script type="text/javascript" src="' . $DIR . '/scripts/base/jquery.validationEngine.js"></script>
+	<script type="text/javascript" src="' . $DIR . '/scripts/base/tooltip.js"></script>
+	<script type="text/javascript" src="' . $DIR . '/scripts/game/base.js"></script>
 </head>
 <body id="overview" class="full">
 

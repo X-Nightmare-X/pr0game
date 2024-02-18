@@ -20,10 +20,10 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="styles/theme/nova/formate.css?v={$REV}">
-	<link rel="stylesheet" type="text/css" href="styles/resource/css/login/main.css?v={$REV}">
-	<link rel="stylesheet" type="text/css" href="styles/resource/css/base/jquery.fancybox.css?v={$REV}">
-	<link rel="stylesheet" type="text/css" href="styles/resource/css/login/icon-font/style.css?v={$REV}">
+	<link rel="stylesheet" type="text/css" href="styles/theme/nova/formate.css">
+	<link rel="stylesheet" type="text/css" href="styles/resource/css/login/main.css">
+	<link rel="stylesheet" type="text/css" href="styles/resource/css/base/jquery.fancybox.css">
+	<link rel="stylesheet" type="text/css" href="styles/resource/css/login/icon-font/style.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" type="text/css">
 	<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
 	<title>{$gameName}</title>
@@ -37,9 +37,9 @@
 	<!--[if lt IE 9]>
 	<script src="scripts/base/html5.js"></script>
 	<![endif]-->
-	<script src="scripts/base/jquery.js?v={$REV}"></script>
-	<script src="scripts/base/jquery.cookie.js?v={$REV}"></script>
-	<script src="scripts/base/jquery.fancybox.js?v={$REV}"></script>
+	<script src="scripts/base/jquery.js"></script>
+	<script src="scripts/base/jquery.cookie.js"></script>
+	<script src="scripts/base/jquery.fancybox.js"></script>
 	<script src="scripts/login/main.js"></script>
 	<script>{if isset($code)}var loginError = {$code|json_encode};{/if}</script>
 	{block name="script"}{/block}
