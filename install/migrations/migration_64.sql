@@ -1,7 +1,17 @@
--- Adds user options to show all buildable elements and highlight unbuildable elements
-ALTER TABLE `%PREFIX%users` 
-    ADD COLUMN `show_all_buildable_elements` tinyint unsigned NOT NULL DEFAULT 1,
-    ADD COLUMN `missing_requirements_opacity` tinyint unsigned NOT NULL DEFAULT 1,
-    ADD COLUMN `missing_resources_opacity` tinyint unsigned NOT NULL DEFAULT 0;
+-- Add phalanx_log
+CREATE TABLE `%PREFIX%phalanx_log` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `owner` int(11) unsigned NOT NULL,
+  `owner_planet_id` int(11) unsigned NOT NULL,
+  `target` int(11) unsigned NOT NULL,
+  `target_planet_id` int(11) unsigned NOT NULL,
+  `phalanx_time` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-ALTER TABLE `%PREFIX%users` ALTER `spyMessagesMode` SET DEFAULT 1;
+CREATE TABLE `%PREFIX%phalanx_fleets` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `phalanx_log_id` int(11) unsigned NOT NULL,
+  `fleet_id` bigint(11) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

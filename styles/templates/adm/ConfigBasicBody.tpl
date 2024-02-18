@@ -38,6 +38,25 @@
 				<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_ttf_file_info}"></td>
 			</tr>
 
+			<tr>
+				<th colspan="2">{$LNG.se_discord_hooks}</th>
+				<th colspan="1" width="5%">(?)</th>
+			</tr>
+			<tr>
+				<td>{$LNG.se_discord_logs_hook}</td>
+				<td><input name="discord_logs_hook" value="{$discord_logs_hook}" type="text" maxlength="60"></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>{$LNG.se_discord_exceptions_hook}</td>
+				<td><input name="discord_exceptions_hook" value="{$discord_exceptions_hook}" type="text" maxlength="60"></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>{$LNG.se_discord_tickets_hook}</td>
+				<td><input name="discord_tickets_hook" value="{$discord_tickets_hook}" type="text" maxlength="60"></td>
+				<td>&nbsp;</td>
+			</tr>
 
 			<tr>
 				<th colspan="2">{$LNG.se_smtp}</th>

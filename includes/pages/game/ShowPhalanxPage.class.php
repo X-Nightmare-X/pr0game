@@ -132,7 +132,8 @@ class ShowPhalanxPage extends AbstractGamePage
         $fleetTableObj->setPhalanxMode();
         $fleetTableObj->setUser($TargetInfo['id_owner']);
         $fleetTableObj->setPlanet($TargetInfo['id']);
-        $fleetTable	=  $fleetTableObj->renderTable();
+        $fleetTable	=  $fleetTableObj->renderTable(true);
+
         $this->assign([
             'galaxy'  		=> $Galaxy,
             'system'  		=> $System,

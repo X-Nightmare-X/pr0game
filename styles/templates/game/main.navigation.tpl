@@ -69,6 +69,7 @@
     <li><a href="game.php?page=records">{$LNG.lm_records}</a></li>
   {/if}
   <li><a href="game.php?page=achievements">{$LNG.Achievements}</a></li>
+  <li><a href="game.php?page=advancedStats">{$LNG.advancedStats}</a></li>
 
   <li class="menu-separator"></li>
   <li><a href="https://wiki.pr0game.com" target="_blank">Wiki</a></li>

@@ -22,12 +22,13 @@ if (!allowedTo(str_replace([dirname(__FILE__), '\\', '/', '.php'], '', __FILE__)
 class ShowSupportPage
 {
     private $ticketObj;
+    private $tplObj;
 
     public function __construct()
     {
         require('includes/classes/class.SupportTickets.php');
-        $this->ticketObj	= new SupportTickets();
-        $this->tplObj		= new template();
+        $this->ticketObj    = new SupportTickets();
+        $this->tplObj       = new template();
         // 2Moons 1.7TO1.6 PageClass Wrapper
         $ACTION = HTTP::_GP('mode', 'show');
         if (is_callable([$this, $ACTION])) {
@@ -41,20 +42,34 @@ class ShowSupportPage
     {
         $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
-        $ticketResult	= $GLOBALS['DATABASE']->query("SELECT t.*, u.username, COUNT(a.ticketID) as answer FROM ".TICKETS." t INNER JOIN ".TICKETS_ANSWER." a USING (ticketID) INNER JOIN ".USERS." u ON u.id = t.ownerID WHERE t.universe = ".Universe::getEmulated()." GROUP BY a.ticketID ORDER BY t.ticketID DESC;");
-        $ticketList		= [];
+        $db = Database::get();
+        
+        $sql = 'SELECT t.*, u.`username`, COUNT(a.`ticketID`) as answer
+            FROM %%TICKETS%% t
+            INNER JOIN %%TICKETS_ANSWER%% a USING (`ticketID`)
+            LEFT JOIN %%USERS%% u ON u.`id` = t.`ownerID`
+            WHERE t.`universe` = :universe
+            GROUP BY a.`ticketID` ORDER BY t.`ticketID` DESC;';
+        $ticketResult = $db->select($sql, [
+            ':universe' => Universe::getEmulated(),
+        ]);
+        $ticketList = [];
 
-        while ($ticketRow = $GLOBALS['DATABASE']->fetch_array($ticketResult)) {
-            $ticketRow['time']	= _date($LNG['php_tdformat'], $ticketRow['time'], $USER['timezone']);
-
+        foreach ($ticketResult as $ticketRow) {
+            $ticketRow['time'] = _date($LNG['php_tdformat'], $ticketRow['time'], $USER['timezone']);
             $ticketList[$ticketRow['ticketID']]	= $ticketRow;
         }
 
-        $GLOBALS['DATABASE']->free_result($ticketResult);
+        $categories = [
+            0 => 'All',
+            1 => 'User-Tickets',
+            9 => 'Debug/Errors',
+        ];
 
         $this->tplObj->assign_vars([
-            'ticketList'	=> $ticketList,
-            'signalColors'	=> $USER['signalColors'],
+            'ticketList' => $ticketList,
+            'signalColors' => $USER['signalColors'],
+            'categories' => $categories,
         ]);
 
         $this->tplObj->show('page.ticket.default.tpl');
@@ -64,20 +79,26 @@ class ShowSupportPage
     {
         $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
-        $ticketID	= HTTP::_GP('id', 0);
-        $message	= HTTP::_GP('message', '', true);
-        $change		= HTTP::_GP('change_status', 0);
+        $db = Database::get();
 
-        $ticketDetail	= $GLOBALS['DATABASE']->getFirstRow("SELECT ownerID, subject, status FROM ".TICKETS." WHERE ticketID = ".$ticketID.";");
+        $ticketID = HTTP::_GP('id', 0);
+        $message = HTTP::_GP('message', '', true);
+        $change = HTTP::_GP('change_status', 0);
+
+        $sql = 'SELECT `ownerID`, `subject`, `status` 
+            FROM %%TICKETS%% 
+            WHERE `ticketID` = :ticketID;';
+        $ticketDetail = $db->selectSingle($sql, [
+            ':ticketID' => $ticketID,
+        ]);
 
         $status = ($change ? ($ticketDetail['status'] <= 1 ? 2 : 1) : 1);
-
 
         if (!$change && empty($message)) {
             HTTP::redirectTo('admin.php?page=support&mode=view&id='.$ticketID);
         }
 
-        $subject		= "RE: ".$ticketDetail['subject'];
+        $subject = "RE: " . $ticketDetail['subject'];
 
         if ($change && $status == 1) {
             $this->ticketObj->createAnswer($ticketID, $USER['id'], $USER['username'], $subject, $LNG['ti_admin_open'], $status);
@@ -91,9 +112,8 @@ class ShowSupportPage
             $this->ticketObj->createAnswer($ticketID, $USER['id'], $USER['username'], $subject, $LNG['ti_admin_close'], $status);
         }
 
-
-        $subject	= sprintf($LNG['sp_answer_message_title'], $ticketID);
-        $text		= sprintf($LNG['sp_answer_message'], $ticketID);
+        $subject = sprintf($LNG['sp_answer_message_title'], $ticketID);
+        $text = sprintf($LNG['sp_answer_message'], $ticketID);
 
         PlayerUtil::sendMessage(
             $ticketDetail['ownerID'],
@@ -115,13 +135,23 @@ class ShowSupportPage
     {
         $USER =& Singleton()->USER;
         $LNG =& Singleton()->LNG;
-        $ticketID			= HTTP::_GP('id', 0);
-        $answerResult		= $GLOBALS['DATABASE']->query("SELECT a.*, t.categoryID, t.status FROM ".TICKETS_ANSWER." a INNER JOIN ".TICKETS." t USING(ticketID) WHERE a.ticketID = ".$ticketID." ORDER BY a.answerID;");
-        $answerList			= [];
+        $db = Database::get();
 
-        $ticket_status		= 0;
+        $ticketID = HTTP::_GP('id', 0);
 
-        while ($answerRow = $GLOBALS['DATABASE']->fetch_array($answerResult)) {
+        $sql = 'SELECT a.*, t.`categoryID`, t.`status`
+            FROM %%TICKETS_ANSWER%% a
+            INNER JOIN %%TICKETS%% t USING(`ticketID`)
+            WHERE a.`ticketID` = :ticketID 
+            ORDER BY a.`answerID`;';
+        $answerResult = $db->select($sql, [
+            ':ticketID' => $ticketID,
+        ]);
+        $answerList = [];
+
+        $ticket_status = 0;
+
+        foreach ($answerResult as $answerRow) {
             if (empty($ticket_status)) {
                 $ticket_status = $answerRow['status'];
             }
@@ -132,9 +162,7 @@ class ShowSupportPage
             $answerList[$answerRow['answerID']]	= $answerRow;
         }
 
-        $GLOBALS['DATABASE']->free_result($answerResult);
-
-        $categoryList	= $this->ticketObj->getCategoryList();
+        $categoryList = $this->ticketObj->getCategoryList();
 
         $this->tplObj->assign_vars([
             'ticketID'		=> $ticketID,

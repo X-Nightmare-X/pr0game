@@ -15,7 +15,7 @@
  * @link https://github.com/jkroepke/2Moons
  */
 
-define('DB_VERSION_REQUIRED', 64);
+define('DB_VERSION_REQUIRED', 66);
 define('DB_NAME'			, $database['databasename']);
 define('DB_PREFIX'			, $database['tableprefix']);
 
@@ -47,6 +47,8 @@ $dbTableNames   = [
     'MESSAGES'                => DB_PREFIX . 'messages',
     'MULTI'                   => DB_PREFIX . 'multi',
     'MULTI_TO_USERS'          => DB_PREFIX . 'multi_to_users',
+    'PHALANX_FLEETS'          => DB_PREFIX . 'phalanx_fleets',
+    'PHALANX_LOG'             => DB_PREFIX . 'phalanx_log',
     'PLANETS'                 => DB_PREFIX . 'planets',
     'PLANET_WRECKFIELD'       => DB_PREFIX . 'planet_wreckfield',
     'RW'                      => DB_PREFIX . 'raports',

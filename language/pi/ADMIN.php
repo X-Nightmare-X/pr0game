@@ -529,6 +529,10 @@ $LNG['se_disclaimerAddress'] = 'Adresse';
 $LNG['se_disclaimerPhone'] = 'Telefonnummer';
 $LNG['se_disclaimerMail'] = 'E-Mail-Adresse';
 $LNG['se_disclaimerNotice'] = 'Weitere Informationen';
+$LNG['se_discord_hooks'] = 'Discord Webhooks';
+$LNG['se_discord_logs_hook'] = 'Logs';
+$LNG['se_discord_exceptions_hook'] = 'Fehler & Warnungen';
+$LNG['se_discord_tickets_hook'] = 'Tickets';
 
 //###########################################################//
 
