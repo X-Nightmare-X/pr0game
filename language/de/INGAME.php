@@ -212,6 +212,7 @@ $LNG['ov_checknews_hide'] = 'Neuigkeiten ausblenden';
 //FILTER MENU
 
 $LNG['fm_mining'] = 'Rohstoffabbau';
+$LNG['fm_storage'] = 'Lagerung';
 $LNG['fm_other'] = 'Sonstige';
 $LNG['fm_all'] = 'Alle';
 $LNG['fm_civil'] = 'Zivil';
@@ -470,8 +471,10 @@ $LNG['bd_build_next_level'] = 'Ausbauen auf Stufe ';
 $LNG['bd_tech'] = 'Forschen';
 $LNG['bd_tech_next_level'] = 'Forschen auf Stufe ';
 $LNG['bd_add_to_list'] = 'Zur Bauliste hinzufügen';
+$LNG['bd_buildlist_full'] = 'Bauliste ist voll';
+$LNG['bd_researclist_full'] = 'Forschungsliste ist voll';
 $LNG['bd_no_more_fields'] = 'Planet ausgebaut!';
-$LNG['bd_remaining'] = 'Fehlende Rohstoffe:';
+$LNG['bd_remaining'] = 'Fehlende Rohstoffe';
 $LNG['bd_lab_required'] = 'Du musst zuerst ein Forschungslabor auf diesem Planeten bauen!';
 $LNG['bd_building_lab'] = 'Das Forschungslabor wird zurzeit ausgebaut!';
 $LNG['bd_max_lvl'] = 'Max. Level:';
@@ -502,6 +505,7 @@ $LNG['bd_price_for_destroy'] = 'Kosten für Abriss:';
 $LNG['bd_ready'] = 'Fertig';
 $LNG['bd_finished'] = 'Fertig';
 $LNG['bd_maxlevel'] = 'Maximale Stufe erreicht';
+$LNG['bd_requirements'] = 'Voraussetzungen nicht erfüllt';
 $LNG['bd_on'] = 'auf';
 $LNG['bd_max_builds'] = 'Sie können max. %d Aufträge versenden!';
 $LNG['bd_next_level'] = 'Next Level:';
@@ -1053,6 +1057,10 @@ $LNG['op_dst_mode_sel'][1] = 'Ja';
 $LNG['op_dst_mode_sel'][2] = 'Automatisch';
 $LNG['op_timezone'] = 'Zeitzone';
 $LNG['op_block_pm'] = 'Private Nachrichten blockieren';
+$LNG['op_build_pages'] = 'Bau- und Forschungsseiten-Einstellungen';
+$LNG['op_show_all_buildable_elements'] = 'Elemente mit fehlenden Anforderungen anzeigen';
+$LNG['op_missing_requirements_opacity'] = 'Bei fehlenden Anforderungen verblassen';
+$LNG['op_missing_resources_opacity'] = 'Bei fehlenden Ressourcen verblassen';
 
 //----------------------------------------------------------------------------//
 //BANNED

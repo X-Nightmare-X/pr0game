@@ -214,6 +214,7 @@ $LNG['ov_checknews_hide'] = 'Hide News';
 //FILTER MENU
 
 $LNG['fm_mining'] = 'Mining';
+$LNG['fm_storage'] = 'Storage';
 $LNG['fm_other'] = 'Other';
 $LNG['fm_all'] = 'All';
 $LNG['fm_civil'] = 'Civil';
@@ -479,8 +480,10 @@ $LNG['bd_research'] = 'Research';
 $LNG['bd_tech'] = 'Research';
 $LNG['bd_tech_next_level'] = 'Research to the next level ';
 $LNG['bd_add_to_list'] = 'Add to list';
+$LNG['bd_buildlist_full'] = 'Construction list is full';
+$LNG['bd_researclist_full'] = 'Research list is full';
 $LNG['bd_no_more_fields'] = 'Planet has no fields remaining';
-$LNG['bd_remaining'] = 'Remaining:';
+$LNG['bd_remaining'] = 'Lack of raw materials';
 $LNG['bd_lab_required'] = 'First, you have to build a research lab!';
 $LNG['bd_building_lab'] = 'You cannot research during lab upgrades.';
 $LNG['bd_max_lvl'] = 'Max. Level:';
@@ -511,6 +514,7 @@ $LNG['bd_price_for_destroy'] = 'Cost to demolish:';
 $LNG['bd_ready'] = 'Ready';
 $LNG['bd_finished'] = 'Finished';
 $LNG['bd_maxlevel'] = 'Maximum level reached';
+$LNG['bd_requirements'] = 'Requirements not fulfilled';
 $LNG['bd_on'] = 'connected';
 $LNG['bd_max_builds'] = 'You will have only max. %d queue building!';
 $LNG['bd_next_level'] = 'Next level:';
@@ -1056,6 +1060,10 @@ $LNG['op_dst_mode_sel'][1] = 'No';
 $LNG['op_dst_mode_sel'][2] = 'Automatic';
 $LNG['op_timezone'] = 'Time zone';
 $LNG['op_block_pm'] = 'Block private messages';
+$LNG['op_build_pages'] = 'Building and research page settings';
+$LNG['op_show_all_buildable_elements'] = 'Show elements with missing requirements';
+$LNG['op_missing_requirements_opacity'] = 'Fade if requirements are not met';
+$LNG['op_missing_resources_opacity'] = 'Fade if resources are lacking';
 
 //----------------------------------------------------------------------------//
 // Lista de Jogadores Banidos

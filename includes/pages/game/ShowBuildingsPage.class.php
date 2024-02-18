@@ -114,6 +114,7 @@ class ShowBuildingsPage extends AbstractGamePage
         $pricelist = &Singleton()->pricelist;
         if (
             !in_array($Element, $reslist['allow'][$PLANET['planet_type']])
+            || !BuildFunctions::isEnabled($Element)
             || !BuildFunctions::isTechnologieAccessible($USER, $PLANET, $Element)
             || ($Element == RESEARCH_LABORATORY && $USER["b_tech_planet"] != 0)
             || (($Element == NANITE_FACTORY || $Element == SHIPYARD) && !empty($PLANET['b_hangar_id']))
@@ -242,6 +243,7 @@ class ShowBuildingsPage extends AbstractGamePage
     {
         $ProdGrid = &Singleton()->ProdGrid;
         $LNG = &Singleton()->LNG;
+        $requeriments =& Singleton()->requeriments;
         $resource = &Singleton()->resource;
         $reslist = &Singleton()->reslist;
         $PLANET = &Singleton()->PLANET;
@@ -319,8 +321,22 @@ class ShowBuildingsPage extends AbstractGamePage
 
 
         foreach ($Elements as $Element) {
-            if (!BuildFunctions::isTechnologieAccessible($USER, $PLANET, $Element)) {
+            if (!BuildFunctions::isEnabled($Element)) {
                 continue;
+            }
+            $requirementsList = [];
+            if (!BuildFunctions::isTechnologieAccessible($USER, $PLANET, $Element)) {
+                if (!$USER['show_all_buildable_elements']) {
+                    continue;
+                }
+                if (isset($requeriments[$Element])) {
+                    foreach ($requeriments[$Element] as $requireID => $RedCount) {
+                        $requirementsList[$requireID] = [
+                            'count' => $RedCount,
+                            'own'   => isset($PLANET[$resource[$requireID]]) ? $PLANET[$resource[$requireID]] : $USER[$resource[$requireID]]
+                        ];
+                    }
+                }
             }
 
             $infoEnergy = "";
@@ -365,16 +381,18 @@ class ShowBuildingsPage extends AbstractGamePage
             );
             $costOverflow = BuildFunctions::getRestPrice($USER, $PLANET, $Element, $costResources);
             $timetobuild = 0;
-            if (array_key_exists(RESOURCE_METAL, $costOverflow) && $costOverflow[RESOURCE_METAL] != 0 && $metproduction > 0) {
-                $timetobuild = max($timetobuild, $costOverflow[RESOURCE_METAL] / $metproduction);
+            if ($PLANET['planet_type'] != 3) {
+                if (array_key_exists(RESOURCE_METAL, $costOverflow) && $costOverflow[RESOURCE_METAL] != 0 && $metproduction > 0) {
+                    $timetobuild = max($timetobuild, $costOverflow[RESOURCE_METAL] / $metproduction);
+                }
+                if (array_key_exists(RESOURCE_CRYSTAL, $costOverflow) && $costOverflow[RESOURCE_CRYSTAL] != 0 && $kristproduction > 0) {
+                    $timetobuild = max($timetobuild, $costOverflow[RESOURCE_CRYSTAL] / $kristproduction);
+                }
+                if (array_key_exists(RESOURCE_DEUT, $costOverflow) && $costOverflow[RESOURCE_DEUT] != 0 && $deutproduction > 0) {
+                    $timetobuild = max($timetobuild, $costOverflow[RESOURCE_DEUT] / $deutproduction);
+                }
+                $timetobuild = floor($timetobuild * 3600);
             }
-            if (array_key_exists(RESOURCE_CRYSTAL, $costOverflow) && $costOverflow[RESOURCE_CRYSTAL] != 0 && $kristproduction > 0) {
-                $timetobuild = max($timetobuild, $costOverflow[RESOURCE_CRYSTAL] / $kristproduction);
-            }
-            if (array_key_exists(RESOURCE_DEUT, $costOverflow) && $costOverflow[RESOURCE_DEUT] != 0 && $deutproduction > 0) {
-                $timetobuild = max($timetobuild, $costOverflow[RESOURCE_DEUT] / $deutproduction);
-            }
-            $timetobuild = floor($timetobuild * 3600);
 
             $elementTime = BuildFunctions::getBuildingTime($USER, $PLANET, $Element, $costResources);
             $destroyResources = BuildFunctions::getElementPrice($USER, $PLANET, $Element, true);
@@ -382,6 +400,17 @@ class ShowBuildingsPage extends AbstractGamePage
             $destroyOverflow = BuildFunctions::getRestPrice($USER, $PLANET, $Element, $destroyResources);
             $buyable = $QueueCount != 0 || BuildFunctions::isElementBuyable($USER, $PLANET, $Element, $costResources);
             $destroyable = ($Element != SILO || ($PLANET[$resource[INTERCEPTOR_MISSILE]] + $PLANET[$resource[INTERPLANETARY_MISSILE]]) == 0) && $Element != TERRAFORMER && $Element != MOONBASE;
+
+            $filterClass = 'other';
+            if (in_array($Element, $reslist['prod'])) {
+                $filterClass = 'prod';
+            } else if (in_array($Element, $reslist['storage'])) {
+                $filterClass = 'storage';
+            }
+
+            $fade = ($USER['missing_requirements_opacity'] && !empty($requirementsList)) ||
+                ($USER['missing_resources_opacity'] && !$buyable) ||
+                $pricelist[$Element]['max'] == $levelToBuild;
 
             $BuildInfoList[$Element]    = [
                 'level'             => $PLANET[$resource[$Element]],
@@ -396,7 +425,10 @@ class ShowBuildingsPage extends AbstractGamePage
                 'buyable'           => $buyable,
                 'destroyable'       => $destroyable,
                 'levelToBuild'      => $levelToBuild,
-                'timetobuild'       => $timetobuild
+                'timetobuild'       => $timetobuild,
+                'requirements'      => $requirementsList,
+                'filterClass'       => $filterClass,
+                'fade'              => $fade,
             ];
         }
 
@@ -416,7 +448,7 @@ class ShowBuildingsPage extends AbstractGamePage
             'isBusy'            => [
                 'shipyard' => !empty($PLANET['b_hangar_id']),
                 'research' => $USER['b_tech_planet'] != 0,
-                'repair' => !empty($wreckfield['repair_order']),
+                'repairdock' => !empty($wreckfield['repair_order']),
             ],
             'messages'          => ($Messages > 0) ?
                 (($Messages == 1) ? $LNG['ov_have_new_message']

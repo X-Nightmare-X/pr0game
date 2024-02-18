@@ -459,16 +459,14 @@ content {
   padding: 0.4em;
 }
 
-.infos,
-.infoso {
+.infos {
   text-align: center;
   background: var(--tv-bg-primary);
   /* margin-top: 10px; */
   overflow: auto;
 }
 
-.infos .buildl span.colorNeutral,
-.infoso .buildl span.colorNeutral {
+.infos .buildl span.colorNeutral {
   color: var(--tv-danger);
 }
 
