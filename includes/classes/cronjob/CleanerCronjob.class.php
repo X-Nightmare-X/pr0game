@@ -74,10 +74,8 @@ class CleanerCronjob implements CronjobTask
             ':time'	=> $del_before
         ]);
 
-        $sql	= 'DELETE FROM %%PHALANX_FLEETS%% WHERE phalanx_log_id NOT IN (SELECT id FROM %%PHALANX_LOG%%)';
-        Database::get()->delete($sql, [
-            ':time'	=> $del_before
-        ]);
+        $sql	= 'DELETE FROM %%PHALANX_FLEETS%% WHERE `phalanx_log_id` NOT IN (SELECT `id` FROM %%PHALANX_LOG%%)';
+        Database::get()->delete($sql);
 
         foreach($unis as $uni)
         {
