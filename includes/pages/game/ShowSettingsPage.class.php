@@ -37,6 +37,7 @@ class ShowSettingsPage extends AbstractGamePage
 
             $this->display('page.settings.vacation.tpl');
         } else {
+            require_once 'includes/classes/Achievement.class.php';
             $db = Database::get();
             $sql = "SELECT prioMission1 as 'type_mission_1', prioMission2 as 'type_mission_2', 
             prioMission3 as 'type_mission_3',prioMission4 as 'type_mission_4', 
@@ -49,6 +50,7 @@ class ShowSettingsPage extends AbstractGamePage
                 ':userID'   => $USER['id'],
             ]);
 
+            $titles = Achievement::getAvailableTitles($USER['id']);
             $this->assign([
                 'Selectors'         => [
                     'timezones' => get_timezone_selector(),
@@ -63,6 +65,7 @@ class ShowSettingsPage extends AbstractGamePage
                     ],
                     'Skins' => Theme::getAvalibleSkins(),
                     'lang' => $LNG->getAllowedLangs(false),
+                    'Titles' => !empty($titles) ? $titles : [0 => "Not Unlocked"],
                 ],
                 'adminProtection'               => $USER['authattack'],
                 'discord_id'                    => $USER['discord_id'],
@@ -108,6 +111,7 @@ class ShowSettingsPage extends AbstractGamePage
                 'show_all_buildable_elements'   => $USER['show_all_buildable_elements'],
                 'missing_requirements_opacity'  => $USER['missing_requirements_opacity'],
                 'missing_resources_opacity'     => $USER['missing_resources_opacity'],
+                'title'                         => $USER['achievement_title_id'],
             ]);
 
             $this->display('page.settings.default.tpl');
@@ -370,6 +374,7 @@ class ShowSettingsPage extends AbstractGamePage
         $recordsOptIn = HTTP::_GP('recordsOptIn', 0);
 
         $publish_achievement = HTTP::_GP('publish_achievement', 0);
+        $title = HTTP::_GP('title', 0);
 
         // Vertify
 
@@ -579,7 +584,8 @@ class ShowSettingsPage extends AbstractGamePage
         stb_med_time                    = :stb_med_time,
         stb_big_time                    = :stb_big_time,
         stb_enabled                     = :stb_enabled,
-        publish_achievement             = :publish_achievement
+        publish_achievement             = :publish_achievement,
+        achievement_title_id            = :title
 		WHERE id = :userID;";
         $db->update($sql, [
             ':theme'                        => $theme,
@@ -656,7 +662,8 @@ class ShowSettingsPage extends AbstractGamePage
             ':stb_med_time'                 => $stb_med_time,
             ':stb_big_time'                 => $stb_big_time,
             ':stb_enabled'                  => $stb_enabled,
-            ':publish_achievement'          => $publish_achievement
+            ':publish_achievement'          => $publish_achievement,
+            ':title'                        => $title,
         ]);
 
         $db->commit();

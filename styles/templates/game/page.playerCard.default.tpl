@@ -53,7 +53,7 @@
 		</tr>
 	<tr>
 		<td colspan="2" style="width:40%">{$LNG.pl_name}</td>
-		<td colspan="3">{$name}</td>
+		<td colspan="3">{$name}{if $titleID > 0} (<span style='color:grey'>{$titles[$titleID]}</span>){/if}</td>
 	</tr>
 	<tr>
 		<td colspan="2">{$LNG.pl_homeplanet}</td>

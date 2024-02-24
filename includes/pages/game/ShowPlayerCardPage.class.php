@@ -40,7 +40,7 @@ class ShowPlayerCardPage extends AbstractGamePage
         $LNG =& Singleton()->LNG;
         $this->setWindow('popup');
         $this->initTemplate();
-
+        require_once 'includes/classes/Achievement.class.php';
         $PlayerID 	= HTTP::_GP('id', 0);
 
         $stats = $this->get_stats($PlayerID);
@@ -69,6 +69,8 @@ class ShowPlayerCardPage extends AbstractGamePage
             'id'			=> $PlayerID,
             'yourid'		=> $USER['id'],
             'name'			=> $player_data['username'],
+            'titles'        => Achievement::getAllTitles(),
+            'titleID'       => $USER['achievement_title_id'],
             'homeplanet'	=> $player_data['planetname'],
             'galaxy'		=> $player_data['galaxy'],
             'system'		=> $player_data['system'],

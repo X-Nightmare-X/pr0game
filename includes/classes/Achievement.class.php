@@ -71,4 +71,30 @@ class Achievement
 		));
 		return $achievementList;
 	}
+
+	public static function getAvailableTitles($userID)
+    {
+		$db = Database::get();
+		$sql = "SELECT a.id, a.title FROM %%ACHIEVEMENTS%% a inner join %%USERS_TO_ACHIEVEMENTS%% ua on ua.achievementID = a.id where ua.userID = :userID and a.title IS NOT NULL ORDER BY a.id asc;";
+		$titles =$db->select($sql, [
+			':userID'   => $userID,
+		]);
+		$returnTitles	= [];
+		foreach ($titles as $title) {
+			$returnTitles[$title['id']]	= $title['title'];
+		}
+        return $returnTitles;
+    }
+
+	public static function getAllTitles()
+    {
+		$db = Database::get();
+		$sql = "SELECT a.id, a.title FROM %%ACHIEVEMENTS%% a inner join %%USERS_TO_ACHIEVEMENTS%% ua on ua.achievementID = a.id where a.title IS NOT NULL ORDER BY a.id asc;";
+		$titles =$db->select($sql, []);
+		$returnTitles	= [];
+		foreach ($titles as $title) {
+			$returnTitles[$title['id']]	= $title['title'];
+		}
+        return $returnTitles;
+    }
 }

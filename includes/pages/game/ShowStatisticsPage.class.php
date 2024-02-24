@@ -116,7 +116,7 @@ class ShowStatisticsPage extends AbstractGamePage
                 $start = max(floor(($range - 1) / 100) * 100, 0);
 
                 if ($config->stat == 2) {
-                    $sql = "SELECT DISTINCT s.*, u.id, u.username, u.ally_id, u.banaday, u.urlaubs_modus, u.onlinetime,"
+                    $sql = "SELECT DISTINCT s.*, u.id, u.username, u.ally_id, u.banaday, u.urlaubs_modus, u.onlinetime, u.achievement_title_id,"
                         . " a.ally_name, (a.ally_owner=u.id) as is_leader, a.ally_owner_range, r.DIPLOMATIC as is_diplo, "
                         . " buddy.id as buddy, d.level as diploLevel"
                         . " FROM %%STATPOINTS%% as s"
@@ -136,7 +136,7 @@ class ShowStatisticsPage extends AbstractGamePage
                         ':limit'        => 100,
                     ]);
                 } else {
-                    $sql = "SELECT DISTINCT s.*, u.id, u.username, u.ally_id, u.banaday, u.urlaubs_modus, u.onlinetime,"
+                    $sql = "SELECT DISTINCT s.*, u.id, u.username, u.ally_id, u.banaday, u.urlaubs_modus, u.onlinetime, u.achievement_title_id,"
                         . " a.ally_name, (a.ally_owner=u.id) as is_leader, a.ally_owner_range, r.DIPLOMATIC as is_diplo, "
                         . " buddy.id as buddy, d.level as diploLevel"
                         . " FROM %%STATPOINTS%% as s"
@@ -200,6 +200,8 @@ class ShowStatisticsPage extends AbstractGamePage
                     $RangeList[] = [
                         'id'               => $StatRow['id'],
                         'name'             => $StatRow['username'],
+                        'titleID'          => $StatRow['achievement_title_id'],
+                        'titles'           => Achievement::getAllTitles(),
                         'class'            => $Class,
                         'isBuddy'          => $StatRow['buddy'] != null,
                         'is_leader'        => $StatRow['is_leader'],
