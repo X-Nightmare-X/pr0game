@@ -444,6 +444,7 @@ th a, .res_current {
   border-radius: 15px;
   margin-top: 10px;
   overflow: auto;
+  height: auto;
 }
 
 .infos1 {
