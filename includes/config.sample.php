@@ -21,8 +21,6 @@ $database['user'] = '%s';
 $database['userpw'] = '%s';
 $database['databasename'] = '%s';
 $database['tableprefix'] = '%s';
-$discord['webhook_exceptions'] = '';
-$discord['webhook_logs'] = '';
 $salt = '%s'; // 22 digits from the alphabet "./0-9A-Za-z"
 
 //### Do not change beyond here ###//
