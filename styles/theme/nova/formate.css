@@ -440,10 +440,11 @@ th a, .res_current {
 
 .infos {
   text-align: center;
-  background: #2a2e31;
+  background: #212121;
   border-radius: 15px;
   margin-top: 10px;
   overflow: auto;
+  height: auto;
 }
 
 .infos1 {
@@ -584,7 +585,7 @@ th a, .res_current {
   padding: 10px;
   text-align: center;
   background: #212121;
-  height: 140px
+  height: auto
 }
 
 .buildn {

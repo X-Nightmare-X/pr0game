@@ -197,7 +197,7 @@ class Config
 
     public function __set($key, $value)
     {
-        if (!isset($this->configData[$key])) {
+        if (!isset($this->configData[$key]) && !array_key_exists($key, $this->configData)) {
             throw new UnexpectedValueException(sprintf("Unknown configuration key %s!", $key));
         }
         $this->updateRecords[]  = $key;
