@@ -519,7 +519,7 @@ switch ($mode) {
                     $config->saveGlobalKeys();
 
                     $config->lang               = $LNG->getLanguage();
-                    $config->overview_news_text   = $LNG['sql_welcome'] . $installVersion;
+                    $config->overview_news_text = $LNG['sql_welcome'] . $installVersion;
                     $config->uni_name           = $LNG['fcm_universe'] . ' ' . Universe::current();
                     $config->close_reason       = $LNG['sql_close_reason'];
                     $config->save();
@@ -530,6 +530,7 @@ switch ($mode) {
                 } catch (Exception $e) {
                     require 'includes/config.php';
                     @unlink('includes/config.php');
+                    error_log('\n' . $e->getTraceAsString());
                     $error = $e->getMessage();
                     $template->assign([
                         'host'    => $database['host'],
