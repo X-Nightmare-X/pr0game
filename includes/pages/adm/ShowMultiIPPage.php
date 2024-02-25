@@ -77,6 +77,10 @@ function ShowMultiIPPage()
             ':multiID' => $multiEntry['multiID'],
         ]);
 
+        if (empty($multiUsers)) {
+            continue;
+        }
+
         $hide = $multiEntry['allowed'] == 1;
         foreach ($multiUsers as $multiUser) {
             $hide = $hide && $multiUser['allowed'] == 1;
