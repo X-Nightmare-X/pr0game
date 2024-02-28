@@ -17,6 +17,7 @@
 //date_default_timezone_set('America/Chicago');
 
 //TEMPLATES DEFAULT SETTINGS
+define('JULIA', true);
 define('DEFAULT_THEME', 'nova');
 define('HTTPS', isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == 'on');
 define('PROTOCOL', HTTPS ? 'https://' : 'http://');

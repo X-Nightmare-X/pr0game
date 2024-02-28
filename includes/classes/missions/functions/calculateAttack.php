@@ -10,7 +10,9 @@
 /*
  * DON'T MODIFY ↓
  */
-if (extension_loaded('ds')) {
+if (JULIA) {
+    include("SteemNova_Array.php");
+} else if (extension_loaded('ds')) {
     include("SteemNova.php");
 } else {
     include("SteemNova_Array.php");
