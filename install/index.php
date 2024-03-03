@@ -488,7 +488,7 @@ switch ($mode) {
             case 6:
                 $db = Database::get();
                 $installSQL      = file_get_contents('install/install.sql');
-                $installVersion  = file_get_contents('install/version');
+                $installVersion  = file_get_contents('install/VERSION');
                 $installRevision = 0;
                 preg_match('!\$' . 'Id: install.sql ([0-9]+)!', $installSQL, $match);
                 $installVersion = explode('.', $installVersion);
