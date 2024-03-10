@@ -1,5 +1,5 @@
 # pr0game.com
-> An open source space strategy game
+An open source space strategy game
 
 ## Development
 
@@ -56,3 +56,25 @@ ddev installtool enable
 # Disable
 ddev installtool disable
 ```
+
+
+# origin of the game / Copyright and license / Credits
+This community project is based on the following repos:
+* [2 moons](https://github.com/jkroepke/2Moons) 
+* [steemnova](https://github.com/steemnova/steemnova) 
+
+This Projekt is under [AGPL](https://codeberg.org/pr0game/pr0game/src/branch/development/LICENSE).
+
+Copyright and license
+* SteemNova is a fork of Open Source Browsergame Framework jkroepke/2Moons engine.
+* Code copyright 2009-2016 Jan-Otto Kröpke released under the MIT License.
+* Code copyright 2018 @steemnova released under the MIT License.
+* Code copyright 2018-2020 @IntinteDAO released under the MIT License. (f66f0bf9f2d502f9cc3932e7f05e4795b3622ce6)
+* Code copyright 07.05.2020-2020 @IntinteDAO released under the AGPLv3 License.
+
+Credits
+* 2009-2019 2Moons Browsergame Engine - jkroepke
+* 2008-2014 XGProjecto - lucky
+* 2008,2009 XNova "XNova 0.9a" - XNova Group / xnova.fr
+* 2006-2007 UGamela 0.4 - Phoscur
+* 2004-2006 UGamela 0.2h - Perberos
