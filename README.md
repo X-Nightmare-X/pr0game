@@ -1,6 +1,12 @@
 # pr0game.com
 > An open source space strategy game
 
+## Battle Engines
+
+* SteemNova_Array - Basic array based calculation. Memory hungry
+* SteemNova - Advanced data structures. A bit less Memory hungry, requires PHP-DS
+* SteemNova_Julia - Extremly fast and efficient calculation based on programming language Julia, requires [Julia](https://julialang.org/) incl. HTTP and JSON package
+
 ## Development
 
 You need Git to work with the repository.

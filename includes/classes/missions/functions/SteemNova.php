@@ -262,8 +262,6 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
         $ROUND[$ROUNDC] = [
             'attackers' => $attackers,
             'defenders' => $defenders,
-            'attackA' => $att['attackAmount'],
-            'defenseA' => $def['attackAmount'],
             'infoA' => $att['attArray'],
             'infoD' => $def['attArray'],
         ];

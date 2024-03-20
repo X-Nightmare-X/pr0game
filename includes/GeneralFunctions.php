@@ -392,6 +392,81 @@ function isModuleAvailable($ID, $universe = 0)
     return isset($modules[$ID]) ? $modules[$ID] == 1 : true;
 }
 
+function isJuliaInstalled() : bool
+{
+    $result = exec('julia -v');
+    return $result;
+}
+
+function isJuliaRunning() : bool
+{
+    if (!isJuliaInstalled())
+        return false;
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, "http://127.0.0.1:8100/ping");
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $result = curl_exec($curl);
+    $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+    curl_close($curl);
+
+    return $result == 'alive';
+}
+
+function startJulia()
+{
+    return; //TODO start separate process and dont wait
+
+    if (!isJuliaInstalled())
+        return;
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        error_log('cd /d ' . __DIR__ . '/../juliaBattleEngine/ & start /B "" julia wisim2.jl');
+        $result = exec('cd /d ' . __DIR__ . '/../juliaBattleEngine/ & julia wisim2.jl');
+        error_log($result);
+    } else {
+        error_log('cd ' . __DIR__ . '/../juliaBattleEngine/ & julia wisim2.jl');
+        $result = exec('cd ' . __DIR__ . '/../juliaBattleEngine/ & julia wisim2.jl');
+    }
+}
+
+function exportJuliaShipData()
+{
+    $sql = "SELECT CONCAT(
+                v.`elementID`, ';', v.`attack`, ';', v.`defend`, ';',
+                TRUNCATE((v.`cost901` + v.`cost902`) / 10, 0), ';', IF(v.`class` = 200, 1, 0), ';',
+                IFNULL(GROUP_CONCAT(r.`rapidfireID`, ',', r.`shoots` SEPARATOR '-'), '')
+            ) AS csvLine
+        FROM uni1_vars v
+        LEFT JOIN uni1_vars_rapidfire r ON r.`elementID` = v.`elementID`
+        WHERE v.`class` IN (200, 400)
+        GROUP BY v.`elementID`";
+    $result = Database::get()->select($sql);
+
+    $firstLine = true;
+    foreach ($result as $line) {
+        if ($firstLine) {
+            $firstLine = false;
+            file_put_contents('juliaBattleEngine/shipinfos.csv', $line['csvLine'] . PHP_EOL);
+        }
+        file_put_contents('juliaBattleEngine/shipinfos.csv', $line['csvLine'] . PHP_EOL, FILE_APPEND);
+    }
+}
+
+function restartJulia() : bool
+{
+    if (!isJuliaRunning()) {
+        startJulia();
+    }
+    if (!isJuliaRunning()) {
+        return false;
+    }
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, "http://127.0.0.1:8100/updateships");
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $result = curl_exec($curl);
+    curl_close($curl);
+    return $result == 'done';
+}
+
 function ClearCache()
 {
     $DIRS = ['cache/', 'cache/templates/'];
@@ -419,6 +494,12 @@ function ClearCache()
         ':ecoHash' => ''
     ]);
     clearstatcache();
+
+    // Julia BallteEngine ship export and restart
+    if (isJuliaInstalled()) {
+        exportJuliaShipData();
+        restartJulia();
+    }
 
     /* does no work on git.
 
