@@ -23,7 +23,7 @@ class ShowHofPage extends AbstractLoginPage
         parent::__construct();
 
     }
-
+    
     public function show()
     {
 

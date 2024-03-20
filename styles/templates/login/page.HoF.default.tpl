@@ -2,10 +2,15 @@
 
 
   {block name="content"}
+
+    <style>
+      .HOF-Table th, .HOF-Table td { border: solid 1px black }
+      .HOF-Table td { padding: 7px !important }
+  </style>
   <h1>
     Hier sind die Legenden von Uni 3 verewigt!
   </h1>
-  <table style="">
+  <table class="HOF-Table">
     <tr>
       <th>
         Thema
@@ -437,6 +442,30 @@ ORDER by expo_black_hole DESC
         8
         <br>7
         <br>6
+      </td>
+    </tr>
+    <tr>
+    <!--
+select SUM(expo_count) from uni1_advanced_stats
+JOIN uni1_users ON uni1_advanced_stats.userId = uni1_users.id AND uni1_users.universe = 3
+    -->
+      <td>
+        geflogene Expos
+      </td>
+      <td colspan="2">
+        38.133
+      </td>
+    </tr>
+    <tr>
+    <!--
+select SUM(destroyed_212) from uni1_advanced_stats
+JOIN uni1_users ON uni1_advanced_stats.userId = uni1_users.id AND uni1_users.universe = 3
+    -->
+      <td>
+        Yerstörte Solasateliten
+      </td>
+      <td colspan="2">
+        44581
       </td>
     </tr>
   <table>
