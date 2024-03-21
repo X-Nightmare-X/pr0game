@@ -11,7 +11,7 @@
 /*
  * DON'T MODIFY ↓
  */
-if (isJuliaRunning() && false) {
+if (isJuliaRunning()) {
     include("SteemNova_Julia.php");
 } else if (extension_loaded('ds')) {
     include("SteemNova.php");
