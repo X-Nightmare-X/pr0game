@@ -414,17 +414,18 @@ function isJuliaRunning() : bool
 
 function startJulia()
 {
-    return; //TODO start separate process and dont wait
-
     if (!isJuliaInstalled())
         return;
+
+    $path = __DIR__ . '/../juliaBattleEngine/';
     if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-        error_log('cd /d ' . __DIR__ . '/../juliaBattleEngine/ & start /B "" julia wisim2.jl');
-        $result = exec('cd /d ' . __DIR__ . '/../juliaBattleEngine/ & julia wisim2.jl');
-        error_log($result);
+        // extension=php_com_dotnet required
+        $WshShell = new COM('WScript.Shell'); 
+        $oExec = $WshShell->Run('julia '. $path . 'wsm_v3.jl ' . $path . 'shipinfos.csv 8100', 0, false);
+        error_log($oExec); // 0 = success
     } else {
-        error_log('cd ' . __DIR__ . '/../juliaBattleEngine/ & julia wisim2.jl');
-        $result = exec('cd ' . __DIR__ . '/../juliaBattleEngine/ & julia wisim2.jl');
+        error_log('julia '. $path . 'wsm_v3.jl ' . $path . 'shipinfos.csv 8100 > /dev/null 2>&1 &');
+        exec('julia '. $path . 'wsm_v3.jl ' . $path . 'shipinfos.csv 8100 > /dev/null 2>&1 &');
     }
 }
 

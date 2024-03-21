@@ -3,9 +3,24 @@
 
 ## Battle Engines
 
-* SteemNova_Array - Basic array based calculation. Memory hungry
-* SteemNova - Advanced data structures. A bit less Memory hungry, requires PHP-DS
-* SteemNova_Julia - Extremly fast and efficient calculation based on programming language Julia, requires [Julia](https://julialang.org/) incl. HTTP and JSON package
+### SteemNova_Array
+
+* Basic array based calculation.
+* Memory hungry in big fights
+
+### SteemNova
+
+* Advanced data structures. 
+* A bit less Memory hungry.
+* Requires PHP-DS
+
+### SteemNova_Julia
+
+* Extremly fast and efficient calculation based on programming language Julia
+* Requires [Julia](https://julialang.org/) 
+* Requires HTTP and JSON julia package: julia > import Pkg; Pkg.add("HTTP")
+* Will be launched from within php. On Windows extension=php_com_dotnet is required
+* Alternative launch via command 'julia baseDir/juliaBattleEngine/wsm_v3.jl baseDir/juliaBattleEngine/shipinfos.csv 8100'
 
 ## Development
 
