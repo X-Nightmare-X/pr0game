@@ -392,16 +392,8 @@ function isModuleAvailable($ID, $universe = 0)
     return isset($modules[$ID]) ? $modules[$ID] == 1 : true;
 }
 
-function isJuliaInstalled() : bool
-{
-    $result = exec('julia -v');
-    return $result;
-}
-
 function isJuliaRunning() : bool
 {
-    if (!isJuliaInstalled())
-        return false;
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, "http://127.0.0.1:8100/ping");
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -410,23 +402,6 @@ function isJuliaRunning() : bool
     curl_close($curl);
 
     return $result == 'alive';
-}
-
-function startJulia()
-{
-    if (!isJuliaInstalled())
-        return;
-
-    $path = __DIR__ . '/../juliaBattleEngine/';
-    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-        // extension=php_com_dotnet required
-        $WshShell = new COM('WScript.Shell'); 
-        $oExec = $WshShell->Run('julia '. $path . 'wsm_v3.jl ' . $path . 'shipinfos.csv 8100', 0, false);
-        error_log($oExec); // 0 = success
-    } else {
-        error_log('julia '. $path . 'wsm_v3.jl ' . $path . 'shipinfos.csv 8100 > /dev/null 2>&1 &');
-        exec('julia '. $path . 'wsm_v3.jl ' . $path . 'shipinfos.csv 8100 > /dev/null 2>&1 &');
-    }
 }
 
 function exportJuliaShipData()
@@ -454,9 +429,6 @@ function exportJuliaShipData()
 
 function restartJulia() : bool
 {
-    if (!isJuliaRunning()) {
-        startJulia();
-    }
     if (!isJuliaRunning()) {
         return false;
     }
@@ -497,8 +469,8 @@ function ClearCache()
     clearstatcache();
 
     // Julia BallteEngine ship export and restart
-    if (isJuliaInstalled()) {
-        exportJuliaShipData();
+    exportJuliaShipData();
+    if (isJuliaRunning()) {
         restartJulia();
     }
 

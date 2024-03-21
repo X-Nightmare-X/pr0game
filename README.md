@@ -18,9 +18,17 @@
 
 * Extremly fast and efficient calculation based on programming language Julia
 * Requires [Julia](https://julialang.org/) 
-* Requires HTTP and JSON julia package: julia > import Pkg; Pkg.add("HTTP")
-* Will be launched from within php. On Windows extension=php_com_dotnet is required
-* Alternative launch via command 'julia baseDir/juliaBattleEngine/wsm_v3.jl baseDir/juliaBattleEngine/shipinfos.csv 8100'
+* Requires HTTP and JSON julia package:
+```
+julia
+import Pkg; Pkg.add("HTTP")
+import Pkg; Pkg.add("JSON")
+```
+* shipinfos.csv is generated on clear cache via admin menu. It has to exist before Julia is started with the next step
+* Launch via command
+```
+julia codeBaseDir/juliaBattleEngine/wsm_v3.jl codeBaseDir/juliaBattleEngine/shipinfos.csv 8100
+```
 
 ## Development
 
