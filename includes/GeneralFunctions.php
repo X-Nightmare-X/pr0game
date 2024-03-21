@@ -440,6 +440,63 @@ function restartJulia() : bool
     return $result == 'done';
 }
 
+function simulateTestFleet()
+{
+    $attacker = [];
+    $attacker['fleetDetail'] = [
+        'fleet_start_galaxy' => 1,
+        'fleet_start_system' => 33,
+        'fleet_start_planet' => 7,
+        'fleet_start_type' => 1,
+        'fleet_end_galaxy' => 1,
+        'fleet_end_system' => 33,
+        'fleet_end_planet' => 7,
+        'fleet_end_type' => 1,
+        'fleet_resource_metal' => 0,
+        'fleet_resource_crystal' => 0,
+        'fleet_resource_deuterium' => 0,
+    ];
+    $attacker['player'] = [
+        'id' => (1000 + 0 + 1),
+        'username'  => 'Nr.' . (0 + 1),
+        'military_tech' => 0,
+        'shield_tech' => 0,
+        'defence_tech' => 0,
+    ];
+    $attacker['unit'][SHIP_LIGHT_FIGHTER] = 1;
+    $fleetAttack[] = $attacker;
+
+    $defender = [];
+    $defender['fleetDetail'] = [
+        'fleet_start_galaxy' => 1,
+        'fleet_start_system' => 33,
+        'fleet_start_planet' => 7,
+        'fleet_start_type' => 1,
+        'fleet_end_galaxy' => 1,
+        'fleet_end_system' => 33,
+        'fleet_end_planet' => 7,
+        'fleet_end_type' => 1,
+        'fleet_resource_metal' => 0,
+        'fleet_resource_crystal' => 0,
+        'fleet_resource_deuterium' => 0,
+    ];
+    $defender['player'] = [
+        'id' => (2000 + 1 + 1),
+        'username'  => 'Nr.' . (1 + 1),
+        'military_tech' => 0,
+        'shield_tech' => 0,
+        'defence_tech' => 0,
+    ];
+    $defender['unit'][SHIP_LIGHT_FIGHTER] = 1;
+    $fleetDefend[] = $defender;
+
+    try {
+        require_once 'includes/classes/missions/functions/calculateAttack.php';
+        calculateAttack($fleetAttack, $fleetDefend, Config::get()->fleet_debris_percentage, Config::get()->def_debris_percentage, true);
+    } catch (\Throwable $th) {
+    }
+}
+
 function ClearCache()
 {
     $DIRS = ['cache/', 'cache/templates/'];
@@ -472,6 +529,7 @@ function ClearCache()
     exportJuliaShipData();
     if (isJuliaRunning()) {
         restartJulia();
+        simulateTestFleet();
     }
 
     /* does no work on git.
