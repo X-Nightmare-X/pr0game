@@ -121,9 +121,9 @@ function parseJuliaJson($json, &$attackers, &$defenders, $FleetTF, $DefTF, $sim)
                 if (!empty($roundResult[$element])) {
                     $details = $roundResult[$element];
                     $attackers[$fleetID]['unit'][$element] = $details['amount'];
-                    $def[$fleetID][$element]['def'] = $details['hull'];
-                    $def[$fleetID][$element]['shield'] = $details['shield'];
-                    $def[$fleetID][$element]['att'] = $details['attack'];
+                    $att[$fleetID][$element]['def'] = $details['hull'];
+                    $att[$fleetID][$element]['shield'] = $details['shield'];
+                    $att[$fleetID][$element]['att'] = $details['attack'];
                 } else {
                     $attackers[$fleetID]['unit'][$element] = 0;
                 }
