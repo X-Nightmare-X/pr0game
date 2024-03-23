@@ -100,6 +100,8 @@
   <script type="text/javascript" src="./scripts/l18n/validationEngine/jquery.validationEngine-{$lang}.js"></script>
   <script type="text/javascript" src="./scripts/base/tooltip.js"></script>
   <script type="text/javascript" src="./scripts/game/base.js"></script>
+  <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>
   {foreach item=scriptname from=$scripts}
     <script type="text/javascript" src="./scripts/game/{$scriptname}.js"></script>
   {/foreach}
@@ -255,6 +257,15 @@
       });
     </script>
   {/block}
+  <script type="text/javascript">
+    $(window).on("swipeleft", function(event) {
+      $("#menu").hide();
+    });
+
+    $(window).on("swiperight", function(event) {
+      $("#menu").show();
+    });
+  </script>
   <script type="text/javascript">
     $(window).scroll(function() {
       // affix
