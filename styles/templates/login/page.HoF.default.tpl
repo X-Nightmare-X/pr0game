@@ -465,7 +465,19 @@ JOIN uni1_users ON uni1_advanced_stats.userId = uni1_users.id AND uni1_users.uni
         Yerstörte Solasateliten
       </td>
       <td colspan="2">
-        44581
+        44.581
+      </td>
+    </tr>
+    <tr>
+    <!--
+select SUM(destroyed_212) from uni1_advanced_stats
+JOIN uni1_users ON uni1_advanced_stats.userId = uni1_users.id AND uni1_users.universe = 3
+    -->
+      <td>
+        Yerstörte Solasateliten
+      </td>
+      <td colspan="2">
+        44.581
       </td>
     </tr>
   <table>
