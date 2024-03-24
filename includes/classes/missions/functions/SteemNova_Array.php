@@ -203,6 +203,8 @@ function restoreShields(&$fleets)
 
 function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = false)
 {
+    $executionTime = microtime(true);
+
     $pricelist =& Singleton()->pricelist;
     $CombatCaps =& Singleton()->CombatCaps;
     $resource =& Singleton()->resource;
@@ -402,5 +404,6 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
         'unitLost' => $totalLost,
         'repaired' => $repairedDef,
         'wreckfield' => $wreckfield,
+        'duration' => microtime(true) - $executionTime,
     ];
 }

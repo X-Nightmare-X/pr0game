@@ -27,6 +27,7 @@ function GenerateReport($combatResult, $reportInfo, $battleType)
     $DATA['debris']	= $reportInfo['debris'];
     $DATA['steal']	= $reportInfo['stealResource'];
     $DATA['result']	= $combatResult['won'];
+    $DATA['duration']	= $combatResult['duration'];
     $DATA['moon']	= [
         'moonName'				=> $reportInfo['moonName'],
         'moonChance'			=> (int) $reportInfo['moonChance'],

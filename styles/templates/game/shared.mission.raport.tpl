@@ -10,7 +10,7 @@
 </table>
 {/if}
 <div style="width:100%;text-align:center">
-{if $Raport.mode == 1}{$LNG.sys_destruc_title}{else}{$LNG.sys_attack_title}{/if} {$Raport.time}:<br><br>
+{if $Raport.mode == 1}{$LNG.sys_destruc_title}{else}{$LNG.sys_attack_title}{/if} {$Raport.time}{if isset($Raport.duration)} ({$Raport.duration} s){/if}:<br><br>
 {foreach $Raport.rounds as $Round => $RoundInfo}
 {if isset($Info) && $Round > 0 && !$RoundInfo@last}
 	{continue}

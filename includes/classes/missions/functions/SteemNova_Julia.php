@@ -8,6 +8,8 @@
 
 function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = false, $simTries=1) 
 {
+    $executionTime = microtime(true);
+
     $json = createJuliaJson($attackers, $defenders, $simTries=1);
 
     $curl = curl_init();
@@ -22,7 +24,7 @@ function calculateAttack(&$attackers, &$defenders, $FleetTF, $DefTF, $sim = fals
     $result = curl_exec($curl);
     curl_close($curl);
 
-    return parseJuliaJson($result, $attackers, $defenders, $FleetTF, $DefTF, $sim);
+    return parseJuliaJson($result, $attackers, $defenders, $FleetTF, $DefTF, $sim, $executionTime);
 }
 
 function createJuliaJson(&$attackers, &$defenders, $simTries=1) : string
@@ -60,7 +62,7 @@ function createJuliaJson(&$attackers, &$defenders, $simTries=1) : string
     return $json;
 }
 
-function parseJuliaJson($json, &$attackers, &$defenders, $FleetTF, $DefTF, $sim)
+function parseJuliaJson($json, &$attackers, &$defenders, $FleetTF, $DefTF, $sim, $executionTime)
 {
     $pricelist =& Singleton()->pricelist;
     $TRES = ['attacker' => 0, 'defender' => 0];
@@ -285,6 +287,7 @@ function parseJuliaJson($json, &$attackers, &$defenders, $FleetTF, $DefTF, $sim)
         'unitLost' => $totalLost,
         'repaired' => $repairedDef,
         'wreckfield' => $wreckfield,
+        'duration' => microtime(true) - $executionTime,
     ];
 }
 
