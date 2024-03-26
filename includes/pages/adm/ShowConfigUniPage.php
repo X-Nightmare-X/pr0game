@@ -78,6 +78,7 @@ function ShowConfigUniPage()
             'crystal_basic_income'      => $config->crystal_basic_income,
             'deuterium_basic_income'    => $config->deuterium_basic_income,
             'energy_basic_income'       => $config->energy_basic_income,
+            'planet_ressource_bonus'    => $config->planet_ressource_bonus,
             'moon_factor'               => $config->moon_factor,
             'moon_chance'               => $config->moon_chance,
             'debris_moon'               => $config->debris_moon,
@@ -107,6 +108,8 @@ function ShowConfigUniPage()
             'trade_allowed_ships'       => $config->trade_allowed_ships,
             'trade_charge'              => $config->trade_charge,
         ];
+
+        print( "init : " . $config->planet_ressource_bonus . "<br>");
 
         $uni_name                       = HTTP::_GP('uni_name', '', true);
         $lang                           = HTTP::_GP('lang', '');
@@ -160,6 +163,7 @@ function ShowConfigUniPage()
         $crystal_basic_income           = HTTP::_GP('crystal_basic_income', 0);
         $deuterium_basic_income         = HTTP::_GP('deuterium_basic_income', 0);
         $energy_basic_income            = HTTP::_GP('energy_basic_income', 0);
+        $planet_ressource_bonus         = isset($_POST['planet_ressource_bonus']) && $_POST['planet_ressource_bonus'] == 'on' ? 1 : 0;
         $moon_factor                    = HTTP::_GP('moon_factor', 0.0);
         $moon_chance                    = HTTP::_GP('moon_chance', 0);
         $debris_moon                    = isset($_POST['debris_moon']) && $_POST['debris_moon'] == 'on' ? 1 : 0;
@@ -189,6 +193,8 @@ function ShowConfigUniPage()
         $overview_news_frame            = isset($_POST['newsframe']) && $_POST['newsframe'] == 'on' ? 1 : 0;
         $overview_news_text             = $_POST['NewsText'];
 
+ 
+        print( "übergabe : " . $planet_ressource_bonus . "<br>");
         $config_after = [
             'uni_name'                  => $uni_name,
             'lang'                      => $lang,
@@ -242,6 +248,7 @@ function ShowConfigUniPage()
             'crystal_basic_income'      => $crystal_basic_income,
             'deuterium_basic_income'    => $deuterium_basic_income,
             'energy_basic_income'       => $energy_basic_income,
+            'planet_ressource_bonus'    => $planet_ressource_bonus,
             'moon_factor'               => $moon_factor,
             'moon_chance'               => $moon_chance,
             'debris_moon'               => $debris_moon,
@@ -272,7 +279,8 @@ function ShowConfigUniPage()
             'overview_news_text'        => $overview_news_text,
         ];
 
-
+        print( "config after : " . $config->planet_ressource_bonus . "<br>");
+        
         if (($uni_status == STATUS_OPEN || $uni_status == STATUS_LOGIN_ONLY) && ($config->uni_status == STATUS_REG_ONLY)) {
             // If login is opened after register only, update all planet timestamps to avoid resource production during closed login times.
             Database::get()->update("UPDATE %%PLANETS%% SET `last_update` = :newTime, `eco_hash` = '' WHERE `universe` = :universe;", [
@@ -338,6 +346,9 @@ function ShowConfigUniPage()
     $template->execscript('$(\'textarea\').autosize();');
     $template->loadscript('../scripts/admin/Percentslider.js');
 
+    print( "assig zu template : " . $config->planet_ressource_bonus . "<br>");
+    // die();
+
     $template->assign_vars([
         'uni_name'                      => $config->uni_name,
         'lang'                          => $config->lang,
@@ -391,6 +402,7 @@ function ShowConfigUniPage()
         'crystal_basic_income'          => $config->crystal_basic_income,
         'deuterium_basic_income'        => $config->deuterium_basic_income,
         'energy_basic_income'           => $config->energy_basic_income,
+        'planet_ressource_bonus'        => $config->planet_ressource_bonus,
         'moon_factor'                   => $config->moon_factor,
         'moon_chance'                   => $config->moon_chance,
         'debris_moon'                   => $config->debris_moon,

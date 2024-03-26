@@ -272,6 +272,11 @@
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
+			<td>{$LNG.se_planet_ressource_bonus}</td>
+			<td><input name="planet_ressource_bonus" {if $planet_ressource_bonus} checked="checked" {/if} type="checkbox"></td>
+			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_planet_ressource_bonus_info}"></td>
+		</tr>
+		<tr>
 			<td>{$LNG.se_moon_factor}</td>
 			<td><input name="moon_factor" maxlength="3" size="3" value="{$moon_factor}" type="text"></td>
 			<td><img src="./styles/resource/images/admin/i.gif" width="16" height="16" alt="" class="tooltip" data-tooltip-content="{$LNG.se_moon_factor_info}"></td>
