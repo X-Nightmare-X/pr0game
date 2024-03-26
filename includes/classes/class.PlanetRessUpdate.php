@@ -316,23 +316,6 @@ class ResourceUpdate
 
                 $Production = eval(self::getProd($ProdGrid[$ProdID]['production'][$ID]));
 
-                // if ($ID == 901){
-
-                //     print(self::getProd($ProdGrid[$ProdID]['production'][$ID]));
-                //     print("<br>");
-                //     print($ID);
-                //     print("<br>");
-                //     print($Production);
-                //     print("<br>");
-                //     die();
-
-                // }
-
-                // if ( $ID == 901){
-
-                //     $Production = $Production * 105;
-                // }
-
                 if ($Production > 0) {
                     $temp[$ID]['plus']  += $Production;
                 } else {

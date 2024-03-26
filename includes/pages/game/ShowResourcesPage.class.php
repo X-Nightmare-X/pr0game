@@ -76,7 +76,7 @@ class ShowResourcesPage extends AbstractGamePage
         $USER =& Singleton()->USER;
         $PLANET =& Singleton()->PLANET;
         $config = Config::get();
-
+       
         if ($USER['urlaubs_modus'] == 1 || $PLANET['planet_type'] != 1) {
             $basicIncome[901] = 0;
             $basicIncome[902] = 0;
@@ -93,6 +93,7 @@ class ShowResourcesPage extends AbstractGamePage
             901 => [
                 'plus'  => 0,
                 'minus' => 0,
+                'position' => 0,
             ],
             902 => [
                 'plus'  => 0,
@@ -207,6 +208,31 @@ class ShowResourcesPage extends AbstractGamePage
             911 => $temp[911]['bonus'],
         ];
 
+        $universe_config = Config::get(Universe::current());
+        $positionBasedRessourceBonus = $universe_config->planet_ressource_bonus;
+
+        $bonusProductionPositionBased = [];
+
+        var_dump($totalProduction);
+        // var_dump($PLANET['metal_bonus_percent'] );
+        print($PLANET[$resource[901] . '_perhour']);
+
+        if ($positionBasedRessourceBonus) {
+            $metal_bonus_percent     = $PLANET['metal_bonus_percent'] / 100;
+            $crystal_bonus_percent   = $PLANET['crystal_bonus_percent'] / 100;
+            $deuterium_bonus_percent = $PLANET['deuterium_bonus_percent'] / 100;
+
+            $bonusProductionPositionBased = [
+                901 => $PLANET[$resource[901] . '_perhour'] * $metal_bonus_percent,
+                902 => $basicIncome[902] * $crystal_bonus_percent,
+                903 => $basicIncome[903] * $deuterium_bonus_percent,
+                911 => $basicIncome[911] * 0,
+            ];
+        } 
+
+        // var_dump($bonusProductionPositionBased);
+        // die();
+
         $dailyProduction = [
             901 => $totalProduction[901] * 24,
             902 => $totalProduction[902] * 24,
@@ -228,15 +254,17 @@ class ShowResourcesPage extends AbstractGamePage
         }
 
         $this->assign([
-            'header'            => sprintf($LNG['rs_production_on_planet'], $PLANET['name']),
-            'prodSelector'      => $prodSelector,
-            'productionList'    => $productionList,
-            'basicProduction'   => $basicProduction,
-            'totalProduction'   => $totalProduction,
-            'bonusProduction'   => $bonusProduction,
-            'dailyProduction'   => $dailyProduction,
-            'weeklyProduction'  => $weeklyProduction,
-            'storage'           => $storage,
+            'header'                            => sprintf($LNG['rs_production_on_planet'], $PLANET['name']),
+            'prodSelector'                      => $prodSelector,
+            'productionList'                    => $productionList,
+            'basicProduction'                   => $basicProduction,
+            'totalProduction'                   => $totalProduction,
+            'bonusProduction'                   => $bonusProduction,
+            'positionBasedRessourceBonus'       => $positionBasedRessourceBonus,
+            'bonusProductionPositionBased'      => $bonusProductionPositionBased,
+            'dailyProduction'                   => $dailyProduction,
+            'weeklyProduction'                  => $weeklyProduction,
+            'storage'                           => $storage,
         ]);
 
         $this->display('page.resources.default.tpl');
