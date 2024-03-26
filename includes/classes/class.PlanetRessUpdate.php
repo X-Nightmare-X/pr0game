@@ -158,7 +158,7 @@ class ResourceUpdate
         $MaxCristalStorage = $this->PLANET['crystal_max'] * $this->config->max_overflow;
         $MaxDeuteriumStorage = $this->PLANET['deuterium_max'] * $this->config->max_overflow;
 
-        $MetalTheoretical = $ProductionTime * (
+        $MetalTheoretical = $ProductionTime * (           
                 ($this->config->metal_basic_income * $this->config->resource_multiplier)
                 + $this->PLANET['metal_perhour']
             ) / 3600;
@@ -262,6 +262,8 @@ class ResourceUpdate
             $this->config->deuterium_basic_income = 0;
         }
 
+        $planetPosistionBasedRessBoost = true;
+    
         $temp = [
             901 => [
                 'max'   => 0,
@@ -314,6 +316,23 @@ class ResourceUpdate
 
                 $Production = eval(self::getProd($ProdGrid[$ProdID]['production'][$ID]));
 
+                // if ($ID == 901){
+
+                //     print(self::getProd($ProdGrid[$ProdID]['production'][$ID]));
+                //     print("<br>");
+                //     print($ID);
+                //     print("<br>");
+                //     print($Production);
+                //     print("<br>");
+                //     die();
+
+                // }
+
+                // if ( $ID == 901){
+
+                //     $Production = $Production * 105;
+                // }
+
                 if ($Production > 0) {
                     $temp[$ID]['plus']  += $Production;
                 } else {
@@ -339,16 +358,34 @@ class ResourceUpdate
         } else {
             $prodLevel = min(1, $this->PLANET['energy'] / abs($this->PLANET['energy_used']));
 
+            // hier manipulieren für ress produktion
+            // $temp[901]['plus']                           -> regulärer zuwachs an ressource
+            // (1 + 0.02 * $this->USER[$resource[131]])     -> maximierer
+            // $prodLevel                                   -> Energiefaktor bei defizit
+            // $temp[901]['minus']                          -> Abzug / verbrauch von deut 
+            // $this->config->resource_multiplier           -> öko faktor
+
+
+            $metal_bonus_percent     = 1;
+            $crystal_bonus_percent   = 1;
+            $deuterium_bonus_percent = 1;
+            if ( $this->config->planet_ressource_bonus) {
+                $metal_bonus_percent     = 1 + $this->PLANET['metal_bonus_percent'] / 100;
+                $crystal_bonus_percent   = 1 + $this->PLANET['crystal_bonus_percent'] / 100;
+                $deuterium_bonus_percent = 1 + $this->PLANET['deuterium_bonus_percent'] / 100;
+            }
+
             $this->PLANET['metal_perhour'] = (
-                $temp[901]['plus'] * (1 + 0.02 * $this->USER[$resource[131]]) * $prodLevel + $temp[901]['minus']
-            ) * $this->config->resource_multiplier;
+                // ($temp[901]['plus'] * (1 + $this->PLANET['metal_bonus_percent'] / 100) ) * (1 + 0.02 * $this->USER[$resource[131]]) * $prodLevel + $temp[901]['minus']
+                ($temp[901]['plus'] * $metal_bonus_percent ) * (1 + 0.02 * $this->USER[$resource[131]]) * $prodLevel + $temp[901]['minus']
+            ) * $this->config->resource_multiplier;            
 
             $this->PLANET['crystal_perhour'] = (
-                $temp[902]['plus'] * (1 + 0.02 * $this->USER[$resource[132]]) * $prodLevel + $temp[902]['minus']
+                ($temp[902]['plus'] * $crystal_bonus_percent) * (1 + 0.02 * $this->USER[$resource[132]]) * $prodLevel + $temp[902]['minus']
             ) * $this->config->resource_multiplier;
 
             $this->PLANET['deuterium_perhour'] = (
-                $temp[903]['plus'] * (1 + 0.02 * $this->USER[$resource[133]]) * $prodLevel + $temp[903]['minus']
+                ($temp[903]['plus'] * $deuterium_bonus_percent) * (1 + 0.02 * $this->USER[$resource[133]]) * $prodLevel + $temp[903]['minus']
             ) * $this->config->resource_multiplier;
         }
     }
