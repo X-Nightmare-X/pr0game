@@ -517,6 +517,7 @@ $LNG['rs_sum'] = 'Łącznie:';
 $LNG['rs_daily'] = 'Zasobów na dzień:';
 $LNG['rs_weekly'] = 'Zasobów na tydzień:';
 $LNG['rs_ress_bonus'] = 'Bonus(Oficer/DM-Bonus):';
+$LNG['rs_ress_bonus_position'] = 'Premia (dzięki pozycji planety)';
 
 //----------------------------------------------------------------------------//
 //TRADER

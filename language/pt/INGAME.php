@@ -514,6 +514,7 @@ $LNG['rs_sum'] = 'Total';
 $LNG['rs_daily'] = 'Produção diária:';
 $LNG['rs_weekly'] = 'Produção semanal:';
 $LNG['rs_ress_bonus'] = 'Bonus (Oficiais/Bonus):';
+$LNG['rs_ress_bonus_position'] = 'Bónus (através da posição do planeta)';
 
 //----------------------------------------------------------------------------//
 // Mercado

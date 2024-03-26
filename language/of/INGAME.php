@@ -530,6 +530,7 @@ $LNG['rs_sum'] = 'Bro Schdunde';
 $LNG['rs_daily'] = 'Bro Dag';
 $LNG['rs_weekly'] = 'Bro  Woche';
 $LNG['rs_ress_bonus'] = 'Bonus (durch Forschung)';
+$LNG['rs_ress_bonus_position'] = 'Bonus (durch Planetenposition)';
 
 //----------------------------------------------------------------------------//
 //TRADER

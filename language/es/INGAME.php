@@ -506,6 +506,7 @@ $LNG['rs_sum'] = 'Total:';
 $LNG['rs_daily'] = 'Por dia:';
 $LNG['rs_weekly'] = 'Por Semana:';
 $LNG['rs_ress_bonus'] = 'Bonus(Oficial/Bonus-MO):';
+$LNG['rs_ress_bonus_position'] = 'Bonificación (por posición en el planeta)';
 
 //----------------------------------------------------------------------------//
 //TRADER

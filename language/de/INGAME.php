@@ -536,6 +536,7 @@ $LNG['rs_sum'] = 'Pro Stunde';
 $LNG['rs_daily'] = 'Pro Tag';
 $LNG['rs_weekly'] = 'Pro Woche';
 $LNG['rs_ress_bonus'] = 'Bonus (durch Forschung)';
+$LNG['rs_ress_bonus_position'] = 'Bonus (durch Planetenposition)';
 
 //----------------------------------------------------------------------------//
 //TRADER

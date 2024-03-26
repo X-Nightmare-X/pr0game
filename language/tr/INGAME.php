@@ -514,6 +514,7 @@ $LNG['rs_sum'] = 'Toplam';
 $LNG['rs_daily'] = 'Gunluk Uretim:';
 $LNG['rs_weekly'] = 'Haftalik Uretim:';
 $LNG['rs_ress_bonus'] = 'Bonus (Subaylar dahil):';
+$LNG['rs_ress_bonus_position'] = 'Bonus (gezegen pozisyonu aracılığıyla)';
 
 //----------------------------------------------------------------------------//
 // Tuccar

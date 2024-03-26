@@ -546,6 +546,7 @@ $LNG['rs_sum'] = 'Hourly Production';
 $LNG['rs_daily'] = 'Daily Production:';
 $LNG['rs_weekly'] = 'Weekly Production:';
 $LNG['rs_ress_bonus'] = 'Bonus (through Research):';
+$LNG['rs_ress_bonus_position'] = 'Bonus (through planet position)';
 
 //----------------------------------------------------------------------------//
 // Merchants
