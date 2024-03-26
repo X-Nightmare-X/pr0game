@@ -41,6 +41,15 @@
 	<td><span class="{if $bonusProduction.911 > 0}colorPositive{elseif $bonusProduction.911 < 0}colorNegative{else}white{/if}">{number_format($bonusProduction.911, 0, ",", ".")}</span></td>
 	<td><input value="{$LNG.rs_calculate}" type="submit"></td>
 </tr>
+{if {$positionBasedRessourceBonus}}
+	<tr style="height:22px">
+		<td>{$LNG.rs_ress_bonus_position}</td>
+		<td><span class="{if $bonusProductionPositionBased.901 > 0}colorPositive{elseif $bonusProductionPositionBased.901 < 0}colorNegative{else}white{/if}">{number_format($bonusProductionPositionBased.901, 0, ",", ".")}</span></td>
+		<td><span class="{if $bonusProductionPositionBased.902 > 0}colorPositive{elseif $bonusProductionPositionBased.902 < 0}colorNegative{else}white{/if}">{number_format($bonusProductionPositionBased.902, 0, ",", ".")}</span></td>
+		<td><span class="{if $bonusProductionPositionBased.903 > 0}colorPositive{elseif $bonusProductionPositionBased.903 < 0}colorNegative{else}white{/if}">{number_format($bonusProductionPositionBased.903, 0, ",", ".")}</span></td>
+		<td><span class="{if $bonusProductionPositionBased.911 > 0}colorPositive{elseif $bonusProductionPositionBased.911 < 0}colorNegative{else}white{/if}">{number_format($bonusProductionPositionBased.911, 0, ",", ".")}</span></td>
+	</tr>
+{/if}
 <tr style="height:22px">
 	<td>{$LNG.rs_storage_capacity}</td>
 	<td><span class="colorPositive">{$storage.901}</span></td>
