@@ -93,7 +93,6 @@ class ShowResourcesPage extends AbstractGamePage
             901 => [
                 'plus'  => 0,
                 'minus' => 0,
-                'position' => 0,
             ],
             902 => [
                 'plus'  => 0,
@@ -178,7 +177,7 @@ class ShowResourcesPage extends AbstractGamePage
                 } else {
                     $temp[$ID]['minus'] += $Production;
                 }
-            }
+            }            
         }
 
         $storage = [
@@ -194,28 +193,10 @@ class ShowResourcesPage extends AbstractGamePage
             911 => $basicIncome[911] * $config->energy_multiplier,
         ];
 
-        $totalProduction = [
-            901 => $PLANET[$resource[901] . '_perhour'] + $basicProduction[901],
-            902 => $PLANET[$resource[902] . '_perhour'] + $basicProduction[902],
-            903 => $PLANET[$resource[903] . '_perhour'] + $basicProduction[903],
-            911 => $PLANET[$resource[911]] + $basicProduction[911] + $PLANET[$resource[911] . '_used'],
-        ];
-
-        $bonusProduction = [
-            901 => $temp[901]['plus'] * (0.02 * $USER[$resource[131]]),
-            902 => $temp[902]['plus'] * (0.02 * $USER[$resource[132]]),
-            903 => $temp[903]['plus'] * (0.02 * $USER[$resource[133]]),
-            911 => $temp[911]['bonus'],
-        ];
-
         $universe_config = Config::get(Universe::current());
         $positionBasedRessourceBonus = $universe_config->planet_ressource_bonus;
 
         $bonusProductionPositionBased = [];
-
-        var_dump($totalProduction);
-        // var_dump($PLANET['metal_bonus_percent'] );
-        print($PLANET[$resource[901] . '_perhour']);
 
         if ($positionBasedRessourceBonus) {
             $metal_bonus_percent     = $PLANET['metal_bonus_percent'] / 100;
@@ -223,15 +204,35 @@ class ShowResourcesPage extends AbstractGamePage
             $deuterium_bonus_percent = $PLANET['deuterium_bonus_percent'] / 100;
 
             $bonusProductionPositionBased = [
-                901 => $PLANET[$resource[901] . '_perhour'] * $metal_bonus_percent,
-                902 => $basicIncome[902] * $crystal_bonus_percent,
-                903 => $basicIncome[903] * $deuterium_bonus_percent,
+                901 => $temp[901]['plus'] * $metal_bonus_percent,
+                902 => $temp[902]['plus'] * $crystal_bonus_percent,
+                903 => $temp[903]['plus'] * $deuterium_bonus_percent,
                 911 => $basicIncome[911] * 0,
             ];
         } 
+        if ($positionBasedRessourceBonus) {
+            $bonusProduction = [
+                901 => ($temp[901]['plus'] + $bonusProductionPositionBased[901]) * (0.02 * $USER[$resource[131]]),
+                902 => ($temp[902]['plus'] + $bonusProductionPositionBased[902]) * (0.02 * $USER[$resource[132]]),
+                903 => ($temp[903]['plus'] + $bonusProductionPositionBased[903]) * (0.02 * $USER[$resource[133]]),
+                911 => $temp[911]['bonus'],
+            ];
+        } else {
+            $bonusProduction = [
+                901 => $temp[901]['plus'] * (0.02 * $USER[$resource[131]]),
+                902 => $temp[902]['plus'] * (0.02 * $USER[$resource[132]]),
+                903 => $temp[903]['plus'] * (0.02 * $USER[$resource[133]]),
+                911 => $temp[911]['bonus'],
+            ];
+        }
+        
+        $totalProduction = [
+            901 => $temp[901]['plus'] + $bonusProduction['901'] + $bonusProductionPositionBased['901'] + $basicProduction[901],
+            902 => $temp[902]['plus'] + $bonusProduction['902'] + $bonusProductionPositionBased['902'] + $basicProduction[902],
+            903 => $temp[903]['plus'] + $bonusProduction['903'] + $bonusProductionPositionBased['903'] + $basicProduction[903],
+            911 => $PLANET[$resource[911]] + $basicProduction[911] + $PLANET[$resource[911] . '_used'],
+        ];
 
-        // var_dump($bonusProductionPositionBased);
-        // die();
 
         $dailyProduction = [
             901 => $totalProduction[901] * 24,
