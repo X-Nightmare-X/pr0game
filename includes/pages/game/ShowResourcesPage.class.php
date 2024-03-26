@@ -217,6 +217,13 @@ class ShowResourcesPage extends AbstractGamePage
                 903 => ($temp[903]['plus'] + $bonusProductionPositionBased[903]) * (0.02 * $USER[$resource[133]]),
                 911 => $temp[911]['bonus'],
             ];
+
+            $totalProduction = [
+                901 => $temp[901]['plus'] + $bonusProduction['901'] + $bonusProductionPositionBased['901'] + $basicProduction[901],
+                902 => $temp[902]['plus'] + $bonusProduction['902'] + $bonusProductionPositionBased['902'] + $basicProduction[902],
+                903 => $temp[903]['plus'] + $bonusProduction['903'] + $bonusProductionPositionBased['903'] + $basicProduction[903],
+                911 => $PLANET[$resource[911]] + $basicProduction[911] + $PLANET[$resource[911] . '_used'],
+            ];
         } else {
             $bonusProduction = [
                 901 => $temp[901]['plus'] * (0.02 * $USER[$resource[131]]),
@@ -224,16 +231,15 @@ class ShowResourcesPage extends AbstractGamePage
                 903 => $temp[903]['plus'] * (0.02 * $USER[$resource[133]]),
                 911 => $temp[911]['bonus'],
             ];
+
+            $totalProduction = [
+                901 => $temp[901]['plus'] + $bonusProduction['901'] + $basicProduction[901],
+                902 => $temp[902]['plus'] + $bonusProduction['902'] + $basicProduction[902],
+                903 => $temp[903]['plus'] + $bonusProduction['903'] + $basicProduction[903],
+                911 => $PLANET[$resource[911]] + $basicProduction[911] + $PLANET[$resource[911] . '_used'],
+            ];
         }
         
-        $totalProduction = [
-            901 => $temp[901]['plus'] + $bonusProduction['901'] + $bonusProductionPositionBased['901'] + $basicProduction[901],
-            902 => $temp[902]['plus'] + $bonusProduction['902'] + $bonusProductionPositionBased['902'] + $basicProduction[902],
-            903 => $temp[903]['plus'] + $bonusProduction['903'] + $bonusProductionPositionBased['903'] + $basicProduction[903],
-            911 => $PLANET[$resource[911]] + $basicProduction[911] + $PLANET[$resource[911] . '_used'],
-        ];
-
-
         $dailyProduction = [
             901 => $totalProduction[901] * 24,
             902 => $totalProduction[902] * 24,
