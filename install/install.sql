@@ -377,6 +377,7 @@ CREATE TABLE `%PREFIX%config_universe` (
   `crystal_basic_income` int(11) NOT NULL DEFAULT 10,
   `deuterium_basic_income` int(11) NOT NULL DEFAULT 0,
   `energy_basic_income` int(11) NOT NULL DEFAULT 0,
+  `planet_ressource_bonus` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `moon_factor` float(2,1) NOT NULL DEFAULT 1.0,
   `moon_chance` tinyint(3) unsigned NOT NULL DEFAULT 20,
   `debris_moon` tinyint(3) unsigned NOT NULL DEFAULT 0,
