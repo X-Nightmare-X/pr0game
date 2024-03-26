@@ -109,8 +109,6 @@ function ShowConfigUniPage()
             'trade_charge'              => $config->trade_charge,
         ];
 
-        print( "init : " . $config->planet_ressource_bonus . "<br>");
-
         $uni_name                       = HTTP::_GP('uni_name', '', true);
         $lang                           = HTTP::_GP('lang', '');
         $building_speed                 = (2500 * HTTP::_GP('building_speed', 0.0));
@@ -193,8 +191,6 @@ function ShowConfigUniPage()
         $overview_news_frame            = isset($_POST['newsframe']) && $_POST['newsframe'] == 'on' ? 1 : 0;
         $overview_news_text             = $_POST['NewsText'];
 
- 
-        print( "übergabe : " . $planet_ressource_bonus . "<br>");
         $config_after = [
             'uni_name'                  => $uni_name,
             'lang'                      => $lang,
@@ -278,8 +274,6 @@ function ShowConfigUniPage()
             'overview_news_frame'       => $overview_news_frame,
             'overview_news_text'        => $overview_news_text,
         ];
-
-        print( "config after : " . $config->planet_ressource_bonus . "<br>");
         
         if (($uni_status == STATUS_OPEN || $uni_status == STATUS_LOGIN_ONLY) && ($config->uni_status == STATUS_REG_ONLY)) {
             // If login is opened after register only, update all planet timestamps to avoid resource production during closed login times.
@@ -345,9 +339,6 @@ function ShowConfigUniPage()
     $template->loadscript('../base/jquery.autosize-min.js');
     $template->execscript('$(\'textarea\').autosize();');
     $template->loadscript('../scripts/admin/Percentslider.js');
-
-    print( "assig zu template : " . $config->planet_ressource_bonus . "<br>");
-    // die();
 
     $template->assign_vars([
         'uni_name'                      => $config->uni_name,
