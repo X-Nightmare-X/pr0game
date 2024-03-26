@@ -321,11 +321,11 @@ class ShowInformationPage extends AbstractGamePage
             $fleetIDs   = array_merge($reslist['fleet'], $reslist['defense']);
 
             foreach ($fleetIDs as $fleetID) {
-                if (isset($CombatCaps[$elementID]['sd']) && !empty($CombatCaps[$elementID]['sd'][$fleetID])) {
+                if (isset($CombatCaps[$elementID]['sd']) && !empty($CombatCaps[$elementID]['sd'][$fleetID]) && $CombatCaps[$elementID]['sd'][$fleetID] > 1) {
                     $FleetInfo['rapidfire']['to'][$fleetID] = $CombatCaps[$elementID]['sd'][$fleetID];
                 }
 
-                if (isset($CombatCaps[$fleetID]['sd']) && !empty($CombatCaps[$fleetID]['sd'][$elementID])) {
+                if (isset($CombatCaps[$fleetID]['sd']) && !empty($CombatCaps[$fleetID]['sd'][$elementID]) && $CombatCaps[$fleetID]['sd'][$elementID] > 1) {
                     $FleetInfo['rapidfire']['from'][$fleetID] = $CombatCaps[$fleetID]['sd'][$elementID];
                 }
             }
@@ -344,11 +344,11 @@ class ShowInformationPage extends AbstractGamePage
             $fleetIDs   = array_merge($reslist['fleet'], $reslist['defense']);
 
             foreach ($fleetIDs as $fleetID) {
-                if (isset($CombatCaps[$elementID]['sd']) && !empty($CombatCaps[$elementID]['sd'][$fleetID])) {
+                if (isset($CombatCaps[$elementID]['sd']) && !empty($CombatCaps[$elementID]['sd'][$fleetID]) && $CombatCaps[$elementID]['sd'][$fleetID] > 1) {
                     $FleetInfo['rapidfire']['to'][$fleetID] = $CombatCaps[$elementID]['sd'][$fleetID];
                 }
 
-                if (isset($CombatCaps[$fleetID]['sd']) && !empty($CombatCaps[$fleetID]['sd'][$elementID])) {
+                if (isset($CombatCaps[$fleetID]['sd']) && !empty($CombatCaps[$fleetID]['sd'][$elementID]) && $CombatCaps[$fleetID]['sd'][$elementID] > 1) {
                     $FleetInfo['rapidfire']['from'][$fleetID] = $CombatCaps[$fleetID]['sd'][$elementID];
                 }
             }

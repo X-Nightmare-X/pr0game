@@ -19,7 +19,14 @@
 
 $cache  = Cache::get();
 $cache->add('vars', 'VarsBuildCache');
-foreach ($cache->getData('vars') as $k => $v) {
+
+$vars = $cache->getData('vars');
+$result = $vars[0];
+require_once('includes/classes/Universe.class.php');
+if (isset($vars[Universe::current()])) {
+    $result = array_replace_recursive($result, $vars[Universe::current()]);
+}
+foreach ($result as $k => $v) {
     Singleton()->$k = $v;
     $$k =& Singleton()->$k;
 }
