@@ -506,12 +506,15 @@ class PlayerUtil
         if ($isHome) {
             $maxFields = $config->initial_fields;
             $maxTemperature = $config->initial_temp;
-            $metal_bonus_percent = 5;
-            $crystal_bonus_percent = 0;
-            $deuterium_bonus_percent = 0;
+            $metalBonusPercent = 5;
+            $crystalBonusPercent = 0;
+            $deuteriumBonusPercent = 0;
         } elseif (!empty($planetArray) && $planetArray['anz'] == 1) {
             if ($positionBasedRessourceBonus){
                 $maxFields = (int) floor( ($increasedMinFieldsPlantetData[$dataIndex]['avgFields'] ) * $config->planet_size_factor);
+                $metalBonusPercent = $increasedMinFieldsPlantetData[$dataIndex]['metalBonusPercent'];
+                $crystalBonusPercent = $increasedMinFieldsPlantetData[$dataIndex]['crystalBonusPercent'];
+                $deuteriumBonusPercent = $increasedMinFieldsPlantetData[$dataIndex]['deuteriumBonusPercent'];
             } else {
                 $maxFields = (int) floor($planetData[$dataIndex]['avgFields'] * $config->planet_size_factor);
             }
@@ -519,6 +522,9 @@ class PlayerUtil
         } else {
             if ($positionBasedRessourceBonus){
                 $maxFields = (int) floor($increasedMinFieldsPlantetData[$dataIndex]['fields'] * $config->planet_size_factor); 
+                $metalBonusPercent = $increasedMinFieldsPlantetData[$dataIndex]['metalBonusPercent'];
+                $crystalBonusPercent = $increasedMinFieldsPlantetData[$dataIndex]['crystalBonusPercent'];
+                $deuteriumBonusPercent = $increasedMinFieldsPlantetData[$dataIndex]['deuteriumBonusPercent'];
             } else {
                 $maxFields = (int) floor($planetData[$dataIndex]['fields'] * $config->planet_size_factor); 
             }
