@@ -33,6 +33,23 @@ $planetData	= [
     15	=> ['temp' => mt_rand(-130, -90), 'avgTemp' => -110,	'fields' => mt_rand(90, 164), 'avgFields' => 127,	'image' => ['eis' => mt_rand(1, 10), 'gas' => mt_rand(1, 8)]]
 ];
 
+$increasedMinFieldsPlantetData = [
+    1=> 'fields' => mt_rand(104, 172),  'avgFields' => 138,
+    2=> 'fields' => mt_rand(112, 176), 'avgFields' => 144,
+    3=> 'fields' => mt_rand(120, 182), 'avgFields' => 144,
+    4=> 'fields' => mt_rand(126, 208),  'avgFields' => 167,
+    5=> 'fields' => mt_rand(141, 232),  'avgFields' => 186,
+    6=> 'fields' => mt_rand(154, 242),  'avgFields' => 198,
+    7=> 'fields' => mt_rand(160, 248),  'avgFields' => 204,
+    8=> 'fields' => mt_rand(164, 252),  'avgFields' => 208,
+    9=> 'fields' => mt_rand(158, 246),  'avgFields' => 202,
+    10=> 'fields' => mt_rand(150, 232), 'avgFields' => 191,
+    11=> 'fields' => mt_rand(144, 210), 'avgFields' => 177,
+    12=> 'fields' => mt_rand(133, 186), 'avgFields' => 160,
+    13=> 'fields' => mt_rand(122, 172), 'avgFields' => 147,
+    14=> 'fields' => mt_rand(108, 168), 'avgFields' => 138,
+    15=> 'fields' => mt_rand(98, 164),  'avgFields' => 131,
+]
 
 if (!function_exists('getAllPlanetPictures')) {
     function getAllPlanetPictures() : array {

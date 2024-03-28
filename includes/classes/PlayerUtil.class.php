@@ -511,15 +511,14 @@ class PlayerUtil
             $deuterium_bonus_percent = 0;
         } elseif (!empty($planetArray) && $planetArray['anz'] == 1) {
             if ($positionBasedRessourceBonus){
-                $maxFields = (int) floor( ($planetData[$dataIndex]['avgFields'] + 4 ) * $config->planet_size_factor);
+                $maxFields = (int) floor( ($increasedMinFieldsPlantetData[$dataIndex]['avgFields'] ) * $config->planet_size_factor);
             } else {
                 $maxFields = (int) floor($planetData[$dataIndex]['avgFields'] * $config->planet_size_factor);
             }
             $maxTemperature = $planetData[$dataIndex]['avgTemp'];
         } else {
             if ($positionBasedRessourceBonus){
-                
-                $maxFields = (int) floor($planetData[$dataIndex]['fields'] * $config->planet_size_factor); 
+                $maxFields = (int) floor($increasedMinFieldsPlantetData[$dataIndex]['fields'] * $config->planet_size_factor); 
             } else {
                 $maxFields = (int) floor($planetData[$dataIndex]['fields'] * $config->planet_size_factor); 
             }
