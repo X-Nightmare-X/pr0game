@@ -500,16 +500,29 @@ class PlayerUtil
         require 'includes/PlanetData.php';
 
         $config = Config::get($universe);
+        $positionBasedRessourceBonus = $config->planet_ressource_bonus;
 
         $dataIndex = (int) ceil($position / ($config->max_planets / count($planetData)));
         if ($isHome) {
             $maxFields = $config->initial_fields;
             $maxTemperature = $config->initial_temp;
+            $metal_bonus_percent = 5;
+            $crystal_bonus_percent = 0;
+            $deuterium_bonus_percent = 0;
         } elseif (!empty($planetArray) && $planetArray['anz'] == 1) {
-            $maxFields = (int) floor($planetData[$dataIndex]['avgFields'] * $config->planet_size_factor);
+            if ($positionBasedRessourceBonus){
+                $maxFields = (int) floor( ($planetData[$dataIndex]['avgFields'] + 4 ) * $config->planet_size_factor);
+            } else {
+                $maxFields = (int) floor($planetData[$dataIndex]['avgFields'] * $config->planet_size_factor);
+            }
             $maxTemperature = $planetData[$dataIndex]['avgTemp'];
         } else {
-            $maxFields = (int) floor($planetData[$dataIndex]['fields'] * $config->planet_size_factor);
+            if ($positionBasedRessourceBonus){
+                
+                $maxFields = (int) floor($planetData[$dataIndex]['fields'] * $config->planet_size_factor); 
+            } else {
+                $maxFields = (int) floor($planetData[$dataIndex]['fields'] * $config->planet_size_factor); 
+            }
             $maxTemperature = $planetData[$dataIndex]['temp'];
         }
 
