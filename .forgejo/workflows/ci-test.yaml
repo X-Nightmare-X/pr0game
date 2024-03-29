@@ -1,0 +1,19 @@
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  php-md:
+    runs-on: docker
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Composer install
+        uses: php-actions/composer@v6
+
+      - name: PHP Mess Detector
+        uses: php-actions/phpmd@v1
+        with:
+          php_version: 8.1
+          path: src/
+          output: text
+          ruleset: test/phpmd/ruleset.xml
