@@ -540,7 +540,13 @@ class ResourceUpdate
     public function SetNextQueueElementOnTop()
     {
         $resource =& Singleton()->resource;
-        $LNG =& Singleton()->LNG;
+        $LNG = getLanguage(null, $this->USER['id']);
+        if (empty($LNG)) {
+            // Fallback language
+            $LNG = new Language('en');
+            $LNG->includeData(['L18N', 'INGAME', 'TECH', 'CUSTOM']);
+        }
+
         if (empty($this->PLANET['b_building_id'])) {
             $this->PLANET['b_building'] = 0;
             $this->PLANET['b_building_id'] = '';
@@ -599,14 +605,6 @@ class ResourceUpdate
                         }
                         if (!isset($costResources[RESOURCE_DEUT])) {
                             $costResources[RESOURCE_DEUT] = 0;
-                        }
-
-                        $LNG =& Singleton()->LNG;
-
-                        if (empty($LNG)) {
-                            // Fallback language
-                            $LNG = new Language('en');
-                            $LNG->includeData(['L18N', 'INGAME', 'TECH', 'CUSTOM']);
                         }
 
                         $Message = sprintf(
@@ -729,7 +727,12 @@ class ResourceUpdate
     public function SetNextQueueTechOnTop($save = false)
     {
         $resource =& Singleton()->resource;
-        $LNG =& Singleton()->LNG;
+        $LNG = getLanguage(null, $this->USER['id']);
+        if (empty($LNG)) {
+            // Fallback language
+            $LNG = new Language('en');
+            $LNG->includeData(['L18N', 'INGAME', 'TECH', 'CUSTOM']);
+        }
         if (empty($this->USER['b_tech_queue'])) {
             $this->USER['b_tech'] = 0;
             $this->USER['b_tech_id'] = 0;
@@ -805,14 +808,6 @@ class ResourceUpdate
                     }
                     if (!isset($costResources[RESOURCE_DEUT])) {
                         $costResources[RESOURCE_DEUT] = 0;
-                    }
-
-                    $LNG =& Singleton()->LNG;
-
-                    if (empty($LNG)) {
-                        // Fallback language
-                        $LNG = new Language('en');
-                        $LNG->includeData(['L18N', 'INGAME', 'TECH', 'CUSTOM']);
                     }
 
                     $Message = sprintf(
