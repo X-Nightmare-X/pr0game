@@ -34,21 +34,21 @@ $planetData	= [
 ];
 
 $increasedMinFieldsPlantetData = [
-    1=> 'fields' => mt_rand(104, 172),  'avgFields' => 138,
-    2=> 'fields' => mt_rand(112, 176), 'avgFields' => 144,
-    3=> 'fields' => mt_rand(120, 182), 'avgFields' => 144,
-    4=> 'fields' => mt_rand(126, 208),  'avgFields' => 167,
-    5=> 'fields' => mt_rand(141, 232),  'avgFields' => 186,
-    6=> 'fields' => mt_rand(154, 242),  'avgFields' => 198,
-    7=> 'fields' => mt_rand(160, 248),  'avgFields' => 204,
-    8=> 'fields' => mt_rand(164, 252),  'avgFields' => 208,
-    9=> 'fields' => mt_rand(158, 246),  'avgFields' => 202,
-    10=> 'fields' => mt_rand(150, 232), 'avgFields' => 191,
-    11=> 'fields' => mt_rand(144, 210), 'avgFields' => 177,
-    12=> 'fields' => mt_rand(133, 186), 'avgFields' => 160,
-    13=> 'fields' => mt_rand(122, 172), 'avgFields' => 147,
-    14=> 'fields' => mt_rand(108, 168), 'avgFields' => 138,
-    15=> 'fields' => mt_rand(98, 164),  'avgFields' => 131,
+    1=> 'fields' => mt_rand(104, 172),  'avgFields' => 138, 'metalBonusPercent' => 0, 'crystalBonusPercent' => 9, 'deuteriumBonusPercent' => 0,
+    2=> 'fields' => mt_rand(112, 176), 'avgFields' => 144,  'metalBonusPercent' => 0, 'crystalBonusPercent' => 6, 'deuteriumBonusPercent' => 0,
+    3=> 'fields' => mt_rand(120, 182), 'avgFields' => 144,  'metalBonusPercent' => 0, 'crystalBonusPercent' => 3, 'deuteriumBonusPercent' => 0,
+    4=> 'fields' => mt_rand(126, 208),  'avgFields' => 167, 'metalBonusPercent' => 9, 'crystalBonusPercent' => 0, 'deuteriumBonusPercent' => 0,
+    5=> 'fields' => mt_rand(141, 232),  'avgFields' => 186, 'metalBonusPercent' => 8, 'crystalBonusPercent' => 0, 'deuteriumBonusPercent' => 0,
+    6=> 'fields' => mt_rand(154, 242),  'avgFields' => 198, 'metalBonusPercent' => 7, 'crystalBonusPercent' => 0, 'deuteriumBonusPercent' => 0,
+    7=> 'fields' => mt_rand(160, 248),  'avgFields' => 204, 'metalBonusPercent' => 6, 'crystalBonusPercent' => 0, 'deuteriumBonusPercent' => 0,
+    8=> 'fields' => mt_rand(164, 252),  'avgFields' => 208, 'metalBonusPercent' => 5, 'crystalBonusPercent' => 0, 'deuteriumBonusPercent' => 0,
+    9=> 'fields' => mt_rand(158, 246),  'avgFields' => 202, 'metalBonusPercent' => 6, 'crystalBonusPercent' => 0, 'deuteriumBonusPercent' => 0,
+    10=> 'fields' => mt_rand(150, 232), 'avgFields' => 191, 'metalBonusPercent' => 7, 'crystalBonusPercent' => 0, 'deuteriumBonusPercent' => 0,
+    11=> 'fields' => mt_rand(144, 210), 'avgFields' => 177, 'metalBonusPercent' => 8, 'crystalBonusPercent' => 0, 'deuteriumBonusPercent' => 0,
+    12=> 'fields' => mt_rand(133, 186), 'avgFields' => 160, 'metalBonusPercent' => 9, 'crystalBonusPercent' => 0, 'deuteriumBonusPercent' => 0,
+    13=> 'fields' => mt_rand(122, 172), 'avgFields' => 147, 'metalBonusPercent' => 0, 'crystalBonusPercent' => 0, 'deuteriumBonusPercent' => 3,
+    14=> 'fields' => mt_rand(108, 168), 'avgFields' => 138, 'metalBonusPercent' => 0, 'crystalBonusPercent' => 0, 'deuteriumBonusPercent' => 6,
+    15=> 'fields' => mt_rand(98, 164),  'avgFields' => 131, 'metalBonusPercent' => 0, 'crystalBonusPercent' => 0, 'deuteriumBonusPercent' => 9,
 ]
 
 if (!function_exists('getAllPlanetPictures')) {
