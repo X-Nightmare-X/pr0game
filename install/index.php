@@ -522,6 +522,10 @@ switch ($mode) {
                     $config->overview_news_text = $LNG['sql_welcome'] . $installVersion;
                     $config->uni_name           = $LNG['fcm_universe'] . ' ' . Universe::current();
                     $config->close_reason       = $LNG['sql_close_reason'];
+                    $config->disclamer_address  = ''.
+                    $config->disclamer_phone    = ''.
+                    $config->disclamer_mail     = ''.
+                    $config->disclamer_notice   = ''.
                     $config->save();
 
                     unset($installSQL, $installRevision, $installVersion);
