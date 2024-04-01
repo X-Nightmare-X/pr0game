@@ -74,6 +74,17 @@
 			</div>
 		</div>
 	</div>
+	<div class="button-box">
+		<div class="button-box-inner">
+			<div class="button-important">
+				<a href="index.php?page=HoF">
+					<span class="button-left"></span>
+					<span class="button-center">HOF</span>
+					<span class="button-right"></span>
+				</a>
+			</div>
+		</div>
+	</div>
 </section>
 {if $countcaptchakey!=0}
 	<p>{$LNG['disclamerRecaptcha']}</p>

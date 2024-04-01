@@ -155,3 +155,39 @@ $LNG['disclamerLabelMail']			= 'E-Mail Adresse:';
 $LNG['disclamerLabelNotice']		= 'Weitere Informationen';
 
 $LNG['disclamerRecaptcha']		    = 'Diese Seite nutzt reCAPTCHA und die Google <a href="https://policies.google.com/privacy">Datenschutzerklärung</a> und <a href="https://policies.google.com/terms">Nutzungsbedingungen</a> gelten.';
+
+//HoF
+$LNG['hof_header']              = 'Hier sind die Legenden von Uni 3 verewigt!';
+$LNG['theme']                   = 'Thema';
+$LNG['players']                 = 'Spieler';
+$LNG['points_amount']           = 'Punkte / Anzahl';
+
+$LNG['st_points']               = 'Punkte';
+$LNG['st_fleets']               = 'Flotte';
+$LNG['st_researh']              = 'Forschung';
+$LNG['st_buildings']            = 'Gebäude';
+$LNG['st_defenses']             = 'Verteidigung';
+
+$LNG['biggest_solo']            = 'Größter solo KB';
+$LNG['first_fights']            = 'Erste KB\'s des Unis';
+$LNG['destroyed_sats']          = 'Zerstörte Solarsatelliten';
+$LNG['most_fights']             = 'Meisten Siege / Niederlagen / Unentschieden';
+$LNG['most_destroyed_moons']    = 'Meiste zerstörte Monde';
+
+$LNG['most_achievements']       = 'Am meistes gesammelte Achievements';
+$LNG['most_reached_ach']        = 'Meistvergebene Achievements';
+$LNG['least_reached_ach']       = 'Seltensten Achievements';
+$LNG['most_records']            = 'Am meisten gesammelte Rekorde';
+$LNG['oldest_active_acc']       = 'Älteste aktive Accounts';
+$LNG['build_ships']             = 'Insgesamt gebaute Schiffe';
+
+$LNG['found_ships']             = 'Insgesamt gefundene Schiffe';
+$LNG['found_res']               = 'Insgesamt gefundene Ressourcen';
+$LNG['most_expo_fights']        = 'Am meisten bekämpfte Aliens/Piraten';
+$LNG['most_black_holes']        = 'Am meisten gefundene schwarze Löcher';
+$LNG['flown_expos']             = 'Insgesamt geflogene Expeditionen';
+
+$LNG['overall']                 = 'Gesamt';
+$LNG['civil']                   = 'Zivil';
+$LNG['military']                = 'Militär';
+$LNG['spy']                     = 'Spiosonden';
