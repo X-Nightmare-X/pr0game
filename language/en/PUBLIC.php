@@ -157,3 +157,39 @@ $LNG['disclamerLabelMail']			= 'Support Email:';
 $LNG['disclamerLabelNotice']		= 'More information';
 
 $LNG['disclamerRecaptcha']          = 'This page uses reCAPTCHA and the Google <a href="https://policies.google.com/privacy">privacy statement</a> and <a href="https://policies.google.com/terms">terms of use</a> apply.';
+
+//HoF
+$LNG['hof_header']              = 'The legends of Uni 3 are eternalized here!';
+$LNG['theme']                   = 'Theme';
+$LNG['players']                 = 'Players';
+$LNG['points_amount']           = 'Points / Amount';
+
+$LNG['st_points']               = 'Points';
+$LNG['st_fleets']               = 'Fleet';
+$LNG['st_researh']              = 'Research';
+$LNG['st_buildings']            = 'Buildings';
+$LNG['st_defenses']             = 'Defense';
+
+$LNG['biggest_solo']            = 'Biggest solo Fights';
+$LNG['first_fights']            = 'First Fights of the Universe';
+$LNG['destroyed_sats']          = 'Destroyed solar satelites';
+$LNG['most_fights']             = 'Most Wins / Losses / Draws';
+$LNG['most_destroyed_moons']    = 'Most destroyed Moons';
+
+$LNG['most_achievements']       = 'Most Achievements collected';
+$LNG['most_reached_ach']        = 'Most common Achievements';
+$LNG['least_reached_ach']       = 'Rarest Achievements';
+$LNG['most_records']            = 'Most records collected';
+$LNG['oldest_active_acc']       = 'Oldest active accounts';
+$LNG['build_ships']             = 'Overall build ships';
+
+$LNG['found_ships']             = 'Overall found ships';
+$LNG['found_res']               = 'Overall found ressources';
+$LNG['most_expo_fights']        = 'Most fights against Aliens/Pirates';
+$LNG['most_black_holes']        = 'Most black holes encountered';
+$LNG['flown_expos']             = 'Overall flown expeditions';
+
+$LNG['overall']                 = 'Overall';
+$LNG['civil']                   = 'Civilian';
+$LNG['military']                = 'Military';
+$LNG['spy']                     = 'Spy probes';
