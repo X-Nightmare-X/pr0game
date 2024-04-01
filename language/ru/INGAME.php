@@ -196,6 +196,8 @@ $LNG['ov_noreflink'] = 'У Вас нет рефералов';
 // Галактика
 $LNG['gl_no_deuterium_to_view_galaxy'] = 'Не хватает дейтерия.';
 $LNG['gl_legend'] = 'Справка';
+$LNG['gl_colonizable'] = 'Колонизируемый';
+$LNG['gl_not_colonizable'] = 'Не поддается колонизации';
 $LNG['gl_strong_player'] = 'Сильный игрок';
 $LNG['gl_week_player'] = 'Слабый игрок';
 $LNG['gl_vacation'] = 'Режим отпуска';

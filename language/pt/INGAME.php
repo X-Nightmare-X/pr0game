@@ -206,6 +206,8 @@ $LNG['ov_noreflink'] = 'De momento, não recrutaste algum jogador.';
 
 $LNG['gl_no_deuterium_to_view_galaxy'] = 'Não possuis Deutério para viajar na Galáxia!';
 $LNG['gl_legend'] = 'Legenda';
+$LNG['gl_colonizable'] = 'Colonizável';
+$LNG['gl_not_colonizable'] = 'Não colonizável';
 $LNG['gl_strong_player'] = 'Jogador forte';
 $LNG['gl_week_player'] = 'Jogador fraco';
 $LNG['gl_vacation'] = 'Modo de Férias';

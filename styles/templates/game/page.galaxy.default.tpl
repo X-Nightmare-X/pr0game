@@ -86,8 +86,8 @@
     {for $planet=1 to $max_planets}
       <tr data-info="p_{$planet}">
         {if !isset($GalaxyRows[$planet])}
-          <td>
-            <a href="?page=fleetTable&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}&amp;planettype=1&amp;target_mission=7">{$planet}</a>
+          <td class="{$colonizable[$planet]}">
+            <a href="?page=fleetTable&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}&amp;planettype=1&amp;target_mission=7" class="{$colonizable[$planet]}">{$planet}</a>
           </td>
           <td></td>
           <td></td>
@@ -102,7 +102,7 @@
           <td></td>
           <td></td>
         {elseif $GalaxyRows[$planet].destroyed === true}
-          <td>
+          <td class="{$colonizable[$planet]}">
             {$planet}
           </td>
           {$currentPlanet = $GalaxyRows[$planet]}
@@ -125,7 +125,7 @@
           <td></td>
           <td></td>
         {else}
-          <td>
+          <td class="{$colonizable[$planet]}">
             {$planet}
           </td>
           {$currentPlanet = $GalaxyRows[$planet]}
@@ -241,7 +241,18 @@
     <tr>
       <td colspan="{6+{$colespanAdd}}">({$planetcount})</td>
       <td colspan="2">
-        <a class="tooltip" data-tooltip-content="<table style='width:240px'><tr><th colspan='2'>{$LNG.gl_legend}</td></tr><tr><td style='width:220px'>{$LNG.gl_strong_player}</td><td><span class='galaxy-short-strong'>{$LNG.gl_short_strong}</span></td></tr><tr><td style='width:220px'>{$LNG.gl_week_player}</td><td><span class='galaxy-short-noob'>{$LNG.gl_short_newbie}</span></td></tr><tr><td style='width:220px'>{$LNG.gl_vacation}</td><td><span class='galaxy-short-vacation'>{$LNG.gl_short_vacation}</span></td></tr><tr><td style='width:220px'>{$LNG.gl_banned}</td><td><span class='galaxy-short-banned'>{$LNG.gl_short_ban}</span></td></tr><tr><td style='width:220px'>{$LNG.gl_inactive_seven}</td><td><span class='galaxy-short-inactive'>{$LNG.gl_short_inactive}</span></td></tr><tr><td style='width:220px'>{$LNG.gl_inactive_twentyeight}</td><td><span class='galaxy-short-longinactive'>{$LNG.gl_short_long_inactive}</span></td></tr></table>">{$LNG.gl_legend}</a>
+        <a class="tooltip" data-tooltip-content="
+          <table style='width:240px'>
+            <tr><th colspan='2'>{$LNG.gl_legend}</td></tr>
+            <tr><td style='width:220px'>{$LNG.gl_colonizable}</td><td><span class='colorPositive'>{$LNG.gl_pos}</span></td></tr>
+            <tr><td style='width:220px'>{$LNG.gl_not_colonizable}</td><td><span class='colorNegative'>{$LNG.gl_pos}</span></td></tr>
+            <tr><td style='width:220px'>{$LNG.gl_strong_player}</td><td><span class='galaxy-short-strong'>{$LNG.gl_short_strong}</span></td></tr>
+            <tr><td style='width:220px'>{$LNG.gl_week_player}</td><td><span class='galaxy-short-noob'>{$LNG.gl_short_newbie}</span></td></tr>
+            <tr><td style='width:220px'>{$LNG.gl_vacation}</td><td><span class='galaxy-short-vacation'>{$LNG.gl_short_vacation}</span></td></tr>
+            <tr><td style='width:220px'>{$LNG.gl_banned}</td><td><span class='galaxy-short-banned'>{$LNG.gl_short_ban}</span></td></tr>
+            <tr><td style='width:220px'>{$LNG.gl_inactive_seven}</td><td><span class='galaxy-short-inactive'>{$LNG.gl_short_inactive}</span></td></tr>
+            <tr><td style='width:220px'>{$LNG.gl_inactive_twentyeight}</td><td><span class='galaxy-short-longinactive'>{$LNG.gl_short_long_inactive}</span></td></tr>
+          </table>">{$LNG.gl_legend}</a>
       </td>
     </tr>
     <tr>

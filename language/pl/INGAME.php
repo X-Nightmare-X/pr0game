@@ -208,6 +208,8 @@ $LNG['ov_noreflink'] = 'Nikogo nie zwerbowałeś do gry';
 
 $LNG['gl_no_deuterium_to_view_galaxy'] = 'Nie masz wystarczającej ilości Deuteru!';
 $LNG['gl_legend'] = 'Legenda';
+$LNG['gl_colonizable'] = 'Możliwość kolonizacji';
+$LNG['gl_not_colonizable'] = 'Nie nadaje się do kolonizacji';
 $LNG['gl_strong_player'] = 'Mocny gracz';
 $LNG['gl_week_player'] = 'Słaby gracz';
 $LNG['gl_vacation'] = 'Urlop';

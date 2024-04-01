@@ -218,6 +218,8 @@ $LNG['fm_engines'] = 'Driebwerke';
 
 $LNG['gl_no_Deuderium_to_view_galaxy'] = 'Sie habne ned genügend Deuderium!';
 $LNG['gl_legend'] = 'Legende';
+$LNG['gl_colonizable'] = 'Golonisierbar';
+$LNG['gl_not_colonizable'] = 'nichd golonisierbar';
 $LNG['gl_strong_player'] = 'Schdarker Schbieler';
 $LNG['gl_week_player'] = 'Schwacher Schbieler';
 $LNG['gl_vacation'] = 'Urlaubsmodus';

@@ -201,6 +201,8 @@ $LNG['ov_noreflink'] = 'No tiene Usuarios Referidos.';
 
 $LNG['gl_no_deuterium_to_view_galaxy'] = '¡No posees suficiente deuterio para ver la galaxia!';
 $LNG['gl_legend'] = 'Leyenda';
+$LNG['gl_colonizable'] = 'Colonizable';
+$LNG['gl_not_colonizable'] = 'No colonizable';
 $LNG['gl_strong_player'] = 'Jugador Fuerte';
 $LNG['gl_week_player'] = 'Jugador Débil';
 $LNG['gl_vacation'] = 'Modo Vacaciones';

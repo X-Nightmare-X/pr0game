@@ -208,6 +208,8 @@ $LNG['Deuterium'] = 'Deuterium';
 
 $LNG['gl_no_deuterium_to_view_galaxy'] = 'Galaksiyi gormek icin yeterli deuteriuma sahip degilsin.';
 $LNG['gl_legend'] = 'Bilgi';
+$LNG['gl_colonizable'] = 'Kolonileştirilebilir';
+$LNG['gl_not_colonizable'] = 'Kolonize edilemez';
 $LNG['gl_strong_player'] = 'Guclu Oyuncu';
 $LNG['gl_week_player'] = 'Zayif Oyuncu';
 $LNG['gl_vacation'] = 'Tatil Modu';

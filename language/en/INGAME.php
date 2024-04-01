@@ -226,6 +226,8 @@ $LNG['fm_engines'] = 'Engines';
 
 $LNG['gl_no_deuterium_to_view_galaxy'] = 'You dont have enough deuterium to view the galaxy';
 $LNG['gl_legend'] = 'Legend';
+$LNG['gl_colonizable'] = 'Colonizable';
+$LNG['gl_not_colonizable'] = 'Not colonizable';
 $LNG['gl_strong_player'] = 'Strong player';
 $LNG['gl_week_player'] = 'Weak player';
 $LNG['gl_vacation'] = 'Vacation mode';

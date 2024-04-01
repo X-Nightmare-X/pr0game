@@ -193,6 +193,8 @@ $LNG['ov_noreflink'] = 'À l\'heure actuelle, vous n\'avez recruté aucun joueur
 
 $LNG['gl_no_deuterium_to_view_galaxy'] = 'Vous n\'avez pas assez de deutérium !';
 $LNG['gl_legend'] = 'Légende';
+$LNG['gl_colonizable'] = 'Colonisable';
+$LNG['gl_not_colonizable'] = 'Non colonisable';
 $LNG['gl_strong_player'] = 'Joueur fort';
 $LNG['gl_week_player'] = 'Joueur faible';
 $LNG['gl_vacation'] = 'Mode vacances';

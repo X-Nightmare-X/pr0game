@@ -116,9 +116,20 @@ class ShowGalaxyPage extends AbstractGamePage
 
         $Duration		= FleetFunctions::getMIPDuration($PLANET['system'], $system);
 
+        $colonizable = [];
+        for ($i=1; $i <= $config->max_planets; $i++) { 
+            $allowPlanetPosition = PlayerUtil::allowPlanetPosition($i, $USER);
+            if ($allowPlanetPosition && !isset($GalaxyRows[$planet])) {
+                $colonizable[$i] = 'colorPositive';
+            } else {
+                $colonizable[$i] = 'colorNegative';
+            }
+        }
+
         $this->tplObj->loadscript('galaxy.js');
         $this->assign([
             'GalaxyRows'				=> $Result,
+            'colonizable'               => $colonizable,
             'planetcount'				=> sprintf($LNG['gl_populed_planets'], count($Result)),
             'action'					=> $action,
             'galaxy'					=> $galaxy,
