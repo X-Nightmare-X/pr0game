@@ -15,10 +15,9 @@
   <table>
     <tr>
       <th colspan="9">
-        <div class="transparent" style="text-align:left;float:left;">{$LNG.fl_fleets} {$activeFleetSlots}
-          / {$maxFleetSlots}</div>
-        <div class="transparent" style="text-align:right;float:right;">{$activeExpedition}
-          / {$maxExpedition} {$LNG.fl_expeditions}</div>
+        <div class="transparent" style="text-align:left;float:left;width: 33.33%;">{$LNG.fl_fleets} {$activeFleetSlots} / {$maxFleetSlots}</div>
+        <div class="transparent" style="text-align:center;float:inline-start;width: 33.33%;">{$LNG.fl_planets} {$currentPlanetCount} / {$maxPlanetCount}</div>
+        <div class="transparent" style="text-align:right;float:right;width: 33.33%;">{$LNG.fl_expeditions} {$activeExpedition} / {$maxExpedition}</div>
       </th>
     </tr>
     <tr>

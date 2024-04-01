@@ -302,6 +302,7 @@ $LNG['fl_no_ships'] = 'Нет кораблей в наличии';
 $LNG['fl_remove_all_ships'] = 'Обнулить';
 $LNG['fl_select_all_ships'] = 'Все корабли';
 $LNG['fl_fleets'] = 'Флоты';
+$LNG['fl_planets'] = 'Планеты';
 $LNG['fl_expeditions'] = 'Экспедиции';
 $LNG['fl_number'] = '№';
 $LNG['fl_mission'] = 'Задание';

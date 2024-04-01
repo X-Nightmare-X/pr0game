@@ -229,6 +229,20 @@ class ShowFleetTablePage extends AbstractGamePage
             $maxExpedition = 0;
         }
 
+        $sql = 'SELECT COUNT(*) as state
+            FROM %%PLANETS%%
+            WHERE `id_owner`	= :userId
+            AND `planet_type`	= :type
+            AND `destruyed`		= :destroyed;';
+
+        $currentPlanetCount = $db->selectSingle($sql, [
+            ':userId'       => $USER['id'],
+            ':type'         => 1,
+            ':destroyed'    => 0,
+        ], 'state');
+
+        $maxPlanetCount = PlayerUtil::maxPlanetCount($USER);
+
         $maxFleetSlots = FleetFunctions::getMaxFleetSlots($USER);
 
         $targetGalaxy = HTTP::_GP('galaxy', (int)$PLANET['galaxy']);
@@ -309,6 +323,8 @@ class ShowFleetTablePage extends AbstractGamePage
             'FlyingFleetList'       => $FlyingFleetList,
             'activeExpedition'      => $activeExpedition,
             'maxExpedition'         => $maxExpedition,
+            'currentPlanetCount'    => $currentPlanetCount,
+            'maxPlanetCount'        => $maxPlanetCount,
             'activeFleetSlots'      => $activeFleetSlots,
             'maxFleetSlots'         => $maxFleetSlots,
             'targetGalaxy'          => $targetGalaxy,

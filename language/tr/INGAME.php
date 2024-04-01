@@ -317,6 +317,7 @@ $LNG['fl_no_ships'] = 'Yeterli gemi yok';
 $LNG['fl_remove_all_ships'] = 'Hicbir Gemi';
 $LNG['fl_select_all_ships'] = 'Butun Gemiler';
 $LNG['fl_fleets'] = 'Filo';
+$LNG['fl_planets'] = 'Gezegenler';
 $LNG['fl_expeditions'] = 'Kesifler';
 $LNG['fl_number'] = 'ID';
 $LNG['fl_mission'] = 'Gorev';

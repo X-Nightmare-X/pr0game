@@ -6,7 +6,7 @@
       <th colspan="{$colspan}">{$LNG.lv_imperium_title}</th>
     </tr>
     <tr>
-      <td style="width:100px">{$LNG.lv_planet}</td>
+      <td style="width:100px">{$LNG.lv_planet} ({$currentPlanetCount} / {$maxPlanetCount})</td>
       <td style="width:100px;font-size: 50px;">&Sigma;</td>
         {foreach $planetList.image as $planetID => $image}
           <td style="width:100px"><a href="game.php?page=overview&amp;cp={$planetID}"><img width="80" height="80"

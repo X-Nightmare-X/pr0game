@@ -302,6 +302,7 @@ $LNG['fl_no_ships'] = 'Il n\'y a pas de vaisseaux de disponibles';
 $LNG['fl_remove_all_ships'] = 'Aucun vaissseau';
 $LNG['fl_select_all_ships'] = 'Tous les vaisseaux';
 $LNG['fl_fleets'] = 'Flottes';
+$LNG['fl_planets'] = 'Planètes';
 $LNG['fl_expeditions'] = 'Expéditions';
 $LNG['fl_number'] = 'ID';
 $LNG['fl_mission'] = 'Mission';

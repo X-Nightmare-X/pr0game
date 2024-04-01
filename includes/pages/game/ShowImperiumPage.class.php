@@ -178,9 +178,25 @@ class ShowImperiumPage extends AbstractGamePage
             $planetList['tech'][$elementID] = $USER[$resource[$elementID]];
         }
 
+        $sql = 'SELECT COUNT(*) as state
+            FROM %%PLANETS%%
+            WHERE `id_owner`	= :userId
+            AND `planet_type`	= :type
+            AND `destruyed`		= :destroyed;';
+
+        $currentPlanetCount = $db->selectSingle($sql, [
+            ':userId'       => $USER['id'],
+            ':type'         => 1,
+            ':destroyed'    => 0,
+        ], 'state');
+
+        $maxPlanetCount = PlayerUtil::maxPlanetCount($USER);
+
         $this->assign([
-            'colspan'       => count($PLANETS) + 2,
-            'planetList'    => $planetList,
+            'colspan'               => count($PLANETS) + 2,
+            'planetList'            => $planetList,
+            'currentPlanetCount'    => $currentPlanetCount,
+            'maxPlanetCount'        => $maxPlanetCount,
         ]);
 
         $this->display('page.empire.default.tpl');
