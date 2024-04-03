@@ -359,7 +359,6 @@ class ResourceUpdate
             }
 
             $this->PLANET['metal_perhour'] = (
-                // ($temp[901]['plus'] * (1 + $this->PLANET['metal_bonus_percent'] / 100) ) * (1 + 0.02 * $this->USER[$resource[131]]) * $prodLevel + $temp[901]['minus']
                 ($temp[901]['plus'] * $metal_bonus_percent ) * (1 + 0.02 * $this->USER[$resource[131]]) * $prodLevel + $temp[901]['minus']
             ) * $this->config->resource_multiplier;            
 
