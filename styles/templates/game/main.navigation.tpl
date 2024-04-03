@@ -3,7 +3,7 @@
   <li class="menu-separator"></li>
   <li><a href="game.php?page=overview">{$LNG.lm_overview}</a></li>
   {if isModuleAvailable($smarty.const.MODULE_IMPERIUM)}
-    <li><a href="game.php?page=imperium">{$LNG.lm_empire}</a></li>
+    <li><a href="game.php?page=Empire">{$LNG.lm_empire}</a></li>
   {/if}
   {if isModuleAvailable($smarty.const.MODULE_BUILDING)}
     <li><a href="game.php?page=buildings">{$LNG.lm_buildings}</a></li>

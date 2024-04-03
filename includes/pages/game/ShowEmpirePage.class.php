@@ -16,7 +16,7 @@
  */
 
 
-class ShowImperiumPage extends AbstractGamePage
+class ShowEmpirePage extends AbstractGamePage
 {
     public static $requireModule = MODULE_IMPERIUM;
 
