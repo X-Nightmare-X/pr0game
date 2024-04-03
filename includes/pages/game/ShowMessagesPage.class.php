@@ -24,127 +24,6 @@ class ShowMessagesPage extends AbstractGamePage
         parent::__construct();
     }
 
-    // function view()
-    // {
-        // global $LNG, $USER;
-        // $MessCategory  	= HTTP::_GP('messcat', 100);
-        // $page  			= HTTP::_GP('site', 1);
-
-        // $db = Database::get();
-
-        // $this->initTemplate();
-        // $this->setWindow('ajax');
-
-        // $MessageList	= array();
-        // $MessagesID		= array();
-
-        // if($MessCategory == 999)  {
-
-            // $sql = "SELECT COUNT(*) as state FROM %%MESSAGES%% WHERE message_sender = :userId AND message_type != 50 AND message_deleted IS NULL;";
-            // $MessageCount = $db->selectSingle($sql, array(
-                // ':userId'   => $USER['id'],
-            // ), 'state');
-
-            // $maxPage	= max(1, ceil($MessageCount / MESSAGES_PER_PAGE));
-            // $page		= max(1, min($page, $maxPage));
-
-            // $sql = "SELECT message_id, message_time, CONCAT(username, ' [',galaxy, ':', system, ':', planet,']') as message_from, message_subject, message_sender, message_type, message_unread, message_text
-            // FROM %%MESSAGES%% INNER JOIN %%USERS%% ON id = message_owner
-            // WHERE message_sender = :userId AND message_type != 50 AND message_deleted IS NULL
-            // ORDER BY message_time DESC
-            // LIMIT :offset, :limit;";
-
-            // $MessageResult = $db->select($sql, array(
-                // ':userId'   => $USER['id'],
-                // ':offset'   => (($page - 1) * MESSAGES_PER_PAGE),
-                // ':limit'    => MESSAGES_PER_PAGE
-            // ));
-        // }
-        // else
-        // {
-            // if ($MessCategory == 100)
-            // {
-                // $sql = "SELECT COUNT(*) as state FROM %%MESSAGES%% WHERE message_owner = :userId AND message_deleted IS NULL;";
-                // $MessageCount = $db->selectSingle($sql, array(
-                    // ':userId'   => $USER['id'],
-                // ), 'state');
-
-                // $maxPage	= max(1, ceil($MessageCount / MESSAGES_PER_PAGE));
-                // $page		= max(1, min($page, $maxPage));
-
-                // $sql = "SELECT message_id, message_time, message_from, message_subject, message_sender, message_type, message_unread, message_text
-                           // FROM %%MESSAGES%%
-                           // WHERE message_owner = :userId AND message_deleted IS NULL
-                           // ORDER BY message_time DESC
-                           // LIMIT :offset, :limit";
-
-                // $MessageResult = $db->select($sql, array(
-                    // ':userId'       => $USER['id'],
-                    // ':offset'       => (($page - 1) * MESSAGES_PER_PAGE),
-                    // ':limit'        => MESSAGES_PER_PAGE
-                // ));
-            // }
-            // else
-            // {
-                // $sql = "SELECT COUNT(*) as state FROM %%MESSAGES%% WHERE message_owner = :userId AND message_type = :messCategory AND message_deleted IS NULL;";
-
-                // $MessageCount = $db->selectSingle($sql, array(
-                    // ':userId'       => $USER['id'],
-                    // ':messCategory' => $MessCategory
-                // ), 'state');
-
-                // $sql = "SELECT message_id, message_time, message_from, message_subject, message_sender, message_type, message_unread, message_text
-                           // FROM %%MESSAGES%%
-                           // WHERE message_owner = :userId AND message_type = :messCategory AND message_deleted IS NULL
-                           // ORDER BY message_time DESC
-                           // LIMIT :offset, :limit";
-
-                // $maxPage	= max(1, ceil($MessageCount / MESSAGES_PER_PAGE));
-                // $page		= max(1, min($page, $maxPage));
-
-                // $MessageResult = $db->select($sql, array(
-                    // ':userId'       => $USER['id'],
-                    // ':messCategory' => $MessCategory,
-                    // ':offset'       => (($page - 1) * MESSAGES_PER_PAGE),
-                    // ':limit'        => MESSAGES_PER_PAGE
-                // ));
-            // }
-        // }
-
-        // foreach ($MessageResult as $MessageRow)
-        // {
-            // $MessagesID[]	= $MessageRow['message_id'];
-
-            // $MessageList[]	= array(
-                // 'id'		=> $MessageRow['message_id'],
-                // 'time'		=> _date($LNG['php_tdformat'], $MessageRow['message_time'], $USER['timezone']),
-                // 'from'		=> $MessageRow['message_from'],
-                // 'subject'	=> $MessageRow['message_subject'],
-                // 'sender'	=> $MessageRow['message_sender'],
-                // 'type'		=> $MessageRow['message_type'],
-                // 'unread'	=> $MessageRow['message_unread'],
-                // 'text'		=> $MessageRow['message_text'],
-            // );
-        // }
-
-        // if(!empty($MessagesID) && $MessCategory != 999) {
-            // $sql = 'UPDATE %%MESSAGES%% SET message_unread = 0 WHERE message_id IN ('.implode(',', $MessagesID).') AND message_owner = :userID;';
-            // $db->update($sql, array(
-                // ':userID'       => $USER['id'],
-            // ));
-        // }
-
-        // $this->assign(array(
-            // 'MessID'		=> $MessCategory,
-            // 'MessageCount'	=> $MessageCount,
-            // 'MessageList'	=> $MessageList,
-            // 'page'			=> $page,
-            // 'maxPage'		=> $maxPage,
-        // ));
-
-        // $this->display('page.messages.view.tpl');
-    // }
-
     private function sendData($Code, $Message)
     {
         $this->sendJSON([
@@ -467,8 +346,6 @@ class ShowMessagesPage extends AbstractGamePage
                 'total'		=> $Total[$CategoryID],
             ];
         }
-
-        //// view()
 
         if ($MessCategory == 999) {
             $sql = "SELECT COUNT(*) as state FROM %%MESSAGES%% WHERE message_sender = :userId AND message_type != 50 AND message_deleted IS NULL;";
