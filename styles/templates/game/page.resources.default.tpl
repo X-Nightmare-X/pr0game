@@ -44,9 +44,9 @@
 {if {$positionBasedRessourceBonus}}
 	<tr style="height:22px">
 		<td>{$LNG.rs_ress_bonus_position}</td>
-		<td><span class="{if $bonusProductionPositionBased.901 > 0}colorPositive{elseif $bonusProductionPositionBased.901 < 0}colorNegative{else}white{/if}">{number_format($bonusProductionPositionBased.901, 0, ",", ".")}</span></td>
-		<td><span class="{if $bonusProductionPositionBased.902 > 0}colorPositive{elseif $bonusProductionPositionBased.902 < 0}colorNegative{else}white{/if}">{number_format($bonusProductionPositionBased.902, 0, ",", ".")}</span></td>
-		<td><span class="{if $bonusProductionPositionBased.903 > 0}colorPositive{elseif $bonusProductionPositionBased.903 < 0}colorNegative{else}white{/if}">{number_format($bonusProductionPositionBased.903, 0, ",", ".")}</span></td>
+		<td><span class="{if $bonusProductionPositionBased.901 > 0}colorPositive{elseif $bonusProductionPositionBased.901 < 0}colorNegative{else}white{/if}">{number_format($bonusProductionPositionBased.901, 0, ",", ".")}</span> ({$metal_bonus_percent}%)</td>
+		<td><span class="{if $bonusProductionPositionBased.902 > 0}colorPositive{elseif $bonusProductionPositionBased.902 < 0}colorNegative{else}white{/if}">{number_format($bonusProductionPositionBased.902, 0, ",", ".")}</span> ({$crystal_bonus_percent}%)</td>
+		<td><span class="{if $bonusProductionPositionBased.903 > 0}colorPositive{elseif $bonusProductionPositionBased.903 < 0}colorNegative{else}white{/if}">{number_format($bonusProductionPositionBased.903, 0, ",", ".")}</span> ({$deuterium_bonus_percent}%)</td>
 		<td><span class="{if $bonusProductionPositionBased.911 > 0}colorPositive{elseif $bonusProductionPositionBased.911 < 0}colorNegative{else}white{/if}">{number_format($bonusProductionPositionBased.911, 0, ",", ".")}</span></td>
 	</tr>
 {/if}

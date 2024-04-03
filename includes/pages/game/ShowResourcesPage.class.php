@@ -272,6 +272,9 @@ class ShowResourcesPage extends AbstractGamePage
             'dailyProduction'                   => $dailyProduction,
             'weeklyProduction'                  => $weeklyProduction,
             'storage'                           => $storage,
+            'metal_bonus_percent'               => $metal_bonus_percent * 100,     
+            'crystal_bonus_percent'             => $crystal_bonus_percent * 100,   
+            'deuterium_bonus_percent'           => $deuterium_bonus_percent * 100, 
         ]);
 
         $this->display('page.resources.default.tpl');
