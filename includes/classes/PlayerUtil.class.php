@@ -506,9 +506,11 @@ class PlayerUtil
         if ($isHome) {
             $maxFields = $config->initial_fields;
             $maxTemperature = $config->initial_temp;
-            $metalBonusPercent = 5;
-            $crystalBonusPercent = 0;
-            $deuteriumBonusPercent = 0;
+            if ($positionBasedRessourceBonus){
+                $metalBonusPercent = 5;
+                $crystalBonusPercent = 0;
+                $deuteriumBonusPercent = 0;
+            }
         } elseif (!empty($planetArray) && $planetArray['anz'] == 1) {
             if ($positionBasedRessourceBonus){
                 $maxFields = (int) floor( ($increasedMinFieldsPlantetData[$dataIndex]['avgFields'] ) * $config->planet_size_factor);
