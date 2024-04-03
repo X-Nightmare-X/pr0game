@@ -99,6 +99,10 @@
 					<td>{$LNG.recordsOptIn}</td>
 					<td><input name="recordsOptIn" type="checkbox" value="1" {if $recordsOptIn == 1}checked="checked" {/if}></td>
 				</tr>
+				<tr>
+					<td>{$LNG.messagesPerPage}</td>
+					<td><input name="messagesPerPage" size="{$messagesPerPage|count_characters + 3}" value="{$messagesPerPage}" type="number" min="10" max="50"></td>
+				</tr>
 
 				<tr>
 					<th colspan="2">{$LNG.op_build_pages}</th>
