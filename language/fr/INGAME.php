@@ -74,6 +74,7 @@ $LNG['general_colors'] = 'Couleurs générales' ;
 
 $LNG['own'] = 'Propre' ;
 $LNG['recordsOptIn'] = 'Afficher vos records à tous les joueurs' ;
+$LNG['messagesPerPage'] = 'Messages par page, min 10 & max 50';
 
 $LNG['type_planet_1'] = 'Planète';
 $LNG['type_planet_2'] = 'Champ de débris';

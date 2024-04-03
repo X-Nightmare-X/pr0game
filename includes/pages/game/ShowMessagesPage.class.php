@@ -347,13 +347,21 @@ class ShowMessagesPage extends AbstractGamePage
             ];
         }
 
+        if (isset($USER["messages_per_page"])) {
+            if ($USER["messages_per_page"] > 50) {
+                $USER["messages_per_page"] = 50;
+            } elseif ($USER["messages_per_page"] < 10) {
+                $USER["messages_per_page"] = 10;
+            }
+        }
+
         if ($MessCategory == 999) {
             $sql = "SELECT COUNT(*) as state FROM %%MESSAGES%% WHERE message_sender = :userId AND message_type != 50 AND message_deleted IS NULL;";
             $MessageCount = $db->selectSingle($sql, [
                 ':userId'   => $USER['id'],
             ], 'state');
 
-            $maxPage	= max(1, ceil($MessageCount / MESSAGES_PER_PAGE));
+            $maxPage	= max(1, ceil($MessageCount / $USER["messages_per_page"]));
             $page		= max(1, min($page, $maxPage));
 
             $sql = "SELECT message_id, message_time, CONCAT(username, ' [',galaxy, ':', system, ':', planet,']') as message_from, message_subject, message_sender, message_type, message_unread, message_text
@@ -364,8 +372,8 @@ class ShowMessagesPage extends AbstractGamePage
 
             $MessageResult = $db->select($sql, [
                 ':userId'   => $USER['id'],
-                ':offset'   => (($page - 1) * MESSAGES_PER_PAGE),
-                ':limit'    => MESSAGES_PER_PAGE
+                ':offset'   => (($page - 1) * $USER["messages_per_page"]),
+                ':limit'    => $USER["messages_per_page"]
             ]);
         } else {
             if ($MessCategory == 100) {
@@ -374,7 +382,7 @@ class ShowMessagesPage extends AbstractGamePage
                     ':userId'   => $USER['id'],
                 ], 'state');
 
-                $maxPage	= max(1, ceil($MessageCount / MESSAGES_PER_PAGE));
+                $maxPage	= max(1, ceil($MessageCount / $USER["messages_per_page"]));
                 $page		= max(1, min($page, $maxPage));
 
                 $sql = "SELECT message_id, message_time, message_from, message_subject, message_sender, message_type, message_unread, message_text
@@ -385,8 +393,8 @@ class ShowMessagesPage extends AbstractGamePage
 
                 $MessageResult = $db->select($sql, [
                     ':userId'       => $USER['id'],
-                    ':offset'       => (($page - 1) * MESSAGES_PER_PAGE),
-                    ':limit'        => MESSAGES_PER_PAGE
+                    ':offset'       => (($page - 1) * $USER["messages_per_page"]),
+                    ':limit'        => $USER["messages_per_page"]
                 ]);
             } else {
                 $sql = "SELECT COUNT(*) as state FROM %%MESSAGES%% WHERE message_owner = :userId AND message_type = :messCategory AND message_deleted IS NULL;";
@@ -402,14 +410,14 @@ class ShowMessagesPage extends AbstractGamePage
                            ORDER BY message_time DESC, message_id
                            LIMIT :offset, :limit";
 
-                $maxPage	= max(1, ceil($MessageCount / MESSAGES_PER_PAGE));
+                $maxPage	= max(1, ceil($MessageCount / $USER["messages_per_page"]));
                 $page		= max(1, min($page, $maxPage));
 
                 $MessageResult = $db->select($sql, [
                     ':userId'       => $USER['id'],
                     ':messCategory' => $MessCategory,
-                    ':offset'       => (($page - 1) * MESSAGES_PER_PAGE),
-                    ':limit'        => MESSAGES_PER_PAGE
+                    ':offset'       => (($page - 1) * $USER["messages_per_page"]),
+                    ':limit'        => $USER["messages_per_page"]
                 ]);
             }
         }

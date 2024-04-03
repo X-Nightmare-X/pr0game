@@ -89,6 +89,7 @@ $LNG['general_colors'] = 'Cores gerais';
 
 $LNG['próprio'] = 'Próprio';
 $LNG['recordsOptIn'] = 'Mostre os seus discos a todos os jogadores';
+$LNG['messagesPerPage'] = 'Mensagens por página, mínimo 10 e máximo 50';
 
 $LNG['type_planet_1'] = 'Planeta';
 $LNG['type_planet_2'] = 'Campo de Destroços';

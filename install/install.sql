@@ -1005,6 +1005,7 @@ CREATE TABLE `%PREFIX%users` (
   `stb_big_time` tinyint(2) NOT NULL DEFAULT 3,
   `stb_enabled` tinyint(1) NOT NULL DEFAULT 0,
   `records_optIn` tinyint(1) NOT NULL DEFAULT 0,
+  `messages_per_page` tinyint(2) NOT NULL DEFAULT 10,
   `publish_achievement` tinyint(0) NOT NULL DEFAULT 0,
   `show_all_buildable_elements` tinyint unsigned NOT NULL DEFAULT 1,
   `missing_requirements_opacity` tinyint unsigned NOT NULL DEFAULT 1,

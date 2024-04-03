@@ -86,6 +86,7 @@ $LNG['general_colors'] = 'Genel renkler';
 
 $LNG['kendi'] = 'Kendi';
 $LNG['recordsOptIn'] = 'Kayıtlarınızı tüm oyunculara gösterin';
+$LNG['messagesPerPage'] = 'Sayfa başına mesaj, min 10 & maks 50';
 
 $LNG['type_planet_1'] = 'Gezegen';
 $LNG['type_planet_2'] = 'Harabe alani';

@@ -78,6 +78,7 @@ $LNG['StaticTimer'] = 'Angunfdsdseid';
 
 $LNG['own'] = 'Eigene';
 $LNG['recordsOptIn'] = 'Deine Regorde allne Sbielern andseigne';
+$LNG['messagesPerPage'] = 'Nachrichten pro Seite, min 10 & max 50';
 
 $LNG['type_planet_1'] = 'Blanet';
 $LNG['type_planet_2'] = 'Drümmerfeld ';

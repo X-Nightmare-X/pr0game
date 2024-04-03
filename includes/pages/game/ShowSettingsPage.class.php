@@ -104,6 +104,7 @@ class ShowSettingsPage extends AbstractGamePage
                 'stb_enabled'                   => $USER['stb_enabled'],
                 'missionPrios'                  => $missionprios,
                 'recordsOptIn'                  => $USER['records_optIn'],
+                'messagesPerPage'               => $USER['messages_per_page'],
                 'publish_achievement'           => $USER['publish_achievement'],
                 'show_all_buildable_elements'   => $USER['show_all_buildable_elements'],
                 'missing_requirements_opacity'  => $USER['missing_requirements_opacity'],
@@ -356,7 +357,7 @@ class ShowSettingsPage extends AbstractGamePage
         $stb_med_time       = HTTP::_GP('stb_med_time', 2);
         $stb_big_time       = HTTP::_GP('stb_big_time', 3);
         $stb_enabled        = HTTP::_GP('stb_enabled', 0);
-
+        
         $prio1 = HTTP::_GP('type_mission_1', 1);
         $prio2 = HTTP::_GP('type_mission_2', 2);
         $prio3 = HTTP::_GP('type_mission_3', 0);
@@ -368,6 +369,7 @@ class ShowSettingsPage extends AbstractGamePage
         $prio9 = HTTP::_GP('type_mission_9', 8);
         $prio17 =HTTP::_GP('type_mission_17', 9);
         $recordsOptIn = HTTP::_GP('recordsOptIn', 0);
+        $messagesPerPage     = HTTP::_GP('messagesPerPage', 10);
 
         $publish_achievement = HTTP::_GP('publish_achievement', 0);
 
@@ -572,6 +574,7 @@ class ShowSettingsPage extends AbstractGamePage
         prioMission9                    = :prioMission9,
         prioMission17                   = :prioMission17,
         records_optIn                   = :records_optIn,
+        messages_per_page               = :messages_per_page,
         stb_small_ress                  = :stb_small_ress,
         stb_med_ress                    = :stb_med_ress,
         stb_big_ress                    = :stb_big_ress,
@@ -649,6 +652,7 @@ class ShowSettingsPage extends AbstractGamePage
             ':prioMission9'                 => $prio9,
             ':prioMission17'                => $prio17,
             ':records_optIn'                => $recordsOptIn,
+            ':messages_per_page'            => $messagesPerPage,
             ':stb_small_ress'               => $stb_small_ress,
             ':stb_med_ress'                 => $stb_med_ress,
             ':stb_big_ress'                 => $stb_big_ress,

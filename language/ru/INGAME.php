@@ -83,6 +83,7 @@ $LNG['general_colors'] = 'Общие цвета';
 
 $LNG['own'] = 'Собственный';
 $LNG['recordsOptIn'] = 'Показать свои записи всем игрокам';
+$LNG['messagesPerPage'] = 'Сообщений на страницу, минимум 10 и максимум 50';
 
 $LNG['type_planet_1'] = 'Планета';
 $LNG['type_planet_2'] = 'Поле обломков';

@@ -84,6 +84,7 @@ $LNG['general_colors'] = 'Generelle Farben';
 
 $LNG['own'] = 'Eigene';
 $LNG['recordsOptIn'] = 'Deine Rekorde allen Spielern anzeigen';
+$LNG['messagesPerPage'] = 'Nachrichten pro Seite, min 10 & max 50';
 
 $LNG['type_planet_1'] = 'Planet';
 $LNG['type_planet_2'] = 'Trümmerfeld';

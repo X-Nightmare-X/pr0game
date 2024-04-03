@@ -83,6 +83,7 @@ $LNG['general_colors'] = 'Colores generales';
 
 $LNG['propio'] = 'Propio';
 $LNG['recordsOptIn'] = 'Mostrar sus registros a todos los jugadores';
+$LNG['messagesPerPage'] = 'Mensajes por página, mín. 10 y máx. 50';
 
 $LNG['type_planet_1'] = 'Planeta';
 $LNG['type_planet_2'] = 'Escombros';

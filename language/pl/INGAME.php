@@ -87,6 +87,7 @@ $LNG['general_colors'] = 'Kolory ogólne';
 
 $LNG['own'] = 'Własne';
 $LNG['recordsOptIn'] = 'Pokaż swoje rekordy wszystkim graczom';
+$LNG['messagesPerPage'] = 'Wiadomości na stronę, min. 10 i maks. 50';
 
 $LNG['type_planet_1'] = 'Planeta';
 $LNG['type_planet_2'] = 'Pole zniszczeń';

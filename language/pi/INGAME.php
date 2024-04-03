@@ -78,6 +78,7 @@ $LNG['StaticTimer'] = 'Ankunftszeit';
 
 $LNG['own'] = 'Eigene';
 $LNG['recordsOptIn'] = 'Deine Rekorde allen Spielern anzeigen';
+$LNG['messagesPerPage'] = 'Nachrichten pro Seite, min 10 & max 50';
 
 $LNG['type_planet_1'] = 'Hafen';
 $LNG['type_planet_2'] = 'Treibgut-Feld';
