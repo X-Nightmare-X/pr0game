@@ -30,7 +30,7 @@ class DailyCronJob implements CronjobTask
             $this->updateInactiveMines($universe);
             $this->emptyInactiveAllianceAndBuddy($universe);
         }
-        // $this->cleanReports($universes);
+        $this->cleanReports($universes);
         $this->eraseIPAdresses();
     }
 
@@ -127,10 +127,11 @@ class DailyCronJob implements CronjobTask
 
             if (!empty($units)) {
                 // Delete lower battlehall KBs
-                $sql = "DELETE FROM %%TOPKB%% WHERE `universe` = :universe AND `units` < :units AND `memorial` = 0;";
+                $sql = "DELETE FROM %%TOPKB%% WHERE `universe` = :universe AND `units` < :units AND `time` < :oldStuff AND `memorial` = 0;";
                 $db->delete($sql. [
                     ':universe' => $universe,
                     ':units' => $units,
+                    ':oldStuff' => TIMESTAMP - $del_before,
                 ]);
             }
         }
